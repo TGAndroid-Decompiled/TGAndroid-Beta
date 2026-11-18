@@ -1,60 +1,123 @@
 package wg;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.z10;
-import org.telegram.tgnet.TLRPC;
-public final class t implements z10 {
-    public final int f59239a;
-    public final y f59240b;
+import android.content.DialogInterface;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import ug.i1;
+public final class t implements Runnable {
+    public final int f59821a;
+    public final a0 f59822b;
 
-    public t(y yVar, int i7) {
-        this.f59239a = i7;
-        this.f59240b = yVar;
+    public t(a0 a0Var, int i7) {
+        this.f59821a = i7;
+        this.f59822b = a0Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f59239a) {
+    public final void run() {
+        int i7 = this.f59821a;
+        final a0 a0Var = this.f59822b;
+        switch (i7) {
             case 0:
-                Void r42 = (Void) obj;
-                y yVar = this.f59240b;
-                yVar.dismiss();
-                org.telegram.messenger.g0.i3(new r(yVar, 2), 220L);
+                org.telegram.messenger.g0.v1(a0Var.f39534o1);
                 return;
             case 1:
-                y yVar2 = this.f59240b;
-                yVar2.f59284m2.b(false);
-                h.j(yVar2.getContext(), (TLRPC.TL_error) obj);
+                ks.f(j10.f24773t0).k(193, a0Var.X1, Boolean.TRUE);
                 return;
             case 2:
-                y yVar3 = this.f59240b;
-                yVar3.f59281j2 = yVar3.U1.indexOf(Integer.valueOf(((TLRPC.TL_premiumGiftCodeOption) obj).users));
-                yVar3.k1(true, true);
-                yVar3.j1(true);
+                ks.f(j10.f24773t0).k(193, a0Var.X1, Boolean.FALSE);
                 return;
             case 3:
-                Void r43 = (Void) obj;
-                y yVar4 = this.f59240b;
-                yVar4.dismiss();
-                org.telegram.messenger.g0.i3(new r(yVar4, 1), 220L);
-                return;
-            case 4:
-                y yVar5 = this.f59240b;
-                yVar5.f59284m2.b(false);
-                h.j(yVar5.getContext(), (TLRPC.TL_error) obj);
-                return;
-            case 5:
-                y yVar6 = this.f59240b;
-                ArrayList arrayList = yVar6.f59274b2;
-                arrayList.clear();
-                arrayList.addAll((List) obj);
-                yVar6.k1(true, true);
+                i1 i1Var = new i1(a0Var.f39538s1, a0Var.f30189a, null, a0Var.J0);
+                i1Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        switch (r2) {
+                            case 0:
+                                yg.r rVar = a0Var.f59697c2.f60475r;
+                                if (rVar != null) {
+                                    rVar.setPaused(false);
+                                    return;
+                                }
+                                return;
+                            default:
+                                yg.r rVar2 = a0Var.f59697c2.f60475r;
+                                if (rVar2 != null) {
+                                    rVar2.setPaused(false);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                i1Var.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public final void onShow(DialogInterface dialogInterface) {
+                        switch (r2) {
+                            case 0:
+                                yg.r rVar = a0Var.f59697c2.f60475r;
+                                if (rVar != null) {
+                                    rVar.setPaused(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                yg.r rVar2 = a0Var.f59697c2.f60475r;
+                                if (rVar2 != null) {
+                                    rVar2.setPaused(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                i1Var.show();
                 return;
             default:
-                y yVar7 = this.f59240b;
-                yVar7.f59284m2.b(false);
-                h.j(yVar7.getContext(), (TLRPC.TL_error) obj);
+                i1 i1Var2 = new i1(a0Var.f39538s1, a0Var.f30189a, null, a0Var.J0);
+                i1Var2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        switch (r2) {
+                            case 0:
+                                yg.r rVar = a0Var.f59697c2.f60475r;
+                                if (rVar != null) {
+                                    rVar.setPaused(false);
+                                    return;
+                                }
+                                return;
+                            default:
+                                yg.r rVar2 = a0Var.f59697c2.f60475r;
+                                if (rVar2 != null) {
+                                    rVar2.setPaused(false);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                i1Var2.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public final void onShow(DialogInterface dialogInterface) {
+                        switch (r2) {
+                            case 0:
+                                yg.r rVar = a0Var.f59697c2.f60475r;
+                                if (rVar != null) {
+                                    rVar.setPaused(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                yg.r rVar2 = a0Var.f59697c2.f60475r;
+                                if (rVar2 != null) {
+                                    rVar2.setPaused(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                i1Var2.show();
                 return;
         }
     }

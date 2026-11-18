@@ -3,10 +3,9 @@ package q1;
 import java.util.Map;
 import kotlin.jvm.internal.j;
 import kotlin.jvm.internal.k;
-import org.telegram.ui.Cells.y0;
 import rd.l;
 public final class a extends k implements l {
-    public static final a f55126b = new k(1);
+    public static final a f55702b = new k(1);
 
     @Override
     public final Object invoke(Object obj) {
@@ -31,6 +30,6 @@ public final class a extends k implements l {
         } else {
             valueOf = String.valueOf(entry.getValue());
         }
-        return y0.m(((e) entry.getKey()).f55133a, " = ", valueOf, new StringBuilder("  "));
+        return p5.c.m(((e) entry.getKey()).f55709a, " = ", valueOf, new StringBuilder("  "));
     }
 }

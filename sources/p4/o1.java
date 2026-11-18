@@ -1,73 +1,64 @@
 package p4;
 
-import android.media.session.MediaSession;
+import a8.la;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.text.TextUtils;
-import j$.util.Objects;
+import android.os.SystemClock;
 public final class o1 {
-    public static final String f54820i;
-    public static final String f54821j;
-    public static final String f54822k;
-    public static final String f54823l;
-    public static final String f54824m;
-    public static final String f54825n;
-    public static final String f54826o;
-    public static final String f54827p;
-    public static final String f54828q;
-    public static final String f54829r;
-    public final int f54830a;
-    public final int f54831b;
-    public final int f54832c;
-    public final String d;
-    public final String f54833e;
-    public final IBinder f54834f;
-    public final Bundle f54835g;
-    public final MediaSession.Token h;
+    public static final String f55380e;
+    public static final String f55381f;
+    public static final String f55382g;
+    public static final String h;
+    public final int f55383a;
+    public final Bundle f55384b;
+    public final long f55385c;
+    public final m1 d;
 
     static {
-        String str = h2.l0.f13471a;
-        f54820i = Integer.toString(0, 36);
-        f54821j = Integer.toString(1, 36);
-        f54822k = Integer.toString(2, 36);
-        f54823l = Integer.toString(3, 36);
-        f54824m = Integer.toString(4, 36);
-        f54825n = Integer.toString(5, 36);
-        f54826o = Integer.toString(6, 36);
-        f54827p = Integer.toString(7, 36);
-        f54828q = Integer.toString(8, 36);
-        f54829r = Integer.toString(9, 36);
+        String str = h2.l0.f13786a;
+        f55380e = Integer.toString(0, 36);
+        f55381f = Integer.toString(1, 36);
+        f55382g = Integer.toString(2, 36);
+        h = Integer.toString(3, 36);
     }
 
-    public o1(int i7, String str, c1 c1Var, Bundle bundle, MediaSession.Token token) {
-        str.getClass();
-        bundle.getClass();
-        this.f54830a = i7;
-        this.f54831b = 1010001300;
-        this.f54832c = 9;
-        this.d = str;
-        this.f54833e = "";
-        this.f54834f = c1Var;
-        this.f54835g = bundle;
-        this.h = token;
+    public o1(int i7) {
+        this(i7, Bundle.EMPTY, SystemClock.elapsedRealtime(), null);
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof o1) {
-            o1 o1Var = (o1) obj;
-            if (this.f54830a == o1Var.f54830a && this.f54831b == o1Var.f54831b && this.f54832c == o1Var.f54832c && TextUtils.equals(this.d, o1Var.d) && TextUtils.equals(this.f54833e, o1Var.f54833e) && Objects.equals(this.f54834f, o1Var.f54834f) && Objects.equals(this.h, o1Var.h)) {
-                return true;
+    public static o1 a(Bundle bundle) {
+        m1 m1Var;
+        int i7 = bundle.getInt(f55380e, -1);
+        Bundle o4 = h2.l0.o(bundle.getBundle(f55381f));
+        long j3 = bundle.getLong(f55382g, SystemClock.elapsedRealtime());
+        Bundle bundle2 = bundle.getBundle(h);
+        if (bundle2 != null) {
+            int i10 = bundle2.getInt(m1.d, 1000);
+            String string = bundle2.getString(m1.f55343e, "");
+            Bundle o10 = h2.l0.o(bundle2.getBundle(m1.f55344f));
+            if (o10 == null) {
+                o10 = Bundle.EMPTY;
             }
-            return false;
+            m1Var = new m1(string, i10, o10);
+        } else if (i7 != 0) {
+            m1Var = new m1(i7);
+        } else {
+            m1Var = null;
         }
-        return false;
+        m1 m1Var2 = m1Var;
+        if (o4 == null) {
+            o4 = Bundle.EMPTY;
+        }
+        return new o1(i7, o4, j3, m1Var2);
     }
 
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f54830a), 0, Integer.valueOf(this.f54831b), Integer.valueOf(this.f54832c), this.d, this.f54833e, null, this.f54834f, this.h);
-    }
-
-    public final String toString() {
-        return "SessionToken {pkg=" + this.d + " type=0 libraryVersion=" + this.f54831b + " interfaceVersion=" + this.f54832c + " service=" + this.f54833e + " IMediaSession=" + this.f54834f + " extras=" + this.f54835g + "}";
+    public o1(int i7, Bundle bundle, long j3, m1 m1Var) {
+        la.f(m1Var == null || i7 < 0);
+        this.f55383a = i7;
+        this.f55384b = new Bundle(bundle);
+        this.f55385c = j3;
+        if (m1Var == null && i7 < 0) {
+            m1Var = new m1(i7);
+        }
+        this.d = m1Var;
     }
 }

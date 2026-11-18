@@ -1,24 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-public final class zk extends v4.c0 {
-    public final kg.c0 f42398r;
+public final class zk implements org.telegram.ui.ActionBar.m0, org.telegram.messenger.za, org.telegram.messenger.bb, org.telegram.ui.ActionBar.r1, jg.b {
+    public final kl f42896a;
 
-    public zk(kg.c0 c0Var, Context context) {
-        super(context);
-        this.f42398r = c0Var;
+    public zk(kl klVar) {
+        this.f42896a = klVar;
     }
 
     @Override
-    public final int k(int i7, View view) {
-        int k10 = super.k(i7, view);
-        dl dlVar = (dl) this.f42398r.V;
-        return k10 - (dlVar.M.getPaddingTop() - (dlVar.f33979r0 - dlVar.f33977q0));
+    public void a() {
+        kl klVar = this.f42896a;
+        klVar.f36798f0 = false;
+        klVar.j0();
     }
 
     @Override
-    public final int m(int i7) {
-        return super.m(i7) * 4;
+    public boolean b(MotionEvent motionEvent, org.telegram.messenger.ga gaVar) {
+        MotionEvent motionEvent2;
+        kl klVar = this.f42896a;
+        if (klVar.H != 0.0f) {
+            motionEvent = MotionEvent.obtain(motionEvent);
+            motionEvent.offsetLocation(0.0f, (-klVar.H) / 2.0f);
+            motionEvent2 = motionEvent;
+        } else {
+            motionEvent2 = null;
+        }
+        boolean booleanValue = gaVar.a(motionEvent).booleanValue();
+        if (motionEvent2 != null) {
+            motionEvent2.recycle();
+        }
+        return booleanValue;
+    }
+
+    @Override
+    public void c(int i7) {
+        View childAt;
+        v4.f1 T;
+        int L;
+        kl klVar = this.f42896a;
+        di.b1 b1Var = klVar.M;
+        if (i7 == 1 && !klVar.I && b1Var.getChildCount() > 0 && (childAt = b1Var.getChildAt(0)) != null) {
+            View F = b1Var.F(childAt);
+            if (F == null) {
+                T = null;
+            } else {
+                T = b1Var.T(F);
+            }
+            if (T != null && T.b() == 0) {
+                if (klVar.f36808p0 == 0) {
+                    L = 0;
+                } else {
+                    L = org.telegram.messenger.g0.L(66.0f);
+                }
+                int top = childAt.getTop();
+                if (top < (-L)) {
+                    hi.u4 d = klVar.E.d();
+                    klVar.G = ((pb.b) org.telegram.messenger.t0.k()).newCameraUpdateLatLngZoom((org.telegram.messenger.ab) d.f15536b, d.f15537c);
+                    b1Var.w0(0, top + L, null);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void g(int i7) {
+        org.telegram.messenger.da daVar = this.f42896a.E;
+        if (daVar != null) {
+            if (i7 == 2) {
+                daVar.j(0);
+            } else if (i7 == 3) {
+                daVar.j(1);
+            } else if (i7 == 4) {
+                daVar.j(2);
+            }
+        }
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        kl.R(this.f42896a);
     }
 }

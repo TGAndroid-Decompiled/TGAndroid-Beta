@@ -1,46 +1,37 @@
 package ii;
 
-import org.telegram.ui.Components.et0;
-public final class a implements te.b, et0 {
-    public final int f15944a;
-    public final f f15945b;
+import org.telegram.messenger.q10;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class a implements Runnable {
+    public final int f16260a;
+    public final q10 f16261b;
+    public final TLObject f16262c;
+    public final TLRPC.TL_error d;
 
-    public a(f fVar, int i7) {
-        this.f15944a = i7;
-        this.f15945b = fVar;
+    public a(q10 q10Var, TLObject tLObject, TLRPC.TL_error tL_error, int i7) {
+        this.f16260a = i7;
+        this.f16261b = q10Var;
+        this.f16262c = tLObject;
+        this.d = tL_error;
     }
 
     @Override
-    public void E(float f10, int i7) {
-        int i10 = this.f15944a;
-    }
-
-    @Override
-    public void G(int i7, float f10, float f11, te.c cVar) {
-        switch (this.f15944a) {
+    public final void run() {
+        TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
+        switch (this.f16260a) {
             case 0:
-                this.f15945b.H0();
-                return;
-            case 1:
-                this.f15945b.H0();
+                TLObject tLObject = this.f16262c;
+                if (tLObject instanceof TLRPC.TL_payments_starsRevenueStats) {
+                    tL_starsRevenueStatus = ((TLRPC.TL_payments_starsRevenueStats) tLObject).status;
+                } else {
+                    tL_starsRevenueStatus = null;
+                }
+                this.f16261b.a(tL_starsRevenueStatus, this.d);
                 return;
             default:
-                this.f15945b.X.setAlpha(f10);
+                this.f16261b.a(this.f16262c, this.d);
                 return;
         }
-    }
-
-    @Override
-    public int b() {
-        return this.f15945b.f15954b0;
-    }
-
-    private final void a(float f10, int i7) {
-    }
-
-    private final void c(float f10, int i7) {
-    }
-
-    private final void d(float f10, int i7) {
     }
 }

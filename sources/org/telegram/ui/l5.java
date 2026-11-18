@@ -1,23 +1,23 @@
 package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_stories;
-public final class l5 implements org.telegram.messenger.z10 {
-    public final int f48839a;
-    public final t5 f48840b;
+public final class l5 implements org.telegram.messenger.x10 {
+    public final int f49430a;
+    public final t5 f49431b;
 
     public l5(t5 t5Var, int i7) {
-        this.f48839a = i7;
-        this.f48840b = t5Var;
+        this.f49430a = i7;
+        this.f49431b = t5Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f48839a) {
+        switch (this.f49430a) {
             case 0:
-                this.f48840b.V = (org.telegram.messenger.e3) obj;
+                this.f49431b.V = (org.telegram.messenger.g3) obj;
                 return;
             default:
-                org.telegram.messenger.g0.h3(new oi.u4(29, this.f48840b, (TL_stories.TL_premium_boostsStatus) obj));
+                org.telegram.messenger.g0.g3(new oi.s2(25, this.f49431b, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
         }
     }

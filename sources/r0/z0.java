@@ -4,16 +4,16 @@ public final class z0 extends y0 {
     }
 
     @Override
-    public void c(int i7, i0.c cVar) {
-        this.f55720c.setInsets(j1.a(i7), cVar.d());
+    public void c(int i7, i0.b bVar) {
+        this.f56295c.setInsets(k1.a(i7), bVar.d());
     }
 
     @Override
     public void i(int i7, boolean z10) {
-        this.f55720c.setVisible(j1.a(i7), z10);
+        this.f56295c.setVisible(k1.a(i7), z10);
     }
 
-    public z0(k1 k1Var) {
-        super(k1Var);
+    public z0(l1 l1Var) {
+        super(l1Var);
     }
 }

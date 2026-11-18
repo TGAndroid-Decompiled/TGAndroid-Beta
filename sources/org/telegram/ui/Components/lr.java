@@ -1,92 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class lr implements Runnable {
-    public final int f36890a;
-    public final rr f36891b;
+import android.graphics.PointF;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+public final class lr implements Interpolator {
+    public static final lr f37208f = new lr(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final lr f37209g = new lr(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final lr h = new lr(0.23d, 1.0d, 0.32d, 1.0d);
+    public static final lr f37210i = new lr(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final lr f37211j = new lr(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final lr f37212k = new lr(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f37213l;
+    public final PointF f37214a;
+    public final PointF f37215b;
+    public final PointF f37216c;
+    public final PointF d;
+    public final PointF f37217e;
 
-    public lr(rr rrVar, int i7) {
-        this.f36890a = i7;
-        this.f36891b = rrVar;
+    static {
+        new PathInterpolator(c8.l0.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+        f37213l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+    }
+
+    public lr(float f10, float f11, float f12, float f13) {
+        PointF pointF = new PointF(f10, f11);
+        PointF pointF2 = new PointF(f12, f13);
+        this.f37216c = new PointF();
+        this.d = new PointF();
+        this.f37217e = new PointF();
+        float f14 = pointF.x;
+        if (f14 >= 0.0f && f14 <= 1.0f) {
+            float f15 = pointF2.x;
+            if (f15 >= 0.0f && f15 <= 1.0f) {
+                this.f37214a = pointF;
+                this.f37215b = pointF2;
+                return;
+            }
+            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
+        }
+        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
     }
 
     @Override
-    public final void run() {
-        Context context;
-        boolean z10;
-        CharSequence charSequence;
-        int i7 = this.f36890a;
-        rr rrVar = this.f36891b;
-        boolean z11 = false;
-        switch (i7) {
-            case 0:
-                rrVar.i1(false);
-                return;
-            default:
-                Context context2 = rrVar.getContext();
-                org.telegram.ui.ActionBar.e6 e6Var = rrVar.J0;
-                int i10 = rrVar.f29679a;
-                long j3 = rrVar.f39031m2;
-                ArrayList<Long> arrayList = rrVar.f39032n2.joined_chat_ids;
-                mr mrVar = new mr(rrVar, 5);
-                Pattern pattern = t4.f39505a;
-                LinearLayout f10 = org.telegram.messenger.k5.f(context2, 1);
-                org.telegram.ui.ActionBar.t1[] t1VarArr = new org.telegram.ui.ActionBar.t1[1];
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context2, e6Var);
-                Object obj = null;
-                String M0 = org.telegram.messenger.hd.M0(2131751959, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                t1Var.S = M0;
-                t1Var.U = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(arrayList.size(), "CommunityBanWillRemoveFromChats", org.telegram.messenger.m5.s(i10, j3)));
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
-                alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
-                alertDialog$Builder.o(f10);
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Long l10 = arrayList.get(i11);
-                    i11++;
-                    Long l11 = l10;
-                    long longValue = l11.longValue();
-                    TLRPC.Chat M02 = org.telegram.messenger.np.s1(i10).M0(l11);
-                    TLRPC.ChatFull N0 = org.telegram.messenger.np.s1(i10).N0(longValue);
-                    if (M02 == null) {
-                        obj = null;
-                    } else {
-                        org.telegram.ui.ActionBar.t1 t1Var2 = t1Var;
-                        di.e1 e1Var = new di.e1(context2, e6Var, z11);
-                        ((TextView) e1Var.f8441b).setText(org.telegram.messenger.m5.m(M02));
-                        TextView textView = (TextView) e1Var.d;
-                        if (N0 != null) {
-                            context = context2;
-                            z10 = false;
-                            charSequence = org.telegram.messenger.hd.G(N0.participants_count, "Members", new Object[0]);
-                        } else {
-                            context = context2;
-                            z10 = false;
-                            charSequence = null;
-                        }
-                        textView.setText(charSequence);
-                        ((i9) e1Var.f8442c).f(M02, new t8(M02));
-                        e1Var.setBackground(org.telegram.ui.ActionBar.j6.N0(z10));
-                        e1Var.setOnClickListener(new di.v2(t1VarArr, mrVar, longValue, 3));
-                        f10.addView(e1Var, c8.ja.o(-1, -2));
-                        z11 = z10;
-                        obj = null;
-                        t1Var = t1Var2;
-                        context2 = context;
-                    }
-                }
-                org.telegram.ui.ActionBar.t1 t1Var3 = t1Var;
-                t1VarArr[z11 ? 1 : 0] = t1Var3;
-                t1Var3.show();
-                return;
+    public final float getInterpolation(float f10) {
+        PointF pointF;
+        PointF pointF2;
+        PointF pointF3;
+        PointF pointF4;
+        PointF pointF5;
+        int i7 = 1;
+        float f11 = f10;
+        while (true) {
+            pointF = this.f37215b;
+            pointF2 = this.f37214a;
+            pointF3 = this.f37216c;
+            pointF4 = this.d;
+            pointF5 = this.f37217e;
+            if (i7 >= 14) {
+                break;
+            }
+            float f12 = pointF2.x * 3.0f;
+            pointF5.x = f12;
+            float f13 = ((pointF.x - pointF2.x) * 3.0f) - f12;
+            pointF4.x = f13;
+            float f14 = (1.0f - pointF5.x) - f13;
+            pointF3.x = f14;
+            float f15 = (((((f14 * f11) + pointF4.x) * f11) + pointF5.x) * f11) - f10;
+            if (Math.abs(f15) < 0.001d) {
+                break;
+            }
+            f11 -= f15 / (((((pointF3.x * 3.0f) * f11) + (pointF4.x * 2.0f)) * f11) + pointF5.x);
+            i7++;
         }
+        float f16 = pointF2.y * 3.0f;
+        pointF5.y = f16;
+        float f17 = ((pointF.y - pointF2.y) * 3.0f) - f16;
+        pointF4.y = f17;
+        float f18 = (1.0f - pointF5.y) - f17;
+        pointF3.y = f18;
+        return ((((f18 * f11) + pointF4.y) * f11) + pointF5.y) * f11;
+    }
+
+    public lr(double d, double d2, double d10, double d11) {
+        this((float) d, (float) d2, (float) d10, (float) d11);
     }
 }

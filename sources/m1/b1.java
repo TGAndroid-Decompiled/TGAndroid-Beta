@@ -1,10 +1,10 @@
 package m1;
 public final class b1 extends kd.c {
-    public ie.d f19938a;
-    public boolean f19939b;
-    public Object f19940c;
+    public ie.d f20305a;
+    public boolean f20306b;
+    public Object f20307c;
     public final d1 d;
-    public int f19941e;
+    public int f20308e;
 
     public b1(d1 d1Var, kd.c cVar) {
         super(cVar);
@@ -13,8 +13,8 @@ public final class b1 extends kd.c {
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.f19940c = obj;
-        this.f19941e |= Integer.MIN_VALUE;
+        this.f20307c = obj;
+        this.f20308e |= Integer.MIN_VALUE;
         return this.d.a(null, this);
     }
 }

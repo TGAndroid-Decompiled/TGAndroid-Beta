@@ -7,11 +7,11 @@ import zd.l0;
 import zd.x;
 import zd.y1;
 public final class g extends x implements g0 {
-    public static final AtomicIntegerFieldUpdater f10613n = AtomicIntegerFieldUpdater.newUpdater(g.class, "runningWorkers$volatile");
-    public final g0 f10614c;
+    public static final AtomicIntegerFieldUpdater f10931n = AtomicIntegerFieldUpdater.newUpdater(g.class, "runningWorkers$volatile");
+    public final g0 f10932c;
     public final x d;
-    public final int f10615e;
-    public final k f10616f;
+    public final int f10933e;
+    public final k f10934f;
     public final Object h;
     private volatile int runningWorkers$volatile;
 
@@ -22,30 +22,30 @@ public final class g extends x implements g0 {
         } else {
             g0Var = null;
         }
-        this.f10614c = g0Var == null ? d0.f61269a : g0Var;
+        this.f10932c = g0Var == null ? d0.f61833a : g0Var;
         this.d = xVar;
-        this.f10615e = i7;
-        this.f10616f = new k();
+        this.f10933e = i7;
+        this.f10934f = new k();
         this.h = new Object();
     }
 
     @Override
     public final l0 a(long j3, y1 y1Var, id.h hVar) {
-        return this.f10614c.a(j3, y1Var, hVar);
+        return this.f10932c.a(j3, y1Var, hVar);
     }
 
     @Override
     public final void b(long j3, zd.m mVar) {
-        this.f10614c.b(j3, mVar);
+        this.f10932c.b(j3, mVar);
     }
 
     @Override
     public final void c(id.h hVar, Runnable runnable) {
-        this.f10616f.a(runnable);
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f10613n;
-        if (atomicIntegerFieldUpdater.get(this) < this.f10615e) {
+        this.f10934f.a(runnable);
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f10931n;
+        if (atomicIntegerFieldUpdater.get(this) < this.f10933e) {
             synchronized (this.h) {
-                if (atomicIntegerFieldUpdater.get(this) >= this.f10615e) {
+                if (atomicIntegerFieldUpdater.get(this) >= this.f10933e) {
                     return;
                 }
                 atomicIntegerFieldUpdater.incrementAndGet(this);
@@ -59,12 +59,12 @@ public final class g extends x implements g0 {
 
     public final Runnable g() {
         while (true) {
-            Runnable runnable = (Runnable) this.f10616f.d();
+            Runnable runnable = (Runnable) this.f10934f.d();
             if (runnable == null) {
                 synchronized (this.h) {
-                    AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f10613n;
+                    AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f10931n;
                     atomicIntegerFieldUpdater.decrementAndGet(this);
-                    if (this.f10616f.c() == 0) {
+                    if (this.f10934f.c() == 0) {
                         return null;
                     }
                     atomicIntegerFieldUpdater.incrementAndGet(this);
@@ -77,6 +77,6 @@ public final class g extends x implements g0 {
 
     @Override
     public final String toString() {
-        return this.d + ".limitedParallelism(" + this.f10615e + ')';
+        return this.d + ".limitedParallelism(" + this.f10933e + ')';
     }
 }

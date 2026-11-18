@@ -1,428 +1,122 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
 import android.graphics.RectF;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.PathInterpolator;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.an;
-public final class o6 {
-    public final ViewGroup f44248a;
-    public final View f44249b;
-    public final ki f44250c;
-    public final w6 d;
-    public final an f44251e;
-    public final TL_wallet.walletTransaction f44252f;
-    public final Runnable f44253g;
-    public final l6 h;
-    public final w6 f44254i;
-    public final r9 f44255j = new r9();
-    public final PathInterpolator f44256k = new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-    public final float f44257l;
-    public final AnimatorSet f44258m;
-    public final RectF f44259n;
-    public final RectF f44260o;
-    public org.telegram.ui.Cells.t0 f44261p;
-    public final m6 f44262q;
-    public float f44263r;
-    public boolean f44264s;
-    public boolean f44265t;
-    public boolean f44266u;
-    public boolean v;
-    public final long f44267w;
-    public final k6 f44268x;
+import android.graphics.Shader;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+public final class o6 extends ReplacementSpan {
+    public static Typeface f44707x;
+    public final String f44708a;
+    public final String f44709b;
+    public final String f44710c;
+    public final String d;
+    public final org.telegram.ui.ActionBar.i6 f44711e;
+    public final TextPaint f44712f;
+    public final Paint h;
+    public final RectF f44713n;
+    public LinearGradient f44714r;
+    public float f44715s;
+    public int f44716w;
 
-    public o6(ViewGroup viewGroup, View view, w6 w6Var, an anVar, TL_wallet.walletTransaction wallettransaction, Runnable runnable, ki kiVar) {
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.f44258m = animatorSet;
-        this.f44260o = new RectF();
-        this.f44267w = SystemClock.uptimeMillis();
-        ?? r12 = new Runnable(this) {
-            public final o6 f44069b;
-
-            {
-                this.f44069b = this;
+    public o6(String str, String str2, String str3, String str4, org.telegram.ui.ActionBar.i6 i6Var) {
+        TextPaint textPaint = new TextPaint(1);
+        this.f44712f = textPaint;
+        this.h = new Paint(1);
+        this.f44713n = new RectF();
+        this.f44708a = str;
+        this.f44709b = str2;
+        this.f44710c = str3;
+        this.d = str4;
+        this.f44711e = i6Var;
+        if (f44707x == null) {
+            if (Build.VERSION.SDK_INT >= 26) {
+                f44707x = new Typeface.Builder(org.telegram.messenger.t0.f26915b.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
+            } else {
+                f44707x = org.telegram.messenger.g0.o1("fonts/rmono.ttf");
             }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        o6 o6Var = this.f44069b;
-                        w6 w6Var2 = o6Var.d;
-                        float f10 = o6Var.f44257l;
-                        ViewGroup viewGroup2 = o6Var.f44248a;
-                        m6 m6Var = o6Var.f44262q;
-                        AnimatorSet animatorSet2 = o6Var.f44258m;
-                        w6 w6Var3 = o6Var.f44254i;
-                        RectF rectF = o6Var.f44260o;
-                        RectF rectF2 = o6Var.f44259n;
-                        if (!o6Var.v && !o6Var.f44266u) {
-                            o6Var.e();
-                            o6Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.t0 K8 = o6Var.f44251e.K8(o6Var.f44252f);
-                            if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.t0 t0Var = o6Var.f44261p;
-                                if (t0Var != K8) {
-                                    if (t0Var != null) {
-                                        t0Var.J0.i(false);
-                                    }
-                                    o6Var.f44261p = K8;
-                                }
-                                b4 b4Var = o6Var.f44261p.J0.f43593m;
-                                if (o6Var.f44265t && m6Var.f58979n && b4Var != null && b4Var.f58979n && b4Var.getWidth() > 0 && !o6Var.f44261p.isLayoutRequested()) {
-                                    rectF.set(o6Var.c(b4Var));
-                                    if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
-                                        o6Var.f44266u = true;
-                                        o6Var.f44261p.J0.i(true);
-                                        w6Var3.f(w6Var2);
-                                        w6Var3.setAlpha(f10);
-                                        w6Var2.setAlpha(0.0f);
-                                        o6Var.f44255j.b(rectF2.centerX(), rectF2.centerY());
-                                        animatorSet2.start();
-                                        return;
-                                    }
-                                    rectF.setEmpty();
-                                }
-                            }
-                            if (SystemClock.uptimeMillis() - o6Var.f44267w <= 700 && !o6Var.f44264s && viewGroup2.isAttachedToWindow()) {
-                                o6Var.h.postOnAnimation(o6Var.f44268x);
-                                return;
-                            }
-                            o6Var.f44266u = true;
-                            w6Var3.setAlpha(0.0f);
-                            m6Var.setAlpha(0.0f);
-                            animatorSet2.setDuration(180L);
-                            animatorSet2.start();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f44069b.d();
-                        return;
-                    default:
-                        this.f44069b.f44265t = true;
-                        return;
-                }
-            }
-        };
-        this.f44268x = r12;
-        this.f44250c = kiVar;
-        this.f44248a = viewGroup;
-        this.f44249b = view;
-        this.d = w6Var;
-        this.f44257l = w6Var.getAlpha();
-        this.f44251e = anVar;
-        this.f44252f = wallettransaction;
-        this.f44253g = runnable;
-        RectF a10 = da.a(w6Var, viewGroup);
-        this.f44259n = a10;
-        e();
-        l6 l6Var = new l6(this, viewGroup.getContext());
-        this.h = l6Var;
-        l6Var.setClipChildren(false);
-        l6Var.setClipToPadding(false);
-        l6Var.setClickable(true);
-        w6 w6Var2 = new w6(60, viewGroup.getContext(), true);
-        this.f44254i = w6Var2;
-        w6Var2.setContinuousRotation(540.0f);
-        w6Var2.f(w6Var);
-        w6Var2.setAlpha(0.0f);
-        l6Var.addView(w6Var2, c8.ja.e(60, 60, 51));
-        m6 m6Var = new m6(this, viewGroup.getContext(), new Runnable(this) {
-            public final o6 f44069b;
-
-            {
-                this.f44069b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        o6 o6Var = this.f44069b;
-                        w6 w6Var22 = o6Var.d;
-                        float f10 = o6Var.f44257l;
-                        ViewGroup viewGroup2 = o6Var.f44248a;
-                        m6 m6Var2 = o6Var.f44262q;
-                        AnimatorSet animatorSet2 = o6Var.f44258m;
-                        w6 w6Var3 = o6Var.f44254i;
-                        RectF rectF = o6Var.f44260o;
-                        RectF rectF2 = o6Var.f44259n;
-                        if (!o6Var.v && !o6Var.f44266u) {
-                            o6Var.e();
-                            o6Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.t0 K8 = o6Var.f44251e.K8(o6Var.f44252f);
-                            if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.t0 t0Var = o6Var.f44261p;
-                                if (t0Var != K8) {
-                                    if (t0Var != null) {
-                                        t0Var.J0.i(false);
-                                    }
-                                    o6Var.f44261p = K8;
-                                }
-                                b4 b4Var = o6Var.f44261p.J0.f43593m;
-                                if (o6Var.f44265t && m6Var2.f58979n && b4Var != null && b4Var.f58979n && b4Var.getWidth() > 0 && !o6Var.f44261p.isLayoutRequested()) {
-                                    rectF.set(o6Var.c(b4Var));
-                                    if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
-                                        o6Var.f44266u = true;
-                                        o6Var.f44261p.J0.i(true);
-                                        w6Var3.f(w6Var22);
-                                        w6Var3.setAlpha(f10);
-                                        w6Var22.setAlpha(0.0f);
-                                        o6Var.f44255j.b(rectF2.centerX(), rectF2.centerY());
-                                        animatorSet2.start();
-                                        return;
-                                    }
-                                    rectF.setEmpty();
-                                }
-                            }
-                            if (SystemClock.uptimeMillis() - o6Var.f44267w <= 700 && !o6Var.f44264s && viewGroup2.isAttachedToWindow()) {
-                                o6Var.h.postOnAnimation(o6Var.f44268x);
-                                return;
-                            }
-                            o6Var.f44266u = true;
-                            w6Var3.setAlpha(0.0f);
-                            m6Var2.setAlpha(0.0f);
-                            animatorSet2.setDuration(180L);
-                            animatorSet2.start();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f44069b.d();
-                        return;
-                    default:
-                        this.f44069b.f44265t = true;
-                        return;
-                }
-            }
-        });
-        this.f44262q = m6Var;
-        m6Var.setAlpha(0.001f);
-        m6Var.setPaused(false);
-        l6Var.addView(m6Var, c8.ja.e(60, 60, 51));
-        viewGroup.addView(l6Var, new ViewGroup.LayoutParams(-1, -1));
-        b(a10.centerX(), a10.centerY(), a10.width());
-        w6Var2.l(new Runnable(this) {
-            public final o6 f44069b;
-
-            {
-                this.f44069b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r2) {
-                    case 0:
-                        o6 o6Var = this.f44069b;
-                        w6 w6Var22 = o6Var.d;
-                        float f10 = o6Var.f44257l;
-                        ViewGroup viewGroup2 = o6Var.f44248a;
-                        m6 m6Var2 = o6Var.f44262q;
-                        AnimatorSet animatorSet2 = o6Var.f44258m;
-                        w6 w6Var3 = o6Var.f44254i;
-                        RectF rectF = o6Var.f44260o;
-                        RectF rectF2 = o6Var.f44259n;
-                        if (!o6Var.v && !o6Var.f44266u) {
-                            o6Var.e();
-                            o6Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.t0 K8 = o6Var.f44251e.K8(o6Var.f44252f);
-                            if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.t0 t0Var = o6Var.f44261p;
-                                if (t0Var != K8) {
-                                    if (t0Var != null) {
-                                        t0Var.J0.i(false);
-                                    }
-                                    o6Var.f44261p = K8;
-                                }
-                                b4 b4Var = o6Var.f44261p.J0.f43593m;
-                                if (o6Var.f44265t && m6Var2.f58979n && b4Var != null && b4Var.f58979n && b4Var.getWidth() > 0 && !o6Var.f44261p.isLayoutRequested()) {
-                                    rectF.set(o6Var.c(b4Var));
-                                    if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
-                                        o6Var.f44266u = true;
-                                        o6Var.f44261p.J0.i(true);
-                                        w6Var3.f(w6Var22);
-                                        w6Var3.setAlpha(f10);
-                                        w6Var22.setAlpha(0.0f);
-                                        o6Var.f44255j.b(rectF2.centerX(), rectF2.centerY());
-                                        animatorSet2.start();
-                                        return;
-                                    }
-                                    rectF.setEmpty();
-                                }
-                            }
-                            if (SystemClock.uptimeMillis() - o6Var.f44267w <= 700 && !o6Var.f44264s && viewGroup2.isAttachedToWindow()) {
-                                o6Var.h.postOnAnimation(o6Var.f44268x);
-                                return;
-                            }
-                            o6Var.f44266u = true;
-                            w6Var3.setAlpha(0.0f);
-                            m6Var2.setAlpha(0.0f);
-                            animatorSet2.setDuration(180L);
-                            animatorSet2.start();
-                            return;
-                        }
-                        return;
-                    case 1:
-                        this.f44069b.d();
-                        return;
-                    default:
-                        this.f44069b.f44265t = true;
-                        return;
-                }
-            }
-        });
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.setDuration(600L);
-        ofFloat.setInterpolator(new LinearInterpolator());
-        ofFloat.addUpdateListener(new q3(this, 3));
-        animatorSet.playTogether(ofFloat);
-        animatorSet.addListener(new n6(this, kiVar, w6Var));
-        l6Var.post(r12);
+        }
+        textPaint.setTypeface(f44707x);
     }
 
-    public final void a(boolean z10) {
-        if (this.v) {
-            return;
-        }
-        this.v = true;
-        k6 k6Var = this.f44268x;
-        l6 l6Var = this.h;
-        l6Var.removeCallbacks(k6Var);
-        w6 w6Var = this.f44254i;
-        w6Var.l(null);
-        org.telegram.ui.Cells.t0 t0Var = this.f44261p;
-        if (t0Var != null) {
-            t0Var.J0.i(false);
-            if (z10 && this.f44263r >= 1.0f) {
-                RectF rectF = this.f44260o;
-                if (!rectF.isEmpty() && this.f44261p.isAttachedToWindow() && l0.I(this.f44261p.getMessageObject(), this.f44252f)) {
-                    float centerY = (((rectF.centerY() - (Math.min(this.f44259n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f23610p;
-                    c4 c4Var = this.f44261p.J0;
-                    c4Var.l();
-                    r1.g gVar = new r1.g(new r1.f(0.0f));
-                    c4Var.f43574b0 = gVar;
-                    r1.h hVar = new r1.h(0.0f);
-                    hVar.a(0.65f);
-                    hVar.b(200.0f);
-                    gVar.f55748m = hVar;
-                    c4Var.f43574b0.f(0.001f);
-                    c4Var.f43574b0.f55738a = Math.max(20.0f, Math.min(36.0f, centerY * 0.04f));
-                    c4Var.f43574b0.b(new w3(c4Var, 1));
-                    c4Var.f43574b0.h();
-                }
-            }
-        }
-        m6 m6Var = this.f44262q;
-        m6Var.setPaused(true);
-        l6Var.removeView(m6Var);
-        w6Var.setPaused(true);
-        l6Var.removeView(w6Var);
-        l6Var.setClickable(false);
-        this.d.setAlpha(this.f44257l);
-        ki kiVar = this.f44250c;
-        if (kiVar == null) {
-            this.f44249b.setTranslationY(0.0f);
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        float f11;
+        float f12;
+        TextPaint textPaint = this.f44712f;
+        textPaint.setTextSize(paint.getTextSize() * 0.95f);
+        int color = paint.getColor();
+        textPaint.setColor(color);
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29339a7, this.f44711e);
+        Paint paint2 = this.h;
+        paint2.setColor(w02);
+        Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();
+        float f13 = i12;
+        float f14 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2.0f) + f13;
+        float L = org.telegram.messenger.g0.L(6.0f);
+        float L2 = org.telegram.messenger.g0.L(5.0f);
+        String str = this.f44708a;
+        float L3 = org.telegram.messenger.g0.L(21.0f) / 2.0f;
+        float f15 = f14 - L3;
+        float f16 = 2.0f * L2;
+        float f17 = f14 + L3;
+        RectF rectF = this.f44713n;
+        rectF.set(f10, f15, textPaint.measureText(str) + f10 + f16, f17);
+        canvas.drawRoundRect(rectF, L, L, paint2);
+        canvas.drawText(str, f10 + L2, f13, textPaint);
+        float L4 = org.telegram.messenger.g0.L(3.0f) + rectF.right;
+        String str2 = this.f44709b;
+        float measureText = (textPaint.measureText(" ") * 0.3f) + textPaint.measureText(str2);
+        String str3 = this.f44710c;
+        float measureText2 = textPaint.measureText(str3) + measureText;
+        rectF.set(L4, f15, L4 + measureText2 + f16, f17);
+        canvas.drawRoundRect(rectF, L, L, paint2);
+        float f18 = L4 + L2;
+        if (this.f44714r != null && this.f44715s == f18 && this.f44716w == color) {
+            f11 = f16;
+            f12 = f18;
         } else {
-            kiVar.x1(1.0f);
+            float max = Math.max(0.0f, Math.min(0.4f, textPaint.measureText("0") / measureText2));
+            f11 = f16;
+            float min = Math.min(0.49f, ((0.5f - max) * 0.75f) + max);
+            int r12 = org.telegram.ui.ActionBar.n6.r1(0.0f, color);
+            f12 = f18;
+            this.f44714r = new LinearGradient(f18, 0.0f, f18 + measureText2, 0.0f, new int[]{color, color, r12, r12, color, color}, new float[]{0.0f, max, min, 1.0f - min, 1.0f - max, 1.0f}, Shader.TileMode.CLAMP);
+            this.f44715s = f12;
+            this.f44716w = color;
         }
-        ViewGroup viewGroup = this.f44248a;
-        if (kiVar != null && z10 && this.f44255j.d()) {
-            an anVar = this.f44251e;
-            if (anVar.getParentLayout() != null) {
-                ViewGroup view = anVar.getParentLayout().getView();
-                if (view.isAttachedToWindow()) {
-                    int[] iArr = new int[2];
-                    int[] iArr2 = new int[2];
-                    viewGroup.getLocationOnScreen(iArr);
-                    view.getLocationOnScreen(iArr2);
-                    viewGroup.removeView(l6Var);
-                    l6Var.setTranslationX(iArr[0] - iArr2[0]);
-                    l6Var.setTranslationY(iArr[1] - iArr2[1]);
-                    view.addView(l6Var, new ViewGroup.LayoutParams(-1, -1));
-                    viewGroup = view;
-                }
-            }
-        }
-        this.f44253g.run();
-        org.telegram.messenger.g0.i3(new r(13, this, viewGroup), 650L);
+        textPaint.setShader(this.f44714r);
+        canvas.drawText(str2, f12, f13, textPaint);
+        canvas.drawText(str3, (f12 + measureText2) - textPaint.measureText(str3), f13, textPaint);
+        textPaint.setShader(null);
+        float L5 = org.telegram.messenger.g0.L(3.0f) + rectF.right;
+        String str4 = this.d;
+        rectF.set(L5, f15, textPaint.measureText(str4) + L5 + f11, f17);
+        canvas.drawRoundRect(rectF, L, L, paint2);
+        canvas.drawText(str4, L5 + L2, f13, textPaint);
     }
 
-    public final void b(float f10, float f11, float f12) {
-        float L = org.telegram.messenger.g0.L(60.0f);
-        l6 l6Var = this.h;
-        float f13 = L / 2.0f;
-        w6 w6Var = this.f44254i;
-        w6Var.setTranslationX((f10 - l6Var.getLeft()) - f13);
-        w6Var.setTranslationY((f11 - l6Var.getTop()) - f13);
-        float f14 = f12 / L;
-        w6Var.setScaleX(f14);
-        w6Var.setScaleY(f14);
-        float translationX = w6Var.getTranslationX();
-        m6 m6Var = this.f44262q;
-        m6Var.setTranslationX(translationX);
-        m6Var.setTranslationY(w6Var.getTranslationY());
-        m6Var.setScaleX(f14);
-        m6Var.setScaleY(f14);
-    }
-
-    public final RectF c(b4 b4Var) {
-        ki kiVar = this.f44250c;
-        ViewGroup viewGroup = this.f44248a;
-        if (kiVar == null) {
-            return da.a(b4Var, viewGroup);
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        TextPaint textPaint = this.f44712f;
+        textPaint.setTextSize(paint.getTextSize() * 0.95f);
+        if (fontMetricsInt != null) {
+            Paint.FontMetricsInt fontMetricsInt2 = textPaint.getFontMetricsInt();
+            float f10 = (fontMetricsInt2.ascent + fontMetricsInt2.descent) / 2.0f;
+            int floor = (int) Math.floor(f10 - (org.telegram.messenger.g0.L(21.0f) / 2.0f));
+            fontMetricsInt.top = floor;
+            fontMetricsInt.ascent = floor;
+            int ceil = (int) Math.ceil((org.telegram.messenger.g0.L(21.0f) / 2.0f) + f10);
+            fontMetricsInt.bottom = ceil;
+            fontMetricsInt.descent = ceil;
+            fontMetricsInt.leading = 0;
         }
-        ViewGroup viewGroup2 = (ViewGroup) b4Var.getRootView();
-        RectF a10 = da.a(b4Var, viewGroup2);
-        int[] iArr = new int[2];
-        viewGroup2.getLocationOnScreen(iArr);
-        a10.offset(iArr[0], iArr[1]);
-        viewGroup.getLocationOnScreen(iArr);
-        a10.offset(-iArr[0], -iArr[1]);
-        return a10;
-    }
-
-    public final void d() {
-        m6 m6Var = this.f44262q;
-        if (m6Var == null) {
-            return;
-        }
-        w6 w6Var = this.f44254i;
-        float flightYaw = w6Var.getFlightYaw();
-        float flightPitch = w6Var.getFlightPitch();
-        if (this.f44261p != null) {
-            float max = Math.max(0.0f, Math.min(1.0f, (this.f44263r - 0.55f) / 0.45f));
-            float C = com.google.android.gms.internal.vision.e2.C(max, 2.0f, 3.0f, max * max);
-            flightYaw += ((float) Math.IEEEremainder(this.f44261p.J0.g() - flightYaw, 6.283185307179586d)) * C;
-            flightPitch += ((this.f44261p.J0.f43589k.F * 0.14f) - flightPitch) * C;
-        }
-        m6Var.f58980r = flightYaw;
-        m6Var.f58981s = flightPitch;
-        m6Var.f58982w = true;
-        m6Var.f58983x = true;
-    }
-
-    public final void e() {
-        w6 w6Var = this.d;
-        if (w6Var.isAttachedToWindow()) {
-            View rootView = w6Var.getRootView();
-            ViewGroup viewGroup = this.f44248a;
-            if (rootView == viewGroup.getRootView()) {
-                ki kiVar = this.f44250c;
-                RectF rectF = this.f44259n;
-                if (kiVar == null) {
-                    da.f(w6Var, this.f44249b, viewGroup, rectF);
-                    return;
-                }
-                rectF.set(da.a(w6Var, viewGroup));
-                rectF.offset(0.0f, kiVar.f36451j4 - kiVar.f36485t2);
-            }
-        }
+        float L = org.telegram.messenger.g0.L(5.0f) * 2.0f;
+        float measureText = textPaint.measureText(this.f44710c) + (textPaint.measureText(" ") * 0.3f) + textPaint.measureText(this.f44709b);
+        return (int) Math.ceil((org.telegram.messenger.g0.L(3.0f) * 2.0f) + textPaint.measureText(this.d) + measureText + textPaint.measureText(this.f44708a) + L + L + L);
     }
 }

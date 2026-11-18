@@ -1,26 +1,22 @@
 package org.telegram.ui.Components;
-public final class cx0 extends gx0 {
-    public int d;
+public final class cx0 implements ob0, qb0 {
+    public final ex0 f34193a;
 
     @Override
-    public final int a(px0 px0Var, ix0 ix0Var, bx0 bx0Var, int i7, boolean z10) {
-        return Math.max(0, this.f35080a - bx0Var.a(ix0Var, i7));
+    public String i(int i7) {
+        return this.f34193a.f34829n[i7];
     }
 
     @Override
-    public final void b(int i7, int i10) {
-        super.b(i7, i10);
-        this.d = Math.max(this.d, i7 + i10);
-    }
-
-    @Override
-    public final void c() {
-        super.c();
-        this.d = Integer.MIN_VALUE;
-    }
-
-    @Override
-    public final int d(boolean z10) {
-        return Math.max(super.d(z10), this.d);
+    public void n(sb0 sb0Var, int i7) {
+        ex0 ex0Var = this.f34193a;
+        ex0Var.b();
+        org.telegram.messenger.bz.f23196r1 = i7;
+        org.telegram.messenger.t0.f26915b.getSharedPreferences("mainconfig", 0).edit().putInt("ChatSwipeAction", org.telegram.messenger.bz.f23196r1).apply();
+        ex0Var.invalidate();
+        try {
+            sb0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
     }
 }

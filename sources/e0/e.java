@@ -4,19 +4,19 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import c8.vb;
+import c8.yb;
 public abstract class e extends Activity implements androidx.lifecycle.t, r0.i {
-    public final androidx.lifecycle.v f9880a = new androidx.lifecycle.v(this);
+    public final androidx.lifecycle.v f10198a = new androidx.lifecycle.v(this);
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         kotlin.jvm.internal.j.e(event, "event");
         View decorView = getWindow().getDecorView();
         kotlin.jvm.internal.j.d(decorView, "window.decorView");
-        if (vb.a(decorView, event)) {
+        if (yb.a(decorView, event)) {
             return true;
         }
-        return vb.b(this, decorView, this, event);
+        return yb.b(this, decorView, this, event);
     }
 
     @Override
@@ -24,7 +24,7 @@ public abstract class e extends Activity implements androidx.lifecycle.t, r0.i {
         kotlin.jvm.internal.j.e(event, "event");
         View decorView = getWindow().getDecorView();
         kotlin.jvm.internal.j.d(decorView, "window.decorView");
-        if (vb.a(decorView, event)) {
+        if (yb.a(decorView, event)) {
             return true;
         }
         return super.dispatchKeyShortcutEvent(event);
@@ -39,14 +39,14 @@ public abstract class e extends Activity implements androidx.lifecycle.t, r0.i {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        int i7 = androidx.lifecycle.h0.f2513b;
+        int i7 = androidx.lifecycle.h0.f2504b;
         androidx.lifecycle.f0.b(this);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         kotlin.jvm.internal.j.e(outState, "outState");
-        this.f9880a.g();
+        this.f10198a.g();
         super.onSaveInstanceState(outState);
     }
 }

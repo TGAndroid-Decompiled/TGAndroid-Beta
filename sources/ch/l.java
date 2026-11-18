@@ -1,30 +1,58 @@
 package ch;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.e6;
-public final class l extends e0 {
-    public final o f5114i2;
+import android.view.ViewPropertyAnimator;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.h2;
+import org.telegram.ui.ActionBar.j1;
+import org.telegram.ui.ActionBar.s4;
+public final class l extends j1 {
+    public final ai.k0 f5402x;
 
-    public l(o oVar, Context context, e6 e6Var, int i7) {
-        super(i7, context, e6Var);
-        this.f5114i2 = oVar;
+    public l(ai.k0 k0Var, ai.k0 k0Var2) {
+        super(k0Var2);
+        this.f5402x = k0Var;
     }
 
     @Override
-    public final void G(int i7, int i10) {
-        if (i10 > i7) {
-            this.f5114i2.F.w0(0, org.telegram.messenger.g0.L(30.0f), null);
-        }
-    }
-
-    @Override
-    public final boolean onTextContextMenuItem(int i7) {
-        if (i7 != 2131296494 && i7 != 16908320) {
-            if (i7 != 16908322 && i7 != 16908321) {
-                return super.onTextContextMenuItem(i7);
+    public final boolean b() {
+        boolean z10;
+        boolean z11;
+        p pVar = (p) this.f5402x.f1264c;
+        s4 parentLayout = pVar.getParentLayout();
+        z10 = ((h2) pVar).inPreviewMode;
+        if (!z10 && !org.telegram.messenger.g0.Q1()) {
+            z11 = ((h2) pVar).inBubbleMode;
+            if (!z11 && !org.telegram.messenger.g0.E && parentLayout != null) {
+                return true;
             }
             return false;
         }
-        return this.f5114i2.g0();
+        return false;
+    }
+
+    @Override
+    public final void e(float f10, float f11, boolean z10) {
+        p pVar = (p) this.f5402x.f1264c;
+        if (pVar.getParentLayout() != null) {
+            boolean z11 = ((ActionBarLayout) pVar.getParentLayout()).f28708n;
+        }
+    }
+
+    @Override
+    public final void g(int i7, boolean z10) {
+        float f10;
+        p pVar = (p) this.f5402x.f1264c;
+        pVar.f5471w.setVisibility(0);
+        ViewPropertyAnimator animate = pVar.f5471w.animate();
+        if (!z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        animate.alpha(f10).withEndAction(new k(0, this, z10)).start();
+    }
+
+    @Override
+    public final void f() {
     }
 }

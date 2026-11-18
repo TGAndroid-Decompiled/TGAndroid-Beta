@@ -2,6 +2,7 @@ package org.telegram.utils.twidget;
 
 import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.RemoteException;
 import android.util.Log;
 import j$.util.concurrent.ConcurrentHashMap;
@@ -13,7 +14,7 @@ public final class WidgetEngineBackend {
     private static final int MAX_CACHED_WIDTHS = 8192;
     private static final int PART = 262144;
     private static final int TEXT_PIECE = 65536;
-    private static final LinkedHashMap<String, Float> WIDTHS = new v(0.75f, 4096, 0, true);
+    private static final LinkedHashMap<String, Float> WIDTHS = new w(0.75f, 4096, 0, true);
     private static volatile boolean localFonts = true;
     private final d client;
     private final float density;
@@ -28,52 +29,56 @@ public final class WidgetEngineBackend {
         this.density = f10;
     }
 
-    private static void call(w wVar) {
+    private static void call(x xVar) {
         try {
-            wVar.mo26run();
+            xVar.mo26run();
         } catch (RemoteException e10) {
             throw new IllegalStateException("Widget client: " + e10);
         }
     }
 
-    public void lambda$canvasRead$8(byte[][] bArr, int i7, int i10, int i11, int i12, int i13) {
-        bArr[0] = this.client.B(i7, i10, i11, i12, i13);
+    public void lambda$canvasRead$9(byte[][] bArr, int i7, int i10, int i11, int i12, int i13) {
+        bArr[0] = this.client.A(i7, i10, i11, i12, i13);
     }
 
-    public void lambda$canvasRun$7(int i7, int i10, int i11, int[] iArr) {
-        this.client.u0(i7, i10, i11, iArr);
+    public void lambda$canvasRun$8(int i7, int i10, int i11, int[] iArr) {
+        this.client.t0(i7, i10, i11, iArr);
     }
 
     public void lambda$createFont$0(float[][] fArr, int i7, byte[] bArr, float f10, int i10, boolean z10, byte[] bArr2) {
-        fArr[0] = this.client.H(i7, bArr, f10, i10, z10, bArr2);
+        fArr[0] = this.client.G(i7, bArr, f10, i10, z10, bArr2);
     }
 
     public void lambda$loadImage$2(int i7, int i10, int i11, byte[] bArr) {
-        this.client.y(i7, i10, i11, bArr);
+        this.client.x(i7, i10, i11, bArr);
     }
 
-    public void lambda$record$6(byte[] bArr, double d, int i7, int i10, float f10, float f11, int i11, int i12, byte[] bArr2) {
-        this.client.G(bArr2, bArr, d, i7, i10, f10, f11, i11, i12);
+    public void lambda$record$7(byte[] bArr, double d, int i7, int i10, float f10, float f11, int i11, int i12, byte[] bArr2) {
+        this.client.F(bArr2, bArr, d, i7, i10, f10, f11, i11, i12);
     }
 
-    public void lambda$recordLayer$5(int i7, int i10, byte[] bArr) {
-        this.client.K0(i7, i10, bArr);
+    public void lambda$recordLayer$6(int i7, int i10, byte[] bArr) {
+        this.client.J0(i7, i10, bArr);
     }
 
     public void lambda$remoteWidth$1(float[] fArr, int i7, byte[] bArr) {
-        fArr[0] = this.client.q0(i7, bArr);
+        fArr[0] = this.client.p0(i7, bArr);
     }
 
-    public void lambda$selectableText$4(byte[] bArr) {
-        this.client.i0(bArr);
+    public void lambda$selectableText$5(byte[] bArr) {
+        this.client.h0(bArr);
     }
 
-    public void lambda$send$10(byte[] bArr) {
-        this.client.R0(bArr);
+    public void lambda$send$11(byte[] bArr) {
+        this.client.Q0(bArr);
     }
 
     public void lambda$signal$3(int i7, byte[] bArr) {
-        this.client.w0(i7, bArr);
+        this.client.v0(i7, bArr);
+    }
+
+    public void lambda$state$4(int i7, float f10) {
+        this.client.R0(i7, f10);
     }
 
     private Paint localFont(byte[] bArr, float f10, int i7, boolean z10, byte[] bArr2) {
@@ -88,7 +93,7 @@ public final class WidgetEngineBackend {
 
     private float remoteWidth(final int i7, final byte[] bArr) {
         final float[] fArr = new float[1];
-        call(new w() {
+        call(new x() {
             @Override
             public final void mo26run() {
                 WidgetEngineBackend.this.lambda$remoteWidth$1(fArr, i7, bArr);
@@ -97,7 +102,7 @@ public final class WidgetEngineBackend {
         return fArr[0];
     }
 
-    private void send(byte[] bArr, x xVar) {
+    private void send(byte[] bArr, y yVar) {
         if (bArr != 0 && bArr.length > 262144) {
             synchronized (this.largeLock) {
                 for (int i7 = 0; i7 < bArr.length; i7 += 262144) {
@@ -105,24 +110,42 @@ public final class WidgetEngineBackend {
                         int min = Math.min(262144, bArr.length - i7);
                         ?? r52 = new byte[min];
                         System.arraycopy(bArr, i7, r52, 0, min);
-                        call(new t(1, r52, this));
+                        call(new v(1, r52, this));
                     } catch (Throwable th2) {
                         throw th2;
                     }
                 }
-                call(new o(xVar));
+                call(new q(yVar, 1));
             }
             return;
         }
-        call(new t(0, bArr, xVar));
+        call(new v(0, bArr, yVar));
+    }
+
+    public static void warmFonts(float f10) {
+        try {
+            Rect rect = new Rect();
+            int[] iArr = {400, 700};
+            int i7 = 0;
+            while (i7 < 2) {
+                float f11 = f10;
+                Paint paint = WidgetSandboxBackend.paints("sans-serif", 14.0f, iArr[i7], false, "", f11)[1];
+                WidgetSandboxBackend.metrics(0, paint, f11, rect);
+                paint.measureText("Widget 0123");
+                i7++;
+                f10 = f11;
+            }
+        } catch (RuntimeException unused) {
+            localFonts = false;
+        }
     }
 
     public byte[] canvasRead(final int i7, final int i10, final int i11, final int i12, final int i13) {
         final byte[][] bArr = new byte[1];
-        call(new w() {
+        call(new x() {
             @Override
             public final void mo26run() {
-                WidgetEngineBackend.this.lambda$canvasRead$8(bArr, i7, i10, i11, i12, i13);
+                WidgetEngineBackend.this.lambda$canvasRead$9(bArr, i7, i10, i11, i12, i13);
             }
         });
         return bArr[0];
@@ -130,18 +153,13 @@ public final class WidgetEngineBackend {
 
     public void canvasRelease(int i7) {
         try {
-            this.client.E(i7);
+            this.client.D(i7);
         } catch (RemoteException unused) {
         }
     }
 
-    public void canvasRun(final int i7, final int i10, final int i11, final int[] iArr) {
-        call(new w() {
-            @Override
-            public final void mo26run() {
-                WidgetEngineBackend.this.lambda$canvasRun$7(i7, i10, i11, iArr);
-            }
-        });
+    public void canvasRun(int i7, int i10, int i11, int[] iArr) {
+        call(new s(this, i7, i10, i11, iArr, 0));
     }
 
     public float[] createFont(final byte[] bArr, final float f10, final int i7, final boolean z10, final byte[] bArr2) {
@@ -149,7 +167,7 @@ public final class WidgetEngineBackend {
         final int i10 = this.nextFont + 1;
         this.nextFont = i10;
         final float[][] fArr = new float[1];
-        call(new w() {
+        call(new x() {
             @Override
             public final void mo26run() {
                 WidgetEngineBackend.this.lambda$createFont$0(fArr, i10, bArr, f10, i7, z10, bArr2);
@@ -184,7 +202,7 @@ public final class WidgetEngineBackend {
     }
 
     public byte[] formatIntl(byte[] bArr) {
-        return w0.b(WidgetSandboxBackend.text(bArr)).getBytes(StandardCharsets.UTF_8);
+        return b1.b(WidgetSandboxBackend.text(bArr)).getBytes(StandardCharsets.UTF_8);
     }
 
     public float[] loadImage(final int i7, byte[] bArr) {
@@ -203,7 +221,7 @@ public final class WidgetEngineBackend {
             decodeImage.copyPixelsToBuffer(allocate);
             final int width = decodeImage.getWidth();
             final int height = decodeImage.getHeight();
-            send(allocate.array(), new x() {
+            send(allocate.array(), new y() {
                 @Override
                 public final void a(byte[] bArr2) {
                     WidgetEngineBackend.this.lambda$loadImage$2(i7, width, height, bArr2);
@@ -215,32 +233,36 @@ public final class WidgetEngineBackend {
     }
 
     public void record(byte[] bArr, final byte[] bArr2, final double d, final int i7, final int i10, final float f10, final float f11, final int i11, final int i12) {
-        send(bArr, new x() {
+        send(bArr, new y() {
             @Override
             public final void a(byte[] bArr3) {
-                WidgetEngineBackend.this.lambda$record$6(bArr2, d, i7, i10, f10, f11, i11, i12, bArr3);
+                WidgetEngineBackend.this.lambda$record$7(bArr2, d, i7, i10, f10, f11, i11, i12, bArr3);
             }
         });
     }
 
     public void recordLayer(final int i7, final int i10, byte[] bArr) {
-        send(bArr, new x() {
+        send(bArr, new y() {
             @Override
             public final void a(byte[] bArr2) {
-                WidgetEngineBackend.this.lambda$recordLayer$5(i7, i10, bArr2);
+                WidgetEngineBackend.this.lambda$recordLayer$6(i7, i10, bArr2);
             }
         });
     }
 
     public void selectableText(byte[] bArr) {
-        send(bArr, new o(this));
+        send(bArr, new q(this, 0));
     }
 
-    public void signal(final int i7, byte[] bArr) {
-        send(bArr, new x() {
+    public void signal(int i7, byte[] bArr) {
+        send(bArr, new q0(this, i7, 2));
+    }
+
+    public void state(final int i7, final float f10) {
+        call(new x() {
             @Override
-            public final void a(byte[] bArr2) {
-                WidgetEngineBackend.this.lambda$signal$3(i7, bArr2);
+            public final void mo26run() {
+                WidgetEngineBackend.this.lambda$state$4(i7, f10);
             }
         });
     }

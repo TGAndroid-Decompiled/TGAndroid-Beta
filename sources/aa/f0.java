@@ -12,18 +12,18 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicLong;
 public abstract class f0 {
-    public static final ExecutorService f809a;
+    public static final ExecutorService f808a;
 
     static {
         ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new y(new AtomicLong(1L)), new ThreadPoolExecutor.DiscardPolicy()));
         TimeUnit timeUnit = TimeUnit.SECONDS;
         Runtime.getRuntime().addShutdownHook(new Thread(new x(unconfigurableExecutorService), "Crashlytics Shutdown Hook for awaitEvenIfOnMainThread task continuation executor"));
-        f809a = unconfigurableExecutorService;
+        f808a = unconfigurableExecutorService;
     }
 
     public static void a(Task task) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        task.continueWith(f809a, new a1.c(countDownLatch, 2));
+        task.continueWith(f808a, new a1.c(countDownLatch, 2));
         if (Looper.getMainLooper() == Looper.myLooper()) {
             countDownLatch.await(3000L, TimeUnit.MILLISECONDS);
         } else {

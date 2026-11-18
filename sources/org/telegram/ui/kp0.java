@@ -1,20 +1,25 @@
 package org.telegram.ui;
 
-import android.media.MediaFormat;
-public final class kp0 implements d3.v {
-    public final PhotoViewer f48732a;
+import android.content.Context;
+public final class kp0 extends org.telegram.ui.Components.l61 {
+    public final PhotoViewer f49324i0;
 
-    public kp0(PhotoViewer photoViewer) {
-        this.f48732a = photoViewer;
+    public kp0(PhotoViewer photoViewer, Context context, qn0 qn0Var) {
+        super(context, qn0Var);
+        this.f49324i0 = photoViewer;
     }
 
     @Override
-    public final void a(long j3, long j10, e2.u uVar, MediaFormat mediaFormat) {
-        org.telegram.ui.Components.u51 u51Var;
-        PhotoViewer photoViewer = this.f48732a;
-        if (!photoViewer.J4 || (u51Var = photoViewer.G2) == null) {
-            return;
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        PhotoViewer.Q(this.f49324i0);
+    }
+
+    @Override
+    public final void setVisibility(int i7) {
+        super.setVisibility(i7);
+        if (i7 == 0) {
+            PhotoViewer.Q(this.f49324i0);
         }
-        org.telegram.messenger.g0.h3(new jd0(29, this, u51Var));
     }
 }

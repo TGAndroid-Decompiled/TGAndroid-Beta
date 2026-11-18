@@ -1,31 +1,59 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
-public final class fh implements z10 {
-    public final int f23493a;
-    public final si f23494b;
-    public final TLRPC.StickerSet f23495c;
+public final class fh implements Comparator {
+    public final int f23909a;
+    public final ArrayList f23910b;
 
-    public fh(si siVar, TLRPC.StickerSet stickerSet, int i7) {
-        this.f23493a = i7;
-        this.f23494b = siVar;
-        this.f23495c = stickerSet;
+    public fh(int i7, ArrayList arrayList) {
+        this.f23909a = i7;
+        this.f23910b = arrayList;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f23493a;
-        ArrayList arrayList = (ArrayList) obj;
-        si siVar = this.f23494b;
-        siVar.getClass();
-        switch (i7) {
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f23909a) {
             case 0:
-                siVar.f1(this.f23495c.f28078id, false);
-                return;
+                Long valueOf = Long.valueOf(((TLRPC.TL_messages_stickerSet) obj).set.f28432id);
+                ArrayList arrayList = this.f23910b;
+                int indexOf = arrayList.indexOf(valueOf);
+                int indexOf2 = arrayList.indexOf(Long.valueOf(((TLRPC.TL_messages_stickerSet) obj2).set.f28432id));
+                if (indexOf > indexOf2) {
+                    return 1;
+                }
+                if (indexOf < indexOf2) {
+                    return -1;
+                }
+                return 0;
             default:
-                siVar.g1(this.f23495c.f28078id, false);
-                return;
+                ni niVar = (ni) obj;
+                ni niVar2 = (ni) obj2;
+                String str = niVar.f25929a;
+                ArrayList arrayList2 = this.f23910b;
+                int indexOf3 = arrayList2.indexOf(str);
+                int i7 = Integer.MAX_VALUE;
+                if (indexOf3 < 0) {
+                    indexOf3 = Integer.MAX_VALUE;
+                }
+                int indexOf4 = arrayList2.indexOf(niVar2.f25929a);
+                if (indexOf4 >= 0) {
+                    i7 = indexOf4;
+                }
+                if (indexOf3 >= i7) {
+                    if (indexOf3 <= i7) {
+                        int length = niVar.f25930b.length();
+                        int length2 = niVar2.f25930b.length();
+                        if (length >= length2) {
+                            if (length <= length2) {
+                                return 0;
+                            }
+                        }
+                    }
+                    return 1;
+                }
+                return -1;
         }
     }
 }

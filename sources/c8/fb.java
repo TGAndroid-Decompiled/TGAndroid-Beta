@@ -291,14 +291,14 @@ public enum fb implements u {
     OPTIONAL_MODULE_SUBJECT_SEGMENTATION_INFERENCE(763),
     OPTIONAL_MODULE_SUBJECT_SEGMENTATION_RELEASE(764);
     
-    public final int f4495a;
+    public final int f4780a;
 
     fb(int i7) {
-        this.f4495a = i7;
+        this.f4780a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f4495a;
+        return this.f4780a;
     }
 }

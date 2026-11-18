@@ -1,31 +1,31 @@
 package s4;
 
-import org.telegram.ui.ld0;
+import org.telegram.ui.md0;
 public final class c implements Runnable {
-    public final int f56349a;
-    public final androidx.emoji2.text.q f56350b;
-    public final int f56351c;
+    public final int f56923a;
+    public final androidx.emoji2.text.q f56924b;
+    public final int f56925c;
 
     public c(androidx.emoji2.text.q qVar, int i7, int i10) {
-        this.f56349a = i10;
-        this.f56350b = qVar;
-        this.f56351c = i7;
+        this.f56923a = i10;
+        this.f56924b = qVar;
+        this.f56925c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f56349a) {
+        switch (this.f56923a) {
             case 0:
-                v vVar = ((e) ((ld0) this.f56350b.f2279f).d).d;
+                v vVar = ((e) ((md0) this.f56924b.f2270f).d).d;
                 if (vVar != null) {
-                    vVar.j(this.f56351c);
+                    vVar.j(this.f56925c);
                     return;
                 }
                 return;
             default:
-                v vVar2 = ((e) ((ld0) this.f56350b.f2279f).d).d;
+                v vVar2 = ((e) ((md0) this.f56924b.f2270f).d).d;
                 if (vVar2 != null) {
-                    vVar2.k(this.f56351c);
+                    vVar2.k(this.f56925c);
                     return;
                 }
                 return;

@@ -1,9 +1,9 @@
 package qi;
 public final class f {
-    public final String f55603a;
-    public o f55604b;
+    public final String f56177a;
+    public o f56178b;
 
     public f(String str) {
-        this.f55603a = str;
+        this.f56177a = str;
     }
 }

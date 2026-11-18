@@ -1,41 +1,182 @@
 package fi;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.tl.TL_stories;
-public final class l8 extends FrameLayout {
-    public final TL_stories.MediaArea f12019a;
-    public final tg.m0 f12020b;
+import org.telegram.ui.Components.lr;
+public final class l8 extends Drawable {
+    public int f12228a;
+    public final View f12229b;
+    public final Paint f12230c;
+    public final Paint d;
+    public final org.telegram.ui.Components.c6 f12233g;
+    public boolean h;
+    public Paint f12234i;
+    public int f12231e = 255;
+    public final float[] f12232f = new float[15];
+    public final Path f12235j = new Path();
 
-    public l8(Context context, tg.m0 m0Var, TL_stories.MediaArea mediaArea) {
-        super(context);
-        this.f12019a = mediaArea;
-        this.f12020b = m0Var;
-        addView(m0Var);
+    public l8(View view) {
+        this.f12229b = view;
+        this.f12233g = new org.telegram.ui.Components.c6(view, 350L, lr.h);
+        Paint paint = new Paint(1);
+        this.f12230c = paint;
+        paint.setShadowLayer(org.telegram.messenger.g0.L(4.0f), 0.0f, 0.0f, 1593835520);
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        paint2.setColor(-1);
+    }
+
+    public final void a() {
+        int i7 = this.f12228a + 1;
+        this.f12228a = i7;
+        if (i7 >= 2) {
+            this.f12228a = 0;
+        }
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        float f10;
+        this.h = z10;
+        if (!z11) {
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            this.f12233g.e(true, f10);
+            return;
+        }
+        this.f12229b.invalidate();
+    }
+
+    public final void c(float f10) {
+        this.f12230c.setShadowLayer(org.telegram.messenger.g0.L(2.0f) / f10, 0.0f, org.telegram.messenger.g0.N(0.7f) / f10, i0.a.o(-16777216, 45));
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        tg.m0 m0Var = this.f12020b;
-        m0Var.measure(i7, i10);
-        int measuredWidth = (m0Var.getMeasuredWidth() - m0Var.getPaddingLeft()) - m0Var.getPaddingRight();
-        int measuredHeight = (m0Var.getMeasuredHeight() - m0Var.getPaddingTop()) - m0Var.getPaddingBottom();
-        float f10 = measuredWidth;
-        float f11 = f10 / 2.0f;
-        m0Var.setPivotX(m0Var.getPaddingLeft() + f11);
-        float f12 = measuredHeight;
-        float f13 = f12 / 2.0f;
-        m0Var.setPivotY(m0Var.getPaddingTop() + f13);
-        int size = View.MeasureSpec.getSize(i7);
-        int size2 = View.MeasureSpec.getSize(i10);
-        setMeasuredDimension(size, size2);
-        float f14 = size;
-        float f15 = size2;
-        float min = Math.min(f14 / f10, f15 / f12);
-        m0Var.setTranslationX((f14 / 2.0f) - (f11 + m0Var.getPaddingLeft()));
-        m0Var.setTranslationY((f15 / 2.0f) - (f13 + m0Var.getPaddingTop()));
-        m0Var.setScaleX(min);
-        m0Var.setScaleY(min);
+    public final void draw(Canvas canvas) {
+        float f10;
+        Paint paint;
+        int i7;
+        int i10;
+        int i11;
+        float[] fArr = this.f12232f;
+        int i12 = 0;
+        fArr[0] = getBounds().centerX();
+        int i13 = 1;
+        fArr[1] = getBounds().centerY();
+        int i14 = 2;
+        fArr[2] = getBounds().height() / 2.0f;
+        int i15 = 3;
+        fArr[3] = (getBounds().width() * 1.027f) + getBounds().left;
+        int i16 = 4;
+        fArr[4] = (getBounds().height() * 0.956f) + getBounds().top;
+        fArr[5] = getBounds().height() * 0.055f;
+        fArr[6] = (getBounds().width() * 0.843f) + getBounds().left;
+        fArr[7] = (getBounds().height() * 0.812f) + getBounds().top;
+        fArr[8] = getBounds().height() * 0.132f;
+        fArr[9] = (getBounds().width() * (-0.02699995f)) + getBounds().left;
+        fArr[10] = (getBounds().height() * 0.956f) + getBounds().top;
+        fArr[11] = getBounds().height() * 0.055f;
+        fArr[12] = (getBounds().width() * 0.157f) + getBounds().left;
+        fArr[13] = (getBounds().height() * 0.812f) + getBounds().top;
+        fArr[14] = getBounds().height() * 0.132f;
+        if (this.h) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        float e10 = this.f12233g.e(false, f10);
+        int i17 = this.f12228a;
+        Paint paint2 = this.d;
+        if (i17 == 0) {
+            paint2.setColor(-1);
+        } else if (i17 == 1) {
+            if (this.f12234i == null) {
+                Paint paint3 = new Paint(1);
+                this.f12234i = paint3;
+                paint3.setColor(-16777216);
+                this.f12234i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                this.f12234i.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+            }
+            paint2.setColor(i0.a.o(-16777216, 127));
+        }
+        if (this.f12231e == 255 && this.f12228a != 1) {
+            canvas.save();
+        } else {
+            canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.f12231e, 31);
+        }
+        Path path = this.f12235j;
+        path.rewind();
+        int i18 = 0;
+        while (i18 < i14) {
+            if (this.f12228a == i13 && i18 == 0) {
+                i10 = i14;
+            } else {
+                if (i18 == 0) {
+                    paint = this.f12230c;
+                } else {
+                    paint = paint2;
+                }
+                if (i18 == 0) {
+                    i7 = i13;
+                } else {
+                    i7 = i12;
+                }
+                while (i12 < 5) {
+                    if (i12 == i13 || i12 == i14) {
+                        i11 = i14;
+                        if (e10 != 1.0f) {
+                            int i19 = i12 * 3;
+                            path.addCircle(fArr[i19], fArr[i19 + 1], ((1.0f - e10) * fArr[i19 + 2]) - i7, Path.Direction.CW);
+                        }
+                    } else if (i12 == i15 || i12 == i16) {
+                        i11 = i14;
+                        if (e10 != 0.0f) {
+                            int i20 = i12 * 3;
+                            path.addCircle(fArr[i20], fArr[i20 + 1], (fArr[i20 + 2] * e10) - i7, Path.Direction.CW);
+                        }
+                    } else {
+                        int i21 = i12 * 3;
+                        i11 = i14;
+                        path.addCircle(fArr[i21], fArr[i21 + 1], fArr[i21 + 2] - i7, Path.Direction.CW);
+                    }
+                    i12++;
+                    i14 = i11;
+                    i15 = 3;
+                    i13 = 1;
+                    i16 = 4;
+                }
+                i10 = i14;
+                canvas.drawPath(path, paint);
+            }
+            i18++;
+            i14 = i10;
+            i15 = 3;
+            i12 = 0;
+            i13 = 1;
+            i16 = 4;
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f12231e = i7;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

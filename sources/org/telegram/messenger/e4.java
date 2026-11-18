@@ -1,97 +1,44 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.RemoteViews;
-import android.widget.RemoteViewsService;
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
+import java.util.Iterator;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class e4 implements RemoteViewsService.RemoteViewsFactory {
-    public ArrayList f23265a;
-    public Context f23266b;
-    public int f23267c;
-    public c d;
-    public Paint f23268e;
-    public RectF f23269f;
-    public a0.h f23270g;
-    public a0.h h;
-    public boolean f23271i;
+public final class e4 implements ResultCallback {
+    public final ig.b f23665a;
+    public final org.telegram.ui.ee f23666b;
 
-    @Override
-    public final int getCount() {
-        if (this.f23271i) {
-            return 1;
-        }
-        return this.f23265a.size() + 1;
+    public e4(ig.b bVar, org.telegram.ui.ee eeVar) {
+        this.f23665a = bVar;
+        this.f23666b = eeVar;
     }
 
     @Override
-    public final long getItemId(int i7) {
-        return i7;
-    }
-
-    @Override
-    public final RemoteViews getLoadingView() {
-        return null;
-    }
-
-    @Override
-    public final android.widget.RemoteViews getViewAt(int r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.e4.getViewAt(int):android.widget.RemoteViews");
-    }
-
-    @Override
-    public final int getViewTypeCount() {
-        return 2;
-    }
-
-    @Override
-    public final boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public final void onCreate() {
-        t0.w();
-    }
-
-    @Override
-    public final void onDataSetChanged() {
-        ArrayList arrayList = this.f23265a;
-        arrayList.clear();
-        a0.h hVar = this.h;
-        hVar.b();
-        c cVar = this.d;
-        if (cVar != null) {
-            int i7 = cVar.f22782a;
-            if (m10.i(i7).p()) {
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                a0.h hVar2 = new a0.h();
-                vr a02 = vr.a0(i7);
-                int i10 = this.f23267c;
-                a0.h hVar3 = this.f23270g;
-                CountDownLatch countDownLatch = new CountDownLatch(1);
-                a02.f27219a.c(new bg.c(a02, i10, arrayList, 0, hVar3, hVar2, arrayList3, arrayList2, countDownLatch));
-                try {
-                    countDownLatch.await();
-                } catch (Exception e10) {
-                    a02.o(e10, true);
-                }
-                np.s1(i7).Y3(arrayList2, true);
-                np.s1(i7).S3(arrayList3, true);
-                hVar.b();
-                int m10 = hVar2.m();
-                for (int i11 = 0; i11 < m10; i11++) {
-                    hVar.k(new gj(cVar.f22782a, (TLRPC.Message) hVar2.n(i11), (a0.h) null, (a0.h) null, false, true), hVar2.j(i11));
-                }
+    public final void onComplete(Object obj) {
+        org.telegram.ui.ee eeVar;
+        org.telegram.ui.ActionBar.t3 t3Var;
+        Iterator it = ((List) obj).iterator();
+        do {
+            boolean hasNext = it.hasNext();
+            eeVar = this.f23666b;
+            if (hasNext) {
+                t3Var = (org.telegram.ui.ActionBar.t3) it.next();
+            } else {
+                eeVar.onComplete(null);
+                return;
             }
-        }
+        } while (!this.f23665a.equals(t3Var.f30001c));
+        t3Var.k();
+        eeVar.onComplete(t3Var);
     }
 
     @Override
-    public final void onDestroy() {
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        this.f23666b.onComplete(null);
     }
 }

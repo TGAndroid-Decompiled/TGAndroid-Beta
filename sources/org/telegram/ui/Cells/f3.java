@@ -6,26 +6,26 @@ import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.view.ActionMode;
 import android.view.Menu;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.rt;
-import org.telegram.ui.Components.st0;
-import org.telegram.ui.Components.xy0;
-import org.telegram.ui.Components.y31;
-public final class f3 extends rt {
-    public final org.telegram.ui.ActionBar.e6 W;
-    public final boolean f30213a0;
-    public final h3 f30214b0;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.au0;
+import org.telegram.ui.Components.ez0;
+import org.telegram.ui.Components.i41;
+import org.telegram.ui.Components.wt;
+public final class f3 extends wt {
+    public final org.telegram.ui.ActionBar.i6 W;
+    public final boolean f30589a0;
+    public final h3 f30590b0;
 
-    public f3(h3 h3Var, Context context, st0 st0Var, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(context, st0Var, null, 4, true, null);
-        this.f30214b0 = h3Var;
-        this.W = e6Var;
-        this.f30213a0 = z10;
+    public f3(h3 h3Var, Context context, au0 au0Var, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
+        super(context, au0Var, null, 4, true, null);
+        this.f30590b0 = h3Var;
+        this.W = i6Var;
+        this.f30589a0 = z10;
     }
 
     @Override
     public final boolean a() {
-        if (this.f30214b0.f30380r && super.a()) {
+        if (this.f30590b0.f30757r && super.a()) {
             return true;
         }
         return false;
@@ -33,12 +33,12 @@ public final class f3 extends rt {
 
     @Override
     public final boolean b() {
-        return this.f30214b0.f30381s;
+        return this.f30590b0.f30758s;
     }
 
     @Override
     public final int h() {
-        return this.f30214b0.a();
+        return this.f30590b0.a();
     }
 
     @Override
@@ -47,19 +47,19 @@ public final class f3 extends rt {
             return;
         }
         menu.removeItem(16908341);
-        menu.add(2131296496, 2131296508, 6, hd.M0(2131745262, null));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.M0(2131753671, null));
-        spannableStringBuilder.setSpan(new y31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+        menu.add(2131296496, 2131296508, 6, gd.M0(2131745027, null));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(gd.M0(2131753669, null));
+        spannableStringBuilder.setSpan(new i41(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
         menu.add(2131296496, 2131296491, 7, spannableStringBuilder);
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(hd.M0(2131749087, null));
-        spannableStringBuilder2.setSpan(new y31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(gd.M0(2131748895, null));
+        spannableStringBuilder2.setSpan(new i41(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(2131296496, 2131296497, 8, spannableStringBuilder2);
-        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(hd.M0(2131744437, null));
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(gd.M0(2131744202, null));
         ?? obj = new Object();
-        obj.f41487a = 8 | obj.f41487a;
-        spannableStringBuilder3.setSpan(new xy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        obj.f34537a = 8 | obj.f34537a;
+        spannableStringBuilder3.setSpan(new ez0(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(2131296496, 2131296509, 9, spannableStringBuilder3);
-        menu.add(2131296496, 2131296503, 10, hd.M0(2131746337, null));
+        menu.add(2131296496, 2131296503, 10, gd.M0(2131746142, null));
     }
 
     @Override
@@ -71,19 +71,19 @@ public final class f3 extends rt {
         canvas.clipRect(getPaddingLeft() + getScrollX(), 0, (getWidth() + getScrollX()) - getPaddingRight(), getHeight());
         super.onDraw(canvas);
         canvas.restore();
-        h3 h3Var = this.f30214b0;
-        org.telegram.ui.Components.g6 g6Var = h3Var.f30384y;
-        org.telegram.ui.Components.x4 x4Var = h3Var.f30382w;
-        if (x4Var != null) {
-            if (h3Var.f30383x <= 0) {
-                i7 = org.telegram.ui.ActionBar.j6.f29070p7;
+        h3 h3Var = this.f30590b0;
+        org.telegram.ui.Components.m6 m6Var = h3Var.f30761y;
+        org.telegram.ui.Components.f5 f5Var = h3Var.f30759w;
+        if (f5Var != null) {
+            if (h3Var.f30760x <= 0) {
+                i7 = org.telegram.ui.ActionBar.n6.f29617p7;
             } else {
-                i7 = org.telegram.ui.ActionBar.j6.P5;
+                i7 = org.telegram.ui.ActionBar.n6.P5;
             }
-            g6Var.u(x4Var.a(org.telegram.ui.ActionBar.j6.w0(i7, this.W), false));
+            m6Var.u(f5Var.a(org.telegram.ui.ActionBar.n6.w0(i7, this.W), false));
         }
         int min = Math.min(org.telegram.messenger.g0.L(48.0f), getHeight());
-        boolean z10 = this.f30213a0;
+        boolean z10 = this.f30589a0;
         if (z10) {
             f10 = 0.0f;
         } else {
@@ -95,13 +95,13 @@ public final class f3 extends rt {
         if (!z10) {
             i10 = 44;
         }
-        g6Var.o(scrollX, height, width - org.telegram.messenger.g0.L(i10 + 12), f10 + getHeight());
-        g6Var.draw(canvas);
+        m6Var.o(scrollX, height, width - org.telegram.messenger.g0.L(i10 + 12), f10 + getHeight());
+        m6Var.draw(canvas);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f30214b0.f30384y && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f30590b0.f30761y && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

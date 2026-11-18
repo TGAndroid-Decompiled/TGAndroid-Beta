@@ -1,32 +1,14 @@
 package org.telegram.ui.Wallet;
+public final class q0 {
+    public final String f44805a;
+    public int f44806b;
+    public long f44807c = -1;
+    public boolean d = true;
+    public boolean f44808e = false;
+    public final z0 f44809f;
 
-import c8.xa;
-public final class q0 implements Runnable {
-    public final int f44379a;
-    public final String f44380b;
-
-    public q0(String str, int i7) {
-        this.f44379a = i7;
-        this.f44380b = str;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f44379a) {
-            case 0:
-                u0 u0Var = xa.f4781b;
-                if (u0Var != null) {
-                    if (this.f44380b.equals(u0Var.d)) {
-                        xa.f4781b.c("STORAGE_CANCELED");
-                        xa.f4781b.e();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                org.telegram.messenger.g0.g(this.f44380b);
-                return;
-        }
+    public q0(z0 z0Var) {
+        this.f44809f = z0Var;
+        this.f44805a = z0Var.f45337c;
     }
 }

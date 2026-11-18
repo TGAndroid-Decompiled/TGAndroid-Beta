@@ -7,17 +7,17 @@ import java.util.Iterator;
 import ri.p;
 import ri.q;
 public final class c {
-    public final ui.a f8092a;
-    public final ui.a f8093b;
-    public final ui.a f8094c;
+    public final ui.a f8374a;
+    public final ui.a f8375b;
+    public final ui.a f8376c;
     public int d;
-    public int f8095e;
-    public xe.b f8096f;
-    public xe.b f8097g;
+    public int f8377e;
+    public xe.b f8378f;
+    public xe.b f8379g;
     public jh.k h;
-    public ViewGroup f8098i;
-    public q f8099j;
-    public boolean f8100k;
+    public ViewGroup f8380i;
+    public q f8381j;
+    public boolean f8382k;
 
     public c(ui.a aVar) {
         this(aVar, aVar, aVar);
@@ -33,9 +33,9 @@ public final class c {
 
     public final fh.g c(View view, gh.a aVar, boolean z10) {
         fh.g gVar;
-        ui.a aVar2 = this.f8094c;
-        ui.a aVar3 = this.f8092a;
-        ui.a aVar4 = this.f8093b;
+        ui.a aVar2 = this.f8376c;
+        ui.a aVar3 = this.f8374a;
+        ui.a aVar4 = this.f8375b;
         if (aVar3 == aVar4 && aVar4 == aVar2) {
             if (aVar3 instanceof b) {
                 gVar = ((b) aVar3).b();
@@ -55,27 +55,27 @@ public final class c {
             }
             gVar = gVar2;
         }
-        if (this.f8100k && !gVar.X) {
+        if (this.f8382k && !gVar.X) {
             gVar.X = true;
-            gVar.f11343a0 = true;
+            gVar.f11663a0 = true;
         }
         gVar.p(aVar);
         int i7 = this.d;
-        int i10 = this.f8095e;
+        int i10 = this.f8377e;
         gVar.L = i7;
         gVar.M = i10;
-        xe.b bVar = this.f8097g;
+        xe.b bVar = this.f8379g;
         if (bVar != null && view != null) {
             bVar.add(view);
         }
-        q qVar = this.f8099j;
+        q qVar = this.f8381j;
         if (qVar != null && view != null) {
-            qVar.f56122c.add(new p(view, gVar));
+            qVar.f56696c.add(new p(view, gVar));
         }
-        if (this.h != null && this.f8098i != null && view != null) {
-            this.h.d(view, this.f8098i, new ab.g(14, gVar, new WeakReference(view)), z10);
+        if (this.h != null && this.f8380i != null && view != null) {
+            this.h.d(view, this.f8380i, new ab.g(13, gVar, new WeakReference(view)), z10);
         }
-        xe.b bVar2 = this.f8096f;
+        xe.b bVar2 = this.f8378f;
         if (bVar2 != null) {
             bVar2.add(gVar);
         }
@@ -83,7 +83,7 @@ public final class c {
     }
 
     public final void d() {
-        xe.b bVar = this.f8097g;
+        xe.b bVar = this.f8379g;
         if (bVar != null) {
             Iterator it = bVar.iterator();
             while (it.hasNext()) {
@@ -93,21 +93,21 @@ public final class c {
     }
 
     public final void e(q qVar) {
-        this.f8099j = qVar;
+        this.f8381j = qVar;
     }
 
     public final void f(xe.b bVar) {
-        this.f8097g = bVar;
+        this.f8379g = bVar;
     }
 
     public final void g(jh.k kVar, ViewGroup viewGroup) {
         this.h = kVar;
-        this.f8098i = viewGroup;
+        this.f8380i = viewGroup;
     }
 
     public c(ui.a aVar, ui.a aVar2, ui.a aVar3) {
-        this.f8092a = aVar;
-        this.f8093b = aVar2;
-        this.f8094c = aVar3;
+        this.f8374a = aVar;
+        this.f8375b = aVar2;
+        this.f8376c = aVar3;
     }
 }

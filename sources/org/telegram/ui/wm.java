@@ -1,17 +1,8 @@
 package org.telegram.ui;
+public final class wm {
+    public final zm f53456a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class wm extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.ra0 f52933a;
-
-    public wm(org.telegram.ui.Components.ra0 ra0Var) {
-        this.f52933a = ra0Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        this.f52933a.r(1.0f);
+    public wm(zm zmVar) {
+        this.f53456a = zmVar;
     }
 }

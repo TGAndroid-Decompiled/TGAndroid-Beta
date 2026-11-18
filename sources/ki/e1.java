@@ -1,7 +1,19 @@
 package ki;
-public final class e1 extends org.telegram.ui.Cells.q1 {
+
+import org.telegram.ui.Components.au0;
+public final class e1 extends au0 {
     @Override
-    public final boolean y2() {
+    public final boolean O() {
+        return false;
+    }
+
+    @Override
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final boolean W() {
         return false;
     }
 }

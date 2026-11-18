@@ -1,27 +1,52 @@
 package ki;
 
-import android.view.View;
-public final class c2 implements View.OnClickListener {
-    public final int f18235a;
-    public final x2 f18236b;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.voip.VoIPGroupNotification;
+import org.telegram.messenger.voip.VoIPPreNotificationService;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.p5;
+import org.telegram.ui.LaunchActivity;
+public final class c2 implements RequestDelegate {
+    public final int f18604a;
+    public final int f18605b;
 
-    public c2(x2 x2Var, int i7) {
-        this.f18235a = i7;
-        this.f18236b = x2Var;
+    public c2(int i7, int i10) {
+        this.f18604a = i10;
+        this.f18605b = i7;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f18235a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i7 = this.f18604a;
+        int i10 = this.f18605b;
+        switch (i7) {
             case 0:
-                org.telegram.ui.web.s0 webView = this.f18236b.E.getWebView();
-                if (webView != null) {
-                    webView.reload();
+                org.telegram.messenger.g0.g3(new jg.x(i10, 1));
+                return;
+            case 1:
+                VoIPGroupNotification.lambda$decline$3(i10, tLObject, tL_error);
+                return;
+            case 2:
+                VoIPPreNotificationService.lambda$decline$4(i10, tLObject, tL_error);
+                return;
+            case 3:
+                org.telegram.messenger.g0.g3(new p5(i10, tLObject));
+                return;
+            case 4:
+                if (tLObject instanceof TLRPC.TL_updates) {
+                    mp.u1(i10).V3((TLRPC.TL_updates) tLObject, false);
                     return;
                 }
                 return;
+            case 5:
+                String str = LaunchActivity.C1;
+                org.telegram.messenger.g0.g3(new p5(i10, 2, tLObject));
+                return;
             default:
-                this.f18236b.w();
+                String str2 = LaunchActivity.C1;
+                org.telegram.messenger.g0.g3(new p5(i10, 1, tLObject));
                 return;
         }
     }

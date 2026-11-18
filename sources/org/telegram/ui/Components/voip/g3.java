@@ -1,45 +1,47 @@
 package org.telegram.ui.Components.voip;
 
-import java.util.Random;
-import org.telegram.messenger.qc;
-import org.telegram.ui.Components.o9;
-public final class g3 extends o9 {
-    public final void g(float f10, float f11) {
-        if (qc.e(this.f37879r)) {
-            int i7 = 0;
-            while (true) {
-                float f12 = i7;
-                float f13 = this.f37875n;
-                if (f12 < f13) {
-                    float[] fArr = this.f37870i;
-                    float f14 = fArr[i7];
-                    float[] fArr2 = this.f37871j;
-                    float f15 = fArr2[i7];
-                    float f16 = (f15 * f10 * 8.2f * 1.0f) + (0.8f * f15) + f14;
-                    fArr[i7] = f16;
-                    if (f16 >= 1.0f) {
-                        fArr[i7] = 0.0f;
-                        float[] fArr3 = this.f37869g;
-                        this.f37867e[i7] = fArr3[i7];
-                        float[] fArr4 = this.h;
-                        this.f37868f[i7] = fArr4[i7];
-                        if (f11 < 1.0f) {
-                            float f17 = 360.0f / f13;
-                            float f18 = this.f37865b;
-                            float f19 = this.f37864a;
-                            Random random = this.f37874m;
-                            fArr3[i7] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f18 - f19) * f11) + f19;
-                            fArr4[i7] = ((((random.nextInt() * f11) % 100.0f) / 100.0f) * 0.05f * f17) + (f17 * f12);
-                            fArr2[i7] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
-                        } else {
-                            c(fArr3, fArr4, i7);
-                        }
-                    }
-                    i7++;
-                } else {
+import android.animation.ValueAnimator;
+public final class g3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40884a;
+    public final i3 f40885b;
+
+    public g3(i3 i3Var, int i7) {
+        this.f40884a = i7;
+        this.f40885b = i3Var;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40884a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i3 i3Var = this.f40885b;
+                i3Var.f40940n = floatValue;
+                i3Var.f40937k.invalidate();
+                if (i3Var.f40940n > 1.0f && i3Var.f40944r == null) {
+                    ValueAnimator ofInt = ValueAnimator.ofInt(org.telegram.messenger.g0.L(12), 0);
+                    i3Var.f40944r = ofInt;
+                    ofInt.addUpdateListener(new g3(i3Var, 2));
+                    i3Var.f40944r.setDuration(350 - valueAnimator.getCurrentPlayTime());
+                    i3Var.f40944r.start();
                     return;
                 }
-            }
+                return;
+            case 1:
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                i3 i3Var2 = this.f40885b;
+                i3Var2.f40939m = intValue;
+                i3Var2.f40937k.invalidate();
+                return;
+            default:
+                int intValue2 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                i3 i3Var3 = this.f40885b;
+                if (i3Var3.f40935i <= i3Var3.f40941o / 2) {
+                    intValue2 = -intValue2;
+                }
+                i3Var3.f40942p = intValue2;
+                i3Var3.f40937k.invalidate();
+                return;
         }
     }
 }

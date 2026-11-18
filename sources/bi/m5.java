@@ -1,33 +1,34 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.View;
-public final class m5 extends org.telegram.ui.ActionBar.z0 {
-    public final int W;
-    public long f3718a0;
-    public k5 f3719b0;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.vv0;
+public final class m5 implements Runnable {
+    public final int f3882a;
+    public final ProfileActivity f3883b;
 
-    public m5(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(0, context, e6Var, false, false);
-        this.W = i7;
-        setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
-        int i10 = org.telegram.ui.ActionBar.j6.E8;
-        int i11 = org.telegram.ui.ActionBar.j6.F8;
-        c(i10, i11);
-        g(org.telegram.ui.ActionBar.j6.w0(i11, e6Var), PorterDuff.Mode.SRC_IN);
-        this.f29901c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
-        a(2);
-        setBackground(null);
-        this.f29901c.addOnAttachStateChangeListener(new x1(this, 3));
+    public m5(ProfileActivity profileActivity, int i7) {
+        this.f3882a = i7;
+        this.f3883b = profileActivity;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int size = View.MeasureSpec.getSize(i7);
-        if (View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
-            size = org.telegram.messenger.g0.L(250.0f);
+    public final void run() {
+        switch (this.f3882a) {
+            case 0:
+                this.f3883b.X4(true);
+                return;
+            case 1:
+                this.f3883b.X4(true);
+                return;
+            default:
+                ProfileActivity profileActivity = this.f3883b;
+                vv0 vv0Var = profileActivity.O;
+                if (vv0Var != null) {
+                    vv0Var.k1(14);
+                    profileActivity.X4(false);
+                    return;
+                }
+                return;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i10);
     }
 }

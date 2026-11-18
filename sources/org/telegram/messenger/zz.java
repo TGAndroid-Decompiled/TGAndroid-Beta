@@ -1,28 +1,33 @@
 package org.telegram.messenger;
-public final class zz implements Runnable {
-    public final int f28044a;
-    public final h00 f28045b;
-    public final long f28046c;
 
-    public zz(h00 h00Var, long j3, int i7) {
-        this.f28044a = i7;
-        this.f28045b = h00Var;
-        this.f28046c = j3;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class zz implements RequestDelegate {
+    public final long f28398a;
+    public final int f28399b;
+    public final e00 f28400c;
+
+    public zz(e00 e00Var, long j3, int i7) {
+        this.f28400c = e00Var;
+        this.f28398a = j3;
+        this.f28399b = i7;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f28044a;
-        long j3 = this.f28046c;
-        h00 h00Var = this.f28045b;
-        switch (i7) {
-            case 0:
-                h00Var.f24013c.put(j3, 0);
-                h00Var.getNotificationCenter().k(319, Long.valueOf(j3), Boolean.FALSE);
-                return;
-            default:
-                h00Var.n(0, j3, false);
-                return;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
+            e00 e00Var = this.f28400c;
+            mp messagesController = e00Var.getMessagesController();
+            int i7 = tL_messages_affectedHistory.pts;
+            int i10 = tL_messages_affectedHistory.pts_count;
+            long j3 = this.f28398a;
+            messagesController.S3(i7, i10, j3);
+            int i11 = tL_messages_affectedHistory.offset;
+            if (i11 > 0) {
+                e00Var.c(this.f28399b, i11, j3);
+            }
         }
     }
 }

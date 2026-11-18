@@ -1,77 +1,54 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class dg0 implements RequestDelegate {
-    public final int f46367a;
-    public final jg0 f46368b;
+import android.content.Context;
+public final class dg0 extends org.telegram.ui.Cells.q1 {
+    public int Ad;
+    public int Bd;
+    public final eg0 Cd;
+    public int f46976zd;
 
-    public dg0(jg0 jg0Var, int i7) {
-        this.f46367a = i7;
-        this.f46368b = jg0Var;
+    public dg0(eg0 eg0Var, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i7, true, null, i6Var);
+        this.Cd = eg0Var;
+        this.f46976zd = Integer.MAX_VALUE;
+        this.Ad = Integer.MAX_VALUE;
+        this.Bd = -1;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f46367a) {
-            case 0:
-                final jg0 jg0Var = this.f46368b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                jg0.Z(jg0Var, tL_error, tLObject);
-                                return;
-                            case 1:
-                                jg0.b0(jg0Var, tL_error, tLObject);
-                                return;
-                            default:
-                                jg0.a0(jg0Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                final jg0 jg0Var2 = this.f46368b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                jg0.Z(jg0Var2, tL_error, tLObject);
-                                return;
-                            case 1:
-                                jg0.b0(jg0Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                jg0.a0(jg0Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final jg0 jg0Var3 = this.f46368b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                jg0.Z(jg0Var3, tL_error, tLObject);
-                                return;
-                            case 1:
-                                jg0.b0(jg0Var3, tL_error, tLObject);
-                                return;
-                            default:
-                                jg0.a0(jg0Var3, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final xh.e Y2() {
+        return xh.e.d(1, this, this.Cd.F);
+    }
+
+    @Override
+    public final boolean isPressed() {
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int e12;
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (this.f31390ib.f32395x0 && i10 != 0 && this.f46976zd != Integer.MAX_VALUE && i12 != 0 && this.Ad != Integer.MAX_VALUE) {
+            int i13 = this.Bd;
+            int i14 = 0;
+            if (getMessageObject() == null) {
+                e12 = 0;
+            } else {
+                e12 = getMessageObject().e1();
+            }
+            if (i13 == e12) {
+                if (!this.Cd.A0) {
+                    setTranslationY(-(i10 - this.f46976zd));
+                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.lr.h).start();
+                }
+                this.f46976zd = getTop();
+                this.Ad = getBottom();
+                if (getMessageObject() != null) {
+                    i14 = getMessageObject().e1();
+                }
+                this.Bd = i14;
+            }
         }
     }
 }

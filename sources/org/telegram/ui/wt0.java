@@ -1,123 +1,309 @@
 package org.telegram.ui;
 
 import android.graphics.RectF;
-import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.json.JSONObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class wt0 implements View.OnClickListener {
-    public final int f52995a;
-    public final ProfileActivity f52996b;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_fragment;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Wallet.WalletEngine2;
+public final class wt0 implements Runnable {
+    public final int f53523a;
+    public final Object f53524b;
+    public final Object f53525c;
+    public final Object d;
+    public final Object f53526e;
+    public final Object f53527f;
 
-    public wt0(ProfileActivity profileActivity, int i7) {
-        this.f52995a = i7;
-        this.f52996b = profileActivity;
+    public wt0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
+        this.f53523a = i7;
+        this.f53524b = obj;
+        this.f53525c = obj2;
+        this.d = obj3;
+        this.f53526e = obj4;
+        this.f53527f = obj5;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i7 = this.f52995a;
-        ProfileActivity profileActivity = this.f52996b;
-        switch (i7) {
+    public final void run() {
+        String p10;
+        org.telegram.ui.Wallet.z0 z0Var;
+        String i7;
+        byte[] bArr;
+        int i10 = this.f53523a;
+        String str = null;
+        Object obj = this.f53527f;
+        Object obj2 = this.f53526e;
+        Object obj3 = this.d;
+        Object obj4 = this.f53525c;
+        Object obj5 = this.f53524b;
+        switch (i10) {
             case 0:
-                ProfileActivity.k0(profileActivity);
-                return;
-            case 1:
-                if (profileActivity.f43189s.getTag() == null) {
-                    profileActivity.K4();
+                ProfileActivity profileActivity = (ProfileActivity) obj5;
+                TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) obj3;
+                TLRPC.User user = (TLRPC.User) obj2;
+                ut0 ut0Var = (ut0) obj;
+                RectF rectF = ProfileActivity.Z6;
+                if (!(((TLRPC.ChannelParticipant) obj4) instanceof TLRPC.TL_channelParticipantAdmin) && !(chatParticipant instanceof TLRPC.TL_chatParticipantAdmin)) {
+                    ut0Var.a(1);
                     return;
                 }
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, profileActivity.getParentActivity(), profileActivity.A0);
+                String M0 = org.telegram.messenger.gd.M0(2131689472, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                u1Var.S = M0;
+                u1Var.U = org.telegram.messenger.gd.a0(null, null, 2131754348, org.telegram.messenger.i5.m(0, user.first_name, user.last_name));
+                alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131747638, null), new qi0(ut0Var, 10));
+                alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
+                profileActivity.showDialog(u1Var);
+                return;
+            case 1:
+                ProfileActivity profileActivity2 = (ProfileActivity) obj5;
+                TLObject tLObject = (TLObject) obj4;
+                TLRPC.TL_username tL_username = (TLRPC.TL_username) obj3;
+                kv0 kv0Var = (kv0) obj2;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                if (tLObject instanceof TL_fragment.TL_collectibleInfo) {
+                    TL_fragment.TL_collectibleInfo tL_collectibleInfo = (TL_fragment.TL_collectibleInfo) tLObject;
+                    if (profileActivity2.f43540e1 != 0) {
+                        profileActivity2.getMessagesController().c2(Long.valueOf(profileActivity2.f43540e1));
+                    } else {
+                        profileActivity2.getMessagesController().O0(Long.valueOf(profileActivity2.f43548f1));
+                    }
+                    String str2 = "@" + tL_username.username;
+                    String format = org.telegram.messenger.gd.E0().o0().format(new Date(tL_collectibleInfo.purchase_date * 1000));
+                    String f10 = org.telegram.messenger.r1.i().f(tL_collectibleInfo.crypto_amount, tL_collectibleInfo.crypto_currency);
+                    String f11 = org.telegram.messenger.r1.i().f(tL_collectibleInfo.amount, tL_collectibleInfo.currency);
+                    org.telegram.ui.Components.lc lcVar = new org.telegram.ui.Components.lc(kv0Var.f42585x1, profileActivity2.A0);
+                    if (TextUtils.isEmpty(f11)) {
+                        p10 = "";
+                    } else {
+                        p10 = a8.p0.p("(", f11, ")");
+                    }
+                    org.telegram.ui.Components.gc w10 = lcVar.w(2131231182, org.telegram.messenger.g0.b4(org.telegram.messenger.g0.W2(org.telegram.messenger.gd.a0(null, null, 2131750503, str2, format, f10, p10)), new tr0(9, profileActivity2, tL_collectibleInfo)));
+                    bd0 bd0Var = new bd0(9, profileActivity2, tL_collectibleInfo);
+                    org.telegram.ui.Components.lb lbVar = w10.f35457e;
+                    if (lbVar != null) {
+                        lbVar.setOnClickListener(bd0Var);
+                    }
+                    w10.k(false);
+                    return;
+                }
+                RectF rectF2 = ProfileActivity.Z6;
+                org.telegram.ui.Components.lc.e0(tL_error);
                 return;
             case 2:
-                RectF rectF = ProfileActivity.X6;
-                profileActivity.finishPreviewFragment();
-                return;
+                ProfileActivity profileActivity3 = (ProfileActivity) obj5;
+                TLObject tLObject2 = (TLObject) obj4;
+                String str3 = (String) obj3;
+                TLRPC.User user2 = (TLRPC.User) obj2;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
+                RectF rectF3 = ProfileActivity.Z6;
+                if (tLObject2 instanceof TL_fragment.TL_collectibleInfo) {
+                    m00.a(profileActivity3.getParentActivity(), 1, str3, user2, (TL_fragment.TL_collectibleInfo) tLObject2, profileActivity3.A0);
+                    return;
+                } else {
+                    org.telegram.ui.Components.lc.e0(tL_error2);
+                    return;
+                }
             case 3:
-                RectF rectF2 = ProfileActivity.X6;
-                profileActivity.n5();
+                ProfileActivity.o0((ProfileActivity) obj5, (TLObject) obj4, (TLRPC.UserFull) obj3, (TL_account.TL_birthday) obj2, (TLRPC.TL_error) obj);
                 return;
             case 4:
-                TLRPC.UserFull userFull = profileActivity.f43219w2;
-                if (userFull != null && userFull.wallet_card != null && profileActivity.getParentActivity() != null) {
-                    profileActivity.showDialog(new org.telegram.ui.Wallet.o3(profileActivity, profileActivity.f43086d0, profileActivity.getMessagesController().a2(Long.valueOf(profileActivity.f43094e1)), profileActivity.f43219w2.wallet_card));
+                ww0 ww0Var = (ww0) obj5;
+                ArrayList arrayList = (ArrayList) obj3;
+                ArrayList arrayList2 = (ArrayList) obj2;
+                ArrayList arrayList3 = (ArrayList) obj;
+                org.telegram.ui.ActionBar.h2 h2Var = ww0Var.f53543e;
+                if (((String) obj4).equals(ww0Var.E)) {
+                    if (!ww0Var.f53549x && (h2Var instanceof ProfileActivity)) {
+                        try {
+                            ((ProfileActivity) h2Var).P.f36894b.getImageReceiver().P0(false);
+                            ((ProfileActivity) h2Var).P.d.setText(org.telegram.messenger.gd.M0(2131745281, null));
+                        } catch (Exception e10) {
+                            org.telegram.messenger.a8.g(e10, true);
+                        }
+                    }
+                    ww0Var.f53549x = true;
+                    ww0Var.f53546r = arrayList;
+                    ww0Var.f53547s = arrayList2;
+                    ww0Var.f53545n = arrayList3;
+                    ww0Var.f();
+                    if (h2Var instanceof ProfileActivity) {
+                        try {
+                            ((ProfileActivity) h2Var).P.f36894b.getImageReceiver().P0(false);
+                            return;
+                        } catch (Exception e11) {
+                            org.telegram.messenger.a8.g(e11, true);
+                            return;
+                        }
+                    }
                     return;
                 }
                 return;
             case 5:
-                ProfileActivity.m0(profileActivity);
+                r11 r11Var = (r11) obj5;
+                r11Var.getClass();
+                r11Var.p((View) obj4, Long.valueOf(((org.telegram.ui.Components.x5) obj3).documentId), (TLRPC.Document) obj2, ((b11) obj).f45729w, null);
                 return;
             case 6:
-                RectF rectF3 = ProfileActivity.X6;
-                profileActivity.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f43102f1);
-                bundle.putLong("user_id", profileActivity.f43094e1);
-                profileActivity.presentFragment(new ci.i0(bundle));
+                b21 b21Var = (b21) obj5;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj4;
+                TLObject tLObject3 = (TLObject) obj3;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj;
+                TLRPC.User user3 = (TLRPC.User) obj2;
+                b21Var.getClass();
+                if (tL_error3 == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject3;
+                    twoStepVerificationActivity.J = password;
+                    TwoStepVerificationActivity.r0(password);
+                    b21Var.f1(user3, twoStepVerificationActivity.q0(), twoStepVerificationActivity);
+                    return;
+                }
                 return;
             case 7:
-                ProfileActivity.n0(profileActivity);
-                return;
-            case 8:
-                RectF rectF4 = ProfileActivity.X6;
-                profileActivity.m5();
-                return;
-            case 9:
-                RectF rectF5 = ProfileActivity.X6;
-                profileActivity.m5();
-                return;
-            case 10:
-                RectF rectF6 = ProfileActivity.X6;
-                if (profileActivity.getParentLayout() != null && profileActivity.getParentLayout().getFragmentStack() != null) {
-                    int i10 = 0;
-                    while (i10 < profileActivity.getParentLayout().getFragmentStack().size()) {
-                        org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) profileActivity.getParentLayout().getFragmentStack().get(i10);
-                        if (e2Var instanceof yw) {
-                            yw ywVar = (yw) e2Var;
-                            uv uvVar = ywVar.H3;
-                            if (uvVar != null) {
-                                org.telegram.ui.ActionBar.e2 fragment = uvVar.getFragment();
-                                if ((fragment instanceof u91) && (-((u91) fragment).f51835a) == profileActivity.a()) {
-                                    ywVar.H3.a();
-                                }
-                            }
-                        } else if (e2Var instanceof an) {
-                            if (((an) e2Var).a() == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).d0(e2Var, false);
-                                i10--;
-                            }
-                        } else if (e2Var instanceof u91) {
-                            if ((-((u91) e2Var).f51835a) == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).d0(e2Var, false);
-                                i10--;
-                            }
-                        } else if ((e2Var instanceof ProfileActivity) && e2Var != profileActivity) {
-                            ProfileActivity profileActivity2 = (ProfileActivity) e2Var;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f43175q1) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).d0(e2Var, false);
-                                i10--;
-                            }
+                org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) obj5;
+                org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) obj4;
+                org.telegram.ui.Wallet.e eVar = (org.telegram.ui.Wallet.e) obj2;
+                String str4 = (String) obj;
+                try {
+                    ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
+                    if (r0Var != null && !r0Var.d()) {
+                        TL_wallet.WalletState walletState = u0Var.f45086e;
+                        if ((walletState instanceof TL_wallet.TL_walletState) && (z0Var = u0Var.f45085c) != null && !z0Var.f(((TL_wallet.TL_walletState) walletState).public_key)) {
+                            u0Var.f45085c.q(org.telegram.messenger.j10.i(u0Var.f45083a).e(), ((TL_wallet.TL_walletState) u0Var.f45086e).public_key, r0Var, null);
                         }
-                        i10++;
+                    }
+                    eVar.a(r0Var, str4);
+                    if (r0Var != null) {
+                        return;
+                    }
+                    return;
+                } finally {
+                    if (r0Var != null) {
+                        r0Var.close();
                     }
                 }
-                profileActivity.J1 = 0;
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f43102f1);
-                HashSet hashSet = u91.f51834r1;
-                profileActivity.presentFragment(u91.I0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
+            case 8:
+                org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) obj5;
+                JSONObject jSONObject = (JSONObject) obj4;
+                org.telegram.messenger.x10 x10Var = (org.telegram.messenger.x10) obj3;
+                String str5 = (String) obj2;
+                org.telegram.ui.Wallet.h2 h2Var2 = (org.telegram.ui.Wallet.h2) obj;
+                l2Var.getClass();
+                if (jSONObject == null) {
+                    x10Var.a(str5);
+                    return;
+                } else {
+                    l2Var.E(h2Var2.f44289a.f28667id, h2Var2.f44290b, jSONObject, x10Var);
+                    return;
+                }
+            case 9:
+                org.telegram.ui.Wallet.h2 h2Var3 = (org.telegram.ui.Wallet.h2) obj4;
+                p51 p51Var = (p51) obj2;
+                di.x2 x2Var = (di.x2) obj;
+                try {
+                    bArr = Base64.decode(WalletEngine2.tonConnectCrypto((org.telegram.ui.Wallet.r0) obj5, h2Var3.f44289a, h2Var3.h, h2Var3.f44294g, new JSONObject().put("challenge", Base64.encodeToString(((TL_wallet.tonConnectChallenge) obj3).challenge, 2))).getString("challengeAnswer"), 2);
+                    i7 = null;
+                } catch (Exception e12) {
+                    i7 = org.telegram.ui.Wallet.l2.i("decrypt challenge", e12);
+                    bArr = null;
+                }
+                org.telegram.messenger.g0.g3(new org.telegram.ui.Wallet.v7((Object) bArr, (Object) p51Var, i7, (Object) x2Var, 6));
+                return;
+            case 10:
+                org.telegram.ui.Wallet.l2 l2Var2 = (org.telegram.ui.Wallet.l2) obj5;
+                TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj4;
+                org.telegram.ui.Wallet.h2 h2Var4 = (org.telegram.ui.Wallet.h2) obj3;
+                org.telegram.messenger.x10 x10Var2 = (org.telegram.messenger.x10) obj2;
+                org.telegram.ui.Wallet.r0 r0Var2 = (org.telegram.ui.Wallet.r0) obj;
+                try {
+                    String jSONObject2 = new JSONObject().put("boc", Base64.encodeToString(sendtransfer.data_normal, 2)).put("randomId", sendtransfer.random_id).toString();
+                    if (!org.telegram.messenger.mp.u1(l2Var2.f44479a).h7.edit().putString(org.telegram.ui.Wallet.l2.l(h2Var4.f44289a.f28667id, h2Var4.f44290b) + ".transfer", jSONObject2).commit()) {
+                        throw new IllegalStateException("Could not save signed transfer");
+                    }
+                } catch (Exception e13) {
+                    str = org.telegram.ui.Wallet.l2.i("save transfer", e13);
+                }
+                org.telegram.messenger.g0.g3(new bi.h2(l2Var2, str, x10Var2, h2Var4, r0Var2, sendtransfer));
                 return;
             case 11:
-                ProfileActivity.a0(profileActivity);
+                ((WalletEngine2) obj5).lambda$emulateSendNFT$22((AtomicBoolean) obj4, (org.telegram.messenger.q10) obj3, (TL_wallet.walletTransaction) obj2, (String) obj);
                 return;
             case 12:
-                RectF rectF7 = ProfileActivity.X6;
-                profileActivity.J4(view);
+                ((WalletEngine2) obj5).lambda$prepareSend$52((org.telegram.messenger.s10) obj4, (TL_wallet.sendTransfer) obj3, (String) obj2, (String) obj);
                 return;
+            case 13:
+                ((p4.g) obj4).run().b(new jg0((ab.c0) obj5, (AtomicBoolean) obj3, (p4.h) obj2, (AtomicBoolean) obj, 28), m9.r.f20955a);
+                return;
+            case 14:
+                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj5;
+                org.telegram.messenger.g1 g1Var = (org.telegram.messenger.g1) obj4;
+                TLObject tLObject4 = (TLObject) obj3;
+                org.telegram.messenger.mp mpVar = (org.telegram.messenger.mp) obj2;
+                org.telegram.messenger.e3 e3Var = (org.telegram.messenger.e3) obj;
+                if (tL_error4 != null) {
+                    g1Var.a(tL_error4);
+                    return;
+                } else if (tLObject4 instanceof TL_stories.TL_premium_myBoosts) {
+                    TL_stories.TL_premium_myBoosts tL_premium_myBoosts = (TL_stories.TL_premium_myBoosts) tLObject4;
+                    mpVar.f4(tL_premium_myBoosts.users, false);
+                    mpVar.Z3(tL_premium_myBoosts.chats, false);
+                    e3Var.a(tL_premium_myBoosts);
+                    return;
+                } else {
+                    return;
+                }
+            case 15:
+                TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj5;
+                org.telegram.messenger.x10 x10Var3 = (org.telegram.messenger.x10) obj4;
+                TLObject tLObject5 = (TLObject) obj3;
+                org.telegram.messenger.mp mpVar2 = (org.telegram.messenger.mp) obj2;
+                org.telegram.messenger.x10 x10Var4 = (org.telegram.messenger.x10) obj;
+                if (tL_error5 != null) {
+                    x10Var3.a(tL_error5);
+                    return;
+                } else if (tLObject5 instanceof TL_stories.TL_premium_myBoosts) {
+                    TL_stories.TL_premium_myBoosts tL_premium_myBoosts2 = (TL_stories.TL_premium_myBoosts) tLObject5;
+                    mpVar2.f4(tL_premium_myBoosts2.users, false);
+                    mpVar2.Z3(tL_premium_myBoosts2.chats, false);
+                    x10Var4.a(tL_premium_myBoosts2);
+                    return;
+                } else {
+                    return;
+                }
             default:
-                RectF rectF8 = ProfileActivity.X6;
-                profileActivity.J4(view);
+                TLObject tLObject6 = (TLObject) obj5;
+                org.telegram.messenger.mp mpVar3 = (org.telegram.messenger.mp) obj4;
+                bi.i2 i2Var = (bi.i2) obj3;
+                wg.e eVar2 = (wg.e) obj2;
+                TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj;
+                if (tLObject6 instanceof TLRPC.TL_payments_checkedGiftCode) {
+                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = (TLRPC.TL_payments_checkedGiftCode) tLObject6;
+                    mpVar3.Z3(tL_payments_checkedGiftCode.chats, false);
+                    mpVar3.f4(tL_payments_checkedGiftCode.users, false);
+                    i2Var.a(tL_payments_checkedGiftCode);
+                }
+                eVar2.a(tL_error6);
                 return;
         }
+    }
+
+    public wt0(b21 b21Var, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.User user) {
+        this.f53523a = 6;
+        this.f53524b = b21Var;
+        this.f53525c = tL_error;
+        this.d = tLObject;
+        this.f53527f = twoStepVerificationActivity;
+        this.f53526e = user;
     }
 }

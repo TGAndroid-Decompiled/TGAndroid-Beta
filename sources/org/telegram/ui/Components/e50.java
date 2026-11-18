@@ -1,31 +1,81 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.TextureView;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class e50 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.u2[] f34188a;
-    public final TLRPC.TL_chatInviteImporter f34189b;
+import android.widget.FrameLayout;
+public abstract class e50 extends FrameLayout {
+    public a50 f34603a;
+    public d50 f34604b;
+    public c50 f34605c;
+    public boolean d;
 
-    public e50(org.telegram.ui.ActionBar.u2[] u2VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f34188a = u2VarArr;
-        this.f34189b = tL_chatInviteImporter;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        this.f34188a[0].dismiss();
-        org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
-        if (T != null) {
-            T.presentFragment(ProfileActivity.C4(this.f34189b.user_id));
+    public static boolean e(int i7) {
+        aj.a aVar = aj.e.d;
+        aVar.a();
+        if (aVar.f1641c) {
+            aVar.a();
+            return aVar.d;
+        } else if (!((org.telegram.messenger.h0) org.telegram.messenger.mp.u1(i7).A7.m0.f14001b).f24339c) {
+            return true;
+        } else {
+            return false;
         }
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public abstract void a(boolean z10);
+
+    public abstract void b(float f10, int i7);
+
+    public abstract void c(boolean z10);
+
+    public abstract void d(boolean z10);
+
+    public abstract boolean f();
+
+    public abstract void g(float f10);
+
+    public abstract View getButtonsLayout();
+
+    public abstract b50 getCameraContainer();
+
+    public abstract RectF getCameraRect();
+
+    public abstract View getMuteImageView();
+
+    public abstract Paint getPaint();
+
+    public abstract TextureView getTextureView();
+
+    public abstract void h(int i7, int i10, int i11, long j3, long j10, boolean z10);
+
+    public abstract void i(dh.c cVar, org.telegram.ui.pi piVar);
+
+    public abstract void j(boolean z10);
+
+    public abstract void k();
+
+    public final void setAnimationCallback(a50 a50Var) {
+        this.f34603a = a50Var;
+    }
+
+    public abstract void setInternalPadding(int i7);
+
+    public abstract void setIsMessageTransition(boolean z10);
+
+    public final void setRecordingUiFrameCallback(c50 c50Var) {
+        this.f34605c = c50Var;
+        if (c50Var != null) {
+            boolean z10 = this.d;
+            org.telegram.ui.rj rjVar = ((org.telegram.ui.xi) c50Var).f53868a.f45932a0;
+            if (rjVar != null) {
+                rjVar.setRoundVideoUiFrameClockActive(z10);
+            }
+        }
+    }
+
+    public final void setTrimCallback(d50 d50Var) {
+        this.f34604b = d50Var;
     }
 }

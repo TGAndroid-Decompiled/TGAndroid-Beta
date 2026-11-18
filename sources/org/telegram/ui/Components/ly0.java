@@ -1,43 +1,58 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ly0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f37013a;
-    public final ny0 f37014b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+public final class ly0 extends au0 {
+    public final h6.m f37269g0;
+    public final org.telegram.ui.ActionBar.i6 f37270h0;
+    public final jy0 f37271i0;
 
-    public ly0(ny0 ny0Var, int i7) {
-        this.f37013a = i7;
-        this.f37014b = ny0Var;
+    public ly0(Context context, org.telegram.ui.ActionBar.i6 i6Var, jy0 jy0Var) {
+        super(context, null);
+        this.f37270h0 = i6Var;
+        this.f37271i0 = jy0Var;
+        this.f37269g0 = new h6.m(29);
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        int i10 = this.f37013a;
-        ny0 ny0Var = this.f37014b;
-        switch (i10) {
-            case 0:
-                ny0Var.a();
-                return;
-            case 1:
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ny0Var.getContext());
-                String M0 = org.telegram.messenger.hd.M0(2131743976, null);
-                org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28392a;
-                t1Var2.U = M0;
-                t1Var2.S = org.telegram.messenger.hd.M0(2131689472, null);
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131751652, null), new ly0(ny0Var, 2));
-                alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
-                alertDialog$Builder.p();
-                return;
-            default:
-                org.telegram.ui.ActionBar.t1 t1Var3 = new org.telegram.ui.ActionBar.t1(3, ny0Var.getContext(), null);
-                t1Var3.f29637j0 = false;
-                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
-                deleteaccount.reason = "Decline ToS update";
-                ConnectionsManager.getInstance(ny0Var.d).sendRequest(deleteaccount, new org.telegram.ui.v7(24, ny0Var, t1Var3));
-                t1Var3.show();
-                return;
+    public final boolean O() {
+        return false;
+    }
+
+    @Override
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.f37271i0) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.save();
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(0.0f, 0.0f, org.telegram.messenger.g0.L(45.0f), getHeight());
+            this.f37269g0.n(canvas, rectF, 0, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return drawChild;
         }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.i6 getResourceProvider() {
+        return this.f37270h0;
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f24121q.x, 1073741824);
+        jy0 jy0Var = this.f37271i0;
+        jy0Var.measure(makeMeasureSpec, i10);
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), jy0Var.getMeasuredHeight() + org.telegram.messenger.g0.L(24.0f));
     }
 }

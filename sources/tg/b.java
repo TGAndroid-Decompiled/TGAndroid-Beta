@@ -14,7 +14,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.iq;
+import org.telegram.ui.Components.pq;
 public class b extends EditTextBoldCursor {
     public final Canvas M1;
     public final TextPaint N1;
@@ -24,7 +24,7 @@ public class b extends EditTextBoldCursor {
     public int R1;
     public float S1;
     public int T1;
-    public final iq U1;
+    public final pq U1;
     public RectF[] V1;
     public RectF W1;
     public boolean X1;
@@ -36,7 +36,7 @@ public class b extends EditTextBoldCursor {
         TextPaint textPaint = new TextPaint(1);
         this.N1 = textPaint;
         this.O1 = new Paint(1);
-        this.U1 = new iq();
+        this.U1 = new pq();
         this.R1 = 0;
         setInputType(getInputType() | 655360);
         this.Q1 = true;
@@ -156,8 +156,8 @@ public class b extends EditTextBoldCursor {
                 rectF9.right = getMeasuredWidth() - rectF10.right;
                 rectF10.bottom = getMeasuredHeight() - this.W1.bottom;
             }
-            iq iqVar = this.U1;
-            iqVar.rewind();
+            pq pqVar = this.U1;
+            pqVar.rewind();
             float textSize = getTextSize() / 3.0f;
             float f11 = 1.5f * textSize;
             int i14 = 1;
@@ -211,13 +211,13 @@ public class b extends EditTextBoldCursor {
                     break;
                 }
                 if (rectFArr6[i7].width() != 0.0f) {
-                    iqVar.addRect(this.V1[i7], Path.Direction.CW);
+                    pqVar.addRect(this.V1[i7], Path.Direction.CW);
                 }
                 i7++;
             }
-            iqVar.a();
+            pqVar.a();
             setFrameRoundRadius(textSize);
-            canvas.drawPath(iqVar, paint);
+            canvas.drawPath(pqVar, paint);
             canvas.restore();
         } else {
             this.W1 = null;

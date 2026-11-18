@@ -8,22 +8,22 @@ public class NotificationDismissReceiver extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
         if (intent != null) {
-            int intExtra = intent.getIntExtra("currentAccount", m10.f24940t0);
-            if (!m10.r(intExtra)) {
+            int intExtra = intent.getIntExtra("currentAccount", j10.f24773t0);
+            if (!j10.r(intExtra)) {
                 return;
             }
             long longExtra = intent.getLongExtra("dialogId", 0L);
             int intExtra2 = intent.getIntExtra("messageDate", 0);
             if (intent.hasExtra("story") && intent.getBooleanExtra("story", false)) {
-                at.f22558l0.c(new os(at.t(intExtra), 10));
+                xs.f27959l0.c(new ls(xs.t(intExtra), 10));
             } else if (intent.hasExtra("storyReaction") && intent.getBooleanExtra("storyReaction", false)) {
-                at.f22558l0.c(new os(at.t(intExtra), 6));
+                xs.f27959l0.c(new ls(xs.t(intExtra), 6));
             } else if (longExtra == 0) {
                 a8.b("set dismissDate of global to " + intExtra2);
-                np.s1(intExtra).f25273e7.edit().putInt("dismissDate", intExtra2).commit();
+                mp.u1(intExtra).f25660g7.edit().putInt("dismissDate", intExtra2).commit();
             } else {
                 a8.b("set dismissDate of " + longExtra + " to " + intExtra2);
-                SharedPreferences.Editor edit = np.s1(intExtra).f25273e7.edit();
+                SharedPreferences.Editor edit = mp.u1(intExtra).f25660g7.edit();
                 StringBuilder sb2 = new StringBuilder("dismissDate");
                 sb2.append(longExtra);
                 edit.putInt(sb2.toString(), intExtra2).commit();

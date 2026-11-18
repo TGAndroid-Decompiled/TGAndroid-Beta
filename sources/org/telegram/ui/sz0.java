@@ -1,34 +1,68 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-public final class sz0 implements org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.vi0 {
-    public final n11 f51308a;
+import android.graphics.SurfaceTexture;
+public final class sz0 implements org.telegram.ui.Components.d61, org.telegram.ui.Components.z51 {
+    public final tz0 f52115a;
 
-    public sz0(n11 n11Var) {
-        this.f51308a = n11Var;
+    public sz0(tz0 tz0Var) {
+        this.f52115a = tz0Var;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        n11 n11Var = this.f51308a;
-        int i10 = n11Var.W;
-        ConnectionsManager.getInstance(i10).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
-        org.telegram.messenger.si b02 = org.telegram.messenger.si.b0(i10);
-        ArrayList[] arrayListArr = b02.F0;
-        ArrayList arrayList = arrayListArr[0];
-        if (arrayList != null) {
-            arrayList.clear();
+    public void onRenderedFirstFrame(m2.a aVar) {
+    }
+
+    @Override
+    public void onStateChanged(boolean z10, int i7) {
+        tz0 tz0Var = this.f52115a;
+        if (i7 == 4) {
+            tz0Var.dismiss();
+            return;
         }
-        b02.E0[0] = 0;
-        b02.getMessagesStorage().f27219a.c(new org.telegram.messenger.eg(b02, 8));
-        ArrayList arrayList2 = arrayListArr[0];
-        n11Var.B(false, true, true);
+        org.telegram.messenger.g0.r(tz0Var.f52383a0);
+        org.telegram.messenger.g0.h3(tz0Var.f52383a0, 16L);
     }
 
     @Override
-    public void i() {
-        this.f51308a.m();
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
+    }
+
+    @Override
+    public boolean t() {
+        if (this.f52115a.W.f35806i != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void x(boolean z10, float[] fArr) {
+        this.f52115a.W.e(z10, fArr);
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        org.telegram.messenger.g0.g3(new ru0(this, 14));
+    }
+
+    @Override
+    public void onSeekFinished(m2.a aVar) {
+    }
+
+    @Override
+    public void onSeekStarted(m2.a aVar) {
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public void onError(org.telegram.ui.Components.f61 f61Var, Exception exc) {
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
     }
 }

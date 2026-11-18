@@ -2,54 +2,54 @@ package r0;
 
 import android.view.WindowInsets;
 public class x0 extends a1 {
-    public final WindowInsets.Builder f55720c;
+    public final WindowInsets.Builder f56295c;
 
     public x0() {
-        this.f55720c = android.support.v4.media.session.w.h();
+        this.f56295c = android.support.v4.media.session.w.h();
     }
 
     @Override
-    public k1 b() {
+    public l1 b() {
         a();
-        k1 h = k1.h(null, this.f55720c.build());
-        h.f55682a.q(this.f55640b);
+        l1 h = l1.h(null, this.f56295c.build());
+        h.f56258a.q(this.f56214b);
         return h;
     }
 
     @Override
-    public void d(i0.c cVar) {
-        this.f55720c.setMandatorySystemGestureInsets(cVar.d());
+    public void d(i0.b bVar) {
+        this.f56295c.setMandatorySystemGestureInsets(bVar.d());
     }
 
     @Override
-    public void e(i0.c cVar) {
-        this.f55720c.setStableInsets(cVar.d());
+    public void e(i0.b bVar) {
+        this.f56295c.setStableInsets(bVar.d());
     }
 
     @Override
-    public void f(i0.c cVar) {
-        this.f55720c.setSystemGestureInsets(cVar.d());
+    public void f(i0.b bVar) {
+        this.f56295c.setSystemGestureInsets(bVar.d());
     }
 
     @Override
-    public void g(i0.c cVar) {
-        this.f55720c.setSystemWindowInsets(cVar.d());
+    public void g(i0.b bVar) {
+        this.f56295c.setSystemWindowInsets(bVar.d());
     }
 
     @Override
-    public void h(i0.c cVar) {
-        this.f55720c.setTappableElementInsets(cVar.d());
+    public void h(i0.b bVar) {
+        this.f56295c.setTappableElementInsets(bVar.d());
     }
 
-    public x0(k1 k1Var) {
-        super(k1Var);
+    public x0(l1 l1Var) {
+        super(l1Var);
         WindowInsets.Builder h;
-        WindowInsets g10 = k1Var.g();
+        WindowInsets g10 = l1Var.g();
         if (g10 != null) {
             h = android.support.v4.media.session.w.i(g10);
         } else {
             h = android.support.v4.media.session.w.h();
         }
-        this.f55720c = h;
+        this.f56295c = h;
     }
 }

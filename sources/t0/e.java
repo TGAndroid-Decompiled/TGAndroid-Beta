@@ -1,7 +1,7 @@
 package t0;
 
 import android.os.Bundle;
-import org.telegram.ui.Components.ff;
+import org.telegram.ui.Components.of;
 public interface e {
-    boolean o(ff ffVar, int i7, Bundle bundle);
+    boolean d(of ofVar, int i7, Bundle bundle);
 }

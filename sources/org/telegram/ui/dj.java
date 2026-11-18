@@ -1,141 +1,63 @@
 package org.telegram.ui;
+public final class dj extends pi.k {
+    public Runnable W;
+    public final bn X;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public final class dj extends v4.t {
-    public boolean S;
-    public final an T;
-
-    public dj(an anVar, boolean z10) {
-        super(z10);
-        this.T = anVar;
+    public dj(bn bnVar, bn bnVar2, bj bjVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(bnVar2, bjVar, i6Var);
+        this.X = bnVar;
     }
 
     @Override
-    public final boolean B1(int i7) {
-        int i10;
-        org.telegram.messenger.gj gjVar;
-        org.telegram.messenger.bj u92;
-        byte b10;
-        an anVar = this.T;
-        jl jlVar = anVar.D0;
-        int i11 = jlVar.K;
-        if (i7 >= i11 && i7 < jlVar.L && (i10 = i7 - i11) >= 0 && i10 < jlVar.L().size() && (u92 = anVar.u9((gjVar = (org.telegram.messenger.gj) anVar.D0.L().get(i10)))) != null) {
-            ArrayList arrayList = u92.f22710e;
-            org.telegram.messenger.yi d = u92.d(gjVar);
-            if (d.f27746a != d.f27747b && (b10 = d.f27748c) == d.d && b10 != 0) {
-                int size = arrayList.size();
-                for (int i12 = 0; i12 < size; i12++) {
-                    org.telegram.messenger.yi yiVar = (org.telegram.messenger.yi) arrayList.get(i12);
-                    if (yiVar != d) {
-                        byte b11 = yiVar.f27748c;
-                        byte b12 = d.f27748c;
-                        if (b11 <= b12 && yiVar.d >= b12) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        if (view instanceof org.telegram.ui.Cells.q1) {
-            return !((org.telegram.ui.Cells.q1) view).getMessageObject().P3();
-        }
-        return false;
-    }
-
-    @Override
-    public final int G() {
-        if (this.S) {
-            return (int) this.T.O9;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int J() {
-        if (this.S) {
-            return (int) this.T.O9;
-        }
-        return F();
-    }
-
-    @Override
-    public final int K() {
-        if (this.S) {
-            return (int) ((this.f58632n - this.T.O9) - C());
-        }
-        return super.K();
-    }
-
-    @Override
-    public final int X0() {
-        return (int) this.T.O9;
-    }
-
-    @Override
-    public final void b0(v4.w0 w0Var, v4.b1 b1Var) {
-        boolean z10 = org.telegram.messenger.r2.f26206a;
-        try {
-            super.b0(w0Var, b1Var);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-            org.telegram.messenger.g0.h3(new bh(this, 4));
+    public final void F() {
+        bn bnVar = this.X;
+        if (bnVar.f45998ea == -1) {
+            bnVar.f45998ea = bnVar.getNotificationCenter().q(bn.f45928sd, bnVar.f45998ea, false);
         }
     }
 
     @Override
-    public final void i1(int i7, int i10, boolean z10) {
-        if (!z10) {
-            i10 = (int) ((i10 - F()) + this.T.O9);
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.W = null;
         }
-        super.i1(i7, i10, z10);
+        cj cjVar = new cj(this, 1);
+        this.W = cjVar;
+        org.telegram.messenger.g0.g3(cjVar);
     }
 
     @Override
-    public final int j(v4.b1 b1Var) {
-        this.S = true;
-        int B0 = B0(b1Var);
-        this.S = false;
-        return B0;
+    public final void W() {
+        bn bnVar = this.X;
+        bnVar.f45998ea = bnVar.getNotificationCenter().q(bn.f45928sd, bnVar.f45998ea, false);
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.W = null;
+        }
+        if (org.telegram.messenger.s2.f26723a) {
+            org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
+        }
+        j6.o oVar = bnVar.f45932a0.getAdjustPanLayoutHelper().h;
+        org.telegram.messenger.g0.r(oVar);
+        oVar.run();
+        org.telegram.ui.Components.te teVar = bnVar.f45932a0.M4;
+        org.telegram.messenger.g0.r(teVar);
+        teVar.run();
     }
 
     @Override
-    public final int k(v4.b1 b1Var) {
-        this.S = true;
-        int C0 = C0(b1Var);
-        this.S = false;
-        return C0;
-    }
-
-    @Override
-    public final int l(v4.b1 b1Var) {
-        this.S = true;
-        int D0 = D0(b1Var);
-        this.S = false;
-        return D0;
-    }
-
-    @Override
-    public final int o0(int r11, v4.w0 r12, v4.b1 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dj.o0(int, v4.w0, v4.b1):int");
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
-        this.T.Oa = false;
-        pi.l lVar = new pi.l(recyclerView.getContext(), 0);
-        lVar.f58480a = i7;
-        w0(lVar);
-    }
-
-    @Override
-    public final boolean y0() {
-        return true;
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+        }
+        cj cjVar = new cj(this, 0);
+        this.W = cjVar;
+        org.telegram.messenger.g0.g3(cjVar);
     }
 }

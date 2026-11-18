@@ -1,4 +1,6 @@
 package ug;
-public interface m0 {
-    void setOffset(float f10);
+public final class m0 {
+    public int f58762a;
+    public int f58763b = 5;
+    public long f58764c;
 }

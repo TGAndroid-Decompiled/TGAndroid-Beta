@@ -1,43 +1,22 @@
 package org.telegram.ui.ActionBar;
+public final class q4 {
+    public final h2 f29903a;
+    public boolean f29904b;
+    public boolean f29905c;
+    public boolean d = true;
+    public boolean f29906e;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f29907f;
+    public boolean f29908g;
 
-import android.graphics.RectF;
-import android.view.View;
-public interface q4 {
-    boolean a();
+    public q4(h2 h2Var) {
+        this.f29903a = h2Var;
+    }
 
-    boolean b(q0 q0Var, RectF rectF);
+    public final void a() {
+        this.f29905c = true;
+    }
 
-    boolean d();
-
-    boolean e();
-
-    boolean f();
-
-    fh.g g(g5 g5Var);
-
-    int getButtonsGlassBackgroundColor();
-
-    gh.a getButtonsGlassColorProvider();
-
-    int getMenuDimAlpha();
-
-    int getMenuExtraBelow();
-
-    gh.a getMenuGlassColorProvider();
-
-    View getMenuHostView();
-
-    int getMenuMaxHeight();
-
-    e6 getMenuResourcesProvider();
-
-    int getMenuRise();
-
-    View getMenuView();
-
-    g5 getOpenMenuOverlay();
-
-    void h(g5 g5Var, q0 q0Var);
-
-    void setMenuGlassFrostedProgress(float f10);
+    public final void b(boolean z10) {
+        this.f29904b = z10;
+    }
 }

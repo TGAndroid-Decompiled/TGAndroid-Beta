@@ -1,39 +1,36 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
 public final class a5 implements Runnable {
-    public final int f22461a;
-    public final g5 f22462b;
-    public final HashMap f22463c;
-    public final HashMap d;
+    public final int f22822a = 0;
+    public final int f22823b;
+    public final ArrayList f22824c;
+    public final boolean d;
+    public final c1 f22825e;
+    public final Object f22826f;
+    public final Object h;
 
-    public a5(g5 g5Var, HashMap hashMap, HashMap hashMap2, int i7) {
-        this.f22461a = i7;
-        this.f22462b = g5Var;
-        this.f22463c = hashMap;
-        this.d = hashMap2;
+    public a5(i5 i5Var, int i7, ArrayList arrayList, ArrayList arrayList2, a0.h hVar, boolean z10) {
+        this.f22825e = i5Var;
+        this.f22823b = i7;
+        this.f22824c = arrayList;
+        this.f22826f = arrayList2;
+        this.h = hVar;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f22461a) {
-            case 0:
-                g5 g5Var = this.f22462b;
-                Utilities.f22416e.c(new a5(g5Var, this.f22463c, this.d, 1));
-                if (!g5Var.f23678e) {
-                    g5Var.f23678e = true;
-                    vr messagesStorage = g5Var.getMessagesStorage();
-                    messagesStorage.f27219a.c(new zq(messagesStorage, false, 0));
-                    return;
-                }
-                return;
-            default:
-                g5 g5Var2 = this.f22462b;
-                HashMap hashMap = this.f22463c;
-                HashMap hashMap2 = this.d;
-                g5Var2.f23687l0 = hashMap;
-                g5Var2.m0 = hashMap2;
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.a5.run():void");
+    }
+
+    public a5(zy zyVar, TLObject tLObject, int i7, ly lyVar, ArrayList arrayList, boolean z10) {
+        this.f22825e = zyVar;
+        this.f22826f = tLObject;
+        this.f22823b = i7;
+        this.h = lyVar;
+        this.f22824c = arrayList;
+        this.d = z10;
     }
 }

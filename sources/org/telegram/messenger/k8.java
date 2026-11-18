@@ -3,30 +3,30 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class k8 implements Runnable {
-    public final int f24663a;
-    public final r8 f24664b;
-    public final TLRPC.TL_messages_sendMedia f24665c;
+    public final int f25011a;
+    public final r8 f25012b;
+    public final TLRPC.TL_messages_sendMedia f25013c;
     public final Object[] d;
 
     public k8(r8 r8Var, TLRPC.TL_messages_sendMedia tL_messages_sendMedia, Object[] objArr, int i7) {
-        this.f24663a = i7;
-        this.f24664b = r8Var;
-        this.f24665c = tL_messages_sendMedia;
+        this.f25011a = i7;
+        this.f25012b = r8Var;
+        this.f25013c = tL_messages_sendMedia;
         this.d = objArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f24663a) {
+        switch (this.f25011a) {
             case 0:
-                ez sendMessagesHelper = this.f24664b.getSendMessagesHelper();
+                zy sendMessagesHelper = this.f25012b.getSendMessagesHelper();
                 Object[] objArr = this.d;
-                sendMessagesHelper.P(this.f24665c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (qy) objArr[4], ((Boolean) objArr[5]).booleanValue());
+                sendMessagesHelper.P(this.f25013c, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (ly) objArr[4], ((Boolean) objArr[5]).booleanValue());
                 return;
             default:
-                ez sendMessagesHelper2 = this.f24664b.getSendMessagesHelper();
+                zy sendMessagesHelper2 = this.f25012b.getSendMessagesHelper();
                 Object[] objArr2 = this.d;
-                sendMessagesHelper2.P(this.f24665c, (ArrayList) objArr2[1], (ArrayList) objArr2[2], null, (qy) objArr2[4], ((Boolean) objArr2[5]).booleanValue());
+                sendMessagesHelper2.P(this.f25013c, (ArrayList) objArr2[1], (ArrayList) objArr2[2], null, (ly) objArr2[4], ((Boolean) objArr2[5]).booleanValue());
                 return;
         }
     }

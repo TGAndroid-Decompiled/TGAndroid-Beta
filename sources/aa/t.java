@@ -10,35 +10,35 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
 public final class t {
-    public final Context f854a;
-    public final w f855b;
-    public final q4.q f856c;
+    public final Context f853a;
+    public final w f854b;
+    public final q4.q f855c;
     public wf.b d;
-    public wf.b f857e;
-    public p f858f;
-    public final a0 f859g;
+    public wf.b f856e;
+    public p f857f;
+    public final a0 f858g;
     public final ga.d h;
-    public final w9.a f860i;
-    public final w9.a f861j;
-    public final j f862k;
-    public final x9.a f863l;
-    public final x9.d f864m;
-    public final ba.e f865n;
+    public final w9.a f859i;
+    public final w9.a f860j;
+    public final j f861k;
+    public final x9.a f862l;
+    public final v4.f0 f863m;
+    public final ba.e f864n;
 
-    public t(o9.g gVar, a0 a0Var, x9.a aVar, w wVar, w9.a aVar2, w9.a aVar3, ga.d dVar, j jVar, x9.d dVar2, ba.e eVar) {
-        this.f855b = wVar;
+    public t(o9.g gVar, a0 a0Var, x9.a aVar, w wVar, w9.a aVar2, w9.a aVar3, ga.d dVar, j jVar, v4.f0 f0Var, ba.e eVar) {
+        this.f854b = wVar;
         gVar.a();
-        this.f854a = gVar.f21397a;
-        this.f859g = a0Var;
-        this.f863l = aVar;
-        this.f860i = aVar2;
-        this.f861j = aVar3;
+        this.f853a = gVar.f21763a;
+        this.f858g = a0Var;
+        this.f862l = aVar;
+        this.f859i = aVar2;
+        this.f860j = aVar3;
         this.h = dVar;
-        this.f862k = jVar;
-        this.f864m = dVar2;
-        this.f865n = eVar;
+        this.f861k = jVar;
+        this.f863m = f0Var;
+        this.f864n = eVar;
         System.currentTimeMillis();
-        this.f856c = new q4.q(4);
+        this.f855c = new q4.q(4);
     }
 
     public final void a(ia.c cVar) {
@@ -50,13 +50,13 @@ public final class t {
         }
         try {
             try {
-                this.f860i.a(new a3.l(3));
-                this.f858f.i();
-                if (cVar.b().f15869b.f15865a) {
-                    if (!this.f858f.f(cVar)) {
+                this.f859i.a(new a3.l(3));
+                this.f857f.i();
+                if (cVar.b().f16187b.f16183a) {
+                    if (!this.f857f.f(cVar)) {
                         Log.w("FirebaseCrashlytics", "Previous sessions could not be finalized.", null);
                     }
-                    this.f858f.j(((TaskCompletionSource) ((AtomicReference) cVar.f15879i).get()).getTask());
+                    this.f857f.j(((TaskCompletionSource) ((AtomicReference) cVar.f16197i).get()).getTask());
                     c();
                     return;
                 }
@@ -75,7 +75,7 @@ public final class t {
     }
 
     public final void b(ia.c cVar) {
-        Future<?> submit = this.f865n.f3093a.f3090a.submit(new q(this, cVar, 1));
+        Future<?> submit = this.f864n.f3087a.f3084a.submit(new q(this, cVar, 1));
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics detected incomplete initialization on previous app launch. Will initialize synchronously.", null);
         }
@@ -95,9 +95,9 @@ public final class t {
         ba.e.a();
         try {
             wf.b bVar = this.d;
-            ga.d dVar = (ga.d) bVar.f59108c;
+            ga.d dVar = (ga.d) bVar.f59673c;
             dVar.getClass();
-            if (!new File((File) dVar.d, (String) bVar.f59107b).delete()) {
+            if (!new File((File) dVar.d, (String) bVar.f59672b).delete()) {
                 Log.w("FirebaseCrashlytics", "Initialization marker file was not properly removed.", null);
             }
         } catch (Exception e10) {

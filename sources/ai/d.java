@@ -24,17 +24,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.telegram.ui.qb1;
-import org.telegram.ui.tn0;
-import org.telegram.ui.xb1;
+import org.telegram.ui.ac1;
+import org.telegram.ui.tb1;
+import org.telegram.ui.wn0;
 public abstract class d {
-    public static boolean f1171a;
-    public static long f1172b;
-    public static int f1173c;
+    public static boolean f1169a;
+    public static long f1170b;
+    public static int f1171c;
     public static boolean d;
 
     public static void a(Context context) {
-        if (f1173c == 0 && !d) {
+        if (f1171c == 0 && !d) {
             ArrayList arrayList = new ArrayList();
             try {
                 if (SpeechRecognizer.isRecognitionAvailable(context)) {
@@ -43,7 +43,7 @@ public abstract class d {
             } catch (Throwable unused) {
             }
             if (arrayList.isEmpty()) {
-                f1173c = -1;
+                f1171c = -1;
                 Log.d("Dictation", "support probe: no recognition service");
                 return;
             }
@@ -52,7 +52,7 @@ public abstract class d {
             boolean[] zArr = {false};
             boolean[] zArr2 = {false};
             a1.e eVar = new a1.e(8, zArr2, arrayList);
-            org.telegram.messenger.g0.i3(new a1.e(9, zArr2, eVar), 3000L);
+            org.telegram.messenger.g0.h3(new a1.e(9, zArr2, eVar), 3000L);
             int size = arrayList.size();
             int i7 = 0;
             while (i7 < size) {
@@ -89,7 +89,7 @@ public abstract class d {
     public static n2.b d(AudioManager audioManager, e2.e eVar, h9.i0 i0Var, List list) {
         List directProfilesForAttributes = audioManager.getDirectProfilesForAttributes(eVar.b());
         HashMap hashMap = new HashMap();
-        hashMap.put(2, new HashSet(c8.g1.a(12)));
+        hashMap.put(2, new HashSet(c8.k1.a(12)));
         for (int i7 = 0; i7 < directProfilesForAttributes.size(); i7++) {
             AudioProfile audioProfile = (AudioProfile) directProfilesForAttributes.get(i7);
             if (audioProfile.getEncapsulationType() != 1) {
@@ -98,9 +98,9 @@ public abstract class d {
                     if (hashMap.containsKey(Integer.valueOf(format))) {
                         Set set = (Set) hashMap.get(Integer.valueOf(format));
                         set.getClass();
-                        set.addAll(c8.g1.a(audioProfile.getChannelMasks()));
+                        set.addAll(c8.k1.a(audioProfile.getChannelMasks()));
                     } else {
-                        hashMap.put(Integer.valueOf(format), new HashSet(c8.g1.a(audioProfile.getChannelMasks())));
+                        hashMap.put(Integer.valueOf(format), new HashSet(c8.k1.a(audioProfile.getChannelMasks())));
                     }
                 }
             }
@@ -132,17 +132,17 @@ public abstract class d {
     public static boolean h() {
         boolean z10;
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j3 = f1172b;
+        long j3 = f1170b;
         if (j3 == 0 || elapsedRealtime - j3 > 60000) {
-            f1172b = elapsedRealtime;
+            f1170b = elapsedRealtime;
             try {
-                z10 = SpeechRecognizer.isRecognitionAvailable(org.telegram.messenger.t0.f26609b);
+                z10 = SpeechRecognizer.isRecognitionAvailable(org.telegram.messenger.t0.f26915b);
             } catch (Throwable unused) {
                 z10 = false;
             }
-            f1171a = z10;
+            f1169a = z10;
         }
-        if (!f1171a || f1173c < 0) {
+        if (!f1169a || f1171c < 0) {
             return false;
         }
         return true;
@@ -152,24 +152,24 @@ public abstract class d {
         return accessibilityNodeInfo.isTextSelectable();
     }
 
-    public static tn0 j(xb1 xb1Var, qb1 qb1Var) {
-        OnBackInvokedDispatcher findOnBackInvokedDispatcher = xb1Var.findOnBackInvokedDispatcher();
+    public static wn0 j(ac1 ac1Var, tb1 tb1Var) {
+        OnBackInvokedDispatcher findOnBackInvokedDispatcher = ac1Var.findOnBackInvokedDispatcher();
         if (findOnBackInvokedDispatcher == null) {
             return null;
         }
-        tn0 tn0Var = new tn0(qb1Var, 1);
-        findOnBackInvokedDispatcher.registerOnBackInvokedCallback(0, tn0Var);
-        return tn0Var;
+        wn0 wn0Var = new wn0(tb1Var, 1);
+        findOnBackInvokedDispatcher.registerOnBackInvokedCallback(0, wn0Var);
+        return wn0Var;
     }
 
     public static void k(ShortcutInfo.Builder builder) {
         builder.setExcludedFromSurfaces(0);
     }
 
-    public static void l(xb1 xb1Var, tn0 tn0Var) {
-        OnBackInvokedDispatcher findOnBackInvokedDispatcher = xb1Var.findOnBackInvokedDispatcher();
+    public static void l(ac1 ac1Var, wn0 wn0Var) {
+        OnBackInvokedDispatcher findOnBackInvokedDispatcher = ac1Var.findOnBackInvokedDispatcher();
         if (findOnBackInvokedDispatcher != null) {
-            findOnBackInvokedDispatcher.unregisterOnBackInvokedCallback(tn0Var);
+            findOnBackInvokedDispatcher.unregisterOnBackInvokedCallback(wn0Var);
         }
     }
 }

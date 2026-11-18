@@ -1,36 +1,66 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.os.Bundle;
 import android.view.View;
-import org.telegram.ui.Components.dc;
-import org.telegram.ui.tw0;
-public final class j0 extends dc {
-    public final int f30475k;
-    public final Object f30476l;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public abstract class j0 extends FrameLayout {
+    public final int f30856a;
+    public final ImageView f30857b;
+    public final ImageView f30858c;
+    public final i0 d;
 
-    public j0(q1 q1Var, q1 q1Var2, int i7) {
-        super(q1Var);
-        this.f30475k = i7;
-        this.f30476l = q1Var2;
+    public j0(Context context) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f30857b = imageView;
+        addView(imageView, c8.ma.d(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
+        i0 i0Var = new i0(0, context, null, true);
+        this.d = i0Var;
+        i0Var.setReportChanges(true);
+        i0Var.setDelegate(new h9.g1(this, 26));
+        i0Var.setImportantForAccessibility(2);
+        addView(i0Var, c8.ma.d(-1, 38.0f, 51, 54.0f, 5.0f, 54.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f30858c = imageView2;
+        addView(imageView2, c8.ma.d(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
+        imageView.setImageResource(2131232077);
+        imageView2.setImageResource(2131232076);
+        this.f30856a = 48;
     }
 
     @Override
-    public final void b() {
-        switch (this.f30475k) {
-            case 0:
-                ((q1) this.f30476l).q2();
-                return;
-            case 1:
-                ((q1) this.f30476l).q2();
-                return;
-            default:
-                ((tw0) this.f30476l).invalidateSelf();
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        int i7 = org.telegram.ui.ActionBar.n6.f29561m6;
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        org.telegram.ui.ActionBar.u6.s(this.f30857b, i7, null, mode);
+        org.telegram.ui.ActionBar.u6.s(this.f30858c, i7, null, mode);
     }
 
-    public j0(tw0 tw0Var) {
-        super((View) null);
-        this.f30475k = 2;
-        this.f30476l = tw0Var;
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.d.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f30856a), 1073741824));
+    }
+
+    @Override
+    public final boolean performAccessibilityAction(int i7, Bundle bundle) {
+        if (!super.performAccessibilityAction(i7, bundle) && !this.d.getSeekBarAccessibilityDelegate().g(this, i7, bundle)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setProgress(float f10) {
+        this.d.setProgress(f10);
     }
 }

@@ -1,36 +1,156 @@
 package fi;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-public final class j1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f11891a;
-    public final l1 f11892b;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import c8.ma;
+import c8.ra;
+import org.telegram.ui.Components.lr;
+public final class j1 extends FrameLayout {
+    public final FrameLayout f12139a;
+    public final View f12140b;
+    public final ImageView f12141c;
+    public final i1 d;
+    public boolean f12142e;
+    public ValueAnimator f12143f;
+    public boolean h;
+    public float f12144n;
+    public ValueAnimator f12145r;
 
-    public j1(l1 l1Var, int i7) {
-        this.f11891a = i7;
-        this.f11892b = l1Var;
+    public j1(Context context, gh.b bVar) {
+        super(context);
+        ra.a(this);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f12139a = frameLayout;
+        dh.j jVar = new dh.j();
+        jVar.f8445a = bVar;
+        jVar.a();
+        jVar.f8450g.setColor(-14670806);
+        jVar.invalidateSelf();
+        jVar.f8449f = org.telegram.messenger.g0.L(1.0f);
+        frameLayout.setBackground(jVar);
+        addView(frameLayout, ma.e(40, 40, 17));
+        View view = new View(context);
+        this.f12140b = view;
+        view.setBackground(org.telegram.ui.ActionBar.n6.L(org.telegram.messenger.g0.L(40.0f), -13522392));
+        frameLayout.addView(view, ma.e(38, 38, 17));
+        view.setAlpha(0.0f);
+        view.setScaleX(0.0f);
+        view.setScaleY(0.0f);
+        i1 i1Var = new i1(context);
+        this.d = i1Var;
+        addView(i1Var, ma.e(42, 42, 17));
+        ImageView imageView = new ImageView(context);
+        this.f12141c = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setScaleX(0.75f);
+        imageView.setScaleY(0.75f);
+        imageView.setColorFilter(new PorterDuffColorFilter(-2960428, PorterDuff.Mode.SRC_IN));
+        frameLayout.addView(imageView, ma.e(40, 40, 17));
+        b(false, false);
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f11891a) {
-            case 0:
-                this.f11892b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                l1 l1Var = this.f11892b;
-                l1Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l1Var.f11983n = floatValue;
-                View view = l1Var.f11979b;
-                view.setAlpha(1.0f - floatValue);
-                view.setScaleX(1.0f - l1Var.f11983n);
-                view.setScaleY(1.0f - l1Var.f11983n);
-                l1Var.f11980c.setColorFilter(new PorterDuffColorFilter(i0.a.f(l1Var.f11983n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-                l1Var.f11978a.invalidate();
-                return;
+    public final void a(boolean z10, boolean z11) {
+        int i7;
+        if (this.f12142e == z10 && z11) {
+            return;
         }
+        this.f12142e = z10;
+        ValueAnimator valueAnimator = this.f12143f;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f12143f = null;
+        }
+        boolean z12 = true;
+        float f10 = 1.0f;
+        i1 i1Var = this.d;
+        if (!z11) {
+            if (z10) {
+                f10 = 0.0f;
+            }
+            i1Var.setAlpha(f10);
+            if (z10) {
+                i7 = 8;
+            } else {
+                i7 = 0;
+            }
+            i1Var.setVisibility(i7);
+        } else {
+            i1Var.setVisibility(0);
+            float alpha = i1Var.getAlpha();
+            if (z10) {
+                f10 = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f10);
+            this.f12143f = ofFloat;
+            ofFloat.addUpdateListener(new h1(this, 0));
+            this.f12143f.setDuration(320L);
+            this.f12143f.setInterpolator(lr.h);
+            this.f12143f.start();
+        }
+        if (!this.h && z10) {
+            z12 = false;
+        }
+        c(z12, z11);
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        boolean z12;
+        this.h = z10;
+        int i7 = 2131232433;
+        ImageView imageView = this.f12141c;
+        if (!z11) {
+            if (z10) {
+                i7 = 2131232429;
+            }
+            org.telegram.messenger.g0.P3(imageView, i7);
+        } else {
+            if (z10) {
+                i7 = 2131232429;
+            }
+            imageView.setImageResource(i7);
+        }
+        if (!z10 && this.f12142e) {
+            z12 = false;
+        } else {
+            z12 = true;
+        }
+        c(z12, z11);
+    }
+
+    public final void c(boolean z10, boolean z11) {
+        ValueAnimator valueAnimator = this.f12145r;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f12145r = null;
+        }
+        float f10 = 0.0f;
+        if (!z11) {
+            if (z10) {
+                f10 = 1.0f;
+            }
+            this.f12144n = f10;
+            View view = this.f12140b;
+            view.setAlpha(1.0f - f10);
+            view.setScaleX(1.0f - this.f12144n);
+            view.setScaleY(1.0f - this.f12144n);
+            this.f12141c.setColorFilter(new PorterDuffColorFilter(i0.a.f(this.f12144n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+            this.f12139a.invalidate();
+            return;
+        }
+        float f11 = this.f12144n;
+        if (z10) {
+            f10 = 1.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
+        this.f12145r = ofFloat;
+        ofFloat.addUpdateListener(new h1(this, 1));
+        this.f12145r.setInterpolator(lr.h);
+        this.f12145r.setDuration(420L);
+        this.f12145r.start();
     }
 }

@@ -2,8 +2,8 @@ package sa;
 
 import android.content.Context;
 import android.os.Build;
-import c8.c1;
-import c8.rb;
+import c8.e1;
+import c8.ub;
 import gb.o;
 import gb.z0;
 import j$.time.ZoneOffset;
@@ -20,13 +20,13 @@ import java.util.Set;
 import rd.l;
 import zd.b0;
 public final class h {
-    public static final q1.e f56562b = new q1.e("fire-global");
-    public static final q1.e f56563c = new q1.e("fire-count");
-    public static final q1.e d = rb.a("last-used-date");
-    public final ka.d f56564a;
+    public static final q1.e f57136b = new q1.e("fire-global");
+    public static final q1.e f57137c = new q1.e("fire-count");
+    public static final q1.e d = ub.a("last-used-date");
+    public final ka.d f57138a;
 
     public h(Context context, String str) {
-        this.f56564a = new ka.d(context, r.b.k("FirebaseHeartBeat", str));
+        this.f57138a = new ka.d(context, p5.c.k("FirebaseHeartBeat", str));
     }
 
     public static String c(long j3) {
@@ -41,7 +41,7 @@ public final class h {
             if (entry.getValue() instanceof Set) {
                 for (String str2 : (Set) entry.getValue()) {
                     if (str.equals(str2)) {
-                        return rb.b(((q1.e) entry.getKey()).f55133a);
+                        return ub.b(((q1.e) entry.getKey()).f55709a);
                     }
                 }
                 continue;
@@ -55,7 +55,7 @@ public final class h {
         if (d2 == null) {
             return;
         }
-        HashSet hashSet = new HashSet((Collection) c1.a(bVar, d2, new HashSet()));
+        HashSet hashSet = new HashSet((Collection) e1.a(bVar, d2, new HashSet()));
         hashSet.remove(str);
         if (hashSet.isEmpty()) {
             bVar.c(d2);
@@ -65,7 +65,7 @@ public final class h {
     }
 
     public final synchronized void a() {
-        this.f56564a.a(new o(this));
+        this.f57138a.a(new o(this));
     }
 
     public final synchronized ArrayList b() {
@@ -73,14 +73,14 @@ public final class h {
         try {
             arrayList = new ArrayList();
             String c10 = c(System.currentTimeMillis());
-            ka.d dVar = this.f56564a;
+            ka.d dVar = this.f57138a;
             dVar.getClass();
             for (Map.Entry entry : ((Map) b0.u(new z0(dVar, null, 2))).entrySet()) {
                 if (entry.getValue() instanceof Set) {
                     HashSet hashSet = new HashSet((Set) entry.getValue());
                     hashSet.remove(c10);
                     if (!hashSet.isEmpty()) {
-                        arrayList.add(new a(((q1.e) entry.getKey()).f55133a, new ArrayList(hashSet)));
+                        arrayList.add(new a(((q1.e) entry.getKey()).f55709a, new ArrayList(hashSet)));
                     }
                 }
             }
@@ -92,18 +92,18 @@ public final class h {
     }
 
     public final synchronized void e() {
-        this.f56564a.a(new c1.b(this, c(System.currentTimeMillis())));
+        this.f57138a.a(new c1.b(this, c(System.currentTimeMillis())));
     }
 
     public final synchronized boolean g(long j3) {
-        return h(f56562b, j3);
+        return h(f57136b, j3);
     }
 
     public final synchronized boolean h(q1.e eVar, long j3) {
-        if (c(((Long) this.f56564a.b(eVar, -1L)).longValue()).equals(c(j3))) {
+        if (c(((Long) this.f57138a.b(eVar, -1L)).longValue()).equals(c(j3))) {
             return false;
         }
-        ka.d dVar = this.f56564a;
+        ka.d dVar = this.f57138a;
         Long valueOf = Long.valueOf(j3);
         dVar.getClass();
         q1.b bVar = (q1.b) b0.u(new de.c(dVar, eVar, valueOf, (id.c) null));
@@ -114,8 +114,8 @@ public final class h {
         try {
             try {
                 String c10 = c(j3);
-                q1.e b10 = rb.b(str);
-                this.f56564a.a(new e1.b(this, c10, str, b10, 2));
+                q1.e b10 = ub.b(str);
+                this.f57138a.a(new e1.b(this, c10, str, b10, 2));
             } catch (Throwable th2) {
                 th = th2;
                 throw th;
@@ -127,10 +127,10 @@ public final class h {
     }
 
     public final synchronized void j(final long j3) {
-        this.f56564a.a(new l() {
+        this.f57138a.a(new l() {
             @Override
             public final Object invoke(Object obj) {
-                ((q1.b) obj).d(h.f56562b, Long.valueOf(j3));
+                ((q1.b) obj).d(h.f57136b, Long.valueOf(j3));
                 return null;
             }
         });

@@ -1,37 +1,34 @@
 package org.telegram.messenger.camera;
-public final class l implements Runnable {
-    public final int f22839a;
-    public final CameraView f22840b;
 
-    public l(CameraView cameraView, int i7) {
-        this.f22839a = i7;
-        this.f22840b = cameraView;
+import org.telegram.messenger.camera.CameraView;
+public final class l implements Runnable {
+    public final int f23307a = 1;
+    public final CameraView f23308b;
+    public final int f23309c;
+    public final CameraView.CameraGLThread d;
+
+    public l(CameraView cameraView, int i7, CameraView.CameraGLThread cameraGLThread) {
+        this.f23308b = cameraView;
+        this.f23309c = i7;
+        this.d = cameraGLThread;
     }
 
     @Override
     public final void run() {
-        switch (this.f22839a) {
+        switch (this.f23307a) {
             case 0:
-                this.f22840b.lambda$resetCamera$4();
-                return;
-            case 1:
-                this.f22840b.lambda$new$7();
-                return;
-            case 2:
-                this.f22840b.lambda$toggleDual$2();
-                return;
-            case 3:
-                this.f22840b.lambda$switchCamera$3();
-                return;
-            case 4:
-                this.f22840b.lambda$onSurfaceTextureDestroyed$5();
-                return;
-            case 5:
-                this.f22840b.onSurfaceTextureUpdatedInternal();
+                CameraView.CameraGLThread cameraGLThread = this.d;
+                CameraView.i(this.f23308b, this.f23309c, cameraGLThread);
                 return;
             default:
-                this.f22840b.lambda$enableDualInternal$0();
+                CameraView.j(this.f23308b, this.f23309c, this.d);
                 return;
         }
+    }
+
+    public l(CameraView cameraView, CameraView.CameraGLThread cameraGLThread, int i7) {
+        this.f23308b = cameraView;
+        this.d = cameraGLThread;
+        this.f23309c = i7;
     }
 }

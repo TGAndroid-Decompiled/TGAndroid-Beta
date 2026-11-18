@@ -1,22 +1,25 @@
 package di;
 
-import org.telegram.messenger.r10;
-public final class w1 implements r10 {
-    public final int f9630a;
-    public final Object f9631b;
+import org.telegram.tgnet.RequestDelegate;
+public final class w1 implements RequestDelegate {
+    public final int f9959a;
+    public final int f9960b;
+    public final Object f9961c;
 
-    public w1(Object obj, int i7) {
-        this.f9630a = i7;
-        this.f9631b = obj;
+    public w1(int i7, o9 o9Var) {
+        this.f9959a = 3;
+        this.f9960b = i7;
+        this.f9961c = o9Var;
     }
 
     @Override
-    public final Object run() {
-        switch (this.f9630a) {
-            case 0:
-                return ((c6) this.f9631b).k();
-            default:
-                return ((org.telegram.ui.ActionBar.e2) this.f9631b).getSimpleMenuOverlay();
-        }
+    public final void run(org.telegram.tgnet.TLObject r19, org.telegram.tgnet.TLRPC.TL_error r20) {
+        throw new UnsupportedOperationException("Method not decompiled: di.w1.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    }
+
+    public w1(Object obj, int i7, int i10) {
+        this.f9959a = i10;
+        this.f9961c = obj;
+        this.f9960b = i7;
     }
 }

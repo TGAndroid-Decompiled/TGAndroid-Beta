@@ -1,70 +1,127 @@
 package fi;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.po0;
-import org.telegram.ui.Components.xb;
-public final class s2 extends po0 {
-    public final b4 V2;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.n10;
+import org.telegram.ui.Components.lg;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.en;
+public final class s2 extends ImageReceiver {
+    public final int K1;
+    public final Object L1;
 
-    public s2(b4 b4Var, Context context, String str, String str2, boolean z10, i2 i2Var) {
-        super(context, null, null, str, null, false, str2, null, false, false, z10, null, i2Var);
-        this.V2 = b4Var;
+    public s2(Object obj, int i7) {
+        super(null);
+        this.K1 = i7;
+        this.L1 = obj;
     }
 
     @Override
-    public final void L() {
-        super.L();
-        this.V2.J2 = null;
-    }
-
-    @Override
-    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        String str;
-        if (!z10) {
-            return;
-        }
-        b4 b4Var = this.V2;
-        cc ccVar = new cc(b4Var.M0, this.J0);
-        if (hVar.m() == 1) {
-            long j3 = hVar.j(0);
-            if (j3 == m10.i(this.f29679a).f24959n) {
-                xb G = ccVar.G(2131624191, 5000, org.telegram.messenger.g0.X2(hd.a0(null, null, 2131744463, new Object[0])));
-                G.f41643r = false;
-                G.j();
-            } else if (j3 < 0) {
-                TLRPC.Chat M0 = np.s1(this.f29679a).M0(Long.valueOf(-j3));
-                if (tL_forumTopic != null) {
-                    str = tL_forumTopic.title;
-                } else {
-                    str = M0.title;
+    public void L0(int[] iArr) {
+        sh.f fVar;
+        switch (this.K1) {
+            case 2:
+                super.L0(iArr);
+                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.L1;
+                int[] iArr2 = q1Var.T0;
+                iArr2[0] = iArr[0];
+                iArr2[1] = iArr[1];
+                int L = org.telegram.messenger.g0.L(6.0f);
+                iArr2[3] = L;
+                iArr2[2] = L;
+                org.telegram.ui.Cells.w1 w1Var = q1Var.f31583x2;
+                if (w1Var != null && (fVar = w1Var.f32241m) != null) {
+                    fVar.f57437b.L0(iArr2);
+                    return;
                 }
-                xb G2 = ccVar.G(2131624029, 5000, org.telegram.messenger.g0.X2(hd.a0(null, null, 2131744476, str)));
-                G2.f41643r = false;
-                G2.j();
-            } else {
-                xb G3 = ccVar.G(2131624029, 5000, org.telegram.messenger.g0.X2(hd.a0(null, null, 2131744476, np.s1(this.f29679a).a2(Long.valueOf(j3)).first_name)));
-                G3.f41643r = false;
-                G3.j();
-            }
-        } else {
-            xb Q = ccVar.Q(2131624029, 36, org.telegram.messenger.g0.X2(hd.G(hVar.m(), "StorySharedToManyChats", Integer.valueOf(hVar.m()))));
-            Q.f41643r = false;
-            Q.j();
-        }
-        try {
-            b4Var.performHapticFeedback(3);
-        } catch (Exception unused) {
+                return;
+            default:
+                super.L0(iArr);
+                return;
         }
     }
 
     @Override
-    public final void S0(View view) {
-        this.V2.c1();
+    public void invalidate() {
+        int i7 = this.K1;
+        Object obj = this.L1;
+        switch (i7) {
+            case 3:
+                View view = ((en) obj).f47304b;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            case 4:
+                ((org.telegram.ui.Components.o5) obj).j();
+                super.invalidate();
+                return;
+            case 5:
+            default:
+                super.invalidate();
+                return;
+            case 6:
+                super.invalidate();
+                org.telegram.ui.Wallet.r8 r8Var = ((org.telegram.ui.Wallet.q8) obj).f44832d0;
+                int i10 = org.telegram.ui.Wallet.r8.J1;
+                r8Var.f0();
+                return;
+        }
+    }
+
+    @Override
+    public boolean x0(Drawable drawable, String str, int i7, boolean z10, int i10) {
+        Runnable runnable;
+        int i11 = this.K1;
+        Object obj = this.L1;
+        switch (i11) {
+            case 0:
+                z3 z3Var = (z3) obj;
+                boolean x02 = super.x0(drawable, str, i7, z10, i10);
+                if (i7 == 1 && (runnable = z3Var.S0) != null) {
+                    runnable.run();
+                    z3Var.S0 = null;
+                }
+                return x02;
+            case 1:
+                if (drawable != null && i7 != 1) {
+                    n10.o(((kg.d1) ((t3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), lr.f37212k, 250L);
+                }
+                return super.x0(drawable, str, i7, z10, i10);
+            case 2:
+            case 3:
+            case 6:
+            default:
+                return super.x0(drawable, str, i7, z10, i10);
+            case 4:
+                org.telegram.ui.Components.o5 o5Var = (org.telegram.ui.Components.o5) obj;
+                o5Var.j();
+                boolean x03 = super.x0(drawable, str, i7, z10, i10);
+                if (o5Var.f37978m && J()) {
+                    o5Var.f37978m = false;
+                    org.telegram.messenger.g0.g3(new lg(o5Var, 4));
+                }
+                return x03;
+            case 5:
+                boolean x04 = super.x0(drawable, str, i7, z10, i10);
+                ((PhotoViewer) obj).k2();
+                return x04;
+            case 7:
+                boolean x05 = super.x0(drawable, str, i7, z10, i10);
+                ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
+                duration.addUpdateListener(new hi.k3(this, 22));
+                duration.start();
+                return x05;
+        }
+    }
+
+    public s2(Object obj, View view, int i7) {
+        super(view);
+        this.K1 = i7;
+        this.L1 = obj;
     }
 }

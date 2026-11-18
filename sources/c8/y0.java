@@ -1,79 +1,24 @@
 package c8;
+
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.CancellationException;
 public abstract class y0 {
-    public static boolean a(int i7, CharSequence charSequence) {
-        if (i7 < charSequence.length()) {
-            char charAt = charSequence.charAt(i7);
-            switch (charAt) {
-                case '!':
-                case '\"':
-                case '#':
-                case '$':
-                case '%':
-                case '&':
-                case '\'':
-                case '(':
-                case ')':
-                case '*':
-                case '+':
-                case ',':
-                case '-':
-                case '.':
-                case '/':
-                    return true;
-                default:
-                    switch (charAt) {
-                        case ':':
-                        case ';':
-                        case '<':
-                        case '=':
-                        case '>':
-                        case '?':
-                        case '@':
-                            return true;
-                        default:
-                            switch (charAt) {
-                                case '[':
-                                case '\\':
-                                case ']':
-                                case '^':
-                                case '_':
-                                case '`':
-                                    return true;
-                                default:
-                                    switch (charAt) {
-                                        case '{':
-                                        case '|':
-                                        case '}':
-                                        case '~':
-                                            return true;
-                                        default:
-                                            return false;
-                                    }
-                            }
-                    }
+    public static final Object a(Task task, gb.w wVar) {
+        if (task.isComplete()) {
+            Exception exception = task.getException();
+            if (exception == null) {
+                if (!task.isCanceled()) {
+                    return task.getResult();
+                }
+                throw new CancellationException("Task " + task + " was cancelled normally.");
             }
+            throw exception;
         }
-        return false;
-    }
-
-    public static int b(char c10, int i7, int i10, CharSequence charSequence) {
-        while (i7 < i10) {
-            if (charSequence.charAt(i7) != c10) {
-                return i7;
-            }
-            i7++;
-        }
-        return i10;
-    }
-
-    public static int c(int i7, int i10, CharSequence charSequence) {
-        while (i7 < i10) {
-            char charAt = charSequence.charAt(i7);
-            if (charAt != '\t' && charAt != ' ') {
-                return i7;
-            }
-            i7++;
-        }
-        return i10;
+        zd.m mVar = new zd.m(1, x0.b(wVar));
+        mVar.s();
+        task.addOnCompleteListener(je.a.f17392a, new je.b(mVar));
+        Object r10 = mVar.r();
+        jd.a aVar = jd.a.f17384a;
+        return r10;
     }
 }

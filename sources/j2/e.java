@@ -12,21 +12,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 public final class e extends c {
-    public final ContentResolver f16772a;
-    public Uri f16773b;
-    public AssetFileDescriptor f16774c;
+    public final ContentResolver f17157a;
+    public Uri f17158b;
+    public AssetFileDescriptor f17159c;
     public FileInputStream d;
-    public long f16775e;
-    public boolean f16776f;
+    public long f17160e;
+    public boolean f17161f;
 
     public e(Context context) {
         super(false);
-        this.f16772a = context.getContentResolver();
+        this.f17157a = context.getContentResolver();
     }
 
     @Override
     public final void close() {
-        this.f16773b = null;
+        this.f17158b = null;
         try {
             try {
                 FileInputStream fileInputStream = this.d;
@@ -36,7 +36,7 @@ public final class e extends c {
                 this.d = null;
                 try {
                     try {
-                        AssetFileDescriptor assetFileDescriptor = this.f16774c;
+                        AssetFileDescriptor assetFileDescriptor = this.f17159c;
                         if (assetFileDescriptor != null) {
                             assetFileDescriptor.close();
                         }
@@ -44,9 +44,9 @@ public final class e extends c {
                         throw new j(e10, 2000);
                     }
                 } finally {
-                    this.f16774c = null;
-                    if (this.f16776f) {
-                        this.f16776f = false;
+                    this.f17159c = null;
+                    if (this.f17161f) {
+                        this.f17161f = false;
                         transferEnded();
                     }
                 }
@@ -57,13 +57,13 @@ public final class e extends c {
             this.d = null;
             try {
                 try {
-                    AssetFileDescriptor assetFileDescriptor2 = this.f16774c;
+                    AssetFileDescriptor assetFileDescriptor2 = this.f17159c;
                     if (assetFileDescriptor2 != null) {
                         assetFileDescriptor2.close();
                     }
-                    this.f16774c = null;
-                    if (this.f16776f) {
-                        this.f16776f = false;
+                    this.f17159c = null;
+                    if (this.f17161f) {
+                        this.f17161f = false;
                         transferEnded();
                     }
                     throw th2;
@@ -71,9 +71,9 @@ public final class e extends c {
                     throw new j(e12, 2000);
                 }
             } finally {
-                this.f16774c = null;
-                if (this.f16776f) {
-                    this.f16776f = false;
+                this.f17159c = null;
+                if (this.f17161f) {
+                    this.f17161f = false;
                     transferEnded();
                 }
             }
@@ -82,7 +82,7 @@ public final class e extends c {
 
     @Override
     public final Uri getUri() {
-        return this.f16773b;
+        return this.f17158b;
     }
 
     @Override
@@ -92,14 +92,14 @@ public final class e extends c {
         long min;
         try {
             try {
-                Uri uri = mVar.f16803a;
-                long j3 = mVar.f16807f;
-                long j10 = mVar.f16806e;
+                Uri uri = mVar.f17188a;
+                long j3 = mVar.f17192f;
+                long j10 = mVar.f17191e;
                 Uri normalizeScheme = uri.normalizeScheme();
-                this.f16773b = normalizeScheme;
+                this.f17158b = normalizeScheme;
                 transferInitializing(mVar);
                 boolean equals = Objects.equals(normalizeScheme.getScheme(), "content");
-                ContentResolver contentResolver = this.f16772a;
+                ContentResolver contentResolver = this.f17157a;
                 if (equals) {
                     Bundle bundle = new Bundle();
                     bundle.putBoolean("android.provider.extra.ACCEPT_ORIGINAL_MEDIA_FORMAT", true);
@@ -107,7 +107,7 @@ public final class e extends c {
                 } else {
                     openAssetFileDescriptor = contentResolver.openAssetFileDescriptor(normalizeScheme, "r");
                 }
-                this.f16774c = openAssetFileDescriptor;
+                this.f17159c = openAssetFileDescriptor;
                 if (openAssetFileDescriptor != null) {
                     long length = openAssetFileDescriptor.getLength();
                     FileInputStream fileInputStream = new FileInputStream(openAssetFileDescriptor.getFileDescriptor());
@@ -123,37 +123,37 @@ public final class e extends c {
                             FileChannel channel = fileInputStream.getChannel();
                             long size = channel.size();
                             if (size == 0) {
-                                this.f16775e = -1L;
+                                this.f17160e = -1L;
                             } else {
                                 long position = size - channel.position();
-                                this.f16775e = position;
+                                this.f17160e = position;
                                 if (position < 0) {
                                     throw new j((Exception) null, 2008);
                                 }
                             }
                         } else {
                             long j11 = length - skip;
-                            this.f16775e = j11;
+                            this.f17160e = j11;
                             if (j11 < 0) {
                                 throw new j((Exception) null, 2008);
                             }
                         }
                         int i11 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));
                         if (i11 != 0) {
-                            long j12 = this.f16775e;
+                            long j12 = this.f17160e;
                             if (j12 == -1) {
                                 min = j3;
                             } else {
                                 min = Math.min(j12, j3);
                             }
-                            this.f16775e = min;
+                            this.f17160e = min;
                         }
-                        this.f16776f = true;
+                        this.f17161f = true;
                         transferStarted(mVar);
                         if (i11 != 0) {
                             return j3;
                         }
-                        return this.f16775e;
+                        return this.f17160e;
                     }
                     throw new j((Exception) null, 2008);
                 }
@@ -181,7 +181,7 @@ public final class e extends c {
         if (i10 == 0) {
             return 0;
         }
-        long j3 = this.f16775e;
+        long j3 = this.f17160e;
         if (j3 != 0) {
             if (j3 != -1) {
                 try {
@@ -191,12 +191,12 @@ public final class e extends c {
                 }
             }
             FileInputStream fileInputStream = this.d;
-            String str = l0.f13471a;
+            String str = l0.f13786a;
             int read = fileInputStream.read(bArr, i7, i10);
             if (read != -1) {
-                long j10 = this.f16775e;
+                long j10 = this.f17160e;
                 if (j10 != -1) {
-                    this.f16775e = j10 - read;
+                    this.f17160e = j10 - read;
                 }
                 bytesTransferred(read);
                 return read;

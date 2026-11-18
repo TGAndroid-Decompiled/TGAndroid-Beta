@@ -1,14 +1,21 @@
 package a8;
-public abstract class t9 {
-    public static float a(float f10, float f11, float f12, float f13) {
-        double d = f10 - f12;
-        double d2 = f11 - f13;
-        return (float) Math.sqrt((d2 * d2) + (d * d));
-    }
 
-    public static float b(int i7, int i10, int i11, int i12) {
-        double d = i7 - i11;
-        double d2 = i10 - i12;
-        return (float) Math.sqrt((d2 * d2) + (d * d));
+import android.os.Bundle;
+import java.util.ArrayList;
+public abstract class t9 {
+    public static final ArrayList a(ArrayList arrayList) {
+        ArrayList arrayList2 = new ArrayList();
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            d9.t tVar = (d9.t) obj;
+            Bundle bundle = new Bundle();
+            bundle.putInt("event_type", tVar.f7927a);
+            bundle.putLong("event_timestamp", tVar.f7928b);
+            arrayList2.add(bundle);
+        }
+        return arrayList2;
     }
 }

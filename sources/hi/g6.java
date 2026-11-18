@@ -1,32 +1,41 @@
 package hi;
 
-import org.telegram.ui.Components.er;
-public final class g6 implements Runnable {
-    public final int f14343a;
-    public final k6 f14344b;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraView;
+public final class g6 implements CameraView.CameraViewDelegate, CameraController.VideoTakeCallback {
+    public final j6 f14697a;
 
-    public g6(k6 k6Var, int i7) {
-        this.f14343a = i7;
-        this.f14344b = k6Var;
+    public g6(j6 j6Var) {
+        this.f14697a = j6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14343a) {
-            case 0:
-                this.f14344b.c();
-                return;
-            default:
-                k6 k6Var = this.f14344b;
-                k6Var.f14504a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(er.h).setDuration(280L).start();
-                k6Var.f14506c = System.currentTimeMillis();
-                k6Var.invalidate();
-                try {
-                    k6Var.performHapticFeedback(3);
-                } catch (Exception unused) {
+    public void onCameraInit() {
+        j6 j6Var = this.f14697a;
+        i6 i6Var = j6Var.f14813a;
+        if (j6Var.f14815c > 0) {
+            return;
+        }
+        CameraController.getInstance().recordVideo(i6Var.getCameraSessionObject(), j6Var.f14814b, false, new g6(j6Var), new f6(j6Var, 1), i6Var, true);
+    }
+
+    @Override
+    public void onFinishVideoRecording(String str, long j3) {
+        long currentTimeMillis = System.currentTimeMillis();
+        j6 j6Var = this.f14697a;
+        j6Var.d = currentTimeMillis;
+        org.telegram.messenger.g0.r(j6Var.h);
+        if (!j6Var.f14823y) {
+            if (j3 > 1000) {
+                j6Var.f14813a.destroy(true, null);
+                fi.b0 b0Var = j6Var.f14818n;
+                if (b0Var != null) {
+                    b0Var.a(j6Var.f14814b, str, Long.valueOf(j3));
+                    return;
                 }
-                org.telegram.messenger.g0.i3(k6Var.h, 59500L);
                 return;
+            }
+            j6Var.a(false);
         }
     }
 }

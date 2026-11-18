@@ -7,12 +7,12 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.i20;
-import org.telegram.ui.ActionBar.y5;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.n10;
+import org.telegram.ui.ActionBar.b6;
 public final class d1 extends TextView {
-    public boolean f57207a;
-    public Drawable f57208b;
+    public boolean f57779a;
+    public Drawable f57780b;
 
     public d1(Context context) {
         super(context);
@@ -29,41 +29,41 @@ public final class d1 extends TextView {
         canvas.translate(0.0f, org.telegram.messenger.g0.L(-1.0f));
         super.onDraw(canvas);
         canvas.restore();
-        if (this.f57207a) {
-            int y10 = i20.y(16.0f, getHeight(), 2);
-            if (hd.f24104a0) {
-                this.f57208b.setBounds(org.telegram.messenger.g0.L(7.0f), y10, org.telegram.messenger.g0.L(23.0f), org.telegram.messenger.g0.L(16.0f) + y10);
+        if (this.f57779a) {
+            int z10 = n10.z(16.0f, getHeight(), 2);
+            if (gd.f24216a0) {
+                this.f57780b.setBounds(org.telegram.messenger.g0.L(7.0f), z10, org.telegram.messenger.g0.L(23.0f), org.telegram.messenger.g0.L(16.0f) + z10);
             } else {
-                this.f57208b.setBounds(getWidth() - org.telegram.messenger.g0.L(23.0f), y10, getWidth() - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(16.0f) + y10);
+                this.f57780b.setBounds(getWidth() - org.telegram.messenger.g0.L(23.0f), z10, getWidth() - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(16.0f) + z10);
             }
-            this.f57208b.draw(canvas);
+            this.f57780b.draw(canvas);
         }
     }
 
     public void setCurrent(boolean z10) {
         float f10;
-        this.f57207a = z10;
+        this.f57779a = z10;
         if (z10) {
             float f11 = 12.0f;
-            if (hd.f24104a0) {
+            if (gd.f24216a0) {
                 f10 = 27.0f;
             } else {
                 f10 = 12.0f;
             }
             int L = org.telegram.messenger.g0.L(f10);
             int L2 = org.telegram.messenger.g0.L(6.0f);
-            if (!hd.f24104a0) {
+            if (!gd.f24216a0) {
                 f11 = 27.0f;
             }
             setPadding(L, L2, org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(6.0f));
-            setBackground(y5.d(0, y5.b(1090519039), org.telegram.messenger.g0.L(32.0f)));
+            setBackground(b6.d(0, b6.b(1090519039), org.telegram.messenger.g0.L(32.0f)));
         } else {
             setPadding(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(14.0f));
-            setBackground(y5.d(0, y5.b(-14145495), 0.0f));
+            setBackground(b6.d(0, b6.b(-14145495), 0.0f));
         }
-        if (this.f57207a && this.f57208b == null) {
-            Drawable drawable = getContext().getDrawable(2131232523);
-            this.f57208b = drawable;
+        if (this.f57779a && this.f57780b == null) {
+            Drawable drawable = getContext().getDrawable(2131232524);
+            this.f57780b = drawable;
             drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         }
         invalidate();

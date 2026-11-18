@@ -21,7 +21,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.utils.twidget.e;
+import org.telegram.utils.twidget.f;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
 import org.webrtc.audio.JavaAudioDeviceModule;
@@ -282,7 +282,7 @@ public class WebRtcAudioRecord {
         assertTrue(!list.isEmpty());
         Logging.d("WebRtcAudioRecordExternal", "AudioRecordingConfigurations: ");
         for (AudioRecordingConfiguration audioRecordingConfiguration : list) {
-            AudioRecordingConfiguration a10 = e.a(audioRecordingConfiguration);
+            AudioRecordingConfiguration a10 = f.a(audioRecordingConfiguration);
             StringBuilder sb2 = new StringBuilder("  client audio source=");
             sb2.append(WebRtcAudioUtils.audioSourceToString(a10.getClientAudioSource()));
             sb2.append(", client session id=");
@@ -486,7 +486,7 @@ public class WebRtcAudioRecord {
     private static boolean verifyAudioConfig(int i7, int i10, AudioFormat audioFormat, AudioDeviceInfo audioDeviceInfo, List<AudioRecordingConfiguration> list) {
         assertTrue(!list.isEmpty());
         for (AudioRecordingConfiguration audioRecordingConfiguration : list) {
-            AudioRecordingConfiguration a10 = e.a(audioRecordingConfiguration);
+            AudioRecordingConfiguration a10 = f.a(audioRecordingConfiguration);
             AudioDeviceInfo audioDevice = a10.getAudioDevice();
             if (audioDevice != null && a10.getClientAudioSource() == i7 && a10.getClientAudioSessionId() == i10 && a10.getClientFormat().getEncoding() == audioFormat.getEncoding() && a10.getClientFormat().getSampleRate() == audioFormat.getSampleRate() && a10.getClientFormat().getChannelMask() == audioFormat.getChannelMask() && a10.getClientFormat().getChannelIndexMask() == audioFormat.getChannelIndexMask() && a10.getFormat().getEncoding() != 0 && a10.getFormat().getSampleRate() > 0 && (a10.getFormat().getChannelMask() != 0 || a10.getFormat().getChannelIndexMask() != 0)) {
                 if (checkDeviceMatch(audioDevice, audioDeviceInfo)) {

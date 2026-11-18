@@ -1,29 +1,29 @@
 package sg;
 
-import org.telegram.messenger.ou;
+import org.telegram.ui.Components.hn;
 public final class e0 implements Runnable {
-    public final int f56610a;
-    public final i0 f56611b;
+    public final int f57184a;
+    public final i0 f57185b;
 
     public e0(i0 i0Var, int i7) {
-        this.f56610a = i7;
-        this.f56611b = i0Var;
+        this.f57184a = i7;
+        this.f57185b = i0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f56610a) {
+        switch (this.f57184a) {
             case 0:
-                i0 i0Var = this.f56611b;
-                i0Var.f56649c = null;
-                ou ouVar = i0Var.f56647a;
-                if (ouVar != null) {
-                    ouVar.E0();
+                i0 i0Var = this.f57185b;
+                i0Var.f57223c = null;
+                hn hnVar = i0Var.f57221a;
+                if (hnVar != null) {
+                    hnVar.l();
                     return;
                 }
                 return;
             default:
-                this.f56611b.b();
+                this.f57185b.b();
                 return;
         }
     }

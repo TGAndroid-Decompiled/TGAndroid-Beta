@@ -4,50 +4,50 @@ import android.net.Uri;
 import java.util.Collections;
 import java.util.Map;
 public final class b0 implements h {
-    public final h f16769a;
-    public long f16770b;
-    public Uri f16771c;
+    public final h f17154a;
+    public long f17155b;
+    public Uri f17156c;
     public Map d;
 
     public b0(h hVar) {
         hVar.getClass();
-        this.f16769a = hVar;
-        this.f16771c = Uri.EMPTY;
+        this.f17154a = hVar;
+        this.f17156c = Uri.EMPTY;
         this.d = Collections.EMPTY_MAP;
     }
 
     @Override
     public final void addTransferListener(c0 c0Var) {
         c0Var.getClass();
-        this.f16769a.addTransferListener(c0Var);
+        this.f17154a.addTransferListener(c0Var);
     }
 
     @Override
     public final void close() {
-        this.f16769a.close();
+        this.f17154a.close();
     }
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f16769a.getResponseHeaders();
+        return this.f17154a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f16769a.getUri();
+        return this.f17154a.getUri();
     }
 
     @Override
     public final long open(m mVar) {
-        h hVar = this.f16769a;
-        this.f16771c = mVar.f16803a;
+        h hVar = this.f17154a;
+        this.f17156c = mVar.f17188a;
         this.d = Collections.EMPTY_MAP;
         try {
             return hVar.open(mVar);
         } finally {
             Uri uri = hVar.getUri();
             if (uri != null) {
-                this.f16771c = uri;
+                this.f17156c = uri;
             }
             this.d = hVar.getResponseHeaders();
         }
@@ -55,9 +55,9 @@ public final class b0 implements h {
 
     @Override
     public final int read(byte[] bArr, int i7, int i10) {
-        int read = this.f16769a.read(bArr, i7, i10);
+        int read = this.f17154a.read(bArr, i7, i10);
         if (read != -1) {
-            this.f16770b += read;
+            this.f17155b += read;
         }
         return read;
     }

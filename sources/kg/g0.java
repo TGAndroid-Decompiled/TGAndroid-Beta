@@ -7,89 +7,88 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import bi.b6;
-import bi.z4;
-import c8.ja;
-import hi.g7;
+import bi.i8;
+import c8.ma;
+import hi.t6;
 import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.is;
-import org.telegram.messenger.ns;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.ActionBar.s6;
-import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Components.ci;
-import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.gi;
-import org.telegram.ui.Components.ji;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.v6;
+import org.telegram.ui.ActionBar.w6;
 import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.ny;
-public final class g0 extends ci implements z5, is, te.b {
+import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.oi;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.si;
+import org.telegram.ui.Components.ty;
+public final class g0 extends ki implements c6, fs, te.b {
     public final e0 E;
-    public final ny F;
-    public final gi G;
-    public final te.a f17943n;
-    public final FrameLayout f17944r;
-    public final di.c1 f17945s;
-    public final c0 f17946w;
-    public final HashSet f17947x;
-    public final d0 f17948y;
+    public final ty F;
+    public final oi G;
+    public final te.a f18320n;
+    public final FrameLayout f18321r;
+    public final di.b1 f18322s;
+    public final c0 f18323w;
+    public final HashSet f18324x;
+    public final d0 f18325y;
 
-    public g0(Context context, e6 e6Var, ki kiVar) {
-        super(context, e6Var, kiVar);
-        this.f17943n = new te.a(0, this, er.h, 380L, false);
-        this.f17947x = new HashSet();
+    public g0(Context context, i6 i6Var, si siVar) {
+        super(context, i6Var, siVar);
+        this.f18320n = new te.a(0, this, lr.h, 380L, false);
+        this.f18324x = new HashSet();
         this.E = new e0(this, context);
-        ji jiVar = new ji(j6.f28849d6, context, e6Var);
-        jiVar.setVisibility(4);
+        ri riVar = new ri(n6.f29396d6, context, i6Var);
+        riVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f17944r = frameLayout;
-        gi giVar = new gi(context, e6Var, this.f33609b);
-        this.G = giVar;
-        giVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
-        ah.j jVar = new ah.j(this, 9);
-        ah.i iVar = giVar.f40202r;
+        this.f18321r = frameLayout;
+        oi oiVar = new oi(context, i6Var, this.f36766b);
+        this.G = oiVar;
+        oiVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
+        ah.j jVar = new ah.j(this, 10);
+        ah.i iVar = oiVar.f33845r;
         iVar.addTextChangedListener(jVar);
-        iVar.setHint(hd.M0(2131752656, null));
-        frameLayout.addView(jiVar, ja.g());
-        FrameLayout.LayoutParams d = ja.d(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
-        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f23605m;
-        frameLayout.addView(giVar, d);
-        ny nyVar = new ny(context, e6Var);
-        this.F = nyVar;
-        nyVar.c();
-        addView(nyVar, ja.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
-        di.c1 c1Var = new di.c1(this, context, e6Var, 4);
-        this.f17945s = c1Var;
-        c1Var.r1();
-        setBlur3Capture(c1Var);
-        this.d = c1Var;
+        iVar.setHint(gd.M0(2131752645, null));
+        frameLayout.addView(riVar, ma.g());
+        FrameLayout.LayoutParams d = ma.d(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
+        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f24115m;
+        frameLayout.addView(oiVar, d);
+        ty tyVar = new ty(context, i6Var);
+        this.F = tyVar;
+        tyVar.c();
+        addView(tyVar, ma.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
+        di.b1 b1Var = new di.b1(this, context, i6Var, 4);
+        this.f18322s = b1Var;
+        b1Var.r1();
+        setBlur3Capture(b1Var);
+        this.d = b1Var;
         this.h = true;
-        this.f33612f = true;
-        ns.e().h(c1Var, ns.f25515i4, new g7(this, 7));
-        c1Var.setClipToPadding(false);
+        this.f36769f = true;
+        ks.e().h(b1Var, ks.f25145k4, new t6(this, 8));
+        b1Var.setClipToPadding(false);
         getContext();
-        c0 c0Var = new c0(this, org.telegram.messenger.g0.L(9.0f), c1Var, 0);
-        this.f17946w = c0Var;
-        c1Var.setLayoutManager(c0Var);
+        c0 c0Var = new c0(this, org.telegram.messenger.g0.L(9.0f), b1Var, 0);
+        this.f18323w = c0Var;
+        b1Var.setLayoutManager(c0Var);
         c0Var.P = false;
-        c1Var.setHorizontalScrollBarEnabled(false);
-        c1Var.setVerticalScrollBarEnabled(false);
-        c1Var.setClipToPadding(false);
-        addView(c1Var, ja.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+        b1Var.setHorizontalScrollBarEnabled(false);
+        b1Var.setVerticalScrollBarEnabled(false);
+        b1Var.setClipToPadding(false);
+        addView(b1Var, ma.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         d0 d0Var = new d0(this, context);
-        this.f17948y = d0Var;
-        c1Var.setAdapter(d0Var);
-        q6.l(c1Var, 21, j6.A5, e6Var);
-        c1Var.setOnItemClickListener(new b6(this, 15));
-        c1Var.setOnScrollListener(new z4(this, 18));
-        FrameLayout.LayoutParams e10 = ja.e(-1, 60, 51);
-        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f23605m;
+        this.f18325y = d0Var;
+        b1Var.setAdapter(d0Var);
+        u6.l(b1Var, 21, n6.A5, i6Var);
+        b1Var.setOnItemClickListener(new i8(this, 15));
+        b1Var.setOnScrollListener(new bi.q1(this, 19));
+        FrameLayout.LayoutParams e10 = ma.e(-1, 60, 51);
+        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f24115m;
         addView(frameLayout, e10);
         Q();
     }
@@ -99,14 +98,14 @@ public final class g0 extends ci implements z5, is, te.b {
     }
 
     public int getCurrentTop() {
-        di.c1 c1Var = this.f17945s;
-        if (c1Var.getChildCount() != 0) {
+        di.b1 b1Var = this.f18322s;
+        if (b1Var.getChildCount() != 0) {
             int i7 = 0;
-            View childAt = c1Var.getChildAt(0);
-            cj0 cj0Var = (cj0) c1Var.G(childAt);
-            if (cj0Var != null) {
-                int paddingTop = c1Var.getPaddingTop();
-                if (cj0Var.b() == 0 && childAt.getTop() >= 0) {
+            View childAt = b1Var.getChildAt(0);
+            kj0 kj0Var = (kj0) b1Var.G(childAt);
+            if (kj0Var != null) {
+                int paddingTop = b1Var.getPaddingTop();
+                if (kj0Var.b() == 0 && childAt.getTop() >= 0) {
                     i7 = childAt.getTop();
                 }
                 return paddingTop - i7;
@@ -119,38 +118,38 @@ public final class g0 extends ci implements z5, is, te.b {
     @Override
     public final void B(int i7, int i10) {
         int i11;
-        ki kiVar = this.f33609b;
-        if (kiVar.f36470p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        si siVar = this.f36766b;
+        if (siVar.f39705p3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i11 = org.telegram.messenger.g0.L(8.0f);
-            kiVar.f29713r0 = false;
+            siVar.f30223r0 = false;
         } else {
             if (!org.telegram.messenger.g0.Q1()) {
-                Point point = org.telegram.messenger.g0.f23611q;
+                Point point = org.telegram.messenger.g0.f24121q;
                 if (point.x > point.y) {
                     i11 = (int) (i10 / 3.5f);
-                    kiVar.f29713r0 = true;
+                    siVar.f30223r0 = true;
                 }
             }
             i11 = (i10 / 5) * 2;
-            kiVar.f29713r0 = true;
+            siVar.f30223r0 = true;
         }
-        this.f17945s.q1(0, i11 + org.telegram.messenger.g0.f23605m, 0, this.f33611e);
+        this.f18322s.q1(0, i11 + org.telegram.messenger.g0.f24115m, 0, this.f36768e);
     }
 
     @Override
-    public final void I(ci ciVar) {
-        this.f17946w.h1(0, 0);
+    public final void I(ki kiVar) {
+        this.f18323w.h1(0, 0);
     }
 
     @Override
     public final void K() {
-        this.f17945s.y0(0);
+        this.f18322s.y0(0);
     }
 
     public final void Q() {
         boolean z10;
         int i7 = 0;
-        if (this.f17945s.getAdapter().b() == 2) {
+        if (this.f18322s.getAdapter().b() == 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -164,51 +163,51 @@ public final class g0 extends ci implements z5, is, te.b {
 
     public final void R() {
         View childAt;
-        ny nyVar = this.F;
-        if (nyVar.getVisibility() != 0 || (childAt = this.f17945s.getChildAt(0)) == null) {
+        ty tyVar = this.F;
+        if (tyVar.getVisibility() != 0 || (childAt = this.f18322s.getChildAt(0)) == null) {
             return;
         }
-        nyVar.setTranslationY((childAt.getTop() + (nyVar.getMeasuredHeight() - getMeasuredHeight())) / 2);
+        tyVar.setTranslationY((childAt.getTop() + (tyVar.getMeasuredHeight() - getMeasuredHeight())) / 2);
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(j6.U7));
-        hashSet.add(Integer.valueOf(j6.T7));
-        hashSet.add(Integer.valueOf(j6.S7));
-        hashSet.add(Integer.valueOf(j6.R7));
-        hashSet.add(Integer.valueOf(j6.Q7));
-        hashSet.add(Integer.valueOf(j6.P7));
-        hashSet.add(Integer.valueOf(j6.O7));
-        hashSet.add(Integer.valueOf(j6.J7));
-        hashSet.add(Integer.valueOf(j6.f29088q5));
-        hashSet.add(Integer.valueOf(j6.f28850d7));
-        hashSet.add(Integer.valueOf(j6.f28941i6));
+        hashSet.add(Integer.valueOf(n6.U7));
+        hashSet.add(Integer.valueOf(n6.T7));
+        hashSet.add(Integer.valueOf(n6.S7));
+        hashSet.add(Integer.valueOf(n6.R7));
+        hashSet.add(Integer.valueOf(n6.Q7));
+        hashSet.add(Integer.valueOf(n6.P7));
+        hashSet.add(Integer.valueOf(n6.O7));
+        hashSet.add(Integer.valueOf(n6.J7));
+        hashSet.add(Integer.valueOf(n6.f29635q5));
+        hashSet.add(Integer.valueOf(n6.f29397d7));
+        hashSet.add(Integer.valueOf(n6.f29488i6));
     }
 
     @Override
     public int getCurrentItemTop() {
         int i7;
-        di.c1 c1Var = this.f17945s;
-        if (c1Var.getChildCount() <= 0) {
+        di.b1 b1Var = this.f18322s;
+        if (b1Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
-        View childAt = c1Var.getChildAt(0);
-        cj0 cj0Var = (cj0) c1Var.G(childAt);
-        int top = (childAt.getTop() - org.telegram.messenger.g0.f23605m) - org.telegram.messenger.g0.L(8.0f);
-        if (top > 0 && cj0Var != null && cj0Var.b() == 0) {
+        View childAt = b1Var.getChildAt(0);
+        kj0 kj0Var = (kj0) b1Var.G(childAt);
+        int top = (childAt.getTop() - org.telegram.messenger.g0.f24115m) - org.telegram.messenger.g0.L(8.0f);
+        if (top > 0 && kj0Var != null && kj0Var.b() == 0) {
             i7 = top;
         } else {
             i7 = 0;
         }
-        te.a aVar = this.f17943n;
-        if (top >= 0 && cj0Var != null && cj0Var.b() == 0) {
+        te.a aVar = this.f18320n;
+        if (top >= 0 && kj0Var != null && kj0Var.b() == 0) {
             aVar.a(false, true);
         } else {
             aVar.a(true, true);
             top = i7;
         }
-        this.f17944r.setTranslationY(top);
+        this.f18321r.setTranslationY(top);
         return org.telegram.messenger.g0.L(12.0f) + top;
     }
 
@@ -219,7 +218,7 @@ public final class g0 extends ci implements z5, is, te.b {
 
     @Override
     public int getListTopPadding() {
-        return this.f17945s.getPaddingTop();
+        return this.f18322s.getPaddingTop();
     }
 
     @Override
@@ -228,12 +227,12 @@ public final class g0 extends ci implements z5, is, te.b {
     }
 
     @Override
-    public ArrayList<s6> getThemeDescriptions() {
-        ArrayList<s6> arrayList = new ArrayList<>();
-        arrayList.add(new s6(this.F, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (r6) null, j6.f28832c7));
-        arrayList.add(new s6(this.F, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (r6) null, j6.f28923h6));
-        int i7 = j6.f29088q5;
-        arrayList.add(new s6(this.f17945s, 0, new Class[]{f0.class}, new String[]{"nameTextView"}, (Drawable[]) null, (r6) null, i7));
+    public ArrayList<w6> getThemeDescriptions() {
+        ArrayList<w6> arrayList = new ArrayList<>();
+        arrayList.add(new w6(this.F, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (v6) null, n6.f29379c7));
+        arrayList.add(new w6(this.F, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (v6) null, n6.f29470h6));
+        int i7 = n6.f29635q5;
+        arrayList.add(new w6(this.f18322s, 0, new Class[]{f0.class}, new String[]{"nameTextView"}, (Drawable[]) null, (v6) null, i7));
         return arrayList;
     }
 
@@ -246,13 +245,13 @@ public final class g0 extends ci implements z5, is, te.b {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f33609b.f29682b.invalidate();
+        this.f36766b.f30192b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {
-        gi giVar = this.G;
-        if (giVar != null) {
-            giVar.setupBlurredBackground(cVar.c(giVar, c8.g0.a(this.f33608a), false));
+        oi oiVar = this.G;
+        if (oiVar != null) {
+            oiVar.setupBlurredBackground(cVar.c(oiVar, c8.i0.a(this.f36765a), false));
         }
     }
 
@@ -265,7 +264,7 @@ public final class g0 extends ci implements z5, is, te.b {
     }
 
     @Override
-    public final void E(float f10, int i7) {
+    public final void D(float f10, int i7) {
     }
 
     @Override
@@ -273,6 +272,6 @@ public final class g0 extends ci implements z5, is, te.b {
     }
 
     @Override
-    public final void G(int i7, float f10, float f11, te.c cVar) {
+    public final void H(int i7, float f10, float f11, te.c cVar) {
     }
 }

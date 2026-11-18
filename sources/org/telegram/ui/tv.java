@@ -1,19 +1,22 @@
 package org.telegram.ui;
-public final class tv extends v4.b0 {
-    public final xw I;
-    public final uv J;
 
-    public tv(uv uvVar, xw xwVar) {
-        this.J = uvVar;
-        this.I = xwVar;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class tv extends fi.q {
+    public final cx P0;
+
+    public tv(cx cxVar, Context context, cx cxVar2, int i7, int i10) {
+        super(context, cxVar2, i7, i10);
+        this.P0 = cxVar;
     }
 
     @Override
-    public final int R0() {
-        xw xwVar = this.I;
-        if (xwVar.f53342s == 0 && this.J.f52031a0.l4() && xwVar.f53343w == 2) {
-            return 1;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        kVar = ((org.telegram.ui.ActionBar.h2) this.P0).actionBar;
+        if (!kVar.y() && super.dispatchTouchEvent(motionEvent)) {
+            return true;
         }
-        return 0;
+        return false;
     }
 }

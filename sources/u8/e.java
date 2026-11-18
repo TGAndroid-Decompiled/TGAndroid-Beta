@@ -2,41 +2,41 @@ package u8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 public final class e extends r6.a {
     public static final Parcelable.Creator<e> CREATOR = new o(6);
     public String E;
-    public String f57919a;
-    public String f57920b;
-    public String f57921c;
+    public String f58484a;
+    public String f58485b;
+    public String f58486c;
     public String d;
-    public String f57922e;
-    public String f57923f;
+    public String f58487e;
+    public String f58488f;
     public String h;
-    public String f57924n;
-    public String f57925r;
-    public String f57926s;
-    public String f57927w;
-    public String f57928x;
-    public String f57929y;
+    public String f58489n;
+    public String f58490r;
+    public String f58491s;
+    public String f58492w;
+    public String f58493x;
+    public String f58494y;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.l(parcel, 2, this.f57919a);
-        yb.l(parcel, 3, this.f57920b);
-        yb.l(parcel, 4, this.f57921c);
-        yb.l(parcel, 5, this.d);
-        yb.l(parcel, 6, this.f57922e);
-        yb.l(parcel, 7, this.f57923f);
-        yb.l(parcel, 8, this.h);
-        yb.l(parcel, 9, this.f57924n);
-        yb.l(parcel, 10, this.f57925r);
-        yb.l(parcel, 11, this.f57926s);
-        yb.l(parcel, 12, this.f57927w);
-        yb.l(parcel, 13, this.f57928x);
-        yb.l(parcel, 14, this.f57929y);
-        yb.l(parcel, 15, this.E);
-        yb.s(parcel, r10);
+        int r10 = bc.r(parcel, 20293);
+        bc.l(parcel, 2, this.f58484a);
+        bc.l(parcel, 3, this.f58485b);
+        bc.l(parcel, 4, this.f58486c);
+        bc.l(parcel, 5, this.d);
+        bc.l(parcel, 6, this.f58487e);
+        bc.l(parcel, 7, this.f58488f);
+        bc.l(parcel, 8, this.h);
+        bc.l(parcel, 9, this.f58489n);
+        bc.l(parcel, 10, this.f58490r);
+        bc.l(parcel, 11, this.f58491s);
+        bc.l(parcel, 12, this.f58492w);
+        bc.l(parcel, 13, this.f58493x);
+        bc.l(parcel, 14, this.f58494y);
+        bc.l(parcel, 15, this.E);
+        bc.s(parcel, r10);
     }
 }

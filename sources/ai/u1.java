@@ -1,17 +1,17 @@
 package ai;
 public final class u1 {
-    public final int f1559a;
-    public final c2 f1560b;
+    public final int f1550a;
+    public final c2 f1551b;
 
     public u1(c2 c2Var, int i7) {
-        this.f1559a = i7;
-        this.f1560b = c2Var;
+        this.f1550a = i7;
+        this.f1551b = c2Var;
     }
 
     public final void a(final float f10) {
-        switch (this.f1559a) {
+        switch (this.f1550a) {
             case 0:
-                final c2 c2Var = this.f1560b;
+                final c2 c2Var = this.f1551b;
                 c2Var.f1146f.post(new Runnable() {
                     @Override
                     public final void run() {
@@ -35,7 +35,7 @@ public final class u1 {
                 });
                 return;
             default:
-                final c2 c2Var2 = this.f1560b;
+                final c2 c2Var2 = this.f1551b;
                 c2Var2.f1146f.post(new Runnable() {
                     @Override
                     public final void run() {

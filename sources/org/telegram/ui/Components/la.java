@@ -1,48 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-public final class la implements Runnable {
-    public final int f36742a;
-    public final xb f36743b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+public final class la extends kb0 {
+    public final boolean m0;
+    public final boolean f37087n0;
+    public final sa f37088o0;
 
-    public la(xb xbVar, int i7) {
-        this.f36742a = i7;
-        this.f36743b = xbVar;
+    public la(sa saVar, Context context, boolean z10, boolean z11) {
+        super(context);
+        this.f37088o0 = saVar;
+        this.m0 = z10;
+        this.f37087n0 = z11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36742a) {
-            case 0:
-                this.f36743b.b();
-                return;
-            case 1:
-                xb xbVar = this.f36743b;
-                FrameLayout frameLayout = xbVar.h;
-                cb cbVar = xbVar.f41631e;
-                wa waVar = xbVar.f41641p;
-                if (waVar != null && !cbVar.top) {
-                    waVar.c(0.0f);
-                    xbVar.f41641p.d(xbVar);
-                }
-                cbVar.transitionRunningExit = false;
-                cbVar.onExitTransitionEnd();
-                cbVar.onHide();
-                frameLayout.removeView(xbVar.f41632f);
-                frameLayout.removeOnLayoutChangeListener(xbVar.f41630c);
-                cbVar.onDetach();
-                Runnable runnable = xbVar.v;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                xb xbVar2 = this.f36743b;
-                FrameLayout frameLayout2 = xbVar2.h;
-                frameLayout2.removeView(xbVar2.f41632f);
-                frameLayout2.removeOnLayoutChangeListener(xbVar2.f41630c);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        sa saVar = this.f37088o0;
+        saVar.X0(canvas, this);
+        super.dispatchDraw(canvas);
+        saVar.W0(canvas, this);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            float y10 = motionEvent.getY();
+            sa saVar = this.f37088o0;
+            if (y10 < saVar.f30225s0.getBounds().top) {
+                saVar.dismiss();
+            }
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (!this.f37087n0) {
+            this.f37088o0.getClass();
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i10);
+        sa saVar = this.f37088o0;
+        saVar.f39537r1 = size;
+        saVar.T0(i7, i10);
+        if (this.m0) {
+            i10 = View.MeasureSpec.makeMeasureSpec(saVar.f39537r1, 1073741824);
+        }
+        super.onMeasure(i7, i10);
     }
 }

@@ -1,30 +1,33 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class nj extends org.telegram.ui.Components.mo {
-    public final an f49570f;
+import android.os.Bundle;
+public final class nj extends dn {
+    public final int f50208f;
+    public boolean h;
 
-    public nj(an anVar, Context context) {
-        super(context);
-        this.f49570f = anVar;
+    public nj(Context context, org.telegram.ui.ActionBar.s4 s4Var, Bundle bundle, int i7) {
+        super(context, s4Var, bundle);
+        this.f50208f = i7;
     }
 
     @Override
-    public final void a(boolean z10) {
-        an anVar = this.f49570f;
-        anVar.I7();
-        anVar.G7();
-        anVar.J7();
-        anVar.K7();
-        hk hkVar = anVar.Ab;
-        if (hkVar != null) {
-            hkVar.setTranslationY(anVar.S9 + getCurrentHeight());
+    public final void a() {
+        switch (this.f50208f) {
+            case 0:
+                if (!this.h) {
+                    this.h = true;
+                    super.a();
+                    return;
+                }
+                return;
+            default:
+                if (!this.h) {
+                    this.h = true;
+                    super.a();
+                    return;
+                }
+                return;
         }
-        if (z10) {
-            anVar.Z9 = true;
-            anVar.Rc();
-            return;
-        }
-        anVar.M9();
     }
 }

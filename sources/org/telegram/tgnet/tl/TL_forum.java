@@ -119,28 +119,48 @@ public class TL_forum {
     }
 
     public static class TL_messages_getForumTopics extends TLMethod<TLRPC.TL_messages_forumTopics> {
-        public static final int constructor = 1000635391;
+        public static final int constructor = -963894886;
+        public Boolean closed;
+        public Long icon_emoji_id;
         public int limit;
         public int offset_date;
         public int offset_id;
         public int offset_topic;
         public TLRPC.InputPeer peer;
-        public String f28271q;
+        public String f28625q;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             boolean z10;
-            outputSerializedData.writeInt32(1000635391);
-            if (this.f28271q != null) {
+            boolean z11;
+            outputSerializedData.writeInt32(-963894886);
+            boolean z12 = false;
+            if (this.f28625q != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             int flag = TLObject.setFlag(0, 1, z10);
-            outputSerializedData.writeInt32(flag);
+            if (this.icon_emoji_id != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            int flag2 = TLObject.setFlag(flag, 2, z11);
+            if (this.closed != null) {
+                z12 = true;
+            }
+            int flag3 = TLObject.setFlag(flag2, 4, z12);
+            outputSerializedData.writeInt32(flag3);
             this.peer.serializeToStream(outputSerializedData);
-            if (TLObject.hasFlag(flag, 1)) {
-                outputSerializedData.writeString(this.f28271q);
+            if (TLObject.hasFlag(flag3, 1)) {
+                outputSerializedData.writeString(this.f28625q);
+            }
+            if (TLObject.hasFlag(flag3, 2)) {
+                outputSerializedData.writeInt64(this.icon_emoji_id.longValue());
+            }
+            if (TLObject.hasFlag(flag3, 4)) {
+                outputSerializedData.writeBool(this.closed.booleanValue());
             }
             outputSerializedData.writeInt32(this.offset_date);
             outputSerializedData.writeInt32(this.offset_id);

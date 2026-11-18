@@ -53,7 +53,7 @@ public final class e extends d implements ListIterator {
     }
 
     public e(f fVar, int i7) {
-        super(fVar, ((List) fVar.f393c).listIterator(i7));
+        super(fVar, ((List) fVar.f387c).listIterator(i7));
         this.f372e = fVar;
     }
 }

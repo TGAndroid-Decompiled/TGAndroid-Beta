@@ -1,18 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class l3 extends f41 {
-    public final AlertDialog$Builder f36707e;
-
-    public l3(String str, AlertDialog$Builder alertDialog$Builder) {
-        super(str, (wy0) null);
-        this.f36707e = alertDialog$Builder;
-    }
-
+import android.widget.TextView;
+public final class l3 extends TextView {
     @Override
-    public final void onClick(View view) {
-        this.f36707e.f28392a.M0.run();
-        super.onClick(view);
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
     }
 }

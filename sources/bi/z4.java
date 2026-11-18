@@ -1,122 +1,57 @@
 package bi;
 
-import a8.xa;
-import android.animation.ValueAnimator;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.k7;
-import org.telegram.ui.Components.y7;
-public final class z4 extends v4.t0 {
-    public final int f4030a;
-    public final Object f4031b;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class z4 implements TextWatcher {
+    public final a5 f4309a;
 
-    public z4(Object obj, int i7) {
-        this.f4030a = i7;
-        this.f4031b = obj;
+    public z4(a5 a5Var) {
+        this.f4309a = a5Var;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i7) {
-        cj0 cj0Var;
-        switch (this.f4030a) {
-            case 4:
-                ci.c cVar = (ci.c) this.f4031b;
-                boolean z10 = true;
-                if (i7 != 1) {
-                    z10 = false;
-                }
-                cVar.f5317d0 = z10;
-                if (i7 != 0) {
-                    cVar.f5314b0 = ci.c.b();
-                }
-                cVar.invalidate();
-                return;
-            case 5:
-                if (i7 == 0) {
-                    ((ci.g0) this.f4031b).f5486w = false;
-                    return;
-                }
-                return;
-            case 12:
-                fi.c5 c5Var = (fi.c5) this.f4031b;
-                if (i7 == 0) {
-                    c5Var.W = true;
-                    c5Var.invalidate();
-                }
-                if (i7 == 1) {
-                    c5Var.W = false;
-                    xa xaVar = c5Var.d;
-                    ValueAnimator valueAnimator = (ValueAnimator) xaVar.f714c;
-                    if (valueAnimator != null) {
-                        valueAnimator.removeAllListeners();
-                        ((ValueAnimator) xaVar.f714c).cancel();
-                        xaVar.f714c = null;
-                    }
-                    org.telegram.messenger.g0.v1(c5Var);
-                    return;
-                }
-                return;
-            case 14:
-                hi.y1 y1Var = (hi.y1) this.f4031b;
-                if (i7 == 0 && y1Var.f15412n >= 0.0f && !y1Var.f15408b.canScrollVertically(-1)) {
-                    y1Var.f15412n = -1.0f;
-                    return;
-                }
-                return;
-            case 15:
-                if (i7 == 0) {
-                    hi.v6 v6Var = (hi.v6) this.f4031b;
-                    if (v6Var.f15223e2) {
-                        v6Var.f15223e2 = false;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 19:
-                if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(((kg.y1) this.f4031b).getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 24:
-                li.b0 b0Var = (li.b0) this.f4031b;
-                if (i7 == 0) {
-                    b0Var.f19529e = !b0Var.d.canScrollVertically(-1);
-                    b0Var.d.canScrollVertically(1);
-                    return;
-                }
-                return;
-            case 28:
-                y7 y7Var = (y7) this.f4031b;
-                k7 k7Var = y7Var.f41908s1;
-                if (i7 == 0) {
-                    int L = org.telegram.messenger.g0.L(13.0f);
-                    int i10 = y7Var.f41913u2;
-                    int i11 = y7Var.f29716t0;
-                    if (((i10 - i11) - L) + i11 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && k7Var.canScrollVertically(1) && (cj0Var = (cj0) k7Var.K(y7Var.f41903p2 ? 1 : 0)) != null) {
-                        View view = cj0Var.f58535a;
-                        if (view.getTop() > org.telegram.messenger.g0.L(7.0f)) {
-                            k7Var.w0(0, view.getTop() - org.telegram.messenger.g0.L(7.0f), null);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                } else if (i7 == 1) {
-                    org.telegram.messenger.g0.v1(y7Var.getCurrentFocus());
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                return;
+    public final void afterTextChanged(Editable editable) {
+        String obj;
+        boolean z10;
+        cg.a i7;
+        long j3;
+        if (editable == null) {
+            obj = "";
+        } else {
+            obj = editable.toString();
         }
+        int indexOf = obj.indexOf(46);
+        if (indexOf >= 0 && (obj.length() - indexOf) - 1 > 2) {
+            editable.delete(indexOf + 3, obj.length());
+            return;
+        }
+        if (!obj.isEmpty() && !".".equals(obj)) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        if (z10) {
+            i7 = null;
+        } else {
+            i7 = cg.a.i(obj, cg.b.f5277b);
+        }
+        if (!z10 && i7 == null) {
+            editable.delete(obj.length() - 1, obj.length());
+            return;
+        }
+        if (z10) {
+            j3 = 0;
+        } else {
+            j3 = i7.f5275b;
+        }
+        this.f4309a.K0(j3);
     }
 
     @Override
-    public void b(androidx.recyclerview.widget.RecyclerView r9, int r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.z4.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

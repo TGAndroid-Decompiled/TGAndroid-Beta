@@ -1,50 +1,60 @@
 package p4;
+public final class o0 implements Runnable {
+    public final int f55377a;
+    public final Object f55378b;
+    public final Object f55379c;
 
-import java.util.List;
-public final class o0 implements y0, z0 {
-    public final int f54817a;
-    public final c1 f54818b;
-    public final int f54819c;
-
-    public o0(c1 c1Var, int i7, int i10) {
-        this.f54817a = i10;
-        this.f54818b = c1Var;
-        this.f54819c = i7;
+    public o0(int i7, Object obj, Object obj2) {
+        this.f55377a = i7;
+        this.f55378b = obj;
+        this.f55379c = obj2;
     }
 
-    @Override
-    public void a(g1 g1Var, v vVar, List list) {
-        switch (this.f54817a) {
-            case 1:
-                g1Var.b0(this.f54818b.m1(vVar, g1Var, this.f54819c), list);
-                return;
-            case 2:
-                c1 c1Var = this.f54818b;
-                c1Var.getClass();
-                int size = list.size();
-                int i7 = this.f54819c;
-                if (size == 1) {
-                    g1Var.o(c1Var.m1(vVar, g1Var, i7), (e2.l0) list.get(0));
-                    return;
+    private final void a() {
+        u2.c cVar = (u2.c) this.f55378b;
+        o0 o0Var = (o0) this.f55379c;
+        cVar.f58301c.j();
+        u2.f fVar = cVar.f58300b;
+        synchronized (fVar.f58314a) {
+            fVar.b();
+            o0Var.run();
+        }
+    }
+
+    private final void b() {
+        ua.a aVar;
+        u9.o oVar = (u9.o) this.f55378b;
+        ua.b bVar = (ua.b) this.f55379c;
+        if (oVar.f58559b == u9.o.d) {
+            synchronized (oVar) {
+                aVar = oVar.f58558a;
+                oVar.f58558a = null;
+                oVar.f58559b = bVar;
+            }
+            aVar.b(bVar);
+            return;
+        }
+        throw new IllegalStateException("provide() can be called only once.");
+    }
+
+    private final void c() {
+        u9.n nVar = (u9.n) this.f55378b;
+        ua.b bVar = (ua.b) this.f55379c;
+        synchronized (nVar) {
+            try {
+                if (nVar.f58556b == null) {
+                    nVar.f58555a.add(bVar);
                 } else {
-                    g1Var.s0(list, c1Var.m1(vVar, g1Var, i7), c1Var.m1(vVar, g1Var, i7 + 1));
-                    return;
+                    nVar.f58556b.add(bVar.get());
                 }
-            default:
-                g1Var.b0(this.f54818b.m1(vVar, g1Var, this.f54819c), list);
-                return;
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
     }
 
     @Override
-    public void c(g1 g1Var, v vVar) {
-        switch (this.f54817a) {
-            case 0:
-                g1Var.Y(this.f54818b.m1(vVar, g1Var, this.f54819c));
-                return;
-            default:
-                g1Var.Q(this.f54818b.m1(vVar, g1Var, this.f54819c));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: p4.o0.run():void");
     }
 }

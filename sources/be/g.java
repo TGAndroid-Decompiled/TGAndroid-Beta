@@ -1,4 +1,4 @@
 package be;
 public interface g extends u, t {
-    public static final f f3174g = f.f3172a;
+    public static final f f3168g = f.f3166a;
 }

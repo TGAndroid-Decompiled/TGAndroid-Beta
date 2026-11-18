@@ -2,18 +2,18 @@ package tg;
 
 import android.content.Context;
 import android.graphics.Paint;
-import org.telegram.ui.Components.cf;
-import org.telegram.ui.tp0;
+import org.telegram.ui.Cells.b5;
+import org.telegram.ui.vp0;
 public final class c0 extends d {
     public final Paint h;
-    public long f57177n;
-    public float f57178r;
-    public float f57179s;
-    public final tp0 f57180w;
+    public long f57749n;
+    public float f57750r;
+    public float f57751s;
+    public final vp0 f57752w;
 
-    public c0(tp0 tp0Var, Context context, cf cfVar) {
-        super(context, cfVar);
-        this.f57180w = tp0Var;
+    public c0(vp0 vp0Var, Context context, b5 b5Var) {
+        super(context, b5Var);
+        this.f57752w = vp0Var;
         Paint paint = new Paint();
         this.h = paint;
         setWillNotDraw(false);

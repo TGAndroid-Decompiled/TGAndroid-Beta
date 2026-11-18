@@ -1,6 +1,6 @@
 package a4;
 
-import a8.ja;
+import a8.la;
 import f3.p;
 import h2.x;
 import java.io.EOFException;
@@ -39,7 +39,7 @@ public final class f {
         } else {
             z10 = false;
         }
-        ja.p(z10);
+        la.p(z10);
         boolean z12 = this.f169e;
         x xVar = this.f167b;
         if (z12) {
@@ -52,14 +52,14 @@ public final class f {
             if (i10 < 0) {
                 if (gVar.b(pVar, -1L) && gVar.a(pVar, true)) {
                     int i11 = gVar.d;
-                    if ((gVar.f170a & 1) == 1 && xVar.f13523c == 0) {
+                    if ((gVar.f170a & 1) == 1 && xVar.f13838c == 0) {
                         i11 += a(0);
                         i7 = this.d;
                     } else {
                         i7 = 0;
                     }
                     try {
-                        pVar.m(i11);
+                        pVar.r(i11);
                         this.f168c = i7;
                     } catch (EOFException unused) {
                     }
@@ -69,10 +69,10 @@ public final class f {
             int a10 = a(this.f168c);
             int i12 = this.f168c + this.d;
             if (a10 > 0) {
-                xVar.c(xVar.f13523c + a10);
+                xVar.c(xVar.f13838c + a10);
                 try {
-                    pVar.readFully(xVar.f13521a, xVar.f13523c, a10);
-                    xVar.M(xVar.f13523c + a10);
+                    pVar.readFully(xVar.f13836a, xVar.f13838c, a10);
+                    xVar.M(xVar.f13838c + a10);
                     if (gVar.f174f[i12 - 1] != 255) {
                         z11 = true;
                     } else {

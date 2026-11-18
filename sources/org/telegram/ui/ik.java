@@ -1,39 +1,66 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class ik implements org.telegram.ui.Components.li0 {
-    public final an f48068a;
+import android.animation.ValueAnimator;
+import android.app.Activity;
+public final class ik extends org.telegram.ui.Components.vi0 {
+    public final int[] n1;
+    public ValueAnimator f48742o1;
+    public boolean f48743p1;
+    public final bn f48744q1;
 
-    public ik(an anVar) {
-        this.f48068a = anVar;
+    public ik(bn bnVar, bn bnVar2, Activity activity, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(3, i7, activity, bnVar2, i6Var);
+        this.f48744q1 = bnVar;
+        this.n1 = new int[2];
+        this.f48743p1 = true;
     }
 
     @Override
-    public final boolean B() {
-        return false;
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        org.telegram.ui.ActionBar.k kVar;
+        int i13;
+        super.onLayout(z10, i7, i10, i11, i12);
+        kVar = ((org.telegram.ui.ActionBar.h2) this.f48744q1).actionBar;
+        org.telegram.ui.ActionBar.r0 j3 = kVar.q(null).j(28);
+        if (j3 != null) {
+            int[] iArr = this.n1;
+            getLocationInWindow(iArr);
+            float x10 = getX();
+            float width = getWidth() + x10;
+            j3.getLocationInWindow(iArr);
+            float width2 = (j3.getWidth() / 2.0f) + iArr[0];
+            int L = org.telegram.messenger.g0.L(20.0f);
+            boolean z11 = org.telegram.messenger.gd.f24216a0;
+            if (z11) {
+                i13 = -1;
+            } else {
+                i13 = 1;
+            }
+            float f10 = width2 + (L * i13);
+            if (z11) {
+                s(!this.f48743p1, f10 - x10);
+            } else {
+                s(!this.f48743p1, f10 - width);
+            }
+            this.f48743p1 = false;
+        }
     }
 
-    @Override
-    public final boolean L() {
-        return false;
-    }
-
-    @Override
-    public final void h(android.view.View r24, ch.p0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ik.h(android.view.View, ch.p0, boolean, boolean):void");
-    }
-
-    @Override
-    public final boolean r() {
-        return true;
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void J(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
+    public final void s(boolean z10, float f10) {
+        ValueAnimator valueAnimator = this.f48742o1;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f48742o1 = null;
+        }
+        if (!z10) {
+            setBubbleOffset(f10);
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.V0, f10);
+        this.f48742o1 = ofFloat;
+        ofFloat.addUpdateListener(new a3(this, 5));
+        this.f48742o1.setInterpolator(org.telegram.ui.Components.lr.h);
+        this.f48742o1.setDuration(420L);
+        this.f48742o1.start();
     }
 }

@@ -1,16 +1,50 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
-public final class e71 extends org.telegram.ui.ActionBar.m0 {
-    @Override
-    public final void l(EditText editText) {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
+public final class e71 extends AnimatorListenerAdapter {
+    public final boolean f47161a;
+    public final int f47162b;
+    public final int f47163c;
+    public final boolean d;
+    public final x71 f47164e;
+
+    public e71(x71 x71Var, boolean z10, int i7, int i10, boolean z11) {
+        this.f47164e = x71Var;
+        this.f47161a = z10;
+        this.f47162b = i7;
+        this.f47163c = i10;
+        this.d = z11;
     }
 
     @Override
-    public final void h() {
-    }
-
-    @Override
-    public final void i() {
+    public final void onAnimationEnd(Animator animator) {
+        x71 x71Var = this.f47164e;
+        FrameLayout[] frameLayoutArr = x71Var.N0;
+        x71Var.f53737t1 = null;
+        int i7 = this.f47163c;
+        int i10 = this.f47162b;
+        boolean z10 = this.f47161a;
+        if (z10 && frameLayoutArr[i10].getVisibility() == 0) {
+            frameLayoutArr[i10].setAlpha(1.0f);
+            frameLayoutArr[i10].setVisibility(4);
+        } else if (!z10) {
+            frameLayoutArr[i7].setVisibility(4);
+        }
+        int i11 = x71Var.f53686b;
+        char c10 = 2;
+        if (i11 != 1 && i11 != 2) {
+            if (i7 == 1) {
+                frameLayoutArr[i10].setAlpha(0.0f);
+                return;
+            }
+            return;
+        }
+        org.telegram.ui.Components.h71[] h71VarArr = x71Var.L0;
+        if (this.d) {
+            c10 = 0;
+        }
+        h71VarArr[c10].setVisibility(4);
     }
 }

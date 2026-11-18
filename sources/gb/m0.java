@@ -1,6 +1,6 @@
 package gb;
 public final class m0 {
     public final ke.a serializer() {
-        return l0.f13067a;
+        return l0.f13384a;
     }
 }

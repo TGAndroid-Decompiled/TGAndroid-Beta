@@ -1,0 +1,53 @@
+package je;
+
+import b7.h;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import kotlin.jvm.internal.j;
+import v0.c;
+import v0.g;
+import w0.d;
+import zd.m;
+public final class b implements OnCompleteListener, g {
+    public final m f17393a;
+
+    public b(m mVar) {
+        this.f17393a = mVar;
+    }
+
+    @Override
+    public void a(Object obj) {
+        d e10 = (d) obj;
+        j.e(e10, "e");
+        m mVar = this.f17393a;
+        if (mVar.w()) {
+            mVar.resumeWith(h.a(e10));
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        Exception exception = task.getException();
+        m mVar = this.f17393a;
+        if (exception == null) {
+            if (task.isCanceled()) {
+                mVar.n(null);
+                return;
+            } else {
+                mVar.resumeWith(task.getResult());
+                return;
+            }
+        }
+        mVar.resumeWith(h.a(exception));
+    }
+
+    @Override
+    public void onResult(Object obj) {
+        c result = (c) obj;
+        j.e(result, "result");
+        m mVar = this.f17393a;
+        if (mVar.w()) {
+            mVar.resumeWith(result);
+        }
+    }
+}

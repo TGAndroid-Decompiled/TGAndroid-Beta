@@ -1,20 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.text.StaticLayout;
-public final class lw0 {
-    public final EditTextBoldCursor f36910a;
-    public StaticLayout f36911b;
-    public StaticLayout f36912c;
-    public StaticLayout d;
-    public boolean f36913e;
-    public boolean f36914f;
-    public boolean f36915g;
-    public float h;
-    public float f36916i;
-    public ValueAnimator f36917j;
-
-    public lw0(EditTextBoldCursor editTextBoldCursor) {
-        this.f36910a = editTextBoldCursor;
+import android.view.View;
+public final class lw0 extends EditTextBoldCursor {
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
     }
 }

@@ -1,63 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class xk extends mq0 {
-    public final org.telegram.messenger.gj f53255a;
-    public final org.telegram.messenger.ff f53256b;
-    public final an f53257c;
+import java.util.ArrayList;
+public final class xk extends oq0 {
+    public final ArrayList f53873a;
+    public final boolean[] f53874b;
+    public final bn f53875c;
 
-    public xk(an anVar, org.telegram.messenger.gj gjVar, org.telegram.messenger.ff ffVar) {
-        this.f53257c = anVar;
-        this.f53255a = gjVar;
-        this.f53256b = ffVar;
+    public xk(bn bnVar, ArrayList arrayList, boolean[] zArr) {
+        this.f53875c = bnVar;
+        this.f53873a = arrayList;
+        this.f53874b = zArr;
     }
 
     @Override
-    public final uq0 E(org.telegram.messenger.gj gjVar, TLRPC.FileLocation fileLocation, int i7, boolean z10, boolean z11) {
-        return an.P1(this.f53257c, this.f53255a, null, i7, z10, true);
-    }
-
-    @Override
-    public final boolean P() {
-        an anVar = this.f53257c;
-        if (anVar.f45117a0 != null && anVar.V9()) {
-            anVar.f45117a0.S();
-            return true;
-        }
+    public final boolean T() {
         return false;
     }
 
     @Override
-    public final org.telegram.messenger.gj V() {
-        org.telegram.messenger.gj gjVar = this.f53257c.G5;
-        org.telegram.messenger.gj gjVar2 = this.f53255a;
-        if (gjVar == gjVar2) {
-            return gjVar2;
-        }
+    public final org.telegram.messenger.hc j(int i7) {
         return null;
     }
 
     @Override
-    public final void e(CharSequence charSequence) {
-        this.f53257c.f45117a0.v1(charSequence, false);
+    public final void o(int i7, org.telegram.messenger.e20 e20Var, boolean z10, int i10, int i11, boolean z11) {
+        ArrayList arrayList = this.f53873a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (!this.f53874b[size]) {
+                arrayList.remove(size);
+            }
+        }
+        this.f53875c.Kb(i10, arrayList, z10, z11);
     }
 
     @Override
-    public final boolean g() {
-        return false;
+    public final boolean x(int i7) {
+        return this.f53874b[i7];
     }
 
     @Override
-    public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
-        an anVar = this.f53257c;
-        if (anVar.G5 != this.f53255a) {
-            return;
-        }
-        org.telegram.messenger.ff ffVar = this.f53256b;
-        if (!ffVar.f27728w && !ffVar.v && !ffVar.f27727u && g20Var == null) {
-            anVar.f45117a0.j0();
-        } else {
-            anVar.u(ffVar, g20Var, z10, i10, 0, z11, 0L);
-        }
+    public final int k(int i7, org.telegram.messenger.e20 e20Var) {
+        return i7;
     }
 }

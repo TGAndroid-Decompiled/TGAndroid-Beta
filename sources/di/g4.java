@@ -1,41 +1,24 @@
 package di;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.LinearLayout;
-public final class g4 extends LinearLayout {
-    public final int f8612a;
-    public final c6 f8613b;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class g4 extends ClickableSpan {
+    public final long f8860a;
+    public final f6 f8861b;
 
-    public g4(c6 c6Var, Context context, int i7) {
-        super(context);
-        this.f8612a = i7;
-        this.f8613b = c6Var;
+    public g4(f6 f6Var, long j3) {
+        this.f8861b = f6Var;
+        this.f8860a = j3;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f8612a) {
-            case 0:
-                if (!this.f8613b.X2.c(0)) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 1:
-                if (!this.f8613b.X2.c(1)) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 2:
-                if (!this.f8613b.X2.c(2)) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                if (!this.f8613b.X2.c(3)) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-        }
+    public final void onClick(View view) {
+        this.f8861b.h2(this.f8860a);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(textPaint.linkColor);
     }
 }

@@ -1,13 +1,16 @@
 package c8;
-
-import java.io.DataInputStream;
 public abstract class dd {
-    public static float[] a(DataInputStream dataInputStream) {
-        int readInt = dataInputStream.readInt();
-        float[] fArr = new float[readInt];
-        for (int i7 = 0; i7 < readInt; i7++) {
-            fArr[i7] = dataInputStream.readFloat();
+    public static boolean a(int i7, int i10) {
+        if ((i7 & i10) != 0) {
+            return true;
         }
-        return fArr;
+        return false;
+    }
+
+    public static int b(int i7, int i10, boolean z10) {
+        if (z10) {
+            return i7 | i10;
+        }
+        return i7 & (~i10);
     }
 }

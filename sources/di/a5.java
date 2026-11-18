@@ -1,119 +1,97 @@
 package di;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stars;
-public final class a5 extends View implements org.telegram.ui.ActionBar.z5 {
-    public final n5 f8199a;
-    public final ImageReceiver f8200b;
-    public final Path f8201c;
-    public final Paint d;
+import android.graphics.RadialGradient;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.lr;
+public final class a5 extends Drawable {
+    public Drawable f8482g;
+    public int h;
+    public int f8483i;
+    public final Paint f8478b = new Paint(1);
+    public final Shader[] f8479c = new Shader[2];
+    public final Matrix d = new Matrix();
+    public final org.telegram.ui.Components.c6 f8480e = new org.telegram.ui.Components.c6(1.0f, new ca.r(this, 22), 0, 420, lr.h);
+    public final RectF f8481f = new RectF();
+    public final int f8477a = 1;
 
-    public a5(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
-        super(context);
-        Path path = new Path();
-        this.f8201c = path;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        org.telegram.ui.ActionBar.p6 p6Var = org.telegram.ui.ActionBar.q6.f29534a;
-        n5 n5Var = new n5(this, starGift, 60, 0.27f);
-        this.f8199a = n5Var;
-        n5Var.L = 3;
-        org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
-        t8Var.l(tLObject);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f8200b = imageReceiver;
-        imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
-        imageReceiver.i0(tLObject, t8Var, null);
-        paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.E6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        path.rewind();
-        path.moveTo(0.0f, -org.telegram.messenger.g0.L(8.0f));
-        path.lineTo(org.telegram.messenger.g0.L(6.166f), 0.0f);
-        path.lineTo(0.0f, org.telegram.messenger.g0.L(8.0f));
+    public final void a(int i7, int i10) {
+        if (this.h == i7 && this.f8483i == i10) {
+            return;
+        }
+        Shader[] shaderArr = this.f8479c;
+        shaderArr[0] = shaderArr[1];
+        if (this.f8477a == 0) {
+            this.h = i7;
+            this.f8483i = i10;
+            shaderArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        } else {
+            this.h = i7;
+            this.f8483i = i10;
+            shaderArr[1] = new RadialGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(340.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        }
+        this.f8480e.e(true, 0.0f);
+        invalidateSelf();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f8200b.P();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f8200b.R();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int width = (getWidth() / 2) - (org.telegram.messenger.g0.L(156.0f) / 2);
-        int height = (getHeight() / 2) - org.telegram.messenger.g0.L(30.0f);
-        n5 n5Var = this.f8199a;
-        n5Var.setBounds(width, height, org.telegram.messenger.g0.L(60.0f) + width, org.telegram.messenger.g0.L(60.0f) + height);
-        n5Var.draw(canvas);
-        canvas.save();
-        canvas.translate((getWidth() / 2.0f) - (org.telegram.messenger.g0.L(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.f8201c, this.d);
-        canvas.restore();
-        ImageReceiver imageReceiver = this.f8200b;
-        imageReceiver.y0(org.telegram.messenger.g0.L(96.0f) + width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
-        imageReceiver.h(canvas, null);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        Paint paint = this.d;
-        try {
-            int i7 = org.telegram.ui.ActionBar.j6.E6;
-            paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
-            paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f8481f;
+        rectF.set(bounds);
+        rectF.right = rectF.width() + rectF.left;
+        int i7 = 0;
+        float e10 = this.f8480e.e(false, 1.0f);
+        while (true) {
+            Shader[] shaderArr = this.f8479c;
+            if (i7 >= shaderArr.length) {
+                break;
+            }
+            if (shaderArr[i7] != null) {
+                float pow = (float) Math.pow(1.0f - Math.abs(i7 - e10), 0.25d);
+                if (pow > 0.0f) {
+                    Matrix matrix = this.d;
+                    matrix.reset();
+                    if (this.f8477a == 1) {
+                        matrix.postTranslate(rectF.centerX(), org.telegram.messenger.g0.L(145.0f));
+                    } else {
+                        matrix.postScale(getBounds().width() / 100.0f, 1.0f);
+                    }
+                    shaderArr[i7].setLocalMatrix(matrix);
+                    Shader shader = shaderArr[i7];
+                    Paint paint = this.f8478b;
+                    paint.setShader(shader);
+                    paint.setAlpha((int) (pow * 255.0f));
+                    canvas.drawRoundRect(rectF, 0.0f, 0.0f, paint);
+                }
+            }
+            i7++;
+        }
+        if (this.f8482g != null) {
+            canvas.save();
+            canvas.translate(rectF.centerX(), org.telegram.messenger.g0.L(145.0f));
+            v0.a(canvas, 0, this.f8482g, rectF.width(), org.telegram.messenger.g0.L(290.0f), 2.0f, 1.0f);
+            canvas.restore();
         }
     }
 
-    public a5(Context context, TL_stars.StarGift starGift) {
-        super(context);
-        Path path = new Path();
-        this.f8201c = path;
-        Paint paint = new Paint(1);
-        this.d = paint;
-        org.telegram.ui.ActionBar.p6 p6Var = org.telegram.ui.ActionBar.q6.f29534a;
-        n5 n5Var = new n5(this, starGift, 60, 0.27f);
-        this.f8199a = n5Var;
-        n5Var.L = 3;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f8200b = imageReceiver;
-        imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
-        imageReceiver.w0(org.telegram.ui.Cells.r6.a(60, "fragment"));
-        paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.E6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.33f));
-        path.rewind();
-        path.moveTo(0.0f, -org.telegram.messenger.g0.L(8.0f));
-        path.lineTo(org.telegram.messenger.g0.L(6.166f), 0.0f);
-        path.lineTo(0.0f, org.telegram.messenger.g0.L(8.0f));
+    @Override
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,102 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class vg implements Runnable {
-    public final int f40412a;
-    public final ki f40413b;
+import java.util.HashMap;
+public final class vg extends HashMap {
+    public final int f40618a;
+    public final Object f40619b;
 
-    public vg(ki kiVar, int i7) {
-        this.f40412a = i7;
-        this.f40413b = kiVar;
+    public vg(Object obj, int i7) {
+        this.f40618a = i7;
+        this.f40619b = obj;
     }
 
     @Override
-    public final void run() {
-        rt rtVar;
-        boolean z10;
-        long j3;
-        boolean u12;
-        ci ciVar;
-        im imVar;
-        switch (this.f40412a) {
+    public Object get(Object obj) {
+        switch (this.f40618a) {
             case 0:
-                ki kiVar = this.f40413b;
-                if (kiVar.X1) {
-                    rtVar = kiVar.N2;
-                } else {
-                    rtVar = kiVar.C2;
+                int i7 = ((yg) this.f40619b).f42487w;
+                mh0 mh0Var = (mh0) super.get(obj);
+                if (mh0Var == null) {
+                    xg xgVar = (xg) obj;
+                    mh0 mh0Var2 = new mh0(xgVar.f42014c, org.telegram.messenger.g0.L(i7), org.telegram.messenger.g0.L(i7));
+                    put(xgVar, mh0Var2);
+                    return mh0Var2;
                 }
-                if (rtVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(rtVar.getText().toString().trim())) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                kiVar.B1(z10);
-                return;
-            case 1:
-                ki kiVar2 = this.f40413b;
-                kiVar2.A0 = null;
-                kiVar2.B0 = 0;
-                kiVar2.L();
-                return;
-            case 2:
-                ki kiVar3 = this.f40413b;
-                ue ueVar = kiVar3.f36430c2;
-                if (ueVar != null) {
-                    j3 = ueVar.k();
-                } else {
-                    j3 = 0;
-                }
-                long j10 = j3;
-                sh shVar = kiVar3.G2;
-                kiVar3.L2 = j10;
-                shVar.setEffect(j10);
-                ci ciVar2 = kiVar3.f36497w2;
-                if (ciVar2 != kiVar3.f36435e2 && ciVar2 != kiVar3.f36455l2) {
-                    if (!ciVar2.M(false, 0, 0, j10, kiVar3.f1())) {
-                        kiVar3.dismiss();
-                    }
-                    u12 = false;
-                } else {
-                    u12 = kiVar3.u1(false, 0, 0, j10, kiVar3.f1());
-                }
-                ue ueVar2 = kiVar3.f36430c2;
-                if (ueVar2 != null) {
-                    ueVar2.h(!u12);
-                    kiVar3.f36430c2 = null;
-                    return;
-                }
-                return;
-            case 3:
-                ki kiVar4 = this.f40413b;
-                kiVar4.a(true);
-                org.telegram.ui.ActionBar.e2 e2Var = kiVar4.f36424a2;
-                if (e2Var != null) {
-                    e2Var.presentFragment(new PremiumPreviewFragment(0, "caption_limit"));
-                    return;
-                }
-                return;
-            case 4:
-                this.f40413b.t1();
-                return;
+                return mh0Var;
             default:
-                ki kiVar5 = this.f40413b;
-                kiVar5.f36478r3 = null;
-                ci ciVar3 = kiVar5.f36497w2;
-                if (ciVar3 != kiVar5.f36435e2 && (ciVar = kiVar5.f36501x2) != (imVar = kiVar5.f36455l2) && ciVar3 != ciVar && ciVar3 != imVar) {
-                    kiVar5.f29682b.removeView(ciVar3);
+                return super.get(obj);
+        }
+    }
+
+    @Override
+    public Object put(Object obj, Object obj2) {
+        String lowerCase;
+        switch (this.f40618a) {
+            case 1:
+                String str = (String) obj;
+                String str2 = (String) obj2;
+                HashMap hashMap = ((yc.g) this.f40619b).f61163f;
+                if (str == null) {
+                    lowerCase = str;
+                } else {
+                    lowerCase = str.toLowerCase();
                 }
-                kiVar5.f36497w2.setVisibility(8);
-                kiVar5.f36497w2.t();
-                kiVar5.f36501x2.J();
-                kiVar5.f36497w2 = kiVar5.f36501x2;
-                kiVar5.f36501x2 = null;
-                int[] iArr = kiVar5.Z3;
-                iArr[0] = iArr[1];
-                kiVar5.v1(kiVar5.X1, false);
-                kiVar5.L1();
-                return;
+                hashMap.put(lowerCase, str2);
+                return (String) super.put(str, str2);
+            default:
+                return super.put(obj, obj2);
         }
     }
 }

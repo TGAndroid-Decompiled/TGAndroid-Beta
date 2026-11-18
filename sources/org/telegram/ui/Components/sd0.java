@@ -1,82 +1,114 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.View;
 public final class sd0 extends View {
-    public boolean E;
-    public long F;
-    public float G;
-    public float H;
-    public float I;
-    public wa0 J;
-    public TextPaint f39277a;
-    public TextPaint f39278b;
-    public StaticLayout f39279c;
-    public float d;
-    public float f39280e;
-    public StaticLayout f39281f;
-    public float h;
-    public float f39282n;
-    public boolean f39283r;
-    public u5 f39284s;
-    public boolean f39285w;
-    public td0 f39286x;
-    public hi.s8 f39287y;
+    public Paint f39606a;
+    public Paint f39607b;
+    public int f39608c;
+    public int d;
+    public float f39609e;
+    public boolean f39610f;
+    public int h;
+    public int f39611n;
+    public rd0 f39612r;
+
+    public final void a(int i7, boolean z10) {
+        rd0 rd0Var;
+        int i10 = this.h;
+        if (i7 < i10) {
+            i7 = i10;
+        } else {
+            int i11 = this.f39611n;
+            if (i7 > i11) {
+                i7 = i11;
+            }
+        }
+        this.f39609e = (i7 - i10) / (this.f39611n - i10);
+        invalidate();
+        if (z10 && (rd0Var = this.f39612r) != null) {
+            rd0Var.j(((Integer) getTag()).intValue(), getProgress());
+        }
+    }
+
+    public int getProgress() {
+        int i7 = this.h;
+        return (int) ((this.f39609e * (this.f39611n - i7)) + i7);
+    }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float d = this.f39284s.d(this.f39283r);
-        if (d > 0.0f && this.f39279c != null && this.f39281f != null) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (d * 255.0f), 31);
-            canvas.save();
-            canvas.translate(((getWidth() - this.d) / 2.0f) - this.f39280e, getHeight() * 0.22f);
-            this.f39279c.draw(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f39282n, (getHeight() * 0.22f) + org.telegram.messenger.g0.L(60.0f));
-            this.f39281f.draw(canvas);
-            canvas.restore();
-            canvas.restore();
+        int i7;
+        Paint paint = this.f39607b;
+        int measuredHeight = getMeasuredHeight();
+        int i10 = this.f39608c;
+        int i11 = (measuredHeight - i10) / 2;
+        int measuredWidth = (int) ((getMeasuredWidth() - i10) * this.f39609e);
+        float f10 = i10 / 2;
+        canvas.drawRect(f10, (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(1.0f), getMeasuredWidth() - i7, org.telegram.messenger.g0.L(1.0f) + (getMeasuredHeight() / 2), this.f39606a);
+        if (this.h == 0) {
+            canvas.drawRect(f10, (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(1.0f), measuredWidth, org.telegram.messenger.g0.L(1.0f) + (getMeasuredHeight() / 2), paint);
+        } else if (this.f39609e > 0.5f) {
+            canvas.drawRect((getMeasuredWidth() / 2) - org.telegram.messenger.g0.L(1.0f), (getMeasuredHeight() - i10) / 2, getMeasuredWidth() / 2, (getMeasuredHeight() + i10) / 2, paint);
+            canvas.drawRect(getMeasuredWidth() / 2, (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(1.0f), measuredWidth, org.telegram.messenger.g0.L(1.0f) + (getMeasuredHeight() / 2), paint);
+        } else {
+            canvas.drawRect(getMeasuredWidth() / 2, (getMeasuredHeight() - i10) / 2, org.telegram.messenger.g0.L(1.0f) + (getMeasuredWidth() / 2), (getMeasuredHeight() + i10) / 2, paint);
+            canvas.drawRect(measuredWidth, (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(1.0f), getMeasuredWidth() / 2, org.telegram.messenger.g0.L(1.0f) + (getMeasuredHeight() / 2), paint);
         }
+        canvas.drawCircle(measuredWidth + i7, i7 + i11, f10, paint);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        float f10;
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
-        TextPaint textPaint = this.f39277a;
-        textPaint.setColor(-1);
-        float f11 = 0.0f;
-        textPaint.setShadowLayer(org.telegram.messenger.g0.L(8.0f), 0.0f, 0.0f, 805306368);
-        textPaint.setTextSize(org.telegram.messenger.g0.L(34.0f));
-        TextPaint textPaint2 = this.f39278b;
-        textPaint2.setColor(-1);
-        textPaint2.setShadowLayer(org.telegram.messenger.g0.L(12.0f), 0.0f, 0.0f, 805306368);
-        textPaint2.setTextSize(org.telegram.messenger.g0.L(58.0f));
-        if (this.f39279c == null) {
-            StaticLayout staticLayout = new StaticLayout(org.telegram.messenger.hd.M0(2131751126, null), textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f39279c = staticLayout;
-            if (staticLayout.getLineCount() > 0) {
-                f10 = this.f39279c.getLineWidth(0);
-            } else {
-                f10 = 0.0f;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int i7 = this.f39608c;
+        if (motionEvent != null) {
+            float x10 = motionEvent.getX();
+            float y10 = motionEvent.getY();
+            float measuredWidth = (int) ((getMeasuredWidth() - i7) * this.f39609e);
+            float f10 = 0.0f;
+            if (motionEvent.getAction() == 0) {
+                float measuredHeight = (getMeasuredHeight() - i7) / 2;
+                if (measuredWidth - measuredHeight <= x10 && x10 <= i7 + measuredWidth + measuredHeight && y10 >= 0.0f && y10 <= getMeasuredHeight()) {
+                    this.f39610f = true;
+                    this.d = (int) (x10 - measuredWidth);
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                    invalidate();
+                    return true;
+                }
+            } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                if (motionEvent.getAction() == 2 && this.f39610f) {
+                    float f11 = (int) (x10 - this.d);
+                    if (f11 >= 0.0f) {
+                        if (f11 > getMeasuredWidth() - i7) {
+                            f10 = getMeasuredWidth() - i7;
+                        } else {
+                            f10 = f11;
+                        }
+                    }
+                    this.f39609e = f10 / (getMeasuredWidth() - i7);
+                    rd0 rd0Var = this.f39612r;
+                    if (rd0Var != null) {
+                        rd0Var.j(((Integer) getTag()).intValue(), getProgress());
+                    }
+                    invalidate();
+                    return true;
+                }
+            } else if (this.f39610f) {
+                this.f39610f = false;
+                invalidate();
+                return true;
             }
-            this.d = f10;
-            if (this.f39279c.getLineCount() > 0) {
-                f11 = this.f39279c.getLineLeft(0);
-            }
-            this.f39280e = f11;
         }
+        return false;
     }
 
-    public void setAllowTouch(boolean z10) {
-        this.f39285w = z10;
+    public void setDelegate(rd0 rd0Var) {
+        this.f39612r = rd0Var;
     }
 
-    public void setFilterView(td0 td0Var) {
-        this.f39286x = td0Var;
+    public void setProgress(int i7) {
+        a(i7, true);
     }
 }

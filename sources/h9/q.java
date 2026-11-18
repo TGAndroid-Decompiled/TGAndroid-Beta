@@ -1,36 +1,36 @@
 package h9;
 
-import a8.ia;
+import a8.ka;
 import j$.util.Objects;
 import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Map;
 public final class q extends AbstractSet {
-    public final int f13729a;
-    public final s f13730b;
+    public final int f14045a;
+    public final s f14046b;
 
     public q(s sVar, int i7) {
-        this.f13729a = i7;
-        this.f13730b = sVar;
+        this.f14045a = i7;
+        this.f14046b = sVar;
     }
 
     @Override
     public final void clear() {
-        switch (this.f13729a) {
+        switch (this.f14045a) {
             case 0:
-                this.f13730b.clear();
+                this.f14046b.clear();
                 return;
             default:
-                this.f13730b.clear();
+                this.f14046b.clear();
                 return;
         }
     }
 
     @Override
     public final boolean contains(Object obj) {
-        switch (this.f13729a) {
+        switch (this.f14045a) {
             case 0:
-                s sVar = this.f13730b;
+                s sVar = this.f14046b;
                 Map d = sVar.d();
                 if (d != null) {
                     return d.entrySet().contains(obj);
@@ -38,28 +38,28 @@ public final class q extends AbstractSet {
                 if (obj instanceof Map.Entry) {
                     Map.Entry entry = (Map.Entry) obj;
                     int f10 = sVar.f(entry.getKey());
-                    if (f10 != -1 && ia.a(sVar.l()[f10], entry.getValue())) {
+                    if (f10 != -1 && ka.a(sVar.l()[f10], entry.getValue())) {
                         return true;
                     }
                 }
                 return false;
             default:
-                return this.f13730b.containsKey(obj);
+                return this.f14046b.containsKey(obj);
         }
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f13729a) {
+        switch (this.f14045a) {
             case 0:
-                s sVar = this.f13730b;
+                s sVar = this.f14046b;
                 Map d = sVar.d();
                 if (d != null) {
                     return d.entrySet().iterator();
                 }
                 return new p(sVar, 1);
             default:
-                s sVar2 = this.f13730b;
+                s sVar2 = this.f14046b;
                 Map d2 = sVar2.d();
                 if (d2 != null) {
                     return d2.keySet().iterator();
@@ -70,9 +70,9 @@ public final class q extends AbstractSet {
 
     @Override
     public final boolean remove(Object obj) {
-        switch (this.f13729a) {
+        switch (this.f14045a) {
             case 0:
-                s sVar = this.f13730b;
+                s sVar = this.f14046b;
                 Map d = sVar.d();
                 if (d != null) {
                     return d.entrySet().remove(obj);
@@ -83,25 +83,25 @@ public final class q extends AbstractSet {
                         int e10 = sVar.e();
                         Object key = entry.getKey();
                         Object value = entry.getValue();
-                        Object obj2 = sVar.f13742a;
+                        Object obj2 = sVar.f14060a;
                         Objects.requireNonNull(obj2);
                         int s5 = o.s(key, value, e10, obj2, sVar.j(), sVar.k(), sVar.l());
                         if (s5 != -1) {
                             sVar.g(s5, e10);
-                            sVar.f13746f--;
-                            sVar.f13745e += 32;
+                            sVar.f14064f--;
+                            sVar.f14063e += 32;
                             return true;
                         }
                     }
                 }
                 return false;
             default:
-                s sVar2 = this.f13730b;
+                s sVar2 = this.f14046b;
                 Map d2 = sVar2.d();
                 if (d2 != null) {
                     return d2.keySet().remove(obj);
                 }
-                if (sVar2.i(obj) != s.f13741s) {
+                if (sVar2.i(obj) != s.f14059s) {
                     return true;
                 }
                 return false;
@@ -110,11 +110,11 @@ public final class q extends AbstractSet {
 
     @Override
     public final int size() {
-        switch (this.f13729a) {
+        switch (this.f14045a) {
             case 0:
-                return this.f13730b.size();
+                return this.f14046b.size();
             default:
-                return this.f13730b.size();
+                return this.f14046b.size();
         }
     }
 }

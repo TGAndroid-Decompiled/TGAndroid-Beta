@@ -1,82 +1,45 @@
 package org.telegram.messenger;
-
-import java.util.HashMap;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class fm implements RequestDelegate {
-    public final int f23519a;
-    public final long f23520b;
-    public final int f23521c;
+public final class fm implements Runnable {
+    public final int f24036a;
+    public final Object f24037b;
+    public final long f24038c;
     public final Object d;
+    public final Object f24039e;
 
-    public fm(c1 c1Var, long j3, int i7, int i10) {
-        this.f23519a = i10;
-        this.d = c1Var;
-        this.f23520b = j3;
-        this.f23521c = i7;
+    public fm(Object obj, Object obj2, long j3, Object obj3, int i7) {
+        this.f24036a = i7;
+        this.f24037b = obj;
+        this.d = obj2;
+        this.f24038c = j3;
+        this.f24039e = obj3;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fm.a():void");
+    }
+
+    private final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fm.b():void");
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f23519a) {
-            case 0:
-                np npVar = (np) this.d;
-                HashMap hashMap = npVar.f25404t8;
-                hashMap.remove(this.f23520b + "_" + this.f23521c);
-                if (tL_error == null && tLObject != null) {
-                    npVar.O3((TLRPC.Updates) tLObject, false);
-                    return;
-                }
-                return;
-            case 1:
-                h00 h00Var = (h00) this.d;
-                a0.h hVar = new a0.h();
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_savedDialogs;
-                long j3 = this.f23520b;
-                int i7 = this.f23521c;
-                int i10 = 0;
-                if (z10) {
-                    TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject;
-                    while (i10 < tL_messages_savedDialogs.messages.size()) {
-                        hVar.k(tL_messages_savedDialogs.messages.get(i10), tL_messages_savedDialogs.messages.get(i10).f28072id);
-                        i10++;
-                    }
-                    g0.h3(new z1(h00Var, tL_messages_savedDialogs, j3, hVar, i7, 8));
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsSlice) {
-                    TLRPC.TL_messages_savedDialogsSlice tL_messages_savedDialogsSlice = (TLRPC.TL_messages_savedDialogsSlice) tLObject;
-                    while (i10 < tL_messages_savedDialogsSlice.messages.size()) {
-                        hVar.k(tL_messages_savedDialogsSlice.messages.get(i10), tL_messages_savedDialogsSlice.messages.get(i10).f28072id);
-                        i10++;
-                    }
-                    g0.h3(new z1(h00Var, tL_messages_savedDialogsSlice, j3, hVar, i7, 7));
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsNotModified) {
-                    g0.h3(new dr(h00Var, j3, (TLRPC.TL_messages_savedDialogsNotModified) tLObject, 5));
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_forumTopics) {
-                    TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
-                    while (i10 < tL_messages_forumTopics.messages.size()) {
-                        hVar.k(tL_messages_forumTopics.messages.get(i10), tL_messages_forumTopics.messages.get(i10).f28072id);
-                        i10++;
-                    }
-                    g0.h3(new di.u7(h00Var, tL_messages_forumTopics, j3, tL_messages_forumTopics, hVar, i7));
-                    return;
-                } else {
-                    g0.h3(new zz(h00Var, j3, 0));
-                    return;
-                }
-            default:
-                g0.h3(new di.w7(this.f23521c, 2, this.f23520b, (org.telegram.ui.g4) this.d, tLObject));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fm.run():void");
     }
 
-    public fm(org.telegram.ui.g4 g4Var, int i7, long j3) {
-        this.f23519a = 2;
-        this.d = g4Var;
-        this.f23521c = i7;
-        this.f23520b = j3;
+    public fm(Object obj, Object obj2, Object obj3, long j3, int i7) {
+        this.f24036a = i7;
+        this.f24037b = obj;
+        this.d = obj2;
+        this.f24039e = obj3;
+        this.f24038c = j3;
+    }
+
+    public fm(c1 c1Var, long j3, Object obj, Object obj2, int i7) {
+        this.f24036a = i7;
+        this.f24037b = c1Var;
+        this.f24038c = j3;
+        this.d = obj;
+        this.f24039e = obj2;
     }
 }

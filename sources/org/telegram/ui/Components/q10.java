@@ -1,61 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Point;
-import android.widget.FrameLayout;
-public final class q10 extends FrameLayout {
-    public float f38464a;
-    public float f38465b;
-    public boolean f38466c;
-    public AnimatorSet d;
-    public final p10 f38467e;
-    public final ih f38468f;
-    public final float h;
-    public final s10 f38469n;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class q10 extends v4.o {
+    public final ArrayList f38679b;
+    public final ArrayList f38680c;
+    public final s10 d;
 
-    public q10(s10 s10Var, Context context, float f10) {
-        super(context);
-        this.f38469n = s10Var;
-        this.h = f10;
-        this.f38467e = new p10(this);
-        this.f38468f = new ih(6);
+    public q10(s10 s10Var, ArrayList arrayList, ArrayList arrayList2) {
+        this.d = s10Var;
+        this.f38679b = arrayList;
+        this.f38680c = arrayList2;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        Point point = org.telegram.messenger.g0.f23611q;
-        int i11 = point.x;
-        s10 s10Var = this.f38469n;
-        if (i11 != s10Var.K || s10Var.L != point.y) {
-            s10Var.K = i11;
-            s10Var.L = point.y;
-            if (s10Var.M < 0.0f) {
-                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f26609b.getSharedPreferences("groupcallpipconfig", 0);
-                this.f38469n.M = sharedPreferences.getFloat("relativeX", 1.0f);
-                this.f38469n.N = sharedPreferences.getFloat("relativeY", 0.4f);
-            }
-            s10 s10Var2 = s10.f39139f0;
-            if (s10Var2 != null) {
-                s10 s10Var3 = this.f38469n;
-                float f10 = s10Var3.M;
-                float f11 = s10Var3.N;
-                float f12 = -org.telegram.messenger.g0.L(36.0f);
-                s10Var2.f39153s.x = (int) com.google.android.gms.internal.vision.e2.z(point.x - (2.0f * f12), org.telegram.messenger.g0.L(105.0f), f10, f12);
-                s10Var2.f39153s.y = (int) ((point.y - org.telegram.messenger.g0.L(105.0f)) * f11);
-                s10Var2.i();
-                q10 q10Var = s10Var2.f39141a;
-                if (q10Var.getParent() != null) {
-                    s10Var2.f39151n.updateViewLayout(q10Var, s10Var2.f39153s);
-                }
-            }
+    public final boolean a(int i7, int i10) {
+        return true;
+    }
+
+    @Override
+    public final boolean b(int i7, int i10) {
+        TLRPC.GroupCallParticipant groupCallParticipant;
+        TLRPC.GroupCallParticipant groupCallParticipant2;
+        ArrayList arrayList = this.f38679b;
+        int size = arrayList.size();
+        s10 s10Var = this.d;
+        if (i7 < size && i10 < s10Var.f39443e.size()) {
+            return ((org.telegram.messenger.u3) arrayList.get(i7)).equals(s10Var.f39443e.get(i10));
         }
+        int size2 = i7 - arrayList.size();
+        int size3 = i10 - s10Var.f39443e.size();
+        ArrayList arrayList2 = this.f38680c;
+        if (size3 >= 0 && size3 < s10Var.f39444f.size() && size2 >= 0 && size2 < arrayList2.size()) {
+            if (org.telegram.messenger.fj.B1(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != org.telegram.messenger.fj.B1(((TLRPC.GroupCallParticipant) s10Var.f39444f.get(size3)).peer)) {
+                return false;
+            }
+            return true;
+        }
+        if (i7 < arrayList.size()) {
+            groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27119a;
+        } else {
+            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
+        }
+        if (i10 < s10Var.f39443e.size()) {
+            groupCallParticipant2 = ((org.telegram.messenger.u3) s10Var.f39443e.get(i10)).f27119a;
+        } else {
+            groupCallParticipant2 = (TLRPC.GroupCallParticipant) s10Var.f39444f.get(size3);
+        }
+        if (org.telegram.messenger.fj.B1(groupCallParticipant.peer) != org.telegram.messenger.fj.B1(groupCallParticipant2.peer)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q10.onTouchEvent(android.view.MotionEvent):boolean");
+    public final int d() {
+        s10 s10Var = this.d;
+        return s10Var.f39444f.size() + s10Var.f39443e.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f38680c.size() + this.f38679b.size();
     }
 }

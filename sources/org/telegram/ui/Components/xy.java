@@ -1,183 +1,177 @@
 package org.telegram.ui.Components;
 
-import android.opengl.GLES20;
-import java.util.Locale;
-public final class xy {
-    public final String f41788a;
-    public final String f41789b;
-    public int f41790c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class xy extends View {
+    public final Paint f42211a;
+    public final Paint f42212b;
+    public final Path f42213c;
     public int d;
-    public int f41791e;
-    public int f41792f;
-    public int f41793g;
-    public int h;
+    public int f42214e;
+    public vy0[] f42215f;
+    public RectF[] h;
+    public float f42216n;
+    public org.telegram.ui.nl0 f42217r;
+    public int f42218s;
 
-    public xy(float f10, float f11, boolean z10) {
-        int i7;
-        float f12;
-        int i10;
-        double d = 6.283185307179586d;
-        if (z10) {
-            f12 = Math.round(f10);
-            if (f12 >= 1.0f) {
-                double d2 = f12;
-                int floor = (int) Math.floor(Math.sqrt(Math.log(Math.sqrt(Math.pow(d2, 2.0d) * 6.283185307179586d) * 0.00390625f) * Math.pow(d2, 2.0d) * (-2.0d)));
-                i7 = (floor % 2) + floor;
-            } else {
-                i7 = 0;
-            }
-        } else {
-            i7 = (int) f10;
-            f12 = f11;
-        }
-        int i11 = 1;
-        int i12 = (i7 * 2) + 1;
-        float[] fArr = new float[i12];
-        int i13 = 0;
-        float f13 = 0.0f;
-        while (true) {
-            i10 = i7 + 1;
-            if (i13 >= i10) {
-                break;
-            }
-            double d10 = d;
-            double d11 = f12;
-            int i14 = i11;
-            float[] fArr2 = fArr;
-            float exp = (float) (Math.exp((-Math.pow(i13, 2.0d)) / (Math.pow(d11, 2.0d) * 2.0d)) * (1.0d / Math.sqrt(Math.pow(d11, 2.0d) * d10)));
-            fArr2[i13] = exp;
-            if (i13 == 0) {
-                f13 += exp;
-            } else {
-                f13 = (float) ((exp * 2.0d) + f13);
-            }
-            i13++;
-            i11 = i14;
-            d = d10;
-            fArr = fArr2;
-        }
-        double d12 = d;
-        int i15 = i11;
-        float[] fArr3 = fArr;
-        for (int i16 = 0; i16 < i10; i16++) {
-            fArr3[i16] = fArr3[i16] / f13;
-        }
-        char c10 = 2;
-        int i17 = (i7 % 2) + (i7 / 2);
-        int min = Math.min(i17, 7);
-        StringBuilder sb2 = new StringBuilder("uniform sampler2D sTexture;\nuniform highp float texelWidthOffset;\nuniform highp float texelHeightOffset;\n");
-        Locale locale = Locale.US;
-        sb2.append("varying highp vec2 blurCoordinates[" + ((min * 2) + 1) + "];\n");
-        sb2.append("void main()\n{\nlowp vec4 sum = vec4(0.0);\n");
-        Object[] objArr = new Object[i15];
-        objArr[0] = Float.valueOf(fArr3[0]);
-        sb2.append(String.format(locale, "sum += texture2D(sTexture, blurCoordinates[0]) * %f;\n", objArr));
-        for (int i18 = 0; i18 < min; i18++) {
-            int i19 = i18 * 2;
-            int i20 = i19 + 1;
-            int i21 = i19 + 2;
-            float f14 = fArr3[i20] + fArr3[i21];
-            Locale locale2 = Locale.US;
-            sb2.append(String.format(locale2, "sum += texture2D(sTexture, blurCoordinates[%d]) * %f;\n", Integer.valueOf(i20), Float.valueOf(f14)));
-            sb2.append(String.format(locale2, "sum += texture2D(sTexture, blurCoordinates[%d]) * %f;\n", Integer.valueOf(i21), Float.valueOf(f14)));
-        }
-        if (i17 > min) {
-            sb2.append("highp vec2 singleStepOffset = vec2(texelWidthOffset, texelHeightOffset);\n");
-            while (min < i17) {
-                int i22 = min * 2;
-                int i23 = i22 + 1;
-                float f15 = fArr3[i23];
-                int i24 = i22 + 2;
-                float f16 = fArr3[i24];
-                float f17 = f15 + f16;
-                float y10 = com.google.android.gms.internal.vision.e2.y(f16, i24, f15 * i23, f17);
-                Locale locale3 = Locale.US;
-                sb2.append(String.format(locale3, "sum += texture2D(sTexture, blurCoordinates[0] + singleStepOffset * %f) * %f;\n", Float.valueOf(y10), Float.valueOf(f17)));
-                sb2.append(String.format(locale3, "sum += texture2D(sTexture, blurCoordinates[0] - singleStepOffset * %f) * %f;\n", Float.valueOf(y10), Float.valueOf(f17)));
-                min++;
-            }
-        }
-        sb2.append("gl_FragColor = sum;\n}\n");
-        this.f41789b = sb2.toString();
-        float[] fArr4 = new float[i12];
-        int i25 = 0;
-        float f18 = 0.0f;
-        while (i25 < i10) {
-            double d13 = f12;
-            char c11 = c10;
-            float f19 = f18;
-            float exp2 = (float) (Math.exp((-Math.pow(i25, 2.0d)) / (Math.pow(d13, 2.0d) * 2.0d)) * (1.0d / Math.sqrt(Math.pow(d13, 2.0d) * d12)));
-            fArr4[i25] = exp2;
-            if (i25 == 0) {
-                f18 = f19 + exp2;
-            } else {
-                f18 = (float) ((exp2 * 2.0d) + f19);
-            }
-            i25++;
-            c10 = c11;
-        }
-        char c12 = c10;
-        float f20 = f18;
-        for (int i26 = 0; i26 < i10; i26++) {
-            fArr4[i26] = fArr4[i26] / f20;
-        }
-        int min2 = Math.min(i17, 7);
-        float[] fArr5 = new float[min2];
-        for (int i27 = 0; i27 < min2; i27++) {
-            int i28 = i27 * 2;
-            int i29 = i28 + 1;
-            float f21 = fArr4[i29];
-            int i30 = i28 + 2;
-            float f22 = fArr4[i30];
-            fArr5[i27] = com.google.android.gms.internal.vision.e2.y(f22, i30, f21 * i29, f21 + f22);
-        }
-        StringBuilder sb3 = new StringBuilder("attribute vec4 position;\nattribute vec4 inputTexCoord;\nuniform float texelWidthOffset;\nuniform float texelHeightOffset;\n");
-        Locale locale4 = Locale.US;
-        sb3.append("varying vec2 blurCoordinates[" + ((min2 * 2) + 1) + "];\n");
-        sb3.append("void main()\n{\ngl_Position = position;\nvec2 singleStepOffset = vec2(texelWidthOffset, texelHeightOffset);\nblurCoordinates[0] = inputTexCoord.xy;\n");
-        for (int i31 = 0; i31 < min2; i31++) {
-            Locale locale5 = Locale.US;
-            int i32 = i31 * 2;
-            Integer valueOf = Integer.valueOf(i32 + 1);
-            Float valueOf2 = Float.valueOf(fArr5[i31]);
-            Integer valueOf3 = Integer.valueOf(i32 + 2);
-            Float valueOf4 = Float.valueOf(fArr5[i31]);
-            Object[] objArr2 = new Object[4];
-            objArr2[0] = valueOf;
-            objArr2[1] = valueOf2;
-            objArr2[c12] = valueOf3;
-            objArr2[3] = valueOf4;
-            sb3.append(String.format(locale5, "blurCoordinates[%d] = inputTexCoord.xy + singleStepOffset * %f;\nblurCoordinates[%d] = inputTexCoord.xy - singleStepOffset * %f;\n", objArr2));
-        }
-        sb3.append("}");
-        this.f41788a = sb3.toString();
+    public xy(Context context) {
+        super(context);
+        this.f42211a = new Paint(1);
+        this.f42212b = new Paint(1);
+        this.f42213c = new Path();
+        this.d = -1;
+        this.f42214e = -1;
+        this.f42218s = -1;
     }
 
-    public final boolean a() {
-        int h = zy.h(35633, this.f41788a);
-        int h7 = zy.h(35632, this.f41789b);
-        if (h == 0 || h7 == 0) {
+    public final void a(float f10, int i7, int i10, Canvas canvas) {
+        vy0[] vy0VarArr = this.f42215f;
+        int length = vy0VarArr.length;
+        int i11 = 0;
+        float f11 = f10;
+        while (i11 < length) {
+            vy0 vy0Var = vy0VarArr[i11];
+            int i12 = i10;
+            vy0Var.c(f11, i7 / 2.0f, 1.0f, i12, canvas);
+            f11 += vy0Var.k() + org.telegram.messenger.g0.L(24.0f);
+            i11++;
+            i10 = i12;
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        if (this.f42215f == null) {
+            return;
+        }
+        int width = getWidth();
+        int height = getHeight();
+        float f11 = 4.0f;
+        int L = org.telegram.messenger.g0.L(4.0f) + org.telegram.messenger.f3.D(24.0f, this.f42215f.length, org.telegram.messenger.g0.L(4.0f));
+        int i7 = 0;
+        while (true) {
+            vy0[] vy0VarArr = this.f42215f;
+            if (i7 >= vy0VarArr.length) {
+                break;
+            }
+            L = (int) (vy0VarArr[i7].k() + L);
+            i7++;
+        }
+        float L2 = (height - org.telegram.messenger.g0.L(36.0f)) / 2.0f;
+        float L3 = (org.telegram.messenger.g0.L(36.0f) + height) / 2.0f;
+        float f12 = (width - L) / 2.0f;
+        float L4 = org.telegram.messenger.g0.L(16.0f) + f12;
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(f12, L2, L + f12, L3);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), this.f42211a);
+        float L5 = f12 + org.telegram.messenger.g0.L(16.0f);
+        int i10 = 0;
+        while (i10 < this.f42215f.length) {
+            this.h[i10].set(L5 - org.telegram.messenger.g0.L(16.0f), L2, this.f42215f[i10].k() + L5 + org.telegram.messenger.g0.L(16.0f), L3);
+            L5 += this.f42215f[i10].k() + org.telegram.messenger.g0.L(24.0f);
+            i10++;
+            f11 = f11;
+        }
+        org.telegram.messenger.g0.L(f11);
+        int j3 = Utilities.j((int) Math.floor(this.f42216n), this.f42215f.length - 1, 0);
+        int j10 = Utilities.j((int) Math.ceil(this.f42216n), this.f42215f.length - 1, 0);
+        float L6 = this.h[j3].left + org.telegram.messenger.g0.L(f10);
+        float L7 = this.h[j10].left + org.telegram.messenger.g0.L(f10);
+        float f13 = this.f42216n;
+        float T1 = org.telegram.messenger.g0.T1(L6, L7, (float) (f13 - Math.floor(f13)));
+        float L8 = this.h[j3].right - org.telegram.messenger.g0.L(f10);
+        float L9 = this.h[j10].right - org.telegram.messenger.g0.L(f10);
+        float f14 = this.f42216n;
+        float T12 = org.telegram.messenger.g0.T1(L8, L9, (float) (f14 - Math.floor(f14)));
+        RectF rectF2 = org.telegram.messenger.g0.P;
+        rectF2.set(T1, (height - org.telegram.messenger.g0.L(28.0f)) / 2.0f, T12, (org.telegram.messenger.g0.L(28.0f) + height) / 2.0f);
+        Path path = this.f42213c;
+        path.rewind();
+        path.addRoundRect(rectF2, org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(15.0f), Path.Direction.CW);
+        canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(15.0f), this.f42212b);
+        a(L4, height, this.d, canvas);
+        canvas.save();
+        canvas.clipPath(path);
+        a(L4, height, this.f42214e, canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int i7 = 0;
+        if (this.f42215f == null || this.h == null) {
             return false;
         }
-        int glCreateProgram = GLES20.glCreateProgram();
-        this.f41790c = glCreateProgram;
-        GLES20.glAttachShader(glCreateProgram, h);
-        GLES20.glAttachShader(this.f41790c, h7);
-        GLES20.glBindAttribLocation(this.f41790c, 0, "position");
-        GLES20.glBindAttribLocation(this.f41790c, 1, "inputTexCoord");
-        GLES20.glLinkProgram(this.f41790c);
-        int[] iArr = new int[1];
-        GLES20.glGetProgramiv(this.f41790c, 35714, iArr, 0);
-        if (iArr[0] == 0) {
-            GLES20.glDeleteProgram(this.f41790c);
-            this.f41790c = 0;
-        } else {
-            this.d = GLES20.glGetAttribLocation(this.f41790c, "position");
-            this.f41791e = GLES20.glGetAttribLocation(this.f41790c, "inputTexCoord");
-            this.f41792f = GLES20.glGetUniformLocation(this.f41790c, "sTexture");
-            this.f41793g = GLES20.glGetUniformLocation(this.f41790c, "texelWidthOffset");
-            this.h = GLES20.glGetUniformLocation(this.f41790c, "texelHeightOffset");
+        while (true) {
+            RectF[] rectFArr = this.h;
+            if (i7 < rectFArr.length) {
+                if (rectFArr[i7].contains(motionEvent.getX(), motionEvent.getY())) {
+                    break;
+                }
+                i7++;
+            } else {
+                i7 = -1;
+                break;
+            }
         }
-        return true;
+        if (i7 >= 0 && i7 != this.f42218s) {
+            this.f42218s = i7;
+            org.telegram.ui.nl0 nl0Var = this.f42217r;
+            if (nl0Var != null) {
+                nl0Var.a(Integer.valueOf(i7));
+            }
+        }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            this.f42218s = -1;
+        }
+        if (motionEvent.getAction() == 0 && i7 >= 0) {
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public void setBackgroundColor(int i7) {
+        this.f42211a.setColor(i7);
+        invalidate();
+    }
+
+    public void setSelected(float f10) {
+        if (Math.abs(f10 - this.f42216n) > 0.001f) {
+            invalidate();
+        }
+        this.f42216n = f10;
+    }
+
+    public void setSelectedColor(int i7) {
+        this.f42212b.setColor(i7);
+        invalidate();
+    }
+
+    public void setSelectedTextColor(int i7) {
+        this.f42214e = i7;
+        invalidate();
+    }
+
+    public void setTabs(CharSequence... charSequenceArr) {
+        this.f42215f = new vy0[charSequenceArr.length];
+        this.h = new RectF[charSequenceArr.length];
+        for (int i7 = 0; i7 < charSequenceArr.length; i7++) {
+            this.f42215f[i7] = new vy0(charSequenceArr[i7], 14.0f, org.telegram.messenger.g0.o());
+            this.h[i7] = new RectF();
+        }
+        invalidate();
+    }
+
+    public void setTextColor(int i7) {
+        this.d = i7;
+        invalidate();
     }
 }

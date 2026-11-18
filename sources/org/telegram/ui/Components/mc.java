@@ -1,85 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import java.util.Random;
-public final class mc {
-    public float f37195a;
-    public float f37196b;
-    public float f37197c;
-    public float d;
-    public float f37198e;
-    public float f37199f;
-    public int f37200g;
-    public float[] f37203k;
-    public float[] f37204l;
-    public float[] f37205m;
-    public float[] f37206n;
-    public float[] f37207o;
-    public float[] f37208p;
-    public float[] f37209q;
-    public float[] f37210r;
-    public float[] f37211s;
-    public float[] f37212t;
-    public float[] f37213u;
-    public float[] v;
-    public float[] f37214w;
-    public int f37215x;
-    public int h = -11318601;
-    public final Paint f37201i = new Paint(1);
-    public final Random f37202j = new Random();
-    public int f37216y = 255;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+public class mc {
+    public View f37428a;
+    public final float f37429b;
+    public final float f37430c;
+    public final float d;
+    public long f37431e;
+    public Runnable f37432f;
+    public ValueAnimator f37433g;
+    public final float h;
+    public boolean f37434i;
+    public float f37435j;
 
-    public final void a() {
-        int i7 = this.h;
-        Paint paint = this.f37201i;
-        paint.setColor(i7);
-        paint.setAlpha((this.f37200g * this.f37216y) / 255);
+    public mc(View view) {
+        this(view, 1.0f, 5.0f);
     }
 
-    public final void b(int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mc.b(int):void");
+    public final float a(float f10) {
+        return com.google.android.gms.internal.vision.e2.z(1.0f, this.f37435j, f10, 1.0f - f10) * this.h;
     }
 
-    public final void c(int i7) {
-        this.f37215x = i7;
-        this.f37203k = new float[i7];
-        this.f37204l = new float[i7];
-        this.f37205m = new float[i7];
-        this.f37206n = new float[i7];
-        this.f37207o = new float[i7];
-        this.f37208p = new float[i7];
-        this.f37209q = new float[i7];
-        this.f37210r = new float[i7];
-        this.f37211s = new float[i7];
-        this.f37212t = new float[i7];
-        this.f37213u = new float[i7];
-        this.v = new float[i7];
-        this.f37214w = new float[i7];
-        for (int i10 = 0; i10 < this.f37215x; i10++) {
-            float[] fArr = this.f37203k;
-            Random random = this.f37202j;
-            fArr[i10] = random.nextFloat();
-            this.f37205m[i10] = (((random.nextFloat() - 0.5f) * 2.0f) * 0.18f) / this.f37215x;
-            b(i10);
-            this.f37207o[i10] = random.nextFloat();
+    public void b() {
+        View view = this.f37428a;
+        if (view != null) {
+            view.invalidate();
         }
-        a();
+        Runnable runnable = this.f37432f;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
-    public final void d(float f10) {
-        for (int i7 = 0; i7 < this.f37215x; i7++) {
-            float[] fArr = this.f37207o;
-            float f11 = fArr[i7];
-            float f12 = this.f37208p[i7];
-            lc lcVar = nc.H;
-            float f13 = (f12 * f10 * 8.2f) + (0.8f * f12) + f11;
-            fArr[i7] = f13;
-            if (f13 >= 1.0f) {
-                fArr[i7] = 0.0f;
-                this.f37203k[i7] = this.f37204l[i7];
-                this.f37205m[i7] = this.f37206n[i7];
-                b(i7);
+    public final void c(boolean z10) {
+        float f10;
+        if (this.f37434i != z10) {
+            this.f37434i = z10;
+            ValueAnimator valueAnimator = this.f37433g;
+            this.f37433g = null;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
+            float f11 = this.f37435j;
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
+            this.f37433g = ofFloat;
+            ofFloat.addUpdateListener(new w(this, 8));
+            this.f37433g.addListener(new org.telegram.ui.on(2, this, z10));
+            if (this.f37434i) {
+                this.f37433g.setInterpolator(lr.f37208f);
+                this.f37433g.setDuration(this.f37429b * 60.0f);
+                this.f37433g.setStartDelay(0L);
+            } else {
+                this.f37433g.setInterpolator(new OvershootInterpolator(this.d));
+                this.f37433g.setDuration(this.f37430c * 350.0f);
+                this.f37433g.setStartDelay(this.f37431e);
+            }
+            this.f37433g.start();
         }
+    }
+
+    public mc(View view, float f10, float f11) {
+        this.f37431e = 0L;
+        this.h = 1.0f;
+        this.f37428a = view;
+        this.f37430c = f10;
+        this.f37429b = f10;
+        this.d = f11;
+    }
+
+    public mc(hi.j5 j5Var) {
+        this.f37431e = 0L;
+        this.h = 1.0f;
+        this.f37428a = j5Var;
+        this.f37429b = 1.5f;
+        this.f37430c = 1.0f;
+        this.d = 2.0f;
     }
 }

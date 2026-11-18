@@ -1,27 +1,70 @@
 package c8;
-
-import android.os.Build;
-import org.telegram.messenger.np;
-import org.telegram.ui.Dictation.DictationAsr;
 public abstract class z0 {
-    public static boolean a() {
-        if (b() && DictationAsr.B()) {
-            if (DictationAsr.x()) {
-                if (Build.VERSION.SDK_INT >= 33 && ai.d.h()) {
-                    return true;
-                }
-                return false;
+    public static int a(int r7, java.lang.CharSequence r8) {
+        throw new UnsupportedOperationException("Method not decompiled: c8.z0.a(int, java.lang.CharSequence):int");
+    }
+
+    public static int b(int i7, CharSequence charSequence) {
+        while (i7 < charSequence.length()) {
+            switch (charSequence.charAt(i7)) {
+                case '[':
+                    return -1;
+                case '\\':
+                    int i10 = i7 + 1;
+                    if (!a1.a(i10, charSequence)) {
+                        break;
+                    } else {
+                        i7 = i10;
+                        break;
+                    }
+                case ']':
+                    return i7;
             }
-            return true;
+            i7++;
         }
-        return false;
+        return charSequence.length();
     }
 
-    public static boolean b() {
-        return np.e1().getBoolean("design_voice_live_transcript", true);
+    public static int c(int i7, CharSequence charSequence) {
+        if (i7 >= charSequence.length()) {
+            return -1;
+        }
+        char charAt = charSequence.charAt(i7);
+        char c10 = '\"';
+        if (charAt != '\"') {
+            c10 = '\'';
+            if (charAt != '\'') {
+                if (charAt != '(') {
+                    return -1;
+                }
+                c10 = ')';
+            }
+        }
+        int d = d(charSequence, i7 + 1, c10);
+        if (d == -1 || d >= charSequence.length() || charSequence.charAt(d) != c10) {
+            return -1;
+        }
+        return d + 1;
     }
 
-    public static boolean c() {
-        return np.e1().getBoolean("design_voice_live_field", true);
+    public static int d(CharSequence charSequence, int i7, char c10) {
+        while (i7 < charSequence.length()) {
+            char charAt = charSequence.charAt(i7);
+            if (charAt == '\\') {
+                int i10 = i7 + 1;
+                if (a1.a(i10, charSequence)) {
+                    i7 = i10;
+                    i7++;
+                }
+            }
+            if (charAt == c10) {
+                return i7;
+            }
+            if (c10 == ')' && charAt == '(') {
+                return -1;
+            }
+            i7++;
+        }
+        return charSequence.length();
     }
 }

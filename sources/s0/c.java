@@ -9,12 +9,12 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
 import java.util.List;
 public final class c {
-    public static int f56165c;
-    public final AccessibilityNodeInfo f56166a;
-    public int f56167b = -1;
+    public static int f56739c;
+    public final AccessibilityNodeInfo f56740a;
+    public int f56741b = -1;
 
     public c(AccessibilityNodeInfo accessibilityNodeInfo) {
-        this.f56166a = accessibilityNodeInfo;
+        this.f56740a = accessibilityNodeInfo;
     }
 
     public static String e(int i7) {
@@ -120,15 +120,15 @@ public final class c {
     }
 
     public final void a(int i7) {
-        this.f56166a.addAction(i7);
+        this.f56740a.addAction(i7);
     }
 
     public final void b(b bVar) {
-        this.f56166a.addAction((AccessibilityNodeInfo.AccessibilityAction) bVar.f56163a);
+        this.f56740a.addAction((AccessibilityNodeInfo.AccessibilityAction) bVar.f56737a);
     }
 
     public final ArrayList c(String str) {
-        AccessibilityNodeInfo accessibilityNodeInfo = this.f56166a;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.f56740a;
         ArrayList<Integer> integerArrayList = accessibilityNodeInfo.getExtras().getIntegerArrayList(str);
         if (integerArrayList == null) {
             ArrayList<Integer> arrayList = new ArrayList<>();
@@ -139,7 +139,7 @@ public final class c {
     }
 
     public final ArrayList d() {
-        List<AccessibilityNodeInfo.AccessibilityAction> actionList = this.f56166a.getActionList();
+        List<AccessibilityNodeInfo.AccessibilityAction> actionList = this.f56740a.getActionList();
         ArrayList arrayList = new ArrayList();
         int size = actionList.size();
         for (int i7 = 0; i7 < size; i7++) {
@@ -154,8 +154,8 @@ public final class c {
         }
         if (obj != null && (obj instanceof c)) {
             c cVar = (c) obj;
-            AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56166a;
-            AccessibilityNodeInfo accessibilityNodeInfo2 = this.f56166a;
+            AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56740a;
+            AccessibilityNodeInfo accessibilityNodeInfo2 = this.f56740a;
             if (accessibilityNodeInfo2 == null) {
                 if (accessibilityNodeInfo != null) {
                     return false;
@@ -163,7 +163,7 @@ public final class c {
             } else if (!accessibilityNodeInfo2.equals(accessibilityNodeInfo)) {
                 return false;
             }
-            if (this.f56167b == cVar.f56167b) {
+            if (this.f56741b == cVar.f56741b) {
                 return true;
             }
             return false;
@@ -172,7 +172,7 @@ public final class c {
     }
 
     public final boolean f(int i7) {
-        Bundle extras = this.f56166a.getExtras();
+        Bundle extras = this.f56740a.getExtras();
         if (extras == null || (extras.getInt("androidx.view.accessibility.AccessibilityNodeInfoCompat.BOOLEAN_PROPERTY_KEY", 0) & i7) != i7) {
             return false;
         }
@@ -181,7 +181,7 @@ public final class c {
 
     public final CharSequence g() {
         boolean isEmpty = c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY").isEmpty();
-        AccessibilityNodeInfo accessibilityNodeInfo = this.f56166a;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.f56740a;
         if (!isEmpty) {
             ArrayList c10 = c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY");
             ArrayList c11 = c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_END_KEY");
@@ -197,11 +197,11 @@ public final class c {
     }
 
     public final void h(Rect rect) {
-        this.f56166a.setBoundsInParent(rect);
+        this.f56740a.setBoundsInParent(rect);
     }
 
     public final int hashCode() {
-        AccessibilityNodeInfo accessibilityNodeInfo = this.f56166a;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.f56740a;
         if (accessibilityNodeInfo == null) {
             return 0;
         }
@@ -209,16 +209,16 @@ public final class c {
     }
 
     public final void i(String str) {
-        this.f56166a.setClassName(str);
+        this.f56740a.setClassName(str);
     }
 
     public final void j(String str) {
-        this.f56166a.setContentDescription(str);
+        this.f56740a.setContentDescription(str);
     }
 
     public final void k(boolean z10) {
         int i7 = Build.VERSION.SDK_INT;
-        AccessibilityNodeInfo accessibilityNodeInfo = this.f56166a;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.f56740a;
         if (i7 >= 28) {
             accessibilityNodeInfo.setHeading(z10);
             return;
@@ -236,7 +236,7 @@ public final class c {
 
     public final void l(CharSequence charSequence) {
         int i7 = Build.VERSION.SDK_INT;
-        AccessibilityNodeInfo accessibilityNodeInfo = this.f56166a;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.f56740a;
         if (i7 >= 26) {
             accessibilityNodeInfo.setHintText(charSequence);
         } else {
@@ -246,7 +246,7 @@ public final class c {
 
     public final void m(CharSequence charSequence) {
         int i7 = Build.VERSION.SDK_INT;
-        AccessibilityNodeInfo accessibilityNodeInfo = this.f56166a;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.f56740a;
         if (i7 >= 28) {
             accessibilityNodeInfo.setPaneTitle(charSequence);
         } else {
@@ -256,7 +256,7 @@ public final class c {
 
     public final void n(boolean z10) {
         int i7 = Build.VERSION.SDK_INT;
-        AccessibilityNodeInfo accessibilityNodeInfo = this.f56166a;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.f56740a;
         if (i7 >= 28) {
             accessibilityNodeInfo.setScreenReaderFocusable(z10);
             return;
@@ -268,11 +268,11 @@ public final class c {
     }
 
     public final void o(CharSequence charSequence) {
-        this.f56166a.setText(charSequence);
+        this.f56740a.setText(charSequence);
     }
 
     public final void p(boolean z10) {
-        this.f56166a.setVisibleToUser(z10);
+        this.f56740a.setVisibleToUser(z10);
     }
 
     public final String toString() {
@@ -286,7 +286,7 @@ public final class c {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(super.toString());
         Rect rect = new Rect();
-        AccessibilityNodeInfo accessibilityNodeInfo = this.f56166a;
+        AccessibilityNodeInfo accessibilityNodeInfo = this.f56740a;
         accessibilityNodeInfo.getBoundsInParent(rect);
         sb2.append("; boundsInParent: " + rect);
         accessibilityNodeInfo.getBoundsInScreen(rect);
@@ -395,8 +395,8 @@ public final class c {
         ArrayList d = d();
         for (int i10 = 0; i10 < d.size(); i10++) {
             b bVar = (b) d.get(i10);
-            Object obj = bVar.f56163a;
-            Object obj2 = bVar.f56163a;
+            Object obj = bVar.f56737a;
+            Object obj2 = bVar.f56737a;
             String e10 = e(((AccessibilityNodeInfo.AccessibilityAction) obj).getId());
             if (e10.equals("ACTION_UNKNOWN") && ((AccessibilityNodeInfo.AccessibilityAction) obj2).getLabel() != null) {
                 e10 = ((AccessibilityNodeInfo.AccessibilityAction) obj2).getLabel().toString();

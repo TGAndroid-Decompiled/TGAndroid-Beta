@@ -2,25 +2,25 @@ package h0;
 
 import com.google.android.gms.internal.vision.e2;
 public final class k {
-    public static final k f13390k;
-    public final float f13391a;
-    public final float f13392b;
-    public final float f13393c;
+    public static final k f13705k;
+    public final float f13706a;
+    public final float f13707b;
+    public final float f13708c;
     public final float d;
-    public final float f13394e;
-    public final float f13395f;
-    public final float[] f13396g;
+    public final float f13709e;
+    public final float f13710f;
+    public final float[] f13711g;
     public final float h;
-    public final float f13397i;
-    public final float f13398j;
+    public final float f13712i;
+    public final float f13713j;
 
     static {
         float f10;
         float[] fArr;
         float j3 = (float) ((b.j() * 63.66197723675813d) / 100.0d);
-        float[] fArr2 = b.f13370c;
+        float[] fArr2 = b.f13685c;
         float f11 = fArr2[0];
-        float[][] fArr3 = b.f13368a;
+        float[][] fArr3 = b.f13683a;
         float[] fArr4 = fArr3[0];
         float f12 = fArr2[1];
         float f13 = fArr4[1] * f12;
@@ -58,19 +58,19 @@ public final class k {
         float f24 = (f23 * 400.0f) / (f23 + 27.13f);
         float f25 = fArr7[2];
         float[] fArr8 = {f22, f24, (400.0f * f25) / (f25 + 27.13f)};
-        f13390k = new k(j10, e2.B(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f18, 1.0f, new float[]{(((100.0f / f15) * C) + 1.0f) - C, (((100.0f / f16) * C) + 1.0f) - C, (((100.0f / f17) * C) + 1.0f) - C}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
+        f13705k = new k(j10, e2.B(fArr8[2], 0.05f, (fArr8[0] * 2.0f) + fArr8[1], pow), pow, pow, f18, 1.0f, new float[]{(((100.0f / f15) * C) + 1.0f) - C, (((100.0f / f16) * C) + 1.0f) - C, (((100.0f / f17) * C) + 1.0f) - C}, cbrt, (float) Math.pow(cbrt, 0.25d), sqrt);
     }
 
     public k(float f10, float f11, float f12, float f13, float f14, float f15, float[] fArr, float f16, float f17, float f18) {
-        this.f13395f = f10;
-        this.f13391a = f11;
-        this.f13392b = f12;
-        this.f13393c = f13;
+        this.f13710f = f10;
+        this.f13706a = f11;
+        this.f13707b = f12;
+        this.f13708c = f13;
         this.d = f14;
-        this.f13394e = f15;
-        this.f13396g = fArr;
+        this.f13709e = f15;
+        this.f13711g = fArr;
         this.h = f16;
-        this.f13397i = f17;
-        this.f13398j = f18;
+        this.f13712i = f17;
+        this.f13713j = f18;
     }
 }

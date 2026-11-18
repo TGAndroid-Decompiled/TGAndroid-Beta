@@ -1,56 +1,35 @@
 package di;
 
 import android.graphics.Canvas;
-import android.graphics.Path;
+import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class ra extends org.telegram.ui.Components.i9 {
-    public xh.e H;
-    public Path I;
-    public RectF J;
-    public Drawable K;
+import android.text.style.ReplacementSpan;
+import org.telegram.ui.Components.vy0;
+public final class ra extends ReplacementSpan {
+    public final Paint f9673a;
+    public final vy0 f9674b;
+    public final int f9675c;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        RectF rectF = this.J;
-        Path path = this.I;
-        Drawable drawable = this.K;
-        super.dispatchDraw(canvas);
-        if (this.H == null) {
-            this.H = xh.e.e(this);
-        }
-        if (this.H != null) {
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            path.rewind();
-            path.addRoundRect(rectF, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            canvas2 = canvas;
-            this.H.c(canvas2, this, getWidth(), getHeight(), 1.0f, false);
-            canvas2.restore();
-        } else {
-            canvas2 = canvas;
-        }
-        drawable.setBounds((getWidth() - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
-        drawable.draw(canvas2);
+    public ra(int i7, String str) {
+        this.f9675c = i7;
+        Paint paint = new Paint(1);
+        this.f9673a = paint;
+        paint.setColor(org.telegram.ui.ActionBar.n6.r1(0.1f, i7));
+        this.f9674b = new vy0(str, 13.0f, org.telegram.messenger.g0.o());
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        xh.e eVar = this.H;
-        if (eVar != null) {
-            eVar.a(this);
-        }
-        super.onAttachedToWindow();
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        RectF rectF = org.telegram.messenger.g0.P;
+        int i14 = i11 + i13;
+        rectF.set(f10, (i14 - org.telegram.messenger.g0.L(20.0f)) / 2.0f, org.telegram.messenger.g0.L(12.0f) + f10 + this.f9674b.f41482c, (org.telegram.messenger.g0.L(20.0f) + i14) / 2.0f);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), this.f9673a);
+        int i15 = this.f9675c;
+        this.f9674b.c(f10 + org.telegram.messenger.g0.L(6.0f), i14 / 2.0f, 1.0f, i15, canvas);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        xh.e eVar = this.H;
-        if (eVar != null) {
-            eVar.b(this);
-        }
-        super.onDetachedFromWindow();
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) (org.telegram.messenger.g0.L(12.0f) + this.f9674b.f41482c);
     }
 }

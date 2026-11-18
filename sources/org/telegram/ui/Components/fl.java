@@ -1,65 +1,66 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class fl implements r4, ij0, r71 {
-    public final int f34625a;
-    public final ChatAttachAlertPhotoLayout f34626b;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
+public final class fl implements ViewTreeObserver.OnPreDrawListener {
+    public final int f35133a;
+    public final View f35134b;
 
-    public fl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f34625a = i7;
-        this.f34626b = chatAttachAlertPhotoLayout;
+    public fl(int i7, View view) {
+        this.f35133a = i7;
+        this.f35134b = view;
     }
 
     @Override
-    public void L(int i7, int i10, boolean z10) {
-        int i11 = this.f34625a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34626b;
-        switch (i11) {
+    public final boolean onPreDraw() {
+        float f10;
+        RecyclerView recyclerView;
+        switch (this.f35133a) {
             case 0:
-                boolean z11 = ChatAttachAlertPhotoLayout.f32365r1;
-                ki kiVar = chatAttachAlertPhotoLayout.f33609b;
-                kiVar.M0();
-                kiVar.X3.y1(7, false, z10, i7, 0, 0L, kiVar.f1(), false, 0L);
-                return;
-            default:
-                boolean z12 = ChatAttachAlertPhotoLayout.f32365r1;
-                ki kiVar2 = chatAttachAlertPhotoLayout.f33609b;
-                kiVar2.M0();
-                kiVar2.X3.y1(4, true, z10, i7, 0, 0L, kiVar2.f1(), false, 0L);
-                return;
-        }
-    }
-
-    @Override
-    public boolean b(int i7, View view) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f32365r1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34626b;
-        ki kiVar = chatAttachAlertPhotoLayout.f33609b;
-        if (!kiVar.R2) {
-            if (i7 == 0 && chatAttachAlertPhotoLayout.U0 == chatAttachAlertPhotoLayout.V0) {
-                ii iiVar = kiVar.X3;
-                if (iiVar != null) {
-                    iiVar.y1(0, false, true, 0, 0, 0L, kiVar.f1(), false, 0L);
+                kl klVar = (kl) this.f35134b;
+                v7 v7Var = klVar.f36766b.V2;
+                if (v7Var != null) {
+                    f10 = v7Var.getAlpha();
+                } else {
+                    f10 = 0.0f;
+                }
+                if (f10 != klVar.A0) {
+                    klVar.A0 = f10;
+                    klVar.i0();
+                    return true;
                 }
                 return true;
-            } else if (view instanceof org.telegram.ui.Cells.q5) {
-                yj0 yj0Var = chatAttachAlertPhotoLayout.J;
-                boolean z11 = !((org.telegram.ui.Cells.q5) view).a();
-                chatAttachAlertPhotoLayout.L = z11;
-                yj0Var.d(i7, view, z11);
-            }
+            case 1:
+                org.telegram.ui.ActionBar.y3 y3Var = ((EditTextBoldCursor) this.f35134b).Z0;
+                if (y3Var != null) {
+                    y3Var.c();
+                    return true;
+                }
+                return true;
+            case 2:
+                ((u60) this.f35134b).invalidate();
+                return true;
+            default:
+                qt0 qt0Var = (qt0) this.f35134b;
+                if (qt0Var.f38896a && qt0Var.f38898b > 0) {
+                    qt0Var.f("PRE_DRAW_BEFORE", null, 0, 0, true);
+                }
+                qt0Var.p();
+                if (qt0Var.f38908h0 && (recyclerView = qt0Var.F) != null && !recyclerView.c0()) {
+                    float n10 = qt0Var.n();
+                    if (!Float.isInfinite(n10)) {
+                        qt0Var.f38908h0 = false;
+                        qt0Var.t(qt0Var.F, Math.round(n10 - qt0Var.V));
+                        qt0Var.B();
+                    }
+                }
+                if (qt0Var.f38896a && qt0Var.f38898b > 0) {
+                    qt0Var.f("PRE_DRAW_AFTER", null, 0, 0, true);
+                    qt0Var.f38898b--;
+                    qt0Var.f38900c++;
+                }
+                return true;
         }
-        return false;
-    }
-
-    @Override
-    public void c(float f10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34626b;
-        xl xlVar = chatAttachAlertPhotoLayout.Q;
-        if (xlVar != null) {
-            chatAttachAlertPhotoLayout.C0 = f10;
-            xlVar.setZoom(f10);
-        }
-        chatAttachAlertPhotoLayout.w0(true);
     }
 }

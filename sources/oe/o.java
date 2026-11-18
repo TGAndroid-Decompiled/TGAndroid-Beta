@@ -1,19 +1,19 @@
 package oe;
 
-import c8.u9;
+import c8.w9;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 public final class o implements me.d, b {
-    public final me.d f21456a;
-    public final String f21457b;
-    public final Set f21458c;
+    public final me.d f21822a;
+    public final String f21823b;
+    public final Set f21824c;
 
     public o(me.d original) {
         Set set;
         kotlin.jvm.internal.j.e(original, "original");
-        this.f21456a = original;
-        this.f21457b = original.a() + '?';
+        this.f21822a = original;
+        this.f21823b = original.a() + '?';
         kotlin.jvm.internal.j.e(original, "<this>");
         if (original instanceof b) {
             set = ((b) original).b();
@@ -25,17 +25,17 @@ public final class o implements me.d, b {
             }
             set = hashSet;
         }
-        this.f21458c = set;
+        this.f21824c = set;
     }
 
     @Override
     public final String a() {
-        return this.f21457b;
+        return this.f21823b;
     }
 
     @Override
     public final Set b() {
-        return this.f21458c;
+        return this.f21824c;
     }
 
     @Override
@@ -46,12 +46,12 @@ public final class o implements me.d, b {
     @Override
     public final int d(String name) {
         kotlin.jvm.internal.j.e(name, "name");
-        return this.f21456a.d(name);
+        return this.f21822a.d(name);
     }
 
     @Override
-    public final u9 e() {
-        return this.f21456a.e();
+    public final w9 e() {
+        return this.f21822a.e();
     }
 
     public final boolean equals(Object obj) {
@@ -61,7 +61,7 @@ public final class o implements me.d, b {
         if (!(obj instanceof o)) {
             return false;
         }
-        if (kotlin.jvm.internal.j.a(this.f21456a, ((o) obj).f21456a)) {
+        if (kotlin.jvm.internal.j.a(this.f21822a, ((o) obj).f21822a)) {
             return true;
         }
         return false;
@@ -69,46 +69,46 @@ public final class o implements me.d, b {
 
     @Override
     public final int f() {
-        return this.f21456a.f();
+        return this.f21822a.f();
     }
 
     @Override
     public final String g(int i7) {
-        return this.f21456a.g(i7);
+        return this.f21822a.g(i7);
     }
 
     @Override
     public final List getAnnotations() {
-        return this.f21456a.getAnnotations();
+        return this.f21822a.getAnnotations();
     }
 
     @Override
     public final List h(int i7) {
-        return this.f21456a.h(i7);
+        return this.f21822a.h(i7);
     }
 
     public final int hashCode() {
-        return this.f21456a.hashCode() * 31;
+        return this.f21822a.hashCode() * 31;
     }
 
     @Override
     public final me.d i(int i7) {
-        return this.f21456a.i(i7);
+        return this.f21822a.i(i7);
     }
 
     @Override
     public final boolean isInline() {
-        return this.f21456a.isInline();
+        return this.f21822a.isInline();
     }
 
     @Override
     public final boolean j(int i7) {
-        return this.f21456a.j(i7);
+        return this.f21822a.j(i7);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f21456a);
+        sb2.append(this.f21822a);
         sb2.append('?');
         return sb2.toString();
     }

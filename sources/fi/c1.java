@@ -1,288 +1,443 @@
 package fi;
 
-import a8.ha;
 import android.content.Context;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
-import android.os.SystemClock;
-import android.telephony.TelephonyManager;
-import android.text.TextUtils;
-import c8.kd;
+import android.media.AudioManager;
+import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.messenger.ns;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.messenger.voip.VoipAudioManager;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.vp0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class c1 implements Runnable {
-    public final int f11586a;
-    public final Object f11587b;
+import org.webrtc.VideoSink;
+import org.webrtc.voiceengine.WebRtcAudioTrack;
+public final class c1 implements fs, AudioManager.OnAudioFocusChangeListener {
+    public static c1 X;
+    public int E;
+    public NativeInstance F;
+    public TLRPC.GroupCallParticipant H;
+    public final a1 I;
+    public boolean J;
+    public long K;
+    public int L;
+    public boolean M;
+    public VideoSink P;
+    public boolean Q;
+    public Runnable R;
+    public Runnable S;
+    public ArrayList V;
+    public ArrayList W;
+    public final TL_stories.StoryItem f11793a;
+    public final long f11794b;
+    public final int f11795c;
+    public final Context d;
+    public final int f11796e;
+    public final TLRPC.InputGroupCall f11797f;
+    public final boolean h;
+    public boolean f11798n;
+    public TLRPC.GroupCall f11801w;
+    public boolean f11803y;
+    public boolean f11799r = false;
+    public boolean f11800s = false;
+    public boolean f11802x = false;
+    public final HashMap G = new HashMap();
+    public final HashSet N = new HashSet();
+    public float O = 1.0f;
+    public int T = -1;
+    public int U = -1;
 
-    public c1(Object obj, int i7) {
-        this.f11586a = i7;
-        this.f11587b = obj;
+    public c1(Context context, int i7, TL_stories.StoryItem storyItem, long j3, int i10, boolean z10, TLRPC.InputGroupCall inputGroupCall, boolean z11, boolean z12) {
+        this.J = false;
+        this.d = context;
+        this.f11796e = i7;
+        this.f11797f = inputGroupCall;
+        this.f11793a = storyItem;
+        this.f11794b = j3;
+        this.f11795c = i10;
+        this.h = z10;
+        this.f11798n = z11;
+        this.J = z12;
+        a1 a1Var = new a1(this);
+        this.I = a1Var;
+        org.telegram.messenger.a8.b("[LivePlayer] setup to call " + inputGroupCall.f28422id);
+        ks.f(i7).b(this, ks.f25222x2);
+        if (z11) {
+            this.K = NativeInstance.createVideoCapturer(a1Var, z12 ? 1 : 0);
+        }
+        c();
+        k();
+    }
+
+    public static NativeInstance.SsrcGroup[] d(TLRPC.TL_groupCallParticipantVideo tL_groupCallParticipantVideo) {
+        if (tL_groupCallParticipantVideo.source_groups.isEmpty()) {
+            return null;
+        }
+        int size = tL_groupCallParticipantVideo.source_groups.size();
+        NativeInstance.SsrcGroup[] ssrcGroupArr = new NativeInstance.SsrcGroup[size];
+        for (int i7 = 0; i7 < size; i7++) {
+            ssrcGroupArr[i7] = new NativeInstance.SsrcGroup();
+            TLRPC.TL_groupCallParticipantVideoSourceGroup tL_groupCallParticipantVideoSourceGroup = tL_groupCallParticipantVideo.source_groups.get(i7);
+            NativeInstance.SsrcGroup ssrcGroup = ssrcGroupArr[i7];
+            ssrcGroup.semantics = tL_groupCallParticipantVideoSourceGroup.semantics;
+            ssrcGroup.ssrcs = new int[tL_groupCallParticipantVideoSourceGroup.sources.size()];
+            int i10 = 0;
+            while (true) {
+                int[] iArr = ssrcGroupArr[i7].ssrcs;
+                if (i10 < iArr.length) {
+                    iArr[i10] = tL_groupCallParticipantVideoSourceGroup.sources.get(i10).intValue();
+                    i10++;
+                }
+            }
+        }
+        return ssrcGroupArr;
+    }
+
+    public final boolean a() {
+        TLRPC.GroupCall groupCall;
+        if (!this.f11802x && !this.f11798n && this.f11800s && X == null && (groupCall = this.f11801w) != null && !groupCall.rtmp_stream && groupCall.creator) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean b() {
+        if (this.f11801w == null || l()) {
+            return false;
+        }
+        return !this.f11801w.messages_enabled;
+    }
+
+    public final void c() {
+        boolean z10;
+        WebRtcAudioTrack.setAudioTrackUsageAttribute(1);
+        WebRtcAudioTrack.setAudioStreamType(Integer.MIN_VALUE);
+        AudioManager audioManager = (AudioManager) this.d.getSystemService("audio");
+        if (this.h) {
+            audioManager.setMode(0);
+            audioManager.setBluetoothScoOn(false);
+        } else if (this.f11798n) {
+            audioManager.setMode(3);
+            if (audioManager.requestAudioFocus(this, 0, 2) == 1) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            this.M = z10;
+            VoipAudioManager voipAudioManager = VoipAudioManager.get();
+            audioManager.setBluetoothScoOn(false);
+            voipAudioManager.setSpeakerphoneOn(true);
+        }
     }
 
     @Override
-    public final void run() {
-        wi.n nVar;
-        LaunchActivity launchActivity;
-        String str;
-        int i7;
-        String d;
-        TelephonyManager telephonyManager;
-        boolean z10 = false;
-        switch (this.f11586a) {
-            case 0:
-                e1 e1Var = ((d1) this.f11587b).f11620a;
-                ns.f(e1Var.f11656e).k(176, Long.valueOf(e1Var.g()));
-                return;
-            case 1:
-                g1 g1Var = (g1) this.f11587b;
-                i9 i9Var = g1Var.f11726c;
-                if (i9Var != null && g1Var.F() && (nVar = g1Var.f11724a) != null && nVar.f59424c == 0 && (launchActivity = LaunchActivity.H1) != null && kd.a(launchActivity)) {
-                    i9Var.T();
-                    return;
-                }
-                return;
-            case 2:
-                wi.n nVar2 = ((f1) this.f11587b).f11694e.f11724a;
-                if (nVar2 != null) {
-                    nVar2.c();
-                    return;
-                }
-                return;
-            case 3:
-                ((z2) this.f11587b).f12578a.O0();
-                return;
-            case 4:
-                b4 b4Var = ((e3) this.f11587b).f11671y;
-                u3 u3Var = b4Var.A1;
-                if (u3Var != null) {
-                    if (!b4Var.D1 && !b4Var.E1 && !b4Var.F1) {
-                        i9 i9Var2 = ((z8) u3Var).d;
-                        if (!i9Var2.f11861o0.getCurrentPeerView().b1(true) && !i9Var2.f11861o0.E(true)) {
-                            i9Var2.u(true);
-                            return;
-                        }
-                        return;
-                    } else if (b4Var.f11543y1.f12582e) {
-                        ((h9) b4Var.f11536w2.f11407c).loopBack();
-                        return;
-                    } else {
-                        b4Var.G0 = 0L;
-                        return;
-                    }
-                }
-                return;
-            case 5:
-                ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f11587b;
-                int i10 = ProfileStoriesView.f43351t0;
-                profileStoriesView.getClass();
-                org.telegram.messenger.g0.b4(profileStoriesView);
-                return;
-            case 6:
-                c5.a(((y4) this.f11587b).d);
-                return;
-            case 7:
-                o5 o5Var = (o5) this.f11587b;
-                if (o5Var.isShowing()) {
-                    o5Var.J0(true);
-                    return;
-                }
-                return;
-            case 8:
-                hi.a1 a1Var = (hi.a1) this.f11587b;
-                a1Var.c(a1Var.f13862b);
-                a1Var.f13863c = false;
-                return;
-            case 9:
-                ((hi.b8) this.f11587b).run();
-                return;
-            case 10:
-                w6 w6Var = (w6) this.f11587b;
-                w6Var.c();
-                w6Var.a(true);
-                return;
-            case 11:
-                ((q5) this.f11587b).a(null);
-                return;
-            case 12:
-                ((g7) this.f11587b).R();
-                return;
-            case 13:
-                p7 p7Var = (p7) this.f11587b;
-                ArrayList arrayList = p7Var.f12181c;
-                if (arrayList != null) {
-                    p7Var.f12179a.f11487j1 = arrayList;
-                }
-                b4 b4Var2 = p7Var.f12179a;
-                long j3 = p7Var.f12180b;
-                if (b4Var2.l1 != j3 || b4Var2.f11487j1 != null) {
-                    b4Var2.l1 = j3;
-                    b4Var2.h1();
-                    b4Var2.g1();
-                    b4Var2.d1(true);
-                    TL_stories.PeerStories peerStories = b4Var2.f11522t0.Q0;
-                    if (peerStories != null) {
-                        b4Var2.C1.V(peerStories, true);
-                        return;
-                    }
-                    s6 s6Var = b4Var2.C1;
-                    TL_stories.PeerStories y10 = s6Var.y(j3);
-                    if (y10 == null) {
-                        y10 = s6Var.z(j3);
-                        z10 = true;
-                    }
-                    s6Var.V(y10, z10);
-                    return;
-                }
-                return;
-            case 14:
-                ((n2.o0) this.f11587b).f(true);
-                return;
-            case 15:
-                ((d8) this.f11587b).requestLayout();
-                return;
-            case 16:
-                m8 m8Var = (m8) this.f11587b;
-                hi.l3 l3Var = m8Var.f12037c;
-                if (l3Var != null) {
-                    l3Var.f(true);
-                    m8Var.f12037c = null;
-                }
-                m8Var.b(false);
-                return;
-            case 17:
-                k8 k8Var = (k8) this.f11587b;
-                if (k8Var.f11971w) {
-                    k8Var.F = true;
-                    k8Var.G = System.currentTimeMillis();
-                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    k8Var.f11966e = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
-                    k8Var.f11967f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
-                    k8Var.invalidate();
-                    return;
-                }
-                return;
-            case 18:
-                i9 i9Var3 = ((r8) this.f11587b).f12289b;
-                try {
-                    w8 w8Var = i9Var3.f11870s;
-                    if (w8Var != null) {
-                        if (i9Var3.f11833b) {
-                            org.telegram.messenger.g0.E2(w8Var);
-                        } else {
-                            i9Var3.f11859n.removeView(w8Var);
-                        }
-                        i9Var3.f11870s = null;
-                        i9Var3.v();
-                        return;
-                    }
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            case 19:
-                ((w8) this.f11587b).f12486s0.Q(true);
-                return;
-            case 20:
-                ((r9) this.f11587b).c();
-                return;
-            case 21:
-                ((ki) this.f11587b).hide();
-                return;
-            case 22:
-                gi.m mVar = (gi.m) this.f11587b;
-                vp0 vp0Var = mVar.f13337a0;
-                c6 c6Var = mVar.f13336a;
-                if (c6Var == null) {
-                    str = "";
-                } else {
-                    str = c6Var.E;
-                }
-                vp0Var.a(str);
-                return;
-            case 23:
-                ((h2.j0) this.f11587b).getClass();
-                return;
-            case 24:
-                h2.v vVar = (h2.v) this.f11587b;
-                b3.f fVar = (b3.f) vVar.f13510a.get();
-                if (fVar != null) {
-                    int b10 = vVar.f13512c.b();
-                    b3.g gVar = fVar.f2884a;
-                    synchronized (gVar) {
-                        synchronized (gVar) {
-                            int i11 = gVar.f2902n;
-                            if (i11 == 0 || gVar.f2894e) {
-                                if (i11 != b10 || gVar.f2903o == null) {
-                                    gVar.f2902n = b10;
-                                    if (b10 != 1 && b10 != 0 && b10 != 8) {
-                                        if (gVar.f2903o == null) {
-                                            Context context = gVar.f2891a;
-                                            String str2 = h2.l0.f13471a;
-                                            if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
-                                                String networkCountryIso = telephonyManager.getNetworkCountryIso();
-                                                if (!TextUtils.isEmpty(networkCountryIso)) {
-                                                    d = ha.d(networkCountryIso);
-                                                    gVar.f2903o = d;
-                                                }
-                                            }
-                                            d = ha.d(Locale.getDefault().getCountry());
-                                            gVar.f2903o = d;
-                                        }
-                                        gVar.f2900l = gVar.b(b10);
-                                        gVar.d.getClass();
-                                        long elapsedRealtime = SystemClock.elapsedRealtime();
-                                        if (gVar.f2896g > 0) {
-                                            i7 = (int) (elapsedRealtime - gVar.h);
-                                        } else {
-                                            i7 = 0;
-                                        }
-                                        gVar.d(gVar.f2897i, i7, gVar.f2900l);
-                                        gVar.h = elapsedRealtime;
-                                        gVar.f2897i = 0L;
-                                        gVar.f2899k = 0L;
-                                        gVar.f2898j = 0L;
-                                        b3.t tVar = gVar.f2895f;
-                                        tVar.f2931a.clear();
-                                        tVar.f2933c = -1;
-                                        tVar.d = 0;
-                                        tVar.f2934e = 0;
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            }
-                            return;
-                        }
-                    }
-                }
-                return;
-            case 25:
-                ((hi.h) this.f11587b).f14354c.f14615a0 = false;
-                return;
-            case 26:
-                ((hi.l) this.f11587b).invalidateSelf();
-                return;
-            case 27:
-                ((hi.d0) this.f11587b).f14077g = -1L;
-                return;
-            case 28:
-                hi.n0 n0Var = (hi.n0) this.f11587b;
-                tg.i iVar = n0Var.f14720b.I;
-                if (iVar != null) {
-                    iVar.b();
-                }
-                n0Var.f14720b.k();
-                return;
-            default:
-                ((hi.v0) this.f11587b).a(false);
-                return;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == ks.f25222x2) {
+            long longValue = ((Long) objArr[0]).longValue();
+            TLRPC.GroupCall groupCall = (TLRPC.GroupCall) objArr[1];
+            if (this.f11794b == longValue) {
+                cg.d.a(this.f11801w, groupCall);
+                this.f11801w = groupCall;
+                ks.f(this.f11796e).k(ks.G2, Long.valueOf(groupCall.f28415id));
+            }
         }
+    }
+
+    public final void e() {
+        if (!this.f11802x) {
+            this.f11802x = true;
+            u(false);
+            ks.f(this.f11796e).n(this, ks.f25222x2);
+            org.telegram.messenger.a8.b("[LivePlayer] destroyed");
+            if (this.f11803y) {
+                TL_phone.leaveGroupCall leavegroupcall = new TL_phone.leaveGroupCall();
+                leavegroupcall.call = this.f11797f;
+                leavegroupcall.source = this.L;
+                ConnectionsManager.getInstance(this.f11796e).sendRequest(leavegroupcall, new x0(this, 5));
+            }
+            if (this.f11798n) {
+                this.I.setTarget(null);
+                NativeInstance.destroyVideoCapturer(this.K);
+            }
+            if (this.F != null) {
+                org.telegram.messenger.q5 q5Var = Utilities.f22782e;
+                NativeInstance nativeInstance = this.F;
+                Objects.requireNonNull(nativeInstance);
+                q5Var.c(new org.telegram.messenger.voip.q0(nativeInstance, 3));
+                this.N.clear();
+                this.F = null;
+            }
+            if (this.M) {
+                ((AudioManager) this.d.getSystemService("audio")).abandonAudioFocus(this);
+                this.M = false;
+            }
+            if (this.f11798n) {
+                VoipAudioManager.get().setSpeakerphoneOn(false);
+            }
+            if (X == this) {
+                X = null;
+                ks.f(this.f11796e).k(ks.G2, Long.valueOf(g()));
+            }
+        }
+    }
+
+    public final boolean f(TLRPC.InputGroupCall inputGroupCall) {
+        TLRPC.InputGroupCall inputGroupCall2 = this.f11797f;
+        if (inputGroupCall2 != inputGroupCall && inputGroupCall2.f28422id != inputGroupCall.f28422id) {
+            return false;
+        }
+        return true;
+    }
+
+    public final long g() {
+        TLRPC.GroupCall groupCall = this.f11801w;
+        if (groupCall != null) {
+            return groupCall.f28415id;
+        }
+        TLRPC.InputGroupCall inputGroupCall = this.f11797f;
+        if (inputGroupCall != null) {
+            return inputGroupCall.f28422id;
+        }
+        return 0L;
+    }
+
+    public final int h() {
+        TLRPC.GroupCall groupCall = this.f11801w;
+        if (groupCall == null || (groupCall.flags & 16) == 0) {
+            return Integer.MAX_VALUE;
+        }
+        return groupCall.stream_dc_id;
+    }
+
+    public final TLRPC.Peer i() {
+        TLRPC.GroupCall groupCall = this.f11801w;
+        if (groupCall == null) {
+            return null;
+        }
+        return groupCall.default_send_as;
+    }
+
+    public final long j() {
+        TLRPC.GroupCall groupCall = this.f11801w;
+        if (groupCall == null) {
+            return 0L;
+        }
+        return groupCall.send_paid_messages_stars;
+    }
+
+    public final void k() {
+        if (this.f11802x) {
+            return;
+        }
+        NativeInstance makeGroup = NativeInstance.makeGroup(org.telegram.ui.Components.voip.b2.d("live_" + this.f11797f.f28422id), 0L, false, bz.I0, new u0(this, 0), new ci.v(25), new u0(this, 2), new u0(this, 3), new u0(this, 4), new u0(this, 5), false);
+        this.F = makeGroup;
+        makeGroup.setOnStateUpdatedListener(new b1(this));
+        this.F.resetGroupInstance(false, false);
+    }
+
+    public final boolean l() {
+        TLRPC.GroupCall groupCall = this.f11801w;
+        if (groupCall != null && groupCall.creator) {
+            return true;
+        }
+        long j3 = this.f11794b;
+        int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+        int i10 = this.f11796e;
+        if (i7 >= 0) {
+            if (j10.i(i10).e() == j3) {
+                return true;
+            }
+            return false;
+        }
+        return org.telegram.messenger.v3.w(14, mp.u1(i10).O0(Long.valueOf(-j3)));
+    }
+
+    public final boolean m() {
+        int i7 = this.E;
+        if (i7 == 3 || i7 == 1 || i7 == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean n() {
+        if (!this.f11802x && this.f11800s) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean o() {
+        if (this.f11798n && this.f11799r) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void p() {
+        this.R = null;
+        if (this.f11802x) {
+            return;
+        }
+        TL_phone.checkGroupCall checkgroupcall = new TL_phone.checkGroupCall();
+        checkgroupcall.call = this.f11797f;
+        checkgroupcall.sources.add(Integer.valueOf(this.L));
+        ConnectionsManager.getInstance(this.f11796e).sendRequest(checkgroupcall, new x0(this, 3));
+    }
+
+    public final void q() {
+        this.S = null;
+        if (this.f11802x) {
+            return;
+        }
+        TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
+        getgroupcall.call = this.f11797f;
+        ConnectionsManager.getInstance(this.f11796e).sendRequest(getgroupcall, new x0(this, 0));
+    }
+
+    public final void r(NativeInstance.SsrcGroup[] ssrcGroupArr) {
+        int length;
+        int i7 = 0;
+        while (true) {
+            if (ssrcGroupArr == null) {
+                length = 0;
+            } else {
+                length = ssrcGroupArr.length;
+            }
+            if (i7 < length) {
+                int i10 = 0;
+                while (true) {
+                    int[] iArr = ssrcGroupArr[i7].ssrcs;
+                    if (i10 < iArr.length) {
+                        this.N.add(Integer.valueOf(iArr[i10]));
+                        i10++;
+                    }
+                }
+                i7++;
+            } else {
+                x();
+                return;
+            }
+        }
+    }
+
+    public final void s(VideoSink videoSink) {
+        if (this.P == videoSink) {
+            return;
+        }
+        this.P = videoSink;
+        this.I.setTarget(videoSink);
+    }
+
+    public final void t(boolean z10) {
+        if (!this.f11802x && this.f11800s != z10) {
+            if (this.f11798n && z10) {
+                return;
+            }
+            this.f11800s = z10;
+            ks.f(this.f11796e).k(ks.G2, Long.valueOf(g()));
+        }
+    }
+
+    public final void u(boolean z10) {
+        int i7;
+        if (this.f11802x) {
+            z10 = false;
+        }
+        if (this.Q != z10) {
+            this.Q = z10;
+            if (!z10) {
+                int i10 = this.T;
+                int i11 = this.f11796e;
+                if (i10 != -1) {
+                    ConnectionsManager.getInstance(i11).cancelRequest(this.T, true);
+                    this.T = -1;
+                }
+                if (this.U != -1) {
+                    ConnectionsManager.getInstance(i11).cancelRequest(this.U, true);
+                    this.U = -1;
+                }
+                Runnable runnable = this.R;
+                if (runnable != null) {
+                    org.telegram.messenger.g0.r(runnable);
+                    this.R = null;
+                }
+                Runnable runnable2 = this.S;
+                if (runnable2 != null) {
+                    org.telegram.messenger.g0.r(runnable2);
+                    this.S = null;
+                    return;
+                }
+                return;
+            }
+            Runnable runnable3 = this.R;
+            if (runnable3 != null) {
+                org.telegram.messenger.g0.r(runnable3);
+            }
+            w0 w0Var = new w0(this, 0);
+            this.R = w0Var;
+            org.telegram.messenger.g0.h3(w0Var, 4000L);
+            Runnable runnable4 = this.S;
+            if (runnable4 != null) {
+                org.telegram.messenger.g0.r(runnable4);
+            }
+            w0 w0Var2 = new w0(this, 1);
+            this.S = w0Var2;
+            if (l()) {
+                i7 = 5000;
+            } else {
+                i7 = 20000;
+            }
+            org.telegram.messenger.g0.h3(w0Var2, i7);
+        }
+    }
+
+    public final void v(float f10) {
+        wi.n nVar;
+        float l10 = Utilities.l(f10);
+        e1 e1Var = e1.f11871w;
+        if (e1Var != null && e1Var.f11873b == this && (nVar = e1Var.f11872a) != null && nVar.d() && e1Var.f11872a.f59988c != 0) {
+            e1 e1Var2 = e1.f11871w;
+            l10 = (e1Var2 == null || !e1Var2.f11879s) ? 1.0f : 0.0f;
+        }
+        org.telegram.messenger.a8.b("setVolume(" + l10 + ")");
+        if (Math.abs(l10 - this.O) < 0.01f) {
+            return;
+        }
+        this.O = l10;
+        x();
+    }
+
+    public final void w() {
+        TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
+        int i7 = this.f11796e;
+        tL_updateStory.peer = mp.u1(i7).B1(this.f11794b);
+        TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
+        tL_updateStory.story = tL_storyItemDeleted;
+        tL_storyItemDeleted.f28644id = this.f11795c;
+        mp.u1(i7).R1().c0(tL_updateStory);
+        e();
+    }
+
+    public final void x() {
+        if (!this.f11802x && this.F != null) {
+            Iterator it = this.N.iterator();
+            while (it.hasNext()) {
+                this.F.setVolume(((Integer) it.next()).intValue(), this.O);
+            }
+        }
+    }
+
+    @Override
+    public final void onAudioFocusChange(int i7) {
     }
 }

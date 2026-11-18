@@ -1,22 +1,19 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class ai extends org.telegram.ui.Components.xn {
-    public final an N;
+public final class ai extends org.telegram.ui.Cells.u0 {
+    public final bn C2;
 
-    public ai(an anVar, Activity activity, int i7, TLRPC.Document document, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(activity, i7, document, e6Var);
-        this.N = anVar;
+    public ai(Activity activity, org.telegram.ui.ActionBar.i6 i6Var, bn bnVar) {
+        super(activity, i6Var, false);
+        this.C2 = bnVar;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
         float y10 = getY();
-        an anVar = this.N;
-        float y11 = anVar.f45200g1.getY() + y10;
-        this.K = anVar.f45277m1.getBackgroundSizeY();
-        this.J = y11;
+        bn bnVar = this.C2;
+        l0(bnVar.f46015g1.getY() + y10, bnVar.f46093m1.getBackgroundSizeY());
     }
 }

@@ -1,63 +1,29 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup;
-public final class qc1 extends org.telegram.ui.Components.tj0 {
-    public final Context f50581c;
-    public final WallpapersListActivity d;
+public final class qc1 extends View {
+    public int f51239a;
+    public final WallpapersListActivity f51240b;
 
     public qc1(WallpapersListActivity wallpapersListActivity, Context context) {
-        this.d = wallpapersListActivity;
-        this.f50581c = context;
+        super(context);
+        this.f51240b = wallpapersListActivity;
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        if (e1Var.f58539f == 0) {
-            return true;
+    public final void onDraw(Canvas canvas) {
+        WallpapersListActivity wallpapersListActivity = this.f51240b;
+        wallpapersListActivity.f45392s.setColor(this.f51239a);
+        canvas.drawCircle(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(31.0f), org.telegram.messenger.g0.L(18.0f), wallpapersListActivity.f45392s);
+        if (this.f51239a == org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29396d6, false)) {
+            canvas.drawCircle(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(31.0f), org.telegram.messenger.g0.L(18.0f), wallpapersListActivity.f45393w);
         }
-        return false;
     }
 
     @Override
-    public final int b() {
-        return this.d.f44871a;
-    }
-
-    @Override
-    public final int d(int i7) {
-        int i10;
-        WallpapersListActivity wallpapersListActivity = this.d;
-        i10 = wallpapersListActivity.uploadImageRow;
-        if (i7 != i10 && i7 != wallpapersListActivity.h && i7 != wallpapersListActivity.f44873b && i7 != wallpapersListActivity.f44878e) {
-            if (i7 != wallpapersListActivity.f44880f && i7 != wallpapersListActivity.f44883n) {
-                return 2;
-            }
-            return 3;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(v4.e1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qc1.t(v4.e1, int):void");
-    }
-
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        View l8Var;
-        Context context = this.f50581c;
-        if (i7 != 0) {
-            if (i7 != 3) {
-                l8Var = new org.telegram.ui.Components.xi(this, context, 1);
-                l8Var.setTag(-33024);
-            } else {
-                l8Var = new org.telegram.ui.Cells.y8(context);
-            }
-        } else {
-            l8Var = new org.telegram.ui.Cells.l8(context);
-        }
-        return new v4.e1(l8Var);
+    public final void onMeasure(int i7, int i10) {
+        setMeasuredDimension(org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(62.0f));
     }
 }

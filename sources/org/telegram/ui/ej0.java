@@ -1,149 +1,173 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import org.telegram.tgnet.TLRPC;
-public final class ej0 implements s9, org.telegram.ui.Components.ii {
-    public final ek0 f46790a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ej0 extends FrameLayout {
+    public final int f47288a;
+    public Object f47289b;
+    public float f47290c;
+    public final KeyEvent.Callback d;
 
-    public ej0(ek0 ek0Var) {
-        this.f46790a = ek0Var;
+    public ej0(Context context, EditTextBoldCursor editTextBoldCursor, int i7) {
+        super(context);
+        this.f47288a = i7;
+        this.d = editTextBoldCursor;
     }
 
     @Override
-    public String J0() {
-        return null;
-    }
-
-    @Override
-    public void K0() {
-        org.telegram.messenger.g0.v1(this.f46790a.fragmentView.findFocus());
-    }
-
-    @Override
-    public void S0(org.telegram.messenger.wr wrVar) {
-        boolean isEmpty = TextUtils.isEmpty(wrVar.f27381b);
-        ek0 ek0Var = this.f46790a;
-        if (!isEmpty) {
-            ek0Var.Z[0].setText(wrVar.f27381b);
-        }
-        if (!TextUtils.isEmpty(wrVar.d)) {
-            ek0Var.Z[1].setText(wrVar.d);
-        }
-        if (!TextUtils.isEmpty(wrVar.f27382c)) {
-            ek0Var.Z[2].setText(wrVar.f27382c);
-        }
-        int i7 = wrVar.f27391n;
-        if (i7 != 0) {
-            if (i7 != 1) {
-                if (i7 == 2) {
-                    ek0Var.f46844x = "female";
-                    ek0Var.Z[4].setText(org.telegram.messenger.hd.M0(2131747569, null));
+    public void onDraw(Canvas canvas) {
+        switch (this.f47288a) {
+            case 0:
+                if (((StaticLayout) this.f47289b) != null) {
+                    canvas.save();
+                    canvas.translate(org.telegram.messenger.g0.L(21.0f) + this.f47290c, ((EditTextBoldCursor) this.d).getLineY() + org.telegram.messenger.g0.L(3.0f));
+                    ((StaticLayout) this.f47289b).draw(canvas);
+                    canvas.restore();
+                    return;
                 }
-            } else {
-                ek0Var.f46844x = "male";
-                ek0Var.Z[4].setText(org.telegram.messenger.hd.M0(2131747508, null));
-            }
-        }
-        if (!TextUtils.isEmpty(wrVar.f27390m)) {
-            String str = wrVar.f27390m;
-            ek0Var.f46832s = str;
-            String str2 = (String) ek0Var.Z0.get(str);
-            if (str2 != null) {
-                ek0Var.Z[5].setText(str2);
-            }
-        }
-        if (!TextUtils.isEmpty(wrVar.f27389l)) {
-            String str3 = wrVar.f27389l;
-            ek0Var.f46841w = str3;
-            String str4 = (String) ek0Var.Z0.get(str3);
-            if (str4 != null) {
-                ek0Var.Z[6].setText(str4);
-            }
-        }
-        int i10 = wrVar.f27388k;
-        if (i10 > 0 && wrVar.f27387j > 0 && wrVar.f27386i > 0) {
-            ek0Var.Z[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i10), Integer.valueOf(wrVar.f27387j), Integer.valueOf(wrVar.f27386i)));
-        }
-    }
-
-    @Override
-    public boolean V1() {
-        return false;
-    }
-
-    @Override
-    public void d0(org.telegram.ui.Components.vg vgVar) {
-        vgVar.run();
-    }
-
-    @Override
-    public boolean d1(String str, j9 j9Var) {
-        return false;
-    }
-
-    @Override
-    public boolean g0() {
-        return false;
-    }
-
-    @Override
-    public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        org.telegram.ui.Components.ki kiVar;
-        ek0 ek0Var = this.f46790a;
-        if (ek0Var.getParentActivity() != null && (kiVar = ek0Var.S0) != null) {
-            if (i7 != 8 && i7 != 7) {
-                kiVar.M(i7);
-                ek0Var.J1(i7);
                 return;
-            }
-            if (i7 != 8) {
-                kiVar.a(true);
-            }
-            HashMap<Object, Object> selectedPhotos = ek0Var.S0.f36435e2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = ek0Var.S0.f36435e2.getSelectedPhotosOrder();
-            if (!selectedPhotos.isEmpty()) {
-                ArrayList arrayList = new ArrayList();
-                for (int i12 = 0; i12 < selectedPhotosOrder.size(); i12++) {
-                    org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) selectedPhotos.get(selectedPhotosOrder.get(i12));
-                    ?? obj = new Object();
-                    String str = ffVar.h;
-                    if (str != null) {
-                        obj.f23196c = str;
-                    } else {
-                        obj.f23196c = ffVar.I;
-                    }
-                    arrayList.add(obj);
-                    ffVar.e();
+            case 1:
+                if (((StaticLayout) this.f47289b) != null) {
+                    canvas.save();
+                    canvas.translate(org.telegram.messenger.g0.L(21.0f) + this.f47290c, ((EditTextBoldCursor) this.d).getLineY() + org.telegram.messenger.g0.L(3.0f));
+                    ((StaticLayout) this.f47289b).draw(canvas);
+                    canvas.restore();
+                    return;
                 }
-                ek0Var.K1(arrayList);
-            }
+                return;
+            case 2:
+                if (((StaticLayout) this.f47289b) != null) {
+                    canvas.save();
+                    canvas.translate(org.telegram.messenger.g0.L(21.0f) + this.f47290c, ((EditTextBoldCursor) this.d).getLineY() + org.telegram.messenger.g0.L(3.0f));
+                    ((StaticLayout) this.f47289b).draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public void M(String str) {
+    public final void onMeasure(int i7, int i10) {
+        org.telegram.ui.Components.yg0 yg0Var;
+        switch (this.f47288a) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(34.0f);
+                StaticLayout p10 = ((EditTextBoldCursor) this.d).p(size);
+                this.f47289b = p10;
+                if (p10 != null) {
+                    int lineCount = p10.getLineCount();
+                    int i11 = 0;
+                    if (lineCount > 1) {
+                        i10 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f47289b).getLineBottom(lineCount - 1) - ((StaticLayout) this.f47289b).getLineBottom(0)) + org.telegram.messenger.g0.L(64.0f), 1073741824);
+                    }
+                    if (org.telegram.messenger.gd.f24216a0) {
+                        float f10 = 0.0f;
+                        while (true) {
+                            if (i11 < lineCount) {
+                                if (((StaticLayout) this.f47289b).getLineLeft(i11) != 0.0f) {
+                                    this.f47290c = 0.0f;
+                                } else {
+                                    f10 = Math.max(f10, ((StaticLayout) this.f47289b).getLineWidth(i11));
+                                    if (i11 == lineCount - 1) {
+                                        this.f47290c = size - f10;
+                                    }
+                                    i11++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i7, i10);
+                return;
+            case 1:
+                int size2 = View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(34.0f);
+                StaticLayout p11 = ((EditTextBoldCursor) this.d).p(size2);
+                this.f47289b = p11;
+                if (p11 != null) {
+                    int lineCount2 = p11.getLineCount();
+                    int i12 = 0;
+                    if (lineCount2 > 1) {
+                        i10 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f47289b).getLineBottom(lineCount2 - 1) - ((StaticLayout) this.f47289b).getLineBottom(0)) + org.telegram.messenger.g0.L(64.0f), 1073741824);
+                    }
+                    if (org.telegram.messenger.gd.f24216a0) {
+                        float f11 = 0.0f;
+                        while (true) {
+                            if (i12 < lineCount2) {
+                                if (((StaticLayout) this.f47289b).getLineLeft(i12) != 0.0f) {
+                                    this.f47290c = 0.0f;
+                                } else {
+                                    f11 = Math.max(f11, ((StaticLayout) this.f47289b).getLineWidth(i12));
+                                    if (i12 == lineCount2 - 1) {
+                                        this.f47290c = size2 - f11;
+                                    }
+                                    i12++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i7, i10);
+                return;
+            case 2:
+                int size3 = View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(34.0f);
+                StaticLayout p12 = ((EditTextBoldCursor) this.d).p(size3);
+                this.f47289b = p12;
+                if (p12 != null) {
+                    int lineCount3 = p12.getLineCount();
+                    int i13 = 0;
+                    if (lineCount3 > 1) {
+                        i10 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f47289b).getLineBottom(lineCount3 - 1) - ((StaticLayout) this.f47289b).getLineBottom(0)) + org.telegram.messenger.g0.L(64.0f), 1073741824);
+                    }
+                    if (org.telegram.messenger.gd.f24216a0) {
+                        float f12 = 0.0f;
+                        while (true) {
+                            if (i13 < lineCount3) {
+                                if (((StaticLayout) this.f47289b).getLineLeft(i13) != 0.0f) {
+                                    this.f47290c = 0.0f;
+                                } else {
+                                    f12 = Math.max(f12, ((StaticLayout) this.f47289b).getLineWidth(i13));
+                                    if (i13 == lineCount3 - 1) {
+                                        this.f47290c = size3 - f12;
+                                    }
+                                    i13++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i7, i10);
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                org.telegram.ui.Components.ph0 ph0Var = ((org.telegram.ui.Components.yg0) this.d).f42494r1;
+                float measuredHeight = (yg0Var.f42493q1 / 768.0f) * ((kg.k) this.f47289b).getMeasuredHeight();
+                if (this.f47290c != measuredHeight) {
+                    this.f47290c = measuredHeight;
+                    ViewGroup.LayoutParams layoutParams = ph0Var.getLayoutParams();
+                    int i14 = (int) measuredHeight;
+                    ph0Var.getLayoutParams().width = i14;
+                    layoutParams.height = i14;
+                    super.onMeasure(i7, i10);
+                    return;
+                }
+                return;
+        }
     }
 
-    @Override
-    public void R0(Object obj) {
-    }
-
-    @Override
-    public void h1(TLRPC.User user) {
-    }
-
-    @Override
-    public void onDismiss() {
-    }
-
-    @Override
-    public void v0() {
-    }
-
-    @Override
-    public void b2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
+    public ej0(org.telegram.ui.Components.yg0 yg0Var, Context context, kg.k kVar) {
+        super(context);
+        this.f47288a = 3;
+        this.d = yg0Var;
+        this.f47289b = kVar;
     }
 }

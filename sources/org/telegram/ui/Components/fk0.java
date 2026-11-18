@@ -1,18 +1,12 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class fk0 extends FrameLayout {
-    public View f34623a;
-    public TextView f34624b;
+public interface fk0 {
+    void e(boolean z10);
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
-    }
+    boolean f(int i7);
 
-    public void setText(CharSequence charSequence) {
-        this.f34624b.setText(charSequence);
-    }
+    void l(View view, boolean z10);
+
+    boolean m(int i7);
 }

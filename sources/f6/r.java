@@ -2,18 +2,18 @@ package f6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import java.util.Arrays;
 import org.json.JSONObject;
 public final class r extends r6.a {
     public static final Parcelable.Creator<r> CREATOR = new v(18);
-    public final k f11134a;
-    public String f11135b;
-    public final JSONObject f11136c;
+    public final k f11454a;
+    public String f11455b;
+    public final JSONObject f11456c;
 
     public r(k kVar, JSONObject jSONObject) {
-        this.f11134a = kVar;
-        this.f11136c = jSONObject;
+        this.f11454a = kVar;
+        this.f11456c = jSONObject;
     }
 
     public final boolean equals(Object obj) {
@@ -24,29 +24,29 @@ public final class r extends r6.a {
             return false;
         }
         r rVar = (r) obj;
-        if (!x6.c.a(this.f11136c, rVar.f11136c)) {
+        if (!x6.c.a(this.f11456c, rVar.f11456c)) {
             return false;
         }
-        return q6.m.k(this.f11134a, rVar.f11134a);
+        return q6.m.l(this.f11454a, rVar.f11454a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11134a, String.valueOf(this.f11136c)});
+        return Arrays.hashCode(new Object[]{this.f11454a, String.valueOf(this.f11456c)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         String jSONObject;
-        JSONObject jSONObject2 = this.f11136c;
+        JSONObject jSONObject2 = this.f11456c;
         if (jSONObject2 == null) {
             jSONObject = null;
         } else {
             jSONObject = jSONObject2.toString();
         }
-        this.f11135b = jSONObject;
-        int r10 = yb.r(parcel, 20293);
-        yb.k(parcel, 2, this.f11134a, i7);
-        yb.l(parcel, 3, this.f11135b);
-        yb.s(parcel, r10);
+        this.f11455b = jSONObject;
+        int r10 = bc.r(parcel, 20293);
+        bc.k(parcel, 2, this.f11454a, i7);
+        bc.l(parcel, 3, this.f11455b);
+        bc.s(parcel, r10);
     }
 }

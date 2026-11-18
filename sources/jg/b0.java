@@ -1,9 +1,9 @@
 package jg;
 
 import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.cp0;
 import org.telegram.ui.lb;
-import org.telegram.ui.zo0;
-public final class b0 extends v4.b0 {
+public final class b0 extends v4.c0 {
     public final int I;
 
     public b0(int i7) {
@@ -11,14 +11,14 @@ public final class b0 extends v4.b0 {
     }
 
     @Override
-    public int W0(v4.b1 b1Var) {
+    public int W0(v4.c1 c1Var) {
         switch (this.I) {
             case 5:
                 return 5000;
             case 9:
                 return org.telegram.messenger.g0.L(4000.0f);
             default:
-                return super.W0(b1Var);
+                return super.W0(c1Var);
         }
     }
 
@@ -33,20 +33,20 @@ public final class b0 extends v4.b0 {
     }
 
     @Override
-    public void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
+    public void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
         switch (this.I) {
             case 4:
                 pi.l lVar = new pi.l(recyclerView.getContext(), 0);
-                lVar.f58480a = i7;
+                lVar.f59066a = i7;
                 w0(lVar);
                 return;
             case 15:
-                zo0 zo0Var = new zo0(recyclerView.getContext());
-                zo0Var.f58480a = i7;
-                w0(zo0Var);
+                cp0 cp0Var = new cp0(recyclerView.getContext());
+                cp0Var.f59066a = i7;
+                w0(cp0Var);
                 return;
             default:
-                super.v0(recyclerView, b1Var, i7);
+                super.v0(recyclerView, c1Var, i7);
                 return;
         }
     }

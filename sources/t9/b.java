@@ -3,25 +3,25 @@ package t9;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import q4.x;
 public final class b extends r6.a {
     public static final Parcelable.Creator<b> CREATOR = new x(24);
-    public final String f57060a;
-    public final String f57061b;
-    public final String f57062c;
+    public final String f57632a;
+    public final String f57633b;
+    public final String f57634c;
     public final String d;
-    public final a f57063e;
-    public final String f57064f;
+    public final a f57635e;
+    public final String f57636f;
     public final Bundle h;
 
     public b(String str, String str2, String str3, String str4, a aVar, String str5, Bundle bundle) {
-        this.f57060a = str;
-        this.f57061b = str2;
-        this.f57062c = str3;
+        this.f57632a = str;
+        this.f57633b = str2;
+        this.f57634c = str3;
         this.d = str4;
-        this.f57063e = aVar;
-        this.f57064f = str5;
+        this.f57635e = aVar;
+        this.f57636f = str5;
         if (bundle != null) {
             this.h = bundle;
         } else {
@@ -39,11 +39,11 @@ public final class b extends r6.a {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("ActionImpl { { actionType: '");
-        sb2.append(this.f57060a);
+        sb2.append(this.f57632a);
         sb2.append("' } { objectName: '");
-        sb2.append(this.f57061b);
+        sb2.append(this.f57633b);
         sb2.append("' } { objectUrl: '");
-        sb2.append(this.f57062c);
+        sb2.append(this.f57634c);
         sb2.append("' } ");
         String str = this.d;
         if (str != null) {
@@ -51,13 +51,13 @@ public final class b extends r6.a {
             sb2.append(str);
             sb2.append("' } ");
         }
-        a aVar = this.f57063e;
+        a aVar = this.f57635e;
         if (aVar != null) {
             sb2.append("{ metadata: '");
             sb2.append(aVar.toString());
             sb2.append("' } ");
         }
-        String str2 = this.f57064f;
+        String str2 = this.f57636f;
         if (str2 != null) {
             sb2.append("{ actionStatus: '");
             sb2.append(str2);
@@ -75,14 +75,14 @@ public final class b extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.l(parcel, 1, this.f57060a);
-        yb.l(parcel, 2, this.f57061b);
-        yb.l(parcel, 3, this.f57062c);
-        yb.l(parcel, 4, this.d);
-        yb.k(parcel, 5, this.f57063e, i7);
-        yb.l(parcel, 6, this.f57064f);
-        yb.b(parcel, 7, this.h);
-        yb.s(parcel, r10);
+        int r10 = bc.r(parcel, 20293);
+        bc.l(parcel, 1, this.f57632a);
+        bc.l(parcel, 2, this.f57633b);
+        bc.l(parcel, 3, this.f57634c);
+        bc.l(parcel, 4, this.d);
+        bc.k(parcel, 5, this.f57635e, i7);
+        bc.l(parcel, 6, this.f57636f);
+        bc.b(parcel, 7, this.h);
+        bc.s(parcel, r10);
     }
 }

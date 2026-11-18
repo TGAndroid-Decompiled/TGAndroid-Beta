@@ -1,62 +1,59 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.is;
-import org.telegram.ui.jm0;
-import org.telegram.ui.qc;
-import org.telegram.ui.t71;
-public final class ba implements ValueAnimator.AnimatorUpdateListener {
-    public final int f13941a;
-    public boolean f13942b = false;
-    public final is f13943c;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+public final class ba extends View {
+    public final boolean f14278a;
+    public final Canvas f14279b;
+    public final float f14280c;
+    public final float d;
+    public final float f14281e;
+    public final Paint f14282f;
+    public final Bitmap h;
+    public final Paint f14283n;
+    public final float f14284r;
+    public final float f14285s;
+    public final ta f14286w;
 
-    public ba(is isVar, int i7) {
-        this.f13941a = i7;
-        this.f13943c = isVar;
+    public ba(ta taVar, Context context, boolean z10, Canvas canvas, float f10, float f11, float f12, Paint paint, Bitmap bitmap, Paint paint2, float f13, float f14) {
+        super(context);
+        this.f14286w = taVar;
+        this.f14278a = z10;
+        this.f14279b = canvas;
+        this.f14280c = f10;
+        this.d = f11;
+        this.f14281e = f12;
+        this.f14282f = paint;
+        this.h = bitmap;
+        this.f14283n = paint2;
+        this.f14284r = f13;
+        this.f14285s = f14;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f13941a) {
-            case 0:
-                sa saVar = (sa) this.f13943c;
-                saVar.E2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                aa aaVar = saVar.D2;
-                if (aaVar != null) {
-                    aaVar.invalidate();
-                }
-                if (!this.f13942b && saVar.E2 > 0.5f) {
-                    this.f13942b = true;
-                    return;
-                }
-                return;
-            case 1:
-                qc qcVar = (qc) this.f13943c;
-                qcVar.f50562o0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qcVar.f50561n0.invalidate();
-                if (!this.f13942b && qcVar.f50562o0 > 0.5f) {
-                    this.f13942b = true;
-                    return;
-                }
-                return;
-            case 2:
-                jm0 jm0Var = (jm0) this.f13943c;
-                jm0Var.Z = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jm0Var.Y.invalidate();
-                if (!this.f13942b && jm0Var.Z > 0.5f) {
-                    this.f13942b = true;
-                    return;
-                }
-                return;
-            default:
-                t71 t71Var = (t71) this.f13943c;
-                t71Var.f51445k2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t71Var.f51442j2.invalidate();
-                if (!this.f13942b && t71Var.f51445k2 > 0.5f) {
-                    this.f13942b = true;
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        boolean z10 = this.f14278a;
+        Paint paint = this.f14283n;
+        float f10 = this.f14281e;
+        float f11 = this.d;
+        float f12 = this.f14280c;
+        ta taVar = this.f14286w;
+        if (z10) {
+            float f13 = taVar.E2;
+            if (f13 > 0.0f) {
+                this.f14279b.drawCircle(f12, f11, f10 * f13, this.f14282f);
+            }
+            canvas.drawBitmap(this.h, 0.0f, 0.0f, paint);
+        } else {
+            canvas.drawCircle(f12, f11, (1.0f - taVar.E2) * f10, paint);
         }
+        canvas.save();
+        canvas.translate(this.f14284r, this.f14285s);
+        taVar.f15455j1.draw(canvas);
+        canvas.restore();
     }
 }

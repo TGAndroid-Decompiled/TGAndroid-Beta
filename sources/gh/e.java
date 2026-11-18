@@ -1,28 +1,28 @@
 package gh;
 
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 public class e implements a {
-    public final e6 f13310a;
-    public d f13311b;
-    public d f13312c;
+    public final i6 f13625a;
+    public d f13626b;
+    public d f13627c;
     public d d;
-    public d f13313e;
-    public float f13314f;
+    public d f13628e;
+    public float f13629f;
     public float h;
-    public float f13315n;
-    public float f13316r;
+    public float f13630n;
+    public float f13631r;
 
-    public e(e6 e6Var) {
-        this.f13310a = e6Var;
+    public e(i6 i6Var) {
+        this.f13625a = i6Var;
         float N = g0.N(1.0f);
         float N2 = g0.N(0.33333334f);
-        this.f13315n = N;
-        this.f13316r = N2;
+        this.f13630n = N;
+        this.f13631r = N2;
         float N3 = g0.N(1.0f);
         float N4 = g0.N(0.6666667f);
-        this.f13314f = N3;
+        this.f13629f = N3;
         this.h = N4;
     }
 
@@ -33,7 +33,7 @@ public class e implements a {
 
     @Override
     public final int A2() {
-        return a(this.f13313e);
+        return a(this.f13628e);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class e implements a {
 
     @Override
     public int W1() {
-        return a(this.f13311b);
+        return a(this.f13626b);
     }
 
     @Override
@@ -71,23 +71,23 @@ public class e implements a {
         if (dVar == null) {
             return 0;
         }
-        e6 e6Var = this.f13310a;
-        if ((e6Var instanceof fi.b) || (e6Var == null ? j6.I.q() : e6Var.a())) {
+        i6 i6Var = this.f13625a;
+        if ((i6Var instanceof fi.b) || (i6Var == null ? n6.I.q() : i6Var.d())) {
             z10 = true;
         }
-        return dVar.j(e6Var, z10);
+        return dVar.j(i6Var, z10);
     }
 
     public float b() {
-        return this.f13316r;
+        return this.f13631r;
     }
 
     public float c() {
-        return this.f13315n;
+        return this.f13630n;
     }
 
     public final void d(int i7, int i10) {
-        this.f13311b = new c(i10, i7, 0);
+        this.f13626b = new c(i10, i7, 0);
     }
 
     public final void e(int i7, int i10) {
@@ -95,11 +95,11 @@ public class e implements a {
     }
 
     public final void f(int i7, int i10) {
-        this.f13312c = new c(i10, i7, 0);
+        this.f13627c = new c(i10, i7, 0);
     }
 
     @Override
     public int t0() {
-        return a(this.f13312c);
+        return a(this.f13627c);
     }
 }

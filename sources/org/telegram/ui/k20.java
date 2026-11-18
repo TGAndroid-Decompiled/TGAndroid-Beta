@@ -1,45 +1,71 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.voip.VoIPService;
-public final class k20 implements org.telegram.ui.ActionBar.o2 {
-    public final c40 f48497a;
+import android.graphics.Canvas;
+import android.view.View;
+public final class k20 extends org.telegram.ui.Components.wt {
+    public final f40 W;
 
-    public k20(c40 c40Var) {
-        this.f48497a = c40Var;
+    public k20(f40 f40Var, LaunchActivity launchActivity, l30 l30Var, org.telegram.ui.ActionBar.h2 h2Var, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(launchActivity, l30Var, h2Var, 5, true, i6Var);
+        this.W = f40Var;
     }
 
     @Override
-    public final void v() {
-        CountDownLatch groupCallBottomSheetLatch;
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
-            groupCallBottomSheetLatch.countDown();
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == getEditText()) {
+            canvas.save();
+            f40 f40Var = this.W;
+            f40Var.C1.getEditText().setTranslationY(view.getMeasuredHeight() - f40Var.A5.f57663f);
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
         }
-        c40 c40Var = this.f48497a;
-        if (c40Var.E3 == 6) {
-            SharedPreferences e12 = org.telegram.messenger.np.e1();
-            if (!e12.getBoolean("reminderhint", false)) {
-                e12.edit().putBoolean("reminderhint", true).commit();
-                if (c40Var.f45916i2 == null) {
-                    org.telegram.ui.Components.b30 b30Var = new org.telegram.ui.Components.b30(c40Var.getContext(), 8);
-                    c40Var.f45916i2 = b30Var;
-                    b30Var.setAlpha(0.0f);
-                    c40Var.f45916i2.setVisibility(4);
-                    c40Var.f45916i2.setShowingDuration(4000L);
-                    c40Var.f29682b.addView(c40Var.f45916i2, c8.ja.d(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
-                    c40Var.f45916i2.setText(org.telegram.messenger.hd.M0(2131743438, null));
-                    c40Var.f45916i2.b();
-                }
-                c40Var.f45916i2.setExtraTranslationY(-org.telegram.messenger.g0.f23605m);
-                c40Var.f45916i2.c(c40Var.f45978w1);
-            }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        org.telegram.ui.Components.ry emojiView = getEmojiView();
+        if (emojiView != null) {
+            emojiView.f39407x0 = false;
+            emojiView.f39413y2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(this.W.f30192b.getPaddingBottom());
         }
     }
 
     @Override
-    public final boolean x() {
-        return true;
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        te.c cVar = this.W.A5;
+        if (cVar.f57663f == 0.0f) {
+            cVar.c(getMeasuredHeight());
+        } else {
+            cVar.a(getMeasuredHeight());
+        }
+    }
+
+    @Override
+    public final void p() {
+        int i7;
+        rh.h hVar = this.W.B3;
+        if (this.f41789e) {
+            i7 = Math.max(0, getEmojiPadding());
+        } else if (this.O) {
+            i7 = Math.max(0, getKeyboardHeight());
+        } else {
+            i7 = 0;
+        }
+        if (i7 > 0) {
+            hVar.g(i7);
+        } else {
+            hVar.i(false);
+        }
+    }
+
+    @Override
+    public final void y() {
+        this.W.f30192b.requestApplyInsets();
     }
 }

@@ -1,72 +1,65 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ri0 implements Runnable {
-    public final int f50958a;
-    public final ek0 f50959b;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.tgnet.tl.TL_account;
+public final class ri0 extends org.telegram.ui.Components.k41 {
+    public static final int f51619b = 0;
 
-    public ri0(ek0 ek0Var, int i7) {
-        this.f50958a = i7;
-        this.f50959b = ek0Var;
+    static {
+        org.telegram.ui.Components.k41.h(new org.telegram.ui.Components.k41());
     }
 
     @Override
-    public final void run() {
-        ViewGroup viewGroup;
-        switch (this.f50958a) {
-            case 0:
-                ek0 ek0Var = this.f50959b;
-                ViewGroup[] viewGroupArr = ek0Var.f46793a0;
-                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
-                    ek0Var.Z[0].requestFocus();
-                    org.telegram.messenger.g0.J3(ek0Var.Z[0]);
-                    return;
-                }
-                return;
-            case 1:
-                ek0 ek0Var2 = this.f50959b;
-                ek0Var2.presentFragment(ek0Var2.f46814i1, true);
-                ek0Var2.f46814i1 = null;
-                return;
-            case 2:
-                ek0 ek0Var3 = this.f50959b;
-                EditTextBoldCursor[] editTextBoldCursorArr = ek0Var3.f46796b0;
-                if (editTextBoldCursorArr != null) {
-                    ek0Var3.M1(editTextBoldCursorArr[0]);
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.messenger.g0.J3(this.f50959b.Z[2]);
-                return;
-            case 4:
-                this.f50959b.B1();
-                return;
-            case 5:
-                int i7 = 0;
-                while (true) {
-                    ek0 ek0Var4 = this.f50959b;
-                    if (i7 < ek0Var4.f46801d0.getChildCount()) {
-                        View childAt = ek0Var4.f46801d0.getChildAt(i7);
-                        if (childAt instanceof dk0) {
-                            ek0Var4.f46801d0.removeView(childAt);
-                            i7--;
-                        }
-                        i7++;
-                    } else {
-                        ek0Var4.B1();
-                        ek0Var4.f46831r1.clear();
-                        ek0Var4.f46828q1.clear();
-                        ek0Var4.E.values.clear();
-                        ek0Var4.V1();
-                        return;
-                    }
-                }
-            default:
-                this.f50959b.finishFragment();
-                return;
+    public final void b(View view, org.telegram.ui.Components.l41 l41Var, boolean z10, org.telegram.ui.Components.z41 z41Var, org.telegram.ui.Components.e51 e51Var) {
+        si0 si0Var = (si0) view;
+        TL_account.Passkey passkey = (TL_account.Passkey) l41Var.H;
+        View.OnClickListener onClickListener = l41Var.E;
+        TextView textView = si0Var.f52005n;
+        TextView textView2 = si0Var.h;
+        org.telegram.ui.ActionBar.i6 i6Var = si0Var.d;
+        FrameLayout frameLayout = si0Var.f52003e;
+        org.telegram.ui.Components.q9 q9Var = si0Var.f52004f;
+        si0Var.f52008w = passkey.f28612id;
+        long j3 = passkey.software_emoji_id;
+        if (j3 != 0) {
+            q9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.o5.m(si0Var.f52002c, j3, null, 3));
+            frameLayout.setBackground(null);
+            q9Var.setColorFilter(null);
+            si0Var.f52000a = false;
+            q9Var.setScaleX(1.0f);
+            q9Var.setScaleY(1.0f);
+        } else {
+            int L = org.telegram.messenger.g0.L(4.0f);
+            int i7 = org.telegram.ui.ActionBar.n6.G6;
+            org.telegram.ui.ActionBar.u6.B(frameLayout, org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.r1(0.04f, org.telegram.ui.ActionBar.n6.w0(i7, i6Var))), org.telegram.ui.ActionBar.u6.K(0.04f, i7), i6Var);
+            si0Var.a();
+            q9Var.setImageResource(2131232034);
+            q9Var.setScaleX(0.666f);
+            q9Var.setScaleY(0.666f);
+            q9Var.setAnimatedEmojiDrawable(null);
         }
+        if (TextUtils.isEmpty(passkey.name)) {
+            textView2.setText(org.telegram.messenger.gd.M0(2131747435, null));
+        } else {
+            textView2.setText(passkey.name);
+        }
+        int i10 = passkey.last_usage_date;
+        if (i10 != 0) {
+            textView.setText(org.telegram.messenger.gd.a0(null, null, 2131747441, org.telegram.messenger.gd.x(i10, false)));
+        } else {
+            textView.setText(org.telegram.messenger.gd.a0(null, null, 2131747454, org.telegram.messenger.gd.x(passkey.date, false)));
+        }
+        si0Var.f52006r.setOnClickListener(onClickListener);
+        si0Var.f52007s = z10;
+        si0Var.setWillNotDraw(!z10);
+    }
+
+    @Override
+    public final View d(Context context, org.telegram.ui.Components.ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        return new si0(i7, context, i6Var);
     }
 }

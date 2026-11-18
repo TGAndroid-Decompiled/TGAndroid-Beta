@@ -1,39 +1,38 @@
 package di;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class u5 extends AnimatorListenerAdapter {
-    public final int f9516a;
-    public final w5 f9517b;
+import android.text.Spanned;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class u5 implements View.OnClickListener {
+    public final int f9866a;
+    public final z5 f9867b;
 
-    public u5(w5 w5Var, int i7) {
-        this.f9516a = i7;
-        this.f9517b = w5Var;
+    public u5(z5 z5Var, int i7) {
+        this.f9866a = i7;
+        this.f9867b = z5Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f9516a) {
+    public final void onClick(View view) {
+        View.OnClickListener onClickListener;
+        switch (this.f9866a) {
             case 0:
-                this.f9517b.f9658h0 = false;
-                return;
-            case 1:
-                this.f9517b.f9658h0 = false;
-                return;
-            case 2:
-                this.f9517b.P.setVisibility(4);
-                return;
-            case 3:
-                w5 w5Var = this.f9517b;
-                w5Var.f9676w0 = w5Var.f9674v0;
-                w5Var.d(w5Var.f9649b0);
+                CharSequence text = this.f9867b.f10151w.getText();
+                if (text instanceof Spanned) {
+                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) ((Spanned) text).getSpans(0, text.length(), ClickableSpan.class);
+                    if (clickableSpanArr.length > 0) {
+                        clickableSpanArr[0].onClick(view);
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                w5 w5Var2 = this.f9517b;
-                w5Var2.f9678x0 = 1.0f;
-                w5Var2.f9648b.setScaleX(1.0f);
-                w5Var2.f9648b.setScaleY(w5Var2.f9678x0);
-                w5Var2.invalidate();
+                z5 z5Var = this.f9867b;
+                if (z5Var.P.getVisibility() == 0 && (onClickListener = z5Var.f10123a0) != null) {
+                    onClickListener.onClick(view);
+                    return;
+                }
                 return;
         }
     }

@@ -1,301 +1,119 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.text.SpannableStringBuilder;
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
+import android.text.InputFilter;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-public final class nw0 implements org.telegram.ui.ls {
-    public final rw0 f37733a;
-
-    public nw0(rw0 rw0Var) {
-        this.f37733a = rw0Var;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public abstract class nw0 {
+    public static void a(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, org.telegram.ui.ActionBar.h2 h2Var, org.telegram.ui.ActionBar.i6 i6Var) {
+        int i7 = org.telegram.messenger.j10.f24773t0;
+        Context context = h2Var.getContext();
+        hi.j2 j2Var = new hi.j2(context, i6Var, true, false);
+        j2Var.f14808z1 = new ai.r1(i7, context, tL_messages_stickerSet, 10);
+        if (h2Var.visibleDialog != null) {
+            j2Var.show();
+        } else {
+            h2Var.showDialog(j2Var);
+        }
     }
 
-    @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final void B(TLRPC.Document document) {
-        rw0 rw0Var = this.f37733a;
-        pw0 pw0Var = rw0Var.f39073c;
-        if (pw0Var != null) {
-            org.telegram.ui.ActionBar.e2 parentFragment = pw0Var.getParentFragment();
-            if (parentFragment instanceof org.telegram.ui.an) {
-                ((org.telegram.ui.an) parentFragment).Gb(document);
-                rw0Var.f39073c.setFieldText("");
+    public static void b(TLRPC.StickerSet stickerSet, org.telegram.ui.ActionBar.i6 i6Var, Context context, Runnable runnable) {
+        if (stickerSet != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
+            String M0 = org.telegram.messenger.gd.M0(2131744624, null);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+            u1Var.S = M0;
+            u1Var.U = org.telegram.messenger.gd.M0(2131744625, null);
+            alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131751587, null), new g2(21, runnable, stickerSet));
+            alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
+            u1Var.show();
+            TextView textView = (TextView) u1Var.d(-1);
+            if (textView != null) {
+                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29637q7, i6Var);
             }
         }
     }
 
-    @Override
-    public final boolean C() {
-        return false;
-    }
-
-    @Override
-    public final boolean D(TLRPC.Document document) {
-        if (this.f37733a.E) {
-            return false;
-        }
-        return org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q();
-    }
-
-    @Override
-    public final m60 E(ai.k0 k0Var) {
-        return null;
-    }
-
-    @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-        pw0 pw0Var;
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(org.telegram.messenger.gj.U(document));
-        valueOf.setSpan(new p5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
-        if (org.telegram.messenger.g0.g(valueOf) && (pw0Var = this.f37733a.f39073c) != null) {
-            org.telegram.messenger.i20.s(null, 2131751184, cc.a0(pw0Var.getParentFragment()));
-        }
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        TLRPC.User f10;
+    public static void c(TLRPC.StickerSet stickerSet, org.telegram.ui.ActionBar.i6 i6Var, Context context, org.telegram.messenger.q10 q10Var) {
         boolean z10;
-        if (this.f37733a.F || !org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q() || (f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).f()) == null) {
-            return null;
-        }
-        Long h = org.telegram.messenger.q10.h(f10);
-        if (document != null && (h == null || h.longValue() != document.f28057id)) {
+        int i7;
+        float f10;
+        int i10;
+        int i11;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
+        if (stickerSet != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        return Boolean.valueOf(z10);
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        pw0 pw0Var = this.f37733a.f39073c;
-        if (pw0Var == null) {
-            return false;
-        }
-        org.telegram.ui.ActionBar.e2 parentFragment = pw0Var.getParentFragment();
-        if (!(parentFragment instanceof org.telegram.ui.an)) {
-            return false;
-        }
-        return ((org.telegram.ui.an) parentFragment).c();
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h() {
-        return true;
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k(int i7) {
-        pw0 pw0Var = this.f37733a.f39073c;
-        if (pw0Var == null) {
-            return false;
-        }
-        org.telegram.ui.ActionBar.e2 parentFragment = pw0Var.getParentFragment();
-        if (parentFragment instanceof org.telegram.ui.an) {
-            org.telegram.ui.an anVar = (org.telegram.ui.an) parentFragment;
-            if (anVar.T6()) {
-                if (!org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).q()) {
-                    if (anVar.j() != null && org.telegram.messenger.q10.B(anVar.j())) {
-                        return true;
-                    }
-                } else {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean o() {
-        return false;
-    }
-
-    @Override
-    public final void t(TLRPC.Document document) {
-        TLRPC.EmojiStatus emojiStatus;
-        Object obj;
-        org.telegram.ui.ActionBar.e2 parentFragment;
-        rw0 rw0Var = this.f37733a;
-        org.telegram.ui.ActionBar.e6 e6Var = rw0Var.f39071b;
-        if (document == null) {
-            emojiStatus = new TLRPC.TL_emojiStatusEmpty();
+        if (z10) {
+            i7 = 2131751211;
         } else {
-            TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f28057id;
-            emojiStatus = tL_emojiStatus;
+            i7 = 2131748070;
         }
-        TLRPC.User f10 = org.telegram.messenger.m10.i(org.telegram.messenger.m10.f24940t0).f();
-        if (f10 == null) {
-            obj = new TLRPC.TL_emojiStatusEmpty();
+        String M0 = org.telegram.messenger.gd.M0(i7, null);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        u1Var.S = M0;
+        u1Var.U = org.telegram.messenger.gd.M0(2131744629, null);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.setPadding(org.telegram.messenger.g0.L(24.0f), 0, org.telegram.messenger.g0.L(20.0f), 0);
+        ?? editTextBoldCursor = new EditTextBoldCursor(context);
+        int i12 = org.telegram.ui.ActionBar.n6.f29504j5;
+        org.telegram.ui.ActionBar.u6.U(editTextBoldCursor, i12, i6Var);
+        editTextBoldCursor.setInputType(16385);
+        editTextBoldCursor.setTextSize(1, 16.0f);
+        org.telegram.ui.ActionBar.u6.U(editTextBoldCursor, i12, i6Var);
+        org.telegram.ui.ActionBar.u6.l(editTextBoldCursor, 36, org.telegram.ui.ActionBar.n6.f29569mg, i6Var);
+        org.telegram.ui.ActionBar.u6.l(editTextBoldCursor, 35, org.telegram.ui.ActionBar.n6.L6, i6Var);
+        editTextBoldCursor.setSingleLine(true);
+        editTextBoldCursor.setFocusable(true);
+        editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50), new nk(1, editTextBoldCursor)});
+        org.telegram.ui.ActionBar.u6.F(editTextBoldCursor, org.telegram.ui.ActionBar.n6.f29525k6, org.telegram.ui.ActionBar.n6.f29543l6, org.telegram.ui.ActionBar.n6.f29617p7, i6Var);
+        editTextBoldCursor.setImeOptions(6);
+        editTextBoldCursor.setBackground(null);
+        editTextBoldCursor.requestFocus();
+        float f11 = 0.0f;
+        if (org.telegram.messenger.gd.f24216a0) {
+            f10 = 28.0f;
         } else {
-            obj = f10.emoji_status;
+            f10 = 0.0f;
         }
-        org.telegram.messenger.np.s1(rw0Var.f39069a).i5(emojiStatus, null);
-        hh0 hh0Var = new hh0(14, this, obj);
-        pw0 pw0Var = rw0Var.f39073c;
-        if (pw0Var == null) {
-            parentFragment = null;
+        int L = org.telegram.messenger.g0.L(f10);
+        if (!org.telegram.messenger.gd.f24216a0) {
+            f11 = 28.0f;
+        }
+        editTextBoldCursor.setPadding(L, 0, org.telegram.messenger.g0.L(f11), 0);
+        frameLayout.addView(editTextBoldCursor);
+        NumberTextView numberTextView = new NumberTextView(context);
+        numberTextView.setCenterAlign(true);
+        numberTextView.setTextSize(15);
+        numberTextView.a(50, false);
+        numberTextView.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.B6, false));
+        numberTextView.setImportantForAccessibility(2);
+        if (org.telegram.messenger.gd.f24216a0) {
+            i10 = 3;
         } else {
-            parentFragment = pw0Var.getParentFragment();
+            i10 = 5;
         }
-        if (parentFragment != null) {
-            if (document == null) {
-                pb pbVar = new pb(rw0Var.getContext(), e6Var);
-                pbVar.f38262b.setText(org.telegram.messenger.hd.M0(2131746287, null));
-                pbVar.f38261a.setImageResource(2131232363);
-                vb vbVar = new vb(rw0Var.getContext(), e6Var, true);
-                vbVar.f40372b = hh0Var;
-                pbVar.setButton(vbVar);
-                xb.g(parentFragment, pbVar, 1500).j();
-                return;
-            }
-            cc.a0(parentFragment).r(document, org.telegram.messenger.hd.M0(2131745545, null), org.telegram.messenger.hd.M0(2131743885, null), hh0Var).j();
+        frameLayout.addView(numberTextView, c8.ma.d(26, 20.0f, i10 | 16, 0.0f, 2.0f, 4.0f, 0.0f));
+        editTextBoldCursor.addTextChangedListener(new mw0(numberTextView, editTextBoldCursor));
+        if (z10) {
+            editTextBoldCursor.setText(stickerSet.title);
+            editTextBoldCursor.setSelection(stickerSet.title.length());
         }
-    }
-
-    @Override
-    public final boolean w() {
-        return true;
-    }
-
-    @Override
-    public final org.telegram.messenger.gj z() {
-        return null;
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void i(org.telegram.messenger.xy xyVar) {
-    }
-
-    @Override
-    public final void m(String str) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void x(String str) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void u(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void v(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void y(CharSequence charSequence, String str, gh ghVar) {
-    }
-
-    @Override
-    public final void r(int i7, int i10, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i7, int i10) {
+        alertDialog$Builder.o(frameLayout);
+        u1Var.H = 4;
+        if (z10) {
+            i11 = 2131751343;
+        } else {
+            i11 = 2131751742;
+        }
+        alertDialog$Builder.k(org.telegram.messenger.gd.M0(i11, null), new a3.g((Object) editTextBoldCursor, q10Var, context, z10, 7));
+        alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), new iy(editTextBoldCursor, 22));
+        org.telegram.ui.ActionBar.u1 p10 = alertDialog$Builder.p();
+        p10.f30051k0 = false;
+        editTextBoldCursor.setOnEditorActionListener(new g(p10, 10));
     }
 }

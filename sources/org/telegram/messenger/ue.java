@@ -1,24 +1,23 @@
 package org.telegram.messenger;
-public final class ue implements Runnable {
-    public final int f26807a;
-    public final String f26808b;
-    public final float f26809c;
 
-    public ue(String str, int i7, float f10) {
-        this.f26807a = i7;
-        this.f26808b = str;
-        this.f26809c = f10;
+import android.util.SparseArray;
+import java.util.ArrayList;
+public final class ue {
+    public final int f27157a;
+    public boolean f27158b;
+    public final String f27159c;
+    public final ef d;
+    public final ArrayList f27160e = new ArrayList();
+    public final SparseArray f27161f = new SparseArray();
+
+    public ue(int i7, String str, ef efVar) {
+        this.f27157a = i7;
+        this.f27159c = str;
+        this.d = efVar;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f26807a) {
-            case 0:
-                t0.f26609b.getSharedPreferences("media_saved_pos", 0).edit().putFloat(this.f26808b, this.f26809c).commit();
-                return;
-            default:
-                t0.f26609b.getSharedPreferences("media_saved_pos", 0).edit().putFloat(this.f26808b, this.f26809c).commit();
-                return;
-        }
+    public final void a(ef efVar) {
+        this.f27160e.add(efVar);
+        this.f27161f.put(efVar.C, efVar);
     }
 }

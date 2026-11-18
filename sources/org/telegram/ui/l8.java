@@ -3,32 +3,32 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class l8 implements View.OnClickListener {
-    public final int f48887a;
-    public final i9 f48888b;
+    public final int f49467a;
+    public final i9 f49468b;
 
     public l8(i9 i9Var, int i7) {
-        this.f48887a = i7;
-        this.f48888b = i9Var;
+        this.f49467a = i7;
+        this.f49468b = i9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f48887a) {
+        switch (this.f49467a) {
             case 0:
                 Long l10 = (Long) view.getTag();
-                i9 i9Var = this.f48888b;
-                org.telegram.messenger.r3 g12 = i9Var.getMessagesController().g1(l10.longValue(), false, null);
-                TLRPC.Chat M0 = i9Var.getMessagesController().M0(l10);
-                i9Var.N = M0;
-                if (g12 != null) {
-                    org.telegram.ui.Components.voip.c2.l(M0, null, false, null, i9Var.getParentActivity(), i9Var, i9Var.getAccountInstance());
+                i9 i9Var = this.f49468b;
+                org.telegram.messenger.t3 i12 = i9Var.getMessagesController().i1(l10.longValue(), false, null);
+                TLRPC.Chat O0 = i9Var.getMessagesController().O0(l10);
+                i9Var.M = O0;
+                if (i12 != null) {
+                    org.telegram.ui.Components.voip.b2.l(O0, null, false, null, i9Var.getParentActivity(), i9Var, i9Var.getAccountInstance());
                     return;
                 }
-                i9Var.O = l10;
-                i9Var.getMessagesController().V2(0, l10.longValue(), true);
+                i9Var.N = l10;
+                i9Var.getMessagesController().b3(0, l10.longValue(), true);
                 return;
             default:
-                i9 i9Var2 = this.f48888b;
+                i9 i9Var2 = this.f49468b;
                 i9Var2.getClass();
                 i9.l0(i9Var2);
                 return;

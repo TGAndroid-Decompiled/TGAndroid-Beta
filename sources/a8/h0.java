@@ -16,8 +16,8 @@ public abstract class h0 extends AbstractSet {
                 return e8.a(this, collection);
             default:
                 collection.getClass();
-                if (collection instanceof h9.m1) {
-                    collection = ((h9.y1) ((h9.m1) collection)).o();
+                if (collection instanceof h9.n1) {
+                    collection = ((h9.z1) ((h9.n1) collection)).o();
                 }
                 boolean z10 = false;
                 if ((collection instanceof Set) && collection.size() > size()) {

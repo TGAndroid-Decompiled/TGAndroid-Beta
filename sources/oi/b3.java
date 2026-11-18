@@ -1,81 +1,53 @@
 package oi;
 
-import android.view.View;
-import org.telegram.messenger.w7;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-public final class b3 implements v4 {
-    public final r f21588a;
-    public final a f21589b;
-    public final String f21590c;
-    public final q3 d;
+public final class b3 {
+    public final s3 f21952a;
 
-    public b3(q3 q3Var, r rVar, a aVar, String str) {
-        this.d = q3Var;
-        this.f21588a = rVar;
-        this.f21589b = aVar;
-        this.f21590c = str;
+    public b3(s3 s3Var) {
+        this.f21952a = s3Var;
     }
 
-    @Override
-    public final void a() {
-        r rVar = this.f21588a;
-        rVar.f21957a = 3;
-        q3 q3Var = this.d;
-        q3Var.f21922h4.remove(rVar);
-        q3Var.f21939t3.remove(this.f21589b);
-        q3Var.f39892g3.O(true);
-        q3Var.f21931p3.onContentChanged();
-    }
-
-    @Override
-    public final void e(TLRPC.Document document) {
-        String str = this.f21590c;
-        document.localPath = str;
-        q3 q3Var = this.d;
-        w7.G(q3Var.f21928n3).e0(str, document);
-        r rVar = this.f21588a;
-        rVar.h = document;
-        rVar.f21957a = 2;
-        TL_iv.PageBlock pageBlock = this.f21589b.f21544b;
-        if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f28057id;
+    public final void a(a aVar) {
+        a aVar2;
+        s3 s3Var = this.f21952a;
+        ArrayList arrayList = s3Var.f22345t3;
+        int indexOf = arrayList.indexOf(aVar);
+        if (indexOf >= 0 && s3.A3(aVar)) {
+            int S3 = s3Var.S3(indexOf);
+            if (S3 >= arrayList.size()) {
+                S3 = arrayList.size() - 1;
+            }
+            e2 e2Var = s3Var.R3;
+            if (e2Var != null) {
+                e2Var.d();
+            }
+            while (S3 >= indexOf) {
+                arrayList.remove(S3);
+                S3--;
+            }
+            a aVar3 = null;
+            if (indexOf > 0) {
+                aVar2 = (a) arrayList.get(indexOf - 1);
+            } else {
+                aVar2 = null;
+            }
+            if (aVar2 != null && !aVar2.f21915i && !s3.A3(aVar2) && !s3.H3(aVar2.f21910b)) {
+                aVar3 = aVar2;
+            }
+            if (arrayList.isEmpty()) {
+                aVar3 = new a(new TL_iv.pageBlockParagraph(), 0, 0);
+                arrayList.add(aVar3);
+            }
+            s3Var.f34607g3.O(false);
+            e2 e2Var2 = s3Var.R3;
+            if (e2Var2 != null) {
+                e2Var2.h();
+            }
+            if (aVar3 != null) {
+                s3Var.post(new l2(s3Var, aVar3, 22));
+            }
         }
-        q3Var.f21922h4.remove(rVar);
-        q3Var.f39892g3.O(false);
-        q3Var.f21931p3.onContentChanged();
-    }
-
-    @Override
-    public final void g(float f10) {
-        this.f21588a.f21961f = f10;
-        a aVar = this.f21589b;
-        q3 q3Var = this.d;
-        View C1 = q3Var.C1(aVar);
-        if (C1 instanceof v0) {
-            v0 v0Var = (v0) C1;
-            v0Var.g(v0Var.h());
-            v0Var.l();
-            v0Var.m(false);
-            v0Var.requestLayout();
-            v0Var.invalidate();
-        }
-        q3Var.f21931p3.onContentChanged();
-    }
-
-    @Override
-    public final void c(TLRPC.Photo photo) {
-    }
-
-    @Override
-    public final void d(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void f(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void b(int i7, int i10) {
     }
 }

@@ -1,19 +1,19 @@
 package gb;
 
-import c8.l1;
+import c8.n1;
 public final class a1 {
-    public static final a1 f12972a;
-    public static final a1 f12973b;
-    public static final a1[] f12974c;
+    public static final a1 f13289a;
+    public static final a1 f13290b;
+    public static final a1[] f13291c;
 
     static {
         ?? r02 = new Enum("GENERAL", 0);
-        f12972a = r02;
+        f13289a = r02;
         ?? r12 = new Enum("FALLBACK", 1);
-        f12973b = r12;
+        f13290b = r12;
         a1[] a1VarArr = {r02, r12};
-        f12974c = a1VarArr;
-        l1.a(a1VarArr);
+        f13291c = a1VarArr;
+        n1.a(a1VarArr);
     }
 
     public static a1 valueOf(String str) {
@@ -21,6 +21,6 @@ public final class a1 {
     }
 
     public static a1[] values() {
-        return (a1[]) f12974c.clone();
+        return (a1[]) f13291c.clone();
     }
 }

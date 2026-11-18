@@ -1,39 +1,52 @@
 package di;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.mb0;
-import org.telegram.ui.PasscodeActivity;
-import org.telegram.ui.dr;
-public final class n9 implements View.OnFocusChangeListener {
-    public final int f9115a;
-    public final Object f9116b;
-    public final EditTextBoldCursor f9117c;
+import android.content.Context;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.qu0;
+public final class n9 implements Runnable {
+    public final int f9387a;
+    public final org.telegram.ui.ActionBar.x2[] f9388b;
+    public final Context f9389c;
 
-    public n9(Object obj, EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f9115a = i7;
-        this.f9116b = obj;
-        this.f9117c = editTextBoldCursor;
+    public n9(Context context, org.telegram.ui.ActionBar.x2[] x2VarArr) {
+        this.f9387a = 0;
+        this.f9389c = context;
+        this.f9388b = x2VarArr;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z10) {
-        switch (this.f9115a) {
+    public final void run() {
+        org.telegram.ui.ActionBar.x2 x2Var;
+        org.telegram.ui.ActionBar.h2 h2Var;
+        int i7 = this.f9387a;
+        Context context = this.f9389c;
+        org.telegram.ui.ActionBar.x2[] x2VarArr = this.f9388b;
+        switch (i7) {
             case 0:
-                ((mb0) this.f9116b).c(z10, !TextUtils.isEmpty(this.f9117c.getText()));
+                qu0 qu0Var = new qu0(context);
+                if (!org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.u1(x2VarArr[0].f30213j1) && (x2Var = x2VarArr[0]) != null && (h2Var = x2Var.f30213j1) != null) {
+                    qu0Var.a0(h2Var);
+                }
+                qu0Var.show();
                 return;
             case 1:
-                ((mb0) this.f9116b).c(z10, !TextUtils.isEmpty(this.f9117c.getText()));
+                x2VarArr[0].dismiss();
+                vf.c.t(context, gd.M0(2131752024, null));
                 return;
             case 2:
-                ((mb0) this.f9116b).c(z10, !TextUtils.isEmpty(this.f9117c.getText()));
+                x2VarArr[0].dismiss();
+                vf.c.v(context, gd.M0(2131752019, null), false);
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f9116b;
-                passcodeActivity.f42701w.setEditText((dr) this.f9117c);
-                passcodeActivity.f42701w.setDispatchBackWhenEmpty(true);
+                x2VarArr[0].dismiss();
+                vf.c.t(context, gd.M0(2131752016, null));
                 return;
         }
+    }
+
+    public n9(org.telegram.ui.ActionBar.x2[] x2VarArr, Context context, int i7) {
+        this.f9387a = i7;
+        this.f9388b = x2VarArr;
+        this.f9389c = context;
     }
 }

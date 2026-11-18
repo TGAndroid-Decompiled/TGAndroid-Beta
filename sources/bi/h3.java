@@ -2,86 +2,114 @@ package bi;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import org.telegram.ui.Components.wp0;
-import org.telegram.ui.Components.yp0;
+import android.os.Build;
+import di.ec;
+import org.telegram.messenger.pc;
 public final class h3 extends Drawable {
-    public final int f3565a;
-    public final ShapeDrawable f3566b;
-    public final Rect f3567c;
+    public final int f3689a;
+    public final RectF f3690b;
+    public final Path f3691c;
+    public final Paint d;
+    public final ec f3692e;
+    public boolean f3693f;
+    public a3.f f3694g;
+    public ai.g0 h;
+    public boolean f3695i;
 
-    public h3(wp0 wp0Var) {
-        this.f3565a = 0;
-        this.f3566b = org.telegram.ui.ActionBar.j6.e0(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), 0);
-        this.f3567c = new Rect();
+    public h3(int i7) {
+        this(i0.a.o(i7, 128), i7);
+    }
+
+    public final void a() {
+        boolean z10;
+        if (this.f3692e != null && this.f3695i && pc.e(131072)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (this.f3693f == z10) {
+            return;
+        }
+        this.f3693f = z10;
+        if (z10) {
+            bg.k d = bg.k.d();
+            a3.f fVar = new a3.f(this, 24);
+            this.f3694g = fVar;
+            d.a(15, fVar);
+        } else {
+            bg.k.d().f(this.f3694g);
+        }
+        invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f3565a) {
-            case 0:
-                Rect bounds = getBounds();
-                Rect rect = this.f3567c;
-                rect.set(bounds);
-                rect.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
-                ShapeDrawable shapeDrawable = this.f3566b;
-                shapeDrawable.setBounds(rect);
-                shapeDrawable.draw(canvas);
-                return;
-            default:
-                Rect bounds2 = getBounds();
-                Rect rect2 = this.f3567c;
-                rect2.set(bounds2);
-                rect2.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(8.0f));
-                ShapeDrawable shapeDrawable2 = this.f3566b;
-                shapeDrawable2.setBounds(rect2);
-                shapeDrawable2.draw(canvas);
-                return;
+        Paint paint = this.d;
+        Path path = this.f3691c;
+        canvas.drawPath(path, paint);
+        ec ecVar = this.f3692e;
+        if (ecVar != null) {
+            if (this.f3693f || !this.f3695i) {
+                canvas.save();
+                canvas.clipPath(path);
+                if (this.f3694g == null) {
+                    ecVar.d();
+                }
+                ecVar.a(canvas, this.f3689a);
+                canvas.restore();
+                if (this.f3694g == null) {
+                    invalidateSelf();
+                }
+            }
         }
     }
 
     @Override
     public final int getOpacity() {
-        switch (this.f3565a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
+        return -2;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        float min = Math.min(rect.width(), rect.height()) / 2.0f;
+        RectF rectF = this.f3690b;
+        rectF.set(rect);
+        Path path = this.f3691c;
+        path.rewind();
+        path.addRoundRect(rectF, min, min, Path.Direction.CW);
+        ec ecVar = this.f3692e;
+        if (ecVar != null) {
+            ecVar.g(rectF);
         }
     }
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f3565a) {
-            case 0:
-                this.f3566b.setAlpha(i7);
-                return;
-            default:
-                this.f3566b.setAlpha(i7);
-                return;
-        }
+        this.d.setAlpha(i7);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i7 = this.f3565a;
+        this.d.setColorFilter(colorFilter);
     }
 
-    public h3(yp0 yp0Var) {
-        this.f3565a = 1;
-        int L = org.telegram.messenger.g0.L(16.0f);
-        int L2 = org.telegram.messenger.g0.L(16.0f);
-        int i7 = org.telegram.ui.ActionBar.j6.f28849d6;
-        org.telegram.ui.ActionBar.e6 e6Var = yp0Var.f42059c;
-        this.f3566b = org.telegram.ui.ActionBar.j6.e0(L, L2, org.telegram.ui.ActionBar.j6.w(org.telegram.ui.ActionBar.j6.w0(i7, e6Var), org.telegram.ui.ActionBar.j6.r1(0.04f, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.G6, e6Var))));
-        this.f3567c = new Rect();
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
+    public h3(int i7, int i10) {
+        this.f3690b = new RectF();
+        this.f3691c = new Path();
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f3689a = i7;
+        paint.setColor(i10);
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.f3692e = new ec(1, 25);
+        } else {
+            this.f3692e = null;
+        }
     }
 }

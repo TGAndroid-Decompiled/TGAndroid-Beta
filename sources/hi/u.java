@@ -1,257 +1,75 @@
 package hi;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.wa0;
-public final class u extends Drawable {
-    public final int f15162a = 1;
-    public final Path f15163b;
-    public final Paint f15164c;
-    public final Paint d;
-    public final Paint f15165e;
-    public boolean f15166f;
-    public final Object f15167g;
+public final class u {
+    public static ArrayList f15508f;
+    public final String f15509a;
+    public final int f15510b;
+    public final int f15511c;
+    public final int[] d;
+    public final ArrayList f15512e = new ArrayList();
 
-    public u() {
-        Path path = new Path();
-        this.f15163b = path;
-        Paint paint = new Paint(1);
-        this.f15164c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        Paint paint3 = new Paint(1);
-        this.f15165e = paint3;
-        this.f15167g = new org.telegram.ui.Components.u5(new wa0(this, 0), 320L, er.h, 0);
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setColor(-1);
-        paint2.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.N(2.0f)));
-        paint2.setColor(-1);
-        paint3.setStyle(style);
-        paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        path.moveTo(-org.telegram.messenger.g0.N(3.75f), -org.telegram.messenger.g0.N(5.4166f));
-        path.lineTo(org.telegram.messenger.g0.N(3.75f), 0.0f);
-        path.lineTo(-org.telegram.messenger.g0.N(3.75f), org.telegram.messenger.g0.N(5.4166f));
-        path.close();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f15162a) {
-            case 0:
-                boolean z10 = this.f15166f;
-                if (z10) {
-                    canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255, 31);
-                } else {
-                    canvas.save();
-                }
-                canvas.translate(getBounds().centerX(), getBounds().centerY());
-                canvas.drawPath(this.f15163b, this.f15164c);
-                if (z10) {
-                    canvas.drawLine(-org.telegram.messenger.g0.L(8.66f), -org.telegram.messenger.g0.L(8.66f), org.telegram.messenger.g0.L(8.66f), org.telegram.messenger.g0.L(8.66f), this.d);
-                    canvas.drawLine(-org.telegram.messenger.g0.L(8.66f), -org.telegram.messenger.g0.L(8.66f), org.telegram.messenger.g0.L(8.66f), org.telegram.messenger.g0.L(8.66f), this.f15165e);
-                }
-                canvas.restore();
-                return;
-            default:
-                float N = org.telegram.messenger.g0.N(1.66f);
-                Paint paint = this.f15164c;
-                paint.setStrokeWidth(N);
-                float N2 = org.telegram.messenger.g0.N(3.32f);
-                Paint paint2 = this.f15165e;
-                paint2.setStrokeWidth(N2);
-                float d = ((org.telegram.ui.Components.u5) this.f15167g).d(this.f15166f);
-                float centerX = getBounds().centerX();
-                float centerY = getBounds().centerY();
-                float N3 = org.telegram.messenger.g0.N(10.66f);
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(centerX - N3, centerY - N3, centerX + N3, N3 + centerY);
-                canvas.drawRoundRect(rectF, org.telegram.messenger.g0.N(8.33f), org.telegram.messenger.g0.N(8.33f), paint);
-                int i7 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
-                if (i7 > 0) {
-                    canvas.saveLayerAlpha(rectF, 255, 31);
-                } else {
-                    canvas.save();
-                }
-                canvas.save();
-                canvas.translate(org.telegram.messenger.g0.N(1.0f) + centerX, centerY - org.telegram.messenger.g0.N(0.5f));
-                canvas.drawPath(this.f15163b, this.d);
-                canvas.restore();
-                if (i7 > 0) {
-                    if (this.f15166f) {
-                        canvas.drawLine(centerX - org.telegram.messenger.g0.N(8.33f), centerY - org.telegram.messenger.g0.N(8.33f), org.telegram.ui.Cells.y0.d(16.66f, d, centerX - org.telegram.messenger.g0.N(8.33f)), org.telegram.ui.Cells.y0.d(16.66f, d, centerY - org.telegram.messenger.g0.N(8.33f)), paint2);
-                        canvas.drawLine(centerX - org.telegram.messenger.g0.N(8.33f), centerY - org.telegram.messenger.g0.N(8.33f), org.telegram.ui.Cells.y0.d(16.66f, d, centerX - org.telegram.messenger.g0.N(8.33f)), org.telegram.ui.Cells.y0.d(16.66f, d, centerY - org.telegram.messenger.g0.N(8.33f)), paint);
-                    } else {
-                        canvas.drawLine(org.telegram.messenger.g0.N(8.33f) + centerX, org.telegram.messenger.g0.N(8.33f) + centerY, (org.telegram.messenger.g0.N(8.33f) + centerX) - (org.telegram.messenger.g0.N(16.66f) * d), (org.telegram.messenger.g0.N(8.33f) + centerY) - (org.telegram.messenger.g0.N(16.66f) * d), paint2);
-                        canvas.drawLine(org.telegram.messenger.g0.N(8.33f) + centerX, org.telegram.messenger.g0.N(8.33f) + centerY, (org.telegram.messenger.g0.N(8.33f) + centerX) - (org.telegram.messenger.g0.N(16.66f) * d), (org.telegram.messenger.g0.N(8.33f) + centerY) - (org.telegram.messenger.g0.N(16.66f) * d), paint);
-                    }
-                }
-                canvas.restore();
-                return;
+    public u(String str) {
+        str = str == null ? "." : str;
+        this.f15509a = str;
+        String[] split = str.split("/");
+        int length = split.length;
+        this.f15511c = length;
+        this.d = new int[length];
+        int i7 = 0;
+        for (int i10 = 0; i10 < split.length; i10++) {
+            this.d[i10] = split[i10].length();
+            i7 = Math.max(i7, split[i10].length());
         }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        switch (this.f15162a) {
-            case 0:
-                return org.telegram.messenger.g0.L(32.0f);
-            default:
-                return org.telegram.messenger.g0.L(24.0f);
-        }
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        switch (this.f15162a) {
-            case 0:
-                return org.telegram.messenger.g0.L(32.0f);
-            default:
-                return org.telegram.messenger.g0.L(24.0f);
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f15162a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        switch (this.f15162a) {
-            case 0:
-                this.f15164c.setAlpha(i7);
-                return;
-            default:
-                this.f15164c.setAlpha(i7);
-                this.d.setAlpha(i7);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f15162a) {
-            case 0:
-                this.f15164c.setColorFilter(colorFilter);
-                return;
-            default:
-                this.d.setColorFilter(colorFilter);
-                this.f15164c.setColorFilter(colorFilter);
-                return;
-        }
-    }
-
-    public u(t tVar, boolean z10) {
-        t tVar2 = tVar;
-        Paint paint = new Paint(1);
-        this.f15164c = paint;
-        this.d = new Paint(1);
-        this.f15165e = new Paint(1);
-        Path path = new Path();
-        this.f15163b = path;
-        this.f15167g = new float[8];
-        this.f15166f = z10;
-        paint.setColor(-1);
-        float N = org.telegram.messenger.g0.N(13.333333f);
-        float N2 = org.telegram.messenger.g0.N(18.666666f);
-        float N3 = org.telegram.messenger.g0.N(3.0f);
-        float N4 = org.telegram.messenger.g0.N(10.0f);
-        float N5 = org.telegram.messenger.g0.N(15.333333f);
-        float N6 = org.telegram.messenger.g0.N(1.0f);
-        float f10 = 1.33f;
-        float N7 = org.telegram.messenger.g0.N(1.33f);
-        path.setFillType(Path.FillType.EVEN_ODD);
-        RectF rectF = org.telegram.messenger.g0.P;
-        float f11 = 2.0f;
-        rectF.set((-N) / 2.0f, (-N2) / 2.0f, N / 2.0f, N2 / 2.0f);
-        path.addRoundRect(rectF, N3, N3, Path.Direction.CW);
-        ArrayList arrayList = tVar2.f15124e;
-        int i7 = tVar2.f15123c;
-        int size = arrayList.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            int i12 = i11 + 1;
-            s sVar = (s) obj;
-            int[] iArr = tVar2.d;
-            float f12 = f10;
-            int i13 = sVar.f15013c;
-            int i14 = sVar.f15012b;
-            int i15 = iArr[i13];
-            float f13 = f11;
-            int i16 = i15 - 1;
-            float max = (N4 - (Math.max(i10, i16) * N7)) / i15;
-            int i17 = i7 - 1;
-            int i18 = i10;
-            float max2 = (N5 - (Math.max(i10, i17) * N7)) / i7;
-            RectF rectF2 = org.telegram.messenger.g0.P;
-            ArrayList arrayList2 = arrayList;
-            float f14 = (-N4) / f13;
-            int i19 = i7;
-            float f15 = i14;
-            float f16 = f15 * N7;
-            int i20 = size;
-            float f17 = (-N5) / f13;
-            float f18 = N4;
-            float f19 = i13;
-            float f20 = f19 * N7;
-            float f21 = N5;
-            float f22 = N6;
-            rectF2.set(f16 + (max * f15) + f14, f20 + (max2 * f19) + f17, r.b.e(max, i14 + 1, f14, f16), r.b.e(max2, i13 + 1, f17, f20));
-            float[] fArr = (float[]) this.f15167g;
-            float f23 = 0.0f;
-            float f24 = (i14 == 0 && i13 == 0) ? f22 : 0.0f;
-            fArr[1] = f24;
-            fArr[i18] = f24;
-            float f25 = (i14 == i16 && i13 == 0) ? f22 : 0.0f;
-            fArr[3] = f25;
-            fArr[2] = f25;
-            float f26 = (i14 == i16 && i13 == i17) ? f22 : 0.0f;
-            fArr[5] = f26;
-            fArr[4] = f26;
-            if (i14 == 0 && i13 == i17) {
-                f23 = f22;
+        this.f15510b = i7;
+        for (int i11 = 0; i11 < split.length; i11++) {
+            for (int i12 = 0; i12 < split[i11].length(); i12++) {
+                this.f15512e.add(new t(this, i12, i11));
             }
-            fArr[7] = f23;
-            fArr[6] = f23;
-            this.f15163b.addRoundRect(rectF2, fArr, Path.Direction.CW);
-            tVar2 = tVar;
-            f10 = f12;
-            f11 = f13;
-            i10 = i18;
-            arrayList = arrayList2;
-            i7 = i19;
-            i11 = i12;
-            size = i20;
-            N4 = f18;
-            N6 = f22;
-            N5 = f21;
         }
-        Paint paint2 = this.d;
-        Paint.Style style = Paint.Style.STROKE;
-        paint2.setStyle(style);
-        this.d.setStrokeWidth(org.telegram.messenger.g0.L(3.33f));
-        this.d.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.f15165e.setStyle(style);
-        this.f15165e.setStrokeWidth(org.telegram.messenger.g0.L(f10));
-        this.f15165e.setColor(-1);
-        this.f15165e.setStrokeCap(Paint.Cap.ROUND);
-        this.f15165e.setStrokeJoin(Paint.Join.ROUND);
+    }
+
+    public static ArrayList a() {
+        if (f15508f == null) {
+            ArrayList arrayList = new ArrayList();
+            f15508f = arrayList;
+            arrayList.add(new u("./."));
+            f15508f.add(new u(".."));
+            f15508f.add(new u("../."));
+            f15508f.add(new u("./.."));
+            f15508f.add(new u("././."));
+            f15508f.add(new u("..."));
+            f15508f.add(new u("../.."));
+            f15508f.add(new u("./../.."));
+            f15508f.add(new u("../../."));
+            f15508f.add(new u("../../.."));
+            boolean z10 = org.telegram.messenger.s2.f26723a;
+        }
+        return f15508f;
+    }
+
+    public static int b() {
+        ArrayList a10 = a();
+        int size = a10.size();
+        int i7 = 0;
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = a10.get(i10);
+            i10++;
+            i7 = Math.max(i7, ((u) obj).f15512e.size());
+        }
+        return i7;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof u) {
+            return TextUtils.equals(this.f15509a, ((u) obj).f15509a);
+        }
+        return false;
+    }
+
+    public final String toString() {
+        return this.f15509a;
     }
 }

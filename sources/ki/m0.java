@@ -9,51 +9,50 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.telegram.messenger.i20;
-import org.telegram.messenger.k5;
+import org.telegram.messenger.n10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.er;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.lr;
 public abstract class m0 extends LinearLayout implements rh.a, te.i {
-    public final e6 f18436a;
-    public final FrameLayout f18437b;
-    public TLRPC.TL_replyKeyboardMarkup f18438c;
+    public final i6 f18774a;
+    public final FrameLayout f18775b;
+    public TLRPC.TL_replyKeyboardMarkup f18776c;
     public j0 d;
-    public int f18439e;
-    public boolean f18440f;
+    public int f18777e;
+    public boolean f18778f;
     public int h;
-    public final ArrayList f18441n;
-    public final ScrollView f18442r;
-    public int f18443s;
-    public final GradientDrawable f18444w;
-    public int f18445x;
-    public final te.j f18446y;
+    public final ArrayList f18779n;
+    public final ScrollView f18780r;
+    public int f18781s;
+    public final GradientDrawable f18782w;
+    public int f18783x;
+    public final te.j f18784y;
 
-    public m0(Context context, e6 e6Var) {
+    public m0(Context context, i6 i6Var) {
         super(context);
-        this.f18441n = new ArrayList();
-        this.f18444w = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
-        this.f18446y = new te.j(this, er.h, 320L);
-        this.f18436a = e6Var;
+        this.f18779n = new ArrayList();
+        this.f18782w = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
+        this.f18784y = new te.j(this, lr.h, 320L);
+        this.f18774a = i6Var;
         setOrientation(1);
         ScrollView scrollView = new ScrollView(context);
-        this.f18442r = scrollView;
+        this.f18780r = scrollView;
         scrollView.setClipToPadding(false);
         addView(scrollView);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f18437b = frameLayout;
+        this.f18775b = frameLayout;
         scrollView.addView(frameLayout);
         d();
     }
 
     @Override
     public final void b(int i7) {
-        if (this.f18443s == i7) {
+        if (this.f18781s == i7) {
             return;
         }
-        this.f18443s = i7;
-        ScrollView scrollView = this.f18442r;
+        this.f18781s = i7;
+        ScrollView scrollView = this.f18780r;
         if (scrollView.getPaddingBottom() != i7) {
             scrollView.setPadding(0, 0, 0, i7);
         }
@@ -61,10 +60,10 @@ public abstract class m0 extends LinearLayout implements rh.a, te.i {
     }
 
     public final void d() {
-        org.telegram.messenger.g0.y3(this.f18442r, j6.w0(j6.f29269zf, this.f18436a));
+        org.telegram.messenger.g0.x3(this.f18780r, n6.w0(n6.f29816zf, this.f18774a));
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f18441n;
+            ArrayList arrayList = this.f18779n;
             if (i7 < arrayList.size()) {
                 ((k0) arrayList.get(i7)).a();
                 i7++;
@@ -78,27 +77,27 @@ public abstract class m0 extends LinearLayout implements rh.a, te.i {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        float R0 = org.telegram.messenger.g0.R0(this.f18443s);
+        float R0 = org.telegram.messenger.g0.R0(this.f18781s);
         if (R0 > 0.0f) {
-            int r12 = j6.r1(R0, j6.w0(j6.f29269zf, this.f18436a));
-            int i7 = this.f18445x;
-            GradientDrawable gradientDrawable = this.f18444w;
+            int r12 = n6.r1(R0, n6.w0(n6.f29816zf, this.f18774a));
+            int i7 = this.f18783x;
+            GradientDrawable gradientDrawable = this.f18782w;
             if (i7 != r12) {
-                gradientDrawable.setColors(new int[]{r12, j6.r1(0.66f, r12), i0.a.o(r12, 0)});
-                this.f18445x = r12;
+                gradientDrawable.setColors(new int[]{r12, n6.r1(0.66f, r12), i0.a.o(r12, 0)});
+                this.f18783x = r12;
             }
-            gradientDrawable.setBounds(0, getMeasuredHeight() - this.f18443s, getMeasuredWidth(), getMeasuredHeight());
+            gradientDrawable.setBounds(0, getMeasuredHeight() - this.f18781s, getMeasuredWidth(), getMeasuredHeight());
             gradientDrawable.draw(canvas);
         }
     }
 
     @Override
     public final void f(te.j jVar) {
-        Iterator it = this.f18446y.iterator();
+        Iterator it = this.f18784y.iterator();
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
             float c10 = eVar.c();
-            Object obj = eVar.f57094a;
+            Object obj = eVar.f57666a;
             float T1 = org.telegram.messenger.g0.T1(0.7f, 1.0f, c10);
             ((l0) obj).setAlpha(c10);
             ((l0) obj).setScaleX(T1);
@@ -107,14 +106,14 @@ public abstract class m0 extends LinearLayout implements rh.a, te.i {
     }
 
     public int getKeyboardHeight() {
-        TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup = this.f18438c;
+        TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup = this.f18776c;
         if (tL_replyKeyboardMarkup == null) {
             return 0;
         }
-        if (this.f18440f) {
-            return this.f18439e;
+        if (this.f18778f) {
+            return this.f18777e;
         }
-        return k5.D(4.0f, this.f18438c.rows.size() - 1, org.telegram.messenger.g0.L(16.0f) + (org.telegram.messenger.g0.L(this.h) * tL_replyKeyboardMarkup.rows.size()));
+        return org.telegram.messenger.f3.D(4.0f, this.f18776c.rows.size() - 1, org.telegram.messenger.g0.L(16.0f) + (org.telegram.messenger.g0.L(this.h) * tL_replyKeyboardMarkup.rows.size()));
     }
 
     public void setButtons(org.telegram.tgnet.TLRPC.TL_replyKeyboardMarkup r21) {
@@ -128,21 +127,21 @@ public abstract class m0 extends LinearLayout implements rh.a, te.i {
     public void setPanelHeight(int i7) {
         TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
         int max;
-        this.f18439e = i7;
-        if (this.f18440f && (tL_replyKeyboardMarkup = this.f18438c) != null && !tL_replyKeyboardMarkup.rows.isEmpty()) {
-            if (!this.f18440f) {
+        this.f18777e = i7;
+        if (this.f18778f && (tL_replyKeyboardMarkup = this.f18776c) != null && !tL_replyKeyboardMarkup.rows.isEmpty()) {
+            if (!this.f18778f) {
                 max = 44;
             } else {
-                max = (int) Math.max(44.0f, (i20.A(4.0f, this.f18438c.rows.size() - 1, this.f18439e - org.telegram.messenger.g0.L(16.0f)) / this.f18438c.rows.size()) / org.telegram.messenger.g0.f23610p);
+                max = (int) Math.max(44.0f, (n10.B(4.0f, this.f18776c.rows.size() - 1, this.f18777e - org.telegram.messenger.g0.L(16.0f)) / this.f18776c.rows.size()) / org.telegram.messenger.g0.f24120p);
             }
             this.h = max;
             int L = org.telegram.messenger.g0.L(max);
-            Iterator it = this.f18446y.iterator();
+            Iterator it = this.f18784y.iterator();
             while (it.hasNext()) {
                 te.e eVar = (te.e) it.next();
-                int childCount = ((l0) eVar.f57094a).getChildCount();
+                int childCount = ((l0) eVar.f57666a).getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = ((l0) eVar.f57094a).getChildAt(i10);
+                    View childAt = ((l0) eVar.f57666a).getChildAt(i10);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
                     if (layoutParams.height != L) {
                         layoutParams.height = L;

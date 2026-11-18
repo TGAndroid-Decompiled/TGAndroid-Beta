@@ -1,26 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class vz0 extends EditTextBoldCursor {
-    public final xz0 M1;
+public final class vz0 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f41509a;
 
-    public vz0(xz0 xz0Var, Context context) {
-        super(context);
-        this.M1 = xz0Var;
+    public vz0(ThemeEditorView.EditorAlert editorAlert) {
+        this.f41509a = editorAlert;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        float rawX = obtain.getRawX();
-        float rawY = obtain.getRawY();
-        ThemeEditorView.EditorAlert editorAlert = this.M1.f41809c;
-        int i7 = ThemeEditorView.EditorAlert.H1;
-        obtain.setLocation(rawX, rawY - editorAlert.f29682b.getTranslationY());
-        editorAlert.n1.dispatchTouchEvent(obtain);
-        obtain.recycle();
-        return super.dispatchTouchEvent(motionEvent);
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f41509a;
+        editorAlert.n1.setVisibility(4);
+        editorAlert.f33161q1.setVisibility(4);
+        editorAlert.f33165u1.setVisibility(4);
+        editorAlert.C1 = false;
     }
 }

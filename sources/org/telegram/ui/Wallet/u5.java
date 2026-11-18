@@ -1,138 +1,53 @@
 package org.telegram.ui.Wallet;
 
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.Scroller;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.ui.Components.u41;
-public final class u5 extends v4.r0 {
-    public RecyclerView f44554a;
-    public bi.v3 f44556c;
-    public boolean d;
-    public boolean f44557e;
-    public boolean f44558f;
-    public float f44559g;
-    public float h;
-    public final y5 f44561j;
-    public final hi.f8 f44555b = new hi.f8(this);
-    public final l f44560i = new l(this, 8);
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.q10;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class u5 implements View.OnAttachStateChangeListener {
+    public final fi.r f45124a;
+    public final TL_wallet.walletTransaction[] f45125b;
+    public final fs f45126c;
+    public final int d;
+    public final q10 f45127e;
+    public final e3[] f45128f;
+    public final String[] h;
+    public final boolean[] f45129n;
 
-    public u5(y5 y5Var) {
-        this.f44561j = y5Var;
+    public u5(fi.r rVar, TL_wallet.walletTransaction[] wallettransactionArr, t5 t5Var, int i7, q10 q10Var, e3[] e3VarArr, String[] strArr, boolean[] zArr) {
+        this.f45124a = rVar;
+        this.f45125b = wallettransactionArr;
+        this.f45126c = t5Var;
+        this.d = i7;
+        this.f45127e = q10Var;
+        this.f45128f = e3VarArr;
+        this.h = strArr;
+        this.f45129n = zArr;
     }
 
     @Override
-    public final boolean a(int r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.u5.a(int, int):boolean");
-    }
-
-    public final void b(bi.v3 v3Var) {
-        bi.v3 v3Var2 = this.f44556c;
-        if (v3Var2 != null) {
-            v3Var2.removeCallbacks(this.f44560i);
+    public final void onViewAttachedToWindow(View view) {
+        this.f45124a.a(this.f45125b[0]);
+        fs fsVar = this.f45126c;
+        if (fsVar != null) {
+            int i7 = this.d;
+            ks.f(i7).c(fsVar, ks.f25099c4);
+            ks.f(i7).c(fsVar, ks.f25104d4);
         }
-        this.f44556c = v3Var;
-        RecyclerView recyclerView = this.f44554a;
-        if (recyclerView != v3Var) {
-            hi.f8 f8Var = this.f44555b;
-            if (recyclerView != null) {
-                ArrayList arrayList = recyclerView.f2829x0;
-                if (arrayList != null) {
-                    arrayList.remove(f8Var);
-                }
-                this.f44554a.setOnFlingListener(null);
-            }
-            this.f44554a = v3Var;
-            if (v3Var != null) {
-                if (v3Var.getOnFlingListener() == null) {
-                    this.f44554a.j(f8Var);
-                    this.f44554a.setOnFlingListener(this);
-                    new Scroller(this.f44554a.getContext(), new DecelerateInterpolator());
-                    f();
-                    return;
-                }
-                throw new IllegalStateException("An instance of OnFlingListener already set.");
-            }
+        q10 q10Var = this.f45127e;
+        if (q10Var != null) {
+            this.f45128f[0].n(new p(q10Var, this.h, this.f45129n, 15));
         }
     }
 
-    public final void c() {
-        this.f44557e = false;
-        this.f44558f = false;
-        this.d = false;
-        bi.v3 v3Var = this.f44556c;
-        if (v3Var != null) {
-            v3Var.removeCallbacks(this.f44560i);
-        }
-    }
-
-    public final View d(v4.o0 o0Var) {
-        bi.v3 v3Var;
-        if (!this.f44557e && (v3Var = this.f44556c) != null && v3Var.getScrollState() == 0) {
-            y5 y5Var = this.f44561j;
-            u41 y02 = y5Var.y0();
-            if ((y02 == null || y02.getScrollState() == 0) && this.d) {
-                this.d = false;
-                if (y5Var.z0()) {
-                    View m10 = o0Var.m(0);
-                    View m11 = o0Var.m(o0Var.B() - 1);
-                    if (m10 == null) {
-                        return m11;
-                    }
-                    if (m11 == null || Math.abs(new int[]{0, v4.o0.z(m10) - o0Var.F()}[1]) < Math.abs(new int[]{0, v4.o0.z(m11) - o0Var.F()}[1])) {
-                        return m10;
-                    }
-                    return m11;
-                }
-                return null;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public final void e(MotionEvent motionEvent) {
-        boolean z10;
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            c();
-            this.f44557e = true;
-            this.f44559g = motionEvent.getX();
-            this.h = motionEvent.getY();
-        } else if (actionMasked == 3) {
-            c();
-        } else if (actionMasked == 2 || actionMasked == 1) {
-            float abs = Math.abs(motionEvent.getX() - this.f44559g);
-            float abs2 = Math.abs(motionEvent.getY() - this.h);
-            if (abs2 > ViewConfiguration.get(this.f44556c.getContext()).getScaledTouchSlop() && abs2 > abs * 1.5f) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.f44558f = z10;
-            if (!z10) {
-                this.d = false;
-            }
-            if (actionMasked == 1) {
-                this.f44557e = false;
-            }
-        }
-    }
-
-    public final void f() {
-        v4.o0 layoutManager;
-        View d;
-        RecyclerView recyclerView = this.f44554a;
-        if (recyclerView != null && (layoutManager = recyclerView.getLayoutManager()) != null && (d = d(layoutManager)) != null) {
-            int[] iArr = {0, v4.o0.z(d) - layoutManager.F()};
-            int i7 = iArr[0];
-            if (i7 == 0 && iArr[1] == 0) {
-                return;
-            }
-            this.f44554a.w0(i7, iArr[1], null);
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        fs fsVar = this.f45126c;
+        if (fsVar != null) {
+            int i7 = this.d;
+            ks.f(i7).n(fsVar, ks.f25099c4);
+            ks.f(i7).n(fsVar, ks.f25104d4);
         }
     }
 }

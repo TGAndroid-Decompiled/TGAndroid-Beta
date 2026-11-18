@@ -18,20 +18,20 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.ff;
+import org.telegram.messenger.ef;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ii;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.vg;
-public final class x implements ii, com.google.android.gms.common.api.internal.q {
-    public final int f57596a;
-    public Object f57597b;
-    public Object f57598c;
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.qi;
+import org.telegram.ui.Components.si;
+public final class x implements qi, com.google.android.gms.common.api.internal.q {
+    public final int f58163a;
+    public Object f58164b;
+    public Object f58165c;
 
     public x(int i7, Object obj, Object obj2) {
-        this.f57596a = i7;
-        this.f57597b = obj;
-        this.f57598c = obj2;
+        this.f58163a = i7;
+        this.f58164b = obj;
+        this.f58165c = obj2;
     }
 
     public static tg.x a(android.content.Context r5) {
@@ -49,34 +49,34 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
         throw new UnsupportedOperationException("Method not decompiled: tg.x.accept(java.lang.Object, java.lang.Object):void");
     }
 
-    public void b(v4.e1 e1Var, e2.r0 r0Var) {
-        a0.f fVar = (a0.f) this.f57597b;
-        v4.k1 k1Var = (v4.k1) fVar.get(e1Var);
-        if (k1Var == null) {
-            k1Var = v4.k1.a();
-            fVar.put(e1Var, k1Var);
+    public void b(v4.f1 f1Var, e2.r0 r0Var) {
+        a0.f fVar = (a0.f) this.f58164b;
+        v4.l1 l1Var = (v4.l1) fVar.get(f1Var);
+        if (l1Var == null) {
+            l1Var = v4.l1.a();
+            fVar.put(f1Var, l1Var);
         }
-        k1Var.f58599c = r0Var;
-        k1Var.f58597a |= 8;
+        l1Var.f59185c = r0Var;
+        l1Var.f59183a |= 8;
     }
 
     public File c() {
-        if (((File) this.f57597b) == null) {
+        if (((File) this.f58164b) == null) {
             synchronized (this) {
                 try {
-                    if (((File) this.f57597b) == null) {
-                        String str = "PersistedInstallation." + ((o9.g) this.f57598c).d() + ".json";
-                        o9.g gVar = (o9.g) this.f57598c;
+                    if (((File) this.f58164b) == null) {
+                        String str = "PersistedInstallation." + ((o9.g) this.f58165c).d() + ".json";
+                        o9.g gVar = (o9.g) this.f58165c;
                         gVar.a();
-                        File file = new File(gVar.f21397a.getNoBackupFilesDir(), str);
-                        this.f57597b = file;
+                        File file = new File(gVar.f21763a.getNoBackupFilesDir(), str);
+                        this.f58164b = file;
                         if (file.exists()) {
-                            return (File) this.f57597b;
+                            return (File) this.f58164b;
                         }
-                        o9.g gVar2 = (o9.g) this.f57598c;
+                        o9.g gVar2 = (o9.g) this.f58165c;
                         gVar2.a();
-                        File file2 = new File(gVar2.f21397a.getFilesDir(), str);
-                        if (file2.exists() && !file2.renameTo((File) this.f57597b)) {
+                        File file2 = new File(gVar2.f21763a.getFilesDir(), str);
+                        if (file2.exists() && !file2.renameTo((File) this.f58164b)) {
                             Log.e("PersistedInstallation", "Unable to move the file from back up to non back up directory", new IOException("Unable to move the file from back up to non back up directory"));
                             return file2;
                         }
@@ -85,22 +85,22 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
                 }
             }
         }
-        return (File) this.f57597b;
+        return (File) this.f58164b;
     }
 
     public void d(wa.b bVar) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", bVar.f59080a);
-            jSONObject.put("Status", p1.g.c(bVar.f59081b));
-            jSONObject.put("AuthToken", bVar.f59082c);
+            jSONObject.put("Fid", bVar.f59645a);
+            jSONObject.put("Status", p1.g.c(bVar.f59646b));
+            jSONObject.put("AuthToken", bVar.f59647c);
             jSONObject.put("RefreshToken", bVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", bVar.f59084f);
-            jSONObject.put("ExpiresInSecs", bVar.f59083e);
-            jSONObject.put("FisError", bVar.f59085g);
-            o9.g gVar = (o9.g) this.f57598c;
+            jSONObject.put("TokenCreationEpochInSecs", bVar.f59649f);
+            jSONObject.put("ExpiresInSecs", bVar.f59648e);
+            jSONObject.put("FisError", bVar.f59650g);
+            o9.g gVar = (o9.g) this.f58165c;
             gVar.a();
-            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f21397a.getFilesDir());
+            File createTempFile = File.createTempFile("PersistedInstallation", "tmp", gVar.f21763a.getFilesDir());
             FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
             fileOutputStream.write(jSONObject.toString().getBytes("UTF-8"));
             fileOutputStream.close();
@@ -111,34 +111,29 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
         }
     }
 
-    @Override
-    public void d0(vg vgVar) {
-        vgVar.run();
-    }
-
-    public e2.r0 e(v4.e1 e1Var, int i7) {
-        v4.k1 k1Var;
+    public e2.r0 e(v4.f1 f1Var, int i7) {
+        v4.l1 l1Var;
         e2.r0 r0Var;
-        a0.f fVar = (a0.f) this.f57597b;
-        int d = fVar.d(e1Var);
-        if (d >= 0 && (k1Var = (v4.k1) fVar.i(d)) != null) {
-            int i10 = k1Var.f58597a;
+        a0.f fVar = (a0.f) this.f58164b;
+        int d = fVar.d(f1Var);
+        if (d >= 0 && (l1Var = (v4.l1) fVar.i(d)) != null) {
+            int i10 = l1Var.f59183a;
             if ((i10 & i7) != 0) {
                 int i11 = i10 & (~i7);
-                k1Var.f58597a = i11;
+                l1Var.f59183a = i11;
                 if (i7 == 4) {
-                    r0Var = k1Var.f58598b;
+                    r0Var = l1Var.f59184b;
                 } else if (i7 == 8) {
-                    r0Var = k1Var.f58599c;
+                    r0Var = l1Var.f59185c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i11 & 12) == 0) {
                     fVar.g(d);
-                    k1Var.f58597a = 0;
-                    k1Var.f58598b = null;
-                    k1Var.f58599c = null;
-                    v4.k1.d.u(k1Var);
+                    l1Var.f59183a = 0;
+                    l1Var.f59184b = null;
+                    l1Var.f59185c = null;
+                    v4.l1.d.t(l1Var);
                 }
                 return r0Var;
             }
@@ -194,10 +189,15 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
         throw new NullPointerException("Null registrationStatus");
     }
 
+    @Override
+    public void f0(eh ehVar) {
+        ehVar.run();
+    }
+
     public void g() {
         try {
-            ((FileLock) this.f57598c).release();
-            ((FileChannel) this.f57597b).close();
+            ((FileLock) this.f58165c).release();
+            ((FileChannel) this.f58164b).close();
         } catch (IOException e10) {
             Log.e("CrossProcessLock", "encountered error while releasing, ignoring", e10);
         }
@@ -208,22 +208,22 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
         return false;
     }
 
-    public void h(v4.e1 e1Var) {
-        v4.k1 k1Var = (v4.k1) ((a0.f) this.f57597b).get(e1Var);
-        if (k1Var == null) {
+    public void h(v4.f1 f1Var) {
+        v4.l1 l1Var = (v4.l1) ((a0.f) this.f58164b).get(f1Var);
+        if (l1Var == null) {
             return;
         }
-        k1Var.f58597a &= -2;
+        l1Var.f59183a &= -2;
     }
 
-    public void i(v4.e1 e1Var) {
-        a0.f fVar = (a0.f) this.f57597b;
-        a0.h hVar = (a0.h) this.f57598c;
+    public void i(v4.f1 f1Var) {
+        a0.f fVar = (a0.f) this.f58164b;
+        a0.h hVar = (a0.h) this.f58165c;
         int m10 = hVar.m() - 1;
         while (true) {
             if (m10 < 0) {
                 break;
-            } else if (e1Var == hVar.n(m10)) {
+            } else if (f1Var == hVar.n(m10)) {
                 Object[] objArr = hVar.f19c;
                 Object obj = objArr[m10];
                 Object obj2 = a0.i.f20a;
@@ -235,30 +235,30 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
                 m10--;
             }
         }
-        v4.k1 k1Var = (v4.k1) fVar.get(e1Var);
-        if (k1Var != null) {
-            fVar.remove(e1Var);
-            k1Var.f58597a = 0;
-            k1Var.f58598b = null;
-            k1Var.f58599c = null;
-            v4.k1.d.u(k1Var);
+        v4.l1 l1Var = (v4.l1) fVar.get(f1Var);
+        if (l1Var != null) {
+            fVar.remove(f1Var);
+            l1Var.f59183a = 0;
+            l1Var.f59184b = null;
+            l1Var.f59185c = null;
+            v4.l1.d.t(l1Var);
         }
     }
 
     @Override
     public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        ki kiVar = (ki) this.f57597b;
+        si siVar = (si) this.f58164b;
         try {
-            HashMap<Object, Object> selectedPhotos = kiVar.f36435e2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = siVar.f39670e2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
-                ff ffVar = (ff) selectedPhotos.values().iterator().next();
-                String str = ffVar.h;
+                ef efVar = (ef) selectedPhotos.values().iterator().next();
+                String str = efVar.h;
                 if (str == null) {
-                    str = ffVar.I;
+                    str = efVar.I;
                 }
-                g0 g0Var = (g0) this.f57598c;
+                g0 g0Var = (g0) this.f58165c;
                 g0Var.d0(g0Var.f0(str, true));
-                kiVar.dismiss();
+                siVar.dismiss();
             }
         } catch (Throwable th2) {
             a8.g(th2, true);
@@ -266,49 +266,49 @@ public final class x implements ii, com.google.android.gms.common.api.internal.q
     }
 
     public x(Context context) {
-        this.f57596a = 8;
-        this.f57598c = new AtomicLong(-1L);
-        this.f57597b = new com.google.android.gms.common.api.j(context, s6.d.f56500m, new q6.q("mlkit:natural_language"), com.google.android.gms.common.api.i.f5927c);
+        this.f58163a = 8;
+        this.f58165c = new AtomicLong(-1L);
+        this.f58164b = new com.google.android.gms.common.api.j(context, s6.d.f57074m, new q6.q("mlkit:natural_language"), com.google.android.gms.common.api.i.f6210c);
     }
 
     public x(int i7, byte b10) {
-        this.f57596a = i7;
+        this.f58163a = i7;
         switch (i7) {
             case 9:
                 return;
             default:
-                this.f57597b = new a0.l(0);
-                this.f57598c = new a0.h();
+                this.f58164b = new a0.l(0);
+                this.f58165c = new a0.h();
                 return;
         }
     }
 
     public x(o9.g gVar) {
-        this.f57596a = 6;
-        this.f57598c = gVar;
+        this.f58163a = 6;
+        this.f58165c = gVar;
     }
 
     public x(String str, String str2) {
-        this.f57596a = 2;
-        this.f57597b = str;
-        this.f57598c = str2;
+        this.f58163a = 2;
+        this.f58164b = str;
+        this.f58165c = str2;
         if (str.length() <= 0) {
             throw new IllegalArgumentException("userId should not be empty");
         }
     }
 
     public x(int i7) {
-        this.f57596a = 7;
+        this.f58163a = 7;
         Bitmap createBitmap = Bitmap.createBitmap(i7, i7, Bitmap.Config.ALPHA_8);
-        this.f57597b = createBitmap;
+        this.f58164b = createBitmap;
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        this.f57598c = new BitmapShader(createBitmap, tileMode, tileMode);
+        this.f58165c = new BitmapShader(createBitmap, tileMode, tileMode);
     }
 
-    public x(g0 g0Var, ki kiVar) {
-        this.f57596a = 0;
-        this.f57598c = g0Var;
-        this.f57597b = kiVar;
+    public x(g0 g0Var, si siVar) {
+        this.f58163a = 0;
+        this.f58165c = g0Var;
+        this.f58164b = siVar;
     }
 
     @Override

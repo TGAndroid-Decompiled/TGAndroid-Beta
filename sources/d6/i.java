@@ -1,201 +1,332 @@
 package d6;
 
-import a8.ja;
-import a8.m1;
-import a8.m8;
+import a8.la;
 import a8.n1;
-import android.content.ContentResolver;
+import a8.w9;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.content.SharedPreferences;
 import android.graphics.RectF;
-import android.net.Uri;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.Parcel;
 import android.os.ResultReceiver;
 import android.support.v4.media.session.a0;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.TextureView;
+import android.view.Surface;
 import android.view.View;
-import android.widget.FrameLayout;
-import androidx.biometric.p;
-import androidx.biometric.t;
-import androidx.biometric.v;
-import androidx.fragment.app.f0;
+import android.view.Window;
+import androidx.biometric.z;
+import androidx.fragment.app.j0;
 import androidx.fragment.app.k0;
-import bi.o2;
-import ch.p0;
-import ch.r;
-import ci.z;
-import ci.z0;
+import ch.p;
+import ci.o0;
 import com.android.billingclient.api.ProxyBillingActivityV2;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.cast.MediaInfo;
-import com.google.android.gms.common.api.internal.c0;
-import com.google.android.gms.common.api.internal.g0;
-import com.google.android.gms.common.api.internal.i0;
+import com.google.android.gms.common.api.internal.f0;
+import com.google.android.gms.common.api.internal.h1;
+import com.google.android.gms.common.api.internal.o;
 import com.google.android.gms.common.api.internal.q;
-import com.google.android.gms.internal.clearcut.d2;
+import com.google.android.gms.common.api.internal.q0;
+import com.google.android.gms.internal.cast.a1;
+import com.google.android.gms.internal.cast.a2;
+import com.google.android.gms.internal.cast.m0;
+import com.google.android.gms.internal.cast.x;
+import com.google.android.gms.internal.play_billing.r;
 import com.google.android.gms.internal.play_billing.u;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.android.gms.tasks.Tasks;
-import di.c6;
-import f6.o;
+import d3.i0;
+import di.l6;
+import di.t;
+import e2.x1;
+import f6.y;
+import f7.v;
 import fi.b4;
-import fi.z8;
-import gb.u0;
-import h2.x;
-import h9.e1;
-import h9.g1;
-import hi.d0;
-import hi.d7;
-import hi.e0;
-import hi.ga;
-import hi.h5;
-import hi.ia;
-import hi.j0;
-import hi.sa;
-import hi.u9;
-import hi.wa;
-import hi.x5;
-import java.io.File;
+import fi.b9;
+import fi.c9;
+import fi.e3;
+import g.s;
+import gb.p0;
+import hi.u5;
+import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.ConcurrentModificationException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.WeakHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import og.n;
+import l.w;
+import m6.n;
+import org.chromium.support_lib_boundary.WebMessageListenerBoundaryInterface;
 import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.messenger.gj;
-import org.telegram.ui.Components.fo0;
-import org.telegram.ui.Components.li0;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.xb;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.jc;
+import org.telegram.messenger.ks;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.mh0;
+import org.telegram.ui.Components.nt0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.br0;
-import sg.t0;
-import tg.r1;
-public final class i implements SuccessContinuation, androidx.activity.result.b, ce.c, li0, z, g0, com.google.android.gms.internal.clearcut.g, c4.d, q, fo0, br0, OnSuccessListener, ib.b, g9.k, n, t0, wa, i6.a {
-    public static i f7596c;
-    public final int f7597a;
-    public Object f7598b;
+import org.telegram.ui.Stories.ProfileStoriesView;
+import org.telegram.ui.cv0;
+import org.telegram.ui.wv0;
+import q6.m;
+import q7.l1;
+import q7.m1;
+public final class i implements SuccessContinuation, androidx.activity.result.b, b3.k, te.b, q0, i0, q, nt0, jc, WebMessageListenerBoundaryInterface, b9, w, OnSuccessListener, OnCompleteListener, ib.b {
+    public static i f7879c;
+    public final int f7880a;
+    public final Object f7881b;
 
-    public i(int i7) {
-        this.f7597a = i7;
+    public i(cb.c cVar) {
+        this.f7880a = 18;
+        this.f7881b = (r) cVar.f5154b;
     }
 
-    public static synchronized i V(Context context) {
-        i a02;
+    public static synchronized i B(Context context) {
+        i F;
         synchronized (i.class) {
-            a02 = a0(context.getApplicationContext());
+            F = F(context.getApplicationContext());
         }
-        return a02;
+        return F;
     }
 
-    public static synchronized i a0(Context context) {
+    public static synchronized i F(Context context) {
         synchronized (i.class) {
-            i iVar = f7596c;
+            i iVar = f7879c;
             if (iVar != null) {
                 return iVar;
             }
             i iVar2 = new i(context);
-            f7596c = iVar2;
+            f7879c = iVar2;
             return iVar2;
         }
     }
 
-    @Override
-    public void A(boolean z10) {
-        x5 x5Var = (x5) this.f7598b;
-        if (x5Var.j()) {
-            x5Var.F.getClass();
+    public static o o(Looper looper, Object obj, String str) {
+        m.i(obj, "Listener must not be null");
+        m.i(looper, "Looper must not be null");
+        return new o(looper, obj, str);
+    }
+
+    public void A() {
+        f0 f0Var = (f0) ((WeakReference) this.f7881b).get();
+        if (f0Var == null) {
+            return;
         }
-        x5Var.x(-4, z10);
+        f0Var.k();
     }
 
     @Override
-    public boolean B() {
-        return false;
-    }
-
-    @Override
-    public boolean C() {
+    public boolean C(l.k kVar) {
+        Window.Callback callback = ((s) this.f7881b).f13029f.getCallback();
+        if (callback != null) {
+            callback.onMenuOpened(108, kVar);
+            return true;
+        }
         return true;
     }
 
     @Override
     public void D(float f10, int i7) {
-        ArrayList arrayList;
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var != null && (arrayList = d7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
-            ((d7) x5Var.d.T.get(i7)).P = f10;
+        p pVar = (p) this.f7881b;
+        pVar.f5465c.setLayerType(0, null);
+        if (f10 == 0.0f && !pVar.P) {
+            pVar.f5465c.setVisibility(4);
+            if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
+                pVar.F.setFocusableInTouchMode(false);
+            }
+        }
+        ks.e().k(ks.f25142k1, 512);
+    }
+
+    public synchronized void E() {
+        synchronized (this) {
+            b bVar = (b) this.f7881b;
+            ReentrantLock reentrantLock = bVar.f7862a;
+            reentrantLock.lock();
+            bVar.f7863b.edit().clear().apply();
+            reentrantLock.unlock();
         }
     }
 
     @Override
-    public void E() {
-        i0 i0Var = (i0) this.f7598b;
-        for (com.google.android.gms.common.api.c cVar : i0Var.f6018f.values()) {
-            cVar.a();
+    public void G(boolean z10) {
+        te.a aVar = ((t) this.f7881b).f9774s;
+        if (aVar != null) {
+            aVar.a(z10, true);
         }
-        i0Var.f6025o.G = Collections.EMPTY_SET;
     }
 
     @Override
-    public void F() {
-        ((j0) this.f7598b).d.invalidate();
+    public void H(int i7, float f10, float f11, te.c cVar) {
+        ((p) this.f7881b).j0(f10);
     }
 
-    @Override
-    public java.lang.Object G(ce.d r7, kd.c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: d6.i.G(ce.d, kd.c):java.lang.Object");
-    }
-
-    @Override
-    public void G0(gj gjVar) {
-        ((z8) ((b4) this.f7598b).A1).f(true);
-    }
-
-    @Override
-    public void H(float f10) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
+    public void I() {
+        h6.h hVar = (h6.h) this.f7881b;
+        Iterator it = hVar.h.iterator();
+        if (!it.hasNext()) {
+            Iterator it2 = hVar.f13928i.iterator();
+            while (it2.hasNext()) {
+                ((h6.g) it2.next()).a();
+            }
             return;
         }
-        d7Var.P = f10;
-        x5Var.c();
+        it.next().getClass();
+        throw new ClassCastException();
     }
 
     @Override
-    public void I(gj gjVar) {
-        ((z8) ((b4) this.f7598b).A1).f(false);
+    public float U0() {
+        return i5.c.d(9.66f, ri.a.d(t.g0((t) this.f7881b).f15893b), 0);
     }
 
     @Override
-    public boolean L() {
-        return false;
+    public void accept(Object obj, Object obj2) {
+        int i7 = this.f7880a;
+        Object obj3 = this.f7881b;
+        switch (i7) {
+            case 12:
+                d8.d dVar = new d8.d(0, (TaskCompletionSource) obj2);
+                Parcel obtain = Parcel.obtain();
+                obtain.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
+                int i10 = d8.a.f7884a;
+                obtain.writeStrongBinder(dVar);
+                obtain.writeInt(1);
+                ((o8.a) obj3).writeToParcel(obtain, 0);
+                ((d8.c) ((d8.f) obj).n()).h1(obtain, 2);
+                return;
+            default:
+                e7.b bVar = new e7.b(0, (TaskCompletionSource) obj2);
+                m1 m1Var = (m1) ((l1) obj).n();
+                Parcel obtain2 = Parcel.obtain();
+                obtain2.writeInterfaceToken(m1Var.f56028b);
+                int i11 = q7.j.f56011a;
+                obtain2.writeStrongBinder(bVar);
+                obtain2.writeInt(1);
+                ((v) obj3).writeToParcel(obtain2, 0);
+                Parcel obtain3 = Parcel.obtain();
+                try {
+                    m1Var.f56027a.transact(1, obtain2, obtain3, 0);
+                    obtain3.readException();
+                    return;
+                } finally {
+                    obtain2.recycle();
+                    obtain3.recycle();
+                }
+        }
     }
 
-    public void N(m6.n nVar, v vVar) {
-        k0 k0Var = (k0) this.f7598b;
+    public void c(f3.j jVar) {
+        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f7881b;
+        long[] jArr = jVar.f11170e;
+        if (jArr.length > 0 && !linkedHashMap.containsKey(Long.valueOf(jArr[0]))) {
+            linkedHashMap.put(Long.valueOf(jVar.f11170e[0]), jVar);
+        }
+    }
+
+    @Override
+    public void d(l.k kVar, boolean z10) {
+        ((s) this.f7881b).i(kVar);
+    }
+
+    @Override
+    public void e(long j3, int i7, e3 e3Var) {
+        int i10 = ProfileStoriesView.f43797t0;
+        ((cv0) this.f7881b).f(true, false);
+        e3Var.run();
+    }
+
+    @Override
+    public void f(Object obj) {
+        int i7;
+        Bundle extras;
+        switch (this.f7880a) {
+            case 3:
+                Map map = (Map) obj;
+                j0 j0Var = (j0) this.f7881b;
+                String[] strArr = (String[]) map.keySet().toArray(new String[0]);
+                ArrayList arrayList = new ArrayList(map.values());
+                int[] iArr = new int[arrayList.size()];
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    if (((Boolean) arrayList.get(i10)).booleanValue()) {
+                        i7 = 0;
+                    } else {
+                        i7 = -1;
+                    }
+                    iArr[i10] = i7;
+                }
+                androidx.fragment.app.f0 f0Var = (androidx.fragment.app.f0) j0Var.F.pollFirst();
+                if (f0Var == null) {
+                    Log.w("FragmentManager", "No permissions were requested for " + this);
+                    return;
+                }
+                String str = f0Var.f2333a;
+                if (j0Var.f2347c.o(str) == null) {
+                    Log.w("FragmentManager", "Permission request result delivered for unknown Fragment " + str);
+                    return;
+                }
+                return;
+            default:
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f7881b;
+                androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
+                proxyBillingActivityV2.getClass();
+                Intent intent = aVar.f1800b;
+                int i11 = aVar.f1799a;
+                if (intent == null) {
+                    extras = null;
+                } else {
+                    extras = intent.getExtras();
+                }
+                if (i11 != -1) {
+                    if (extras == null) {
+                        extras = new Bundle();
+                    }
+                    u.h("ProxyBillingActivityV2", "External offer flow finished with resultCode: " + i11);
+                    extras.putInt("INTERNAL_LOG_ERROR_REASON", 134);
+                    extras.putString("INTERNAL_LOG_ERROR_ADDITIONAL_DETAILS", "External offer flow finished with error resultCode: " + i11);
+                }
+                int i12 = u.e("ProxyBillingActivityV2", intent).f11286a;
+                ResultReceiver resultReceiver = proxyBillingActivityV2.P;
+                if (resultReceiver != null) {
+                    resultReceiver.send(i12, extras);
+                } else {
+                    u.h("ProxyBillingActivityV2", "External offer flow result receiver is null");
+                }
+                if (i12 != 0) {
+                    u.h("ProxyBillingActivityV2", "External offer flow finished with billing responseCode: " + i12);
+                }
+                proxyBillingActivityV2.finish();
+                return;
+        }
+    }
+
+    public void g(n nVar, androidx.biometric.v vVar) {
+        Object obj = this.f7881b;
+        k0 k0Var = (k0) obj;
         if (k0Var == null) {
             Log.e("BiometricPromptCompat", "Unable to start authentication. Client fragment manager was null.");
         } else if (k0Var.P()) {
             Log.e("BiometricPromptCompat", "Unable to start authentication. Called after onSaveInstanceState().");
         } else {
-            k0 k0Var2 = (k0) this.f7598b;
+            k0 k0Var2 = (k0) obj;
             androidx.biometric.q qVar = (androidx.biometric.q) k0Var2.D("androidx.biometric.BiometricFragment");
             if (qVar == null) {
                 qVar = new androidx.biometric.q();
@@ -210,9 +341,9 @@ public final class i implements SuccessContinuation, androidx.activity.result.b,
                 Log.e("BiometricFragment", "Not launching prompt. Client activity was null.");
                 return;
             }
-            androidx.biometric.z zVar = qVar.m0;
-            zVar.f1981f = nVar;
-            int i7 = nVar.f20517a;
+            z zVar = qVar.m0;
+            zVar.f1972f = nVar;
+            int i7 = nVar.f20881a;
             if (i7 == 0) {
                 if (vVar != null) {
                     i7 = 15;
@@ -221,20 +352,20 @@ public final class i implements SuccessContinuation, androidx.activity.result.b,
                 }
             }
             if (Build.VERSION.SDK_INT < 30 && i7 == 15 && vVar == null) {
-                zVar.f1982g = n1.a();
+                zVar.f1973g = n1.a();
             } else {
-                zVar.f1982g = vVar;
+                zVar.f1973g = vVar;
             }
             if (qVar.Q()) {
-                qVar.m0.f1985k = qVar.q(2131689577);
+                qVar.m0.f1976k = qVar.q(2131689577);
             } else {
-                qVar.m0.f1985k = null;
+                qVar.m0.f1976k = null;
             }
-            if (qVar.Q() && new a0(new t(k10)).c(255) != 0) {
-                qVar.m0.f1988n = true;
+            if (qVar.Q() && new a0(new androidx.biometric.t(k10, 0)).c(255) != 0) {
+                qVar.m0.f1979n = true;
                 qVar.S();
-            } else if (qVar.m0.f1990p) {
-                qVar.f1970l0.postDelayed(new p(qVar), 600L);
+            } else if (qVar.m0.f1981p) {
+                qVar.f1961l0.postDelayed(new androidx.biometric.p(qVar), 600L);
             } else {
                 qVar.X();
             }
@@ -242,786 +373,685 @@ public final class i implements SuccessContinuation, androidx.activity.result.b,
     }
 
     @Override
-    public void O(long j3) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
-            return;
-        }
-        d7Var.f14160r0 = j3;
-        d7Var.f14144j = true;
-        x5Var.y(true);
-    }
-
-    public o P() {
-        o oVar = (o) this.f7598b;
-        if (oVar.f11115a != null) {
-            if (!Double.isNaN(oVar.d) && oVar.d < 0.0d) {
-                throw new IllegalArgumentException("startTime cannot be negative or NaN.");
-            }
-            if (!Double.isNaN(oVar.f11118e)) {
-                if (!Double.isNaN(oVar.f11119f) && oVar.f11119f >= 0.0d) {
-                    return oVar;
-                }
-                throw new IllegalArgumentException("preloadTime cannot be negative or Nan.");
-            }
-            throw new IllegalArgumentException("playbackDuration cannot be NaN.");
-        }
-        throw new IllegalArgumentException("media cannot be null.");
-    }
-
-    public int R(int[] iArr, int i7) {
-        int[] iArr2;
-        int[] iArr3;
-        int i10;
-        int i11;
-        int i12;
-        ec.a aVar = (ec.a) this.f7598b;
-        if (iArr.length != 0) {
-            int length = iArr.length;
-            if (length > 1 && iArr[0] == 0) {
-                int i13 = 1;
-                while (i13 < length && iArr[i13] == 0) {
-                    i13++;
-                }
-                if (i13 == length) {
-                    iArr2 = new int[]{0};
-                } else {
-                    int i14 = length - i13;
-                    int[] iArr4 = new int[i14];
-                    System.arraycopy(iArr, i13, iArr4, 0, i14);
-                    iArr2 = iArr4;
-                }
-            } else {
-                iArr2 = iArr;
-            }
-            int[] iArr5 = new int[i7];
-            boolean z10 = true;
-            for (int i15 = 0; i15 < i7; i15++) {
-                int i16 = aVar.f10563a[aVar.f10568g + i15];
-                if (i16 == 0) {
-                    i12 = iArr2[iArr2.length - 1];
-                } else {
-                    if (i16 == 1) {
-                        i11 = 0;
-                        for (int i17 : iArr2) {
-                            ec.a aVar2 = ec.a.h;
-                            i11 ^= i17;
-                        }
-                    } else {
-                        i11 = iArr2[0];
-                        int length2 = iArr2.length;
-                        for (int i18 = 1; i18 < length2; i18++) {
-                            i11 = aVar.c(i16, i11) ^ iArr2[i18];
-                        }
-                    }
-                    i12 = i11;
-                }
-                iArr5[(i7 - 1) - i15] = i12;
-                if (i12 != 0) {
-                    z10 = false;
-                }
-            }
-            if (z10) {
-                return 0;
-            }
-            ec.b bVar = new ec.b(aVar, iArr5);
-            ec.b a10 = aVar.a(i7, 1);
-            ec.b bVar2 = aVar.f10565c;
-            if (a10.d() >= bVar.d()) {
-                a10 = bVar;
-                bVar = a10;
-            }
-            ec.b bVar3 = aVar.d;
-            ec.b bVar4 = a10;
-            ec.b bVar5 = bVar;
-            ec.b bVar6 = bVar4;
-            ec.b bVar7 = bVar2;
-            while (bVar6.d() * 2 >= i7) {
-                if (!bVar6.e()) {
-                    int b10 = aVar.b(bVar6.c(bVar6.d()));
-                    ec.b bVar8 = bVar2;
-                    while (bVar5.d() >= bVar6.d() && !bVar5.e()) {
-                        int d = bVar5.d() - bVar6.d();
-                        int c10 = aVar.c(bVar5.c(bVar5.d()), b10);
-                        bVar8 = bVar8.a(aVar.a(d, c10));
-                        bVar5 = bVar5.a(bVar6.h(d, c10));
-                    }
-                    ec.b a11 = bVar8.g(bVar3).a(bVar7);
-                    if (bVar5.d() < bVar6.d()) {
-                        ec.b bVar9 = bVar5;
-                        bVar5 = bVar6;
-                        bVar6 = bVar9;
-                        bVar7 = bVar3;
-                        bVar3 = a11;
-                    } else {
-                        throw new IllegalStateException("Division algorithm failed to reduce polynomial? r: " + bVar5 + ", rLast: " + bVar6);
-                    }
-                } else {
-                    throw new Exception("r_{i-1} was zero");
-                }
-            }
-            int c11 = bVar3.c(0);
-            if (c11 != 0) {
-                int b11 = aVar.b(c11);
-                ec.b[] bVarArr = {bVar3.f(b11), bVar6.f(b11)};
-                ec.b bVar10 = bVarArr[0];
-                ec.b bVar11 = bVarArr[1];
-                int d2 = bVar10.d();
-                if (d2 == 1) {
-                    iArr3 = new int[]{bVar10.c(1)};
-                } else {
-                    int[] iArr6 = new int[d2];
-                    int i19 = 0;
-                    for (int i20 = 1; i20 < aVar.f10566e && i19 < d2; i20++) {
-                        if (bVar10.b(i20) == 0) {
-                            iArr6[i19] = aVar.b(i20);
-                            i19++;
-                        }
-                    }
-                    if (i19 == d2) {
-                        iArr3 = iArr6;
-                    } else {
-                        throw new Exception("Error locator degree does not match number of roots");
-                    }
-                }
-                int length3 = iArr3.length;
-                int[] iArr7 = new int[length3];
-                for (int i21 = 0; i21 < length3; i21++) {
-                    int b12 = aVar.b(iArr3[i21]);
-                    int i22 = 1;
-                    for (int i23 = 0; i23 < length3; i23++) {
-                        if (i21 != i23) {
-                            int c12 = aVar.c(iArr3[i23], b12);
-                            if ((c12 & 1) == 0) {
-                                i10 = c12 | 1;
-                            } else {
-                                i10 = c12 & (-2);
-                            }
-                            i22 = aVar.c(i22, i10);
-                        }
-                    }
-                    int c13 = aVar.c(bVar11.b(b12), aVar.b(i22));
-                    iArr7[i21] = c13;
-                    if (aVar.f10568g != 0) {
-                        iArr7[i21] = aVar.c(c13, b12);
-                    }
-                }
-                for (int i24 = 0; i24 < iArr3.length; i24++) {
-                    int length4 = iArr.length - 1;
-                    int i25 = iArr3[i24];
-                    if (i25 != 0) {
-                        int i26 = length4 - aVar.f10564b[i25];
-                        if (i26 >= 0) {
-                            iArr[i26] = iArr[i26] ^ iArr7[i24];
-                        } else {
-                            throw new Exception("Bad error location");
-                        }
-                    } else {
-                        throw new IllegalArgumentException();
-                    }
-                }
-                return iArr3.length;
-            }
-            throw new Exception("sigmaTilde(0) was zero");
-        }
-        throw new IllegalArgumentException();
+    public Object mo24get() {
+        o9.g firebaseApp = (o9.g) ((d9.o) this.f7881b).f7925a;
+        kotlin.jvm.internal.j.e(firebaseApp, "firebaseApp");
+        p0 p0Var = p0.f13398a;
+        return p0.a(firebaseApp);
     }
 
     @Override
-    public void S(boolean z10) {
-        r1 r1Var;
-        sa saVar = ((ga) ((x5) this.f7598b)).D0;
-        u9 u9Var = saVar.f15107w1;
-        if (u9Var != null) {
-            r1 r1Var2 = null;
-            if (!z10 && (u9Var.getSelectedEntity() instanceof r1)) {
-                saVar.f15107w1.A0(null, true);
-            } else if (z10 && !(saVar.f15107w1.getSelectedEntity() instanceof r1)) {
-                h5 h5Var = saVar.f15107w1.B0;
-                int i7 = 0;
-                int i10 = 0;
-                while (true) {
-                    if (i10 < h5Var.getChildCount()) {
-                        View childAt = h5Var.getChildAt(i10);
-                        if (childAt instanceof r1) {
-                            r1Var = (r1) childAt;
-                            break;
-                        }
-                        i10++;
-                    } else {
-                        r1Var = null;
-                        break;
-                    }
-                }
-                if (r1Var != null) {
-                    u9 u9Var2 = saVar.f15107w1;
-                    h5 h5Var2 = u9Var2.B0;
-                    while (true) {
-                        if (i7 >= h5Var2.getChildCount()) {
-                            break;
-                        }
-                        View childAt2 = h5Var2.getChildAt(i7);
-                        if (childAt2 instanceof r1) {
-                            r1Var2 = (r1) childAt2;
-                            break;
-                        }
-                        i7++;
-                    }
-                    u9Var2.A0(r1Var2, true);
-                }
-            }
-        }
+    public String[] getSupportedFeatures() {
+        return new String[]{"WEB_MESSAGE_LISTENER", "WEB_MESSAGE_ARRAY_BUFFER"};
     }
 
-    public StringBuilder T() {
-        mf.a aVar = (mf.a) this.f7598b;
-        if (aVar instanceof gf.p) {
-            StringBuilder sb2 = ((gf.p) aVar).f13291b.f13276b;
-            if (sb2.length() != 0) {
-                return sb2;
-            }
-            return null;
+    public float h(hc.c cVar, hc.c cVar2) {
+        int i7 = (int) cVar.f3133b;
+        int i10 = (int) cVar2.f3133b;
+        float y10 = y((int) cVar.f3132a, i7, (int) cVar2.f3132a, i10);
+        float y11 = y((int) cVar2.f3132a, i10, (int) cVar.f3132a, i7);
+        if (Float.isNaN(y10)) {
+            return y11 / 7.0f;
         }
-        return null;
-    }
-
-    public e2.q0 U(f3.p r12, t3.g r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: d6.i.U(f3.p, t3.g, int):e2.q0");
+        if (Float.isNaN(y11)) {
+            return y10 / 7.0f;
+        }
+        return (y10 + y11) / 14.0f;
     }
 
     @Override
-    public void X(float f10, int i7) {
-        ArrayList arrayList;
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var != null && (arrayList = d7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
-            ((d7) x5Var.d.T.get(i7)).V = f10;
+    public void i(n6.a aVar) {
+        h1 h1Var = (h1) this.f7881b;
+        h1Var.f6295o.lock();
+        try {
+            h1Var.f6293m = aVar;
+            h1Var.j();
+        } finally {
+            h1Var.f6295o.unlock();
         }
     }
 
     @Override
-    public void Y(float f10) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
-            return;
-        }
-        d7Var.F = f10;
-        d7Var.f14144j = true;
-        x5Var.w(true);
-    }
-
-    public synchronized void Z() {
-        synchronized (this) {
-            b bVar = (b) this.f7598b;
-            ReentrantLock reentrantLock = bVar.f7579a;
-            reentrantLock.lock();
-            bVar.f7580b.edit().clear().apply();
-            reentrantLock.unlock();
-        }
-    }
-
-    @Override
-    public void a() {
-        i0 i0Var = (i0) this.f7598b;
-        Lock lock = i0Var.f6014a;
+    public void j(int i7) {
+        h1 h1Var = (h1) this.f7881b;
+        Lock lock = h1Var.f6295o;
+        Lock lock2 = h1Var.f6295o;
         lock.lock();
         try {
-            i0Var.f6023m = new c0(i0Var, i0Var.f6020j, i0Var.f6021k, i0Var.d, i0Var.f6022l, lock, i0Var.f6016c);
-            i0Var.f6023m.E();
-            i0Var.f6015b.signalAll();
-        } finally {
-            i0Var.f6014a.unlock();
+            if (h1Var.f6294n) {
+                h1Var.f6294n = false;
+                h1Var.f6285b.j(i7);
+                h1Var.f6293m = null;
+                h1Var.f6292l = null;
+            } else {
+                h1Var.f6294n = true;
+                h1Var.d.onConnectionSuspended(i7);
+            }
+            lock2.unlock();
+        } catch (Throwable th2) {
+            lock2.unlock();
+            throw th2;
         }
     }
 
     @Override
-    public void accept(Object obj, Object obj2) {
-        d8.d dVar = new d8.d(1, (TaskCompletionSource) obj2);
-        Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
-        int i7 = d8.a.f7601a;
-        obtain.writeStrongBinder(dVar);
-        obtain.writeInt(1);
-        ((o8.c) this.f7598b).writeToParcel(obtain, 0);
-        ((d8.c) ((d8.f) obj).n()).h1(obtain, 1);
+    public int j1() {
+        return t.h0((t) this.f7881b).d;
     }
 
     @Override
-    public Object apply(Object obj) {
-        Map.Entry entry = (Map.Entry) obj;
-        g1 g1Var = (g1) this.f7598b;
-        g1Var.getClass();
-        entry.getClass();
-        return new e1(entry, g1Var);
-    }
-
-    @Override
-    public com.google.android.gms.common.api.internal.d b(com.google.android.gms.common.api.internal.d dVar) {
-        throw new IllegalStateException("GoogleApiClient is not connected yet.");
-    }
-
-    @Override
-    public int d(long j3) {
-        if (j3 < 0) {
-            return 0;
+    public boolean k(long j3, int i7, int i10, int i11, c9 c9Var) {
+        ImageReceiver imageReceiver;
+        b4 b4Var;
+        b4 b4Var2;
+        b4 b4Var3;
+        b4 b4Var4;
+        c9Var.f11820b = null;
+        c9Var.f11821c = null;
+        cv0 cv0Var = (cv0) this.f7881b;
+        wv0 wv0Var = cv0Var.h;
+        ArrayList arrayList = cv0Var.f43825x;
+        if (cv0Var.O < 0.2f) {
+            c9Var.f11820b = wv0Var.getImageReceiver();
+            c9Var.f11821c = null;
+            c9Var.f11819a = wv0Var;
+            c9Var.h = 0.0f;
+            c9Var.f11825i = g0.f24121q.y;
+            c9Var.f11824g = (View) cv0Var.getParent();
+            c9Var.d = cv0Var.E;
+            c9Var.f11830n = true;
+            return true;
         }
-        return -1;
-    }
-
-    @Override
-    public void e(int i7) {
-        e0 e0Var = ((x5) this.f7598b).F;
-        if (e0Var != null) {
-            ArrayList arrayList = e0Var.h;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                d0 d0Var = (d0) obj;
-                if (d0Var.f14072a == i7) {
-                    d0Var.f14073b.e(true, 1.0f);
-                    e0Var.invalidate();
-                    return;
+        int i12 = 0;
+        while (true) {
+            if (i12 < arrayList.size()) {
+                b4 b4Var5 = (b4) arrayList.get(i12);
+                if (b4Var5.f11771e >= 1.0f && b4Var5.f11768a == i10) {
+                    int i13 = i12 - 1;
+                    if (i13 >= 0) {
+                        b4Var3 = (b4) arrayList.get(i13);
+                    } else {
+                        b4Var3 = null;
+                    }
+                    int i14 = i12 - 2;
+                    if (i14 >= 0) {
+                        b4Var4 = (b4) arrayList.get(i14);
+                    } else {
+                        b4Var4 = null;
+                    }
+                    b4 d = ProfileStoriesView.d(b4Var3, b4Var4, b4Var5);
+                    imageReceiver = b4Var5.f11769b;
+                    b4Var2 = d;
+                    b4Var = b4Var5;
+                } else {
+                    i12++;
                 }
+            } else {
+                imageReceiver = null;
+                b4Var = null;
+                b4Var2 = null;
+                break;
             }
         }
-    }
-
-    @Override
-    public void f(Object obj) {
-        int i7;
-        Bundle extras;
-        switch (this.f7597a) {
-            case 3:
-                Map map = (Map) obj;
-                androidx.fragment.app.j0 j0Var = (androidx.fragment.app.j0) this.f7598b;
-                String[] strArr = (String[]) map.keySet().toArray(new String[0]);
-                ArrayList arrayList = new ArrayList(map.values());
-                int[] iArr = new int[arrayList.size()];
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    if (((Boolean) arrayList.get(i10)).booleanValue()) {
-                        i7 = 0;
-                    } else {
-                        i7 = -1;
-                    }
-                    iArr[i10] = i7;
-                }
-                f0 f0Var = (f0) j0Var.F.pollFirst();
-                if (f0Var == null) {
-                    Log.w("FragmentManager", "No permissions were requested for " + this);
-                    return;
-                }
-                String str = f0Var.f2342a;
-                if (j0Var.f2356c.o(str) == null) {
-                    Log.w("FragmentManager", "Permission request result delivered for unknown Fragment " + str);
-                    return;
-                }
-                return;
-            default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f7598b;
-                androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-                proxyBillingActivityV2.getClass();
-                Intent intent = aVar.f1809b;
-                int i11 = u.e("ProxyBillingActivityV2", intent).f10978a;
-                ResultReceiver resultReceiver = proxyBillingActivityV2.N;
-                if (resultReceiver != null) {
-                    if (intent == null) {
-                        extras = null;
-                    } else {
-                        extras = intent.getExtras();
-                    }
-                    resultReceiver.send(i11, extras);
-                }
-                int i12 = aVar.f1808a;
-                if (i12 != -1 || i11 != 0) {
-                    u.h("ProxyBillingActivityV2", "Alternative billing only dialog finished with resultCode " + i12 + " and billing's responseCode: " + i11);
-                }
-                proxyBillingActivityV2.finish();
-                return;
+        if (imageReceiver == null) {
+            return false;
         }
-    }
-
-    @Override
-    public void f0(float f10) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
-            return;
+        c9Var.f11821c = imageReceiver;
+        c9Var.f11820b = null;
+        c9Var.f11819a = cv0Var;
+        c9Var.h = 0.0f;
+        c9Var.f11825i = g0.f24121q.y;
+        c9Var.f11824g = (View) cv0Var.getParent();
+        if (b4Var != null && b4Var2 != null) {
+            c9Var.f11823f = new l6(this, new RectF(b4Var.f11778m), b4Var, new RectF(b4Var2.f11778m), b4Var2);
+            return true;
         }
-        d7Var.E = f10;
-        d7Var.f14144j = true;
-        x5Var.w(true);
-    }
-
-    @Override
-    public void g(ci.a0 a0Var) {
-        ci.i0 i0Var = (ci.i0) this.f7598b;
-        FrameLayout frameLayout = i0Var.f5396f;
-        if (frameLayout != null) {
-            frameLayout.removeView(a0Var);
-        }
-        if (i0Var.G == a0Var) {
-            i0Var.G = null;
-        }
-        z0 z0Var = i0Var.d;
-        if (z0Var != null) {
-            z0Var.setScanHidden(false);
-        }
-    }
-
-    @Override
-    public TextureView g0() {
-        return null;
-    }
-
-    @Override
-    public Object mo24get() {
-        return new gb.k0((u0) ((ib.c) this.f7598b).mo24get());
-    }
-
-    @Override
-    public void h(View view, p0 p0Var, boolean z10, boolean z11) {
-        r rVar = (r) this.f7598b;
-        rVar.f5217a.Eb(null, rVar.f5220e, rVar.f5218b, view, 0.0f, 0.0f, p0Var, false, z10, z11, false);
-        org.telegram.messenger.g0.h3(new a3.f(this, 28));
-    }
-
-    @Override
-    public void h0() {
-        u9 u9Var = (u9) this.f7598b;
-        u9Var.f14679n0.f56697a.C();
-        u9Var.N0.setViewHidden(false);
-    }
-
-    @Override
-    public long i(int i7) {
-        boolean z10;
-        if (i7 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        ja.f(z10);
-        return 0L;
-    }
-
-    @Override
-    public void i0(float f10, int i7) {
-        ArrayList arrayList;
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var != null && (arrayList = d7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
-            ((d7) x5Var.d.T.get(i7)).W = f10;
-        }
-    }
-
-    @Override
-    public void j(String str) {
-        ci.i0 i0Var = (ci.i0) this.f7598b;
-        if (i0Var.getParentActivity() != null) {
-            vf.c.t(i0Var.getParentActivity(), str);
-        }
-    }
-
-    @Override
-    public void j0(float f10) {
-        d7 d7Var = ((x5) this.f7598b).d;
-        if (d7Var == null) {
-            return;
-        }
-        d7Var.f14124a0 = f10;
-        d7Var.f14144j = true;
-    }
-
-    @Override
-    public void k(float f10) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
-            return;
-        }
-        d7Var.f14166u0 = f10;
-        d7Var.f14144j = true;
-        x5Var.c();
-    }
-
-    @Override
-    public void k0() {
-        ((x5) this.f7598b).q(null);
-    }
-
-    @Override
-    public void n(float f10) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
-            return;
-        }
-        d7Var.G = f10;
-        d7Var.f14144j = true;
-        x5Var.c();
-    }
-
-    @Override
-    public void o() {
-        o2 o2Var = ((u9) this.f7598b).f14702z0;
-        if (o2Var != null) {
-            o2Var.invalidate();
-        }
-    }
-
-    @Override
-    public void o0(float f10) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
-            return;
-        }
-        d7Var.f14164t0 = f10;
-        d7Var.f14144j = true;
-        x5Var.y(true);
-    }
-
-    @Override
-    public void onSuccess(Object obj) {
-        ((g6.a) this.f7598b).getClass();
-        m8.a("com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES", (Bundle) obj);
-    }
-
-    @Override
-    public void p(long j3, boolean z10) {
-        x5 x5Var = (x5) this.f7598b;
-        if (!z10) {
-            x5Var.m(j3);
-            return;
-        }
-        u51 u51Var = x5Var.f15345e;
-        if (u51Var != null) {
-            u51Var.q0(j3, true);
-        } else if (x5Var.j()) {
-            x5Var.F.m(j3, true);
-        } else {
-            u51 u51Var2 = x5Var.E;
-            if (u51Var2 != null) {
-                u51Var2.q0(j3, false);
-            }
-        }
-    }
-
-    @Override
-    public List q(long j3) {
-        if (j3 >= 0) {
-            return (List) this.f7598b;
-        }
-        return Collections.EMPTY_LIST;
-    }
-
-    @Override
-    public void q0() {
-        u9 u9Var = (u9) this.f7598b;
-        if (u9Var.f14690t0 != null) {
-            u9Var.A0(null, true);
-        }
-        u9Var.N0.setViewHidden(true);
-    }
-
-    @Override
-    public boolean r() {
+        c9Var.f11823f = null;
         return true;
     }
 
     @Override
-    public void s() {
-        x5 x5Var = (x5) this.f7598b;
-        x5Var.s(null, null, true);
-        sa saVar = ((ga) x5Var).D0;
-        ga gaVar = saVar.Y0;
-        if (gaVar != null) {
-            gaVar.s(null, null, true);
+    public b3.i l(b3.m mVar, long j3, long j10, IOException iOException, int i7) {
+        ((o2.d) this.f7881b).f21616a.y(iOException);
+        return b3.p.f2911e;
+    }
+
+    @Override
+    public void m(Bundle bundle) {
+        h1 h1Var = (h1) this.f7881b;
+        h1Var.f6295o.lock();
+        try {
+            h1Var.f6293m = n6.a.f21420f;
+            h1Var.j();
+        } finally {
+            h1Var.f6295o.unlock();
         }
-        u9 u9Var = saVar.f15107w1;
-        if (u9Var != null) {
-            u9Var.n0();
+    }
+
+    @Override
+    public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        mh0 B;
+        boolean[] zArr = (boolean[]) this.f7881b;
+        if (z10 && (B = imageReceiver.B()) != null && !zArr[0]) {
+            B.N(0, false, false);
+            g0.g3(new org.telegram.ui.Cells.p0(B, 0));
+            zArr[0] = true;
         }
-        ia iaVar = saVar.f15048d1;
-        if (iaVar != null) {
-            iaVar.setHasRoundVideo(false);
+    }
+
+    @Override
+    public void n() {
+        d3.l lVar = (d3.l) this.f7881b;
+        if (lVar.f7723s1 != null) {
+            lVar.R0(0, 1);
         }
-        d7 d7Var = saVar.L1;
-        if (d7Var != null) {
-            File file = d7Var.f14154o0;
-            if (file != null) {
-                try {
-                    file.delete();
-                } catch (Exception unused) {
-                }
-                saVar.L1.f14154o0 = null;
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        g6.c.h((g6.c) ((g6.j) this.f7881b).f13230c, "joinApplication", task);
+    }
+
+    @Override
+    public void onFirstFrameRendered() {
+        d3.l lVar = (d3.l) this.f7881b;
+        Surface surface = lVar.f7723s1;
+        if (surface != null) {
+            lVar.f7709c1.P(surface);
+            lVar.f7726v1 = true;
+        }
+    }
+
+    @Override
+    public void onPostMessage(android.webkit.WebView r8, java.lang.reflect.InvocationHandler r9, android.net.Uri r10, boolean r11, java.lang.reflect.InvocationHandler r12) {
+        throw new UnsupportedOperationException("Method not decompiled: d6.i.onPostMessage(android.webkit.WebView, java.lang.reflect.InvocationHandler, android.net.Uri, boolean, java.lang.reflect.InvocationHandler):void");
+    }
+
+    @Override
+    public void onSuccess(Object obj) {
+        int i7;
+        int i10;
+        a2 a2Var;
+        a1 b10;
+        g6.a aVar = (g6.a) this.f7881b;
+        Bundle bundle = (Bundle) obj;
+        if (m0.f6581j) {
+            Context context = aVar.f13189a;
+            j6.s sVar = aVar.f13193f;
+            m0 m0Var = new m0(context, sVar, aVar.f13191c, aVar.f13196j, aVar.f13194g);
+            if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE")) {
+                i7 = bundle.getInt("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_MODE", 0);
+            } else if (bundle.containsKey("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED") && bundle.getBoolean("com.google.android.gms.cast.FLAG_CLIENT_SESSION_ANALYTICS_ENABLED", false)) {
+                i7 = 1;
+            } else {
+                i7 = 0;
             }
-            if (saVar.L1.f14156p0 != null) {
-                try {
-                    new File(saVar.L1.f14156p0).delete();
-                } catch (Exception unused2) {
+            boolean z10 = bundle.getBoolean("com.google.android.gms.cast.FLAG_CLIENT_FEATURE_USAGE_ANALYTICS_ENABLED", false);
+            if (i7 == 0) {
+                if (z10) {
+                    i7 = 0;
+                    z10 = true;
+                } else {
+                    return;
                 }
-                saVar.L1.f14156p0 = null;
+            }
+            String packageName = context.getPackageName();
+            Locale locale = Locale.ROOT;
+            String v = p5.c.v(packageName, ".client_cast_analytics_data");
+            if (bundle.getLong("com.google.android.gms.cast.FLAG_FIRELOG_UPLOAD_MODE") == 0) {
+                i10 = 1;
+            } else {
+                i10 = 2;
+            }
+            m0Var.h = i10;
+            o5.s.b(context);
+            m0Var.f6587g = o5.s.a().c(m5.a.f20830e).a("CAST_SENDER_SDK", new l5.c("proto"), x.f6729a);
+            if (bundle.containsKey("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE")) {
+                m0Var.f6585e = Long.valueOf(bundle.getLong("com.google.android.gms.cast.FLAG_ANALYTICS_LOGGING_BUCKET_SIZE"));
+            }
+            SharedPreferences sharedPreferences = context.getApplicationContext().getSharedPreferences(v, 0);
+            if (i7 != 0) {
+                com.google.android.gms.common.api.internal.t b11 = com.google.android.gms.common.api.internal.u.b();
+                b11.f6357c = new u5(sVar, new String[]{"com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_ERROR", "com.google.android.gms.cast.DICTIONARY_CAST_STATUS_CODES_TO_APP_SESSION_CHANGE_REASON"}, 4);
+                b11.d = new n6.c[]{y.f11481c};
+                b11.f6356b = false;
+                b11.f6355a = 8426;
+                Task e10 = sVar.e(0, b11.a());
+                ?? obj2 = new Object();
+                obj2.f20882b = m0Var;
+                obj2.f20883c = packageName;
+                obj2.f20881a = i7;
+                obj2.d = sharedPreferences;
+                e10.addOnSuccessListener(obj2);
+            }
+            if (z10) {
+                m.h(sharedPreferences);
+                j6.b bVar = a2.f6465i;
+                synchronized (a2.class) {
+                    try {
+                        if (a2.f6467k == null) {
+                            a2.f6467k = new a2(sharedPreferences, m0Var, packageName);
+                        }
+                        a2Var = a2.f6467k;
+                    } catch (Throwable th2) {
+                        throw th2;
+                    }
+                }
+                String str = a2Var.f6470c;
+                SharedPreferences sharedPreferences2 = a2Var.f6469b;
+                HashSet hashSet = a2Var.f6472f;
+                String string = sharedPreferences2.getString("feature_usage_sdk_version", null);
+                String string2 = sharedPreferences2.getString("feature_usage_package_name", null);
+                hashSet.clear();
+                HashSet hashSet2 = a2Var.f6473g;
+                hashSet2.clear();
+                a2Var.h = 0L;
+                String str2 = a2.f6466j;
+                if (str2.equals(string) && str.equals(string2)) {
+                    a2Var.h = sharedPreferences2.getLong("feature_usage_last_report_time", 0L);
+                    long currentTimeMillis = System.currentTimeMillis();
+                    HashSet hashSet3 = new HashSet();
+                    for (String str3 : sharedPreferences2.getAll().keySet()) {
+                        if (str3.startsWith("feature_usage_timestamp_")) {
+                            long j3 = sharedPreferences2.getLong(str3, 0L);
+                            if (j3 != 0 && currentTimeMillis - j3 > 1209600000) {
+                                hashSet3.add(str3);
+                            } else if (str3.startsWith("feature_usage_timestamp_reported_feature_")) {
+                                a1 b12 = a2.b(str3.substring(41));
+                                if (b12 != null) {
+                                    hashSet2.add(b12);
+                                    hashSet.add(b12);
+                                }
+                            } else if (str3.startsWith("feature_usage_timestamp_detected_feature_") && (b10 = a2.b(str3.substring(41))) != null) {
+                                hashSet.add(b10);
+                            }
+                        }
+                    }
+                    a2Var.c(hashSet3);
+                    m.h(a2Var.f6471e);
+                    m.h(a2Var.d);
+                    a2Var.f6471e.post(a2Var.d);
+                } else {
+                    HashSet hashSet4 = new HashSet();
+                    for (String str4 : sharedPreferences2.getAll().keySet()) {
+                        if (str4.startsWith("feature_usage_timestamp_")) {
+                            hashSet4.add(str4);
+                        }
+                    }
+                    hashSet4.add("feature_usage_last_report_time");
+                    a2Var.c(hashSet4);
+                    sharedPreferences2.edit().putString("feature_usage_sdk_version", str2).putString("feature_usage_package_name", str).apply();
+                }
+                a2.a(a1.CAST_CONTEXT);
             }
         }
     }
 
-    @Override
-    public void s0(int i7, long j3) {
-        ArrayList arrayList;
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var != null && (arrayList = d7Var.T) != null && i7 >= 0 && i7 < arrayList.size()) {
-            ((d7) x5Var.d.T.get(i7)).X = j3;
-        }
+    public android.support.v4.media.session.a0 q(wf.b r42) {
+        throw new UnsupportedOperationException("Method not decompiled: d6.i.q(wf.b):android.support.v4.media.session.a0");
     }
 
     @Override
-    public void t() {
-        u9 u9Var = (u9) this.f7598b;
-        if (u9Var.M0) {
-            u9Var.M0 = false;
-            return;
+    public void r() {
+        l2.i0 i0Var = ((d3.l) this.f7881b).Z;
+        if (i0Var != null) {
+            i0Var.a();
         }
-        u9Var.U0.b(1);
-        u9Var.w((sg.h) sg.h.f56640a.get(0));
     }
 
-    @Override
-    public void t0(long j3) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
-            return;
-        }
-        d7Var.D = j3;
-        d7Var.f14144j = true;
-        x5Var.w(true);
+    public cc.e t(ab.q r23) {
+        throw new UnsupportedOperationException("Method not decompiled: d6.i.t(ab.q):cc.e");
     }
 
     @Override
     public Task then(Object obj) {
         ia.b bVar = (ia.b) obj;
-        q4.q qVar = (q4.q) this.f7598b;
+        q4.q qVar = (q4.q) this.f7881b;
         if (bVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        aa.p pVar = (aa.p) qVar.f55253c;
-        aa.p.b((aa.p) qVar.f55253c);
-        pVar.f841m.h(null, pVar.f834e.f3093a);
-        pVar.f845q.trySetResult(null);
+        aa.p pVar = (aa.p) qVar.f55827c;
+        aa.p.b((aa.p) qVar.f55827c);
+        pVar.f840m.h(null, pVar.f833e.f3087a);
+        pVar.f844q.trySetResult(null);
         return Tasks.forResult(null);
     }
 
-    @Override
-    public int u() {
-        return 1;
-    }
-
-    @Override
-    public void v(boolean z10, float f10) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var != null) {
-            d7Var.Z = f10;
-            d7Var.f14144j = true;
-            u51 u51Var = x5Var.f15345e;
-            if (u51Var != null && u51Var.U() != -9223372036854775807L) {
-                x5Var.m(f10 * ((float) x5Var.f15345e.U()));
+    public hc.a u(float f10, float f11, int i7, int i10) {
+        int i11;
+        hc.a b10;
+        hc.a b11;
+        int i12 = (int) (f11 * f10);
+        int max = Math.max(0, i7 - i12);
+        cc.b bVar = (cc.b) this.f7881b;
+        int min = Math.min(bVar.f5158a - 1, i7 + i12) - max;
+        float f12 = 3.0f * f10;
+        if (min >= f12) {
+            int max2 = Math.max(0, i10 - i12);
+            int min2 = Math.min(bVar.f5159b - 1, i10 + i12) - max2;
+            if (min2 >= f12) {
+                cc.b bVar2 = (cc.b) this.f7881b;
+                hc.b bVar3 = new hc.b(bVar2, max, max2, min, min2, f10);
+                int i13 = bVar3.f14133e;
+                int i14 = bVar3.f14132c;
+                int i15 = i13 + i14;
+                int i16 = bVar3.f14134f;
+                int i17 = (i16 / 2) + bVar3.d;
+                int[] iArr = new int[3];
+                for (int i18 = 0; i18 < i16; i18++) {
+                    if ((i18 & 1) == 0) {
+                        i11 = (i18 + 1) / 2;
+                    } else {
+                        i11 = -((i18 + 1) / 2);
+                    }
+                    int i19 = i11 + i17;
+                    iArr[0] = 0;
+                    iArr[1] = 0;
+                    iArr[2] = 0;
+                    int i20 = i14;
+                    while (i20 < i15 && !bVar2.b(i20, i19)) {
+                        i20++;
+                    }
+                    int i21 = 0;
+                    while (i20 < i15) {
+                        if (bVar2.b(i20, i19)) {
+                            if (i21 == 1) {
+                                iArr[1] = iArr[1] + 1;
+                            } else if (i21 == 2) {
+                                if (bVar3.a(iArr) && (b11 = bVar3.b(i19, i20, iArr)) != null) {
+                                    return b11;
+                                }
+                                iArr[0] = iArr[2];
+                                iArr[1] = 1;
+                                iArr[2] = 0;
+                                i21 = 1;
+                            } else {
+                                i21++;
+                                iArr[i21] = iArr[i21] + 1;
+                            }
+                        } else {
+                            if (i21 == 1) {
+                                i21++;
+                            }
+                            iArr[i21] = iArr[i21] + 1;
+                        }
+                        i20++;
+                    }
+                    if (bVar3.a(iArr) && (b10 = bVar3.b(i19, i15, iArr)) != null) {
+                        return b10;
+                    }
+                }
+                ArrayList arrayList = bVar3.f14131b;
+                if (!arrayList.isEmpty()) {
+                    return (hc.a) arrayList.get(0);
+                }
+                throw bc.e.a();
             }
+            throw bc.e.a();
         }
+        throw bc.e.a();
     }
 
-    @Override
-    public void w(float f10) {
-        x5 x5Var = (x5) this.f7598b;
-        d7 d7Var = x5Var.d;
-        if (d7Var == null) {
-            return;
-        }
-        d7Var.f14162s0 = f10;
-        d7Var.f14144j = true;
-        x5Var.y(true);
-    }
-
-    @Override
-    public void x(Bitmap bitmap) {
-        ((i6.h) this.f7598b).e(3, bitmap);
-    }
-
-    @Override
-    public void x0() {
-        xb k10 = ((c6) this.f7598b).k().k(false);
-        k10.f41645t = true;
-        k10.j();
-    }
-
-    @Override
-    public boolean z() {
+    public f3.j v() {
         boolean z10;
-        u9 u9Var = (u9) this.f7598b;
-        if (u9Var.f14690t0 == null) {
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        ArrayList arrayList3 = new ArrayList();
+        ArrayList arrayList4 = new ArrayList();
+        for (f3.j jVar : ((LinkedHashMap) this.f7881b).values()) {
+            arrayList.add(jVar.f11168b);
+            arrayList2.add(jVar.f11169c);
+            arrayList3.add(jVar.d);
+            arrayList4.add(jVar.f11170e);
+        }
+        int[][] iArr = (int[][]) arrayList.toArray(new int[arrayList.size()]);
+        long j3 = 0;
+        for (int[] iArr2 : iArr) {
+            j3 += iArr2.length;
+        }
+        int i7 = (int) j3;
+        if (j3 == i7) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (!z10) {
-            u9Var.A0(null, true);
+        la.d(j3, "the total number of elements (%s) in the arrays must fit in an int", z10);
+        int[] iArr3 = new int[i7];
+        int i10 = 0;
+        for (int[] iArr4 : iArr) {
+            System.arraycopy(iArr4, 0, iArr3, i10, iArr4.length);
+            i10 += iArr4.length;
         }
-        return z10;
+        return new f3.j(iArr3, c8.l1.a((long[][]) arrayList2.toArray(new long[arrayList2.size()])), c8.l1.a((long[][]) arrayList3.toArray(new long[arrayList3.size()])), c8.l1.a((long[][]) arrayList4.toArray(new long[arrayList4.size()])));
+    }
+
+    public void w(int i7) {
+        boolean z10;
+        TLRPC.TL_exportedNoPaidMessagesToken c10;
+        o0 o0Var = ((ci.j0) this.f7881b).f5680e;
+        if (o0Var != null && o0Var.d != i7) {
+            boolean z11 = true;
+            if (o0Var.f5733c.d && i7 == 2) {
+                i7 = 1;
+            }
+            o0Var.d = i7;
+            SharedPreferences.Editor edit = o0Var.f().edit();
+            if (o0Var.d == 2) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            edit.putBoolean("qrNoPaidPermanent", z10).apply();
+            int i10 = o0Var.d;
+            if (i10 == 0) {
+                if (o0Var.f5736n != 0) {
+                    ConnectionsManager.getInstance(o0Var.f5731a).cancelRequest(o0Var.f5736n, true);
+                    o0Var.f5736n = 0;
+                    return;
+                }
+                return;
+            }
+            if (i10 == 2 && (c10 = o0Var.c()) != null) {
+                o0Var.f5735f = c10;
+                o0Var.f5732b.setFreeLink(o0Var.d(c10));
+            }
+            if (o0Var.d != 1) {
+                z11 = false;
+            }
+            o0Var.n(false, z11);
+        }
+    }
+
+    public float x(int i7, int i10, int i11, int i12) {
+        boolean z10;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        int i20;
+        boolean z11;
+        i iVar;
+        int i21;
+        boolean z12 = true;
+        if (Math.abs(i12 - i10) > Math.abs(i11 - i7)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10) {
+            i14 = i7;
+            i13 = i10;
+            i16 = i11;
+            i15 = i12;
+        } else {
+            i13 = i7;
+            i14 = i10;
+            i15 = i11;
+            i16 = i12;
+        }
+        int abs = Math.abs(i15 - i13);
+        int abs2 = Math.abs(i16 - i14);
+        int i22 = 2;
+        int i23 = (-abs) / 2;
+        int i24 = -1;
+        if (i13 < i15) {
+            i17 = 1;
+        } else {
+            i17 = -1;
+        }
+        if (i14 < i16) {
+            i24 = 1;
+        }
+        int i25 = i15 + i17;
+        int i26 = i13;
+        int i27 = i14;
+        int i28 = 0;
+        while (true) {
+            if (i26 != i25) {
+                if (z10) {
+                    i19 = i27;
+                } else {
+                    i19 = i26;
+                }
+                if (z10) {
+                    i20 = i26;
+                } else {
+                    i20 = i27;
+                }
+                boolean z13 = z10;
+                if (i28 == z12) {
+                    z11 = z12;
+                    i21 = abs;
+                    iVar = this;
+                } else {
+                    z11 = false;
+                    iVar = this;
+                    i21 = abs;
+                }
+                if (z11 == ((cc.b) iVar.f7881b).b(i19, i20)) {
+                    if (i28 == 2) {
+                        return w9.b(i26, i27, i13, i14);
+                    }
+                    i28++;
+                }
+                i23 += abs2;
+                if (i23 > 0) {
+                    if (i27 == i16) {
+                        i18 = 2;
+                        break;
+                    }
+                    i27 += i24;
+                    i23 -= i21;
+                }
+                i26 += i17;
+                abs = i21;
+                z10 = z13;
+                z12 = true;
+                i22 = 2;
+            } else {
+                i18 = i22;
+                break;
+            }
+        }
+        if (i28 == i18) {
+            return w9.b(i25, i16, i13, i14);
+        }
+        return Float.NaN;
+    }
+
+    public float y(int i7, int i10, int i11, int i12) {
+        float f10;
+        float f11;
+        cc.b bVar = (cc.b) this.f7881b;
+        float x10 = x(i7, i10, i11, i12);
+        int i13 = i7 - (i11 - i7);
+        int i14 = 0;
+        if (i13 < 0) {
+            f10 = i7 / (i7 - i13);
+            i13 = 0;
+        } else {
+            int i15 = bVar.f5158a;
+            if (i13 >= i15) {
+                int i16 = i15 - 1;
+                f10 = ((i15 - 1) - i7) / (i13 - i7);
+                i13 = i16;
+            } else {
+                f10 = 1.0f;
+            }
+        }
+        float f12 = i10;
+        int i17 = (int) (f12 - ((i12 - i10) * f10));
+        if (i17 < 0) {
+            f11 = f12 / (i10 - i17);
+        } else {
+            int i18 = bVar.f5159b;
+            if (i17 >= i18) {
+                f11 = ((i18 - 1) - i10) / (i17 - i10);
+                i14 = i18 - 1;
+            } else {
+                i14 = i17;
+                f11 = 1.0f;
+            }
+        }
+        return (x(i7, i10, (int) (((i13 - i7) * f11) + i7), i14) + x10) - 1.0f;
     }
 
     @Override
-    public Object zzp() {
-        Object obj;
+    public void z(b3.m mVar, long j3, long j10) {
         boolean z10;
-        String str = (String) this.f7598b;
-        ContentResolver contentResolver = com.google.android.gms.internal.clearcut.d.f6526g.getContentResolver();
-        Uri uri = d2.f6541a;
-        synchronized (d2.class) {
-            d2.c(contentResolver);
-            obj = d2.f6549k;
+        o2.d dVar = (o2.d) this.f7881b;
+        synchronized (c3.b.f4369b) {
+            z10 = c3.b.f4370c;
         }
-        HashMap hashMap = d2.f6546g;
-        Boolean bool = Boolean.FALSE;
-        Boolean bool2 = (Boolean) d2.a(hashMap, str, bool);
-        if (bool2 != null) {
-            z10 = bool2.booleanValue();
-        } else {
-            String b10 = d2.b(contentResolver, str);
-            boolean z11 = false;
-            if (b10 != null && !b10.equals("")) {
-                if (d2.f6543c.matcher(b10).matches()) {
-                    bool = Boolean.TRUE;
-                    z11 = true;
-                } else if (!d2.d.matcher(b10).matches()) {
-                    Log.w("Gservices", r.b.l("attempt to read gservices key ", str, " (value \"", b10, "\") as boolean"));
-                }
-                d2.e(obj, hashMap, str, bool);
-                z10 = z11;
-            }
-            bool = bool2;
-            d2.e(obj, hashMap, str, bool);
-            z10 = z11;
+        if (!z10) {
+            dVar.f21616a.y(new IOException(new ConcurrentModificationException()));
+            return;
         }
-        return Boolean.valueOf(z10);
+        dVar.b();
+    }
+
+    public i(f0 f0Var) {
+        this.f7880a = 9;
+        this.f7881b = new WeakReference(f0Var);
+    }
+
+    public i(e7.a aVar, v vVar) {
+        this.f7880a = 16;
+        this.f7881b = vVar;
     }
 
     public i(Object obj, int i7) {
-        this.f7597a = i7;
-        this.f7598b = obj;
+        this.f7880a = i7;
+        this.f7881b = obj;
+    }
+
+    public i(int i7) {
+        this.f7880a = i7;
+        switch (i7) {
+            case 17:
+                this.f7881b = new LinkedHashMap();
+                return;
+            case 20:
+                this.f7881b = new i(26);
+                return;
+            case 26:
+                this.f7881b = new ob.c(ec.a.h, 18);
+                return;
+            default:
+                this.f7881b = Collections.newSetFromMap(new WeakHashMap());
+                return;
+        }
     }
 
     public i(Context context) {
         String e10;
-        this.f7597a = 0;
+        this.f7880a = 0;
         b a10 = b.a(context);
-        this.f7598b = a10;
+        this.f7881b = a10;
         a10.b();
         String e11 = a10.e("defaultGoogleSignInAccount");
         if (TextUtils.isEmpty(e11) || (e10 = a10.e(b.f("googleSignInOptions", e11))) == null) {
@@ -1033,84 +1063,43 @@ public final class i implements SuccessContinuation, androidx.activity.result.b,
         }
     }
 
-    public i(MediaInfo mediaInfo) {
-        this.f7597a = 18;
-        o oVar = new o(mediaInfo, 0, true, Double.NaN, Double.POSITIVE_INFINITY, 0.0d, null, null);
-        if (mediaInfo != null) {
-            this.f7598b = oVar;
-            return;
-        }
-        throw new IllegalArgumentException("media cannot be null.");
-    }
-
-    public i(JSONObject jSONObject) {
-        this.f7597a = 18;
-        this.f7598b = new o(jSONObject);
-    }
-
-    public i() {
-        this.f7597a = 16;
-        this.f7598b = new x(10);
-    }
-
-    public i(rd.p pVar) {
-        this.f7597a = 5;
-        this.f7598b = (kd.j) pVar;
-    }
-
-    public i(LaunchActivity launchActivity, Executor executor, m1 m1Var) {
-        this.f7597a = 2;
+    public i(LaunchActivity launchActivity, Executor executor, a8.m1 m1Var) {
+        this.f7880a = 2;
         if (launchActivity == null) {
             throw new IllegalArgumentException("FragmentActivity must not be null.");
         }
         if (executor != null) {
             k0 s5 = launchActivity.s();
-            androidx.biometric.z zVar = (androidx.biometric.z) new a0(launchActivity).j(androidx.biometric.z.class);
-            this.f7598b = s5;
+            z zVar = (z) new a0(launchActivity).j(z.class);
+            this.f7881b = s5;
             zVar.d = executor;
-            zVar.f1980e = m1Var;
+            zVar.f1971e = m1Var;
             return;
         }
         throw new IllegalArgumentException("Executor must not be null.");
     }
 
     @Override
-    public void D0() {
+    public void V(ImageReceiver imageReceiver) {
     }
 
     @Override
-    public void K() {
+    public void a(x1 x1Var) {
     }
 
     @Override
-    public void W() {
+    public void b(boolean z10) {
     }
 
     @Override
-    public void m() {
+    public void G0(int i7, Drawable drawable) {
     }
 
     @Override
-    public void M(boolean z10) {
+    public void p(b3.m mVar, long j3, long j10, boolean z10) {
     }
 
     @Override
-    public void c(Bundle bundle) {
-    }
-
-    @Override
-    public void m0(boolean z10) {
-    }
-
-    @Override
-    public void y(int i7) {
-    }
-
-    @Override
-    public void l(n6.a aVar, com.google.android.gms.common.api.e eVar, boolean z10) {
-    }
-
-    @Override
-    public void J(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
+    public void s(b3.m mVar, long j3, long j10, int i7) {
     }
 }

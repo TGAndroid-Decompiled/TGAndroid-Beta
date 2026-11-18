@@ -1,90 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-public final class rn0 extends uj0 {
-    public final int f39009f3;
-    public final po0 f39010g3;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class rn0 {
+    public final zt f39254a;
+    public final long f39255b;
+    public final float f39256c;
+    public final float d;
+    public final float f39257e;
 
-    public rn0(po0 po0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
-        super(context, e6Var);
-        this.f39009f3 = i7;
-        this.f39010g3 = po0Var;
+    public rn0(View view) {
+        zt ztVar = new zt(1, view);
+        this.f39255b = System.currentTimeMillis();
+        this.f39254a = ztVar;
+        g5.a aVar = Utilities.f22781c;
+        this.f39256c = org.telegram.messenger.g0.T1(5.0f, 9.0f, Utilities.l(aVar.nextFloat()));
+        this.d = org.telegram.messenger.g0.T1(2.5f, 5.0f, Utilities.l(aVar.nextFloat()));
+        this.f39257e = org.telegram.messenger.g0.T1(2.5f, 5.2f, Utilities.l(aVar.nextFloat()));
     }
 
-    @Override
-    public final boolean E0(float f10) {
-        float f11;
-        float f12;
-        switch (this.f39009f3) {
-            case 0:
-                po0 po0Var = this.f39010g3;
-                if (po0Var.d2 && po0Var.f38349k2[1] != null) {
-                    f11 = 111.0f;
-                } else {
-                    f11 = 58.0f;
-                }
-                if (f10 >= org.telegram.messenger.g0.L(f11) + po0Var.C2.f15575b) {
-                    return true;
-                }
-                return false;
-            default:
-                po0 po0Var2 = this.f39010g3;
-                if (po0Var2.d2 && po0Var2.f38349k2[1] != null) {
-                    f12 = 111.0f;
-                } else {
-                    f12 = 58.0f;
-                }
-                if (f10 >= org.telegram.messenger.g0.L(f12) + po0Var2.C2.f15575b) {
-                    return true;
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f10;
-        float f11;
-        switch (this.f39009f3) {
-            case 0:
-                po0 po0Var = this.f39010g3;
-                uj0 uj0Var = po0Var.A1;
-                if (uj0Var.getVisibility() != 8) {
-                    canvas.save();
-                    int i7 = po0Var.f38350l2;
-                    if (po0Var.d2 && po0Var.f38349k2[1] != null) {
-                        f10 = 111.0f;
-                    } else {
-                        f10 = 58.0f;
-                    }
-                    canvas.clipRect(0, org.telegram.messenger.g0.L(f10) + i7, getWidth(), getHeight());
-                }
-                super.draw(canvas);
-                if (uj0Var.getVisibility() != 8) {
-                    canvas.restore();
-                    return;
-                }
-                return;
-            default:
-                po0 po0Var2 = this.f39010g3;
-                uj0 uj0Var2 = po0Var2.A1;
-                if (uj0Var2.getVisibility() != 8) {
-                    canvas.save();
-                    int i10 = po0Var2.f38350l2;
-                    if (po0Var2.d2 && po0Var2.f38349k2[1] != null) {
-                        f11 = 111.0f;
-                    } else {
-                        f11 = 58.0f;
-                    }
-                    canvas.clipRect(0, org.telegram.messenger.g0.L(f11) + i10, getWidth(), getHeight());
-                }
-                super.draw(canvas);
-                if (uj0Var2.getVisibility() != 8) {
-                    canvas.restore();
-                    return;
-                }
-                return;
+    public final void a(Canvas canvas, float f10) {
+        zt ztVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f39255b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f39256c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f10);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10, ((float) Math.sin(currentTimeMillis * this.f39257e * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10);
+        canvas.translate(-0.0f, -0.0f);
+        if (f10 > 0.0f && (ztVar = this.f39254a) != null) {
+            ztVar.run();
         }
     }
 }

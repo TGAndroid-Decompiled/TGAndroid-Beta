@@ -1,75 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.TLRPC;
-public final class oh0 extends v4.h0 {
-    public final int f37954c;
-    public final Context d;
-    public final org.telegram.ui.ActionBar.e6 f37955e;
-    public final boolean f37956f;
-    public final vh0 h;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class oh0 extends Drawable {
+    public final int f38110a;
+    public final int f38111b;
+    public final ph0 f38112c;
 
-    public oh0(vh0 vh0Var, int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        this.h = vh0Var;
-        this.f37954c = i7;
-        this.d = context;
-        this.f37955e = e6Var;
-        this.f37956f = z10;
+    public oh0(ph0 ph0Var, int i7, int i10) {
+        this.f38112c = ph0Var;
+        this.f38110a = i7;
+        this.f38111b = i10;
     }
 
     @Override
-    public final int b() {
-        int i7;
-        vh0 vh0Var = this.h;
-        int size = vh0Var.f40421n.size();
-        if (!vh0Var.I.isEmpty() && !org.telegram.messenger.np.s1(this.f37954c).D3()) {
-            i7 = 1;
-        } else {
-            i7 = 0;
-        }
-        return size + i7;
+    public final void draw(Canvas canvas) {
+        Rect rect = org.telegram.messenger.g0.Q;
+        int centerX = getBounds().centerX();
+        float f10 = this.f38110a;
+        int L = centerX - (org.telegram.messenger.g0.L(f10) / 2);
+        int centerY = getBounds().centerY();
+        float f11 = this.f38111b;
+        rect.set(L, centerY - (org.telegram.messenger.g0.L(f11) / 2), (org.telegram.messenger.g0.L(f10) / 2) + getBounds().centerX(), (org.telegram.messenger.g0.L(f11) / 2) + getBounds().centerY());
+        ph0 ph0Var = this.f38112c;
+        ph0Var.f38439c.z0(rect);
+        ph0Var.f38439c.h(canvas, null);
     }
 
     @Override
-    public final int d(int i7) {
-        if (i7 < this.h.f40421n.size()) {
-            return 0;
-        }
-        return 1;
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        if (e1Var.f58539f == 0) {
-            ((org.telegram.ui.Cells.l6) e1Var.f58535a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f40421n.get(i7));
-        }
+    public final void setAlpha(int i7) {
+        this.f38112c.f38439c.setAlpha(i7 / 255.0f);
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        FrameLayout l6Var;
-        if (i7 != 0) {
-            vh0 vh0Var = this.h;
-            o90 o90Var = vh0Var.K;
-            if (o90Var != null) {
-                if (o90Var.getParent() != null) {
-                    ((ViewGroup) vh0Var.K.getParent()).removeView(vh0Var.K);
-                }
-            } else {
-                vh0Var.i();
-            }
-            Context context = this.d;
-            l6Var = new FrameLayout(context);
-            View view = new View(context);
-            org.telegram.ui.ActionBar.q6.i(view, org.telegram.ui.ActionBar.q6.K(0.06f, org.telegram.ui.ActionBar.j6.E8), this.f37955e);
-            l6Var.addView(view, c8.ja.c(8.0f, -1));
-            l6Var.addView(vh0Var.K, c8.ja.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
-        } else {
-            l6Var = new org.telegram.ui.Cells.l6(0, this.f37954c, this.d, this.f37955e, true, this.f37956f);
-        }
-        return new v4.e1(l6Var);
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f38112c.f38439c.f22656p1 = colorFilter;
     }
 }

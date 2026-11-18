@@ -8,25 +8,25 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.m10;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.j10;
 import org.telegram.ui.Cells.q1;
 public final class i extends View {
-    public final HashMap f59363a;
-    public final ArrayList f59364b;
-    public final ArrayList f59365c;
+    public final HashMap f59927a;
+    public final ArrayList f59928b;
+    public final ArrayList f59929c;
     public final int d;
 
     public i(Activity activity) {
         super(activity);
-        this.f59363a = new HashMap();
-        this.f59364b = new ArrayList();
-        this.f59365c = new ArrayList();
-        this.d = m10.f24940t0;
+        this.f59927a = new HashMap();
+        this.f59928b = new ArrayList();
+        this.f59929c = new ArrayList();
+        this.d = j10.f24773t0;
     }
 
     public static String b(q1 q1Var) {
-        gj messageObject = q1Var.getMessageObject();
+        fj messageObject = q1Var.getMessageObject();
         if (messageObject == null) {
             return null;
         }
@@ -34,7 +34,7 @@ public final class i extends View {
     }
 
     public final boolean a() {
-        for (Map.Entry entry : this.f59363a.entrySet()) {
+        for (Map.Entry entry : this.f59927a.entrySet()) {
             if (!((h) entry.getValue()).P) {
                 return true;
             }
@@ -53,22 +53,22 @@ public final class i extends View {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        HashMap hashMap = this.f59363a;
+        HashMap hashMap = this.f59927a;
         for (Map.Entry entry : hashMap.entrySet()) {
             ((h) entry.getValue()).d();
         }
         hashMap.clear();
-        this.f59364b.clear();
+        this.f59928b.clear();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        HashMap hashMap = this.f59363a;
+        HashMap hashMap = this.f59927a;
         for (Map.Entry entry : hashMap.entrySet()) {
             ((h) entry.getValue()).draw(canvas);
         }
-        ArrayList arrayList = this.f59364b;
+        ArrayList arrayList = this.f59928b;
         if (!arrayList.isEmpty()) {
             int size = arrayList.size();
             int i7 = 0;
@@ -87,7 +87,7 @@ public final class i extends View {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        for (Map.Entry entry : this.f59363a.entrySet()) {
+        for (Map.Entry entry : this.f59927a.entrySet()) {
             ((h) entry.getValue()).setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
     }

@@ -1,56 +1,33 @@
 package org.telegram.ui;
-
-import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
-public final class rr implements Runnable {
-    public final int f51003a;
-    public final ContactsActivity f51004b;
+public final class rr implements org.telegram.messenger.nr {
+    public final int f51787a;
+    public final ContactsActivity f51788b;
 
     public rr(ContactsActivity contactsActivity, int i7) {
-        this.f51003a = i7;
-        this.f51004b = contactsActivity;
+        this.f51787a = i7;
+        this.f51788b = contactsActivity;
     }
 
     @Override
-    public final void run() {
-        float f10;
-        int i7;
-        switch (this.f51003a) {
+    public final void a(int i7) {
+        boolean z10;
+        switch (this.f51787a) {
             case 0:
-                ContactsActivity contactsActivity = this.f51004b;
-                te.c cVar = contactsActivity.f42532a;
-                if (contactsActivity.f42552r) {
-                    f10 = 0.0f;
+                ContactsActivity contactsActivity = this.f51788b;
+                contactsActivity.getClass();
+                if (i7 != 0) {
+                    z10 = true;
                 } else {
-                    f10 = 1.0f;
+                    z10 = false;
                 }
-                cVar.c(f10);
-                vr vrVar = contactsActivity.f42534b;
-                float f11 = cVar.f57091f;
-                ArrayList arrayList = vrVar.O;
-                vrVar.M = f11;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((org.telegram.ui.Cells.s4) arrayList.get(i10)).setLetterProgress(f11);
-                }
-                vr vrVar2 = contactsActivity.f42534b;
-                if (contactsActivity.f42552r) {
-                    i7 = 1;
-                } else {
-                    i7 = 2;
-                }
-                vrVar2.Y(i7, false);
-                contactsActivity.d.v0(0);
-                ViewPropertyAnimator withEndAction = contactsActivity.d.animate().alpha(1.0f).setDuration(220L).setInterpolator(org.telegram.ui.Components.er.h).withEndAction(new rr(contactsActivity, 1));
-                contactsActivity.f42542f0 = withEndAction;
-                withEndAction.start();
-                if (contactsActivity.f42552r) {
-                    cVar.f57090e = 80L;
-                    cVar.a(1.0f);
+                contactsActivity.Y = z10;
+                if (i7 != 0) {
+                    contactsActivity.h0(false);
                     return;
                 }
                 return;
             default:
-                this.f51004b.f42542f0 = null;
+                ContactsActivity.a0(this.f51788b, i7);
                 return;
         }
     }

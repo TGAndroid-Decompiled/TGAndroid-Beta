@@ -1,12 +1,15 @@
 package c8;
+
+import java.lang.ref.Reference;
+import java.util.ArrayList;
 public abstract class wd {
-    public static final Exception a(x0.a aVar, String str, Exception exc) {
-        if (exc instanceof y0.a) {
-            return new y0.a(aVar, str);
+    public static void a(ArrayList arrayList, Object obj) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            Object obj2 = ((Reference) arrayList.get(size)).get();
+            if (obj2 == null || obj2 == obj) {
+                arrayList.remove(size);
+                return;
+            }
         }
-        if (exc instanceof y0.b) {
-            return new y0.b(aVar, str);
-        }
-        throw new Exception();
     }
 }

@@ -1,6 +1,6 @@
 package org.telegram.ui.ActionBar;
-public interface r6 {
-    void a(float f10);
 
-    void b();
+import android.view.View;
+public interface r6 {
+    int f(View view);
 }

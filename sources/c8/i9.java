@@ -1,22 +1,15 @@
 package c8;
-public abstract class i9 {
-    public static float a(float f10, float f11, float f12) {
-        if (f10 < f11) {
-            return f11;
-        }
-        if (f10 > f12) {
-            return f12;
-        }
-        return f10;
-    }
 
-    public static int b(int i7, int i10, int i11) {
-        if (i7 < i10) {
-            return i10;
+import android.view.View;
+import android.view.ViewParent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.TextView;
+public abstract class i9 {
+    public static void a(EditorInfo editorInfo, InputConnection inputConnection, TextView textView) {
+        if (inputConnection != null && editorInfo.hintText == null) {
+            for (ViewParent parent = textView.getParent(); parent instanceof View; parent = parent.getParent()) {
+            }
         }
-        if (i7 > i11) {
-            return i11;
-        }
-        return i7;
     }
 }

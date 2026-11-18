@@ -5,46 +5,46 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.List;
-import org.telegram.ui.ld0;
+import org.telegram.ui.md0;
 public final class p extends n {
-    public final ld0 f54566j;
-    public final ld0 f54567k;
-    public final long f54568l;
+    public final md0 f55135j;
+    public final md0 f55136k;
+    public final long f55137l;
 
-    public p(j jVar, long j3, long j10, long j11, long j12, long j13, List list, long j14, ld0 ld0Var, ld0 ld0Var2, long j15, long j16) {
+    public p(j jVar, long j3, long j10, long j11, long j12, long j13, List list, long j14, md0 md0Var, md0 md0Var2, long j15, long j16) {
         super(jVar, j3, j10, j11, j13, list, j14, j15, j16);
-        this.f54566j = ld0Var;
-        this.f54567k = ld0Var2;
-        this.f54568l = j12;
+        this.f55135j = md0Var;
+        this.f55136k = md0Var2;
+        this.f55137l = j12;
     }
 
     @Override
     public final j a(m mVar) {
-        ld0 ld0Var = this.f54566j;
-        if (ld0Var != null) {
-            u uVar = mVar.f54556a;
-            return new j(0L, ld0Var.m(uVar.f10442j, 0L, 0L, uVar.f10435a), -1L);
+        md0 md0Var = this.f55135j;
+        if (md0Var != null) {
+            u uVar = mVar.f55125a;
+            return new j(0L, md0Var.m(uVar.f10760j, 0L, 0L, uVar.f10753a), -1L);
         }
-        return this.f54572a;
+        return this.f55141a;
     }
 
     @Override
     public final long d(long j3) {
-        List list = this.f54562f;
+        List list = this.f55131f;
         if (list != null) {
             return list.size();
         }
-        long j10 = this.f54568l;
+        long j10 = this.f55137l;
         if (j10 != -1) {
             return (j10 - this.d) + 1;
         }
         if (j3 == -9223372036854775807L) {
             return -1L;
         }
-        BigInteger multiply = BigInteger.valueOf(j3).multiply(BigInteger.valueOf(this.f54573b));
-        BigInteger multiply2 = BigInteger.valueOf(this.f54561e).multiply(BigInteger.valueOf(1000000L));
+        BigInteger multiply = BigInteger.valueOf(j3).multiply(BigInteger.valueOf(this.f55142b));
+        BigInteger multiply2 = BigInteger.valueOf(this.f55130e).multiply(BigInteger.valueOf(1000000L));
         RoundingMode roundingMode = RoundingMode.CEILING;
-        int i7 = j9.a.f16952a;
+        int i7 = j9.a.f17337a;
         return new BigDecimal(multiply).divide(new BigDecimal(multiply2), 0, roundingMode).toBigIntegerExact().longValue();
     }
 
@@ -52,15 +52,15 @@ public final class p extends n {
     public final j h(k kVar, long j3) {
         long j10;
         long j11 = this.d;
-        List list = this.f54562f;
+        List list = this.f55131f;
         if (list != null) {
-            j10 = ((q) list.get((int) (j3 - j11))).f54569a;
+            j10 = ((q) list.get((int) (j3 - j11))).f55138a;
         } else {
-            j10 = (j3 - j11) * this.f54561e;
+            j10 = (j3 - j11) * this.f55130e;
         }
         long j12 = j10;
-        u uVar = kVar.f54556a;
-        String str = uVar.f10435a;
-        return new j(0L, this.f54567k.m(uVar.f10442j, j3, j12, str), -1L);
+        u uVar = kVar.f55125a;
+        String str = uVar.f10753a;
+        return new j(0L, this.f55136k.m(uVar.f10760j, j3, j12, str), -1L);
     }
 }

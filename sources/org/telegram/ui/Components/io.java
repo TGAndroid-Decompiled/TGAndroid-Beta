@@ -1,470 +1,150 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Path;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class io {
-    public final org.telegram.ui.ActionBar.z0 f35661a;
-    public final org.telegram.ui.ActionBar.z0 f35662b;
-    public final org.telegram.ui.ActionBar.z0 f35663c;
-    public final org.telegram.ui.ActionBar.z0 d;
-    public final org.telegram.ui.ActionBar.z0 f35664e;
-    public final go f35665f;
-    public final int f35666g;
-    public org.telegram.ui.ActionBar.g1 h;
-    public final ho f35667i;
-    public long f35668j;
-    public int f35669k;
-    public int f35670l;
-    public final FrameLayout f35671m;
-    public final TextView f35672n;
-    public int f35673o;
+import android.os.Bundle;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class io implements Runnable {
+    public final int f36153a = 1;
+    public final long f36154b;
+    public final long f36155c;
+    public final Object d;
+    public final Object f36156e;
+    public final Object f36157f;
 
-    public io(Context context, int i7, ye0 ye0Var, boolean z10, final ho hoVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        int i10;
-        go goVar;
-        final int i11;
-        Integer num;
-        this.f35666g = i7;
-        this.f35667i = hoVar;
-        if (z10) {
-            i10 = 2131232565;
-        } else {
-            i10 = 0;
-        }
-        go goVar2 = new go(i10, 0, 0, context, e6Var);
-        goVar2.V = new Path();
-        this.f35665f = goVar2;
-        goVar2.setFitItems(true);
-        if (ye0Var != null) {
-            num = 1;
-            goVar = goVar2;
-            i11 = 1;
-            org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.q0.c(false, false, goVar, 2131232058, org.telegram.messenger.hd.M0(2131753756, null), false, e6Var);
-            this.f35661a = c10;
-            c10.setOnClickListener(new a8(ye0Var, 1));
-        } else {
-            goVar = goVar2;
-            i11 = 1;
-            num = 1;
-        }
-        org.telegram.ui.ActionBar.z0 c11 = org.telegram.ui.ActionBar.q0.c(false, false, goVar, 2131232404, org.telegram.messenger.hd.M0(2131745275, null), false, e6Var);
-        this.f35662b = c11;
-        c11.setOnClickListener(new View.OnClickListener(this) {
-            public final io f33642b;
-
-            {
-                this.f33642b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r3) {
-                    case 0:
-                        this.f33642b.a();
-                        hoVar.J();
-                        return;
-                    case 1:
-                        io ioVar = this.f33642b;
-                        ioVar.a();
-                        hoVar.R(ioVar.f35670l);
-                        return;
-                    case 2:
-                        io ioVar2 = this.f33642b;
-                        ioVar2.a();
-                        hoVar.R(ioVar2.f35669k);
-                        return;
-                    case 3:
-                        this.f33642b.a();
-                        hoVar.F();
-                        return;
-                    case 4:
-                        this.f33642b.a();
-                        org.telegram.messenger.g0.h3(new fo(hoVar, 0));
-                        return;
-                    default:
-                        hoVar.t();
-                        this.f33642b.a();
-                        return;
-                }
-            }
-        });
-        org.telegram.ui.ActionBar.z0 c12 = org.telegram.ui.ActionBar.q0.c(false, false, goVar, 2131232258, org.telegram.messenger.hd.M0(2131748311, null), false, e6Var);
-        this.d = c12;
-        c12.setOnClickListener(new View.OnClickListener(this) {
-            public final io f33642b;
-
-            {
-                this.f33642b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (i11) {
-                    case 0:
-                        this.f33642b.a();
-                        hoVar.J();
-                        return;
-                    case 1:
-                        io ioVar = this.f33642b;
-                        ioVar.a();
-                        hoVar.R(ioVar.f35670l);
-                        return;
-                    case 2:
-                        io ioVar2 = this.f33642b;
-                        ioVar2.a();
-                        hoVar.R(ioVar2.f35669k);
-                        return;
-                    case 3:
-                        this.f33642b.a();
-                        hoVar.F();
-                        return;
-                    case 4:
-                        this.f33642b.a();
-                        org.telegram.messenger.g0.h3(new fo(hoVar, 0));
-                        return;
-                    default:
-                        hoVar.t();
-                        this.f33642b.a();
-                        return;
-                }
-            }
-        });
-        org.telegram.ui.ActionBar.z0 c13 = org.telegram.ui.ActionBar.q0.c(false, false, goVar, 2131232258, org.telegram.messenger.hd.M0(2131748311, null), false, e6Var);
-        this.f35664e = c13;
-        c13.setOnClickListener(new View.OnClickListener(this) {
-            public final io f33642b;
-
-            {
-                this.f33642b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (i11) {
-                    case 0:
-                        this.f33642b.a();
-                        hoVar.J();
-                        return;
-                    case 1:
-                        io ioVar = this.f33642b;
-                        ioVar.a();
-                        hoVar.R(ioVar.f35670l);
-                        return;
-                    case 2:
-                        io ioVar2 = this.f33642b;
-                        ioVar2.a();
-                        hoVar.R(ioVar2.f35669k);
-                        return;
-                    case 3:
-                        this.f33642b.a();
-                        hoVar.F();
-                        return;
-                    case 4:
-                        this.f33642b.a();
-                        org.telegram.messenger.g0.h3(new fo(hoVar, 0));
-                        return;
-                    default:
-                        hoVar.t();
-                        this.f33642b.a();
-                        return;
-                }
-            }
-        });
-        Integer num2 = num;
-        org.telegram.ui.ActionBar.q0.c(false, false, goVar, 2131232259, org.telegram.messenger.hd.M0(2131748308, null), false, e6Var).setOnClickListener(new eo(this, context, e6Var, i7, hoVar, 0));
-        org.telegram.ui.ActionBar.q0.c(false, false, goVar, 2131232107, org.telegram.messenger.hd.M0(2131747917, null), false, e6Var).setOnClickListener(new View.OnClickListener(this) {
-            public final io f33642b;
-
-            {
-                this.f33642b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (i11) {
-                    case 0:
-                        this.f33642b.a();
-                        hoVar.J();
-                        return;
-                    case 1:
-                        io ioVar = this.f33642b;
-                        ioVar.a();
-                        hoVar.R(ioVar.f35670l);
-                        return;
-                    case 2:
-                        io ioVar2 = this.f33642b;
-                        ioVar2.a();
-                        hoVar.R(ioVar2.f35669k);
-                        return;
-                    case 3:
-                        this.f33642b.a();
-                        hoVar.F();
-                        return;
-                    case 4:
-                        this.f33642b.a();
-                        org.telegram.messenger.g0.h3(new fo(hoVar, 0));
-                        return;
-                    default:
-                        hoVar.t();
-                        this.f33642b.a();
-                        return;
-                }
-            }
-        });
-        org.telegram.ui.ActionBar.z0 c14 = org.telegram.ui.ActionBar.q0.c(false, false, goVar, 0, "", false, e6Var);
-        this.f35663c = c14;
-        c14.setOnClickListener(new View.OnClickListener(this) {
-            public final io f33642b;
-
-            {
-                this.f33642b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (i11) {
-                    case 0:
-                        this.f33642b.a();
-                        hoVar.J();
-                        return;
-                    case 1:
-                        io ioVar = this.f33642b;
-                        ioVar.a();
-                        hoVar.R(ioVar.f35670l);
-                        return;
-                    case 2:
-                        io ioVar2 = this.f33642b;
-                        ioVar2.a();
-                        hoVar.R(ioVar2.f35669k);
-                        return;
-                    case 3:
-                        this.f33642b.a();
-                        hoVar.F();
-                        return;
-                    case 4:
-                        this.f33642b.a();
-                        org.telegram.messenger.g0.h3(new fo(hoVar, 0));
-                        return;
-                    default:
-                        hoVar.t();
-                        this.f33642b.a();
-                        return;
-                }
-            }
-        });
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f35671m = frameLayout;
-        org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.H8, frameLayout, e6Var);
-        goVar.a(frameLayout, c8.ja.o(-1, 8));
-        TextView textView = new TextView(context);
-        this.f35672n = textView;
-        textView.setPadding(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(8.0f));
-        textView.setTextSize(i11, 13.0f);
-        org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.E8, e6Var);
-        frameLayout.setTag(2131296437, num2);
-        textView.setTag(2131296437, num2);
-        goVar.a(textView, c8.ja.o(-2, -2));
-        int i12 = org.telegram.ui.ActionBar.j6.I5;
-        org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.j6.a0(org.telegram.ui.ActionBar.j6.w0(i12, e6Var), 0, 6);
-        org.telegram.ui.ActionBar.m6 M = org.telegram.ui.ActionBar.q6.M(i12);
-        textView.setBackground(a02);
-        org.telegram.ui.ActionBar.q6.j(textView, a02, null, M, e6Var);
-        textView.setOnClickListener(new View.OnClickListener(this) {
-            public final io f33642b;
-
-            {
-                this.f33642b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (i11) {
-                    case 0:
-                        this.f33642b.a();
-                        hoVar.J();
-                        return;
-                    case 1:
-                        io ioVar = this.f33642b;
-                        ioVar.a();
-                        hoVar.R(ioVar.f35670l);
-                        return;
-                    case 2:
-                        io ioVar2 = this.f33642b;
-                        ioVar2.a();
-                        hoVar.R(ioVar2.f35669k);
-                        return;
-                    case 3:
-                        this.f33642b.a();
-                        hoVar.F();
-                        return;
-                    case 4:
-                        this.f33642b.a();
-                        org.telegram.messenger.g0.h3(new fo(hoVar, 0));
-                        return;
-                    default:
-                        hoVar.t();
-                        this.f33642b.a();
-                        return;
-                }
-            }
-        });
+    public io(long j3, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, wg.a0 a0Var) {
+        this.d = a0Var;
+        this.f36156e = prepaidGiveaway;
+        this.f36157f = tL_prepaidStarsGiveaway;
+        this.f36154b = j3;
+        this.f36155c = j10;
     }
 
-    public static String b(int i7) {
-        StringBuilder sb2 = new StringBuilder();
-        int i10 = i7 / 86400;
-        int i11 = i7 - (86400 * i10);
-        int i12 = i11 / 3600;
-        int i13 = (i11 - (i12 * 3600)) / 60;
-        if (i10 != 0) {
-            sb2.append(i10);
-            sb2.append(org.telegram.messenger.hd.M0(2131745692, null));
-        }
-        if (i12 != 0) {
-            if (sb2.length() > 0) {
-                sb2.append(" ");
-            }
-            sb2.append(i12);
-            sb2.append(org.telegram.messenger.hd.M0(2131745691, null));
-        }
-        if (i13 != 0) {
-            if (sb2.length() > 0) {
-                sb2.append(" ");
-            }
-            sb2.append(i13);
-            sb2.append(org.telegram.messenger.hd.M0(2131745690, null));
-        }
-        return org.telegram.messenger.hd.a0("MuteForButton", null, 2131748309, sb2.toString());
-    }
-
-    public static void c(org.telegram.ui.ActionBar.z0 z0Var, int i7) {
-        int x02 = org.telegram.ui.ActionBar.j6.x0(null, i7, false);
-        z0Var.c(i7, i7);
-        z0Var.h(0.1f, i7);
-        if (z0Var.getTextView() != null && z0Var.getTextView().getCurrentTextColor() == x02) {
-            return;
-        }
-        z0Var.d(x02, x02);
-        z0Var.setSelectorColor(org.telegram.ui.ActionBar.j6.r1(0.1f, x02));
-    }
-
-    public final void a() {
-        org.telegram.ui.ActionBar.g1 g1Var = this.h;
-        if (g1Var != null) {
-            g1Var.d(true);
-            this.h.d(true);
-        }
-        this.f35667i.dismiss();
-        this.f35668j = System.currentTimeMillis();
-    }
-
-    public final void d(org.telegram.ui.ActionBar.e2 e2Var, View view, float f10, float f11, boolean z10) {
-        float measuredWidth;
-        float measuredHeight;
-        if (e2Var.getFragmentView() != null) {
-            go goVar = this.f35665f;
-            org.telegram.ui.ActionBar.g1 g1Var = new org.telegram.ui.ActionBar.g1(goVar, -2, -2);
-            this.h = g1Var;
-            g1Var.f28555e = true;
-            g1Var.f28554c = 220;
-            g1Var.setOutsideTouchable(true);
-            this.h.setClippingEnabled(true);
-            this.h.setAnimationStyle(2131755192);
-            this.h.setFocusable(true);
-            goVar.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(1000.0f), Integer.MIN_VALUE));
-            this.h.setInputMethodMode(2);
-            this.h.getContentView().setFocusableInTouchMode(true);
-            while (view != e2Var.getFragmentView()) {
-                if (view.getParent() == null) {
+    @Override
+    public final void run() {
+        boolean z10;
+        ?? tL_inputStorePaymentStarsGiveaway;
+        int i7 = this.f36153a;
+        Object obj = this.f36157f;
+        Object obj2 = this.f36156e;
+        Object obj3 = this.d;
+        switch (i7) {
+            case 0:
+                ((y60) obj3).v();
+                Bundle bundle = new Bundle();
+                bundle.putLong("dialog_id", this.f36154b);
+                bundle.putLong("topic_id", this.f36155c);
+                ((org.telegram.ui.ActionBar.h2) obj2).presentFragment(new org.telegram.ui.jx0(bundle, (org.telegram.ui.ActionBar.i6) obj));
+                return;
+            default:
+                wg.a0 a0Var = (wg.a0) obj3;
+                TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
+                TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
+                int l10 = wg.s.l(a0Var.f59702i2);
+                int i10 = a0Var.f59699f2;
+                int i11 = yg.u.f61268w;
+                if (i10 == 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                a0Var.f59706m2.b(true);
+                ArrayList arrayList = a0Var.Y1;
+                ArrayList arrayList2 = a0Var.f59695a2;
+                TLRPC.Chat chat = a0Var.X1;
+                boolean z11 = a0Var.f59713t2;
+                boolean z12 = a0Var.f59712s2;
+                int i12 = prepaidGiveaway.quantity;
+                String str = a0Var.f59711r2;
+                wg.y yVar = new wg.y(this.f36154b, this.f36155c, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
+                wg.v vVar = new wg.v(a0Var, 6);
+                org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0);
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(org.telegram.messenger.j10.f24773t0);
+                if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
+                    tL_inputStorePaymentStarsGiveaway = new TLRPC.TL_inputStorePaymentPremiumGiveaway();
+                    tL_inputStorePaymentStarsGiveaway.only_new_subscribers = z10;
+                    tL_inputStorePaymentStarsGiveaway.winners_are_visible = z11;
+                    tL_inputStorePaymentStarsGiveaway.prize_description = str;
+                    tL_inputStorePaymentStarsGiveaway.until_date = l10;
+                    int i13 = tL_inputStorePaymentStarsGiveaway.flags;
+                    tL_inputStorePaymentStarsGiveaway.flags = i13 | 6;
+                    if (z12) {
+                        tL_inputStorePaymentStarsGiveaway.flags = i13 | 22;
+                    }
+                    tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
+                    tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
+                    tL_inputStorePaymentStarsGiveaway.boost_peer = u12.l1(-chat.f28405id);
+                    tL_inputStorePaymentStarsGiveaway.currency = "";
+                    int size = arrayList2.size();
+                    int i14 = 0;
+                    while (i14 < size) {
+                        Object obj4 = arrayList2.get(i14);
+                        i14++;
+                        tL_inputStorePaymentStarsGiveaway.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) obj4)).iso2);
+                    }
+                    int size2 = arrayList.size();
+                    int i15 = 0;
+                    while (i15 < size2) {
+                        Object obj5 = arrayList.get(i15);
+                        i15++;
+                        TLObject tLObject = (TLObject) obj5;
+                        if (tLObject instanceof TLRPC.Chat) {
+                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(u12.l1(-((TLRPC.Chat) tLObject).f28405id));
+                        }
+                    }
+                } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
+                    tL_inputStorePaymentStarsGiveaway = new TLRPC.TL_inputStorePaymentStarsGiveaway();
+                    tL_inputStorePaymentStarsGiveaway.only_new_subscribers = z10;
+                    tL_inputStorePaymentStarsGiveaway.winners_are_visible = z11;
+                    tL_inputStorePaymentStarsGiveaway.prize_description = str;
+                    tL_inputStorePaymentStarsGiveaway.until_date = l10;
+                    int i16 = tL_inputStorePaymentStarsGiveaway.flags;
+                    tL_inputStorePaymentStarsGiveaway.flags = i16 | 6;
+                    if (z12) {
+                        tL_inputStorePaymentStarsGiveaway.flags = i16 | 22;
+                    }
+                    tL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
+                    tL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList<>();
+                    tL_inputStorePaymentStarsGiveaway.boost_peer = u12.l1(-chat.f28405id);
+                    tL_inputStorePaymentStarsGiveaway.currency = "";
+                    tL_inputStorePaymentStarsGiveaway.stars = ((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars;
+                    tL_inputStorePaymentStarsGiveaway.users = prepaidGiveaway.quantity;
+                    int size3 = arrayList2.size();
+                    int i17 = 0;
+                    while (i17 < size3) {
+                        Object obj6 = arrayList2.get(i17);
+                        i17++;
+                        tL_inputStorePaymentStarsGiveaway.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) obj6)).iso2);
+                    }
+                    int size4 = arrayList.size();
+                    int i18 = 0;
+                    while (i18 < size4) {
+                        Object obj7 = arrayList.get(i18);
+                        i18++;
+                        TLObject tLObject2 = (TLObject) obj7;
+                        if (tLObject2 instanceof TLRPC.Chat) {
+                            tL_inputStorePaymentStarsGiveaway.additional_peers.add(u12.l1(-((TLRPC.Chat) tLObject2).f28405id));
+                        }
+                    }
+                } else {
                     return;
                 }
-                f10 += view.getX();
-                f11 += view.getY();
-                view = (View) view.getParent();
-            }
-            if (z10) {
-                measuredWidth = f10 - org.telegram.messenger.g0.N(8.0f);
-                measuredHeight = org.telegram.messenger.g0.N(16.0f);
-            } else {
-                measuredWidth = f10 - (goVar.getMeasuredWidth() / 2.0f);
-                measuredHeight = goVar.getMeasuredHeight() / 2.0f;
-            }
-            this.h.showAtLocation(e2Var.getFragmentView(), 0, (int) measuredWidth, (int) (f11 - measuredHeight));
-            this.h.b();
+                TLRPC.TL_payments_launchPrepaidGiveaway tL_payments_launchPrepaidGiveaway = new TLRPC.TL_payments_launchPrepaidGiveaway();
+                tL_payments_launchPrepaidGiveaway.giveaway_id = prepaidGiveaway.f28643id;
+                tL_payments_launchPrepaidGiveaway.peer = u12.l1(-chat.f28405id);
+                tL_payments_launchPrepaidGiveaway.purpose = tL_inputStorePaymentStarsGiveaway;
+                connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new bi.m1(vVar, u12, yVar, 26));
+                return;
         }
     }
 
-    public final void e(long j3, long j10, HashSet hashSet) {
-        int i7;
-        int i10;
-        int i11;
-        if (System.currentTimeMillis() - this.f35668j < 200) {
-            org.telegram.messenger.g0.h3(new d3.e0(this, j3, j10, hashSet, 5));
-            return;
-        }
-        int i12 = this.f35666g;
-        boolean r22 = org.telegram.messenger.np.s1(i12).r2(j3, j10, null);
-        org.telegram.ui.ActionBar.z0 z0Var = this.f35663c;
-        org.telegram.ui.ActionBar.z0 z0Var2 = this.f35662b;
-        if (r22) {
-            z0Var.j(org.telegram.messenger.hd.M0(2131743848, null), 2131232413, null);
-            i7 = org.telegram.ui.ActionBar.j6.f29222x6;
-            z0Var2.setVisibility(8);
-        } else {
-            z0Var.j(org.telegram.messenger.hd.M0(2131748306, null), 2131232257, null);
-            int i13 = org.telegram.ui.ActionBar.j6.f29090q7;
-            z0Var2.setVisibility(0);
-            if (org.telegram.messenger.np.s1(i12).s2(j3, j10)) {
-                z0Var2.j(org.telegram.messenger.hd.M0(2131745277, null), 2131232403, null);
-            } else {
-                z0Var2.j(org.telegram.messenger.hd.M0(2131745275, null), 2131232404, null);
-            }
-            i7 = i13;
-        }
-        if (this.f35673o == 1) {
-            this.f35661a.setVisibility(8);
-        }
-        if (!r22 && this.f35673o != 1) {
-            SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(i12).f25273e7;
-            i11 = sharedPreferences.getInt("last_selected_mute_until_time", 0);
-            i10 = sharedPreferences.getInt("last_selected_mute_until_time2", 0);
-        } else {
-            i10 = 0;
-            i11 = 0;
-        }
-        org.telegram.ui.ActionBar.z0 z0Var3 = this.d;
-        if (i11 != 0) {
-            this.f35670l = i11;
-            z0Var3.setVisibility(0);
-            z0Var3.getImageView().setImageDrawable(c01.a(i11));
-            z0Var3.setText(b(i11));
-        } else {
-            z0Var3.setVisibility(8);
-        }
-        org.telegram.ui.ActionBar.z0 z0Var4 = this.f35664e;
-        if (i10 != 0) {
-            this.f35669k = i10;
-            z0Var4.setVisibility(0);
-            z0Var4.getImageView().setImageDrawable(c01.a(i10));
-            z0Var4.setText(b(i10));
-        } else {
-            z0Var4.setVisibility(8);
-        }
-        c(z0Var, i7);
-        FrameLayout frameLayout = this.f35671m;
-        TextView textView = this.f35672n;
-        if (hashSet != null && !hashSet.isEmpty()) {
-            frameLayout.setVisibility(0);
-            textView.setVisibility(0);
-            textView.setText(org.telegram.messenger.g0.S2(org.telegram.messenger.hd.G(hashSet.size(), "TopicNotificationsExceptions", new Object[0]), org.telegram.ui.ActionBar.j6.f29031n6, 1, null, null));
-            return;
-        }
-        frameLayout.setVisibility(8);
-        textView.setVisibility(8);
+    public io(y60 y60Var, long j3, long j10, org.telegram.ui.bn bnVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.d = y60Var;
+        this.f36154b = j3;
+        this.f36155c = j10;
+        this.f36156e = bnVar;
+        this.f36157f = i6Var;
     }
 }

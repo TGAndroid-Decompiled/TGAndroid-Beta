@@ -1,73 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.widget.LinearLayout;
-public final class wb extends va {
-    public final w8 f41323a;
-    public final z70 f41324b;
-    public final z70 f41325c;
-    public final LinearLayout d;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+public final class wb extends FrameLayout {
+    public final c6 f41653a;
+    public final c6 f41654b;
+    public final Paint f41655c;
+    public final RectF d;
+    public final long f41656e;
+    public final xb f41657f;
 
-    public wb(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(context, e6Var);
-        w8 w8Var = new w8(context, false);
-        this.f41323a = w8Var;
-        w8Var.setStyle(11);
-        w8Var.setAvatarsTextSize(org.telegram.messenger.g0.L(18.0f));
-        addView(w8Var, c8.ja.i(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
-        if (!z10) {
-            bi.w1 w1Var = new bi.w1(4, context, null);
-            this.f41324b = w1Var;
-            org.telegram.messenger.ns.i(w1Var);
-            w1Var.setTypeface(Typeface.SANS_SERIF);
-            w1Var.setTextSize(1, 15.0f);
-            w1Var.setEllipsize(TextUtils.TruncateAt.END);
-            w1Var.setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
-            w1Var.setGravity(org.telegram.messenger.hd.f24104a0 ? 5 : 3);
-            addView(w1Var, c8.ja.i(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
-        } else {
-            LinearLayout linearLayout = new LinearLayout(getContext());
-            this.d = linearLayout;
-            linearLayout.setOrientation(1);
-            addView(linearLayout, c8.ja.i(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
-            bi.w1 w1Var2 = new bi.w1(5, context, null);
-            this.f41324b = w1Var2;
-            org.telegram.messenger.ns.i(w1Var2);
-            Typeface typeface = Typeface.SANS_SERIF;
-            w1Var2.setTypeface(typeface);
-            w1Var2.setTextSize(1, 14.0f);
-            w1Var2.setTypeface(org.telegram.messenger.g0.o());
-            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            w1Var2.setEllipsize(truncateAt);
-            w1Var2.setMaxLines(1);
-            linearLayout.addView(w1Var2);
-            z70 z70Var = new z70(context, null);
-            this.f41325c = z70Var;
-            z70Var.setTypeface(typeface);
-            z70Var.setTextSize(1, 12.0f);
-            z70Var.setEllipsize(truncateAt);
-            z70Var.setSingleLine(false);
-            z70Var.setMaxLines(3);
-            org.telegram.ui.ActionBar.q6.G(z70Var, org.telegram.ui.ActionBar.j6.xj, e6Var);
-            linearLayout.addView(z70Var, c8.ja.t(-2, -2, 0, 0, 0, 0, 0));
-        }
-        org.telegram.ui.ActionBar.q6.G(this.f41324b, org.telegram.ui.ActionBar.j6.xj, e6Var);
-        setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.yj));
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.wj));
+    public wb(xb xbVar, Activity activity) {
+        super(activity);
+        this.f41657f = xbVar;
+        lr lrVar = lr.h;
+        this.f41653a = new c6(this, 320L, lrVar);
+        this.f41654b = new c6(this, 320L, lrVar);
+        Paint paint = new Paint(1);
+        this.f41655c = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(268435455);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.66f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.d = new RectF();
+        this.f41656e = System.currentTimeMillis();
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.f41324b.getText();
-    }
-
-    public void setTextColor(int i7) {
-        this.f41324b.setTextColor(i7);
-        z70 z70Var = this.f41325c;
-        if (z70Var != null) {
-            z70Var.setTextColor(i7);
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        int i7;
+        xb xbVar = this.f41657f;
+        float e10 = this.f41653a.e(false, xbVar.f41958a);
+        if (xbVar.f41958a >= 1.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        float d = this.f41654b.d(z10);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        RectF rectF = this.d;
+        rectF.set(width - org.telegram.messenger.g0.N(13.0f), height - org.telegram.messenger.g0.N(13.0f), org.telegram.messenger.g0.N(13.0f) + width, org.telegram.messenger.g0.N(13.0f) + height);
+        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.f41656e)) * 0.45f) % 5400.0f;
+        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
+        for (int i10 = 0; i10 < 4; i10++) {
+            x1.a aVar = sp.h;
+            aVar.getInterpolation((currentTimeMillis - (i10 * 1350)) / 667.0f);
+            max += aVar.getInterpolation((currentTimeMillis - (i7 + 667)) / 667.0f) * 250.0f;
+        }
+        int r12 = org.telegram.ui.ActionBar.n6.r1((1.0f - d) * 1.0f, -1);
+        Paint paint = this.f41655c;
+        paint.setColor(r12);
+        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, e10) * (-360.0f), false, paint);
+        if (e10 < 1.0f && d < 1.0f) {
+            invalidate();
+        }
+        super.onDraw(canvas);
     }
 }

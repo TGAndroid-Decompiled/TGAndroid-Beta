@@ -1,48 +1,88 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class ge implements DialogInterface.OnDismissListener {
-    public final int f47422a;
-    public final an f47423b;
+import android.app.Activity;
+import android.net.Uri;
+import android.text.TextUtils;
+public final class ge implements Runnable {
+    public final int f48084a;
+    public final bn f48085b;
+    public final String f48086c;
 
-    public ge(an anVar, int i7) {
-        this.f47422a = i7;
-        this.f47423b = anVar;
+    public ge(bn bnVar, String str, int i7) {
+        this.f48084a = i7;
+        this.f48085b = bnVar;
+        this.f48086c = str;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f47422a) {
+    public final void run() {
+        int i7 = this.f48084a;
+        String str = this.f48086c;
+        bn bnVar = this.f48085b;
+        switch (i7) {
             case 0:
-                lj ljVar = this.f47423b.f45278m2;
-                if (ljVar != null) {
-                    ljVar.c(false);
-                    return;
-                }
+                bn.t1(bnVar, str);
                 return;
             case 1:
-                an.j1(this.f47423b);
+                bn.B1(bnVar, str);
                 return;
             case 2:
-                this.f47423b.x8(false, true, 0.0f);
+                g4.d(str, bnVar.currentAccount, bnVar.f46093m1, null, bnVar.Ba);
                 return;
             case 3:
-                this.f47423b.x8(false, true, 0.0f);
+                if (str != null) {
+                    bnVar.getClass();
+                    if (str.length() != 0) {
+                        bnVar.getMessagesController().K4(str, bnVar.f46001f);
+                        return;
+                    }
+                }
+                bnVar.getSendMessagesHelper().r0(org.telegram.messenger.xy.b("/start", bnVar.f46085l6, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
-                this.f47423b.x8(false, true, 0.0f);
+                bnVar.Oa(str);
                 return;
             case 5:
-                this.f47423b.x8(false, true, 0.0f);
+                bnVar.getClass();
+                bnVar.presentFragment(new org.telegram.ui.Wallet.da(str));
                 return;
             case 6:
-                this.f47423b.x8(false, true, 0.0f);
+                String str2 = bnVar.getMessagesController().K6;
+                if (TextUtils.isEmpty(str2)) {
+                    str2 = "https://tonviewer.com/";
+                } else if (!str2.endsWith("/")) {
+                    str2 = str2.concat("/");
+                }
+                Activity parentActivity = bnVar.getParentActivity();
+                StringBuilder m10 = com.google.android.gms.internal.vision.e2.m(str2);
+                m10.append(Uri.encode(str));
+                vf.c.v(parentActivity, m10.toString(), false);
                 return;
             case 7:
-                this.f47423b.x8(false, true, 0.0f);
+                bnVar.Ga(str, false);
+                return;
+            case 8:
+                Activity parentActivity2 = bnVar.getParentActivity();
+                vf.c.t(parentActivity2, "tel:" + str);
+                return;
+            case 9:
+                org.telegram.messenger.g0.g(str);
+                org.telegram.messenger.n10.t(null, 2131747102, org.telegram.ui.Components.lc.b0(bnVar));
+                return;
+            case 10:
+                bn.a0(bnVar, str);
+                return;
+            case 11:
+                Activity parentActivity3 = bnVar.getParentActivity();
+                vf.c.t(parentActivity3, "tel:" + str);
+                return;
+            case 12:
+                org.telegram.messenger.g0.g(str);
+                org.telegram.messenger.n10.t(null, 2131747102, org.telegram.ui.Components.lc.b0(bnVar));
                 return;
             default:
-                this.f47423b.f45250jc = null;
+                Activity parentActivity4 = bnVar.getParentActivity();
+                vf.c.t(parentActivity4, "https://fragment.com/username/" + str);
                 return;
         }
     }

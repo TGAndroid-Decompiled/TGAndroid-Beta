@@ -1,61 +1,152 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class i11 extends AnimatorListenerAdapter {
-    public final boolean f47867a;
-    public final Runnable f47868b;
-    public final boolean[] f47869c;
-    public final boolean d;
-    public final Runnable f47870e;
-    public final j11 f47871f;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.widget.PopupWindow;
+import java.lang.reflect.Field;
+public abstract class i11 extends PopupWindow {
+    public static final Field f48560c;
+    public static final org.telegram.ui.ActionBar.a1 d = new org.telegram.ui.ActionBar.a1(2);
+    public final ViewTreeObserver.OnScrollChangedListener f48561a;
+    public ViewTreeObserver f48562b;
 
-    public i11(j11 j11Var, boolean z10, Runnable runnable, boolean[] zArr, boolean z11, Runnable runnable2) {
-        this.f47871f = j11Var;
-        this.f47867a = z10;
-        this.f47868b = runnable;
-        this.f47869c = zArr;
-        this.d = z11;
-        this.f47870e = runnable2;
+    static {
+        Field field = null;
+        try {
+            field = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
+            field.setAccessible(true);
+        } catch (NoSuchFieldException unused) {
+        }
+        f48560c = field;
+    }
+
+    public i11(r11 r11Var) {
+        super(r11Var, -2, -2);
+        setFocusable(true);
+        setAnimationStyle(0);
+        setOutsideTouchable(true);
+        setClippingEnabled(true);
+        setInputMethodMode(0);
+        setSoftInputMode(4);
+        Field field = f48560c;
+        if (field != null) {
+            try {
+                this.f48561a = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
+                field.set(this, d);
+            } catch (Exception unused) {
+                this.f48561a = null;
+            }
+        }
+    }
+
+    public final void b() {
+        View rootView = getContentView().getRootView();
+        WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) rootView.getLayoutParams();
+        layoutParams.flags |= 2;
+        layoutParams.dimAmount = 0.2f;
+        ((WindowManager) getContentView().getContext().getSystemService("window")).updateViewLayout(rootView, layoutParams);
+    }
+
+    public final void c(View view) {
+        ViewTreeObserver viewTreeObserver;
+        if (getContentView() instanceof r11) {
+            ((r11) getContentView()).s(new h11(this, 1));
+        }
+        if (this.f48561a != null) {
+            if (view.getWindowToken() != null) {
+                viewTreeObserver = view.getViewTreeObserver();
+            } else {
+                viewTreeObserver = null;
+            }
+            ViewTreeObserver viewTreeObserver2 = this.f48562b;
+            if (viewTreeObserver != viewTreeObserver2) {
+                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
+                    this.f48562b.removeOnScrollChangedListener(this.f48561a);
+                }
+                this.f48562b = viewTreeObserver;
+                if (viewTreeObserver != null) {
+                    viewTreeObserver.addOnScrollChangedListener(this.f48561a);
+                }
+            }
+        }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        Runnable runnable;
-        j11 j11Var = this.f47871f;
-        k0 k0Var = j11Var.f48178s;
-        boolean z10 = this.f47867a;
-        if (z10) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        j11Var.J = f10;
-        org.telegram.messenger.g0.X1(j11Var.f48173c, j11Var.d, f10, j11Var.f48174e);
-        k0Var.invalidate();
-        if (!z10) {
-            j11Var.f48179w.setAlpha(j11Var.J);
-        }
-        if (j11Var.J < 0.5f && !z10 && (runnable = this.f47868b) != null) {
-            boolean[] zArr = this.f47869c;
-            if (!zArr[0]) {
-                zArr[0] = true;
-                runnable.run();
+    public void dismiss() {
+        if (getContentView() instanceof r11) {
+            r11 r11Var = (r11) getContentView();
+            h11 h11Var = new h11(this, 0);
+            Integer num = r11Var.f51419a2;
+            if (num != null) {
+                r11.f51415e2.put(num, r11Var.f51458s0.e0());
             }
-        }
-        if (!z10) {
-            if (this.d) {
-                j11Var.f48171a.f53054b = false;
-                j11Var.Q.f49385i0.invalidate();
+            ValueAnimator valueAnimator = r11Var.X1;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                r11Var.X1 = null;
             }
-            org.telegram.messenger.ns.e().k(org.telegram.messenger.ns.f25523k1, 4);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            r11Var.X1 = ofFloat;
+            ofFloat.addUpdateListener(new uz0(r11Var, 3));
+            r11Var.X1.addListener(new org.telegram.ui.Components.h60(15, r11Var, h11Var));
+            r11Var.X1.setDuration(200L);
+            r11Var.X1.setInterpolator(org.telegram.ui.Components.lr.h);
+            r11Var.X1.start();
+            j01 j01Var = r11Var.f51434g0;
+            if (j01Var != null) {
+                org.telegram.messenger.g0.v1(j01Var.h);
+            }
+            View rootView = getContentView().getRootView();
+            WindowManager windowManager = (WindowManager) getContentView().getContext().getSystemService("window");
+            if (rootView.getLayoutParams() != null && (rootView.getLayoutParams() instanceof WindowManager.LayoutParams)) {
+                WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) rootView.getLayoutParams();
+                try {
+                    int i7 = layoutParams.flags;
+                    if ((i7 & 2) != 0) {
+                        layoutParams.flags = i7 & (-3);
+                        layoutParams.dimAmount = 0.0f;
+                        windowManager.updateViewLayout(rootView, layoutParams);
+                        return;
+                    }
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            }
+            return;
         }
-        j11Var.L = null;
-        k0Var.invalidate();
-        Runnable runnable2 = this.f47870e;
-        if (runnable2 != null) {
-            runnable2.run();
+        super.dismiss();
+    }
+
+    @Override
+    public final void showAsDropDown(View view) {
+        super.showAsDropDown(view);
+        c(view);
+    }
+
+    @Override
+    public final void showAtLocation(View view, int i7, int i10, int i11) {
+        ViewTreeObserver viewTreeObserver;
+        super.showAtLocation(view, i7, i10, i11);
+        if (this.f48561a != null && (viewTreeObserver = this.f48562b) != null) {
+            if (viewTreeObserver.isAlive()) {
+                this.f48562b.removeOnScrollChangedListener(this.f48561a);
+            }
+            this.f48562b = null;
         }
+    }
+
+    @Override
+    public final void showAsDropDown(View view, int i7, int i10) {
+        super.showAsDropDown(view, i7, i10);
+        c(view);
+    }
+
+    @Override
+    public final void showAsDropDown(View view, int i7, int i10, int i11) {
+        super.showAsDropDown(view, i7, i10, i11);
+        c(view);
     }
 }

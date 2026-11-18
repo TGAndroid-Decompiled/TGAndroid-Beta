@@ -1,15 +1,15 @@
 package ai;
 
-import org.telegram.messenger.z10;
-public final class u2 implements z10 {
-    public final int f1561a;
-    public final boolean f1562b;
-    public final Object f1563c;
+import org.telegram.messenger.x10;
+public final class u2 implements x10 {
+    public final int f1552a;
+    public final boolean f1553b;
+    public final Object f1554c;
 
     public u2(int i7, Object obj, boolean z10) {
-        this.f1561a = i7;
-        this.f1563c = obj;
-        this.f1562b = z10;
+        this.f1552a = i7;
+        this.f1554c = obj;
+        this.f1553b = z10;
     }
 
     @Override

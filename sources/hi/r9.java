@@ -1,34 +1,32 @@
 package hi;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class r9 extends AnimatorListenerAdapter {
-    public final int f15000a;
-    public final int f15001b;
-    public final int f15002c;
-    public final sa d;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class r9 extends CharacterStyle {
+    public final int f15336a;
 
-    public r9(sa saVar, int i7, int i10, int i11) {
-        this.f15000a = i11;
-        this.d = saVar;
-        this.f15001b = i7;
-        this.f15002c = i10;
+    public r9(int i7) {
+        this.f15336a = i7;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f15000a) {
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f15336a) {
             case 0:
-                this.d.M(this.f15001b, this.f15002c);
+                textPaint.setAlpha(128);
+                return;
+            case 1:
+                textPaint.setTextSize(textPaint.getTextSize() * 0.8f);
+                textPaint.setColor(org.telegram.ui.ActionBar.n6.T2.getColor());
+                return;
+            case 2:
+                textPaint.setColor(org.telegram.ui.ActionBar.n6.f29593o2.linkColor);
                 return;
             default:
-                int i7 = this.f15001b;
-                int i10 = this.f15002c;
-                if (i7 != i10) {
-                    this.d.P(i7, i10);
-                    return;
-                }
                 return;
         }
+    }
+
+    private final void a(TextPaint textPaint) {
     }
 }

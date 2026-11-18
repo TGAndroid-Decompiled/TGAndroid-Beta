@@ -1,19 +1,21 @@
 package fi;
 
-import org.telegram.messenger.voip.VoIPService;
-import org.webrtc.VideoFrame;
-public final class b1 extends VoIPService.ProxyVideoSink {
-    public final e1 f11450a;
+import org.telegram.messenger.voip.Instance;
+public final class b1 implements Instance.OnStateUpdatedListener {
+    public final c1 f11764a;
 
-    public b1(e1 e1Var) {
-        this.f11450a = e1Var;
+    public b1(c1 c1Var) {
+        this.f11764a = c1Var;
     }
 
     @Override
-    public final synchronized void onFrame(VideoFrame videoFrame) {
-        super.onFrame(videoFrame);
-        if (this.f11450a.f11660s) {
-            org.telegram.messenger.g0.h3(new ch.w(this, 29));
+    public final void onStateUpdated(int i7, boolean z10) {
+        c1 c1Var = this.f11764a;
+        boolean m10 = c1Var.m();
+        c1Var.E = i7;
+        org.telegram.messenger.a8.b("[LivePlayer] connectionState = " + i7);
+        if (m10 != c1Var.m()) {
+            org.telegram.messenger.g0.g3(new f2.a(this, 4));
         }
     }
 }

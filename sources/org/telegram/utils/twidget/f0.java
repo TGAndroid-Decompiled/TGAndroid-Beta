@@ -1,25 +1,59 @@
 package org.telegram.utils.twidget;
+public final class f0 {
+    public long f54725a;
 
-import org.telegram.messenger.vr;
-public final class f0 implements Runnable {
-    public final int f54210a;
-    public final Object f54211b;
-    public final Object f54212c;
-
-    public f0(int i7, Object obj, Object obj2) {
-        this.f54210a = i7;
-        this.f54211b = obj;
-        this.f54212c = obj2;
+    public final void a() {
+        long j3 = this.f54725a;
+        if (j3 != 0) {
+            WidgetClientNative.arbiterCancel(j3);
+        }
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.f0.run():void");
+    public final int b(double d, double d2, double d10, boolean z10, boolean z11, boolean z12, boolean z13, int i7) {
+        if (this.f54725a == 0) {
+            this.f54725a = WidgetClientNative.arbiterCreate();
+        }
+        return WidgetClientNative.arbiterDown(this.f54725a, d, d2, d10, z10, z11, z12, z13, i7);
     }
 
-    public f0(vr vrVar, k0 k0Var) {
-        this.f54210a = 2;
-        this.f54212c = vrVar;
-        this.f54211b = k0Var;
+    public final double c() {
+        long j3 = this.f54725a;
+        if (j3 == 0) {
+            return -1.0d;
+        }
+        return WidgetClientNative.arbiterHoldDeadline(j3);
+    }
+
+    public final int d(double d, double d2, double d10) {
+        long j3 = this.f54725a;
+        if (j3 == 0) {
+            return -1;
+        }
+        return WidgetClientNative.arbiterMove(j3, d, d2, d10);
+    }
+
+    public final void e() {
+        long j3 = this.f54725a;
+        if (j3 == 0) {
+            return;
+        }
+        WidgetClientNative.arbiterDestroy(j3);
+        this.f54725a = 0L;
+    }
+
+    public final int f(double d) {
+        long j3 = this.f54725a;
+        if (j3 == 0) {
+            return -1;
+        }
+        return WidgetClientNative.arbiterTick(j3, d);
+    }
+
+    public final int g(double d, double d2, double d10) {
+        long j3 = this.f54725a;
+        if (j3 == 0) {
+            return -1;
+        }
+        return WidgetClientNative.arbiterUp(j3, d, d2, d10);
     }
 }

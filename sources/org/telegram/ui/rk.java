@@ -1,103 +1,127 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import java.io.Serializable;
 import java.util.ArrayList;
-public final class rk implements kl {
-    public final an f50963a;
-    public final an f50964b;
+import org.telegram.messenger.Utilities;
+public final class rk implements Runnable {
+    public final int f51626a = 1;
+    public final int f51627b;
+    public final int f51628c;
+    public final boolean d;
+    public final Object f51629e;
+    public final Object f51630f;
+    public final Serializable h;
 
-    public rk(an anVar, an anVar2) {
-        this.f50964b = anVar;
-        this.f50963a = anVar2;
+    public rk(h2.c cVar, Bitmap bitmap, int i7, int i10, String str, boolean z10) {
+        this.f51629e = cVar;
+        this.f51630f = bitmap;
+        this.f51627b = i7;
+        this.f51628c = i10;
+        this.h = str;
+        this.d = z10;
     }
 
     @Override
-    public final void P0(int i7) {
-        this.f50964b.l(i7, 0, true, 0, true, 0);
-    }
-
-    @Override
-    public final void Y(boolean z10, boolean z11) {
-        int c92;
-        ArrayList arrayList;
-        org.telegram.ui.Components.fb fbVar;
+    public final void run() {
+        org.telegram.ui.Components.gc gcVar;
         int i7;
-        an anVar = this.f50964b;
-        if (z10) {
-            ArrayList arrayList2 = new ArrayList(anVar.U4);
-            ArrayList arrayList3 = new ArrayList(anVar.W4.values());
-            org.telegram.ui.Components.xb xbVar = null;
-            if (z11) {
-                i7 = ((org.telegram.ui.ActionBar.e2) anVar).currentAccount;
-                SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(i7).f25273e7;
-                if (anVar.U4.isEmpty()) {
-                    SharedPreferences.Editor edit = sharedPreferences.edit();
-                    edit.remove("pin_" + anVar.f45258k6).commit();
+        int i10;
+        int i11;
+        Rect rect;
+        int i12 = this.f51626a;
+        Serializable serializable = this.h;
+        int i13 = this.f51628c;
+        int i14 = this.f51627b;
+        Object obj = this.f51630f;
+        Object obj2 = this.f51629e;
+        switch (i12) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj;
+                ArrayList arrayList2 = (ArrayList) serializable;
+                bn bnVar = ((sk) obj2).f52013b;
+                if (this.d) {
+                    i7 = ((org.telegram.ui.ActionBar.h2) bnVar).currentAccount;
+                    org.telegram.messenger.mp.u1(i7).f25660g7.edit().remove("pin_" + bnVar.f46085l6).commit();
+                    bnVar.gd(0, true);
+                    gcVar = null;
                 } else {
-                    SharedPreferences.Editor edit2 = sharedPreferences.edit();
-                    edit2.putInt("pin_" + anVar.f45258k6, ((Integer) anVar.U4.get(0)).intValue()).commit();
+                    gcVar = null;
+                    bnVar.getNotificationCenter().k(56, Long.valueOf(bnVar.f46085l6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(bnVar.f46019g5));
                 }
-                anVar.gd(0, true);
-            } else {
-                anVar.getNotificationCenter().k(org.telegram.messenger.ns.f25574t0, Long.valueOf(anVar.f45258k6), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
-            }
-            org.telegram.ui.Components.xb xbVar2 = anVar.P3;
-            if (xbVar2 != null) {
-                xbVar2.b();
-            }
-            anVar.Q3 = true;
-            int i10 = anVar.R3 + 1;
-            anVar.R3 = i10;
-            boolean z12 = anVar.f45407w4;
-            an anVar2 = this.f50963a;
-            if (z12) {
-                c92 = anVar2.c9();
-            } else {
-                c92 = anVar.c9();
-            }
-            int i11 = c92;
-            if (anVar.f45407w4) {
-                arrayList = anVar2.U4;
-            } else {
-                arrayList = anVar.U4;
-            }
-            ArrayList arrayList4 = new ArrayList(arrayList);
-            qk qkVar = new qk(this, z11, arrayList2, arrayList3, i11, i10);
-            org.telegram.messenger.voip.l0 l0Var = new org.telegram.messenger.voip.l0(this, z11, arrayList4, i10);
-            ym ymVar = anVar.Aa;
-            if (anVar.getParentActivity() == null) {
-                l0Var.run();
-            } else {
-                if (z11) {
-                    org.telegram.ui.Components.ub ubVar = new org.telegram.ui.Components.ub(anVar.getParentActivity(), ymVar);
-                    ubVar.c(2131624061, 28, 28, "Pin", "Line");
-                    ubVar.f39988b.setText(org.telegram.messenger.hd.M0(2131747224, null));
-                    ubVar.f39989c.setText(org.telegram.messenger.hd.M0(2131747223, null));
-                    fbVar = ubVar;
-                } else {
-                    org.telegram.ui.Components.fb fbVar2 = new org.telegram.ui.Components.fb(anVar.getParentActivity(), ymVar);
-                    fbVar2.c(2131624061, 28, 28, "Pin", "Line");
-                    fbVar2.f34556b.setText(org.telegram.messenger.hd.G(i11, "MessagesUnpinned", new Object[0]));
-                    fbVar = fbVar2;
+                if (i13 == bnVar.R3) {
+                    bnVar.P3 = gcVar;
+                    return;
                 }
-                org.telegram.ui.Components.vb vbVar = new org.telegram.ui.Components.vb(anVar.getParentActivity(), ymVar, true);
-                vbVar.f40372b = qkVar;
-                vbVar.f40373c = l0Var;
-                fbVar.setButton(vbVar);
-                xbVar = org.telegram.ui.Components.xb.g(anVar, fbVar, 5000);
-            }
-            anVar.P3 = xbVar;
-            return;
+                return;
+            default:
+                h2.c cVar = (h2.c) obj2;
+                Bitmap bitmap = (Bitmap) obj;
+                String str = (String) serializable;
+                Paint paint = (Paint) cVar.d;
+                int i15 = cVar.f13732a;
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    float width = bitmap.getWidth() / bitmap.getHeight();
+                    int round = (int) Math.round(Math.sqrt(width * 324.0f));
+                    int round2 = (int) Math.round(Math.sqrt(324.0f / width));
+                    if (i14 != 90 && i14 != 270) {
+                        i11 = round2;
+                        i10 = round;
+                    } else {
+                        i10 = round2;
+                        i11 = round;
+                    }
+                    int i16 = i15 * 2;
+                    Bitmap createBitmap = Bitmap.createBitmap(i16 + i10, i16 + i11, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    Rect rect2 = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                    int i17 = i15 + round;
+                    int i18 = i15 + round2;
+                    Rect rect3 = new Rect(i15, i15, i17, i18);
+                    float f10 = i15;
+                    canvas.translate((i10 / 2.0f) + f10, (i11 / 2.0f) + f10);
+                    if (i13 == 1) {
+                        canvas.scale(-1.0f, 1.0f);
+                        rect = rect2;
+                    } else {
+                        rect = rect2;
+                        if (i13 == 2) {
+                            canvas.scale(1.0f, -1.0f);
+                        }
+                    }
+                    canvas.rotate(i14);
+                    float f11 = -i15;
+                    org.telegram.messenger.n10.k(round2, 2.0f, f11, f11 - (round / 2.0f), canvas);
+                    try {
+                        canvas.drawBitmap(bitmap, rect, rect3, (Paint) null);
+                    } catch (Exception unused) {
+                    }
+                    Utilities.stackBlurBitmap(createBitmap, 6);
+                    if (i15 > 0) {
+                        float f12 = i17;
+                        canvas.drawRect(0.0f, 0.0f, f12, f10, paint);
+                        float f13 = i18;
+                        canvas.drawRect(0.0f, f10, f10, f13, paint);
+                        float f14 = i17 + i15;
+                        canvas.drawRect(f12, f10, f14, f13, paint);
+                        canvas.drawRect(0.0f, f13, f14, i18 + i15, paint);
+                    }
+                    org.telegram.messenger.g0.g3(new ai.n(cVar, str, createBitmap, this.d, bitmap));
+                    return;
+                }
+                return;
         }
-        org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) anVar.W4.get(Integer.valueOf(anVar.Y4));
-        if (gjVar == null) {
-            gjVar = (org.telegram.messenger.gj) anVar.F6[0].get(anVar.Y4);
-        }
-        anVar.Kc(gjVar);
     }
 
-    @Override
-    public final void v0(String str) {
-        this.f50964b.Ga(str, false);
+    public rk(sk skVar, boolean z10, ArrayList arrayList, ArrayList arrayList2, int i7, int i10) {
+        this.f51629e = skVar;
+        this.d = z10;
+        this.f51630f = arrayList;
+        this.h = arrayList2;
+        this.f51627b = i7;
+        this.f51628c = i10;
     }
 }

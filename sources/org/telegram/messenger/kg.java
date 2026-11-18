@@ -7,64 +7,63 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_ephemeral;
 public final class kg implements Runnable {
-    public final int f24690a;
-    public final Object f24691b;
-    public final Object f24692c;
+    public final int f25027a;
+    public final Object f25028b;
+    public final Object f25029c;
     public final Object d;
 
     public kg(Object obj, Object obj2, Object obj3, int i7) {
-        this.f24690a = i7;
-        this.f24691b = obj;
-        this.f24692c = obj2;
+        this.f25027a = i7;
+        this.f25028b = obj;
+        this.f25029c = obj2;
         this.d = obj3;
     }
 
     private final void a() {
-        vr vrVar = (vr) this.f24691b;
-        String str = (String) this.f24692c;
+        tr trVar = (tr) this.f25028b;
+        String str = (String) this.f25029c;
         String str2 = (String) this.d;
-        vrVar.getClass();
+        trVar.getClass();
         try {
             if (str.length() != 0) {
-                SQLiteDatabase sQLiteDatabase = vrVar.f27221b;
+                SQLiteDatabase sQLiteDatabase = trVar.f27056b;
                 Locale locale = Locale.US;
                 sQLiteDatabase.executeFast("UPDATE user_phones_v7 SET deleted = 0 WHERE sphone IN(" + str + ")").stepThis().dispose();
             }
             if (str2.length() != 0) {
-                SQLiteDatabase sQLiteDatabase2 = vrVar.f27221b;
+                SQLiteDatabase sQLiteDatabase2 = trVar.f27056b;
                 Locale locale2 = Locale.US;
                 sQLiteDatabase2.executeFast("UPDATE user_phones_v7 SET deleted = 1 WHERE sphone IN(" + str2 + ")").stepThis().dispose();
             }
         } catch (Exception e10) {
-            vrVar.o(e10, true);
+            trVar.o(e10, true);
         }
     }
 
     private final void b() {
         SQLiteCursor sQLiteCursor;
         NativeByteBuffer byteBufferValue;
-        vr vrVar = (vr) this.f24691b;
-        ArrayList arrayList = (ArrayList) this.f24692c;
-        org.telegram.ui.vg vgVar = (org.telegram.ui.vg) this.d;
-        long e10 = vrVar.getUserConfig().e();
+        tr trVar = (tr) this.f25028b;
+        ArrayList arrayList = (ArrayList) this.f25029c;
+        org.telegram.ui.wg wgVar = (org.telegram.ui.wg) this.d;
+        long e10 = trVar.getUserConfig().e();
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             int i10 = i7 + 1;
-            gj gjVar = (gj) arrayList.get(i7);
-            if (!gjVar.f23848r1 && !gj.b4(gjVar.f23819k)) {
+            fj fjVar = (fj) arrayList.get(i7);
+            if (!fjVar.f23997r1 && !fj.b4(fjVar.f23968k)) {
                 try {
-                    sQLiteCursor = vrVar.f27221b.queryFinalized("SELECT data FROM messages_v2 WHERE uid = ? AND mid = ?", Long.valueOf(gj.B0(gjVar.f23819k)), Integer.valueOf(gjVar.e1()));
+                    sQLiteCursor = trVar.f27056b.queryFinalized("SELECT data FROM messages_v2 WHERE uid = ? AND mid = ?", Long.valueOf(fj.B0(fjVar.f23968k)), Integer.valueOf(fjVar.e1()));
                     try {
                         try {
                             if (sQLiteCursor.next() && (byteBufferValue = sQLiteCursor.byteBufferValue(0)) != null) {
                                 TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                                 TLdeserialize.readAttachPath(byteBufferValue, e10);
                                 byteBufferValue.reuse();
-                                gjVar.f23819k.attachPath = TLdeserialize.attachPath;
-                                gjVar.K(true);
+                                fjVar.f23968k.attachPath = TLdeserialize.attachPath;
+                                fjVar.K(true);
                             }
                         } catch (Exception e11) {
                             e = e11;
@@ -93,7 +92,7 @@ public final class kg implements Runnable {
             }
             i7 = i10;
         }
-        g0.h3(vgVar);
+        g0.g3(wgVar);
     }
 
     private final void c() {
@@ -101,73 +100,53 @@ public final class kg implements Runnable {
     }
 
     private final void d() {
-        int i7;
-        vr vrVar = (vr) this.f24691b;
-        ArrayList arrayList = (ArrayList) this.f24692c;
-        zj zjVar = (zj) this.d;
-        vrVar.getClass();
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            TL_ephemeral.EphemeralMessage ephemeralMessage = (TL_ephemeral.EphemeralMessage) obj;
-            if (ephemeralMessage.top_msg_id == 0) {
-                TL_ephemeral.EphemeralMessage W = vrVar.W(ephemeralMessage.f28266id, m5.o(ephemeralMessage.peer_id));
-                if (W != null && (i7 = W.top_msg_id) != 0) {
-                    ephemeralMessage.top_msg_id = i7;
-                    TLRPC.MessageReplyHeader messageReplyHeader = ephemeralMessage.reply_to;
-                    if (messageReplyHeader != null) {
-                        messageReplyHeader.forum_topic = true;
-                    }
-                    ephemeralMessage.flags |= 2;
-                }
-            }
-        }
-        vrVar.g1(arrayList, true);
-        zjVar.run();
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kg.d():void");
     }
 
     private final void f() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kg.f():void");
+        Runnable runnable = (Runnable) this.d;
+        ((zy) this.f25028b).f28395w.remove((String) this.f25029c);
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
     private final void g() {
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f24692c;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f25029c;
         TLRPC.TL_messages_startHistoryImport tL_messages_startHistoryImport = (TLRPC.TL_messages_startHistoryImport) this.d;
-        vy vyVar = ((uy) this.f24691b).f26899b;
-        ez ezVar = vyVar.f27279q;
-        ezVar.E.l(vyVar.f27272j);
-        int i7 = ns.f25588v1;
+        qy qyVar = ((py) this.f25028b).f26324b;
+        zy zyVar = qyVar.f26499q;
+        zyVar.E.l(qyVar.f26492j);
+        int i7 = ks.f25207v1;
         if (tL_error == null) {
-            ezVar.getNotificationCenter().k(i7, Long.valueOf(vyVar.f27272j));
+            zyVar.getNotificationCenter().k(i7, Long.valueOf(qyVar.f26492j));
         } else {
-            ezVar.getNotificationCenter().k(i7, Long.valueOf(vyVar.f27272j), tL_messages_startHistoryImport, tL_error);
+            zyVar.getNotificationCenter().k(i7, Long.valueOf(qyVar.f26492j), tL_messages_startHistoryImport, tL_error);
         }
     }
 
     private final void h() {
-        TLObject tLObject = (TLObject) this.f24692c;
+        TLObject tLObject = (TLObject) this.f25029c;
         Runnable runnable = (Runnable) this.d;
-        xy xyVar = ((wy) this.f24691b).f27436b;
+        sy syVar = ((ry) this.f25028b).f26715b;
         if (tLObject instanceof TLRPC.TL_messageMediaDocument) {
             TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem = new TLRPC.TL_inputStickerSetItem();
-            xyVar.f27628f = tL_inputStickerSetItem;
+            syVar.f26906f = tL_inputStickerSetItem;
             tL_inputStickerSetItem.document = new TLRPC.TL_inputDocument();
-            TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem2 = xyVar.f27628f;
+            TLRPC.TL_inputStickerSetItem tL_inputStickerSetItem2 = syVar.f26906f;
             TLRPC.InputDocument inputDocument = tL_inputStickerSetItem2.document;
             TLRPC.Document document = ((TLRPC.TL_messageMediaDocument) tLObject).document;
-            inputDocument.f28063id = document.f28057id;
+            inputDocument.f28417id = document.f28411id;
             inputDocument.access_hash = document.access_hash;
             inputDocument.file_reference = document.file_reference;
-            String str = xyVar.f27625b;
+            String str = syVar.f26903b;
             if (str == null) {
                 str = "";
             }
             tL_inputStickerSetItem2.emoji = str;
-            xyVar.d = document.mime_type;
-        } else if (xyVar.f27627e) {
-            xyVar.d = "application/x-bad-tgsticker";
+            syVar.d = document.mime_type;
+        } else if (syVar.f26905e) {
+            syVar.d = "application/x-bad-tgsticker";
         }
         runnable.run();
     }
@@ -178,9 +157,9 @@ public final class kg implements Runnable {
     }
 
     public kg(Object obj, Object obj2, String str, int i7) {
-        this.f24690a = i7;
-        this.f24691b = obj;
+        this.f25027a = i7;
+        this.f25028b = obj;
         this.d = obj2;
-        this.f24692c = str;
+        this.f25029c = str;
     }
 }

@@ -1,41 +1,40 @@
 package di;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class m5 extends Drawable {
-    public final float f9056a;
-    public final Paint f9057b;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.tl.TL_stars;
+public final class m5 extends j5 {
+    public final boolean f9310c;
+    public final ImageReceiver d;
 
-    public m5(float f10, int i7) {
-        Paint paint = new Paint(1);
-        this.f9057b = paint;
-        this.f9056a = f10;
-        paint.setColor(i7);
+    public m5(View view, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+        this.f9080a = stargiftattributemodel.name;
+        this.f9081b = stargiftattributemodel.getRarityPermille();
+        this.f9310c = true;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.d = imageReceiver;
+        pb.d1(imageReceiver, stargiftattributemodel.document, 160);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(getBounds());
-        Paint paint = this.f9057b;
-        float f10 = this.f9056a;
-        canvas.drawRoundRect(rectF, f10, f10, paint);
-        org.telegram.messenger.g0.P(canvas, rectF, f10);
+    public final void a() {
+        if (this.f9310c) {
+            this.d.R();
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final boolean b() {
+        if (this.d.B() != null) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public m5(org.telegram.ui.Components.q9 q9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+        this.f9080a = stargiftattributemodel.name;
+        this.f9081b = stargiftattributemodel.getRarityPermille();
+        this.f9310c = false;
+        this.d = q9Var.getImageReceiver();
     }
 }

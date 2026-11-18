@@ -1,67 +1,155 @@
 package org.telegram.messenger;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.util.Pair;
-import java.util.Arrays;
-import java.util.List;
-public abstract class h4 {
-    public static final List f24056a = Arrays.asList("🏻", "🏼", "🏽", "🏾", "🏿");
-    public static final Paint f24057b = new Paint(2);
+import android.graphics.Rect;
+import android.util.SparseArray;
+public final class h4 extends f6 {
+    public static final Paint f24383i = new Paint(2);
+    public static final Rect f24384j = new Rect();
+    public i4 f24385c;
+    public i4 d;
+    public org.telegram.ui.Components.c6 f24386e;
+    public org.telegram.ui.Components.c6 f24387f;
+    public i4 f24388g;
+    public i4 h;
 
-    public static f4 a(String str, Integer num, Integer num2) {
-        Pair c10;
-        if (str != null && (c10 = c(str)) != null) {
-            if (num == null) {
-                num = (Integer) c10.first;
-            }
-            g4 g4Var = new g4(num.intValue(), 0);
-            if (num2 == null) {
-                num2 = (Integer) c10.second;
-            }
-            g4 g4Var2 = new g4(num2.intValue(), 1);
-            ?? f6Var = new f6();
-            f6Var.f23442c = g4Var;
-            f6Var.d = g4Var2;
-            return f6Var;
-        }
-        return null;
-    }
-
-    public static int b(String str) {
-        if (str == null) {
-            return -1;
-        }
-        return f24056a.indexOf(str.substring(str.length() - 2));
-    }
-
-    public static Pair c(String str) {
+    public static void c(Canvas canvas, i4 i4Var, Rect rect, float f10) {
+        Paint paint;
         int i7;
-        String[] split;
-        int i10 = -1;
-        if (str.startsWith("🤝")) {
-            if (str.length() != 2) {
-                if (str.length() == 4) {
-                    i7 = b(str);
-                    if (i7 >= 0) {
-                        i10 = i7;
-                    }
-                    split = str.split("\u200d");
-                    if (split.length != 2 && split[0].startsWith("🫱") && split[1].startsWith("🫲")) {
-                        if (split[0].length() == 2 || (split[0].length() == 4 && (i7 = b(split[0])) >= 0)) {
-                            if (split[1].length() == 2 || (split[1].length() == 4 && (i10 = b(split[1])) >= 0)) {
-                                return new Pair(Integer.valueOf(i7), Integer.valueOf(i10));
-                            }
-                            return null;
-                        }
-                        return null;
-                    }
-                    return null;
-                }
+        Bitmap bitmap = (Bitmap) i4.f24550e.get(i4Var.f24554c);
+        if (bitmap != null) {
+            if (i4Var.d) {
+                paint = j4.f24810b;
+            } else {
+                paint = f24383i;
             }
-            return new Pair(Integer.valueOf(i10), Integer.valueOf(i10));
+            int i10 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
+            if (i10 < 0) {
+                i7 = paint.getAlpha();
+                paint.setAlpha((int) (i7 * f10));
+            } else {
+                i7 = 255;
+            }
+            canvas.drawBitmap(bitmap, (Rect) null, rect, paint);
+            if (i10 < 0) {
+                paint.setAlpha(i7);
+            }
         }
-        i7 = -1;
-        split = str.split("\u200d");
-        return split.length != 2 ? null : null;
+    }
+
+    @Override
+    public final boolean a() {
+        i4 i4Var = this.f24385c;
+        SparseArray sparseArray = i4.f24550e;
+        if (sparseArray.indexOfKey(i4Var.f24554c) >= 0 && sparseArray.indexOfKey(this.d.f24554c) >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void b() {
+        if (!a()) {
+            this.f24385c.a();
+            this.d.a();
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds;
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        if (!a()) {
+            b();
+            Paint paint = j6.d;
+            paint.setColor(this.f23852b);
+            Rect bounds2 = getBounds();
+            canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), bounds2.width() * 0.4f, paint);
+            return;
+        }
+        if (this.f23851a) {
+            Rect bounds3 = getBounds();
+            int centerX = bounds3.centerX();
+            int centerY = bounds3.centerY();
+            boolean z10 = this.f23851a;
+            if (z10) {
+                i7 = j6.f24815c;
+            } else {
+                i7 = j6.f24814b;
+            }
+            bounds = f24384j;
+            bounds.left = centerX - (i7 / 2);
+            if (z10) {
+                i10 = j6.f24815c;
+            } else {
+                i10 = j6.f24814b;
+            }
+            bounds.right = (i10 / 2) + centerX;
+            if (z10) {
+                i11 = j6.f24815c;
+            } else {
+                i11 = j6.f24814b;
+            }
+            bounds.top = centerY - (i11 / 2);
+            if (z10) {
+                i12 = j6.f24815c;
+            } else {
+                i12 = j6.f24814b;
+            }
+            bounds.bottom = (i12 / 2) + centerY;
+        } else {
+            bounds = getBounds();
+        }
+        if (!canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
+            if (this.f24388g != null) {
+                if (this.f24386e == null) {
+                    this.f24386e = new org.telegram.ui.Components.c6(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.lr.f37209g);
+                }
+                float e10 = this.f24386e.e(false, 1.0f);
+                c(canvas, this.f24388g, bounds, Math.min(1.0f, e10 * 1.5f));
+                c(canvas, this.f24385c, bounds, 1.0f - e10);
+                if (e10 >= 1.0f) {
+                    this.f24385c = this.f24388g;
+                    this.f24388g = null;
+                }
+            } else {
+                c(canvas, this.f24385c, bounds, 1.0f);
+            }
+            if (this.h != null) {
+                if (this.f24387f == null) {
+                    this.f24387f = new org.telegram.ui.Components.c6(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.lr.f37209g);
+                }
+                float e11 = this.f24387f.e(false, 1.0f);
+                c(canvas, this.h, bounds, Math.min(1.0f, 1.5f * e11));
+                c(canvas, this.d, bounds, 1.0f - e11);
+                if (e11 >= 1.0f) {
+                    this.d = this.h;
+                    this.h = null;
+                    return;
+                }
+                return;
+            }
+            c(canvas, this.d, bounds, 1.0f);
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        f24383i.setAlpha(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

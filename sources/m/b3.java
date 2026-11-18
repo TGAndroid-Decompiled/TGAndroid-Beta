@@ -4,27 +4,33 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.util.SparseArray;
-import fi.r5;
-import org.telegram.messenger.gj;
-import org.telegram.ui.an;
+import fi.p5;
+import org.telegram.messenger.fj;
+import org.telegram.ui.Wallet.c5;
+import org.telegram.ui.bn;
 public final class b3 implements m9.t {
-    public boolean f19657a;
-    public boolean f19658b;
-    public Object f19659c = new Path();
-    public Object d = new Rect();
+    public boolean f20024a;
+    public boolean f20025b;
+    public Object f20026c;
+    public Object d;
+
+    public b3(org.telegram.ui.Wallet.m mVar, org.telegram.ui.Wallet.u uVar) {
+        this.f20026c = mVar;
+        this.d = uVar;
+    }
 
     public boolean a(int i7) {
-        SparseArray sparseArray = (SparseArray) this.f19659c;
-        boolean z10 = this.f19658b;
-        an anVar = (an) this.d;
-        int i10 = i7 - anVar.D0.K;
-        if (i10 >= 0 && i10 < anVar.L6.size()) {
-            gj gjVar = (gj) anVar.L6.get(i10);
-            if (gjVar.U == 0) {
-                if (!z10 && sparseArray.get(gjVar.e1(), null) == null) {
+        SparseArray sparseArray = (SparseArray) this.f20026c;
+        boolean z10 = this.f20025b;
+        bn bnVar = (bn) this.d;
+        int i10 = i7 - bnVar.D0.K;
+        if (i10 >= 0 && i10 < bnVar.M6.size()) {
+            fj fjVar = (fj) bnVar.M6.get(i10);
+            if (fjVar.U == 0) {
+                if (!z10 && sparseArray.get(fjVar.e1(), null) == null) {
                     return true;
                 }
-                if (z10 && sparseArray.get(gjVar.e1(), null) != null) {
+                if (z10 && sparseArray.get(fjVar.e1(), null) != null) {
                     return true;
                 }
                 return false;
@@ -34,31 +40,50 @@ public final class b3 implements m9.t {
         return false;
     }
 
-    public boolean b(Rect rect, boolean z10, boolean z11) {
+    public void b() {
+        if (!this.f20024a) {
+            this.f20024a = true;
+            Runnable runnable = (Runnable) this.f20026c;
+            if (runnable != null) {
+                runnable.run();
+            }
+            Runnable runnable2 = (Runnable) this.d;
+            if (runnable2 != null && !this.f20025b) {
+                runnable2.run();
+            }
+        }
+    }
+
+    public boolean c(Rect rect, boolean z10, boolean z11) {
         boolean z12;
         Rect rect2 = (Rect) this.d;
-        if (!rect2.isEmpty() && rect2.top == rect.top && rect2.bottom == rect.bottom && rect2.right == rect.right && rect2.left == rect.left && this.f19657a == z11 && this.f19658b == z10 && z11 && z10) {
+        if (!rect2.isEmpty() && rect2.top == rect.top && rect2.bottom == rect.bottom && rect2.right == rect.right && rect2.left == rect.left && this.f20024a == z11 && this.f20025b == z10 && z11 && z10) {
             z12 = false;
         } else {
             z12 = true;
         }
-        this.f19657a = z11;
-        this.f19658b = z10;
+        this.f20024a = z11;
+        this.f20025b = z10;
         rect2.set(rect);
         return z12;
     }
 
-    public void c(int r8, boolean r9, float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: m.b3.c(int, boolean, float, float):void");
+    public void d(float r8, float r9, int r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: m.b3.d(float, float, int, boolean):void");
     }
 
     @Override
     public void onSuccess(Object obj) {
         p4.w wVar = (p4.w) obj;
         p4.d0 d0Var = ((p4.m0) this.d).h;
-        Handler handler = d0Var.f54627l;
-        p4.v vVar = (p4.v) this.f19659c;
-        h2.l0.W(handler, new org.telegram.ui.web.e1(d0Var, vVar, new r5(this, wVar, this.f19657a, this.f19658b, vVar, 4)));
+        Handler handler = d0Var.f55187l;
+        p4.v vVar = (p4.v) this.f20026c;
+        h2.l0.W(handler, new c5(d0Var, vVar, new p5(this, wVar, this.f20024a, this.f20025b, vVar, 4)));
+    }
+
+    public b3() {
+        this.f20026c = new Path();
+        this.d = new Rect();
     }
 
     @Override

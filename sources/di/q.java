@@ -64,13 +64,13 @@ public final class q extends EditTextBoldCursor {
             default:
                 return super.onTouchEvent(motionEvent);
             case 5:
-                if (motionEvent.getAction() == 0 && !org.telegram.messenger.g0.J3(this)) {
+                if (motionEvent.getAction() == 0 && !org.telegram.messenger.g0.I3(this)) {
                     clearFocus();
                     requestFocus();
                 }
                 return super.onTouchEvent(motionEvent);
             case 6:
-                if (motionEvent.getAction() == 0 && !org.telegram.messenger.g0.J3(this)) {
+                if (motionEvent.getAction() == 0 && !org.telegram.messenger.g0.I3(this)) {
                     clearFocus();
                     requestFocus();
                 }

@@ -1,87 +1,87 @@
 package sg;
 
-import a8.t9;
+import a8.w9;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Matrix;
-import c8.i9;
-import fi.r5;
-import hi.g7;
+import c8.l9;
+import fi.p5;
+import hi.t6;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.p2;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.md;
-import org.telegram.ui.Components.nt0;
+import org.telegram.messenger.q2;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.vt0;
+import org.telegram.ui.Components.wd;
 public final class v {
-    public static final er B = new er(0.0d, 0.5d, 0.0d, 1.0d);
+    public static final lr B = new lr(0.0d, 0.5d, 0.0d, 1.0d);
     public h A;
-    public final u0 f56793a;
-    public boolean f56794b;
-    public boolean f56795c;
+    public final u0 f57367a;
+    public boolean f57368b;
+    public boolean f57369c;
     public long d;
-    public boolean f56796e;
-    public boolean f56797f;
-    public m0 f56798g;
+    public boolean f57370e;
+    public boolean f57371f;
+    public m0 f57372g;
     public m0 h;
-    public double f56799i;
-    public boolean f56800j;
-    public float f56801k;
-    public boolean f56802l;
-    public int f56804n;
-    public int f56805o;
-    public double f56806p;
-    public double f56807q;
-    public ValueAnimator f56808r;
-    public final b1 f56809s;
-    public Matrix f56810t;
+    public double f57373i;
+    public boolean f57374j;
+    public float f57375k;
+    public boolean f57376l;
+    public int f57378n;
+    public int f57379o;
+    public double f57380p;
+    public double f57381q;
+    public ValueAnimator f57382r;
+    public final b1 f57383s;
+    public Matrix f57384t;
     public long v;
-    public float f56812w;
-    public ValueAnimator f56813x;
-    public boolean f56815z;
-    public final m0[] f56803m = new m0[3];
-    public final float[] f56811u = new float[2];
-    public final s f56814y = new s(this, 1);
+    public float f57386w;
+    public ValueAnimator f57387x;
+    public boolean f57389z;
+    public final m0[] f57377m = new m0[3];
+    public final float[] f57385u = new float[2];
+    public final s f57388y = new s(this, 1);
 
     public v(u0 u0Var) {
-        this.f56793a = u0Var;
+        this.f57367a = u0Var;
         Context context = u0Var.getContext();
-        g7 g7Var = new g7(this, 25);
+        t6 t6Var = new t6(this, 26);
         final ?? obj = new Object();
-        obj.f56592b = new ArrayList();
-        obj.f56593c = new ArrayList();
-        obj.f56597i = null;
-        obj.f56598j = new AtomicBoolean(false);
-        obj.f56599k = new AtomicBoolean(false);
-        obj.f56600l = new Runnable() {
+        obj.f57166b = new ArrayList();
+        obj.f57167c = new ArrayList();
+        obj.f57171i = null;
+        obj.f57172j = new AtomicBoolean(false);
+        obj.f57173k = new AtomicBoolean(false);
+        obj.f57174l = new Runnable() {
             @Override
             public final void run() {
                 throw new UnsupportedOperationException("Method not decompiled: sg.y0.run():void");
             }
         };
-        obj.f56595f = context;
-        obj.f56594e = g7Var;
+        obj.f57169f = context;
+        obj.f57168e = t6Var;
         SharedPreferences sharedPreferences = context.getSharedPreferences("shapedetector_conf", 0);
-        obj.f56596g = sharedPreferences;
+        obj.f57170g = sharedPreferences;
         obj.h = sharedPreferences.getBoolean("learning", false);
-        obj.f56591a = sharedPreferences.getInt("scoreall", 0);
-        b1.f56589m.postRunnable(new Runnable() {
+        obj.f57165a = sharedPreferences.getInt("scoreall", 0);
+        b1.f57163m.postRunnable(new Runnable() {
             @Override
             public final void run() {
                 throw new UnsupportedOperationException("Method not decompiled: sg.y0.run():void");
             }
         });
-        this.f56809s = obj;
+        this.f57383s = obj;
     }
 
     public final void a(d dVar, boolean z10, o0 o0Var) {
         Object obj;
         t0 t0Var;
-        if (this.f56802l) {
-            u0 u0Var = this.f56793a;
-            if (!u0Var.getPainting().G && this.f56798g != null) {
+        if (this.f57376l) {
+            u0 u0Var = this.f57367a;
+            if (!u0Var.getPainting().G && this.f57372g != null) {
                 if (dVar == null) {
                     obj = u0Var.getCurrentBrush();
                 } else {
@@ -91,78 +91,78 @@ public final class v {
                     obj = new Object();
                 }
                 ?? r42 = obj;
-                this.f56802l = false;
+                this.f57376l = false;
                 if (r42 instanceof d) {
                     u0Var.getPainting().E = false;
                 }
                 i0 painting = u0Var.getPainting();
-                painting.f56651f.f(new e0(painting, 1));
-                this.f56804n = 0;
-                this.f56805o = 0;
-                this.f56800j = false;
-                this.f56794b = false;
-                if (z10 && (t0Var = u0Var.f56782a) != null) {
-                    t0Var.q0();
+                painting.f57225f.f(new e0(painting, 1));
+                this.f57378n = 0;
+                this.f57379o = 0;
+                this.f57374j = false;
+                this.f57368b = false;
+                if (z10 && (t0Var = u0Var.f57356a) != null) {
+                    t0Var.n0();
                 }
-                nt0 nt0Var = u0Var.getPainting().f56652g;
-                m0 m0Var = this.f56798g;
-                float a10 = t9.a((float) m0Var.f56710a, (float) m0Var.f56711b, 0.0f, 0.0f);
-                m0 m0Var2 = this.f56798g;
-                float max = Math.max(a10, t9.a((float) m0Var2.f56710a, (float) m0Var2.f56711b, nt0Var.f37702a, 0.0f));
-                m0 m0Var3 = this.f56798g;
-                float a11 = t9.a((float) m0Var3.f56710a, (float) m0Var3.f56711b, 0.0f, nt0Var.f37703b);
-                m0 m0Var4 = this.f56798g;
-                float max2 = Math.max(max, Math.max(a11, t9.a((float) m0Var4.f56710a, (float) m0Var4.f56711b, nt0Var.f37702a, nt0Var.f37703b))) / 0.84f;
-                ValueAnimator valueAnimator = this.f56808r;
+                vt0 vt0Var = u0Var.getPainting().f57226g;
+                m0 m0Var = this.f57372g;
+                float a10 = w9.a((float) m0Var.f57284a, (float) m0Var.f57285b, 0.0f, 0.0f);
+                m0 m0Var2 = this.f57372g;
+                float max = Math.max(a10, w9.a((float) m0Var2.f57284a, (float) m0Var2.f57285b, vt0Var.f41433a, 0.0f));
+                m0 m0Var3 = this.f57372g;
+                float a11 = w9.a((float) m0Var3.f57284a, (float) m0Var3.f57285b, 0.0f, vt0Var.f41434b);
+                m0 m0Var4 = this.f57372g;
+                float max2 = Math.max(max, Math.max(a11, w9.a((float) m0Var4.f57284a, (float) m0Var4.f57285b, vt0Var.f41433a, vt0Var.f41434b))) / 0.84f;
+                ValueAnimator valueAnimator = this.f57382r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    this.f56808r = null;
+                    this.f57382r = null;
                 }
-                ValueAnimator valueAnimator2 = this.f56813x;
+                ValueAnimator valueAnimator2 = this.f57387x;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
-                    this.f56813x = null;
+                    this.f57387x = null;
                 }
-                m0 m0Var5 = this.f56798g;
-                m0 m0Var6 = new m0(m0Var5.f56710a, m0Var5.f56711b, 1.0d);
+                m0 m0Var5 = this.f57372g;
+                m0 m0Var6 = new m0(m0Var5.f57284a, m0Var5.f57285b, 1.0d);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.f56813x = ofFloat;
-                ofFloat.addUpdateListener(new md(this, m0Var6, (h) r42, max2));
-                this.f56813x.addListener(new u(this, m0Var6, max2, r42, z10, o0Var));
-                this.f56813x.setDuration(450L);
-                this.f56813x.setInterpolator(er.h);
-                this.f56813x.start();
+                this.f57387x = ofFloat;
+                ofFloat.addUpdateListener(new wd(this, m0Var6, (h) r42, max2));
+                this.f57387x.addListener(new u(this, m0Var6, max2, r42, z10, o0Var));
+                this.f57387x.setDuration(450L);
+                this.f57387x.setInterpolator(lr.h);
+                this.f57387x.start();
                 if (z10) {
-                    p2.IMPACT_HEAVY.a();
+                    q2.IMPACT_HEAVY.a();
                 }
             }
         }
     }
 
     public final void b(j0 j0Var) {
-        u0 u0Var = this.f56793a;
+        u0 u0Var = this.f57367a;
         int currentColor = u0Var.getCurrentColor();
         float currentWeight = u0Var.getCurrentWeight();
         h currentBrush = u0Var.getCurrentBrush();
-        j0Var.f56676c = currentColor;
+        j0Var.f57250c = currentColor;
         j0Var.d = currentWeight;
-        j0Var.f56677e = currentBrush;
-        if (this.f56797f) {
-            this.f56799i = 0.0d;
+        j0Var.f57251e = currentBrush;
+        if (this.f57371f) {
+            this.f57373i = 0.0d;
         }
-        j0Var.f56674a = this.f56799i;
+        j0Var.f57248a = this.f57373i;
         i0 painting = u0Var.getPainting();
-        boolean z10 = this.f56797f;
+        boolean z10 = this.f57371f;
         t tVar = new t(this, j0Var, 0);
         if (painting.L == null) {
-            painting.f56651f.f(new r5(painting, j0Var, z10, false, tVar, 5));
+            painting.f57225f.f(new p5(painting, j0Var, z10, false, tVar, 5));
         }
-        this.f56797f = false;
+        this.f57371f = false;
     }
 
     public final void c(boolean z10, float f10) {
-        int i7 = this.f56804n;
-        m0[] m0VarArr = this.f56803m;
+        int i7 = this.f57378n;
+        m0[] m0VarArr = this.f57377m;
         if (i7 > 2) {
             Vector vector = new Vector();
             m0 m0Var = m0VarArr[0];
@@ -183,17 +183,17 @@ public final class v {
                     double d2 = f13 * f13;
                     double d10 = f14 * f14;
                     double d11 = f13;
-                    double d12 = (b11.f56710a * d2) + (m0Var2.f56710a * 2.0d * d11 * d) + (b10.f56710a * d10);
-                    double d13 = (b11.f56711b * d2) + (m0Var2.f56711b * 2.0d * d11 * d) + (b10.f56711b * d10);
-                    double T1 = ((((b11.f56712c * d2) + ((m0Var2.f56712c * ((2.0f * f14) * f13)) + (b10.f56712c * pow))) - 1.0d) * org.telegram.messenger.g0.T1(f10, 1.0f, i9.a(this.f56805o / 16.0f, 0.0f, 1.0f))) + 1.0d;
+                    double d12 = (b11.f57284a * d2) + (m0Var2.f57284a * 2.0d * d11 * d) + (b10.f57284a * d10);
+                    double d13 = (b11.f57285b * d2) + (m0Var2.f57285b * 2.0d * d11 * d) + (b10.f57285b * d10);
+                    double T1 = ((((b11.f57286c * d2) + ((m0Var2.f57286c * ((2.0f * f14) * f13)) + (b10.f57286c * pow))) - 1.0d) * org.telegram.messenger.g0.T1(f10, 1.0f, l9.a(this.f57379o / 16.0f, 0.0f, 1.0f))) + 1.0d;
                     m0 m0Var4 = new m0(d12, d13, T1);
-                    if (this.f56795c) {
+                    if (this.f57369c) {
                         m0Var4.d = true;
-                        this.f56795c = false;
+                        this.f57369c = false;
                     }
                     vector.add(m0Var4);
-                    this.f56806p += T1;
-                    this.f56807q += 1.0d;
+                    this.f57380p += T1;
+                    this.f57381q += 1.0d;
                     f13 += f12;
                     i10++;
                     f11 = 1.0f;
@@ -207,10 +207,10 @@ public final class v {
                 b(new j0(m0VarArr2));
                 System.arraycopy(m0VarArr, 1, m0VarArr, 0, 2);
                 if (z10) {
-                    this.f56804n = 0;
+                    this.f57378n = 0;
                     return;
                 } else {
-                    this.f56804n = 2;
+                    this.f57378n = 2;
                     return;
                 }
             }

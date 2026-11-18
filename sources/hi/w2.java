@@ -1,62 +1,36 @@
 package hi;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.gj0;
-import org.telegram.ui.Components.hj0;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.jj0;
-public final class w2 implements Runnable {
-    public final int f15273a;
-    public final x2 f15274b;
-    public final z2 f15275c;
+import android.text.TextUtils;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.kv0;
+public final class w2 extends d3 {
+    public final e3 f15632y;
 
-    public w2(x2 x2Var, z2 z2Var, int i7) {
-        this.f15273a = i7;
-        this.f15274b = x2Var;
-        this.f15275c = z2Var;
+    public w2(e3 e3Var) {
+        super(e3Var);
+        this.f15632y = e3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f15273a) {
-            case 0:
-                di.c1 c1Var = this.f15274b.f15324c.d;
-                c1Var.getClass();
-                z2 z2Var = this.f15275c;
-                int R = RecyclerView.R(z2Var);
-                if (R != -1) {
-                    gj0 gj0Var = c1Var.U0;
-                    if (gj0Var != null) {
-                        gj0Var.b(R, z2Var);
-                        return;
-                    }
-                    hj0 hj0Var = c1Var.V0;
-                    if (hj0Var != null) {
-                        hj0Var.f(0.0f, 0.0f, R, z2Var);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                di.c1 c1Var2 = this.f15274b.f15324c.d;
-                c1Var2.getClass();
-                z2 z2Var2 = this.f15275c;
-                int R2 = RecyclerView.R(z2Var2);
-                if (R2 != -1) {
-                    ij0 ij0Var = c1Var2.W0;
-                    if (ij0Var != null) {
-                        ij0Var.b(R2, z2Var2);
-                        return;
-                    }
-                    jj0 jj0Var = c1Var2.X0;
-                    if (jj0Var != null) {
-                        jj0Var.mo0f(0.0f, 0.0f, R2, z2Var2);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void F(boolean z10) {
+        e3 e3Var = this.f15632y;
+        org.telegram.ui.ActionBar.r0 r0Var = e3Var.H;
+        if (r0Var != null) {
+            r0Var.setShowSearchProgress(z10);
         }
+        e3Var.f14553s.e(z10, true);
+    }
+
+    @Override
+    public final void f() {
+        kv0 kv0Var = this.f15632y.f14553s;
+        super.f();
+        if (TextUtils.isEmpty(this.f14374f)) {
+            kv0Var.setStickerType(11);
+            kv0Var.d.setText(gd.M0(2131745565, null));
+            return;
+        }
+        kv0Var.setStickerType(1);
+        kv0Var.d.setText(gd.a0(null, null, 2131747974, this.f14374f));
     }
 }

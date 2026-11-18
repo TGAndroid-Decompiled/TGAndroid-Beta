@@ -1,125 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.SystemClock;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class e01 {
-    public long f34113a;
-    public boolean f34114b;
-    public final ArrayList f34115c;
-    public final ArrayList d;
-    public final int f34116e;
-    public boolean f34117f;
-    public float f34118g;
-    public float h;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class e01 extends FrameLayout {
+    public final ImageView f34555a;
+    public final c01 f34556b;
+    public final ThemeEditorView.EditorAlert f34557c;
 
-    public e01() {
-        this(40);
-    }
-
-    public final void a(float f10, float f11, Canvas canvas, Paint paint, RectF rectF) {
-        d01 d01Var;
-        ArrayList arrayList = this.f34115c;
-        int size = arrayList.size();
-        int i7 = 0;
-        for (int i10 = 0; i10 < size; i10++) {
-            d01 d01Var2 = (d01) arrayList.get(i10);
-            paint.setAlpha((int) (d01Var2.f33782f * 255.0f * f11));
-            canvas.drawPoint(d01Var2.f33778a, d01Var2.f33779b, paint);
-        }
-        double d = (f10 - 90.0f) * 0.017453292519943295d;
-        double sin = Math.sin(d);
-        double d2 = -Math.cos(d);
-        double width = rectF.width() / 2.0f;
-        float centerX = (float) (((-d2) * width) + rectF.centerX());
-        float centerY = (float) ((width * sin) + rectF.centerY());
-        ArrayList arrayList2 = this.d;
-        boolean z10 = true;
-        int j3 = Utilities.j(arrayList2.size() / 12, 3, 1);
-        int i11 = 0;
-        while (i11 < j3) {
-            if (!arrayList2.isEmpty()) {
-                arrayList2.remove(i7);
-                d01Var = (d01) arrayList2.get(i7);
-            } else {
-                d01Var = new Object();
-            }
-            if (this.f34114b && this.f34117f) {
-                float f12 = (i11 + 1) / j3;
-                d01Var.f33778a = org.telegram.messenger.g0.T1(this.f34118g, centerX, f12);
-                d01Var.f33779b = org.telegram.messenger.g0.T1(this.h, centerY, f12);
-            } else {
-                d01Var.f33778a = centerX;
-                d01Var.f33779b = centerY;
-            }
-            SecureRandom secureRandom = Utilities.f22414b;
-            double d10 = sin;
-            double nextInt = (secureRandom.nextInt(140) - 70) * 0.017453292519943295d;
-            if (nextInt < 0.0d) {
-                nextInt += 6.283185307179586d;
-            }
-            d01Var.f33780c = (float) ((Math.cos(nextInt) * d10) - (Math.sin(nextInt) * d2));
-            double d11 = nextInt;
-            d01 d01Var3 = d01Var;
-            d01Var3.d = (float) i5.c.c(d11, d2, Math.sin(nextInt) * d10);
-            d01Var3.f33782f = 1.0f;
-            d01Var3.h = 0.0f;
-            if (this.f34114b) {
-                d01Var3.f33783g = secureRandom.nextInt(200) + 600;
-                d01Var3.f33781e = (secureRandom.nextFloat() * 20.0f) + 30.0f;
-            } else {
-                d01Var3.f33783g = secureRandom.nextInt(100) + 400;
-                d01Var3.f33781e = (secureRandom.nextFloat() * 4.0f) + 20.0f;
-            }
-            arrayList.add(d01Var3);
-            i11++;
-            sin = d10;
-            i7 = 0;
-            z10 = true;
-        }
-        this.f34117f = z10;
-        this.f34118g = centerX;
-        this.h = centerY;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long min = Math.min(20L, elapsedRealtime - this.f34113a);
-        int size2 = arrayList.size();
-        int i12 = 0;
-        while (i12 < size2) {
-            d01 d01Var4 = (d01) arrayList.get(i12);
-            float f13 = d01Var4.h;
-            float f14 = d01Var4.f33783g;
-            if (f13 >= f14) {
-                if (arrayList2.size() < this.f34116e) {
-                    arrayList2.add(d01Var4);
-                }
-                arrayList.remove(i12);
-                i12--;
-                size2--;
-            } else {
-                d01Var4.f33782f = 1.0f - org.telegram.messenger.g0.F.getInterpolation(f13 / f14);
-                float f15 = d01Var4.f33778a;
-                float f16 = d01Var4.f33780c;
-                float f17 = d01Var4.f33781e;
-                float f18 = (float) min;
-                d01Var4.f33778a = a8.p0.f(f16 * f17, f18, 200.0f, f15);
-                d01Var4.f33779b = (((d01Var4.d * f17) * f18) / 200.0f) + d01Var4.f33779b;
-                d01Var4.h += f18;
-            }
-            i12++;
-        }
-        this.f34113a = elapsedRealtime;
-    }
-
-    public e01(int i7) {
-        this.f34115c = new ArrayList();
-        this.d = new ArrayList();
-        this.f34116e = i7;
-        for (int i10 = 0; i10 < i7; i10++) {
-            this.d.add(new Object());
-        }
+    public e01(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context);
+        this.f34557c = editorAlert;
+        View view = new View(context);
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(18.0f), -854795));
+        addView(view, c8.ma.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(2131232739);
+        imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
+        addView(imageView, c8.ma.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f34555a = imageView2;
+        imageView2.setScaleType(scaleType);
+        dq dqVar = new dq();
+        imageView2.setImageDrawable(dqVar);
+        dqVar.f34485f = org.telegram.messenger.g0.L(7.0f);
+        imageView2.setScaleX(0.1f);
+        imageView2.setScaleY(0.1f);
+        imageView2.setAlpha(0.0f);
+        addView(imageView2, c8.ma.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
+        imageView2.setOnClickListener(new h70(this, 18));
+        c01 c01Var = new c01(this, context);
+        this.f34556b = c01Var;
+        c01Var.setTextSize(1, 16.0f);
+        c01Var.setHintTextColor(-6774617);
+        c01Var.setTextColor(-14540254);
+        c01Var.setBackgroundDrawable(null);
+        c01Var.setPadding(0, 0, 0, 0);
+        c01Var.setMaxLines(1);
+        c01Var.setLines(1);
+        c01Var.setSingleLine(true);
+        c01Var.setImeOptions(268435459);
+        c01Var.setHint(org.telegram.messenger.gd.M0(2131745641, null));
+        c01Var.setCursorColor(-11491093);
+        c01Var.setCursorSize(org.telegram.messenger.g0.L(20.0f));
+        c01Var.setCursorWidth(1.5f);
+        addView(c01Var, c8.ma.d(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
+        c01Var.addTextChangedListener(new d01(this));
+        c01Var.setOnEditorActionListener(new g(this, 11));
     }
 }

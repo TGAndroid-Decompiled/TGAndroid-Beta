@@ -1,32 +1,36 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-public final class yj extends dr0 {
-    public yj(ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
+import android.animation.AnimatorSet;
+import android.widget.FrameLayout;
+public final class yj implements Runnable {
+    public final int f54216a;
+    public final bn f54217b;
+
+    public yj(bn bnVar, int i7) {
+        this.f54216a = i7;
+        this.f54217b = bnVar;
     }
 
     @Override
-    public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
-        if (f10 > 0.0f) {
-            View view = this.f46451e;
-            if (view instanceof org.telegram.ui.Cells.q1) {
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(f11, (int) Math.max(f13, f12), q1Var.getMeasuredWidth() + f11, (int) Math.min(f14, q1Var.getMeasuredHeight() + f12));
-                canvas.saveLayerAlpha(rectF, (int) (f10 * 255.0f), 31);
-                canvas.translate(f11, f12 + q1Var.getPaddingTop());
-                q1Var.Mb = true;
-                q1Var.j1(canvas);
-                if (q1Var.G3() && q1Var.getCurrentMessagesGroup() == null) {
-                    q1Var.y1(1.0f, canvas, false);
+    public final void run() {
+        org.telegram.ui.Components.ah ahVar;
+        FrameLayout frameLayout;
+        switch (this.f54216a) {
+            case 0:
+                bn bnVar = this.f54217b;
+                AnimatorSet animatorSet = bnVar.f46177sa;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    bnVar.f46177sa.start();
+                    return;
                 }
-                q1Var.Mb = false;
-                canvas.restore();
-            }
+                return;
+            default:
+                bn bnVar2 = this.f54217b;
+                if (bnVar2.f45977d3 == this && (ahVar = bnVar2.f45948b1) != null && (frameLayout = bnVar2.f45964c3) != null) {
+                    ahVar.j(frameLayout, false, true);
+                    return;
+                }
+                return;
         }
     }
 }

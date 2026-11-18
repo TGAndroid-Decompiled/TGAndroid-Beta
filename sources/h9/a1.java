@@ -1,3 +1,3 @@
 package h9;
-public interface a1 extends i1 {
+public interface a1 extends j1 {
 }

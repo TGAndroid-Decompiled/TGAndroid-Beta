@@ -4,17 +4,16 @@ import android.content.Context;
 import android.os.Process;
 import android.util.Log;
 import androidx.lifecycle.k0;
-import c8.d0;
-import c8.n0;
+import c8.f0;
+import c8.p0;
 import com.google.android.gms.internal.play_billing.s0;
-import hi.l0;
+import h9.g1;
 import java.util.LinkedHashSet;
 import java.util.List;
 import kotlin.jvm.internal.j;
 import kotlin.jvm.internal.n;
 import kotlin.jvm.internal.s;
 import m1.e0;
-import m1.f0;
 import o1.e;
 import q1.h;
 import rd.l;
@@ -24,13 +23,13 @@ import zd.c1;
 import zd.j0;
 public final class d {
     public static final g[] d;
-    public final String f17810a;
-    public final ThreadLocal f17811b;
-    public final q1.d f17812c;
+    public final String f18205a;
+    public final ThreadLocal f18206b;
+    public final q1.d f18207c;
 
     static {
         n nVar = new n(kotlin.jvm.internal.c.NO_RECEIVER, d.class, "dataStore", "getDataStore(Landroid/content/Context;)Landroidx/datastore/core/DataStore;", 0);
-        s.f18758a.getClass();
+        s.f19125a.getClass();
         d = new g[]{nVar};
     }
 
@@ -38,13 +37,13 @@ public final class d {
         q1.d dVar;
         j.e(context, "context");
         j.e(name, "name");
-        this.f17810a = name;
-        this.f17811b = new ThreadLocal();
-        l0 l0Var = new l0(new l(this) {
-            public final d f17803b;
+        this.f18205a = name;
+        this.f18206b = new ThreadLocal();
+        g1 g1Var = new g1(new l(this) {
+            public final d f18198b;
 
             {
-                this.f17803b = this;
+                this.f18198b = this;
             }
 
             @Override
@@ -54,24 +53,24 @@ public final class d {
                         m1.b ex = (m1.b) obj;
                         j.e(ex, "ex");
                         String b10 = s.a(d.class).b();
-                        Log.w(b10, "CorruptionException in " + this.f17803b.f17810a + " DataStore running in process " + Process.myPid(), ex);
+                        Log.w(b10, "CorruptionException in " + this.f18198b.f18205a + " DataStore running in process " + Process.myPid(), ex);
                         return new q1.b(true);
                     default:
                         Context it = (Context) obj;
                         j.e(it, "it");
-                        String sharedPreferencesName = this.f17803b.f17810a;
-                        LinkedHashSet keysToMigrate = p1.j.f54506a;
+                        String sharedPreferencesName = this.f18198b.f18205a;
+                        LinkedHashSet keysToMigrate = p1.j.f55075a;
                         j.e(sharedPreferencesName, "sharedPreferencesName");
                         j.e(keysToMigrate, "keysToMigrate");
-                        return d0.a(new o1.d(it, sharedPreferencesName, e.f21227a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
+                        return f0.a(new o1.d(it, sharedPreferencesName, e.f21594a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
                 }
             }
         }, 13);
         l lVar = new l(this) {
-            public final d f17803b;
+            public final d f18198b;
 
             {
-                this.f17803b = this;
+                this.f18198b = this;
             }
 
             @Override
@@ -81,38 +80,38 @@ public final class d {
                         m1.b ex = (m1.b) obj;
                         j.e(ex, "ex");
                         String b10 = s.a(d.class).b();
-                        Log.w(b10, "CorruptionException in " + this.f17803b.f17810a + " DataStore running in process " + Process.myPid(), ex);
+                        Log.w(b10, "CorruptionException in " + this.f18198b.f18205a + " DataStore running in process " + Process.myPid(), ex);
                         return new q1.b(true);
                     default:
                         Context it = (Context) obj;
                         j.e(it, "it");
-                        String sharedPreferencesName = this.f17803b.f17810a;
-                        LinkedHashSet keysToMigrate = p1.j.f54506a;
+                        String sharedPreferencesName = this.f18198b.f18205a;
+                        LinkedHashSet keysToMigrate = p1.j.f55075a;
                         j.e(sharedPreferencesName, "sharedPreferencesName");
                         j.e(keysToMigrate, "keysToMigrate");
-                        return d0.a(new o1.d(it, sharedPreferencesName, e.f21227a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
+                        return f0.a(new o1.d(it, sharedPreferencesName, e.f21594a, new b(keysToMigrate, null, 2), new kd.j(3, null)));
                 }
             }
         };
-        ge.e eVar = j0.f61292a;
-        ge.d dVar2 = ge.d.f13195c;
+        ge.e eVar = j0.f61856a;
+        ge.d dVar2 = ge.d.f13510c;
         c1 c1Var = new c1();
         dVar2.getClass();
-        ee.c b10 = b0.b(n0.c(dVar2, c1Var));
-        s0 s0Var = new s0(name, l0Var, lVar, b10);
+        ee.c b10 = b0.b(p0.c(dVar2, c1Var));
+        s0 s0Var = new s0(name, g1Var, lVar, b10);
         g property = d[0];
         j.e(property, "property");
-        q1.d dVar3 = (q1.d) s0Var.f6844b;
+        q1.d dVar3 = (q1.d) s0Var.f7127b;
         if (dVar3 == null) {
-            synchronized (s0Var.f6845c) {
+            synchronized (s0Var.f7128c) {
                 try {
-                    if (((q1.d) s0Var.f6844b) == null) {
+                    if (((q1.d) s0Var.f7127b) == null) {
                         Context applicationContext = context.getApplicationContext();
                         j.d(applicationContext, "applicationContext");
                         o1.a aVar = new o1.a(1, applicationContext, s0Var);
-                        s0Var.f6844b = new q1.d(new q1.d(new m1.b0(new f0(h.f55135a, e0.f19960b, new k0(aVar, 3)), d0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), l0Var, b10)));
+                        s0Var.f7127b = new q1.d(new q1.d(new m1.b0(new m1.f0(h.f55711a, e0.f20327b, new k0(aVar, 3)), f0.a(new be.l((List) lVar.invoke(applicationContext), (id.c) null, 8)), g1Var, b10)));
                     }
-                    dVar = (q1.d) s0Var.f6844b;
+                    dVar = (q1.d) s0Var.f7127b;
                     j.b(dVar);
                 } catch (Throwable th2) {
                     throw th2;
@@ -120,7 +119,7 @@ public final class d {
             }
             dVar3 = dVar;
         }
-        this.f17812c = dVar3;
+        this.f18207c = dVar3;
     }
 
     public final void a(l lVar) {

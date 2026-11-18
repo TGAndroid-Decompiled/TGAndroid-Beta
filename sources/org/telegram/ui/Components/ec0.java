@@ -1,66 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class ec0 extends Drawable implements Drawable.Callback {
-    public final fh.g f34269a;
-    public final RectF f34270b = new RectF();
-    public int f34271c = 255;
+import android.animation.ValueAnimator;
+public final class ec0 implements Runnable {
+    public final int f34671a;
+    public final pc0 f34672b;
 
-    public ec0(fh.g gVar) {
-        this.f34269a = gVar;
-        gVar.setCallback(this);
+    public ec0(pc0 pc0Var, int i7) {
+        this.f34671a = i7;
+        this.f34672b = pc0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        this.f34269a.draw(canvas);
-        Rect bounds = getBounds();
-        RectF rectF = this.f34270b;
-        rectF.set(bounds);
-        float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
-        float f10 = this.f34271c / 255.0f;
-        ci.u.c(canvas, rectF, min, f10);
-        ci.u.a(min, f10, 0, canvas, rectF);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f34269a.setBounds(rect);
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.f34271c = i7;
-        this.f34269a.setAlpha(i7);
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34269a.getClass();
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
+    public final void run() {
+        int i7 = this.f34671a;
+        pc0 pc0Var = this.f34672b;
+        switch (i7) {
+            case 0:
+                EditTextBoldCursor editTextBoldCursor = pc0Var.f38375r;
+                if (!pc0Var.Q && pc0Var.isAttachedToWindow() && pc0Var.f38379y.getVisibility() != 0 && editTextBoldCursor != null) {
+                    editTextBoldCursor.requestFocus();
+                    org.telegram.messenger.g0.I3(editTextBoldCursor);
+                    return;
+                }
+                return;
+            default:
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(pc0Var.f38363b0, 0.0f);
+                pc0Var.T = ofFloat;
+                ofFloat.addUpdateListener(new fc0(pc0Var, 1));
+                ofFloat.addListener(new q60(pc0Var, 6));
+                ofFloat.setDuration(420L);
+                ofFloat.setInterpolator(lr.h);
+                ofFloat.start();
+                return;
+        }
     }
 }

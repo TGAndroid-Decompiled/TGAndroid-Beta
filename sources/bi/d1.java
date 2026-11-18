@@ -1,7 +1,7 @@
 package bi;
 
-import org.telegram.ui.Components.jg;
-public final class d1 extends jg {
+import org.telegram.ui.Components.sg;
+public final class d1 extends sg {
     @Override
     public final boolean b() {
         return false;

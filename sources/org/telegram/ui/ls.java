@@ -11,7 +11,7 @@ public interface ls {
 
     boolean D(TLRPC.Document document);
 
-    org.telegram.ui.Components.m60 E(ai.k0 k0Var);
+    org.telegram.ui.Components.y60 E(ai.k0 k0Var);
 
     void F(TLRPC.Document document);
 
@@ -53,7 +53,7 @@ public interface ls {
 
     boolean h();
 
-    void i(org.telegram.messenger.xy xyVar);
+    void i(org.telegram.messenger.sy syVar);
 
     boolean j();
 
@@ -85,7 +85,7 @@ public interface ls {
 
     void x(String str);
 
-    void y(CharSequence charSequence, String str, org.telegram.ui.Components.gh ghVar);
+    void y(CharSequence charSequence, String str, org.telegram.ui.Components.ph phVar);
 
-    org.telegram.messenger.gj z();
+    org.telegram.messenger.fj z();
 }

@@ -1,45 +1,6 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-public final class zj0 extends FrameLayout {
-    public View f42397a;
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        View view = this.f42397a;
-        if (view == null) {
-            ViewParent parent = getParent();
-            while (true) {
-                if (parent instanceof View) {
-                    if (parent instanceof RecyclerView) {
-                        view = (RecyclerView) parent;
-                        break;
-                    }
-                    parent = parent.getParent();
-                } else {
-                    view = null;
-                    break;
-                }
-            }
-        }
-        int i11 = 0;
-        if (view != null) {
-            i11 = Math.max(0, (view.getMeasuredHeight() - view.getPaddingTop()) - view.getPaddingBottom());
-        }
-        if (i11 > 0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-    }
-
-    public void setViewportView(View view) {
-        if (this.f42397a == view) {
-            return;
-        }
-        this.f42397a = view;
-        requestLayout();
-    }
+import java.util.ArrayList;
+public abstract class zj0 {
+    public static final ArrayList f42895a = new ArrayList();
 }

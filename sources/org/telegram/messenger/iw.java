@@ -1,123 +1,52 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.tgnet.tl.TL_stories;
 public final class iw implements Runnable {
-    public final int f24468a = 0;
-    public final int f24469b;
-    public final boolean f24470c;
-    public final boolean d;
-    public final Object f24471e;
-    public final Serializable f24472f;
-    public final Object h;
-    public final Object f24473n;
-    public final TLObject f24474r;
+    public final TL_stories.StoryItem E;
+    public final bw F;
+    public final long G;
+    public final boolean H;
+    public final long I;
+    public final Runnable J;
+    public final sh.g f24733a;
+    public final ArrayList f24734b;
+    public final long f24735c;
+    public final c d;
+    public final CharSequence f24736e;
+    public final boolean f24737f;
+    public final ArrayList h;
+    public final fj f24738n;
+    public final fj f24739r;
+    public final fj f24740s;
+    public final boolean f24741w;
+    public final int f24742x;
+    public final int f24743y;
 
-    public iw(ez ezVar, ArrayList arrayList, boolean z10, boolean z11, TLRPC.Message message, ArrayList arrayList2, ArrayList arrayList3, int i7) {
-        this.f24471e = ezVar;
-        this.f24472f = arrayList;
-        this.f24470c = z10;
-        this.d = z11;
-        this.f24474r = message;
+    public iw(sh.g gVar, ArrayList arrayList, long j3, c cVar, CharSequence charSequence, boolean z10, ArrayList arrayList2, fj fjVar, fj fjVar2, fj fjVar3, boolean z11, int i7, int i10, TL_stories.StoryItem storyItem, bw bwVar, long j10, boolean z12, long j11, Runnable runnable) {
+        this.f24733a = gVar;
+        this.f24734b = arrayList;
+        this.f24735c = j3;
+        this.d = cVar;
+        this.f24736e = charSequence;
+        this.f24737f = z10;
         this.h = arrayList2;
-        this.f24473n = arrayList3;
-        this.f24469b = i7;
+        this.f24738n = fjVar;
+        this.f24739r = fjVar2;
+        this.f24740s = fjVar3;
+        this.f24741w = z11;
+        this.f24742x = i7;
+        this.f24743y = i10;
+        this.E = storyItem;
+        this.F = bwVar;
+        this.G = j10;
+        this.H = z12;
+        this.I = j11;
+        this.J = runnable;
     }
 
     @Override
     public final void run() {
-        int i7;
-        int i10 = this.f24468a;
-        TLObject tLObject = this.f24474r;
-        Object obj = this.f24473n;
-        Object obj2 = this.h;
-        Serializable serializable = this.f24472f;
-        Object obj3 = this.f24471e;
-        switch (i10) {
-            case 0:
-                ez ezVar = (ez) obj3;
-                vr messagesStorage = ezVar.getMessagesStorage();
-                boolean z10 = this.f24470c;
-                messagesStorage.j1((ArrayList) serializable, true, false, false, 0, false, !z10 ? 1 : 0, 0L);
-                g0.h3(new di.ea(ezVar, this.d, (TLRPC.Message) tLObject, (ArrayList) obj2, z10, (ArrayList) obj, this.f24469b));
-                return;
-            default:
-                org.telegram.ui.ca caVar = (org.telegram.ui.ca) obj3;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                TLRPC.TL_username tL_username = (TLRPC.TL_username) tLObject;
-                org.telegram.ui.la laVar = caVar.f46050a;
-                ArrayList arrayList = laVar.f48915x;
-                ArrayList arrayList2 = laVar.f48914w;
-                arrayList.remove((String) serializable);
-                boolean z11 = ((TLObject) obj2) instanceof TLRPC.TL_boolTrue;
-                int i11 = this.f24469b;
-                boolean z12 = this.f24470c;
-                TLRPC.TL_username tL_username2 = null;
-                if (z11) {
-                    laVar.n0(i11, z12, false);
-                } else {
-                    boolean z13 = this.d;
-                    if (tL_error != null && "USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error.text)) {
-                        tL_username.active = z12;
-                        laVar.n0(i11, z12, false);
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, laVar.getParentActivity(), laVar.getResourceProvider());
-                        String M0 = hd.M0(2131743672, null);
-                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                        t1Var.S = M0;
-                        t1Var.U = hd.M0(2131743673, null);
-                        alertDialog$Builder.k(hd.M0(2131747831, null), new ab.j(caVar, tL_username, z13, 4));
-                        alertDialog$Builder.p();
-                    } else {
-                        laVar.o0(tL_username, z13, true);
-                    }
-                }
-                i7 = ((org.telegram.ui.ActionBar.e2) laVar).currentAccount;
-                TLRPC.User a22 = np.s1(i7).a2(Long.valueOf(laVar.l0()));
-                laVar.getMessagesController().u5(a22, tL_username.username, tL_username.active);
-                if (laVar.f48916y != 0 && arrayList2 != null) {
-                    int size = arrayList2.size();
-                    int i12 = 0;
-                    while (i12 < size) {
-                        Object obj4 = arrayList2.get(i12);
-                        i12++;
-                        if (((TLRPC.TL_username) obj4).active) {
-                            return;
-                        }
-                    }
-                    int size2 = arrayList2.size();
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < size2) {
-                            Object obj5 = arrayList2.get(i13);
-                            i13++;
-                            TLRPC.TL_username tL_username3 = (TLRPC.TL_username) obj5;
-                            if (tL_username3.editable) {
-                                tL_username2 = tL_username3;
-                            }
-                        }
-                    }
-                    if (tL_username2 != null) {
-                        laVar.o0(tL_username2, true, false);
-                        laVar.getMessagesController().u5(a22, tL_username2.username, tL_username2.active);
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
-    }
-
-    public iw(org.telegram.ui.ca caVar, String str, TLObject tLObject, int i7, boolean z10, TLRPC.TL_error tL_error, TLRPC.TL_username tL_username, boolean z11) {
-        this.f24471e = caVar;
-        this.f24472f = str;
-        this.h = tLObject;
-        this.f24469b = i7;
-        this.f24470c = z10;
-        this.f24473n = tL_error;
-        this.f24474r = tL_username;
-        this.d = z11;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.iw.run():void");
     }
 }

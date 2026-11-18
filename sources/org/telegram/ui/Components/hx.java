@@ -1,31 +1,7 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class hx extends u41 {
-    public hx(Context context, int i7, org.telegram.messenger.s10 s10Var, org.telegram.messenger.x10 x10Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i7, -1, false, s10Var, x10Var, null, e6Var, -1, 0);
-        this.f40091z2 = true;
-        setOverScrollMode(2);
-    }
-
-    public final void L1(View view) {
-        int i7;
-        if (view != null) {
-            float L = org.telegram.messenger.g0.L(92.0f);
-            float width = getWidth() - L;
-            float x10 = view.getX();
-            float width2 = view.getWidth() + x10;
-            if (x10 < L) {
-                i7 = (int) (x10 - L);
-            } else if (width2 > width) {
-                i7 = (int) (width2 - width);
-            } else {
-                i7 = 0;
-            }
-            if (i7 != 0) {
-                org.telegram.messenger.g0.J(this, new u11(this, view, i7, 23));
-            }
-        }
-    }
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class hx extends FrameLayout {
+    public TextView f36000a;
 }

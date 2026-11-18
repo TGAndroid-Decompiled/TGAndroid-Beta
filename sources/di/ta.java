@@ -1,62 +1,56 @@
 package di;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.hd;
-public final class ta extends FrameLayout {
-    public final org.telegram.ui.Components.h6 f9478a;
-    public final ImageView f9479b;
-    public int f9480c;
-    public boolean d;
+import android.graphics.Paint;
+import android.view.KeyEvent;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.y10;
+import org.telegram.ui.Components.si;
+public final class ta implements y10 {
+    public final int f9824a;
+    public final KeyEvent.Callback f9825b;
 
-    public ta(Context context) {
-        super(context);
-        org.telegram.ui.Components.h6 h6Var = new org.telegram.ui.Components.h6(context, false, false, false);
-        this.f9478a = h6Var;
-        h6Var.getDrawable().r(true, true);
-        h6Var.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        addView(h6Var, c8.ja.i(-1.0f, -1.0f, 8388627, 22.0f, 0.0f, 58.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f9479b = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(2131230871);
-        addView(imageView, c8.ja.i(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 17.0f, 0.0f));
+    public ta(KeyEvent.Callback callback, int i7) {
+        this.f9824a = i7;
+        this.f9825b = callback;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f9480c = Integer.MAX_VALUE;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        int i7;
-        super.onDraw(canvas);
-        if (this.d) {
-            if (hd.f24104a0) {
-                L = 0.0f;
-            } else {
-                L = org.telegram.messenger.g0.L(22.0f);
-            }
-            float f10 = L;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (hd.f24104a0) {
-                i7 = org.telegram.messenger.g0.L(22.0f);
-            } else {
-                i7 = 0;
-            }
-            canvas.drawRect(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight(), org.telegram.ui.ActionBar.j6.f28972k0);
+    public final Object a(Object obj) {
+        int i7 = this.f9824a;
+        KeyEvent.Callback callback = this.f9825b;
+        switch (i7) {
+            case 0:
+                ua uaVar = (ua) callback;
+                return uaVar.f9888s[((Integer) obj).intValue() % uaVar.f9888s.length];
+            case 1:
+                fj fjVar = (fj) obj;
+                ((hi.v6) callback).f15591m2 = fjVar;
+                return Boolean.valueOf(MediaController.B().o0(org.telegram.messenger.f3.i(fjVar), fjVar, 0L, true, null, 0L));
+            case 2:
+                ua uaVar2 = (ua) callback;
+                return uaVar2.f9888s[((Integer) obj).intValue() % uaVar2.f9888s.length];
+            case 3:
+                return new org.telegram.ui.Wallet.c5(22, (org.telegram.ui.l0) callback, (Integer) obj);
+            case 4:
+                tg.g0 g0Var = (tg.g0) callback;
+                if (((Integer) obj).intValue() == 2) {
+                    si siVar = new si(g0Var.getContext(), new tg.w(g0Var), false, false, false, g0Var.A1);
+                    siVar.f30217n = true;
+                    siVar.B1(gd.M0(2131754426, null));
+                    siVar.X3 = new tg.x(g0Var, siVar);
+                    siVar.setOnDismissListener(new hi.f1(8));
+                    siVar.z1(1, false);
+                    siVar.f1();
+                    MediaController.f22695h2 = true;
+                    siVar.f39670e2.i0();
+                    siVar.show();
+                }
+                return Boolean.TRUE;
+            default:
+                Paint[] paintArr = ((yg.r) callback).h;
+                return paintArr[((Integer) obj).intValue() % paintArr.length];
         }
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
     }
 }

@@ -1,23 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-public final class df implements Runnable {
-    public final int f33926a;
-    public final FrameLayout f33927b;
+import android.content.Context;
+public final class df extends org.telegram.ui.eg0 {
+    public final int E0;
+    public final Object F0;
 
-    public df(int i7, FrameLayout frameLayout) {
-        this.f33926a = i7;
-        this.f33927b = frameLayout;
+    public df(Object obj, Context context, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
+        super(context, i6Var);
+        this.E0 = i7;
+        this.F0 = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33926a) {
+    public final void m(long j3) {
+        switch (this.E0) {
             case 0:
-                org.telegram.messenger.g0.E2(this.f33927b);
+                ((ChatActivityEnterView) this.F0).setEffectId(j3);
                 return;
             default:
-                org.telegram.messenger.g0.E2(this.f33927b);
+                si siVar = (si) this.F0;
+                ai aiVar = siVar.G2;
+                siVar.L2 = j3;
+                aiVar.setEffect(j3);
                 return;
         }
     }

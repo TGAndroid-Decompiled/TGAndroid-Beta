@@ -1,54 +1,50 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.i20;
-public final class ja extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f44037a;
-    public final org.telegram.ui.Components.i9 f44038b;
-    public final TextView f44039c;
-    public final TextView d;
+import android.content.Intent;
+import android.net.Uri;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ja implements jg.f0, org.telegram.ui.ActionBar.r1 {
+    public final na f44426a;
 
-    public ja(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f44037a = e6Var;
-        org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(context);
-        this.f44038b = i9Var;
-        i9Var.setRoundRadius(org.telegram.messenger.g0.L(10.0f));
-        addView(i9Var, c8.ja.d(28, 28.0f, 19, 18.0f, 0.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, c8.ja.d(-1, -2.0f, 23, 62.0f, 0.0f, 20.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f44039c = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView f10 = i20.f(linearLayout, textView, c8.ja.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2), context);
-        this.d = f10;
-        f10.setTextSize(1, 14.0f);
-        linearLayout.addView(f10, c8.ja.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
-        updateColors();
+    public ja(na naVar) {
+        this.f44426a = naVar;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.f29260z6));
+    public void a(a0.h hVar, ArrayList arrayList) {
+        na naVar = this.f44426a;
+        ArrayList arrayList2 = naVar.f44672s;
+        if (!naVar.f44671r) {
+            arrayList2.clear();
+            int size = arrayList.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList.get(i7);
+                i7++;
+                jg.g0 g0Var = (jg.g0) obj;
+                TLObject tLObject = g0Var.f17463a;
+                if ((tLObject instanceof TLRPC.User) && na.h0((TLRPC.User) tLObject)) {
+                    arrayList2.add((TLRPC.User) g0Var.f17463a);
+                }
+            }
+            bi.d6 d6Var = naVar.f33530a;
+            if (d6Var != null) {
+                d6Var.f34607g3.O(true);
+            }
+        }
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(58.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        int i7 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f44037a;
-        this.f44039c.setTextColor(org.telegram.ui.ActionBar.j6.w0(i7, e6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29260z6, e6Var));
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        na naVar = this.f44426a;
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26915b.getPackageName()));
+            naVar.getParentActivity().startActivity(intent);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
     }
 }

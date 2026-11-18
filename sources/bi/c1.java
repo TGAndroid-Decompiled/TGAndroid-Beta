@@ -1,20 +1,20 @@
 package bi;
 
 import android.view.View;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.m10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.cg;
-import org.telegram.ui.qm;
-public final class c1 implements cg {
-    public final TL_stars.TL_starGiftUnique f3407a;
-    public final f1 f3408b;
+import org.telegram.ui.Components.kg;
+import org.telegram.ui.rm;
+public final class c1 implements kg {
+    public final TL_stars.TL_starGiftUnique f3482a;
+    public final g1 f3483b;
 
-    public c1(f1 f1Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f3408b = f1Var;
-        this.f3407a = tL_starGiftUnique;
+    public c1(g1 g1Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
+        this.f3483b = g1Var;
+        this.f3482a = tL_starGiftUnique;
     }
 
     @Override
@@ -23,47 +23,47 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final TLRPC.TL_channels_sendAsPeers O() {
+    public final TLRPC.TL_channels_sendAsPeers J() {
         return null;
     }
 
     public final void a(CharSequence charSequence) {
         int i7;
         boolean z10;
-        f1 f1Var = this.f3408b;
-        org.telegram.ui.Components.h6 h6Var = f1Var.f3508w1;
-        f1Var.f3499m1.a(this.f3407a, m10.i(f1Var.f29679a).e(), f1Var.f3504s1.getTextWithEntities(), hd.M0(2131749745, null), true);
+        g1 g1Var = this.f3483b;
+        org.telegram.ui.Components.n6 n6Var = g1Var.f3630w1;
+        g1Var.f3621m1.a(this.f3482a, j10.i(g1Var.f30189a).e(), g1Var.f3626s1.getTextWithEntities(), gd.M0(2131749728, null), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
-        f1Var.A1 = codePointCount;
-        int i10 = f1Var.f3511z1;
+        g1Var.A1 = codePointCount;
+        int i10 = g1Var.f3633z1;
         if (i10 > 0 && (i7 = i10 - codePointCount) <= 15) {
             if (i7 < -9999) {
                 i7 = -9999;
             }
-            String E = hd.E(i7, ',');
-            if (h6Var.getVisibility() == 0) {
+            String E = gd.E(i7, ',');
+            if (n6Var.getVisibility() == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            h6Var.c(E, z10, true);
-            if (h6Var.getVisibility() != 0) {
-                h6Var.setVisibility(0);
-                h6Var.setAlpha(0.0f);
-                h6Var.setScaleX(0.5f);
-                h6Var.setScaleY(0.5f);
+            n6Var.c(E, z10, true);
+            if (n6Var.getVisibility() != 0) {
+                n6Var.setVisibility(0);
+                n6Var.setAlpha(0.0f);
+                n6Var.setScaleX(0.5f);
+                n6Var.setScaleY(0.5f);
             }
-            h6Var.animate().setListener(null).cancel();
-            h6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            n6Var.animate().setListener(null).cancel();
+            n6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i7 < 0) {
-                org.telegram.ui.ActionBar.q6.Y(h6Var, org.telegram.ui.ActionBar.j6.f29070p7, f1Var.J0);
+                org.telegram.ui.ActionBar.u6.Y(n6Var, org.telegram.ui.ActionBar.n6.f29617p7, g1Var.J0);
                 return;
             } else {
-                org.telegram.ui.ActionBar.q6.Y(h6Var, org.telegram.ui.ActionBar.j6.f29241y6, f1Var.J0);
+                org.telegram.ui.ActionBar.u6.Y(n6Var, org.telegram.ui.ActionBar.n6.f29788y6, g1Var.J0);
                 return;
             }
         }
-        h6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ai.j0(this, 1));
+        n6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ai.j0(this, 1));
     }
 
     @Override
@@ -92,8 +92,13 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final boolean l() {
+    public final boolean k() {
         return false;
+    }
+
+    @Override
+    public final rm m0() {
+        return null;
     }
 
     @Override
@@ -107,12 +112,7 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final qm p0() {
-        return null;
-    }
-
-    @Override
-    public final TLRPC.Peer s() {
+    public final TLRPC.Peer t() {
         return null;
     }
 
@@ -127,15 +127,15 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final void C(boolean z10) {
+    public final void A(boolean z10) {
+    }
+
+    @Override
+    public final void a0(boolean z10) {
     }
 
     @Override
     public final void a1(int i7) {
-    }
-
-    @Override
-    public final void b0(boolean z10) {
     }
 
     @Override
@@ -147,7 +147,7 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final void y(float f10) {
+    public final void x(float f10) {
     }
 
     @Override
@@ -155,7 +155,11 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final void E() {
+    public final void D() {
+    }
+
+    @Override
+    public final void G() {
     }
 
     @Override
@@ -167,10 +171,6 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final void I() {
-    }
-
-    @Override
     public final void J0() {
     }
 
@@ -179,15 +179,19 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final void Y() {
+    public final void V() {
     }
 
     @Override
-    public final void b() {
+    public final void b0() {
     }
 
     @Override
     public final void d() {
+    }
+
+    @Override
+    public final void g() {
     }
 
     @Override
@@ -196,10 +200,6 @@ public final class c1 implements cg {
 
     @Override
     public final void l1() {
-    }
-
-    @Override
-    public final void m0() {
     }
 
     @Override
@@ -227,7 +227,7 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final void v() {
+    public final void u() {
     }
 
     @Override
@@ -239,7 +239,7 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final void W(float f10, int i7) {
+    public final void Q(float f10, int i7) {
     }
 
     @Override
@@ -247,7 +247,7 @@ public final class c1 implements cg {
     }
 
     @Override
-    public final void M(CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
+    public final void H(CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
     }
 
     @Override

@@ -6,7 +6,7 @@ import q6.m;
 public abstract class c {
     public static Parcelable a(String str, Bundle bundle) {
         ClassLoader classLoader = c.class.getClassLoader();
-        m.g(classLoader);
+        m.h(classLoader);
         bundle.setClassLoader(classLoader);
         Bundle bundle2 = bundle.getBundle("map_state");
         if (bundle2 == null) {
@@ -41,7 +41,7 @@ public abstract class c {
 
     public static void c(Bundle bundle, String str, Parcelable parcelable) {
         ClassLoader classLoader = c.class.getClassLoader();
-        m.g(classLoader);
+        m.h(classLoader);
         bundle.setClassLoader(classLoader);
         Bundle bundle2 = bundle.getBundle("map_state");
         if (bundle2 == null) {

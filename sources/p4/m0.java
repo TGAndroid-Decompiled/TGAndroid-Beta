@@ -17,37 +17,37 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.os.SystemClock;
 import android.text.TextUtils;
-import c8.cb;
-import di.z9;
-import h9.s1;
+import c8.jb;
+import di.ca;
+import h9.t1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import org.telegram.messenger.qe;
-import org.telegram.ui.Components.km;
-import org.telegram.ui.Wallet.k8;
+import org.telegram.messenger.pe;
+import org.telegram.ui.Components.rm;
+import org.telegram.ui.wc1;
 public final class m0 extends android.support.v4.media.session.s {
-    public static final int f54780z;
-    public final ab.c0 f54781g;
+    public static final int f55325z;
+    public final ab.c0 f55326g;
     public final d0 h;
-    public final q4.u f54782i;
-    public final qe f54783j;
-    public final android.support.v4.media.session.q f54784k;
-    public final boolean f54785l;
-    public final b f54786m;
-    public final q4.q f54787n;
-    public final androidx.mediarouter.app.f f54788o;
-    public final ComponentName f54789p;
-    public final boolean f54790q;
-    public volatile long f54791r;
-    public qe f54792s;
-    public int f54793t;
-    public final Bundle f54794u;
+    public final q4.u f55327i;
+    public final pe f55328j;
+    public final android.support.v4.media.session.q f55329k;
+    public final boolean f55330l;
+    public final b f55331m;
+    public final q4.q f55332n;
+    public final androidx.mediarouter.app.f f55333o;
+    public final ComponentName f55334p;
+    public final boolean f55335q;
+    public volatile long f55336r;
+    public pe f55337s;
+    public int f55338t;
+    public final Bundle f55339u;
     public h9.i0 v;
-    public h9.i0 f54795w;
-    public j1 f54796x;
-    public e2.y0 f54797y;
+    public h9.i0 f55340w;
+    public l1 f55341x;
+    public e2.y0 f55342y;
 
     static {
         int i7;
@@ -56,11 +56,11 @@ public final class m0 extends android.support.v4.media.session.s {
         } else {
             i7 = 0;
         }
-        f54780z = i7;
+        f55325z = i7;
     }
 
-    public m0(p4.d0 r14, android.net.Uri r15, android.os.Handler r16, android.os.Bundle r17, boolean r18, h9.i0 r19, h9.i0 r20, p4.j1 r21, e2.y0 r22, android.os.Bundle r23) {
-        throw new UnsupportedOperationException("Method not decompiled: p4.m0.<init>(p4.d0, android.net.Uri, android.os.Handler, android.os.Bundle, boolean, h9.i0, h9.i0, p4.j1, e2.y0, android.os.Bundle):void");
+    public m0(p4.d0 r14, android.net.Uri r15, android.os.Handler r16, android.os.Bundle r17, boolean r18, h9.i0 r19, h9.i0 r20, p4.l1 r21, e2.y0 r22, android.os.Bundle r23) {
+        throw new UnsupportedOperationException("Method not decompiled: p4.m0.<init>(p4.d0, android.net.Uri, android.os.Handler, android.os.Bundle, boolean, h9.i0, h9.i0, p4.l1, e2.y0, android.os.Bundle):void");
     }
 
     public static void e0(q4.q qVar, ArrayList arrayList) {
@@ -73,15 +73,15 @@ public final class m0 extends android.support.v4.media.session.s {
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                long j3 = ((q4.o) obj).f55246b;
+                long j3 = ((q4.o) obj).f55820b;
                 if (hashSet.contains(Long.valueOf(j3))) {
                     h2.a.d("MediaSessionCompat", a8.p0.o(j3, "Found duplicate queue id: "), new IllegalArgumentException("id of each queue item should be unique"));
                 }
                 hashSet.add(Long.valueOf(j3));
             }
         }
-        q4.l lVar = (q4.l) qVar.f55252b;
-        MediaSession mediaSession = lVar.f55234a;
+        q4.l lVar = (q4.l) qVar.f55826b;
+        MediaSession mediaSession = lVar.f55808a;
         lVar.h = arrayList;
         if (arrayList == null) {
             mediaSession.setQueue(null);
@@ -93,10 +93,10 @@ public final class m0 extends android.support.v4.media.session.s {
             Object obj2 = arrayList.get(i7);
             i7++;
             q4.o oVar = (q4.o) obj2;
-            MediaSession.QueueItem queueItem = oVar.f55247c;
+            MediaSession.QueueItem queueItem = oVar.f55821c;
             if (queueItem == null) {
-                MediaSession.QueueItem queueItem2 = new MediaSession.QueueItem(oVar.f55245a.a(), oVar.f55246b);
-                oVar.f55247c = queueItem2;
+                MediaSession.QueueItem queueItem2 = new MediaSession.QueueItem(oVar.f55819a.a(), oVar.f55820b);
+                oVar.f55821c = queueItem2;
                 queueItem = queueItem2;
             }
             arrayList2.add(queueItem);
@@ -105,14 +105,14 @@ public final class m0 extends android.support.v4.media.session.s {
     }
 
     public static void f0(q4.q qVar, q4.i iVar) {
-        q4.l lVar = (q4.l) qVar.f55252b;
-        lVar.f55240i = iVar;
-        MediaSession mediaSession = lVar.f55234a;
-        Bundle bundle = iVar.f55230a;
-        if (iVar.f55231b == null) {
+        q4.l lVar = (q4.l) qVar.f55826b;
+        lVar.f55814i = iVar;
+        MediaSession mediaSession = lVar.f55808a;
+        Bundle bundle = iVar.f55804a;
+        if (iVar.f55805b == null) {
             MediaMetadata.Builder builder = new MediaMetadata.Builder();
             for (String str : bundle.keySet()) {
-                Integer num = (Integer) q4.i.f55229c.get(str);
+                Integer num = (Integer) q4.i.f55803c.get(str);
                 if (num == null) {
                     num = -1;
                 }
@@ -142,17 +142,17 @@ public final class m0 extends android.support.v4.media.session.s {
                     builder.putLong(str, bundle.getLong(str));
                 }
             }
-            iVar.f55231b = builder.build();
+            iVar.f55805b = builder.build();
         }
-        mediaSession.setMetadata(iVar.f55231b);
+        mediaSession.setMetadata(iVar.f55805b);
     }
 
     public static e2.l0 g0(String str, Uri uri, String str2, Bundle bundle) {
         e2.z zVar = new e2.z();
-        h9.g0 g0Var = h9.i0.f13686b;
-        s1 s1Var = s1.f13749e;
+        h9.g0 g0Var = h9.i0.f14006b;
+        t1 t1Var = t1.f14074e;
         List list = Collections.EMPTY_LIST;
-        s1 s1Var2 = s1.f13749e;
+        t1 t1Var2 = t1.f14074e;
         e2.e0 e0Var = new e2.e0();
         e2.h0 h0Var = e2.h0.d;
         if (str == null) {
@@ -160,8 +160,8 @@ public final class m0 extends android.support.v4.media.session.s {
         }
         String str3 = str;
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(21, false);
-        a0Var.f1713b = uri;
-        a0Var.f1714c = str2;
+        a0Var.f1704b = uri;
+        a0Var.f1705c = str2;
         a0Var.d = bundle;
         return new e2.l0(str3, new e2.a0(zVar), null, new e2.f0(e0Var), e2.o0.L, new e2.h0(a0Var));
     }
@@ -193,17 +193,17 @@ public final class m0 extends android.support.v4.media.session.s {
         if (hVar == null) {
             return;
         }
-        i0(20, new k8(7, this, hVar), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(20, new wc1(5, this, hVar), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override
     public final void F() {
-        i0(11, new g0(this, 5), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(11, new g0(this, 5), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override
     public final void G(long j3) {
-        i0(5, new f0(this, j3, 1), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(5, new f0(this, j3, 1), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override
@@ -214,9 +214,9 @@ public final class m0 extends android.support.v4.media.session.s {
         i0(13, new l0() {
             @Override
             public final void f(v vVar) {
-                m0.this.h.f54635t.d(f10);
+                m0.this.h.f55195t.d(f10);
             }
-        }, ((q4.l) this.f54787n.f55252b).c(), true);
+        }, ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override
@@ -231,38 +231,38 @@ public final class m0 extends android.support.v4.media.session.s {
             h2.a.l("MediaSessionLegacyStub", "Ignoring invalid RatingCompat " + yVar);
             return;
         }
-        j0(null, 40010, new g0(this, c10), ((q4.l) this.f54787n.f55252b).c());
+        j0(null, 40010, new g0(this, c10), ((q4.l) this.f55332n.f55826b).c());
     }
 
     @Override
     public final void M(int i7) {
-        i0(15, new i0(this, i7, 0), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(15, new i0(this, i7, 0), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override
     public final void P(int i7) {
-        i0(14, new i0(this, i7, 1), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(14, new i0(this, i7, 1), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override
     public final void S() {
-        boolean p02 = this.h.f54635t.p0(9);
-        q4.q qVar = this.f54787n;
+        boolean p02 = this.h.f55195t.p0(9);
+        q4.q qVar = this.f55332n;
         if (p02) {
-            i0(9, new g0(this, 10), ((q4.l) qVar.f55252b).c(), true);
+            i0(9, new g0(this, 10), ((q4.l) qVar.f55826b).c(), true);
         } else {
-            i0(8, new g0(this, 11), ((q4.l) qVar.f55252b).c(), true);
+            i0(8, new g0(this, 11), ((q4.l) qVar.f55826b).c(), true);
         }
     }
 
     @Override
     public final void V() {
-        boolean p02 = this.h.f54635t.p0(7);
-        q4.q qVar = this.f54787n;
+        boolean p02 = this.h.f55195t.p0(7);
+        q4.q qVar = this.f55332n;
         if (p02) {
-            i0(7, new g0(this, 2), ((q4.l) qVar.f55252b).c(), true);
+            i0(7, new g0(this, 2), ((q4.l) qVar.f55826b).c(), true);
         } else {
-            i0(6, new g0(this, 3), ((q4.l) qVar.f55252b).c(), true);
+            i0(6, new g0(this, 3), ((q4.l) qVar.f55826b).c(), true);
         }
     }
 
@@ -271,18 +271,18 @@ public final class m0 extends android.support.v4.media.session.s {
         if (j3 < 0) {
             return;
         }
-        i0(10, new f0(this, j3, 0), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(10, new f0(this, j3, 0), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override
     public final void b0() {
-        i0(3, new g0(this, 8), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(3, new g0(this, 8), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override
     public final void c(q4.h hVar) {
         if (hVar != null) {
-            i0(20, new r1(this, hVar, -1, 17), ((q4.l) this.f54787n.f55252b).c(), false);
+            i0(20, new r1(this, hVar, -1, 18), ((q4.l) this.f55332n.f55826b).c(), false);
         }
     }
 
@@ -290,7 +290,7 @@ public final class m0 extends android.support.v4.media.session.s {
     public final void d(q4.h hVar, int i7) {
         if (hVar != null) {
             if (i7 == -1 || i7 >= 0) {
-                i0(20, new r1(this, hVar, i7, 17), ((q4.l) this.f54787n.f55252b).c(), false);
+                i0(20, new r1(this, hVar, i7, 18), ((q4.l) this.f55332n.f55826b).c(), false);
             }
         }
     }
@@ -301,38 +301,38 @@ public final class m0 extends android.support.v4.media.session.s {
             return;
         }
         if (str.equals("androidx.media3.session.SESSION_COMMAND_REQUEST_SESSION3_TOKEN") && resultReceiver != null) {
-            n1 n1Var = this.h.f54625j;
-            n1Var.getClass();
-            String str2 = n1.f54808b;
+            p1 p1Var = this.h.f55185j;
+            p1Var.getClass();
+            String str2 = p1.f55389b;
             Bundle bundle2 = new Bundle();
-            o1 o1Var = n1Var.f54810a;
-            if (o1Var != null) {
+            q1 q1Var = p1Var.f55391a;
+            if (q1Var != null) {
                 bundle2.putInt(str2, 0);
             } else {
                 bundle2.putInt(str2, 1);
             }
-            String str3 = n1.f54809c;
-            o1Var.getClass();
+            String str3 = p1.f55390c;
+            q1Var.getClass();
             Bundle bundle3 = new Bundle();
-            bundle3.putInt(o1.f54820i, o1Var.f54830a);
-            bundle3.putInt(o1.f54821j, 0);
-            bundle3.putInt(o1.f54822k, o1Var.f54831b);
-            bundle3.putString(o1.f54823l, o1Var.d);
-            bundle3.putString(o1.f54824m, o1Var.f54833e);
-            bundle3.putBinder(o1.f54826o, o1Var.f54834f);
-            bundle3.putParcelable(o1.f54825n, null);
-            bundle3.putBundle(o1.f54827p, o1Var.f54835g);
-            bundle3.putInt(o1.f54828q, o1Var.f54832c);
-            MediaSession.Token token = o1Var.h;
+            bundle3.putInt(q1.f55397i, q1Var.f55407a);
+            bundle3.putInt(q1.f55398j, 0);
+            bundle3.putInt(q1.f55399k, q1Var.f55408b);
+            bundle3.putString(q1.f55400l, q1Var.d);
+            bundle3.putString(q1.f55401m, q1Var.f55410e);
+            bundle3.putBinder(q1.f55403o, q1Var.f55411f);
+            bundle3.putParcelable(q1.f55402n, null);
+            bundle3.putBundle(q1.f55404p, q1Var.f55412g);
+            bundle3.putInt(q1.f55405q, q1Var.f55409c);
+            MediaSession.Token token = q1Var.h;
             if (token != null) {
-                bundle3.putParcelable(o1.f54829r, token);
+                bundle3.putParcelable(q1.f55406r, token);
             }
             bundle2.putBundle(str3, bundle3);
             resultReceiver.send(0, bundle2);
             return;
         }
-        i1 i1Var = new i1(str, Bundle.EMPTY);
-        j0(i1Var, 0, new km(this, i1Var, bundle, resultReceiver), ((q4.l) this.f54787n.f55252b).c());
+        k1 k1Var = new k1(str, Bundle.EMPTY);
+        j0(k1Var, 0, new rm(this, k1Var, bundle, resultReceiver), ((q4.l) this.f55332n.f55826b).c());
     }
 
     @Override
@@ -342,10 +342,10 @@ public final class m0 extends android.support.v4.media.session.s {
 
     @Override
     public final void h() {
-        i0(12, new g0(this, 4), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(12, new g0(this, 4), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
-    public final q4.w h0(g1 g1Var) {
+    public final q4.w h0(i1 i1Var) {
         boolean z10;
         boolean z11;
         int i7;
@@ -359,13 +359,13 @@ public final class m0 extends android.support.v4.media.session.s {
         int i12;
         int i13;
         long j11;
-        e2.v0 W = g1Var.W();
-        if (g1Var.p0(16) && !g1Var.P0()) {
+        e2.v0 W = i1Var.W();
+        if (i1Var.p0(16) && !i1Var.P0()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (W == null && !h2.l0.c0(g1Var, this.f54790q)) {
+        if (W == null && !h2.l0.c0(i1Var, this.f55335q)) {
             z11 = false;
         } else {
             z11 = true;
@@ -373,11 +373,11 @@ public final class m0 extends android.support.v4.media.session.s {
         if (W != null) {
             i10 = 7;
         } else {
-            int i14 = n.f54804a;
-            if (g1Var.W() != null) {
+            int i14 = n.f55348a;
+            if (i1Var.W() != null) {
                 i7 = 7;
             } else {
-                int i15 = g1Var.i();
+                int i15 = i1Var.i();
                 if (i15 != 1) {
                     if (i15 != 2) {
                         if (i15 != 3) {
@@ -404,10 +404,10 @@ public final class m0 extends android.support.v4.media.session.s {
             }
             i10 = i7;
         }
-        e2.y0 a10 = cb.a(this.f54797y, g1Var.t());
+        e2.y0 a10 = jb.a(this.f55342y, i1Var.t());
         long j12 = 128;
-        for (int i16 = 0; i16 < a10.f10492a.f10378a.size(); i16++) {
-            int a11 = a10.f10492a.a(i16);
+        for (int i16 = 0; i16 < a10.f10810a.f10696a.size(); i16++) {
+            int a11 = a10.f10810a.a(i16);
             if (a11 != 1) {
                 if (a11 != 2) {
                     if (a11 != 3) {
@@ -462,10 +462,10 @@ public final class m0 extends android.support.v4.media.session.s {
             }
             j12 |= j11;
         }
-        if (!this.f54795w.isEmpty() && d.c(2, this.v)) {
+        if (!this.f55340w.isEmpty() && d.c(2, this.v)) {
             j12 &= -17;
         }
-        if (!this.f54795w.isEmpty() && d.c(3, this.v)) {
+        if (!this.f55340w.isEmpty() && d.c(3, this.v)) {
             j12 &= -33;
         }
         if (!z10) {
@@ -473,40 +473,40 @@ public final class m0 extends android.support.v4.media.session.s {
         }
         long j13 = j12;
         long j14 = -1;
-        if (g1Var.p0(17)) {
-            int o02 = g1Var.o0();
-            int i17 = n.f54804a;
+        if (i1Var.p0(17)) {
+            int o02 = i1Var.o0();
+            int i17 = n.f55348a;
             j3 = o02 == -1 ? -1L : o02;
         } else {
             j3 = -1;
         }
-        float f11 = g1Var.j().f10474a;
-        if (g1Var.h() && z10) {
+        float f11 = i1Var.j().f10792a;
+        if (i1Var.h() && z10) {
             f10 = f11;
         } else {
             f10 = 0.0f;
         }
         if (W != null) {
-            bundle = new Bundle(W.f10467c);
+            bundle = new Bundle(W.f10785c);
         } else {
             bundle = new Bundle();
         }
-        bundle.putAll(this.f54794u);
+        bundle.putAll(this.f55339u);
         bundle.putFloat("EXO_SPEED", f11);
-        e2.l0 S0 = g1Var.S0();
+        e2.l0 S0 = i1Var.S0();
         if (S0 != null) {
-            String str2 = S0.f10185a;
+            String str2 = S0.f10503a;
             if (!"".equals(str2)) {
                 bundle.putString("androidx.media.PlaybackStateCompat.Extras.KEY_MEDIA_ID", str2);
             }
         }
         if (z10) {
-            j10 = g1Var.l();
+            j10 = i1Var.l();
         } else {
             j10 = -1;
         }
         if (z10) {
-            j14 = g1Var.d0();
+            j14 = i1Var.d0();
         }
         ArrayList arrayList = new ArrayList();
         long j15 = j14;
@@ -514,21 +514,21 @@ public final class m0 extends android.support.v4.media.session.s {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         for (int i18 = 0; i18 < this.v.size(); i18++) {
             d dVar = (d) this.v.get(i18);
-            i1 i1Var = dVar.f54612a;
+            k1 k1Var = dVar.f55172a;
             Bundle bundle2 = dVar.d;
-            if (i1Var != null) {
-                Bundle bundle3 = i1Var.f54727c;
-                String str3 = i1Var.f54726b;
-                if (dVar.f54616f && i1Var.f54725a == 0) {
-                    j1 j1Var = this.f54796x;
-                    if ((i1Var != null && j1Var.f54753a.contains(i1Var)) || (((i13 = dVar.f54613b) != -1 && a10.a(i13)) || d.j(str3))) {
+            if (k1Var != null) {
+                Bundle bundle3 = k1Var.f55322c;
+                String str3 = k1Var.f55321b;
+                if (dVar.f55176f && k1Var.f55320a == 0) {
+                    l1 l1Var = this.f55341x;
+                    if ((k1Var != null && l1Var.f55324a.contains(k1Var)) || (((i13 = dVar.f55173b) != -1 && a10.a(i13)) || d.j(str3))) {
                         if (!bundle2.isEmpty()) {
                             bundle3 = new Bundle(bundle3);
                         }
                         if (!bundle2.isEmpty()) {
                             bundle3.putAll(bundle2);
                         }
-                        int i19 = dVar.f54614c;
+                        int i19 = dVar.f55174c;
                         if (!TextUtils.isEmpty(str3)) {
                             if (!TextUtils.isEmpty("")) {
                                 if (i19 != 0) {
@@ -547,8 +547,8 @@ public final class m0 extends android.support.v4.media.session.s {
             }
         }
         if (W != null) {
-            int i20 = n.f54804a;
-            int i21 = W.f10465a;
+            int i20 = n.f55348a;
+            int i21 = W.f10783a;
             if (i21 != -110) {
                 if (i21 != -109) {
                     if (i21 != -6) {
@@ -615,81 +615,81 @@ public final class m0 extends android.support.v4.media.session.s {
             h2.a.b("MediaSessionLegacyStub", "RemoteUserInfo is null, ignoring command=" + i7);
             return;
         }
-        h2.l0.W(d0Var.f54627l, new z9(this, i7, rVar, l0Var, z10));
+        h2.l0.W(d0Var.f55187l, new ca(this, i7, rVar, l0Var, z10));
     }
 
-    public final void j0(i1 i1Var, int i7, l0 l0Var, q4.r rVar) {
+    public final void j0(k1 k1Var, int i7, l0 l0Var, q4.r rVar) {
         if (rVar == null) {
             StringBuilder sb2 = new StringBuilder("RemoteUserInfo is null, ignoring command=");
-            Object obj = i1Var;
-            if (i1Var == null) {
+            Object obj = k1Var;
+            if (k1Var == null) {
                 obj = Integer.valueOf(i7);
             }
             sb2.append(obj);
             h2.a.b("MediaSessionLegacyStub", sb2.toString());
             return;
         }
-        h2.l0.W(this.h.f54627l, new ai.g1(this, i1Var, i7, rVar, l0Var, 26));
+        h2.l0.W(this.h.f55187l, new ai.g1(this, k1Var, i7, rVar, l0Var, 26));
     }
 
     @Override
     public final void k() {
-        i0(1, new g0(this, 12), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(1, new g0(this, 12), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     public final void l0(e2.l0 l0Var, boolean z10, boolean z11) {
-        i0(31, new z(this, l0Var, z10, z11), ((q4.l) this.f54787n.f55252b).c(), false);
+        i0(31, new z(this, l0Var, z10, z11), ((q4.l) this.f55332n.f55826b).c(), false);
     }
 
     public final v m0(q4.r rVar) {
-        v p10 = this.f54781g.p(rVar);
-        if (p10 == null) {
-            v vVar = new v(rVar, 0, 0, this.f54782i.b(rVar), new k0(rVar), Bundle.EMPTY);
+        v r10 = this.f55326g.r(rVar);
+        if (r10 == null) {
+            v vVar = new v(rVar, 0, 0, this.f55327i.b(rVar), new k0(rVar), Bundle.EMPTY);
             t m10 = this.h.m(vVar);
-            this.f54781g.b(rVar, vVar, m10.f54863a, m10.f54864b);
+            this.f55326g.b(rVar, vVar, m10.f55434a, m10.f55435b);
             d0 d0Var = this.h;
-            if (!d0Var.f54638x || !d0.k(vVar)) {
-                d0Var.f54621e.getClass();
+            if (!d0Var.f55198x || !d0.k(vVar)) {
+                d0Var.f55181e.getClass();
             }
-            p10 = vVar;
+            r10 = vVar;
         }
-        android.support.v4.media.session.q qVar = this.f54784k;
-        long j3 = this.f54791r;
-        qVar.removeMessages(1001, p10);
-        qVar.sendMessageDelayed(qVar.obtainMessage(1001, p10), j3);
-        return p10;
+        android.support.v4.media.session.q qVar = this.f55329k;
+        long j3 = this.f55336r;
+        qVar.removeMessages(1001, r10);
+        qVar.sendMessageDelayed(qVar.obtainMessage(1001, r10), j3);
+        return r10;
     }
 
     @Override
     public final void n() {
-        i0(1, new g0(this, 6), ((q4.l) this.f54787n.f55252b).c(), false);
+        i0(1, new g0(this, 6), ((q4.l) this.f55332n.f55826b).c(), false);
     }
 
     public final void n0() {
         b bVar;
         int i7;
-        h9.i0 i0Var = this.f54795w;
-        j1 j1Var = this.f54796x;
-        e2.y0 y0Var = this.f54797y;
+        h9.i0 i0Var = this.f55340w;
+        l1 l1Var = this.f55341x;
+        e2.y0 y0Var = this.f55342y;
         String str = d.h;
         ?? b0Var = new h9.b0(4);
         for (int i10 = 0; i10 < i0Var.size(); i10++) {
             d dVar = (d) i0Var.get(i10);
-            i1 i1Var = dVar.f54612a;
-            if ((i1Var != null && j1Var.f54753a.contains(i1Var)) || ((i7 = dVar.f54613b) != -1 && y0Var.a(i7))) {
+            k1 k1Var = dVar.f55172a;
+            if ((k1Var != null && l1Var.f55324a.contains(k1Var)) || ((i7 = dVar.f55173b) != -1 && y0Var.a(i7))) {
                 b0Var.c(dVar);
             } else {
-                if (dVar.f54616f) {
-                    dVar = new d(dVar.f54612a, dVar.f54613b, dVar.f54614c, new Bundle(dVar.d), false, dVar.f54615e, dVar.f54617g);
+                if (dVar.f55176f) {
+                    dVar = new d(dVar.f55172a, dVar.f55173b, dVar.f55174c, new Bundle(dVar.d), false, dVar.f55175e, dVar.f55177g);
                 }
                 b0Var.c(dVar);
             }
         }
         this.v = d.g(b0Var.f());
-        boolean z10 = this.f54785l;
-        Bundle bundle = this.f54794u;
+        boolean z10 = this.f55330l;
+        Bundle bundle = this.f55339u;
         boolean z11 = true;
-        if (!z10 || ((bVar = this.f54786m) != null && bVar.f54586e.get())) {
+        if (!z10 || ((bVar = this.f55331m) != null && bVar.f55155e.get())) {
             bundle.putBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", !d.c(2, this.v));
             bundle.putBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", !d.c(3, this.v));
             return;
@@ -699,18 +699,18 @@ public final class m0 extends android.support.v4.media.session.s {
     }
 
     public final void o0() {
-        Bundle bundle = this.f54794u;
+        Bundle bundle = this.f55339u;
         boolean z10 = bundle.getBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", false);
         boolean z11 = bundle.getBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", false);
         n0();
         if (bundle.getBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", false) == z10 && bundle.getBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", false) == z11) {
             return;
         }
-        ((q4.l) this.f54787n.f55252b).f55234a.setExtras(bundle);
+        ((q4.l) this.f55332n.f55826b).f55808a.setExtras(bundle);
     }
 
-    public final void p0(g1 g1Var) {
-        h2.l0.W(this.h.f54627l, new h0(this, g1Var, 1));
+    public final void p0(i1 i1Var) {
+        h2.l0.W(this.h.f55187l, new h0(this, i1Var, 1));
     }
 
     @Override
@@ -730,7 +730,7 @@ public final class m0 extends android.support.v4.media.session.s {
 
     @Override
     public final void w() {
-        i0(2, new g0(this, 7), ((q4.l) this.f54787n.f55252b).c(), true);
+        i0(2, new g0(this, 7), ((q4.l) this.f55332n.f55826b).c(), true);
     }
 
     @Override

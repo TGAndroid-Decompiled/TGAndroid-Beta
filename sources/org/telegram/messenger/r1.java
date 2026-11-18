@@ -20,50 +20,50 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class r1 implements f5.o, f5.c {
-    public static final f5.p f26193k;
-    public static f5.m f26194l;
-    public static r1 f26195m;
-    public static boolean f26196n;
-    public static NumberFormat f26197o;
+    public static final f5.p f26525k;
+    public static f5.m f26526l;
+    public static r1 f26527m;
+    public static boolean f26528n;
+    public static NumberFormat f26529o;
     public final f5.b d;
-    public String f26201e;
-    public String f26202f;
-    public boolean f26203g;
+    public String f26533e;
+    public String f26534f;
+    public boolean f26535g;
     public Runnable h;
-    public final HashMap f26198a = new HashMap();
-    public final Set f26199b = Collections.newSetFromMap(new ConcurrentHashMap());
-    public final HashMap f26200c = new HashMap();
-    public final ArrayList f26204i = new ArrayList();
-    public int f26205j = 0;
+    public final HashMap f26530a = new HashMap();
+    public final Set f26531b = Collections.newSetFromMap(new ConcurrentHashMap());
+    public final HashMap f26532c = new HashMap();
+    public final ArrayList f26536i = new ArrayList();
+    public int f26537j = 0;
 
     static {
         f5.a aVar = new f5.a();
-        aVar.f10926c = "subs";
-        aVar.f10925b = "telegram_premium";
-        f26193k = aVar.a();
+        aVar.f11248c = "subs";
+        aVar.f11247b = "telegram_premium";
+        f26525k = aVar.a();
     }
 
     public r1(Context context) {
         f5.b bVar;
         androidx.emoji2.text.f fVar = new androidx.emoji2.text.f(context);
-        fVar.f2250a = new w7.s(8);
-        fVar.f2252c = this;
+        fVar.f2241a = new w7.s(8);
+        fVar.f2243c = this;
         if (context != null) {
-            if (((r1) fVar.f2252c) != null) {
-                if (((w7.s) fVar.f2250a) != null) {
-                    ((w7.s) fVar.f2250a).getClass();
-                    if (((r1) fVar.f2252c) != null) {
-                        w7.s sVar = (w7.s) fVar.f2250a;
-                        r1 r1Var = (r1) fVar.f2252c;
+            if (((r1) fVar.f2243c) != null) {
+                if (((w7.s) fVar.f2241a) != null) {
+                    ((w7.s) fVar.f2241a).getClass();
+                    if (((r1) fVar.f2243c) != null) {
+                        w7.s sVar = (w7.s) fVar.f2241a;
+                        r1 r1Var = (r1) fVar.f2243c;
                         if (fVar.a()) {
-                            bVar = new f5.x(sVar, context, r1Var, fVar);
+                            bVar = new f5.w(sVar, context, r1Var, fVar);
                         } else {
                             bVar = new f5.b(sVar, context, r1Var, fVar);
                         }
                     } else {
-                        w7.s sVar2 = (w7.s) fVar.f2250a;
+                        w7.s sVar2 = (w7.s) fVar.f2241a;
                         if (fVar.a()) {
-                            bVar = new f5.x(sVar2, context, fVar);
+                            bVar = new f5.w(sVar2, context, fVar);
                         } else {
                             bVar = new f5.b(sVar2, context, fVar);
                         }
@@ -81,37 +81,37 @@ public final class r1 implements f5.o, f5.c {
     public static void c(r1 r1Var, f5.f fVar, List list) {
         long j3;
         a8.b("Billing: Query product details finished " + fVar + ", " + list);
-        if (fVar.f10978a == 0) {
+        if (fVar.f11286a == 0) {
             Iterator it = list.iterator();
             while (it.hasNext()) {
                 f5.m mVar = (f5.m) it.next();
-                if (mVar.f10996c.equals("telegram_premium")) {
-                    f26194l = mVar;
+                if (mVar.f11304c.equals("telegram_premium")) {
+                    f26526l = mVar;
                 }
             }
-            if (f26194l == null) {
+            if (f26526l == null) {
                 r();
                 return;
             }
-            boolean z10 = f26196n;
-            int i7 = ns.f25521j5;
+            boolean z10 = f26528n;
+            int i7 = ks.f25151l5;
             if (z10) {
-                f26196n = false;
-                ns.e().m(i7, new Object[0]);
+                f26528n = false;
+                ks.e().m(i7, new Object[0]);
             }
-            ns.e().m(i7, new Object[0]);
+            ks.e().m(i7, new Object[0]);
             return;
         }
         r();
-        int i10 = r1Var.f26205j - 1;
-        r1Var.f26205j = i10;
+        int i10 = r1Var.f26537j - 1;
+        r1Var.f26537j = i10;
         if (i10 > 0) {
             if (i10 == 2) {
                 j3 = 1000;
             } else {
                 j3 = 10000;
             }
-            g0.i3(new k1(r1Var, 0), j3);
+            g0.h3(new k1(r1Var, 0), j3);
         }
     }
 
@@ -124,19 +124,19 @@ public final class r1 implements f5.o, f5.c {
             } else {
                 Currency currency = Currency.getInstance(str);
                 if (currency != null) {
-                    if (f26197o == null) {
-                        f26197o = NumberFormat.getCurrencyInstance();
+                    if (f26529o == null) {
+                        f26529o = NumberFormat.getCurrencyInstance();
                     }
-                    f26197o.setCurrency(currency);
+                    f26529o.setCurrency(currency);
                     if (z10) {
-                        f26197o.setMaximumFractionDigits(0);
-                        f26197o.setMinimumFractionDigits(0);
-                        return f26197o.format(Math.round(j3 / Math.pow(10.0d, i7)));
+                        f26529o.setMaximumFractionDigits(0);
+                        f26529o.setMinimumFractionDigits(0);
+                        return f26529o.format(Math.round(j3 / Math.pow(10.0d, i7)));
                     }
                     int defaultFractionDigits = currency.getDefaultFractionDigits();
-                    f26197o.setMinimumFractionDigits(defaultFractionDigits);
-                    f26197o.setMaximumFractionDigits(defaultFractionDigits);
-                    return f26197o.format(j3 / Math.pow(10.0d, i7));
+                    f26529o.setMinimumFractionDigits(defaultFractionDigits);
+                    f26529o.setMaximumFractionDigits(defaultFractionDigits);
+                    return f26529o.format(j3 / Math.pow(10.0d, i7));
                 }
                 return j3 + " " + str;
             }
@@ -145,10 +145,10 @@ public final class r1 implements f5.o, f5.c {
     }
 
     public static r1 i() {
-        if (f26195m == null) {
-            f26195m = new r1(t0.f26609b);
+        if (f26527m == null) {
+            f26527m = new r1(t0.f26915b);
         }
-        return f26195m;
+        return f26527m;
     }
 
     public static String j(int i7) {
@@ -186,34 +186,34 @@ public final class r1 implements f5.o, f5.c {
     }
 
     public static void r() {
-        if (f26196n) {
+        if (f26528n) {
             return;
         }
-        f26196n = true;
-        ns.e().m(ns.f25521j5, new Object[0]);
+        f26528n = true;
+        ks.e().m(ks.f25151l5, new Object[0]);
     }
 
     @Override
     public final void a(f5.f fVar) {
         a8.b("Billing: Setup finished with result " + fVar);
-        if (fVar.f10978a == 0) {
-            this.f26203g = false;
-            this.f26205j = 3;
+        if (fVar.f11286a == 0) {
+            this.f26535g = false;
+            this.f26537j = 3;
             try {
-                o(Collections.singletonList(f26193k), new p1(this));
+                o(Collections.singletonList(f26525k), new p1(this));
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
             p("inapp", new p1(this));
             p("subs", new p1(this));
-            ArrayList arrayList = this.f26204i;
+            ArrayList arrayList = this.f26536i;
             if (!arrayList.isEmpty()) {
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                    g0.h3((Runnable) arrayList.get(i7));
+                    g0.g3((Runnable) arrayList.get(i7));
                 }
                 arrayList.clear();
             }
-        } else if (!this.f26203g) {
+        } else if (!this.f26535g) {
             r();
         }
     }
@@ -222,17 +222,17 @@ public final class r1 implements f5.o, f5.c {
     public final void b() {
         int i7;
         a8.b("Billing: Service disconnected");
-        if (this.f26203g) {
+        if (this.f26535g) {
             i7 = 15000;
         } else {
             i7 = 5000;
         }
-        this.f26203g = true;
-        g0.i3(new k1(this, 1), i7);
+        this.f26535g = true;
+        g0.h3(new k1(this, 1), i7);
     }
 
     public final void d(String str, q0.a aVar) {
-        this.f26198a.put(str, aVar);
+        this.f26530a.put(str, aVar);
     }
 
     public final void e(Purchase purchase, TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose, Runnable runnable) {
@@ -243,7 +243,7 @@ public final class r1 implements f5.o, f5.c {
         String c10 = purchase.c();
         if (c10 != null) {
             ?? obj = new Object();
-            obj.f10981a = c10;
+            obj.f11289a = c10;
             this.d.a(obj, new i(inputStorePaymentPurpose, purchase, runnable));
             return;
         }
@@ -255,7 +255,7 @@ public final class r1 implements f5.o, f5.c {
     }
 
     public final int h(String str) {
-        HashMap hashMap = this.f26200c;
+        HashMap hashMap = this.f26532c;
         bg.b.a(hashMap);
         return ((Integer) Map.EL.getOrDefault(hashMap, str, 0)).intValue();
     }
@@ -277,8 +277,8 @@ public final class r1 implements f5.o, f5.c {
                 a8.b("BillingController.launchBillingFlow, checking consumables");
                 p("inapp", new f5.n() {
                     @Override
-                    public final void f(f5.f r14, java.util.List r15) {
-                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.l1.f(f5.f, java.util.List):void");
+                    public final void b(f5.f r14, java.util.List r15) {
+                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.l1.b(f5.f, java.util.List):void");
                     }
                 });
                 return;
@@ -286,14 +286,14 @@ public final class r1 implements f5.o, f5.c {
             if (z10) {
                 a8.b("BillingController.launchBillingFlow, consumables checked, launching flow...");
             }
-            boolean p10 = m10.i(cVar.f22782a).p();
+            boolean p10 = j10.i(cVar.f23221a).p();
             boolean z11 = false;
             if (p10) {
-                encodeToString = Base64.encodeToString(String.valueOf(m10.i(cVar.f22782a).e()).getBytes(g9.j.f12938a), 0);
+                encodeToString = Base64.encodeToString(String.valueOf(j10.i(cVar.f23221a).e()).getBytes(g9.j.f13255a), 0);
             } else {
-                encodeToString = Base64.encodeToString(("account-" + cVar.f22782a).getBytes(g9.j.f12938a), 0);
+                encodeToString = Base64.encodeToString(("account-" + cVar.f23221a).getBytes(g9.j.f13255a), 0);
             }
-            long nextLong = Utilities.f22414b.nextLong();
+            long nextLong = Utilities.f22780b.nextLong();
             a8.b("BillingUtilities.savePurpose id=" + nextLong + " paymentPurpose=" + inputStorePaymentPurpose);
             SerializedData serializedData = new SerializedData(8);
             serializedData.writeInt64(nextLong);
@@ -301,38 +301,38 @@ public final class r1 implements f5.o, f5.c {
             serializedData.cleanup();
             a8.b("BillingUtilities.savePurpose id_hex=" + f10 + " paymentPurpose=" + inputStorePaymentPurpose);
             ?? tLObject = new TLObject();
-            tLObject.f3191b = nextLong;
-            tLObject.f3190a = 1;
-            tLObject.f3192c = inputStorePaymentPurpose;
+            tLObject.f3185b = nextLong;
+            tLObject.f3184a = 1;
+            tLObject.f3186c = inputStorePaymentPurpose;
             SerializedData serializedData2 = new SerializedData(tLObject.getObjectSize());
             tLObject.serializeToStream(serializedData2);
             String f11 = Utilities.f(serializedData2.toByteArray());
             serializedData2.cleanup();
             if (tLObject.getObjectSize() > 28) {
                 a8.b("BillingUtilities.savePurpose: sending short version, original size is " + tLObject.getObjectSize() + " bytes");
-                tLObject.f3190a = 0;
-                tLObject.f3192c = null;
+                tLObject.f3184a = 0;
+                tLObject.f3186c = null;
             }
             SerializedData serializedData3 = new SerializedData(tLObject.getObjectSize());
             tLObject.serializeToStream(serializedData3);
             String f12 = Utilities.f(serializedData3.toByteArray());
             serializedData3.cleanup();
-            t0.f26609b.getSharedPreferences("purchases", 0).edit().putString(f10, f11).apply();
+            t0.f26915b.getSharedPreferences("purchases", 0).edit().putString(f10, f11).apply();
             a8.b("BillingUtilities.savePurpose: saved {" + f11 + "} under " + f10);
             StringBuilder sb2 = new StringBuilder("BillingUtilities.savePurpose: but sending {");
             sb2.append(f12);
             sb2.append("}");
             a8.b(sb2.toString());
             ?? obj = new Object();
-            obj.f3347b = 0;
-            obj.f3346a = true;
+            obj.f3354b = 0;
+            obj.f3353a = true;
             ArrayList arrayList = new ArrayList(list);
-            bg.v0 v0Var = obj;
+            bg.w0 w0Var = obj;
             if (y0Var != null) {
                 ?? obj2 = new Object();
-                obj2.f3348c = y0Var.f6685c;
-                obj2.f3347b = y0Var.f6684b;
-                v0Var = obj2;
+                obj2.f3355c = y0Var.f6968c;
+                obj2.f3354b = y0Var.f6967b;
+                w0Var = obj2;
             }
             f5.b bVar = this.d;
             boolean isEmpty = arrayList.isEmpty();
@@ -347,37 +347,37 @@ public final class r1 implements f5.o, f5.c {
                     }
                 }
                 ?? obj4 = new Object();
-                if (!isEmpty && !((f5.d) arrayList.get(0)).f10971a.f10995b.optString("packageName").isEmpty()) {
+                if (!isEmpty && !((f5.d) arrayList.get(0)).f11279a.f11303b.optString("packageName").isEmpty()) {
                     z11 = true;
                 }
-                obj4.f10973a = z11;
-                obj4.f10974b = encodeToString;
-                obj4.f10975c = f12;
+                obj4.f11281a = z11;
+                obj4.f11282b = encodeToString;
+                obj4.f11283c = f12;
                 boolean z12 = true;
-                if (TextUtils.isEmpty((String) v0Var.f3348c) && TextUtils.isEmpty(null)) {
+                if (TextUtils.isEmpty((String) w0Var.f3355c) && TextUtils.isEmpty(null)) {
                     z12 = false;
                 }
                 boolean isEmpty2 = TextUtils.isEmpty(null);
                 if (z12 && !isEmpty2) {
                     throw new IllegalArgumentException("Please provide Old SKU purchase information(token/id) or original external transaction id, not both.");
                 }
-                if (!v0Var.f3346a && !z12 && isEmpty2) {
+                if (!w0Var.f3353a && !z12 && isEmpty2) {
                     throw new IllegalArgumentException("Old SKU purchase information(token/id) or original external transaction id must be provided.");
                 }
                 com.google.android.gms.internal.clearcut.y0 y0Var2 = new com.google.android.gms.internal.clearcut.y0(2);
-                y0Var2.f6685c = (String) v0Var.f3348c;
-                y0Var2.f6684b = v0Var.f3347b;
+                y0Var2.f6968c = (String) w0Var.f3355c;
+                y0Var2.f6967b = w0Var.f3354b;
                 obj4.d = y0Var2;
-                obj4.f10977f = new ArrayList();
-                obj4.f10976e = com.google.android.gms.internal.play_billing.r.p(arrayList);
-                int i10 = bVar.b(activity, obj4).f10978a;
+                obj4.f11285f = new ArrayList();
+                obj4.f11284e = com.google.android.gms.internal.play_billing.r.p(arrayList);
+                int i10 = bVar.b(activity, obj4).f11286a;
                 if (i10 != 0) {
                     StringBuilder sb3 = new StringBuilder("Billing: Launch Error: ");
                     sb3.append(i10);
                     sb3.append(", ");
                     sb3.append(encodeToString);
                     sb3.append(", ");
-                    org.telegram.ui.Cells.y0.t(f12, sb3);
+                    p5.c.s(f12, sb3);
                     return;
                 }
                 return;
@@ -386,27 +386,27 @@ public final class r1 implements f5.o, f5.c {
         }
     }
 
-    public final void n(f5.f r19, java.util.List r20, final org.telegram.messenger.mg r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.r1.n(f5.f, java.util.List, org.telegram.messenger.mg):void");
+    public final void n(f5.f r19, java.util.List r20, final org.telegram.messenger.yf r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.r1.n(f5.f, java.util.List, org.telegram.messenger.yf):void");
     }
 
     public final void o(List list, q1 q1Var) {
         if (k()) {
-            ob.c cVar = new ob.c(18);
+            cb.c cVar = new cb.c(19);
             if (list != null && !list.isEmpty()) {
                 HashSet hashSet = new HashSet();
                 Iterator it = list.iterator();
                 while (it.hasNext()) {
                     f5.p pVar = (f5.p) it.next();
-                    if (!"play_pass_subs".equals(pVar.f11002b)) {
-                        hashSet.add(pVar.f11002b);
+                    if (!"play_pass_subs".equals(pVar.f11310b)) {
+                        hashSet.add(pVar.f11310b);
                     }
                 }
                 if (hashSet.size() <= 1) {
                     com.google.android.gms.internal.play_billing.r p10 = com.google.android.gms.internal.play_billing.r.p(list);
-                    cVar.f21417b = p10;
+                    cVar.f5154b = p10;
                     if (p10 != null) {
-                        this.d.c(new cb.c(cVar), new j1(q1Var, 0));
+                        this.d.c(new d6.i(cVar), new j1(q1Var, 0));
                         return;
                     }
                     throw new IllegalArgumentException("Product list must be set to a non empty list.");
@@ -423,17 +423,17 @@ public final class r1 implements f5.o, f5.c {
         bVar.getClass();
         if (f5.b.f(new f5.r(bVar, nVar, str), 30000L, new m9.u(17, bVar, nVar), bVar.r(), bVar.e()) == null) {
             f5.f u10 = bVar.u();
-            bVar.y(25, 9, u10);
-            com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f6834b;
-            nVar.f(u10, com.google.android.gms.internal.play_billing.v.f6861e);
+            bVar.z(25, 9, u10);
+            com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7117b;
+            nVar.b(u10, com.google.android.gms.internal.play_billing.v.f7144e);
         }
     }
 
     public final void q() {
         if (!k()) {
             try {
-                bg.b.a(this.f26200c);
-                if (!r2.b()) {
+                bg.b.a(this.f26532c);
+                if (!s2.b()) {
                     this.d.d(this);
                 }
             } catch (Exception e10) {

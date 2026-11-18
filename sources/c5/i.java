@@ -5,50 +5,50 @@ import m.d2;
 import m.y2;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.lw0;
-import org.telegram.ui.pu0;
+import org.telegram.ui.ow0;
+import org.telegram.ui.ru0;
 public final class i extends DataSetObserver {
-    public final int f4144a;
-    public final Object f4145b;
+    public final int f4425a;
+    public final Object f4426b;
 
     public i(Object obj, int i7) {
-        this.f4144a = i7;
-        this.f4145b = obj;
+        this.f4425a = i7;
+        this.f4426b = obj;
     }
 
     @Override
     public final void onChanged() {
-        switch (this.f4144a) {
+        switch (this.f4425a) {
             case 0:
-                ((l) this.f4145b).f();
+                ((l) this.f4426b).f();
                 return;
             case 1:
-                y2 y2Var = (y2) this.f4145b;
-                y2Var.f15595a = true;
+                y2 y2Var = (y2) this.f4426b;
+                y2Var.f15913a = true;
                 y2Var.notifyDataSetChanged();
                 return;
             case 2:
-                d2 d2Var = (d2) this.f4145b;
+                d2 d2Var = (d2) this.f4426b;
                 if (d2Var.P.isShowing()) {
                     d2Var.g();
                     return;
                 }
                 return;
             default:
-                lw0 lw0Var = (lw0) this.f4145b;
-                ProfileActivity profileActivity = lw0Var.f49051n;
-                int realCount = profileActivity.f43161o0.getRealCount();
+                ow0 ow0Var = (ow0) this.f4426b;
+                ProfileActivity profileActivity = ow0Var.f50677n;
+                int realCount = profileActivity.f43607o0.getRealCount();
                 if (profileActivity.B0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.F) {
                     profileActivity.B0 = 1;
                 }
-                lw0Var.a(false);
-                lw0Var.b(1.0f);
-                if (profileActivity.f43182r0 != null) {
+                ow0Var.a(false);
+                ow0Var.b(1.0f);
+                if (profileActivity.f43628r0 != null) {
                     if (profileActivity.T0.y()) {
-                        g0.i3(new pu0(lw0Var, 4), 500L);
+                        g0.h3(new ru0(ow0Var, 4), 500L);
                         return;
                     } else {
-                        lw0Var.c();
+                        ow0Var.c();
                         return;
                     }
                 }
@@ -58,17 +58,17 @@ public final class i extends DataSetObserver {
 
     @Override
     public void onInvalidated() {
-        switch (this.f4144a) {
+        switch (this.f4425a) {
             case 0:
-                ((l) this.f4145b).f();
+                ((l) this.f4426b).f();
                 return;
             case 1:
-                y2 y2Var = (y2) this.f4145b;
-                y2Var.f15595a = false;
+                y2 y2Var = (y2) this.f4426b;
+                y2Var.f15913a = false;
                 y2Var.notifyDataSetInvalidated();
                 return;
             case 2:
-                ((d2) this.f4145b).dismiss();
+                ((d2) this.f4426b).dismiss();
                 return;
             default:
                 super.onInvalidated();

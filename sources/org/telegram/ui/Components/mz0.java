@@ -1,16 +1,95 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class mz0 extends v4.t0 {
-    public final ThemeEditorView.EditorAlert f37415a;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.TextureView;
+import android.view.View;
+import java.util.ArrayList;
+public final class mz0 extends TextureView {
+    public static Boolean f37674f;
+    public kz0 f37675a;
+    public final gz0 f37676b;
+    public final ArrayList f37677c;
+    public Runnable d;
+    public boolean f37678e;
 
-    public mz0(ThemeEditorView.EditorAlert editorAlert) {
-        this.f37415a = editorAlert;
+    public mz0(Context context, Runnable runnable) {
+        super(context);
+        this.f37676b = new gz0(this, 0);
+        this.f37677c = new ArrayList();
+        this.d = runnable;
+        setOpaque(false);
+        setSurfaceTextureListener(new h40(this, 1));
     }
 
-    @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        ThemeEditorView.EditorAlert.I0(this.f37415a);
+    public static void b(Runnable runnable) {
+        if (runnable == null) {
+            return;
+        }
+        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+            org.telegram.messenger.g0.g3(runnable);
+        } else {
+            runnable.run();
+        }
+    }
+
+    public static boolean c() {
+        if (f37674f == null) {
+            f37674f = Boolean.valueOf(org.telegram.messenger.mp.g1().getBoolean("nothanos", false));
+        }
+        Boolean bool = f37674f;
+        if (bool != null && bool.booleanValue()) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void a(View view) {
+        int i7 = 0;
+        int i10 = 0;
+        boolean z10 = false;
+        while (true) {
+            ArrayList arrayList = this.f37677c;
+            if (i10 >= arrayList.size()) {
+                break;
+            }
+            lz0 lz0Var = (lz0) arrayList.get(i10);
+            if (lz0Var.f37272a == view) {
+                Runnable runnable = lz0Var.d;
+                if (runnable != null) {
+                    b(runnable);
+                    lz0Var.d = null;
+                }
+                arrayList.remove(i10);
+                i10--;
+                z10 = true;
+            }
+            i10++;
+        }
+        if (!z10) {
+            kz0 kz0Var = this.f37675a;
+            ArrayList arrayList2 = kz0Var.X;
+            if (kz0Var.f36922b.get()) {
+                Handler handler = kz0Var.getHandler();
+                if (handler == null) {
+                    while (i7 < arrayList2.size()) {
+                        jz0 jz0Var = (jz0) arrayList2.get(i7);
+                        if (jz0Var.f36562a.contains(view)) {
+                            Runnable runnable2 = jz0Var.f36566f;
+                            if (runnable2 != null) {
+                                b(runnable2);
+                                jz0Var.f36566f = null;
+                            }
+                            arrayList2.remove(i7);
+                            i7--;
+                        }
+                        i7++;
+                    }
+                    return;
+                }
+                handler.sendMessage(handler.obtainMessage(5, view));
+            }
+        }
     }
 }

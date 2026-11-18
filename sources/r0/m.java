@@ -2,5 +2,5 @@ package r0;
 
 import android.view.View;
 public interface m {
-    k1 M0(View view, k1 k1Var);
+    l1 P0(View view, l1 l1Var);
 }

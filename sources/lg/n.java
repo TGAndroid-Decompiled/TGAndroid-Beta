@@ -9,7 +9,7 @@ import android.text.TextPaint;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import ch.v;
+import ch.w;
 import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 import org.telegram.messenger.g0;
@@ -33,10 +33,10 @@ public final class n extends q {
     @Override
     public final void A(boolean z10, boolean z11, boolean z12) {
         super.A(z10, z11, z12);
-        mg.b bVar = this.f19439i0;
-        if (bVar != null && ((mg.e) bVar).f20621b != null) {
-            j jVar = this.f19437h0;
-            N(jVar.f19479k, jVar.f19480l, z11);
+        mg.b bVar = this.f19806i0;
+        if (bVar != null && ((mg.e) bVar).f20985b != null) {
+            j jVar = this.f19804h0;
+            N(jVar.f19846k, jVar.f19847l, z11);
         }
     }
 
@@ -46,7 +46,7 @@ public final class n extends q {
         double d;
         double d2;
         RectF rectF = this.O1;
-        if (this.f19439i0 != null && !this.M1) {
+        if (this.f19806i0 != null && !this.M1) {
             RectF rectF2 = this.I0;
             float degrees = (float) (Math.toDegrees(Math.atan2((rectF2.centerY() + g0.L(16.0f)) - i10, rectF2.centerX() - i7)) - 90.0d);
             float f10 = 0.0f;
@@ -60,7 +60,7 @@ public final class n extends q {
             while (true) {
                 arrayList = this.d;
                 if (i12 < arrayList.size()) {
-                    if (((o) arrayList.get(i12)).f21149n || ((o) arrayList.get(i12)).f21150o != 0.0f) {
+                    if (((o) arrayList.get(i12)).f21513n || ((o) arrayList.get(i12)).f21514o != 0.0f) {
                         if (f11 > f12) {
                             float f13 = this.K1[i12] + f12;
                             if (f11 < f13) {
@@ -83,8 +83,8 @@ public final class n extends q {
                 this.T1.setVisibility(0);
                 ng.f fVar = (ng.f) arrayList.get(i12);
                 ng.g gVar = this.T1;
-                String str = fVar.f21138a.d;
-                int i13 = fVar.f21148m;
+                String str = fVar.f21502a.d;
+                int i13 = fVar.f21512m;
                 gVar.N.setText(str);
                 TextView textView = gVar.O;
                 textView.setText(Integer.toString((int) this.J1[this.N1]));
@@ -101,9 +101,9 @@ public final class n extends q {
                 int min2 = ((int) Math.min(rectF.centerY(), (int) Math.min((Math.sin(Math.toRadians(d2)) * width) + rectF.centerY(), (Math.sin(Math.toRadians(d)) * width) + rectF.centerY()))) - g0.L(50.0f);
                 this.T1.setTranslationX(i11);
                 this.T1.setTranslationY(min2);
-                g0.b4(this);
+                g0.a4(this);
             }
-            x((this.H0 * this.f19437h0.f19479k) - g.l1);
+            x((this.H0 * this.f19804h0.f19846k) - g.l1);
         }
     }
 
@@ -122,33 +122,33 @@ public final class n extends q {
     @Override
     public final void J(mg.b bVar, long j3) {
         float length;
-        int length2 = bVar.f20620a.length;
+        int length2 = bVar.f20984a.length;
         long j10 = j3 - (j3 % 86400000);
         int i7 = 0;
         for (int i10 = 0; i10 < length2; i10++) {
-            if (j10 >= bVar.f20620a[i10]) {
+            if (j10 >= bVar.f20984a[i10]) {
                 i7 = i10;
             }
         }
-        if (bVar.f20621b.length < 2) {
+        if (bVar.f20985b.length < 2) {
             length = 0.5f;
         } else {
-            length = 1.0f / bVar.f20620a.length;
+            length = 1.0f / bVar.f20984a.length;
         }
-        j jVar = this.f19437h0;
+        j jVar = this.f19804h0;
         if (i7 == 0) {
-            jVar.f19479k = 0.0f;
-            jVar.f19480l = length;
-        } else if (i7 >= bVar.f20620a.length - 1) {
-            jVar.f19479k = 1.0f - length;
-            jVar.f19480l = 1.0f;
+            jVar.f19846k = 0.0f;
+            jVar.f19847l = length;
+        } else if (i7 >= bVar.f20984a.length - 1) {
+            jVar.f19846k = 1.0f - length;
+            jVar.f19847l = 1.0f;
         } else {
             float f10 = i7 * length;
-            jVar.f19479k = f10;
+            jVar.f19846k = f10;
             float f11 = f10 + length;
-            jVar.f19480l = f11;
+            jVar.f19847l = f11;
             if (f11 > 1.0f) {
-                jVar.f19480l = 1.0f;
+                jVar.f19847l = 1.0f;
             }
             A(true, true, false);
         }
@@ -162,14 +162,14 @@ public final class n extends q {
     public final void N(float f10, float f11, boolean z10) {
         float f12;
         if (this.J1 != null) {
-            int length = ((mg.e) this.f19439i0).f20621b.length;
+            int length = ((mg.e) this.f19806i0).f20985b.length;
             ArrayList arrayList = this.d;
             int size = arrayList.size();
             int i7 = 0;
             int i10 = -1;
             int i11 = -1;
             for (int i12 = 0; i12 < length; i12++) {
-                float f13 = ((mg.e) this.f19439i0).f20621b[i12];
+                float f13 = ((mg.e) this.f19806i0).f20985b[i12];
                 if (f13 >= f10 && i11 == -1) {
                     i11 = i12;
                 }
@@ -191,9 +191,9 @@ public final class n extends q {
                 while (i11 <= i10) {
                     for (int i14 = 0; i14 < size; i14++) {
                         float[] fArr = this.J1;
-                        fArr[i14] = fArr[i14] + ((float) ((mg.a) ((mg.e) this.f19439i0).d.get(i14)).f20613a[i11]);
-                        this.L1 += (float) ((mg.a) ((mg.e) this.f19439i0).d.get(i14)).f20613a[i11];
-                        if (this.M1 && ((o) arrayList.get(i14)).f21149n && ((mg.a) ((mg.e) this.f19439i0).d.get(i14)).f20613a[i11] > 0) {
+                        fArr[i14] = fArr[i14] + ((float) ((mg.a) ((mg.e) this.f19806i0).d.get(i14)).f20977a[i11]);
+                        this.L1 += (float) ((mg.a) ((mg.e) this.f19806i0).d.get(i14)).f20977a[i11];
+                        if (this.M1 && ((o) arrayList.get(i14)).f21513n && ((mg.a) ((mg.e) this.f19806i0).d.get(i14)).f20977a[i11] > 0) {
                             this.M1 = false;
                         }
                     }
@@ -202,7 +202,7 @@ public final class n extends q {
                 if (!z10) {
                     while (i7 < size) {
                         o oVar = (o) arrayList.get(i7);
-                        ValueAnimator valueAnimator = oVar.f19485s;
+                        ValueAnimator valueAnimator = oVar.f19852s;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
                         }
@@ -212,8 +212,8 @@ public final class n extends q {
                         } else {
                             f12 = this.J1[i7] / f14;
                         }
-                        ValueAnimator e10 = g.e(oVar.f19484r, f12, new v(7, this, oVar));
-                        oVar.f19485s = e10;
+                        ValueAnimator e10 = g.e(oVar.f19851r, f12, new w(7, this, oVar));
+                        oVar.f19852s = e10;
                         e10.start();
                         i7++;
                     }
@@ -221,9 +221,9 @@ public final class n extends q {
                 }
                 while (i7 < size) {
                     if (this.L1 == 0.0f) {
-                        ((o) arrayList.get(i7)).f19484r = 0.0f;
+                        ((o) arrayList.get(i7)).f19851r = 0.0f;
                     } else {
-                        ((o) arrayList.get(i7)).f19484r = this.J1[i7] / this.L1;
+                        ((o) arrayList.get(i7)).f19851r = this.J1[i7] / this.L1;
                     }
                     i7++;
                 }
@@ -233,7 +233,7 @@ public final class n extends q {
 
     @Override
     public final void a(float f10, float f11, boolean z10) {
-        if (this.f19439i0 == null) {
+        if (this.f19806i0 == null) {
             return;
         }
         if (z10) {
@@ -259,7 +259,7 @@ public final class n extends q {
         eVar.addView(linearLayout);
         textView2.setTypeface(Typeface.create("sans-serif-medium", 0));
         eVar.setPadding(g0.L(12.0f), g0.L(12.0f), g0.L(12.0f), g0.L(12.0f));
-        eVar.f21131f.setVisibility(8);
+        eVar.f21495f.setVisibility(8);
         eVar.G = false;
         this.T1 = eVar;
         return eVar;
@@ -282,19 +282,19 @@ public final class n extends q {
         float f12;
         int i7;
         n nVar = this;
-        mg.b bVar = nVar.f19439i0;
+        mg.b bVar = nVar.f19806i0;
         if (bVar != null) {
-            int length = ((mg.e) bVar).f20621b.length;
+            int length = ((mg.e) bVar).f20985b.length;
             ArrayList arrayList = nVar.d;
             int size = arrayList.size();
             int i10 = 0;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                ((ng.f) arrayList.get(i11)).f21145j = 0;
+                ((ng.f) arrayList.get(i11)).f21509j = 0;
             }
-            float length2 = (1.0f / ((mg.e) nVar.f19439i0).f20621b.length) * nVar.D0;
+            float length2 = (1.0f / ((mg.e) nVar.f19806i0).f20985b.length) * nVar.D0;
             int i12 = 0;
             while (i12 < length) {
-                float z10 = e2.z(nVar.D0, length2, ((mg.e) nVar.f19439i0).f20621b[i12], length2 / 2.0f);
+                float z10 = e2.z(nVar.D0, length2, ((mg.e) nVar.f19806i0).f20985b[i12], length2 / 2.0f);
                 int i13 = 1;
                 int i14 = i10;
                 int i15 = i14;
@@ -302,12 +302,12 @@ public final class n extends q {
                 float f13 = 0.0f;
                 while (i14 < size) {
                     ng.f fVar = (ng.f) arrayList.get(i14);
-                    boolean z12 = fVar.f21149n;
-                    if (!z12 && fVar.f21150o == 0.0f) {
+                    boolean z12 = fVar.f21513n;
+                    if (!z12 && fVar.f21514o == 0.0f) {
                         i7 = i12;
                     } else {
                         i7 = i12;
-                        float f14 = ((float) fVar.f21138a.f20613a[i7]) * fVar.f21150o;
+                        float f14 = ((float) fVar.f21502a.f20977a[i7]) * fVar.f21514o;
                         f13 += f14;
                         if (f14 > 0.0f) {
                             i15++;
@@ -324,87 +324,87 @@ public final class n extends q {
                 int i17 = 0;
                 while (i17 < size) {
                     ng.f fVar2 = (ng.f) arrayList.get(i17);
-                    if (fVar2.f21149n || fVar2.f21150o != 0.0f) {
-                        long[] jArr = fVar2.f21138a.f20613a;
+                    if (fVar2.f21513n || fVar2.f21514o != 0.0f) {
+                        long[] jArr = fVar2.f21502a.f20977a;
                         if (i15 == i13) {
                             if (jArr[i16] != 0) {
-                                f12 = fVar2.f21150o;
+                                f12 = fVar2.f21514o;
                                 int i18 = nVar.C0;
                                 float f16 = f12 * i18;
-                                float[] fArr = fVar2.f21146k;
-                                int i19 = fVar2.f21145j;
+                                float[] fArr = fVar2.f21510k;
+                                int i19 = fVar2.f21509j;
                                 int i20 = i19 + 1;
-                                fVar2.f21145j = i20;
+                                fVar2.f21509j = i20;
                                 fArr[i19] = z10;
                                 int i21 = i19 + 2;
-                                fVar2.f21145j = i21;
+                                fVar2.f21509j = i21;
                                 fArr[i20] = (i18 - f16) - f15;
                                 int i22 = i19 + 3;
-                                fVar2.f21145j = i22;
+                                fVar2.f21509j = i22;
                                 fArr[i21] = z10;
-                                fVar2.f21145j = i19 + 4;
+                                fVar2.f21509j = i19 + 4;
                                 fArr[i22] = i18 - f15;
                                 f15 += f16;
                             }
                             f12 = 0.0f;
                             int i182 = nVar.C0;
                             float f162 = f12 * i182;
-                            float[] fArr2 = fVar2.f21146k;
-                            int i192 = fVar2.f21145j;
+                            float[] fArr2 = fVar2.f21510k;
+                            int i192 = fVar2.f21509j;
                             int i202 = i192 + 1;
-                            fVar2.f21145j = i202;
+                            fVar2.f21509j = i202;
                             fArr2[i192] = z10;
                             int i212 = i192 + 2;
-                            fVar2.f21145j = i212;
+                            fVar2.f21509j = i212;
                             fArr2[i202] = (i182 - f162) - f15;
                             int i222 = i192 + 3;
-                            fVar2.f21145j = i222;
+                            fVar2.f21509j = i222;
                             fArr2[i212] = z10;
-                            fVar2.f21145j = i192 + 4;
+                            fVar2.f21509j = i192 + 4;
                             fArr2[i222] = i182 - f15;
                             f15 += f162;
                         } else {
                             if (f13 != 0.0f) {
                                 if (z11) {
-                                    f11 = fVar2.f21150o;
+                                    f11 = fVar2.f21514o;
                                     f10 = (((float) jArr[i16]) / f13) * f11;
                                 } else {
                                     f10 = ((float) jArr[i16]) / f13;
-                                    f11 = fVar2.f21150o;
+                                    f11 = fVar2.f21514o;
                                 }
                                 f12 = f10 * f11;
                                 int i1822 = nVar.C0;
                                 float f1622 = f12 * i1822;
-                                float[] fArr22 = fVar2.f21146k;
-                                int i1922 = fVar2.f21145j;
+                                float[] fArr22 = fVar2.f21510k;
+                                int i1922 = fVar2.f21509j;
                                 int i2022 = i1922 + 1;
-                                fVar2.f21145j = i2022;
+                                fVar2.f21509j = i2022;
                                 fArr22[i1922] = z10;
                                 int i2122 = i1922 + 2;
-                                fVar2.f21145j = i2122;
+                                fVar2.f21509j = i2122;
                                 fArr22[i2022] = (i1822 - f1622) - f15;
                                 int i2222 = i1922 + 3;
-                                fVar2.f21145j = i2222;
+                                fVar2.f21509j = i2222;
                                 fArr22[i2122] = z10;
-                                fVar2.f21145j = i1922 + 4;
+                                fVar2.f21509j = i1922 + 4;
                                 fArr22[i2222] = i1822 - f15;
                                 f15 += f1622;
                             }
                             f12 = 0.0f;
                             int i18222 = nVar.C0;
                             float f16222 = f12 * i18222;
-                            float[] fArr222 = fVar2.f21146k;
-                            int i19222 = fVar2.f21145j;
+                            float[] fArr222 = fVar2.f21510k;
+                            int i19222 = fVar2.f21509j;
                             int i20222 = i19222 + 1;
-                            fVar2.f21145j = i20222;
+                            fVar2.f21509j = i20222;
                             fArr222[i19222] = z10;
                             int i21222 = i19222 + 2;
-                            fVar2.f21145j = i21222;
+                            fVar2.f21509j = i21222;
                             fArr222[i20222] = (i18222 - f16222) - f15;
                             int i22222 = i19222 + 3;
-                            fVar2.f21145j = i22222;
+                            fVar2.f21509j = i22222;
                             fArr222[i21222] = z10;
-                            fVar2.f21145j = i19222 + 4;
+                            fVar2.f21509j = i19222 + 4;
                             fArr222[i22222] = i18222 - f15;
                             f15 += f16222;
                         }
@@ -419,19 +419,19 @@ public final class n extends q {
             }
             for (int i23 = 0; i23 < size; i23++) {
                 ng.f fVar3 = (ng.f) arrayList.get(i23);
-                Paint paint = fVar3.f21140c;
-                Paint paint2 = fVar3.f21140c;
+                Paint paint = fVar3.f21504c;
+                Paint paint2 = fVar3.f21504c;
                 paint.setStrokeWidth(length2);
                 paint2.setAlpha(255);
                 paint2.setAntiAlias(false);
-                canvas.drawLines(fVar3.f21146k, 0, fVar3.f21145j, paint2);
+                canvas.drawLines(fVar3.f21510k, 0, fVar3.f21509j, paint2);
             }
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f19439i0 != null) {
+        if (this.f19806i0 != null) {
             int i7 = 0;
             while (true) {
                 ArrayList arrayList = this.d;
@@ -439,17 +439,17 @@ public final class n extends q {
                     break;
                 }
                 if (i7 == this.N1) {
-                    if (((o) arrayList.get(i7)).f19483q < 1.0f) {
-                        ((o) arrayList.get(i7)).f19483q += 0.1f;
-                        if (((o) arrayList.get(i7)).f19483q > 1.0f) {
-                            ((o) arrayList.get(i7)).f19483q = 1.0f;
+                    if (((o) arrayList.get(i7)).f19850q < 1.0f) {
+                        ((o) arrayList.get(i7)).f19850q += 0.1f;
+                        if (((o) arrayList.get(i7)).f19850q > 1.0f) {
+                            ((o) arrayList.get(i7)).f19850q = 1.0f;
                         }
                         invalidate();
                     }
-                } else if (((o) arrayList.get(i7)).f19483q > 0.0f) {
-                    ((o) arrayList.get(i7)).f19483q -= 0.1f;
-                    if (((o) arrayList.get(i7)).f19483q < 0.0f) {
-                        ((o) arrayList.get(i7)).f19483q = 0.0f;
+                } else if (((o) arrayList.get(i7)).f19850q > 0.0f) {
+                    ((o) arrayList.get(i7)).f19850q -= 0.1f;
+                    if (((o) arrayList.get(i7)).f19850q < 0.0f) {
+                        ((o) arrayList.get(i7)).f19850q = 0.0f;
                     }
                     invalidate();
                 }
@@ -486,7 +486,7 @@ public final class n extends q {
             float[] fArr = this.K1;
             if (i7 < fArr.length) {
                 f10 += fArr[i7];
-                jVar.f21163k[i7] = (360.0f * f10) - 180.0f;
+                jVar.f21527k[i7] = (360.0f * f10) - 180.0f;
                 i7++;
             } else {
                 return;

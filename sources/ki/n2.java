@@ -1,34 +1,31 @@
 package ki;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.ActionBar.j6;
-public final class n2 extends AnimatorListenerAdapter {
-    public final int f18464a;
-    public final int f18465b;
-    public final u1 f18466c;
-    public final x2 d;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n2 implements RequestDelegate {
+    public final int f18805a;
+    public final o2 f18806b;
 
-    public n2(x2 x2Var, int i7, int i10, u1 u1Var) {
-        this.d = x2Var;
-        this.f18464a = i7;
-        this.f18465b = i10;
-        this.f18466c = u1Var;
+    public n2(o2 o2Var, int i7) {
+        this.f18805a = i7;
+        this.f18806b = o2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int f10 = i0.a.f(1.0f, this.f18464a, this.f18465b);
-        x2 x2Var = this.d;
-        x2Var.S = f10;
-        x2Var.l();
-        w2 w2Var = x2Var.f18661f;
-        w2Var.invalidate();
-        u2 u2Var = x2Var.Y;
-        u2Var.setBackgroundColor(x2Var.S);
-        u1 u1Var = this.f18466c;
-        u1Var.b(u2Var, 1.0f);
-        x2Var.f18651a = u1Var.a(j6.zj);
-        w2Var.invalidate();
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18805a) {
+            case 0:
+                t2 t2Var = this.f18806b.d;
+                if (tLObject instanceof TLRPC.TL_updates) {
+                    mp.u1(t2Var.I).V3((TLRPC.TL_updates) tLObject, false);
+                }
+                org.telegram.messenger.g0.g3(new t1(t2Var, 16));
+                return;
+            default:
+                org.telegram.messenger.g0.g3(new kg.i0(this.f18806b, tLObject, tL_error, 6));
+                return;
+        }
     }
 }

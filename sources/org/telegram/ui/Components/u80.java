@@ -1,115 +1,109 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.NotificationsCustomSettingsActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class u80 implements Runnable {
-    public final int f39962a;
-    public final Object f39963b;
-    public final Object f39964c;
-    public final Object d;
-    public final Object f39965e;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
+import android.view.Choreographer;
+import android.view.PixelCopy;
+import android.view.Surface;
+import android.view.SurfaceView;
+public final class u80 {
+    public final org.telegram.ui.z90 f40255a;
+    public SurfaceView d;
+    public Bitmap f40258e;
+    public Bitmap f40259f;
+    public boolean f40260g;
+    public boolean h;
+    public boolean f40261i;
+    public boolean f40262j;
+    public boolean f40263k;
+    public long f40264l;
+    public final Handler f40256b = new Handler(Looper.getMainLooper());
+    public final Paint f40257c = new Paint(2);
+    public final s80 f40265m = new Choreographer.FrameCallback() {
+        @Override
+        public final void doFrame(long j3) {
+            u80 u80Var = u80.this;
+            u80Var.f40262j = false;
+            u80Var.c();
+        }
+    };
+    public final mo f40266n = new mo(this, 25);
 
-    public u80(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f39962a = i7;
-        this.f39963b = obj;
-        this.f39964c = obj2;
-        this.d = obj3;
-        this.f39965e = obj4;
+    public u80(org.telegram.ui.z90 z90Var) {
+        this.f40255a = z90Var;
     }
 
-    private final void a() {
-        org.telegram.ui.be0 be0Var = (org.telegram.ui.be0) this.f39963b;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f39964c;
-        TLObject tLObject = (TLObject) this.d;
-        String str = (String) this.f39965e;
-        be0Var.N = false;
-        org.telegram.ui.ce0 ce0Var = be0Var.f45693h0;
-        ce0Var.N1(false, true);
-        if (tL_error == null) {
-            TL_account.Password password = (TL_account.Password) tLObject;
-            if (!TwoStepVerificationActivity.n0(password, true)) {
-                t4.u0(ce0Var.getParentActivity(), org.telegram.messenger.hd.M0(2131743820, "UpdateAppAlert"), true);
+    public final void a() {
+        this.f40264l = SystemClock.uptimeMillis() + 1500;
+        if (this.f40263k) {
+            this.f40256b.removeCallbacks(this.f40266n);
+            this.f40263k = false;
+        }
+        b();
+    }
+
+    public final void b() {
+        if (this.f40260g && !this.f40261i && this.d != null && !this.f40262j && !this.f40263k) {
+            if (SystemClock.uptimeMillis() < this.f40264l) {
+                this.f40262j = true;
+                Choreographer.getInstance().postFrameCallback(this.f40265m);
                 return;
             }
-            Bundle bundle = new Bundle();
-            SerializedData serializedData = new SerializedData(password.getObjectSize());
-            password.serializeToStream(serializedData);
-            bundle.putString("password", Utilities.f(serializedData.toByteArray()));
-            bundle.putString("phoneFormated", str);
-            ce0Var.M1(6, true, bundle, false);
-            return;
+            this.f40263k = true;
+            this.f40256b.postDelayed(this.f40266n, 400L);
         }
-        ce0Var.D1(org.telegram.messenger.hd.M0(2131746071, null), tL_error.text);
     }
 
-    private final void b() {
-        int i7;
-        org.telegram.ui.gg0 gg0Var = (org.telegram.ui.gg0) this.f39963b;
-        mg.b bVar = (mg.b) this.f39964c;
-        String str = (String) this.d;
-        org.telegram.ui.y41 y41Var = (org.telegram.ui.y41) this.f39965e;
-        org.telegram.ui.jg0 jg0Var = gg0Var.f47440w.d;
-        if (bVar != null) {
-            jg0Var.f48331w.l(str, bVar);
-        }
-        if (bVar != null && !y41Var.f53416b && (i7 = y41Var.f53415a) >= 0) {
-            View m10 = jg0Var.h.m(i7);
-            if (m10 instanceof org.telegram.ui.j41) {
-                gg0Var.f48206r.f48829e = bVar;
-                org.telegram.ui.j41 j41Var = (org.telegram.ui.j41) m10;
-                j41Var.f48201b.f19456u0.d(false, false);
-                j41Var.g(false);
+    public final void c() {
+        Surface surface;
+        if (this.f40260g && !this.f40261i) {
+            if (!this.h) {
+                SurfaceView surfaceView = this.d;
+                if (Build.VERSION.SDK_INT >= 24 && surfaceView != null && surfaceView.isAttachedToWindow() && surfaceView.getWidth() > 0 && surfaceView.getHeight() > 0 && (surface = surfaceView.getHolder().getSurface()) != null && surface.isValid()) {
+                    int max = Math.max(1, surfaceView.getWidth() / 4);
+                    int max2 = Math.max(1, surfaceView.getHeight() / 4);
+                    Bitmap bitmap = this.f40259f;
+                    if (bitmap == null || bitmap.getWidth() != max || this.f40259f.getHeight() != max2) {
+                        this.f40259f = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
+                    }
+                    final Bitmap bitmap2 = this.f40259f;
+                    this.h = true;
+                    try {
+                        PixelCopy.request(surfaceView, bitmap2, new PixelCopy.OnPixelCopyFinishedListener() {
+                            @Override
+                            public final void onPixelCopyFinished(int i7) {
+                                u80 u80Var = u80.this;
+                                Bitmap bitmap3 = bitmap2;
+                                u80Var.h = false;
+                                if (!u80Var.f40261i && i7 == 0) {
+                                    u80Var.f40259f = u80Var.f40258e;
+                                    u80Var.f40258e = bitmap3;
+                                    u80Var.f40255a.run();
+                                }
+                            }
+                        }, this.f40256b);
+                    } catch (Exception e10) {
+                        this.h = false;
+                        org.telegram.messenger.a8.g(e10, true);
+                    }
+                }
             }
+            b();
         }
-        gg0Var.f();
     }
 
-    private final void c() {
-        org.telegram.ui.oh0 oh0Var = (org.telegram.ui.oh0) this.f39963b;
-        ArrayList arrayList = (ArrayList) this.f39965e;
-        ArrayList arrayList2 = (ArrayList) this.f39964c;
-        ArrayList arrayList3 = (ArrayList) this.d;
-        jg.z1 z1Var = oh0Var.h;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = oh0Var.f49963n;
-        if (!notificationsCustomSettingsActivity.f42675f) {
-            return;
+    public final void d() {
+        if (this.f40262j) {
+            Choreographer.getInstance().removeFrameCallback(this.f40265m);
+            this.f40262j = false;
         }
-        oh0Var.f49962f = null;
-        oh0Var.d = arrayList;
-        oh0Var.f49961e = arrayList2;
-        z1Var.f(arrayList3, null);
-        if (notificationsCustomSettingsActivity.f42675f && !z1Var.e()) {
-            notificationsCustomSettingsActivity.f42673c.c();
+        if (this.f40263k) {
+            this.f40256b.removeCallbacks(this.f40266n);
+            this.f40263k = false;
         }
-        oh0Var.f();
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u80.run():void");
-    }
-
-    public u80(Object obj, ArrayList arrayList, ArrayList arrayList2, Object obj2, int i7) {
-        this.f39962a = i7;
-        this.f39963b = obj;
-        this.f39965e = arrayList;
-        this.f39964c = arrayList2;
-        this.d = obj2;
-    }
-
-    public u80(y80 y80Var, boolean[] zArr, ArrayList arrayList, boolean[] zArr2) {
-        this.f39962a = 0;
-        this.f39963b = y80Var;
-        this.f39964c = zArr;
-        this.f39965e = arrayList;
-        this.d = zArr2;
     }
 }

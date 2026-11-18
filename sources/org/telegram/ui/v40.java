@@ -1,10 +1,6 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class v40 extends TLRPC.TL_contact {
-    public final String f52113a;
-
-    public v40(String str) {
-        this.f52113a = str;
-    }
+import java.util.ArrayList;
+public interface v40 {
+    void a(ArrayList arrayList, boolean z10, boolean z11);
 }

@@ -1,10 +1,13 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
 import android.view.View;
-public final class ot implements View.OnTouchListener {
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public final class ot extends FrameLayout {
+    public TextView f50660a;
+
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        return true;
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 }

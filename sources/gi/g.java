@@ -3,16 +3,16 @@ package gi;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import hi.d3;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.bw0;
-import org.telegram.ui.Components.ci;
-import org.telegram.ui.Components.ul;
-import org.telegram.ui.Components.wi;
-import v4.b1;
-import v4.s;
-import v4.w0;
-public final class g extends s {
+import hi.e3;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.bm;
+import org.telegram.ui.Components.dj;
+import org.telegram.ui.Components.iw0;
+import org.telegram.ui.Components.ki;
+import v4.c1;
+import v4.t;
+import v4.x0;
+public final class g extends t {
     public final int Q;
     public final KeyEvent.Callback R;
 
@@ -26,7 +26,7 @@ public final class g extends s {
     public boolean Y0() {
         switch (this.Q) {
             case 4:
-                if (((bw0) this.R).R1 != null && hd.f24104a0) {
+                if (((iw0) this.R).R1 != null && gd.f24216a0) {
                     return true;
                 }
                 return false;
@@ -36,51 +36,51 @@ public final class g extends s {
     }
 
     @Override
-    public void b0(w0 w0Var, b1 b1Var) {
+    public void b0(x0 x0Var, c1 c1Var) {
         switch (this.Q) {
             case 1:
-                super.b0(w0Var, b1Var);
-                d3 d3Var = (d3) this.R;
-                if (d3Var.V) {
-                    d3Var.V = false;
-                    d3Var.a();
+                super.b0(x0Var, c1Var);
+                e3 e3Var = (e3) this.R;
+                if (e3Var.V) {
+                    e3Var.V = false;
+                    e3Var.a();
                     return;
                 }
                 return;
             default:
-                super.b0(w0Var, b1Var);
+                super.b0(x0Var, c1Var);
                 return;
         }
     }
 
     @Override
-    public int o0(int i7, w0 w0Var, b1 b1Var) {
+    public int o0(int i7, x0 x0Var, c1 c1Var) {
         switch (this.Q) {
             case 0:
-                if (((m) this.R).f13338b) {
+                if (((m) this.R).f13653b) {
                     i7 = 0;
                 }
-                return super.o0(i7, w0Var, b1Var);
+                return super.o0(i7, x0Var, c1Var);
             default:
-                return super.o0(i7, w0Var, b1Var);
+                return super.o0(i7, x0Var, c1Var);
         }
     }
 
     @Override
-    public void v0(RecyclerView recyclerView, b1 b1Var, int i7) {
+    public void v0(RecyclerView recyclerView, c1 c1Var, int i7) {
         switch (this.Q) {
             case 2:
-                wi wiVar = new wi(this, recyclerView.getContext());
-                wiVar.f58480a = i7;
-                w0(wiVar);
+                dj djVar = new dj(this, recyclerView.getContext());
+                djVar.f59066a = i7;
+                w0(djVar);
                 return;
             case 3:
-                ul ulVar = new ul(this, recyclerView.getContext());
-                ulVar.f58480a = i7;
-                w0(ulVar);
+                bm bmVar = new bm(this, recyclerView.getContext());
+                bmVar.f59066a = i7;
+                w0(bmVar);
                 return;
             default:
-                super.v0(recyclerView, b1Var, i7);
+                super.v0(recyclerView, c1Var, i7);
                 return;
         }
     }
@@ -100,15 +100,15 @@ public final class g extends s {
         }
     }
 
-    public g(ci ciVar, int i7, int i10) {
+    public g(ki kiVar, int i7, int i10) {
         super(i7);
         this.Q = i10;
-        this.R = ciVar;
+        this.R = kiVar;
     }
 
-    public g(bw0 bw0Var) {
+    public g(iw0 iw0Var) {
         super(5);
         this.Q = 4;
-        this.R = bw0Var;
+        this.R = iw0Var;
     }
 }

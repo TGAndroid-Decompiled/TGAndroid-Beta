@@ -9,18 +9,18 @@ import android.os.Handler;
 import android.os.Looper;
 import e2.e;
 import e2.u;
-import f2.h;
+import f2.i;
 import h2.l0;
 import h9.g0;
 import h9.i0;
-import h9.s1;
+import h9.t1;
 import j$.util.Objects;
 import java.util.List;
 import l2.d0;
 public final class d {
-    public final Spatializer f4091a;
-    public final boolean f4092b;
-    public final Handler f4093c;
+    public final Spatializer f4372a;
+    public final boolean f4373b;
+    public final Handler f4374c;
     public final c d;
 
     public d(Context context, Runnable runnable, Boolean bool) {
@@ -28,32 +28,32 @@ public final class d {
         if (context == null) {
             d = null;
         } else {
-            d = h.d(context);
+            d = i.d(context);
         }
         if (d != null && (bool == null || !bool.booleanValue())) {
             Spatializer spatializer = d.getSpatializer();
-            this.f4091a = spatializer;
-            this.f4092b = spatializer.getImmersiveAudioLevel() != 0;
+            this.f4372a = spatializer;
+            this.f4373b = spatializer.getImmersiveAudioLevel() != 0;
             Looper myLooper = Looper.myLooper();
             myLooper.getClass();
             Handler handler = new Handler(myLooper);
-            this.f4093c = handler;
+            this.f4374c = handler;
             c cVar = new c(runnable);
             this.d = cVar;
             spatializer.addOnSpatializerStateChangedListener(new d0(handler, 1), cVar);
             return;
         }
-        this.f4091a = null;
-        this.f4092b = false;
-        this.f4093c = null;
+        this.f4372a = null;
+        this.f4373b = false;
+        this.f4374c = null;
         this.d = null;
     }
 
     public final boolean a(e eVar, u uVar) {
-        if (this.f4091a == null || !this.f4092b || !c() || !d()) {
+        if (this.f4372a == null || !this.f4373b || !c() || !d()) {
             return false;
         }
-        String str = uVar.f10451s;
+        String str = uVar.f10769s;
         int i7 = uVar.K;
         if (Objects.equals(str, "audio/eac3-joc")) {
             if (i7 == 16) {
@@ -75,26 +75,26 @@ public final class d {
         if (i10 != -1) {
             channelMask.setSampleRate(i10);
         }
-        Spatializer spatializer = this.f4091a;
+        Spatializer spatializer = this.f4372a;
         spatializer.getClass();
         return spatializer.canBeSpatialized(eVar.b(), channelMask.build());
     }
 
     public final List b() {
-        if (this.f4091a != null && this.f4092b && c() && d()) {
+        if (this.f4372a != null && this.f4373b && c() && d()) {
             if (Build.VERSION.SDK_INT >= 36) {
-                Spatializer spatializer = this.f4091a;
+                Spatializer spatializer = this.f4372a;
                 spatializer.getClass();
                 return spatializer.getSpatializedChannelMasks();
             }
             return i0.u(252);
         }
-        g0 g0Var = i0.f13686b;
-        return s1.f13749e;
+        g0 g0Var = i0.f14006b;
+        return t1.f14074e;
     }
 
     public final boolean c() {
-        Spatializer spatializer = this.f4091a;
+        Spatializer spatializer = this.f4372a;
         if (spatializer != null && spatializer.isAvailable()) {
             return true;
         }
@@ -102,7 +102,7 @@ public final class d {
     }
 
     public final boolean d() {
-        Spatializer spatializer = this.f4091a;
+        Spatializer spatializer = this.f4372a;
         if (spatializer != null && spatializer.isEnabled()) {
             return true;
         }
@@ -112,8 +112,8 @@ public final class d {
     public final void e() {
         c cVar;
         Handler handler;
-        Spatializer spatializer = this.f4091a;
-        if (spatializer != null && (cVar = this.d) != null && (handler = this.f4093c) != null) {
+        Spatializer spatializer = this.f4372a;
+        if (spatializer != null && (cVar = this.d) != null && (handler = this.f4374c) != null) {
             spatializer.removeOnSpatializerStateChangedListener(cVar);
             handler.removeCallbacksAndMessages(null);
         }

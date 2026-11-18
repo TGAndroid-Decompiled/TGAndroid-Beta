@@ -1,101 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.KeyEvent;
-import android.view.View;
-public final class tk0 extends AnimatorListenerAdapter {
-    public final int f39708a;
-    public final boolean f39709b;
-    public final float f39710c;
-    public final KeyEvent.Callback d;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+public final class tk0 extends Drawable {
+    public final RectF f40033a = new RectF();
+    public final Paint f40034b;
+    public final TextPaint f40035c;
+    public int d;
+    public String f40036e;
+    public final int f40037f;
+    public int f40038g;
+    public final int h;
 
-    public tk0(KeyEvent.Callback callback, boolean z10, float f10, int i7) {
-        this.f39708a = i7;
-        this.d = callback;
-        this.f39709b = z10;
-        this.f39710c = f10;
+    public tk0(int i7) {
+        Paint paint = new Paint(1);
+        this.f40034b = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f40035c = textPaint;
+        this.f40038g = 255;
+        this.h = 255;
+        this.f40037f = i7;
+        textPaint.setTextSize(org.telegram.messenger.g0.L(11));
+        textPaint.setTypeface(org.telegram.messenger.g0.o());
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        if (i7 == 0) {
+            this.f40036e = org.telegram.messenger.gd.M0(2131745667, null);
+        } else {
+            this.f40036e = org.telegram.messenger.gd.M0(2131750832, null);
+        }
+        this.d = (int) Math.ceil(textPaint.measureText(this.f40036e));
+    }
+
+    public final void a() {
+        String M0;
+        if (this.f40037f == 0) {
+            M0 = org.telegram.messenger.gd.M0(2131745667, null);
+        } else {
+            M0 = org.telegram.messenger.gd.M0(2131750832, null);
+        }
+        if (!M0.equals(this.f40036e)) {
+            this.f40036e = M0;
+            this.d = (int) Math.ceil(this.f40035c.measureText(M0));
+        }
+    }
+
+    public final void b(int i7) {
+        this.f40035c.setColor(i7);
+        this.f40034b.setColor(i7);
+        this.f40038g = Color.alpha(i7);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        switch (this.f39708a) {
-            case 0:
-                wk0 wk0Var = (wk0) this.d;
-                org.telegram.ui.z51 z51Var = wk0Var.f41383e;
-                wk0Var.f41389i0 = null;
-                boolean z10 = this.f39709b;
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                wk0Var.f41390j0 = f10;
-                for (int i7 = 0; i7 < z51Var.getChildCount(); i7++) {
-                    z51Var.getChildAt(i7).invalidate();
-                }
-                z51Var.invalidate();
-                wk0Var.p();
-                if (!z10) {
-                    float childCount = wk0Var.f41392l0 * z51Var.getChildCount();
-                    float f11 = this.f39710c;
-                    float scrollX = (wk0Var.getScrollX() + f11) / (wk0Var.f41391k0 * z51Var.getChildCount());
-                    float measuredWidth = (childCount - wk0Var.getMeasuredWidth()) / childCount;
-                    if (scrollX > measuredWidth) {
-                        f11 = 0.0f;
-                        scrollX = measuredWidth;
-                    }
-                    float f12 = childCount * scrollX;
-                    if (f12 - f11 < 0.0f) {
-                        f12 = f11;
-                    }
-                    wk0Var.m0 = (wk0Var.getScrollX() + f11) - f12;
-                    int i10 = (int) (f12 - f11);
-                    wk0Var.f41394n0 = i10;
-                    if (i10 < 0) {
-                        wk0Var.f41394n0 = 0;
-                    }
-                    for (int i11 = 0; i11 < z51Var.getChildCount(); i11++) {
-                        View childAt = z51Var.getChildAt(i11);
-                        if (childAt instanceof hv0) {
-                            ((hv0) childAt).setExpanded(false);
-                        }
-                        childAt.getLayoutParams().width = org.telegram.messenger.g0.L(33.0f);
-                    }
-                    wk0Var.f41388h0 = false;
-                    wk0Var.getLayoutParams().height = org.telegram.messenger.g0.L(36.0f);
-                    z51Var.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                if (!this.f39709b) {
-                    super/*android.app.Dialog*/.dismiss();
-                    return;
-                }
-                return;
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f40033a;
+        rectF.set(bounds);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), this.f40034b);
+        canvas.drawText(this.f40036e, rectF.left + org.telegram.messenger.g0.L(5.0f), rectF.top + org.telegram.messenger.g0.L(12.0f), this.f40035c);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(16.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(10.0f) + this.d;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        if (this.h != i7) {
+            int i10 = (int) ((i7 / 255.0f) * this.f40038g);
+            this.f40034b.setAlpha(i10);
+            this.f40035c.setAlpha(i10);
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f39708a) {
-            case 1:
-                super.onAnimationStart(animator);
-                zh.j jVar = ((zh.k) this.d).E;
-                jVar.setVisibility(0);
-                if (this.f39709b) {
-                    float f10 = this.f39710c;
-                    jVar.setScaleX(f10);
-                    jVar.setScaleY(f10);
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

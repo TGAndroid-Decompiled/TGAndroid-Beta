@@ -1,27 +1,13 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class ov0 implements jp {
-    public final yw f50045a;
-    public final pv0 f50046b;
-
-    public ov0(pv0 pv0Var, yw ywVar) {
-        this.f50046b = pv0Var;
-        this.f50045a = ywVar;
-    }
-
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class ov0 extends iz {
     @Override
-    public final void b(int i7, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        ProfileActivity profileActivity = this.f50046b.f50374b;
-        profileActivity.N1 = true;
-        this.f50045a.removeSelfFromStack();
-        org.telegram.messenger.ns notificationCenter = profileActivity.getNotificationCenter();
-        int i10 = org.telegram.messenger.ns.f25573t;
-        notificationCenter.n(profileActivity, i10);
-        profileActivity.getNotificationCenter().k(i10, new Object[0]);
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        canvas.save();
+        canvas.translate(org.telegram.messenger.g0.L(2.0f), 0.0f);
+        super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
+        canvas.restore();
     }
 }

@@ -1,72 +1,51 @@
 package org.telegram.utils.twidget;
 
-import android.content.ComponentName;
-import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.RemoteException;
-public final class t0 implements ServiceConnection {
-    public b f54400a;
-    public int f54401b;
-    public int f54402c;
-    public boolean d;
-    public boolean f54403e;
-    public final j0 f54404f = new j0(this, 2);
-    public final u0 h;
+import android.os.SystemClock;
+public final class t0 implements p0 {
+    public final int f54939a;
+    public final x0 f54940b;
+    public final byte[] f54941c;
+    public final int d;
 
-    public t0(u0 u0Var) {
-        this.h = u0Var;
+    public t0(int i7, int i10, x0 x0Var, byte[] bArr) {
+        this.f54939a = i10;
+        this.f54940b = x0Var;
+        this.f54941c = bArr;
+        this.d = i7;
     }
 
     @Override
-    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        b bVar;
-        synchronized (this.h.f54412b) {
-            try {
-                if (!this.d) {
-                    return;
-                }
-                final int i7 = this.f54401b + 1;
-                this.f54401b = i7;
-                try {
-                    iBinder.linkToDeath(new IBinder.DeathRecipient() {
-                        @Override
-                        public final void binderDied() {
-                            int i10 = i7;
-                            t0 t0Var = t0.this;
-                            t0Var.h.i(t0Var, i10);
+    public final Object run() {
+        switch (this.f54939a) {
+            case 0:
+                x0 x0Var = this.f54940b;
+                byte[] bArr = this.f54941c;
+                int i7 = this.d;
+                byte[] i12 = x0Var.i1(bArr);
+                if (i12.length <= 1048576) {
+                    synchronized (x0Var) {
+                        long elapsedRealtime = SystemClock.elapsedRealtime();
+                        double min = Math.min(2000.0d, ((elapsedRealtime - x0Var.f54983i) * 1.0d) + x0Var.f54982f);
+                        x0Var.f54982f = min;
+                        x0Var.f54983i = elapsedRealtime;
+                        if (min >= 1.0d) {
+                            x0Var.f54982f = min - 1.0d;
+                            x0Var.f54979b.signal(i7, i12);
+                            return null;
                         }
-                    }, 0);
-                    int i10 = z.f54446b;
-                    IInterface queryLocalInterface = iBinder.queryLocalInterface("org.telegram.utils.twidget.IWidgetEngine");
-                    if (queryLocalInterface != null && (queryLocalInterface instanceof b)) {
-                        bVar = (b) queryLocalInterface;
-                    } else {
-                        ?? obj = new Object();
-                        obj.f54155a = iBinder;
-                        bVar = obj;
+                        throw new IllegalStateException("Widget engine: too many signals");
                     }
-                    this.f54400a = bVar;
-                    if (this.f54403e) {
-                        try {
-                            bVar.b1();
-                        } catch (RemoteException unused) {
-                        }
-                    }
-                    this.h.f54412b.notifyAll();
-                } catch (RemoteException unused2) {
                 }
-            } finally {
-            }
+                throw new IllegalArgumentException("Signal too long");
+            default:
+                x0 x0Var2 = this.f54940b;
+                byte[] bArr2 = this.f54941c;
+                int i10 = this.d;
+                x0Var2.getClass();
+                if (bArr2 != null && bArr2.length <= 262144) {
+                    return Float.valueOf(x0Var2.f54979b.textWidth(i10, bArr2));
+                }
+                throw new IllegalArgumentException("Text too long");
         }
-    }
-
-    @Override
-    public final void onServiceDisconnected(ComponentName componentName) {
-        int i7;
-        synchronized (this.h.f54412b) {
-            i7 = this.f54401b;
-        }
-        this.h.i(this, i7);
     }
 }

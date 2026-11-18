@@ -1,34 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class lw extends FrameLayout {
-    public final ly f36909a;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class lw extends bv {
+    public final TLRPC.StickerSet R1;
+    public final ry S1;
 
-    public lw(ly lyVar, Context context) {
-        super(context);
-        this.f36909a = lyVar;
+    public lw(ry ryVar, org.telegram.ui.ActionBar.h2 h2Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(h2Var, context, i6Var, arrayList);
+        this.S1 = ryVar;
+        this.R1 = stickerSet;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        ly lyVar = this.f36909a;
-        qw qwVar = lyVar.J;
-        nv nvVar = lyVar.W;
-        yw ywVar = lyVar.Q;
-        if (view != ywVar && view != nvVar) {
-            return super.drawChild(canvas, view, j3);
+    public final void L0(boolean z10) {
+        ry ryVar = this.S1;
+        ArrayList arrayList = ryVar.f39383q1;
+        TLRPC.StickerSet stickerSet = this.R1;
+        if (z10) {
+            if (!arrayList.contains(Long.valueOf(stickerSet.f28432id))) {
+                arrayList.add(Long.valueOf(stickerSet.f28432id));
+            }
+        } else {
+            arrayList.remove(Long.valueOf(stickerSet.f28432id));
         }
-        canvas.save();
-        float y10 = qwVar.getY() + qwVar.getMeasuredHeight() + 1.0f;
-        if (view == ywVar && nvVar != null) {
-            y10 = Math.max(y10, nvVar.getY() + nvVar.getMeasuredHeight() + 1.0f);
-        }
-        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * lyVar.f36932b.f57085e), getMeasuredWidth(), getMeasuredHeight());
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild;
+        ryVar.U();
+    }
+
+    @Override
+    public final void dismiss() {
+        this.S1.f39409x2 = false;
+        super.dismiss();
     }
 }

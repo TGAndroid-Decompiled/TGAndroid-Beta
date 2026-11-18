@@ -1,66 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.os.Build;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import java.util.WeakHashMap;
-public final class ta extends Dialog {
-    public final sa f39616a;
-    public final WindowManager.LayoutParams f39617b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.style.LeadingMarginSpan;
+public final class ta implements LeadingMarginSpan {
+    public final int f39956a;
+    public final int f39957b;
 
-    public ta(Context context, bi.t tVar) {
-        super(context);
-        org.telegram.messenger.g0.S(getWindow());
-        sa saVar = new sa(this, context);
-        this.f39616a = saVar;
-        setContentView(saVar, new ViewGroup.LayoutParams(-1, -1));
-        s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f55671a;
-        r0.a0.i(saVar, sVar);
-        int i7 = Build.VERSION.SDK_INT;
-        if (i7 >= 30) {
-            saVar.setSystemUiVisibility(1792);
-        } else {
-            saVar.setSystemUiVisibility(1280);
-        }
-        saVar.setTag(2131296351, new bi.e1(tVar, 7));
-        try {
-            Window window = getWindow();
-            window.setWindowAnimations(2131755178);
-            window.setBackgroundDrawable(null);
-            WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f39617b = attributes;
-            attributes.width = -1;
-            attributes.height = -1;
-            attributes.gravity = 51;
-            attributes.dimAmount = 0.0f;
-            attributes.format = -3;
-            attributes.flags = (((-3) & attributes.flags) | (-1946091240)) & (-1025);
-            boolean z10 = true;
-            if (i7 >= 28) {
-                attributes.layoutInDisplayCutoutMode = 1;
-            }
-            window.setAttributes(attributes);
-            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f28792a7, false)) <= 0.721f) {
-                z10 = false;
-            }
-            org.telegram.messenger.g0.n3(this, z10);
-        } catch (Exception unused) {
-        }
-    }
-
-    public static sa a(Context context) {
-        return new ta(context, null).f39616a;
+    public ta(int i7, int i10) {
+        this.f39956a = i7;
+        this.f39957b = i10;
     }
 
     @Override
-    public final void show() {
-        if (!org.telegram.messenger.g0.M1(getContext())) {
-            return;
+    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i7, int i10, int i11, int i12, int i13, CharSequence charSequence, int i14, int i15, boolean z10, Layout layout) {
+        int i16;
+        if (((Spanned) charSequence).getSpanStart(this) == i14) {
+            Paint.Style style = paint.getStyle();
+            int color = paint.getColor();
+            paint.setColor(-11491093);
+            paint.setStyle(Paint.Style.FILL);
+            if (layout != null) {
+                if (layout.getLineForOffset(i14) != layout.getLineCount() - 1) {
+                    i16 = (int) layout.getSpacingAdd();
+                } else {
+                    i16 = 0;
+                }
+                i13 -= i16;
+            }
+            int i17 = this.f39957b;
+            canvas.drawCircle((i10 * i17) + i7, (i11 + i13) / 2.0f, i17, paint);
+            paint.setColor(color);
+            paint.setStyle(style);
         }
-        super.show();
+    }
+
+    @Override
+    public final int getLeadingMargin(boolean z10) {
+        return (this.f39957b * 2) + this.f39956a;
     }
 }

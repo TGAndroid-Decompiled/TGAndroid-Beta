@@ -17,10 +17,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
-    public static final Pattern f13567e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f13568a = new StringBuilder();
-    public final ArrayList f13569b = new ArrayList();
-    public final x f13570c = new x();
+    public static final Pattern f13882e = Pattern.compile("\\{\\\\.*?\\}");
+    public final StringBuilder f13883a = new StringBuilder();
+    public final ArrayList f13884b = new ArrayList();
+    public final x f13885c = new x();
 
     public static g2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: h4.a.a(android.text.Spanned, java.lang.String):g2.b");
@@ -48,13 +48,18 @@ public final class a implements m {
     }
 
     @Override
-    public final void K(byte[] bArr, int i7, int i10, l lVar, j jVar) {
+    public final d q(int i7, int i10, byte[] bArr) {
+        return p0.a(this, bArr, i10);
+    }
+
+    @Override
+    public final void v(byte[] bArr, int i7, int i10, l lVar, j jVar) {
         ArrayList arrayList;
         String n10;
         String str;
         a aVar = this;
-        long j3 = lVar.f4116a;
-        x xVar = aVar.f13570c;
+        long j3 = lVar.f4397a;
+        x xVar = aVar.f13885c;
         xVar.L(i7 + i10, bArr);
         xVar.N(i7);
         Charset J = xVar.J();
@@ -62,7 +67,7 @@ public final class a implements m {
             J = StandardCharsets.UTF_8;
         }
         long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && lVar.f4117b) {
+        if (j3 != -9223372036854775807L && lVar.f4398b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -86,10 +91,10 @@ public final class a implements m {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f13568a;
+                    StringBuilder sb2 = aVar.f13883a;
                     sb2.setLength(0);
                     long j11 = j10;
-                    ArrayList arrayList2 = aVar.f13569b;
+                    ArrayList arrayList2 = aVar.f13884b;
                     arrayList2.clear();
                     for (String n12 = xVar.n(J); !TextUtils.isEmpty(n12); n12 = xVar.n(J)) {
                         if (sb2.length() > 0) {
@@ -97,7 +102,7 @@ public final class a implements m {
                         }
                         String trim = n12.trim();
                         StringBuilder sb3 = new StringBuilder(trim);
-                        Matcher matcher2 = f13567e.matcher(trim);
+                        Matcher matcher2 = f13882e.matcher(trim);
                         int i11 = 0;
                         while (matcher2.find()) {
                             String group = matcher2.group();
@@ -153,13 +158,8 @@ public final class a implements m {
     }
 
     @Override
-    public final int Q() {
+    public final int y() {
         return 1;
-    }
-
-    @Override
-    public final d x(int i7, int i10, byte[] bArr) {
-        return p0.a(this, bArr, i10);
     }
 
     @Override

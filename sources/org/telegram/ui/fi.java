@@ -1,26 +1,26 @@
 package org.telegram.ui;
-public final class fi implements org.telegram.messenger.is {
-    public final int f47126a;
-    public final ci.p0 f47127b;
-    public final an f47128c;
-    public final an d;
+public final class fi implements org.telegram.messenger.fs {
+    public final int f47707a;
+    public final bi.u4 f47708b;
+    public final bn f47709c;
+    public final bn d;
 
-    public fi(an anVar, int i7, ci.p0 p0Var, an anVar2) {
-        this.d = anVar;
-        this.f47126a = i7;
-        this.f47127b = p0Var;
-        this.f47128c = anVar2;
+    public fi(bn bnVar, int i7, bi.u4 u4Var, bn bnVar2) {
+        this.d = bnVar;
+        this.f47707a = i7;
+        this.f47708b = u4Var;
+        this.f47709c = bnVar2;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         int i11;
-        int i12 = org.telegram.messenger.ns.D;
-        if (i7 == i12 && ((Integer) objArr[10]).intValue() == this.f47126a) {
-            this.f47127b.run();
-            org.telegram.messenger.g0.i3(new l2.x(this.f47128c, i7, i10, objArr, 10), 50L);
-            i11 = ((org.telegram.ui.ActionBar.e2) this.d).currentAccount;
-            org.telegram.messenger.ns.f(i11).n(this, i12);
+        int i12 = org.telegram.messenger.ks.D;
+        if (i7 == i12 && ((Integer) objArr[10]).intValue() == this.f47707a) {
+            this.f47708b.run();
+            org.telegram.messenger.g0.h3(new l2.x(this.f47709c, i7, i10, objArr, 10), 50L);
+            i11 = ((org.telegram.ui.ActionBar.h2) this.d).currentAccount;
+            org.telegram.messenger.ks.f(i11).n(this, i12);
         }
     }
 }

@@ -1,3 +1,200 @@
 package org.telegram.ui.Components;
-public interface ld0 {
+
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Paint;
+import android.util.Property;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ld0 extends org.telegram.ui.ActionBar.x2 {
+    public static final int J1 = 0;
+    public final int A1;
+    public final int B1;
+    public final int C1;
+    public final int D1;
+    public final boolean E1;
+    public kj F1;
+    public final ArrayList G1;
+    public final ArrayList H1;
+    public final TLRPC.TL_userContact_old2 I1;
+    public final org.telegram.ui.Cells.b5 f37096m1;
+    public final ed0 n1;
+    public final LinearLayout f37097o1;
+    public final fd0 f37098p1;
+    public final View f37099q1;
+    public final View f37100r1;
+    public final TextView f37101s1;
+    public final org.telegram.ui.ActionBar.h2 f37102t1;
+    public boolean f37103u1;
+    public final Paint f37104v1;
+    public int f37105w1;
+    public AnimatorSet f37106x1;
+    public AnimatorSet f37107y1;
+    public final int f37108z1;
+
+    public ld0(org.telegram.ui.ActionBar.h2 r19, org.telegram.messenger.f5 r20, org.telegram.tgnet.TLRPC.User r21, android.net.Uri r22, java.io.File r23, java.lang.String r24, java.lang.String r25, java.lang.String r26, final org.telegram.ui.ActionBar.i6 r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ld0.<init>(org.telegram.ui.ActionBar.h2, org.telegram.messenger.f5, org.telegram.tgnet.TLRPC$User, android.net.Uri, java.io.File, java.lang.String, java.lang.String, java.lang.String, org.telegram.ui.ActionBar.i6):void");
+    }
+
+    @Override
+    public final boolean G() {
+        return false;
+    }
+
+    public final void J0() {
+        TextView textView = this.f37101s1;
+        if (textView != null) {
+            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Ji, this.J0);
+            if (!textView.isEnabled()) {
+                w02 &= Integer.MAX_VALUE;
+            }
+            if (textView.getCurrentTextColor() != w02) {
+                textView.setTextColor(w02);
+            }
+        }
+    }
+
+    public final void K0(boolean z10) {
+        boolean z11;
+        boolean z12;
+        float f10;
+        float f11;
+        Integer num;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        Integer num2 = 1;
+        ed0 ed0Var = this.n1;
+        View childAt = ed0Var.getChildAt(0);
+        int top = childAt.getTop() - ed0Var.getScrollY();
+        if (top < 0) {
+            top = 0;
+        }
+        if (top <= 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        fd0 fd0Var = this.f37098p1;
+        if ((z11 && fd0Var.getTag() == null) || (!z11 && fd0Var.getTag() != null)) {
+            if (z11) {
+                num = num2;
+            } else {
+                num = null;
+            }
+            fd0Var.setTag(num);
+            AnimatorSet animatorSet = this.f37106x1;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+                this.f37106x1 = null;
+            }
+            View view = this.f37099q1;
+            if (z10) {
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.f37106x1 = animatorSet2;
+                animatorSet2.setDuration(180L);
+                AnimatorSet animatorSet3 = this.f37106x1;
+                Property property = View.ALPHA;
+                if (z11) {
+                    f14 = 1.0f;
+                } else {
+                    f14 = 0.0f;
+                }
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(fd0Var, property, f14);
+                if (z11) {
+                    f15 = 1.0f;
+                } else {
+                    f15 = 0.0f;
+                }
+                animatorSet3.playTogether(ofFloat, ObjectAnimator.ofFloat(view, property, f15));
+                this.f37106x1.addListener(new id0(this, 0));
+                this.f37106x1.start();
+            } else {
+                if (z11) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.0f;
+                }
+                fd0Var.setAlpha(f12);
+                if (z11) {
+                    f13 = 1.0f;
+                } else {
+                    f13 = 0.0f;
+                }
+                view.setAlpha(f13);
+            }
+        }
+        if (this.f37105w1 != top) {
+            this.f37105w1 = top;
+            this.f30192b.invalidate();
+        }
+        childAt.getBottom();
+        ed0Var.getMeasuredHeight();
+        if (childAt.getBottom() - ed0Var.getScrollY() > ed0Var.getMeasuredHeight()) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        View view2 = this.f37100r1;
+        if ((z12 && view2.getTag() == null) || (!z12 && view2.getTag() != null)) {
+            if (!z12) {
+                num2 = null;
+            }
+            view2.setTag(num2);
+            AnimatorSet animatorSet4 = this.f37107y1;
+            if (animatorSet4 != null) {
+                animatorSet4.cancel();
+                this.f37107y1 = null;
+            }
+            if (z10) {
+                AnimatorSet animatorSet5 = new AnimatorSet();
+                this.f37107y1 = animatorSet5;
+                animatorSet5.setDuration(180L);
+                AnimatorSet animatorSet6 = this.f37107y1;
+                Property property2 = View.ALPHA;
+                if (z12) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                animatorSet6.playTogether(ObjectAnimator.ofFloat(view2, property2, f11));
+                this.f37107y1.addListener(new id0(this, 1));
+                this.f37107y1.start();
+                return;
+            }
+            if (z12) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            view2.setAlpha(f10);
+        }
+    }
+
+    @Override
+    public final void onStart() {
+        super.onStart();
+        gc.a((FrameLayout) this.f30192b, new bi.t(9));
+    }
+
+    @Override
+    public final void onStop() {
+        super.onStop();
+        gc.h((FrameLayout) this.f30192b);
+    }
+
+    @Override
+    public final void s0() {
+        super.s0();
+        try {
+            J0();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
 }

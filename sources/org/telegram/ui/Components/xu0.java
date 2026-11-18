@@ -1,50 +1,68 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.RequestDelegate;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class xu0 implements RequestDelegate {
-    public final int f41760a;
-    public final org.telegram.messenger.w2 f41761b;
+public final class xu0 {
+    public final m5 f42195a;
+    public Drawable f42196b;
 
-    public xu0(org.telegram.messenger.w2 w2Var, int i7) {
-        this.f41760a = i7;
-        this.f41761b = w2Var;
+    public xu0(FrameLayout frameLayout) {
+        this(18, frameLayout);
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41760a) {
-            case 0:
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
-                org.telegram.messenger.w2 w2Var = this.f41761b;
-                if (z10) {
-                    Boolean bool = Boolean.TRUE;
-                    w2Var.a(bool, null, 0L, bool);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
-                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
-                    w2Var.a(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    w2Var.a(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
-            default:
-                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
-                org.telegram.messenger.w2 w2Var2 = this.f41761b;
-                if (z11) {
-                    Boolean bool2 = Boolean.TRUE;
-                    w2Var2.a(bool2, null, 0L, bool2);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_emojiList) {
-                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
-                    w2Var2.a(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    w2Var2.a(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
+    public final m5 a(TLObject tLObject, int i7, boolean z10) {
+        if (tLObject instanceof TLRPC.User) {
+            return b((TLRPC.User) tLObject, null, i7, z10);
         }
+        if (tLObject instanceof TLRPC.Chat) {
+            return b(null, (TLRPC.Chat) tLObject, i7, z10);
+        }
+        return b(null, null, i7, z10);
+    }
+
+    public final m5 b(TLRPC.User user, TLRPC.Chat chat, int i7, boolean z10) {
+        m5 m5Var = this.f42195a;
+        if (chat != null && chat.verified) {
+            Drawable drawable = this.f42196b;
+            if (drawable == null) {
+                drawable = new mq(org.telegram.ui.ActionBar.n6.f29429f1, org.telegram.ui.ActionBar.n6.f29483i1);
+            }
+            this.f42196b = drawable;
+            m5Var.g(drawable, z10);
+            m5Var.k(null);
+            return m5Var;
+        } else if (chat != null && org.telegram.messenger.n5.f(chat.emoji_status) != 0) {
+            m5Var.j(org.telegram.messenger.n5.f(chat.emoji_status), z10);
+            m5Var.k(Integer.valueOf(i7));
+            return m5Var;
+        } else if (user != null && user.verified) {
+            Drawable drawable2 = this.f42196b;
+            if (drawable2 == null) {
+                drawable2 = new mq(org.telegram.ui.ActionBar.n6.f29429f1, org.telegram.ui.ActionBar.n6.f29483i1);
+            }
+            this.f42196b = drawable2;
+            m5Var.g(drawable2, z10);
+            m5Var.k(null);
+            return m5Var;
+        } else if (user != null && org.telegram.messenger.n5.f(user.emoji_status) != 0) {
+            m5Var.j(org.telegram.messenger.n5.f(user.emoji_status), z10);
+            m5Var.k(Integer.valueOf(i7));
+            return m5Var;
+        } else if (user != null && user.premium) {
+            m5Var.g((Drawable) ia.e.d().f16203f, z10);
+            m5Var.k(Integer.valueOf(i7));
+            return m5Var;
+        } else {
+            m5Var.g(null, z10);
+            m5Var.k(null);
+            return m5Var;
+        }
+    }
+
+    public xu0(int i7, View view) {
+        this.f42195a = new m5(org.telegram.messenger.g0.L(i7), view);
     }
 }

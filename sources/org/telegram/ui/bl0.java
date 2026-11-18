@@ -1,41 +1,115 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class bl0 implements il0 {
-    public final kl0 f45778a;
+import android.text.Editable;
+import android.text.TextWatcher;
+import java.util.HashMap;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class bl0 implements TextWatcher {
+    public final int f45914a;
+    public final ml0 f45915b;
 
-    public bl0(kl0 kl0Var) {
-        this.f45778a = kl0Var;
+    public bl0(ml0 ml0Var, int i7) {
+        this.f45914a = i7;
+        this.f45915b = ml0Var;
     }
 
     @Override
-    public final void a(TL_account.Password password) {
-        this.f45778a.f48678b0 = password;
-    }
-
-    @Override
-    public final void b() {
-        this.f45778a.f48691g0 = null;
-    }
-
-    @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        kl0 kl0Var = this.f45778a;
-        il0 il0Var = kl0Var.U;
-        if (il0Var != null) {
-            il0Var.c(str, str2, z10, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        String str;
+        String str2;
+        int i7 = this.f45914a;
+        ml0 ml0Var = this.f45915b;
+        switch (i7) {
+            case 0:
+                if (ml0Var.f49888d0 != 0 && editable.length() == ml0Var.f49888d0) {
+                    ml0Var.G0(false);
+                    return;
+                }
+                return;
+            default:
+                HashMap hashMap = ml0Var.f49885c;
+                if (!ml0Var.f49904n0) {
+                    ml0Var.f49904n0 = true;
+                    String d = pf.b.d(ml0Var.f49893f[8].getText().toString(), false);
+                    ml0Var.f49893f[8].setText(d);
+                    org.telegram.ui.Components.g30 g30Var = (org.telegram.ui.Components.g30) ml0Var.f49893f[9];
+                    if (d.length() == 0) {
+                        g30Var.setHintText((String) null);
+                        g30Var.setHint(org.telegram.messenger.gd.M0(2131747179, null));
+                    } else {
+                        int i10 = 4;
+                        if (d.length() > 4) {
+                            while (true) {
+                                if (i10 >= 1) {
+                                    String substring = d.substring(0, i10);
+                                    if (((String) hashMap.get(substring)) != null) {
+                                        ml0Var.f49893f[8].setText(substring);
+                                        str = d.substring(i10) + ml0Var.f49893f[9].getText().toString();
+                                        d = substring;
+                                        z10 = true;
+                                    } else {
+                                        i10--;
+                                    }
+                                } else {
+                                    z10 = false;
+                                    str = null;
+                                }
+                            }
+                            if (!z10) {
+                                str = d.substring(1) + ml0Var.f49893f[9].getText().toString();
+                                EditTextBoldCursor editTextBoldCursor = ml0Var.f49893f[8];
+                                d = d.substring(0, 1);
+                                editTextBoldCursor.setText(d);
+                            }
+                        } else {
+                            z10 = false;
+                            str = null;
+                        }
+                        String str3 = (String) hashMap.get(d);
+                        if (str3 != null && ml0Var.f49879a.indexOf(str3) != -1 && (str2 = (String) ml0Var.d.get(d)) != null) {
+                            g30Var.setHintText(str2.replace('X', (char) 8211));
+                            g30Var.setHint((CharSequence) null);
+                        } else {
+                            g30Var.setHintText((String) null);
+                            g30Var.setHint(org.telegram.messenger.gd.M0(2131747179, null));
+                        }
+                        if (!z10) {
+                            EditTextBoldCursor editTextBoldCursor2 = ml0Var.f49893f[8];
+                            editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+                        }
+                        if (str != null) {
+                            g30Var.requestFocus();
+                            g30Var.setText(str);
+                            g30Var.setSelection(g30Var.length());
+                        }
+                    }
+                    ml0Var.f49904n0 = false;
+                    return;
+                }
+                return;
         }
-        if (kl0Var.T0) {
-            kl0Var.removeSelfFromStack();
-        }
-        if (kl0Var.U != null) {
-            return true;
-        }
-        return false;
     }
 
     @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f45914a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f45914a;
+    }
+
+    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

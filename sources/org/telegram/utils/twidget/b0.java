@@ -1,58 +1,58 @@
 package org.telegram.utils.twidget;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Picture;
-public final class b0 extends c0 {
-    public final Picture f54166e;
-    public boolean f54167f;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RenderNode;
+public final class b0 extends d0 {
+    public final RenderNode f54679e;
+    public Bitmap f54680f;
+    public Paint f54681g;
+    public Rect h;
 
-    public b0(int i7, int i10, int i11, int i12) {
+    public b0(String str, int i7, int i10, int i11, int i12) {
         super(i7, i10, i11, i12);
-        this.f54166e = new Picture();
+        RenderNode renderNode = new RenderNode(str);
+        this.f54679e = renderNode;
+        renderNode.setPosition(i7, i10, i11, i12);
     }
 
     @Override
     public final Canvas a() {
-        this.f54167f = true;
-        return this.f54166e.beginRecording(Math.max(1, this.f54171c - this.f54169a), Math.max(1, this.d - this.f54170b));
+        return this.f54679e.beginRecording(this.f54689c - this.f54687a, this.d - this.f54688b);
     }
 
     @Override
     public final void b() {
-        if (this.f54167f) {
-            d();
-        }
+        this.f54679e.discardDisplayList();
     }
 
     @Override
-    public final void c(Canvas canvas, float f10) {
-        Canvas canvas2;
-        int save;
-        if (!this.f54167f && f10 > 0.0f) {
-            int i7 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-            int i10 = this.f54170b;
-            int i11 = this.f54169a;
-            if (i7 < 0) {
-                canvas2 = canvas;
-                save = canvas2.saveLayerAlpha(i11, i10, this.f54171c, this.d, Math.round(f10 * 255.0f));
-            } else {
-                canvas2 = canvas;
-                save = canvas2.save();
-            }
-            canvas2.translate(i11, i10);
-            canvas2.drawPicture(this.f54166e);
-            canvas2.restoreToCount(save);
-        }
+    public final void c(android.graphics.Canvas r28, float r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.b0.c(android.graphics.Canvas, float):void");
     }
 
     @Override
     public final void d() {
-        this.f54166e.endRecording();
-        this.f54167f = false;
+        this.f54679e.endRecording();
     }
 
     @Override
     public final boolean e() {
-        return true;
+        return this.f54679e.hasDisplayList();
+    }
+
+    @Override
+    public final void f() {
+        boolean z10;
+        long j3 = this.f54689c - this.f54687a;
+        long j10 = this.d - this.f54688b;
+        if (j3 > 0 && j10 > 0 && j3 <= 4096 && j10 <= 4096 && j3 * j10 <= 8388608) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f54679e.setUseCompositingLayer(z10, null);
     }
 }

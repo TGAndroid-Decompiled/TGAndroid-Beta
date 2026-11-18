@@ -1,51 +1,98 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class f6 extends Drawable {
-    public float[] f28541b;
-    public Path f28540a = new Path();
-    public boolean f28542c = true;
+import android.graphics.Bitmap;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.w7;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class f6 implements RequestDelegate {
+    public final int f28955a;
+    public final fs f28956b;
+    public final Object f28957c;
 
-    public f6(float f10, float f11) {
-        this.f28541b = r0;
-        float L = org.telegram.messenger.g0.L(f10);
-        float L2 = org.telegram.messenger.g0.L(f11);
-        float[] fArr = {L, L, L, L, L2, L2, L2, L2};
+    public f6(fs fsVar, Object obj, int i7) {
+        this.f28955a = i7;
+        this.f28956b = fsVar;
+        this.f28957c = obj;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Path path = this.f28540a;
-        if (this.f28542c) {
-            this.f28542c = false;
-            path.reset();
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(getBounds());
-            path.addRoundRect(rectF, this.f28541b, Path.Direction.CW);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f28955a) {
+            case 0:
+                h6 h6Var = (h6) this.f28956b;
+                ArrayList arrayList = (ArrayList) this.f28957c;
+                if (tLObject instanceof Vector) {
+                    Vector vector = (Vector) tLObject;
+                    int size = vector.objects.size();
+                    String str = null;
+                    ArrayList arrayList2 = null;
+                    int i7 = 0;
+                    while (i7 < size) {
+                        TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) vector.objects.get(i7);
+                        if (wallPaper instanceof TLRPC.TL_wallPaper) {
+                            TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) wallPaper;
+                            if (tL_wallPaper.pattern) {
+                                w7.G(j10.f24773t0);
+                                File J = w7.J(tL_wallPaper.document, str, true, true);
+                                int size2 = arrayList.size();
+                                String str2 = str;
+                                Boolean bool = str2;
+                                int i10 = 0;
+                                Bitmap bitmap = str2;
+                                while (i10 < size2) {
+                                    k6 k6Var = (k6) arrayList.get(i10);
+                                    if (k6Var.f29182o.equals(tL_wallPaper.slug)) {
+                                        if (bool == null) {
+                                            bool = Boolean.valueOf(J.exists());
+                                        }
+                                        if (bitmap == 0 && !bool.booleanValue()) {
+                                            String r10 = w7.r(null, tL_wallPaper.document);
+                                            if (h6Var.f29004b == null) {
+                                                h6Var.f29004b = new HashMap();
+                                            }
+                                            g6 g6Var = (g6) h6Var.f29004b.get(r10);
+                                            g6 g6Var2 = g6Var;
+                                            if (g6Var == null) {
+                                                ?? obj = new Object();
+                                                obj.f28981b = new ArrayList();
+                                                obj.f28980a = tL_wallPaper;
+                                                h6Var.f29004b.put(r10, obj);
+                                                g6Var2 = obj;
+                                            }
+                                            g6Var2.f28981b.add(k6Var);
+                                        } else {
+                                            bitmap = h6.b(bitmap, "application/x-tgwallpattern".equals(tL_wallPaper.document.mime_type), J, k6Var);
+                                            if (arrayList2 == null) {
+                                                arrayList2 = new ArrayList();
+                                            }
+                                            arrayList2.add(k6Var);
+                                        }
+                                    }
+                                    i10++;
+                                    bitmap = bitmap;
+                                }
+                                if (bitmap != 0) {
+                                    bitmap.recycle();
+                                }
+                            }
+                        }
+                        i7++;
+                        str = null;
+                    }
+                    org.telegram.messenger.g0.g3(new di.p6((Object) h6Var, (Object) arrayList2, true, 13));
+                    return;
+                }
+                return;
+            default:
+                org.telegram.messenger.g0.g3(new kg.i0((m6) this.f28956b, tLObject, (m6) this.f28957c, 25));
+                return;
         }
-        canvas.drawPath(path, j6.f29253z);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f28542c = true;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

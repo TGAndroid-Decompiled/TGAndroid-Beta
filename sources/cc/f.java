@@ -5,9 +5,9 @@ import java.nio.charset.CharsetEncoder;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 public final class f {
-    public static final ArrayList f4888c = new ArrayList();
-    public final CharsetEncoder[] f4889a;
-    public final int f4890b;
+    public static final ArrayList f5174c = new ArrayList();
+    public final CharsetEncoder[] f5175a;
+    public final int f5176b;
 
     static {
         String[] strArr = {"IBM437", "ISO-8859-2", "ISO-8859-3", "ISO-8859-4", "ISO-8859-5", "ISO-8859-6", "ISO-8859-7", "ISO-8859-8", "ISO-8859-9", "ISO-8859-10", "ISO-8859-11", "ISO-8859-13", "ISO-8859-14", "ISO-8859-15", "ISO-8859-16", "windows-1250", "windows-1251", "windows-1252", "windows-1256", "Shift_JIS"};
@@ -15,7 +15,7 @@ public final class f {
             String str = strArr[i7];
             if (((d) d.d.get(str)) != null) {
                 try {
-                    f4888c.add(Charset.forName(str).newEncoder());
+                    f5174c.add(Charset.forName(str).newEncoder());
                 } catch (UnsupportedCharsetException unused) {
                 }
             }

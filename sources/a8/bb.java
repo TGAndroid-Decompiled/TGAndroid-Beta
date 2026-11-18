@@ -1,22 +1,23 @@
 package a8;
+
+import java.io.Serializable;
 public abstract class bb {
     public static ab f346a;
 
-    public static gd.c a(rd.a aVar) {
-        gd.d[] dVarArr = gd.d.f13161a;
-        gd.j jVar = gd.j.f13172a;
-        ?? obj = new Object();
-        obj.f13167a = aVar;
-        obj.f13168b = jVar;
-        return obj;
+    public static g9.t a(g9.t tVar) {
+        if (!(tVar instanceof g9.v)) {
+            if (tVar instanceof g9.u) {
+                return tVar;
+            }
+            if (tVar instanceof Serializable) {
+                return new g9.u(tVar);
+            }
+            return new g9.v(tVar);
+        }
+        return tVar;
     }
 
-    public static gd.i b(rd.a initializer) {
-        kotlin.jvm.internal.j.e(initializer, "initializer");
-        return new gd.i(initializer);
-    }
-
-    public static synchronized ua c(na naVar) {
+    public static synchronized ua b(na naVar) {
         ua uaVar;
         synchronized (bb.class) {
             try {
@@ -31,23 +32,23 @@ public abstract class bb {
         return uaVar;
     }
 
-    public static synchronized ua d() {
-        ua c10;
+    public static synchronized ua c() {
+        ua b10;
         synchronized (bb.class) {
-            byte b10 = (byte) (((byte) 1) | 2);
-            if (b10 == 3) {
-                c10 = c(new Object());
+            byte b11 = (byte) (((byte) 1) | 2);
+            if (b11 == 3) {
+                b10 = b(new Object());
             } else {
                 StringBuilder sb2 = new StringBuilder();
-                if ((b10 & 1) == 0) {
+                if ((b11 & 1) == 0) {
                     sb2.append(" enableFirelog");
                 }
-                if ((b10 & 2) == 0) {
+                if ((b11 & 2) == 0) {
                     sb2.append(" firelogEventType");
                 }
                 throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
             }
         }
-        return c10;
+        return b10;
     }
 }

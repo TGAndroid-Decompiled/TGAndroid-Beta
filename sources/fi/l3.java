@@ -1,28 +1,41 @@
 package fi;
+public final class l3 implements Runnable {
+    public final int f12218a;
+    public final r3 f12219b;
 
-import android.view.View;
-public final class l3 implements View.OnClickListener {
-    public final int f11986a;
-    public final t3 f11987b;
-    public final org.telegram.ui.ActionBar.e6 f11988c;
-    public final i9 d;
-
-    public l3(t3 t3Var, i9 i9Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f11986a = 0;
-        this.f11987b = t3Var;
-        this.d = i9Var;
-        this.f11988c = e6Var;
+    public l3(r3 r3Var, int i7) {
+        this.f12218a = i7;
+        this.f12219b = r3Var;
     }
 
     @Override
-    public final void onClick(android.view.View r19) {
-        throw new UnsupportedOperationException("Method not decompiled: fi.l3.onClick(android.view.View):void");
-    }
-
-    public l3(t3 t3Var, org.telegram.ui.ActionBar.e6 e6Var, i9 i9Var, int i7) {
-        this.f11986a = i7;
-        this.f11987b = t3Var;
-        this.f11988c = e6Var;
-        this.d = i9Var;
+    public final void run() {
+        switch (this.f12218a) {
+            case 0:
+                ((w8) this.f12219b.f12501x.A1).g(false);
+                return;
+            case 1:
+                z3 z3Var = this.f12219b.f12501x;
+                s3 s3Var = z3Var.A1;
+                if (s3Var != null) {
+                    f9 f9Var = ((w8) s3Var).d;
+                    f9Var.Z0 = false;
+                    f9Var.V();
+                }
+                z3Var.d1(false);
+                z3Var.R2 = true;
+                z3Var.f12879u0.E(true);
+                return;
+            case 2:
+                z3 z3Var2 = this.f12219b.f12501x;
+                z3Var2.E3 = true;
+                z3Var2.setActive(false);
+                return;
+            default:
+                z3 z3Var3 = this.f12219b.f12501x;
+                z3Var3.E3 = true;
+                z3Var3.setActive(false);
+                return;
+        }
     }
 }

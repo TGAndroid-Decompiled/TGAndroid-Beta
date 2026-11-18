@@ -3,16 +3,16 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.widget.TextView;
 public final class l extends TextView implements we.a {
-    public final m f29356a;
+    public final m f29193a;
 
     public l(m mVar, Context context) {
         super(context);
-        this.f29356a = mVar;
+        this.f29193a = mVar;
     }
 
     @Override
     public final void a() {
         org.telegram.messenger.g0.E2(this);
-        this.f29356a.f29376b.x(this);
+        this.f29193a.f29212b.y(this);
     }
 }

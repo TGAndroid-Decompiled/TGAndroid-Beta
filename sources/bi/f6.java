@@ -1,17 +1,30 @@
 package bi;
 
-import org.telegram.messenger.s10;
-public final class f6 implements s10 {
-    public final int f3524a;
-    public final u6 f3525b;
+import org.telegram.ui.Components.eq0;
+public final class f6 extends v4.k {
+    public final eq0 F;
 
-    public f6(u6 u6Var, int i7) {
-        this.f3524a = i7;
-        this.f3525b = u6Var;
+    public f6(eq0 eq0Var) {
+        this.F = eq0Var;
     }
 
     @Override
-    public final void a(java.lang.Object r21, java.lang.Object r22) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.f6.a(java.lang.Object, java.lang.Object):void");
+    public final void M() {
+        this.F.p();
+    }
+
+    @Override
+    public final void O() {
+        this.F.p();
+    }
+
+    @Override
+    public final void P(v4.f1 f1Var) {
+        this.F.p();
+    }
+
+    @Override
+    public final void Q() {
+        this.F.p();
     }
 }

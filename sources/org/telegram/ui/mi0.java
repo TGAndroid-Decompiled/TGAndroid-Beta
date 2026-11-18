@@ -1,50 +1,117 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.content.Intent;
+import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_account;
-public final class mi0 implements org.telegram.messenger.s10 {
-    public final int f49235a;
-    public final PasskeysActivity f49236b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class mi0 extends org.telegram.ui.ActionBar.j {
+    public final int f49867a;
+    public final Object f49868b;
+    public final org.telegram.ui.ActionBar.h2 f49869c;
 
-    public mi0(PasskeysActivity passkeysActivity, int i7) {
-        this.f49235a = i7;
-        this.f49236b = passkeysActivity;
+    public mi0(org.telegram.ui.ActionBar.h2 h2Var, Object obj, int i7) {
+        this.f49867a = i7;
+        this.f49869c = h2Var;
+        this.f49868b = obj;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        int i7 = this.f49235a;
-        PasskeysActivity passkeysActivity = this.f49236b;
-        switch (i7) {
+    public final void b(int i7) {
+        int i10;
+        int i11;
+        int i12 = this.f49867a;
+        Object obj = this.f49868b;
+        int i13 = 0;
+        org.telegram.ui.ActionBar.h2 h2Var = this.f49869c;
+        int i14 = 1;
+        switch (i12) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.Components.p41 p41Var = (org.telegram.ui.Components.p41) obj2;
-                ArrayList arrayList2 = passkeysActivity.f42705b;
-                passkeysActivity.addPasskeyRow = -1;
-                String M0 = org.telegram.messenger.hd.M0(2131747629, null);
-                org.telegram.ui.Components.b41 b41Var = new org.telegram.ui.Components.b41(2);
-                b41Var.f33184l = M0;
-                b41Var.f33183k = 2131624114;
-                arrayList.add(b41Var);
-                for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                    g40 g40Var = new g40(passkeysActivity, 16);
-                    int i11 = oi0.f49966b;
-                    org.telegram.ui.Components.b41 K = org.telegram.ui.Components.b41.K(oi0.class);
-                    K.G = (TL_account.Passkey) arrayList2.get(i10);
-                    K.D = g40Var;
-                    arrayList.add(K);
+                PasscodeActivity passcodeActivity = (PasscodeActivity) h2Var;
+                if (i7 == -1) {
+                    passcodeActivity.finishFragment();
+                    return;
+                } else if (i7 == 1) {
+                    if (passcodeActivity.E != 0) {
+                        i14 = 0;
+                    }
+                    passcodeActivity.E = i14;
+                    org.telegram.messenger.g0.h3(new ve0(8, this, (org.telegram.ui.ActionBar.z0) obj), 150L);
+                    passcodeActivity.h.setText("");
+                    er[] erVarArr = passcodeActivity.f43143n.f46283f;
+                    int length = erVarArr.length;
+                    while (i13 < length) {
+                        erVarArr[i13].setText("");
+                        i13++;
+                    }
+                    passcodeActivity.z0();
+                    return;
+                } else {
+                    return;
                 }
-                if (arrayList2.size() + 1 <= ((org.telegram.messenger.j0) passkeysActivity.getMessagesController().f25451y7.f25873z.f15881b).f24498c) {
-                    passkeysActivity.addPasskeyRow = arrayList.size();
-                    org.telegram.ui.Components.b41 c10 = org.telegram.ui.Components.b41.c(-1, 2131231845, org.telegram.messenger.hd.M0(2131747650, null));
-                    c10.f33189q = true;
-                    arrayList.add(c10);
-                }
-                arrayList.add(org.telegram.ui.Components.b41.C(org.telegram.messenger.g0.H2(org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131747635, null), new ef0(passkeysActivity, 4)), true)));
-                return;
             default:
-                PasskeysActivity.Z(passkeysActivity, (TL_account.Passkey) obj, (String) obj2);
-                return;
+                ProxyListActivity proxyListActivity = (ProxyListActivity) h2Var;
+                ArrayList arrayList = proxyListActivity.F;
+                if (i7 != -1) {
+                    if (i7 != 0) {
+                        if (i7 == 1) {
+                            StringBuilder sb2 = new StringBuilder();
+                            int size = arrayList.size();
+                            while (i13 < size) {
+                                Object obj2 = arrayList.get(i13);
+                                i13++;
+                                org.telegram.messenger.az azVar = (org.telegram.messenger.az) obj2;
+                                if (sb2.length() > 0) {
+                                    sb2.append("\n\n");
+                                }
+                                sb2.append(azVar.f22988a.e());
+                            }
+                            Intent intent = new Intent("android.intent.action.SEND");
+                            intent.setType("text/plain");
+                            intent.putExtra("android.intent.extra.TEXT", sb2.toString());
+                            if (arrayList.size() > 1) {
+                                i11 = 2131745262;
+                            } else {
+                                i11 = 2131745263;
+                            }
+                            Intent createChooser = Intent.createChooser(intent, org.telegram.messenger.gd.M0(i11, null));
+                            createChooser.setFlags(268435456);
+                            ((Context) obj).startActivity(createChooser);
+                            l4 l4Var = proxyListActivity.f43693a;
+                            if (l4Var != null) {
+                                l4Var.F();
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(proxyListActivity.getParentActivity());
+                    if (arrayList.size() > 1) {
+                        i10 = 2131751499;
+                    } else {
+                        i10 = 2131751500;
+                    }
+                    String M0 = org.telegram.messenger.gd.M0(i10, null);
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    u1Var.U = M0;
+                    alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
+                    u1Var.S = org.telegram.messenger.gd.M0(2131751498, null);
+                    alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131751587, null), new qi0(this, 13));
+                    proxyListActivity.showDialog(u1Var);
+                    TextView textView = (TextView) u1Var.d(-1);
+                    if (textView != null) {
+                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29637q7, null);
+                        return;
+                    }
+                    return;
+                } else if (arrayList.isEmpty()) {
+                    proxyListActivity.finishFragment();
+                    return;
+                } else {
+                    proxyListActivity.f43693a.F();
+                    return;
+                }
         }
     }
 }

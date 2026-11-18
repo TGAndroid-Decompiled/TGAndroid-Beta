@@ -1,120 +1,120 @@
 package sg;
 
-import a8.t9;
+import a8.w9;
 public final class c1 extends f1 {
-    public final int f56603f;
-    public final g1 f56604g;
+    public final int f57177f;
+    public final g1 f57178g;
 
     public c1(g1 g1Var, int i7) {
-        this.f56603f = i7;
-        this.f56604g = g1Var;
+        this.f57177f = i7;
+        this.f57178g = g1Var;
     }
 
     @Override
     public final void a() {
-        switch (this.f56603f) {
+        switch (this.f57177f) {
             case 0:
-                g1 g1Var = this.f56604g;
+                g1 g1Var = this.f57178g;
                 x0 x0Var = g1Var.h;
-                double atan2 = Math.atan2(x0Var.f56825c - x0Var.f56830j, x0Var.f56824b - x0Var.f56829i) + 3.141592653589793d;
+                double atan2 = Math.atan2(x0Var.f57399c - x0Var.f57404j, x0Var.f57398b - x0Var.f57403i) + 3.141592653589793d;
                 x0 x0Var2 = g1Var.h;
-                double d = x0Var2.f56831k / 5.5f;
-                this.d = x0Var2.f56824b + ((float) (Math.cos(atan2) * d));
-                this.f56621e = g1Var.h.f56825c + ((float) (Math.sin(atan2) * d));
+                double d = x0Var2.f57405k / 5.5f;
+                this.d = x0Var2.f57398b + ((float) (Math.cos(atan2) * d));
+                this.f57195e = g1Var.h.f57399c + ((float) (Math.sin(atan2) * d));
                 return;
             case 1:
-                x0 x0Var3 = this.f56604g.h;
-                float f10 = x0Var3.f56825c;
-                this.d = x0Var3.f56824b + x0Var3.d;
-                this.f56621e = f10;
+                x0 x0Var3 = this.f57178g.h;
+                float f10 = x0Var3.f57399c;
+                this.d = x0Var3.f57398b + x0Var3.d;
+                this.f57195e = f10;
                 return;
             case 2:
-                g1 g1Var2 = this.f56604g;
+                g1 g1Var2 = this.f57178g;
                 x0 x0Var4 = g1Var2.h;
-                float min = Math.min(x0Var4.d, x0Var4.f56826e);
-                float cos = (((float) Math.cos(-0.3141592653589793d)) * min) + g1Var2.h.f56824b;
-                float f11 = g1Var2.h.f56825c;
+                float min = Math.min(x0Var4.d, x0Var4.f57400e);
+                float cos = (((float) Math.cos(-0.3141592653589793d)) * min) + g1Var2.h.f57398b;
+                float f11 = g1Var2.h.f57399c;
                 this.d = cos;
-                this.f56621e = (((float) Math.sin(-0.3141592653589793d)) * min) + f11;
+                this.f57195e = (((float) Math.sin(-0.3141592653589793d)) * min) + f11;
                 return;
             case 3:
-                x0 x0Var5 = this.f56604g.h;
-                this.d = x0Var5.f56824b;
-                this.f56621e = x0Var5.f56825c - Math.abs(x0Var5.f56826e);
+                x0 x0Var5 = this.f57178g.h;
+                this.d = x0Var5.f57398b;
+                this.f57195e = x0Var5.f57399c - Math.abs(x0Var5.f57400e);
                 return;
             case 4:
-                x0 x0Var6 = this.f56604g.h;
-                float f12 = x0Var6.f56829i;
-                float f13 = x0Var6.f56830j;
-                x0Var6.f56829i = f12;
-                x0Var6.f56830j = f13;
+                x0 x0Var6 = this.f57178g.h;
+                float f12 = x0Var6.f57403i;
+                float f13 = x0Var6.f57404j;
+                x0Var6.f57403i = f12;
+                x0Var6.f57404j = f13;
                 this.d = f12;
-                this.f56621e = f13;
+                this.f57195e = f13;
                 return;
             default:
-                x0 x0Var7 = this.f56604g.h;
-                this.d = x0Var7.f56824b;
-                this.f56621e = x0Var7.f56825c;
+                x0 x0Var7 = this.f57178g.h;
+                this.d = x0Var7.f57398b;
+                this.f57195e = x0Var7.f57399c;
                 return;
         }
     }
 
     @Override
     public final void b(float f10, float f11) {
-        switch (this.f56603f) {
+        switch (this.f57177f) {
             case 0:
-                g1 g1Var = this.f56604g;
+                g1 g1Var = this.f57178g;
                 x0 x0Var = g1Var.h;
-                double atan2 = Math.atan2(x0Var.f56825c - x0Var.f56830j, x0Var.f56824b - x0Var.f56829i) + 1.5707963267948966d;
+                double atan2 = Math.atan2(x0Var.f57399c - x0Var.f57404j, x0Var.f57398b - x0Var.f57403i) + 1.5707963267948966d;
                 x0 x0Var2 = g1Var.h;
                 x0 x0Var3 = g1Var.h;
-                float f12 = x0Var3.f56824b;
-                float f13 = x0Var3.f56825c;
+                float f12 = x0Var3.f57398b;
+                float f13 = x0Var3.f57399c;
                 g1Var.getClass();
-                x0Var3.f56831k = Math.min((t9.a(x0Var2.f56824b, x0Var2.f56825c, x0Var2.f56829i, x0Var2.f56830j) * 5.5f) / 2.0f, Math.max(100.0f, (-((float) ((Math.cos(atan2) * (f13 - f11)) - (Math.sin(atan2) * (f12 - f10))))) * 5.5f));
+                x0Var3.f57405k = Math.min((w9.a(x0Var2.f57398b, x0Var2.f57399c, x0Var2.f57403i, x0Var2.f57404j) * 5.5f) / 2.0f, Math.max(100.0f, (-((float) ((Math.cos(atan2) * (f13 - f11)) - (Math.sin(atan2) * (f12 - f10))))) * 5.5f));
                 a();
                 return;
             case 1:
                 this.d = f10;
-                this.f56621e = f11;
-                x0 x0Var4 = this.f56604g.h;
-                float a10 = t9.a(x0Var4.f56824b, x0Var4.f56825c, f10, f11);
-                x0Var4.f56826e = a10;
+                this.f57195e = f11;
+                x0 x0Var4 = this.f57178g.h;
+                float a10 = w9.a(x0Var4.f57398b, x0Var4.f57399c, f10, f11);
+                x0Var4.f57400e = a10;
                 x0Var4.d = a10;
                 return;
             case 2:
-                g1 g1Var2 = this.f56604g;
+                g1 g1Var2 = this.f57178g;
                 x0 x0Var5 = g1Var2.h;
-                float a11 = t9.a(x0Var5.f56824b, x0Var5.f56825c, f10, f11);
-                x0Var5.f56826e = a11;
+                float a11 = w9.a(x0Var5.f57398b, x0Var5.f57399c, f10, f11);
+                x0Var5.f57400e = a11;
                 x0Var5.d = a11;
                 x0 x0Var6 = g1Var2.h;
-                x0Var6.h = (float) ((((float) Math.atan2(x0Var6.f56825c - f11, f10 - x0Var6.f56824b)) - 0.3141592653589793d) + x0Var6.h);
+                x0Var6.h = (float) ((((float) Math.atan2(x0Var6.f57399c - f11, f10 - x0Var6.f57398b)) - 0.3141592653589793d) + x0Var6.h);
                 a();
                 return;
             case 3:
-                g1 g1Var3 = this.f56604g;
+                g1 g1Var3 = this.f57178g;
                 x0 x0Var7 = g1Var3.h;
-                x0Var7.h = (float) ((((float) Math.atan2(x0Var7.f56825c - f11, f10 - x0Var7.f56824b)) - 1.5707963267948966d) + x0Var7.h);
-                for (int i7 = 0; i7 < g1Var3.f56636m.size(); i7++) {
-                    f1 f1Var = (f1) g1Var3.f56636m.get(i7);
+                x0Var7.h = (float) ((((float) Math.atan2(x0Var7.f57399c - f11, f10 - x0Var7.f57398b)) - 1.5707963267948966d) + x0Var7.h);
+                for (int i7 = 0; i7 < g1Var3.f57210m.size(); i7++) {
+                    f1 f1Var = (f1) g1Var3.f57210m.get(i7);
                     if (f1Var instanceof e1) {
                         f1Var.a();
                     }
                 }
                 return;
             case 4:
-                x0 x0Var8 = this.f56604g.h;
-                x0Var8.f56829i = f10;
-                x0Var8.f56830j = f11;
+                x0 x0Var8 = this.f57178g.h;
+                x0Var8.f57403i = f10;
+                x0Var8.f57404j = f11;
                 this.d = f10;
-                this.f56621e = f11;
-                float f14 = x0Var8.f56825c;
-                float f15 = x0Var8.f56826e;
+                this.f57195e = f11;
+                float f14 = x0Var8.f57399c;
+                float f15 = x0Var8.f57400e;
                 float f16 = f14 - f15;
                 int i10 = (f11 > f16 ? 1 : (f11 == f16 ? 0 : -1));
                 if (i10 > 0 && f11 < f14 + f15) {
-                    float f17 = x0Var8.f56824b;
+                    float f17 = x0Var8.f57398b;
                     if (f10 <= f17) {
                         float f18 = f17 - x0Var8.d;
                         if (f10 > f18) {
@@ -129,37 +129,37 @@ public final class c1 extends f1 {
                     }
                 }
                 float f20 = this.d;
-                float f21 = x0Var8.f56824b;
+                float f21 = x0Var8.f57398b;
                 float f22 = x0Var8.d;
                 if (f20 > f21 - f22 && f20 < f21 + f22) {
                     if (f11 <= f14 && i10 > 0) {
-                        this.f56621e = f16;
+                        this.f57195e = f16;
                     } else if (f11 > f14) {
                         float f23 = f14 + f15;
                         if (f11 < f23) {
-                            this.f56621e = f23;
+                            this.f57195e = f23;
                         }
                     }
                 }
-                x0Var8.f56829i = f20;
-                x0Var8.f56830j = this.f56621e;
+                x0Var8.f57403i = f20;
+                x0Var8.f57404j = this.f57195e;
                 return;
             default:
                 int i11 = 0;
                 while (true) {
-                    g1 g1Var4 = this.f56604g;
-                    if (i11 < g1Var4.f56636m.size()) {
-                        f1 f1Var2 = (f1) g1Var4.f56636m.get(i11);
+                    g1 g1Var4 = this.f57178g;
+                    if (i11 < g1Var4.f57210m.size()) {
+                        f1 f1Var2 = (f1) g1Var4.f57210m.get(i11);
                         if (f1Var2 != this) {
                             f1Var2.a();
                         }
                         i11++;
                     } else {
                         x0 x0Var9 = g1Var4.h;
-                        x0Var9.f56824b = f10;
-                        x0Var9.f56825c = f11;
+                        x0Var9.f57398b = f10;
+                        x0Var9.f57399c = f11;
                         this.d = f10;
-                        this.f56621e = f11;
+                        this.f57195e = f11;
                         return;
                     }
                 }
@@ -168,7 +168,7 @@ public final class c1 extends f1 {
 
     public c1(g1 g1Var, int i7, boolean z10) {
         super(0);
-        this.f56603f = i7;
-        this.f56604g = g1Var;
+        this.f57177f = i7;
+        this.f57178g = g1Var;
     }
 }

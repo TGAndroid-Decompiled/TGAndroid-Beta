@@ -3,33 +3,33 @@ package hd;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class s implements Iterator {
-    public int f13834a;
-    public Object f13835b;
-    public int f13836c;
+    public int f14151a;
+    public Object f14152b;
+    public int f14153c;
     public int d;
-    public final t f13837e;
+    public final t f14154e;
 
     public s(t tVar) {
-        this.f13837e = tVar;
-        this.f13836c = tVar.d;
-        this.d = tVar.f13840c;
+        this.f14154e = tVar;
+        this.f14153c = tVar.d;
+        this.d = tVar.f14157c;
     }
 
     public final boolean a() {
-        this.f13834a = 3;
-        int i7 = this.f13836c;
+        this.f14151a = 3;
+        int i7 = this.f14153c;
         if (i7 == 0) {
-            this.f13834a = 2;
+            this.f14151a = 2;
         } else {
-            t tVar = this.f13837e;
-            Object[] objArr = tVar.f13838a;
+            t tVar = this.f14154e;
+            Object[] objArr = tVar.f14155a;
             int i10 = this.d;
-            this.f13835b = objArr[i10];
-            this.f13834a = 1;
-            this.d = (i10 + 1) % tVar.f13839b;
-            this.f13836c = i7 - 1;
+            this.f14152b = objArr[i10];
+            this.f14151a = 1;
+            this.d = (i10 + 1) % tVar.f14156b;
+            this.f14153c = i7 - 1;
         }
-        if (this.f13834a == 1) {
+        if (this.f14151a == 1) {
             return true;
         }
         return false;
@@ -37,7 +37,7 @@ public final class s implements Iterator {
 
     @Override
     public final boolean hasNext() {
-        int i7 = this.f13834a;
+        int i7 = this.f14151a;
         if (i7 != 0) {
             if (i7 == 1) {
                 return true;
@@ -52,13 +52,13 @@ public final class s implements Iterator {
 
     @Override
     public final Object next() {
-        int i7 = this.f13834a;
+        int i7 = this.f14151a;
         if (i7 == 1) {
-            this.f13834a = 0;
-            return this.f13835b;
+            this.f14151a = 0;
+            return this.f14152b;
         } else if (i7 != 2 && a()) {
-            this.f13834a = 0;
-            return this.f13835b;
+            this.f14151a = 0;
+            return this.f14152b;
         } else {
             throw new NoSuchElementException();
         }

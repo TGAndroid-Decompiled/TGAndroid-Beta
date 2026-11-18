@@ -1,112 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.graphics.Color;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
-import java.util.HashSet;
-public final class hq extends View implements org.telegram.ui.ActionBar.z5 {
-    public final Paint f35310a;
-    public final Paint f35311b;
-    public final RectF f35312c;
-    public int d;
-    public long f35313e;
-    public int f35314f;
-    public int h;
-    public int f35315n;
-    public int f35316r;
+public final class hq implements TextWatcher {
+    public final int f35948a = 1;
+    public final int f35949b;
+    public final View f35950c;
 
-    public hq(Context context, int i7) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f35310a = paint;
-        Paint paint2 = new Paint(1);
-        this.f35311b = paint2;
-        this.f35312c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i7 == 0) {
-            this.f35314f = org.telegram.ui.ActionBar.j6.B7;
-            this.h = org.telegram.ui.ActionBar.j6.C7;
-        } else if (i7 == 1) {
-            this.f35314f = org.telegram.ui.ActionBar.j6.D7;
-            this.h = org.telegram.ui.ActionBar.j6.E7;
-        } else if (i7 == 2) {
-            this.f35314f = org.telegram.ui.ActionBar.j6.F7;
-            this.h = org.telegram.ui.ActionBar.j6.G7;
-        } else if (i7 == 3) {
-            this.f35314f = org.telegram.ui.ActionBar.j6.H7;
-            this.h = org.telegram.ui.ActionBar.j6.I7;
+    public hq(kq kqVar, int i7) {
+        this.f35950c = kqVar;
+        this.f35949b = i7;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        int i7;
+        int i10 = this.f35948a;
+        int i11 = this.f35949b;
+        View view = this.f35950c;
+        boolean z10 = false;
+        switch (i10) {
+            case 0:
+                kq kqVar = (kq) view;
+                EditTextBoldCursor[] editTextBoldCursorArr = kqVar.F;
+                if (!kqVar.f36857r) {
+                    kqVar.f36857r = true;
+                    int i12 = 0;
+                    while (i12 < editable.length()) {
+                        char charAt = editable.charAt(i12);
+                        if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
+                            editable.replace(i12, i12 + 1, "");
+                            i12--;
+                        }
+                        i12++;
+                    }
+                    if (editable.length() == 0) {
+                        kqVar.f36857r = false;
+                        return;
+                    }
+                    try {
+                        i7 = Integer.parseInt(editTextBoldCursorArr[i11].getText().toString(), 16) | (-16777216);
+                    } catch (Exception unused) {
+                        i7 = -1;
+                    }
+                    kqVar.setColorInner(i7);
+                    int color = kqVar.getColor();
+                    if (editable.length() == 6) {
+                        editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
+                        editTextBoldCursorArr[i11].setSelection(editable.length());
+                    }
+                    kqVar.f36859w[kqVar.T].a(color);
+                    kqVar.f36845a.c(color, kqVar.T, true);
+                    kqVar.f36857r = false;
+                    return;
+                }
+                return;
+            default:
+                NumberTextView numberTextView = (NumberTextView) view;
+                int codePointCount = i11 - Character.codePointCount(editable, 0, editable.length());
+                if (codePointCount < 30) {
+                    if (numberTextView.getVisibility() == 0) {
+                        z10 = true;
+                    }
+                    numberTextView.a(codePointCount, z10);
+                    org.telegram.messenger.g0.V3(numberTextView, true);
+                    return;
+                }
+                org.telegram.messenger.g0.V3(numberTextView, false);
+                return;
         }
-        updateColors();
-    }
-
-    public final void a(int i7, int i10) {
-        this.f35314f = -1;
-        this.h = -1;
-        this.f35315n = i7;
-        this.f35316r = i10;
-        updateColors();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f35313e = System.currentTimeMillis();
-        invalidate();
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f35948a;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
-            return;
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f35313e;
-        this.f35313e = currentTimeMillis;
-        this.d = (int) ((((float) (j3 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - org.telegram.messenger.g0.L(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(9.0f);
-        RectF rectF = this.f35312c;
-        rectF.set(measuredWidth, measuredHeight, org.telegram.messenger.g0.L(18.0f) + measuredWidth, org.telegram.messenger.g0.L(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, org.telegram.messenger.g0.L(9.0f), this.f35310a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f35311b);
-        invalidate();
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f35948a;
     }
 
-    @Override
-    public void setVisibility(int i7) {
-        super.setVisibility(i7);
-        this.f35313e = System.currentTimeMillis();
-        invalidate();
+    public hq(int i7, NumberTextView numberTextView) {
+        this.f35949b = i7;
+        this.f35950c = numberTextView;
     }
 
-    @Override
-    public final void updateColors() {
-        int i7 = this.f35314f;
-        Paint paint = this.f35310a;
-        if (i7 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
-        } else {
-            paint.setColor(this.f35315n);
-        }
-        int i10 = this.h;
-        Paint paint2 = this.f35311b;
-        if (i10 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.j6.x0(null, i10, false));
-        } else {
-            paint2.setColor(this.f35316r);
-        }
-        invalidate();
+    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

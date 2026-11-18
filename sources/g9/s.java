@@ -1,23 +1,23 @@
 package g9;
 
-import a8.ja;
+import a8.la;
 import a8.xa;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class s implements Iterator {
-    public String f12943b;
-    public final CharSequence f12944c;
+    public String f13260b;
+    public final CharSequence f13261c;
     public final i d;
-    public int f12946f;
-    public final d6.i h;
-    public int f12942a = 2;
-    public int f12945e = 0;
+    public int f13263f;
+    public final ob.c h;
+    public int f13259a = 2;
+    public int f13262e = 0;
 
-    public s(d6.i iVar, xa xaVar, CharSequence charSequence) {
-        this.h = iVar;
+    public s(ob.c cVar, xa xaVar, CharSequence charSequence) {
+        this.h = cVar;
         this.d = (i) xaVar.f714c;
-        this.f12946f = xaVar.f713b;
-        this.f12944c = charSequence;
+        this.f13263f = xaVar.f713b;
+        this.f13261c = charSequence;
     }
 
     @Override
@@ -25,26 +25,26 @@ public final class s implements Iterator {
         boolean z10;
         String str;
         i iVar;
-        if (this.f12942a != 4) {
+        if (this.f13259a != 4) {
             z10 = true;
         } else {
             z10 = false;
         }
-        ja.p(z10);
-        int c10 = p1.g.c(this.f12942a);
+        la.p(z10);
+        int c10 = p1.g.c(this.f13259a);
         if (c10 == 0) {
             return true;
         }
         if (c10 != 2) {
-            this.f12942a = 4;
-            int i7 = this.f12945e;
+            this.f13259a = 4;
+            int i7 = this.f13262e;
             while (true) {
-                int i10 = this.f12945e;
+                int i10 = this.f13262e;
                 if (i10 != -1) {
-                    e eVar = (e) this.h.f7598b;
-                    CharSequence charSequence = this.f12944c;
+                    e eVar = (e) this.h.f21783b;
+                    CharSequence charSequence = this.f13261c;
                     int length = charSequence.length();
-                    ja.m(i10, length);
+                    la.m(i10, length);
                     while (true) {
                         if (i10 < length) {
                             if (eVar.c(charSequence.charAt(i10))) {
@@ -58,16 +58,16 @@ public final class s implements Iterator {
                     }
                     if (i10 == -1) {
                         i10 = charSequence.length();
-                        this.f12945e = -1;
+                        this.f13262e = -1;
                     } else {
-                        this.f12945e = i10 + 1;
+                        this.f13262e = i10 + 1;
                     }
-                    int i11 = this.f12945e;
+                    int i11 = this.f13262e;
                     if (i11 == i7) {
                         int i12 = i11 + 1;
-                        this.f12945e = i12;
+                        this.f13262e = i12;
                         if (i12 > charSequence.length()) {
-                            this.f12945e = -1;
+                            this.f13262e = -1;
                         }
                     } else {
                         while (true) {
@@ -80,27 +80,27 @@ public final class s implements Iterator {
                         while (i10 > i7 && iVar.c(charSequence.charAt(i10 - 1))) {
                             i10--;
                         }
-                        int i13 = this.f12946f;
+                        int i13 = this.f13263f;
                         if (i13 == 1) {
                             i10 = charSequence.length();
-                            this.f12945e = -1;
+                            this.f13262e = -1;
                             while (i10 > i7 && iVar.c(charSequence.charAt(i10 - 1))) {
                                 i10--;
                             }
                         } else {
-                            this.f12946f = i13 - 1;
+                            this.f13263f = i13 - 1;
                         }
                         str = charSequence.subSequence(i7, i10).toString();
                     }
                 } else {
-                    this.f12942a = 3;
+                    this.f13259a = 3;
                     str = null;
                     break;
                 }
             }
-            this.f12943b = str;
-            if (this.f12942a != 3) {
-                this.f12942a = 1;
+            this.f13260b = str;
+            if (this.f13259a != 3) {
+                this.f13259a = 1;
                 return true;
             }
         }
@@ -110,9 +110,9 @@ public final class s implements Iterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            this.f12942a = 2;
-            String str = this.f12943b;
-            this.f12943b = null;
+            this.f13259a = 2;
+            String str = this.f13260b;
+            this.f13260b = null;
             return str;
         }
         throw new NoSuchElementException();

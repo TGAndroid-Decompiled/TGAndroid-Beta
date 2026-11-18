@@ -7,7 +7,7 @@ import android.os.SystemClock;
 import e2.s0;
 import e2.t0;
 import h2.l0;
-import h9.g2;
+import h9.h2;
 import h9.i0;
 import j2.b0;
 import java.io.FileNotFoundException;
@@ -17,40 +17,41 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import org.telegram.ui.Components.cf;
-public final class d implements b3.j {
-    public static final r2.j K = new r2.j(15);
+import org.telegram.ui.Cells.b5;
+import r0.f1;
+public final class d implements b3.k {
+    public static final f1 K = new f1(16);
     public i0 E;
     public i0 F;
     public Uri G;
     public m H;
     public boolean I;
-    public final cf f56183a;
-    public final t f56184b;
-    public final qb.a f56185c;
-    public xa f56187f;
-    public b3.o h;
-    public Handler f56188n;
-    public r2.l f56189r;
-    public p f56190s;
-    public t0 f56191w;
-    public i0 f56192x;
-    public i0 f56193y;
-    public final CopyOnWriteArrayList f56186e = new CopyOnWriteArrayList();
+    public final b5 f56757a;
+    public final t f56758b;
+    public final qb.a f56759c;
+    public xa f56761f;
+    public b3.p h;
+    public Handler f56762n;
+    public r2.k f56763r;
+    public p f56764s;
+    public t0 f56765w;
+    public i0 f56766x;
+    public i0 f56767y;
+    public final CopyOnWriteArrayList f56760e = new CopyOnWriteArrayList();
     public final HashMap d = new HashMap();
     public long J = -9223372036854775807L;
 
-    public d(cf cfVar, qb.a aVar, t tVar) {
-        this.f56183a = cfVar;
-        this.f56184b = tVar;
-        this.f56185c = aVar;
+    public d(b5 b5Var, qb.a aVar, t tVar) {
+        this.f56757a = b5Var;
+        this.f56758b = tVar;
+        this.f56759c = aVar;
     }
 
     public final void a(List list) {
         for (int i7 = 0; i7 < list.size(); i7++) {
             w wVar = (w) list.get(i7);
             c cVar = new c(this, wVar);
-            g2 it = h9.t0.q(wVar.f56332b.values()).iterator();
+            h2 it = h9.t0.q(wVar.f56906b.values()).iterator();
             while (it.hasNext()) {
                 this.d.put((Uri) it.next(), cVar);
             }
@@ -68,15 +69,15 @@ public final class d implements b3.j {
             g(uri);
             c cVar2 = (c) hashMap.get(uri);
             cVar2.getClass();
-            HashMap hashMap2 = cVar2.f56181b;
-            b bVar = (b) r.b.i(hashMap2, uri, uri);
+            HashMap hashMap2 = cVar2.f56755b;
+            b bVar = (b) p5.c.i(hashMap2, uri, uri);
             bVar.getClass();
-            if (!bVar.f56178x) {
-                b bVar2 = (b) r.b.i(hashMap2, uri, uri);
+            if (!bVar.f56752x) {
+                b bVar2 = (b) p5.c.i(hashMap2, uri, uri);
                 bVar2.getClass();
-                bVar2.f56178x = true;
+                bVar2.f56752x = true;
                 m a11 = c.a(cVar2, uri);
-                if (a11 != null && !a11.f56262o) {
+                if (a11 != null && !a11.f56836o) {
                     c.b(cVar2, uri, true);
                 }
             }
@@ -95,18 +96,18 @@ public final class d implements b3.j {
                 }
                 return this.E;
             }
-            return this.f56193y;
+            return this.f56767y;
         }
-        return this.f56192x;
+        return this.f56766x;
     }
 
     public final Uri d(Uri uri) {
         i iVar;
         m mVar = this.H;
-        if (mVar != null && mVar.v.f56252e && (iVar = (i) mVar.f56267t.get(uri)) != null) {
+        if (mVar != null && mVar.v.f56826e && (iVar = (i) mVar.f56841t.get(uri)) != null) {
             Uri.Builder buildUpon = uri.buildUpon();
-            buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(iVar.f56236b));
-            int i7 = iVar.f56237c;
+            buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(iVar.f56810b));
+            int i7 = iVar.f56811c;
             if (i7 != -1) {
                 buildUpon.appendQueryParameter("_HLS_part", String.valueOf(i7));
             }
@@ -121,10 +122,10 @@ public final class d implements b3.j {
         if (cVar == null) {
             return false;
         }
-        Iterator it = cVar.f56181b.values().iterator();
+        Iterator it = cVar.f56755b.values().iterator();
         boolean z11 = true;
         while (it.hasNext()) {
-            if (j3 <= ((b) it.next()).f56175r) {
+            if (j3 <= ((b) it.next()).f56749r) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -138,13 +139,13 @@ public final class d implements b3.j {
         int i7;
         c cVar = (c) this.d.get(uri);
         if (cVar != null) {
-            b bVar = (b) r.b.i(cVar.f56181b, uri, uri);
+            b bVar = (b) p5.c.i(cVar.f56755b, uri, uri);
             bVar.getClass();
-            if (bVar.f56172e != null) {
+            if (bVar.f56746e != null) {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
-                long max = Math.max(30000L, l0.h0(bVar.f56172e.f56268u));
-                m mVar = bVar.f56172e;
-                if (mVar.f56262o || (i7 = mVar.d) == 2 || i7 == 1 || bVar.f56173f + max > elapsedRealtime) {
+                long max = Math.max(30000L, l0.h0(bVar.f56746e.f56842u));
+                m mVar = bVar.f56746e;
+                if (mVar.f56836o || (i7 = mVar.d) == 2 || i7 == 1 || bVar.f56747f + max > elapsedRealtime) {
                     return true;
                 }
                 return false;
@@ -156,22 +157,22 @@ public final class d implements b3.j {
 
     public final void g(Uri uri) {
         if (!uri.equals(this.G)) {
-            List list = this.f56190s.f56281e;
+            List list = this.f56764s.f56855e;
             for (int i7 = 0; i7 < list.size(); i7++) {
-                if (uri.equals(((o) list.get(i7)).f56274a)) {
+                if (uri.equals(((o) list.get(i7)).f56848a)) {
                     m mVar = this.H;
-                    if (mVar == null || !mVar.f56262o) {
+                    if (mVar == null || !mVar.f56836o) {
                         this.G = uri;
                         c cVar = (c) this.d.get(uri);
                         cVar.getClass();
                         m a10 = c.a(cVar, uri);
-                        if (a10 != null && a10.f56262o) {
+                        if (a10 != null && a10.f56836o) {
                             this.H = a10;
-                            this.f56189r.v(a10);
+                            this.f56763r.v(a10);
                             return;
                         }
                         Uri d = d(uri);
-                        b bVar = (b) r.b.i(cVar.f56181b, uri, uri);
+                        b bVar = (b) p5.c.i(cVar.f56755b, uri, uri);
                         bVar.getClass();
                         bVar.c(d);
                         return;
@@ -185,10 +186,10 @@ public final class d implements b3.j {
     public final void h(Uri uri) {
         c cVar = (c) this.d.get(uri);
         if (cVar != null) {
-            b bVar = (b) r.b.i(cVar.f56181b, uri, uri);
+            b bVar = (b) p5.c.i(cVar.f56755b, uri, uri);
             bVar.getClass();
-            bVar.f56171c.a();
-            IOException iOException = bVar.f56177w;
+            bVar.f56745c.a();
+            IOException iOException = bVar.f56751w;
             if (iOException != null) {
                 throw iOException;
             }
@@ -196,21 +197,21 @@ public final class d implements b3.j {
     }
 
     @Override
-    public final b3.i k(b3.l lVar, long j3, long j10, IOException iOException, int i7) {
+    public final b3.i l(b3.m mVar, long j3, long j10, IOException iOException, int i7) {
         boolean z10;
         long min;
-        b3.r rVar = (b3.r) lVar;
-        long j11 = rVar.f2922a;
-        j2.m mVar = rVar.f2923b;
-        b0 b0Var = rVar.d;
-        x2.t tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
-        int i10 = rVar.f2924c;
-        this.f56185c.getClass();
+        b3.s sVar = (b3.s) mVar;
+        long j11 = sVar.f2916a;
+        j2.m mVar2 = sVar.f2917b;
+        b0 b0Var = sVar.d;
+        x2.u uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
+        int i10 = sVar.f2918c;
+        this.f56759c.getClass();
         Throwable th2 = iOException;
         while (true) {
             z10 = true;
             if (th2 != null) {
-                if ((th2 instanceof t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.u) || (th2 instanceof b3.n) || ((th2 instanceof j2.j) && ((j2.j) th2).f16791a == 2008)) {
+                if ((th2 instanceof t0) || (th2 instanceof FileNotFoundException) || (th2 instanceof j2.u) || (th2 instanceof b3.o) || ((th2 instanceof j2.j) && ((j2.j) th2).f17176a == 2008)) {
                     break;
                 }
                 th2 = th2.getCause();
@@ -223,88 +224,88 @@ public final class d implements b3.j {
         if (min != -9223372036854775807L) {
             z10 = false;
         }
-        this.f56187f.q(tVar, i10, iOException, z10);
+        this.f56761f.r(uVar, i10, iOException, z10);
         if (z10) {
-            return b3.o.f2918f;
+            return b3.p.f2912f;
         }
         return new b3.i(0, min, false);
     }
 
     @Override
-    public final void m(b3.l lVar, long j3, long j10, boolean z10) {
-        b3.r rVar = (b3.r) lVar;
-        long j11 = rVar.f2922a;
-        j2.m mVar = rVar.f2923b;
-        b0 b0Var = rVar.d;
-        x2.t tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
-        this.f56185c.getClass();
-        this.f56187f.n(tVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+    public final void p(b3.m mVar, long j3, long j10, boolean z10) {
+        b3.s sVar = (b3.s) mVar;
+        long j11 = sVar.f2916a;
+        j2.m mVar2 = sVar.f2917b;
+        b0 b0Var = sVar.d;
+        x2.u uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
+        this.f56759c.getClass();
+        this.f56761f.o(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 
     @Override
-    public final void r(b3.l lVar, long j3, long j10, int i7) {
-        x2.t tVar;
-        b3.r rVar = (b3.r) lVar;
+    public final void s(b3.m mVar, long j3, long j10, int i7) {
+        x2.u uVar;
+        b3.s sVar = (b3.s) mVar;
         if (i7 == 0) {
-            long j11 = rVar.f2922a;
-            tVar = new x2.t(rVar.f2923b, j3);
+            long j11 = sVar.f2916a;
+            uVar = new x2.u(sVar.f2917b, j3);
         } else {
-            long j12 = rVar.f2922a;
-            j2.m mVar = rVar.f2923b;
-            b0 b0Var = rVar.d;
-            tVar = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
+            long j12 = sVar.f2916a;
+            j2.m mVar2 = sVar.f2917b;
+            b0 b0Var = sVar.d;
+            uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
         }
-        this.f56187f.s(tVar, rVar.f2924c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
+        this.f56761f.u(uVar, sVar.f2918c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
     }
 
     @Override
-    public final void w(b3.l lVar, long j3, long j10) {
+    public final void z(b3.m mVar, long j3, long j10) {
         p pVar;
-        b3.r rVar = (b3.r) lVar;
-        q qVar = (q) rVar.f2926f;
+        b3.s sVar = (b3.s) mVar;
+        q qVar = (q) sVar.f2920f;
         boolean z10 = qVar instanceof m;
         if (z10) {
-            String str = qVar.f56289a;
-            p pVar2 = p.f56280n;
+            String str = qVar.f56863a;
+            p pVar2 = p.f56854n;
             Uri parse = Uri.parse(str);
             e2.t tVar = new e2.t();
-            tVar.f10384a = "0";
-            tVar.f10398q = s0.n("application/x-mpegURL");
+            tVar.f10702a = "0";
+            tVar.f10716q = s0.n("application/x-mpegURL");
             List singletonList = Collections.singletonList(new o(parse, new e2.u(tVar), null, null, null, null, null, null));
             List list = Collections.EMPTY_LIST;
             pVar = new p("", list, singletonList, list, list, list, list, null, null, false, Collections.EMPTY_MAP, list);
         } else {
             pVar = (p) qVar;
         }
-        this.f56190s = pVar;
+        this.f56764s = pVar;
         try {
-            this.f56192x = w.b(pVar.f56281e);
-            this.f56193y = w.a(pVar.f56282f);
-            this.E = w.a(pVar.f56283g);
+            this.f56766x = w.b(pVar.f56855e);
+            this.f56767y = w.a(pVar.f56856f);
+            this.E = w.a(pVar.f56857g);
             this.F = w.a(pVar.h);
-            this.G = ((w) this.f56192x.get(0)).c();
-            this.f56186e.add(new a(this));
-            a(this.f56192x);
-            a(this.f56193y);
+            this.G = ((w) this.f56766x.get(0)).c();
+            this.f56760e.add(new a(this));
+            a(this.f56766x);
+            a(this.f56767y);
             a(this.E);
             a(this.F);
-            j2.m mVar = rVar.f2923b;
-            b0 b0Var = rVar.d;
-            x2.t tVar2 = new x2.t(mVar, b0Var.f16771c, b0Var.d, j3, j10, b0Var.f16770b);
+            j2.m mVar2 = sVar.f2917b;
+            b0 b0Var = sVar.d;
+            x2.u uVar = new x2.u(mVar2, b0Var.f17156c, b0Var.d, j3, j10, b0Var.f17155b);
             c cVar = (c) this.d.get(this.G);
             cVar.getClass();
             if (z10) {
-                Uri uri = rVar.d.f16771c;
-                b bVar = (b) r.b.i(cVar.f56181b, uri, uri);
+                Uri uri = sVar.d.f17156c;
+                b bVar = (b) p5.c.i(cVar.f56755b, uri, uri);
                 bVar.getClass();
-                bVar.d((m) qVar, tVar2);
+                bVar.d((m) qVar, uVar);
             } else {
                 c.b(cVar, this.G, false);
             }
-            this.f56185c.getClass();
-            this.f56187f.o(tVar2, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+            this.f56759c.getClass();
+            this.f56761f.p(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
         } catch (t0 e10) {
-            this.f56191w = e10;
+            this.f56765w = e10;
         }
     }
 }

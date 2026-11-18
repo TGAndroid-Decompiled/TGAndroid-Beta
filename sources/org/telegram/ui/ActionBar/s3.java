@@ -1,40 +1,52 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
-public final class s3 implements Runnable {
-    public final int f29587a;
-    public final u3 f29588b;
+import android.util.SparseIntArray;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class s3 implements ig.a {
+    public m6 f29974a;
+    public TLRPC.TL_theme f29975b;
+    public TLRPC.TL_chatThemeUniqueGift f29976c;
+    public int d;
+    public int f29977e = -1;
+    public SparseIntArray f29978f;
+    public String f29979g;
+    public int h;
+    public int f29980i;
+    public int f29981j;
+    public int f29982k;
+    public int f29983l;
+    public int f29984m;
+    public int f29985n;
+    public int f29986o;
 
-    public s3(u3 u3Var, int i7) {
-        this.f29587a = i7;
-        this.f29588b = u3Var;
+    public final long a() {
+        TLRPC.TL_theme tL_theme = this.f29975b;
+        if (tL_theme != null) {
+            return tL_theme.f28544id;
+        }
+        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f29976c;
+        if (tL_chatThemeUniqueGift != null) {
+            return tL_chatThemeUniqueGift.gift.gift_id;
+        }
+        return 0L;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f29587a) {
-            case 0:
-                u3 u3Var = this.f29588b;
-                View view = u3Var.f29736m;
-                if (view.getWindowVisibility() == 0 && view.isShown()) {
-                    t3 t3Var = u3Var.f29742s;
-                    t3Var.getClass();
-                    System.currentTimeMillis();
-                    t3Var.f29665c = false;
-                    u3Var.f29742s.a();
-                    return;
-                }
-                return;
-            default:
-                u3 u3Var2 = this.f29588b;
-                View view2 = u3Var2.f29736m;
-                if (view2.getWindowVisibility() == 0 && view2.isShown()) {
-                    t3 t3Var2 = u3Var2.f29742s;
-                    t3Var2.f29664b = false;
-                    t3Var2.a();
-                    return;
-                }
-                return;
+    public final TLRPC.ThemeSettings b(int i7) {
+        ArrayList<TLRPC.ThemeSettings> arrayList;
+        TLRPC.TL_theme tL_theme = this.f29975b;
+        if (tL_theme != null) {
+            arrayList = tL_theme.settings;
+        } else {
+            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f29976c;
+            if (tL_chatThemeUniqueGift != null) {
+                arrayList = tL_chatThemeUniqueGift.theme_settings;
+            }
+            return null;
         }
+        if (arrayList != null && i7 >= 0 && arrayList.size() > i7) {
+            return arrayList.get(i7);
+        }
+        return null;
     }
 }

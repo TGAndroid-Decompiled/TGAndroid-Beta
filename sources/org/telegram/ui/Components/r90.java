@@ -1,35 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Rect;
 import android.view.View;
-public final class r90 extends n61 {
-    public final Context f38905a;
-    public final ka0 f38906b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class r90 extends v4.o0 {
+    public final s90 f39074a;
 
-    public r90(ka0 ka0Var, Context context) {
-        this.f38906b = ka0Var;
-        this.f38905a = context;
+    public r90(s90 s90Var) {
+        this.f39074a = s90Var;
     }
 
     @Override
-    public final void b(View view, int i7, int i10) {
-        ea0 ea0Var = (ea0) view;
-        ea0Var.i();
-        ea0Var.l(false);
-    }
-
-    @Override
-    public final View d(int i7) {
-        return new ea0(this.f38906b, this.f38905a, i7);
-    }
-
-    @Override
-    public final int e() {
-        return this.f38906b.f36338e.f35520a.size();
-    }
-
-    @Override
-    public final int h(int i7) {
-        return ((ha0) this.f38906b.f36338e.f35520a.get(i7)).f35205a;
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.c1 c1Var) {
+        int R;
+        int i7 = 0;
+        rect.left = 0;
+        rect.right = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        v4.p0 layoutManager = recyclerView.getLayoutManager();
+        t90 t90Var = this.f39074a.j3;
+        if (layoutManager == t90Var.d && (R = RecyclerView.R(view)) != 0 && !t90Var.f39949f.N()) {
+            if (t90Var.f39949f.I() == null && t90Var.f39949f.V == null) {
+                rect.top = org.telegram.messenger.g0.L(2.0f);
+            } else if (R != 0) {
+                R--;
+                m90 m90Var = t90Var.d;
+                m90Var.B1();
+                if (R > m90Var.U) {
+                    rect.top = org.telegram.messenger.g0.L(2.0f);
+                }
+            } else {
+                return;
+            }
+            if (!t90Var.d.E1(R)) {
+                i7 = org.telegram.messenger.g0.L(2.0f);
+            }
+            rect.right = i7;
+        }
     }
 }

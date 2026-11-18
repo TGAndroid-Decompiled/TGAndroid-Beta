@@ -1,3 +1,15 @@
 package org.telegram.messenger;
-public final class a10 {
+public final class a10 implements Runnable {
+    public final int f22810a;
+    public final g10 f22811b;
+
+    public a10(g10 g10Var, int i7) {
+        this.f22810a = i7;
+        this.f22811b = g10Var;
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.a10.run():void");
+    }
 }

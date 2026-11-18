@@ -1,12 +1,73 @@
 package ee;
 
-import zd.u1;
-public final class v {
-    public final Object[] f10635a;
-    public final u1[] f10636b;
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import zd.q0;
+import zd.r0;
+public class v {
+    public static final AtomicIntegerFieldUpdater f10953b = AtomicIntegerFieldUpdater.newUpdater(v.class, "_size$volatile");
+    private volatile int _size$volatile;
+    public q0[] f10954a;
 
-    public v(int i7, id.h hVar) {
-        this.f10635a = new Object[i7];
-        this.f10636b = new u1[i7];
+    public final void a(q0 q0Var) {
+        q0Var.d((r0) this);
+        q0[] q0VarArr = this.f10954a;
+        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f10953b;
+        if (q0VarArr == null) {
+            q0VarArr = new q0[4];
+            this.f10954a = q0VarArr;
+        } else if (atomicIntegerFieldUpdater.get(this) >= q0VarArr.length) {
+            Object[] copyOf = Arrays.copyOf(q0VarArr, atomicIntegerFieldUpdater.get(this) * 2);
+            kotlin.jvm.internal.j.d(copyOf, "copyOf(...)");
+            q0VarArr = (q0[]) copyOf;
+            this.f10954a = q0VarArr;
+        }
+        int i7 = atomicIntegerFieldUpdater.get(this);
+        atomicIntegerFieldUpdater.set(this, i7 + 1);
+        q0VarArr[i7] = q0Var;
+        q0Var.f61881b = i7;
+        d(i7);
+    }
+
+    public final void b(q0 q0Var) {
+        synchronized (this) {
+            if (q0Var.b() != null) {
+                c(q0Var.f61881b);
+            }
+        }
+    }
+
+    public final zd.q0 c(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: ee.v.c(int):zd.q0");
+    }
+
+    public final void d(int i7) {
+        while (i7 > 0) {
+            q0[] q0VarArr = this.f10954a;
+            kotlin.jvm.internal.j.b(q0VarArr);
+            int i10 = (i7 - 1) / 2;
+            q0 q0Var = q0VarArr[i10];
+            kotlin.jvm.internal.j.b(q0Var);
+            q0 q0Var2 = q0VarArr[i7];
+            kotlin.jvm.internal.j.b(q0Var2);
+            if (q0Var.compareTo(q0Var2) <= 0) {
+                return;
+            }
+            e(i7, i10);
+            i7 = i10;
+        }
+    }
+
+    public final void e(int i7, int i10) {
+        q0[] q0VarArr = this.f10954a;
+        kotlin.jvm.internal.j.b(q0VarArr);
+        q0 q0Var = q0VarArr[i10];
+        kotlin.jvm.internal.j.b(q0Var);
+        q0 q0Var2 = q0VarArr[i7];
+        kotlin.jvm.internal.j.b(q0Var2);
+        q0VarArr[i7] = q0Var;
+        q0VarArr[i10] = q0Var2;
+        q0Var.f61881b = i7;
+        q0Var2.f61881b = i10;
     }
 }

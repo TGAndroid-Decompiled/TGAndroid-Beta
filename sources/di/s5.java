@@ -1,42 +1,36 @@
 package di;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class s5 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f9381a;
-    public final w5 f9382b;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+public final class s5 extends org.telegram.ui.Components.nc {
+    public final org.telegram.ui.ActionBar.i6 Q;
+    public String R;
+    public int S;
 
-    public s5(w5 w5Var, int i7) {
-        this.f9381a = i7;
-        this.f9382b = w5Var;
+    public s5(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context);
+        this.Q = i6Var;
+        org.telegram.ui.ActionBar.u6.U(this, org.telegram.ui.ActionBar.n6.G6, i6Var);
+        setTextSize(1, 14.0f);
+        setPadding(0, org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f));
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f9381a) {
-            case 0:
-                w5 w5Var = this.f9382b;
-                w5Var.getClass();
-                w5Var.f9676w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                w5Var.d(w5Var.f9649b0);
-                return;
-            case 1:
-                w5 w5Var2 = this.f9382b;
-                w5Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float x10 = com.google.android.gms.internal.vision.e2.x((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
-                w5Var2.f9678x0 = x10;
-                FrameLayout frameLayout = w5Var2.f9648b;
-                frameLayout.setScaleX(x10);
-                frameLayout.setScaleY(w5Var2.f9678x0);
-                w5Var2.invalidate();
-                return;
-            default:
-                w5 w5Var3 = this.f9382b;
-                w5Var3.getClass();
-                w5Var3.f9676w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                w5Var3.d(w5Var3.f9649b0);
-                return;
+    public final void f(String str, int i7, q1 q1Var) {
+        ai.a1 a1Var;
+        if (str == this.R && this.S == i7) {
+            return;
         }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.j6.m(str, getPaint().getFontMetricsInt(), false, null, 0));
+        SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
+        String J0 = ki.k.J0(i7);
+        if (q1Var != null) {
+            a1Var = new ai.a1(this, q1Var, i7, 7);
+        } else {
+            a1Var = null;
+        }
+        append.append((CharSequence) org.telegram.ui.Components.oc.b(J0, a1Var, this.Q, null));
+        setText(spannableStringBuilder);
+        this.R = str;
+        this.S = i7;
     }
 }

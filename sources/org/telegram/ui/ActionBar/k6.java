@@ -1,66 +1,169 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.PorterDuff;
-import java.lang.ref.WeakReference;
+import android.graphics.Color;
+import android.text.TextUtils;
+import android.util.SparseIntArray;
+import c8.l9;
+import java.io.File;
+import java.util.Locale;
+import org.telegram.messenger.n10;
+import org.telegram.tgnet.TLRPC;
 public final class k6 {
-    public int f29343a;
-    public int f29344b = -1;
-    public int f29345c;
-    public float d;
-    public WeakReference f29346e;
-    public e6 f29347f;
-    public int f29348g;
-    public PorterDuff.Mode h;
-    public Object f29349i;
-    public WeakReference f29350j;
-    public boolean f29351k;
-    public int f29352l;
-    public boolean f29353m;
-    public n6 f29354n;
-    public o6 f29355o;
+    public int f29170a;
+    public m6 f29171b;
+    public int f29172c;
+    public int d;
+    public int f29173e;
+    public int f29174f;
+    public int f29175g;
+    public int h;
+    public boolean f29176i;
+    public long f29177j;
+    public long f29178k;
+    public long f29179l;
+    public long f29180m;
+    public float f29183p;
+    public boolean f29184q;
+    public TLRPC.TL_theme f29185r;
+    public TLRPC.TL_wallPaper f29186s;
+    public int f29187t;
+    public String f29188u;
+    public String v;
+    public TLRPC.InputFile f29189w;
+    public TLRPC.InputFile f29190x;
+    public e6 f29191y;
+    public boolean f29192z;
+    public int f29181n = 45;
+    public String f29182o = "";
+    public final float[] A = new float[3];
 
-    public final boolean a() {
-        WeakReference weakReference = this.f29346e;
-        if (weakReference != null && weakReference.get() == null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int b() {
-        int i7 = this.f29343a;
-        int i10 = this.f29344b;
-        int i11 = this.f29345c;
-        float f10 = this.d;
-        e6 e6Var = this.f29347f;
-        if (e6Var == null) {
-            WeakReference weakReference = this.f29346e;
-            if (weakReference != null) {
-                e6Var = (e6) weakReference.get();
-            } else {
-                e6Var = null;
+    public static int a(SparseIntArray sparseIntArray, int... iArr) {
+        int i7 = 0;
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        for (int i13 = 0; i13 < iArr.length; i13++) {
+            if (sparseIntArray.indexOfKey(iArr[i13]) >= 0) {
+                try {
+                    int i14 = sparseIntArray.get(iArr[i13]);
+                    i10 += Color.red(i14);
+                    i11 += Color.green(i14);
+                    i12 += Color.blue(i14);
+                    i7++;
+                } catch (Exception unused) {
+                }
             }
         }
-        return q6.P(i7, i10, i11, f10, e6Var);
+        if (i7 == 0) {
+            return 0;
+        }
+        return Color.argb(255, i10 / i7, i11 / i7, i12 / i7);
     }
 
-    public final void c(int i7, int i10, int i11, float f10, e6 e6Var) {
-        this.f29343a = i7;
-        this.f29344b = i10;
-        this.f29345c = i11;
-        this.d = f10;
-        if (e6Var == null) {
-            this.f29346e = null;
-            this.f29347f = null;
-            return;
+    public static int c(SparseIntArray sparseIntArray, int i7) {
+        int i10;
+        int indexOfKey = sparseIntArray.indexOfKey(i7);
+        if (indexOfKey < 0 && (i10 = n6.im.get(i7, -1)) >= 0) {
+            indexOfKey = sparseIntArray.indexOfKey(i10);
         }
-        Class<?> cls = e6Var.getClass();
-        if (!cls.isSynthetic() && !cls.getName().contains("$$Lambda") && !cls.getName().contains("$$ExternalSynthetic")) {
-            this.f29346e = new WeakReference(e6Var);
-            this.f29347f = null;
-            return;
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
         }
-        this.f29346e = null;
-        this.f29347f = e6Var;
+        return n6.hm[i7];
+    }
+
+    public static void h(SparseIntArray sparseIntArray) {
+        for (int i7 = n6.f29641qb; i7 < n6.f29774xb; i7++) {
+            sparseIntArray.delete(i7);
+            sparseIntArray.put(i7, n6.hm[i7]);
+        }
+        for (int i10 = n6.f29792yb; i10 < n6.Kc; i10++) {
+            sparseIntArray.delete(i10);
+            sparseIntArray.put(i10, n6.hm[i10]);
+        }
+        for (int i11 = n6.Lc; i11 < n6.Tc; i11++) {
+            sparseIntArray.delete(i11);
+            sparseIntArray.put(i11, n6.hm[i11]);
+        }
+    }
+
+    public final int b(int i7, int i10) {
+        float[] fArr = this.A;
+        Color.colorToHSV(i10, fArr);
+        float f10 = fArr[0];
+        Color.colorToHSV(i7, fArr);
+        float f11 = fArr[1];
+        if (f11 <= 0.0f) {
+            fArr[0] = f10;
+        }
+        fArr[1] = n10.A(f11, 0.6f, 1.0f, 0.0f);
+        fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] - 0.05f));
+        return Color.HSVToColor(30, fArr);
+    }
+
+    public final boolean d(android.util.SparseIntArray r21, android.util.SparseIntArray r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.k6.d(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
+    }
+
+    public final File e() {
+        if (this.f29170a < 100) {
+            if (TextUtils.isEmpty(this.f29182o)) {
+                return null;
+            }
+            File h = org.telegram.messenger.t0.h();
+            Locale locale = Locale.US;
+            String m10 = this.f29171b.m();
+            int i7 = this.f29170a;
+            String str = this.f29182o;
+            return new File(h, m10 + "_" + i7 + "_" + str + "_v5.jpg");
+        } else if (TextUtils.isEmpty(this.f29182o)) {
+            return null;
+        } else {
+            File h7 = org.telegram.messenger.t0.h();
+            Locale locale2 = Locale.US;
+            String m11 = this.f29171b.m();
+            int i10 = this.f29170a;
+            String str2 = this.f29182o;
+            return new File(h7, m11 + "_" + i10 + "_" + str2 + "_v8_debug.jpg");
+        }
+    }
+
+    public final int f(int i7, int i10, boolean z10) {
+        int f10 = i0.a.f(0.25f, i7, i10);
+        float[] fArr = this.A;
+        Color.colorToHSV(f10, fArr);
+        float f11 = 0.1f;
+        fArr[1] = Math.max(0.0f, Math.min(1.0f, fArr[1] - 0.1f));
+        float f12 = fArr[2];
+        if (!z10) {
+            f11 = 0.0f;
+        }
+        fArr[2] = n10.A(f12, f11, 1.0f, 0.0f);
+        return Color.HSVToColor(51, fArr);
+    }
+
+    public final int g(int i7, float f10, boolean z10) {
+        if (z10) {
+            return 520093695;
+        }
+        float[] fArr = this.A;
+        Color.colorToHSV(i7, fArr);
+        if (fArr[1] > 0.0f) {
+            float f11 = fArr[2];
+            if (f11 < 1.0f && f11 > 0.0f) {
+                fArr[0] = l9.a(fArr[0] + 0.22f, 0.0f, 1.0f);
+                fArr[1] = l9.a(fArr[1] - 0.35f, 0.0f, 1.0f);
+                fArr[2] = l9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+                return Color.HSVToColor(90, fArr);
+            }
+        }
+        fArr[0] = f10;
+        fArr[1] = 0.2f;
+        fArr[2] = l9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+        return Color.HSVToColor(90, fArr);
+    }
+
+    public final int i(int r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.k6.i(int, int):int");
     }
 }

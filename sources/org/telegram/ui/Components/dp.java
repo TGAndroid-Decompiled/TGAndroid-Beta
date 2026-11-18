@@ -1,21 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-public final class dp {
-    public final org.telegram.ui.ActionBar.p3 f34009a;
-    public Drawable f34010b;
-    public int f34011c;
-    public boolean d;
+import org.telegram.tgnet.TLRPC;
+public final class dp implements org.telegram.ui.w71 {
+    public final int f34473a;
+    public final ep f34474b;
 
-    public dp(org.telegram.ui.ActionBar.p3 p3Var) {
-        this.f34009a = p3Var;
+    public dp(ep epVar, int i7) {
+        this.f34473a = i7;
+        this.f34474b = epVar;
     }
 
-    public final String a() {
-        org.telegram.ui.ActionBar.p3 p3Var = this.f34009a;
-        if (p3Var != null && !p3Var.f29470a) {
-            return p3Var.f29473e;
+    @Override
+    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        switch (this.f34473a) {
+            case 0:
+                lp lpVar = this.f34474b.f34780a;
+                lpVar.S1.L();
+                lpVar.dismiss();
+                return;
+            default:
+                lp lpVar2 = this.f34474b.f34780a;
+                lpVar2.S1.L();
+                lpVar2.dismiss();
+                return;
         }
-        return null;
     }
 }

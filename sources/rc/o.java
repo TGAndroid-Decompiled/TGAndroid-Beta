@@ -5,16 +5,16 @@ import java.nio.ByteBuffer;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 public final class o extends w {
-    public static final byte[] f55947e = {0, 0, -1, -1};
-    public int f55948c;
-    public f5.v d;
+    public static final byte[] f56521e = {0, 0, -1, -1};
+    public int f56522c;
+    public b3.j d;
 
     public static byte[] a(byte[] r13) {
         throw new UnsupportedOperationException("Method not decompiled: rc.o.a(byte[]):byte[]");
     }
 
     public final byte[] b(byte[] bArr) {
-        int i7 = this.f55948c;
+        int i7 = this.f56522c;
         if (i7 == 32768 || bArr.length < i7) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -25,37 +25,37 @@ public final class o extends w {
                 deflater.end();
                 return a(byteArrayOutputStream.toByteArray());
             } catch (Exception e10) {
-                throw new v(42, r.b.k("Failed to compress the message: ", e10.getMessage()), e10);
+                throw new v(42, p5.c.k("Failed to compress the message: ", e10.getMessage()), e10);
             }
         }
         return bArr;
     }
 
     public final byte[] c(byte[] bArr) {
-        f5.v vVar = new f5.v(bArr.length + 4, 14);
-        vVar.r(bArr);
-        vVar.r(f55947e);
+        b3.j jVar = new b3.j(bArr.length + 4, 13);
+        jVar.q(bArr);
+        jVar.q(f56521e);
         if (this.d == null) {
-            this.d = new f5.v(0, 14);
+            this.d = new b3.j(0, 13);
         }
-        f5.v vVar2 = this.d;
-        int i7 = vVar2.f11018b;
+        b3.j jVar2 = this.d;
+        int i7 = jVar2.f2901b;
         try {
-            c.a(vVar, vVar2);
-            f5.v vVar3 = this.d;
-            byte[] v = vVar3.v(i7, vVar3.f11018b);
-            f5.v vVar4 = this.d;
-            if (((ByteBuffer) vVar4.f11019c).capacity() > 0) {
-                int i10 = vVar4.f11018b;
-                byte[] v10 = vVar4.v(i10, i10);
-                ByteBuffer wrap = ByteBuffer.wrap(v10);
-                vVar4.f11019c = wrap;
-                wrap.position(v10.length);
-                vVar4.f11018b = v10.length;
+            c.a(jVar, jVar2);
+            b3.j jVar3 = this.d;
+            byte[] u10 = jVar3.u(i7, jVar3.f2901b);
+            b3.j jVar4 = this.d;
+            if (((ByteBuffer) jVar4.f2902c).capacity() > 0) {
+                int i10 = jVar4.f2901b;
+                byte[] u11 = jVar4.u(i10, i10);
+                ByteBuffer wrap = ByteBuffer.wrap(u11);
+                jVar4.f2902c = wrap;
+                wrap.position(u11.length);
+                jVar4.f2901b = u11.length;
             }
-            return v;
+            return u10;
         } catch (Exception e10) {
-            throw new v(43, r.b.k("Failed to decompress the message: ", e10.getMessage()), e10);
+            throw new v(43, p5.c.k("Failed to decompress the message: ", e10.getMessage()), e10);
         }
     }
 }

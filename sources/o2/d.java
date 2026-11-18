@@ -1,12 +1,13 @@
 package o2;
 
+import b3.q;
 import java.io.IOException;
-public final class d implements b3.p {
-    public final h f21249a;
+public final class d implements q {
+    public final h f21616a;
 
     @Override
     public void a() {
-        h hVar = this.f21249a;
+        h hVar = this.f21616a;
         hVar.A.a();
         IOException iOException = hVar.C;
         if (iOException == null) {
@@ -17,10 +18,10 @@ public final class d implements b3.p {
 
     public void b() {
         long j3;
-        h hVar = this.f21249a;
-        synchronized (c3.b.f4088b) {
+        h hVar = this.f21616a;
+        synchronized (c3.b.f4369b) {
             try {
-                if (c3.b.f4089c) {
+                if (c3.b.f4370c) {
                     j3 = c3.b.d;
                 } else {
                     j3 = -9223372036854775807L;

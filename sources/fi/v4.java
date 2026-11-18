@@ -1,31 +1,92 @@
 package fi;
 
 import android.content.Context;
-import android.view.View;
-public final class v4 extends View {
-    public final int f12415a;
-    public final y4 f12416b;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import org.telegram.messenger.n10;
+import org.telegram.ui.Components.kk;
+import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.wz;
+import org.telegram.ui.y91;
+public final class v4 extends kv0 {
+    public final int L = 0;
+    public final Object M;
 
-    public v4(y4 y4Var, Context context, int i7) {
-        super(context);
-        this.f12415a = i7;
-        this.f12416b = y4Var;
+    public v4(kk kkVar, Context context, wz wzVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, wzVar, 1, i6Var);
+        this.M = kkVar;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        switch (this.f12415a) {
-            case 0:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f12416b.d.f11600e), 1073741824));
+    public void e(boolean z10, boolean z11) {
+        switch (this.L) {
+            case 2:
+                y91 y91Var = (y91) this.M;
+                super.e(z10, z11);
+                float f10 = 1.0f;
+                if (z11) {
+                    ViewPropertyAnimator animate = ((TextView) y91Var.f54138n.d).animate();
+                    if (z10) {
+                        f10 = 0.0f;
+                    }
+                    animate.alpha(f10).start();
+                    return;
+                }
+                ((TextView) y91Var.f54138n.d).animate().cancel();
+                TextView textView = (TextView) y91Var.f54138n.d;
+                if (z10) {
+                    f10 = 0.0f;
+                }
+                textView.setAlpha(f10);
                 return;
             default:
-                c5 c5Var = this.f12416b.d;
-                int i11 = c5Var.f11607y.J;
-                if (i11 >= c5Var.f11603r.getPaddingTop() && !c5Var.S) {
-                    i11 = 0;
-                }
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(i11, 1073741824));
+                super.e(z10, z11);
                 return;
         }
+    }
+
+    @Override
+    public float getTranslationY() {
+        switch (this.L) {
+            case 1:
+                return super.getTranslationY() - ((kk) this.M).N;
+            default:
+                return super.getTranslationY();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.L) {
+            case 0:
+                a5 a5Var = ((w4) this.M).d;
+                super.onMeasure(i7, n10.c(a5Var.f11731e, a5Var.f11733n - a5Var.f11734r.getPaddingTop(), 1073741824));
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        switch (this.L) {
+            case 1:
+                super.setTranslationY(f10 + ((kk) this.M).N);
+                return;
+            default:
+                super.setTranslationY(f10);
+                return;
+        }
+    }
+
+    public v4(int i7, Context context, b bVar, w4 w4Var) {
+        super(context, null, i7, bVar);
+        this.M = w4Var;
+    }
+
+    public v4(y91 y91Var, Context context, wz wzVar) {
+        super(context, wzVar, 0, null);
+        this.M = y91Var;
     }
 }

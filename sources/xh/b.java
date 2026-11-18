@@ -1,11 +1,11 @@
 package xh;
 public final class b {
-    public float f59950a;
-    public float f59951b;
-    public float f59952c;
+    public float f60515a;
+    public float f60516b;
+    public float f60517c;
     public float d;
-    public float f59953e;
-    public float f59954f;
-    public float f59955g;
+    public float f60518e;
+    public float f60519f;
+    public float f60520g;
     public int h;
 }

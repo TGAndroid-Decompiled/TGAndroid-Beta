@@ -1,98 +1,61 @@
 package ki;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.FrameLayout;
-import bi.x4;
-import c8.ja;
-import hi.g7;
-import hi.q4;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.q10;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.u41;
-import org.telegram.ui.f5;
-public final class s extends org.telegram.ui.ActionBar.e2 {
-    public u41 f18534a;
-    public final ArrayList f18535b;
-    public final HashMap f18536c;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.m6;
+import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.sp;
+public final class s {
+    public final RectF f18864a = new RectF();
+    public final c6 f18865b;
+    public final c6 f18866c;
+    public final c6 d;
+    public final c6 f18867e;
+    public final f5 f18868f;
+    public final f5 f18869g;
+    public final c6 h;
+    public final c6 f18870i;
+    public final mc f18871j;
+    public final Paint f18872k;
+    public final m6 f18873l;
+    public int f18874m;
+    public final org.telegram.ui.Cells.y f18875n;
+    public final sp f18876o;
+    public final org.telegram.ui.Components.voip.n f18877p;
 
-    public s() {
-        super(null);
-        this.f18535b = new ArrayList();
-        this.f18536c = new HashMap();
-    }
-
-    public static void Z(s sVar, ArrayList arrayList) {
-        HashMap hashMap = sVar.f18536c;
-        ArrayList arrayList2 = sVar.f18535b;
-        for (int i7 = 0; i7 < arrayList2.size(); i7++) {
-            q qVar = (q) arrayList2.get(i7);
-            SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) hashMap.get(qVar);
-            if (spannableStringBuilder == null) {
-                spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append((CharSequence) "a   ");
-                f5 f5Var = new f5(24.0f, sVar.currentAccount, null);
-                f5Var.e(qVar.f18495a);
-                spannableStringBuilder.setSpan(f5Var, 0, 1, 33);
-                spannableStringBuilder.append((CharSequence) q10.p(qVar.f18495a));
-                hashMap.put(qVar, spannableStringBuilder);
-            }
-            b41 i10 = b41.i(i7, spannableStringBuilder);
-            i10.L(!qVar.f18496b);
-            arrayList.add(i10);
-        }
-        arrayList.add(b41.C(hd.M0(2131746861, null)));
-    }
-
-    public static void a0(s sVar, b41 b41Var) {
-        int i7;
-        p41 p41Var;
-        ArrayList arrayList = sVar.f18535b;
-        if (b41Var.f56015a == 4 && (i7 = b41Var.d) >= 0 && i7 < arrayList.size()) {
-            q qVar = (q) arrayList.get(b41Var.d);
-            qVar.f18496b = !qVar.f18496b;
-            Activity parentActivity = sVar.getParentActivity();
-            int i10 = sVar.currentAccount;
-            long j3 = qVar.f18495a.f28200id;
-            boolean z10 = qVar.f18496b;
-            WeakHashMap weakHashMap = r.f18512k;
-            SharedPreferences sharedPreferences = parentActivity.getSharedPreferences("2botbiometry_" + i10, 0);
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putBoolean(j3 + "_disabled", z10);
-            if (!z10 && sharedPreferences.getString(String.valueOf(j3), null) == null) {
-                edit.putString(String.valueOf(j3), "");
-            }
-            edit.apply();
-            u41 u41Var = sVar.f18534a;
-            if (u41Var != null && (p41Var = u41Var.f39892g3) != null) {
-                p41Var.O(true);
-            }
-        }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.x1(false));
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(hd.M0(2131746863, null));
-        this.actionBar.setActionBarMenuOnItemClick(new x4(this, 13));
-        FrameLayout frameLayout = new FrameLayout(context);
-        q6.h(j6.f28792a7, frameLayout, this.resourceProvider);
-        u41 u41Var = new u41(this, new q4(this, 17), new e(this, 1), new i0.b(this, 14));
-        this.f18534a = u41Var;
-        frameLayout.addView(u41Var, ja.e(-1, -1, 119));
-        r.d(getParentActivity(), this.currentAccount, new g7(this, 12));
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    public s(u uVar) {
+        lr lrVar = lr.h;
+        this.f18865b = new c6(uVar, 0L, 320L, lrVar);
+        this.f18866c = new c6(uVar, 0L, 320L, lrVar);
+        this.d = new c6(uVar, 0L, 320L, lrVar);
+        this.f18867e = new c6(uVar, 0L, 320L, lrVar);
+        this.f18868f = new f5(uVar, 320L, lrVar, 0);
+        this.f18869g = new f5(uVar, 320L, lrVar, 0);
+        this.h = new c6(uVar, 0L, 320L, lrVar);
+        this.f18870i = new c6(uVar, 0L, 320L, lrVar);
+        this.f18871j = new mc(uVar);
+        this.f18872k = new Paint(1);
+        m6 m6Var = new m6(true, false, true);
+        this.f18873l = m6Var;
+        org.telegram.ui.Cells.y a02 = n6.a0(0, 9, 9);
+        this.f18875n = a02;
+        sp spVar = new sp(-1);
+        this.f18876o = spVar;
+        org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
+        this.f18877p = nVar;
+        m6Var.f37377b = 17;
+        m6Var.w(org.telegram.messenger.g0.L(14.0f));
+        m6Var.x(org.telegram.messenger.g0.o());
+        m6Var.N = org.telegram.messenger.g0.f24121q.x * 4;
+        m6Var.q(true);
+        m6Var.setCallback(uVar);
+        spVar.setCallback(uVar);
+        a02.setCallback(uVar);
+        nVar.f41055l = true;
+        nVar.f41056m = 2.0f;
     }
 }

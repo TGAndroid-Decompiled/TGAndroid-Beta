@@ -1,18 +1,22 @@
 package org.telegram.ui.Components;
-public interface wa {
-    boolean a();
+public final class wa implements Runnable {
+    public final int f41648a;
+    public final lb f41649b;
 
-    void b(xb xbVar);
+    public wa(lb lbVar, int i7) {
+        this.f41648a = i7;
+        this.f41649b = lbVar;
+    }
 
-    void c(float f10);
-
-    void d(xb xbVar);
-
-    boolean e();
-
-    int f(int i7);
-
-    boolean g(int i7);
-
-    int h(int i7);
+    @Override
+    public final void run() {
+        switch (this.f41648a) {
+            case 0:
+                this.f41649b.onExitTransitionStart();
+                return;
+            default:
+                this.f41649b.onEnterTransitionStart();
+                return;
+        }
+    }
 }

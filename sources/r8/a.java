@@ -26,7 +26,7 @@ public final class a extends q6.h implements com.google.android.gms.common.api.c
         this.F = true;
         this.G = o3Var;
         this.H = bundle;
-        this.I = (Integer) o3Var.f19799g;
+        this.I = (Integer) o3Var.f20166g;
     }
 
     public final void B(c cVar) {
@@ -40,7 +40,7 @@ public final class a extends q6.h implements com.google.android.gms.common.api.c
                 googleSignInAccount = null;
             }
             Integer num = this.I;
-            m.g(num);
+            m.h(num);
             w wVar = new w(2, account, num.intValue(), googleSignInAccount);
             e eVar = (e) n();
             g gVar = new g(1, wVar);

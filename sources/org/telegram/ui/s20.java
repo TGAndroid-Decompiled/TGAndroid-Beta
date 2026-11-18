@@ -1,28 +1,16 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
-public final class s20 implements br0 {
-    public final c40 f51077a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class s20 extends AnimatorListenerAdapter {
+    public final f40 f51860a;
 
-    public s20(c40 c40Var) {
-        this.f51077a = c40Var;
+    public s20(f40 f40Var) {
+        this.f51860a = f40Var;
     }
 
     @Override
-    public final void G0(org.telegram.messenger.gj gjVar) {
-        c40 c40Var = this.f51077a;
-        c40Var.L1.I0(true);
-        c40Var.f45891b4.f46452f.K0(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), 0, 0);
-        c40Var.f29682b.invalidate();
-    }
-
-    @Override
-    public final void I(org.telegram.messenger.gj gjVar) {
-        this.f51077a.f29682b.invalidate();
-    }
-
-    @Override
-    public final TextureView g0() {
-        return null;
+    public final void onAnimationEnd(Animator animator) {
+        this.f51860a.S2 = null;
     }
 }

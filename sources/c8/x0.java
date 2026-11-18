@@ -1,70 +1,42 @@
 package c8;
 public abstract class x0 {
-    public static int a(int r7, java.lang.CharSequence r8) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.x0.a(int, java.lang.CharSequence):int");
+    public static id.c a(id.c cVar, id.c cVar2, rd.p pVar) {
+        kotlin.jvm.internal.j.e(pVar, "<this>");
+        if (pVar instanceof kd.a) {
+            return ((kd.a) pVar).create(cVar, cVar2);
+        }
+        id.h context = cVar2.getContext();
+        if (context == id.i.f16229a) {
+            return new jd.b(cVar2, cVar, pVar);
+        }
+        return new jd.c(cVar2, context, pVar, cVar);
     }
 
-    public static int b(int i7, CharSequence charSequence) {
-        while (i7 < charSequence.length()) {
-            switch (charSequence.charAt(i7)) {
-                case '[':
-                    return -1;
-                case '\\':
-                    int i10 = i7 + 1;
-                    if (!y0.a(i10, charSequence)) {
-                        break;
-                    } else {
-                        i7 = i10;
-                        break;
-                    }
-                case ']':
-                    return i7;
-            }
-            i7++;
+    public static id.c b(id.c cVar) {
+        kd.c cVar2;
+        id.c intercepted;
+        kotlin.jvm.internal.j.e(cVar, "<this>");
+        if (cVar instanceof kd.c) {
+            cVar2 = (kd.c) cVar;
+        } else {
+            cVar2 = null;
         }
-        return charSequence.length();
+        if (cVar2 != null && (intercepted = cVar2.intercepted()) != null) {
+            return intercepted;
+        }
+        return cVar;
     }
 
-    public static int c(int i7, CharSequence charSequence) {
-        if (i7 >= charSequence.length()) {
-            return -1;
+    public static Object c(rd.p pVar, Object obj, id.c cVar) {
+        Object cVar2;
+        kotlin.jvm.internal.j.e(pVar, "<this>");
+        id.h context = cVar.getContext();
+        if (context == id.i.f16229a) {
+            cVar2 = new kd.h(cVar);
+        } else {
+            cVar2 = new kd.c(cVar, context);
         }
-        char charAt = charSequence.charAt(i7);
-        char c10 = '\"';
-        if (charAt != '\"') {
-            c10 = '\'';
-            if (charAt != '\'') {
-                if (charAt != '(') {
-                    return -1;
-                }
-                c10 = ')';
-            }
-        }
-        int d = d(charSequence, i7 + 1, c10);
-        if (d == -1 || d >= charSequence.length() || charSequence.charAt(d) != c10) {
-            return -1;
-        }
-        return d + 1;
-    }
-
-    public static int d(CharSequence charSequence, int i7, char c10) {
-        while (i7 < charSequence.length()) {
-            char charAt = charSequence.charAt(i7);
-            if (charAt == '\\') {
-                int i10 = i7 + 1;
-                if (y0.a(i10, charSequence)) {
-                    i7 = i10;
-                    i7++;
-                }
-            }
-            if (charAt == c10) {
-                return i7;
-            }
-            if (c10 == ')' && charAt == '(') {
-                return -1;
-            }
-            i7++;
-        }
-        return charSequence.length();
+        kotlin.jvm.internal.u.a(2, pVar);
+        return pVar.invoke(obj, cVar2);
     }
 }

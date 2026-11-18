@@ -1,16 +1,16 @@
 package c8;
 
-import android.util.Log;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
 public abstract class kc {
-    public static void a(String str) {
-        boolean isLoggable;
-        if (Log.isLoggable("FirebaseAppIndex", 3)) {
-            isLoggable = true;
-        } else {
-            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
-        }
-        if (isLoggable) {
-            Log.d("FirebaseAppIndex", str);
-        }
-    }
+    public abstract void a(Rect rect, RectF rectF);
+
+    public abstract void b();
+
+    public abstract void c(Canvas canvas);
+
+    public abstract boolean d();
+
+    public abstract void e(float f10);
 }

@@ -1,13 +1,13 @@
 package s4;
 public final class t {
-    public final x f56458a;
-    public final s f56459b;
-    public r f56460c = r.f56448c;
+    public final x f57032a;
+    public final s f57033b;
+    public r f57034c = r.f57022c;
     public int d;
-    public long f56461e;
+    public long f57035e;
 
     public t(x xVar, s sVar) {
-        this.f56458a = xVar;
-        this.f56459b = sVar;
+        this.f57032a = xVar;
+        this.f57033b = sVar;
     }
 }

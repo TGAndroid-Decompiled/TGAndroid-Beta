@@ -1,67 +1,44 @@
 package di;
 
 import android.app.Activity;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.c10;
-import org.telegram.messenger.si;
-import org.telegram.messenger.ti;
-import org.telegram.messenger.y00;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.TwoStepVerificationActivity;
-public final class j implements Runnable {
-    public final int f8834a = 0;
-    public final boolean f8835b;
-    public final long f8836c;
+public final class j implements RequestDelegate {
+    public final int f9057a = 0;
+    public final boolean f9058b;
+    public final long f9059c;
     public final Object d;
-    public final Object f8837e;
-    public final Object f8838f;
-    public final Object h;
-    public final Object f8839n;
+    public final Object f9060e;
+    public final Object f9061f;
 
-    public j(t tVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j3, TLObject tLObject) {
+    public j(t tVar, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j3) {
         this.d = tVar;
-        this.f8837e = tL_error;
-        this.f8838f = twoStepVerificationActivity;
-        this.h = activity;
-        this.f8835b = z10;
-        this.f8836c = j3;
-        this.f8839n = tLObject;
+        this.f9060e = twoStepVerificationActivity;
+        this.f9061f = activity;
+        this.f9058b = z10;
+        this.f9059c = j3;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: di.j.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f9057a) {
+            case 0:
+                org.telegram.messenger.g0.g3(new k((t) this.d, tL_error, (TwoStepVerificationActivity) this.f9060e, (Activity) this.f9061f, this.f9058b, this.f9059c, tLObject));
+                return;
+            default:
+                org.telegram.messenger.g0.g3(new m((fi.p6) this.d, tL_error, this.f9058b, this.f9059c, (x10) this.f9060e, (org.telegram.ui.ActionBar.i6) this.f9061f));
+                return;
+        }
     }
 
-    public j(si siVar, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, a0.h hVar, long j3) {
-        this.d = siVar;
-        this.f8837e = arrayList;
-        this.f8835b = z10;
-        this.f8838f = arrayList2;
-        this.h = arrayList3;
-        this.f8839n = hVar;
-        this.f8836c = j3;
-    }
-
-    public j(ti tiVar, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, long j3, u3 u3Var) {
-        this.d = tiVar;
-        this.f8837e = tL_error;
-        this.f8839n = tLObject;
-        this.f8838f = tL_chatInviteImporter;
-        this.f8835b = z10;
-        this.f8836c = j3;
-        this.h = u3Var;
-    }
-
-    public j(c10 c10Var, y00 y00Var, TLObject tLObject, boolean z10, TLRPC.TL_error tL_error, long j3, HashSet hashSet) {
-        this.d = c10Var;
-        this.f8838f = y00Var;
-        this.f8839n = tLObject;
-        this.f8835b = z10;
-        this.f8837e = tL_error;
-        this.f8836c = j3;
-        this.h = hashSet;
+    public j(fi.p6 p6Var, boolean z10, long j3, x10 x10Var, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.d = p6Var;
+        this.f9058b = z10;
+        this.f9059c = j3;
+        this.f9060e = x10Var;
+        this.f9061f = i6Var;
     }
 }

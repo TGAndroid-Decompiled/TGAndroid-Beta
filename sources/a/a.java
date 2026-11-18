@@ -5,7 +5,7 @@ import l7.b;
 import q6.m;
 public abstract class a {
     public static b a(Context context) {
-        m.g(context);
+        m.h(context);
         return new b(context, new Object());
     }
 }

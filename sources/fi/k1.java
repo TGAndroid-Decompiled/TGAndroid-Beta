@@ -1,45 +1,35 @@
 package fi;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.ui.Components.lp;
-public final class k1 extends View {
-    public final int f11917a = 1;
-    public final lp f11918b;
+import java.util.ArrayList;
+import org.telegram.ui.Components.mh0;
+public final class k1 implements Runnable {
+    public final int f12178a;
+    public final m1 f12179b;
 
-    public k1(Context context) {
-        super(context);
-        this.f11918b = new lp(org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(2.0f), -13522392);
+    public k1(m1 m1Var, int i7) {
+        this.f12178a = i7;
+        this.f12179b = m1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f11917a) {
+    public final void run() {
+        switch (this.f12178a) {
             case 0:
-                int L = org.telegram.messenger.g0.L(1.0f);
-                lp lpVar = this.f11918b;
-                lpVar.setBounds(L, L, (getWidth() - L) - L, (getHeight() - L) - L);
-                lpVar.draw(canvas);
-                invalidate();
+                m1 m1Var = this.f12179b;
+                m1Var.invalidate();
+                m1Var.b();
                 return;
             default:
-                int width = getWidth();
-                int height = getHeight();
-                lp lpVar2 = this.f11918b;
-                lpVar2.setBounds(0, 0, width, height);
-                lpVar2.b(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f29013m5, false));
-                lpVar2.setAlpha(255);
-                lpVar2.draw(canvas);
-                invalidate();
-                super.onDraw(canvas);
+                ArrayList arrayList = this.f12179b.f12258e;
+                int size = arrayList.size();
+                int i7 = 0;
+                while (i7 < size) {
+                    Object obj = arrayList.get(i7);
+                    i7++;
+                    ((mh0) obj).C(true);
+                }
+                arrayList.clear();
                 return;
         }
-    }
-
-    public k1(Activity activity) {
-        super(activity);
-        this.f11918b = new lp(org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f29013m5, false));
     }
 }

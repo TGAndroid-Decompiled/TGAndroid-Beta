@@ -1,38 +1,21 @@
 package di;
 
-import android.text.TextWatcher;
-import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.mb0;
-public final class oa implements TextWatcher {
-    public boolean f9179a;
-    public int f9180b = 2;
-    public final EditTextBoldCursor f9181c;
-    public final mb0 d;
-    public final long f9182e;
-    public final boolean f9183f;
-    public final hi.d h;
-    public final TextView f9184n;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+public final class oa implements fs {
+    public final boolean[] f9480a;
+    public final org.telegram.ui.ActionBar.x2[] f9481b;
 
-    public oa(EditTextBoldCursor editTextBoldCursor, mb0 mb0Var, long j3, boolean z10, hi.d dVar, TextView textView) {
-        this.f9181c = editTextBoldCursor;
-        this.d = mb0Var;
-        this.f9182e = j3;
-        this.f9183f = z10;
-        this.h = dVar;
-        this.f9184n = textView;
+    public oa(boolean[] zArr, org.telegram.ui.ActionBar.x2[] x2VarArr) {
+        this.f9480a = zArr;
+        this.f9481b = x2VarArr;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r11) {
-        throw new UnsupportedOperationException("Method not decompiled: di.oa.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        org.telegram.ui.ActionBar.x2 x2Var;
+        if (i7 == ks.C3 && this.f9480a[0] && (x2Var = this.f9481b[0]) != null) {
+            x2Var.dismiss();
+        }
     }
 }

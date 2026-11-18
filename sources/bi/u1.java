@@ -1,36 +1,32 @@
 package bi;
 
+import android.content.Context;
 import android.view.View;
-public final class u1 implements View.OnAttachStateChangeListener {
-    public final int f3890a;
-    public final org.telegram.ui.Components.e5 f3891b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.z41;
+public final class u1 extends k41 {
+    public static final int f4104b = 0;
 
-    public u1(org.telegram.ui.Components.e5 e5Var, int i7) {
-        this.f3890a = i7;
-        this.f3891b = e5Var;
+    static {
+        k41.h(new k41());
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        switch (this.f3890a) {
-            case 0:
-                this.f3891b.a();
-                return;
-            default:
-                this.f3891b.a();
-                return;
-        }
+    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+        ah.r rVar = (ah.r) view;
+        TLRPC.Chat chat = (TLRPC.Chat) l41Var.H;
+        rVar.h(chat.participants_count, chat);
+        rVar.setDivider(z10);
     }
 
     @Override
-    public final void onViewDetachedFromWindow(View view) {
-        switch (this.f3890a) {
-            case 0:
-                this.f3891b.b();
-                return;
-            default:
-                this.f3891b.b();
-                return;
-        }
+    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        ah.r rVar = new ah.r(context, false, false, i6Var, false);
+        rVar.setCellBackgroundVisible(false);
+        return rVar;
     }
 }

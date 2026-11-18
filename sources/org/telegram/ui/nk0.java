@@ -1,62 +1,48 @@
 package org.telegram.ui;
-
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 public final class nk0 implements Runnable {
-    public final int f49575a;
-    public final kl0 f49576b;
-    public final TLRPC.TL_error f49577c;
-    public final TLObject d;
+    public final int f50214a;
+    public final ml0 f50215b;
 
-    public nk0(kl0 kl0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i7) {
-        this.f49575a = i7;
-        this.f49576b = kl0Var;
-        this.f49577c = tL_error;
-        this.d = tLObject;
+    public nk0(ml0 ml0Var, int i7) {
+        this.f50214a = i7;
+        this.f50215b = ml0Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f49575a;
-        TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f49577c;
-        kl0 kl0Var = this.f49576b;
-        switch (i7) {
+        switch (this.f50214a) {
             case 0:
-                kl0Var.f48689f0 = false;
-                if (tL_error == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject;
-                    kl0Var.f48678b0 = password;
-                    if (!TwoStepVerificationActivity.n0(password, false)) {
-                        org.telegram.ui.Components.t4.u0(kl0Var.getParentActivity(), org.telegram.messenger.hd.M0(2131743820, null), true);
-                        return;
+                this.f50215b.z0();
+                return;
+            case 1:
+                ml0 ml0Var = this.f50215b;
+                ml0Var.getMessagesController().f25726o7 = null;
+                if (ml0Var.f49897g1 == 3 && !ml0Var.isFinishing()) {
+                    ml0Var.f49897g1 = 4;
+                    ll0 ll0Var = ml0Var.f49881a1;
+                    if (ll0Var != null) {
+                        ll0Var.d(4);
                     }
-                    TLRPC.PaymentForm paymentForm = kl0Var.D0;
-                    if (paymentForm != null && kl0Var.f48678b0.has_password) {
-                        paymentForm.password_missing = false;
-                        paymentForm.can_save_credentials = true;
-                        kl0Var.Q0();
-                    }
-                    TwoStepVerificationActivity.r0(kl0Var.f48678b0);
-                    kl0 kl0Var2 = kl0Var.f48691g0;
-                    if (kl0Var2 != null) {
-                        kl0Var2.I0(kl0Var.f48678b0);
-                    }
-                    if (!kl0Var.f48678b0.has_password && kl0Var.f48686e0 == null) {
-                        kk0 kk0Var = new kk0(kl0Var, 2);
-                        kl0Var.f48686e0 = kk0Var;
-                        org.telegram.messenger.g0.i3(kk0Var, 5000L);
-                        return;
-                    }
+                    ml0Var.finishFragment();
+                    return;
+                } else if (ml0Var.f49897g1 == 1 && !ml0Var.isFinishing()) {
+                    ml0Var.finishFragment();
+                    return;
+                } else {
+                    return;
+                }
+            case 2:
+                ml0 ml0Var2 = this.f50215b;
+                if (ml0Var2.f49891e0 != null) {
+                    ml0Var2.C0();
+                    ml0Var2.f49891e0 = null;
                     return;
                 }
                 return;
-            case 1:
-                kl0.a0(kl0Var, tL_error, tLObject);
-                return;
             default:
-                kl0.c0(kl0Var, tL_error, tLObject);
+                ml0 ml0Var3 = this.f50215b;
+                ml0Var3.f49893f[0].requestFocus();
+                org.telegram.messenger.g0.I3(ml0Var3.f49893f[0]);
                 return;
         }
     }

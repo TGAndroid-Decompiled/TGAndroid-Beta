@@ -5,13 +5,13 @@ import hd.r;
 import java.util.LinkedHashMap;
 import java.util.Map;
 public final class h implements ke.a {
-    public final ke.a f21436a;
-    public final g f21437b;
+    public final ke.a f21802a;
+    public final g f21803b;
 
     public h(ke.a aVar) {
-        p pVar = p.f21459a;
-        this.f21436a = aVar;
-        this.f21437b = new g(p.f21460b, aVar.d());
+        p pVar = p.f21825a;
+        this.f21802a = aVar;
+        this.f21803b = new g(p.f21826b, aVar.d());
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class h implements ke.a {
         Map map = (Map) obj;
         kotlin.jvm.internal.j.e(map, "<this>");
         map.size();
-        g descriptor = this.f21437b;
+        g descriptor = this.f21803b;
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
         qe.h a10 = hVar.a(descriptor);
         Map map2 = (Map) obj;
@@ -29,9 +29,9 @@ public final class h implements ke.a {
             Object key = entry.getKey();
             Object value = entry.getValue();
             int i10 = i7 + 1;
-            a10.h(descriptor, i7, p.f21459a, key);
+            a10.h(descriptor, i7, p.f21825a, key);
             i7 += 2;
-            a10.h(descriptor, i10, this.f21436a, value);
+            a10.h(descriptor, i10, this.f21802a, value);
         }
         a10.l(descriptor);
     }
@@ -51,13 +51,13 @@ public final class h implements ke.a {
                 int i7 = d + size;
                 LinkedHashMap builder = linkedHashMap;
                 kotlin.jvm.internal.j.e(builder, "builder");
-                p pVar = p.f21459a;
-                g gVar = this.f21437b;
+                p pVar = p.f21825a;
+                g gVar = this.f21803b;
                 Object k11 = c10.k(gVar, i7, pVar, null);
                 int d2 = c10.d(gVar);
                 if (d2 == i7 + 1) {
                     boolean containsKey = builder.containsKey(k11);
-                    ke.a aVar = this.f21436a;
+                    ke.a aVar = this.f21802a;
                     if (containsKey && !(aVar.d().e() instanceof me.c)) {
                         k10 = c10.k(gVar, d2, aVar, r.a(builder, k11));
                     } else {
@@ -77,6 +77,6 @@ public final class h implements ke.a {
 
     @Override
     public final me.d d() {
-        return this.f21437b;
+        return this.f21803b;
     }
 }

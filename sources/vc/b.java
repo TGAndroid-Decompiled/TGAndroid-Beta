@@ -1,7 +1,7 @@
 package vc;
 
-import c8.od;
-import f5.g;
+import c8.rd;
+import ee.t;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -13,10 +13,11 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 import org.json.JSONException;
 import org.json.JSONObject;
+import tc.g;
 public abstract class b {
-    public static final c f58799a = new c();
+    public static final c f59368a = new c();
 
-    public static HttpURLConnection a(String str, g gVar) {
+    public static HttpURLConnection a(String str, t tVar) {
         Throwable th2;
         OutputStream outputStream;
         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://api.stripe.com/v1/tokens").openConnection();
@@ -27,7 +28,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = gVar.f10981a;
+        String str2 = tVar.f10951b;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -43,7 +44,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f58799a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f59368a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -75,8 +76,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f58797a;
-            String str2 = aVar.f58798b;
+            String str = aVar.f59366a;
+            String str2 = aVar.f59367b;
             if (str == null) {
                 encode = null;
             } else {
@@ -92,8 +93,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static org.telegram.ui.ld0 c(java.util.HashMap r7, f5.g r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, f5.g):org.telegram.ui.ld0");
+    public static org.telegram.ui.md0 c(java.util.HashMap r7, ee.t r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, ee.t):org.telegram.ui.md0");
     }
 
     public static LinkedList d(String str, Map map) {
@@ -118,7 +119,7 @@ public abstract class b {
         if (obj instanceof List) {
             List<Object> list = (List) obj;
             LinkedList linkedList = new LinkedList();
-            String v = r.b.v(str, "[]");
+            String v = p5.c.v(str, "[]");
             if (list.isEmpty()) {
                 linkedList.add(new a(str, ""));
                 return linkedList;
@@ -137,43 +138,43 @@ public abstract class b {
             linkedList3.add(new a(str, obj.toString()));
             return linkedList3;
         } else {
-            throw new tc.g(r.b.l("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
+            throw new g(p5.c.l("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
         }
     }
 
-    public static a8.xa f(java.util.HashMap r7, f5.g r8) {
-        throw new UnsupportedOperationException("Method not decompiled: vc.b.f(java.util.HashMap, f5.g):a8.xa");
+    public static a8.xa f(java.util.HashMap r7, ee.t r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.f(java.util.HashMap, ee.t):a8.xa");
     }
 
     public static void g(int i7, String str, String str2) {
         String str3;
         try {
             JSONObject jSONObject = new JSONObject(str).getJSONObject("error");
-            od.a(jSONObject.optString("charge"));
-            od.a(jSONObject.optString("code"));
-            od.a(jSONObject.optString("decline_code"));
-            str3 = od.a(jSONObject.optString("message"));
-            od.a(jSONObject.optString("param"));
-            od.a(jSONObject.optString("type"));
+            rd.a(jSONObject.optString("charge"));
+            rd.a(jSONObject.optString("code"));
+            rd.a(jSONObject.optString("decline_code"));
+            str3 = rd.a(jSONObject.optString("message"));
+            rd.a(jSONObject.optString("param"));
+            rd.a(jSONObject.optString("type"));
         } catch (JSONException unused) {
             str3 = "An improperly formatted error response was found.";
         }
         if (i7 != 429) {
             switch (i7) {
                 case 400:
-                    throw new tc.g(str3, str2, null);
+                    throw new g(str3, str2, null);
                 case 401:
-                    throw new tc.g(str3, str2);
+                    throw new g(str3, str2);
                 case 402:
-                    throw new tc.g(str3, str2, null);
+                    throw new g(str3, str2, null);
                 case 403:
-                    throw new tc.g(str3, str2);
+                    throw new g(str3, str2);
                 case 404:
-                    throw new tc.g(str3, str2, null);
+                    throw new g(str3, str2, null);
                 default:
-                    throw new tc.g(str3, str2, null);
+                    throw new g(str3, str2, null);
             }
         }
-        throw new tc.g(str3, str2, null);
+        throw new g(str3, str2, null);
     }
 }

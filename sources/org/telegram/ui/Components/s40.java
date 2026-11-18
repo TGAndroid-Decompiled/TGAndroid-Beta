@@ -1,3 +1,34 @@
 package org.telegram.ui.Components;
-public interface s40 {
+
+import android.animation.ValueAnimator;
+public final class s40 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39481a;
+    public final y40 f39482b;
+
+    public s40(y40 y40Var, int i7) {
+        this.f39481a = i7;
+        this.f39482b = y40Var;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f39481a) {
+            case 0:
+                y40 y40Var = this.f39482b;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * y40Var.getMeasuredHeight() * 0.5f;
+                y40Var.f42325y0 = floatValue;
+                y40Var.f42315s.setTranslationY(floatValue + y40Var.f42323x0);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y40 y40Var2 = this.f39482b;
+                y40Var2.A0 = floatValue2;
+                zi.u0 u0Var = y40Var2.P;
+                if (u0Var != null) {
+                    u0Var.y(floatValue2);
+                    return;
+                }
+                return;
+        }
+    }
 }

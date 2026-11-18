@@ -1,117 +1,134 @@
 package di;
 
-import org.json.JSONObject;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.is;
-import org.telegram.messenger.np;
-import org.telegram.messenger.s10;
-import org.telegram.messenger.z10;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.an;
-import org.telegram.ui.ij0;
-import org.telegram.ui.jj0;
-import org.telegram.ui.tj0;
-public final class j6 implements Runnable {
-    public final int f8856a;
-    public final Object f8857b;
-    public final Object f8858c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.we;
+import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.ui.Components.qd0;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.q30;
+public final class j6 extends AnimatorListenerAdapter {
+    public final int f9082a;
+    public final float f9083b;
+    public final Runnable f9084c;
     public final Object d;
-    public final Object f8859e;
-    public final Object f8860f;
-    public final Object h;
-    public final Object f8861n;
 
-    public j6(u8 u8Var, TLObject tLObject, gj gjVar, TLRPC.InputInvoice inputInvoice, z10 z10Var, org.telegram.ui.Components.cc ccVar, TLRPC.TL_error tL_error) {
-        this.f8856a = 2;
-        this.f8857b = u8Var;
-        this.f8858c = tLObject;
-        this.d = gjVar;
-        this.f8859e = inputInvoice;
-        this.f8861n = z10Var;
-        this.f8860f = ccVar;
-        this.h = tL_error;
+    public j6(Object obj, float f10, Runnable runnable, int i7) {
+        this.f9082a = i7;
+        this.d = obj;
+        this.f9083b = f10;
+        this.f9084c = runnable;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: di.j6.run():void");
-    }
-
-    public j6(u8 u8Var, boolean[] zArr, String str, TLRPC.ChatInvite chatInvite, boolean[] zArr2, s10 s10Var, z10 z10Var) {
-        this.f8856a = 0;
-        this.f8857b = u8Var;
-        this.f8858c = zArr;
-        this.f8859e = str;
-        this.f8860f = chatInvite;
-        this.d = zArr2;
-        this.h = s10Var;
-        this.f8861n = z10Var;
-    }
-
-    public j6(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i7) {
-        this.f8856a = i7;
-        this.f8857b = obj;
-        this.f8858c = obj2;
-        this.d = obj3;
-        this.f8859e = obj4;
-        this.f8860f = obj5;
-        this.h = obj6;
-        this.f8861n = obj7;
-    }
-
-    public j6(JSONObject jSONObject, String str, org.telegram.ui.Wallet.r2 r2Var, org.telegram.ui.Wallet.l0 l0Var, String str2, byte[] bArr, byte[] bArr2) {
-        this.f8856a = 14;
-        this.f8857b = jSONObject;
-        this.f8859e = str;
-        this.f8858c = r2Var;
-        this.d = l0Var;
-        this.f8860f = str2;
-        this.h = bArr;
-        this.f8861n = bArr2;
-    }
-
-    public j6(is isVar, Object obj, Object obj2, Object obj3, String str, Object obj4, Object obj5, int i7) {
-        this.f8856a = i7;
-        this.f8857b = isVar;
-        this.f8858c = obj;
-        this.d = obj2;
-        this.f8860f = obj3;
-        this.f8859e = str;
-        this.h = obj4;
-        this.f8861n = obj5;
-    }
-
-    public j6(TLRPC.TL_error tL_error, z10 z10Var, TLObject tLObject, np npVar, TLRPC.TL_inputInvoicePremiumGiftCode tL_inputInvoicePremiumGiftCode, org.telegram.ui.ActionBar.e2 e2Var, z10 z10Var2) {
-        this.f8856a = 17;
-        this.f8857b = tL_error;
-        this.f8861n = z10Var;
-        this.f8858c = tLObject;
-        this.d = npVar;
-        this.f8859e = tL_inputInvoicePremiumGiftCode;
-        this.f8860f = e2Var;
-        this.h = z10Var2;
-    }
-
-    public j6(an anVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, z2 z2Var, String str, vf.b bVar) {
-        this.f8856a = 5;
-        this.f8857b = anVar;
-        this.f8858c = tL_error;
-        this.d = tLObject;
-        this.f8860f = tLObject2;
-        this.h = z2Var;
-        this.f8859e = str;
-        this.f8861n = bVar;
-    }
-
-    public j6(ij0 ij0Var, TLObject tLObject, String str, TLRPC.TL_secureRequiredType tL_secureRequiredType, jj0 jj0Var, TLRPC.TL_error tL_error, tj0 tj0Var) {
-        this.f8856a = 10;
-        this.f8857b = ij0Var;
-        this.f8858c = tLObject;
-        this.f8859e = str;
-        this.d = tL_secureRequiredType;
-        this.f8860f = jj0Var;
-        this.h = tL_error;
-        this.f8861n = tj0Var;
+    public final void onAnimationEnd(Animator animator) {
+        int i7 = this.f9082a;
+        Runnable runnable = this.f9084c;
+        float f10 = this.f9083b;
+        Object obj = this.d;
+        switch (i7) {
+            case 0:
+                k6 k6Var = (k6) obj;
+                k6Var.E = f10;
+                k6Var.invalidate();
+                if (animator == k6Var.F && runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 1:
+                fi.m1 m1Var = (fi.m1) obj;
+                m1Var.f12260n = f10;
+                m1Var.invalidate();
+                if (animator == m1Var.f12261r && runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 2:
+                hi.o2 o2Var = (hi.o2) obj;
+                o2Var.h = f10;
+                o2Var.i();
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 3:
+                hi.ta taVar = (hi.ta) obj;
+                taVar.M = null;
+                taVar.J = f10;
+                taVar.j();
+                taVar.f15476r.invalidate();
+                taVar.f15464n.invalidate();
+                runnable.run();
+                taVar.Q.e();
+                ks.e().k(99, 512);
+                ks.e().o();
+                taVar.n();
+                Runnable runnable2 = taVar.R;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    taVar.R = null;
+                }
+                taVar.f15476r.invalidate();
+                taVar.f15451i0.invalidate();
+                return;
+            case 4:
+                q30 q30Var = (q30) obj;
+                q30Var.h = f10;
+                q30Var.f51074a.invalidate();
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) obj;
+                photoViewer.f43298p6 = null;
+                photoViewer.f43214f6 = 0.0f;
+                photoViewer.f43176b6 = 0.0f;
+                photoViewer.f43223g6 = 0.0f;
+                float p22 = photoViewer.p2(false);
+                photoViewer.f43204e6 = p22;
+                photoViewer.f43166a6 = p22;
+                photoViewer.f43208f0.invalidate();
+                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21896a;
+                float p23 = photoViewer.p2(false);
+                cropAreaView.f32892o0 = 0.0f;
+                cropAreaView.f32893p0 = p23;
+                cropAreaView.f32894q0 = 0.0f;
+                cropAreaView.f32896r0 = 0.0f;
+                cropAreaView.invalidate();
+                photoViewer.D1.f38764c.setRotated(false);
+                if (Math.abs(f10) > 0.0f) {
+                    qd0 qd0Var = photoViewer.D1;
+                    og.f fVar = qd0Var.f38764c;
+                    if (fVar != null) {
+                        fVar.b(0.0f);
+                        fVar.setRotated(false);
+                    }
+                    if (qd0Var.f38763b.m(f10)) {
+                        org.telegram.ui.ActionBar.u6.s(photoViewer.f43181c1, org.telegram.ui.ActionBar.n6.f29645qg, photoViewer.f43358w2, PorterDuff.Mode.MULTIPLY);
+                    } else {
+                        photoViewer.f43181c1.setColorFilter((ColorFilter) null);
+                    }
+                }
+                we weVar = photoViewer.X4.f50282c;
+                if (weVar != null) {
+                    weVar.f27677b = 0.0f;
+                    weVar.f27676a = 0.0f;
+                    weVar.f27680f = 1.0f;
+                    weVar.f27679e = 1.0f;
+                }
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+        }
     }
 }

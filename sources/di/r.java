@@ -2,51 +2,51 @@ package di;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.n61;
-import org.telegram.ui.Components.wj0;
-public final class r extends n61 {
-    public final s[] f9293a = new s[3];
-    public final Context f9294b;
-    public final wj0 f9295c;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.y61;
+public final class r extends y61 {
+    public final s[] f9606a = new s[3];
+    public final Context f9607b;
+    public final ek0 f9608c;
     public final t d;
 
-    public r(t tVar, Context context, wj0 wj0Var) {
+    public r(t tVar, Context context, ek0 ek0Var) {
         this.d = tVar;
-        this.f9294b = context;
-        this.f9295c = wj0Var;
+        this.f9607b = context;
+        this.f9608c = ek0Var;
     }
 
     @Override
     public final void b(View view, int i7, int i10) {
-        this.f9295c.J(view);
+        this.f9608c.H(view);
     }
 
     @Override
     public final View d(int i7) {
-        s[] sVarArr = this.f9293a;
+        s[] sVarArr = this.f9606a;
         if (sVarArr[i7] == null) {
-            sVarArr[i7] = new s(this.d, this.f9294b, i7);
+            sVarArr[i7] = new s(this.d, this.f9607b, i7);
         }
         return sVarArr[i7];
     }
 
     @Override
     public final int e() {
-        return this.f9293a.length;
+        return this.f9606a.length;
     }
 
     @Override
     public final CharSequence g(int i7) {
         int i10;
         if (i7 == 1) {
-            i10 = 2131744919;
+            i10 = 2131744684;
         } else if (i7 == 2) {
-            i10 = 2131744918;
+            i10 = 2131744683;
         } else {
-            i10 = 2131744920;
+            i10 = 2131744685;
         }
-        return hd.M0(i10, null);
+        return gd.M0(i10, null);
     }
 
     @Override

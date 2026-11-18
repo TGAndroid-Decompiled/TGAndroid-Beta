@@ -1,16 +1,16 @@
 package tg;
 
 import android.app.Activity;
-import org.telegram.messenger.m10;
+import org.telegram.messenger.j10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.an;
-public final class w extends an {
-    public final g0 f57591ud;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.bn;
+public final class w extends bn {
+    public final g0 f58158vd;
 
     public w(g0 g0Var) {
         super(null);
-        this.f57591ud = g0Var;
+        this.f58158vd = g0Var;
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class w extends an {
 
     @Override
     public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f57591ud.getContext());
+        return org.telegram.messenger.g0.W(this.f58158vd.getContext());
     }
 
     @Override
-    public final e6 getResourceProvider() {
-        return this.f57591ud.A1;
+    public final i6 getResourceProvider() {
+        return this.f58158vd.A1;
     }
 
     @Override
@@ -40,6 +40,6 @@ public final class w extends an {
 
     @Override
     public final TLRPC.User j() {
-        return m10.i(this.currentAccount).f();
+        return j10.i(this.currentAccount).f();
     }
 }

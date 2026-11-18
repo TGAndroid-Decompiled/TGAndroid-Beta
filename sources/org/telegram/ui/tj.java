@@ -1,81 +1,76 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-public final class tj extends FrameLayout {
-    public final int f51604a;
-    public final an f51605b;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.widget.TextView;
+public final class tj extends org.telegram.ui.Components.bd {
+    public org.telegram.ui.Cells.y f52296e;
+    public int f52297f;
+    public final boolean h;
+    public final bn f52298n;
 
-    public tj(an anVar, Context context, int i7) {
+    public tj(bn bnVar, Context context, boolean z10) {
         super(context);
-        this.f51604a = i7;
-        this.f51605b = anVar;
+        this.f52298n = bnVar;
+        this.h = z10;
     }
 
     @Override
-    public void measureChildWithMargins(View view, int i7, int i10, int i11, int i12) {
-        int i13;
-        switch (this.f51604a) {
-            case 1:
-                an anVar = this.f51605b;
-                if (view == anVar.j3) {
-                    ImageView imageView = anVar.f45216h3;
-                    if (imageView != null && imageView.getVisibility() != 8) {
-                        i13 = 66;
-                    } else {
-                        i13 = 18;
+    public final void d() {
+        int i7;
+        try {
+            int themedColor = this.f52298n.getThemedColor(org.telegram.ui.ActionBar.n6.f29586nf);
+            if (this.f52296e != null) {
+                Drawable background = getBackground();
+                Drawable drawable = this.f52296e;
+                if (background == drawable) {
+                    if (themedColor != this.f52297f) {
+                        org.telegram.ui.ActionBar.n6.H1(drawable, themedColor & 436207615, true);
                     }
-                    ImageView imageView2 = anVar.f45229i3;
-                    if (imageView2 != null && imageView2.getVisibility() != 8) {
-                        i13 += 48;
+                    if (getImageView() != null && (themedColor != this.f52297f || getImageView().getColorFilter() == null)) {
+                        getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
                     }
-                    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = org.telegram.messenger.g0.L(i13);
+                    this.f52297f = themedColor;
+                    if (getTextView() == null && getTextView().getCurrentTextColor() != themedColor) {
+                        getTextView().setTextColor(themedColor);
+                        return;
+                    }
                 }
-                super.measureChildWithMargins(view, i7, i10, i11, i12);
-                return;
-            default:
-                super.measureChildWithMargins(view, i7, i10, i11, i12);
-                return;
+            }
+            if (this.h) {
+                i7 = org.telegram.messenger.g0.L(4.0f);
+            } else {
+                i7 = 0;
+            }
+            int i10 = i7;
+            org.telegram.ui.Cells.y Y = org.telegram.ui.ActionBar.n6.Y(org.telegram.messenger.g0.L(19.0f), themedColor & 436207615, i10, org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f));
+            this.f52296e = Y;
+            setBackground(Y);
+            if (getImageView() != null) {
+                getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+            }
+            this.f52297f = themedColor;
+            if (getTextView() == null) {
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 
     @Override
-    public void setTranslationY(float f10) {
-        switch (this.f51604a) {
-            case 2:
-                super.setTranslationY(f10);
-                this.f51605b.f45277m1.invalidate();
-                return;
-            default:
-                super.setTranslationY(f10);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i7) {
-        boolean z10;
-        switch (this.f51604a) {
-            case 0:
-                super.setVisibility(i7);
-                m6.n nVar = this.f51605b.f45238id;
-                boolean z11 = false;
-                if (i7 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (getMeasuredWidth() > 0) {
-                    z11 = true;
-                }
-                nVar.h(2, z10, z11);
-                return;
-            default:
-                super.setVisibility(i7);
-                return;
+    public final void setEditButton(boolean z10) {
+        int i7;
+        super.setEditButton(z10);
+        if (this.h) {
+            TextView textView = getTextView();
+            if (z10) {
+                i7 = org.telegram.messenger.g0.L(116.0f);
+            } else {
+                i7 = Integer.MAX_VALUE;
+            }
+            textView.setMaxWidth(i7);
         }
     }
 }

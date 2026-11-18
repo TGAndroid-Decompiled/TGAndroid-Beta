@@ -1,84 +1,36 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class jo implements RequestDelegate {
-    public final int f24587a;
-    public final w2 f24588b;
+public final class jo extends y2 {
+    public final mp f24904e;
 
-    public jo(w2 w2Var, int i7) {
-        this.f24587a = i7;
-        this.f24588b = w2Var;
+    public jo(mp mpVar) {
+        this.f24904e = mpVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        String str;
-        boolean z10;
-        int i7;
-        TLRPC.TL_help_appConfig tL_help_appConfig;
-        String str2;
-        boolean z11;
-        int i10;
-        TLRPC.TL_messages_availableEffects tL_messages_availableEffects;
-        switch (this.f24587a) {
-            case 0:
-                boolean z12 = tLObject instanceof TLRPC.TL_help_appConfigNotModified;
-                w2 w2Var = this.f24588b;
-                if (z12) {
-                    Boolean bool = Boolean.TRUE;
-                    w2Var.a(bool, null, 0L, bool);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_help_appConfig) {
-                    w2Var.a(Boolean.FALSE, (TLRPC.TL_help_appConfig) tLObject, Long.valueOf(tL_help_appConfig.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    StringBuilder sb2 = new StringBuilder("getting appconfig error ");
-                    if (tL_error != null) {
-                        str = tL_error.code + " " + tL_error.text;
-                    } else {
-                        str = "";
-                    }
-                    sb2.append(str);
-                    a8.d(sb2.toString());
-                    Boolean bool2 = Boolean.FALSE;
-                    if (tL_error != null && ((i7 = tL_error.code) == -2000 || i7 == -2001)) {
-                        z10 = false;
-                    } else {
-                        z10 = true;
-                    }
-                    w2Var.a(bool2, null, 0L, Boolean.valueOf(z10));
-                    return;
-                }
-            default:
-                boolean z13 = tLObject instanceof TLRPC.TL_messages_availableEffectsNotModified;
-                w2 w2Var2 = this.f24588b;
-                if (z13) {
-                    Boolean bool3 = Boolean.TRUE;
-                    w2Var2.a(bool3, null, 0L, bool3);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_availableEffects) {
-                    w2Var2.a(Boolean.FALSE, (TLRPC.TL_messages_availableEffects) tLObject, Long.valueOf(tL_messages_availableEffects.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    StringBuilder sb3 = new StringBuilder("getting available effects error ");
-                    if (tL_error != null) {
-                        str2 = tL_error.code + " " + tL_error.text;
-                    } else {
-                        str2 = "";
-                    }
-                    sb3.append(str2);
-                    a8.d(sb3.toString());
-                    Boolean bool4 = Boolean.FALSE;
-                    if (tL_error != null && ((i10 = tL_error.code) == -2000 || i10 == -2001)) {
-                        z11 = false;
-                    } else {
-                        z11 = true;
-                    }
-                    w2Var2.a(bool4, null, 0L, Boolean.valueOf(z11));
-                    return;
-                }
-        }
+    public final void e(int i7, Object obj, q10 q10Var) {
+        Integer num = (Integer) obj;
+        this.f24904e.getMessagesStorage().f27054a.c(new ho(i7, (w2) q10Var, 0));
+    }
+
+    @Override
+    public final void f(int i7, Object obj, long j3, x2 x2Var) {
+        Integer num = (Integer) obj;
+        TLRPC.TL_help_getAppConfig tL_help_getAppConfig = new TLRPC.TL_help_getAppConfig();
+        tL_help_getAppConfig.hash = (int) j3;
+        this.f24904e.getConnectionsManager().sendRequest(tL_help_getAppConfig, new io(x2Var, 0));
+    }
+
+    @Override
+    public final void g(int i7, Object obj, Object obj2) {
+        Integer num = (Integer) obj;
+        tr.a0(i7).f27054a.c(new x0(i7, (TLRPC.TL_help_appConfig) obj2, 5));
+    }
+
+    @Override
+    public final boolean j(Object obj) {
+        Integer num = (Integer) obj;
+        return false;
     }
 }

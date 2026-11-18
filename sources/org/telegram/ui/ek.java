@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class ek {
-    public final an f46791a;
+    public final bn f47291a;
 
-    public ek(an anVar) {
-        this.f46791a = anVar;
+    public ek(bn bnVar) {
+        this.f47291a = bnVar;
     }
 }

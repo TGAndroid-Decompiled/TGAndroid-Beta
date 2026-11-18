@@ -1,55 +1,38 @@
 package c8;
 
-import android.graphics.Path;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import org.telegram.messenger.Utilities;
 public abstract class j0 {
-    public static boolean a(i0.e[] eVarArr, i0.e[] eVarArr2) {
-        if (eVarArr == null || eVarArr2 == null || eVarArr.length != eVarArr2.length) {
-            return false;
+    public static float[] f4836a;
+
+    public static int a(int i7, boolean z10) {
+        float f10;
+        if (f4836a == null) {
+            f4836a = new float[3];
         }
-        for (int i7 = 0; i7 < eVarArr.length; i7++) {
-            i0.e eVar = eVarArr[i7];
-            char c10 = eVar.f15578a;
-            i0.e eVar2 = eVarArr2[i7];
-            if (c10 != eVar2.f15578a || eVar.f15579b.length != eVar2.f15579b.length) {
-                return false;
+        Color.colorToHSV(i7, f4836a);
+        float[] fArr = f4836a;
+        float f11 = fArr[2];
+        if (z10) {
+            f10 = -0.05f;
+        } else {
+            f10 = 0.07f;
+        }
+        fArr[2] = Utilities.i(f11 + f10, 0.85f, 0.15f);
+        float[] fArr2 = f4836a;
+        float f12 = fArr2[1];
+        if (f12 > 0.1f && f12 <= 0.95f) {
+            if (f12 <= 0.5f) {
+                fArr2[1] = Utilities.i(f12 + 0.2f, 1.0f, 0.0f);
+            } else if (f12 > 0.8f) {
+                fArr2[1] = Utilities.i(f12 - 0.4f, 1.0f, 0.0f);
             }
         }
-        return true;
+        return Color.HSVToColor(f4836a);
     }
 
-    public static float[] b(int i7, float[] fArr) {
-        if (i7 >= 0) {
-            int length = fArr.length;
-            if (length >= 0) {
-                int min = Math.min(i7, length);
-                float[] fArr2 = new float[i7];
-                System.arraycopy(fArr, 0, fArr2, 0, min);
-                return fArr2;
-            }
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public static i0.e[] c(java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.j0.c(java.lang.String):i0.e[]");
-    }
-
-    public static Path d(String str) {
-        Path path = new Path();
-        try {
-            i0.e.b(c(str), path);
-            return path;
-        } catch (RuntimeException e10) {
-            throw new RuntimeException("Error in parsing ".concat(str), e10);
-        }
-    }
-
-    public static i0.e[] e(i0.e[] eVarArr) {
-        i0.e[] eVarArr2 = new i0.e[eVarArr.length];
-        for (int i7 = 0; i7 < eVarArr.length; i7++) {
-            eVarArr2[i7] = new i0.e(eVarArr[i7]);
-        }
-        return eVarArr2;
+    public static int[] b(Bitmap bitmap, boolean z10) {
+        return new int[]{a(bitmap.getPixel(bitmap.getWidth() / 2, (int) (bitmap.getHeight() * 0.1f)), z10), a(bitmap.getPixel(bitmap.getWidth() / 2, (int) (bitmap.getHeight() * 0.9f)), z10)};
     }
 }

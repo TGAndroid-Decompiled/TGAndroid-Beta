@@ -1,19 +1,14 @@
 package c8;
 
 import android.os.Parcel;
-import android.os.RemoteException;
+import android.os.Parcelable;
 public abstract class hb {
-    public static void a(p4.l lVar) {
-        if (lVar != null) {
-            try {
-                p4.k kVar = (p4.k) lVar;
-                Parcel obtain = Parcel.obtain();
-                obtain.writeInterfaceToken("androidx.media3.session.IMediaController");
-                obtain.writeInt(0);
-                kVar.f54754a.transact(3006, obtain, null, 1);
-                obtain.recycle();
-            } catch (RemoteException unused) {
-            }
+    public static void a(Parcel parcel, Parcelable parcelable) {
+        if (parcelable != null) {
+            parcel.writeInt(1);
+            parcelable.writeToParcel(parcel, 0);
+            return;
         }
+        parcel.writeInt(0);
     }
 }

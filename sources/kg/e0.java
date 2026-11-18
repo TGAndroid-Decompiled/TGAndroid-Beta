@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.ui.Components.tj0;
-public final class e0 extends tj0 {
-    public final Context f17914c;
+import org.telegram.ui.Components.bk0;
+public final class e0 extends bk0 {
+    public final Context f18301c;
     public final ArrayList d = new ArrayList();
-    public String f17915e;
-    public final g0 f17916f;
+    public String f18302e;
+    public final g0 f18303f;
 
     public e0(g0 g0Var, Context context) {
-        this.f17916f = g0Var;
-        this.f17914c = context;
+        this.f18303f = g0Var;
+        this.f18301c = context;
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        if (e1Var.f58539f == 0) {
+    public final boolean D(v4.f1 f1Var) {
+        if (f1Var.f59126f == 0) {
             return true;
         }
         return false;
@@ -43,30 +43,30 @@ public final class e0 extends tj0 {
     @Override
     public final void f() {
         super.f();
-        this.f17916f.Q();
+        this.f18303f.Q();
     }
 
     @Override
-    public final void t(v4.e1 r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: kg.e0.t(v4.e1, int):void");
+    public final void t(v4.f1 r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: kg.e0.t(v4.f1, int):void");
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        View q1Var;
-        Context context = this.f17914c;
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        View s1Var;
+        Context context = this.f18301c;
         if (i7 != 0) {
             if (i7 != 1) {
-                q1Var = new View(context);
-                q1Var.setTag(-33024);
+                s1Var = new View(context);
+                s1Var.setTag(-33024);
             } else {
-                q1Var = new View(context);
-                q1Var.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(56.0f)));
-                q1Var.setTag(-33024);
+                s1Var = new View(context);
+                s1Var.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(56.0f)));
+                s1Var.setTag(-33024);
             }
         } else {
-            q1Var = new q1(context, this.f17916f.f33608a, false);
+            s1Var = new s1(context, this.f18303f.f36765a, false);
         }
-        return new v4.e1(q1Var);
+        return new v4.f1(s1Var);
     }
 }

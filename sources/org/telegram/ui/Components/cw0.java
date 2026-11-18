@@ -1,45 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class cw0 extends tj0 {
-    public final Context f33718c;
-    public final dw0 d;
-
-    public cw0(dw0 dw0Var, Activity activity) {
-        this.d = dw0Var;
-        this.f33718c = activity;
-    }
+import android.graphics.drawable.ShapeDrawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+public final class cw0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public org.telegram.ui.ActionBar.i6 f34190a;
+    public ShapeDrawable f34191b;
+    public View f34192c;
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.f34070c.size();
-    }
-
-    @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) e1Var.f58535a;
-        ArrayList arrayList = this.d.f34070c;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
-        boolean z10 = true;
-        if (i7 == arrayList.size() - 1) {
-            z10 = false;
+    public final void updateColors() {
+        try {
+            ShapeDrawable shapeDrawable = this.f34191b;
+            if (shapeDrawable != null) {
+                org.telegram.ui.ActionBar.n6.C1(org.telegram.ui.ActionBar.n6.r1(0.12f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Ef, this.f34190a)), shapeDrawable);
+                View view = this.f34192c;
+                if (view != null) {
+                    view.invalidate();
+                }
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
-        vVar.b(stickerSetCovered, z10);
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(this.f33718c, false);
-        vVar.setLayoutParams(new v4.p0(-1, org.telegram.messenger.g0.L(82.0f)));
-        return new v4.e1(vVar);
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

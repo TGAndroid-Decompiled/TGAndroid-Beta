@@ -1,77 +1,50 @@
 package org.telegram.ui.Wallet;
 
+import android.graphics.Rect;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.s10;
-import org.telegram.ui.Components.cc;
-public final class h8 implements s10 {
-    public final int f43943a;
-    public final p8 f43944b;
-    public final vf.b f43945c;
-    public final l0 d;
+public final class h8 implements View.OnLayoutChangeListener {
+    public final int f44314a;
+    public final Object f44315b;
 
-    public h8(p8 p8Var, vf.b bVar, l0 l0Var, int i7) {
-        this.f43943a = i7;
-        this.f43944b = p8Var;
-        this.f43945c = bVar;
-        this.d = l0Var;
+    public h8(Object obj, int i7) {
+        this.f44314a = i7;
+        this.f44315b = obj;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f43943a) {
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        switch (this.f44314a) {
             case 0:
-                i0 i0Var = (i0) obj;
-                String str = (String) obj2;
-                this.f43945c.c(false);
-                p8 p8Var = this.f43944b;
-                if (i0Var == null) {
-                    cc a02 = cc.a0(p8Var);
-                    if (str == null) {
-                        str = "NULL_ERROR";
+                r8 r8Var = (r8) this.f44315b;
+                r8Var.getClass();
+                if (i11 - i7 != i15 - i13 || i12 - i10 != i16 - i14) {
+                    for (q8 q8Var : r8Var.f44897f.values()) {
+                        q8Var.K = false;
                     }
-                    a02.e0(str, false);
+                    r8Var.f0();
                     return;
                 }
-                w8 w8Var = new w8();
-                w8Var.h = true;
-                ArrayList arrayList = w8Var.f44656a;
-                arrayList.clear();
-                if (!i0Var.d()) {
-                    arrayList.addAll(i0Var.f());
-                }
-                w8Var.a0();
-                w8Var.f44660f = new r(p8Var, this.d);
-                p8Var.presentFragment(w8Var);
                 return;
             default:
-                g0 g0Var = (g0) obj;
-                String str2 = (String) obj2;
-                this.f43945c.c(false);
-                p8 p8Var2 = this.f43944b;
-                if (g0Var == null) {
-                    cc a03 = cc.a0(p8Var2);
-                    if (str2 == null) {
-                        str2 = "NULL_ERROR";
+                u8 u8Var = (u8) this.f44315b;
+                if (i12 - i10 < i16 - i14) {
+                    ArrayList arrayList = u8Var.f45145w;
+                    int size = arrayList.size();
+                    int i17 = 0;
+                    while (i17 < size) {
+                        Object obj = arrayList.get(i17);
+                        i17++;
+                        db dbVar = (db) obj;
+                        if (dbVar.hasFocus()) {
+                            dbVar.requestRectangleOnScreen(new Rect(0, 0, dbVar.getWidth(), dbVar.getHeight()), true);
+                            return;
+                        }
                     }
-                    a03.e0(str2, false);
-                    return;
-                } else if (p8Var2.f44332f) {
-                    g0Var.close();
-                    return;
-                } else {
-                    p8Var2.f44331e.add(g0Var);
-                    w8 w8Var2 = new w8();
-                    i0 i0Var2 = g0Var.f43856b;
-                    ArrayList arrayList2 = w8Var2.f44656a;
-                    arrayList2.clear();
-                    if (!i0Var2.d()) {
-                        arrayList2.addAll(i0Var2.f());
-                    }
-                    w8Var2.a0();
-                    w8Var2.f44660f = new g(p8Var2, this.d, g0Var, 22);
-                    p8Var2.presentFragment(w8Var2);
                     return;
                 }
+                u8Var.getClass();
+                return;
         }
     }
 }

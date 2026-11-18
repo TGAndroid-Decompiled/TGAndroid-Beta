@@ -1,6 +1,6 @@
 package d3;
 
-import a8.ja;
+import a8.la;
 import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.os.Build;
@@ -9,26 +9,26 @@ import android.view.Choreographer;
 import android.view.Surface;
 import h2.l0;
 public final class x {
-    public final l f7481a;
-    public final c0 f7482b;
-    public final long f7483c;
+    public final l f7764a;
+    public final c0 f7765b;
+    public final long f7766c;
     public boolean d;
-    public long f7486g;
-    public boolean f7488j;
-    public boolean f7491m;
-    public boolean f7492n;
-    public int f7484e = 0;
-    public long f7485f = -9223372036854775807L;
+    public long f7769g;
+    public boolean f7771j;
+    public boolean f7774m;
+    public boolean f7775n;
+    public int f7767e = 0;
+    public long f7768f = -9223372036854775807L;
     public long h = -9223372036854775807L;
-    public long f7487i = -9223372036854775807L;
-    public float f7489k = 1.0f;
-    public h2.g0 f7490l = h2.g0.f13448a;
-    public final boolean f7493o = true;
+    public long f7770i = -9223372036854775807L;
+    public float f7772k = 1.0f;
+    public h2.g0 f7773l = h2.g0.f13763a;
+    public final boolean f7776o = true;
 
     public x(Context context, l lVar, long j3) {
-        this.f7481a = lVar;
-        this.f7483c = j3;
-        this.f7482b = new c0(context);
+        this.f7764a = lVar;
+        this.f7766c = j3;
+        this.f7765b = new c0(context);
     }
 
     public final int a(long r31, long r33, long r35, long r37, boolean r39, boolean r40, d3.w r41) {
@@ -36,43 +36,43 @@ public final class x {
     }
 
     public final boolean b(boolean z10) {
-        if (z10 && (this.f7484e == 3 || (this.f7492n && (!this.f7491m || !this.f7493o)))) {
-            this.f7487i = -9223372036854775807L;
+        if (z10 && (this.f7767e == 3 || (this.f7775n && (!this.f7774m || !this.f7776o)))) {
+            this.f7770i = -9223372036854775807L;
             return true;
-        } else if (this.f7487i == -9223372036854775807L) {
+        } else if (this.f7770i == -9223372036854775807L) {
             return false;
         } else {
-            this.f7490l.getClass();
-            if (SystemClock.elapsedRealtime() < this.f7487i) {
+            this.f7773l.getClass();
+            if (SystemClock.elapsedRealtime() < this.f7770i) {
                 return true;
             }
-            this.f7487i = -9223372036854775807L;
+            this.f7770i = -9223372036854775807L;
             return false;
         }
     }
 
     public final void c(boolean z10) {
         long j3;
-        this.f7488j = z10;
-        long j10 = this.f7483c;
+        this.f7771j = z10;
+        long j10 = this.f7766c;
         if (j10 > 0) {
-            this.f7490l.getClass();
+            this.f7773l.getClass();
             j3 = SystemClock.elapsedRealtime() + j10;
         } else {
             j3 = -9223372036854775807L;
         }
-        this.f7487i = j3;
+        this.f7770i = j3;
     }
 
     public final void d() {
         z zVar;
         this.d = true;
-        this.f7490l.getClass();
-        this.f7486g = l0.S(SystemClock.elapsedRealtime());
-        c0 c0Var = this.f7482b;
+        this.f7773l.getClass();
+        this.f7769g = l0.S(SystemClock.elapsedRealtime());
+        c0 c0Var = this.f7765b;
         c0Var.d = true;
         c0Var.b();
-        DisplayManager displayManager = (DisplayManager) c0Var.f7355b.getSystemService("display");
+        DisplayManager displayManager = (DisplayManager) c0Var.f7638b.getSystemService("display");
         z zVar2 = null;
         if (displayManager != null) {
             try {
@@ -87,7 +87,7 @@ public final class x {
                 h2.a.m("VideoFrameReleaseHelper", "Vsync sampling disabled due to platform error", e10);
             }
         }
-        c0Var.f7356c = zVar2;
+        c0Var.f7639c = zVar2;
         if (zVar2 != null) {
             zVar2.a();
         }
@@ -98,28 +98,28 @@ public final class x {
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 == 2) {
-                    this.f7484e = Math.min(this.f7484e, 2);
+                    this.f7767e = Math.min(this.f7767e, 2);
                 } else {
                     throw new IllegalStateException();
                 }
             } else {
-                this.f7484e = 0;
+                this.f7767e = 0;
             }
         } else {
-            this.f7484e = 1;
+            this.f7767e = 1;
         }
-        this.f7482b.b();
+        this.f7765b.b();
     }
 
     public final void f(float f10) {
-        c0 c0Var = this.f7482b;
-        c0Var.f7358f = f10;
-        g gVar = c0Var.f7354a;
-        gVar.f7404a.c();
-        gVar.f7405b.c();
-        gVar.f7406c = false;
+        c0 c0Var = this.f7765b;
+        c0Var.f7641f = f10;
+        g gVar = c0Var.f7637a;
+        gVar.f7687a.c();
+        gVar.f7688b.c();
+        gVar.f7689c = false;
         gVar.d = -9223372036854775807L;
-        gVar.f7407e = 0;
+        gVar.f7690e = 0;
         c0Var.c();
     }
 
@@ -130,15 +130,15 @@ public final class x {
         } else {
             z10 = false;
         }
-        this.f7491m = z10;
-        this.f7492n = false;
-        c0 c0Var = this.f7482b;
-        if (c0Var.f7357e != surface) {
+        this.f7774m = z10;
+        this.f7775n = false;
+        c0 c0Var = this.f7765b;
+        if (c0Var.f7640e != surface) {
             c0Var.a();
-            c0Var.f7357e = surface;
+            c0Var.f7640e = surface;
             c0Var.d(true);
         }
-        this.f7484e = Math.min(this.f7484e, 1);
+        this.f7767e = Math.min(this.f7767e, 1);
     }
 
     public final void h(float f10) {
@@ -148,13 +148,13 @@ public final class x {
         } else {
             z10 = false;
         }
-        ja.f(z10);
-        if (f10 == this.f7489k) {
+        la.f(z10);
+        if (f10 == this.f7772k) {
             return;
         }
-        this.f7489k = f10;
-        c0 c0Var = this.f7482b;
-        c0Var.f7360i = f10;
+        this.f7772k = f10;
+        c0 c0Var = this.f7765b;
+        c0Var.f7643i = f10;
         c0Var.d(false);
     }
 }

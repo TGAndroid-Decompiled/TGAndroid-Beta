@@ -1,127 +1,217 @@
 package fi;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.fc;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.si;
-import org.telegram.messenger.wz;
-import org.telegram.messenger.xz;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class e7 implements RequestDelegate {
-    public final int f11677a = 0;
-    public final wz f11678b;
-    public final long f11679c;
-    public final boolean d;
-    public final xz f11680e;
-    public final Runnable f11681f;
-    public final Object f11682g;
-    public final Cloneable h;
-    public final Serializable f11683i;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.mc;
+import org.telegram.ui.LaunchActivity;
+public class e7 {
+    public int A;
+    public boolean D;
+    public final boolean E;
+    public float G;
+    public mc H;
+    public org.telegram.ui.ActionBar.i6 J;
+    public float K;
+    public boolean L;
+    public float M;
+    public boolean N;
+    public float O;
+    public float P;
+    public a6 Q;
+    public View R;
+    public int f11894c;
+    public TL_stories.StoryItem d;
+    public boolean f11901l;
+    public boolean f11902m;
+    public int f11903n;
+    public boolean f11904o;
+    public boolean f11905p;
+    public int f11906q;
+    public boolean f11907r;
+    public long f11908s;
+    public float f11909t;
+    public boolean v;
+    public boolean f11911w;
+    public long f11912x;
+    public int f11913y;
+    public int f11914z;
+    public boolean f11892a = true;
+    public boolean f11893b = true;
+    public float f11895e = 1.0f;
+    public float f11896f = 0.0f;
+    public float f11897g = 0.0f;
+    public float h = 0.0f;
+    public float f11898i = 0.0f;
+    public float f11899j = 0.0f;
+    public boolean f11900k = true;
+    public float f11910u = 1.0f;
+    public float B = 1.0f;
+    public boolean C = false;
+    public final RectF F = new RectF();
+    public boolean I = false;
 
-    public e7(f7 f7Var, wz wzVar, ArrayList arrayList, long j3, boolean z10, xz xzVar, int[] iArr, Runnable runnable) {
-        this.f11682g = f7Var;
-        this.f11678b = wzVar;
-        this.h = arrayList;
-        this.f11679c = j3;
-        this.d = z10;
-        this.f11680e = xzVar;
-        this.f11683i = iArr;
-        this.f11681f = runnable;
+    public e7(org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
+        this.E = z10;
+        this.J = i6Var;
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        Runnable runnable;
-        switch (this.f11677a) {
-            case 0:
-                f7 f7Var = (f7) this.f11682g;
-                ArrayList arrayList = (ArrayList) this.h;
-                int[] iArr = (int[]) this.f11683i;
-                int i7 = f7Var.f11708a;
-                xz.a(this.f11678b);
-                if (tLObject != null) {
-                    TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        gj gjVar = (gj) arrayList.get(i10);
-                        int i11 = 0;
-                        while (true) {
-                            int size = tL_stories_stories.stories.size();
-                            long j3 = this.f11679c;
-                            if (i11 < size) {
-                                if (tL_stories_stories.stories.get(i11).f28290id == f7.e(gjVar)) {
-                                    f7.b(i7, j3, gjVar, tL_stories_stories.stories.get(i11));
-                                } else {
-                                    i11++;
-                                }
-                            } else {
-                                TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
-                                tL_storyItemDeleted.f28290id = f7.e(gjVar);
-                                f7.b(i7, j3, gjVar, tL_storyItemDeleted);
-                            }
-                        }
-                        if (this.d) {
-                            f7Var.f11709b.f27219a.c(new f6(7, f7Var, arrayList));
-                        }
-                    }
-                } else if (tL_error != null) {
-                    xz.c(this.f11680e, "fillMessagesWithStories: getStoriesByID error " + tL_error.code + " " + tL_error.text);
-                }
-                int i12 = iArr[0] - 1;
-                iArr[0] = i12;
-                if (i12 == 0) {
-                    this.f11681f.run();
-                    return;
-                }
-                return;
-            default:
-                si siVar = (si) this.f11682g;
-                a0.h hVar = (a0.h) this.h;
-                AtomicInteger atomicInteger = (AtomicInteger) this.f11683i;
-                siVar.getClass();
-                xz.a(this.f11678b);
-                if (tL_error == null) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    int i13 = 0;
-                    while (true) {
-                        int size2 = messages_messages.messages.size();
-                        long j10 = this.f11679c;
-                        if (i13 < size2) {
-                            TLRPC.Message message = messages_messages.messages.get(i13);
-                            if (message.dialog_id == 0) {
-                                message.dialog_id = j10;
-                            }
-                            i13++;
-                        } else {
-                            fc.X(messages_messages.messages);
-                            siVar.l(messages_messages.messages, hVar, messages_messages.users, messages_messages.chats, j10, false);
-                            siVar.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
-                            siVar.T1(hVar, messages_messages.messages, this.d);
-                        }
-                    }
+    public final boolean a(View view, MotionEvent motionEvent) {
+        TLRPC.TL_recentStory tL_recentStory;
+        TLRPC.TL_recentStory tL_recentStory2;
+        TLRPC.User user;
+        TLRPC.TL_recentStory tL_recentStory3;
+        boolean z10;
+        TLRPC.TL_recentStory tL_recentStory4;
+        this.R = view;
+        p6 R1 = mp.u1(j10.f24773t0).R1();
+        boolean z11 = false;
+        if (motionEvent.getAction() == 0) {
+            if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
+                TLRPC.Chat chat = null;
+                if (this.f11912x > 0) {
+                    user = mp.u1(j10.f24773t0).c2(Long.valueOf(this.f11912x));
                 } else {
-                    xz.c(this.f11680e, "messages.getMessages error: " + tL_error.code + " " + tL_error.text);
+                    chat = mp.u1(j10.f24773t0).O0(Long.valueOf(-this.f11912x));
+                    user = null;
                 }
-                if (atomicInteger.decrementAndGet() == 0 && (runnable = this.f11681f) != null) {
-                    org.telegram.messenger.g0.h3(runnable);
-                    return;
+                if (c(chat, user)) {
+                    z10 = true;
+                } else if (this.f11907r) {
+                    z10 = !R1.h.isEmpty();
+                } else {
+                    if (this.f11912x <= 0 ? mp.u1(j10.f24773t0).R1().K(this.f11912x) || (chat != null && !chat.stories_unavailable && (tL_recentStory3 = chat.stories_max_id) != null && tL_recentStory3.max_id > 0) : mp.u1(j10.f24773t0).R1().K(this.f11912x) || (user != null && !user.stories_unavailable && (tL_recentStory4 = user.stories_max_id) != null && tL_recentStory4.max_id > 0)) {
+                        z11 = true;
+                    }
+                    z10 = z11;
                 }
-                return;
+                if (this.f11912x != j10.i(j10.f24773t0).f24792n && z10) {
+                    mc mcVar = this.H;
+                    if (mcVar == null) {
+                        this.H = new mc(view, 1.5f, 5.0f);
+                    } else {
+                        mcVar.f37428a = view;
+                    }
+                    view.getParent().requestDisallowInterceptTouchEvent(true);
+                    this.H.c(true);
+                    this.N = true;
+                    this.O = motionEvent.getX();
+                    this.P = motionEvent.getY();
+                    if (this.I) {
+                        a6 a6Var = this.Q;
+                        if (a6Var != null) {
+                            org.telegram.messenger.g0.r(a6Var);
+                        }
+                        a6 a6Var2 = new a6(15, this, view);
+                        this.Q = a6Var2;
+                        org.telegram.messenger.g0.h3(a6Var2, ViewConfiguration.getLongPressTimeout());
+                    }
+                }
+                return this.N;
+            }
+        }
+        if (motionEvent.getAction() == 2 && this.N) {
+            if (Math.abs(this.O - motionEvent.getX()) > org.telegram.messenger.g0.f24100e || Math.abs(this.P - motionEvent.getY()) > org.telegram.messenger.g0.f24100e) {
+                mc mcVar2 = this.H;
+                if (mcVar2 != null) {
+                    mcVar2.f37428a = view;
+                    mcVar2.c(false);
+                }
+                a6 a6Var3 = this.Q;
+                if (a6Var3 != null) {
+                    org.telegram.messenger.g0.r(a6Var3);
+                }
+                view.getParent().requestDisallowInterceptTouchEvent(false);
+                this.N = false;
+            }
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            mc mcVar3 = this.H;
+            if (mcVar3 != null) {
+                mcVar3.f37428a = view;
+                mcVar3.c(false);
+            }
+            if (this.N && motionEvent.getAction() == 1 && !d(this.f11912x)) {
+                mp u12 = mp.u1(j10.f24773t0);
+                p6 R12 = u12.R1();
+                if (this.f11907r) {
+                    f(0L);
+                } else if (this.f11912x != j10.i(j10.f24773t0).e()) {
+                    if (R12.K(this.f11912x)) {
+                        f(this.f11912x);
+                    } else {
+                        long j3 = this.f11912x;
+                        if (j3 > 0) {
+                            TLRPC.User c22 = u12.c2(Long.valueOf(j3));
+                            if (c22 != null && !c22.stories_unavailable && (tL_recentStory2 = c22.stories_max_id) != null && tL_recentStory2.max_id > 0) {
+                                new h7().a(this.f11912x, view, this);
+                            }
+                        } else {
+                            TLRPC.Chat O0 = u12.O0(Long.valueOf(-j3));
+                            if (O0 != null && !O0.stories_unavailable && (tL_recentStory = O0.stories_max_id) != null && tL_recentStory.max_id > 0) {
+                                new h7().a(this.f11912x, view, this);
+                            }
+                        }
+                    }
+                }
+            }
+            ViewParent parent = view.getParent();
+            if (parent instanceof ViewGroup) {
+                ((ViewGroup) parent).requestDisallowInterceptTouchEvent(false);
+            }
+            this.N = false;
+            a6 a6Var4 = this.Q;
+            if (a6Var4 != null) {
+                org.telegram.messenger.g0.r(a6Var4);
+            }
+        }
+        return this.N;
+    }
+
+    public final float b() {
+        mc mcVar = this.H;
+        if (mcVar == null) {
+            return 1.0f;
+        }
+        return mcVar.a(0.08f);
+    }
+
+    public boolean c(TLRPC.Chat chat, TLRPC.User user) {
+        return false;
+    }
+
+    public boolean d(long j3) {
+        return false;
+    }
+
+    public void f(long j3) {
+        y6 y6Var;
+        org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
+        if (Q != null && this.R != null) {
+            Q.getOrCreateStoryViewer().getClass();
+            ViewParent parent = this.R.getParent();
+            if (parent instanceof RecyclerView) {
+                y6Var = y6.a((ck0) parent);
+            } else {
+                y6Var = null;
+            }
+            Q.getOrCreateStoryViewer().J(Q.getContext(), j3, y6Var);
         }
     }
 
-    public e7(si siVar, wz wzVar, long j3, a0.h hVar, boolean z10, xz xzVar, AtomicInteger atomicInteger, Runnable runnable) {
-        this.f11682g = siVar;
-        this.f11678b = wzVar;
-        this.f11679c = j3;
-        this.h = hVar;
-        this.d = z10;
-        this.f11680e = xzVar;
-        this.f11683i = atomicInteger;
-        this.f11681f = runnable;
+    public final void g() {
+        this.H = null;
+        this.N = false;
+    }
+
+    public void e() {
     }
 }

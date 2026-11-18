@@ -1,30 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class h2 implements View.OnClickListener {
-    public final int f35150a;
-    public final org.telegram.ui.ActionBar.u2[] f35151b;
+import android.content.DialogInterface;
+public final class h2 implements DialogInterface.OnDismissListener {
+    public final int f35698a = 0;
+    public final boolean[] f35699b;
+    public final Runnable f35700c;
 
-    public h2(org.telegram.ui.ActionBar.u2[] u2VarArr, int i7) {
-        this.f35150a = i7;
-        this.f35151b = u2VarArr;
+    public h2(Runnable runnable, boolean[] zArr) {
+        this.f35700c = runnable;
+        this.f35699b = zArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f35150a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f35698a) {
             case 0:
-                this.f35151b[0].dismiss();
-                return;
-            case 1:
-                this.f35151b[0].dismiss();
-                return;
-            case 2:
-                this.f35151b[0].dismiss();
+                Runnable runnable = this.f35700c;
+                if (runnable != null && this.f35699b[0]) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                this.f35151b[0].dismiss();
+                boolean[] zArr = this.f35699b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    Runnable runnable2 = this.f35700c;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
+    }
+
+    public h2(boolean[] zArr, Runnable runnable) {
+        this.f35699b = zArr;
+        this.f35700c = runnable;
     }
 }

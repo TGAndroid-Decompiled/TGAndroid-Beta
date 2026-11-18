@@ -1,122 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class j9 extends Drawable implements Drawable.Callback {
-    public static int[] f35911s;
-    public final Context f35912a;
-    public final g6 f35913b;
-    public Drawable f35914c;
-    public Drawable d;
-    public int f35915e;
-    public int f35916f;
-    public int h;
-    public int f35917n;
-    public int f35918r;
+import android.graphics.drawable.GradientDrawable;
+import org.telegram.messenger.Utilities;
+public final class j9 implements Runnable {
+    public final int f36387a = 0;
+    public final p9 f36388b;
+    public final Runnable[] f36389c;
+    public final f50 d;
+    public final int f36390e;
+    public final c8.ia[] f36391f;
 
-    public j9(Context context) {
-        this.f35912a = context;
-        g6 g6Var = new g6(false, false, false);
-        this.f35913b = g6Var;
-        g6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
-        g6Var.n(0.2f, 160L, er.h);
-        g6Var.w(org.telegram.messenger.g0.L(10.0f));
-        g6Var.f34833b = 17;
-        g6Var.setCallback(this);
-        g6Var.U = true;
-        if (f35911s != null) {
-            return;
-        }
-        f35911s = new int[]{2131232586, 2131232587, 2131232590, 2131232591, 2131232594, 2131232595, 2131232598, 2131232599, 2131232602, 2131232603, 2131232606, 2131232607, 2131232610, 2131232611, 2131232614, 2131232615, 2131232618, 2131232619, 2131232584, 2131232585, 2131232588, 2131232589, 2131232592, 2131232593, 2131232596, 2131232597, 2131232600, 2131232601, 2131232604, 2131232605, 2131232608, 2131232609, 2131232612, 2131232613, 2131232616, 2131232617, 2131232620, 2131232621};
+    public j9(p9 p9Var, f50 f50Var, Runnable[] runnableArr, int i7, c8.ia[] iaVarArr) {
+        this.f36388b = p9Var;
+        this.d = f50Var;
+        this.f36389c = runnableArr;
+        this.f36390e = i7;
+        this.f36391f = iaVarArr;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = this.d;
-        if (drawable != null && this.f35914c != null) {
-            drawable.draw(canvas);
-            this.f35914c.draw(canvas);
-            canvas.save();
-            canvas.translate(getBounds().exactCenterX(), getBounds().exactCenterY());
-            this.f35913b.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        Drawable drawable = this.f35914c;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-        }
-        Drawable drawable2 = this.d;
-        if (drawable2 != null) {
-            drawable2.setBounds(getBounds());
+    public final void run() {
+        switch (this.f36387a) {
+            case 0:
+                p9 p9Var = this.f36388b;
+                f50 f50Var = this.d;
+                Runnable[] runnableArr = this.f36389c;
+                int i7 = this.f36390e;
+                c8.ia[] iaVarArr = this.f36391f;
+                try {
+                    GradientDrawable.Orientation orientation = p9Var.getOrientation();
+                    int[] iArr = p9Var.f38322a;
+                    int i10 = f50Var.f34946a;
+                    int i11 = f50Var.f34947b;
+                    Rect e10 = p9.e(orientation, i10, i11);
+                    Bitmap createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
+                    Utilities.drawDitheredGradient(createBitmap, iArr, e10.left, e10.top, e10.right, e10.bottom);
+                    org.telegram.messenger.g0.g3(new bg.m0(p9Var, runnableArr, createBitmap, f50Var, i7, iaVarArr, 8));
+                    return;
+                } catch (Throwable th2) {
+                    org.telegram.messenger.g0.g3(new j9(p9Var, runnableArr, f50Var, i7, iaVarArr));
+                    throw th2;
+                }
+            default:
+                p9.a(this.f36388b, this.f36389c, null, this.d, this.f36390e, this.f36391f);
+                return;
         }
     }
 
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        int o4 = i0.a.o(this.f35915e, i7);
-        if (this.f35915e != o4) {
-            this.f35915e = o4;
-            Drawable drawable = this.f35914c;
-            if (drawable != null) {
-                drawable.setColorFilter(o4, PorterDuff.Mode.MULTIPLY);
-                invalidateSelf();
-            }
-        }
-        int o10 = i0.a.o(this.f35916f, i7);
-        if (this.f35916f != o10) {
-            this.f35916f = o10;
-            if (this.f35914c != null) {
-                this.d.setColorFilter(o10, PorterDuff.Mode.MULTIPLY);
-                invalidateSelf();
-            }
-        }
-        int o11 = i0.a.o(this.h, i7);
-        if (this.h != o11) {
-            this.h = o11;
-            this.f35913b.v(o11, false);
-            invalidateSelf();
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public j9(p9 p9Var, Runnable[] runnableArr, f50 f50Var, int i7, c8.ia[] iaVarArr) {
+        this.f36388b = p9Var;
+        this.f36389c = runnableArr;
+        this.d = f50Var;
+        this.f36390e = i7;
+        this.f36391f = iaVarArr;
     }
 }

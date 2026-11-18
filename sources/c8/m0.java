@@ -1,35 +1,89 @@
 package c8;
 
-import java.util.Map;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Typeface;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.io.File;
+import java.io.InputStream;
+import java.util.List;
 public abstract class m0 {
-    public static i4.f a(i4.f fVar, String[] strArr, Map map) {
-        int i7 = 0;
-        if (fVar == null) {
-            if (strArr == null) {
+    public m0() {
+        new ConcurrentHashMap();
+    }
+
+    public abstract Typeface a(Context context, h0.e eVar, Resources resources, int i7);
+
+    public abstract Typeface b(Context context, o0.h[] hVarArr, int i7);
+
+    public Typeface c(Context context, List list, int i7) {
+        throw new IllegalStateException("createFromFontInfoWithFallback must only be called on API 29+");
+    }
+
+    public Typeface d(Context context, InputStream inputStream) {
+        File d = n0.d(context);
+        if (d == null) {
+            return null;
+        }
+        try {
+            if (!n0.c(d, inputStream)) {
                 return null;
             }
-            if (strArr.length == 1) {
-                return (i4.f) map.get(strArr[0]);
+            return Typeface.createFromFile(d.getPath());
+        } catch (RuntimeException unused) {
+            return null;
+        } finally {
+            d.delete();
+        }
+    }
+
+    public Typeface e(Context context, Resources resources, int i7, String str, int i10) {
+        File d = n0.d(context);
+        if (d == null) {
+            return null;
+        }
+        try {
+            if (!n0.b(d, resources, i7)) {
+                return null;
             }
-            if (strArr.length > 1) {
-                i4.f fVar2 = new i4.f();
-                int length = strArr.length;
-                while (i7 < length) {
-                    fVar2.a((i4.f) map.get(strArr[i7]));
-                    i7++;
-                }
-                return fVar2;
+            return Typeface.createFromFile(d.getPath());
+        } catch (RuntimeException unused) {
+            return null;
+        } finally {
+            d.delete();
+        }
+    }
+
+    public o0.h f(o0.h[] hVarArr, int i7) {
+        int i10;
+        boolean z10;
+        int i11;
+        new nb.a(11);
+        if ((i7 & 1) == 0) {
+            i10 = 400;
+        } else {
+            i10 = 700;
+        }
+        if ((i7 & 2) != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        o0.h hVar = null;
+        int i12 = Integer.MAX_VALUE;
+        for (o0.h hVar2 : hVarArr) {
+            int abs = Math.abs(hVar2.f21581c - i10) * 2;
+            if (hVar2.d == z10) {
+                i11 = 0;
+            } else {
+                i11 = 1;
             }
-        } else if (strArr != null && strArr.length == 1) {
-            fVar.a((i4.f) map.get(strArr[0]));
-            return fVar;
-        } else if (strArr != null && strArr.length > 1) {
-            int length2 = strArr.length;
-            while (i7 < length2) {
-                fVar.a((i4.f) map.get(strArr[i7]));
-                i7++;
+            int i13 = abs + i11;
+            if (hVar == null || i12 > i13) {
+                hVar = hVar2;
+                i12 = i13;
             }
         }
-        return fVar;
+        return hVar;
     }
 }

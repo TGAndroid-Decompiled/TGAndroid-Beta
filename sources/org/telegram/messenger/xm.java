@@ -1,26 +1,32 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class xm implements Runnable {
-    public final int f27550a;
-    public final yo f27551b;
-    public final TLRPC.TL_error f27552c;
+    public final mp f27929a;
+    public final TLRPC.TL_messages_dialogs f27930b;
+    public final ArrayList f27931c;
+    public final TLRPC.messages_Dialogs d;
+    public final int f27932e;
+    public final ArrayList f27933f;
+    public final ArrayList h;
+    public final ArrayList f27934n;
+    public final Runnable f27935r;
 
-    public xm(yo yoVar, TLRPC.TL_error tL_error, int i7) {
-        this.f27550a = i7;
-        this.f27551b = yoVar;
-        this.f27552c = tL_error;
+    public xm(mp mpVar, TLRPC.TL_messages_dialogs tL_messages_dialogs, ArrayList arrayList, TLRPC.messages_Dialogs messages_dialogs, int i7, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, Runnable runnable) {
+        this.f27929a = mpVar;
+        this.f27930b = tL_messages_dialogs;
+        this.f27931c = arrayList;
+        this.d = messages_dialogs;
+        this.f27932e = i7;
+        this.f27933f = arrayList2;
+        this.h = arrayList3;
+        this.f27934n = arrayList4;
+        this.f27935r = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f27550a) {
-            case 0:
-                this.f27551b.d(this.f27552c);
-                return;
-            default:
-                this.f27551b.d(this.f27552c);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.xm.run():void");
     }
 }

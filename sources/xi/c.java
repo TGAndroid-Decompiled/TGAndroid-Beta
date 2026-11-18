@@ -2,18 +2,18 @@ package xi;
 
 import org.telegram.messenger.g0;
 import org.telegram.tgnet.RequestTimeDelegate;
-import org.telegram.ui.d80;
+import org.telegram.ui.f80;
 public final class c implements RequestTimeDelegate {
-    public final e f60049a;
-    public final d f60050b;
+    public final e f60614a;
+    public final d f60615b;
 
     public c(e eVar, d dVar) {
-        this.f60049a = eVar;
-        this.f60050b = dVar;
+        this.f60614a = eVar;
+        this.f60615b = dVar;
     }
 
     @Override
     public void run(long j3) {
-        g0.h3(new d80(this.f60049a, this.f60050b, j3, 3));
+        g0.g3(new f80(this.f60614a, this.f60615b, j3, 3));
     }
 }

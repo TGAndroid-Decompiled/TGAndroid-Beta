@@ -1,33 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLRPC;
-public final class iq0 implements org.telegram.ui.b50 {
-    public final ys0 f35686a;
+import android.content.Context;
+import android.widget.ImageView;
+public final class iq0 extends bs0 {
+    public final gt0 Q;
 
-    public iq0(ys0 ys0Var) {
-        this.f35686a = ys0Var;
+    public iq0(gt0 gt0Var, Context context) {
+        super(context);
+        this.Q = gt0Var;
     }
 
     @Override
-    public final void c(org.telegram.ui.c50 c50Var, long j3) {
-        Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", j3);
-        bundle.putBoolean("just_created_chat", true);
-        c50Var.presentFragment(new org.telegram.ui.an(bundle), true);
-        mr0 mr0Var = this.f35686a.S;
-        org.telegram.ui.ActionBar.e2 e2Var = mr0Var.f37367r.f42152y1;
-        if (mr0Var.f37366n != 0) {
-            e2Var.getConnectionsManager().cancelRequest(mr0Var.f37366n, true);
-            mr0Var.f37366n = 0;
+    public final void setTranslationX(float f10) {
+        bs0 bs0Var;
+        int i7;
+        float translationX = getTranslationX();
+        super.setTranslationX(f10);
+        gt0 gt0Var = this.Q;
+        bs0[] bs0VarArr = gt0Var.f35609n0;
+        if (bs0VarArr[0] == this) {
+            float f11 = translationX - f10;
+            ri.q qVar = gt0Var.f35594h2;
+            if (qVar != null) {
+                float f12 = gt0Var.f35597i2 + f11;
+                gt0Var.f35597i2 = f12;
+                int i10 = (int) f12;
+                if (i10 != 0) {
+                    gt0Var.f35597i2 = f12 - i10;
+                    qVar.h(i10, 0);
+                }
+            }
         }
-        mr0Var.d.clear();
-        mr0Var.f37364e = false;
-        mr0Var.h = false;
-        mr0Var.E(0L);
-        TLRPC.User a22 = e2Var.getMessagesController().a2(Long.valueOf(mr0Var.F()));
-        if (a22 != null) {
-            e2Var.getMessagesController().W2(a22, e2Var.getClassGuid(), true, null);
+        if (gt0Var.f35599j1 && (bs0Var = bs0VarArr[0]) == this) {
+            float abs = Math.abs(bs0Var.getTranslationX()) / bs0VarArr[0].getMeasuredWidth();
+            gt0Var.l1(abs, bs0VarArr[1].F);
+            if (gt0Var.I()) {
+                int i11 = gt0Var.A0;
+                if (i11 == 2) {
+                    gt0Var.f35621r0 = 1.0f - abs;
+                } else if (i11 == 1) {
+                    gt0Var.f35621r0 = abs;
+                }
+                gt0Var.M1(abs);
+                float k02 = gt0Var.k0(abs);
+                gt0Var.f35625s0 = k02;
+                ImageView imageView = gt0Var.f35630u0;
+                if (k02 != 0.0f && gt0Var.I() && !gt0Var.A0()) {
+                    i7 = 0;
+                } else {
+                    i7 = 4;
+                }
+                imageView.setVisibility(i7);
+            } else {
+                gt0Var.f35621r0 = 0.0f;
+            }
+            gt0Var.I1(false);
         }
+        gt0Var.S();
+        gt0Var.U();
     }
 }

@@ -1,47 +1,58 @@
 package ki;
 
-import android.animation.ValueAnimator;
-public final class k2 implements ValueAnimator.AnimatorUpdateListener {
-    public final boolean f18391a;
-    public final float f18392b;
-    public final float f18393c;
-    public final float d;
-    public final float f18394e;
-    public final x2 f18395f;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class k2 extends s3 {
+    public final int f18755d0;
+    public final Object f18756e0;
 
-    public k2(x2 x2Var, boolean z10, float f10, float f11, float f12, float f13) {
-        this.f18395f = x2Var;
-        this.f18391a = z10;
-        this.f18392b = f10;
-        this.f18393c = f11;
-        this.d = f12;
-        this.f18394e = f13;
+    public k2(int i7, Context context, Object obj) {
+        super(context);
+        this.f18755d0 = i7;
+        this.f18756e0 = obj;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        x2 x2Var = this.f18395f;
-        p2 p2Var = x2Var.E;
-        u2 u2Var = x2Var.Y;
-        o2 o2Var = x2Var.f18683x;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        x2Var.f18665i0 = floatValue;
-        if (!this.f18391a) {
-            floatValue = 1.0f - floatValue;
+    public final void onMeasure(int r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: ki.k2.onMeasure(int, int):void");
+    }
+
+    @Override
+    public void requestLayout() {
+        switch (this.f18755d0) {
+            case 0:
+                if (!((t2) this.f18756e0).H) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.requestLayout();
+                return;
         }
-        x2Var.f18664h0 = floatValue;
-        u2Var.setAlpha(1.0f - floatValue);
-        u2Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * x2Var.f18664h0);
-        float f10 = this.f18392b;
-        float f11 = x2Var.f18665i0;
-        float f12 = this.f18393c;
-        o2Var.setTranslationY(org.telegram.messenger.g0.T1(f10, f12, f11));
-        o2Var.setTranslationX(org.telegram.messenger.g0.T1(this.d, 0.0f, x2Var.f18665i0));
-        x2Var.f18670n0.setTranslationX(org.telegram.messenger.g0.T1(this.f18394e, 0.0f, x2Var.f18665i0));
-        x2Var.f18671o0.setAlpha(x2Var.f18664h0);
-        x2Var.f18661f.invalidate();
-        p2Var.setViewPortHeightOffset(o2Var.getTranslationY() - f12);
-        p2Var.n(false, false);
-        x2Var.H();
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        switch (this.f18755d0) {
+            case 0:
+                super.setTranslationY(f10);
+                t2 t2Var = (t2) this.f18756e0;
+                org.telegram.messenger.h2 h2Var = t2Var.f18940o0;
+                if (h2Var != null) {
+                    h2Var.setTranslationY(org.telegram.messenger.g0.L(24.0f) + f10);
+                }
+                FrameLayout frameLayout = t2Var.f18944r0;
+                if (frameLayout != null) {
+                    int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - org.telegram.messenger.g0.L(24.0f);
+                    int L = org.telegram.messenger.g0.L(70.0f) + t2Var.f18938n.top;
+                    frameLayout.setTranslationY(t2Var.f18952x.getTranslationY() + org.telegram.messenger.g0.W1(t2Var.f18933h0, currentActionBarHeight, L));
+                    return;
+                }
+                return;
+            default:
+                super.setTranslationY(f10);
+                return;
+        }
     }
 }

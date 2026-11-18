@@ -6,86 +6,86 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import java.util.ArrayDeque;
 import l2.i0;
-import org.telegram.ui.Components.cf;
+import org.telegram.ui.Cells.b5;
 public final class f extends MediaCodec.Callback {
-    public final HandlerThread f57748b;
-    public Handler f57749c;
+    public final HandlerThread f58315b;
+    public Handler f58316c;
     public MediaFormat h;
-    public MediaFormat f57753i;
-    public MediaCodec.CodecException f57754j;
-    public MediaCodec.CryptoException f57755k;
-    public long f57756l;
-    public boolean f57757m;
-    public IllegalStateException f57758n;
-    public cf f57759o;
-    public final Object f57747a = new Object();
+    public MediaFormat f58320i;
+    public MediaCodec.CodecException f58321j;
+    public MediaCodec.CryptoException f58322k;
+    public long f58323l;
+    public boolean f58324m;
+    public IllegalStateException f58325n;
+    public b5 f58326o;
+    public final Object f58314a = new Object();
     public final h2.f d = new h2.f(0);
-    public final h2.f f57750e = new h2.f(0);
-    public final ArrayDeque f57751f = new ArrayDeque();
-    public final ArrayDeque f57752g = new ArrayDeque();
+    public final h2.f f58317e = new h2.f(0);
+    public final ArrayDeque f58318f = new ArrayDeque();
+    public final ArrayDeque f58319g = new ArrayDeque();
 
     public f(HandlerThread handlerThread) {
-        this.f57748b = handlerThread;
+        this.f58315b = handlerThread;
     }
 
     public final void a() {
-        ArrayDeque arrayDeque = this.f57752g;
+        ArrayDeque arrayDeque = this.f58319g;
         if (!arrayDeque.isEmpty()) {
-            this.f57753i = (MediaFormat) arrayDeque.getLast();
+            this.f58320i = (MediaFormat) arrayDeque.getLast();
         }
         h2.f fVar = this.d;
-        fVar.f13441b = fVar.f13440a;
-        h2.f fVar2 = this.f57750e;
-        fVar2.f13441b = fVar2.f13440a;
-        this.f57751f.clear();
+        fVar.f13756b = fVar.f13755a;
+        h2.f fVar2 = this.f58317e;
+        fVar2.f13756b = fVar2.f13755a;
+        this.f58318f.clear();
         arrayDeque.clear();
     }
 
     public final void b() {
-        IllegalStateException illegalStateException = this.f57758n;
+        IllegalStateException illegalStateException = this.f58325n;
         if (illegalStateException == null) {
-            MediaCodec.CodecException codecException = this.f57754j;
+            MediaCodec.CodecException codecException = this.f58321j;
             if (codecException == null) {
-                MediaCodec.CryptoException cryptoException = this.f57755k;
+                MediaCodec.CryptoException cryptoException = this.f58322k;
                 if (cryptoException == null) {
                     return;
                 }
-                this.f57755k = null;
+                this.f58322k = null;
                 throw cryptoException;
             }
-            this.f57754j = null;
+            this.f58321j = null;
             throw codecException;
         }
-        this.f57758n = null;
+        this.f58325n = null;
         throw illegalStateException;
     }
 
     public final void c(IllegalStateException illegalStateException) {
-        synchronized (this.f57747a) {
-            this.f57758n = illegalStateException;
+        synchronized (this.f58314a) {
+            this.f58325n = illegalStateException;
         }
     }
 
     public final void onCryptoError(MediaCodec mediaCodec, MediaCodec.CryptoException cryptoException) {
-        synchronized (this.f57747a) {
-            this.f57755k = cryptoException;
+        synchronized (this.f58314a) {
+            this.f58322k = cryptoException;
         }
     }
 
     @Override
     public final void onError(MediaCodec mediaCodec, MediaCodec.CodecException codecException) {
-        synchronized (this.f57747a) {
-            this.f57754j = codecException;
+        synchronized (this.f58314a) {
+            this.f58321j = codecException;
         }
     }
 
     @Override
     public final void onInputBufferAvailable(MediaCodec mediaCodec, int i7) {
         i0 i0Var;
-        synchronized (this.f57747a) {
+        synchronized (this.f58314a) {
             this.d.a(i7);
-            cf cfVar = this.f57759o;
-            if (cfVar != null && (i0Var = ((r) cfVar.f33545a).Z) != null) {
+            b5 b5Var = this.f58326o;
+            if (b5Var != null && (i0Var = ((r) b5Var.f30431a).Z) != null) {
                 i0Var.a();
             }
         }
@@ -94,18 +94,18 @@ public final class f extends MediaCodec.Callback {
     @Override
     public final void onOutputBufferAvailable(MediaCodec mediaCodec, int i7, MediaCodec.BufferInfo bufferInfo) {
         i0 i0Var;
-        synchronized (this.f57747a) {
+        synchronized (this.f58314a) {
             try {
-                MediaFormat mediaFormat = this.f57753i;
+                MediaFormat mediaFormat = this.f58320i;
                 if (mediaFormat != null) {
-                    this.f57750e.a(-2);
-                    this.f57752g.add(mediaFormat);
-                    this.f57753i = null;
+                    this.f58317e.a(-2);
+                    this.f58319g.add(mediaFormat);
+                    this.f58320i = null;
                 }
-                this.f57750e.a(i7);
-                this.f57751f.add(bufferInfo);
-                cf cfVar = this.f57759o;
-                if (cfVar != null && (i0Var = ((r) cfVar.f33545a).Z) != null) {
+                this.f58317e.a(i7);
+                this.f58318f.add(bufferInfo);
+                b5 b5Var = this.f58326o;
+                if (b5Var != null && (i0Var = ((r) b5Var.f30431a).Z) != null) {
                     i0Var.a();
                 }
             } catch (Throwable th2) {
@@ -116,10 +116,10 @@ public final class f extends MediaCodec.Callback {
 
     @Override
     public final void onOutputFormatChanged(MediaCodec mediaCodec, MediaFormat mediaFormat) {
-        synchronized (this.f57747a) {
-            this.f57750e.a(-2);
-            this.f57752g.add(mediaFormat);
-            this.f57753i = null;
+        synchronized (this.f58314a) {
+            this.f58317e.a(-2);
+            this.f58319g.add(mediaFormat);
+            this.f58320i = null;
         }
     }
 }

@@ -1,6 +1,6 @@
 package c4;
 
-import a8.ja;
+import a8.la;
 import e2.s0;
 import e2.t;
 import e2.u;
@@ -11,38 +11,38 @@ import f3.y;
 import h2.l0;
 import h2.x;
 import h9.g0;
-import h9.s1;
+import h9.t1;
 import java.util.ArrayList;
 import java.util.List;
 public final class h implements f3.o {
-    public final m f4103a;
-    public final u f4104b;
-    public final ArrayList f4105c;
-    public i0 f4107f;
-    public int f4108g;
+    public final m f4384a;
+    public final u f4385b;
+    public final ArrayList f4386c;
+    public i0 f4388f;
+    public int f4389g;
     public int h;
-    public long[] f4109i;
-    public long f4110j;
-    public byte[] f4106e = l0.f13472b;
+    public long[] f4390i;
+    public long f4391j;
+    public byte[] f4387e = l0.f13787b;
     public final x d = new x();
 
     public h(m mVar, u uVar) {
         u uVar2;
-        this.f4103a = mVar;
+        this.f4384a = mVar;
         if (uVar != null) {
             t a10 = uVar.a();
-            a10.f10399r = s0.n("application/x-media3-cues");
-            a10.f10391j = uVar.f10451s;
-            a10.P = mVar.Q();
+            a10.f10717r = s0.n("application/x-media3-cues");
+            a10.f10709j = uVar.f10769s;
+            a10.P = mVar.y();
             uVar2 = new u(a10);
         } else {
             uVar2 = null;
         }
-        this.f4104b = uVar2;
-        this.f4105c = new ArrayList();
+        this.f4385b = uVar2;
+        this.f4386c = new ArrayList();
         this.h = 0;
-        this.f4109i = l0.f13473c;
-        this.f4110j = -9223372036854775807L;
+        this.f4390i = l0.f13788c;
+        this.f4391j = -9223372036854775807L;
     }
 
     @Override
@@ -58,14 +58,14 @@ public final class h implements f3.o {
         } else {
             z10 = false;
         }
-        ja.p(z10);
+        la.p(z10);
         i0 d2 = qVar.d2(0, 3);
-        this.f4107f = d2;
-        u uVar = this.f4104b;
+        this.f4388f = d2;
+        u uVar = this.f4385b;
         if (uVar != null) {
             d2.g(uVar);
             qVar.d1();
-            qVar.f(new y(-9223372036854775807L, new long[]{0}, new long[]{0}));
+            qVar.j(new y(-9223372036854775807L, new long[]{0}, new long[]{0}));
         }
         this.h = 1;
     }
@@ -79,8 +79,8 @@ public final class h implements f3.o {
         } else {
             z10 = false;
         }
-        ja.p(z10);
-        this.f4110j = j10;
+        la.p(z10);
+        this.f4391j = j10;
         if (this.h == 2) {
             this.h = 1;
         }
@@ -91,8 +91,8 @@ public final class h implements f3.o {
 
     @Override
     public final List e() {
-        g0 g0Var = h9.i0.f13686b;
-        return s1.f13749e;
+        g0 g0Var = h9.i0.f14006b;
+        return t1.f14074e;
     }
 
     @Override
@@ -101,14 +101,14 @@ public final class h implements f3.o {
     }
 
     public final void g(g gVar) {
-        this.f4107f.getClass();
-        byte[] bArr = gVar.f4102b;
+        this.f4388f.getClass();
+        byte[] bArr = gVar.f4383b;
         int length = bArr.length;
         x xVar = this.d;
         xVar.getClass();
         xVar.L(bArr.length, bArr);
-        this.f4107f.b(length, xVar);
-        this.f4107f.c(gVar.f4101a, 1, length, 0, null);
+        this.f4388f.b(length, xVar);
+        this.f4388f.c(gVar.f4382a, 1, length, 0, null);
     }
 
     @Override
@@ -116,7 +116,7 @@ public final class h implements f3.o {
         if (this.h == 5) {
             return;
         }
-        this.f4103a.reset();
+        this.f4384a.reset();
         this.h = 5;
     }
 

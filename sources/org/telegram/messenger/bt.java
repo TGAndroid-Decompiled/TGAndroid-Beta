@@ -1,66 +1,133 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-public final class bt {
-    public final int f22753a;
+import android.content.Context;
+import android.util.Base64;
+import java.util.Arrays;
+import java.util.HashSet;
+import org.json.JSONObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.LaunchActivity;
+public final class bt implements q10 {
+    public final int f23130a = 0;
+    public final int f23131b;
+    public final Object f23132c;
+    public final Object d;
 
-    public bt(int i7) {
-        this.f22753a = i7;
+    public bt(int i7, Context context, q10 q10Var) {
+        this.f23132c = q10Var;
+        this.d = context;
+        this.f23131b = i7;
     }
 
-    public final void a(org.telegram.tgnet.TLRPC.NotificationSound r17, android.content.SharedPreferences.Editor r18, long r19, long r21, int r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.bt.a(org.telegram.tgnet.TLRPC$NotificationSound, android.content.SharedPreferences$Editor, long, long, int):void");
-    }
-
-    public final SharedPreferences b() {
-        return np.s1(this.f22753a).f25273e7;
-    }
-
-    public final int c(int i7, long j3, long j10, String str) {
-        String v = at.v(j3, j10, true);
-        SharedPreferences b10 = b();
-        if (b10.contains(str + v)) {
-            SharedPreferences b11 = b();
-            return b11.getInt(str + v, i7);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        org.telegram.ui.ActionBar.h2 T;
+        int i7 = this.f23130a;
+        Object obj3 = this.d;
+        Object obj4 = this.f23132c;
+        switch (i7) {
+            case 0:
+                final q10 q10Var = (q10) obj4;
+                Context context = (Context) obj3;
+                v0.c cVar = (v0.c) obj;
+                Throwable th2 = (Throwable) obj2;
+                if (!(th2 instanceof w0.b) && !(th2 instanceof w0.e)) {
+                    if (th2 instanceof w0.f) {
+                        g0.g3(new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r2) {
+                                    case 0:
+                                        q10Var.a(null, "CANCELLED");
+                                        return;
+                                    default:
+                                        q10Var.a(null, "EMPTY");
+                                        return;
+                                }
+                            }
+                        });
+                        return;
+                    } else if (th2 != null) {
+                        a8.g(th2, true);
+                        g0.g3(new rq(17, q10Var, th2));
+                        return;
+                    } else {
+                        TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
+                        try {
+                            JSONObject jSONObject = new JSONObject(cVar.f59016a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+                            TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
+                            registerpasskey.credential = inputpasskeycredentialpublickey;
+                            inputpasskeycredentialpublickey.f28616id = jSONObject.getString("id");
+                            registerpasskey.credential.raw_id = jSONObject.getString("rawId");
+                            JSONObject jSONObject2 = jSONObject.getJSONObject("response");
+                            TL_account.inputPasskeyResponseRegister inputpasskeyresponseregister = new TL_account.inputPasskeyResponseRegister();
+                            TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
+                            inputpasskeyresponseregister.client_data = tL_dataJSON;
+                            tL_dataJSON.data = new String(Base64.decode(jSONObject2.getString("clientDataJSON"), 8));
+                            inputpasskeyresponseregister.attestation_object = Base64.decode(jSONObject2.getString("attestationObject"), 8);
+                            StringBuilder sb2 = new StringBuilder();
+                            sb2.append("AAGUID: ");
+                            byte[] copyOfRange = Arrays.copyOfRange(inputpasskeyresponseregister.attestation_object, 67, 83);
+                            StringBuilder sb3 = new StringBuilder(copyOfRange.length * 2);
+                            int length = copyOfRange.length;
+                            for (int i10 = 0; i10 < length; i10++) {
+                                sb3.append(String.format("%02x", Byte.valueOf(copyOfRange[i10])));
+                            }
+                            sb2.append(sb3.toString());
+                            a8.b(sb2.toString());
+                            registerpasskey.credential.response = inputpasskeyresponseregister;
+                            g0.g3(new dg(context, this.f23131b, registerpasskey, q10Var, 15));
+                            return;
+                        } catch (Exception e10) {
+                            a8.g(e10, true);
+                            g0.g3(new ct(q10Var, e10, 1));
+                            return;
+                        }
+                    }
+                }
+                g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                q10Var.a(null, "CANCELLED");
+                                return;
+                            default:
+                                q10Var.a(null, "EMPTY");
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                x10 x10Var = (x10) obj3;
+                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                HashSet hashSet = ((z00) obj4).G;
+                int i11 = this.f23131b;
+                if (tL_textWithEntities != null) {
+                    hashSet.remove(Integer.valueOf(i11));
+                    x10Var.a(tL_textWithEntities);
+                    return;
+                } else if (tL_error != null) {
+                    if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (T = LaunchActivity.T()) != null) {
+                        org.telegram.ui.Components.gc K = org.telegram.ui.Components.lc.b0(T).K(2131624217, gd.M0(2131744096, null), gd.M0(2131744095, null), new ln(3, T));
+                        K.f35461j = 5000;
+                        K.k(true);
+                    }
+                    hashSet.remove(Integer.valueOf(i11));
+                    x10Var.a(null);
+                    return;
+                } else {
+                    return;
+                }
         }
-        String v10 = at.v(j3, 0L, true);
-        SharedPreferences b12 = b();
-        return b12.getInt(str + v10, i7);
     }
 
-    public final long d(long j3, long j10) {
-        String v = at.v(j3, j10, true);
-        SharedPreferences b10 = b();
-        if (b10.contains("sound_document_id_" + v)) {
-            SharedPreferences b11 = b();
-            return b11.getLong("sound_document_id_" + v, 0L);
-        }
-        String v10 = at.v(j3, 0L, true);
-        SharedPreferences b12 = b();
-        return b12.getLong("sound_document_id_" + v10, 0L);
-    }
-
-    public final boolean e(long j3, long j10) {
-        String v = at.v(j3, j10, false);
-        SharedPreferences b10 = b();
-        if (b10.contains("custom_" + v)) {
-            SharedPreferences b11 = b();
-            return b11.getBoolean("custom_" + v, false);
-        }
-        String v10 = at.v(j3, 0L, false);
-        SharedPreferences b12 = b();
-        return b12.getBoolean("custom_" + v10, false);
-    }
-
-    public final String f(long j3, long j10) {
-        String v = at.v(j3, j10, false);
-        SharedPreferences b10 = b();
-        if (b10.contains("sound_path_" + v)) {
-            SharedPreferences b11 = b();
-            return b11.getString("sound_path_" + v, null);
-        }
-        String v10 = at.v(j3, 0L, false);
-        SharedPreferences b12 = b();
-        return b12.getString("sound_path_" + v10, null);
+    public bt(z00 z00Var, int i7, x10 x10Var) {
+        this.f23132c = z00Var;
+        this.f23131b = i7;
+        this.d = x10Var;
     }
 }

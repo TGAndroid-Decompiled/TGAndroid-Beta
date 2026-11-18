@@ -1,177 +1,181 @@
 package org.telegram.messenger;
 
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.MotionEvent;
-import android.view.View;
+import java.io.File;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class yu extends xu {
-    public h6.m f27828d0;
-    public org.telegram.ui.Components.dc f27829e0;
-    public boolean f27830f0;
-    public boolean f27831g0;
-    public boolean f27832h0;
-    public boolean f27833i0;
-    public float f27834j0;
-    public int f27835k0;
-    public final Drawable f27836l0;
-    public int m0;
+public final class yu extends lu {
+    public final TL_iv.pageBlockVideo f28183r0;
+    public final TLRPC.Document f28184s0;
+    public final TLRPC.PhotoSize f28185t0;
+    public final TLRPC.TL_photoStrippedSize f28186u0;
+    public final boolean f28187v0;
+    public final boolean f28188w0;
 
-    public yu(iv ivVar, Rect rect, int i7, TL_iv.pageBlockBlockquote pageblockblockquote, SpannableStringBuilder spannableStringBuilder) {
-        super(ivVar, rect, i7, spannableStringBuilder);
-        this.f27836l0 = i5.c.g(t0.f26609b, 2131230871);
-        boolean z10 = pageblockblockquote.collapsed;
-        this.f27832h0 = z10;
-        this.f27833i0 = z10;
+    public yu(ev evVar, Rect rect, int i7, TL_iv.pageBlockVideo pageblockvideo, boolean z10) {
+        super(evVar, rect, i7, z10);
+        boolean z11;
+        int i10;
+        int i11;
+        this.f28183r0 = pageblockvideo;
+        TLRPC.Document s5 = evVar.s(pageblockvideo.video_id);
+        this.f28184s0 = s5;
+        boolean K4 = fj.K4(s5);
+        this.f28188w0 = K4;
+        int i12 = 0;
+        if (!K4 && !fj.s3(s5, false)) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        this.f28187v0 = z11;
+        if (s5 != null) {
+            this.f28185t0 = w7.w(s5.thumbs, 320, false, null, true);
+            this.f28186u0 = w7.Q(s5.thumbs);
+        } else {
+            this.f28185t0 = null;
+            this.f28186u0 = null;
+        }
+        if (s5 != null) {
+            while (true) {
+                if (i12 < this.f28184s0.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute = this.f28184s0.attributes.get(i12);
+                    if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                        i11 = documentAttribute.f28412w;
+                        i10 = documentAttribute.h;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i10 = 100;
+                    i11 = 100;
+                    break;
+                }
+            }
+            if (i11 <= 0 || i10 <= 0) {
+                TLRPC.PhotoSize photoSize = this.f28185t0;
+                if (photoSize != null) {
+                    i11 = photoSize.f28430w;
+                } else {
+                    i11 = 100;
+                }
+                i10 = photoSize != null ? photoSize.h : 100;
+            }
+            r4 = i11;
+        } else {
+            i10 = 100;
+        }
+        int i13 = this.f28353c;
+        int max = (int) ((i13 / Math.max(1, r4)) * i10);
+        Point point = g0.f24121q;
+        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
+        if (max > max2) {
+            i13 = (int) ((max2 / Math.max(1, i10)) * r4);
+            max = max2;
+        }
+        this.f25430c0 = i13;
+        this.f25431d0 = max;
+        m0();
     }
 
     @Override
-    public final int I() {
-        if (this.f27832h0) {
-            Rect rect = this.f22942b;
-            return (int) Math.min((this.X.f24222b.getPaint().getTextSize() * 1.4f * 3.0f) + rect.top + this.f27605a0 + rect.bottom, super.I());
+    public final boolean i0() {
+        if (this.f28188w0) {
+            int i7 = bz.f23148a;
+            return pc.e(1024);
         }
-        return super.I();
+        int i10 = bz.f23148a;
+        return pc.e(2048);
     }
 
     @Override
-    public final void W(Canvas canvas) {
-        float f10;
-        boolean z10;
-        org.telegram.ui.Components.dc dcVar = this.f27829e0;
-        if (dcVar != null) {
-            f10 = dcVar.a(0.01f);
+    public final void j0(boolean z10) {
+        fc fcVar;
+        TLRPC.Document document = this.f28184s0;
+        if (document == null) {
+            return;
+        }
+        fc fcVar2 = null;
+        TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.f28186u0;
+        if (tL_photoStrippedSize != null) {
+            fcVar = fc.c(tL_photoStrippedSize, document);
         } else {
-            f10 = 1.0f;
+            fcVar = null;
         }
-        int i7 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        int i10 = this.f22943c;
-        if (i7 != 0) {
-            canvas.save();
-            canvas.scale(f10, f10, i10 / 2.0f, I() / 2.0f);
+        TLRPC.PhotoSize photoSize = this.f28185t0;
+        if (photoSize != null) {
+            fcVar2 = fc.c(photoSize, document);
         }
-        if (this.f27834j0 > 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
+        fc fcVar3 = fcVar2;
+        ev evVar = this.f28351a;
+        ImageReceiver imageReceiver = this.Y;
+        if (z10 && this.f28187v0 && (i0() || this.m0)) {
+            imageReceiver.f22667u0 = true;
+            imageReceiver.W(1);
+            imageReceiver.u0(fc.b(document), "g", fcVar3, null, fcVar, "b1", null, document.size, "mp4", evVar.f23771b, 1);
+            return;
         }
-        int i11 = (this.f27835k0 - this.f22942b.bottom) - this.f27606b0;
-        canvas.save();
-        canvas.clipRect(0, 0, i10, i11);
-        if (z10) {
-            canvas.saveLayer(0.0f, 0.0f, i10, i11, null);
-        }
-        super.W(canvas);
-        if (z10) {
-            if (this.f27828d0 == null) {
-                this.f27828d0 = new h6.m(29);
-            }
-            RectF rectF = g0.P;
-            rectF.set(0.0f, i11 - g0.L(24.0f), i10, i11 + 1);
-            this.f27828d0.m(canvas, rectF, 3, this.f27834j0);
-            canvas.restore();
-        }
-        canvas.restore();
-        iv ivVar = this.f22941a;
-        int i12 = ivVar.f24466y.i();
-        int i13 = this.m0;
-        Drawable drawable = this.f27836l0;
-        if (i12 != i13) {
-            int i14 = ivVar.f24466y.i();
-            this.m0 = i14;
-            drawable.setColorFilter(new PorterDuffColorFilter(i14, PorterDuff.Mode.SRC_IN));
-        }
-        bg.s.e(this.f27836l0, ivVar.C - g0.L(24.0f), g0.L(8.0f) + ((i11 - g0.L(16.0f)) - g0.L(2.0f)), g0.L(16.0f), g0.L(16.0f), 17);
-        canvas.save();
-        canvas.rotate(g0.W1(this.f27834j0, 180, 0), drawable.getBounds().exactCenterX(), drawable.getBounds().exactCenterY());
-        drawable.draw(canvas);
-        canvas.restore();
-        if (i7 != 0) {
-            canvas.restore();
-        }
+        imageReceiver.u0(null, null, fcVar3, null, fcVar, "b1", null, document.size, "mp4", evVar.f23771b, 1);
     }
 
     @Override
-    public final boolean Y(MotionEvent motionEvent) {
-        View view;
-        int actionMasked = motionEvent.getActionMasked();
-        if (this.f27831g0) {
-            if (actionMasked == 1 || actionMasked == 3) {
-                this.f27831g0 = false;
-            }
-            return super.Y(motionEvent);
+    public final boolean k0() {
+        TLRPC.Document document = this.f28184s0;
+        if (document == null) {
+            return false;
         }
-        iv ivVar = this.f22941a;
-        if (actionMasked == 0) {
-            boolean Y = super.Y(motionEvent);
-            this.f27831g0 = Y;
-            if (!Y) {
-                this.f27830f0 = true;
-                if (this.f27829e0 == null && (view = ivVar.Q) != null) {
-                    this.f27829e0 = new org.telegram.ui.Components.dc(view);
-                }
-                org.telegram.ui.Components.dc dcVar = this.f27829e0;
-                if (dcVar != null) {
-                    dcVar.c(true);
-                    return true;
-                }
-            }
-        } else if (actionMasked == 1) {
-            if (!this.f27830f0) {
-                return false;
-            }
-            this.f27830f0 = false;
-            org.telegram.ui.Components.dc dcVar2 = this.f27829e0;
-            if (dcVar2 != null) {
-                dcVar2.c(false);
-            }
-            View view2 = ivVar.Q;
-            if (view2 != null) {
-                view2.playSoundEffect(0);
-            }
-            ivVar.X();
-            this.f27832h0 = !this.f27832h0;
-            ivVar.f24463u = true;
-            ivVar.Q();
-            View view3 = ivVar.Q;
-            if (view3 != null) {
-                view3.invalidate();
-            }
-            org.telegram.ui.Cells.q1 q1Var = ivVar.E;
-            org.telegram.ui.Cells.l1 l1Var = ivVar.F;
-            if (q1Var != null && l1Var != null) {
-                l1Var.B1(q1Var, true, true);
-            }
-        } else {
-            if (actionMasked == 3) {
-                this.f27830f0 = false;
-                org.telegram.ui.Components.dc dcVar3 = this.f27829e0;
-                if (dcVar3 != null) {
-                    dcVar3.c(false);
-                }
-            }
-            return this.f27830f0;
+        if (!this.f28187v0) {
+            return true;
+        }
+        if (!i0() || !a6.q(this.f28351a.f23770a).c(4, document.size)) {
+            return false;
         }
         return true;
     }
 
     @Override
-    public final void d0() {
-        super.d0();
-        this.f27833i0 = this.f27832h0;
+    public final boolean l0() {
+        TLRPC.Document document = this.f28184s0;
+        if (document != null) {
+            ev evVar = this.f28351a;
+            w7.G(evVar.f23770a);
+            File I = w7.I(document);
+            w7.G(evVar.f23770a);
+            File J = w7.J(document, null, true, true);
+            if ((I == null || !I.exists()) && (J == null || !J.exists())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    public final float z() {
-        org.telegram.ui.Components.dc dcVar = this.f27829e0;
-        if (dcVar != null) {
-            return dcVar.a(0.01f);
+    public final TL_iv.PageBlock n0() {
+        return this.f28183r0;
+    }
+
+    @Override
+    public final String o0() {
+        return w7.r(null, this.f28184s0);
+    }
+
+    @Override
+    public final boolean p0() {
+        return this.f28187v0;
+    }
+
+    @Override
+    public final boolean q0() {
+        return this.f28188w0;
+    }
+
+    @Override
+    public final boolean r0() {
+        TL_iv.pageBlockVideo pageblockvideo = this.f28183r0;
+        if (pageblockvideo != null && pageblockvideo.spoiler) {
+            return true;
         }
-        return 1.0f;
+        return false;
     }
 }

@@ -2,23 +2,23 @@ package gh;
 
 import android.graphics.Color;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.qc;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
+import org.telegram.messenger.pc;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
 public class b implements a {
-    public final e6 f13300a;
-    public final int f13301b;
-    public final float f13302c;
+    public final i6 f13615a;
+    public final int f13616b;
+    public final float f13617c;
     public int d;
-    public int f13303e;
-    public int f13304f;
+    public int f13618e;
+    public int f13619f;
     public int h;
-    public int f13305n;
-    public int f13306r;
+    public int f13620n;
+    public int f13621r;
 
-    public b(int i7, e6 e6Var) {
-        this(e6Var, i7, qc.e(262144) ? 0.85f : 0.76f);
+    public b(int i7, i6 i6Var) {
+        this(i6Var, i7, pc.e(262144) ? 0.85f : 0.76f);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class b implements a {
     @Override
     public final int D1() {
         if (b()) {
-            return j6.w0(j6.ya, this.f13300a);
+            return n6.w0(n6.ya, this.f13615a);
         }
         return 0;
     }
@@ -43,7 +43,7 @@ public class b implements a {
     @Override
     public final int M0() {
         if (b()) {
-            return j6.w0(this.f13305n, this.f13300a);
+            return n6.w0(this.f13620n, this.f13615a);
         }
         return 0;
     }
@@ -51,7 +51,7 @@ public class b implements a {
     @Override
     public int U0() {
         a();
-        if (b() && Color.alpha(j6.w0(this.f13305n, this.f13300a)) != 0) {
+        if (b() && Color.alpha(n6.w0(this.f13620n, this.f13615a)) != 0) {
             return 0;
         }
         return this.h;
@@ -61,9 +61,9 @@ public class b implements a {
     public int W1() {
         a();
         if (b()) {
-            return j6.w0(j6.f29226xa, this.f13300a);
+            return n6.w0(n6.f29773xa, this.f13615a);
         }
-        return this.f13303e;
+        return this.f13618e;
     }
 
     @Override
@@ -83,54 +83,54 @@ public class b implements a {
     }
 
     public final void a() {
-        if (this.f13306r != q6.f29535b) {
+        if (this.f13621r != u6.f30085b) {
             d();
         }
     }
 
     public final boolean b() {
-        if (this.f13305n >= 0 && j6.i1(this.f13300a)) {
+        if (this.f13620n >= 0 && n6.i1(this.f13615a)) {
             return true;
         }
         return false;
     }
 
     public boolean c() {
-        if (g0.B(j6.w0(this.f13301b, this.f13300a)) < 0.721f) {
+        if (g0.B(n6.w0(this.f13616b, this.f13615a)) < 0.721f) {
             return true;
         }
         return false;
     }
 
     public final void d() {
-        this.f13306r = q6.f29535b;
-        this.d = j6.r1(this.f13302c, j6.w0(this.f13301b, this.f13300a));
+        this.f13621r = u6.f30085b;
+        this.d = n6.r1(this.f13617c, n6.w0(this.f13616b, this.f13615a));
         if (c()) {
-            this.f13304f = 687865855;
+            this.f13619f = 687865855;
             this.h = 352321535;
-            this.f13303e = 0;
+            this.f13618e = 0;
             return;
         }
-        this.f13304f = -1;
+        this.f13619f = -1;
         this.h = -1;
-        this.f13303e = 536870912;
+        this.f13618e = 536870912;
     }
 
     @Override
     public int t0() {
         a();
-        if (b() && Color.alpha(j6.w0(this.f13305n, this.f13300a)) != 0) {
+        if (b() && Color.alpha(n6.w0(this.f13620n, this.f13615a)) != 0) {
             return 0;
         }
-        return this.f13304f;
+        return this.f13619f;
     }
 
-    public b(e6 e6Var, int i7, float f10) {
-        this.f13305n = -1;
-        this.f13306r = q6.f29535b;
-        this.f13300a = e6Var;
-        this.f13301b = i7;
-        this.f13302c = f10;
+    public b(i6 i6Var, int i7, float f10) {
+        this.f13620n = -1;
+        this.f13621r = u6.f30085b;
+        this.f13615a = i6Var;
+        this.f13616b = i7;
+        this.f13617c = f10;
         d();
     }
 }

@@ -1,60 +1,16 @@
 package org.telegram.ui.Components;
+public final class fn extends v4.k {
+    public final rn F;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.style.ImageSpan;
-public final class fn implements TextWatcher {
-    public final en f34651a;
-    public final int f34652b;
-    public final org.telegram.ui.l4 f34653c;
-
-    public fn(org.telegram.ui.l4 l4Var, en enVar, int i7) {
-        this.f34653c = l4Var;
-        this.f34651a = enVar;
-        this.f34652b = i7;
+    public fn(rn rnVar) {
+        this.F = rnVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i7;
-        jn jnVar = (jn) this.f34653c.f48823e;
-        en enVar = this.f34651a;
-        if (enVar.getTag() != null) {
-            return;
+    public final void P(v4.f1 f1Var) {
+        if (f1Var.b() == 0) {
+            rn rnVar = this.F;
+            rnVar.f36766b.N1(rnVar, 0);
         }
-        int i10 = this.f34652b;
-        if (i10 == 11) {
-            i7 = jnVar.f36088o0;
-        } else {
-            i7 = jnVar.f36087n0;
-        }
-        v4.e1 K = jnVar.f36097s.K(i7);
-        if (K != null && jnVar.f36106y != null) {
-            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
-                editable.removeSpan(imageSpan);
-            }
-            org.telegram.messenger.j6.l(editable, enVar.getEditField().getPaint().getFontMetricsInt(), false);
-            jnVar.f36106y.setDirection(1);
-            jnVar.f36106y.setDelegate(enVar);
-            jnVar.f36106y.setTranslationY(K.f58535a.getY());
-            jnVar.f36106y.e();
-        }
-        if (i10 == 11) {
-            jnVar.P = editable;
-        } else {
-            jnVar.O = editable;
-        }
-        if (K != null) {
-            jn.Q(jnVar, K.f58535a, i7);
-        }
-        jnVar.Y();
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

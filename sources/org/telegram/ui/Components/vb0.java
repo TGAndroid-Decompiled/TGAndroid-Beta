@@ -1,40 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.widget.TextView;
-public final class vb0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f40377a;
-    public final fc0 f40378b;
+import android.content.Context;
+import android.graphics.Typeface;
+public final class vb0 extends xb0 {
+    public final ah.i M;
 
-    public vb0(fc0 fc0Var, int i7) {
-        this.f40377a = i7;
-        this.f40378b = fc0Var;
+    public vb0(Context context) {
+        super(context, null);
+        ah.i iVar = new ah.i(7, context, this);
+        this.M = iVar;
+        iVar.setTextSize(1, 18.0f);
+        org.telegram.ui.ActionBar.u6.U(iVar, org.telegram.ui.ActionBar.n6.G6, null);
+        org.telegram.ui.ActionBar.u6.D(iVar, org.telegram.ui.ActionBar.n6.H6, null);
+        iVar.setBackground(null);
+        iVar.setSingleLine(true);
+        iVar.setInputType(1);
+        iVar.setTypeface(Typeface.DEFAULT);
+        org.telegram.ui.ActionBar.u6.l(iVar, 30, org.telegram.ui.ActionBar.n6.f29543l6, null);
+        iVar.setCursorWidth(1.5f);
+        iVar.setPadding(org.telegram.messenger.g0.L(15.0f), 0, org.telegram.messenger.g0.L(15.0f), 0);
+        e(iVar);
+        addView(iVar, c8.ma.e(-1, -2, 16));
+    }
+
+    public EditTextBoldCursor getEditText() {
+        return this.M;
+    }
+
+    public void setHint(String str) {
+        setText(str);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f40377a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fc0 fc0Var = this.f40378b;
-                bi.v1 v1Var = fc0Var.f34571e;
-                v1Var.setScaleX(org.telegram.messenger.g0.T1(0.8f, 1.0f, floatValue));
-                v1Var.setScaleY(org.telegram.messenger.g0.T1(0.8f, 1.0f, floatValue));
-                v1Var.setAlpha(org.telegram.messenger.g0.T1(0.0f, 1.0f, floatValue));
-                TextView textView = fc0Var.f34582x;
-                textView.setScaleX(org.telegram.messenger.g0.T1(1.0f, 0.9f, floatValue));
-                textView.setScaleY(org.telegram.messenger.g0.T1(1.0f, 0.9f, floatValue));
-                textView.setAlpha(org.telegram.messenger.g0.T1(1.0f, 0.0f, floatValue));
-                fc0Var.f34580s.setAlpha(org.telegram.messenger.g0.T1(0.0f, 1.0f, floatValue));
-                return;
-            default:
-                fc0 fc0Var2 = this.f40378b;
-                fc0Var2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fc0Var2.f34567b0 = floatValue2;
-                fc0Var2.h(floatValue2);
-                fc0Var2.setAlpha(fc0Var2.f34567b0);
-                return;
+    public final void updateColors() {
+        super.updateColors();
+        try {
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 }

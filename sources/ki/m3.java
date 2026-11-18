@@ -1,30 +1,35 @@
 package ki;
 
-import android.content.Context;
-import c8.ja;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Components.z70;
-public final class m3 extends n4 {
-    public final z70 f18454r;
+import org.telegram.messenger.i9;
+public final class m3 implements org.telegram.ui.ActionBar.r1, r3, i9 {
+    public final t3 f18791a;
 
-    public m3(Context context, e6 e6Var) {
-        super(context, e6Var);
-        int i7;
-        z70 z70Var = new z70(context, e6Var);
-        this.f18454r = z70Var;
-        z70Var.setTextSize(1, 14.0f);
-        q6.U(z70Var, j6.f29260z6, e6Var);
-        q6.G(z70Var, j6.L6, e6Var);
-        z70Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
-        if (hd.f24104a0) {
-            i7 = 3;
+    public m3(t3 t3Var) {
+        this.f18791a = t3Var;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        this.f18791a.f36766b.dismiss();
+    }
+
+    @Override
+    public Object m(Object obj) {
+        boolean z10;
+        Void r22 = (Void) obj;
+        if (this.f18791a.f36766b.f39705p3.getKeyboardHeight() >= org.telegram.messenger.g0.L(20.0f)) {
+            z10 = true;
         } else {
-            i7 = 5;
+            z10 = false;
         }
-        addView(z70Var, ja.d(-2, -2.0f, i7 | 48, 10.0f, 14.0f, 10.0f, 0.0f));
+        return Boolean.valueOf(z10);
+    }
+
+    @Override
+    public void s(boolean z10) {
+        t3 t3Var = this.f18791a;
+        if (!t3Var.P()) {
+            t3Var.K.e(0.0f);
+        }
     }
 }

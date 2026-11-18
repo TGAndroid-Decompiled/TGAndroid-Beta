@@ -1,40 +1,16 @@
 package c8;
-
-import android.graphics.Bitmap;
-import android.os.Parcel;
-import android.os.RemoteException;
 public abstract class p9 {
-    public static v7.e f4627a;
-
-    public static ia.d a(Bitmap bitmap) {
-        try {
-            v7.e eVar = f4627a;
-            q6.m.h(eVar, "IBitmapDescriptorFactory is not initialized");
-            v7.c cVar = (v7.c) eVar;
-            Parcel p12 = cVar.p1();
-            v7.b.b(p12, bitmap);
-            Parcel o12 = cVar.o1(p12, 6);
-            a7.a m12 = a7.b.m1(o12.readStrongBinder());
-            o12.recycle();
-            return new ia.d(m12);
-        } catch (RemoteException e10) {
-            throw new RuntimeException(e10);
+    public static long a(h2.x xVar, int i7, int i10) {
+        xVar.N(i7);
+        if (xVar.a() < 5) {
+            return -9223372036854775807L;
         }
-    }
-
-    public static ia.d b(int i7) {
-        try {
-            v7.e eVar = f4627a;
-            q6.m.h(eVar, "IBitmapDescriptorFactory is not initialized");
-            v7.c cVar = (v7.c) eVar;
-            Parcel p12 = cVar.p1();
-            p12.writeInt(i7);
-            Parcel o12 = cVar.o1(p12, 1);
-            a7.a m12 = a7.b.m1(o12.readStrongBinder());
-            o12.recycle();
-            return new ia.d(m12);
-        } catch (RemoteException e10) {
-            throw new RuntimeException(e10);
+        int m10 = xVar.m();
+        if ((8388608 & m10) != 0 || ((2096896 & m10) >> 8) != i10 || (m10 & 32) == 0 || xVar.A() < 7 || xVar.a() < 7 || (xVar.A() & 16) != 16) {
+            return -9223372036854775807L;
         }
+        byte[] bArr = new byte[6];
+        xVar.k(0, 6, bArr);
+        return ((bArr[0] & 255) << 25) | ((bArr[1] & 255) << 17) | ((bArr[2] & 255) << 9) | ((bArr[3] & 255) << 1) | ((255 & bArr[4]) >> 7);
     }
 }

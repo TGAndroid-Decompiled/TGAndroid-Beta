@@ -1,51 +1,29 @@
 package org.telegram.ui.Components;
+public final class bl implements Runnable {
+    public final int f33709a;
+    public final kl f33710b;
+    public final org.telegram.messenger.xa f33711c;
 
-import android.content.Context;
-import android.widget.TextView;
-public final class bl extends jg.s0 {
-    public final int E = 0;
-    public final org.telegram.messenger.is F;
-
-    public bl(dl dlVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(context, e6Var, z10, false);
-        this.F = dlVar;
+    public bl(kl klVar, org.telegram.messenger.xa xaVar, int i7) {
+        this.f33709a = i7;
+        this.f33710b = klVar;
+        this.f33711c = xaVar;
     }
 
     @Override
-    public final void f() {
-        int i7 = this.E;
-        org.telegram.messenger.is isVar = this.F;
-        switch (i7) {
+    public final void run() {
+        switch (this.f33709a) {
             case 0:
-                dl dlVar = (dl) isVar;
-                bl blVar = dlVar.O;
-                org.telegram.ui.ActionBar.q0 q0Var = dlVar.f33987x;
-                if (q0Var != null) {
-                    q0Var.setShowSearchProgress(blVar.f17027w);
+                org.telegram.messenger.xa xaVar = this.f33711c;
+                try {
+                    ((a8.r7) xaVar).y();
+                } catch (Exception unused) {
                 }
-                TextView textView = dlVar.f33985w;
-                if (textView != null) {
-                    textView.setText(org.telegram.messenger.hd.a0(null, null, 2131748165, blVar.h));
-                }
-                super.f();
+                org.telegram.messenger.g0.g3(new bl(this.f33710b, xaVar, 1));
                 return;
             default:
-                org.telegram.ui.pa0 pa0Var = (org.telegram.ui.pa0) isVar;
-                org.telegram.ui.ActionBar.d5 d5Var = pa0Var.f50191r;
-                if (d5Var != null) {
-                    d5Var.setShowSearchProgress(pa0Var.T.f17027w);
-                }
-                TextView textView2 = pa0Var.f50186n;
-                if (textView2 != null) {
-                    textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131748165, pa0Var.T.h));
-                }
-                super.f();
+                kl.S(this.f33710b, this.f33711c);
                 return;
         }
-    }
-
-    public bl(org.telegram.ui.pa0 pa0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(context, e6Var, false, z10);
-        this.F = pa0Var;
     }
 }

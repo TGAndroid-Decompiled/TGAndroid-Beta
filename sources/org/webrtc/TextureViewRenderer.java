@@ -10,7 +10,7 @@ import android.view.TextureView;
 import android.view.View;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.qc;
+import org.telegram.messenger.pc;
 import org.telegram.messenger.voip.VoIPService;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
@@ -119,7 +119,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
             runnable.run();
         } else {
-            g0.h3(runnable);
+            g0.g3(runnable);
         }
     }
 
@@ -143,7 +143,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             sb2.append(", frame size: ");
             sb2.append(this.rotatedFrameWidth);
             sb2.append("x");
-            i5.c.y(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            i5.c.z(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb2.append(min2);
             sb2.append(", old surface size: ");
             sb2.append(this.surfaceWidth);
@@ -345,7 +345,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     public void setBackgroundRenderer(TextureView textureView) {
-        if (!qc.e(512)) {
+        if (!pc.e(512)) {
             return;
         }
         this.backgroundRenderer = textureView;
@@ -596,7 +596,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
 
         @Override
         public void onFirstFrameRendered() {
-            g0.h3(new h(this, 3));
+            g0.g3(new h(this, 3));
         }
 
         @Override

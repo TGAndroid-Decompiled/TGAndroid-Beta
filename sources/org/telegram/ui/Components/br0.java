@@ -1,56 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
-public final class br0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f33355a;
-    public final int f33356b;
-    public final KeyEvent.Callback f33357c;
+import android.view.ViewGroup;
+public final class br0 extends g.p {
+    public final int f33759c;
+    public final Object d;
+    public final ViewGroup f33760e;
 
-    public br0(KeyEvent.Callback callback, int i7, int i10) {
-        this.f33355a = i10;
-        this.f33357c = callback;
-        this.f33356b = i7;
+    public br0(ViewGroup viewGroup, Object obj, int i7) {
+        this.f33759c = i7;
+        this.f33760e = viewGroup;
+        this.d = obj;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int i7 = this.f33355a;
-        int i10 = this.f33356b;
-        KeyEvent.Callback callback = this.f33357c;
-        switch (i7) {
+    public final int i(int i7) {
+        int i10;
+        int i11;
+        switch (this.f33759c) {
             case 0:
-                ys0 ys0Var = (ys0) callback;
-                ys0Var.f42119n0[i10].getViewTreeObserver().removeOnPreDrawListener(this);
-                ys0Var.e0(i10);
-                return true;
-            default:
-                e51 e51Var = (e51) callback;
-                di.c1 c1Var = e51Var.f34191o1;
-                c1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                int childCount = c1Var.getChildCount();
-                AnimatorSet animatorSet = new AnimatorSet();
-                for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = c1Var.getChildAt(i11);
-                    c1Var.getClass();
-                    int R = RecyclerView.R(childAt);
-                    if (R >= i10) {
-                        if (R == 1 && c1Var.getAdapter() == e51Var.f34192p1 && (childAt instanceof org.telegram.ui.Cells.x3)) {
-                            childAt = ((org.telegram.ui.Cells.x3) childAt).getTextView();
-                        }
-                        childAt.setAlpha(0.0f);
-                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(c1Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / c1Var.getMeasuredHeight()) * 100.0f));
-                        ofFloat.setDuration(200L);
-                        animatorSet.playTogether(ofFloat);
+                bs0 bs0Var = (bs0) this.d;
+                v4.i0 adapter = bs0Var.f33771n.getAdapter();
+                gt0 gt0Var = (gt0) this.f33760e;
+                at0 at0Var = gt0Var.L;
+                if (adapter == at0Var) {
+                    if (at0Var.d(i7) != 2) {
+                        return 1;
                     }
+                    return bs0Var.f33772r.J;
+                } else if (gt0.y(gt0Var, adapter) == -1) {
+                    return 1;
+                } else {
+                    ((dt0) adapter).getClass();
+                    return 1;
                 }
-                animatorSet.start();
-                return true;
+            case 1:
+                c51 c51Var = (c51) this.d;
+                z41 z41Var = ((e51) this.f33760e).f34607g3;
+                if (z41Var == null) {
+                    return c51Var.J;
+                }
+                l41 G = z41Var.G(i7);
+                if (G == null || (i10 = G.v) == -1) {
+                    return c51Var.J;
+                }
+                return i10;
+            default:
+                c51 c51Var2 = (c51) this.d;
+                z41 z41Var2 = ((e51) this.f33760e).f34607g3;
+                if (z41Var2 == null) {
+                    return c51Var2.J;
+                }
+                l41 G2 = z41Var2.G(i7);
+                if (G2 == null || (i11 = G2.v) == -1) {
+                    return c51Var2.J;
+                }
+                return i11;
         }
     }
 }

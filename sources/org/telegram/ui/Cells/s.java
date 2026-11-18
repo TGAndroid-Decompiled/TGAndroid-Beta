@@ -7,25 +7,25 @@ import android.graphics.RectF;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.HashSet;
-import org.telegram.ui.Components.qs;
-public final class s extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
+import org.telegram.ui.Components.xs;
+public final class s extends LinearLayout implements org.telegram.ui.ActionBar.c6 {
     public static final int h = 0;
-    public Paint f31378a;
-    public Paint f31379b;
-    public q f31380c;
+    public Paint f31741a;
+    public Paint f31742b;
+    public q f31743c;
     public TextView d;
-    public float f31381e;
-    public boolean f31382f;
+    public float f31744e;
+    public boolean f31745f;
 
     public final void a(float f10) {
-        this.f31381e = f10;
-        this.f31382f = true;
+        this.f31744e = f10;
+        this.f31745f = true;
         TextView textView = this.d;
-        int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.G6, false);
-        int i7 = org.telegram.ui.ActionBar.j6.I6;
-        textView.setTextColor(i0.a.f(f10, x02, org.telegram.ui.ActionBar.j6.x0(null, i7, false)));
-        Paint paint = this.f31378a;
-        paint.setColor(i0.a.f(f10, i0.a.o(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.M6, false), 63), org.telegram.ui.ActionBar.j6.x0(null, i7, false)));
+        int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.G6, false);
+        int i7 = org.telegram.ui.ActionBar.n6.I6;
+        textView.setTextColor(i0.a.f(f10, x02, org.telegram.ui.ActionBar.n6.x0(null, i7, false)));
+        Paint paint = this.f31741a;
+        paint.setColor(i0.a.f(f10, i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.M6, false), 63), org.telegram.ui.ActionBar.n6.x0(null, i7, false)));
         paint.setStrokeWidth(Math.max(2, org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(0.5f, 2.0f, f10))));
         invalidate();
     }
@@ -37,13 +37,13 @@ public final class s extends LinearLayout implements org.telegram.ui.ActionBar.z
         } else {
             f10 = 0.0f;
         }
-        float f11 = this.f31381e;
+        float f11 = this.f31744e;
         if (f10 == f11 && z11) {
             return;
         }
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(f11, f10).setDuration(250L);
-            duration.setInterpolator(qs.f38757e);
+            duration.setInterpolator(xs.f42178e);
             duration.addUpdateListener(new r(this, 0));
             duration.start();
             return;
@@ -53,12 +53,12 @@ public final class s extends LinearLayout implements org.telegram.ui.ActionBar.z
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f31378a;
+        Paint paint = this.f31741a;
         float strokeWidth = paint.getStrokeWidth();
         RectF rectF = org.telegram.messenger.g0.P;
-        q qVar = this.f31380c;
+        q qVar = this.f31743c;
         rectF.set(qVar.getLeft() + strokeWidth, qVar.getTop() + strokeWidth, qVar.getRight() - strokeWidth, qVar.getBottom() - strokeWidth);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), this.f31379b);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), this.f31742b);
         super.draw(canvas);
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), paint);
     }
@@ -66,8 +66,8 @@ public final class s extends LinearLayout implements org.telegram.ui.ActionBar.z
     @Override
     public final void updateColors() {
         try {
-            if (this.f31382f && this.d != null) {
-                a(this.f31381e);
+            if (this.f31745f && this.d != null) {
+                a(this.f31744e);
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

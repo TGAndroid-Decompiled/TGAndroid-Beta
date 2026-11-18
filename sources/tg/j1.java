@@ -3,20 +3,20 @@ package tg;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
-import org.telegram.messenger.i20;
-import org.telegram.messenger.is;
-import org.telegram.messenger.ns;
-import org.telegram.ui.Components.uj0;
-public final class j1 extends uj0 implements is {
-    public final Path f57403f3;
-    public q0.a f57404g3;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.n10;
+import org.telegram.ui.Components.ck0;
+public final class j1 extends ck0 implements fs {
+    public final Path f57974f3;
+    public q0.a f57975g3;
 
     public j1(Context context) {
         super(context, null);
-        this.f57403f3 = new Path();
+        this.f57974f3 = new Path();
         setWillNotDraw(false);
-        setLayoutManager(new v4.b0());
-        setAdapter(new v4.h0());
+        setLayoutManager(new v4.c0());
+        setAdapter(new v4.i0());
         setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
         setClipToPadding(false);
     }
@@ -28,22 +28,22 @@ public final class j1 extends uj0 implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.C5) {
+        if (i7 == ks.E5) {
             getAdapter().f();
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        q0.a aVar = this.f57404g3;
+        q0.a aVar = this.f57975g3;
         if (aVar != null) {
-            Path path = this.f57403f3;
+            Path path = this.f57974f3;
             aVar.accept(path);
             canvas.save();
             canvas.clipPath(path);
         }
         super.draw(canvas);
-        if (this.f57404g3 != null) {
+        if (this.f57975g3 != null) {
             canvas.restore();
         }
     }
@@ -51,22 +51,22 @@ public final class j1 extends uj0 implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.e().c(this, ns.C5);
+        ks.e().c(this, ks.E5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.e().n(this, ns.C5);
+        ks.e().n(this, ks.E5);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i20.B(16.0f, org.telegram.messenger.g0.L(48.0f) * Math.min(sg.a0.c().size(), 6), 1073741824));
+        super.onMeasure(i7, n10.C(16.0f, org.telegram.messenger.g0.L(48.0f) * Math.min(sg.a0.c().size(), 6), 1073741824));
     }
 
     public void setMaskProvider(q0.a aVar) {
-        this.f57404g3 = aVar;
+        this.f57975g3 = aVar;
         invalidate();
     }
 }

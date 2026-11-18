@@ -1,4 +1,7 @@
 package org.telegram.messenger;
+
+import android.view.View;
+import org.telegram.ui.Components.l41;
 public interface w10 {
-    void a(Object obj, Object obj2, Object obj3, Object obj4);
+    Boolean a(l41 l41Var, View view, Integer num, Float f10, Float f11);
 }

@@ -1,100 +1,202 @@
 package ki;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.TextUtils;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import c8.ja;
-import di.tb;
-import java.util.ArrayList;
-import org.telegram.messenger.ns;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.tj0;
-public final class z extends tj0 {
-    public ArrayList f18721c;
-    public ArrayList d;
-    public ArrayList f18722e;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j6;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.mh0;
+import org.telegram.ui.Components.wu0;
+public final class z extends View implements c6 {
+    public final org.telegram.ui.Cells.y E;
+    public boolean F;
+    public int G;
+    public mh0 H;
+    public int I;
+    public int J;
+    public final RectF f19082a;
+    public final Paint f19083b;
+    public final TextPaint f19084c;
+    public final w d;
+    public final mh0 f19085e;
+    public boolean f19086f;
+    public float h;
+    public String f19087n;
+    public StaticLayout f19088r;
+    public float f19089s;
+    public boolean f19090w;
+    public boolean f19091x;
+    public boolean f19092y;
 
-    @Override
-    public final boolean D(v4.e1 e1Var) {
-        return true;
+    public z(Context context) {
+        super(context);
+        this.f19082a = new RectF();
+        this.f19083b = new Paint(1);
+        TextPaint textPaint = new TextPaint(1);
+        this.f19084c = textPaint;
+        w wVar = new w(this);
+        this.d = wVar;
+        mh0 mh0Var = new mh0(2131623945, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f));
+        this.f19085e = mh0Var;
+        this.f19087n = gd.M0(2131752880, null);
+        this.F = true;
+        updateColors();
+        wVar.f30016n = true;
+        wVar.h = false;
+        wVar.a(false, 0.0f);
+        wVar.setCallback(this);
+        textPaint.setTypeface(org.telegram.messenger.g0.o());
+        wVar.f30005a.setStrokeCap(Paint.Cap.ROUND);
+        wVar.f30014l = true;
+        int L = org.telegram.messenger.g0.L(16.0f);
+        int x02 = n6.x0(null, n6.Hi, false);
+        this.G = x02;
+        org.telegram.ui.Cells.y k02 = n6.k0(L, L, L, L, 0, x02, x02);
+        this.E = k02;
+        k02.setCallback(this);
+        mh0Var.setCallback(this);
+        mh0Var.R(this);
+        setContentDescription(gd.M0(2131754917, "AccDescrBotMenu"));
     }
 
-    public final void E(a0.h hVar) {
-        ArrayList arrayList = this.f18721c;
-        arrayList.clear();
-        ArrayList arrayList2 = this.d;
-        arrayList2.clear();
-        ArrayList arrayList3 = this.f18722e;
-        arrayList3.clear();
-        for (int i7 = 0; i7 < hVar.m(); i7++) {
-            TL_bots.BotInfo botInfo = (TL_bots.BotInfo) hVar.n(i7);
-            for (int i10 = 0; i10 < botInfo.commands.size(); i10++) {
-                TLRPC.BotCommand botCommand = botInfo.commands.get(i10);
-                if (botCommand != null && botCommand.command != null) {
-                    arrayList.add("/" + botCommand.command);
-                    arrayList2.add(botCommand.description);
-                    arrayList3.add(Boolean.valueOf(botCommand.ephemeral));
-                }
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(n6.Uf));
+        hashSet.add(Integer.valueOf(n6.Wf));
+        hashSet.add(Integer.valueOf(n6.Hi));
+    }
+
+    @Override
+    public final void dispatchDraw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: ki.z.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        this.E.setState(getDrawableState());
+    }
+
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        this.E.jumpToCurrentState();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        float f10;
+        int size = (View.MeasureSpec.getSize(i10) + View.MeasureSpec.getSize(i7)) << 16;
+        if (this.J != size || this.f19088r == null) {
+            this.d.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            TextPaint textPaint = this.f19084c;
+            textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
+            this.J = size;
+            CharSequence m10 = j6.m(this.f19087n, textPaint.getFontMetricsInt(), false, null, 0);
+            int i11 = (int) (org.telegram.messenger.g0.f24121q.x * 0.6f);
+            StaticLayout c10 = wu0.c(m10, textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i11, 1, true);
+            this.f19088r = c10;
+            if (c10.getLineCount() > 0) {
+                f10 = this.f19088r.getLineWidth(0);
+            } else {
+                f10 = 0.0f;
             }
+            this.f19089s = f10;
         }
-        f();
+        org.telegram.messenger.g0.L(4.0f);
+        int L = org.telegram.messenger.g0.L(40.0f);
+        if (this.f19086f) {
+            L = org.telegram.messenger.f3.C(4.0f, (int) this.f19089s, L);
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
     }
 
-    @Override
-    public final int b() {
-        return this.f18721c.size();
+    public void setDrawBackgroundDrawable(boolean z10) {
+        this.F = z10;
+        invalidate();
     }
 
-    @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        y yVar = (y) e1Var.f58535a;
-        String str = (String) this.f18721c.get(i7);
-        if (((Boolean) this.f18722e.get(i7)).booleanValue()) {
-            eq eqVar = new eq(2131231942, 0);
-            eqVar.a(j6.A6);
-            eqVar.f34413n = 1;
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-            spannableStringBuilder.append((CharSequence) " *");
-            spannableStringBuilder.setSpan(eqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-            yVar.f18702a.setText(spannableStringBuilder);
+    public void setOpened(boolean z10) {
+        float f10;
+        if (this.f19090w != z10) {
+            this.f19090w = z10;
+        }
+        int i7 = 1;
+        if (this.f19091x) {
+            if (this.f19092y != z10) {
+                mh0 mh0Var = this.f19085e;
+                mh0Var.stop();
+                mh0Var.h = true;
+                if (z10) {
+                    i7 = mh0Var.f37486e[0];
+                }
+                mh0Var.P(i7);
+                mh0Var.start();
+                this.f19092y = z10;
+                return;
+            }
+            return;
+        }
+        if (z10) {
+            f10 = 1.0f;
         } else {
-            yVar.f18702a.setText(str);
+            f10 = 0.0f;
         }
-        yVar.f18703b.setText((CharSequence) this.d.get(i7));
-        yVar.f18704c = str;
+        this.d.a(true, f10);
+    }
+
+    public void setWebView(boolean z10) {
+        this.f19091x = z10;
+        invalidate();
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        Context context = viewGroup.getContext();
-        ?? linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f));
-        tb tbVar = new tb(context, 4);
-        linearLayout.f18703b = tbVar;
-        ns.i(tbVar);
-        tbVar.setTextSize(1, 16.0f);
-        int i10 = j6.G6;
-        q6.U(tbVar, i10, null);
-        tbVar.setTag(Integer.valueOf(i10));
-        tbVar.setMaxLines(2);
-        tbVar.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(tbVar, ja.q(-1, -2, 1.0f, 16, 0, 0, org.telegram.messenger.g0.L(8.0f), 0));
-        TextView textView = new TextView(context);
-        linearLayout.f18702a = textView;
-        textView.setTextSize(1, 14.0f);
-        int i11 = j6.f29241y6;
-        q6.U(textView, i11, null);
-        textView.setTag(Integer.valueOf(i11));
-        linearLayout.addView(textView, ja.p(-2, -2, 0.0f, 16));
-        linearLayout.setLayoutParams(new v4.p0(-1, -2));
-        return new v4.e1(linearLayout);
+    public final void updateColors() {
+        TextPaint textPaint = this.f19084c;
+        try {
+            this.f19083b.setColor(n6.x0(null, n6.Uf, false));
+            int x02 = n6.x0(null, n6.Wf, false);
+            w wVar = this.d;
+            wVar.f30013k = x02;
+            wVar.f30012j = x02;
+            mh0 mh0Var = this.f19085e;
+            if (mh0Var != null) {
+                if (mh0Var == this.H) {
+                    if (x02 != this.I) {
+                    }
+                }
+                this.H = mh0Var;
+                this.I = x02;
+                mh0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+            }
+            int alpha = textPaint.getAlpha();
+            textPaint.setColor(x02);
+            if (alpha != 255) {
+                textPaint.setAlpha(alpha);
+            }
+            invalidate();
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && this.E != drawable) {
+            return false;
+        }
+        return true;
     }
 }

@@ -1,15 +1,15 @@
 package c8;
 public abstract class wf {
-    public static a8.ab f4754a;
+    public static a8.ab f5038a;
 
     public static synchronized uf a(qf qfVar) {
         uf ufVar;
         synchronized (wf.class) {
             try {
-                if (f4754a == null) {
-                    f4754a = new a8.ab(1);
+                if (f5038a == null) {
+                    f5038a = new a8.ab(1);
                 }
-                ufVar = (uf) f4754a.R0(qfVar);
+                ufVar = (uf) f5038a.R0(qfVar);
             } catch (Throwable th2) {
                 throw th2;
             }

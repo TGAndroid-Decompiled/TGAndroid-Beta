@@ -3,7 +3,7 @@ package g0;
 import a8.r7;
 import android.content.pm.ShortcutManager;
 import android.util.Log;
-import c8.g0;
+import c8.i0;
 import com.google.firebase.sessions.FirebaseSessionsRegistrar;
 import da.u2;
 import g9.k;
@@ -13,67 +13,58 @@ import gb.n;
 import gb.o0;
 import gb.p0;
 import gb.r;
-import hi.d3;
+import hi.e3;
 import java.nio.charset.Charset;
 import kotlin.jvm.internal.j;
-import org.telegram.messenger.b20;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.j9;
-import org.telegram.messenger.qc;
-import org.telegram.messenger.t10;
-import org.telegram.messenger.ve;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-public final class e implements k, l5.e, u9.d, gh.d, j9, t10, b20 {
-    public final int f12759a;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.i9;
+import org.telegram.messenger.pc;
+import org.telegram.messenger.r10;
+import org.telegram.messenger.ue;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+public final class e implements k, l5.e, u9.d, gh.d, i9, r10 {
+    public final int f13076a;
 
     public e(int i7) {
-        this.f12759a = i7;
+        this.f13076a = i7;
     }
 
     public static ShortcutManager a(Object obj) {
         return (ShortcutManager) obj;
     }
 
+    public static Class b() {
+        return ShortcutManager.class;
+    }
+
     @Override
     public Object apply(Object obj) {
-        switch (this.f12759a) {
-            case 2:
-                return Integer.valueOf(((g2.b) obj).f12803r);
+        switch (this.f13076a) {
             case 3:
+                return Integer.valueOf(((g2.b) obj).f13120r);
+            case 4:
                 o0 o0Var = (o0) obj;
-                String o4 = p0.f13082b.o(o0Var);
-                j.d(o4, "encode(...)");
+                String v = p0.f13399b.v(o0Var);
+                j.d(v, "encode(...)");
                 o0Var.getClass();
-                m mVar = m.f13068b;
+                m mVar = m.f13385b;
                 Log.d("FirebaseSessions", "Session Event Type: SESSION_START");
-                byte[] bytes = o4.getBytes(xd.a.f59875a);
+                byte[] bytes = v.getBytes(xd.a.f60444a);
                 j.d(bytes, "getBytes(...)");
                 return bytes;
             default:
-                ha.a.f13785b.getClass();
-                return ea.a.f10562a.o((u2) obj).getBytes(Charset.forName("UTF-8"));
+                ha.a.f14102b.getClass();
+                return ea.a.f10880a.v((u2) obj).getBytes(Charset.forName("UTF-8"));
         }
     }
 
     @Override
-    public Object d(Number number, Object obj) {
-        Integer num = (Integer) obj;
-        if (((Integer) number).intValue() == 0) {
-            if (num.intValue() == 0) {
-                return hd.M0(2131748805, null);
-            }
-            return hd.H(',', "Stars", num.intValue());
-        }
-        return "" + num;
-    }
-
-    @Override
-    public Object i(r7 r7Var) {
+    public Object e(r7 r7Var) {
         n components$lambda$0;
         r components$lambda$1;
-        switch (this.f12759a) {
-            case 5:
+        switch (this.f13076a) {
+            case 6:
                 components$lambda$0 = FirebaseSessionsRegistrar.getComponents$lambda$0(r7Var);
                 return components$lambda$0;
             default:
@@ -83,7 +74,19 @@ public final class e implements k, l5.e, u9.d, gh.d, j9, t10, b20 {
     }
 
     @Override
-    public int j(e6 e6Var, boolean z10) {
+    public Object g(Number number, Object obj) {
+        Integer num = (Integer) obj;
+        if (((Integer) number).intValue() == 0) {
+            if (num.intValue() == 0) {
+                return gd.M0(2131748613, null);
+            }
+            return gd.H(',', "Stars", num.intValue());
+        }
+        return "" + num;
+    }
+
+    @Override
+    public int j(i6 i6Var, boolean z10) {
         float f10;
         float f11;
         float f12;
@@ -95,120 +98,120 @@ public final class e implements k, l5.e, u9.d, gh.d, j9, t10, b20 {
         float f18;
         float f19;
         float f20;
-        switch (this.f12759a) {
-            case 8:
-                if (qc.e(262144)) {
+        switch (this.f13076a) {
+            case 9:
+                if (pc.e(262144)) {
                     f10 = 0.82f;
                 } else {
                     f10 = 0.76f;
                 }
-                int w02 = j6.w0(j6.f28849d6, e6Var);
+                int w02 = n6.w0(n6.f29396d6, i6Var);
                 if (z10) {
-                    return j6.r1(0.9f, -15658735);
+                    return n6.r1(0.9f, -15658735);
                 }
-                return g0.m(f10, w02, -14145496);
-            case 9:
-                if (!qc.e(256)) {
-                    return j6.x0(null, j6.G8, false);
-                }
-                int x02 = j6.x0(null, j6.G8, false);
-                if (z10) {
+                return i0.n(f10, w02, -14145496);
+            case 10:
+                if (pc.e(262144)) {
                     f11 = 0.85f;
                 } else {
-                    f11 = 0.825f;
+                    f11 = 0.76f;
                 }
-                return j6.r1(f11, x02);
-            case 10:
-                if (qc.e(262144)) {
+                return n6.r1(f11, n6.w0(n6.f29396d6, i6Var));
+            case 11:
+                if (!pc.e(256)) {
+                    return n6.x0(null, n6.G8, false);
+                }
+                int x02 = n6.x0(null, n6.G8, false);
+                if (z10) {
                     f12 = 0.85f;
                 } else {
-                    f12 = 0.76f;
+                    f12 = 0.825f;
                 }
-                return g0.m(f12, j6.w0(j6.f28849d6, e6Var), j6.w0(j6.Ql, e6Var));
-            case 11:
-                if (qc.e(262144)) {
+                return n6.r1(f12, x02);
+            case 12:
+                if (pc.e(262144)) {
                     f13 = 0.85f;
                 } else {
                     f13 = 0.76f;
                 }
-                return j6.r1(f13, j6.w0(j6.wj, e6Var));
-            case 12:
-                if (qc.e(262144)) {
+                return i0.n(f13, n6.w0(n6.f29396d6, i6Var), n6.w0(n6.Ql, i6Var));
+            case 13:
+                if (pc.e(262144)) {
                     f14 = 0.85f;
                 } else {
                     f14 = 0.76f;
                 }
-                return g0.m(f14, j6.w0(j6.f28849d6, e6Var), j6.w0(j6.Je, e6Var));
-            case 13:
-                if (qc.e(262144)) {
+                return i0.n(f14, n6.w0(n6.f29396d6, i6Var), n6.w0(n6.Je, i6Var));
+            case 14:
+                if (pc.e(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.8f;
                 }
-                return g0.m(f15, j6.w0(j6.f28792a7, e6Var), j6.w0(j6.f28849d6, e6Var));
-            case 14:
-                return 855638016;
+                return i0.n(f15, n6.w0(n6.f29339a7, i6Var), n6.w0(n6.f29396d6, i6Var));
             case 15:
-                return 1073741824;
+                return 855638016;
             case 16:
-                int w03 = j6.w0(j6.f28922h5, e6Var);
+                return 1073741824;
+            case 17:
+                int w03 = n6.w0(n6.f29469h5, i6Var);
                 if (z10) {
                     f16 = 0.82f;
                 } else {
                     f16 = 0.78f;
                 }
-                return j6.r1(f16, w03);
-            case 17:
-                return j6.r1(0.075f, -16777216);
+                return n6.r1(f16, w03);
             case 18:
-                int w04 = j6.w0(j6.G8, e6Var);
-                if (z10) {
+                return n6.r1(0.075f, -16777216);
+            case 19:
+                if (pc.e(262144)) {
                     f17 = 0.85f;
                 } else {
-                    f17 = 0.825f;
+                    f17 = 0.76f;
                 }
-                return j6.r1(f17, w04);
-            case 19:
-                return j6.r1(0.88f, j6.w0(j6.f28849d6, e6Var));
+                return n6.r1(f17, n6.w0(n6.wj, i6Var));
             case 20:
-                if (qc.e(262144)) {
+                return n6.r1(0.88f, n6.w0(n6.f29396d6, i6Var));
+            case 21:
+                int w04 = n6.w0(n6.G8, i6Var);
+                if (z10) {
                     f18 = 0.85f;
                 } else {
-                    f18 = 0.76f;
+                    f18 = 0.825f;
                 }
-                return g0.m(f18, j6.w0(j6.f28849d6, e6Var), j6.w0(j6.Pl, e6Var));
-            case 21:
-                if (qc.e(262144)) {
+                return n6.r1(f18, w04);
+            case 22:
+                if (pc.e(262144)) {
                     f19 = 0.85f;
                 } else {
                     f19 = 0.76f;
                 }
-                return j6.r1(f19, j6.w0(j6.f28849d6, e6Var));
-            case 22:
-                return j6.r1(0.78f, j6.w0(j6.f28922h5, e6Var));
+                return i0.n(f19, n6.w0(n6.f29396d6, i6Var), n6.w0(n6.Pl, i6Var));
             case 23:
-                return j6.r1(0.7f, j6.w0(j6.f28849d6, e6Var));
-            case 24:
-                qc.e(262144);
-                return 0;
-            default:
-                if (qc.e(262144)) {
+                if (pc.e(262144)) {
                     f20 = 0.85f;
                 } else {
                     f20 = 0.76f;
                 }
-                return j6.r1(f20, j6.w0(j6.f28849d6, e6Var));
+                return n6.r1(f20, n6.w0(n6.f29396d6, i6Var));
+            case 24:
+                return n6.r1(0.78f, n6.w0(n6.f29469h5, i6Var));
+            case 25:
+                return n6.r1(0.7f, n6.w0(n6.f29396d6, i6Var));
+            default:
+                pc.e(262144);
+                return 0;
         }
     }
 
     @Override
-    public Object o(Object obj) {
+    public Object m(Object obj) {
         Integer num = (Integer) obj;
-        ve veVar = d3.f14098k0;
+        ue ueVar = e3.f14535k0;
         return 0;
     }
 
     public e(l lVar) {
-        this.f12759a = 3;
+        this.f13076a = 4;
     }
 }

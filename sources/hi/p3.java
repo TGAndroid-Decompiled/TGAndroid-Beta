@@ -4,52 +4,52 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import java.util.WeakHashMap;
-import org.telegram.messenger.z10;
+import org.telegram.messenger.x10;
 public class p3 {
-    public final View f14842a;
-    public View f14843b;
-    public final z10 f14844c;
+    public final View f15218a;
+    public View f15219b;
+    public final x10 f15220c;
     public boolean d;
-    public boolean f14845e;
-    public boolean f14846f;
-    public boolean f14847g;
+    public boolean f15221e;
+    public boolean f15222f;
+    public boolean f15223g;
     public final Rect h = new Rect();
-    public final m3 f14848i;
-    public final n3 f14849j;
-    public int f14850k;
-    public int f14851l;
+    public final bi.o1 f15224i;
+    public final n3 f15225j;
+    public int f15226k;
+    public int f15227l;
 
-    public p3(View view, boolean z10, z10 z10Var) {
-        m3 m3Var = new m3(this, 0);
-        this.f14848i = m3Var;
+    public p3(View view, boolean z10, x10 x10Var) {
+        bi.o1 o1Var = new bi.o1(this, 1);
+        this.f15224i = o1Var;
         ?? r12 = new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public final void onGlobalLayout() {
                 p3.this.d();
             }
         };
-        this.f14849j = r12;
-        this.f14842a = view;
-        this.f14844c = z10Var;
-        this.f14843b = view;
+        this.f15225j = r12;
+        this.f15218a = view;
+        this.f15220c = x10Var;
+        this.f15219b = view;
         if (view.isAttachedToWindow()) {
             view.getViewTreeObserver().addOnGlobalLayoutListener(r12);
-            view.addOnLayoutChangeListener(m3Var);
+            view.addOnLayoutChangeListener(o1Var);
         }
         view.addOnAttachStateChangeListener(new o3(this, z10, view));
     }
 
     public final void a() {
-        if (this.f14845e) {
-            if (this.f14851l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f23606n) {
-                this.f14845e = false;
+        if (this.f15221e) {
+            if (this.f15227l >= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24116n) {
+                this.f15221e = false;
             } else {
                 return;
             }
         }
-        z10 z10Var = this.f14844c;
-        if (z10Var != null) {
-            z10Var.a(Integer.valueOf(this.f14851l));
+        x10 x10Var = this.f15220c;
+        if (x10Var != null) {
+            x10Var.a(Integer.valueOf(this.f15227l));
         }
     }
 
@@ -59,7 +59,7 @@ public class p3 {
     }
 
     public final boolean c() {
-        if (this.f14851l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f23606n && !this.f14845e) {
+        if (this.f15227l <= org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.f24116n && !this.f15221e) {
             return false;
         }
         return true;
@@ -68,40 +68,40 @@ public class p3 {
     public final void d() {
         int i7;
         if (!this.d) {
-            boolean z10 = this.f14846f;
+            boolean z10 = this.f15222f;
             boolean z11 = false;
-            View view = this.f14842a;
+            View view = this.f15218a;
             if (z10) {
-                View view2 = this.f14843b;
+                View view2 = this.f15219b;
                 if (view2 != null) {
                     view = view2;
                 }
-                WeakHashMap weakHashMap = r0.i0.f55671a;
-                r0.k1 a10 = r0.b0.a(view);
+                WeakHashMap weakHashMap = r0.i0.f56244a;
+                r0.l1 a10 = r0.b0.a(view);
                 if (a10 != null) {
-                    i7 = a10.f55682a.f(8).d;
+                    i7 = a10.f56258a.f(8).d;
                 } else {
                     i7 = 0;
                 }
-                this.f14851l = i7;
+                this.f15227l = i7;
             } else {
                 Rect rect = this.h;
                 view.getWindowVisibleDisplayFrame(rect);
-                View view3 = this.f14843b;
+                View view3 = this.f15219b;
                 if (view3 != null) {
                     view = view3;
                 }
-                this.f14851l = view.getHeight() - rect.bottom;
+                this.f15227l = view.getHeight() - rect.bottom;
             }
-            if (this.f14847g) {
-                this.f14851l = Math.max(0, this.f14851l - org.telegram.messenger.g0.f23606n);
+            if (this.f15223g) {
+                this.f15227l = Math.max(0, this.f15227l - org.telegram.messenger.g0.f24116n);
             }
-            int i10 = this.f14850k;
-            int i11 = this.f14851l;
+            int i10 = this.f15226k;
+            int i11 = this.f15227l;
             if (i10 != i11) {
                 z11 = true;
             }
-            this.f14850k = i11;
+            this.f15226k = i11;
             if (z11) {
                 a();
             }

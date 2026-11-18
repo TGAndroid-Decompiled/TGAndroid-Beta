@@ -1,52 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class i5 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35440a;
-    public final float f35441b;
-    public final float f35442c;
-    public final float d;
-    public final float f35443e;
-    public final Object f35444f;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class i5 implements Runnable {
+    public final int f36049a;
+    public final k5 f36050b;
+    public final ArrayList f36051c;
+    public final HashSet d;
 
-    public i5(Object obj, float f10, float f11, float f12, float f13, int i7) {
-        this.f35440a = i7;
-        this.f35444f = obj;
-        this.f35441b = f10;
-        this.f35442c = f11;
-        this.d = f12;
-        this.f35443e = f13;
+    public i5(k5 k5Var, ArrayList arrayList, HashSet hashSet, int i7) {
+        this.f36049a = i7;
+        this.f36050b = k5Var;
+        this.f36051c = arrayList;
+        this.d = hashSet;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f35440a;
-        float f10 = this.f35443e;
-        float f11 = this.d;
-        float f12 = this.f35442c;
-        float f13 = this.f35441b;
-        Object obj = this.f35444f;
-        switch (i7) {
+    public final void run() {
+        switch (this.f36049a) {
             case 0:
-                p5 p5Var = (p5) obj;
-                p5Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p5Var.lastDrawnCy = org.telegram.messenger.g0.T1(f13, f12, floatValue);
-                p5Var.lastDrawnCx = org.telegram.messenger.g0.T1(f11, f10, floatValue);
+                org.telegram.messenger.g0.g3(new i5(this.f36050b, this.f36051c, this.d, 1));
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
-                int i10 = ChatActivityEnterView.N6;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float z10 = com.google.android.gms.internal.vision.e2.z(f12, f13, floatValue2, f13);
-                gn0 gn0Var = chatActivityEnterView.f32265q0;
-                if (gn0Var != null) {
-                    gn0Var.setAlpha(((f10 - f11) * floatValue2) + f11);
-                    chatActivityEnterView.f32265q0.setTranslationX(z10);
+                k5 k5Var = this.f36050b;
+                k5Var.d(this.f36051c);
+                HashSet hashSet = this.d;
+                if (!hashSet.isEmpty()) {
+                    ArrayList<Long> arrayList = new ArrayList<>(hashSet);
+                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
+                    tL_messages_getCustomEmojiDocuments.document_id = arrayList;
+                    ConnectionsManager.getInstance(k5Var.f36681e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.u7(11, k5Var, arrayList));
+                    return;
                 }
-                chatActivityEnterView.R0.setTranslationX(z10);
-                chatActivityEnterView.H = z10;
-                chatActivityEnterView.d2();
                 return;
         }
     }

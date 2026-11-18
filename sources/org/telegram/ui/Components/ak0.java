@@ -1,34 +1,25 @@
 package org.telegram.ui.Components;
+public final class ak0 {
+    public static final ak0 f33356a;
+    public static final ak0 f33357b;
+    public static final ak0[] f33358c;
+    ak0 EF0;
 
-import android.app.Activity;
-import android.widget.ImageView;
-public final class ak0 extends pb {
-    public final bk0 f33009c;
-
-    public ak0(Activity activity, String str) {
-        super(activity, null);
-        this.f38262b.setText(str);
-        this.f38262b.setTranslationY(-1.0f);
-        ImageView imageView = this.f38261a;
-        bk0 bk0Var = new bk0();
-        this.f33009c = bk0Var;
-        imageView.setImageDrawable(bk0Var);
+    static {
+        Enum r02 = new Enum("FULL_BACKGROUND", 0);
+        Enum r12 = new Enum("SECTION_COLOR_BACKGROUND", 1);
+        ?? r32 = new Enum("OPTIMIZED_BACKGROUND", 2);
+        f33356a = r32;
+        ?? r52 = new Enum("DRAW_VERTICES", 3);
+        f33357b = r52;
+        f33358c = new ak0[]{r02, r12, r32, r52};
     }
 
-    @Override
-    public final void onEnterTransitionEnd() {
-        super.onEnterTransitionEnd();
-        bk0 bk0Var = this.f33009c;
-        bk0Var.getClass();
-        bk0Var.f33301g = System.currentTimeMillis();
-        bk0Var.invalidateSelf();
+    public static ak0 valueOf(String str) {
+        return (ak0) Enum.valueOf(ak0.class, str);
     }
 
-    @Override
-    public final void onExitTransitionEnd() {
-        super.onExitTransitionEnd();
-        bk0 bk0Var = this.f33009c;
-        bk0Var.f33301g = -1L;
-        bk0Var.invalidateSelf();
+    public static ak0[] values() {
+        return (ak0[]) f33358c.clone();
     }
 }

@@ -1,92 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
+import android.content.Context;
 import android.view.View;
-import java.util.Locale;
-import org.telegram.tgnet.TLRPC;
-public final class d00 extends URLSpan {
-    public static final int f33774e = 0;
-    public final String f33775a;
-    public final TLRPC.TL_messageEntityFormattedDate f33776b;
-    public final wy0 f33777c;
-    public final boolean d;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
+public final class d00 extends FrameLayout {
+    public final n6 f34234a;
+    public final n6 f34235b;
 
-    public d00(String str, wy0 wy0Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
-        super(str);
-        this.f33775a = str;
-        this.f33776b = tL_messageEntityFormattedDate;
-        this.f33777c = wy0Var;
-        this.d = false;
-    }
-
-    public static CharSequence a(CharSequence charSequence, boolean z10) {
-        String str;
-        if (charSequence instanceof Spanned) {
-            Spanned spanned = (Spanned) charSequence;
-            d00[] d00VarArr = (d00[]) spanned.getSpans(0, spanned.length(), d00.class);
-            int length = d00VarArr.length;
-            ?? r42 = 0;
-            int i7 = 0;
-            while (i7 < length) {
-                d00 d00Var = d00VarArr[i7];
-                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = d00Var.f33776b;
-                if (tL_messageEntityFormattedDate.flags != 0 && (d00Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
-                    if (r42 == 0) {
-                        charSequence = new SpannableStringBuilder(spanned);
-                        r42 = charSequence;
-                    }
-                    int spanStart = r42.getSpanStart(d00Var);
-                    int spanEnd = r42.getSpanEnd(d00Var);
-                    if (z10) {
-                        str = org.telegram.messenger.hd.A(d00Var.f33776b, System.currentTimeMillis(), Locale.getDefault(), false);
-                    } else {
-                        str = d00Var.f33775a;
-                    }
-                    r42.removeSpan(d00Var);
-                    r42.replace(spanStart, spanEnd, str);
-                    r42.setSpan(new d00(d00Var, z10), spanStart, str.length() + spanStart, 33);
-                }
-                i7++;
-                r42 = r42;
-            }
-        }
-        return charSequence;
-    }
-
-    public static CharSequence b(SpannableStringBuilder spannableStringBuilder) {
-        return a(spannableStringBuilder, false);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i7 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        wy0 wy0Var = this.f33777c;
-        if (wy0Var != null) {
-            wy0Var.a(textPaint);
-        }
-        if (i7 == color) {
-            z10 = true;
+    public d00(Context context) {
+        super(context);
+        int i7;
+        int i10;
+        int i11;
+        n6 n6Var = new n6(context, true, true, false);
+        this.f34234a = n6Var;
+        n6Var.setTextSize(org.telegram.messenger.g0.L(15.0f));
+        n6Var.setTypeface(org.telegram.messenger.g0.o());
+        int i12 = org.telegram.ui.ActionBar.n6.L6;
+        org.telegram.ui.ActionBar.u6.Y(n6Var, i12, null);
+        if (org.telegram.messenger.gd.f24216a0) {
+            i7 = 5;
         } else {
-            z10 = false;
+            i7 = 3;
         }
-        textPaint.setUnderlineText(z10);
+        n6Var.setGravity(i7);
+        if (org.telegram.messenger.gd.f24216a0) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        addView(n6Var, c8.ma.d(-1, 20.0f, i10 | 80, 21.0f, 15.0f, 21.0f, 2.0f));
+        n6 n6Var2 = new n6(context, true, true, true);
+        this.f34235b = n6Var2;
+        n6Var2.b(0.45f, 250L, lr.h);
+        n6Var2.setTextSize(org.telegram.messenger.g0.L(15.0f));
+        org.telegram.ui.ActionBar.u6.Y(n6Var2, i12, null);
+        if (org.telegram.messenger.gd.f24216a0) {
+            i11 = 3;
+        } else {
+            i11 = 5;
+        }
+        n6Var2.setGravity(i11);
+        addView(n6Var2, c8.ma.d(-2, 20.0f, (org.telegram.messenger.gd.f24216a0 ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
+        WeakHashMap weakHashMap = r0.i0.f56244a;
+        new r0.v(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 
-    public d00(d00 d00Var, boolean z10) {
-        super(d00Var.f33775a);
-        this.f33775a = d00Var.f33775a;
-        this.f33776b = d00Var.f33776b;
-        this.f33777c = d00Var.f33777c;
-        this.d = z10;
+    public final void a(String str, Runnable runnable) {
+        n6 n6Var = this.f34235b;
+        n6Var.c(str, !org.telegram.messenger.gd.f24216a0, true);
+        n6Var.setOnClickListener(new s6(1, runnable));
+    }
+
+    public final void b(String str, boolean z10) {
+        boolean z11;
+        n6 n6Var = this.f34234a;
+        if (z10) {
+            n6Var.a();
+        }
+        if (z10 && !org.telegram.messenger.gd.f24216a0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        n6Var.c(str, z11, true);
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(this.f34234a.getText());
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 }

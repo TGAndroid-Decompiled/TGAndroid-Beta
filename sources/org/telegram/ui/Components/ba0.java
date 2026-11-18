@@ -1,31 +1,35 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-public final class ba0 implements gj0 {
-    public final ea0 f33236a;
+public final class ba0 extends y61 {
+    public final Context f33618a;
+    public final ua0 f33619b;
 
-    public ba0(ea0 ea0Var) {
-        this.f33236a = ea0Var;
+    public ba0(ua0 ua0Var, Context context) {
+        this.f33619b = ua0Var;
+        this.f33618a = context;
     }
 
     @Override
-    public final void b(int i7, View view) {
-        ea0 ea0Var = this.f33236a;
-        if (ea0Var.f34254a == 1 && ea0Var.f34264r.f24404f.size() > 1) {
-            int e12 = ((org.telegram.messenger.gj) ea0Var.f34264r.f24404f.get(i7)).e1();
-            boolean z10 = ea0Var.f34264r.f24405g.get(e12, false);
-            boolean z11 = !z10;
-            if (ea0Var.f34264r.f24405g.size() != 1 || !z10) {
-                if (z10) {
-                    ea0Var.f34264r.f24405g.delete(e12);
-                } else {
-                    ea0Var.f34264r.f24405g.put(e12, z11);
-                }
-                if (view instanceof org.telegram.ui.Cells.q1) {
-                    ((org.telegram.ui.Cells.q1) view).m3(z11, z11, true);
-                }
-                ea0Var.l(true);
-            }
-        }
+    public final void b(View view, int i7, int i10) {
+        oa0 oa0Var = (oa0) view;
+        oa0Var.i();
+        oa0Var.l(false);
+    }
+
+    @Override
+    public final View d(int i7) {
+        return new oa0(this.f33619b, this.f33618a, i7);
+    }
+
+    @Override
+    public final int e() {
+        return this.f33619b.f40280e.f39546a.size();
+    }
+
+    @Override
+    public final int h(int i7) {
+        return ((ra0) this.f33619b.f40280e.f39546a.get(i7)).f39081a;
     }
 }

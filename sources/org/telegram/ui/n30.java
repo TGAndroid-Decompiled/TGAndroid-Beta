@@ -1,98 +1,82 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-public final class n30 extends Dialog {
-    public final fi.w2 f49431a;
-    public final rv f49432b;
-    public Bitmap f49433c;
-    public Paint d;
-    public BitmapShader f49434e;
-    public final Matrix f49435f;
-    public float h;
-    public ValueAnimator f49436n;
-    public boolean f49437r;
+import android.graphics.Canvas;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.messenger.support.LongSparseIntArray;
+public final class n30 extends org.telegram.ui.Components.ck0 {
+    public final LongSparseIntArray f50073f3;
+    public final f40 f50074g3;
 
-    public n30(Context context, rv rvVar) {
-        super(context, 2131755352);
-        this.f49435f = new Matrix();
-        this.f49432b = rvVar;
-        rvVar.setVisibility(4);
-        org.telegram.messenger.g0.l2(new org.telegram.ui.Components.gh(17, this, rvVar), 14.0f);
-        fi.w2 w2Var = new fi.w2(this, context, rvVar);
-        this.f49431a = w2Var;
-        w2Var.setOnClickListener(new a(this, 28));
-    }
-
-    public final void b(float f10, m30 m30Var) {
-        ValueAnimator valueAnimator = this.f49436n;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f49436n = null;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.h, f10);
-        this.f49436n = ofFloat;
-        ofFloat.addUpdateListener(new a3(this, 13));
-        this.f49436n.addListener(new di.g6(this, f10, m30Var, 4));
-        this.f49436n.setDuration(420L);
-        this.f49436n.setInterpolator(org.telegram.ui.Components.er.h);
-        this.f49436n.start();
+    public n30(f40 f40Var, LaunchActivity launchActivity) {
+        super(launchActivity, null);
+        this.f50074g3 = f40Var;
+        this.f50073f3 = new LongSparseIntArray();
     }
 
     @Override
-    public final void dismiss() {
-        if (this.f49437r) {
-            return;
+    public final void dispatchDraw(android.graphics.Canvas r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n30.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.f50074g3.W4) {
+            return false;
         }
-        this.f49437r = true;
-        b(0.0f, new m30(this, 0));
-        try {
-            WindowManager.LayoutParams attributes = getWindow().getAttributes();
-            attributes.flags |= 16;
-            getWindow().setAttributes(attributes);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int i13;
+        super.onLayout(z10, i7, i10, i11, i12);
+        t30 t30Var = this.f50074g3.S1;
+        HashSet hashSet = t30Var.I;
+        f40 f40Var = t30Var.L;
+        HashSet hashSet2 = t30Var.H;
+        if (t30Var.G == null) {
+            hashSet2.clear();
+            hashSet2.addAll(t30Var.f59171q);
+            hashSet.clear();
+            hashSet.addAll(t30Var.f59170p);
+            t30Var.J = 0.0f;
+            t30Var.K = Float.MAX_VALUE;
+            if (hashSet2.isEmpty() && hashSet.isEmpty()) {
+                return;
+            }
+            n30 n30Var = f40Var.L1;
+            int childCount = n30Var.getChildCount();
+            for (int i14 = 0; i14 < childCount; i14++) {
+                View childAt = n30Var.getChildAt(i14);
+                v4.f1 G = n30Var.G(childAt);
+                if (G != null && (i13 = G.f59126f) != 3 && i13 != 4 && i13 != 5 && i13 != 7 && !hashSet2.contains(G)) {
+                    t30Var.J = Math.max(t30Var.J, childAt.getY() + childAt.getMeasuredHeight());
+                    t30Var.K = Math.min(t30Var.K, Math.max(0.0f, childAt.getY()));
+                }
+            }
+            t30Var.F = 0.0f;
+            n30Var.invalidate();
         }
     }
 
     @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(2131755178);
-        setContentView(this.f49431a, new ViewGroup.LayoutParams(-1, -1));
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        int i7 = attributes.flags & (-3);
-        attributes.softInputMode = 48;
-        attributes.flags = (-2013069056) | i7;
-        boolean z10 = org.telegram.messenger.r2.f26206a;
-        attributes.flags = i7 | (-2013060864);
-        org.telegram.messenger.g0.h2();
-        attributes.flags |= 1152;
-        if (Build.VERSION.SDK_INT >= 28) {
-            attributes.layoutInDisplayCutoutMode = 1;
+    public final void setVisibility(int i7) {
+        boolean z10;
+        if (getVisibility() != i7) {
+            for (int i10 = 0; i10 < getChildCount(); i10++) {
+                View childAt = getChildAt(i10);
+                if (childAt instanceof org.telegram.ui.Components.voip.r) {
+                    org.telegram.ui.Components.voip.r rVar = (org.telegram.ui.Components.voip.r) childAt;
+                    if (childAt.isAttachedToWindow() && i7 == 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    f40.K0(this.f50074g3, rVar, z10);
+                }
+            }
         }
-        window.setAttributes(attributes);
-    }
-
-    @Override
-    public final void show() {
-        super.show();
-        b(1.0f, null);
-        org.telegram.messenger.g0.i3(new m30(this, 1), 16L);
+        super.setVisibility(i7);
     }
 }

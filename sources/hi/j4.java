@@ -1,59 +1,59 @@
 package hi;
 
-import java.util.List;
-public final class j4 implements Runnable {
-    public final int f14460a;
-    public final m5 f14461b;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class j4 implements View.OnTouchListener {
+    public final int f14810a;
+    public final FrameLayout f14811b;
 
-    public j4(m5 m5Var, int i7) {
-        this.f14460a = i7;
-        this.f14461b = m5Var;
+    public j4(int i7, FrameLayout frameLayout) {
+        this.f14810a = i7;
+        this.f14811b = frameLayout;
     }
 
     @Override
-    public final void run() {
-        int e10;
-        switch (this.f14460a) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.h1 h1Var;
+        org.telegram.ui.ActionBar.h1 h1Var2;
+        org.telegram.ui.ActionBar.h1 h1Var3;
+        switch (this.f14810a) {
             case 0:
-                tg.m1 m1Var = this.f14461b.N0;
-                if (m1Var != null) {
-                    m1Var.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                new ug.x0((org.telegram.ui.ActionBar.e2) new bi.t6(this.f14461b, 5), 14, true).show();
-                return;
-            case 2:
-                this.f14461b.w0(false);
-                return;
-            default:
-                m5 m5Var = this.f14461b;
-                boolean z10 = sg.k0.e(m5Var.f14683p1).f56695k;
-                int i7 = 0;
-                while (true) {
-                    List list = sg.g.f56622c;
-                    if (i7 < list.size()) {
-                        sg.g gVar = (sg.g) list.get(i7);
-                        if (z10) {
-                            e10 = gVar.m();
-                        } else {
-                            e10 = gVar.e();
-                        }
-                        String n10 = gVar.n();
-                        ai.a1 a1Var = new ai.a1(m5Var, gVar, e10, 15);
-                        j5 j5Var = new j5(m5Var, m5Var.getContext());
-                        j5Var.setIcon(e10);
-                        j5Var.setText(n10);
-                        j5Var.setSelected(false);
-                        j5Var.setOnClickListener(new ah.d(a1Var, 29));
-                        j5Var.setOnLongClickListener(new p4(m5Var, 0));
-                        m5Var.f14689s1.a(j5Var, c8.ja.o(-1, 48));
-                        i7++;
-                    } else {
-                        return;
+                l5 l5Var = (l5) this.f14811b;
+                l5Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (h1Var = l5Var.f14926r1) != null && h1Var.isShowing()) {
+                    view.getHitRect(l5Var.f14930t1);
+                    if (!l5Var.f14930t1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        l5Var.f14926r1.d(true);
+                        return false;
                     }
+                    return false;
                 }
+                return false;
+            case 1:
+                org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f14811b;
+                r0Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (h1Var2 = r0Var.d) != null && h1Var2.isShowing()) {
+                    view.getHitRect(r0Var.J);
+                    if (!r0Var.J.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        r0Var.d.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            default:
+                tg.g0 g0Var = (tg.g0) this.f14811b;
+                g0Var.getClass();
+                if (motionEvent.getActionMasked() == 0 && (h1Var3 = g0Var.B1) != null && h1Var3.isShowing()) {
+                    view.getHitRect(g0Var.D1);
+                    if (!g0Var.D1.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        g0Var.B1.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
         }
     }
 }

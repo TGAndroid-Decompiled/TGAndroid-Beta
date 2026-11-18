@@ -1,4 +1,4 @@
 package lh;
 public interface a {
-    void g(int i7);
+    void j(int i7);
 }

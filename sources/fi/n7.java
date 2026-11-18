@@ -1,124 +1,266 @@
 package fi;
 
+import a8.sa;
 import android.content.Context;
-import android.view.View;
+import android.os.Build;
+import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.gj;
-import org.telegram.ui.Components.mi0;
-import org.telegram.ui.Components.r40;
-public final class n7 extends c5.a {
-    public final Context f12078c;
-    public final i9 d;
-    public final org.telegram.ui.ActionBar.e6 f12079e;
-    public final w f12080f;
+public abstract class n7 extends c5.l {
+    public final k7 A0;
+    public ArrayList B0;
+    public s3 C0;
+    public boolean D0;
+    public boolean E0;
+    public int F0;
+    public int G0;
+    public Runnable H0;
+    public final w3 I0;
+    public int J0;
+    public int K0;
+    public float L0;
+    public boolean M0;
+    public final sa N0;
+    public final f9 O0;
+    public int P0;
+    public final ArrayList Q0;
+    public float R0;
+    public long f12308x0;
+    public ArrayList f12309y0;
+    public int f12310z0;
 
-    public n7(w wVar, Context context, i9 i9Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f12080f = wVar;
-        this.f12078c = context;
-        this.d = i9Var;
-        this.f12079e = e6Var;
-    }
-
-    @Override
-    public final void a(c5.l lVar, Object obj) {
-        FrameLayout frameLayout = (FrameLayout) obj;
-        lVar.removeView(frameLayout);
-        b4 b4Var = (b4) frameLayout.getChildAt(0);
-        org.telegram.messenger.g0.E2(b4Var);
-        this.f12080f.Q0.add(b4Var);
-    }
-
-    @Override
-    public final int b() {
-        w wVar = this.f12080f;
-        ArrayList arrayList = wVar.f12233y0;
-        if (arrayList != null) {
-            return arrayList.size();
-        }
-        return wVar.B0.size();
-    }
-
-    @Override
-    public final Object e(c5.l lVar, int i7) {
-        b4 m7Var;
-        long B0;
-        Context context = this.f12078c;
-        w wVar = this.f12080f;
-        p7 p7Var = new p7(wVar, context);
-        ArrayList arrayList = wVar.Q0;
-        boolean isEmpty = arrayList.isEmpty();
-        i9 i9Var = this.d;
-        if (!isEmpty) {
-            m7Var = (b4) arrayList.remove(0);
-            m7Var.Y0.f12493a.getImageReceiver().O0(true, true);
-            if (m7Var.O1 != null) {
-                m7Var.L1.e1();
-                m7Var.L1.setAlpha(1.0f - m7Var.O3);
-            }
-            mi0 mi0Var = m7Var.P1;
-            if (mi0Var != null) {
-                mi0Var.n();
-            }
-            mi0 mi0Var2 = m7Var.f11462b3;
-            if (mi0Var2 != null) {
-                mi0Var2.n();
-            }
-            r40 r40Var = m7Var.f11524t2;
-            if (r40Var != null) {
-                org.telegram.messenger.g0.E2(r40Var);
-                m7Var.f11524t2.d(true);
-                m7Var.f11524t2 = null;
-            }
-            m7Var.setActive(false);
-            m7Var.setIsVisible(false);
-            m7Var.f11532v2 = false;
-            m7Var.f11544y2.e(false, 0.0f);
-            m7Var.V0 = null;
-            m7Var.S2 = false;
-            m7Var.n0();
+    public n7(int i7, Context context, f9 f9Var, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context);
+        boolean z10;
+        this.B0 = new ArrayList();
+        this.E0 = true;
+        w wVar = (w) this;
+        this.N0 = new sa(wVar, 25);
+        this.P0 = -1;
+        this.Q0 = new ArrayList();
+        this.f12310z0 = i7;
+        this.I0 = new w3(context);
+        this.O0 = f9Var;
+        k7 k7Var = new k7(wVar, context, f9Var, i6Var);
+        this.A0 = k7Var;
+        setAdapter(k7Var);
+        di.c7 c7Var = new di.c7(wVar, 9);
+        if (this.f4452n0 != null) {
+            z10 = false;
         } else {
-            m7Var = new m7(this, this.f12078c, i9Var, wVar.I0, this.f12079e);
+            z10 = true;
         }
-        p7Var.f12179a = m7Var;
-        m7Var.setAccount(wVar.f12234z0);
-        m7Var.setDelegate(wVar.C0);
-        m7Var.setLongpressed(i9Var.f11832a1);
-        p7Var.setTag(Integer.valueOf(i7));
-        ArrayList arrayList2 = wVar.f12233y0;
-        if (arrayList2 != null) {
-            if (i9Var.R0) {
-                i7 = (arrayList2.size() - 1) - i7;
-            }
-            ArrayList arrayList3 = (ArrayList) arrayList2.get(i7);
-            p7Var.f12181c = arrayList3;
-            k6 k6Var = i9Var.O0;
-            if (!(k6Var instanceof d6) && !(k6Var instanceof n6)) {
-                p7Var.f12180b = wVar.f12232x0;
-            } else {
-                gj f10 = k6Var.f(((Integer) arrayList3.get(0)).intValue());
-                if (f10 == null) {
-                    B0 = wVar.f12232x0;
-                } else {
-                    B0 = gj.B0(f10.f23819k);
-                }
-                p7Var.f12180b = B0;
-            }
-        } else {
-            p7Var.f12181c = null;
-            p7Var.f12180b = ((Long) wVar.B0.get(i7)).longValue();
+        this.f4452n0 = c7Var;
+        setChildrenDrawingOrderEnabled(true);
+        this.f4454p0 = 1;
+        this.f4453o0 = 2;
+        if (z10) {
+            s();
         }
-        p7Var.addView(m7Var);
-        m7Var.requestLayout();
-        lVar.addView(p7Var);
-        return p7Var;
+        setOffscreenPageLimit(0);
+        b(new l7(wVar, f9Var, 0));
+        setOverScrollMode(2);
     }
 
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
+    public static boolean C(ArrayList arrayList, ArrayList arrayList2) {
+        if (arrayList == null && arrayList2 == null) {
             return true;
         }
+        if (arrayList == null || arrayList2 == null || arrayList.size() != arrayList2.size()) {
+            return false;
+        }
+        for (int i7 = 0; i7 < arrayList.size(); i7++) {
+            if (arrayList.get(i7) != arrayList2.get(i7)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final void A() {
+        boolean z10 = false;
+        int i7 = 0;
+        while (true) {
+            if (i7 < getChildCount()) {
+                m7 m7Var = (m7) getChildAt(i7);
+                if (m7Var.d && !m7Var.f12277a.f12896y1.d()) {
+                    break;
+                }
+                i7++;
+            } else {
+                z10 = true;
+                break;
+            }
+        }
+        this.O0.l(z10);
+    }
+
+    public final void B() {
+        if (this.P0 >= 0) {
+            for (int i7 = 0; i7 < getChildCount(); i7++) {
+                if (((Integer) getChildAt(i7).getTag()).intValue() == getCurrentItem() && getCurrentItem() == this.P0) {
+                    m7 m7Var = (m7) getChildAt(i7);
+                    if (!m7Var.d) {
+                        this.P0 = -1;
+                        m7Var.a(true);
+                        if (this.f12309y0 != null) {
+                            z3 z3Var = m7Var.f12277a;
+                            long j3 = m7Var.f12278b;
+                            ArrayList arrayList = m7Var.f12279c;
+                            z3Var.l1 = j3;
+                            z3Var.f12840j1 = arrayList;
+                            z3Var.m0(0);
+                        } else {
+                            m7Var.f12277a.S0(0, m7Var.f12278b);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public final void D(int r7, long r8, java.util.ArrayList r10) {
+        throw new UnsupportedOperationException("Method not decompiled: fi.n7.D(int, long, java.util.ArrayList):void");
+    }
+
+    public final boolean E(boolean z10) {
+        f9 f9Var = this.O0;
+        boolean z11 = false;
+        if (z10) {
+            int currentItem = getCurrentItem();
+            ArrayList arrayList = this.f12309y0;
+            if (arrayList == null) {
+                arrayList = this.B0;
+            }
+            if (currentItem < arrayList.size() - 1) {
+                int currentItem2 = getCurrentItem() + 1;
+                if (f9Var.f11955a && Build.VERSION.SDK_INT < 33) {
+                    z11 = true;
+                }
+                x(currentItem2, !z11);
+                return true;
+            }
+        }
+        if (z10 || getCurrentItem() <= 0) {
+            return false;
+        }
+        int currentItem3 = getCurrentItem() - 1;
+        if (f9Var.f11955a && Build.VERSION.SDK_INT < 33) {
+            z11 = true;
+        }
+        x(currentItem3, !z11);
+        return true;
+    }
+
+    public final void F() {
+        boolean z10;
+        for (int i7 = 0; i7 < getChildCount(); i7++) {
+            z3 z3Var = (z3) ((FrameLayout) getChildAt(i7)).getChildAt(0);
+            if (((Integer) getChildAt(i7).getTag()).intValue() == getCurrentItem() && !z3Var.E3) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            z3Var.setActive(z10);
+        }
+    }
+
+    public long getCurrentDialogId() {
+        if (this.f12309y0 != null) {
+            return this.f12308x0;
+        }
+        if (getCurrentItem() < this.B0.size()) {
+            return ((Long) this.B0.get(getCurrentItem())).longValue();
+        }
+        return 0L;
+    }
+
+    public z3 getCurrentPeerView() {
+        for (int i7 = 0; i7 < getChildCount(); i7++) {
+            if (((Integer) getChildAt(i7).getTag()).intValue() == getCurrentItem()) {
+                return (z3) ((FrameLayout) getChildAt(i7)).getChildAt(0);
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Long> getDialogIds() {
+        return this.B0;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.E0 && !this.M0) {
+            try {
+                return super.onInterceptTouchEvent(motionEvent);
+            } catch (Exception e10) {
+                org.telegram.messenger.a8.g(e10, true);
+            }
+        }
         return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (this.D0) {
+            this.D0 = false;
+            z3 currentPeerView = getCurrentPeerView();
+            if (currentPeerView != null) {
+                s3 s3Var = this.C0;
+                w8 w8Var = (w8) s3Var;
+                w8Var.a(currentPeerView.getSelectedPosition(), currentPeerView.getCurrentPeer());
+            }
+        }
+        B();
+        F();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.E0 && !this.M0) {
+            return super.onTouchEvent(motionEvent);
+        }
+        if (this.M0) {
+            if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public void setDelegate(s3 s3Var) {
+        this.C0 = s3Var;
+    }
+
+    public void setHorizontalProgressToDismiss(float f10) {
+        if (Math.abs(f10) <= 1.0f && this.R0 != f10) {
+            this.R0 = f10;
+            setCameraDistance(getWidth() * 15);
+            float f11 = 0.0f;
+            if (f10 < 0.0f) {
+                f11 = getWidth();
+            }
+            setPivotX(f11);
+            setPivotY(getHeight() * 0.5f);
+            setRotationY(f10 * 90.0f);
+        }
+    }
+
+    public void setKeyboardHeight(int i7) {
+        if (this.F0 != i7) {
+            this.F0 = i7;
+            z3 currentPeerView = getCurrentPeerView();
+            if (currentPeerView != null) {
+                currentPeerView.requestLayout();
+            }
+        }
+    }
+
+    public void setPaused(boolean z10) {
+        for (int i7 = 0; i7 < getChildCount(); i7++) {
+            ((z3) ((FrameLayout) getChildAt(i7)).getChildAt(0)).setPaused(z10);
+        }
     }
 }

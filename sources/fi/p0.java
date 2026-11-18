@@ -1,51 +1,34 @@
 package fi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
 import android.view.View;
-import android.widget.TextView;
-public final class p0 extends TextView {
-    public int f12157a;
-    public final h6.m f12158b;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.z41;
+public final class p0 extends k41 {
+    public static final int f12369b = 0;
 
-    public p0(Context context) {
-        super(context);
-        this.f12157a = -1;
-        this.f12158b = new h6.m(29);
+    static {
+        k41.h(new k41());
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f12157a < 0) {
-            int i7 = 0;
-            if (getLayout() != null) {
-                i7 = (int) getLayout().getLineWidth(0);
-            }
-            this.f12157a = i7;
+    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+        ((q0) view).set((s0) l41Var.H);
+    }
+
+    @Override
+    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        return new q0(context);
+    }
+
+    @Override
+    public final boolean e(l41 l41Var, l41 l41Var2) {
+        if (l41Var.H == l41Var2.H) {
+            return true;
         }
-        if (this.f12157a > org.telegram.messenger.g0.L(100.0f)) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            super.onDraw(canvas);
-            canvas.save();
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(getWidth() - org.telegram.messenger.g0.L(15.0f), 0.0f, getWidth(), getHeight());
-            this.f12158b.m(canvas, rectF, 2, 1.0f);
-            canvas.restore();
-            canvas.restore();
-            return;
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE), i10);
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(charSequence, bufferType);
-        this.f12157a = -1;
+        return false;
     }
 }

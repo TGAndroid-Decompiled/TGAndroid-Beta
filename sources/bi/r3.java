@@ -1,54 +1,100 @@
 package bi;
 
-import di.j8;
-import java.util.ArrayList;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.z10;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.Components.wp0;
-import org.telegram.ui.ProfileActivity;
-public final class r3 implements z10 {
-    public final int f3829a;
-    public final c4 f3830b;
-    public final TL_stars.SavedStarGift f3831c;
+import android.text.SpannableStringBuilder;
+import java.util.Arrays;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.cx;
+import org.telegram.ui.y91;
+public final class r3 implements x10 {
+    public final int f4024a = 0;
+    public final long f4025b;
+    public final int f4026c;
+    public final Object d;
+    public final Object f4027e;
 
-    public r3(c4 c4Var, TL_stars.SavedStarGift savedStarGift, int i7) {
-        this.f3829a = i7;
-        this.f3830b = c4Var;
-        this.f3831c = savedStarGift;
+    public r3(String str, long j3, int i7, TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer) {
+        this.d = str;
+        this.f4025b = j3;
+        this.f4026c = i7;
+        this.f4027e = tL_messageActionStarGiftOnchainOffer;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f3829a;
-        TL_stars.SavedStarGift savedStarGift = this.f3831c;
-        c4 c4Var = this.f3830b;
-        switch (i7) {
+        String str;
+        TLRPC.User user;
+        int i7;
+        int i10 = this.f4024a;
+        int i11 = this.f4026c;
+        long j3 = this.f4025b;
+        Object obj2 = this.f4027e;
+        Object obj3 = this.d;
+        switch (i10) {
             case 0:
-                c4Var.f3412a.f3613e.b((String) obj, new r3(c4Var, savedStarGift, 1));
+                String str2 = (String) obj3;
+                TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer = (TLRPC.TL_messageActionStarGiftOnchainOffer) obj2;
+                if (((Boolean) obj).booleanValue()) {
+                    gc G = f4.g().G(2131623990, 3, gd.a0(null, null, 2131749611, str2));
+                    G.f35471t = true;
+                    G.j();
+                    return;
+                }
+                f4.f(j3);
+                f4.f3608b.remove(f4.a(i11, j3));
+                f4.r(2131749571, tL_messageActionStarGiftOnchainOffer.gift);
                 return;
             default:
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                wp0 wp0Var = c4Var.f3412a;
-                j8 j8Var = wp0Var.f3613e;
-                int i10 = tL_starGiftCollection.collection_id;
-                j8Var.getClass();
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(savedStarGift);
-                j8Var.a(i10, arrayList);
-                wp0Var.f(true);
-                v61 v61Var = wp0Var.f3615n;
-                int i11 = tL_starGiftCollection.collection_id;
-                v61Var.d(i11, wp0Var.f3613e.f(i11) + 1);
-                org.telegram.ui.ActionBar.e2 e2Var = wp0Var.f3610a;
-                if (e2Var instanceof ProfileActivity) {
-                    ((ProfileActivity) e2Var).W4(true);
+                y91 y91Var = (y91) obj3;
+                cx cxVar = (cx) obj2;
+                Boolean bool = (Boolean) obj;
+                if (y91Var != null) {
+                    y91Var.finishFragment();
+                    cxVar.removeSelfFromStack();
+                } else {
+                    cxVar.finishFragment();
                 }
-                wp0Var.o();
-                cc.a0(e2Var).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131750393, di.c6.A1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
+                if (T != null) {
+                    if (j3 >= 0) {
+                        TLRPC.User c22 = mp.u1(i11).c2(Long.valueOf(j3));
+                        str = o10.l(c22);
+                        user = c22;
+                    } else {
+                        TLRPC.Chat O0 = mp.u1(i11).O0(Long.valueOf(-j3));
+                        if (O0 == null) {
+                            str = "";
+                            user = O0;
+                        } else {
+                            str = O0.title;
+                            user = O0;
+                        }
+                    }
+                    lc b02 = lc.b0(T);
+                    if (bool.booleanValue()) {
+                        i7 = 2131752977;
+                    } else {
+                        i7 = 2131752976;
+                    }
+                    SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(gd.a0(null, null, i7, str));
+                    b02.getClass();
+                    b02.V(Arrays.asList(user), W2, null, null).k(false);
+                    return;
+                }
                 return;
         }
+    }
+
+    public r3(y91 y91Var, cx cxVar, long j3, int i7) {
+        this.d = y91Var;
+        this.f4027e = cxVar;
+        this.f4025b = j3;
+        this.f4026c = i7;
     }
 }

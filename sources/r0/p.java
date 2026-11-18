@@ -3,19 +3,19 @@ package r0;
 import android.view.ScrollFeedbackProvider;
 import androidx.core.widget.NestedScrollView;
 public final class p implements q {
-    public final ScrollFeedbackProvider f55691a;
+    public final ScrollFeedbackProvider f56266a;
 
     public p(NestedScrollView nestedScrollView) {
-        this.f55691a = ScrollFeedbackProvider.createProvider(nestedScrollView);
+        this.f56266a = ScrollFeedbackProvider.createProvider(nestedScrollView);
     }
 
     @Override
     public final void onScrollLimit(int i7, int i10, int i11, boolean z10) {
-        this.f55691a.onScrollLimit(i7, i10, i11, z10);
+        this.f56266a.onScrollLimit(i7, i10, i11, z10);
     }
 
     @Override
     public final void onScrollProgress(int i7, int i10, int i11, int i12) {
-        this.f55691a.onScrollProgress(i7, i10, i11, i12);
+        this.f56266a.onScrollProgress(i7, i10, i11, i12);
     }
 }

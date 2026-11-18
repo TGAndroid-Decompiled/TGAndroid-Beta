@@ -19,22 +19,22 @@ public final class vr extends jg.e {
         boolean z10 = false;
         X(false);
         ContactsActivity contactsActivity = this.P;
-        org.telegram.ui.Components.uj0 uj0Var = contactsActivity.d;
-        if (uj0Var != null && uj0Var.getAdapter() == this) {
+        org.telegram.ui.Components.ck0 ck0Var = contactsActivity.d;
+        if (ck0Var != null && ck0Var.getAdapter() == this) {
             int b10 = b();
             if (contactsActivity.G) {
-                org.telegram.ui.Components.uj0 uj0Var2 = contactsActivity.d;
+                org.telegram.ui.Components.ck0 ck0Var2 = contactsActivity.d;
                 if (b10 != 2) {
                     z10 = true;
                 }
-                uj0Var2.setFastScrollVisible(z10);
+                ck0Var2.setFastScrollVisible(z10);
                 return;
             }
-            org.telegram.ui.Components.uj0 uj0Var3 = contactsActivity.d;
+            org.telegram.ui.Components.ck0 ck0Var3 = contactsActivity.d;
             if (b10 != 0) {
                 z10 = true;
             }
-            uj0Var3.setFastScrollVisible(z10);
+            ck0Var3.setFastScrollVisible(z10);
         }
     }
 }

@@ -18,30 +18,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.concurrent.Executor;
-import org.telegram.ui.ActionBar.z;
-import org.telegram.ui.Components.u11;
+import org.telegram.ui.ActionBar.p;
+import org.telegram.ui.Components.h01;
 import s4.n;
 import s4.r0;
 import s4.s0;
 import s4.u;
 import s4.x;
 public final class h {
-    public boolean f55543a;
-    public final Object f55544b;
-    public final Object f55545c;
+    public boolean f56117a;
+    public final Object f56118b;
+    public final Object f56119c;
     public final Object d;
-    public final Object f55546e;
-    public Object f55547f;
-    public Object f55548g;
+    public final Object f56120e;
+    public Object f56121f;
+    public Object f56122g;
     public Object h;
 
     public h(ca.i composer, pe.b bVar, j jVar, h[] hVarArr) {
         kotlin.jvm.internal.j.e(composer, "composer");
-        this.f55544b = composer;
-        this.f55545c = bVar;
+        this.f56118b = composer;
+        this.f56119c = bVar;
         this.d = jVar;
-        this.f55546e = hVarArr;
-        this.f55547f = bVar.f54996a;
+        this.f56120e = hVarArr;
+        this.f56121f = bVar.f55572a;
         int ordinal = jVar.ordinal();
         if (hVarArr != null) {
             h hVar = hVarArr[ordinal];
@@ -54,15 +54,15 @@ public final class h {
 
     public h a(me.d descriptor) {
         h hVar;
-        h[] hVarArr = (h[]) this.f55546e;
+        h[] hVarArr = (h[]) this.f56120e;
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
-        pe.b bVar = (pe.b) this.f55545c;
+        pe.b bVar = (pe.b) this.f56119c;
         j f10 = f.f(descriptor, bVar);
-        char c10 = f10.f55555a;
-        ca.i iVar = (ca.i) this.f55544b;
+        char c10 = f10.f56129a;
+        ca.i iVar = (ca.i) this.f56118b;
         iVar.j(c10);
-        iVar.f4843b = true;
-        String str = (String) this.f55548g;
+        iVar.f5125b = true;
+        String str = (String) this.f56122g;
         if (str != null) {
             String str2 = (String) this.h;
             if (str2 == null) {
@@ -72,7 +72,7 @@ public final class h {
             j(str);
             iVar.j(':');
             j(str2);
-            this.f55548g = null;
+            this.f56122g = null;
             this.h = null;
         }
         if (((j) this.d) == f10) {
@@ -85,34 +85,34 @@ public final class h {
     }
 
     public void b(me.d descriptor, int i7) {
-        ca.i iVar = (ca.i) this.f55544b;
+        ca.i iVar = (ca.i) this.f56118b;
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
         int ordinal = ((j) this.d).ordinal();
         boolean z10 = true;
         if (ordinal != 1) {
             if (ordinal != 2) {
                 if (ordinal != 3) {
-                    if (!iVar.f4843b) {
+                    if (!iVar.f5125b) {
                         iVar.j(',');
                     }
                     iVar.i();
-                    f.e(descriptor, (pe.b) this.f55545c);
+                    f.e(descriptor, (pe.b) this.f56119c);
                     j(descriptor.g(i7));
                     iVar.j(':');
                     iVar.k();
                     return;
                 }
                 if (i7 == 0) {
-                    this.f55543a = true;
+                    this.f56117a = true;
                 }
                 if (i7 == 1) {
                     iVar.j(',');
                     iVar.k();
-                    this.f55543a = false;
+                    this.f56117a = false;
                     return;
                 }
                 return;
-            } else if (!iVar.f4843b) {
+            } else if (!iVar.f5125b) {
                 if (i7 % 2 == 0) {
                     iVar.j(',');
                     iVar.i();
@@ -121,33 +121,33 @@ public final class h {
                     iVar.k();
                     z10 = false;
                 }
-                this.f55543a = z10;
+                this.f56117a = z10;
                 return;
             } else {
-                this.f55543a = true;
+                this.f56117a = true;
                 iVar.i();
                 return;
             }
         }
-        if (!iVar.f4843b) {
+        if (!iVar.f5125b) {
             iVar.j(',');
         }
         iVar.i();
     }
 
     public void c(int i7) {
-        if (this.f55543a) {
+        if (this.f56117a) {
             j(String.valueOf(i7));
         } else {
-            ((mc.a) ((ca.i) this.f55544b).f4844c).c(String.valueOf(i7));
+            ((mc.a) ((ca.i) this.f56118b).f5126c).c(String.valueOf(i7));
         }
     }
 
     public void d(long j3) {
-        if (this.f55543a) {
+        if (this.f56117a) {
             j(String.valueOf(j3));
         } else {
-            ((mc.a) ((ca.i) this.f55544b).f4844c).c(String.valueOf(j3));
+            ((mc.a) ((ca.i) this.f56118b).f5126c).c(String.valueOf(j3));
         }
     }
 
@@ -158,16 +158,16 @@ public final class h {
     }
 
     public void f() {
-        ca.i iVar = (ca.i) this.f55544b;
+        ca.i iVar = (ca.i) this.f56118b;
         iVar.getClass();
         kotlin.jvm.internal.j.e("null", "v");
-        ((mc.a) iVar.f4844c).c("null");
+        ((mc.a) iVar.f5126c).c("null");
     }
 
     public void g(me.d descriptor, int i7, ke.a serializer, Object obj) {
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
         kotlin.jvm.internal.j.e(serializer, "serializer");
-        if (obj == null && !((o0) this.f55547f).f13491b) {
+        if (obj == null && !((o0) this.f56121f).f13806b) {
             return;
         }
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
@@ -196,13 +196,13 @@ public final class h {
     public void j(String value) {
         int i7;
         kotlin.jvm.internal.j.e(value, "value");
-        ca.i iVar = (ca.i) this.f55544b;
+        ca.i iVar = (ca.i) this.f56118b;
         iVar.getClass();
         kotlin.jvm.internal.j.e(value, "value");
-        mc.a aVar = (mc.a) iVar.f4844c;
-        aVar.a(aVar.f20602c, value.length() + 2);
-        char[] cArr = aVar.f20601b;
-        int i10 = aVar.f20602c;
+        mc.a aVar = (mc.a) iVar.f5126c;
+        aVar.a(aVar.f20966c, value.length() + 2);
+        char[] cArr = aVar.f20965b;
+        int i10 = aVar.f20966c;
         int i11 = i10 + 1;
         cArr[i10] = '\"';
         int length = value.length();
@@ -211,50 +211,50 @@ public final class h {
         int i13 = i11;
         while (i13 < i12) {
             char c10 = cArr[i13];
-            byte[] bArr = i.f55550b;
+            byte[] bArr = i.f56124b;
             if (c10 < bArr.length && bArr[c10] != 0) {
                 int length2 = value.length();
                 for (int i14 = i13 - i11; i14 < length2; i14++) {
                     aVar.a(i13, 2);
                     char charAt = value.charAt(i14);
-                    byte[] bArr2 = i.f55550b;
+                    byte[] bArr2 = i.f56124b;
                     if (charAt < bArr2.length) {
                         byte b10 = bArr2[charAt];
                         if (b10 == 0) {
                             i7 = i13 + 1;
-                            aVar.f20601b[i13] = charAt;
+                            aVar.f20965b[i13] = charAt;
                         } else {
                             if (b10 == 1) {
-                                String str = i.f55549a[charAt];
+                                String str = i.f56123a[charAt];
                                 kotlin.jvm.internal.j.b(str);
                                 aVar.a(i13, str.length());
-                                str.getChars(0, str.length(), aVar.f20601b, i13);
+                                str.getChars(0, str.length(), aVar.f20965b, i13);
                                 int length3 = str.length() + i13;
-                                aVar.f20602c = length3;
+                                aVar.f20966c = length3;
                                 i13 = length3;
                             } else {
-                                char[] cArr2 = aVar.f20601b;
+                                char[] cArr2 = aVar.f20965b;
                                 cArr2[i13] = '\\';
                                 cArr2[i13 + 1] = (char) b10;
                                 i13 += 2;
-                                aVar.f20602c = i13;
+                                aVar.f20966c = i13;
                             }
                         }
                     } else {
                         i7 = i13 + 1;
-                        aVar.f20601b[i13] = charAt;
+                        aVar.f20965b[i13] = charAt;
                     }
                     i13 = i7;
                 }
                 aVar.a(i13, 1);
-                aVar.f20601b[i13] = '\"';
-                aVar.f20602c = i13 + 1;
+                aVar.f20965b[i13] = '\"';
+                aVar.f20966c = i13 + 1;
                 return;
             }
             i13++;
         }
         cArr[i12] = '\"';
-        aVar.f20602c = i12 + 1;
+        aVar.f20966c = i12 + 1;
     }
 
     public void k(me.d descriptor, int i7, String value) {
@@ -266,10 +266,10 @@ public final class h {
 
     public void l(me.d descriptor) {
         kotlin.jvm.internal.j.e(descriptor, "descriptor");
-        ca.i iVar = (ca.i) this.f55544b;
+        ca.i iVar = (ca.i) this.f56118b;
         iVar.getClass();
-        iVar.f4843b = false;
-        iVar.j(((j) this.d).f55556b);
+        iVar.f5125b = false;
+        iVar.j(((j) this.d).f56130b);
     }
 
     public FileInputStream m(AssetManager assetManager, String str) {
@@ -278,7 +278,7 @@ public final class h {
         } catch (FileNotFoundException e10) {
             String message = e10.getMessage();
             if (message != null && message.contains("compressed")) {
-                ((u4.c) this.f55545c).y();
+                ((u4.c) this.f56119c).A();
                 return null;
             }
             return null;
@@ -286,16 +286,16 @@ public final class h {
     }
 
     public void n(int i7, Serializable serializable) {
-        ((Executor) this.f55544b).execute(new u11(this, i7, serializable, 27));
+        ((Executor) this.f56118b).execute(new h01(this, i7, serializable, 28));
     }
 
     public void o() {
         boolean f10;
         int i7;
-        s4.e eVar = (s4.e) this.f55545c;
-        PackageManager packageManager = (PackageManager) this.f55546e;
-        ArrayList arrayList = (ArrayList) this.f55547f;
-        if (this.f55543a) {
+        s4.e eVar = (s4.e) this.f56119c;
+        PackageManager packageManager = (PackageManager) this.f56120e;
+        ArrayList arrayList = (ArrayList) this.f56121f;
+        if (this.f56117a) {
             ArrayList arrayList2 = new ArrayList();
             if (Build.VERSION.SDK_INT >= 30) {
                 Intent intent = new Intent("android.media.MediaRoute2ProviderService");
@@ -314,7 +314,7 @@ public final class h {
                 }
                 ServiceInfo serviceInfo = it.next().serviceInfo;
                 if (serviceInfo != null) {
-                    if (x.f56488c == null) {
+                    if (x.f57062c == null) {
                         f10 = false;
                     } else {
                         f10 = x.c().f();
@@ -336,7 +336,7 @@ public final class h {
                     int i12 = 0;
                     while (true) {
                         if (i12 < size2) {
-                            ComponentName componentName = ((r0) arrayList.get(i12)).f56451r;
+                            ComponentName componentName = ((r0) arrayList.get(i12)).f57025r;
                             if (componentName.getPackageName().equals(str) && componentName.getClassName().equals(str2)) {
                                 break;
                             }
@@ -347,10 +347,10 @@ public final class h {
                         }
                     }
                     if (i12 < 0) {
-                        r0 r0Var = new r0((Context) this.f55544b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
-                        r0Var.G = new z(this, r0Var);
-                        if (!r0Var.f56454x) {
-                            r0Var.f56454x = true;
+                        r0 r0Var = new r0((Context) this.f56118b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
+                        r0Var.G = new p(this, r0Var);
+                        if (!r0Var.f57028x) {
+                            r0Var.f57028x = true;
                             r0Var.r();
                         }
                         i7 = i10 + 1;
@@ -358,12 +358,12 @@ public final class h {
                         eVar.a(r0Var, false);
                     } else if (i12 >= i10) {
                         r0 r0Var2 = (r0) arrayList.get(i12);
-                        if (!r0Var2.f56454x) {
-                            r0Var2.f56454x = true;
+                        if (!r0Var2.f57028x) {
+                            r0Var2.f57028x = true;
                             r0Var2.r();
                         }
                         if (r0Var2.E == null) {
-                            if (!r0Var2.f56454x || (((n) r0Var2.h) == null && r0Var2.f56453w.isEmpty())) {
+                            if (!r0Var2.f57028x || (((n) r0Var2.h) == null && r0Var2.f57027w.isEmpty())) {
                                 z10 = false;
                             }
                             if (z10) {
@@ -384,16 +384,16 @@ public final class h {
                     if (d != null) {
                         r0Var3.getClass();
                         x.b();
-                        r0Var3.f6930f = null;
+                        r0Var3.f7213f = null;
                         r0Var3.h(null);
                         eVar.m(d, null);
-                        eVar.f56353a.b(514, d);
-                        eVar.f56362l.remove(d);
+                        eVar.f56927a.b(514, d);
+                        eVar.f56936l.remove(d);
                     }
                     arrayList.remove(r0Var3);
                     r0Var3.G = null;
-                    if (r0Var3.f56454x) {
-                        r0Var3.f56454x = false;
+                    if (r0Var3.f57028x) {
+                        r0Var3.f57028x = false;
                         r0Var3.r();
                     }
                 }
@@ -402,26 +402,26 @@ public final class h {
     }
 
     public boolean p(me.d dVar) {
-        ((o0) this.f55547f).getClass();
+        ((o0) this.f56121f).getClass();
         return false;
     }
 
     public h(Context context, s4.e eVar) {
-        this.f55547f = new ArrayList();
-        this.f55548g = new androidx.mediarouter.app.f(this, 12);
+        this.f56121f = new ArrayList();
+        this.f56122g = new androidx.mediarouter.app.f(this, 12);
         this.h = new s0(this, 0);
-        this.f55544b = context;
-        this.f55545c = eVar;
+        this.f56118b = context;
+        this.f56119c = eVar;
         this.d = new Handler();
-        this.f55546e = context.getPackageManager();
+        this.f56120e = context.getPackageManager();
     }
 
     public h(AssetManager assetManager, Executor executor, u4.c cVar, String str, File file) {
-        this.f55543a = false;
-        this.f55544b = executor;
-        this.f55545c = cVar;
-        this.f55548g = str;
-        this.f55546e = file;
+        this.f56117a = false;
+        this.f56118b = executor;
+        this.f56119c = cVar;
+        this.f56122g = str;
+        this.f56120e = file;
         int i7 = Build.VERSION.SDK_INT;
         byte[] bArr = null;
         if (i7 >= 24 && i7 <= 34) {
@@ -431,15 +431,15 @@ public final class h {
                     bArr = u4.d.h;
                     break;
                 case 26:
-                    bArr = u4.d.f57838g;
+                    bArr = u4.d.f58405g;
                     break;
                 case 27:
-                    bArr = u4.d.f57837f;
+                    bArr = u4.d.f58404f;
                     break;
                 case 28:
                 case 29:
                 case 30:
-                    bArr = u4.d.f57836e;
+                    bArr = u4.d.f58403e;
                     break;
                 case 31:
                 case 32:

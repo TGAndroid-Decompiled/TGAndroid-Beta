@@ -2,24 +2,24 @@ package m4;
 
 import java.util.Arrays;
 public final class j {
-    public static final byte[] f20275e = {0, 0, 1};
-    public boolean f20276a;
-    public int f20277b;
-    public int f20278c;
+    public static final byte[] f20639e = {0, 0, 1};
+    public boolean f20640a;
+    public int f20641b;
+    public int f20642c;
     public byte[] d;
 
     public final void a(int i7, int i10, byte[] bArr) {
-        if (!this.f20276a) {
+        if (!this.f20640a) {
             return;
         }
         int i11 = i10 - i7;
         byte[] bArr2 = this.d;
         int length = bArr2.length;
-        int i12 = this.f20277b + i11;
+        int i12 = this.f20641b + i11;
         if (length < i12) {
             this.d = Arrays.copyOf(bArr2, i12 * 2);
         }
-        System.arraycopy(bArr, i7, this.d, this.f20277b, i11);
-        this.f20277b += i11;
+        System.arraycopy(bArr, i7, this.d, this.f20641b, i11);
+        this.f20641b += i11;
     }
 }

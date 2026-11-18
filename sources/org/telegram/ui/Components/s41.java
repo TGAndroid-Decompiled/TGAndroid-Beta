@@ -1,102 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class s41 extends oy {
-    public final int X;
-    public final Object Y;
+import android.text.TextPaint;
+public final class s41 extends p41 {
+    public final int f39483e;
+    public final dz0 f39484f;
 
-    public s41(u41 u41Var, int i7, int i10) {
-        super(i7, false);
-        this.X = i10;
-        this.Y = u41Var;
+    public s41(String str, int i7, dz0 dz0Var) {
+        super(str, (dz0) null);
+        this.f39483e = i7;
+        this.f39484f = dz0Var;
     }
 
     @Override
-    public int A() {
-        switch (this.X) {
-            case 2:
-                return 0;
-            default:
-                return super.A();
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        int i7 = this.f39483e;
+        if (i7 == 3) {
+            textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.J6, false));
+        } else if (i7 == 2) {
+            textPaint.setColor(-1);
+        } else if (i7 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Yc, false));
+        } else {
+            textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Xc, false));
         }
-    }
-
-    @Override
-    public nt0 D1(int i7) {
-        switch (this.X) {
-            case 2:
-                nt0 nt0Var = (nt0) this.Y;
-                nt0Var.f37703b = 100.0f;
-                nt0Var.f37702a = 100.0f;
-                return nt0Var;
-            default:
-                return super.D1(i7);
+        dz0 dz0Var = this.f39484f;
+        if (dz0Var != null) {
+            dz0Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
         }
-    }
-
-    @Override
-    public void U(v4.w0 w0Var, v4.b1 b1Var, View view, s0.c cVar) {
-        e.a aVar;
-        switch (this.X) {
-            case 2:
-                super.U(w0Var, b1Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f56166a;
-                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-                if (collectionItemInfo != null) {
-                    aVar = new e.a(collectionItemInfo);
-                } else {
-                    aVar = null;
-                }
-                if (aVar != null) {
-                    Object obj = aVar.f9862a;
-                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.U(w0Var, b1Var, view, cVar);
-                return;
-        }
-    }
-
-    @Override
-    public int W0(v4.b1 b1Var) {
-        switch (this.X) {
-            case 0:
-                if (((u41) this.Y).f39894i3) {
-                    return org.telegram.messenger.g0.f23611q.y;
-                }
-                return super.W0(b1Var);
-            case 1:
-                if (((u41) this.Y).f39894i3) {
-                    return org.telegram.messenger.g0.f23611q.y;
-                }
-                return super.W0(b1Var);
-            default:
-                return super.W0(b1Var);
-        }
-    }
-
-    @Override
-    public void z0(v4.b1 b1Var, int[] iArr) {
-        switch (this.X) {
-            case 2:
-                super.z0(b1Var, iArr);
-                iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.o7.a(1) * 2);
-                return;
-            default:
-                super.z0(b1Var, iArr);
-                return;
-        }
-    }
-
-    public s41() {
-        super(100, false);
-        this.X = 2;
-        this.Y = new Object();
     }
 }

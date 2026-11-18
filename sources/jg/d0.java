@@ -2,7 +2,7 @@ package jg;
 
 import org.telegram.tgnet.TLObject;
 public final class d0 {
-    public TLObject f17048a;
-    public int f17049b;
-    public CharSequence f17050c;
+    public TLObject f17434a;
+    public int f17435b;
+    public CharSequence f17436c;
 }

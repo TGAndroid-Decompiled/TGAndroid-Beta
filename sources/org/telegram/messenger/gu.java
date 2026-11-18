@@ -1,237 +1,67 @@
 package org.telegram.messenger;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import java.util.ArrayList;
-public final class gu extends cu {
-    public final hv X;
-    public final hv Y;
-    public final boolean Z;
-    public final org.telegram.ui.Cells.s9[] f23916a0;
+public final class gu extends zt {
+    public final Paint X;
 
-    public gu(iv ivVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
-        super(ivVar, rect, i7);
-        hv hvVar;
-        if (!TextUtils.isEmpty(spannableStringBuilder)) {
-            hvVar = new hv(ivVar, spannableStringBuilder, this.f22943c);
-        } else {
-            hvVar = null;
-        }
-        this.X = hvVar;
-        hv hvVar2 = TextUtils.isEmpty(spannableStringBuilder2) ? null : new hv(ivVar, spannableStringBuilder2, this.f22943c);
-        this.Y = hvVar2;
-        this.Z = ivVar.I();
-        ArrayList arrayList = new ArrayList(2);
-        if (hvVar != null) {
-            arrayList.add(hvVar);
-        }
-        if (hvVar2 != null) {
-            arrayList.add(hvVar2);
-        }
-        this.f23916a0 = (org.telegram.ui.Cells.s9[]) arrayList.toArray(new org.telegram.ui.Cells.s9[0]);
+    public gu(ev evVar, Rect rect, int i7) {
+        super(evVar, rect, i7);
+        this.X = new Paint(1);
     }
 
     @Override
     public final int I() {
-        int i7;
-        Rect rect = this.f22942b;
-        int i10 = rect.top;
-        int i11 = 0;
-        hv hvVar = this.X;
-        if (hvVar != null) {
-            i7 = hvVar.f24222b.getHeight();
-        } else {
-            i7 = 0;
-        }
-        int j02 = j0() + i7 + i10;
-        hv hvVar2 = this.Y;
-        if (hvVar2 != null) {
-            i11 = hvVar2.f24222b.getHeight();
-        }
-        return j02 + i11 + rect.bottom;
-    }
-
-    @Override
-    public final int J() {
-        int i7;
-        int i10;
-        Rect rect = this.f22942b;
-        hv hvVar = this.Y;
-        if (hvVar != null) {
-            i7 = hvVar.q() + rect.left;
-            i10 = rect.right;
-        } else {
-            hv hvVar2 = this.X;
-            if (hvVar2 != null) {
-                i7 = hvVar2.q() + rect.left;
-                i10 = rect.right;
-            } else {
-                i7 = rect.left;
-                i10 = rect.right;
-            }
-        }
-        return i7 + i10;
+        Rect rect = this.f28352b;
+        return f3.C(6.0f, rect.top, 1) + rect.bottom;
     }
 
     @Override
     public final int K() {
-        int i7 = 0;
-        hv hvVar = this.X;
-        if (hvVar != null) {
-            i7 = Math.max(0, hvVar.r());
-        }
-        hv hvVar2 = this.Y;
-        if (hvVar2 != null) {
-            i7 = Math.max(i7, hvVar2.r());
-        }
-        Rect rect = this.f22942b;
-        return rect.left + i7 + rect.right;
-    }
-
-    @Override
-    public final org.telegram.ui.Cells.s9[] L() {
-        return this.f23916a0;
-    }
-
-    @Override
-    public final void T() {
-        hv hvVar = this.X;
-        if (hvVar != null) {
-            hvVar.i(this.W);
-        }
-        hv hvVar2 = this.Y;
-        if (hvVar2 != null) {
-            hvVar2.i(this.W);
-        }
-    }
-
-    @Override
-    public final void V() {
-        hv hvVar = this.X;
-        if (hvVar != null) {
-            hvVar.f(this.W);
-        }
-        hv hvVar2 = this.Y;
-        if (hvVar2 != null) {
-            hvVar2.f(this.W);
-        }
+        Rect rect = this.f28352b;
+        return g0.L(32.0f) + rect.left + rect.right;
     }
 
     @Override
     public final void W(Canvas canvas) {
         int i7;
-        hv hvVar = this.X;
-        if (hvVar != null) {
-            hvVar.d(canvas, hvVar.T);
-        }
-        hv hvVar2 = this.Y;
-        if (hvVar2 != null) {
-            canvas.save();
-            float i02 = i0();
-            if (hvVar != null) {
-                i7 = hvVar.f24222b.getHeight();
-            } else {
-                i7 = 0;
-            }
-            canvas.translate(i02, j0() + i7);
-            hvVar2.d(canvas, hvVar2.T);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final boolean Y(MotionEvent motionEvent) {
-        int i7;
-        Rect rect;
         int i10;
-        hv hvVar = this.X;
-        if (hvVar != null) {
-            i7 = hvVar.f24222b.getHeight();
+        float f10;
+        ev evVar = this.f28351a;
+        if (evVar.E()) {
+            i7 = org.telegram.ui.ActionBar.n6.xl;
         } else {
-            i7 = 0;
+            i7 = org.telegram.ui.ActionBar.n6.wl;
         }
-        int j02 = j0();
-        float y10 = motionEvent.getY();
-        int i11 = this.f22942b.top;
-        float f10 = y10 - i11;
-        if (hvVar != null && f10 >= 0.0f && f10 < i7) {
-            motionEvent.offsetLocation(0.0f, -i11);
-            boolean t6 = hvVar.t(motionEvent);
-            motionEvent.offsetLocation(0.0f, rect.top);
-            return t6;
-        }
-        hv hvVar2 = this.Y;
-        if (hvVar2 == null || f10 < i7 + j02) {
-            return false;
-        }
-        int i02 = i0();
-        motionEvent.offsetLocation(-i02, -i10);
-        boolean t10 = hvVar2.t(motionEvent);
-        motionEvent.offsetLocation(i02, i11 + i7 + j02);
-        return t10;
-    }
-
-    @Override
-    public final void Z(int i7, int i10, int i11) {
-        int i12;
-        this.T = i7;
-        this.U = i10;
-        this.V = i11;
-        hv hvVar = this.X;
-        if (hvVar != null) {
-            hvVar.f24223c = i7 - hvVar.f24225f;
-            hvVar.d = i10;
-            hvVar.f24224e = i11;
-        }
-        hv hvVar2 = this.Y;
-        if (hvVar2 != null) {
-            hvVar2.f24223c = (i0() + i7) - hvVar2.f24225f;
-            if (hvVar != null) {
-                i12 = hvVar.f24222b.getHeight();
+        int w02 = org.telegram.ui.ActionBar.n6.w0(i7, evVar.D);
+        Paint paint = this.X;
+        paint.setColor(w02);
+        float f11 = -evVar.S;
+        int i11 = evVar.C + evVar.T;
+        Rect rect = this.f28352b;
+        float f12 = (i11 - rect.left) - rect.right;
+        float f13 = 0.0f;
+        if (evVar.f23786s) {
+            if (this.S) {
+                f10 = 1.0f;
             } else {
-                i12 = 0;
+                f10 = 0.0f;
             }
-            hvVar2.d = j0() + i12 + i10;
-            hvVar2.f24224e = i11;
-        }
-    }
-
-    public final int i0() {
-        hv hvVar = this.Y;
-        if (hvVar == null || !this.Z) {
-            return 0;
-        }
-        int i7 = this.f22941a.C;
-        Rect rect = this.f22942b;
-        return Math.max(0, ((i7 - rect.left) - rect.right) - hvVar.r());
-    }
-
-    public final int j0() {
-        if (this.X != null && this.Y != null) {
-            return g0.L(4.0f);
-        }
-        return 0;
-    }
-
-    @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        StaticLayout staticLayout;
-        cu.l(spannableStringBuilder, this.X, null);
-        hv hvVar = this.Y;
-        if (hvVar != null && (staticLayout = hvVar.f24222b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
-            if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != '\n') {
-                spannableStringBuilder.append('\n');
+            if (this.R) {
+                f13 = 1.0f;
             }
-            spannableStringBuilder.append(staticLayout.getText());
+            f13 = g0.T1(f10, f13, evVar.f23787t);
+        } else if (this.R) {
+            f13 = 1.0f;
         }
-    }
-
-    @Override
-    public final boolean v() {
-        return false;
+        fu fuVar = this.M;
+        if (fuVar != null) {
+            i10 = fuVar.f28352b.bottom;
+        } else {
+            i10 = 0;
+        }
+        float T1 = g0.T1((-1.0f) - i10, g0.L(6.0f), f13);
+        canvas.drawRect(f11, T1, f12, T1 + 1.0f, paint);
     }
 }

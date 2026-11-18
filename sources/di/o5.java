@@ -1,173 +1,79 @@
 package di;
 
-import android.content.Context;
-import android.graphics.Camera;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-public final class o5 extends View {
-    public float E;
-    public float F;
-    public final Camera G;
-    public final h6.m H;
-    public final RectF I;
-    public j5 f9146a;
-    public j5 f9147b;
-    public j5 f9148c;
-    public float d;
-    public float f9149e;
-    public float f9150f;
-    public boolean h;
-    public boolean f9151n;
-    public boolean f9152r;
-    public i5 f9153s;
-    public i5 f9154w;
-    public i5 f9155x;
-    public float f9156y;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stars;
+public final class o5 {
+    public final z5 f9432a;
+    public t5 f9433b;
+    public t5 f9434c;
+    public t5 d;
+    public k5 h;
+    public k5 f9438i;
+    public k5 f9439j;
+    public k5 f9440k;
+    public TL_stars.TL_starGiftUnique f9441l;
+    public long f9442m;
+    public k1 f9447r;
+    public k1 f9448s;
+    public float f9449t;
+    public boolean f9450u;
+    public boolean v;
+    public final ArrayList f9435e = new ArrayList();
+    public final ArrayList f9436f = new ArrayList();
+    public final ArrayList f9437g = new ArrayList();
+    public float f9443n = 0.0f;
+    public boolean f9444o = false;
+    public boolean f9445p = false;
+    public boolean f9446q = false;
 
-    public o5(Context context) {
-        super(context);
-        this.G = new Camera();
-        this.H = new h6.m(29);
-        this.I = new RectF();
+    public o5(z5 z5Var) {
+        this.f9432a = z5Var;
+        z5Var.f10126c.addOnAttachStateChangeListener(new bi.r2(this, 4));
     }
 
-    public final void a(Canvas canvas, i5 i5Var, float f10, float f11, float f12, int[] iArr, int[] iArr2, int[] iArr3) {
-        float f13;
-        float f14;
-        float f15;
-        if (i5Var != null) {
-            Matrix matrix = i5Var.d;
-            Paint paint = i5Var.f8796c;
-            if (paint != null) {
-                float f16 = (f10 - 0.5f) / 1.5f;
-                float l10 = Utilities.l(1.0f - Math.abs(f16));
-                float max = Math.max(0.8f * f11, org.telegram.messenger.g0.L(180.0f));
-                float x10 = org.telegram.ui.Cells.y0.x(f16, max, 1.8f, f11 / 2.0f);
-                float min = Math.min(org.telegram.messenger.g0.L(176.0f), f12) / 2.0f;
-                float f17 = x10 - max;
-                float f18 = x10 + max;
-                canvas.saveLayerAlpha(f17, 0.0f, f18, f12, 255, 31);
-                matrix.reset();
-                matrix.postTranslate(x10, min);
-                i5Var.f8797e.setLocalMatrix(matrix);
-                paint.setAlpha((int) (l10 * 255.0f));
-                canvas.drawRect(f17, 0.0f, f18, f12, paint);
-                canvas.save();
-                float L = org.telegram.messenger.g0.L(90.0f);
-                RectF rectF = this.I;
-                rectF.set(f17, 0.0f, f17 + L, f12);
-                h6.m mVar = this.H;
-                mVar.m(canvas, rectF, 0, 1.0f);
-                rectF.set(f18 - L, 0.0f, f18, f12);
-                mVar.m(canvas, rectF, 2, 1.0f);
-                canvas.restore();
-                canvas.restore();
-                for (int i7 = 0; i7 < iArr.length; i7++) {
-                    float width = (getWidth() / (iArr.length - 1)) * i7;
-                    if (width >= f17 && width <= f18) {
-                        f15 = Math.min(Utilities.l((width - f17) / max), Utilities.l(1.0f - ((width - (f18 - max)) / max)));
-                    } else {
-                        f15 = 0.0f;
-                    }
-                    iArr[i7] = org.telegram.ui.ActionBar.j6.w(iArr[i7], org.telegram.ui.ActionBar.j6.r1(l10 * f15, i5Var.f8799g));
-                }
-                for (int i10 = 0; i10 < iArr2.length; i10++) {
-                    float width2 = (getWidth() / (iArr2.length - 1)) * i10;
-                    if (width2 >= f17 && width2 <= f18) {
-                        f14 = Math.min(Utilities.l((width2 - f17) / max), Utilities.l(1.0f - ((width2 - (f18 - max)) / max)));
-                    } else {
-                        f14 = 0.0f;
-                    }
-                    iArr2[i10] = org.telegram.ui.ActionBar.j6.w(iArr2[i10], org.telegram.ui.ActionBar.j6.r1(l10 * f14, i5Var.f8798f));
-                }
-                for (int i11 = 0; i11 < iArr3.length; i11++) {
-                    float width3 = (getWidth() / (iArr2.length - 1)) * i11;
-                    if (width3 >= f17 && width3 <= f18) {
-                        f13 = Math.min(Utilities.l((width3 - f17) / max), Utilities.l(1.0f - ((width3 - (f18 - max)) / max)));
-                    } else {
-                        f13 = 0.0f;
-                    }
-                    iArr3[i11] = org.telegram.ui.ActionBar.j6.w(iArr3[i11], org.telegram.ui.ActionBar.j6.r1(l10 * f13, i5Var.h));
-                }
-            }
+    public final void a() {
+        this.f9444o = false;
+        this.f9432a.f10126c.c();
+        k5 k5Var = this.h;
+        if (k5Var != null) {
+            k5Var.a();
         }
+        k5 k5Var2 = this.f9438i;
+        if (k5Var2 != null) {
+            k5Var2.a();
+        }
+        k5 k5Var3 = this.f9439j;
+        if (k5Var3 != null) {
+            k5Var3.a();
+        }
+        k5 k5Var4 = this.f9440k;
+        if (k5Var4 != null) {
+            k5Var4.a();
+        }
+        c();
     }
 
-    public final void b(Canvas canvas, j5 j5Var, float f10, boolean z10) {
-        if (j5Var == null) {
-            return;
+    public final void b() {
+        if (this.f9444o && !this.v) {
+            this.v = true;
+            org.telegram.messenger.g0.g3(new i5(this, 1));
         }
-        ImageReceiver imageReceiver = j5Var.d;
-        float f11 = f10;
-        if (z10) {
-            f11 = Math.max(0.5f, f11);
-        }
-        float f12 = imageReceiver.L0;
-        float f13 = imageReceiver.M0;
-        float f14 = imageReceiver.N0;
-        float f15 = imageReceiver.O0;
-        float alpha = imageReceiver.getAlpha();
-        float f16 = (f11 - 0.5f) / 1.5f;
-        float l10 = Utilities.l(1.0f - Math.abs(f16));
-        float width = (getWidth() / 2.0f) - (org.telegram.messenger.g0.L(220.0f) * f16);
-        float L = org.telegram.messenger.g0.L(80.0f);
-        float T1 = org.telegram.messenger.g0.T1(0.85f, 1.0f, l10);
-        float L2 = org.telegram.messenger.g0.L(160.0f);
-        canvas.save();
-        float f17 = ((L2 / 2.0f) * f16) + width;
-        canvas.translate(f17, L);
-        Camera camera = this.G;
-        camera.save();
-        camera.rotateY(f16 * (-30.0f));
-        camera.applyToCanvas(canvas);
-        camera.restore();
-        canvas.translate(-f17, -L);
-        float f18 = L2 * T1;
-        float f19 = f18 / 2.0f;
-        imageReceiver.y0(width - f19, L - f19, f18, f18);
-        imageReceiver.setAlpha(l10);
-        imageReceiver.h(canvas, null);
-        imageReceiver.y0(f12, f13, f14, f15);
-        imageReceiver.setAlpha(alpha);
-        canvas.restore();
     }
 
     public final void c() {
-        boolean z10;
-        if (this.f9146a == null && this.f9147b == null && this.f9148c == null && this.f9153s == null && this.f9154w == null && this.f9155x == null) {
-            z10 = false;
-        } else {
-            z10 = true;
+        if (this.f9444o) {
+            return;
         }
-        this.f9148c = null;
-        this.f9147b = null;
-        this.f9146a = null;
-        this.f9150f = 0.0f;
-        this.f9149e = 0.0f;
-        this.d = 0.0f;
-        this.f9152r = false;
-        this.f9151n = false;
-        this.h = false;
-        this.f9155x = null;
-        this.f9154w = null;
-        this.f9153s = null;
-        this.F = 0.0f;
-        this.E = 0.0f;
-        this.f9156y = 0.0f;
-        if (z10) {
-            invalidate();
+        ArrayList arrayList = this.f9435e;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ((m5) obj).a();
         }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f9146a, this.d, this.h);
-        b(canvas, this.f9147b, this.f9149e, this.f9151n);
-        b(canvas, this.f9148c, this.f9150f, this.f9152r);
+        arrayList.clear();
+        this.f9436f.clear();
+        this.f9437g.clear();
     }
 }

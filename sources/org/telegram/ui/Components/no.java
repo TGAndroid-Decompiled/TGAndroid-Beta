@@ -1,52 +1,70 @@
 package org.telegram.ui.Components;
-public final class no implements Runnable {
-    public final int f37653a;
-    public final ep f37654b;
 
-    public no(ep epVar, int i7) {
-        this.f37653a = i7;
-        this.f37654b = epVar;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class no extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
+    public final int U;
+    public Object V;
+
+    public no(int i7, int i10, int i11, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(i7, i10, context, i6Var);
+        this.U = i11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37653a) {
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        switch (this.U) {
             case 0:
-                this.f37654b.f34396r1.f();
-                return;
+                canvas.save();
+                Path path = (Path) this.V;
+                path.rewind();
+                RectF rectF = org.telegram.messenger.g0.P;
+                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                path.addRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), Path.Direction.CW);
+                canvas.clipPath(path);
+                boolean drawChild = super.drawChild(canvas, view, j3);
+                canvas.restore();
+                return drawChild;
             case 1:
-                this.f37654b.K0(true);
-                return;
+                canvas.save();
+                Path path2 = (Path) this.V;
+                path2.rewind();
+                RectF rectF2 = org.telegram.messenger.g0.P;
+                rectF2.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                path2.addRoundRect(rectF2, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), Path.Direction.CW);
+                canvas.clipPath(path2);
+                boolean drawChild2 = super.drawChild(canvas, view, j3);
+                canvas.restore();
+                return drawChild2;
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        int i11;
+        switch (this.U) {
             case 2:
-                ep epVar = this.f37654b;
-                org.telegram.ui.an anVar = epVar.f34400v1;
-                org.telegram.ui.ActionBar.e2 g02 = org.telegram.ui.z41.g0(anVar.getMessagesController().M0(Long.valueOf(-anVar.a())), true);
-                ?? obj = new Object();
-                obj.f28476a = true;
-                g02.setResourceProvider(anVar.getResourceProvider());
-                obj.f28478c = new ih(2);
-                obj.d = new no(epVar, 3);
-                obj.f28477b = new no(epVar, 4);
-                obj.f28479e = true;
-                epVar.R1 = g02;
-                anVar.showAsSheet(g02, obj);
-                return;
-            case 3:
-                this.f37654b.O0();
-                return;
-            case 4:
-                this.f37654b.R1 = null;
-                return;
-            case 5:
-                this.f37654b.O0();
-                return;
-            case 6:
-                this.f37654b.R1 = null;
+                y60 y60Var = (y60) this.V;
+                if (this == y60Var.A && (i11 = y60Var.f42343a0) > 0) {
+                    i10 = View.MeasureSpec.makeMeasureSpec(Math.min(i11, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10));
+                }
+                super.onMeasure(i7, i10);
                 return;
             default:
-                ep epVar2 = this.f37654b;
-                epVar2.O1.c(epVar2.A1);
+                super.onMeasure(i7, i10);
                 return;
         }
+    }
+
+    public no(y60 y60Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
+        super(2131232569, i7, context, i6Var);
+        this.U = 2;
+        this.V = y60Var;
     }
 }

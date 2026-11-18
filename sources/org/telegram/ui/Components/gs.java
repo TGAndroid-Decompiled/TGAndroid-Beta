@@ -1,79 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-public final class gs extends AnimatorListenerAdapter {
-    public final int f35047a = 1;
-    public final v4.e1 f35048b;
-    public final View f35049c;
-    public final ViewPropertyAnimator d;
-    public final ks f35050e;
+import java.util.ArrayList;
+public final class gs implements Runnable {
+    public final int f35555a;
+    public final hs f35556b;
 
-    public gs(ks ksVar, v4.e1 e1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.f35050e = ksVar;
-        this.f35048b = e1Var;
-        this.d = viewPropertyAnimator;
-        this.f35049c = view;
+    public gs(hs hsVar, int i7) {
+        this.f35555a = i7;
+        this.f35556b = hsVar;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f35047a) {
-            case 1:
-                this.f35049c.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35047a) {
+    public final void run() {
+        switch (this.f35555a) {
             case 0:
-                this.d.setListener(null);
-                this.f35049c.setAlpha(1.0f);
-                ks ksVar = this.f35050e;
-                v4.e1 e1Var = this.f35048b;
-                ksVar.d(e1Var);
-                ksVar.f36591x.remove(e1Var);
-                ksVar.A();
-                return;
-            default:
-                this.d.setListener(null);
-                ks ksVar2 = this.f35050e;
-                v4.e1 e1Var2 = this.f35048b;
-                ksVar2.u(e1Var2);
-                ksVar2.v.remove(e1Var2);
-                ksVar2.A();
-                View view = e1Var2.f58535a;
-                if (view instanceof org.telegram.ui.Cells.t2) {
-                    ((org.telegram.ui.Cells.t2) view).setMoving(false);
+                hs hsVar = this.f35556b;
+                hsVar.f35959c = false;
+                hsVar.f35958b.run();
+                ArrayList arrayList = hsVar.h;
+                if (arrayList.isEmpty() || System.currentTimeMillis() - hsVar.f35961f > 3600000) {
+                    arrayList.clear();
+                    hsVar.f35960e = false;
+                    hsVar.f35962g = null;
+                    hsVar.a();
                     return;
                 }
                 return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f35047a) {
-            case 0:
-                this.f35050e.y();
-                return;
             default:
-                this.f35050e.getClass();
+                this.f35556b.f35963i = false;
                 return;
         }
-    }
-
-    public gs(ks ksVar, v4.e1 e1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.f35050e = ksVar;
-        this.f35048b = e1Var;
-        this.f35049c = view;
-        this.d = viewPropertyAnimator;
     }
 }

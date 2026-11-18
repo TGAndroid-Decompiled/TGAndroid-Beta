@@ -1,238 +1,303 @@
 package org.telegram.messenger;
 
-import android.content.Intent;
-import android.os.BatteryManager;
-import android.os.Bundle;
-import android.os.Environment;
+import android.app.AppOpsManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Process;
 import android.os.SystemClock;
+import android.text.TextUtils;
 import android.util.LongSparseArray;
+import com.google.android.gms.tasks.TaskExecutors;
+import java.io.BufferedReader;
 import java.io.File;
-import java.util.regex.Pattern;
-import org.telegram.messenger.support.JobIntentService;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class c6 implements Runnable {
-    public final int f22804a;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+public abstract class c6 {
+    public static double f23266a;
+    public static long f23267b;
+    public static final String[] f23268c = {"bluestacks", "memuhyperv", "virtualbox"};
+    public static mv d;
+    public static mv f23269e;
+    public static mv f23270f;
+    public static SharedPreferences f23271g;
 
-    public c6(int i7) {
-        this.f22804a = i7;
+    public static void a(int i7) {
+        SharedPreferences sharedPreferences = f23271g;
+        if (sharedPreferences != null) {
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            for (String str : f23271g.getAll().keySet()) {
+                if (str.startsWith("confirm_shown_" + i7 + "_")) {
+                    edit.remove(str);
+                }
+            }
+            edit.apply();
+        }
     }
 
-    @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.e2 Q;
-        switch (this.f22804a) {
-            case 0:
-                ns.e().k(259, new Object[0]);
-                return;
-            case 1:
-                KeepAliveJob.a();
-                return;
-            case 2:
-                if (!KeepAliveJob.f22318b && KeepAliveJob.f22317a == null) {
-                    try {
-                        if (r2.f26206a) {
-                            a8.b("starting keep-alive job");
+    public static boolean b() {
+        File file = new File("/proc/bus/input/devices");
+        ArrayList arrayList = null;
+        if (file.canRead()) {
+            try {
+                ArrayList arrayList2 = new ArrayList();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+                while (true) {
+                    String readLine = bufferedReader.readLine();
+                    if (readLine == null) {
+                        break;
+                    } else if (readLine.startsWith("N: Name=\"")) {
+                        String substring = readLine.substring(9, readLine.length() - 1);
+                        if (!TextUtils.isEmpty(substring)) {
+                            arrayList2.add(substring);
                         }
-                        synchronized (KeepAliveJob.f22319c) {
-                            KeepAliveJob.f22318b = true;
-                        }
-                        JobIntentService.enqueueWork(t0.f26609b, KeepAliveJob.class, 1000, new Intent());
-                        return;
-                    } catch (Exception unused) {
-                        return;
                     }
                 }
-                return;
-            case 3:
-                int i7 = -1;
-                try {
-                    BatteryManager batteryManager = (BatteryManager) t0.f26609b.getSystemService("batterymanager");
-                    if (batteryManager != null) {
-                        i7 = batteryManager.getIntProperty(4);
-                    }
-                } catch (Throwable th2) {
-                    a8.g(th2, true);
-                }
-                qc.f26075l = SystemClock.elapsedRealtime();
-                qc.f26076m = false;
-                if (i7 >= 0 && i7 <= 100) {
-                    qc.f26075l = SystemClock.elapsedRealtime();
-                    if (qc.f26074k != i7) {
-                        qc.f26074k = i7;
-                        g0.h3(new c6(4));
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                qc.d(false);
-                return;
-            case 5:
-                ns.e().k(274, new Object[0]);
-                return;
-            case 6:
-                ns.e().k(281, new Object[0]);
-                return;
-            case 7:
-                int i10 = LocationSharingService.d;
-                for (int i11 = 0; i11 < 4; i11++) {
-                    rd.f(i11).t();
-                }
-                return;
-            case 8:
-                MediaController.Z1 = null;
-                MediaController.O(0);
-                return;
-            case 9:
-                try {
-                    g0.f.n(t0.f26609b);
-                    return;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                    return;
-                }
-            case 10:
-                org.telegram.ui.ActionBar.j6.F(false);
-                return;
-            case 11:
-                ns.e().k(254, new Object[0]);
-                return;
-            case 12:
-                gz.y();
-                return;
-            case 13:
-                try {
-                    File file = new File(Environment.getExternalStorageDirectory(), "Telegram");
-                    File file2 = new File(file, "Telegram Images");
-                    file2.mkdir();
-                    File file3 = new File(file, "Telegram Video");
-                    file3.mkdir();
-                    if (!r2.f26207b) {
-                        if (file2.isDirectory()) {
-                            new File(file2, ".nomedia").delete();
-                        }
-                        if (file3.isDirectory()) {
-                            new File(file3, ".nomedia").delete();
-                            return;
-                        }
-                        return;
-                    }
-                    if (file2.isDirectory()) {
-                        g0.G(new File(file2, ".nomedia"));
-                    }
-                    if (file3.isDirectory()) {
-                        g0.G(new File(file3, ".nomedia"));
-                        return;
-                    }
-                    return;
-                } catch (Throwable th3) {
-                    a8.g(th3, true);
-                    return;
-                }
-            case 14:
-                if (!gz.f23935b && (Q = LaunchActivity.Q()) != null && Q.getParentActivity() != null) {
-                    gz.f23952h0 = null;
-                    gz.y();
-                    fc.D().i(new c6(15));
-                    gz.f23935b = true;
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(Q.getParentActivity());
-                    alertDialog$Builder.f28392a.S = hd.M0(2131745838, null);
-                    alertDialog$Builder.f28392a.T = hd.M0(2131745837, null);
-                    alertDialog$Builder.k(hd.M0(2131751355, null), new fd(15));
-                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                    t1Var.setCanceledOnTouchOutside(false);
-                    t1Var.show();
-                    return;
-                }
-                return;
-            case 15:
-                int i12 = gz.f23932a;
-                return;
-            case 16:
-                pz.f26024y = null;
-                return;
-            case 17:
-                org.telegram.ui.ActionBar.j6.F(false);
-                return;
-            case 18:
-                int i13 = org.telegram.ui.an.f45107ld;
-                return;
-            case 19:
-                ch.l0.b(true);
-                return;
-            case 20:
-                ns e11 = ns.e();
-                Boolean bool = Boolean.TRUE;
-                e11.k(264, Boolean.FALSE, bool, bool);
-                return;
-            case 21:
-                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
-                if (T != 0) {
-                    ?? obj = new Object();
-                    obj.f28476a = true;
-                    T.showAsSheet(new PremiumPreviewFragment(0, "schedule_repeat"), obj);
-                    return;
-                }
-                return;
-            case 22:
-                Pattern pattern = org.telegram.ui.Components.t4.f39505a;
-                return;
-            case 23:
-                g0.r(org.telegram.ui.Components.g5.f34803w);
-                try {
-                    if (org.telegram.ui.Components.g5.f34799r != null) {
-                        for (int i14 = 0; i14 < org.telegram.ui.Components.g5.f34799r.size(); i14++) {
-                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.g5.f34799r.valueAt(i14);
-                            int i15 = 0;
-                            while (i15 < longSparseArray.size()) {
-                                if (!((org.telegram.ui.Components.g5) longSparseArray.valueAt(i15)).f34805a) {
-                                    longSparseArray.removeAt(i15);
-                                    i15--;
-                                }
-                                i15++;
-                            }
-                        }
-                        return;
-                    }
-                    return;
-                } catch (Exception unused2) {
-                    boolean z10 = r2.f26206a;
-                    return;
-                }
-            case 24:
-                org.telegram.ui.Components.y7 y7Var = org.telegram.ui.Components.y7.T2;
-                return;
-            case 25:
-                tv.h();
-                return;
-            case 26:
-                LaunchActivity launchActivity = LaunchActivity.H1;
-                if (launchActivity != null && !launchActivity.isFinishing()) {
-                    Intent intent = new Intent("android.intent.action.VIEW_DOWNLOADS");
-                    intent.setFlags(268468224);
-                    LaunchActivity.H1.startActivity(intent);
-                    return;
-                }
-                return;
-            case 27:
-                org.telegram.ui.ActionBar.e2 Q2 = LaunchActivity.Q();
-                if (Q2 != null) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", m10.i(Q2.getCurrentAccount()).e());
-                    bundle.putInt("chatMode", 1);
-                    Q2.presentFragment(new org.telegram.ui.an(bundle));
-                    return;
-                }
-                return;
-            case 28:
-                MediaController.B().B0(0, 0, false, false);
-                return;
-            default:
-                MediaController.B().B0(0, 0, false, false);
-                return;
+                bufferedReader.close();
+                arrayList = arrayList2;
+            } catch (IOException e10) {
+                a8.g(e10, true);
+            }
         }
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList.get(i7);
+                i7++;
+                String str = (String) obj;
+                for (int i10 = 0; i10 < 3; i10++) {
+                    if (str.toLowerCase().contains(f23268c[i10])) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void c(String str, nc ncVar, mc mcVar) {
+        d(str, ncVar, mcVar, false);
+    }
+
+    public static void d(String str, nc ncVar, mc mcVar, boolean z10) {
+        if (z10) {
+            try {
+                Context context = t0.f26915b;
+                synchronized (pb.g.f55522b) {
+                    pb.g.d(context, TaskExecutors.MAIN_THREAD);
+                }
+            } catch (IllegalStateException e10) {
+                if (!z10) {
+                    d(str, ncVar, mcVar, true);
+                    return;
+                }
+                mcVar.q(e10);
+                a8.g(e10, false);
+                return;
+            } catch (Exception e11) {
+                mcVar.q(e11);
+                a8.g(e11, true);
+                return;
+            } catch (Throwable th2) {
+                mcVar.q(null);
+                a8.g(th2, false);
+                return;
+            }
+        }
+        c8.ec.a().h(str).addOnSuccessListener(new j1(ncVar, 10)).addOnFailureListener(new j1(mcVar, 11));
+    }
+
+    public static synchronized long e() {
+        synchronized (c6.class) {
+            if (f23267b != 0 && SystemClock.elapsedRealtime() - f23267b <= 60000) {
+                return (long) f23266a;
+            }
+            return b3.g.c(t0.f26915b).a();
+        }
+    }
+
+    public static mv f(int i7) {
+        if (i7 == 1) {
+            return d;
+        }
+        if (i7 == 2) {
+            return f23269e;
+        }
+        if (i7 == 4) {
+            return f23270f;
+        }
+        return null;
+    }
+
+    public static boolean g() {
+        try {
+            Class cls = Integer.TYPE;
+            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) t0.f26915b.getSystemService("appops"), 10020, Integer.valueOf(Process.myUid()), t0.f26915b.getPackageName())).intValue() == 0) {
+                return true;
+            }
+            return false;
+        } catch (Exception e10) {
+            a8.g(e10, true);
+            return true;
+        }
+    }
+
+    public static boolean h() {
+        if (e() >= 3000000) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean i() {
+        return !TextUtils.isEmpty(g0.k1("ro.miui.ui.version.name"));
+    }
+
+    public static boolean j(int i7, long j3) {
+        return f23271g.getBoolean(String.format("confirm_shown_%d_%d", Integer.valueOf(i7), Long.valueOf(j3)), false);
+    }
+
+    public static void k(SharedPreferences sharedPreferences) {
+        int i7;
+        boolean z10;
+        boolean z11;
+        boolean z12 = false;
+        if (sharedPreferences.getBoolean("save_gallery", false) && s2.f26724b) {
+            i7 = 7;
+        } else {
+            i7 = sharedPreferences.getInt("save_gallery_flags", -1);
+        }
+        if (i7 != -1) {
+            sharedPreferences.edit().remove("save_gallery").remove("save_gallery_flags").apply();
+            ?? lvVar = new lv();
+            d = lvVar;
+            if ((i7 & 1) != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            lvVar.f25443b = z10;
+            lvVar.f25442a = z10;
+            lvVar.f25444c = 104857600L;
+            mv.c(lvVar, "user", sharedPreferences);
+            ?? lvVar2 = new lv();
+            f23269e = lvVar2;
+            mv mvVar = d;
+            if ((i7 & 2) != 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            mvVar.f25443b = z11;
+            lvVar2.f25442a = z11;
+            lvVar2.f25444c = 104857600L;
+            mv.c(lvVar2, "groups", sharedPreferences);
+            ?? lvVar3 = new lv();
+            f23270f = lvVar3;
+            if ((i7 & 4) != 0) {
+                z12 = true;
+            }
+            lvVar3.f25443b = z12;
+            lvVar3.f25442a = z12;
+            lvVar3.f25444c = 104857600L;
+            mv.c(lvVar3, "channels", sharedPreferences);
+        } else {
+            d = mv.d("user", sharedPreferences);
+            f23269e = mv.d("groups", sharedPreferences);
+            f23270f = mv.d("channels", sharedPreferences);
+        }
+        d.d = 1;
+        f23269e.d = 2;
+        f23270f.d = 4;
+    }
+
+    public static LongSparseArray l(SharedPreferences sharedPreferences) {
+        LongSparseArray longSparseArray = new LongSparseArray();
+        int i7 = sharedPreferences.getInt("count", 0);
+        for (int i10 = 0; i10 < i7; i10++) {
+            ?? lvVar = new lv();
+            lvVar.d = sharedPreferences.getLong(i10 + "_dialog_id", 0L);
+            lvVar.f25442a = sharedPreferences.getBoolean(i10 + "_photo", false);
+            lvVar.f25443b = sharedPreferences.getBoolean(i10 + "_video", false);
+            lvVar.f25444c = sharedPreferences.getLong(i10 + "_limitVideo", 104857600L);
+            long j3 = lvVar.d;
+            if (j3 != 0) {
+                longSparseArray.put(j3, lvVar);
+            }
+        }
+        return longSparseArray;
+    }
+
+    public static boolean m(int i7, e8 e8Var, fj fjVar, int i10) {
+        mv mvVar;
+        boolean z10;
+        long j3;
+        if (i7 == 1) {
+            mvVar = d;
+        } else if (i7 == 4) {
+            mvVar = f23270f;
+        } else {
+            if (i7 == 2) {
+                mvVar = f23269e;
+            }
+            return false;
+        }
+        mvVar.getClass();
+        kv kvVar = (kv) j10.i(i10).m(mvVar.d).get(e8Var.f23672a);
+        if (fjVar == null || (!fjVar.P3() && !fjVar.l4())) {
+            if ((fjVar != null && fj.L4(fjVar.f23968k)) || e8Var.f23674c == 3) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (fjVar != null) {
+                j3 = fjVar.S1();
+            } else {
+                j3 = e8Var.d;
+            }
+            boolean z11 = mvVar.f25443b;
+            boolean z12 = mvVar.f25442a;
+            long j10 = mvVar.f25444c;
+            if (kvVar != null) {
+                z11 = kvVar.f25443b;
+                z12 = kvVar.f25442a;
+                j10 = kvVar.f25444c;
+            }
+            if (!z10 ? z12 : !(!z11 || (j10 != -1 && j3 >= j10))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void n(SharedPreferences sharedPreferences, LongSparseArray longSparseArray) {
+        sharedPreferences.edit().clear().apply();
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putInt("count", longSparseArray.size());
+        for (int i7 = 0; i7 < longSparseArray.size(); i7++) {
+            kv kvVar = (kv) longSparseArray.valueAt(i7);
+            edit.putLong(com.google.android.gms.internal.vision.e2.i(i7, "_dialog_id"), kvVar.d);
+            edit.putBoolean(i7 + "_photo", kvVar.f25442a);
+            edit.putBoolean(i7 + "_video", kvVar.f25443b);
+            edit.putLong(i7 + "_limitVideo", kvVar.f25444c);
+        }
+        edit.apply();
+    }
+
+    public static void o(int i7) {
+        SharedPreferences sharedPreferences = t0.f26915b.getSharedPreferences("mainconfig", 0);
+        if (i7 == 1) {
+            mv.c(d, "user", sharedPreferences);
+        } else if (i7 == 2) {
+            mv.c(f23269e, "groups", sharedPreferences);
+        } else if (i7 == 4) {
+            mv.c(f23270f, "channels", sharedPreferences);
+        }
+    }
+
+    public static void p(int i7, long j3) {
+        f23271g.edit().putBoolean(String.format("confirm_shown_%d_%d", Integer.valueOf(i7), Long.valueOf(j3)), true).apply();
     }
 }

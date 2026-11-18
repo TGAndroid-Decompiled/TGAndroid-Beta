@@ -1,93 +1,89 @@
 package ug;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import c8.ja;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class j1 extends FrameLayout {
-    public float f58155a;
-    public final i1 f58156b;
-    public final ImageReceiver f58157c;
-    public final ImageReceiver d;
-    public boolean f58158e;
-    public boolean f58159f;
-    public float h;
-    public float f58160n;
-    public TLRPC.Document f58161r;
-    public boolean f58162s;
-    public final t0 f58163w;
+import androidx.recyclerview.widget.RecyclerView;
+public final class j1 extends v4.u0 {
+    public final int f58709a;
+    public final Object f58710b;
 
-    public j1(t0 t0Var, Context context) {
-        super(context);
-        this.f58163w = t0Var;
-        this.f58159f = true;
-        i1 i1Var = new i1(this, context);
-        this.f58156b = i1Var;
-        ImageReceiver imageReceiver = new ImageReceiver(i1Var);
-        this.f58157c = imageReceiver;
-        ImageReceiver imageReceiver2 = new ImageReceiver(i1Var);
-        this.d = imageReceiver2;
-        imageReceiver.f22301u0 = false;
-        imageReceiver2.f22301u0 = false;
-        setClipChildren(false);
-        addView(i1Var, ja.e(-1, -2, 21));
+    public j1(Object obj, int i7) {
+        this.f58709a = i7;
+        this.f58710b = obj;
     }
 
-    public final void a(boolean z10, boolean z11, boolean z12) {
-        float f10;
-        boolean z13 = this.f58158e;
-        i1 i1Var = this.f58156b;
-        float f11 = 0.0f;
-        if (z13 != z11) {
-            this.f58158e = z11;
-            if (!z12) {
-                if (z11) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
+    @Override
+    public void a(RecyclerView recyclerView, int i7) {
+        switch (this.f58709a) {
+            case 0:
+                v0 v0Var = (v0) this.f58710b;
+                if (i7 == 1) {
+                    v0Var.f58789l3 = true;
                 }
-                this.h = f10;
-            }
-            i1Var.invalidate();
-        }
-        if (this.f58159f != z10) {
-            this.f58159f = z10;
-            if (!z12) {
-                if (z10) {
-                    f11 = 1.0f;
+                if (i7 == 0) {
+                    m1 m1Var = null;
+                    for (int i10 = 0; i10 < recyclerView.getChildCount(); i10++) {
+                        m1 m1Var2 = (m1) v0Var.getChildAt(i10);
+                        if (m1Var == null || m1Var2.f58765a > m1Var.f58765a) {
+                            m1Var = m1Var2;
+                        }
+                    }
+                    if (m1Var != null) {
+                        v0Var.z1(m1Var, true);
+                        v0Var.f58789l3 = false;
+                        v0Var.w0(0, m1Var.getTop() - ((v0Var.getMeasuredHeight() - m1Var.getMeasuredHeight()) / 2), org.telegram.messenger.g0.H);
+                    }
+                    v0Var.A1();
+                    return;
                 }
-                this.f58160n = f11;
-            }
-            i1Var.invalidate();
+                org.telegram.messenger.g0.r(v0Var.f58790m3);
+                return;
+            case 1:
+            default:
+                return;
+            case 2:
+                if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(((wg.w0) this.f58710b).U1.getEditText());
+                    return;
+                }
+                return;
+            case 3:
+                if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(((wg.d1) this.f58710b).V1.getEditText());
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f58157c.P();
-        this.d.P();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f58157c.R();
-        this.d.R();
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11 = (int) (this.f58163w.f58190s3 * 0.6f);
-        i1 i1Var = this.f58156b;
-        ViewGroup.LayoutParams layoutParams = i1Var.getLayoutParams();
-        ViewGroup.LayoutParams layoutParams2 = i1Var.getLayoutParams();
-        int L = i11 - org.telegram.messenger.g0.L(16.0f);
-        layoutParams2.height = L;
-        layoutParams.width = L;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (i11 * 0.7f), 1073741824));
+    public void b(RecyclerView recyclerView, int i7, int i10) {
+        switch (this.f58709a) {
+            case 0:
+                v0 v0Var = (v0) this.f58710b;
+                if (recyclerView.getScrollState() == 1) {
+                    v0Var.z1(null, true);
+                }
+                v0Var.invalidate();
+                return;
+            case 1:
+                ((vh.g) this.f58710b).g1();
+                return;
+            case 2:
+            case 3:
+            default:
+                return;
+            case 4:
+                v4.c0 c0Var = (v4.c0) recyclerView.getLayoutManager();
+                zh.l lVar = (zh.l) this.f58710b;
+                zh.e eVar = lVar.C;
+                if (lVar.f62028x && !lVar.f62027w && c0Var != null) {
+                    if (lVar.f62012f.b() - c0Var.N0() < 10) {
+                        org.telegram.messenger.g0.r(eVar);
+                        org.telegram.messenger.g0.g3(eVar);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

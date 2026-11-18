@@ -1,24 +1,24 @@
 package org.telegram.ui.Components;
+public final class r70 implements Runnable {
+    public final int f39057a;
+    public final t70 f39058b;
+    public final boolean f39059c;
 
-import android.content.Context;
-import android.view.View;
-public final class r70 extends w8 {
-    public final di.e1 f38892e;
-
-    public r70(di.e1 e1Var, Context context) {
-        super(context, false);
-        this.f38892e = e1Var;
+    public r70(t70 t70Var, boolean z10, int i7) {
+        this.f39057a = i7;
+        this.f39058b = t70Var;
+        this.f39059c = z10;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int v;
-        int min = Math.min(3, ((t70) this.f38892e.d).f39583x);
-        if (min == 0) {
-            v = 0;
-        } else {
-            v = com.google.android.gms.internal.vision.e2.v(min, 1, 20, 32);
+    public final void run() {
+        switch (this.f39057a) {
+            case 0:
+                org.telegram.messenger.g0.g3(new r70(this.f39058b, this.f39059c, 1));
+                return;
+            default:
+                this.f39058b.setJoinRequest(this.f39059c);
+                return;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(v), 1073741824), i10);
     }
 }

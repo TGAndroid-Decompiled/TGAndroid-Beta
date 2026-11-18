@@ -4,37 +4,37 @@ import android.content.Intent;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
 public final class s implements Runnable {
-    public final int f26393a;
-    public final Intent f26394b;
+    public final int f26716a;
+    public final Intent f26717b;
 
     public s(Intent intent, int i7) {
-        this.f26393a = i7;
-        this.f26394b = intent;
+        this.f26716a = i7;
+        this.f26717b = intent;
     }
 
     @Override
     public final void run() {
-        switch (this.f26393a) {
+        switch (this.f26716a) {
             case 0:
-                Intent intent = this.f26394b;
+                Intent intent = this.f26717b;
                 try {
-                    int i7 = m10.f24940t0;
+                    int i7 = j10.f24773t0;
                     t0.w();
-                    if (!g0.p2(false) && !gz.C) {
+                    if (!g0.p2(false) && !bz.C) {
                         String stringExtra = intent.getStringExtra("android.intent.extra.TEXT");
                         if (!TextUtils.isEmpty(stringExtra)) {
                             String stringExtra2 = intent.getStringExtra("com.google.android.voicesearch.extra.RECIPIENT_CONTACT_URI");
                             long parseLong = Long.parseLong(intent.getStringExtra("com.google.android.voicesearch.extra.RECIPIENT_CONTACT_CHAT_ID"));
-                            TLRPC.User a22 = np.s1(i7).a2(Long.valueOf(parseLong));
-                            if (a22 == null && (a22 = vr.a0(i7).k0(parseLong)) != null) {
-                                np.s1(i7).X3(a22, true, false);
+                            TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(parseLong));
+                            if (c22 == null && (c22 = tr.a0(i7).k0(parseLong)) != null) {
+                                mp.u1(i7).e4(c22, true, false);
                             }
-                            if (a22 != null) {
-                                g5.r(i7);
+                            if (c22 != null) {
+                                i5.r(i7);
                                 if (stringExtra2 != null) {
-                                    Utilities.h.c(new l4(stringExtra2, 0));
+                                    Utilities.h.c(new n4(stringExtra2, 0));
                                 }
-                                ez.C(i7).r0(cz.b(stringExtra, a22.f28200id, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                                zy.C(i7).r0(xy.b(stringExtra, c22.f28554id, null, null, null, true, null, null, null, true, 0, 0, null, false));
                                 return;
                             }
                             return;
@@ -47,23 +47,23 @@ public final class s implements Runnable {
                     return;
                 }
             case 1:
-                t0.f26609b.sendBroadcast(this.f26394b);
+                t0.f26915b.sendBroadcast(this.f26717b);
                 return;
             case 2:
-                t0.f26609b.sendBroadcast(this.f26394b);
+                t0.f26915b.sendBroadcast(this.f26717b);
                 return;
             case 3:
-                t0.f26609b.sendBroadcast(this.f26394b);
+                t0.f26915b.sendBroadcast(this.f26717b);
                 return;
             case 4:
                 try {
-                    t0.f26609b.sendBroadcast(this.f26394b);
+                    t0.f26915b.sendBroadcast(this.f26717b);
                     return;
                 } catch (Exception unused) {
                     return;
                 }
             default:
-                t0.f26609b.sendBroadcast(this.f26394b);
+                t0.f26915b.sendBroadcast(this.f26717b);
                 return;
         }
     }

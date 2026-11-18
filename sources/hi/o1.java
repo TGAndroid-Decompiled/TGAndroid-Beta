@@ -9,54 +9,53 @@ import android.util.SparseArray;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.gz;
-import org.telegram.ui.Components.uj0;
-import org.telegram.ui.Components.wi0;
-public final class o1 extends uj0 {
-    public wi0 f14792f3;
-    public boolean f14793g3;
-    public float f14794h3;
-    public float f14795i3;
+import org.telegram.messenger.bz;
+import org.telegram.ui.Components.ck0;
+public final class o1 extends ck0 {
+    public org.telegram.ui.ActionBar.l5 f15130f3;
+    public boolean f15131g3;
+    public float f15132h3;
+    public float f15133i3;
     public boolean j3;
-    public final SparseArray f14796k3;
-    public final ArrayList f14797l3;
-    public final ArrayList f14798m3;
-    public final ArrayList f14799n3;
-    public final ArrayList f14800o3;
-    public final PorterDuffColorFilter f14801p3;
+    public final SparseArray f15134k3;
+    public final ArrayList f15135l3;
+    public final ArrayList f15136m3;
+    public final ArrayList f15137n3;
+    public final ArrayList f15138o3;
+    public final PorterDuffColorFilter f15139p3;
 
     public o1(Context context) {
         super(context, null);
         this.j3 = false;
-        this.f14796k3 = new SparseArray();
-        this.f14797l3 = new ArrayList();
-        this.f14798m3 = new ArrayList();
-        this.f14799n3 = new ArrayList();
-        this.f14800o3 = new ArrayList();
-        this.f14801p3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f15134k3 = new SparseArray();
+        this.f15135l3 = new ArrayList();
+        this.f15136m3 = new ArrayList();
+        this.f15137n3 = new ArrayList();
+        this.f15138o3 = new ArrayList();
+        this.f15139p3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static void z1(o1 o1Var, int i7, int i10) {
         int i11;
-        if (o1Var.f14792f3 != null && (o1Var.getLayoutManager() instanceof v4.s)) {
-            v4.s sVar = (v4.s) o1Var.getLayoutManager();
-            View m10 = sVar.m(i7);
-            int L0 = sVar.L0();
-            if ((m10 == null && Math.abs(i7 - L0) > sVar.J * 9.0f) || !gz.c()) {
-                wi0 wi0Var = o1Var.f14792f3;
-                if (sVar.L0() < i7) {
+        if (o1Var.f15130f3 != null && (o1Var.getLayoutManager() instanceof v4.t)) {
+            v4.t tVar = (v4.t) o1Var.getLayoutManager();
+            View m10 = tVar.m(i7);
+            int L0 = tVar.L0();
+            if ((m10 == null && Math.abs(i7 - L0) > tVar.J * 9.0f) || !bz.c()) {
+                org.telegram.ui.ActionBar.l5 l5Var = o1Var.f15130f3;
+                if (tVar.L0() < i7) {
                     i11 = 0;
                 } else {
                     i11 = 1;
                 }
-                wi0Var.f41357b = i11;
-                o1Var.f14792f3.d(i7, i10, false, false);
+                l5Var.f29201b = i11;
+                o1Var.f15130f3.k(i7, i10, false, false);
                 return;
             }
             l1 l1Var = new l1(0, o1Var.getContext(), o1Var);
-            l1Var.f58480a = i7;
-            l1Var.f55123p = i10;
-            sVar.w0(l1Var);
+            l1Var.f59066a = i7;
+            l1Var.f55699p = i10;
+            tVar.w0(l1Var);
         }
     }
 
@@ -72,8 +71,8 @@ public final class o1 extends uj0 {
         }
         int saveCount = canvas.getSaveCount();
         canvas.save();
-        canvas.clipRect(0.0f, this.f14794h3, getWidth(), this.f14795i3);
-        if (!this.f14793g3) {
+        canvas.clipRect(0.0f, this.f15132h3, getWidth(), this.f15133i3);
+        if (!this.f15131g3) {
             super.dispatchDraw(canvas);
             canvas.restore();
             return;
@@ -82,7 +81,7 @@ public final class o1 extends uj0 {
         if (!rect.isEmpty()) {
             this.C1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f40067n2;
+            q0.a aVar = this.f34072n2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -92,9 +91,9 @@ public final class o1 extends uj0 {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            sparseArray = this.f14796k3;
+            sparseArray = this.f15134k3;
             int size = sparseArray.size();
-            arrayList = this.f14797l3;
+            arrayList = this.f15135l3;
             if (i10 >= size) {
                 break;
             }
@@ -108,7 +107,7 @@ public final class o1 extends uj0 {
             View childAt = getChildAt(i11);
             if (childAt instanceof n1) {
                 n1 n1Var = (n1) childAt;
-                if (n1Var.getY() < this.f14795i3 && n1Var.getY() + n1Var.getHeight() > this.f14794h3) {
+                if (n1Var.getY() < this.f15133i3 && n1Var.getY() + n1Var.getHeight() > this.f15132h3) {
                     if (this.j3) {
                         top = (int) n1Var.getY();
                     } else {
@@ -117,7 +116,7 @@ public final class o1 extends uj0 {
                     ArrayList arrayList4 = (ArrayList) sparseArray.get(top);
                     if (arrayList4 == null) {
                         if (!arrayList.isEmpty()) {
-                            arrayList4 = (ArrayList) r.b.g(1, arrayList);
+                            arrayList4 = (ArrayList) p5.c.g(1, arrayList);
                         } else {
                             arrayList4 = new ArrayList();
                         }
@@ -127,9 +126,9 @@ public final class o1 extends uj0 {
                 }
             }
         }
-        ArrayList arrayList5 = this.f14800o3;
+        ArrayList arrayList5 = this.f15138o3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f14799n3;
+        ArrayList arrayList6 = this.f15137n3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         canvas.save();
@@ -138,7 +137,7 @@ public final class o1 extends uj0 {
         int i12 = 0;
         while (true) {
             int size2 = sparseArray.size();
-            arrayList2 = this.f14798m3;
+            arrayList2 = this.f15136m3;
             if (i12 >= size2) {
                 break;
             }
@@ -160,7 +159,7 @@ public final class o1 extends uj0 {
             }
             if (m1Var == null) {
                 if (!arrayList2.isEmpty()) {
-                    m1Var = (m1) r.b.g(1, arrayList2);
+                    m1Var = (m1) p5.c.g(1, arrayList2);
                 } else {
                     m1Var = new m1(this);
                     m1Var.l(7);
@@ -206,14 +205,14 @@ public final class o1 extends uj0 {
     }
 
     @Override
-    public final void setLayoutManager(v4.o0 o0Var) {
-        super.setLayoutManager(o0Var);
-        this.f14792f3 = null;
-        if (o0Var instanceof v4.b0) {
-            wi0 wi0Var = new wi0(this, (v4.b0) o0Var);
-            this.f14792f3 = wi0Var;
-            wi0Var.f41362i = new ci.h(this, 1);
-            wi0Var.h = new di.z6(this, 17);
+    public final void setLayoutManager(v4.p0 p0Var) {
+        super.setLayoutManager(p0Var);
+        this.f15130f3 = null;
+        if (p0Var instanceof v4.c0) {
+            org.telegram.ui.ActionBar.l5 l5Var = new org.telegram.ui.ActionBar.l5(this, (v4.c0) p0Var);
+            this.f15130f3 = l5Var;
+            l5Var.f29206r = new ci.h(this, 1);
+            l5Var.f29205n = new di.c7(this, 17);
         }
     }
 }

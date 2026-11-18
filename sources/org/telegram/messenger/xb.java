@@ -1,36 +1,34 @@
 package org.telegram.messenger;
 public final class xb implements Runnable {
-    public final int f27478a;
-    public final ac f27479b;
+    public final int f27833a;
+    public final zb f27834b;
+    public final Boolean f27835c;
 
-    public xb(ac acVar, int i7) {
-        this.f27478a = i7;
-        this.f27479b = acVar;
+    public xb(zb zbVar, Boolean bool, int i7) {
+        this.f27833a = i7;
+        this.f27834b = zbVar;
+        this.f27835c = bool;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27478a;
-        ac acVar = this.f27479b;
+        int i7 = this.f27833a;
+        Boolean bool = this.f27835c;
+        zb zbVar = this.f27834b;
         switch (i7) {
             case 0:
-                fc fcVar = acVar.h;
-                ThreadLocal threadLocal = fc.I;
-                fcVar.V(true);
-                return;
-            case 1:
-                acVar.h.f23481u.remove(acVar.f22486a.f26646e);
-                g0.h3(new xb(acVar, 3));
-                return;
-            case 2:
-                fc fcVar2 = acVar.h;
-                ThreadLocal threadLocal2 = fc.I;
-                fcVar2.V(true);
+                zbVar.h.f23697u.remove(zbVar.f28278a.f26767e);
+                g0.g3(new xb(zbVar, bool, 1));
                 return;
             default:
-                tb tbVar = acVar.f22486a;
-                ns.f(tbVar.f26655o).k(143, tbVar.f26646e, 1);
-                return;
+                sb sbVar = zbVar.f28278a;
+                if (bool.booleanValue()) {
+                    ks.f(sbVar.f26776o).k(142, sbVar.f26767e, sbVar.f26777p);
+                    return;
+                } else {
+                    ks.f(sbVar.f26776o).k(143, sbVar.f26767e, 2);
+                    return;
+                }
         }
     }
 }

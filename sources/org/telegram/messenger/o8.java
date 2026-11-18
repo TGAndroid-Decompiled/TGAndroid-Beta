@@ -2,6 +2,6 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLObject;
 public final class o8 {
-    public TLObject f25732a;
-    public long f25733b;
+    public TLObject f26045a;
+    public long f26046b;
 }

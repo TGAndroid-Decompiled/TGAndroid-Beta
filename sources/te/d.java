@@ -1,14 +1,14 @@
 package te;
 public interface d {
+    boolean C();
+
+    boolean D(float f10);
+
+    void H();
+
     void a();
 
-    void b0();
+    void m1();
 
-    void n(boolean z10);
-
-    boolean q();
-
-    boolean s(float f10);
-
-    void v();
+    void x(boolean z10);
 }

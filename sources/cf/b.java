@@ -1,4 +1,4 @@
 package cf;
 public final class b implements bf.a {
-    public final int f4987a;
+    public final int f5273a;
 }

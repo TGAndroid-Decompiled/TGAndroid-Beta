@@ -17,7 +17,7 @@ public final class j extends m {
 
     @Override
     public final boolean a() {
-        if (!this.f222f.m() && !this.d.m()) {
+        if (!this.f222f.n() && !this.d.n()) {
             return false;
         }
         return true;

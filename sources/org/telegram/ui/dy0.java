@@ -1,41 +1,70 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class dy0 implements Runnable {
-    public final int f46493a;
-    public final org.telegram.messenger.video.a f46494b;
-    public final org.telegram.ui.Components.cc f46495c;
-    public final Context d;
-    public final fi.i0 f46496e;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public final class dy0 extends FrameLayout {
+    public final org.telegram.ui.Components.m5 f47087a;
+    public final ey0 f47088b;
 
-    public dy0(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.cc ccVar, Context context, fi.i0 i0Var, int i7) {
-        this.f46493a = i7;
-        this.f46494b = aVar;
-        this.f46495c = ccVar;
-        this.d = context;
-        this.f46496e = i0Var;
+    public dy0(ey0 ey0Var, Context context) {
+        super(context);
+        this.f47088b = ey0Var;
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 16.0f);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.G6, ey0Var.getResourceProvider());
+        textView.setText(org.telegram.messenger.gd.M0(2131751339, null));
+        addView(textView, c8.ma.d(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
+        this.f47087a = new org.telegram.ui.Components.m5(org.telegram.messenger.g0.L(24.0f), this);
+    }
+
+    public final void a(boolean z10) {
+        ey0 ey0Var = this.f47088b;
+        String S = org.telegram.messenger.ri.d0(ey0.d0(ey0Var)).S();
+        org.telegram.ui.Components.m5 m5Var = this.f47087a;
+        if (S != null && S.startsWith("animated_")) {
+            try {
+                m5Var.j(Long.parseLong(S.substring(9)), z10);
+                return;
+            } catch (Exception unused) {
+            }
+        }
+        TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) org.telegram.messenger.ri.d0(ey0.e0(ey0Var)).f26635r.get(S);
+        if (tL_availableReaction != null) {
+            m5Var.i(tL_availableReaction.static_icon, z10);
+        }
+    }
+
+    public final void b() {
+        int width = getWidth();
+        org.telegram.ui.Components.m5 m5Var = this.f47087a;
+        m5Var.setBounds((width - m5Var.f37364s) - org.telegram.messenger.g0.L(21.0f), (getHeight() - m5Var.f37364s) / 2, getWidth() - org.telegram.messenger.g0.L(21.0f), (getHeight() + m5Var.f37364s) / 2);
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f46493a;
-        fi.i0 i0Var = this.f46496e;
-        Context context = this.d;
-        org.telegram.ui.Components.cc ccVar = this.f46495c;
-        org.telegram.messenger.video.a aVar = this.f46494b;
-        switch (i7) {
-            case 0:
-                aVar.run();
-                ccVar.c(org.telegram.messenger.g0.S2(org.telegram.messenger.hd.M0(2131754487, null), -1, 2, new du(context, 2), i0Var)).j();
-                return;
-            case 1:
-                aVar.run();
-                ccVar.c(org.telegram.messenger.g0.S2(org.telegram.messenger.hd.M0(2131754487, null), -1, 2, new du(context, 5), i0Var)).j();
-                return;
-            default:
-                aVar.run();
-                ccVar.c(org.telegram.messenger.g0.S2(org.telegram.messenger.hd.M0(2131754487, null), -1, 2, new du(context, 6), i0Var)).j();
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        b();
+        this.f47087a.draw(canvas);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f47087a.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f47087a.b();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
     }
 }

@@ -1,38 +1,23 @@
 package org.telegram.ui.Components;
 
-import java.util.HashSet;
-public class s4 extends EditTextBoldCursor implements org.telegram.ui.ActionBar.z5 {
-    public boolean M1;
-    public int N1;
-    public org.telegram.ui.ActionBar.e6 O1;
-    public int P1;
+import android.content.Context;
+import android.os.Vibrator;
+import android.text.Spanned;
+public final class s4 extends eq {
+    public final Context f39480b;
 
-    public final void A(int i7, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.M1 = true;
-        this.N1 = i7;
-        this.O1 = e6Var;
-        int w02 = org.telegram.ui.ActionBar.j6.w0(i7, e6Var);
-        this.P1 = w02;
-        setCursorColor(w02);
+    public s4(Context context) {
+        super(255);
+        this.f39480b = context;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        if (this.M1) {
-            hashSet.add(Integer.valueOf(this.N1));
+    public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
+        Vibrator vibrator;
+        CharSequence filter = super.filter(charSequence, i7, i10, spanned, i11, i12);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length() && (vibrator = (Vibrator) this.f39480b.getSystemService("vibrator")) != null) {
+            vibrator.vibrate(200L);
         }
-    }
-
-    @Override
-    public final void updateColors() {
-        int w02;
-        try {
-            if (this.M1 && (w02 = org.telegram.ui.ActionBar.j6.w0(this.N1, this.O1)) != this.P1) {
-                this.P1 = w02;
-                setCursorColor(w02);
-            }
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
+        return filter;
     }
 }

@@ -1,12 +1,18 @@
 package c8;
-public abstract class rb {
-    public static final q1.e a(String name) {
-        kotlin.jvm.internal.j.e(name, "name");
-        return new q1.e(name);
-    }
 
-    public static final q1.e b(String name) {
-        kotlin.jvm.internal.j.e(name, "name");
-        return new q1.e(name);
+import java.io.Closeable;
+public abstract class rb {
+    public static final void a(Closeable closeable, Throwable th2) {
+        if (closeable != null) {
+            if (th2 == null) {
+                closeable.close();
+                return;
+            }
+            try {
+                closeable.close();
+            } catch (Throwable th3) {
+                af.b.a(th2, th3);
+            }
+        }
     }
 }

@@ -1,135 +1,78 @@
 package org.telegram.ui;
-public final class ip0 extends org.telegram.ui.Components.u51 {
-    public final int f48097n0;
-    public final org.telegram.messenger.is f48098o0;
 
-    public ip0(org.telegram.messenger.is isVar, int i7) {
-        this.f48097n0 = i7;
-        this.f48098o0 = isVar;
+import android.view.MotionEvent;
+import org.telegram.messenger.video.VideoFramesRewinder;
+import org.telegram.messenger.video.VideoPlayerRewinder;
+public final class ip0 extends VideoPlayerRewinder {
+    public final PhotoViewer f48777a;
+
+    public ip0(PhotoViewer photoViewer, VideoFramesRewinder videoFramesRewinder) {
+        super(videoFramesRewinder);
+        this.f48777a = photoViewer;
     }
 
     @Override
-    public final void g0() {
-        switch (this.f48097n0) {
-            case 0:
-                super.g0();
-                PhotoViewer photoViewer = (PhotoViewer) this.f48098o0;
-                if (photoViewer.f42896u4 == 0) {
-                    PhotoViewer.R(photoViewer, false);
-                }
-                if (!photoViewer.O8) {
-                    d1.f.D(S());
-                    d1.f.x(false);
-                    return;
-                }
-                return;
-            default:
-                super.g0();
-                ((SecretMediaViewer) this.f48098o0).V.a(false, true);
-                return;
+    public final void onRewindCanceled() {
+        wi.h hVar;
+        MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+        PhotoViewer photoViewer = this.f48777a;
+        PhotoViewer.c(photoViewer, obtain);
+        photoViewer.A1.f(false);
+        wi.n nVar = photoViewer.P8;
+        if (nVar != null && (hVar = nVar.f59989e) != null) {
+            hVar.F.f(false);
         }
     }
 
     @Override
-    public final void h0() {
-        switch (this.f48097n0) {
-            case 0:
-                super.h0();
-                PhotoViewer photoViewer = (PhotoViewer) this.f48098o0;
-                PhotoViewer.R(photoViewer, true);
-                if (!photoViewer.O8) {
-                    d1.f.D(S());
-                    d1.f.x(true);
-                    return;
-                }
-                return;
-            default:
-                super.h0();
-                ((SecretMediaViewer) this.f48098o0).V.a(true, true);
-                return;
+    public final void onRewindStart(boolean z10) {
+        wi.h hVar;
+        PhotoViewer photoViewer = this.f48777a;
+        photoViewer.A1.e(false);
+        boolean z11 = !z10;
+        photoViewer.A1.d(z11);
+        photoViewer.A1.f(true);
+        photoViewer.f43208f0.invalidate();
+        wi.n nVar = photoViewer.P8;
+        if (nVar != null && (hVar = nVar.f59989e) != null) {
+            org.telegram.ui.Components.x51 x51Var = hVar.F;
+            x51Var.e(false);
+            x51Var.d(z11);
+            x51Var.f(true);
+            fi.u2 u2Var = hVar.f59957o;
+            if (u2Var != null) {
+                u2Var.invalidate();
+            }
+            wi.d dVar = hVar.f59955m;
+            if (dVar != null) {
+                dVar.invalidate();
+            }
         }
     }
 
     @Override
-    public void onRenderedFirstFrame() {
-        e2.w0 j3;
-        switch (this.f48097n0) {
-            case 0:
-                super.onRenderedFirstFrame();
-                PhotoViewer photoViewer = (PhotoViewer) this.f48098o0;
-                boolean z10 = true;
-                photoViewer.S = true;
-                if (photoViewer.E2) {
-                    photoViewer.f42763f0.invalidate();
-                }
-                photoViewer.y3();
-                if (!d1.f.u() && !photoViewer.f42865r) {
-                    z10 = false;
-                }
-                t0(z10);
-                if (!photoViewer.O8) {
-                    d1.f.D(S());
-                    l2.f0 f0Var = this.d;
-                    float f10 = 1.0f;
-                    if (f0Var != null && (j3 = f0Var.j()) != null) {
-                        f10 = j3.f10474a;
-                    }
-                    d1.f.z(f10);
-                    return;
-                }
-                return;
-            default:
-                super.onRenderedFirstFrame();
-                return;
+    public final void updateRewindProgressUi(long j3, float f10, boolean z10) {
+        wi.h hVar;
+        PhotoViewer photoViewer = this.f48777a;
+        photoViewer.A1.g(Math.abs(j3));
+        if (z10) {
+            photoViewer.f43304q3.h(false, f10);
+            photoViewer.f43314r3.invalidate();
         }
-    }
-
-    @Override
-    public void p0(long j3) {
-        switch (this.f48097n0) {
-            case 0:
-                q0(j3, false);
-                PhotoViewer photoViewer = (PhotoViewer) this.f48098o0;
-                if (photoViewer.f42877s1) {
-                    PhotoViewer.S(photoViewer, j3);
+        wi.n nVar = photoViewer.P8;
+        if (nVar != null && (hVar = nVar.f59989e) != null) {
+            hVar.F.g(0L);
+            if (z10) {
+                hVar.I = f10;
+                fi.u2 u2Var = hVar.f59957o;
+                if (u2Var != null) {
+                    u2Var.invalidate();
                 }
-                if (!photoViewer.O8) {
-                    d1.f.D(j3);
-                    return;
+                wi.d dVar = hVar.f59955m;
+                if (dVar != null) {
+                    dVar.invalidate();
                 }
-                return;
-            default:
-                super.p0(j3);
-                return;
-        }
-    }
-
-    @Override
-    public void u0(boolean z10) {
-        switch (this.f48097n0) {
-            case 1:
-                super.u0(z10);
-                ((SecretMediaViewer) this.f48098o0).V.a(z10, true);
-                return;
-            default:
-                super.u0(z10);
-                return;
-        }
-    }
-
-    @Override
-    public void v0(float f10) {
-        switch (this.f48097n0) {
-            case 0:
-                super.v0(f10);
-                if (!((PhotoViewer) this.f48098o0).O8) {
-                    d1.f.z(f10);
-                    return;
-                }
-                return;
-            default:
-                super.v0(f10);
-                return;
+            }
         }
     }
 }

@@ -1,81 +1,28 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.view.WindowManager;
-import org.telegram.messenger.ns;
-public final class m2 extends AnimatorListenerAdapter {
-    public final int f29378a;
-    public final u2 f29379b;
+import android.view.View;
+public final class m2 implements ri.n, r0.m, r1 {
+    public final x2 f29216a;
 
-    public m2(u2 u2Var, int i7) {
-        this.f29378a = i7;
-        this.f29379b = u2Var;
+    public m2(x2 x2Var) {
+        this.f29216a = x2Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f29378a) {
-            case 0:
-                u2 u2Var = this.f29379b;
-                AnimatorSet animatorSet = u2Var.A0;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    u2Var.A0 = null;
-                    u2Var.B0 = 0;
-                    return;
-                }
-                return;
-            default:
-                u2 u2Var2 = this.f29379b;
-                AnimatorSet animatorSet2 = u2Var2.A0;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    u2Var2.A0 = null;
-                    u2Var2.B0 = 0;
-                    return;
-                }
-                return;
-        }
+    public r0.l1 P0(View view, r0.l1 l1Var) {
+        return this.f29216a.b0(l1Var);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f29378a;
-        u2 u2Var = this.f29379b;
-        switch (i7) {
-            case 0:
-                AnimatorSet animatorSet = u2Var.A0;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    u2Var.A0 = null;
-                    u2Var.B0 = 0;
-                    u2Var.v();
-                    o2 o2Var = u2Var.f29725z0;
-                    if (o2Var != null) {
-                        o2Var.v();
-                    }
-                    if (u2Var.K) {
-                        u2Var.f29685c.setLayerType(0, null);
-                    }
-                    if (u2Var.W) {
-                        WindowManager.LayoutParams attributes = u2Var.getWindow().getAttributes();
-                        attributes.flags &= -1025;
-                        u2Var.getWindow().setAttributes(attributes);
-                    }
-                }
-                if (u2Var.L0) {
-                    ns.e().k(99, 512);
-                }
-                u2Var.M0.e();
-                return;
-            default:
-                AnimatorSet animatorSet2 = u2Var.A0;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    u2Var.A0 = null;
-                    u2Var.B0 = 0;
-                    org.telegram.messenger.g0.h3(new r0(this, 5));
-                }
-                ns.e().k(99, 512);
-                return;
-        }
+    public int e() {
+        x2 x2Var = this.f29216a;
+        x2Var.getClass();
+        return n6.w0(n6.f29469h5, x2Var.J0);
+    }
+
+    @Override
+    public void h(u1 u1Var, int i7) {
+        this.f29216a.dismiss();
+        bi.a2.l1(false, null);
     }
 }

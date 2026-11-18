@@ -1,32 +1,34 @@
 package d9;
-public final class o implements n, he.b, ib.b, q5.b {
-    public final int f7642a;
-    public final Object f7643b;
+public final class o implements n, he.b, ib.b {
+    public final Object f7925a;
 
-    public o(Object obj, int i7) {
-        this.f7642a = i7;
-        this.f7643b = obj;
+    public o(Object obj) {
+        this.f7925a = obj;
     }
 
     public static o b(Object obj) {
         if (obj != null) {
-            return new o(obj, 2);
+            return new o(obj);
         }
         throw new NullPointerException("instance cannot be null");
     }
 
     @Override
     public Object a() {
-        return this.f7643b;
+        return this.f7925a;
+    }
+
+    public Object c() {
+        if (q7.a.f55982b == null) {
+            q7.a.f55982b = new Exception();
+        }
+        synchronized (q7.a.f55981a) {
+        }
+        throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
     }
 
     @Override
     public Object mo24get() {
-        switch (this.f7642a) {
-            case 2:
-                return this.f7643b;
-            default:
-                return this.f7643b;
-        }
+        return this.f7925a;
     }
 }

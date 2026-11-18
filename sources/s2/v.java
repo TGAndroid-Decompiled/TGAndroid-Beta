@@ -2,17 +2,17 @@ package s2;
 
 import j$.util.Objects;
 public final class v {
-    public final e2.u f56328a;
-    public final String f56329b;
-    public final String f56330c;
+    public final e2.u f56902a;
+    public final String f56903b;
+    public final String f56904c;
 
     public v(e2.u uVar, String str, String str2) {
         e2.t a10 = uVar.a();
-        a10.f10384a = null;
-        a10.f10392k = null;
-        this.f56328a = new e2.u(a10);
-        this.f56329b = str;
-        this.f56330c = str2;
+        a10.f10702a = null;
+        a10.f10710k = null;
+        this.f56902a = new e2.u(a10);
+        this.f56903b = str;
+        this.f56904c = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -23,13 +23,13 @@ public final class v {
             return false;
         }
         v vVar = (v) obj;
-        if (Objects.equals(this.f56328a, vVar.f56328a) && Objects.equals(this.f56329b, vVar.f56329b) && Objects.equals(this.f56330c, vVar.f56330c)) {
+        if (Objects.equals(this.f56902a, vVar.f56902a) && Objects.equals(this.f56903b, vVar.f56903b) && Objects.equals(this.f56904c, vVar.f56904c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f56328a, this.f56329b, this.f56330c);
+        return Objects.hash(this.f56902a, this.f56903b, this.f56904c);
     }
 }

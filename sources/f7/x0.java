@@ -2,26 +2,26 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 public final class x0 extends r6.a {
     public static final Parcelable.Creator<x0> CREATOR = new t0(10);
-    public final List f11275a;
+    public final List f11595a;
 
     public x0(ArrayList arrayList) {
-        q6.m.g(arrayList);
-        this.f11275a = arrayList;
+        q6.m.h(arrayList);
+        this.f11595a = arrayList;
     }
 
     public final boolean equals(Object obj) {
         if (!(obj instanceof x0)) {
             return false;
         }
-        List list = ((x0) obj).f11275a;
-        List list2 = this.f11275a;
+        List list = ((x0) obj).f11595a;
+        List list2 = this.f11595a;
         if (!list2.containsAll(list) || !list.containsAll(list2)) {
             return false;
         }
@@ -29,13 +29,13 @@ public final class x0 extends r6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{new HashSet(this.f11275a)});
+        return Arrays.hashCode(new Object[]{new HashSet(this.f11595a)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.p(parcel, 1, this.f11275a);
-        yb.s(parcel, r10);
+        int r10 = bc.r(parcel, 20293);
+        bc.p(parcel, 1, this.f11595a);
+        bc.s(parcel, r10);
     }
 }

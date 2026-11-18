@@ -1,5 +1,6 @@
 package org.telegram.messenger;
-public final class oi {
-    public String f25765a;
-    public String f25766b;
+
+import java.util.ArrayList;
+public interface oi {
+    void e(String str, ArrayList arrayList);
 }

@@ -3,12 +3,12 @@ package y7;
 import java.util.Iterator;
 import java.util.Map;
 public final class a extends l9 {
-    public final transient a8.v f60195c;
+    public final transient a8.v f60760c;
     public final transient Object[] d;
-    public final transient int f60196e = 1;
+    public final transient int f60761e = 1;
 
     public a(a8.v vVar, Object[] objArr) {
-        this.f60195c = vVar;
+        this.f60760c = vVar;
         this.d = objArr;
     }
 
@@ -18,7 +18,7 @@ public final class a extends l9 {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f60195c.get(key))) {
+            if (value != null && value.equals(this.f60760c.get(key))) {
                 return true;
             }
         }
@@ -37,6 +37,6 @@ public final class a extends l9 {
 
     @Override
     public final int size() {
-        return this.f60196e;
+        return this.f60761e;
     }
 }

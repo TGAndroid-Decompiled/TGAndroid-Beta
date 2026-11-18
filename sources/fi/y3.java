@@ -1,96 +1,134 @@
 package fi;
 
+import a8.la;
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.ch0;
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.at;
 public final class y3 {
-    public final Paint f12527a;
-    public final Paint f12528b;
-    public final Paint f12529c;
-    public final Drawable d;
-    public final Drawable f12530e;
-    public final ColorDrawable f12531f;
-    public final a8.b8 f12532g = new a8.b8(5);
-    public final RectF h = new RectF();
-    public final RectF f12533i = new RectF();
-    public final RectF f12534j = new RectF();
-    public final RectF f12535k;
-    public final Paint f12536l;
-    public final Drawable f12537m;
-    public final Drawable f12538n;
-    public final Drawable f12539o;
-    public final Drawable f12540p;
-    public final Drawable f12541q;
-    public final Drawable f12542r;
-    public final Drawable f12543s;
-    public final ch0 f12544t;
-    public final ch0 f12545u;
+    public boolean f12773a;
+    public Object f12774b;
+    public Object f12775c;
+    public Object d;
+    public Object f12776e;
+    public Object f12777f;
+    public Object f12778g;
 
-    public y3(Context context) {
-        new RectF();
-        this.f12535k = new RectF();
-        this.f12536l = new Paint();
-        this.f12537m = context.getDrawable(2131231757);
-        this.f12539o = context.getDrawable(2131231743);
-        this.f12538n = context.getDrawable(2131231754);
-        Drawable drawable = context.getDrawable(2131231744);
-        this.f12540p = drawable;
-        drawable.setColorFilter(new PorterDuffColorFilter(-53704, PorterDuff.Mode.MULTIPLY));
-        this.f12541q = context.getDrawable(2131231749);
-        this.f12542r = context.getDrawable(2131231896);
-        this.f12543s = context.getDrawable(2131232109);
-        this.f12545u = new ch0(2131624089, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
-        ch0 ch0Var = new ch0(2131624089, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
-        this.f12544t = ch0Var;
-        ch0Var.N(20, false, true);
-        ch0Var.stop();
-        Paint paint = new Paint(1);
-        this.f12527a = paint;
-        paint.setColor(1442840575);
-        Paint paint2 = new Paint(1);
-        this.f12528b = paint2;
-        paint2.setColor(-1);
-        int o4 = i0.a.o(-16777216, 102);
-        this.d = context.getDrawable(2131232723);
-        this.f12530e = context.getDrawable(2131232722);
-        Paint paint3 = new Paint();
-        this.f12529c = paint3;
-        paint3.setColor(o4);
-        this.f12531f = new ColorDrawable(i0.a.f(0.1f, -16777216, -1));
+    public y3(Context context, int i7) {
+        switch (i7) {
+            case 3:
+                this.d = yi.g.f61309a;
+                this.f12773a = true;
+                this.f12778g = yi.j.H;
+                this.f12774b = context;
+                return;
+            default:
+                this.f12774b = context;
+                this.f12775c = n2.b.f21069f;
+                return;
+        }
     }
 
-    public final void a(boolean z10, boolean z11) {
-        int i7;
-        int i10 = 20;
-        ch0 ch0Var = this.f12545u;
-        if (!z11) {
-            if (z10) {
-                i7 = 20;
-            } else {
-                i7 = 0;
-            }
-            ch0Var.N(i7, false, false);
-            if (!z10) {
-                i10 = 0;
-            }
-            ch0Var.P(i10);
-        } else if (z10) {
-            if (ch0Var.f33575b0 > 20) {
-                ch0Var.N(0, false, false);
-            }
-            ch0Var.P(20);
-            ch0Var.start();
-        } else {
-            int i11 = ch0Var.f33575b0;
-            if (i11 != 0 && i11 < 43) {
-                ch0Var.P(43);
-                ch0Var.start();
-            }
+    public static void c(at atVar) {
+        ?? obj = new Object();
+        obj.f12774b = new org.telegram.messenger.j5(obj, 0);
+        obj.d = atVar;
+        int i7 = j10.f24773t0;
+        obj.f12778g = new org.telegram.messenger.a(obj, 6);
+        obj.f12777f = org.telegram.messenger.i5.r(i7);
+        obj.f12776e = ks.f(i7);
+        obj.f12775c = new Handler(Looper.myLooper());
+        if (!obj.d(false)) {
+            ((ks) obj.f12776e).b((org.telegram.messenger.j5) obj.f12774b, ks.O);
+            ((Handler) obj.f12775c).postDelayed((org.telegram.messenger.a) obj.f12778g, 1000L);
         }
+    }
+
+    public n2.r0 a() {
+        boolean z10;
+        n2.b bVar;
+        Context context = (Context) this.f12774b;
+        boolean z11 = true;
+        la.p(!this.f12773a);
+        this.f12773a = true;
+        if (((h6.m) this.d) == null) {
+            this.d = new h6.m(new f2.n[0]);
+        }
+        if (((n2.i0) this.f12777f) == null) {
+            if (((n2.l0) this.f12778g) == null) {
+                this.f12778g = new n2.l0(context);
+            }
+            if (((n2.s0) this.f12776e) == null) {
+                this.f12776e = n2.s0.f21239a;
+            }
+            n2.h0 h0Var = new n2.h0(context);
+            if (context != null) {
+                bVar = null;
+            } else {
+                bVar = (n2.b) this.f12775c;
+            }
+            Context context2 = h0Var.f21120a;
+            if (context2 == null) {
+                h0Var.d = bVar;
+            }
+            n2.l0 l0Var = (n2.l0) this.f12778g;
+            h0Var.f21121b = l0Var;
+            h0Var.f21122c = (n2.s0) this.f12776e;
+            if (l0Var == null) {
+                h0Var.f21121b = new n2.l0(context2);
+            }
+            this.f12777f = new n2.i0(h0Var);
+        } else {
+            if (((n2.l0) this.f12778g) == null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            la.p(z10);
+            if (((n2.s0) this.f12776e) != null) {
+                z11 = false;
+            }
+            la.p(z11);
+        }
+        return new n2.r0(this);
+    }
+
+    public void b() {
+        ArrayList arrayList = (ArrayList) this.f12778g;
+        for (int i7 = 0; i7 < arrayList.size(); i7++) {
+            ((View) arrayList.get(i7)).invalidate();
+        }
+    }
+
+    public boolean d(boolean z10) {
+        boolean z11 = this.f12773a;
+        if (!z11) {
+            if (((org.telegram.messenger.i5) this.f12777f).h || z10) {
+                if (!z11) {
+                    ks ksVar = (ks) this.f12776e;
+                    if (ksVar != null) {
+                        ksVar.n((org.telegram.messenger.j5) this.f12774b, ks.O);
+                    }
+                    Handler handler = (Handler) this.f12775c;
+                    if (handler != null) {
+                        handler.removeCallbacks((org.telegram.messenger.a) this.f12778g);
+                    }
+                    this.f12773a = true;
+                }
+                at atVar = (at) this.d;
+                Intent intent = (Intent) atVar.f45668c;
+                String str = LaunchActivity.C1;
+                ((LaunchActivity) atVar.f45667b).W(intent, true, false, false, null, true, false);
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

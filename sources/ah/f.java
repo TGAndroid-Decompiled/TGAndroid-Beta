@@ -4,32 +4,32 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import c8.ja;
+import c8.ma;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
 public final class f extends FrameLayout {
-    public final e6 f1070a;
-    public final TextView f1071b;
+    public final i6 f1069a;
+    public final TextView f1070b;
 
-    public f(Context context, e6 e6Var) {
+    public f(Context context, i6 i6Var) {
         super(context);
         int i7;
-        this.f1070a = e6Var;
-        q6.h(j6.f28869e7, this, e6Var);
+        this.f1069a = i6Var;
+        u6.h(n6.f29416e7, this, i6Var);
         TextView textView = new TextView(getContext());
-        this.f1071b = textView;
-        i5.c.v(textView, 1, 14.0f);
-        q6.U(textView, j6.f28888f7, e6Var);
-        if (hd.f24104a0) {
+        this.f1070b = textView;
+        i5.c.x(textView, 1, 14.0f);
+        u6.U(textView, n6.f29435f7, i6Var);
+        if (gd.f24216a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        addView(textView, ja.d(-1, -1.0f, (hd.f24104a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, ma.d(-1, -1.0f, (gd.f24216a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override
@@ -38,10 +38,10 @@ public final class f extends FrameLayout {
     }
 
     public void setLetter(CharSequence charSequence) {
-        this.f1071b.setText(charSequence);
+        this.f1070b.setText(charSequence);
     }
 
     public void setTextColor(int i7) {
-        q6.U(this.f1071b, i7, this.f1070a);
+        u6.U(this.f1070b, i7, this.f1069a);
     }
 }

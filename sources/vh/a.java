@@ -3,65 +3,65 @@ package vh;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.ou;
-import org.telegram.ui.Components.jn;
+import org.telegram.ui.Components.hn;
+import org.telegram.ui.Components.rn;
 public final class a implements View.OnClickListener {
-    public final int f58984a;
-    public final h f58985b;
+    public final int f59551a;
+    public final g f59552b;
 
-    public a(h hVar, int i7) {
-        this.f58984a = i7;
-        this.f58985b = hVar;
+    public a(g gVar, int i7) {
+        this.f59551a = i7;
+        this.f59552b = gVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f58984a;
-        h hVar = this.f58985b;
+        int i7 = this.f59551a;
+        g gVar = this.f59552b;
         switch (i7) {
             case 0:
-                ou ouVar = hVar.f59004g2;
-                if (ouVar != null) {
-                    ArrayList arrayList = new ArrayList(hVar.f59003f2.keySet());
-                    jn jnVar = (jn) ouVar.f25806b;
-                    ArrayList arrayList2 = jnVar.Q0;
+                hn hnVar = gVar.f59569g2;
+                if (hnVar != null) {
+                    ArrayList arrayList = new ArrayList(gVar.f59568f2.keySet());
+                    rn rnVar = (rn) hnVar.f35933b;
+                    ArrayList arrayList2 = rnVar.Q0;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
-                    int i10 = jnVar.M0;
+                    int i10 = rnVar.M0;
                     if (i10 >= 0) {
-                        jnVar.f36094r.g(i10);
+                        rnVar.f39239r.g(i10);
                     }
                 }
-                hVar.dismiss();
+                gVar.dismiss();
                 return;
             case 1:
-                ou ouVar2 = hVar.f59004g2;
-                if (ouVar2 != null) {
-                    ArrayList arrayList3 = new ArrayList(hVar.f59003f2.keySet());
-                    jn jnVar2 = (jn) ouVar2.f25806b;
-                    ArrayList arrayList4 = jnVar2.Q0;
+                hn hnVar2 = gVar.f59569g2;
+                if (hnVar2 != null) {
+                    ArrayList arrayList3 = new ArrayList(gVar.f59568f2.keySet());
+                    rn rnVar2 = (rn) hnVar2.f35933b;
+                    ArrayList arrayList4 = rnVar2.Q0;
                     arrayList4.clear();
                     arrayList4.addAll(arrayList3);
-                    int i11 = jnVar2.M0;
+                    int i11 = rnVar2.M0;
                     if (i11 >= 0) {
-                        jnVar2.f36094r.g(i11);
+                        rnVar2.f39239r.g(i11);
                     }
                 }
-                hVar.dismiss();
+                gVar.dismiss();
                 return;
             case 2:
-                HashMap hashMap = hVar.f59003f2;
+                HashMap hashMap = gVar.f59568f2;
                 hashMap.clear();
-                hVar.d2.b();
-                hVar.Z1.O(true);
-                hVar.f58999a2.c(hashMap.size(), true);
+                gVar.d2.b();
+                gVar.Z1.O(true);
+                gVar.f59564a2.c(hashMap.size(), true);
                 return;
             case 3:
-                hVar.g1(view);
+                gVar.h1(view);
                 return;
             default:
-                int i12 = h.f58998n2;
-                hVar.g1(view);
+                int i12 = g.f59563n2;
+                gVar.h1(view);
                 return;
         }
     }

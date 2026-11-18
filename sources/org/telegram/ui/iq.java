@@ -1,21 +1,27 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class iq extends org.telegram.ui.Components.h10 {
-    public final qq n1;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class iq implements u40 {
+    public final z40 f48778a;
+    public final rq f48779b;
 
-    public iq(qq qqVar, Activity activity, qq qqVar2) {
-        super(activity, qqVar2);
-        this.n1 = qqVar;
+    public iq(rq rqVar, z40 z40Var) {
+        this.f48779b = rqVar;
+        this.f48778a = z40Var;
     }
 
     @Override
-    public final void J0() {
-        qq qqVar = this.n1;
-        qqVar.getMessagesController().S(qqVar.getParentActivity(), qqVar.f50737n, qqVar, new w0(this, 27));
+    public final void f(TLRPC.User user) {
+        this.f48779b.y0(user.f28554id, null, null, null, "", true, 0, false);
     }
 
     @Override
-    public final void I0() {
+    public final void i(int i7, ArrayList arrayList) {
+        if (this.f48778a.getParentActivity() == null) {
+            return;
+        }
+        rq rqVar = this.f48779b;
+        rqVar.getMessagesController().o(rqVar.f51756n, rqVar, arrayList, i7, new f3(this, 2), new hq(0), null);
     }
 }

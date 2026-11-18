@@ -1,6 +1,6 @@
 package org.telegram.messenger.voip;
 
-import c8.zc;
+import c8.dd;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public class GroupCallMessage {
@@ -22,19 +22,19 @@ public class GroupCallMessage {
     }
 
     public boolean isOut() {
-        return zc.a(this.flags, 1);
+        return dd.a(this.flags, 1);
     }
 
     public boolean isSendConfirmed() {
-        return zc.a(this.flags, 8);
+        return dd.a(this.flags, 8);
     }
 
     public boolean isSendDelayed() {
-        return zc.a(this.flags, 2);
+        return dd.a(this.flags, 2);
     }
 
     public boolean isSendError() {
-        return zc.a(this.flags, 4);
+        return dd.a(this.flags, 4);
     }
 
     public void notifyStateUpdate() {
@@ -49,19 +49,19 @@ public class GroupCallMessage {
     }
 
     public void setIsOut(boolean z10) {
-        this.flags = zc.b(this.flags, 1, z10);
+        this.flags = dd.b(this.flags, 1, z10);
     }
 
     public void setIsSendConfirmed(boolean z10) {
-        this.flags = zc.b(this.flags, 8, z10);
+        this.flags = dd.b(this.flags, 8, z10);
     }
 
     public void setIsSendDelayed(boolean z10) {
-        this.flags = zc.b(this.flags, 2, z10);
+        this.flags = dd.b(this.flags, 2, z10);
     }
 
     public void setIsSendError(boolean z10) {
-        this.flags = zc.b(this.flags, 4, z10);
+        this.flags = dd.b(this.flags, 4, z10);
     }
 
     public void subscribeToStateUpdates(Runnable runnable) {

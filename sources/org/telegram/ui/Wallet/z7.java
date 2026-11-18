@@ -1,11 +1,19 @@
 package org.telegram.ui.Wallet;
+
+import java.util.concurrent.CountDownLatch;
+import org.telegram.ui.Wallet.WalletEngine2;
 public final class z7 {
-    public float f44846a;
-    public float f44847b;
-    public float f44848c;
-    public float d;
-    public float f44849e;
-    public float f44850f;
-    public float f44851g;
-    public float h;
+    public final CountDownLatch f45355a = new CountDownLatch(1);
+    public int f45356b;
+    public byte[] f45357c;
+    public WalletEngine2.HttpTransport.HostException d;
+
+    public final synchronized void a(byte[] bArr, WalletEngine2.HttpTransport.HostException hostException) {
+        if (this.f45355a.getCount() == 0) {
+            return;
+        }
+        this.f45357c = bArr;
+        this.d = hostException;
+        this.f45355a.countDown();
+    }
 }

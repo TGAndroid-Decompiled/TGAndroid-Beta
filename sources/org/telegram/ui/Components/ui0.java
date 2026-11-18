@@ -1,84 +1,18 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public abstract class ui0 extends tj0 {
-    public boolean f40033c;
-    public boolean d;
-    public ArrayList f40034e;
-    public ArrayList f40035f;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+public interface ui0 {
+    boolean E();
 
-    public final void E() {
-        this.f40033c = false;
-        if (!this.d && this.f40034e.isEmpty() && this.f40035f.isEmpty()) {
-            return;
-        }
-        ((org.telegram.ui.jl) this).O(false);
-    }
+    void g(View view, ch.p0 p0Var, boolean z10, boolean z11);
 
-    @Override
-    public void f() {
-        if (!this.f40033c) {
-            super.f();
-        } else {
-            this.d = true;
-        }
-    }
+    boolean o();
 
-    @Override
-    public void g(int i7) {
-        if (!this.f40033c) {
-            super.g(i7);
-        }
-    }
+    boolean q();
 
-    @Override
-    public void i(int i7) {
-        ArrayList arrayList = this.f40034e;
-        if (!this.f40033c) {
-            super.i(i7);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i7));
-        arrayList.add(1);
-    }
+    void x(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10);
 
-    @Override
-    public void k(int i7, int i10) {
-        if (!this.f40033c) {
-            super.k(i7, i10);
-        }
-    }
-
-    @Override
-    public void o(int i7, int i10) {
-        ArrayList arrayList = this.f40034e;
-        if (!this.f40033c) {
-            super.o(i7, i10);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i7));
-        arrayList.add(Integer.valueOf(i10));
-    }
-
-    @Override
-    public void p(int i7, int i10) {
-        ArrayList arrayList = this.f40035f;
-        if (!this.f40033c) {
-            super.p(i7, i10);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i7));
-        arrayList.add(Integer.valueOf(i10));
-    }
-
-    @Override
-    public void s(int i7) {
-        ArrayList arrayList = this.f40035f;
-        if (!this.f40033c) {
-            super.s(i7);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i7));
-        arrayList.add(1);
-    }
+    void z();
 }

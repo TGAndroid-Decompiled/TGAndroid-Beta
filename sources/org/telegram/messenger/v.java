@@ -4,49 +4,49 @@ import android.content.Context;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import org.telegram.ui.Components.sy0;
-import org.telegram.ui.n50;
+import org.telegram.ui.Components.zy0;
+import org.telegram.ui.p50;
 public final class v extends ClickableSpan {
-    public final int f26914a;
-    public final Object f26915b;
-    public final Object f26916c;
+    public final int f27304a;
+    public final Object f27305b;
+    public final Object f27306c;
     public final Object d;
 
     public v(Object obj, Object obj2, Object obj3, int i7) {
-        this.f26914a = i7;
-        this.f26915b = obj;
-        this.f26916c = obj2;
+        this.f27304a = i7;
+        this.f27305b = obj;
+        this.f27306c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f26914a) {
+        switch (this.f27304a) {
             case 0:
-                Runnable runnable = (Runnable) this.f26915b;
+                Runnable runnable = (Runnable) this.f27305b;
                 if (runnable != null) {
                     runnable.run();
                 }
-                vf.c.t(t0.f26609b, (String) this.f26916c);
+                vf.c.t(t0.f26915b, (String) this.f27306c);
                 return;
             case 1:
-                ((n50) this.f26915b).a((org.telegram.ui.e4) this.f26916c, (sy0) this.d);
+                ((p50) this.f27305b).a((org.telegram.ui.e4) this.f27306c, (zy0) this.d);
                 return;
             default:
-                org.telegram.ui.ActionBar.t1 t1Var = ((org.telegram.ui.ActionBar.t1[]) this.f26915b)[0];
-                if (t1Var != null) {
-                    t1Var.dismiss();
+                org.telegram.ui.ActionBar.u1 u1Var = ((org.telegram.ui.ActionBar.u1[]) this.f27305b)[0];
+                if (u1Var != null) {
+                    u1Var.dismiss();
                 }
-                vf.c.t((Context) this.d, "https://t.me/" + ((String) this.f26916c));
+                vf.c.t((Context) this.d, "https://t.me/" + ((String) this.f27306c));
                 return;
         }
     }
 
     @Override
     public void updateDrawState(TextPaint textPaint) {
-        switch (this.f26914a) {
+        switch (this.f27304a) {
             case 0:
-                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Xc, (org.telegram.ui.ActionBar.e6) this.d));
+                textPaint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Xc, (org.telegram.ui.ActionBar.i6) this.d));
                 textPaint.setUnderlineText(false);
                 return;
             case 1:
@@ -60,10 +60,10 @@ public final class v extends ClickableSpan {
         }
     }
 
-    public v(org.telegram.ui.ActionBar.t1[] t1VarArr, Context context, String str) {
-        this.f26914a = 2;
-        this.f26915b = t1VarArr;
+    public v(org.telegram.ui.ActionBar.u1[] u1VarArr, Context context, String str) {
+        this.f27304a = 2;
+        this.f27305b = u1VarArr;
         this.d = context;
-        this.f26916c = str;
+        this.f27306c = str;
     }
 }

@@ -2,52 +2,52 @@ package e2;
 
 import java.util.Arrays;
 public final class c {
-    public static final c f10026c = new c(new a[0]);
+    public static final c f10344c = new c(new a[0]);
     public static final a d;
-    public static final String f10027e;
-    public final int f10028a;
-    public final a[] f10029b;
+    public static final String f10345e;
+    public final int f10346a;
+    public final a[] f10347b;
 
     static {
         a aVar = new a(-1, -1, new int[0], new l0[0], new long[0], new String[0], new b[0]);
-        int[] iArr = aVar.f9993e;
+        int[] iArr = aVar.f10311e;
         int length = iArr.length;
         int max = Math.max(0, length);
         int[] copyOf = Arrays.copyOf(iArr, max);
         Arrays.fill(copyOf, length, max, 0);
-        long[] jArr = aVar.f9994f;
+        long[] jArr = aVar.f10312f;
         int length2 = jArr.length;
         int max2 = Math.max(0, length2);
         long[] copyOf2 = Arrays.copyOf(jArr, max2);
         Arrays.fill(copyOf2, length2, max2, -9223372036854775807L);
         l0[] l0VarArr = (l0[]) Arrays.copyOf(aVar.d, 0);
-        String[] strArr = (String[]) Arrays.copyOf(aVar.f9995g, 0);
+        String[] strArr = (String[]) Arrays.copyOf(aVar.f10313g, 0);
         b[] bVarArr = aVar.h;
-        d = new a(0, aVar.f9991b, copyOf, l0VarArr, copyOf2, strArr, (b[]) Arrays.copyOf(bVarArr, Math.max(0, bVarArr.length)));
-        String str = h2.l0.f13471a;
-        f10027e = Integer.toString(1, 36);
+        d = new a(0, aVar.f10309b, copyOf, l0VarArr, copyOf2, strArr, (b[]) Arrays.copyOf(bVarArr, Math.max(0, bVarArr.length)));
+        String str = h2.l0.f13786a;
+        f10345e = Integer.toString(1, 36);
         Integer.toString(2, 36);
         Integer.toString(3, 36);
         Integer.toString(4, 36);
     }
 
     public c(a[] aVarArr) {
-        this.f10028a = aVarArr.length;
-        this.f10029b = aVarArr;
+        this.f10346a = aVarArr.length;
+        this.f10347b = aVarArr;
     }
 
     public final a a(int i7) {
         if (i7 < 0) {
             return d;
         }
-        return this.f10029b[i7];
+        return this.f10347b[i7];
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && c.class == obj.getClass()) {
                 c cVar = (c) obj;
-                if (this.f10028a == cVar.f10028a && Arrays.equals(this.f10029b, cVar.f10029b)) {
+                if (this.f10346a == cVar.f10346a && Arrays.equals(this.f10347b, cVar.f10347b)) {
                     return true;
                 }
                 return false;
@@ -58,20 +58,20 @@ public final class c {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f10029b) + (((((this.f10028a * 961) + ((int) 0)) * 31) + ((int) (-9223372036854775807L))) * 961);
+        return Arrays.hashCode(this.f10347b) + (((((this.f10346a * 961) + ((int) 0)) * 31) + ((int) (-9223372036854775807L))) * 961);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("AdPlaybackState(adsId=null, adResumePositionUs=0, adGroups=[");
         int i7 = 0;
         while (true) {
-            a[] aVarArr = this.f10029b;
+            a[] aVarArr = this.f10347b;
             if (i7 < aVarArr.length) {
                 sb2.append("adGroup(timeUs=0, ads=[");
                 aVarArr[i7].getClass();
-                for (int i10 = 0; i10 < aVarArr[i7].f9993e.length; i10++) {
+                for (int i10 = 0; i10 < aVarArr[i7].f10311e.length; i10++) {
                     sb2.append("ad(state=");
-                    int i11 = aVarArr[i7].f9993e[i10];
+                    int i11 = aVarArr[i7].f10311e[i10];
                     if (i11 != 0) {
                         if (i11 != 1) {
                             if (i11 != 2) {
@@ -94,9 +94,9 @@ public final class c {
                         sb2.append('_');
                     }
                     sb2.append(", durationUs=");
-                    sb2.append(aVarArr[i7].f9994f[i10]);
+                    sb2.append(aVarArr[i7].f10312f[i10]);
                     sb2.append(')');
-                    if (i10 < aVarArr[i7].f9993e.length - 1) {
+                    if (i10 < aVarArr[i7].f10311e.length - 1) {
                         sb2.append(", ");
                     }
                 }

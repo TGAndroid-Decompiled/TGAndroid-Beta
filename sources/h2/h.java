@@ -1,7 +1,7 @@
 package h2;
 
-import a8.ha;
 import a8.ja;
+import a8.la;
 import android.graphics.Color;
 import android.text.TextUtils;
 import com.google.android.gms.internal.vision.e2;
@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class h {
-    public static final Pattern f13449a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
-    public static final Pattern f13450b = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
-    public static final Pattern f13451c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
+    public static final Pattern f13764a = Pattern.compile("^rgb\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
+    public static final Pattern f13765b = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d{1,3})\\)$");
+    public static final Pattern f13766c = Pattern.compile("^rgba\\((\\d{1,3}),(\\d{1,3}),(\\d{1,3}),(\\d*\\.?\\d*?)\\)$");
     public static final HashMap d;
 
     static {
@@ -115,7 +115,7 @@ public abstract class h {
     public static int a(String str, boolean z10) {
         Pattern pattern;
         int parseInt;
-        ja.f(!TextUtils.isEmpty(str));
+        la.f(!TextUtils.isEmpty(str));
         String replace = str.replace(" ", "");
         if (replace.charAt(0) == '#') {
             int parseLong = (int) Long.parseLong(replace.substring(1), 16);
@@ -129,9 +129,9 @@ public abstract class h {
         }
         if (replace.startsWith("rgba")) {
             if (z10) {
-                pattern = f13451c;
+                pattern = f13766c;
             } else {
-                pattern = f13450b;
+                pattern = f13765b;
             }
             Matcher matcher = pattern.matcher(replace);
             if (matcher.matches()) {
@@ -155,7 +155,7 @@ public abstract class h {
                 return Color.argb(parseInt, parseInt2, parseInt3, Integer.parseInt(group5, 10));
             }
         } else if (replace.startsWith("rgb")) {
-            Matcher matcher2 = f13449a.matcher(replace);
+            Matcher matcher2 = f13764a.matcher(replace);
             if (matcher2.matches()) {
                 String group6 = matcher2.group(1);
                 group6.getClass();
@@ -168,7 +168,7 @@ public abstract class h {
                 return Color.rgb(parseInt4, parseInt5, Integer.parseInt(group8, 10));
             }
         } else {
-            Integer num = (Integer) d.get(ha.c(replace));
+            Integer num = (Integer) d.get(ja.c(replace));
             if (num != null) {
                 return num.intValue();
             }

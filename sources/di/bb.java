@@ -1,110 +1,100 @@
 package di;
 
-import android.widget.FrameLayout;
+import android.content.Context;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.is;
-import org.telegram.messenger.ns;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.nz;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.tj0;
-import org.telegram.ui.Components.uj0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.qj;
-public final class bb extends org.telegram.ui.Components.ja implements is {
-    public final long T1;
-    public final ah.a U1;
-    public final FrameLayout V1;
-    public final nz W1;
-    public Runnable X1;
-    public final TLRPC.InputPeer Y1;
-    public final boolean Z1;
-    public p41 f8275a2;
-    public boolean f8276b2;
+import org.telegram.messenger.gd;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.Components.z41;
+public final class bb extends k41 {
+    public static final int f8579b = 0;
 
-    public bb(android.content.Context r17, org.telegram.ui.ActionBar.e6 r18, long r19, int r21, java.lang.String r22, java.lang.Runnable r23, long r24) {
-        throw new UnsupportedOperationException("Method not decompiled: di.bb.<init>(android.content.Context, org.telegram.ui.ActionBar.e6, long, int, java.lang.String, java.lang.Runnable, long):void");
+    static {
+        k41.h(new k41());
     }
 
-    @Override
-    public final void L() {
-        super.L();
-        ns.f(this.f29679a).n(this, ns.f25590v3);
-        ns.f(this.f29679a).n(this, ns.f25611y3);
-    }
-
-    @Override
-    public final tj0 L0(uj0 uj0Var) {
-        p41 p41Var = new p41(this.f35931o1, getContext(), this.f29679a, 0, true, new bi.b(this, 21), this.J0);
-        this.f8275a2 = p41Var;
-        return p41Var;
-    }
-
-    @Override
-    public final CharSequence O0() {
-        ah.a aVar = this.U1;
-        if (aVar == null) {
-            return null;
-        }
-        return ((TextView) aVar.d).getText();
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        Runnable runnable;
-        if (i7 == ns.f25590v3 || i7 == ns.f25611y3) {
-            p41 p41Var = this.f8275a2;
-            if (p41Var != null) {
-                p41Var.O(true);
-            }
-            long j3 = u8.y(this.f29679a, false).p().amount;
-            long j10 = this.T1;
-            ((TextView) this.U1.d).setText(hd.H(',', "StarsNeededTitle", (int) (j10 - j3)));
-            org.telegram.ui.Components.fa faVar = this.f35932p1;
-            if (faVar != null) {
-                faVar.setTitle(O0());
-            }
-            if (j3 >= j10 && (runnable = this.X1) != null) {
-                runnable.run();
-                this.X1 = null;
-                dismiss();
-            }
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        ah.a aVar = this.U1;
-        if (aVar != null) {
-            ((vg.m) aVar.f1055b).setPaused(true);
-        }
-    }
-
-    @Override
-    public final void show() {
-        qj qjVar;
-        if (!this.Z1) {
-            org.telegram.messenger.k5.n(null, 2131747397, new org.telegram.ui.Components.cc(org.telegram.ui.Components.ta.a(getContext()), this.J0), 2131624227, 36);
-        } else if (u8.y(this.f29679a, false).p().amount >= this.T1) {
-            Runnable runnable = this.X1;
-            if (runnable != null) {
-                runnable.run();
-                this.X1 = null;
-            }
+    public static l41 i(int i7, int i10, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
+        String f10;
+        l41 K = l41.K(bb.class);
+        K.d = i7;
+        K.A = i10;
+        long j3 = tL_starsTopupOption.stars;
+        K.C = j3;
+        K.f37018m = gd.H(' ', "StarsCount", (int) j3);
+        if (tL_starsTopupOption.loadingStorePrice) {
+            f10 = null;
         } else {
-            org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
-            if (Q instanceof an) {
-                an anVar = (an) Q;
-                if (anVar.V9() && (qjVar = anVar.f45117a0) != null) {
-                    qjVar.S();
-                }
-            }
-            super.show();
-            ns.f(this.f29679a).c(this, ns.f25590v3);
-            ns.f(this.f29679a).c(this, ns.f25611y3);
+            f10 = org.telegram.messenger.r1.i().f(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
         }
+        K.f37019n = f10;
+        K.H = tL_starsTopupOption;
+        return K;
+    }
+
+    @Override
+    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+        float f10;
+        cb cbVar = (cb) view;
+        int i7 = l41Var.A;
+        CharSequence charSequence = l41Var.f37018m;
+        CharSequence charSequence2 = l41Var.f37019n;
+        org.telegram.ui.Components.n6 n6Var = cbVar.f8630e;
+        TextView textView = cbVar.d;
+        boolean equals = TextUtils.equals(textView.getText(), charSequence);
+        cbVar.f8632n = i7;
+        if (!equals) {
+            cbVar.f8633r.e(true, i7);
+        }
+        textView.setText(charSequence);
+        if (charSequence2 == null) {
+            if (cbVar.f8631f == null) {
+                SpannableString spannableString = new SpannableString("x");
+                cbVar.f8631f = spannableString;
+                spannableString.setSpan(new p80(org.telegram.messenger.g0.L(55.0f), n6Var), 0, cbVar.f8631f.length(), 33);
+            }
+            charSequence2 = cbVar.f8631f;
+        }
+        n6Var.setText(charSequence2);
+        if (gd.f24216a0) {
+            f10 = -1.0f;
+        } else {
+            f10 = 1.0f;
+        }
+        if (equals) {
+            textView.animate().translationX(f10 * (i7 - 1) * org.telegram.messenger.g0.L(2.66f)).setDuration(320L).setInterpolator(lr.h).start();
+        } else {
+            textView.setTranslationX(f10 * (i7 - 1) * org.telegram.messenger.g0.L(2.66f));
+        }
+        cbVar.h = z10;
+        cbVar.invalidate();
+    }
+
+    @Override
+    public final boolean c(l41 l41Var, l41 l41Var2) {
+        if (l41Var.A == l41Var2.A && l41Var.d == l41Var2.d && TextUtils.equals(l41Var.f37019n, l41Var2.f37019n)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        return new cb(context, i6Var);
+    }
+
+    @Override
+    public final boolean e(l41 l41Var, l41 l41Var2) {
+        if (l41Var.d == l41Var2.d) {
+            return true;
+        }
+        return false;
     }
 }

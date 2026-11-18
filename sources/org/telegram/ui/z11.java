@@ -1,100 +1,35 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.view.View;
-import java.util.HashMap;
-public final class z11 extends org.telegram.ui.Components.ja implements org.telegram.messenger.is {
-    public final org.telegram.ui.Components.oy T1;
-    public final hi.d U1;
-    public final fi.k6 V1;
-    public final HashMap W1;
-    public final int X1;
-    public int Y1;
-    public org.telegram.ui.Components.p41 Z1;
+public final class z11 extends View {
+    public final Paint f54363a;
+    public int f54364b;
+    public LinearGradient f54365c;
+    public final b21 d;
 
-    public z11(org.telegram.ui.ActionBar.e2 r17, long r18, int r20, di.h3 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.z11.<init>(org.telegram.ui.ActionBar.e2, long, int, di.h3):void");
+    public z11(b21 b21Var, Context context) {
+        super(context);
+        this.d = b21Var;
+        this.f54363a = new Paint(1);
+        this.f54364b = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, b21Var.J0);
+        this.f54365c = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(68.0f), new int[]{org.telegram.ui.ActionBar.n6.r1(0.0f, this.f54364b), this.f54364b}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
     }
 
     @Override
-    public final org.telegram.ui.Components.tj0 L0(org.telegram.ui.Components.uj0 uj0Var) {
-        org.telegram.ui.Components.p41 p41Var = new org.telegram.ui.Components.p41(uj0Var, getContext(), this.f29679a, 0, false, new a5(this, 26), this.J0);
-        this.Z1 = p41Var;
-        p41Var.f38199r = false;
-        return p41Var;
-    }
-
-    @Override
-    public final CharSequence O0() {
-        return org.telegram.messenger.hd.M0(2131744798, null);
-    }
-
-    public final void d1() {
-        int abs;
-        org.telegram.ui.Components.oy oyVar = this.T1;
-        int L0 = oyVar.L0();
-        if (L0 == -1) {
-            abs = 0;
-        } else {
-            abs = Math.abs(oyVar.N0() - L0) + 1;
+    public final void onDraw(Canvas canvas) {
+        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, this.d.J0);
+        if (w02 != this.f54364b) {
+            this.f54364b = w02;
+            this.f54365c = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(68.0f), new int[]{org.telegram.ui.ActionBar.n6.r1(0.0f, w02), w02}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
         }
-        fi.k6 k6Var = this.V1;
-        if (k6Var != null) {
-            int i7 = L0 + abs;
-            int i10 = k6Var.i();
-            int i11 = this.X1;
-            if (i7 > i10 - i11) {
-                k6Var.p(Math.min(100, Math.max(1, i11 / 2) * i11 * i11), false);
-            }
-        }
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ns.f25606x5 && ((fi.k6) objArr[0]) == this.V1) {
-            this.Z1.O(false);
-            d1();
-        }
-    }
-
-    public final boolean e1(int i7, View view) {
-        org.telegram.ui.Components.b41 G;
-        org.telegram.ui.Components.p41 p41Var = this.Z1;
-        if (p41Var == null || i7 == 0 || (G = p41Var.G(i7 - 1)) == null) {
-            return false;
-        }
-        Object obj = G.G;
-        if (obj instanceof org.telegram.messenger.gj) {
-            org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) obj;
-            int e12 = gjVar.e1();
-            Integer valueOf = Integer.valueOf(e12);
-            HashMap hashMap = this.W1;
-            if (hashMap.containsKey(valueOf)) {
-                hashMap.remove(Integer.valueOf(e12));
-                G.f33178e = false;
-                ((org.telegram.ui.Cells.n7) view).i(false, true);
-            } else {
-                hashMap.put(Integer.valueOf(e12), gjVar.f23824l);
-                G.f33178e = true;
-                ((org.telegram.ui.Cells.n7) view).i(true, true);
-            }
-            hi.d dVar = this.U1;
-            dVar.setEnabled(!hashMap.isEmpty());
-            dVar.c(hashMap.size(), true);
-        }
-        return true;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.Y1 = this.V1.o();
-        org.telegram.messenger.ns.f(this.f29679a).c(this, org.telegram.messenger.ns.f25606x5);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.V1.z(this.Y1);
-        org.telegram.messenger.ns.f(this.f29679a).n(this, org.telegram.messenger.ns.f25606x5);
+        LinearGradient linearGradient = this.f54365c;
+        Paint paint = this.f54363a;
+        paint.setShader(linearGradient);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }
 }

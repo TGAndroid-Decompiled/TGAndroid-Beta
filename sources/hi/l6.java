@@ -1,46 +1,48 @@
 package hi;
 
-import org.telegram.messenger.z10;
-public final class l6 implements z10 {
-    public final int f14587a;
-    public final p6 f14588b;
+import android.os.Bundle;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.o10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ProfileActivity;
+public final class l6 extends n6 {
+    public final TLRPC.User f14943b;
 
-    public l6(p6 p6Var, int i7) {
-        this.f14587a = i7;
-        this.f14588b = p6Var;
+    public l6(String str, TLRPC.User user) {
+        super(str);
+        this.f14943b = user;
     }
 
     @Override
-    public final void a(Object obj) {
-        boolean z10;
-        switch (this.f14587a) {
-            case 0:
-                o6 o6Var = (o6) obj;
-                p6 p6Var = this.f14588b;
-                p6Var.I = null;
-                p6Var.F = o6Var;
-                if (o6Var != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                p6Var.E = z10;
-                p6Var.a();
-                p6Var.invalidate();
-                s8 s8Var = p6Var.f14857b;
-                if (s8Var != null) {
-                    s8Var.run();
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) obj;
-                o6 o6Var2 = this.f14588b.F;
-                if (o6Var2 != null || e2Var == null) {
-                    o6Var2.c(e2Var);
-                    return;
-                }
-                return;
+    public final String a() {
+        return gd.M0(2131743309, null);
+    }
+
+    @Override
+    public final String b() {
+        return o10.q(this.f14943b);
+    }
+
+    @Override
+    public final void c(org.telegram.ui.ActionBar.h2 h2Var) {
+        TLRPC.User user = this.f14943b;
+        if (user.f28554id == j10.i(j10.f24773t0).e()) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", user.f28554id);
+            bundle.putBoolean("my_profile", true);
+            h2Var.presentFragment(new ProfileActivity(bundle, null));
+            return;
         }
+        h2Var.presentFragment(ProfileActivity.D4(user.f28554id));
+    }
+
+    @Override
+    public final void d(ImageReceiver imageReceiver) {
+        org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
+        TLRPC.User user = this.f14943b;
+        b9Var.r(user);
+        imageReceiver.i0(user, b9Var, null);
     }
 }

@@ -1,23 +1,31 @@
 package zi;
 
-import android.os.SystemClock;
-import java.util.concurrent.atomic.AtomicLong;
-import org.telegram.messenger.a8;
-public final class p {
-    public static final AtomicLong f61669c = new AtomicLong(1);
-    public final long f61670a = f61669c.getAndIncrement();
-    public final long f61671b = SystemClock.elapsedRealtime();
+import android.graphics.SurfaceTexture;
+public final class p implements SurfaceTexture.OnFrameAvailableListener {
+    public final int f62236a;
+    public final Object f62237b;
 
-    public final void a(String str, Throwable th2) {
-        a8.d(c() + str + ": " + th2);
-        a8.g(th2, true);
+    public p(Object obj, int i7) {
+        this.f62236a = i7;
+        this.f62237b = obj;
     }
 
-    public final void b(String str) {
-        a8.b(c() + str);
-    }
-
-    public final String c() {
-        return "RoundVideo[" + this.f61670a + "] t+" + (SystemClock.elapsedRealtime() - this.f61671b) + "ms [" + Thread.currentThread().getName() + "] ";
+    @Override
+    public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
+        switch (this.f62236a) {
+            case 0:
+                ((t) this.f62237b).b(true);
+                return;
+            case 1:
+                ((t) this.f62237b).b(false);
+                return;
+            default:
+                w0 w0Var = (w0) this.f62237b;
+                synchronized (w0Var.f62345b) {
+                    w0Var.f62354m = true;
+                    w0Var.f62345b.notifyAll();
+                }
+                return;
+        }
     }
 }

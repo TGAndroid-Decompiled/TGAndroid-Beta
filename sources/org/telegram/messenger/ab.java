@@ -1,6 +1,10 @@
 package org.telegram.messenger;
+public final class ab {
+    public final double f22854a;
+    public final double f22855b;
 
-import android.view.MotionEvent;
-public interface ab {
-    boolean c(MotionEvent motionEvent, ha haVar);
+    public ab(double d, double d2) {
+        this.f22854a = d;
+        this.f22855b = d2;
+    }
 }

@@ -1,11 +1,8 @@
 package org.telegram.ui.Components;
-public final class nt0 {
-    public float f37702a;
-    public float f37703b;
-    public boolean f37704c;
+public interface nt0 {
+    void G(boolean z10);
 
-    public nt0(float f10, float f11) {
-        this.f37702a = f10;
-        this.f37703b = f11;
-    }
+    float U0();
+
+    int j1();
 }

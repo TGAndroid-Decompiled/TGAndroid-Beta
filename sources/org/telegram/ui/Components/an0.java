@@ -1,111 +1,251 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import java.util.List;
-import org.telegram.tgnet.TLRPC;
-public final class an0 extends tj0 {
-    public final org.telegram.ui.ActionBar.e6 f33025c;
-    public final List d;
-    public final org.telegram.messenger.np f33026e;
-    public final int f33027f;
-    public final TLRPC.Peer h;
+import android.graphics.Paint;
+import android.media.MediaCodec;
+import android.os.Build;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+public final class an0 {
+    public final int f33368a;
+    public long f33369b;
+    public final Object f33370c;
+    public final Object d;
+    public Object f33371e;
+    public Object f33372f;
+    public Object f33373g;
 
-    public an0(org.telegram.ui.ActionBar.e6 e6Var, List list, org.telegram.messenger.np npVar, int i7, TLRPC.Peer peer) {
-        this.f33025c = e6Var;
-        this.d = list;
-        this.f33026e = npVar;
-        this.f33027f = i7;
-        this.h = peer;
-    }
-
-    @Override
-    public final boolean D(v4.e1 e1Var) {
-        return true;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.size();
-    }
-
-    @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        long j3;
-        String str;
-        en0 en0Var = (en0) e1Var.f58535a;
-        TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i7);
-        TLRPC.Peer peer = tL_sendAsPeer.peer;
-        long j10 = peer.channel_id;
-        if (j10 != 0) {
-            j3 = -j10;
-        } else {
-            j3 = 0;
+    public an0(h6.m mVar) {
+        int i7;
+        this.f33370c = mVar;
+        synchronized (mVar) {
+            i7 = ((l2.h) mVar.d).f19393c.f2871b;
         }
-        if (j3 == 0) {
-            long j11 = peer.user_id;
-            if (j11 != 0) {
-                j3 = j11;
+        this.f33368a = i7;
+        this.d = new h2.x(32);
+        a4.c cVar = new a4.c(0L, i7);
+        this.f33371e = cVar;
+        this.f33372f = cVar;
+        this.f33373g = cVar;
+    }
+
+    public static a4.c d(a4.c cVar, long j3, ByteBuffer byteBuffer, int i7) {
+        while (j3 >= cVar.f159b) {
+            cVar = (a4.c) cVar.d;
+        }
+        while (i7 > 0) {
+            int min = Math.min(i7, (int) (cVar.f159b - j3));
+            b3.a aVar = (b3.a) cVar.f160c;
+            byteBuffer.put(aVar.f2861a, ((int) (j3 - cVar.f158a)) + aVar.f2862b, min);
+            i7 -= min;
+            j3 += min;
+            if (j3 == cVar.f159b) {
+                cVar = (a4.c) cVar.d;
             }
         }
-        int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        TLRPC.Peer peer2 = this.h;
-        org.telegram.messenger.np npVar = this.f33026e;
-        boolean z10 = true;
-        if (i10 < 0) {
-            TLRPC.Chat M0 = npVar.M0(Long.valueOf(-j3));
-            if (M0 != null) {
-                if (tL_sendAsPeer.premium_required) {
-                    StringBuilder sb2 = new StringBuilder();
-                    String str2 = M0.title;
-                    TextView textView = en0Var.f34376b;
-                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f33027f - org.telegram.messenger.g0.L(100.0f), TextUtils.TruncateAt.END));
-                    sb2.append(" d");
-                    SpannableString spannableString = new SpannableString(sb2.toString());
-                    eq eqVar = new eq(2131232246, 0);
-                    eqVar.f34413n = 1;
-                    eqVar.c(org.telegram.messenger.g0.L(14.0f));
-                    eqVar.a(org.telegram.ui.ActionBar.j6.C6);
-                    spannableString.setSpan(eqVar, spannableString.length() - 1, spannableString.length(), 33);
-                    textView.setEllipsize(null);
-                    textView.setText(spannableString);
-                } else {
-                    en0Var.f34376b.setEllipsize(TextUtils.TruncateAt.END);
-                    en0Var.f34376b.setText(M0.title);
-                }
-                TextView textView2 = en0Var.f34377c;
-                if (org.telegram.messenger.t3.T(M0) && !M0.megagroup) {
-                    str = "Subscribers";
-                } else {
-                    str = "Members";
-                }
-                textView2.setText(org.telegram.messenger.hd.G(M0.participants_count, str, new Object[0]));
-                en0Var.f34375a.setAvatar(M0);
+        return cVar;
+    }
+
+    public static a4.c e(a4.c cVar, long j3, byte[] bArr, int i7) {
+        while (j3 >= cVar.f159b) {
+            cVar = (a4.c) cVar.d;
+        }
+        int i10 = i7;
+        while (i10 > 0) {
+            int min = Math.min(i10, (int) (cVar.f159b - j3));
+            b3.a aVar = (b3.a) cVar.f160c;
+            System.arraycopy(aVar.f2861a, ((int) (j3 - cVar.f158a)) + aVar.f2862b, bArr, i7 - i10, min);
+            i10 -= min;
+            j3 += min;
+            if (j3 == cVar.f159b) {
+                cVar = (a4.c) cVar.d;
             }
-            jt0 jt0Var = en0Var.f34375a;
-            if (peer2 == null ? i7 != 0 : peer2.channel_id != peer.channel_id) {
+        }
+        return cVar;
+    }
+
+    public static a4.c f(a4.c cVar, k2.h hVar, m5.b bVar, h2.x xVar) {
+        boolean z10;
+        if (hVar.getFlag(1073741824)) {
+            long j3 = bVar.f20834a;
+            int i7 = 1;
+            xVar.K(1);
+            a4.c e10 = e(cVar, j3, xVar.f13836a, 1);
+            long j10 = j3 + 1;
+            byte b10 = xVar.f13836a[0];
+            if ((b10 & 128) != 0) {
+                z10 = true;
+            } else {
                 z10 = false;
             }
-            jt0Var.a(z10, false);
-            return;
+            int i10 = b10 & Byte.MAX_VALUE;
+            k2.d dVar = hVar.f18126b;
+            byte[] bArr = dVar.f18117a;
+            if (bArr == null) {
+                dVar.f18117a = new byte[16];
+            } else {
+                Arrays.fill(bArr, (byte) 0);
+            }
+            cVar = e(e10, j10, dVar.f18117a, i10);
+            long j11 = j10 + i10;
+            if (z10) {
+                xVar.K(2);
+                cVar = e(cVar, j11, xVar.f13836a, 2);
+                j11 += 2;
+                i7 = xVar.H();
+            }
+            int[] iArr = dVar.d;
+            if (iArr == null || iArr.length < i7) {
+                iArr = new int[i7];
+            }
+            int[] iArr2 = dVar.f18120e;
+            if (iArr2 == null || iArr2.length < i7) {
+                iArr2 = new int[i7];
+            }
+            if (z10) {
+                int i11 = i7 * 6;
+                xVar.K(i11);
+                cVar = e(cVar, j11, xVar.f13836a, i11);
+                j11 += i11;
+                xVar.N(0);
+                for (int i12 = 0; i12 < i7; i12++) {
+                    iArr[i12] = xVar.H();
+                    iArr2[i12] = xVar.E();
+                }
+            } else {
+                iArr[0] = 0;
+                iArr2[0] = bVar.f20835b - ((int) (j11 - bVar.f20834a));
+            }
+            f3.h0 h0Var = (f3.h0) bVar.f20836c;
+            String str = h2.l0.f13786a;
+            byte[] bArr2 = h0Var.f11165b;
+            byte[] bArr3 = dVar.f18117a;
+            int i13 = h0Var.f11164a;
+            int i14 = h0Var.f11166c;
+            int i15 = h0Var.d;
+            dVar.f18121f = i7;
+            dVar.d = iArr;
+            dVar.f18120e = iArr2;
+            dVar.f18118b = bArr2;
+            dVar.f18117a = bArr3;
+            dVar.f18119c = i13;
+            dVar.f18122g = i14;
+            dVar.h = i15;
+            MediaCodec.CryptoInfo cryptoInfo = dVar.f18123i;
+            cryptoInfo.numSubSamples = i7;
+            cryptoInfo.numBytesOfClearData = iArr;
+            cryptoInfo.numBytesOfEncryptedData = iArr2;
+            cryptoInfo.key = bArr2;
+            cryptoInfo.iv = bArr3;
+            cryptoInfo.mode = i13;
+            if (Build.VERSION.SDK_INT >= 24) {
+                k2.c cVar2 = dVar.f18124j;
+                cVar2.getClass();
+                k2.c.a(cVar2, i14, i15);
+            }
+            long j12 = bVar.f20834a;
+            int i16 = (int) (j11 - j12);
+            bVar.f20834a = j12 + i16;
+            bVar.f20835b -= i16;
         }
-        TLRPC.User a22 = npVar.a2(Long.valueOf(j3));
-        if (a22 != null) {
-            en0Var.f34376b.setText(org.telegram.messenger.q10.p(a22));
-            en0Var.f34377c.setText(org.telegram.messenger.hd.M0(2131743349, null));
-            en0Var.f34375a.setAvatar(a22);
+        if (hVar.hasSupplementalData()) {
+            xVar.K(4);
+            a4.c e11 = e(cVar, bVar.f20834a, xVar.f13836a, 4);
+            int E = xVar.E();
+            bVar.f20834a += 4;
+            bVar.f20835b -= 4;
+            hVar.b(E);
+            a4.c d = d(e11, bVar.f20834a, hVar.f18127c, E);
+            bVar.f20834a += E;
+            int i17 = bVar.f20835b - E;
+            bVar.f20835b = i17;
+            ByteBuffer byteBuffer = hVar.f18129f;
+            if (byteBuffer != null && byteBuffer.capacity() >= i17) {
+                hVar.f18129f.clear();
+            } else {
+                hVar.f18129f = ByteBuffer.allocate(i17);
+            }
+            return d(d, bVar.f20834a, hVar.f18129f, bVar.f20835b);
         }
-        jt0 jt0Var2 = en0Var.f34375a;
-        if (peer2 == null ? i7 != 0 : peer2.user_id != peer.user_id) {
-            z10 = false;
-        }
-        jt0Var2.a(z10, false);
+        hVar.b(bVar.f20835b);
+        return d(cVar, bVar.f20834a, hVar.f18127c, bVar.f20835b);
     }
 
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        return new v4.e1(new en0(viewGroup.getContext(), this.f33025c));
+    public void a(a4.c cVar) {
+        if (((b3.a) cVar.f160c) == null) {
+            return;
+        }
+        h6.m mVar = (h6.m) this.f33370c;
+        synchronized (mVar) {
+            ((l2.h) mVar.d).f19393c.b(cVar);
+            a4.c cVar2 = cVar;
+            while (cVar2 != null) {
+                b3.a aVar = (b3.a) cVar2.f160c;
+                aVar.getClass();
+                mVar.H(aVar);
+                cVar2 = (a4.c) cVar2.d;
+                if (cVar2 == null || ((b3.a) cVar2.f160c) == null) {
+                    cVar2 = null;
+                }
+            }
+        }
+        cVar.f160c = null;
+        cVar.d = null;
+    }
+
+    public void b(long j3) {
+        a4.c cVar;
+        if (j3 != -1) {
+            while (true) {
+                cVar = (a4.c) this.f33371e;
+                if (j3 < cVar.f159b) {
+                    break;
+                }
+                h6.m mVar = (h6.m) this.f33370c;
+                b3.a aVar = (b3.a) cVar.f160c;
+                synchronized (mVar) {
+                    ((l2.h) mVar.d).f19393c.c(aVar);
+                    mVar.H(aVar);
+                }
+                a4.c cVar2 = (a4.c) this.f33371e;
+                cVar2.f160c = null;
+                cVar2.d = null;
+                this.f33371e = (a4.c) cVar2.d;
+            }
+            if (((a4.c) this.f33372f).f158a < cVar.f158a) {
+                this.f33372f = cVar;
+            }
+        }
+    }
+
+    public int c(int i7) {
+        b3.a a10;
+        a4.c cVar = (a4.c) this.f33373g;
+        if (((b3.a) cVar.f160c) == null) {
+            h6.m mVar = (h6.m) this.f33370c;
+            synchronized (mVar) {
+                a10 = ((l2.h) mVar.d).f19393c.a();
+                ((HashMap) mVar.f13939b).put(a10, (m2.i) mVar.f13940c);
+                l2.g gVar = (l2.g) ((l2.h) mVar.d).f19404p.get((m2.i) mVar.f13940c);
+                if (gVar != null) {
+                    gVar.a();
+                }
+            }
+            a4.c cVar2 = new a4.c(((a4.c) this.f33373g).f159b, this.f33368a);
+            cVar.f160c = a10;
+            cVar.d = cVar2;
+        }
+        return Math.min(i7, (int) (((a4.c) this.f33373g).f159b - this.f33369b));
+    }
+
+    public an0(gb0 gb0Var) {
+        this.d = new ArrayList(50);
+        this.f33371e = new ArrayList(50);
+        Paint paint = new Paint(1);
+        this.f33372f = paint;
+        this.f33368a = 250;
+        this.f33370c = gb0Var;
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.33f));
     }
 }

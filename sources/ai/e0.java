@@ -4,20 +4,20 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class e0 implements View.OnKeyListener {
-    public final int f1186a;
-    public final FrameLayout f1187b;
+    public final int f1183a;
+    public final FrameLayout f1184b;
 
     public e0(int i7, FrameLayout frameLayout) {
-        this.f1186a = i7;
-        this.f1187b = frameLayout;
+        this.f1183a = i7;
+        this.f1184b = frameLayout;
     }
 
     @Override
     public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.g1 g1Var;
-        switch (this.f1186a) {
+        org.telegram.ui.ActionBar.h1 h1Var;
+        switch (this.f1183a) {
             case 0:
-                bi.x0 x0Var = (bi.x0) this.f1187b;
+                bi.x0 x0Var = (bi.x0) this.f1184b;
                 if (i7 != 4) {
                     return false;
                 }
@@ -26,7 +26,7 @@ public final class e0 implements View.OnKeyListener {
                 }
                 return true;
             case 1:
-                bi.x0 x0Var2 = (bi.x0) this.f1187b;
+                bi.x0 x0Var2 = (bi.x0) this.f1184b;
                 if (i7 != 4) {
                     return false;
                 }
@@ -35,7 +35,7 @@ public final class e0 implements View.OnKeyListener {
                 }
                 return true;
             case 2:
-                bi.x0 x0Var3 = (bi.x0) this.f1187b;
+                bi.x0 x0Var3 = (bi.x0) this.f1184b;
                 if (i7 != 4) {
                     return false;
                 }
@@ -44,10 +44,10 @@ public final class e0 implements View.OnKeyListener {
                 }
                 return true;
             default:
-                org.telegram.ui.ActionBar.q0 q0Var = (org.telegram.ui.ActionBar.q0) this.f1187b;
-                q0Var.getClass();
-                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && (g1Var = q0Var.d) != null && g1Var.isShowing()) {
-                    q0Var.d.d(true);
+                org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f1184b;
+                r0Var.getClass();
+                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && (h1Var = r0Var.d) != null && h1Var.isShowing()) {
+                    r0Var.d.d(true);
                     return true;
                 }
                 return false;

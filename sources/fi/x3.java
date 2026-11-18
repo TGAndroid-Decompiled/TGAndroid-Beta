@@ -1,203 +1,461 @@
 package fi;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import c8.ja;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ns;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.gh0;
-public final class x3 extends FrameLayout {
-    public final v3 f12493a;
-    public final w3 f12494b;
-    public final TextView[] f12495c;
-    public gh0 d;
-    public final z3 f12496e;
-    public Paint f12497f;
-    public float h;
-    public boolean f12498n;
-    public boolean f12499r;
-    public ValueAnimator f12500s;
+import android.text.style.CharacterStyle;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Locale;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.o10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.y21;
+public final class x3 {
+    public TL_stories.StoryItem f12723a = null;
+    public o6 f12724b = null;
+    public TL_stories.StoryItem f12725c;
+    public boolean d;
+    public boolean f12726e;
+    public boolean f12727f;
+    public boolean f12728g;
+    public CharSequence h;
+    public s7 f12729i;
+    public s7 f12730j;
+    public final z3 f12731k;
 
-    public x3(Context context, z3 z3Var) {
-        super(context);
-        this.f12495c = new TextView[2];
-        this.f12496e = z3Var;
-        v3 v3Var = new v3(0, context, this);
-        this.f12493a = v3Var;
-        v3Var.setRoundRadius(org.telegram.messenger.g0.L(16.0f));
-        addView(v3Var, ja.d(32, 32.0f, 0, 12.0f, 2.0f, 0.0f, 0.0f));
-        setClipChildren(false);
-        w3 w3Var = new w3(context, 0);
-        this.f12494b = w3Var;
-        w3Var.setTextSize(14);
-        w3Var.setTypeface(org.telegram.messenger.g0.o());
-        w3Var.setMaxLines(1);
-        w3Var.setEllipsizeByGradient(org.telegram.messenger.g0.L(4.0f));
-        w3Var.setPivotX(0.0f);
-        ns.i(w3Var);
-        addView(w3Var, ja.d(-2, -2.0f, 0, 54.0f, 0.0f, 86.0f, 0.0f));
-        for (int i7 = 0; i7 < 2; i7++) {
-            this.f12495c[i7] = new TextView(context);
-            this.f12495c[i7].setTextSize(1, 12.0f);
-            this.f12495c[i7].setMaxLines(1);
-            this.f12495c[i7].setSingleLine(true);
-            this.f12495c[i7].setEllipsize(TextUtils.TruncateAt.MIDDLE);
-            this.f12495c[i7].setTextColor(-1);
-            this.f12495c[i7].setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(1.0f));
-            addView(this.f12495c[i7], ja.d(-2, -2.0f, 0, 51.0f, 18.0f, 83.0f, 0.0f));
-        }
-        this.f12494b.setTextColor(-1);
+    public x3(z3 z3Var) {
+        this.f12731k = z3Var;
     }
 
-    public final void b(float f10, Canvas canvas, RectF rectF, boolean z10) {
-        boolean z11;
-        float f11;
-        boolean z12;
-        float i7;
-        r6 r6Var;
-        z3 z3Var = this.f12496e;
-        if ((z3Var != null && z3Var.f12580b != null) || this.h != 0.0f) {
-            if (z3Var != null && (r6Var = z3Var.f12580b) != null && !r6Var.J) {
-                this.h = 1.0f;
-                f11 = r6Var.h;
-                if (!this.f12498n) {
-                    this.f12498n = true;
-                }
-                z11 = false;
+    public static String c(x3 x3Var) {
+        TLRPC.MessageMedia messageMedia;
+        TL_stories.StoryItem storyItem = x3Var.f12723a;
+        if (storyItem != null && (messageMedia = storyItem.media) != null) {
+            if (messageMedia.photo != null) {
+                StringBuilder sb2 = new StringBuilder("photo#");
+                sb2.append(x3Var.f12723a.media.photo.f28429id);
+                sb2.append("at");
+                return a8.p0.n(x3Var.f12723a.media.photo.dc_id, "dc", sb2);
+            } else if (messageMedia.document != null) {
+                StringBuilder sb3 = new StringBuilder("doc#");
+                sb3.append(x3Var.f12723a.media.document.f28411id);
+                sb3.append("at");
+                return a8.p0.n(x3Var.f12723a.media.document.dc_id, "dc", sb3);
             } else {
-                if (this.f12498n) {
-                    this.f12498n = false;
-                    if (this.d.f34972f < 0.2f) {
-                        z12 = true;
+                return "unknown";
+            }
+        } else if (x3Var.f12724b != null) {
+            return "uploading from " + x3Var.f12724b.f12334e;
+        } else {
+            return "unknown";
+        }
+    }
+
+    public final boolean d() {
+        o6 o6Var = this.f12724b;
+        if (o6Var != null) {
+            return o6Var.f12333c.H0;
+        }
+        TL_stories.StoryItem storyItem = this.f12723a;
+        if (storyItem != null) {
+            if (storyItem.noforwards) {
+                return false;
+            }
+            if (storyItem.pinned) {
+                TLRPC.Chat O0 = mp.u1(this.f12731k.f12850m2).O0(Long.valueOf(-storyItem.dialogId));
+                if (O0 != null && O0.noforwards) {
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public final String e() {
+        z3 z3Var = this.f12731k;
+        if (z3Var.f12896y1.f12723a == null) {
+            return null;
+        }
+        if (z3Var.l1 > 0) {
+            TLRPC.User c22 = mp.u1(z3Var.f12850m2).c2(Long.valueOf(z3Var.l1));
+            if (o10.o(c22) == null) {
+                return null;
+            }
+            if (z3Var.f12896y1.f12727f) {
+                return String.format(Locale.US, "https://t.me/%1$s/s/live", o10.o(c22));
+            }
+            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", o10.o(c22), Integer.valueOf(z3Var.f12896y1.f12723a.f28644id));
+        }
+        TLRPC.Chat O0 = mp.u1(z3Var.f12850m2).O0(Long.valueOf(-z3Var.l1));
+        if (org.telegram.messenger.v3.K(O0, false) == null) {
+            return null;
+        }
+        if (z3Var.f12896y1.f12727f) {
+            return String.format(Locale.US, "https://t.me/%1$s/s/live", org.telegram.messenger.v3.K(O0, false));
+        }
+        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", org.telegram.messenger.v3.K(O0, false), Integer.valueOf(z3Var.f12896y1.f12723a.f28644id));
+    }
+
+    public final String f() {
+        TL_stories.StoryItem storyItem = this.f12723a;
+        if (storyItem != null) {
+            return storyItem.attachPath;
+        }
+        return null;
+    }
+
+    public final s7 g() {
+        TL_stories.StoryItem storyItem;
+        TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
+        if (this.f12729i == null && (storyItem = this.f12723a) != null) {
+            TLRPC.Document document = storyItem.music;
+            s7 s7Var = null;
+            if (document != null && (tL_documentAttributeAudio = (TLRPC.TL_documentAttributeAudio) org.telegram.messenger.g0.V(TLRPC.TL_documentAttributeAudio.class, document.attributes)) != null) {
+                String str = tL_documentAttributeAudio.title;
+                String str2 = tL_documentAttributeAudio.performer;
+                if (!TextUtils.isEmpty(str) || !TextUtils.isEmpty(str2)) {
+                    s7Var = new s7();
+                    s7Var.f12538f = true;
+                    s7Var.f12539g = document;
+                    if (TextUtils.isEmpty(str)) {
+                        s7Var.f12542k = new SpannableStringBuilder(s7.d()).append((CharSequence) " ").append((CharSequence) str2);
+                    } else if (TextUtils.isEmpty(str2)) {
+                        s7Var.f12542k = new SpannableStringBuilder(s7.d()).append((CharSequence) " ").append((CharSequence) str);
                     } else {
-                        z12 = false;
+                        SpannableStringBuilder append = new SpannableStringBuilder(s7.d()).append((CharSequence) " ").append((CharSequence) str2);
+                        s7Var.f12542k = append;
+                        int length = append.length();
+                        s7Var.f12542k.append((CharSequence) " ・ ");
+                        s7Var.f12542k.setSpan(new CharacterStyle(), length, s7Var.f12542k.length(), 33);
+                        s7Var.f12542k.append((CharSequence) str);
                     }
-                    this.f12499r = z12;
                 }
-                if (!this.f12499r) {
-                    this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f23612r) / 300.0f), 1.0f, 0.0f);
+            }
+            this.f12729i = s7Var;
+        }
+        return this.f12729i;
+    }
+
+    public final File h() {
+        TLRPC.Photo photo;
+        if (f() != null) {
+            return new File(f());
+        }
+        TL_stories.StoryItem storyItem = this.f12723a;
+        if (storyItem != null) {
+            TLRPC.MessageMedia messageMedia = storyItem.media;
+            int i7 = 0;
+            z3 z3Var = this.f12731k;
+            if (messageMedia != null && messageMedia.getDocument() != null) {
+                org.telegram.messenger.w7.G(z3Var.f12850m2);
+                File I = org.telegram.messenger.w7.I(p6.C(z3Var.f12850m2, this.f12723a));
+                if (I.exists()) {
+                    return I;
                 }
-                z11 = true;
-                f11 = 1.0f;
+                TLRPC.Document document = this.f12723a.media.document;
+                if (document != null) {
+                    File I2 = org.telegram.messenger.w7.I(document);
+                    if (I2.exists()) {
+                        return I2;
+                    }
+                }
+                ArrayList<TLRPC.Document> arrayList = this.f12723a.media.alt_documents;
+                int size = arrayList.size();
+                while (i7 < size) {
+                    TLRPC.Document document2 = arrayList.get(i7);
+                    i7++;
+                    TLRPC.Document document3 = document2;
+                    if (document3 != null) {
+                        File I3 = org.telegram.messenger.w7.I(document3);
+                        if (I3.exists()) {
+                            return I3;
+                        }
+                    }
+                }
+                return org.telegram.messenger.w7.I(this.f12723a.media.getDocument());
             }
-            gh0 gh0Var = this.d;
-            v3 v3Var = this.f12493a;
-            if (gh0Var == null) {
-                gh0 gh0Var2 = new gh0(v3Var);
-                this.d = gh0Var2;
-                gh0Var2.d(null, true, false);
+            TLRPC.MessageMedia messageMedia2 = this.f12723a.media;
+            if (messageMedia2 != null && (photo = messageMedia2.photo) != null) {
+                TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(photo.sizes, Integer.MAX_VALUE, false, null, false);
+                org.telegram.messenger.w7.G(z3Var.f12850m2);
+                File J = org.telegram.messenger.w7.J(w10, null, true, true);
+                if (!J.exists()) {
+                    org.telegram.messenger.w7.G(z3Var.f12850m2);
+                    return org.telegram.messenger.w7.J(w10, null, false, true);
+                }
+                return J;
             }
-            this.d.f34982q = 0;
-            ImageReceiver imageReceiver = v3Var.getImageReceiver();
-            float t6 = com.google.android.gms.internal.vision.e2.t(1.0f, this.h, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(3.0f));
-            this.d.f((int) (rectF.left - t6), (int) (rectF.top - t6), (int) (rectF.right + t6), (int) (rectF.bottom + t6));
-            gh0 gh0Var3 = this.d;
-            if (z11) {
-                i7 = 1.0f;
+        }
+        return null;
+    }
+
+    public final s7 i() {
+        ArrayList arrayList;
+        TLRPC.Chat O0;
+        CharSequence m22;
+        TLRPC.Chat O02;
+        CharSequence m23;
+        CharSequence m24;
+        String str;
+        if (this.f12730j == null) {
+            TL_stories.StoryItem storyItem = this.f12723a;
+            int i7 = 0;
+            s7 s7Var = null;
+            if (storyItem != null) {
+                int i10 = this.f12731k.f12850m2;
+                if (storyItem.fwd_from != null) {
+                    s7Var = new s7();
+                    s7Var.f12534a = i10;
+                    TL_stories.StoryFwdHeader storyFwdHeader = storyItem.fwd_from;
+                    TLRPC.Peer peer = storyFwdHeader.from;
+                    if (peer != null) {
+                        long o4 = org.telegram.messenger.n5.o(peer);
+                        s7Var.f12535b = Long.valueOf(o4);
+                        if (o4 >= 0) {
+                            s7Var.f12542k = new SpannableStringBuilder(fj.h6()).append((CharSequence) " ").append((CharSequence) o10.q(mp.u1(i10).c2(Long.valueOf(o4))));
+                        } else {
+                            TLRPC.Chat O03 = mp.u1(i10).O0(Long.valueOf(-o4));
+                            if (org.telegram.messenger.v3.V(O03)) {
+                                m24 = fj.F();
+                            } else {
+                                m24 = fj.m2();
+                            }
+                            SpannableStringBuilder append = new SpannableStringBuilder(m24).append((CharSequence) " ");
+                            if (O03 != null) {
+                                str = O03.title;
+                            } else {
+                                str = "";
+                            }
+                            s7Var.f12542k = append.append((CharSequence) str);
+                        }
+                    } else if (storyFwdHeader.from_name != null) {
+                        s7Var.f12542k = new SpannableStringBuilder(fj.h6()).append((CharSequence) " ").append((CharSequence) storyItem.fwd_from.from_name);
+                    }
+                    s7Var.f12538f = true;
+                    TL_stories.StoryFwdHeader storyFwdHeader2 = storyItem.fwd_from;
+                    if ((storyFwdHeader2.flags & 4) != 0) {
+                        s7Var.f12536c = Integer.valueOf(storyFwdHeader2.story_id);
+                    }
+                    s7Var.c();
+                } else if (storyItem.media_areas != null) {
+                    TL_stories.TL_mediaAreaChannelPost tL_mediaAreaChannelPost = null;
+                    while (i7 < storyItem.media_areas.size()) {
+                        if (storyItem.media_areas.get(i7) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                            tL_mediaAreaChannelPost = (TL_stories.TL_mediaAreaChannelPost) storyItem.media_areas.get(i7);
+                        }
+                        i7++;
+                    }
+                    if (tL_mediaAreaChannelPost != null && (O02 = mp.u1(i10).O0(Long.valueOf(tL_mediaAreaChannelPost.channel_id))) != null) {
+                        s7Var = new s7();
+                        s7Var.f12535b = Long.valueOf(-O02.f28405id);
+                        s7Var.f12537e = true;
+                        s7Var.f12534a = i10;
+                        s7Var.f12538f = true;
+                        s7Var.d = Integer.valueOf(tL_mediaAreaChannelPost.msg_id);
+                        if (org.telegram.messenger.v3.V(O02)) {
+                            m23 = fj.F();
+                        } else {
+                            m23 = fj.m2();
+                        }
+                        s7Var.f12542k = new SpannableStringBuilder(m23).append((CharSequence) " ").append((CharSequence) O02.title);
+                    }
+                }
+                this.f12730j = s7Var;
             } else {
-                i7 = Utilities.i(f11, 1.0f, 0.0f);
-            }
-            gh0Var3.e(true, i7);
-            if (this.f12499r && z11 && this.d.f34972f >= 0.9f) {
-                this.h = Utilities.i(this.h - ((1000.0f / org.telegram.messenger.g0.f23612r) / 300.0f), 1.0f, 0.0f);
-            }
-            if (z10) {
-                if (f10 != 1.0f) {
-                    Paint t10 = l7.t(imageReceiver, false);
-                    t10.setAlpha((int) (this.h * 255.0f));
-                    gh0 gh0Var4 = this.d;
-                    gh0Var4.f34985t = t10;
-                    gh0Var4.a(canvas);
+                o6 o6Var = this.f12724b;
+                if (o6Var != null) {
+                    hi.d7 d7Var = o6Var.f12333c;
+                    if (d7Var != null) {
+                        if (d7Var.f14416n) {
+                            s7Var = new s7();
+                            s7Var.f12542k = d7Var.f14420p;
+                            String str2 = d7Var.f14426s;
+                            s7Var.f12543l = str2;
+                            s7Var.f12538f = TextUtils.isEmpty(str2);
+                        } else if (d7Var.f14430u && (arrayList = d7Var.v) != null && arrayList.size() > 0) {
+                            fj fjVar = (fj) d7Var.v.get(0);
+                            long p10 = hi.d7.p(fjVar);
+                            if (p10 < 0 && (O0 = mp.u1(fjVar.K1).O0(Long.valueOf(-p10))) != null) {
+                                s7Var = new s7();
+                                s7Var.f12535b = Long.valueOf(p10);
+                                s7Var.f12537e = true;
+                                s7Var.f12534a = fjVar.K1;
+                                s7Var.f12538f = true;
+                                Boolean D = hi.d7.D(fjVar);
+                                if (D != null) {
+                                    if (D.booleanValue()) {
+                                        i7 = fjVar.f23968k.fwd_from.channel_post;
+                                    } else {
+                                        i7 = fjVar.e1();
+                                    }
+                                }
+                                s7Var.d = Integer.valueOf(i7);
+                                if (org.telegram.messenger.v3.V(O0)) {
+                                    m22 = fj.F();
+                                } else {
+                                    m22 = fj.m2();
+                                }
+                                s7Var.f12542k = new SpannableStringBuilder(m22).append((CharSequence) " ").append((CharSequence) O0.title);
+                            }
+                        }
+                    }
+                    this.f12730j = s7Var;
                 }
-                if (this.f12497f == null) {
-                    Paint paint = new Paint(1);
-                    this.f12497f = paint;
-                    paint.setColor(-1);
-                    this.f12497f.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-                    this.f12497f.setStyle(Paint.Style.STROKE);
-                    this.f12497f.setStrokeCap(Paint.Cap.ROUND);
-                }
-                this.f12497f.setAlpha((int) (255.0f * f10 * this.h));
-                gh0 gh0Var5 = this.d;
-                gh0Var5.f34985t = this.f12497f;
-                gh0Var5.a(canvas);
             }
         }
+        return this.f12730j;
     }
 
-    public final void c(CharSequence charSequence, boolean z10) {
-        ValueAnimator valueAnimator = this.f12500s;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f12500s = null;
-        }
-        TextView[] textViewArr = this.f12495c;
-        if (z10) {
-            textViewArr[1].setOnClickListener(null);
-            textViewArr[1].setText(textViewArr[0].getText());
-            textViewArr[1].setVisibility(0);
-            textViewArr[1].setAlpha(1.0f);
-            textViewArr[1].setTranslationY(0.0f);
-            textViewArr[0].setText(charSequence);
-            textViewArr[0].setVisibility(0);
-            textViewArr[0].setAlpha(0.0f);
-            textViewArr[0].setTranslationY(-org.telegram.messenger.g0.L(4.0f));
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f12500s = ofFloat;
-            ofFloat.addUpdateListener(new ah.h(this, 19));
-            this.f12500s.addListener(new ai.j0(this, 12));
-            this.f12500s.setInterpolator(er.h);
-            this.f12500s.setDuration(340L);
-            this.f12500s.start();
-            return;
-        }
-        textViewArr[0].setVisibility(0);
-        textViewArr[0].setAlpha(1.0f);
-        textViewArr[0].setText(charSequence);
-        textViewArr[1].setVisibility(8);
-        textViewArr[1].setAlpha(0.0f);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!isEnabled()) {
+    public final boolean j() {
+        o6 o6Var;
+        TLRPC.MessageMedia messageMedia;
+        TLRPC.Document document;
+        if (!this.f12726e) {
             return false;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        TL_stories.StoryItem storyItem = this.f12723a;
+        if (storyItem != null && (messageMedia = storyItem.media) != null && (document = messageMedia.getDocument()) != null) {
+            for (int i7 = 0; i7 < document.attributes.size(); i7++) {
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i7);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeVideo) && documentAttribute.nosound) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        if (this.f12724b == null) {
+            return true;
+        }
+        return !o6Var.f12333c.Y;
     }
 
-    public void setOnSubtitleClick(View.OnClickListener onClickListener) {
+    public final boolean k(long j3) {
+        TL_stories.StoryItem storyItem = this.f12723a;
+        if (storyItem != null) {
+            TLRPC.MessageMedia messageMedia = storyItem.media;
+            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f28422id) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean l() {
+        return this.f12726e;
+    }
+
+    public final boolean m() {
+        String str;
+        TLRPC.MessageMedia messageMedia;
+        o6 o6Var = this.f12724b;
+        if (o6Var != null) {
+            return o6Var.f12338s;
+        }
+        TL_stories.StoryItem storyItem = this.f12723a;
+        if (storyItem != null && (messageMedia = storyItem.media) != null && messageMedia.getDocument() != null) {
+            TLRPC.Document document = this.f12723a.media.getDocument();
+            if (!fj.K4(document) && !"video/mp4".equals(document.mime_type)) {
+                return false;
+            }
+            return true;
+        }
+        TL_stories.StoryItem storyItem2 = this.f12723a;
+        if (storyItem2 == null || storyItem2.media != null || (str = storyItem2.attachPath) == null) {
+            return false;
+        }
+        return str.toLowerCase().endsWith(".mp4");
+    }
+
+    public final void n(TL_stories.StoryItem storyItem) {
         boolean z10;
-        org.telegram.ui.Cells.y h02;
-        TextView[] textViewArr = this.f12495c;
-        textViewArr[0].setOnClickListener(onClickListener);
-        TextView textView = textViewArr[0];
-        if (onClickListener != null) {
+        TLRPC.MessageMedia messageMedia;
+        this.f12723a = storyItem;
+        this.f12730j = null;
+        this.f12729i = null;
+        this.f12724b = null;
+        this.d = storyItem instanceof TL_stories.TL_storyItemSkipped;
+        this.f12726e = m();
+        TL_stories.StoryItem storyItem2 = this.f12723a;
+        if (storyItem2 != null && (messageMedia = storyItem2.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaVideoStream)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        textView.setClickable(z10);
-        TextView textView2 = textViewArr[0];
-        if (onClickListener == null) {
-            h02 = null;
-        } else {
-            h02 = org.telegram.ui.ActionBar.j6.h0(822083583, 7, -1);
-        }
-        textView2.setBackground(h02);
+        this.f12727f = z10;
     }
 
-    public void setSubtitle(CharSequence charSequence) {
-        c(charSequence, false);
+    public final void o() {
+        SpannableStringBuilder valueOf;
+        int i7 = 0;
+        this.f12728g = false;
+        z3 z3Var = this.f12731k;
+        g3 g3Var = z3Var.f12879u0;
+        x3 x3Var = z3Var.f12896y1;
+        o6 o6Var = x3Var.f12724b;
+        if (o6Var != null) {
+            CharSequence charSequence = o6Var.f12333c.C0;
+            this.h = charSequence;
+            CharSequence m10 = org.telegram.messenger.j6.m(charSequence, g3Var.f12740c0.getPaint().getFontMetricsInt(), false, null, 0);
+            this.h = m10;
+            if (m10 == null) {
+                valueOf = new SpannableStringBuilder();
+            } else {
+                valueOf = SpannableStringBuilder.valueOf(m10);
+            }
+            TLRPC.User c22 = mp.u1(z3Var.f12850m2).c2(Long.valueOf(z3Var.l1));
+            if (z3Var.l1 < 0 || mp.u1(z3Var.f12850m2).k5(c22)) {
+                fj.d(valueOf, true);
+                return;
+            }
+            return;
+        }
+        TL_stories.StoryItem storyItem = x3Var.f12723a;
+        if (storyItem != null) {
+            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, y21.N0())) {
+                this.f12728g = true;
+                TLRPC.TL_textWithEntities tL_textWithEntities = x3Var.f12723a.translatedText;
+                String str = tL_textWithEntities.text;
+                this.h = str;
+                CharSequence m11 = org.telegram.messenger.j6.m(str, g3Var.f12740c0.getPaint().getFontMetricsInt(), false, null, 0);
+                this.h = m11;
+                if (m11 != null && tL_textWithEntities.entities != null) {
+                    SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(fj.B5(new SpannableStringBuilder(tL_textWithEntities.text), tL_textWithEntities.entities, g3Var.f12740c0.getPaint().getFontMetricsInt(), false));
+                    SpannableStringBuilder.valueOf(org.telegram.messenger.j6.m(valueOf2, g3Var.f12740c0.getPaint().getFontMetricsInt(), false, null, 0));
+                    TLRPC.User c23 = mp.u1(z3Var.f12850m2).c2(Long.valueOf(z3Var.l1));
+                    if (z3Var.l1 < 0 || mp.u1(z3Var.f12850m2).k5(c23)) {
+                        i7 = 1;
+                    }
+                    if (i7 != 0) {
+                        fj.d(valueOf2, true);
+                    }
+                    fj.b(valueOf2, tL_textWithEntities.entities, false, true, true, false, i7 ^ 1);
+                    this.h = valueOf2;
+                    return;
+                }
+                return;
+            }
+            String str2 = x3Var.f12723a.caption;
+            this.h = str2;
+            CharSequence m12 = org.telegram.messenger.j6.m(str2, g3Var.f12740c0.getPaint().getFontMetricsInt(), false, null, 0);
+            this.h = m12;
+            if (m12 != null && x3Var.f12723a.entities != null) {
+                SpannableStringBuilder valueOf3 = SpannableStringBuilder.valueOf(fj.B5(new SpannableStringBuilder(x3Var.f12723a.caption), x3Var.f12723a.entities, g3Var.f12740c0.getPaint().getFontMetricsInt(), false));
+                SpannableStringBuilder.valueOf(org.telegram.messenger.j6.m(valueOf3, g3Var.f12740c0.getPaint().getFontMetricsInt(), false, null, 0));
+                TLRPC.User c24 = mp.u1(z3Var.f12850m2).c2(Long.valueOf(z3Var.l1));
+                if (z3Var.l1 < 0 || mp.u1(z3Var.f12850m2).k5(c24)) {
+                    i7 = 1;
+                }
+                if (i7 != 0) {
+                    fj.d(valueOf3, true);
+                }
+                fj.b(valueOf3, x3Var.f12723a.entities, false, true, true, false, i7 ^ 1);
+                this.h = valueOf3;
+            }
+        }
     }
 }

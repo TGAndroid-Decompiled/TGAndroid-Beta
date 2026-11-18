@@ -3,7 +3,7 @@ package a6;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import f7.u;
 import java.util.Arrays;
 import q6.m;
@@ -20,7 +20,7 @@ public final class g extends r6.a {
     public final u f298r;
 
     public g(String str, String str2, String str3, String str4, Uri uri, String str5, String str6, String str7, u uVar) {
-        m.g(str);
+        m.h(str);
         this.f292a = str;
         this.f293b = str2;
         this.f294c = str3;
@@ -37,7 +37,7 @@ public final class g extends r6.a {
             return false;
         }
         g gVar = (g) obj;
-        if (!m.k(this.f292a, gVar.f292a) || !m.k(this.f293b, gVar.f293b) || !m.k(this.f294c, gVar.f294c) || !m.k(this.d, gVar.d) || !m.k(this.f295e, gVar.f295e) || !m.k(this.f296f, gVar.f296f) || !m.k(this.h, gVar.h) || !m.k(this.f297n, gVar.f297n) || !m.k(this.f298r, gVar.f298r)) {
+        if (!m.l(this.f292a, gVar.f292a) || !m.l(this.f293b, gVar.f293b) || !m.l(this.f294c, gVar.f294c) || !m.l(this.d, gVar.d) || !m.l(this.f295e, gVar.f295e) || !m.l(this.f296f, gVar.f296f) || !m.l(this.h, gVar.h) || !m.l(this.f297n, gVar.f297n) || !m.l(this.f298r, gVar.f298r)) {
             return false;
         }
         return true;
@@ -49,16 +49,16 @@ public final class g extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.l(parcel, 1, this.f292a);
-        yb.l(parcel, 2, this.f293b);
-        yb.l(parcel, 3, this.f294c);
-        yb.l(parcel, 4, this.d);
-        yb.k(parcel, 5, this.f295e, i7);
-        yb.l(parcel, 6, this.f296f);
-        yb.l(parcel, 7, this.h);
-        yb.l(parcel, 8, this.f297n);
-        yb.k(parcel, 9, this.f298r, i7);
-        yb.s(parcel, r10);
+        int r10 = bc.r(parcel, 20293);
+        bc.l(parcel, 1, this.f292a);
+        bc.l(parcel, 2, this.f293b);
+        bc.l(parcel, 3, this.f294c);
+        bc.l(parcel, 4, this.d);
+        bc.k(parcel, 5, this.f295e, i7);
+        bc.l(parcel, 6, this.f296f);
+        bc.l(parcel, 7, this.h);
+        bc.l(parcel, 8, this.f297n);
+        bc.k(parcel, 9, this.f298r, i7);
+        bc.s(parcel, r10);
     }
 }

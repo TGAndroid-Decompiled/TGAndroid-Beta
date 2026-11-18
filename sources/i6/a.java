@@ -2,5 +2,5 @@ package i6;
 
 import android.graphics.Bitmap;
 public interface a {
-    void x(Bitmap bitmap);
+    void v0(Bitmap bitmap);
 }

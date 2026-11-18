@@ -1,106 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-public final class hs extends AnimatorListenerAdapter {
-    public final int f35323a;
-    public final v4.e1 f35324b;
-    public final int f35325c;
-    public final View d;
-    public final int f35326e;
-    public final ViewPropertyAnimator f35327f;
-    public final v4.g1 h;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_bots;
+public final class hs {
+    public final int f35957a;
+    public final es f35958b;
+    public boolean f35959c;
+    public boolean d;
+    public boolean f35960e;
+    public long f35961f;
+    public String f35962g;
+    public final ArrayList h = new ArrayList();
+    public boolean f35963i = false;
 
-    public hs(v4.g1 g1Var, v4.e1 e1Var, int i7, View view, int i10, ViewPropertyAnimator viewPropertyAnimator, int i11) {
-        this.f35323a = i11;
-        this.h = g1Var;
-        this.f35324b = e1Var;
-        this.f35325c = i7;
-        this.d = view;
-        this.f35326e = i10;
-        this.f35327f = viewPropertyAnimator;
+    public hs(int i7, es esVar) {
+        this.f35957a = i7;
+        this.f35958b = esVar;
     }
 
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f35323a) {
-            case 0:
-                int i7 = this.f35325c;
-                View view = this.d;
-                if (i7 != 0) {
-                    view.setTranslationX(0.0f);
-                }
-                if (this.f35326e != 0) {
-                    view.setTranslationY(0.0f);
-                }
-                View view2 = this.f35324b.f58535a;
-                if (view2 instanceof org.telegram.ui.Cells.t2) {
-                    ((org.telegram.ui.Cells.t2) view2).setMoving(false);
-                    return;
-                } else if (view2 instanceof jg.l) {
-                    ((jg.l) view2).f17178a = false;
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                int i10 = this.f35325c;
-                View view3 = this.d;
-                if (i10 != 0) {
-                    view3.setTranslationX(0.0f);
-                }
-                if (this.f35326e != 0) {
-                    view3.setTranslationY(0.0f);
-                    return;
-                }
+    public final void a() {
+        if (!this.f35959c && !this.f35960e) {
+            this.f35959c = true;
+            boolean z10 = this.d;
+            int i7 = this.f35957a;
+            if (!z10) {
+                gs gsVar = new gs(this, 0);
+                org.telegram.messenger.tr a02 = org.telegram.messenger.tr.a0(i7);
+                a02.f27054a.c(new k7(this, a02, gsVar, 9));
                 return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35323a) {
-            case 0:
-                this.f35327f.setListener(null);
-                ks ksVar = (ks) this.h;
-                v4.e1 e1Var = this.f35324b;
-                ksVar.v(e1Var);
-                ksVar.f36590w.remove(e1Var);
-                ksVar.A();
-                View view = e1Var.f58535a;
-                if (view instanceof org.telegram.ui.Cells.t2) {
-                    ((org.telegram.ui.Cells.t2) view).setMoving(false);
-                } else if (view instanceof jg.l) {
-                    ((jg.l) view).f17178a = false;
-                }
-                View view2 = this.d;
-                view2.setTranslationX(0.0f);
-                view2.setTranslationY(0.0f);
-                return;
-            default:
-                this.f35327f.setListener(null);
-                v4.k kVar = (v4.k) this.h;
-                v4.e1 e1Var2 = this.f35324b;
-                kVar.P(e1Var2);
-                kVar.v(e1Var2);
-                kVar.f58596z.remove(e1Var2);
-                kVar.G();
-                kVar.z(e1Var2);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f35323a) {
-            case 0:
-                ((ks) this.h).getClass();
-                return;
-            default:
-                ((v4.k) this.h).getClass();
-                return;
+            }
+            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
+            getpopularappbots.limit = 20;
+            String str = this.f35962g;
+            if (str == null) {
+                str = "";
+            }
+            getpopularappbots.offset = str;
+            ConnectionsManager.getInstance(i7).sendRequest(getpopularappbots, new e2(this, 2));
         }
     }
 }

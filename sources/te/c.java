@@ -6,23 +6,23 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import hi.i9;
-import org.telegram.ui.Components.voip.o1;
+import hi.j9;
+import org.telegram.ui.Components.voip.n1;
 public final class c {
-    public final int f57087a;
-    public final b f57088b;
-    public Interpolator f57089c;
+    public final int f57659a;
+    public final b f57660b;
+    public Interpolator f57661c;
     public long d;
-    public long f57090e;
-    public float f57091f;
-    public float f57092g;
+    public long f57662e;
+    public float f57663f;
+    public float f57664g;
     public boolean h;
-    public ValueAnimator f57093i;
+    public ValueAnimator f57665i;
 
     public c(int i7, b bVar, Interpolator interpolator, long j3) {
-        this.f57087a = i7;
-        this.f57088b = bVar;
-        this.f57089c = interpolator;
+        this.f57659a = i7;
+        this.f57660b = bVar;
+        this.f57661c = interpolator;
         this.d = j3;
     }
 
@@ -31,12 +31,12 @@ public final class c {
             if (this.h) {
                 b();
             }
-            float f11 = this.f57091f;
+            float f11 = this.f57663f;
             int i7 = (f11 > f10 ? 1 : (f11 == f10 ? 0 : -1));
-            int i10 = this.f57087a;
-            b bVar = this.f57088b;
+            int i10 = this.f57659a;
+            b bVar = this.f57660b;
             if (i7 == 0) {
-                bVar.E(f11, i10);
+                bVar.D(f11, i10);
                 return;
             }
             if (!this.h) {
@@ -52,23 +52,23 @@ public final class c {
                 if (this.h) {
                     this.h = false;
                 }
-                bVar.E(f10, i10);
+                bVar.D(f10, i10);
                 return;
             }
-            this.f57092g = f10;
-            DecelerateInterpolator decelerateInterpolator = se.a.f56572a;
+            this.f57664g = f10;
+            DecelerateInterpolator decelerateInterpolator = se.a.f57146a;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f57093i = ofFloat;
+            this.f57665i = ofFloat;
             ofFloat.setDuration(j3);
-            this.f57093i.setInterpolator(this.f57089c);
-            this.f57093i.addUpdateListener(new i9(this, f11, f12, 6));
-            this.f57093i.addListener(new o1(this, f11, f12, 1));
-            long j10 = this.f57090e;
+            this.f57665i.setInterpolator(this.f57661c);
+            this.f57665i.addUpdateListener(new j9(this, f11, f12, 6));
+            this.f57665i.addListener(new n1(this, f11, f12, 1));
+            long j10 = this.f57662e;
             if (j10 != 0) {
-                this.f57093i.setStartDelay(j10);
+                this.f57665i.setStartDelay(j10);
             }
             try {
-                this.f57093i.start();
+                this.f57665i.start();
                 return;
             } catch (Throwable th2) {
                 Log.e("tgx", "Cannot start animation", th2);
@@ -87,10 +87,10 @@ public final class c {
             if (this.h) {
                 this.h = false;
             }
-            ValueAnimator valueAnimator = this.f57093i;
+            ValueAnimator valueAnimator = this.f57665i;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f57093i = null;
+                this.f57665i = null;
                 return true;
             }
             return true;
@@ -103,23 +103,23 @@ public final class c {
         if (!d(f10, 1.0f) && !b10) {
             return;
         }
-        this.f57088b.E(f10, this.f57087a);
+        this.f57660b.D(f10, this.f57659a);
     }
 
     public final boolean d(float f10, float f11) {
-        if (this.f57091f != f10) {
-            this.f57091f = f10;
-            this.f57088b.G(this.f57087a, f10, f11, this);
+        if (this.f57663f != f10) {
+            this.f57663f = f10;
+            this.f57660b.H(this.f57659a, f10, f11, this);
             return true;
         }
         return false;
     }
 
     public c(int i7, b bVar, Interpolator interpolator, long j3, float f10) {
-        this.f57087a = i7;
-        this.f57088b = bVar;
-        this.f57089c = interpolator;
+        this.f57659a = i7;
+        this.f57660b = bVar;
+        this.f57661c = interpolator;
         this.d = j3;
-        this.f57091f = f10;
+        this.f57663f = f10;
     }
 }

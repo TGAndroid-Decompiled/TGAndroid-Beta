@@ -1,55 +1,57 @@
 package org.telegram.ui;
+public final class sf implements q0.a {
+    public final int f51989a;
+    public final bn f51990b;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class sf implements View.OnKeyListener {
-    public final int f51208a;
-    public final Object f51209b;
-
-    public sf(Object obj, int i7) {
-        this.f51208a = i7;
-        this.f51209b = obj;
+    public sf(bn bnVar, int i7) {
+        this.f51989a = i7;
+        this.f51990b = bnVar;
     }
 
     @Override
-    public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
-        switch (this.f51208a) {
+    public final void accept(Object obj) {
+        switch (this.f51989a) {
             case 0:
-                an anVar = (an) this.f51209b;
-                anVar.getClass();
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    anVar.Va();
-                    return true;
+                Integer num = (Integer) obj;
+                bn bnVar = this.f51990b;
+                bnVar.getClass();
+                if (num.intValue() == 0) {
+                    bnVar.A1 = 0;
+                    bnVar.jd(true);
+                    bnVar.getMessagesController().A3(bnVar.f46085l6, bnVar.d());
+                    return;
                 }
-                return false;
+                bnVar.jd(true);
+                bnVar.l(num.intValue(), 0, false, 0, true, 0);
+                return;
             case 1:
-                ek0 ek0Var = (ek0) this.f51209b;
-                if (i7 == 67) {
-                    if (ek0Var.Z[2].length() == 0) {
-                        ek0Var.Z[1].requestFocus();
-                        EditTextBoldCursor editTextBoldCursor2 = ek0Var.Z[1];
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                        ek0Var.Z[1].dispatchKeyEvent(keyEvent);
-                        return true;
-                    }
-                } else {
-                    ek0Var.getClass();
+                Integer num2 = (Integer) obj;
+                bn bnVar2 = this.f51990b;
+                bnVar2.getClass();
+                if (num2.intValue() == 0) {
+                    bnVar2.B1 = 0;
+                    bnVar2.id(true);
+                    bnVar2.getMessagesController().z3(bnVar2.f46085l6, bnVar2.d());
+                    return;
                 }
-                return false;
+                int i7 = bnVar2.B1 - 1;
+                bnVar2.B1 = i7;
+                if (i7 <= 0) {
+                    bnVar2.getMessagesController().z3(bnVar2.f46085l6, bnVar2.d());
+                }
+                bnVar2.id(true);
+                bnVar2.l(num2.intValue(), 0, false, 0, true, 0);
+                return;
             default:
-                kr0 kr0Var = (kr0) this.f51209b;
-                EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
-                if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = kr0Var.f32119f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
+                bn bnVar3 = this.f51990b;
+                bnVar3.getClass();
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                bnVar3.f46239x7 = booleanValue;
+                if (!booleanValue) {
+                    bnVar3.L8();
+                    return;
                 }
-                return false;
+                return;
         }
     }
 }

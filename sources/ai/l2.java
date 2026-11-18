@@ -1,21 +1,21 @@
 package ai;
 
 import java.io.Serializable;
-import org.telegram.ui.o6;
-import org.telegram.ui.y6;
+import org.telegram.ui.n6;
+import org.telegram.ui.x6;
 public final class l2 implements Runnable {
-    public final int f1341a;
-    public final long f1342b;
-    public final boolean f1343c;
+    public final int f1331a;
+    public final long f1332b;
+    public final boolean f1333c;
     public final Object d;
-    public final Object f1344e;
+    public final Object f1334e;
 
     public l2(Object obj, long j3, Serializable serializable, boolean z10, int i7) {
-        this.f1341a = i7;
+        this.f1331a = i7;
         this.d = obj;
-        this.f1342b = j3;
-        this.f1344e = serializable;
-        this.f1343c = z10;
+        this.f1332b = j3;
+        this.f1334e = serializable;
+        this.f1333c = z10;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class l2 implements Runnable {
     }
 
     public l2(Object obj, long j3, boolean z10, Object obj2, int i7) {
-        this.f1341a = i7;
+        this.f1331a = i7;
         this.d = obj;
-        this.f1342b = j3;
-        this.f1343c = z10;
-        this.f1344e = obj2;
+        this.f1332b = j3;
+        this.f1333c = z10;
+        this.f1334e = obj2;
     }
 
-    public l2(y6 y6Var, boolean z10, long j3, o6 o6Var) {
-        this.f1341a = 2;
-        this.d = y6Var;
-        this.f1343c = z10;
-        this.f1342b = j3;
-        this.f1344e = o6Var;
+    public l2(x6 x6Var, boolean z10, long j3, n6 n6Var) {
+        this.f1331a = 2;
+        this.d = x6Var;
+        this.f1333c = z10;
+        this.f1332b = j3;
+        this.f1334e = n6Var;
     }
 }

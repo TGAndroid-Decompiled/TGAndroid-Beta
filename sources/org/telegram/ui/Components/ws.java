@@ -1,120 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public class ws extends View {
-    public final oy0 f41432a;
-    public final Drawable f41433b;
-    public final ImageReceiver f41434c;
-    public final Rect d;
-    public final RectF f41435e;
-    public fh.g f41436f;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.os.PowerManager;
+public final class ws implements SensorEventListener {
+    public int E;
+    public int F;
+    public int G;
+    public long H;
+    public boolean J;
+    public boolean K;
+    public float M;
+    public final SensorManager f41764a;
+    public final AudioManager f41765b;
+    public final Sensor f41766c;
+    public final Sensor d;
+    public final Sensor f41767e;
+    public final Sensor f41768f;
+    public final PowerManager.WakeLock h;
+    public boolean f41769n;
+    public boolean f41770r;
+    public f61 f41771s;
+    public boolean f41772w;
+    public long f41773x;
+    public int f41774y;
+    public long I = 0;
+    public float L = -100.0f;
+    public final float[] N = new float[3];
+    public final float[] O = new float[3];
+    public final float[] P = new float[3];
 
-    public ws(Context context, CharSequence charSequence) {
-        super(context);
-        this.d = new Rect();
-        this.f41435e = new RectF();
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f41434c = imageReceiver;
-        imageReceiver.J0(org.telegram.messenger.g0.L(22.66f));
-        this.f41432a = new oy0(charSequence, 14.0f, org.telegram.messenger.g0.o());
-        Drawable g10 = i5.c.g(context, 2131230872);
-        this.f41433b = g10;
-        g10.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
-    }
-
-    public final void a(TLRPC.Photo photo, Object obj) {
-        TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.L(48.0f), false, null, true);
-        TLRPC.PhotoSize w11 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.L(24.0f), false, w10, false);
-        this.f41434c.r0(org.telegram.messenger.gc.i(w10, photo), "24_24", org.telegram.messenger.gc.i(w11, photo), "24_24", null, 0L, null, obj, 0);
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.d.contains((int) motionEvent.getX(), (int) motionEvent.getY()) && motionEvent.getAction() == 0) {
-            return false;
+    public ws() {
+        SensorManager sensorManager = (SensorManager) org.telegram.messenger.t0.f26915b.getSystemService("sensor");
+        this.f41764a = sensorManager;
+        this.f41766c = sensorManager.getDefaultSensor(8);
+        Sensor defaultSensor = sensorManager.getDefaultSensor(10);
+        this.f41767e = defaultSensor;
+        Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
+        this.f41768f = defaultSensor2;
+        if (defaultSensor == null || defaultSensor2 == null) {
+            if (org.telegram.messenger.s2.f26723a) {
+                org.telegram.messenger.a8.b("gravity or linear sensor not found");
+            }
+            this.d = sensorManager.getDefaultSensor(1);
+            this.f41767e = null;
+            this.f41768f = null;
         }
-        return super.dispatchTouchEvent(motionEvent);
+        this.h = ((PowerManager) org.telegram.messenger.t0.f26915b.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
+        this.f41765b = (AudioManager) org.telegram.messenger.t0.f26915b.getSystemService("audio");
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f41434c.P();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f41434c.R();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        int L;
-        ImageReceiver imageReceiver = this.f41434c;
-        boolean I = imageReceiver.I();
-        if (I) {
-            f10 = 30.33f;
+    public final void a() {
+        int i7;
+        f61 f61Var = this.f41771s;
+        if (f61Var == null) {
+            return;
+        }
+        if (this.f41770r) {
+            i7 = 0;
         } else {
-            f10 = 11.33f;
+            i7 = 3;
         }
-        int L2 = org.telegram.messenger.g0.L(19.0f) + ((int) Math.ceil(this.f41432a.f38103c)) + org.telegram.messenger.g0.L(f10);
-        int L3 = org.telegram.messenger.g0.L(24.0f);
-        int width = (getWidth() - L2) / 2;
-        int height = getHeight() / 2;
-        int i7 = height - (L3 / 2);
-        int i10 = L2 + width;
-        Rect rect = this.d;
-        rect.set(width, i7, i10, L3 + i7);
-        rect.inset(-org.telegram.messenger.g0.L(4.0f), -org.telegram.messenger.g0.L(4.0f));
-        fh.g gVar = this.f41436f;
-        if (gVar != null) {
-            gVar.setBounds(rect);
-            this.f41436f.draw(canvas);
-        }
-        if (I) {
-            float f11 = height;
-            float L4 = (org.telegram.messenger.g0.L(22.66f) / 2.0f) + f11;
-            RectF rectF = this.f41435e;
-            rectF.set(org.telegram.messenger.g0.L(0.66f) + width, f11 - (org.telegram.messenger.g0.L(22.66f) / 2.0f), org.telegram.messenger.g0.L(23.32f) + width, L4);
-            imageReceiver.A0(rectF);
-            imageReceiver.h(canvas, null);
-        }
-        this.f41432a.c(width + L, height, 1.0f, -1, canvas);
-        Drawable drawable = this.f41433b;
-        drawable.setBounds(i10 - org.telegram.messenger.g0.L(17.0f), height - org.telegram.messenger.g0.L(6.0f), i10 - org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(6.0f) + height);
-        drawable.draw(canvas);
+        f61Var.x0(i7);
     }
 
-    public void setBlurredBackgroundDrawable(fh.g gVar) {
-        gVar.q(org.telegram.messenger.g0.L(4.0f));
-        gVar.r(org.telegram.messenger.g0.L(11.0f));
-        this.f41436f = gVar;
+    @Override
+    public final void onSensorChanged(android.hardware.SensorEvent r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ws.onSensorChanged(android.hardware.SensorEvent):void");
     }
 
-    public void setImage(Bitmap bitmap) {
-        this.f41434c.v0(bitmap);
-        invalidate();
-    }
-
-    public void setImage(String str) {
-        if (str == null) {
-            setImage((Bitmap) null);
-        } else {
-            Utilities.f22416e.c(new od(29, this, str));
-        }
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i7) {
     }
 }

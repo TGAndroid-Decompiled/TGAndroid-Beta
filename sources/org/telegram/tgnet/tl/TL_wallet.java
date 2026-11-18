@@ -13,6 +13,7 @@ import org.telegram.tgnet.m;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Wallet.WalletEngine2;
+import org.telegram.ui.Wallet.f3;
 public class TL_wallet {
 
     public static class InputWalletReplacement extends TLObject {
@@ -77,6 +78,53 @@ public class TL_wallet {
         }
     }
 
+    public static class WalletOnchainGiftAction extends TLObject {
+        public static WalletOnchainGiftAction TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
+            TLObject walletonchaingiftactiondelist;
+            switch (i7) {
+                case -1710739570:
+                    walletonchaingiftactiondelist = new walletOnchainGiftActionDelist();
+                    break;
+                case -978823956:
+                    walletonchaingiftactiondelist = new walletOnchainGiftActionOfferDecline();
+                    break;
+                case -628781360:
+                    walletonchaingiftactiondelist = new walletOnchainGiftActionOfferExpire();
+                    break;
+                case -451948018:
+                    walletonchaingiftactiondelist = new walletOnchainGiftActionOfferCreate();
+                    break;
+                case -187298232:
+                    walletonchaingiftactiondelist = new walletOnchainGiftActionOfferAccept();
+                    break;
+                case -114117331:
+                    walletonchaingiftactiondelist = new walletOnchainGiftActionBuy();
+                    break;
+                case 1208637885:
+                    walletonchaingiftactiondelist = new walletOnchainGiftActionChangePrice();
+                    break;
+                case 1707653005:
+                    walletonchaingiftactiondelist = new walletOnchainGiftActionOfferCancel();
+                    break;
+                default:
+                    walletonchaingiftactiondelist = null;
+                    break;
+            }
+            return (WalletOnchainGiftAction) TLObject.TLdeserialize(WalletOnchainGiftAction.class, walletonchaingiftactiondelist, inputSerializedData, i7, z10);
+        }
+
+        public boolean equals(Object obj) {
+            if (obj != null && obj.getClass() == getClass()) {
+                return true;
+            }
+            return false;
+        }
+
+        public int hashCode() {
+            return getClass().hashCode();
+        }
+    }
+
     public static class WalletState extends TLObject {
         public static WalletState TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
             TLObject tL_walletState;
@@ -113,6 +161,9 @@ public class TL_wallet {
                     break;
                 case 103596476:
                     wallettransactionpeeruser = new walletTransactionPeerAddress();
+                    break;
+                case 1257549816:
+                    wallettransactionpeeruser = new walletTransactionPeerOnchainGift();
                     break;
                 case 1424428081:
                     wallettransactionpeeruser = new walletTransactionPeerChannel();
@@ -162,6 +213,11 @@ public class TL_wallet {
                     return false;
                 }
                 return true;
+            } else if (walletTransactionPeer instanceof walletTransactionPeerOnchainGift) {
+                if (!(this instanceof walletTransactionPeerOnchainGift)) {
+                    return false;
+                }
+                return Objects.equals(((walletTransactionPeerOnchainGift) this).action, ((walletTransactionPeerOnchainGift) walletTransactionPeer).action);
             } else if (!(walletTransactionPeer instanceof walletTransactionPeerUnsupported)) {
                 return false;
             } else {
@@ -191,7 +247,7 @@ public class TL_wallet {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             int readInt32 = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(readInt32, 1)) {
-                this.stickers = Vector.deserialize(inputSerializedData, new d(18), z10);
+                this.stickers = Vector.deserialize(inputSerializedData, new d(19), z10);
             }
             if (TLObject.hasFlag(readInt32, 2)) {
                 this.bg_nft_item = nftItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -311,7 +367,7 @@ public class TL_wallet {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.rates = Vector.deserialize(inputSerializedData, new d(19), z10);
+            this.rates = Vector.deserialize(inputSerializedData, new d(20), z10);
         }
 
         @Override
@@ -513,7 +569,7 @@ public class TL_wallet {
 
         @Override
         public Vector<holderDc> deserializeResponseT(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i7, z10, new d(20));
+            return Vector.TLDeserialize(inputSerializedData, i7, z10, new d(21));
         }
     }
 
@@ -628,12 +684,12 @@ public class TL_wallet {
 
     public static class getTransactionsByIDs extends TLMethod<walletTransactions> {
         public static final int constructor = -2128811338;
-        public ArrayList<String> f28311id = new ArrayList<>();
+        public ArrayList<String> f28665id = new ArrayList<>();
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2128811338);
-            Vector.serializeString(outputSerializedData, this.f28311id);
+            Vector.serializeString(outputSerializedData, this.f28665id);
         }
 
         @Override
@@ -661,14 +717,14 @@ public class TL_wallet {
     public static class getUserAddresses extends TLMethod<userAddresses> {
         public static final int constructor = 1383456733;
         public boolean force;
-        public ArrayList<TLRPC.InputUser> f28312id = new ArrayList<>();
+        public ArrayList<TLRPC.InputUser> f28666id = new ArrayList<>();
         public ArrayList<String> addresses = new ArrayList<>();
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1383456733);
             outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.force));
-            Vector.serialize(outputSerializedData, this.f28312id);
+            Vector.serialize(outputSerializedData, this.f28666id);
             Vector.serializeString(outputSerializedData, this.addresses);
         }
 
@@ -966,7 +1022,7 @@ public class TL_wallet {
                 this.lottie = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(readInt32, 128)) {
-                this.attributes = Vector.deserialize(inputSerializedData, new d(21), z10);
+                this.attributes = Vector.deserialize(inputSerializedData, new d(22), z10);
             }
             if (TLObject.hasFlag(readInt32, 256)) {
                 this.extra = TLRPC.TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -1103,7 +1159,7 @@ public class TL_wallet {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             int readInt32 = inputSerializedData.readInt32(z10);
-            this.items = Vector.deserialize(inputSerializedData, new d(22), z10);
+            this.items = Vector.deserialize(inputSerializedData, new d(23), z10);
             if (TLObject.hasFlag(readInt32, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }
@@ -1540,7 +1596,7 @@ public class TL_wallet {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.session = tonConnectSession.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-            this.requests = Vector.deserialize(inputSerializedData, new d(23), z10);
+            this.requests = Vector.deserialize(inputSerializedData, new d(24), z10);
         }
 
         @Override
@@ -1639,7 +1695,7 @@ public class TL_wallet {
         public boolean closing;
         public String dapp_client_id;
         public int date;
-        public long f28313id;
+        public long f28667id;
         public tonConnectManifest manifest;
         public Integer manifest_error;
         public byte[] nonce;
@@ -1661,7 +1717,7 @@ public class TL_wallet {
             this.pending = TLObject.hasFlag(readInt32, 1);
             this.closing = TLObject.hasFlag(readInt32, 2);
             this.closed = TLObject.hasFlag(readInt32, 4);
-            this.f28313id = inputSerializedData.readInt64(z10);
+            this.f28667id = inputSerializedData.readInt64(z10);
             this.dapp_client_id = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(readInt32, 8)) {
                 this.client_id = inputSerializedData.readString(z10);
@@ -1700,7 +1756,7 @@ public class TL_wallet {
             }
             int flag4 = TLObject.setFlag(flag3, 32, z12);
             outputSerializedData.writeInt32(flag4);
-            outputSerializedData.writeInt64(this.f28313id);
+            outputSerializedData.writeInt64(this.f28667id);
             outputSerializedData.writeString(this.dapp_client_id);
             if (TLObject.hasFlag(flag4, 8)) {
                 outputSerializedData.writeString(this.client_id);
@@ -1732,7 +1788,7 @@ public class TL_wallet {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.sessions = Vector.deserialize(inputSerializedData, new d(24), z10);
+            this.sessions = Vector.deserialize(inputSerializedData, new d(25), z10);
         }
 
         @Override
@@ -1823,7 +1879,7 @@ public class TL_wallet {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.addresses = Vector.deserialize(inputSerializedData, new d(25), z10);
+            this.addresses = Vector.deserialize(inputSerializedData, new d(26), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
@@ -1832,6 +1888,377 @@ public class TL_wallet {
             outputSerializedData.writeInt32(-1836156075);
             Vector.serialize(outputSerializedData, this.addresses);
             Vector.serialize(outputSerializedData, this.users);
+        }
+    }
+
+    public static class walletOnchainGiftActionBuy extends WalletOnchainGiftAction {
+        public static final int constructor = -114117331;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-114117331);
+        }
+    }
+
+    public static class walletOnchainGiftActionChangePrice extends WalletOnchainGiftAction {
+        public static final int constructor = 1208637885;
+        public int flags;
+        public long new_price;
+        public long old_price;
+
+        @Override
+        public boolean equals(Object obj) {
+            if ((obj instanceof walletOnchainGiftActionChangePrice) && obj.getClass() == getClass()) {
+                walletOnchainGiftActionChangePrice walletonchaingiftactionchangeprice = (walletOnchainGiftActionChangePrice) obj;
+                if (hasOldPrice() == walletonchaingiftactionchangeprice.hasOldPrice() && this.old_price == walletonchaingiftactionchangeprice.old_price && this.new_price == walletonchaingiftactionchangeprice.new_price) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public boolean hasOldPrice() {
+            return TLObject.hasFlag(this.flags, 1);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getClass(), Boolean.valueOf(hasOldPrice()), Long.valueOf(this.old_price), Long.valueOf(this.new_price));
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            if (TLObject.hasFlag(readInt32, 1)) {
+                this.old_price = inputSerializedData.readInt64(z10);
+            }
+            this.new_price = inputSerializedData.readInt64(z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1208637885);
+            outputSerializedData.writeInt32(this.flags);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt64(this.old_price);
+            }
+            outputSerializedData.writeInt64(this.new_price);
+        }
+    }
+
+    public static class walletOnchainGiftActionDelist extends WalletOnchainGiftAction {
+        public static final int constructor = -1710739570;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1710739570);
+        }
+    }
+
+    public static class walletOnchainGiftActionOfferAccept extends WalletOnchainGiftAction {
+        public static final int constructor = -187298232;
+        public boolean buyer;
+        public String counterparty_address;
+        public int flags;
+        public String offer_address;
+        public long price;
+        public long service_fee;
+
+        @Override
+        public boolean equals(Object obj) {
+            if ((obj instanceof walletOnchainGiftActionOfferAccept) && obj.getClass() == getClass()) {
+                walletOnchainGiftActionOfferAccept walletonchaingiftactionofferaccept = (walletOnchainGiftActionOfferAccept) obj;
+                if (this.buyer == walletonchaingiftactionofferaccept.buyer && TextUtils.equals(this.offer_address, walletonchaingiftactionofferaccept.offer_address) && TextUtils.equals(this.counterparty_address, walletonchaingiftactionofferaccept.counterparty_address) && this.price == walletonchaingiftactionofferaccept.price && this.service_fee == walletonchaingiftactionofferaccept.service_fee) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getClass(), Boolean.valueOf(this.buyer), this.offer_address, this.counterparty_address, Long.valueOf(this.price), Long.valueOf(this.service_fee));
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            int readInt32 = inputSerializedData.readInt32(z10);
+            this.flags = readInt32;
+            this.buyer = TLObject.hasFlag(readInt32, 1);
+            this.offer_address = inputSerializedData.readString(z10);
+            this.counterparty_address = inputSerializedData.readString(z10);
+            this.price = inputSerializedData.readInt64(z10);
+            this.service_fee = inputSerializedData.readInt64(z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-187298232);
+            int flag = TLObject.setFlag(this.flags, 1, this.buyer);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeString(this.offer_address);
+            outputSerializedData.writeString(this.counterparty_address);
+            outputSerializedData.writeInt64(this.price);
+            outputSerializedData.writeInt64(this.service_fee);
+        }
+    }
+
+    public static class walletOnchainGiftActionOfferCancel extends WalletOnchainGiftAction {
+        public static final int constructor = 1707653005;
+        public String counterparty_address;
+        public long fine;
+        public int flags;
+        public String offer_address;
+        public long price;
+        public long refund_amount;
+
+        @Override
+        public boolean equals(Object obj) {
+            if ((obj instanceof walletOnchainGiftActionOfferCancel) && obj.getClass() == getClass()) {
+                walletOnchainGiftActionOfferCancel walletonchaingiftactionoffercancel = (walletOnchainGiftActionOfferCancel) obj;
+                if (this.flags == walletonchaingiftactionoffercancel.flags && TextUtils.equals(this.offer_address, walletonchaingiftactionoffercancel.offer_address) && TextUtils.equals(this.counterparty_address, walletonchaingiftactionoffercancel.counterparty_address) && this.price == walletonchaingiftactionoffercancel.price && this.refund_amount == walletonchaingiftactionoffercancel.refund_amount && this.fine == walletonchaingiftactionoffercancel.fine) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getClass(), this.offer_address, this.counterparty_address, Long.valueOf(this.price), Long.valueOf(this.refund_amount), Long.valueOf(this.fine));
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.offer_address = inputSerializedData.readString(z10);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.counterparty_address = inputSerializedData.readString(z10);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.price = inputSerializedData.readInt64(z10);
+            }
+            this.refund_amount = inputSerializedData.readInt64(z10);
+            if (TLObject.hasFlag(this.flags, 4)) {
+                this.fine = inputSerializedData.readInt64(z10);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            outputSerializedData.writeInt32(1707653005);
+            int i7 = this.flags;
+            if (this.counterparty_address != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i7, 1, z10);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeString(this.offer_address);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeString(this.counterparty_address);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt64(this.price);
+            }
+            outputSerializedData.writeInt64(this.refund_amount);
+            if (TLObject.hasFlag(this.flags, 4)) {
+                outputSerializedData.writeInt64(this.fine);
+            }
+        }
+    }
+
+    public static class walletOnchainGiftActionOfferCreate extends WalletOnchainGiftAction {
+        public static final int constructor = -451948018;
+        public long amount;
+        public String counterparty_address;
+        public int expires_at;
+        public int flags;
+        public String offer_address;
+        public long price;
+        public long service_fee;
+
+        @Override
+        public boolean equals(Object obj) {
+            if ((obj instanceof walletOnchainGiftActionOfferCreate) && obj.getClass() == getClass()) {
+                walletOnchainGiftActionOfferCreate walletonchaingiftactionoffercreate = (walletOnchainGiftActionOfferCreate) obj;
+                if (TextUtils.equals(this.offer_address, walletonchaingiftactionoffercreate.offer_address) && TextUtils.equals(this.counterparty_address, walletonchaingiftactionoffercreate.counterparty_address) && this.price == walletonchaingiftactionoffercreate.price && this.amount == walletonchaingiftactionoffercreate.amount && this.service_fee == walletonchaingiftactionoffercreate.service_fee && this.expires_at == walletonchaingiftactionoffercreate.expires_at) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getClass(), this.offer_address, this.counterparty_address, Long.valueOf(this.price), Long.valueOf(this.amount), Long.valueOf(this.service_fee), Integer.valueOf(this.expires_at));
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.offer_address = inputSerializedData.readString(z10);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.counterparty_address = inputSerializedData.readString(z10);
+            }
+            this.price = inputSerializedData.readInt64(z10);
+            this.amount = inputSerializedData.readInt64(z10);
+            this.service_fee = inputSerializedData.readInt64(z10);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.expires_at = inputSerializedData.readInt32(z10);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            outputSerializedData.writeInt32(-451948018);
+            int i7 = this.flags;
+            if (this.counterparty_address != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i7, 1, z10);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeString(this.offer_address);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeString(this.counterparty_address);
+            }
+            outputSerializedData.writeInt64(this.price);
+            outputSerializedData.writeInt64(this.amount);
+            outputSerializedData.writeInt64(this.service_fee);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt32(this.expires_at);
+            }
+        }
+    }
+
+    public static class walletOnchainGiftActionOfferDecline extends WalletOnchainGiftAction {
+        public static final int constructor = -978823956;
+        public String counterparty_address;
+        public int flags;
+        public String offer_address;
+        public long price;
+        public long refund_amount;
+
+        @Override
+        public boolean equals(Object obj) {
+            if ((obj instanceof walletOnchainGiftActionOfferDecline) && obj.getClass() == getClass()) {
+                walletOnchainGiftActionOfferDecline walletonchaingiftactionofferdecline = (walletOnchainGiftActionOfferDecline) obj;
+                if (TextUtils.equals(this.offer_address, walletonchaingiftactionofferdecline.offer_address) && TextUtils.equals(this.counterparty_address, walletonchaingiftactionofferdecline.counterparty_address) && this.price == walletonchaingiftactionofferdecline.price && this.refund_amount == walletonchaingiftactionofferdecline.refund_amount) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getClass(), this.offer_address, this.counterparty_address, Long.valueOf(this.price), Long.valueOf(this.refund_amount));
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.offer_address = inputSerializedData.readString(z10);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.counterparty_address = inputSerializedData.readString(z10);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.price = inputSerializedData.readInt64(z10);
+            }
+            this.refund_amount = inputSerializedData.readInt64(z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            outputSerializedData.writeInt32(-978823956);
+            int i7 = this.flags;
+            if (this.counterparty_address != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i7, 1, z10);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeString(this.offer_address);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeString(this.counterparty_address);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt64(this.price);
+            }
+            outputSerializedData.writeInt64(this.refund_amount);
+        }
+    }
+
+    public static class walletOnchainGiftActionOfferExpire extends WalletOnchainGiftAction {
+        public static final int constructor = -628781360;
+        public String counterparty_address;
+        public int flags;
+        public String offer_address;
+        public long price;
+        public long refund_amount;
+
+        @Override
+        public boolean equals(Object obj) {
+            if ((obj instanceof walletOnchainGiftActionOfferExpire) && obj.getClass() == getClass()) {
+                walletOnchainGiftActionOfferExpire walletonchaingiftactionofferexpire = (walletOnchainGiftActionOfferExpire) obj;
+                if (TextUtils.equals(this.offer_address, walletonchaingiftactionofferexpire.offer_address) && TextUtils.equals(this.counterparty_address, walletonchaingiftactionofferexpire.counterparty_address) && this.price == walletonchaingiftactionofferexpire.price && this.refund_amount == walletonchaingiftactionofferexpire.refund_amount) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getClass(), this.offer_address, this.counterparty_address, Long.valueOf(this.price), Long.valueOf(this.refund_amount));
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            this.flags = inputSerializedData.readInt32(z10);
+            this.offer_address = inputSerializedData.readString(z10);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.counterparty_address = inputSerializedData.readString(z10);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.price = inputSerializedData.readInt64(z10);
+            }
+            this.refund_amount = inputSerializedData.readInt64(z10);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            boolean z10;
+            outputSerializedData.writeInt32(-628781360);
+            int i7 = this.flags;
+            if (this.counterparty_address != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int flag = TLObject.setFlag(i7, 1, z10);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeString(this.offer_address);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeString(this.counterparty_address);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt64(this.price);
+            }
+            outputSerializedData.writeInt64(this.refund_amount);
         }
     }
 
@@ -1876,7 +2303,7 @@ public class TL_wallet {
         public boolean feeUnknown;
         public boolean gasless;
         public String gaslessMessageBodyHash;
-        public String f28314id;
+        public String f28668id;
         public boolean incoming;
         public boolean key_change;
         public int localMessageId;
@@ -1889,6 +2316,7 @@ public class TL_wallet {
         public WalletEngine2.SendPhase phase;
         public boolean preview;
         public long random_id;
+        public boolean suspected_spam;
         public String traceFeesNanograms;
         public boolean traceIncomplete;
         public boolean traceSucceeded;
@@ -1923,7 +2351,7 @@ public class TL_wallet {
                 return false;
             }
             walletTransaction wallettransaction = (walletTransaction) obj;
-            if (TextUtils.equals(this.f28314id, wallettransaction.f28314id) && this.incoming == wallettransaction.incoming && this.pending == wallettransaction.pending && this.key_change == wallettransaction.key_change && this.failed == wallettransaction.failed && this.amount == wallettransaction.amount && this.fee == wallettransaction.fee && this.date == wallettransaction.date && peerEquals(this.peer, wallettransaction.peer) && this.comment_encrypted == wallettransaction.comment_encrypted && this.comment_encrypted_preparing == wallettransaction.comment_encrypted_preparing && TextUtils.equals(this.comment, wallettransaction.comment) && TextUtils.equals(this.tx_hash, wallettransaction.tx_hash) && Objects.equals(this.nft, wallettransaction.nft) && this.preview == wallettransaction.preview && this.feeUnknown == wallettransaction.feeUnknown && Objects.equals(this.traceFeesNanograms, wallettransaction.traceFeesNanograms) && this.validUntil == wallettransaction.validUntil && this.traceSucceeded == wallettransaction.traceSucceeded && this.traceIncomplete == wallettransaction.traceIncomplete && Objects.equals(this.operationId, wallettransaction.operationId) && Objects.equals(this.messageHash, wallettransaction.messageHash) && this.phase == wallettransaction.phase) {
+            if (TextUtils.equals(this.f28668id, wallettransaction.f28668id) && this.incoming == wallettransaction.incoming && this.pending == wallettransaction.pending && this.key_change == wallettransaction.key_change && this.failed == wallettransaction.failed && this.amount == wallettransaction.amount && this.fee == wallettransaction.fee && this.date == wallettransaction.date && peerEquals(this.peer, wallettransaction.peer) && this.comment_encrypted == wallettransaction.comment_encrypted && this.comment_encrypted_preparing == wallettransaction.comment_encrypted_preparing && TextUtils.equals(this.comment, wallettransaction.comment) && TextUtils.equals(this.tx_hash, wallettransaction.tx_hash) && Objects.equals(this.nft, wallettransaction.nft) && this.preview == wallettransaction.preview && this.feeUnknown == wallettransaction.feeUnknown && Objects.equals(this.traceFeesNanograms, wallettransaction.traceFeesNanograms) && this.validUntil == wallettransaction.validUntil && this.traceSucceeded == wallettransaction.traceSucceeded && this.traceIncomplete == wallettransaction.traceIncomplete && Objects.equals(this.operationId, wallettransaction.operationId) && Objects.equals(this.messageHash, wallettransaction.messageHash) && this.phase == wallettransaction.phase) {
                 return true;
             }
             return false;
@@ -1937,7 +2365,8 @@ public class TL_wallet {
             this.failed = TLObject.hasFlag(readInt32, 4);
             this.key_change = TLObject.hasFlag(readInt32, 32);
             this.comment_encrypted = TLObject.hasFlag(readInt32, 64);
-            this.f28314id = inputSerializedData.readString(z10);
+            this.suspected_spam = TLObject.hasFlag(readInt32, 256);
+            this.f28668id = inputSerializedData.readString(z10);
             this.amount = inputSerializedData.readInt64(z10);
             this.fee = inputSerializedData.readInt64(z10);
             this.date = inputSerializedData.readInt32(z10);
@@ -1975,9 +2404,9 @@ public class TL_wallet {
             if (this.nft != null) {
                 z12 = true;
             }
-            int flag4 = TLObject.setFlag(flag3, 128, z12);
+            int flag4 = TLObject.setFlag(TLObject.setFlag(flag3, 128, z12), 256, this.suspected_spam);
             outputSerializedData.writeInt32(flag4);
-            outputSerializedData.writeString(this.f28314id);
+            outputSerializedData.writeString(this.f28668id);
             outputSerializedData.writeInt64(this.amount);
             outputSerializedData.writeInt64(this.fee);
             outputSerializedData.writeInt32(this.date);
@@ -1994,7 +2423,7 @@ public class TL_wallet {
         }
 
         public boolean set(walletTransaction wallettransaction) {
-            if (this.incoming == wallettransaction.incoming && this.pending == wallettransaction.pending && this.key_change == wallettransaction.key_change && this.failed == wallettransaction.failed && this.amount == wallettransaction.amount && this.fee == wallettransaction.fee && this.date == wallettransaction.date && peerEquals(this.peer, wallettransaction.peer) && this.comment_encrypted == wallettransaction.comment_encrypted && this.comment_encrypted_preparing == wallettransaction.comment_encrypted_preparing && TextUtils.equals(this.comment, wallettransaction.comment) && TextUtils.equals(this.tx_hash, wallettransaction.tx_hash) && Objects.equals(this.nft, wallettransaction.nft) && this.preview == wallettransaction.preview && this.feeUnknown == wallettransaction.feeUnknown && TextUtils.equals(this.traceFeesNanograms, wallettransaction.traceFeesNanograms) && this.validUntil == wallettransaction.validUntil && this.traceSucceeded == wallettransaction.traceSucceeded && this.traceIncomplete == wallettransaction.traceIncomplete && TextUtils.equals(this.operationId, wallettransaction.operationId) && TextUtils.equals(this.messageHash, wallettransaction.messageHash) && this.phase == wallettransaction.phase) {
+            if (this.incoming == wallettransaction.incoming && this.pending == wallettransaction.pending && this.key_change == wallettransaction.key_change && this.failed == wallettransaction.failed && this.amount == wallettransaction.amount && this.fee == wallettransaction.fee && this.date == wallettransaction.date && peerEquals(this.peer, wallettransaction.peer) && this.comment_encrypted == wallettransaction.comment_encrypted && this.suspected_spam == wallettransaction.suspected_spam && this.comment_encrypted_preparing == wallettransaction.comment_encrypted_preparing && TextUtils.equals(this.comment, wallettransaction.comment) && TextUtils.equals(this.tx_hash, wallettransaction.tx_hash) && Objects.equals(this.nft, wallettransaction.nft) && this.preview == wallettransaction.preview && this.feeUnknown == wallettransaction.feeUnknown && TextUtils.equals(this.traceFeesNanograms, wallettransaction.traceFeesNanograms) && this.validUntil == wallettransaction.validUntil && this.traceSucceeded == wallettransaction.traceSucceeded && this.traceIncomplete == wallettransaction.traceIncomplete && TextUtils.equals(this.operationId, wallettransaction.operationId) && TextUtils.equals(this.messageHash, wallettransaction.messageHash) && this.phase == wallettransaction.phase) {
                 return false;
             }
             this.incoming = wallettransaction.incoming;
@@ -2006,6 +2435,7 @@ public class TL_wallet {
             this.date = wallettransaction.date;
             this.peer = wallettransaction.peer;
             this.comment_encrypted = wallettransaction.comment_encrypted;
+            this.suspected_spam = wallettransaction.suspected_spam;
             this.comment_encrypted_preparing = wallettransaction.comment_encrypted_preparing;
             this.comment = wallettransaction.comment;
             this.tx_hash = wallettransaction.tx_hash;
@@ -2082,6 +2512,24 @@ public class TL_wallet {
             if (TLObject.hasFlag(flag, 1)) {
                 outputSerializedData.writeString(this.domain);
             }
+        }
+    }
+
+    public static class walletTransactionPeerOnchainGift extends WalletTransactionPeer {
+        public static final int constructor = 1257549816;
+        public WalletOnchainGiftAction action;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
+            WalletOnchainGiftAction TLdeserialize = WalletOnchainGiftAction.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.action = TLdeserialize;
+            this.address = f3.a(TLdeserialize);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1257549816);
+            this.action.serializeToStream(outputSerializedData);
         }
     }
 
@@ -2188,7 +2636,7 @@ public class TL_wallet {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             int readInt32 = inputSerializedData.readInt32(z10);
             this.balance = inputSerializedData.readInt64(z10);
-            this.transactions = Vector.deserialize(inputSerializedData, new d(26), z10);
+            this.transactions = Vector.deserialize(inputSerializedData, new d(27), z10);
             if (TLObject.hasFlag(readInt32, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }

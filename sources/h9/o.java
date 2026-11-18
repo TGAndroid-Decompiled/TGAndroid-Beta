@@ -1,6 +1,6 @@
 package h9;
 
-import a8.ja;
+import a8.la;
 import java.util.AbstractCollection;
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.RandomAccess;
 import java.util.Set;
 import java.util.SortedSet;
 public abstract class o {
-    public final int f13713a = 2;
+    public final int f14032a = 2;
 
     public static int d(int i7) {
         if (i7 < 3) {
@@ -96,24 +96,24 @@ public abstract class o {
         return true;
     }
 
-    public static c2 l(Set set, g9.l lVar) {
+    public static d2 l(Set set, g9.l lVar) {
         if (set instanceof SortedSet) {
             SortedSet sortedSet = (SortedSet) set;
-            if (sortedSet instanceof c2) {
-                c2 c2Var = (c2) sortedSet;
-                g9.l lVar2 = c2Var.f13667b;
+            if (sortedSet instanceof d2) {
+                d2 d2Var = (d2) sortedSet;
+                g9.l lVar2 = d2Var.f13992b;
                 lVar2.getClass();
-                return new c2((SortedSet) c2Var.f13666a, new g9.m(Arrays.asList(lVar2, lVar)));
+                return new d2((SortedSet) d2Var.f13991a, new g9.m(Arrays.asList(lVar2, lVar)));
             }
-            return new c2(sortedSet, lVar);
-        } else if (set instanceof c2) {
-            c2 c2Var2 = (c2) set;
-            g9.l lVar3 = c2Var2.f13667b;
+            return new d2(sortedSet, lVar);
+        } else if (set instanceof d2) {
+            d2 d2Var2 = (d2) set;
+            g9.l lVar3 = d2Var2.f13992b;
             lVar3.getClass();
-            return new c2(c2Var2.f13666a, new g9.m(Arrays.asList(lVar3, lVar)));
+            return new d2(d2Var2.f13991a, new g9.m(Arrays.asList(lVar3, lVar)));
         } else {
             set.getClass();
-            return new c2(set, lVar);
+            return new d2(set, lVar);
         }
     }
 
@@ -130,7 +130,7 @@ public abstract class o {
         if (iterable instanceof List) {
             List list = (List) iterable;
             if (!list.isEmpty()) {
-                return r.b.h(1, list);
+                return p5.c.h(1, list);
             }
             throw new NoSuchElementException();
         }
@@ -155,10 +155,10 @@ public abstract class o {
         return i10;
     }
 
-    public static b2 p(Set set, t0 t0Var) {
-        ja.k(set, "set1");
-        ja.k(t0Var, "set2");
-        return new b2(set, t0Var);
+    public static c2 p(Set set, t0 t0Var) {
+        la.k(set, "set1");
+        la.k(t0Var, "set2");
+        return new c2(set, t0Var);
     }
 
     public static int q(int i7, int i10, int i11) {
@@ -168,7 +168,7 @@ public abstract class o {
     public static ArrayList r(Object... objArr) {
         int length = objArr.length;
         g(length, "arraySize");
-        ArrayList arrayList = new ArrayList(c8.g1.e(length + 5 + (length / 10)));
+        ArrayList arrayList = new ArrayList(c8.k1.e(length + 5 + (length / 10)));
         Collections.addAll(arrayList, objArr);
         return arrayList;
     }
@@ -232,7 +232,7 @@ public abstract class o {
     public abstract Object i();
 
     public String toString() {
-        switch (this.f13713a) {
+        switch (this.f14032a) {
             case 2:
                 return i().toString();
             default:

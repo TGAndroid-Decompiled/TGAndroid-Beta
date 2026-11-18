@@ -1,72 +1,44 @@
 package org.telegram.ui;
 
 import android.view.View;
-import java.io.Serializable;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class df implements View.OnClickListener {
-    public final int f46350a;
-    public final an f46351b;
-    public final int f46352c;
-    public final ArrayList d;
-    public final String f46353e;
-    public final String f46354f;
-    public final Serializable h;
-    public final TLRPC.InputPeer f46355n;
-    public final int[] f46356r;
-    public final boolean f46357s;
-    public final cf f46358w;
-    public final Object f46359x;
+public final class df implements View.OnLongClickListener {
+    public final int f46969a;
+    public final bn f46970b;
 
-    public df(an anVar, int i7, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, cf cfVar, int i10) {
-        this.f46350a = i10;
-        this.f46351b = anVar;
-        this.f46352c = i7;
-        this.d = arrayList;
-        this.f46353e = str;
-        this.f46354f = str2;
-        this.h = str3;
-        this.f46355n = inputPeer;
-        this.f46356r = iArr;
-        this.f46359x = obj;
-        this.f46357s = z10;
-        this.f46358w = cfVar;
+    public df(bn bnVar, int i7) {
+        this.f46969a = i7;
+        this.f46970b = bnVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f46350a) {
+    public final boolean onLongClick(View view) {
+        org.telegram.messenger.fj fjVar;
+        org.telegram.messenger.fj fjVar2;
+        switch (this.f46969a) {
             case 0:
-                boolean z10 = this.f46357s;
-                cf cfVar = this.f46358w;
-                an.s0(this.f46351b, this.f46352c, this.d, this.f46353e, this.f46354f, (String) this.h, this.f46355n, this.f46356r, (TL_iv.RichMessage) this.f46359x, z10, cfVar);
-                return;
+                bn bnVar = this.f46970b;
+                org.telegram.messenger.fj fjVar3 = bnVar.f46210v5;
+                if (fjVar3 == null) {
+                    return false;
+                }
+                if (org.telegram.messenger.g0.g(fjVar3.T0)) {
+                    new org.telegram.ui.Components.lc(org.telegram.ui.Components.cb.a(bnVar.getParentActivity()), bnVar.Ba).k(false).j();
+                }
+                return true;
             case 1:
-                boolean z11 = this.f46357s;
-                cf cfVar2 = this.f46358w;
-                an.E0(this.f46351b, this.f46352c, this.d, this.f46353e, this.f46354f, (String) this.h, this.f46355n, this.f46356r, (CharSequence) this.f46359x, z11, cfVar2);
-                return;
+                return bn.H0(this.f46970b);
             default:
-                boolean z12 = this.f46357s;
-                cf cfVar3 = this.f46358w;
-                an.z0(this.f46351b, this.f46352c, this.d, (String[]) this.h, this.f46353e, this.f46354f, this.f46355n, this.f46356r, (CharSequence) this.f46359x, z12, cfVar3);
-                return;
+                bn bnVar2 = this.f46970b;
+                int i7 = bnVar2.Sb;
+                if (i7 == 1 && (fjVar2 = bnVar2.H5) != null) {
+                    bnVar2.l(fjVar2.e1(), 0, true, 0, true, 0);
+                    return true;
+                } else if (bnVar2.f46237x5 != null && i7 == 2 && (fjVar = bnVar2.F5) != null) {
+                    bnVar2.l(fjVar.e1(), 0, true, 0, true, 0);
+                    return true;
+                } else {
+                    return false;
+                }
         }
-    }
-
-    public df(an anVar, int i7, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, cf cfVar) {
-        this.f46350a = 2;
-        this.f46351b = anVar;
-        this.f46352c = i7;
-        this.d = arrayList;
-        this.h = strArr;
-        this.f46353e = str;
-        this.f46354f = str2;
-        this.f46355n = inputPeer;
-        this.f46356r = iArr;
-        this.f46359x = charSequence;
-        this.f46357s = z10;
-        this.f46358w = cfVar;
     }
 }

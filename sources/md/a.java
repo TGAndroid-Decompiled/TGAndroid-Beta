@@ -3,7 +3,7 @@ package md;
 import java.lang.reflect.Method;
 import kotlin.jvm.internal.j;
 public abstract class a {
-    public static final Method f20603a;
+    public static final Method f20967a;
 
     static {
         Method method;
@@ -30,7 +30,7 @@ public abstract class a {
             }
             i7++;
         }
-        f20603a = method;
+        f20967a = method;
         int length2 = methods.length;
         for (int i10 = 0; i10 < length2 && !j.a(methods[i10].getName(), "getSuppressed"); i10++) {
         }

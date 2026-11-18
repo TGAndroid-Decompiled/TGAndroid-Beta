@@ -1,19 +1,15 @@
 package org.telegram.ui;
+public final class d20 extends org.telegram.ui.Components.fg0 {
+    public final f40 f46827t1;
 
-import android.view.View;
-public final class d20 extends View {
-    public final c40 f46264a;
-
-    public d20(c40 c40Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f46264a = c40Var;
+    public d20(f40 f40Var, LaunchActivity launchActivity, d30 d30Var, n30 n30Var, c20 c20Var) {
+        super(launchActivity, d30Var, n30Var, c20Var);
+        this.f46827t1 = f40Var;
     }
 
     @Override
-    public final void setAlpha(float f10) {
-        if (getAlpha() != f10) {
-            super.setAlpha(f10);
-            this.f46264a.U0();
-        }
+    public final void invalidate() {
+        super.invalidate();
+        this.f46827t1.f30192b.invalidate();
     }
 }

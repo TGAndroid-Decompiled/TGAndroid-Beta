@@ -6,22 +6,22 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 public final class x implements Runnable {
-    public final int f882a = 0;
-    public final Object f883b;
+    public final int f881a = 0;
+    public final Object f882b;
 
     public x(Runnable runnable) {
-        this.f883b = runnable;
+        this.f882b = runnable;
     }
 
     @Override
     public final void run() {
         Process.setThreadPriority(10);
-        switch (this.f882a) {
+        switch (this.f881a) {
             case 0:
-                ((Runnable) this.f883b).run();
+                ((Runnable) this.f882b).run();
                 return;
             default:
-                ExecutorService executorService = (ExecutorService) this.f883b;
+                ExecutorService executorService = (ExecutorService) this.f882b;
                 try {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", "Executing shutdown hook for awaitEvenIfOnMainThread task continuation executor", null);
@@ -48,6 +48,6 @@ public final class x implements Runnable {
 
     public x(ExecutorService executorService) {
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        this.f883b = executorService;
+        this.f882b = executorService;
     }
 }

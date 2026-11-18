@@ -3,7 +3,7 @@ package p6;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import i5.c;
 import java.util.Arrays;
 import java.util.Locale;
@@ -11,15 +11,15 @@ import m6.e;
 import q6.m;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new e(17);
-    public final int f54897a;
-    public final Uri f54898b;
-    public final int f54899c;
+    public final int f55473a;
+    public final Uri f55474b;
+    public final int f55475c;
     public final int d;
 
     public a(int i7, Uri uri, int i10, int i11) {
-        this.f54897a = i7;
-        this.f54898b = uri;
-        this.f54899c = i10;
+        this.f55473a = i7;
+        this.f55474b = uri;
+        this.f55475c = i10;
         this.d = i11;
     }
 
@@ -29,7 +29,7 @@ public final class a extends r6.a {
         }
         if (obj != null && (obj instanceof a)) {
             a aVar = (a) obj;
-            if (m.k(this.f54898b, aVar.f54898b) && this.f54899c == aVar.f54899c && this.d == aVar.d) {
+            if (m.l(this.f55474b, aVar.f55474b) && this.f55475c == aVar.f55475c && this.d == aVar.d) {
                 return true;
             }
         }
@@ -37,28 +37,28 @@ public final class a extends r6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f54898b, Integer.valueOf(this.f54899c), Integer.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{this.f55474b, Integer.valueOf(this.f55475c), Integer.valueOf(this.d)});
     }
 
     public final String toString() {
         Locale locale = Locale.US;
-        String uri = this.f54898b.toString();
-        StringBuilder n10 = c.n("Image ", this.f54899c, "x", this.d, " ");
+        String uri = this.f55474b.toString();
+        StringBuilder n10 = c.n("Image ", this.f55475c, "x", this.d, " ");
         n10.append(uri);
         return n10.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.q(parcel, 1, 4);
-        parcel.writeInt(this.f54897a);
-        yb.k(parcel, 2, this.f54898b, i7);
-        yb.q(parcel, 3, 4);
-        parcel.writeInt(this.f54899c);
-        yb.q(parcel, 4, 4);
+        int r10 = bc.r(parcel, 20293);
+        bc.q(parcel, 1, 4);
+        parcel.writeInt(this.f55473a);
+        bc.k(parcel, 2, this.f55474b, i7);
+        bc.q(parcel, 3, 4);
+        parcel.writeInt(this.f55475c);
+        bc.q(parcel, 4, 4);
         parcel.writeInt(this.d);
-        yb.s(parcel, r10);
+        bc.s(parcel, r10);
     }
 
     public a(Uri uri, int i7, int i10) {

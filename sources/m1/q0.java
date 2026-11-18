@@ -5,30 +5,30 @@ import androidx.datastore.core.NativeSharedCounter;
 import java.io.File;
 import java.io.IOException;
 public final class q0 extends kotlin.jvm.internal.k implements rd.a {
-    public final int f20043b;
-    public final t0 f20044c;
+    public final int f20410b;
+    public final t0 f20411c;
 
     public q0(t0 t0Var, int i7) {
         super(0);
-        this.f20043b = i7;
-        this.f20044c = t0Var;
+        this.f20410b = i7;
+        this.f20411c = t0Var;
     }
 
     @Override
     public final Object invoke() {
         ParcelFileDescriptor parcelFileDescriptor;
-        switch (this.f20043b) {
+        switch (this.f20410b) {
             case 0:
                 System.loadLibrary("datastore_shared_counter");
-                t0 t0Var = this.f20044c;
-                String str = t0Var.f20071e;
-                File file = new File(t0Var.f20069b.getAbsolutePath() + str);
+                t0 t0Var = this.f20411c;
+                String str = t0Var.f20438e;
+                File file = new File(t0Var.f20436b.getAbsolutePath() + str);
                 t0.f(t0Var, file);
                 try {
                     parcelFileDescriptor = ParcelFileDescriptor.open(file, 939524096);
                     try {
                         int fd2 = parcelFileDescriptor.getFd();
-                        NativeSharedCounter nativeSharedCounter = z0.f20110b;
+                        NativeSharedCounter nativeSharedCounter = z0.f20477b;
                         if (nativeSharedCounter.nativeTruncateFile(fd2) == 0) {
                             long nativeCreateSharedCounter = nativeSharedCounter.nativeCreateSharedCounter(fd2);
                             if (nativeCreateSharedCounter >= 0) {
@@ -51,9 +51,9 @@ public final class q0 extends kotlin.jvm.internal.k implements rd.a {
                     parcelFileDescriptor = null;
                 }
             default:
-                t0 t0Var2 = this.f20044c;
+                t0 t0Var2 = this.f20411c;
                 String str2 = t0Var2.d;
-                File file2 = new File(t0Var2.f20069b.getAbsolutePath() + str2);
+                File file2 = new File(t0Var2.f20436b.getAbsolutePath() + str2);
                 t0.f(t0Var2, file2);
                 return file2;
         }

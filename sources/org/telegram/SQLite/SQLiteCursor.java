@@ -1,7 +1,7 @@
 package org.telegram.SQLite;
 
 import org.telegram.messenger.a8;
-import org.telegram.messenger.r2;
+import org.telegram.messenger.s2;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.Vector;
@@ -113,7 +113,7 @@ public class SQLiteCursor {
                     break;
                 }
                 try {
-                    if (r2.f26206a) {
+                    if (s2.f26723a) {
                         a8.b("sqlite busy, waiting...");
                     }
                     Thread.sleep(500L);

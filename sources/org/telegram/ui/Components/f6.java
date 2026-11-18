@@ -1,122 +1,110 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-import android.text.TextUtils;
-import j$.util.stream.IntStream;
-import java.util.Arrays;
-import java.util.stream.IntStream;
-public final class f6 implements CharSequence {
-    public final CharSequence[] f34527a;
-    public final int f34528b;
+import android.animation.ObjectAnimator;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import java.util.ArrayList;
+import java.util.Locale;
+public final class f6 {
+    public static final org.telegram.ui.Cells.o8 h = new org.telegram.ui.Cells.o8("progress", 3);
+    public final TextPaint f34952c;
+    public ObjectAnimator d;
+    public final org.telegram.ui.Cells.q1 f34955g;
+    public final ArrayList f34950a = new ArrayList();
+    public final ArrayList f34951b = new ArrayList();
+    public float f34953e = 0.0f;
+    public int f34954f = 1;
 
-    public f6(CharSequence charSequence) {
-        int i7;
-        if (charSequence == null) {
-            this.f34527a = new CharSequence[0];
-            this.f34528b = 0;
+    public f6(org.telegram.ui.Cells.q1 q1Var, TextPaint textPaint) {
+        this.f34952c = textPaint;
+        this.f34955g = q1Var;
+    }
+
+    public final int a() {
+        ArrayList arrayList = this.f34950a;
+        int size = arrayList.size();
+        float f10 = 0.0f;
+        for (int i7 = 0; i7 < size; i7++) {
+            f10 += ((StaticLayout) arrayList.get(i7)).getLineWidth(0);
+        }
+        return (int) Math.ceil(f10);
+    }
+
+    public final void b(int i7, boolean z10) {
+        boolean z11;
+        float f10;
+        String str;
+        TextPaint textPaint;
+        float f11;
+        ArrayList arrayList;
+        int i10 = this.f34954f;
+        ArrayList arrayList2 = this.f34950a;
+        if (i10 == i7 && !arrayList2.isEmpty()) {
             return;
         }
-        this.f34528b = charSequence.length();
-        int i10 = 0;
-        for (int i11 = 0; i11 < this.f34528b; i11++) {
-            if (charSequence.charAt(i11) == ' ') {
-                i10++;
-            }
+        ObjectAnimator objectAnimator = this.d;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+            this.d = null;
         }
-        this.f34527a = new CharSequence[i10 + 1];
-        int i12 = 0;
-        int i13 = 0;
-        int i14 = 0;
-        while (true) {
-            int i15 = this.f34528b;
-            if (i12 <= i15) {
-                if (i12 == i15 || charSequence.charAt(i12) == ' ') {
-                    CharSequence[] charSequenceArr = this.f34527a;
-                    int i16 = i13 + 1;
-                    if (i12 < this.f34528b) {
-                        i7 = 1;
-                    } else {
-                        i7 = 0;
-                    }
-                    charSequenceArr[i13] = charSequence.subSequence(i14, i7 + i12);
-                    i14 = i12 + 1;
-                    i13 = i16;
-                }
-                i12++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final char charAt(int i7) {
-        int i10 = 0;
-        while (true) {
-            CharSequence[] charSequenceArr = this.f34527a;
-            if (i10 >= charSequenceArr.length) {
-                return (char) 0;
-            }
-            if (i7 < charSequenceArr[i10].length()) {
-                return charSequenceArr[i10].charAt(i7);
-            }
-            i7 -= charSequenceArr[i10].length();
-            i10++;
-        }
-    }
-
-    @Override
-    public IntStream chars() {
-        return IntStream.Wrapper.convert(chars());
-    }
-
-    @Override
-    public java.util.stream.IntStream codePoints() {
-        return IntStream.Wrapper.convert(codePoints());
-    }
-
-    @Override
-    public final int length() {
-        return this.f34527a.length;
-    }
-
-    @Override
-    public final CharSequence subSequence(int i7, int i10) {
-        return TextUtils.concat((CharSequence[]) Arrays.copyOfRange(this.f34527a, i7, i10));
-    }
-
-    @Override
-    public final String toString() {
+        ArrayList arrayList3 = this.f34951b;
+        arrayList3.clear();
+        arrayList3.addAll(arrayList2);
+        arrayList2.clear();
+        Locale locale = Locale.US;
+        int i11 = this.f34954f;
         StringBuilder sb2 = new StringBuilder();
-        int i7 = 0;
-        while (true) {
-            CharSequence[] charSequenceArr = this.f34527a;
-            if (i7 < charSequenceArr.length) {
-                sb2.append(charSequenceArr[i7]);
-                i7++;
+        sb2.append(i11);
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        sb4.append(i7);
+        String sb5 = sb4.toString();
+        if (i7 > this.f34954f) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f34954f = i7;
+        float f12 = 0.0f;
+        this.f34953e = 0.0f;
+        int i12 = 0;
+        while (i12 < sb5.length()) {
+            int i13 = i12 + 1;
+            String substring = sb5.substring(i12, i13);
+            if (!arrayList3.isEmpty() && i12 < sb3.length()) {
+                str = sb3.substring(i12, i13);
             } else {
-                return sb2.toString();
+                str = null;
             }
+            if (str != null && str.equals(substring)) {
+                arrayList2.add((StaticLayout) arrayList3.get(i12));
+                arrayList3.set(i12, null);
+                f11 = f12;
+                arrayList = arrayList3;
+            } else {
+                f11 = f12;
+                arrayList = arrayList3;
+                arrayList2.add(new StaticLayout(substring, this.f34952c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+            }
+            f12 = f11;
+            i12 = i13;
+            arrayList3 = arrayList;
         }
-    }
-
-    @Override
-    public final j$.util.stream.IntStream chars() {
-        j$.util.stream.IntStream convert;
-        if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f34527a).chars());
-            return convert;
+        float f13 = f12;
+        ArrayList arrayList4 = arrayList3;
+        if (z10 && !arrayList4.isEmpty()) {
+            if (z11) {
+                f10 = -1.0f;
+            } else {
+                f10 = 1.0f;
+            }
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, h, f10, f13);
+            this.d = ofFloat;
+            ofFloat.setDuration(150L);
+            this.d.addListener(new x(this, 1));
+            this.d.start();
         }
-        return null;
-    }
-
-    @Override
-    public final j$.util.stream.IntStream codePoints() {
-        j$.util.stream.IntStream convert;
-        if (Build.VERSION.SDK_INT >= 24) {
-            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f34527a).codePoints());
-            return convert;
-        }
-        return null;
+        this.f34955g.invalidate();
     }
 }

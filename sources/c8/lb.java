@@ -1,9 +1,13 @@
 package c8;
 public abstract class lb {
-    public static int a(long j3) {
-        if (j3 <= 2147483647L && j3 >= -2147483648L) {
-            return (int) j3;
+    public static void a(int i7, Object[] objArr) {
+        for (int i10 = 0; i10 < i7; i10++) {
+            if (objArr[i10] == null) {
+                StringBuilder sb2 = new StringBuilder(String.valueOf(i10).length() + 9);
+                sb2.append("at index ");
+                sb2.append(i10);
+                throw new NullPointerException(sb2.toString());
+            }
         }
-        throw new RuntimeException(r.b.j(j3, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
     }
 }

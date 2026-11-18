@@ -1,42 +1,37 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
-public final class s5 extends TLRPC.TL_document {
-    public final TLRPC.ThemeSettings f26409a;
-    public final TLRPC.Document f26410b;
-    public final org.telegram.ui.ActionBar.i6 f26411c;
-    public final org.telegram.ui.ActionBar.g6 d;
+import android.util.SparseIntArray;
+import java.util.ArrayList;
+public final class s5 {
+    public static ArrayList f26737j;
+    public static s5 f26738k;
+    public static final ArrayList f26739l = new ArrayList();
+    public static final androidx.emoji2.text.o f26740m = new androidx.emoji2.text.o(4);
+    public ArrayList f26741a;
+    public SparseIntArray f26742b;
+    public ArrayList f26743c;
+    public int d;
+    public int f26744e;
+    public int f26745f;
+    public int f26746g;
+    public boolean h;
+    public j6.o f26747i;
 
-    public s5(TLRPC.ThemeSettings themeSettings) {
-        this.f26409a = themeSettings;
-        org.telegram.ui.ActionBar.i6 Q0 = org.telegram.ui.ActionBar.j6.Q0(org.telegram.ui.ActionBar.j6.r0(themeSettings));
-        this.f26411c = Q0;
-        Q0.getClass();
-        org.telegram.ui.ActionBar.g6 g6Var = new org.telegram.ui.ActionBar.g6();
-        org.telegram.ui.ActionBar.i6.i(g6Var, themeSettings);
-        g6Var.f28603b = Q0;
-        this.d = g6Var;
-        TLRPC.WallPaper wallPaper = themeSettings.wallpaper;
-        if (wallPaper instanceof TLRPC.TL_wallPaper) {
-            TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
-            this.f26410b = document;
-            this.f28057id = document.f28057id;
-            this.access_hash = document.access_hash;
-            this.file_reference = document.file_reference;
-            this.user_id = document.user_id;
-            this.date = document.date;
-            this.file_name = document.file_name;
-            this.mime_type = document.mime_type;
-            this.size = document.size;
-            this.thumbs = document.thumbs;
-            this.version = document.version;
-            this.dc_id = document.dc_id;
-            this.key = document.key;
-            this.iv = document.iv;
-            this.attributes = document.attributes;
+    public static void a(Runnable runnable) {
+        if (Thread.currentThread() != t0.d.getLooper().getThread()) {
+            boolean z10 = s2.f26723a;
+            a8.g(new RuntimeException("wrong thread"), true);
             return;
         }
-        this.f28057id = -2147483648L;
-        this.dc_id = Integer.MIN_VALUE;
+        if (f26737j == null) {
+            ArrayList arrayList = f26739l;
+            if (!arrayList.isEmpty()) {
+                f26737j = (ArrayList) p5.c.g(1, arrayList);
+            } else {
+                f26737j = new ArrayList(100);
+            }
+            g0.g3(f26740m);
+        }
+        f26737j.add(runnable);
     }
 }

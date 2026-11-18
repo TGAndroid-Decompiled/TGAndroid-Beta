@@ -9,8 +9,8 @@ public final class e2 implements na.d {
     public final void a(Object obj, Object obj2) {
         f1 f1Var = (f1) obj;
         na.e eVar = (na.e) obj2;
-        eVar.a(f379b, f1Var.f397a);
-        eVar.a(f380c, f1Var.f398b);
-        eVar.a(d, f1Var.f399c);
+        eVar.a(f379b, f1Var.f391a);
+        eVar.a(f380c, f1Var.f392b);
+        eVar.a(d, f1Var.f393c);
     }
 }

@@ -1,6 +1,6 @@
 package me;
 
-import c8.u9;
+import c8.w9;
 import java.util.List;
 public interface d {
     String a();
@@ -9,7 +9,7 @@ public interface d {
 
     int d(String str);
 
-    u9 e();
+    w9 e();
 
     int f();
 

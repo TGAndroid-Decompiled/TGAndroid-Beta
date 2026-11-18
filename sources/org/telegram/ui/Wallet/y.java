@@ -1,23 +1,22 @@
 package org.telegram.ui.Wallet;
+public final class y implements Runnable {
+    public final int f45292a;
+    public final boolean[] f45293b;
 
-import org.telegram.messenger.z10;
-import org.telegram.ui.PasscodeActivity;
-public final class y extends PasscodeActivity {
-    public final boolean[] X;
-    public final z10 Y;
-
-    public y(boolean[] zArr, z10 z10Var) {
-        super(3);
-        this.X = zArr;
-        this.Y = z10Var;
+    public y(int i7, boolean[] zArr) {
+        this.f45292a = i7;
+        this.f45293b = zArr;
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        z10 z10Var;
-        super.onFragmentDestroy();
-        if (!this.X[0] && (z10Var = this.Y) != null) {
-            z10Var.a("PASSCODE_FAILED");
+    public final void run() {
+        switch (this.f45292a) {
+            case 0:
+                this.f45293b[0] = true;
+                return;
+            default:
+                this.f45293b[0] = true;
+                return;
         }
     }
 }

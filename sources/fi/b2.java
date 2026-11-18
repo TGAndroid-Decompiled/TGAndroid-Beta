@@ -1,201 +1,115 @@
 package fi;
 
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import c8.ja;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.gz;
-import org.telegram.messenger.np;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.m60;
-import org.telegram.ui.Components.mi0;
-import org.telegram.ui.Components.oz;
-import org.telegram.ui.Components.ta;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.i41;
-import org.telegram.ui.j41;
-public final class b2 implements View.OnLongClickListener {
-    public final int f11451a;
-    public final Object f11452b;
-    public final Object f11453c;
+import c8.ha;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.jj;
+import org.telegram.messenger.mp;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.Cells.q9;
+import org.telegram.ui.Components.ia0;
+import org.telegram.ui.Components.oa0;
+import org.telegram.ui.Components.ua0;
+import org.telegram.ui.bn;
+import org.telegram.ui.rm;
+import org.telegram.ui.uk;
+public final class b2 extends ha {
+    public final int f11765a;
+    public final Object f11766b;
 
-    public b2(int i7, Object obj, Object obj2) {
-        this.f11451a = i7;
-        this.f11452b = obj;
-        this.f11453c = obj2;
+    public b2(Object obj, int i7) {
+        this.f11765a = i7;
+        this.f11766b = obj;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        int i7 = this.f11451a;
-        Object obj = this.f11453c;
-        Object obj2 = this.f11452b;
-        switch (i7) {
+    public final void a(boolean z10) {
+        fj fjVar;
+        switch (this.f11765a) {
             case 0:
-                b4 b4Var = (b4) obj2;
-                i9 i9Var = (i9) obj;
-                t1 t1Var = b4Var.j3;
-                if (t1Var != null) {
-                    org.telegram.messenger.g0.r(t1Var);
-                    b4Var.j3 = null;
-                }
-                gz.H(true);
-                hi.l3 l3Var = b4Var.f11514r0;
-                if (l3Var != null) {
-                    l3Var.f(true);
-                }
-                mi0 mi0Var = b4Var.f11462b3;
-                if (mi0Var == null) {
-                    mi0 mi0Var2 = new mi0(2, b4Var.f11497m2, b4Var.getContext(), LaunchActivity.Q(), new i2(4, b4Var.f11493l0));
-                    b4Var.f11462b3 = mi0Var2;
-                    mi0Var2.setPadding(0, 0, 0, org.telegram.messenger.g0.L(22.0f));
-                    b4Var.addView(b4Var.f11462b3, b4Var.getChildCount() - 1, ja.d(-2, 74.0f, 53, 0.0f, 0.0f, 12.0f, 64.0f));
-                    b4Var.f11462b3.setVisibility(8);
-                    b4Var.f11462b3.setDelegate(new d3(b4Var));
-                    b4Var.f11462b3.p(null, null, true);
-                } else {
-                    b4Var.bringChildToFront(mi0Var);
-                    b4Var.f11462b3.n();
-                }
-                b4Var.f11462b3.setFragment(LaunchActivity.Q());
-                i9Var.f11870s.dispatchTouchEvent(org.telegram.messenger.g0.R());
-                b4Var.Z0(true);
-                return true;
+                z3 z3Var = (z3) this.f11766b;
+                s3 s3Var = z3Var.A1;
+                boolean x10 = z3Var.f12879u0.f12738a0.x();
+                f9 f9Var = ((w8) s3Var).d;
+                f9Var.f11979j1 = x10;
+                f9Var.V();
+                return;
             case 1:
-                org.telegram.ui.Components.b0 b0Var = (org.telegram.ui.Components.b0) obj;
-                hi.s4 s4Var = ((org.telegram.ui.Components.c0) obj2).f33445n;
-                if (s4Var == null) {
-                    return false;
-                }
-                return ((Boolean) s4Var.a(b0Var)).booleanValue();
-            case 2:
-                org.telegram.ui.Components.y7 y7Var = (org.telegram.ui.Components.y7) obj2;
-                float f10 = MediaController.B().f22368r0;
-                org.telegram.ui.ActionBar.v0 v0Var = y7Var.R1;
-                v0Var.e(false, f10);
-                org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.G8, v0Var, (org.telegram.ui.ActionBar.e6) obj);
-                y7Var.a1(false);
-                org.telegram.ui.ActionBar.q0 q0Var = y7Var.P1;
-                q0Var.setDimMenu(0.15f);
-                q0Var.V(v0Var, null);
-                np.f1().edit().putInt("speedhint", -15).apply();
-                return true;
-            case 3:
-                m60 m60Var = (m60) obj2;
-                ((org.telegram.ui.Components.voip.u) obj).run();
-                if (m60Var.J) {
-                    m60Var.u();
-                }
-                return true;
-            case 4:
-                PhotoViewer photoViewer = (PhotoViewer) obj2;
-                b bVar = (b) obj;
-                gj gjVar = photoViewer.T4;
-                if (gjVar == null) {
-                    return false;
-                }
-                if (org.telegram.messenger.g0.g(gjVar.T0)) {
-                    new cc(ta.a(photoViewer.F), bVar).k(false).j();
-                }
-                return true;
-            case 5:
-                final ProfileActivity profileActivity = (ProfileActivity) obj2;
-                ImageView imageView = (ImageView) obj;
-                RectF rectF = ProfileActivity.X6;
-                org.telegram.ui.ActionBar.g1 b10 = org.telegram.ui.Components.a9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f43109g1, profileActivity.A0);
-                if (b10 == null) {
-                    return false;
-                }
-                b10.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public final void onDismiss() {
-                        int i10 = r2;
-                        ProfileActivity profileActivity2 = profileActivity;
-                        switch (i10) {
-                            case 0:
-                                RectF rectF2 = ProfileActivity.X6;
-                                profileActivity2.W3(0.0f);
-                                return;
-                            default:
-                                RectF rectF3 = ProfileActivity.X6;
-                                profileActivity2.W3(0.0f);
-                                return;
-                        }
+                bn bnVar = (bn) this.f11766b;
+                bnVar.K9 = !z10;
+                if (z10) {
+                    if (bnVar.f46214v9 != null) {
+                        bn.e2(bnVar, 0.0f);
+                        bnVar.f46214v9 = null;
                     }
-                });
-                profileActivity.f43225x0 = imageView;
-                profileActivity.W3(0.3f);
-                UndoView undoView = profileActivity.M;
-                if (undoView != null) {
-                    undoView.d(1, true);
-                }
-                return true;
-            case 6:
-                final ProfileActivity profileActivity2 = (ProfileActivity) obj2;
-                View view2 = (View) obj;
-                RectF rectF2 = ProfileActivity.X6;
-                org.telegram.ui.ActionBar.g1 b11 = org.telegram.ui.Components.a9.b(profileActivity2, view2, profileActivity2.a(), profileActivity2.f43109g1, profileActivity2.A0);
-                if (b11 == null) {
-                    return false;
-                }
-                b11.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                    @Override
-                    public final void onDismiss() {
-                        int i10 = r2;
-                        ProfileActivity profileActivity22 = profileActivity2;
-                        switch (i10) {
-                            case 0:
-                                RectF rectF22 = ProfileActivity.X6;
-                                profileActivity22.W3(0.0f);
-                                return;
-                            default:
-                                RectF rectF3 = ProfileActivity.X6;
-                                profileActivity22.W3(0.0f);
-                                return;
-                        }
+                    bnVar.f46228w9 = false;
+                    bnVar.C9 = false;
+                    uk ukVar = bnVar.E9;
+                    if (ukVar != null) {
+                        org.telegram.messenger.g0.r(ukVar.I);
+                        ukVar.a();
                     }
-                });
-                profileActivity2.f43225x0 = view2;
-                profileActivity2.W3(0.3f);
-                UndoView undoView2 = profileActivity2.M;
-                if (undoView2 != null) {
-                    undoView2.d(1, true);
                 }
-                return true;
+                bnVar.dd();
+                return;
             default:
-                i41 i41Var = (i41) obj2;
-                ng.f fVar = (ng.f) obj;
-                j41 j41Var = i41Var.d;
-                oz ozVar = i41Var.f47889a;
-                if (!ozVar.f38121c) {
-                    return false;
-                }
-                j41Var.f();
-                ArrayList arrayList = j41Var.f48205n;
-                lg.g gVar = j41Var.f48202c;
-                int size = arrayList.size();
-                for (int i10 = 0; i10 < size; i10++) {
-                    ((i41) arrayList.get(i10)).f47889a.setChecked(false);
-                    ((i41) arrayList.get(i10)).f47890b.f21149n = false;
-                    if (j41Var.f48206r.f48828c > 0 && i10 < gVar.d.size()) {
-                        ((ng.f) gVar.d.get(i10)).f21149n = false;
+                oa0 oa0Var = (oa0) this.f11766b;
+                ia0 ia0Var = oa0Var.f38046e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = oa0Var.f38050s;
+                ua0 ua0Var = oa0Var.f38045d0;
+                if (ua0Var.f40284s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f36113b > 0.0f) {
+                        actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
+                        return;
+                    } else if (z10) {
+                        if (ia0Var.v - ia0Var.f32211u > mp.u1(ua0Var.f40286x).f25751r4) {
+                            oa0Var.g();
+                            return;
+                        }
+                        q9 q9Var = ia0Var.W;
+                        if (q9Var != null) {
+                            fjVar = ((org.telegram.ui.Cells.q1) q9Var).getMessageObject();
+                        } else {
+                            fjVar = null;
+                        }
+                        fj c10 = oa0Var.c(fjVar);
+                        jj jjVar = ua0Var.d;
+                        if (jjVar.d == null) {
+                            int i7 = ia0Var.f32211u;
+                            jjVar.f24870e = i7;
+                            int i10 = ia0Var.v;
+                            jjVar.f24871f = i10;
+                            jjVar.d = rm.b(i7, i10, c10);
+                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(oa0Var.J);
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
                     }
                 }
-                ozVar.setChecked(true);
-                fVar.f21149n = true;
-                j41Var.f48201b.z();
-                if (j41Var.f48206r.f48828c > 0) {
-                    ((ng.f) gVar.d.get(i41Var.f47891c)).f21149n = true;
-                    gVar.z();
+                return;
+        }
+    }
+
+    @Override
+    public void b() {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        switch (this.f11765a) {
+            case 1:
+                bn bnVar = (bn) this.f11766b;
+                kVar = ((org.telegram.ui.ActionBar.h2) bnVar).actionBar;
+                if (kVar != null) {
+                    kVar2 = ((org.telegram.ui.ActionBar.h2) bnVar).actionBar;
+                    if (kVar2.y()) {
+                        bnVar.O7(false);
+                    }
                 }
-                return true;
+                bnVar.h8();
+                bnVar.N3.j(58, 0L, null);
+                return;
+            default:
+                return;
         }
     }
 }

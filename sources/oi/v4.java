@@ -1,18 +1,15 @@
 package oi;
+public final class v4 implements Runnable {
+    public final int f22423a;
+    public final x4 f22424b;
 
-import org.telegram.tgnet.TLRPC;
-public interface v4 {
-    void a();
+    public v4(x4 x4Var, int i7) {
+        this.f22423a = i7;
+        this.f22424b = x4Var;
+    }
 
-    void b(int i7, int i10);
-
-    void c(TLRPC.Photo photo);
-
-    void d(TLRPC.Document document);
-
-    void e(TLRPC.Document document);
-
-    void f(TLRPC.Document document);
-
-    void g(float f10);
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: oi.v4.run():void");
+    }
 }

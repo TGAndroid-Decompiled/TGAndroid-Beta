@@ -1,63 +1,142 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class mh0 extends rg.a {
-    public int f49229c;
-    public int d;
-    public CharSequence f49230e;
-    public CharSequence f49231f;
-    public qh0 f49232g;
-    public int h;
-    public boolean f49233i;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+public final class mh0 implements org.telegram.ui.Components.oo {
+    public final long f49862a;
+    public final boolean f49863b;
+    public final th0 f49864c;
+    public final boolean d;
+    public final int f49865e;
+    public final ArrayList f49866f;
+    public final NotificationsCustomSettingsActivity h;
 
-    public static mh0 b(int i7, String str, boolean z10) {
-        ?? aVar = new rg.a(1, true);
-        aVar.f49229c = i7;
-        aVar.f49230e = str;
-        aVar.f49233i = z10;
-        return aVar;
-    }
-
-    public static mh0 c(int i7, String str, String str2) {
-        ?? aVar = new rg.a(5, true);
-        aVar.f49229c = i7;
-        aVar.f49230e = str;
-        aVar.f49231f = str2;
-        return aVar;
-    }
-
-    public static mh0 d(int i7, String str) {
-        ?? aVar = new rg.a(4, true);
-        aVar.f49229c = i7;
-        aVar.f49230e = str;
-        return aVar;
+    public mh0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, long j3, boolean z10, th0 th0Var, boolean z11, int i7, ArrayList arrayList) {
+        this.h = notificationsCustomSettingsActivity;
+        this.f49862a = j3;
+        this.f49863b = z10;
+        this.f49864c = th0Var;
+        this.d = z11;
+        this.f49865e = i7;
+        this.f49866f = arrayList;
     }
 
     @Override
-    public final boolean a(rg.a aVar) {
-        if (this != aVar) {
-            if (mh0.class == aVar.getClass()) {
-                mh0 mh0Var = (mh0) aVar;
-                if (this.f49229c == mh0Var.f49229c && this.d == mh0Var.d && this.h == mh0Var.h && this.f49233i == mh0Var.f49233i && Objects.equals(this.f49230e, mh0Var.f49230e) && Objects.equals(this.f49231f, mh0Var.f49231f) && this.f49232g == mh0Var.f49232g) {
-                    return true;
-                }
-                return false;
+    public final void B(int i7) {
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
+        if (i7 == 0) {
+            if (notificationsCustomSettingsActivity.getMessagesController().u2(this.f49862a, 0, null)) {
+                s();
             }
-            return false;
+            if (org.telegram.ui.Components.lc.a(notificationsCustomSettingsActivity)) {
+                org.telegram.ui.Components.lc.z(notificationsCustomSettingsActivity, 4, i7, notificationsCustomSettingsActivity.getResourceProvider()).j();
+            }
+        } else {
+            notificationsCustomSettingsActivity.getNotificationsController().H(this.f49862a, i7, 0);
+            if (org.telegram.ui.Components.lc.a(notificationsCustomSettingsActivity)) {
+                org.telegram.ui.Components.lc.z(notificationsCustomSettingsActivity, 5, i7, notificationsCustomSettingsActivity.getResourceProvider()).j();
+            }
         }
-        return true;
+        b();
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final void a() {
+        org.telegram.ui.ActionBar.a5 a5Var;
+        int indexOf;
+        if (this.d) {
+            return;
         }
-        if (obj != null && mh0.class == obj.getClass()) {
-            mh0 mh0Var = (mh0) obj;
-            if (this.f49229c == mh0Var.f49229c && this.h == mh0Var.h && ((this.f56015a == 8 || (this.d == mh0Var.d && Objects.equals(this.f49230e, mh0Var.f49230e) && (this.f56015a == 6 || Objects.equals(this.f49231f, mh0Var.f49231f)))) && this.f49232g == mh0Var.f49232g)) {
-                return true;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
+        ArrayList arrayList = notificationsCustomSettingsActivity.f43125x;
+        th0 th0Var = this.f49864c;
+        ArrayList arrayList2 = this.f49866f;
+        if (arrayList2 != arrayList && (indexOf = arrayList.indexOf(th0Var)) >= 0) {
+            notificationsCustomSettingsActivity.f43125x.remove(indexOf);
+            notificationsCustomSettingsActivity.f43126y.remove(Long.valueOf(th0Var.d));
+        }
+        arrayList2.remove(th0Var);
+        if (arrayList2 == notificationsCustomSettingsActivity.f43125x) {
+            notificationsCustomSettingsActivity.q0(true);
+            notificationsCustomSettingsActivity.i0();
+        } else {
+            notificationsCustomSettingsActivity.q0(true);
+            notificationsCustomSettingsActivity.d.g(this.f49865e);
+        }
+        a5Var = ((org.telegram.ui.ActionBar.h2) notificationsCustomSettingsActivity).simpleActionBar;
+        a5Var.o(true);
+    }
+
+    public final void b() {
+        org.telegram.ui.ActionBar.a5 a5Var;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
+        if (notificationsCustomSettingsActivity.getMessagesController().u2(this.f49862a, 0, null) != this.f49863b) {
+            a();
+            return;
+        }
+        SharedPreferences notificationsSettings = notificationsCustomSettingsActivity.getNotificationsSettings();
+        StringBuilder sb2 = new StringBuilder("custom_");
+        th0 th0Var = this.f49864c;
+        sb2.append(th0Var.d);
+        th0Var.f52288b = notificationsSettings.getBoolean(sb2.toString(), false);
+        int i7 = notificationsSettings.getInt("notify2_" + th0Var.d, 0);
+        th0Var.f52289c = i7;
+        if (i7 != 0) {
+            int i10 = notificationsSettings.getInt("notifyuntil_" + th0Var.d, -1);
+            if (i10 != -1) {
+                th0Var.f52287a = i10;
             }
         }
-        return false;
+        if (this.d) {
+            notificationsCustomSettingsActivity.f43125x.add(th0Var);
+            notificationsCustomSettingsActivity.f43126y.put(Long.valueOf(th0Var.d), th0Var);
+            notificationsCustomSettingsActivity.q0(true);
+        } else {
+            notificationsCustomSettingsActivity.f43116a.getAdapter().g(this.f49865e);
+        }
+        a5Var = ((org.telegram.ui.ActionBar.h2) notificationsCustomSettingsActivity).simpleActionBar;
+        a5Var.o(true);
+    }
+
+    @Override
+    public final void s() {
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
+        long j3 = 0;
+        notificationsCustomSettingsActivity.getNotificationsController().G(this.f49862a, j3, !notificationsCustomSettingsActivity.getMessagesController().u2(this.f49862a, j3, null));
+        org.telegram.ui.Components.lc.A(notificationsCustomSettingsActivity, notificationsCustomSettingsActivity.getMessagesController().u2(this.f49862a, j3, null), null).j();
+        b();
+    }
+
+    @Override
+    public final void u() {
+        long j3 = this.f49862a;
+        if (j3 != 0) {
+            jx0 jx0Var = new jx0(a8.p0.j(j3, "dialog_id"), null);
+            jx0Var.f49117s = new f(this, 26);
+            this.h.presentFragment(jx0Var);
+        }
+    }
+
+    @Override
+    public final void w() {
+        int i7;
+        String v = org.telegram.messenger.xs.v(this.f49862a, 0, false);
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.h;
+        i7 = ((org.telegram.ui.ActionBar.h2) notificationsCustomSettingsActivity).currentAccount;
+        SharedPreferences sharedPreferences = org.telegram.messenger.mp.u1(i7).f25660g7;
+        boolean z10 = sharedPreferences.getBoolean("sound_enabled_" + v, true);
+        boolean z11 = !z10 ? 1 : 0;
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("sound_enabled_" + v, z11).apply();
+        if (org.telegram.ui.Components.lc.a(notificationsCustomSettingsActivity)) {
+            org.telegram.ui.Components.lc.S(z10 ? 1 : 0, notificationsCustomSettingsActivity, notificationsCustomSettingsActivity.getResourceProvider()).j();
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+    }
+
+    @Override
+    public final void p() {
     }
 }

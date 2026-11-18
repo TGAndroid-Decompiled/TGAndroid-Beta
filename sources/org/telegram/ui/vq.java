@@ -1,56 +1,37 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-public final class vq implements Drawable.Callback {
-    public final int f52268a;
-    public final Drawable f52269b;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class vq {
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f52838a;
+    public final LinearLayout f52839b;
+    public final qn0 f52840c;
 
-    public vq(int i7, Drawable drawable) {
-        this.f52268a = i7;
-        this.f52269b = drawable;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f52268a) {
-            case 0:
-                ((wq) this.f52269b).invalidateSelf();
-                return;
-            default:
-                org.telegram.ui.Cells.t0 t0Var = ((tw0) this.f52269b).h;
-                if (t0Var != null) {
-                    t0Var.invalidate();
-                    return;
-                }
-                return;
+    public vq(ContextThemeWrapper contextThemeWrapper, org.telegram.ui.Components.if0 if0Var, qn0 qn0Var) {
+        this.f52840c = qn0Var;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, contextThemeWrapper, null);
+        this.f52838a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setFitItems(true);
+        org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232059, org.telegram.messenger.gd.M0(2131753754, null), false, null);
+        c10.setOnClickListener(new uq(if0Var, 0));
+        c10.d(-328966, -328966);
+        c10.setSelectorColor(268435455);
+        View p2Var = new bi.p2(contextThemeWrapper, 12);
+        p2Var.setMinimumWidth(org.telegram.messenger.g0.L(196.0f));
+        p2Var.setBackgroundColor(-15198184);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(p2Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) p2Var.getLayoutParams();
+        if (org.telegram.messenger.gd.f24216a0) {
+            layoutParams.gravity = 5;
         }
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        switch (this.f52268a) {
-            case 0:
-                ((wq) this.f52269b).scheduleSelf(runnable, j3);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f52268a) {
-            case 0:
-                ((wq) this.f52269b).unscheduleSelf(runnable);
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void b(Drawable drawable, Runnable runnable) {
-    }
-
-    private final void a(Drawable drawable, Runnable runnable, long j3) {
+        layoutParams.width = -1;
+        layoutParams.height = org.telegram.messenger.g0.L(8.0f);
+        p2Var.setLayoutParams(layoutParams);
+        LinearLayout linearLayout = new LinearLayout(contextThemeWrapper);
+        this.f52839b = linearLayout;
+        linearLayout.setOrientation(1);
+        actionBarPopupWindow$ActionBarPopupWindowLayout.addView(linearLayout);
     }
 }

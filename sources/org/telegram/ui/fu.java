@@ -1,27 +1,54 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
+import android.app.Activity;
+import android.content.Context;
 public final class fu implements Runnable {
-    public final int f47188a;
-    public final yw f47189b;
-    public final TLRPC.TL_attachMenuBot f47190c;
-    public final LaunchActivity d;
+    public final int f47823a;
+    public final Context f47824b;
 
-    public fu(yw ywVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i7) {
-        this.f47188a = i7;
-        this.f47189b = ywVar;
-        this.f47190c = tL_attachMenuBot;
-        this.d = launchActivity;
+    public fu(Context context, int i7) {
+        this.f47823a = i7;
+        this.f47824b = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f47188a) {
+        int i7 = this.f47823a;
+        Context context = this.f47824b;
+        switch (i7) {
             case 0:
-                yw.v0(this.f47189b, this.f47190c, this.d);
+                org.telegram.ui.ActionBar.n6.K(context, false);
+                return;
+            case 1:
+                Activity W = org.telegram.messenger.g0.W(context);
+                if (W == null) {
+                    W = LaunchActivity.H1;
+                }
+                if (W != null && !W.isFinishing()) {
+                    W.moveTaskToBack(true);
+                    return;
+                }
+                return;
+            case 2:
+                vf.c.t(context, "https://promote.telegram.org/guidelines");
+                return;
+            case 3:
+                vf.c.t(context, "https://promote.telegram.org/guidelines");
+                return;
+            case 4:
+                vf.c.t(context, "https://promote.telegram.org/guidelines");
+                return;
+            case 5:
+                vf.c.t(context, "https://promote.telegram.org/guidelines");
+                return;
+            case 6:
+                vf.c.t(context, "https://promote.telegram.org/guidelines");
+                return;
+            case 7:
+                vf.c.t(context, "https://promote.telegram.org/guidelines");
                 return;
             default:
-                yw.j0(this.f47189b, this.f47190c, this.d);
+                vf.c.t(context, org.telegram.messenger.gd.M0(2131742685, null));
                 return;
         }
     }

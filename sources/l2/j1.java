@@ -1,19 +1,19 @@
 package l2;
 
-import a8.ja;
+import a8.la;
 import android.os.Looper;
 public final class j1 {
-    public final i1 f19052a;
-    public final h1 f19053b;
-    public int f19054c;
+    public final i1 f19419a;
+    public final h1 f19420b;
+    public int f19421c;
     public Object d;
-    public final Looper f19055e;
-    public boolean f19056f;
+    public final Looper f19422e;
+    public boolean f19423f;
 
     public j1(h1 h1Var, i1 i1Var, e2.l1 l1Var, int i7, Looper looper) {
-        this.f19053b = h1Var;
-        this.f19052a = i1Var;
-        this.f19055e = looper;
+        this.f19420b = h1Var;
+        this.f19419a = i1Var;
+        this.f19422e = looper;
     }
 
     public final synchronized void a(boolean z10) {
@@ -23,11 +23,11 @@ public final class j1 {
     }
 
     public final void b() {
-        ja.p(!this.f19056f);
-        this.f19056f = true;
-        o0 o0Var = (o0) this.f19053b;
-        if (!o0Var.f19122a0 && o0Var.f19145s.getThread().isAlive()) {
-            o0Var.f19138n.b(14, this).b();
+        la.p(!this.f19423f);
+        this.f19423f = true;
+        o0 o0Var = (o0) this.f19420b;
+        if (!o0Var.f19489a0 && o0Var.f19512s.getThread().isAlive()) {
+            o0Var.f19505n.b(14, this).b();
             return;
         }
         h2.a.l("ExoPlayerImplInternal", "Ignoring messages sent after release.");

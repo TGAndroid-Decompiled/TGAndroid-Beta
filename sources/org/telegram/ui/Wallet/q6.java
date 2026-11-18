@@ -1,23 +1,24 @@
 package org.telegram.ui.Wallet;
-public final class q6 implements r1.d {
-    public final int f44389a;
-    public final w6 f44390b;
+public final class q6 implements Runnable {
+    public final int f44821a;
+    public final s6 f44822b;
 
-    public q6(w6 w6Var, int i7) {
-        this.f44389a = i7;
-        this.f44390b = w6Var;
+    public q6(s6 s6Var, int i7) {
+        this.f44821a = i7;
+        this.f44822b = s6Var;
     }
 
     @Override
-    public final void a(r1.g gVar, float f10, float f11) {
-        switch (this.f44389a) {
+    public final void run() {
+        switch (this.f44821a) {
             case 0:
-                w6 w6Var = this.f44390b;
-                w6Var.f44636c.setScaleX(f10);
-                w6Var.f44636c.setScaleY(f10);
+                this.f44822b.performClick();
                 return;
             default:
-                this.f44390b.Q = f11;
+                s6 s6Var = this.f44822b;
+                s6Var.h.invalidate();
+                s6Var.f45011n.invalidate();
+                s6Var.f45001e.invalidate();
                 return;
         }
     }

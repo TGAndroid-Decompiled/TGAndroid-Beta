@@ -1,35 +1,53 @@
 package org.telegram.ui;
-public final class jt0 implements Runnable {
-    public final int f48413a;
-    public final PrivacySettingsActivity f48414b;
 
-    public jt0(PrivacySettingsActivity privacySettingsActivity, int i7) {
-        this.f48413a = i7;
-        this.f48414b = privacySettingsActivity;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class jt0 implements org.telegram.messenger.x10 {
+    public final int f49081a;
+    public final kt0 f49082b;
+
+    public jt0(kt0 kt0Var, int i7) {
+        this.f49081a = i7;
+        this.f49082b = kt0Var;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f48413a;
-        PrivacySettingsActivity privacySettingsActivity = this.f48414b;
-        switch (i7) {
+    public final void a(Object obj) {
+        TL_account.TL_birthday tL_birthday;
+        int i7;
+        int i10;
+        switch (this.f49081a) {
             case 0:
-                privacySettingsActivity.f43047a.f();
-                privacySettingsActivity.S = true;
-                return;
-            case 1:
-                privacySettingsActivity.f43051c.dismiss();
+                PrivacyControlActivity privacyControlActivity = this.f49082b.d;
+                privacyControlActivity.N = ((Integer) obj).intValue();
+                org.telegram.messenger.g0.Y3(privacyControlActivity.f43472l0, privacyControlActivity.f43460c);
+                privacyControlActivity.P0();
                 return;
             default:
-                org.telegram.ui.Components.fb fbVar = new org.telegram.ui.Components.fb(privacySettingsActivity.getParentActivity(), null);
-                fbVar.d(2131624009, new String[0]);
-                fbVar.f34556b.setText(org.telegram.messenger.hd.M0(2131742811, null));
-                org.telegram.ui.Components.xb.g(privacySettingsActivity, fbVar, 1500).j();
-                try {
-                    privacySettingsActivity.fragmentView.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
+                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
+                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
+                updatebirthday.flags |= 1;
+                updatebirthday.birthday = tL_birthday2;
+                kt0 kt0Var = this.f49082b;
+                PrivacyControlActivity privacyControlActivity2 = kt0Var.d;
+                TLRPC.UserFull d2 = privacyControlActivity2.getMessagesController().d2(privacyControlActivity2.getUserConfig().e());
+                if (d2 != null) {
+                    tL_birthday = d2.birthday;
+                } else {
+                    tL_birthday = null;
                 }
-                privacySettingsActivity.E0();
+                if (d2 != null) {
+                    d2.flags2 |= 32;
+                    d2.birthday = tL_birthday2;
+                    privacyControlActivity2.getMessagesStorage().j2(d2, false);
+                }
+                privacyControlActivity2.getMessagesController().o2();
+                privacyControlActivity2.getConnectionsManager().sendRequest(updatebirthday, new mo0(kt0Var, d2, tL_birthday, 1), 1024);
+                i7 = ((org.telegram.ui.ActionBar.h2) privacyControlActivity2).currentAccount;
+                org.telegram.messenger.mp.u1(i7).s4(0L, "BIRTHDAY_SETUP");
+                i10 = ((org.telegram.ui.ActionBar.h2) privacyControlActivity2).currentAccount;
+                org.telegram.messenger.ks.f(i10).k(311, new Object[0]);
+                privacyControlActivity2.Q0(true);
                 return;
         }
     }

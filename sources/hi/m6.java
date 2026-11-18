@@ -1,48 +1,37 @@
 package hi;
 
-import android.os.Bundle;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-public final class m6 extends o6 {
-    public final TLRPC.User f14704b;
+import org.telegram.ui.bn;
+public final class m6 extends n6 {
+    public final TLRPC.Chat f15033b;
 
-    public m6(String str, TLRPC.User user) {
+    public m6(String str, TLRPC.Chat chat) {
         super(str);
-        this.f14704b = user;
+        this.f15033b = chat;
     }
 
     @Override
     public final String a() {
-        return hd.M0(2131743546, null);
+        return gd.M0(2131754819, null);
     }
 
     @Override
     public final String b() {
-        return q10.p(this.f14704b);
+        return this.f15033b.title;
     }
 
     @Override
-    public final void c(org.telegram.ui.ActionBar.e2 e2Var) {
-        TLRPC.User user = this.f14704b;
-        if (user.f28200id == m10.i(m10.f24940t0).e()) {
-            Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user.f28200id);
-            bundle.putBoolean("my_profile", true);
-            e2Var.presentFragment(new ProfileActivity(bundle, null));
-            return;
-        }
-        e2Var.presentFragment(ProfileActivity.C4(user.f28200id));
+    public final void c(org.telegram.ui.ActionBar.h2 h2Var) {
+        h2Var.presentFragment(bn.ua(-this.f15033b.f28405id));
     }
 
     @Override
     public final void d(ImageReceiver imageReceiver) {
-        org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
-        TLRPC.User user = this.f14704b;
-        t8Var.r(user);
-        imageReceiver.i0(user, t8Var, null);
+        org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
+        TLRPC.Chat chat = this.f15033b;
+        b9Var.q(chat);
+        imageReceiver.i0(chat, b9Var, null);
     }
 }

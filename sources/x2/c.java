@@ -1,54 +1,54 @@
 package x2;
-public final class c implements b1 {
-    public final b1 f59502a;
-    public boolean f59503b;
-    public final d f59504c;
+public final class c implements d1 {
+    public final d1 f60040a;
+    public boolean f60041b;
+    public final d f60042c;
 
-    public c(d dVar, b1 b1Var) {
-        this.f59504c = dVar;
-        this.f59502a = b1Var;
+    public c(d dVar, d1 d1Var) {
+        this.f60042c = dVar;
+        this.f60040a = d1Var;
     }
 
     @Override
     public final void a() {
-        this.f59502a.a();
+        this.f60040a.a();
     }
 
     @Override
-    public final boolean f() {
-        if (!this.f59504c.a() && this.f59502a.f()) {
+    public final boolean h() {
+        if (!this.f60042c.a() && this.f60040a.h()) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final int n(long j3) {
-        if (this.f59504c.a()) {
+    public final int j(long j3) {
+        if (this.f60042c.a()) {
             return -3;
         }
-        return this.f59502a.n(j3);
+        return this.f60040a.j(j3);
     }
 
     @Override
-    public final int q(k8.a aVar, k2.h hVar, int i7) {
-        d dVar = this.f59504c;
+    public final int m(k8.a aVar, k2.h hVar, int i7) {
+        d dVar = this.f60042c;
         if (dVar.a()) {
             return -3;
         }
-        if (this.f59503b) {
+        if (this.f60041b) {
             hVar.setFlags(4);
             return -4;
         }
-        long s5 = dVar.s();
-        int q10 = this.f59502a.q(aVar, hVar, i7);
-        if (dVar.f59508e != -9223372036854775807L && q10 != -3) {
-            dVar.f59508e = -9223372036854775807L;
+        long r10 = dVar.r();
+        int m10 = this.f60040a.m(aVar, hVar, i7);
+        if (dVar.f60075e != -9223372036854775807L && m10 != -3) {
+            dVar.f60075e = -9223372036854775807L;
         }
-        if (q10 == -5) {
-            long j3 = dVar.f59509f;
+        if (m10 == -5) {
+            long j3 = dVar.f60076f;
             long j10 = dVar.h;
-            e2.u uVar = (e2.u) aVar.f17789c;
+            e2.u uVar = (e2.u) aVar.f18184c;
             uVar.getClass();
             int i10 = uVar.O;
             int i11 = uVar.N;
@@ -62,17 +62,17 @@ public final class c implements b1 {
                 e2.t a10 = uVar.a();
                 a10.M = i11;
                 a10.N = i10;
-                aVar.f17789c = new e2.u(a10);
+                aVar.f18184c = new e2.u(a10);
             }
             return -5;
         }
         long j11 = dVar.h;
-        if (j11 != Long.MIN_VALUE && ((q10 == -4 && hVar.f17733e >= j11) || (q10 == -3 && s5 == Long.MIN_VALUE && !hVar.d))) {
+        if (j11 != Long.MIN_VALUE && ((m10 == -4 && hVar.f18128e >= j11) || (m10 == -3 && r10 == Long.MIN_VALUE && !hVar.d))) {
             hVar.clear();
             hVar.setFlags(4);
-            this.f59503b = true;
+            this.f60041b = true;
             return -4;
         }
-        return q10;
+        return m10;
     }
 }

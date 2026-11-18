@@ -1,54 +1,57 @@
 package org.telegram.ui.Components;
 
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class or implements Predicate {
-    public final int f38049a;
-    public final TLObject f38050b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.view.View;
+import java.util.HashSet;
+public final class or extends View implements org.telegram.ui.ActionBar.c6 {
+    public final TextPaint f38160a;
+    public final TextPaint f38161b;
+    public final String f38162c;
+    public final String d;
+    public final Rect f38163e;
 
-    public or(int i7, TLObject tLObject) {
-        this.f38049a = i7;
-        this.f38050b = tLObject;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i7 = this.f38049a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f38049a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i7 = this.f38049a;
-        return Predicate$CC.$default$or(this, predicate);
+    public or(Context context, String str, String str2) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f38160a = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f38161b = textPaint2;
+        this.f38163e = new Rect();
+        this.f38162c = str;
+        this.d = str2;
+        textPaint.setTextSize(org.telegram.messenger.g0.L(24.0f));
+        textPaint2.setTextSize(org.telegram.messenger.g0.L(14.0f));
+        textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.G6, false));
+        textPaint2.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.H6, false));
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f38049a) {
-            case 0:
-                TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.f38050b;
-                TLRPC.Peer peer = ((org.telegram.messenger.gj) obj).f23819k.from_id;
-                if ((inputPeer == null && peer == null) || (inputPeer != null && peer != null && (!(inputPeer instanceof TLRPC.TL_inputPeerChat) || !(peer instanceof TLRPC.TL_peerChat) ? !(!(inputPeer instanceof TLRPC.TL_inputPeerChannel) || !(peer instanceof TLRPC.TL_peerChannel) ? !(inputPeer instanceof TLRPC.TL_inputPeerUser) || !(peer instanceof TLRPC.TL_peerUser) || inputPeer.user_id != peer.user_id : inputPeer.channel_id != peer.channel_id) : inputPeer.chat_id == peer.chat_id))) {
-                    return true;
-                }
-                return false;
-            default:
-                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) obj;
-                TLObject tLObject = this.f38050b;
-                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || gjVar.f23819k.from_id.user_id != ((TLRPC.Chat) tLObject).f28051id) : gjVar.f23819k.from_id.user_id == ((TLRPC.User) tLObject).f28200id) {
-                    return true;
-                }
-                return false;
-        }
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.f38161b;
+        String str = this.d;
+        float measureText = textPaint.measureText(str);
+        TextPaint textPaint2 = this.f38160a;
+        String str2 = this.f38162c;
+        float measureText2 = textPaint2.measureText(str2);
+        int length = str2.length();
+        Rect rect = this.f38163e;
+        textPaint2.getTextBounds(str2, 0, length, rect);
+        textPaint.getTextBounds(str, 0, str.length(), rect);
+        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
+        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
+    }
+
+    @Override
+    public final void updateColors() {
+        this.f38160a.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.G6, false));
+        this.f38161b.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.H6, false));
+        invalidate();
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

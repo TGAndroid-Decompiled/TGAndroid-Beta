@@ -1,73 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.camera.CameraView;
-public final class sl implements CameraView.CameraViewDelegate {
-    public final ChatAttachAlertPhotoLayout f39333a;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class sl implements Comparator {
+    public final int f39767a;
+    public final Object f39768b;
 
-    public sl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f39333a = chatAttachAlertPhotoLayout;
+    public sl(Object obj, int i7) {
+        this.f39767a = i7;
+        this.f39768b = obj;
     }
 
     @Override
-    public final void onCameraInit() {
-        int i7;
-        float f10;
-        int i10;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f39333a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f32405s0;
-        ImageView[] imageViewArr = chatAttachAlertPhotoLayout.T;
-        String currentFlashMode = chatAttachAlertPhotoLayout.Q.getCameraSession().getCurrentFlashMode();
-        String nextFlashMode = chatAttachAlertPhotoLayout.Q.getCameraSession().getNextFlashMode();
-        if (currentFlashMode != null && nextFlashMode != null) {
-            int i11 = 4;
-            if (currentFlashMode.equals(nextFlashMode)) {
-                for (int i12 = 0; i12 < 2; i12++) {
-                    imageViewArr[i12].setVisibility(4);
-                    imageViewArr[i12].setAlpha(0.0f);
-                    imageViewArr[i12].setTranslationY(0.0f);
-                }
-            } else {
-                ChatAttachAlertPhotoLayout.r0(imageViewArr[0], chatAttachAlertPhotoLayout.Q.getCameraSession().getCurrentFlashMode());
-                for (int i13 = 0; i13 < 2; i13++) {
-                    ImageView imageView2 = imageViewArr[i13];
-                    if (i13 == 0) {
-                        i7 = 0;
-                    } else {
-                        i7 = 4;
+    public final int compare(Object obj, Object obj2) {
+        int indexOf;
+        int indexOf2;
+        int i7 = this.f39767a;
+        Object obj3 = this.f39768b;
+        switch (i7) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj3;
+                org.telegram.messenger.ue ueVar = (org.telegram.messenger.ue) obj;
+                org.telegram.messenger.ue ueVar2 = (org.telegram.messenger.ue) obj2;
+                boolean z10 = ChatAttachAlertPhotoLayout.f32762r1;
+                int i10 = ueVar.f27157a;
+                if (i10 != 0 || ueVar2.f27157a == 0) {
+                    if ((i10 != 0 && ueVar2.f27157a == 0) || (indexOf = arrayList.indexOf(ueVar)) > (indexOf2 = arrayList.indexOf(ueVar2))) {
+                        return 1;
                     }
-                    imageView2.setVisibility(i7);
-                    ImageView imageView3 = imageViewArr[i13];
-                    if (i13 == 0 && chatAttachAlertPhotoLayout.f32374c0) {
-                        f10 = 1.0f;
-                    } else {
-                        f10 = 0.0f;
+                    if (indexOf >= indexOf2) {
+                        return 0;
                     }
-                    imageView3.setAlpha(f10);
-                    imageViewArr[i13].setTranslationY(0.0f);
                 }
-            }
-            if (chatAttachAlertPhotoLayout.Q.isFrontface()) {
-                i10 = 2131230929;
-            } else {
-                i10 = 2131230930;
-            }
-            imageView.setImageResource(i10);
-            if (chatAttachAlertPhotoLayout.Q.hasFrontFaceCamera()) {
-                i11 = 0;
-            }
-            imageView.setVisibility(i11);
-            if (!chatAttachAlertPhotoLayout.f32374c0) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                chatAttachAlertPhotoLayout.P = animatorSet;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.Q, View.ALPHA, 0.0f, 1.0f));
-                chatAttachAlertPhotoLayout.P.setDuration(180L);
-                chatAttachAlertPhotoLayout.P.addListener(new x5(this, 13));
-                chatAttachAlertPhotoLayout.P.start();
-            }
+                return -1;
+            default:
+                ry ryVar = ((fw) obj3).H0;
+                int indexOf3 = ryVar.f39348e1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = ryVar.f39348e1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf3 < 0 || indexOf4 < 0) {
+                    return 0;
+                }
+                return indexOf3 - indexOf4;
         }
     }
 }

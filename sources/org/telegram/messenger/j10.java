@@ -1,242 +1,629 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.LongSparseArray;
+import java.util.Arrays;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_update;
-public final class j10 {
-    public final int f24506a;
-    public boolean f24508c;
+public final class j10 extends c1 {
+    public static int f24773t0;
+    public static volatile j10[] f24774u0 = new j10[4];
+    public int E;
+    public int F;
+    public int G;
+    public int H;
+    public boolean I;
+    public boolean J;
+    public int K;
+    public int L;
+    public long M;
+    public long N;
+    public long O;
+    public long P;
+    public boolean Q;
+    public int R;
+    public int S;
+    public boolean T;
+    public boolean U;
+    public boolean V;
+    public boolean W;
+    public boolean X;
+    public boolean Y;
+    public int Z;
+    public final Object f24775a;
+    public TLRPC.TL_help_termsOfService f24776a0;
+    public volatile boolean f24777b;
+    public long f24778b0;
+    public TLRPC.User f24779c;
+    public String f24780c0;
     public boolean d;
-    public boolean f24509e;
-    public boolean f24511g;
-    public final ArrayList f24507b = new ArrayList();
-    public final d10 f24510f = new d10(this, 0);
+    public String f24781d0;
+    public int f24782e;
+    public String f24783e0;
+    public int f24784f;
+    public String f24785f0;
+    public long f24786g0;
+    public int h;
+    public long f24787h0;
+    public long f24788i0;
+    public long f24789j0;
+    public volatile byte[] f24790k0;
+    public volatile byte[] f24791l0;
+    public volatile long m0;
+    public long f24792n;
+    public LongSparseArray f24793n0;
+    public LongSparseArray f24794o0;
+    public LongSparseArray f24795p0;
+    public int f24796q0;
+    public int f24797r;
+    public boolean f24798r0;
+    public int f24799s;
+    public long f24800s0;
+    public boolean f24801w;
+    public boolean f24802x;
+    public TL_account.tmpPassword f24803y;
 
     public j10(int i7) {
-        this.f24506a = i7;
-        if (!this.f24508c && !this.d) {
-            this.d = true;
-            vr.a0(i7).f27219a.c(new d10(this, 1));
+        super(i7);
+        this.f24775a = new Object();
+        this.f24782e = -210000;
+        this.f24784f = -1;
+        this.f24802x = true;
+        this.K = -1;
+        this.L = -1;
+        this.M = -1L;
+        this.N = -1L;
+        this.O = -1L;
+        this.P = -1L;
+        this.V = true;
+        this.W = true;
+        this.f24796q0 = 0;
+        this.f24798r0 = false;
+    }
+
+    public static int c() {
+        int i7 = 0;
+        for (int i10 = 0; i10 < 4; i10++) {
+            if (i(c.a(i10).f23221a).p()) {
+                i7++;
+            }
+        }
+        return i7;
+    }
+
+    public static j10 i(int i7) {
+        j10 j10Var;
+        j10 j10Var2 = f24774u0[i7];
+        if (j10Var2 == null) {
+            synchronized (j10.class) {
+                try {
+                    j10Var = f24774u0[i7];
+                    if (j10Var == null) {
+                        j10[] j10VarArr = f24774u0;
+                        j10 j10Var3 = new j10(i7);
+                        j10VarArr[i7] = j10Var3;
+                        j10Var = j10Var3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return j10Var;
+        }
+        return j10Var2;
+    }
+
+    public static int l() {
+        int i7;
+        for (int i10 = -1; i10 < 4; i10++) {
+            if (i10 < 0) {
+                i7 = f24773t0;
+            } else {
+                i7 = i10;
+            }
+            if (i(i7).p() && !ConnectionsManager.getInstance(i7).isTestBackend()) {
+                return i7;
+            }
+        }
+        return f24773t0;
+    }
+
+    public static boolean o() {
+        for (int i7 = 0; i7 < 4; i7++) {
+            if (i(c.a(i7).f23221a).p() && i(c.a(i7).f23221a).getUserConfig().q()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean r(int i7) {
+        if (i7 >= 0 && i7 < 4 && i(i7).p()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void A(int i7, LongSparseArray longSparseArray) {
+        if (i7 == 1) {
+            this.f24793n0 = longSparseArray;
+            c6.n(f3.e(new StringBuilder("users_save_gallery_exceptions_"), this.currentAccount, t0.f26915b, 0), this.f24793n0);
+        } else if (i7 == 2) {
+            this.f24795p0 = longSparseArray;
+            c6.n(f3.e(new StringBuilder("groups_save_gallery_exceptions_"), this.currentAccount, t0.f26915b, 0), this.f24795p0);
+        } else if (i7 == 4) {
+            this.f24794o0 = longSparseArray;
+            c6.n(f3.e(new StringBuilder("channels_save_gallery_exceptions_"), this.currentAccount, t0.f26915b, 0), this.f24794o0);
         }
     }
 
-    public final void a() {
-        this.f24507b.clear();
-        d();
-        ns.f(this.f24506a).k(ns.f25484d3, new Object[0]);
-        e();
+    public final void a(TLRPC.User user, final TLRPC.User user2) {
+        if (user != null && user2 != null && user.premium != user2.premium) {
+            g0.g3(new Runnable(this) {
+                public final j10 f24354b;
+
+                {
+                    this.f24354b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r3) {
+                        case 0:
+                            j10 j10Var = this.f24354b;
+                            j10Var.getMessagesController().y5(user2.premium);
+                            ks.f(j10Var.currentAccount).k(310, new Object[0]);
+                            ks.e().k(312, new Object[0]);
+                            j10Var.getMediaDataController().U0(false);
+                            j10Var.getMediaDataController().V0(false, null);
+                            fi.p6 R1 = j10Var.getMessagesController().R1();
+                            R1.R = false;
+                            R1.S = null;
+                            return;
+                        default:
+                            j10 j10Var2 = this.f24354b;
+                            j10Var2.getMessagesController().y5(user2.premium);
+                            ks.f(j10Var2.currentAccount).k(310, new Object[0]);
+                            j10Var2.getMediaDataController().U0(true);
+                            return;
+                    }
+                }
+            });
+        } else if (user == null) {
+            g0.g3(new Runnable(this) {
+                public final j10 f24354b;
+
+                {
+                    this.f24354b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r3) {
+                        case 0:
+                            j10 j10Var = this.f24354b;
+                            j10Var.getMessagesController().y5(user2.premium);
+                            ks.f(j10Var.currentAccount).k(310, new Object[0]);
+                            ks.e().k(312, new Object[0]);
+                            j10Var.getMediaDataController().U0(false);
+                            j10Var.getMediaDataController().V0(false, null);
+                            fi.p6 R1 = j10Var.getMessagesController().R1();
+                            R1.R = false;
+                            R1.S = null;
+                            return;
+                        default:
+                            j10 j10Var2 = this.f24354b;
+                            j10Var2.getMessagesController().y5(user2.premium);
+                            ks.f(j10Var2.currentAccount).k(310, new Object[0]);
+                            j10Var2.getMediaDataController().U0(true);
+                            return;
+                    }
+                }
+            });
+        }
     }
 
-    public final void b(TL_update.TL_updateNewAuthorization tL_updateNewAuthorization) {
-        ArrayList arrayList;
+    public final void b() {
+        k().edit().clear().apply();
+        this.R = 0;
+        this.S = 0;
+        this.f24779c = null;
+        this.f24792n = 0L;
+        this.d = false;
+        this.h = 0;
+        this.f24782e = -210000;
+        this.f24784f = -1;
+        this.T = false;
+        this.U = false;
+        this.K = -1;
+        this.L = -1;
+        this.M = -1L;
+        this.N = -1L;
+        this.O = -1L;
+        this.P = -1L;
+        this.E = 0;
+        this.F = 0;
+        this.G = 0;
+        this.H = 0;
+        this.f24801w = false;
+        this.I = true;
+        this.V = true;
+        this.X = false;
+        this.W = true;
+        this.f24802x = true;
+        this.J = true;
+        this.f24776a0 = null;
+        this.Q = false;
+        this.Y = false;
+        this.Z = (int) (System.currentTimeMillis() / 1000);
+        this.f24797r = ((int) (System.currentTimeMillis() / 1000)) - 82800;
+        this.f24799s = ((int) (System.currentTimeMillis() / 1000)) - 90000;
+        u();
         int i7 = 0;
         while (true) {
-            arrayList = this.f24507b;
-            if (i7 >= arrayList.size()) {
-                break;
-            }
-            i10 i10Var = (i10) arrayList.get(i7);
-            if (i10Var != null && !i10Var.f24264a && i10Var.f24265b == tL_updateNewAuthorization.hash) {
-                arrayList.remove(i7);
-                i7--;
-            }
-            i7++;
-        }
-        if (tL_updateNewAuthorization.unconfirmed) {
-            arrayList.add(new i10(this, tL_updateNewAuthorization));
-        }
-        ns.f(this.f24506a).k(ns.f25484d3, new Object[0]);
-        e();
-        d();
-    }
-
-    public final void c(TL_update.TL_updateNewBotConnection tL_updateNewBotConnection) {
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList = this.f24507b;
-            if (i7 < arrayList.size()) {
-                i10 i10Var = (i10) arrayList.get(i7);
-                if (i10Var != null && i10Var.f24264a && i10Var.f24266c == tL_updateNewBotConnection.bot_id) {
-                    arrayList.remove(i7);
-                    i7--;
+            if (i7 < 4) {
+                if (i(c.a(i7).f23221a).p()) {
+                    break;
                 }
                 i7++;
             } else {
-                arrayList.add(new i10(this, tL_updateNewBotConnection));
-                ns.f(this.f24506a).k(ns.f25484d3, new Object[0]);
-                e();
-                d();
-                return;
+                bz.f23217z = false;
+                bz.f23211x = false;
+                bz.f23194r = 0;
+                bz.f23200t = 0L;
+                bz.f23203u = 0L;
+                bz.v = 0;
+                bz.f23197s = "";
+                bz.f23208w = new byte[0];
+                bz.f23214y = 3600;
+                bz.B = 0;
+                bz.D = true;
+                bz.f23166g0 = true;
+                bz.C = false;
+                bz.A = false;
+                bz.J = 0;
+                bz.K = 0;
+                bz.L = 0L;
+                bz.M = 0;
+                bz.N = 0L;
+                bz.O = 0;
+                bz.P = false;
+                bz.Q = false;
+                bz.f23156c1 = 3;
+                bz.f23158d1 = 3;
+                bz.f23161e1 = 3;
+                bz.f23160e0 = 2;
+                bz.S = 0;
+                bz.y();
+                break;
             }
+        }
+        v(true);
+    }
+
+    public final String d() {
+        String str;
+        synchronized (this.f24775a) {
+            try {
+                TLRPC.User user = this.f24779c;
+                if (user == null || (str = user.phone) == null) {
+                    str = "";
+                }
+            } finally {
+            }
+        }
+        return str;
+    }
+
+    public final long e() {
+        long j3;
+        synchronized (this.f24775a) {
+            try {
+                TLRPC.User user = this.f24779c;
+                if (user != null) {
+                    j3 = user.f28554id;
+                } else {
+                    j3 = 0;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return j3;
+    }
+
+    public final TLRPC.User f() {
+        TLRPC.User user;
+        synchronized (this.f24775a) {
+            user = this.f24779c;
+        }
+        return user;
+    }
+
+    public final long[] g(int i7) {
+        Integer valueOf;
+        int i10;
+        Integer valueOf2;
+        Integer valueOf3;
+        long j3;
+        Integer valueOf4;
+        long j10;
+        Integer valueOf5;
+        long j11;
+        long j12;
+        SharedPreferences k10 = k();
+        StringBuilder sb2 = new StringBuilder("2dialogsLoadOffsetId");
+        Object obj = "";
+        if (i7 == 0) {
+            valueOf = "";
+        } else {
+            valueOf = Integer.valueOf(i7);
+        }
+        sb2.append(valueOf);
+        String sb3 = sb2.toString();
+        int i11 = -1;
+        if (this.J) {
+            i10 = 0;
+        } else {
+            i10 = -1;
+        }
+        int i12 = k10.getInt(sb3, i10);
+        StringBuilder sb4 = new StringBuilder("2dialogsLoadOffsetDate");
+        if (i7 == 0) {
+            valueOf2 = "";
+        } else {
+            valueOf2 = Integer.valueOf(i7);
+        }
+        sb4.append(valueOf2);
+        String sb5 = sb4.toString();
+        if (this.J) {
+            i11 = 0;
+        }
+        int i13 = k10.getInt(sb5, i11);
+        StringBuilder sb6 = new StringBuilder("2dialogsLoadOffsetUserId");
+        if (i7 == 0) {
+            valueOf3 = "";
+        } else {
+            valueOf3 = Integer.valueOf(i7);
+        }
+        sb6.append(valueOf3);
+        String sb7 = sb6.toString();
+        if (this.J) {
+            j3 = 0;
+        } else {
+            j3 = -1;
+        }
+        long b12 = g0.b1(k10, sb7, j3);
+        StringBuilder sb8 = new StringBuilder("2dialogsLoadOffsetChatId");
+        if (i7 == 0) {
+            valueOf4 = "";
+        } else {
+            valueOf4 = Integer.valueOf(i7);
+        }
+        sb8.append(valueOf4);
+        String sb9 = sb8.toString();
+        if (this.J) {
+            j10 = 0;
+        } else {
+            j10 = -1;
+        }
+        long b13 = g0.b1(k10, sb9, j10);
+        StringBuilder sb10 = new StringBuilder("2dialogsLoadOffsetChannelId");
+        if (i7 == 0) {
+            valueOf5 = "";
+        } else {
+            valueOf5 = Integer.valueOf(i7);
+        }
+        sb10.append(valueOf5);
+        String sb11 = sb10.toString();
+        if (this.J) {
+            j11 = 0;
+        } else {
+            j11 = -1;
+        }
+        long b14 = g0.b1(k10, sb11, j11);
+        StringBuilder sb12 = new StringBuilder("2dialogsLoadOffsetAccess");
+        if (i7 != 0) {
+            obj = Integer.valueOf(i7);
+        }
+        sb12.append(obj);
+        String sb13 = sb12.toString();
+        if (this.J) {
+            j12 = 0;
+        } else {
+            j12 = -1;
+        }
+        return new long[]{i12, i13, b12, b13, b14, k10.getLong(sb13, j12)};
+    }
+
+    public final int h() {
+        return this.f24796q0;
+    }
+
+    public final int j() {
+        int i7;
+        synchronized (this.f24775a) {
+            i7 = this.f24782e;
+            this.f24782e = i7 - 1;
+        }
+        return i7;
+    }
+
+    public final SharedPreferences k() {
+        if (this.currentAccount == 0) {
+            return t0.f26915b.getSharedPreferences("userconfing", 0);
+        }
+        return f3.e(new StringBuilder("userconfig"), this.currentAccount, t0.f26915b, 0);
+    }
+
+    public final LongSparseArray m(int i7) {
+        if (i7 == 1) {
+            if (this.f24793n0 == null) {
+                Context context = t0.f26915b;
+                this.f24793n0 = c6.l(context.getSharedPreferences("users_save_gallery_exceptions_" + this.currentAccount, 0));
+            }
+            return this.f24793n0;
+        } else if (i7 == 2) {
+            if (this.f24795p0 == null) {
+                Context context2 = t0.f26915b;
+                this.f24795p0 = c6.l(context2.getSharedPreferences("groups_save_gallery_exceptions_" + this.currentAccount, 0));
+            }
+            return this.f24795p0;
+        } else if (i7 == 4) {
+            if (this.f24794o0 == null) {
+                Context context3 = t0.f26915b;
+                this.f24794o0 = c6.l(context3.getSharedPreferences("channels_save_gallery_exceptions_" + this.currentAccount, 0));
+            }
+            return this.f24794o0;
+        } else {
+            return null;
         }
     }
 
-    public final void d() {
-        if (this.f24511g) {
-            return;
+    public final int n(int i7) {
+        Object valueOf;
+        SharedPreferences k10 = k();
+        StringBuilder sb2 = new StringBuilder("2totalDialogsLoadCount");
+        if (i7 == 0) {
+            valueOf = "";
+        } else {
+            valueOf = Integer.valueOf(i7);
         }
-        if (this.d) {
-            this.f24509e = true;
-            return;
-        }
-        this.f24511g = true;
-        vr.a0(this.f24506a).f27219a.c(new d10(this, 2));
+        sb2.append(valueOf);
+        return k10.getInt(sb2.toString(), 0);
     }
 
-    public final void e() {
-        i10 i10Var;
-        d10 d10Var = this.f24510f;
-        g0.r(d10Var);
-        ArrayList arrayList = this.f24507b;
-        if (!arrayList.isEmpty()) {
-            int size = arrayList.size();
-            int i7 = 0;
-            long j3 = Long.MAX_VALUE;
-            while (i7 < size) {
-                Object obj = arrayList.get(i7);
-                i7++;
-                j10 j10Var = ((i10) obj).f24269i;
-                j3 = Math.min(j3, (ConnectionsManager.getInstance(j10Var.f24506a).getCurrentTime() + np.s1(j10Var.f24506a).o4) - i10Var.d);
+    public final boolean p() {
+        boolean z10;
+        synchronized (this.f24775a) {
+            if (this.f24779c != null) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            if (j3 == Long.MAX_VALUE) {
-                return;
-            }
-            g0.i3(d10Var, Math.max(0L, j3 * 1000));
+        }
+        return z10;
+    }
+
+    public final boolean q() {
+        TLRPC.User user = this.f24779c;
+        if (user == null) {
+            return false;
+        }
+        return user.premium;
+    }
+
+    public final void s() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.j10.s():void");
+    }
+
+    public final void t() {
+        if (!this.f24798r0 && System.currentTimeMillis() - this.f24800s0 >= 60000) {
+            this.f24798r0 = true;
+            getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDefaultHistoryTTL(), new s1(this, 8));
         }
     }
 
-    public final void f(final boolean z10, ArrayList arrayList, z10 z10Var) {
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        final boolean[] zArr = new boolean[arrayList2.size()];
-        z10[] z10VarArr = new z10[arrayList2.size()];
-        for (final int i7 = 0; i7 < arrayList2.size(); i7++) {
-            final i10 i10Var = (i10) arrayList2.get(i7);
-            z10VarArr[i7] = new z10() {
-                @Override
-                public final void a(Object obj) {
-                    final f10 f10Var = new f10(i7, (Runnable) obj, zArr);
-                    boolean z11 = z10;
-                    final i10 i10Var2 = i10Var;
-                    if (z11) {
-                        j10 j10Var = i10Var2.f24269i;
-                        if (i10Var2.f24264a) {
-                            TL_account.confirmBotConnection confirmbotconnection = new TL_account.confirmBotConnection();
-                            confirmbotconnection.bot_id = np.s1(j10Var.f24506a).o1(i10Var2.f24266c);
-                            ConnectionsManager.getInstance(j10Var.f24506a).sendRequestTyped(confirmbotconnection, new x3(7, i10Var2, f10Var));
-                            return;
-                        }
-                        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
-                        changeauthorizationsettings.hash = i10Var2.f24265b;
-                        changeauthorizationsettings.confirmed = true;
-                        ConnectionsManager.getInstance(j10Var.f24506a).sendRequest(changeauthorizationsettings, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                switch (r3) {
-                                    case 0:
-                                        i10 i10Var3 = i10Var2;
-                                        i10Var3.getClass();
-                                        g0.h3(new h10(i10Var3, tLObject, f10Var, tL_error));
-                                        return;
-                                    case 1:
-                                        i10 i10Var4 = i10Var2;
-                                        i10Var4.getClass();
-                                        g0.h3(new h10(i10Var4, f10Var, tLObject, tL_error, 2));
-                                        return;
-                                    default:
-                                        i10 i10Var5 = i10Var2;
-                                        i10Var5.getClass();
-                                        g0.h3(new h10(i10Var5, f10Var, tLObject, tL_error, 0));
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    }
-                    j10 j10Var2 = i10Var2.f24269i;
-                    if (i10Var2.f24264a) {
-                        TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
-                        updateconnectedbot.deleted = true;
-                        updateconnectedbot.bot = np.s1(j10Var2.f24506a).o1(i10Var2.f24266c);
-                        updateconnectedbot.recipients = new TL_account.TL_inputBusinessBotRecipients();
-                        ConnectionsManager.getInstance(j10Var2.f24506a).sendRequest(updateconnectedbot, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                switch (r3) {
-                                    case 0:
-                                        i10 i10Var3 = i10Var2;
-                                        i10Var3.getClass();
-                                        g0.h3(new h10(i10Var3, tLObject, f10Var, tL_error));
-                                        return;
-                                    case 1:
-                                        i10 i10Var4 = i10Var2;
-                                        i10Var4.getClass();
-                                        g0.h3(new h10(i10Var4, f10Var, tLObject, tL_error, 2));
-                                        return;
-                                    default:
-                                        i10 i10Var5 = i10Var2;
-                                        i10Var5.getClass();
-                                        g0.h3(new h10(i10Var5, f10Var, tLObject, tL_error, 0));
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    }
-                    TL_account.resetAuthorization resetauthorization = new TL_account.resetAuthorization();
-                    resetauthorization.hash = i10Var2.f24265b;
-                    ConnectionsManager.getInstance(j10Var2.f24506a).sendRequest(resetauthorization, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            switch (r3) {
-                                case 0:
-                                    i10 i10Var3 = i10Var2;
-                                    i10Var3.getClass();
-                                    g0.h3(new h10(i10Var3, tLObject, f10Var, tL_error));
-                                    return;
-                                case 1:
-                                    i10 i10Var4 = i10Var2;
-                                    i10Var4.getClass();
-                                    g0.h3(new h10(i10Var4, f10Var, tLObject, tL_error, 2));
-                                    return;
-                                default:
-                                    i10 i10Var5 = i10Var2;
-                                    i10Var5.getClass();
-                                    g0.h3(new h10(i10Var5, f10Var, tLObject, tL_error, 0));
-                                    return;
-                            }
-                        }
-                    });
-                }
-            };
+    public final void u() {
+        this.m0 = 0L;
+        if (this.f24790k0 != null) {
+            Arrays.fill(this.f24790k0, (byte) 0);
+            this.f24790k0 = null;
         }
-        Utilities.B(new in(this, zArr, arrayList2, z10Var, z10, 6), z10VarArr);
-        if (z10) {
-            HashSet hashSet = new HashSet();
-            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                hashSet.add(Long.valueOf(((i10) arrayList2.get(i10)).f24265b));
-            }
-            int i11 = 0;
-            while (true) {
-                ArrayList arrayList3 = this.f24507b;
-                if (i11 >= arrayList3.size()) {
-                    break;
-                }
-                if (hashSet.contains(Long.valueOf(((i10) arrayList3.get(i11)).f24265b))) {
-                    arrayList3.remove(i11);
-                    i11--;
-                }
-                i11++;
-            }
-            if (!hashSet.isEmpty()) {
-                d();
-                ns.f(this.f24506a).k(ns.f25484d3, new Object[0]);
-                e();
-            }
+        if (this.f24791l0 != null) {
+            Arrays.fill(this.f24791l0, (byte) 0);
+            this.f24791l0 = null;
         }
+    }
+
+    public final void v(boolean z10) {
+        ks.f(this.currentAccount).d(new i10(0, this, z10));
+    }
+
+    public final void w(TLRPC.User user) {
+        synchronized (this.f24775a) {
+            TLRPC.User user2 = this.f24779c;
+            this.f24779c = user;
+            this.f24792n = user.f28554id;
+            a(user2, user);
+        }
+    }
+
+    public final void x(int i7, int i10, int i11, long j3, long j10, long j11, long j12) {
+        Integer valueOf;
+        Integer valueOf2;
+        Integer valueOf3;
+        Integer valueOf4;
+        Integer valueOf5;
+        SharedPreferences.Editor edit = k().edit();
+        StringBuilder sb2 = new StringBuilder("2dialogsLoadOffsetId");
+        Object obj = "";
+        if (i7 == 0) {
+            valueOf = "";
+        } else {
+            valueOf = Integer.valueOf(i7);
+        }
+        sb2.append(valueOf);
+        edit.putInt(sb2.toString(), i10);
+        StringBuilder sb3 = new StringBuilder("2dialogsLoadOffsetDate");
+        if (i7 == 0) {
+            valueOf2 = "";
+        } else {
+            valueOf2 = Integer.valueOf(i7);
+        }
+        sb3.append(valueOf2);
+        edit.putInt(sb3.toString(), i11);
+        StringBuilder sb4 = new StringBuilder("2dialogsLoadOffsetUserId");
+        if (i7 == 0) {
+            valueOf3 = "";
+        } else {
+            valueOf3 = Integer.valueOf(i7);
+        }
+        sb4.append(valueOf3);
+        edit.putLong(sb4.toString(), j3);
+        StringBuilder sb5 = new StringBuilder("2dialogsLoadOffsetChatId");
+        if (i7 == 0) {
+            valueOf4 = "";
+        } else {
+            valueOf4 = Integer.valueOf(i7);
+        }
+        sb5.append(valueOf4);
+        edit.putLong(sb5.toString(), j10);
+        StringBuilder sb6 = new StringBuilder("2dialogsLoadOffsetChannelId");
+        if (i7 == 0) {
+            valueOf5 = "";
+        } else {
+            valueOf5 = Integer.valueOf(i7);
+        }
+        sb6.append(valueOf5);
+        edit.putLong(sb6.toString(), j11);
+        StringBuilder sb7 = new StringBuilder("2dialogsLoadOffsetAccess");
+        if (i7 != 0) {
+            obj = Integer.valueOf(i7);
+        }
+        sb7.append(obj);
+        edit.putLong(sb7.toString(), j12);
+        edit.putBoolean("hasValidDialogLoadIds", true);
+        edit.commit();
+    }
+
+    public final void y(int i7, boolean z10) {
+        SharedPreferences.Editor edit = k().edit();
+        edit.putBoolean("2pinnedDialogsLoaded" + i7, z10).commit();
+    }
+
+    public final void z(int i7, int i10) {
+        Object valueOf;
+        SharedPreferences.Editor edit = k().edit();
+        StringBuilder sb2 = new StringBuilder("2totalDialogsLoadCount");
+        if (i7 == 0) {
+            valueOf = "";
+        } else {
+            valueOf = Integer.valueOf(i7);
+        }
+        sb2.append(valueOf);
+        edit.putInt(sb2.toString(), i10).commit();
     }
 }

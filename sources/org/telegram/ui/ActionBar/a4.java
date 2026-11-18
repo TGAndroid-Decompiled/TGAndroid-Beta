@@ -1,42 +1,52 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
-public final class a4 extends Animation {
-    public final int f28403a;
-    public final float f28404b;
-    public final float f28405c;
-    public final int d;
-    public final g4 f28406e;
+import android.graphics.Rect;
+import android.view.View;
+import org.telegram.ui.Components.ym0;
+public final class a4 implements View.OnLayoutChangeListener {
+    public final int f28757a;
+    public final Object f28758b;
+    public final Object f28759c;
+    public final Object d;
 
-    public a4(g4 g4Var, float f10, float f11, int i7, int i10) {
-        this.f28403a = i10;
-        this.f28406e = g4Var;
-        this.f28404b = f10;
-        this.f28405c = f11;
-        this.d = i7;
+    public a4(ym0 ym0Var, ym0 ym0Var2, ym0 ym0Var3) {
+        this.f28757a = 1;
+        this.f28758b = ym0Var;
+        this.f28759c = ym0Var2;
+        this.d = ym0Var3;
     }
 
     @Override
-    public final void applyTransformation(float f10, Transformation transformation) {
-        switch (this.f28403a) {
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        switch (this.f28757a) {
             case 0:
-                float f11 = this.f28404b;
-                float z10 = com.google.android.gms.internal.vision.e2.z(this.f28405c, f11, f10, f11);
-                g4 g4Var = this.f28406e;
-                g4Var.f28568i.setX(z10 + (g4Var.f28566f.getWidth() - this.d));
-                float f12 = 1.0f - f10;
-                g4Var.f28571l.setAlpha(f12);
-                g4Var.f28569j.setAlpha(f12);
+                Rect rect = (Rect) this.f28758b;
+                rect.set(i7, i10, i11, i12);
+                Rect rect2 = (Rect) this.f28759c;
+                rect2.set(i13, i14, i15, i16);
+                m4 m4Var = (m4) this.d;
+                k4 k4Var = m4Var.f29237b;
+                if (k4Var.f() && !rect.equals(rect2)) {
+                    m4Var.h = true;
+                    if (k4Var.f()) {
+                        m4Var.c();
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                float f13 = this.f28404b;
-                float z11 = com.google.android.gms.internal.vision.e2.z(this.f28405c, f13, f10, f13);
-                g4 g4Var2 = this.f28406e;
-                g4Var2.f28568i.setX(z11 + (g4Var2.f28566f.getWidth() - this.d));
-                g4Var2.f28571l.setAlpha(f10);
-                g4Var2.f28569j.setAlpha(f10);
+                ((ym0) this.f28758b).setProgress(org.telegram.ui.h5.n1);
+                ((ym0) this.f28759c).setProgress(org.telegram.ui.h5.f48224o1);
+                ((ym0) this.d).setProgress(org.telegram.ui.h5.f48225p1);
                 return;
         }
+    }
+
+    public a4(m4 m4Var) {
+        this.f28757a = 0;
+        this.d = m4Var;
+        this.f28758b = new Rect();
+        this.f28759c = new Rect();
     }
 }

@@ -1,36 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class l8 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f36725a;
-    public final float f36726b;
-    public final boolean f36727c;
-    public final q8 d;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class l8 implements Runnable {
+    public final int f37065a;
+    public final y8 f37066b;
 
-    public l8(q8 q8Var, float f10, float f11, boolean z10) {
-        this.d = q8Var;
-        this.f36725a = f10;
-        this.f36726b = f11;
-        this.f36727c = z10;
+    public l8(y8 y8Var, int i7) {
+        this.f37065a = i7;
+        this.f37066b = y8Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        q8 q8Var = this.d;
-        q8Var.O = floatValue;
-        float T1 = org.telegram.messenger.g0.T1(this.f36725a, this.f36726b, floatValue);
-        kVar = ((org.telegram.ui.ActionBar.e2) q8Var).actionBar;
-        kVar.getTitleTextView().setAlpha(q8Var.O);
-        if (q8Var.G && !this.f36727c) {
-            q8Var.n0(false, 1.0f - q8Var.O);
+    public final void run() {
+        switch (this.f37065a) {
+            case 0:
+                y8 y8Var = this.f37066b;
+                if (!y8Var.V) {
+                    if (y8Var.O > 0.0f) {
+                        if (y8Var.N != null) {
+                            y8Var.F = 1.0f;
+                            y8Var.G = true;
+                        }
+                        org.telegram.messenger.g0.v1(y8Var.fragmentView);
+                        return;
+                    }
+                    y8Var.l0(!y8Var.f42394a.f41945w, true, false);
+                    return;
+                }
+                return;
+            default:
+                y8 y8Var2 = this.f37066b;
+                y8Var2.getClass();
+                y8Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
+                return;
         }
-        q8Var.f38571r.setTranslationY(T1);
-        q8Var.f38575y.setTranslationY(T1);
-        q8Var.fragmentView.invalidate();
-        kVar2 = ((org.telegram.ui.ActionBar.e2) q8Var).actionBar;
-        kVar2.invalidate();
     }
 }

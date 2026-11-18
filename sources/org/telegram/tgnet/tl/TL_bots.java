@@ -2,7 +2,7 @@ package org.telegram.tgnet.tl;
 
 import android.graphics.Path;
 import java.util.ArrayList;
-import org.telegram.messenger.qz;
+import org.telegram.messenger.mz;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -717,7 +717,7 @@ public class TL_bots {
             if (TLObject.hasFlag(readInt32, 1)) {
                 byte[] readByteArray = inputSerializedData.readByteArray(z10);
                 this.placeholder_path = readByteArray;
-                this.placeholder_svg_path = qz.b(qz.a(readByteArray));
+                this.placeholder_svg_path = mz.b(mz.a(readByteArray));
             }
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.background_color = inputSerializedData.readInt32(z10);
@@ -849,12 +849,17 @@ public class TL_bots {
     }
 
     public static class checkUsername extends TLMethod<TLRPC.Bool> {
-        public static final int constructor = -2014174821;
+        public static final int constructor = -475247519;
+        public boolean additional;
+        public int flags;
         public String username;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-2014174821);
+            outputSerializedData.writeInt32(-475247519);
+            int flag = TLObject.setFlag(this.flags, 1, this.additional);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeString(this.username);
         }
 
@@ -932,14 +937,14 @@ public class TL_bots {
     }
 
     public static class exportBotToken extends TLMethod<exportedBotToken> {
-        public static final int constructor = 6533257;
-        public long bot_id;
+        public static final int constructor = -1123182101;
+        public TLRPC.InputUser bot;
         public boolean revoke;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(6533257);
-            outputSerializedData.writeInt64(this.bot_id);
+            outputSerializedData.writeInt32(-1123182101);
+            this.bot.serializeToStream(outputSerializedData);
             outputSerializedData.writeBool(this.revoke);
         }
 

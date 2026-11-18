@@ -1,97 +1,111 @@
 package org.telegram.messenger;
 
+import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
-public final class e3 {
-    public boolean f23254a;
-    public boolean f23255b;
-    public long f23256c;
-    public boolean d;
-    public boolean f23257e;
-    public int f23258f;
-    public int f23259g;
-    public TL_stories.TL_premium_myBoosts h;
-    public int f23260i = 0;
-    public long f23261j;
-    public TLRPC.Chat f23262k;
-    public boolean f23263l;
-    public boolean f23264m;
+public final class e3 implements x10 {
+    public final int f23662a;
+    public final Object f23663b;
+    public final Object f23664c;
+    public final Object d;
 
-    public final void a(TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
-        this.h = tL_premium_myBoosts;
-        this.f23260i = 0;
-        this.f23259g = 0;
-        this.d = false;
-        this.f23254a = false;
-        this.f23257e = false;
-        this.f23256c = 0L;
-        if (tL_premium_myBoosts.my_boosts.isEmpty()) {
-            this.f23255b = true;
-        }
-        ArrayList<TL_stories.TL_myBoost> arrayList = tL_premium_myBoosts.my_boosts;
-        int size = arrayList.size();
-        int i7 = 0;
-        while (i7 < size) {
-            TL_stories.TL_myBoost tL_myBoost = arrayList.get(i7);
-            i7++;
-            if (this.f23261j == m5.o(tL_myBoost.peer)) {
-                this.f23260i++;
-            }
-        }
-        if (this.f23260i > 0) {
-            this.d = true;
-        }
-        ArrayList<TL_stories.TL_myBoost> arrayList2 = tL_premium_myBoosts.my_boosts;
-        int size2 = arrayList2.size();
-        int i10 = 0;
-        while (true) {
-            if (i10 >= size2) {
-                break;
-            }
-            TL_stories.TL_myBoost tL_myBoost2 = arrayList2.get(i10);
-            i10++;
-            TL_stories.TL_myBoost tL_myBoost3 = tL_myBoost2;
-            if (tL_myBoost3.peer == null) {
-                this.f23259g = tL_myBoost3.slot;
-                break;
-            }
-        }
-        if (this.f23259g == 0) {
-            ArrayList arrayList3 = new ArrayList();
-            ArrayList<TL_stories.TL_myBoost> arrayList4 = tL_premium_myBoosts.my_boosts;
-            int size3 = arrayList4.size();
-            int i11 = 0;
-            while (i11 < size3) {
-                TL_stories.TL_myBoost tL_myBoost4 = arrayList4.get(i11);
-                i11++;
-                TL_stories.TL_myBoost tL_myBoost5 = tL_myBoost4;
-                TLRPC.Peer peer = tL_myBoost5.peer;
-                if (peer != null && m5.o(peer) != (-this.f23262k.f28051id)) {
-                    arrayList3.add(tL_myBoost5);
+    public e3(Object obj, Object obj2, Object obj3, int i7) {
+        this.f23662a = i7;
+        this.f23663b = obj;
+        this.f23664c = obj2;
+        this.d = obj3;
+    }
+
+    @Override
+    public final void a(Object obj) {
+        boolean z10;
+        TLRPC.Document document;
+        switch (this.f23662a) {
+            case 0:
+                g3 g3Var = (g3) this.f23663b;
+                x10 x10Var = (x10) this.d;
+                TL_stories.TL_premium_myBoosts tL_premium_myBoosts = (TL_stories.TL_premium_myBoosts) obj;
+                if (((TL_stories.TL_premium_boostsStatus) this.f23664c).next_level_boosts <= 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-            }
-            if (arrayList3.size() == 1 && ((TL_stories.TL_myBoost) arrayList3.get(0)).cooldown_until_date == 0) {
-                TL_stories.TL_myBoost tL_myBoost6 = (TL_stories.TL_myBoost) arrayList3.get(0);
-                this.f23256c = m5.o(tL_myBoost6.peer);
-                this.f23259g = tL_myBoost6.slot;
-                this.f23254a = true;
-            } else if (arrayList3.size() >= 1) {
-                this.f23257e = true;
-                if (!wg.q.i()) {
-                    TL_stories.TL_myBoost tL_myBoost7 = (TL_stories.TL_myBoost) arrayList3.get(0);
-                    this.f23256c = m5.o(tL_myBoost7.peer);
-                    this.f23259g = tL_myBoost7.slot;
+                g3Var.f24165m = z10;
+                g3Var.a(tL_premium_myBoosts);
+                x10Var.a(g3Var);
+                return;
+            case 1:
+                TLRPC.TL_factCheck tL_factCheck = (TLRPC.TL_factCheck) obj;
+                ((x6) this.f23663b).f27824b.put(((w6) this.f23664c).f27648b, tL_factCheck);
+                ((fj) this.d).f23968k.factcheck = tL_factCheck;
+                return;
+            case 2:
+                Utilities.d.c(new tl((r8) this.f23663b, (String) this.f23664c, (String) this.d, (fi.y5) obj, 8));
+                return;
+            case 3:
+                String str = (String) this.f23663b;
+                org.telegram.ui.Components.q9 q9Var = (org.telegram.ui.Components.q9) this.f23664c;
+                String str2 = (String) this.d;
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+                if (tL_messages_stickerSet != null) {
+                    ArrayList j3 = j6.j(str, null);
+                    for (int i7 = 0; i7 < j3.size(); i7++) {
+                        ((h6) j3.get(i7)).f24394c = j6.c(((h6) j3.get(i7)).f24394c.toString());
+                    }
+                    int i10 = 0;
+                    while (true) {
+                        if (i10 < tL_messages_stickerSet.documents.size()) {
+                            document = tL_messages_stickerSet.documents.get(i10);
+                            int size = j3.size();
+                            int i11 = 0;
+                            while (i11 < size) {
+                                Object obj2 = j3.get(i11);
+                                i11++;
+                                h6 h6Var = (h6) obj2;
+                                for (int i12 = 0; i12 < tL_messages_stickerSet.packs.size(); i12++) {
+                                    if (!tL_messages_stickerSet.packs.get(i12).documents.contains(Long.valueOf(document.f28411id)) || !TextUtils.equals(j6.c(tL_messages_stickerSet.packs.get(i12).emoticon), h6Var.f24394c)) {
+                                    }
+                                }
+                            }
+                        } else {
+                            document = null;
+                        }
+                        i10++;
+                    }
+                    if (document != null) {
+                        q9Var.p(fc.b(document), str2, u5.f(document, org.telegram.ui.ActionBar.n6.f29561m6, 0.2f, null), document);
+                        q9Var.invalidate();
+                        return;
+                    }
+                    return;
                 }
-                this.f23254a = true;
-            } else {
-                this.f23254a = false;
-            }
-        } else {
-            this.f23254a = true;
-        }
-        if (this.f23264m) {
-            this.f23254a = false;
+                return;
+            case 4:
+                boolean[] zArr = (boolean[]) this.f23663b;
+                ArrayList[] arrayListArr = (ArrayList[]) this.f23664c;
+                kh khVar = (kh) this.d;
+                ArrayList arrayList = (ArrayList) obj;
+                if (!zArr[0]) {
+                    arrayListArr[0] = arrayList;
+                    khVar.run();
+                    zArr[0] = true;
+                    return;
+                }
+                return;
+            default:
+                TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) this.f23664c;
+                ql qlVar = (ql) this.d;
+                TLRPC.UserFull userFull = (TLRPC.UserFull) obj;
+                if (!((boolean[]) this.f23663b)[0]) {
+                    if (userFull != null) {
+                        botInfoArr[0] = userFull.bot_info;
+                    }
+                    g0.g3(qlVar);
+                    return;
+                }
+                return;
         }
     }
 }

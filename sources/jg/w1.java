@@ -1,48 +1,48 @@
 package jg;
 
-import fi.s5;
+import di.ga;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.vr;
+import org.telegram.messenger.tr;
 public final class w1 implements Runnable {
-    public final int f17328a;
-    public final z1 f17329b;
+    public final int f17714a;
+    public final z1 f17715b;
 
     public w1(z1 z1Var, int i7) {
-        this.f17328a = i7;
-        this.f17329b = z1Var;
+        this.f17714a = i7;
+        this.f17715b = z1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f17328a) {
+        switch (this.f17714a) {
             case 0:
                 try {
-                    vr.a0(this.f17329b.f17354m).f27221b.executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
+                    tr.a0(this.f17715b.f17740m).f27056b.executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
                     return;
                 }
             default:
-                z1 z1Var = this.f17329b;
+                z1 z1Var = this.f17715b;
                 try {
-                    SQLiteCursor queryFinalized = vr.a0(z1Var.f17354m).f27221b.queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = tr.a0(z1Var.f17740m).f27056b.queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     HashMap hashMap = new HashMap();
                     while (queryFinalized.next()) {
                         ?? obj = new Object();
-                        obj.f17333a = queryFinalized.stringValue(0);
-                        obj.f17334b = queryFinalized.intValue(1);
+                        obj.f17719a = queryFinalized.stringValue(0);
+                        obj.f17720b = queryFinalized.intValue(1);
                         arrayList.add(obj);
-                        hashMap.put(obj.f17333a, obj);
+                        hashMap.put(obj.f17719a, obj);
                     }
                     queryFinalized.dispose();
                     Collections.sort(arrayList, new w(2));
-                    org.telegram.messenger.g0.h3(new s5(z1Var, arrayList, hashMap, 20));
+                    org.telegram.messenger.g0.g3(new ga(z1Var, arrayList, hashMap, 24));
                     return;
                 } catch (Exception e11) {
                     a8.g(e11, true);

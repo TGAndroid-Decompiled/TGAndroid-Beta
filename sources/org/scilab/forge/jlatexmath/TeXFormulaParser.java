@@ -7,7 +7,7 @@ import java.util.Map;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import r.b;
+import p5.c;
 import ru.noties.jlatexmath.awt.Color;
 public class TeXFormulaParser {
     private static final String ARG_OBJ_ATTR = "formula";
@@ -46,7 +46,7 @@ public class TeXFormulaParser {
             if ("false".equals(str)) {
                 return Boolean.FALSE;
             }
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b.l("has an invalid '", str2, "'-value : '", str, "'!"));
+            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c.l("has an invalid '", str2, "'-value : '", str, "'!"));
         }
     }
 
@@ -146,7 +146,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Float.parseFloat(str));
             } catch (NumberFormatException e10) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b.l("has an invalid '", str2, "'-value : '", str, "'!"), e10);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c.l("has an invalid '", str2, "'-value : '", str, "'!"), e10);
             }
         }
     }
@@ -161,7 +161,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Integer.parseInt(str));
             } catch (NumberFormatException e10) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b.l("has an invalid '", str2, "'-value : '", str, "'!"), e10);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", c.l("has an invalid '", str2, "'-value : '", str, "'!"), e10);
             }
         }
     }

@@ -2,30 +2,30 @@ package org.telegram.ui.web;
 
 import android.webkit.PermissionRequest;
 public final class k0 implements q0.a {
-    public final int f52694a;
-    public final p0 f52695b;
-    public final PermissionRequest f52696c;
+    public final int f53223a;
+    public final p0 f53224b;
+    public final PermissionRequest f53225c;
     public final String[] d;
 
     public k0(p0 p0Var, PermissionRequest permissionRequest, String[] strArr, int i7) {
-        this.f52694a = i7;
-        this.f52695b = p0Var;
-        this.f52696c = permissionRequest;
+        this.f53223a = i7;
+        this.f53224b = p0Var;
+        this.f53225c = permissionRequest;
         this.d = strArr;
     }
 
     @Override
     public final void accept(Object obj) {
         Boolean bool = (Boolean) obj;
-        switch (this.f52694a) {
+        switch (this.f53223a) {
             case 0:
-                p0 p0Var = this.f52695b;
-                if (p0Var.f52747a != null) {
-                    p0Var.f52747a = null;
+                p0 p0Var = this.f53224b;
+                if (p0Var.f53276a != null) {
+                    p0Var.f53276a = null;
                     boolean booleanValue = bool.booleanValue();
-                    PermissionRequest permissionRequest = this.f52696c;
+                    PermissionRequest permissionRequest = this.f53225c;
                     if (booleanValue) {
-                        v0.a(p0Var.f52750e.R, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new k0(p0Var, permissionRequest, this.d, 1));
+                        v0.a(p0Var.f53279e.R, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new k0(p0Var, permissionRequest, this.d, 1));
                         return;
                     } else {
                         permissionRequest.deny();
@@ -34,14 +34,14 @@ public final class k0 implements q0.a {
                 }
                 return;
             default:
-                p0 p0Var2 = this.f52695b;
+                p0 p0Var2 = this.f53224b;
                 p0Var2.getClass();
                 boolean booleanValue2 = bool.booleanValue();
-                PermissionRequest permissionRequest2 = this.f52696c;
+                PermissionRequest permissionRequest2 = this.f53225c;
                 if (booleanValue2) {
                     String[] strArr = this.d;
                     permissionRequest2.grant(new String[]{strArr[0], strArr[1]});
-                    p0Var2.f52750e.R.U = true;
+                    p0Var2.f53279e.R.U = true;
                     return;
                 }
                 permissionRequest2.deny();

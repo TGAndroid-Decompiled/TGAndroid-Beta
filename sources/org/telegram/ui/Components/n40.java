@@ -1,87 +1,55 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Matrix;
-import android.os.SystemClock;
-import android.view.TextureView;
-import android.view.View;
-public final class n40 extends TextureView {
-    public final int f37449a;
-    public final Object f37450b;
+import android.graphics.Canvas;
+import org.telegram.messenger.ImageReceiver;
+public abstract class n40 extends b50 {
+    public ImageReceiver f37723a;
+    public float f37724b;
+    public final z40 f37725c;
 
-    public n40(int i7, Context context, Object obj) {
+    public n40(z40 z40Var, Context context) {
         super(context);
-        this.f37449a = i7;
-        this.f37450b = obj;
+        this.f37725c = z40Var;
+        z40Var.setWillNotDraw(false);
     }
 
     @Override
-    public void invalidate() {
-        zi.u0 u0Var;
-        switch (this.f37449a) {
-            case 0:
-                q40 q40Var = (q40) this.f37450b;
-                if (!q40Var.J0 && (u0Var = q40Var.R) != null && u0Var.f61738a == 3) {
-                    q40Var.J0 = true;
-                    try {
-                        q40Var.H0 = SystemClock.elapsedRealtimeNanos();
-                        q40Var.F();
-                    } finally {
-                        q40Var.J0 = false;
-                    }
-                }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f10 = this.f37724b;
+        if (f10 != 1.0f) {
+            float f11 = f10 + 0.064f;
+            this.f37724b = f11;
+            if (f11 > 1.0f) {
+                this.f37724b = 1.0f;
+            }
+            invalidate();
+        }
+        if (this.f37723a != null) {
+            canvas.save();
+            float f12 = this.f37723a.N0;
+            int i7 = this.f37725c.X0;
+            if (f12 != i7) {
+                float f13 = i7 / f12;
+                canvas.scale(f13, f13);
+            }
+            ImageReceiver imageReceiver = this.f37723a;
+            canvas.translate(-imageReceiver.L0, -imageReceiver.M0);
+            float alpha = this.f37723a.getAlpha();
+            this.f37723a.setAlpha(this.f37724b);
+            this.f37723a.h(canvas, null);
+            this.f37723a.setAlpha(alpha);
+            canvas.restore();
         }
     }
 
     @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f37449a) {
-            case 1:
-                View.MeasureSpec.getSize(i7);
-                super.onMeasure(i7, i10);
-                return;
-            case 2:
-                xh.e eVar = (xh.e) this.f37450b;
-                setMeasuredDimension(eVar.f59975g, eVar.h);
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                return;
+    public void setImageReceiver(ImageReceiver imageReceiver) {
+        if (this.f37723a == null) {
+            this.f37724b = 0.0f;
         }
-    }
-
-    @Override
-    public void setTransform(Matrix matrix) {
-        switch (this.f37449a) {
-            case 1:
-                super.setTransform(matrix);
-                wy wyVar = ((td0) this.f37450b).m0;
-                if (wyVar != null) {
-                    int width = getWidth();
-                    int height = getHeight();
-                    z9 z9Var = wyVar.J;
-                    if (z9Var != null) {
-                        Matrix matrix2 = z9Var.v;
-                        matrix.invert(matrix2);
-                        float f10 = width;
-                        float f11 = height;
-                        matrix2.preScale(f10, f11);
-                        matrix2.postScale(1.0f / f10, 1.0f / f11);
-                        z9Var.c(matrix2);
-                        wyVar.c(false, false, false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.setTransform(matrix);
-                return;
-        }
+        this.f37723a = imageReceiver;
+        invalidate();
     }
 }

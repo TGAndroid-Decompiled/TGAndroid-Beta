@@ -1,15 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public interface g90 {
-    Paint.FontMetricsInt Q();
+public final class g90 implements vr0 {
+    public final i90 f35431a;
 
-    void a0(TLRPC.TL_document tL_document, String str, Object obj);
+    public g90(i90 i90Var) {
+        this.f35431a = i90Var;
+    }
 
-    void p0(int i7, int i10, CharSequence charSequence, boolean z10);
+    @Override
+    public final void W() {
+        this.f35431a.g0();
+    }
 
-    void r(TLRPC.BotInlineResult botInlineResult, boolean z10, int i7);
+    @Override
+    public final boolean Y() {
+        return false;
+    }
 
-    void v0(String str);
+    @Override
+    public final ck0 f() {
+        return null;
+    }
+
+    @Override
+    public final TLRPC.Chat g() {
+        return null;
+    }
+
+    @Override
+    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
+        return false;
+    }
+
+    @Override
+    public final boolean t() {
+        return true;
+    }
+
+    @Override
+    public final void J() {
+    }
 }

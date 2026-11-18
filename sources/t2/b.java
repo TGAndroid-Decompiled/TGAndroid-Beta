@@ -1,9 +1,9 @@
 package t2;
 
-import a8.ja;
+import a8.la;
 import android.content.Context;
 import android.graphics.Point;
-import bg.n0;
+import bg.o0;
 import e2.t0;
 import e2.u;
 import h2.l0;
@@ -13,13 +13,13 @@ import k2.h;
 import k2.j;
 import k2.l;
 public final class b extends l {
-    public final Context f56967o;
-    public final int f56968p;
+    public final Context f57543o;
+    public final int f57544p;
 
     public b(Context context) {
         super(new h[1], new a[1]);
-        this.f56967o = context;
-        this.f56968p = -1;
+        this.f57543o = context;
+        this.f57544p = -1;
     }
 
     @Override
@@ -46,24 +46,24 @@ public final class b extends l {
     public final k2.f i(h hVar, j jVar, boolean z10) {
         boolean z11;
         a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f17732c;
+        ByteBuffer byteBuffer = hVar.f18127c;
         byteBuffer.getClass();
-        ja.p(byteBuffer.hasArray());
+        la.p(byteBuffer.hasArray());
         if (byteBuffer.arrayOffset() == 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        ja.f(z11);
+        la.f(z11);
         try {
-            int i7 = this.f56968p;
+            int i7 = this.f57544p;
             if (i7 == -1) {
-                Context context = this.f56967o;
+                Context context = this.f57543o;
                 if (context != null) {
                     Point y10 = l0.y(context);
                     int i10 = y10.x;
                     int i11 = y10.y;
-                    u uVar = hVar.f17730a;
+                    u uVar = hVar.f18125a;
                     if (uVar != null) {
                         int i12 = uVar.R;
                         if (i12 != -1) {
@@ -79,8 +79,8 @@ public final class b extends l {
                     i7 = 4096;
                 }
             }
-            aVar.f56965a = n0.b(byteBuffer.remaining(), i7, byteBuffer.array());
-            aVar.timeUs = hVar.f17733e;
+            aVar.f57541a = o0.b(byteBuffer.remaining(), i7, byteBuffer.array());
+            aVar.timeUs = hVar.f18128e;
             return null;
         } catch (t0 e10) {
             return new Exception("Could not decode image data with BitmapFactory.", e10);

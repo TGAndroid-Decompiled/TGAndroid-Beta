@@ -1,60 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.view.WindowManager;
-public final class z61 implements SensorEventListener {
-    public final float[] f42267a = new float[3];
-    public final float[] f42268b = new float[3];
-    public int f42269c;
-    public final WindowManager d;
-    public final SensorManager f42270e;
-    public final Sensor f42271f;
-    public boolean h;
-    public y61 f42272n;
+import android.view.View;
+public final class z61 implements pj0, qj0 {
+    public final f71 f42821a;
 
-    public z61(Context context) {
-        this.d = (WindowManager) context.getSystemService("window");
-        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.f42270e = sensorManager;
-        this.f42271f = sensorManager.getDefaultSensor(1);
+    public z61(f71 f71Var) {
+        this.f42821a = f71Var;
     }
 
-    public static float a(int i7, int i10) {
-        float f10 = i7;
-        float L = org.telegram.messenger.g0.L(16.0f) * 2;
-        float f11 = (f10 + L) / f10;
-        float f12 = i10;
-        return Math.max(f11, (L + f12) / f12);
+    @Override
+    public boolean b1(View view) {
+        return false;
     }
 
-    public final void b(org.telegram.ui.h61 h61Var) {
-        this.f42272n = h61Var;
+    @Override
+    public boolean c(int i7, View view) {
+        org.telegram.messenger.r10 r10Var = this.f42821a.f34992b;
+        if (r10Var == null) {
+            return false;
+        }
+        return ((Boolean) r10Var.g(Integer.valueOf(((d71) view).f34293a.f33908a), view)).booleanValue();
     }
 
-    public final void c(boolean z10) {
-        if (this.h != z10) {
-            this.h = z10;
-            Sensor sensor = this.f42271f;
-            if (sensor != null) {
-                SensorManager sensorManager = this.f42270e;
-                if (z10) {
-                    sensorManager.registerListener(this, sensor, 1);
-                } else {
-                    sensorManager.unregisterListener(this);
-                }
+    @Override
+    public void f(float f10, float f11, int i7, View view) {
+        f71 f71Var = this.f42821a;
+        e71 e71Var = f71Var.E;
+        if (e71Var == null || e71Var.b()) {
+            d71 d71Var = (d71) view;
+            if (i7 == f71Var.G && f71Var.E != null) {
+                return;
             }
+            org.telegram.messenger.r10 r10Var = f71Var.m0;
+            if (r10Var != null && ((Boolean) r10Var.g(Integer.valueOf(d71Var.f34293a.f33908a), Integer.valueOf(i7))).booleanValue()) {
+                return;
+            }
+            f71Var.e(d71Var.f34293a.f33908a, i7);
         }
     }
 
     @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.z61.onSensorChanged(android.hardware.SensorEvent):void");
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i7) {
+    public void s0(View view, float f10, float f11) {
     }
 }

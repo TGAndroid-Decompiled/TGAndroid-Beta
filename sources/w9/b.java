@@ -6,38 +6,38 @@ import aa.w;
 import android.content.SharedPreferences;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class b {
-    public final t f59073a;
+    public final t f59638a;
 
     public b(t tVar) {
-        this.f59073a = tVar;
+        this.f59638a = tVar;
     }
 
     public final void a() {
-        t tVar = this.f59073a;
+        t tVar = this.f59638a;
         Boolean bool = Boolean.TRUE;
-        w wVar = tVar.f855b;
+        w wVar = tVar.f854b;
         synchronized (wVar) {
-            wVar.f880f = false;
-            wVar.f881g = bool;
-            SharedPreferences.Editor edit = wVar.f876a.edit();
+            wVar.f879f = false;
+            wVar.f880g = bool;
+            SharedPreferences.Editor edit = wVar.f875a.edit();
             edit.putBoolean("firebase_crashlytics_collection_enabled", true);
             edit.apply();
-            synchronized (wVar.f878c) {
+            synchronized (wVar.f877c) {
                 if (wVar.a()) {
-                    if (!wVar.f879e) {
+                    if (!wVar.f878e) {
                         wVar.d.trySetResult(null);
-                        wVar.f879e = true;
+                        wVar.f878e = true;
                     }
-                } else if (wVar.f879e) {
+                } else if (wVar.f878e) {
                     wVar.d = new TaskCompletionSource();
-                    wVar.f879e = false;
+                    wVar.f878e = false;
                 }
             }
         }
     }
 
     public final void b(String str, String str2) {
-        t tVar = this.f59073a;
-        tVar.f865n.f3093a.a(new r((Object) tVar, (Object) str, (Object) str2, 0));
+        t tVar = this.f59638a;
+        tVar.f864n.f3087a.a(new r((Object) tVar, (Object) str, (Object) str2, 0));
     }
 }

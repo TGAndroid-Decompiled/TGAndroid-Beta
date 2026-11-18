@@ -1,50 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-import java.util.ArrayList;
-public abstract class r41 extends org.telegram.ui.ActionBar.e2 {
-    public bi.v3 f38880a;
-    public kg.m1 f38881b;
-    public int f38882c;
-    public int d;
+import org.telegram.ui.LaunchActivity;
+public final class r41 extends URLSpan {
+    public final dz0 f39038a;
+    public boolean f39039b;
 
-    public r41() {
-        super(null);
-        this.f38882c = -1;
+    public r41(String str, dz0 dz0Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f39038a = dz0Var;
     }
 
-    public abstract void Z(ArrayList arrayList, p41 p41Var);
-
-    public abstract CharSequence a0();
-
-    public abstract void b0(b41 b41Var, View view);
-
-    public abstract boolean c0(b41 b41Var, View view);
+    @Override
+    public final void onClick(View view) {
+        if (this.f39039b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
+        }
+        vf.c.q(view.getContext(), Uri.parse(getURL()), true, true);
+    }
 
     @Override
-    public View createView(Context context) {
-        org.telegram.ui.p9 p9Var = new org.telegram.ui.p9(this, 19);
-        org.telegram.ui.ActionBar.w4 w4Var = this.simpleActionBar;
-        if (w4Var != null) {
-            w4Var.setBackButtonDrawable(new org.telegram.ui.ActionBar.x1(false));
-            this.simpleActionBar.setTitle(a0());
-            this.simpleActionBar.setActionBarMenuOnItemClick(p9Var);
-        } else {
-            this.actionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.x1(false));
-            this.actionBar.setAllowOverlayTitle(true);
-            this.actionBar.setTitle(a0());
-            this.actionBar.setActionBarMenuOnItemClick(p9Var);
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        dz0 dz0Var = this.f39038a;
+        if (dz0Var != null) {
+            dz0Var.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            textPaint.setUnderlineText(z10);
         }
-        this.f38881b = new kg.m1(context, null, 1);
-        if (!useSimpleActionBar()) {
-            org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28792a7, this.f38881b, null);
-        }
-        bi.v3 v3Var = new bi.v3(this, this, new d(this, 22), new q41(this), new q41(this));
-        this.f38880a = v3Var;
-        this.f38881b.addView(v3Var, c8.ja.c(-1.0f, -1));
-        kg.m1 m1Var = this.f38881b;
-        this.fragmentView = m1Var;
-        return m1Var;
     }
 }

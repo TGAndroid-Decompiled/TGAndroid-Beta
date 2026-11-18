@@ -1,33 +1,45 @@
 package fi;
 
-import android.animation.ValueAnimator;
-public final class u1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f12394a;
-    public final b4 f12395b;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.tl.TL_stories;
+public final class u1 implements x10 {
+    public final int f12611a;
+    public final z3 f12612b;
 
-    public u1(b4 b4Var, int i7) {
-        this.f12394a = i7;
-        this.f12395b = b4Var;
+    public u1(z3 z3Var, int i7) {
+        this.f12611a = i7;
+        this.f12612b = z3Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f12394a) {
+    public final void a(Object obj) {
+        switch (this.f12611a) {
             case 0:
-                b4 b4Var = this.f12395b;
-                b4Var.getClass();
-                b4Var.f11516r2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b4Var.invalidate();
-                return;
-            case 1:
-                b4 b4Var2 = this.f12395b;
-                b4Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b4Var2.f11467d3 = floatValue;
-                b4Var2.f11462b3.setTransitionProgress(floatValue);
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                z3 z3Var = this.f12612b;
+                if (tL_premium_boostsStatus == null) {
+                    f9 f9Var = z3Var.f12875t0;
+                    if (f9Var != null) {
+                        f9Var.f11981k1 = false;
+                        f9Var.V();
+                        return;
+                    }
+                    return;
+                }
+                z3Var.f12878t3 = tL_premium_boostsStatus;
+                mp.u1(z3Var.f12850m2).I0().b(z3Var.l1, tL_premium_boostsStatus, new ai.v1(14, z3Var, tL_premium_boostsStatus));
                 return;
             default:
-                b4.X(this.f12395b, valueAnimator);
+                long longValue = ((Long) obj).longValue();
+                z3 z3Var2 = this.f12612b;
+                z3Var2.f12886v3 = longValue;
+                i2 i2Var = z3Var2.L1;
+                if (i2Var != null) {
+                    i2Var.P(true);
+                    z3Var2.L1.v2();
+                }
+                z3Var2.p0(true);
                 return;
         }
     }

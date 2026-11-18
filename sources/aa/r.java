@@ -1,14 +1,14 @@
 package aa;
 public final class r implements Runnable {
-    public final int f849a;
-    public final Object f850b;
-    public final Object f851c;
+    public final int f848a;
+    public final Object f849b;
+    public final Object f850c;
     public final Object d;
 
     public r(Object obj, Object obj2, Object obj3, int i7) {
-        this.f849a = i7;
-        this.f850b = obj;
-        this.f851c = obj2;
+        this.f848a = i7;
+        this.f849b = obj;
+        this.f850c = obj2;
         this.d = obj3;
     }
 
@@ -18,16 +18,16 @@ public final class r implements Runnable {
     }
 
     public r(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f849a = i7;
-        this.f850b = obj2;
-        this.f851c = obj3;
+        this.f848a = i7;
+        this.f849b = obj2;
+        this.f850c = obj3;
         this.d = obj4;
     }
 
     public r(Object obj, Object obj2, String str, int i7) {
-        this.f849a = i7;
-        this.f850b = obj;
+        this.f848a = i7;
+        this.f849b = obj;
         this.d = obj2;
-        this.f851c = str;
+        this.f850c = str;
     }
 }

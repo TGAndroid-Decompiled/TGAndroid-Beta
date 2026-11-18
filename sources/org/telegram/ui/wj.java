@@ -1,20 +1,16 @@
 package org.telegram.ui;
-public final class wj extends org.telegram.ui.Components.wi0 {
-    public final an f52922l;
 
-    public wj(an anVar, aj ajVar, dj djVar) {
-        super(ajVar, djVar);
-        this.f52922l = anVar;
+import android.content.Context;
+public final class wj extends org.telegram.ui.Components.g51 {
+    public final bn O;
+
+    public wj(bn bnVar, Context context) {
+        super(context);
+        this.O = bnVar;
     }
 
-    public final void f(int i7) {
-        if (this.f52922l.mb) {
-            if (i7 == 0) {
-                i7 = 1;
-            } else if (i7 == 1) {
-                i7 = 0;
-            }
-        }
-        this.f41357b = i7;
+    @Override
+    public final org.telegram.ui.ActionBar.i6 getResourceProvider() {
+        return this.O.Ba;
     }
 }

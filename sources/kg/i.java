@@ -1,7 +1,7 @@
 package kg;
 
-import org.telegram.ui.Components.xn;
-public final class i extends xn {
+import org.telegram.ui.Components.go;
+public final class i extends go {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);

@@ -2,45 +2,29 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class te0 implements h90 {
-    public final cf0 f51569a;
+public final class te0 implements Runnable {
+    public final int f52273a;
+    public final ff0 f52274b;
+    public final TLRPC.TL_error f52275c;
+    public final TLObject d;
 
-    public te0(cf0 cf0Var) {
-        this.f51569a = cf0Var;
+    public te0(ff0 ff0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i7) {
+        this.f52273a = i7;
+        this.f52274b = ff0Var;
+        this.f52275c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-        this.f51569a.k0(tL_chatInviteExported);
-    }
-
-    @Override
-    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
-        if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
-            TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
-            cf0 cf0Var = this.f51569a;
-            cf0Var.i0(tL_chatInviteExported2);
-            for (int i7 = 0; i7 < cf0Var.f46127j0.size(); i7++) {
-                if (((TLRPC.TL_chatInviteExported) cf0Var.f46127j0.get(i7)).link.equals(tL_chatInviteExported.link)) {
-                    if (tL_chatInviteExported2.revoked) {
-                        ue0 l02 = cf0Var.l0();
-                        cf0Var.f46127j0.remove(i7);
-                        cf0Var.f46128k0.add(0, tL_chatInviteExported2);
-                        cf0Var.n0(l02);
-                        return;
-                    }
-                    cf0Var.f46127j0.set(i7, tL_chatInviteExported2);
-                    cf0Var.o0(true);
-                    return;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void c(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.TL_chatInviteExported) {
-            org.telegram.messenger.g0.i3(new jd0(5, this, tLObject), 200L);
+    public final void run() {
+        switch (this.f52273a) {
+            case 0:
+                ff0 ff0Var = this.f52274b;
+                ff0Var.getNotificationCenter().d(new te0(ff0Var, this.f52275c, this.d, 1));
+                return;
+            default:
+                ff0.a0(this.f52274b, this.f52275c, this.d);
+                return;
         }
     }
 }

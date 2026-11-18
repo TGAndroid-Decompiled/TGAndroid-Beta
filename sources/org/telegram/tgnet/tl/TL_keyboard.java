@@ -575,7 +575,7 @@ public class TL_keyboard {
             this.same_peer = TLObject.hasFlag(readInt32, 1);
             this.query = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.peer_types = Vector.deserialize(inputSerializedData, new r(18), z10);
+                this.peer_types = Vector.deserialize(inputSerializedData, new r(19), z10);
             }
         }
 
@@ -1785,7 +1785,7 @@ public class TL_keyboard {
             this.text = inputSerializedData.readString(z10);
             this.mType.query = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.mType.peer_types = Vector.deserialize(inputSerializedData, new r(18), z10);
+                this.mType.peer_types = Vector.deserialize(inputSerializedData, new r(19), z10);
             }
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
             tL_inlineButtonTypeSwitchInline.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline.flags, 1, tL_inlineButtonTypeSwitchInline.same_peer);
@@ -1834,7 +1834,7 @@ public class TL_keyboard {
             this.text = inputSerializedData.readString(z10);
             this.mType.query = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.mType.peer_types = Vector.deserialize(inputSerializedData, new r(18), z10);
+                this.mType.peer_types = Vector.deserialize(inputSerializedData, new r(19), z10);
             }
             TL_inlineButtonTypeSwitchInline tL_inlineButtonTypeSwitchInline = this.mType;
             tL_inlineButtonTypeSwitchInline.flags = TLObject.setFlag(tL_inlineButtonTypeSwitchInline.flags, 1, tL_inlineButtonTypeSwitchInline.same_peer);

@@ -1,413 +1,137 @@
 package di;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.HashSet;
-public final class s4 extends FrameLayout {
-    public final float[] E;
-    public float F;
-    public int G;
-    public ValueAnimator H;
-    public r4 I;
-    public final ch.w J;
-    public final View[] f9370a;
-    public final Matrix f9371b;
-    public final float[] f9372c;
-    public float d;
-    public float f9373e;
-    public boolean f9374f;
-    public final float[][] h;
-    public final float[] f9375n;
-    public final float[] f9376r;
-    public final Integer[] f9377s;
-    public final HashSet f9378w;
-    public final HashMap f9379x;
-    public final HashMap f9380y;
+import android.util.SparseIntArray;
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.ue;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_stories;
+public final class s4 implements Comparator {
+    public final int f9712a;
+    public final Object f9713b;
 
-    public s4(Context context, View[] viewArr) {
-        super(context);
-        this.f9371b = new Matrix();
-        float[] fArr = new float[16];
-        this.f9372c = fArr;
-        this.d = 0.0f;
-        this.f9373e = 0.0f;
-        this.f9374f = true;
-        this.h = new float[][]{new float[]{-1.0f, 0.0f, 0.0f, 0.0f}, new float[]{1.0f, 0.0f, 0.0f, 0.0f}, new float[]{0.0f, 1.0f, 0.0f, 0.0f}, new float[]{0.0f, -1.0f, 0.0f, 0.0f}, new float[]{0.0f, 0.0f, -1.0f, 0.0f}, new float[]{0.0f, 0.0f, 1.0f, 0.0f}};
-        this.f9375n = new float[4];
-        this.f9376r = new float[6];
-        this.f9377s = new Integer[]{0, 1, 2, 3, 4, 5};
-        this.f9378w = new HashSet();
-        this.f9379x = new HashMap();
-        this.f9380y = new HashMap();
-        this.E = new float[6];
-        this.G = -1;
-        this.J = new ch.w(this, 16);
-        setClipToOutline(false);
-        setClipToPadding(false);
-        android.opengl.Matrix.setIdentityM(fArr, 0);
-        this.f9370a = viewArr;
-        for (View view : viewArr) {
-            addView(view, c8.ja.e(108, 108, 17));
-        }
-    }
-
-    public static void b(float f10, float f11, float f12, float[] fArr) {
-        double d = f12;
-        float cos = (float) Math.cos(d);
-        float sin = (float) Math.sin(d);
-        float f13 = 1.0f - cos;
-        float f14 = f13 * f10;
-        fArr[0] = (f14 * f10) + cos;
-        float f15 = f14 * f11;
-        float f16 = sin * 0.0f;
-        fArr[4] = f15 - f16;
-        float f17 = f14 * 0.0f;
-        float f18 = sin * f11;
-        fArr[8] = f17 + f18;
-        fArr[12] = 0.0f;
-        fArr[1] = f15 + f16;
-        float f19 = f13 * f11;
-        fArr[5] = (f11 * f19) + cos;
-        float f20 = f19 * 0.0f;
-        float f21 = sin * f10;
-        fArr[9] = f20 - f21;
-        fArr[13] = 0.0f;
-        fArr[2] = f17 - f18;
-        fArr[6] = f20 + f21;
-        fArr[10] = com.google.android.gms.internal.vision.e2.x(f13, 0.0f, 0.0f, cos);
-        fArr[14] = 0.0f;
-        fArr[3] = 0.0f;
-        fArr[7] = 0.0f;
-        fArr[11] = 0.0f;
-        fArr[15] = 1.0f;
-    }
-
-    public static void c(float[] fArr, float[] fArr2, float[] fArr3) {
-        float f10 = fArr[1];
-        float f11 = fArr2[2];
-        float f12 = fArr[2];
-        fArr3[0] = (f10 * f11) - (fArr2[1] * f12);
-        float f13 = fArr2[0];
-        float f14 = fArr[0];
-        fArr3[1] = (f12 * f13) - (f11 * f14);
-        fArr3[2] = (f14 * fArr2[1]) - (fArr[1] * f13);
-    }
-
-    public static void d(float[] fArr, float[] fArr2, float[] fArr3) {
-        float[] fArr4 = new float[16];
-        android.opengl.Matrix.multiplyMM(fArr4, 0, fArr, 0, fArr2, 0);
-        System.arraycopy(fArr4, 0, fArr3, 0, 16);
-    }
-
-    public static void e(float[] fArr) {
-        float f10 = fArr[0];
-        float f11 = fArr[1];
-        float f12 = fArr[2];
-        float f13 = f12 * f12;
-        float sqrt = (float) Math.sqrt(f13 + (f11 * f11) + (f10 * f10));
-        if (sqrt > 0.0f) {
-            fArr[0] = fArr[0] / sqrt;
-            fArr[1] = fArr[1] / sqrt;
-            fArr[2] = fArr[2] / sqrt;
-        }
-    }
-
-    public final void a() {
-        if (Math.abs(this.d) > 1.0E-4f || Math.abs(this.f9373e) > 1.0E-4f) {
-            float[] fArr = new float[16];
-            b(1.0f, 0.0f, this.d, fArr);
-            float[] fArr2 = this.f9372c;
-            d(fArr, fArr2, fArr2);
-            b(0.0f, 1.0f, this.f9373e, fArr);
-            d(fArr, fArr2, fArr2);
-            if (this.f9374f) {
-                this.d *= 0.96f;
-                this.f9373e *= 0.96f;
-            }
-        }
+    public s4(Object obj, int i7) {
+        this.f9712a = i7;
+        this.f9713b = obj;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        RectF rectF;
-        boolean z10;
-        boolean z11;
-        float f10;
-        char c10;
-        float f11;
+    public final int compare(Object obj, Object obj2) {
+        ?? r02;
+        ?? r12;
         int i7;
+        int indexOf;
+        int indexOf2;
         int i10;
-        float f12;
-        float f13;
-        float f14;
-        int indexOfChild = indexOfChild(view);
-        float f15 = 1.0f;
-        if (indexOfChild >= 6) {
-            if (this.G == indexOfChild) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            rectF = (RectF) this.f9380y.get(Integer.valueOf(indexOfChild));
-            Integer num = (Integer) this.f9379x.get(Integer.valueOf(indexOfChild));
-            if (num != null) {
-                indexOfChild = num.intValue();
-            }
-            if (view instanceof w4) {
-                w4 w4Var = (w4) view;
-                if (z10) {
-                    f14 = this.F;
-                } else {
-                    f14 = 1.0f;
+        switch (this.f9712a) {
+            case 0:
+                float[] fArr = ((v4) this.f9713b).f9921r;
+                return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
+            case 1:
+                fi.p6 p6Var = (fi.p6) this.f9713b;
+                int i11 = p6Var.f12385a;
+                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
+                TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
+                long o4 = org.telegram.messenger.n5.o(peerStories.peer);
+                long o10 = org.telegram.messenger.n5.o(peerStories2.peer);
+                boolean M = p6Var.M(o4);
+                boolean M2 = p6Var.M(o10);
+                boolean L = p6Var.L(o4);
+                boolean L2 = p6Var.L(o10);
+                boolean H = p6Var.H(o4);
+                boolean H2 = p6Var.H(o10);
+                if (H != H2) {
+                    return (H2 ? 1 : 0) - (H ? 1 : 0);
                 }
-                float f16 = 1.0f - f14;
-                w4Var.d.setAlpha(f16);
-                w4Var.f9643e.setAlpha(f16);
-                if (!z10 || this.F >= 1.0f) {
-                    this.f9370a[indexOfChild].setVisibility(8);
-                }
-            }
-            z11 = true;
-        } else {
-            rectF = null;
-            z10 = false;
-            z11 = false;
-        }
-        float[][] fArr = this.h;
-        android.opengl.Matrix.multiplyMV(this.f9375n, 0, this.f9372c, 0, fArr[indexOfChild], 0);
-        float f17 = this.f9375n[2];
-        if (f17 < 0.001f) {
-            return false;
-        }
-        view.setAlpha(Math.min(1.0f, f17 / 0.3f));
-        float width = view.getWidth() / 2.0f;
-        if (z11 && (view instanceof w4)) {
-            float L = org.telegram.messenger.g0.L(-6.0f);
-            f10 = 1.0f;
-            if (z10) {
-                f15 = this.F;
-            }
-            c10 = 6;
-            f11 = (f15 * org.telegram.messenger.g0.L(2.0f)) + L;
-        } else {
-            f10 = 1.0f;
-            c10 = 6;
-            f11 = 0.0f;
-        }
-        float L2 = org.telegram.messenger.g0.L(108.0f) / 2.0f;
-        float width2 = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float[] fArr2 = new float[4];
-        float[] fArr3 = new float[4];
-        float[] fArr4 = new float[4];
-        System.arraycopy(fArr[indexOfChild], 0, fArr2, 0, 4);
-        if (indexOfChild != 0) {
-            if (indexOfChild != 1) {
-                if (indexOfChild != 2) {
-                    if (indexOfChild != 3) {
-                        if (indexOfChild != 4) {
-                            i7 = 3;
-                            if (indexOfChild == 5) {
-                                fArr3[0] = f10;
-                                fArr3[1] = 0.0f;
-                                fArr3[2] = 0.0f;
-                                fArr4[0] = 0.0f;
-                                fArr4[1] = -1.0f;
-                                fArr4[2] = 0.0f;
+                if (M == M2) {
+                    if (L == L2) {
+                        boolean B = o10.B(o4);
+                        boolean B2 = o10.B(o10);
+                        if (B == B2) {
+                            TLRPC.User c22 = mp.u1(i11).c2(Long.valueOf(o4));
+                            int i12 = 0;
+                            if (c22 == null) {
+                                r02 = 0;
+                            } else {
+                                r02 = c22.premium;
                             }
-                        } else {
-                            i7 = 3;
-                            fArr3[0] = -1.0f;
-                            fArr3[1] = 0.0f;
-                            fArr3[2] = 0.0f;
-                            fArr4[0] = 0.0f;
-                            fArr4[1] = -1.0f;
-                            fArr4[2] = 0.0f;
+                            TLRPC.User c23 = mp.u1(i11).c2(Long.valueOf(o10));
+                            if (c23 == null) {
+                                r12 = 0;
+                            } else {
+                                r12 = c23.premium;
+                            }
+                            if (r02 == r12) {
+                                if (peerStories.stories.isEmpty()) {
+                                    i7 = 0;
+                                } else {
+                                    i7 = ((TL_stories.StoryItem) i5.c.h(1, peerStories.stories)).date;
+                                }
+                                if (!peerStories2.stories.isEmpty()) {
+                                    i12 = ((TL_stories.StoryItem) i5.c.h(1, peerStories2.stories)).date;
+                                }
+                                return i12 - i7;
+                            }
+                            return r12 - r02;
                         }
-                    } else {
-                        i7 = 3;
-                        fArr3[0] = f10;
-                        fArr3[1] = 0.0f;
-                        fArr3[2] = 0.0f;
-                        fArr4[0] = 0.0f;
-                        fArr4[1] = 0.0f;
-                        fArr4[2] = -1.0f;
+                        return (B2 ? 1 : 0) - (B ? 1 : 0);
                     }
-                } else {
-                    i7 = 3;
-                    fArr3[0] = f10;
-                    fArr3[1] = 0.0f;
-                    fArr3[2] = 0.0f;
-                    fArr4[0] = 0.0f;
-                    fArr4[1] = 0.0f;
-                    fArr4[2] = f10;
+                    return (L2 ? 1 : 0) - (L ? 1 : 0);
                 }
-            } else {
-                i7 = 3;
-                fArr3[0] = 0.0f;
-                fArr3[1] = 0.0f;
-                fArr3[2] = -1.0f;
-                fArr4[0] = 0.0f;
-                fArr4[1] = -1.0f;
-                fArr4[2] = 0.0f;
-            }
-        } else {
-            i7 = 3;
-            fArr3[0] = 0.0f;
-            fArr3[1] = 0.0f;
-            fArr3[2] = f10;
-            fArr4[0] = 0.0f;
-            fArr4[1] = -1.0f;
-            fArr4[2] = 0.0f;
+                return (M2 ? 1 : 0) - (M ? 1 : 0);
+            case 2:
+                ArrayList arrayList = (ArrayList) this.f9713b;
+                ue ueVar = (ue) obj;
+                ue ueVar2 = (ue) obj2;
+                int i13 = ueVar.f27157a;
+                if (i13 != 0 || ueVar2.f27157a == 0) {
+                    if ((i13 != 0 && ueVar2.f27157a == 0) || (indexOf = arrayList.indexOf(ueVar)) > (indexOf2 = arrayList.indexOf(ueVar2))) {
+                        return 1;
+                    }
+                    if (indexOf >= indexOf2) {
+                        return 0;
+                    }
+                }
+                return -1;
+            case 3:
+                oi.d6 d6Var = (oi.d6) this.f9713b;
+                TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) obj;
+                TL_iv.pageTableCell pagetablecell2 = (TL_iv.pageTableCell) obj2;
+                int b10 = d6Var.b(pagetablecell);
+                int b11 = d6Var.b(pagetablecell2);
+                if (b10 != b11) {
+                    return Integer.compare(b10, b11);
+                }
+                return Integer.compare(d6Var.a(pagetablecell), d6Var.a(pagetablecell2));
+            case 4:
+                u2.v vVar = (u2.v) this.f9713b;
+                return vVar.c(obj2) - vVar.c(obj);
+            case 5:
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f9713b;
+                return sparseIntArray.get(((ug.g) obj).f58657e, Integer.MAX_VALUE) - sparseIntArray.get(((ug.g) obj2).f58657e, Integer.MAX_VALUE);
+            case 6:
+                return ((Collator) this.f9713b).compare((String) obj, (String) obj2);
+            default:
+                int[] iArr = (int[]) this.f9713b;
+                Integer num = (Integer) obj;
+                Integer num2 = (Integer) obj2;
+                int i14 = Integer.MAX_VALUE;
+                if (iArr[num.intValue()] < 0) {
+                    i10 = Integer.MAX_VALUE;
+                } else {
+                    i10 = iArr[num.intValue()];
+                }
+                if (iArr[num2.intValue()] >= 0) {
+                    i14 = iArr[num2.intValue()];
+                }
+                if (i10 != i14) {
+                    return Integer.compare(i10, i14);
+                }
+                return Integer.compare(num.intValue(), num2.intValue());
         }
-        fArr3[i7] = 0.0f;
-        fArr4[i7] = 0.0f;
-        float f18 = this.E[indexOfChild];
-        if (f18 != 0.0f) {
-            double radians = (float) Math.toRadians(f18);
-            float cos = (float) Math.cos(radians);
-            float sin = (float) Math.sin(radians);
-            float f19 = fArr3[0];
-            float f20 = fArr4[0];
-            float f21 = fArr3[1];
-            float f22 = fArr4[1];
-            float f23 = fArr3[2];
-            float f24 = fArr4[2];
-            fArr3[0] = (f20 * sin) + (f19 * cos);
-            fArr3[1] = (f22 * sin) + (f21 * cos);
-            fArr3[2] = (f24 * sin) + (f23 * cos);
-            fArr4[0] = (f20 * cos) + ((-f19) * sin);
-            fArr4[1] = (f22 * cos) + ((-f21) * sin);
-            fArr4[2] = (f24 * cos) + ((-f23) * sin);
-            i10 = 4;
-        } else {
-            i10 = 4;
-        }
-        float[] fArr5 = new float[i10];
-        float[] fArr6 = new float[i10];
-        float[] fArr7 = new float[i10];
-        android.opengl.Matrix.multiplyMV(fArr5, 0, this.f9372c, 0, fArr2, 0);
-        float[] fArr8 = fArr5;
-        android.opengl.Matrix.multiplyMV(fArr6, 0, this.f9372c, 0, fArr3, 0);
-        float[] fArr9 = fArr6;
-        android.opengl.Matrix.multiplyMV(fArr7, 0, this.f9372c, 0, fArr4, 0);
-        float f25 = 64.0f * L2;
-        int i11 = 2;
-        int i12 = 1;
-        float[][] fArr10 = (float[][]) Array.newInstance(Float.TYPE, 4, i7);
-        int i13 = 0;
-        for (int i14 = 4; i13 < i14; i14 = 4) {
-            if (i13 != i12 && i13 != i11) {
-                f12 = -1.0f;
-            } else {
-                f12 = f10;
-            }
-            if (i13 != 0 && i13 != i12) {
-                f13 = -1.0f;
-            } else {
-                f13 = f10;
-            }
-            float[] fArr11 = fArr10[i13];
-            float[] fArr12 = fArr8;
-            float[] fArr13 = fArr9;
-            fArr11[0] = com.google.android.gms.internal.vision.e2.B(fArr7[0], f13, (fArr9[0] * f12) + fArr8[0], L2);
-            fArr11[1] = com.google.android.gms.internal.vision.e2.B(fArr7[1], f13, (fArr13[1] * f12) + fArr12[1], L2);
-            fArr11[2] = com.google.android.gms.internal.vision.e2.B(fArr7[2], f13, (fArr13[2] * f12) + fArr12[2], L2);
-            i13++;
-            fArr9 = fArr13;
-            fArr8 = fArr12;
-            i11 = 2;
-            i12 = 1;
-        }
-        int i15 = i11;
-        float[] fArr14 = new float[8];
-        int i16 = 0;
-        while (i16 < 4) {
-            float[] fArr15 = fArr10[i16];
-            float f26 = f25 / (f25 - fArr15[i15]);
-            int i17 = i16 * 2;
-            fArr14[i17] = (fArr15[0] * f26) + width2;
-            fArr14[i17 + 1] = (fArr15[1] * f26) + height;
-            i16++;
-            i15 = 2;
-        }
-        float f27 = (width2 - width) - f11;
-        float f28 = (height - width) - f11;
-        float f29 = width2 + width + f11;
-        float f30 = height + width + f11;
-        float[] fArr16 = new float[8];
-        fArr16[0] = f27;
-        fArr16[1] = f28;
-        fArr16[2] = f29;
-        fArr16[i7] = f28;
-        fArr16[4] = f29;
-        fArr16[5] = f30;
-        fArr16[c10] = f27;
-        fArr16[7] = f30;
-        if (z10 && rectF != null) {
-            float f31 = rectF.left;
-            float f32 = rectF.top;
-            float f33 = rectF.right;
-            float f34 = rectF.bottom;
-            float[] fArr17 = new float[8];
-            fArr17[0] = f31;
-            fArr17[1] = f32;
-            fArr17[2] = f33;
-            fArr17[i7] = f32;
-            fArr17[4] = f33;
-            fArr17[5] = f34;
-            fArr17[c10] = f31;
-            fArr17[7] = f34;
-            org.telegram.messenger.g0.a2(fArr17, fArr14, this.F, fArr14);
-        }
-        Matrix matrix = this.f9371b;
-        matrix.reset();
-        matrix.setPolyToPoly(fArr16, 0, fArr14, 0, 4);
-        canvas.save();
-        canvas.concat(matrix);
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild;
-    }
-
-    public final void f(int i7, FrameLayout frameLayout) {
-        if (i7 == -1) {
-            i7 = 5;
-        }
-        org.telegram.messenger.g0.E2(frameLayout);
-        int childCount = getChildCount();
-        addView(frameLayout, c8.ja.e(64, 64, 17));
-        this.f9378w.add(Integer.valueOf(i7));
-        this.f9379x.put(Integer.valueOf(childCount), Integer.valueOf(i7));
-    }
-
-    @Override
-    public final int getChildDrawingOrder(int i7, int i10) {
-        if (i10 < 6) {
-            Integer[] numArr = this.f9377s;
-            if (i10 < numArr.length) {
-                return numArr[i10].intValue();
-            }
-        }
-        return i10;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        org.telegram.messenger.g0.i3(this.J, 16L);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.messenger.g0.r(this.J);
     }
 }

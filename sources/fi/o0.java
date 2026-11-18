@@ -2,73 +2,50 @@ package fi;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
-import android.view.animation.LinearInterpolator;
-import android.widget.LinearLayout;
-import di.ac;
-public final class o0 extends LinearLayout {
-    public ac f12098a;
-    public final Path f12099b;
-    public final Paint f12100c;
-    public long d;
-    public final org.telegram.ui.Components.u5 f12101e;
-    public final r0 f12102f;
+import android.view.View;
+import android.widget.TextView;
+public final class o0 extends TextView {
+    public int f12320a;
+    public final h6.m f12321b;
 
-    public o0(r0 r0Var, Context context) {
+    public o0(Context context) {
         super(context);
-        this.f12102f = r0Var;
-        this.f12099b = new Path();
-        this.f12100c = new Paint(1);
-        this.d = 0L;
-        this.f12101e = new org.telegram.ui.Components.u5(this, 0L, 1000L, new LinearInterpolator());
+        this.f12320a = -1;
+        this.f12321b = new h6.m(29);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        Path path = this.f12099b;
-        path.rewind();
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        path.addRoundRect(rectF, org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        r0 r0Var = this.f12102f;
-        t0 t0Var = r0Var.f12256f;
-        if (t0Var != null) {
-            int b10 = t.b(t0Var.f12346a, t0Var.b(), 3);
-            t0 t0Var2 = r0Var.f12256f;
-            int b11 = t.b(t0Var2.f12346a, t0Var2.b(), 5);
-            canvas.drawColor(b10);
-            long j3 = this.d;
-            t0 t0Var3 = r0Var.f12256f;
-            int i7 = (j3 > t0Var3.f12347b ? 1 : (j3 == t0Var3.f12347b ? 0 : -1));
-            org.telegram.ui.Components.u5 u5Var = this.f12101e;
-            if (i7 != 0) {
-                u5Var.e(true, t0Var3.a());
+    public final void onDraw(Canvas canvas) {
+        if (this.f12320a < 0) {
+            int i7 = 0;
+            if (getLayout() != null) {
+                i7 = (int) getLayout().getLineWidth(0);
             }
-            float e10 = u5Var.e(false, r0Var.f12256f.a());
-            this.d = r0Var.f12256f.f12347b;
-            Paint paint = this.f12100c;
-            paint.setColor(b11);
-            paint.setAlpha(127);
-            canvas2 = canvas;
-            canvas2.drawRect(getWidth() * e10, 0.0f, getWidth(), getHeight(), paint);
-        } else {
-            canvas2 = canvas;
+            this.f12320a = i7;
         }
-        if (this.f12098a == null) {
-            this.f12098a = new ac(1, 250);
+        if (this.f12320a > org.telegram.messenger.g0.L(100.0f)) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            super.onDraw(canvas);
+            canvas.save();
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(getWidth() - org.telegram.messenger.g0.L(15.0f), 0.0f, getWidth(), getHeight());
+            this.f12321b.n(canvas, rectF, 2, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return;
         }
-        this.f12098a.f(0, 0, getWidth(), getHeight());
-        ac acVar = this.f12098a;
-        acVar.h = 30.0f;
-        acVar.d();
-        this.f12098a.b(canvas2, -1, 0.85f);
-        invalidate();
-        canvas2.restore();
-        super.dispatchDraw(canvas2);
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), Integer.MIN_VALUE), i10);
+    }
+
+    @Override
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        this.f12320a = -1;
     }
 }

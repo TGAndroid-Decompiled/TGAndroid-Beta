@@ -1,91 +1,150 @@
 package ai;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
+import android.os.SystemClock;
+import android.text.Layout;
 import android.widget.EditText;
 import java.util.Arrays;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.nu0;
-import org.telegram.ui.Components.xe;
+import org.telegram.ui.Components.gf;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.pt;
+import org.telegram.ui.Components.vu0;
 public final class l1 {
-    public static final er E = new er(0.42d, 0.0d, 0.22d, 1.0d);
+    public static final lr J = new lr(0.42d, 0.0d, 0.22d, 1.0d);
     public final int[] A;
     public final float B;
-    public f0 C;
+    public boolean C;
     public boolean D;
-    public final EditText f1319b;
+    public float E;
+    public float F;
+    public int[] G;
+    public Runnable H;
+    public boolean I;
+    public final EditText f1309b;
     public boolean d;
-    public long f1321e;
-    public float f1322f;
-    public float f1323g;
+    public long f1311e;
+    public float f1312f;
+    public float f1313g;
     public Bitmap h;
-    public int f1326k;
-    public int f1327l;
-    public int f1328m;
-    public int f1329n;
-    public final Paint f1331p;
-    public final Paint f1332q;
-    public final LinearGradient f1333r;
-    public final LinearGradient f1334s;
-    public final LinearGradient f1335t;
-    public final Matrix f1336u;
+    public int f1316k;
+    public int f1317l;
+    public int f1318m;
+    public int f1319n;
+    public final Paint f1321p;
+    public final Paint f1322q;
+    public final LinearGradient f1323r;
+    public final LinearGradient f1324s;
+    public final LinearGradient f1325t;
+    public final Matrix f1326u;
     public int v;
-    public int f1337w;
-    public int f1338x;
-    public float f1339y;
-    public float f1340z;
-    public long f1318a = 900;
-    public final nu0 f1320c = new nu0(2600);
-    public float[] f1324i = new float[0];
-    public float[] f1325j = new float[0];
-    public final Paint f1330o = new Paint(2);
+    public int f1327w;
+    public int f1328x;
+    public float f1329y;
+    public float f1330z;
+    public long f1308a = 900;
+    public final vu0 f1310c = new vu0(2600);
+    public float[] f1314i = new float[0];
+    public float[] f1315j = new float[0];
+    public final Paint f1320o = new Paint(2);
 
-    public l1(xe xeVar) {
+    public l1(gf gfVar) {
         Paint paint = new Paint();
-        this.f1331p = paint;
+        this.f1321p = paint;
         Paint paint2 = new Paint();
-        this.f1332q = paint2;
-        this.f1336u = new Matrix();
+        this.f1322q = paint2;
+        this.f1326u = new Matrix();
         this.A = new int[2];
-        this.f1319b = xeVar;
+        this.F = 0.06f;
+        this.f1309b = gfVar;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f1333r = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, 0, -16777216, tileMode);
-        this.f1334s = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, -16777216, 0, tileMode);
-        this.f1335t = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, 16777215, -1, tileMode);
+        this.f1323r = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, 0, -16777216, tileMode);
+        this.f1324s = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, -16777216, 0, tileMode);
+        this.f1325t = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, 16777215, -1, tileMode);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
         this.B = org.telegram.messenger.g0.L(22.0f);
     }
 
-    public final void a() {
+    public final void a(long r6) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.l1.a(long):void");
+    }
+
+    public final boolean b(float f10, float f11, int i7, boolean z10) {
+        float f12;
+        c();
+        EditText editText = this.f1309b;
+        Layout layout = editText.getLayout();
+        if (layout != null && layout.getWidth() > 0 && layout.getHeight() > 0) {
+            try {
+                this.h = Bitmap.createBitmap(layout.getWidth() + org.telegram.messenger.g0.L(4.0f), layout.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(this.h);
+                editText.getPaint().setColor(editText.getCurrentTextColor());
+                layout.draw(canvas);
+                this.f1327w = editText.getScrollY();
+                this.f1328x = Math.max(1, (editText.getHeight() - editText.getTotalPaddingTop()) - editText.getTotalPaddingBottom());
+                this.f1316k = f(1200, this.h, true);
+                int[] iArr = this.A;
+                editText.getLocationInWindow(iArr);
+                float totalPaddingTop = (editText.getTotalPaddingTop() + iArr[1]) - this.f1327w;
+                if (editText instanceof pt) {
+                    f12 = ((pt) editText).getOffsetY();
+                } else {
+                    f12 = 0.0f;
+                }
+                this.f1329y = f12 + totalPaddingTop;
+                this.f1312f = f10;
+                this.f1313g = f11;
+                int i10 = this.v;
+                Paint paint = this.f1322q;
+                if (i10 != i7 || paint.getColorFilter() == null) {
+                    this.v = i7;
+                    paint.setColorFilter(new PorterDuffColorFilter(this.v, PorterDuff.Mode.SRC_IN));
+                }
+                vu0 vu0Var = this.f1310c;
+                vu0Var.a();
+                vu0Var.e(z10);
+                vu0Var.f41438a = s0.k(z10);
+                vu0Var.Q = org.telegram.messenger.g0.L(10.0f);
+                return true;
+            } catch (Throwable unused) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public final void c() {
         this.d = false;
-        this.f1321e = 0L;
+        this.f1311e = 0L;
         Bitmap bitmap = this.h;
         if (bitmap != null) {
             bitmap.recycle();
             this.h = null;
         }
-        this.f1320c.a();
+        this.f1310c.a();
     }
 
-    public final float b(float f10) {
-        float interpolation = E.getInterpolation(Math.max(0.0f, Math.min(1.0f, (f10 * 1000.0f) / (((float) this.f1318a) - 60.0f))));
-        float f11 = this.f1322f;
-        return com.google.android.gms.internal.vision.e2.z(this.f1323g, f11, interpolation, f11);
+    public final float d(float f10) {
+        float interpolation = J.getInterpolation(Math.max(0.0f, Math.min(1.0f, (f10 * 1000.0f) / (((float) this.f1308a) - (this.F * 1000.0f)))));
+        float f11 = this.f1312f;
+        return com.google.android.gms.internal.vision.e2.z(this.f1313g, f11, interpolation, f11);
     }
 
-    public final void c(LinearGradient linearGradient, float f10, float f11) {
+    public final void e(LinearGradient linearGradient, float f10, float f11) {
         float sqrt = (float) Math.sqrt(1.809999942779541d);
         float f12 = 1.0f / sqrt;
         float f13 = 0.9f / sqrt;
         float f14 = f10 / sqrt;
         float f15 = f11 / sqrt;
-        Matrix matrix = this.f1336u;
+        Matrix matrix = this.f1326u;
         matrix.reset();
         matrix.setScale(Math.max(0.01f, f15 - f14), 1.0f);
         matrix.postRotate((float) Math.toDegrees(Math.atan2(f13, f12)));
@@ -93,18 +152,22 @@ public final class l1 {
         linearGradient.setLocalMatrix(matrix);
     }
 
-    public final int d(int i7, Bitmap bitmap, boolean z10) {
+    public final int f(int i7, Bitmap bitmap, boolean z10) {
         float f10;
         float[] fArr;
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
-        int[] iArr = new int[width * height];
-        bitmap.getPixels(iArr, 0, width, 0, 0, width, height);
-        int max = Math.max(1, Math.round(org.telegram.messenger.g0.f23610p * 0.8f));
+        int[] iArr = this.G;
+        if (iArr == null || iArr.length < width * height) {
+            this.G = new int[width * height];
+        }
+        int[] iArr2 = this.G;
+        bitmap.getPixels(iArr2, 0, width, 0, 0, width, height);
+        int max = Math.max(1, Math.round(org.telegram.messenger.g0.f24120p * 0.8f));
         int i10 = 0;
         for (int i11 = 0; i11 < height; i11 += max) {
             for (int i12 = 0; i12 < width; i12 += max) {
-                if ((iArr[(i11 * width) + i12] >>> 24) > 90) {
+                if ((iArr2[(i11 * width) + i12] >>> 24) > 90) {
                     i10++;
                 }
             }
@@ -115,9 +178,9 @@ public final class l1 {
             f10 = 1.0f;
         }
         if (z10) {
-            fArr = this.f1324i;
+            fArr = this.f1314i;
         } else {
-            fArr = this.f1325j;
+            fArr = this.f1315j;
         }
         int i13 = i7 + 32;
         if (fArr.length < Math.min(i10, i13) * 3) {
@@ -126,21 +189,21 @@ public final class l1 {
         int i14 = 0;
         for (int i15 = 0; i15 < height; i15 += max) {
             for (int i16 = 0; i16 < width; i16 += max) {
-                if ((iArr[(i15 * width) + i16] >>> 24) > 90) {
+                if ((iArr2[(i15 * width) + i16] >>> 24) > 90) {
                     if (z10) {
-                        int i17 = this.f1337w;
+                        int i17 = this.f1327w;
                         if (i15 >= i17 - max) {
-                            if (i15 > i17 + this.f1338x + max) {
+                            if (i15 > i17 + this.f1328x + max) {
                             }
                         }
                     }
-                    nu0 nu0Var = this.f1320c;
-                    if (nu0Var.d() <= f10) {
+                    vu0 vu0Var = this.f1310c;
+                    if (vu0Var.d() <= f10) {
                         int i18 = i14 + 1;
                         if (i18 * 3 <= fArr.length) {
                             float f11 = max;
-                            float d = ((nu0Var.d() - 0.5f) * f11) + i16;
-                            float d2 = ((nu0Var.d() - 0.5f) * f11) + i15;
+                            float d = ((vu0Var.d() - 0.5f) * f11) + i16;
+                            float d2 = ((vu0Var.d() - 0.5f) * f11) + i15;
                             int i19 = i14 * 3;
                             fArr[i19] = d;
                             fArr[i19 + 1] = d2;
@@ -155,7 +218,7 @@ public final class l1 {
         for (int i20 = 0; i20 < i14; i20++) {
             numArr[i20] = Integer.valueOf(i20);
         }
-        Arrays.sort(numArr, new k(1, fArr));
+        Arrays.sort(numArr, new l(1, fArr));
         float[] copyOf = Arrays.copyOf(fArr, i14 * 3);
         for (int i21 = 0; i21 < i14; i21++) {
             int i22 = i21 * 3;
@@ -165,22 +228,32 @@ public final class l1 {
             fArr[i22 + 2] = copyOf[intValue + 2];
         }
         if (z10) {
-            this.f1324i = fArr;
+            this.f1314i = fArr;
             return i14;
         }
-        this.f1325j = fArr;
+        this.f1315j = fArr;
         return i14;
     }
 
-    public final long e(float f10) {
-        if (this.f1323g <= this.f1322f) {
+    public final float g() {
+        if (!this.d) {
+            return -1.0f;
+        }
+        if (this.f1311e == 0) {
+            return 0.0f;
+        }
+        return J.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f1311e)) / ((float) this.f1308a)));
+    }
+
+    public final long h(float f10) {
+        if (this.f1313g <= this.f1312f) {
             return 0L;
         }
-        float f11 = ((float) this.f1318a) / 1000.0f;
+        float f11 = ((float) this.f1308a) / 1000.0f;
         float f12 = 0.0f;
         for (int i7 = 0; i7 < 24; i7++) {
             float f13 = (f12 + f11) / 2.0f;
-            if (b(f13) < f10) {
+            if (d(f13) < f10) {
                 f12 = f13;
             } else {
                 f11 = f13;

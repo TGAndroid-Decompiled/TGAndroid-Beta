@@ -1,398 +1,59 @@
 package ki;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class h2 implements RequestDelegate {
-    public final int f18338a;
-    public final x2 f18339b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class h2 extends AnimatorListenerAdapter {
+    public final boolean f18715a;
+    public final float f18716b;
+    public final float f18717c;
+    public final t2 d;
 
-    public h2(x2 x2Var, int i7) {
-        this.f18338a = i7;
-        this.f18339b = x2Var;
+    public h2(t2 t2Var, boolean z10, float f10, float f11) {
+        this.d = t2Var;
+        this.f18715a = z10;
+        this.f18716b = f10;
+        this.f18717c = f11;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f18338a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new kg.t1(5, this.f18339b, tL_error));
-                return;
-            case 1:
-                final x2 x2Var = this.f18339b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                x2 x2Var2 = x2Var;
-                                if (tL_error != null) {
-                                    x2Var2.getClass();
-                                    return;
-                                }
-                                k4 k4Var = x2Var2.f18684x0;
-                                if (k4Var != null) {
-                                    k4Var.a(tLObject);
-                                    x2Var2.s();
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                x2 x2Var3 = x2Var;
-                                if (tL_error != null) {
-                                    x2Var3.getClass();
-                                    return;
-                                }
-                                k4 k4Var2 = x2Var3.f18684x0;
-                                if (k4Var2 != null) {
-                                    k4Var2.a(tLObject);
-                                    x2Var3.s();
-                                    return;
-                                }
-                                return;
-                            case 2:
-                                x2 x2Var4 = x2Var;
-                                if (tL_error != null) {
-                                    x2Var4.getClass();
-                                    return;
-                                }
-                                k4 k4Var3 = x2Var4.f18684x0;
-                                if (k4Var3 != null) {
-                                    k4Var3.a(tLObject);
-                                    x2Var4.s();
-                                    return;
-                                }
-                                return;
-                            case 3:
-                                x2 x2Var5 = x2Var;
-                                if (tL_error != null) {
-                                    x2Var5.getClass();
-                                    return;
-                                }
-                                k4 k4Var4 = x2Var5.f18684x0;
-                                if (k4Var4 != null) {
-                                    k4Var4.a(tLObject);
-                                    x2Var5.s();
-                                    return;
-                                }
-                                return;
-                            default:
-                                x2 x2Var6 = x2Var;
-                                if (tL_error != null) {
-                                    x2Var6.getClass();
-                                    return;
-                                }
-                                k4 k4Var5 = x2Var6.f18684x0;
-                                if (k4Var5 != null) {
-                                    k4Var5.a(tLObject);
-                                    x2Var6.s();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 2:
-                final x2 x2Var2 = this.f18339b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                x2 x2Var22 = x2Var2;
-                                if (tL_error != null) {
-                                    x2Var22.getClass();
-                                    return;
-                                }
-                                k4 k4Var = x2Var22.f18684x0;
-                                if (k4Var != null) {
-                                    k4Var.a(tLObject);
-                                    x2Var22.s();
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                x2 x2Var3 = x2Var2;
-                                if (tL_error != null) {
-                                    x2Var3.getClass();
-                                    return;
-                                }
-                                k4 k4Var2 = x2Var3.f18684x0;
-                                if (k4Var2 != null) {
-                                    k4Var2.a(tLObject);
-                                    x2Var3.s();
-                                    return;
-                                }
-                                return;
-                            case 2:
-                                x2 x2Var4 = x2Var2;
-                                if (tL_error != null) {
-                                    x2Var4.getClass();
-                                    return;
-                                }
-                                k4 k4Var3 = x2Var4.f18684x0;
-                                if (k4Var3 != null) {
-                                    k4Var3.a(tLObject);
-                                    x2Var4.s();
-                                    return;
-                                }
-                                return;
-                            case 3:
-                                x2 x2Var5 = x2Var2;
-                                if (tL_error != null) {
-                                    x2Var5.getClass();
-                                    return;
-                                }
-                                k4 k4Var4 = x2Var5.f18684x0;
-                                if (k4Var4 != null) {
-                                    k4Var4.a(tLObject);
-                                    x2Var5.s();
-                                    return;
-                                }
-                                return;
-                            default:
-                                x2 x2Var6 = x2Var2;
-                                if (tL_error != null) {
-                                    x2Var6.getClass();
-                                    return;
-                                }
-                                k4 k4Var5 = x2Var6.f18684x0;
-                                if (k4Var5 != null) {
-                                    k4Var5.a(tLObject);
-                                    x2Var6.s();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 3:
-                final x2 x2Var3 = this.f18339b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                x2 x2Var22 = x2Var3;
-                                if (tL_error != null) {
-                                    x2Var22.getClass();
-                                    return;
-                                }
-                                k4 k4Var = x2Var22.f18684x0;
-                                if (k4Var != null) {
-                                    k4Var.a(tLObject);
-                                    x2Var22.s();
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                x2 x2Var32 = x2Var3;
-                                if (tL_error != null) {
-                                    x2Var32.getClass();
-                                    return;
-                                }
-                                k4 k4Var2 = x2Var32.f18684x0;
-                                if (k4Var2 != null) {
-                                    k4Var2.a(tLObject);
-                                    x2Var32.s();
-                                    return;
-                                }
-                                return;
-                            case 2:
-                                x2 x2Var4 = x2Var3;
-                                if (tL_error != null) {
-                                    x2Var4.getClass();
-                                    return;
-                                }
-                                k4 k4Var3 = x2Var4.f18684x0;
-                                if (k4Var3 != null) {
-                                    k4Var3.a(tLObject);
-                                    x2Var4.s();
-                                    return;
-                                }
-                                return;
-                            case 3:
-                                x2 x2Var5 = x2Var3;
-                                if (tL_error != null) {
-                                    x2Var5.getClass();
-                                    return;
-                                }
-                                k4 k4Var4 = x2Var5.f18684x0;
-                                if (k4Var4 != null) {
-                                    k4Var4.a(tLObject);
-                                    x2Var5.s();
-                                    return;
-                                }
-                                return;
-                            default:
-                                x2 x2Var6 = x2Var3;
-                                if (tL_error != null) {
-                                    x2Var6.getClass();
-                                    return;
-                                }
-                                k4 k4Var5 = x2Var6.f18684x0;
-                                if (k4Var5 != null) {
-                                    k4Var5.a(tLObject);
-                                    x2Var6.s();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 4:
-                final x2 x2Var4 = this.f18339b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                x2 x2Var22 = x2Var4;
-                                if (tL_error != null) {
-                                    x2Var22.getClass();
-                                    return;
-                                }
-                                k4 k4Var = x2Var22.f18684x0;
-                                if (k4Var != null) {
-                                    k4Var.a(tLObject);
-                                    x2Var22.s();
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                x2 x2Var32 = x2Var4;
-                                if (tL_error != null) {
-                                    x2Var32.getClass();
-                                    return;
-                                }
-                                k4 k4Var2 = x2Var32.f18684x0;
-                                if (k4Var2 != null) {
-                                    k4Var2.a(tLObject);
-                                    x2Var32.s();
-                                    return;
-                                }
-                                return;
-                            case 2:
-                                x2 x2Var42 = x2Var4;
-                                if (tL_error != null) {
-                                    x2Var42.getClass();
-                                    return;
-                                }
-                                k4 k4Var3 = x2Var42.f18684x0;
-                                if (k4Var3 != null) {
-                                    k4Var3.a(tLObject);
-                                    x2Var42.s();
-                                    return;
-                                }
-                                return;
-                            case 3:
-                                x2 x2Var5 = x2Var4;
-                                if (tL_error != null) {
-                                    x2Var5.getClass();
-                                    return;
-                                }
-                                k4 k4Var4 = x2Var5.f18684x0;
-                                if (k4Var4 != null) {
-                                    k4Var4.a(tLObject);
-                                    x2Var5.s();
-                                    return;
-                                }
-                                return;
-                            default:
-                                x2 x2Var6 = x2Var4;
-                                if (tL_error != null) {
-                                    x2Var6.getClass();
-                                    return;
-                                }
-                                k4 k4Var5 = x2Var6.f18684x0;
-                                if (k4Var5 != null) {
-                                    k4Var5.a(tLObject);
-                                    x2Var6.s();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final x2 x2Var5 = this.f18339b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                x2 x2Var22 = x2Var5;
-                                if (tL_error != null) {
-                                    x2Var22.getClass();
-                                    return;
-                                }
-                                k4 k4Var = x2Var22.f18684x0;
-                                if (k4Var != null) {
-                                    k4Var.a(tLObject);
-                                    x2Var22.s();
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                x2 x2Var32 = x2Var5;
-                                if (tL_error != null) {
-                                    x2Var32.getClass();
-                                    return;
-                                }
-                                k4 k4Var2 = x2Var32.f18684x0;
-                                if (k4Var2 != null) {
-                                    k4Var2.a(tLObject);
-                                    x2Var32.s();
-                                    return;
-                                }
-                                return;
-                            case 2:
-                                x2 x2Var42 = x2Var5;
-                                if (tL_error != null) {
-                                    x2Var42.getClass();
-                                    return;
-                                }
-                                k4 k4Var3 = x2Var42.f18684x0;
-                                if (k4Var3 != null) {
-                                    k4Var3.a(tLObject);
-                                    x2Var42.s();
-                                    return;
-                                }
-                                return;
-                            case 3:
-                                x2 x2Var52 = x2Var5;
-                                if (tL_error != null) {
-                                    x2Var52.getClass();
-                                    return;
-                                }
-                                k4 k4Var4 = x2Var52.f18684x0;
-                                if (k4Var4 != null) {
-                                    k4Var4.a(tLObject);
-                                    x2Var52.s();
-                                    return;
-                                }
-                                return;
-                            default:
-                                x2 x2Var6 = x2Var5;
-                                if (tL_error != null) {
-                                    x2Var6.getClass();
-                                    return;
-                                }
-                                k4 k4Var5 = x2Var6.f18684x0;
-                                if (k4Var5 != null) {
-                                    k4Var5.a(tLObject);
-                                    x2Var6.s();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        t2 t2Var = this.d;
+        l2 l2Var = t2Var.E;
+        q2 q2Var = t2Var.Y;
+        k2 k2Var = t2Var.f18952x;
+        t2Var.f18935j0 = false;
+        boolean z10 = this.f18715a;
+        if (!z10) {
+            t2Var.I();
+            t2Var.L();
+            float f11 = this.f18716b;
+            k2Var.setForceOffsetY(f11 - org.telegram.messenger.g0.L(24.0f));
+            k2Var.setTopActionBarOffsetY(f11 - org.telegram.messenger.g0.L(24.0f));
+            k2Var.setSwipeOffsetY(0.0f);
+        } else {
+            k2Var.setForceOffsetY(-org.telegram.messenger.g0.L(24.0f));
+            k2Var.setTopActionBarOffsetY(-org.telegram.messenger.g0.L(24.0f));
+            k2Var.setSwipeOffsetY(0.0f);
         }
+        if (z10) {
+            f10 = t2Var.f18934i0;
+        } else {
+            f10 = 1.0f - t2Var.f18934i0;
+        }
+        t2Var.f18933h0 = f10;
+        q2Var.setAlpha(1.0f - f10);
+        q2Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * t2Var.f18933h0);
+        t2Var.f18940o0.setAlpha(t2Var.f18933h0);
+        if (z10) {
+            q2Var.setVisibility(8);
+        }
+        k2Var.setSwipeOffsetAnimationDisallowed(false);
+        k2Var.setTranslationX(org.telegram.messenger.g0.T1(this.f18717c, 0.0f, t2Var.f18934i0));
+        t2Var.f18939n0.setTranslationX(0.0f);
+        t2Var.f18930f.invalidate();
+        l2Var.setViewPortHeightOffset(0.0f);
+        l2Var.n(true, true);
+        t2Var.H();
     }
 }

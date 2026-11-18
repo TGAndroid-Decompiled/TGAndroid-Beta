@@ -1,40 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class ov0 extends AnimatorListenerAdapter {
-    public final int f38088a;
-    public final boolean f38089b;
-    public final bw0 f38090c;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ov0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38176a;
+    public final View f38177b;
+    public final FrameLayout f38178c;
 
-    public ov0(bw0 bw0Var, int i7, boolean z10) {
-        this.f38090c = bw0Var;
-        this.f38088a = i7;
-        this.f38089b = z10;
+    public ov0(FrameLayout frameLayout, View view, int i7) {
+        this.f38176a = i7;
+        this.f38178c = frameLayout;
+        this.f38177b = view;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        AnimatorSet[] animatorSetArr = this.f38090c.D1;
-        int i7 = this.f38088a;
-        AnimatorSet animatorSet = animatorSetArr[i7];
-        if (animatorSet != null && animatorSet.equals(animator)) {
-            animatorSetArr[i7] = null;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        bw0 bw0Var = this.f38090c;
-        AnimatorSet[] animatorSetArr = bw0Var.D1;
-        int i7 = this.f38088a;
-        AnimatorSet animatorSet = animatorSetArr[i7];
-        if (animatorSet != null && animatorSet.equals(animator)) {
-            if (!this.f38089b) {
-                bw0Var.E1[i7].setVisibility(4);
-            }
-            animatorSetArr[i7] = null;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f38176a) {
+            case 0:
+                pv0 pv0Var = (pv0) this.f38178c;
+                pv0Var.f38569b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pv0Var.invalidate();
+                ((el0) this.f38177b).invalidate();
+                return;
+            default:
+                ((g71) this.f38178c).B(this.f38177b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

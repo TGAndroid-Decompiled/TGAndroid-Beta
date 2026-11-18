@@ -1,54 +1,36 @@
 package org.telegram.ui.Components;
+public final class tv0 implements Runnable {
+    public final int f40110a;
+    public final iw0 f40111b;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.TLRPC;
-public final class tv0 extends v4.x {
-    public int f39814e;
-    public final bw0 f39815f;
-
-    public tv0(bw0 bw0Var) {
-        this.f39815f = bw0Var;
-        this.d = 15;
-        this.f39814e = -1;
+    public tv0(iw0 iw0Var, int i7) {
+        this.f40110a = i7;
+        this.f40111b = iw0Var;
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, v4.e1 e1Var, v4.e1 e1Var2) {
-        int i7 = e1Var.f58539f;
-        if (i7 != 3 && i7 == e1Var2.f58539f) {
-            bw0 bw0Var = this.f39815f;
-            if (bw0Var.N1 == null) {
-                return false;
-            }
-            int b10 = e1Var.b();
-            int b11 = e1Var2.b();
-            bw0Var.N1.documents.add(b11, bw0Var.N1.documents.remove(b10));
-            bw0Var.f33413o1.j(b10, b11);
-            this.f39814e = b11;
-            return true;
+    public final void run() {
+        switch (this.f40110a) {
+            case 0:
+                this.f40111b.f36247o1.f();
+                return;
+            case 1:
+                this.f40111b.f36247o1.f();
+                return;
+            case 2:
+                iw0 iw0Var = this.f40111b;
+                iw0Var.dismiss();
+                org.telegram.messenger.ri.d0(iw0Var.f30189a).k2(iw0Var.getContext(), iw0Var.N1, 1, iw0Var.G1, false, false);
+                return;
+            case 3:
+                iw0 iw0Var2 = this.f40111b;
+                org.telegram.messenger.mp.u1(iw0Var2.f30189a).F3("stickers", iw0Var2.G1, 1, null);
+                return;
+            default:
+                iw0 iw0Var3 = this.f40111b;
+                iw0Var3.dismiss();
+                org.telegram.messenger.ri.d0(iw0Var3.f30189a).k2(iw0Var3.getContext(), iw0Var3.N1, 1, iw0Var3.G1, false, false);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void p(v4.e1 e1Var, int i7) {
-        bw0 bw0Var = this.f39815f;
-        if (i7 == 0 && bw0Var.f33417q1 != null && this.f39814e > 0) {
-            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
-            tL_stickers_changeStickerPosition.position = this.f39814e;
-            tL_stickers_changeStickerPosition.sticker = org.telegram.messenger.si.a0(bw0Var.f33417q1, "").document;
-            this.f39814e = -1;
-            bw0Var.f33417q1 = null;
-        } else if (i7 == 2) {
-            bw0Var.f33417q1 = ((org.telegram.ui.Cells.y7) e1Var.f58535a).getSticker();
-        }
-    }
-
-    @Override
-    public final void q(v4.e1 e1Var) {
-    }
-
-    @Override
-    public final void o(RecyclerView recyclerView, v4.e1 e1Var, v4.e1 e1Var2, int i7, int i10, int i11) {
     }
 }

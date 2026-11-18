@@ -1,142 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class fv0 extends Drawable {
-    public final int f34709a;
-    public final int f34710b;
-    public final g5[] f34711c;
-    public final boolean f34712e;
-    public int d = 255;
-    public final RectF f34713f = new RectF();
-    public boolean f34714g = false;
+public final class fv0 implements RequestDelegate {
+    public final int f35169a;
+    public final org.telegram.messenger.x2 f35170b;
 
-    public fv0(int i7, ArrayList arrayList, boolean z10) {
-        int i10;
-        this.f34712e = z10;
-        int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
-        this.f34709a = max;
-        int min = Math.min(max * max, arrayList.size());
-        this.f34710b = min;
-        this.f34711c = new g5[min];
-        if (!arrayList.isEmpty()) {
-            org.telegram.messenger.gj.H2((TLRPC.Document) arrayList.get(0));
-        }
-        if (max < 2) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        for (int i11 = 0; i11 < this.f34710b; i11++) {
-            this.f34711c[i11] = g5.l(i7, i10, (TLRPC.Document) arrayList.get(i11));
-        }
+    public fv0(org.telegram.messenger.x2 x2Var, int i7) {
+        this.f35169a = i7;
+        this.f35170b = x2Var;
     }
 
-    public final void a(org.telegram.ui.Cells.q1 q1Var) {
-        for (int i7 = 0; i7 < this.f34710b; i7++) {
-            this.f34711c[i7].n(q1Var);
-        }
-    }
-
-    public final boolean b() {
-        return this.f34714g;
-    }
-
-    public final boolean c(ArrayList arrayList) {
-        long j3;
-        g5[] g5VarArr = this.f34711c;
-        if (g5VarArr.length == arrayList.size()) {
-            for (int i7 = 0; i7 < g5VarArr.length; i7++) {
-                TLRPC.Document document = g5VarArr[i7].f34808e;
-                if (document == null) {
-                    j3 = 0;
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35169a) {
+            case 0:
+                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
+                org.telegram.messenger.x2 x2Var = this.f35170b;
+                if (z10) {
+                    Boolean bool = Boolean.TRUE;
+                    x2Var.a(bool, null, 0L, bool);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
+                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
+                    x2Var.a(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
+                    return;
                 } else {
-                    j3 = document.f28057id;
+                    x2Var.a(Boolean.FALSE, null, 0L, Boolean.TRUE);
+                    return;
                 }
-                if (j3 == ((TLRPC.Document) arrayList.get(i7)).f28057id) {
+            default:
+                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
+                org.telegram.messenger.x2 x2Var2 = this.f35170b;
+                if (z11) {
+                    Boolean bool2 = Boolean.TRUE;
+                    x2Var2.a(bool2, null, 0L, bool2);
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_emojiList) {
+                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
+                    x2Var2.a(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
+                    return;
+                } else {
+                    x2Var2.a(Boolean.FALSE, null, 0L, Boolean.TRUE);
+                    return;
                 }
-            }
-            return true;
         }
-        return false;
-    }
-
-    public final void d() {
-        this.f34714g = false;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        g5 g5Var;
-        PorterDuffColorFilter porterDuffColorFilter;
-        if (this.d <= 0) {
-            return;
-        }
-        Rect bounds = getBounds();
-        RectF rectF = this.f34713f;
-        rectF.set(bounds);
-        float centerX = rectF.centerX() - (org.telegram.messenger.g0.L(48.0f) / 2.0f);
-        float centerY = rectF.centerY() - (org.telegram.messenger.g0.L(48.0f) / 2.0f);
-        int L = org.telegram.messenger.g0.L(48.0f);
-        int i7 = this.f34709a;
-        float f10 = L / i7;
-        float L2 = org.telegram.messenger.g0.L(48.0f) / i7;
-        canvas.save();
-        canvas.clipRect(centerX, centerY, org.telegram.messenger.g0.L(48.0f) + centerX, org.telegram.messenger.g0.L(48.0f) + centerY);
-        for (int i10 = 0; i10 < i7; i10++) {
-            for (int i11 = 0; i11 < i7; i11++) {
-                int i12 = (i10 * i7) + i11;
-                if (i12 >= 0) {
-                    g5[] g5VarArr = this.f34711c;
-                    if (i12 < g5VarArr.length && (g5Var = g5VarArr[i12]) != null) {
-                        g5Var.setBounds((int) ((i11 * f10) + centerX), (int) ((i10 * L2) + centerY), (int) (((i11 + 1) * f10) + centerX), (int) (((i10 + 1) * L2) + centerY));
-                        g5VarArr[i12].setAlpha(this.d);
-                        g5 g5Var2 = g5VarArr[i12];
-                        if (this.f34712e) {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.j6.f29200w3;
-                        } else {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.j6.f29181v3;
-                        }
-                        g5Var2.setColorFilter(porterDuffColorFilter);
-                        g5VarArr[i12].draw(canvas);
-                    }
-                }
-            }
-        }
-        canvas.restore();
-    }
-
-    public final void e() {
-        this.f34714g = true;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(48.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(48.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.d = i7;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

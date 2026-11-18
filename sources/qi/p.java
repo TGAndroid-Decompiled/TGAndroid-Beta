@@ -9,26 +9,26 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.telegram.ui.web.e1;
-import p4.q0;
+import p4.o0;
+import p4.r0;
 public final class p implements AutoCloseable {
-    public final q0 f55626b;
-    public final q0 f55627c;
-    public long f55631r;
-    public boolean f55632s;
-    public a f55633w;
-    public Throwable f55634x;
-    public volatile Set f55635y;
-    public final Object f55625a = new Object();
+    public final r0 f56200b;
+    public final r0 f56201c;
+    public long f56205r;
+    public boolean f56206s;
+    public a f56207w;
+    public Throwable f56208x;
+    public volatile Set f56209y;
+    public final Object f56199a = new Object();
     public final LinkedHashMap h = new LinkedHashMap(16, 0.75f, true);
-    public final HashMap f55630n = new HashMap();
-    public final int f55628e = 256;
-    public final long f55629f = 8388608;
+    public final HashMap f56204n = new HashMap();
+    public final int f56202e = 256;
+    public final long f56203f = 8388608;
     public final ExecutorService d = Executors.newSingleThreadExecutor(new y0(8));
 
-    public p(q0 q0Var, q0 q0Var2) {
-        this.f55626b = q0Var;
-        this.f55627c = q0Var2;
+    public p(r0 r0Var, r0 r0Var2) {
+        this.f56200b = r0Var;
+        this.f56201c = r0Var2;
     }
 
     public static String b(String str) {
@@ -92,18 +92,18 @@ public final class p implements AutoCloseable {
 
     public final void c(n nVar, ji.j jVar) {
         l lVar = new l(nVar, jVar);
-        int i7 = this.f55628e;
+        int i7 = this.f56202e;
         if (i7 != 0) {
-            long j3 = lVar.f55620b;
-            long j10 = this.f55629f;
+            long j3 = lVar.f56194b;
+            long j10 = this.f56203f;
             if (j3 <= j10) {
                 LinkedHashMap linkedHashMap = this.h;
                 linkedHashMap.put(nVar, lVar);
-                this.f55631r += j3;
+                this.f56205r += j3;
                 while (true) {
-                    if (linkedHashMap.size() > i7 || this.f55631r > j10) {
+                    if (linkedHashMap.size() > i7 || this.f56205r > j10) {
                         Map.Entry entry = (Map.Entry) linkedHashMap.entrySet().iterator().next();
-                        this.f55631r -= ((l) entry.getValue()).f55620b;
+                        this.f56205r -= ((l) entry.getValue()).f56194b;
                         linkedHashMap.remove(entry.getKey());
                     } else {
                         return;
@@ -115,24 +115,24 @@ public final class p implements AutoCloseable {
 
     @Override
     public final void close() {
-        synchronized (this.f55625a) {
+        synchronized (this.f56199a) {
             try {
-                if (this.f55632s) {
+                if (this.f56206s) {
                     return;
                 }
-                this.f55632s = true;
-                for (ArrayList arrayList : this.f55630n.values()) {
+                this.f56206s = true;
+                for (ArrayList arrayList : this.f56204n.values()) {
                     int size = arrayList.size();
                     int i7 = 0;
                     while (i7 < size) {
                         Object obj = arrayList.get(i7);
                         i7++;
-                        ((o) obj).f55624a = null;
+                        ((o) obj).f56198a = null;
                     }
                 }
-                this.f55630n.clear();
+                this.f56204n.clear();
                 this.h.clear();
-                this.f55631r = 0L;
+                this.f56205r = 0L;
                 this.d.execute(new k(this, 0));
                 this.d.shutdown();
             } catch (Throwable th2) {
@@ -145,19 +145,19 @@ public final class p implements AutoCloseable {
         if (str != null) {
             n nVar = new n(str, b(str2));
             ?? obj = new Object();
-            obj.f55624a = mVar;
-            synchronized (this.f55625a) {
+            obj.f56198a = mVar;
+            synchronized (this.f56199a) {
                 try {
-                    if (!this.f55632s) {
-                        ArrayList arrayList = (ArrayList) this.f55630n.get(nVar);
+                    if (!this.f56206s) {
+                        ArrayList arrayList = (ArrayList) this.f56204n.get(nVar);
                         if (arrayList != null) {
                             arrayList.add(obj);
                             return obj;
                         }
                         ArrayList arrayList2 = new ArrayList();
                         arrayList2.add(obj);
-                        this.f55630n.put(nVar, arrayList2);
-                        this.d.execute(new e1(12, this, nVar));
+                        this.f56204n.put(nVar, arrayList2);
+                        this.d.execute(new o0(4, this, nVar));
                         return obj;
                     }
                     throw new IllegalStateException("Service is closed");

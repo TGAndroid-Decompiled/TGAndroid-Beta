@@ -1,36 +1,34 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class c10 implements org.telegram.messenger.s10 {
-    public final int f45870a;
-    public final c40 f45871b;
+import android.graphics.RectF;
+import android.view.View;
+public final class c10 implements View.OnClickListener {
+    public final int f46361a;
+    public final org.telegram.ui.Cells.c2[] f46362b;
 
-    public c10(c40 c40Var, int i7) {
-        this.f45870a = i7;
-        this.f45871b = c40Var;
+    public c10(org.telegram.ui.Cells.c2[] c2VarArr, int i7) {
+        this.f46361a = i7;
+        this.f46362b = c2VarArr;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        TLRPC.Updates updates = (TLRPC.Updates) obj;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        switch (this.f45870a) {
+    public final void onClick(View view) {
+        int i7 = this.f46361a;
+        org.telegram.ui.Cells.c2[] c2VarArr = this.f46362b;
+        switch (i7) {
             case 0:
-                c40 c40Var = this.f45871b;
-                if (updates != null) {
-                    org.telegram.messenger.np.s1(c40Var.f45940o1.f22782a).O3(updates, false);
-                }
-                org.telegram.messenger.g0.h3(new s00(c40Var, 10));
+                Integer num = (Integer) view.getTag();
+                c2VarArr[num.intValue()].c(!c2VarArr[num.intValue()].b(), true);
+                return;
+            case 1:
+                org.telegram.ui.Cells.c2 c2Var = c2VarArr[0];
+                c2Var.c(!c2Var.b(), true);
                 return;
             default:
-                c40 c40Var2 = this.f45871b;
-                if (updates != null) {
-                    org.telegram.messenger.np.s1(c40Var2.f45940o1.f22782a).O3(updates, false);
-                    return;
-                } else {
-                    c40Var2.getClass();
-                    return;
-                }
+                RectF rectF = ProfileActivity.Z6;
+                org.telegram.ui.Cells.c2 c2Var2 = c2VarArr[0];
+                c2Var2.c(!c2Var2.b(), true);
+                return;
         }
     }
 }

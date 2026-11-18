@@ -1,22 +1,13 @@
 package c8;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 public abstract class z {
-    public static SharedPreferences f4808a;
+    public static android.content.res.ColorStateList a(android.content.Context r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: c8.z.a(android.content.Context, int):android.content.res.ColorStateList");
+    }
 
-    public static SharedPreferences a(Context context) {
-        SharedPreferences sharedPreferences;
-        synchronized (SharedPreferences.class) {
-            try {
-                if (f4808a == null) {
-                    f4808a = (SharedPreferences) ac.a(new a2.b(context, 4));
-                }
-                sharedPreferences = f4808a;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        return sharedPreferences;
+    public static Drawable b(Context context, int i7) {
+        return m.m2.d().g(context, i7);
     }
 }

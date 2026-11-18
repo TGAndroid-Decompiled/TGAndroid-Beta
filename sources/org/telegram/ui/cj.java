@@ -1,63 +1,42 @@
 package org.telegram.ui;
-public final class cj extends pi.k {
-    public Runnable W;
-    public final an X;
+public final class cj implements Runnable {
+    public final int f46546a;
+    public final dj f46547b;
 
-    public cj(an anVar, an anVar2, aj ajVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(anVar2, ajVar, e6Var);
-        this.X = anVar;
+    public cj(dj djVar, int i7) {
+        this.f46546a = i7;
+        this.f46547b = djVar;
     }
 
     @Override
-    public final void F() {
-        an anVar = this.X;
-        if (anVar.f45169da == -1) {
-            anVar.f45169da = anVar.getNotificationCenter().q(an.f45113rd, anVar.f45169da, false);
+    public final void run() {
+        switch (this.f46546a) {
+            case 0:
+                dj djVar = this.f46547b;
+                djVar.W = null;
+                bn bnVar = djVar.X;
+                if (bnVar.f45998ea != -1) {
+                    bnVar.getNotificationCenter().j(bnVar.f45998ea);
+                    bnVar.f45998ea = -1;
+                }
+                if (org.telegram.messenger.s2.f26723a) {
+                    org.telegram.messenger.a8.b("chatItemAnimator enable notifications");
+                    return;
+                }
+                return;
+            default:
+                dj djVar2 = this.f46547b;
+                djVar2.W = null;
+                bn bnVar2 = djVar2.X;
+                if (bnVar2.f45998ea != -1) {
+                    bnVar2.getNotificationCenter().j(bnVar2.f45998ea);
+                    bnVar2.f45998ea = -1;
+                }
+                if (org.telegram.messenger.s2.f26723a) {
+                    org.telegram.messenger.a8.b("chatItemAnimator enable notifications");
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-            this.W = null;
-        }
-        bj bjVar = new bj(this, 1);
-        this.W = bjVar;
-        org.telegram.messenger.g0.h3(bjVar);
-    }
-
-    @Override
-    public final void W() {
-        an anVar = this.X;
-        anVar.f45169da = anVar.getNotificationCenter().q(an.f45113rd, anVar.f45169da, false);
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-            this.W = null;
-        }
-        if (org.telegram.messenger.r2.f26206a) {
-            org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
-        }
-        j6.o oVar = anVar.f45117a0.getAdjustPanLayoutHelper().h;
-        org.telegram.messenger.g0.r(oVar);
-        oVar.run();
-        org.telegram.ui.Components.ke keVar = anVar.f45117a0.G4;
-        org.telegram.messenger.g0.r(keVar);
-        keVar.run();
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-        }
-        bj bjVar = new bj(this, 0);
-        this.W = bjVar;
-        org.telegram.messenger.g0.h3(bjVar);
     }
 }

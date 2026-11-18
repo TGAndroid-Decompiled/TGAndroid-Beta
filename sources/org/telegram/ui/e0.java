@@ -1,36 +1,61 @@
 package org.telegram.ui;
 
-import android.net.Uri;
-public final class e0 implements org.telegram.messenger.r10 {
-    public final g4 f46501a;
-    public final String f46502b;
-    public final boolean[] f46503c;
-    public final vf.b d;
+import android.view.View;
+import android.widget.PopupWindow;
+public final class e0 implements PopupWindow.OnDismissListener {
+    public final int f47096a;
+    public final Object f47097b;
 
-    public e0(g4 g4Var, String str, boolean[] zArr, vf.b bVar) {
-        this.f46501a = g4Var;
-        this.f46502b = str;
-        this.f46503c = zArr;
-        this.d = bVar;
+    public e0(Object obj, int i7) {
+        this.f47096a = i7;
+        this.f47097b = obj;
     }
 
     @Override
-    public final Object run() {
-        String str = this.f46502b;
-        if (!vf.c.g(Uri.parse(str), false, this.f46503c)) {
-            return Boolean.FALSE;
+    public final void onDismiss() {
+        switch (this.f47096a) {
+            case 0:
+                g4 g4Var = (g4) this.f47097b;
+                View view = g4Var.f50754f;
+                if (view != null) {
+                    g4Var.d = null;
+                    view.invalidate();
+                    g4Var.f50754f = null;
+                    return;
+                }
+                return;
+            case 1:
+                bn bnVar = (bn) this.f47097b;
+                bnVar.f46023g9 = null;
+                bnVar.f46088l9 = null;
+                bnVar.f46076k9 = null;
+                bnVar.C0.R = true;
+                bnVar.x8(false, true, 0.0f);
+                rj rjVar = bnVar.f45932a0;
+                if (rjVar != null && rjVar.getEditField() != null) {
+                    bnVar.f45932a0.getEditField().setAllowDrawCursor(true);
+                    return;
+                }
+                return;
+            default:
+                ui uiVar = (ui) this.f47097b;
+                uiVar.f52572b = null;
+                bn bnVar2 = uiVar.f52580x;
+                bnVar2.f46023g9 = null;
+                bnVar2.f46088l9 = null;
+                bnVar2.f46076k9 = null;
+                bnVar2.C0.R = true;
+                if (bnVar2.f46036h9) {
+                    bnVar2.x8(false, true, 0.0f);
+                } else {
+                    bnVar2.f46036h9 = true;
+                }
+                rj rjVar2 = bnVar2.f45932a0;
+                if (rjVar2 != null && rjVar2.getEditField() != null) {
+                    bnVar2.f45932a0.getEditField().setAllowDrawCursor(true);
+                    return;
+                }
+                return;
         }
-        g4 g4Var = this.f46501a;
-        vf.b bVar = this.d;
-        if (bVar != null) {
-            bVar.f58806c = new oi.u4(25, g4Var, bVar);
-        } else {
-            t3 t3Var = g4Var.L;
-            if (t3Var != null) {
-                t3Var.a(true);
-            }
-        }
-        vf.c.s(g4Var.M, Uri.parse(str), true, true, false, bVar, null, true, true, false, false);
-        return Boolean.TRUE;
     }
 }

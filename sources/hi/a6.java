@@ -1,62 +1,64 @@
 package hi;
 
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
-import org.telegram.ui.Components.er;
+import android.content.Context;
+import android.graphics.Bitmap;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.camera.CameraView;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
 public final class a6 {
-    public final a0 f13874a;
-    public boolean f13875b;
-    public z5 f13876c;
-    public final org.telegram.ui.Components.u5 d;
-    public final org.telegram.ui.Components.u5 f13877e;
-    public final org.telegram.ui.Components.u5 f13878f;
-    public final org.telegram.ui.Components.u5[] f13879g;
-    public final org.telegram.ui.Components.u5[] h;
-    public final Paint f13880i;
-    public final Path f13881j;
+    public final t8 f14237c;
+    public y5 d;
+    public CameraView f14239f;
+    public Bitmap f14240g;
+    public final AtomicReference f14235a = new AtomicReference();
+    public final AtomicBoolean f14236b = new AtomicBoolean(false);
+    public final x5 h = new x5(this, 0);
+    public final String f14238e = mp.u1(j10.f24773t0).X2;
 
-    public a6(a0 a0Var) {
-        Paint paint = new Paint(1);
-        this.f13880i = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(-8697);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(6.0f));
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setShadowLayer(1.0804527E9f, 0.0f, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(6.0f));
-        this.f13881j = new Path();
-        this.f13874a = a0Var;
-        er erVar = er.f34420g;
-        this.d = new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 320L, erVar);
-        this.f13877e = new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar);
-        this.f13878f = new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar);
-        this.f13879g = new org.telegram.ui.Components.u5[]{new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar), new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar), new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar), new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar)};
-        this.h = new org.telegram.ui.Components.u5[]{new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar), new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar), new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar), new org.telegram.ui.Components.u5(0.0f, a0Var, 0L, 160L, erVar)};
+    public a6(Context context, t8 t8Var) {
+        this.f14237c = t8Var;
+        Utilities.f22782e.c(new r1(7, this, context));
     }
 
-    public final void a(z5 z5Var) {
-        if (z5Var != null) {
-            this.f13876c = z5Var;
+    public final void a(CameraView cameraView) {
+        this.f14239f = cameraView;
+        if (this.f14235a.get() != null && !this.f14236b.get()) {
+            Utilities.f22782e.a(this.h);
+            Utilities.f22782e.d(this.h, b());
         }
-        boolean z10 = false;
-        if (z5Var != null) {
-            float f10 = z5Var.d;
-            float f11 = z5Var.f15505c;
-            PointF[] pointFArr = z5Var.f15504b;
-            if (!this.f13875b) {
-                this.f13877e.e(true, f11);
-                this.f13878f.e(true, f10);
-                for (int i7 = 0; i7 < Math.min(4, pointFArr.length); i7++) {
-                    this.f13879g[i7].e(true, pointFArr[i7].x - f11);
-                    this.h[i7].e(true, pointFArr[i7].y - f10);
-                }
+    }
+
+    public final long b() {
+        if (this.d == null) {
+            return 750L;
+        }
+        int o4 = bz.o();
+        if (o4 != 1) {
+            if (o4 != 2) {
+                return 800L;
             }
+            return 80L;
         }
-        if (z5Var != null) {
-            z10 = true;
+        return 400L;
+    }
+
+    public final void c(boolean z10) {
+        if (this.f14236b.getAndSet(z10) != z10) {
+            if (z10) {
+                Utilities.f22782e.a(this.h);
+                if (this.d != null) {
+                    this.d = null;
+                    org.telegram.messenger.g0.g3(new x5(this, 1));
+                    return;
+                }
+                return;
+            }
+            Utilities.f22782e.a(this.h);
+            Utilities.f22782e.d(this.h, b());
         }
-        this.f13875b = z10;
-        this.f13874a.run();
     }
 }

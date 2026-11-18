@@ -1,24 +1,24 @@
 package e2;
 public final class o1 {
     public static final o1 d = new o1(new bg.f(1));
-    public static final String f10286e;
-    public static final String f10287f;
-    public static final String f10288g;
-    public final int f10289a;
-    public final boolean f10290b;
-    public final boolean f10291c;
+    public static final String f10604e;
+    public static final String f10605f;
+    public static final String f10606g;
+    public final int f10607a;
+    public final boolean f10608b;
+    public final boolean f10609c;
 
     static {
-        String str = h2.l0.f13471a;
-        f10286e = Integer.toString(1, 36);
-        f10287f = Integer.toString(2, 36);
-        f10288g = Integer.toString(3, 36);
+        String str = h2.l0.f13786a;
+        f10604e = Integer.toString(1, 36);
+        f10605f = Integer.toString(2, 36);
+        f10606g = Integer.toString(3, 36);
     }
 
     public o1(bg.f fVar) {
-        this.f10289a = fVar.f3233a;
-        this.f10290b = fVar.f3234b;
-        this.f10291c = fVar.f3235c;
+        this.f10607a = fVar.f3225a;
+        this.f10608b = fVar.f3226b;
+        this.f10609c = fVar.f3227c;
     }
 
     public final boolean equals(Object obj) {
@@ -27,7 +27,7 @@ public final class o1 {
         }
         if (obj != null && o1.class == obj.getClass()) {
             o1 o1Var = (o1) obj;
-            if (this.f10289a == o1Var.f10289a && this.f10290b == o1Var.f10290b && this.f10291c == o1Var.f10291c) {
+            if (this.f10607a == o1Var.f10607a && this.f10608b == o1Var.f10608b && this.f10609c == o1Var.f10609c) {
                 return true;
             }
         }
@@ -35,6 +35,6 @@ public final class o1 {
     }
 
     public final int hashCode() {
-        return ((((this.f10289a + 31) * 31) + (this.f10290b ? 1 : 0)) * 31) + (this.f10291c ? 1 : 0);
+        return ((((this.f10607a + 31) * 31) + (this.f10608b ? 1 : 0)) * 31) + (this.f10609c ? 1 : 0);
     }
 }

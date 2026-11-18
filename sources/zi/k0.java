@@ -1,34 +1,32 @@
 package zi;
-public final class k0 implements Runnable {
-    public final int f61551a;
-    public final u7.i f61552b;
-    public final Exception f61553c;
 
-    public k0(u7.i iVar, Exception exc, int i7) {
-        this.f61551a = i7;
-        this.f61552b = iVar;
-        this.f61553c = exc;
+import android.util.Log;
+import com.google.android.gms.common.api.Status;
+import java.util.Iterator;
+public final class k0 implements j6.n {
+    public final Object f62182a;
+
+    public k0(Object obj) {
+        this.f62182a = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f61551a) {
-            case 0:
-                v0 v0Var = (v0) this.f61552b.f57880a;
-                v0Var.f61756m.a("recording segment interrupted in state=".concat(p0.b(v0Var.f61745a0)), this.f61553c);
-                int i7 = v0Var.f61745a0;
-                if (i7 == 3) {
-                    v0Var.q();
-                    return;
-                } else if (i7 == 2) {
-                    v0Var.D = true;
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                ((v0) this.f61552b.f57880a).h(this.f61553c);
-                return;
+    public void g(String str, long j3, long j10, long j11) {
+        h6.o oVar = (h6.o) this.f62182a;
+        try {
+            oVar.a(new h6.n(new Status(2103, null, null, null), 1));
+        } catch (IllegalStateException e10) {
+            j6.b bVar = h6.h.f13921k;
+            Log.e(bVar.f17244a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e10);
         }
+        Iterator it = oVar.f13945q.f13928i.iterator();
+        while (it.hasNext()) {
+            ((h6.g) it.next()).h(str, j3, 2103, j10, j11);
+        }
+    }
+
+    @Override
+    public void j(java.lang.String r14, long r15, int r17, java.lang.Object r18, long r19, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: zi.k0.j(java.lang.String, long, int, java.lang.Object, long, long):void");
     }
 }

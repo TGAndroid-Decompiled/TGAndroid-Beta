@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import org.telegram.messenger.a8;
 public abstract class u0 {
-    public static final HashMap f1558a = new HashMap();
+    public static final HashMap f1549a = new HashMap();
 
     static {
         new HashSet();
@@ -37,21 +37,16 @@ public abstract class u0 {
         }
     }
 
-    public static ArrayList b(Context context, long j3) {
-        ArrayList arrayList = (ArrayList) f1558a.get(Long.valueOf(j3));
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return new ArrayList(arrayList);
-        }
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
+    public static void b(LinkedHashMap linkedHashMap, Context context) {
         try {
             InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService("input_method");
             if (inputMethodManager != null) {
-                a(linkedHashMap, d(inputMethodManager.getCurrentInputMethodSubtype()));
+                a(linkedHashMap, e(inputMethodManager.getCurrentInputMethodSubtype()));
                 String string = Settings.Secure.getString(context.getContentResolver(), "default_input_method");
                 for (InputMethodInfo inputMethodInfo : inputMethodManager.getEnabledInputMethodList()) {
                     if (TextUtils.equals(inputMethodInfo.getId(), string)) {
                         for (InputMethodSubtype inputMethodSubtype : inputMethodManager.getEnabledInputMethodSubtypeList(inputMethodInfo, true)) {
-                            a(linkedHashMap, d(inputMethodSubtype));
+                            a(linkedHashMap, e(inputMethodSubtype));
                         }
                     }
                 }
@@ -59,17 +54,26 @@ public abstract class u0 {
         } catch (Exception e10) {
             a8.g(e10, true);
         }
+    }
+
+    public static ArrayList c(Context context, long j3) {
+        ArrayList arrayList = (ArrayList) f1549a.get(Long.valueOf(j3));
+        if (arrayList != null && !arrayList.isEmpty()) {
+            return new ArrayList(arrayList);
+        }
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        b(linkedHashMap, context);
         return new ArrayList(linkedHashMap.values());
     }
 
-    public static boolean c(String str, String str2) {
+    public static boolean d(String str, String str2) {
         if (str != null && str2 != null) {
             return Locale.forLanguageTag(str.replace('_', '-')).getLanguage().equals(Locale.forLanguageTag(str2.replace('_', '-')).getLanguage());
         }
         return false;
     }
 
-    public static Locale d(InputMethodSubtype inputMethodSubtype) {
+    public static Locale e(InputMethodSubtype inputMethodSubtype) {
         String str;
         if (inputMethodSubtype == null || !"keyboard".equals(inputMethodSubtype.getMode())) {
             return null;

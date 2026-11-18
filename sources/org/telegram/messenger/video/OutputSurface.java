@@ -13,10 +13,10 @@ import hi.c7;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.e20;
-import org.telegram.messenger.gf;
+import org.telegram.messenger.c20;
+import org.telegram.messenger.ff;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
-import org.telegram.messenger.xe;
+import org.telegram.messenger.we;
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
     private static final int EGL_OPENGL_ES2_BIT = 4;
@@ -31,8 +31,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private EGLSurface mEGLSurface = null;
     private final Object mFrameSyncObject = new Object();
 
-    public OutputSurface(gf gfVar, String str, String str2, String str3, ArrayList<e20> arrayList, xe xeVar, int i7, int i10, int i11, int i12, int i13, float f10, boolean z10, Integer num, Integer num2, c7 c7Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
-        TextureRenderer textureRenderer = new TextureRenderer(gfVar, str, str2, str3, arrayList, xeVar, i7, i10, i11, i12, i13, f10, z10, num, num2, c7Var, convertVideoParams);
+    public OutputSurface(ff ffVar, String str, String str2, String str3, ArrayList<c20> arrayList, we weVar, int i7, int i10, int i11, int i12, int i13, float f10, boolean z10, Integer num, Integer num2, c7 c7Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
+        TextureRenderer textureRenderer = new TextureRenderer(ffVar, str, str2, str3, arrayList, weVar, i7, i10, i11, i12, i13, f10, z10, num, num2, c7Var, convertVideoParams);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
         this.mSurfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
@@ -47,7 +47,7 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         if (EGL14.eglGetError() == 12288) {
             return;
         }
-        throw new RuntimeException(r.b.k("EGL error encountered (see log) at: ", str));
+        throw new RuntimeException(p5.c.k("EGL error encountered (see log) at: ", str));
     }
 
     public void awaitNewImage() {

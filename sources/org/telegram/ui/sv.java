@@ -1,29 +1,41 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-public final class sv extends org.telegram.ui.Components.t9 {
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+import android.view.View;
+public final class sv {
+    public final int f52085a;
+    public final tv f52086b;
+    public final View f52087c;
+
+    public sv(tv tvVar, View view, int i7) {
+        this.f52085a = i7;
+        this.f52086b = tvVar;
+        this.f52087c = view;
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final int z1() {
-        return org.telegram.messenger.g0.L(48.0f);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public final void a(boolean z10) {
+        switch (this.f52085a) {
+            case 0:
+                View view = this.f52087c;
+                if (view instanceof fi.p) {
+                    this.f52086b.P0.F0.i((fi.p) view, false);
+                    if (z10) {
+                        org.telegram.messenger.g0.h3(new org.telegram.ui.Components.me(22), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                View view2 = this.f52087c;
+                if (view2 instanceof fi.p) {
+                    this.f52086b.P0.F0.i((fi.p) view2, false);
+                    if (z10) {
+                        org.telegram.messenger.g0.h3(new org.telegram.ui.Components.me(22), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

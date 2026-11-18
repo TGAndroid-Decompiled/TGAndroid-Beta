@@ -1,21 +1,21 @@
 package be;
 
-import aa.b0;
-import c8.v0;
+import c8.x0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+import zd.b0;
 import zd.c2;
 public final class b implements c2 {
-    public Object f3143a = e.f3168p;
-    public zd.m f3144b;
-    public final c f3145c;
+    public Object f3137a = e.f3162p;
+    public zd.m f3138b;
+    public final c f3139c;
 
     public b(c cVar) {
-        this.f3145c = cVar;
+        this.f3139c = cVar;
     }
 
     @Override
     public final void a(ee.r rVar, int i7) {
-        zd.m mVar = this.f3144b;
+        zd.m mVar = this.f3138b;
         if (mVar != null) {
             mVar.a(rVar, i7);
         }
@@ -24,18 +24,18 @@ public final class b implements c2 {
     public final Object b(ce.e eVar) {
         k kVar;
         k kVar2;
-        Object obj = this.f3143a;
+        Object obj = this.f3137a;
         boolean z10 = true;
-        if (obj == e.f3168p || obj == e.f3164l) {
+        if (obj == e.f3162p || obj == e.f3158l) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = c.h;
-            c cVar = this.f3145c;
+            c cVar = this.f3139c;
             k kVar3 = (k) atomicReferenceFieldUpdater.get(cVar);
-            while (!cVar.r(c.f3146b.get(cVar), true)) {
-                long andIncrement = c.f3147c.getAndIncrement(cVar);
-                long j3 = e.f3156b;
+            while (!cVar.r(c.f3140b.get(cVar), true)) {
+                long andIncrement = c.f3141c.getAndIncrement(cVar);
+                long j3 = e.f3150b;
                 long j10 = andIncrement / j3;
                 int i7 = (int) (andIncrement % j3);
-                if (kVar3.f10630c != j10) {
+                if (kVar3.f10948c != j10) {
                     k l10 = cVar.l(j10, kVar3);
                     if (l10 == null) {
                         continue;
@@ -46,46 +46,46 @@ public final class b implements c2 {
                     kVar = kVar3;
                 }
                 Object z11 = cVar.z(kVar, i7, andIncrement, null);
-                b0 b0Var = e.f3165m;
-                if (z11 != b0Var) {
-                    b0 b0Var2 = e.f3167o;
-                    if (z11 == b0Var2) {
+                ee.t tVar = e.f3159m;
+                if (z11 != tVar) {
+                    ee.t tVar2 = e.f3161o;
+                    if (z11 == tVar2) {
                         if (andIncrement < cVar.p()) {
                             kVar.b();
                         }
                         kVar3 = kVar;
-                    } else if (z11 == e.f3166n) {
-                        zd.m l11 = zd.b0.l(v0.b(eVar));
+                    } else if (z11 == e.f3160n) {
+                        zd.m l11 = b0.l(x0.b(eVar));
                         try {
-                            this.f3144b = l11;
+                            this.f3138b = l11;
                             try {
                                 Object z12 = cVar.z(kVar, i7, andIncrement, this);
-                                if (z12 == b0Var) {
+                                if (z12 == tVar) {
                                     a(kVar, i7);
                                 } else {
-                                    if (z12 == b0Var2) {
+                                    if (z12 == tVar2) {
                                         if (andIncrement < cVar.p()) {
                                             kVar.b();
                                         }
                                         k kVar4 = (k) c.h.get(cVar);
                                         while (true) {
-                                            if (cVar.r(c.f3146b.get(cVar), true)) {
-                                                zd.m mVar = this.f3144b;
+                                            if (cVar.r(c.f3140b.get(cVar), true)) {
+                                                zd.m mVar = this.f3138b;
                                                 kotlin.jvm.internal.j.b(mVar);
-                                                this.f3144b = null;
-                                                this.f3143a = e.f3164l;
+                                                this.f3138b = null;
+                                                this.f3137a = e.f3158l;
                                                 Throwable m10 = cVar.m();
                                                 if (m10 == null) {
                                                     mVar.resumeWith(Boolean.FALSE);
                                                 } else {
-                                                    mVar.resumeWith(af.b.b(m10));
+                                                    mVar.resumeWith(b7.h.a(m10));
                                                 }
                                             } else {
-                                                long andIncrement2 = c.f3147c.getAndIncrement(cVar);
-                                                long j11 = e.f3156b;
+                                                long andIncrement2 = c.f3141c.getAndIncrement(cVar);
+                                                long j11 = e.f3150b;
                                                 long j12 = andIncrement2 / j11;
                                                 int i10 = (int) (andIncrement2 % j11);
-                                                if (kVar4.f10630c != j12) {
+                                                if (kVar4.f10948c != j12) {
                                                     kVar2 = cVar.l(j12, kVar4);
                                                     if (kVar2 == null) {
                                                     }
@@ -93,18 +93,18 @@ public final class b implements c2 {
                                                     kVar2 = kVar4;
                                                 }
                                                 Object z13 = cVar.z(kVar2, i10, andIncrement2, this);
-                                                if (z13 == e.f3165m) {
+                                                if (z13 == e.f3159m) {
                                                     a(kVar2, i10);
                                                     break;
-                                                } else if (z13 == e.f3167o) {
+                                                } else if (z13 == e.f3161o) {
                                                     if (andIncrement2 < cVar.p()) {
                                                         kVar2.b();
                                                     }
                                                     kVar4 = kVar2;
-                                                } else if (z13 != e.f3166n) {
+                                                } else if (z13 != e.f3160n) {
                                                     kVar2.b();
-                                                    this.f3143a = z13;
-                                                    this.f3144b = null;
+                                                    this.f3137a = z13;
+                                                    this.f3138b = null;
                                                 } else {
                                                     throw new IllegalStateException("unexpected");
                                                 }
@@ -112,13 +112,13 @@ public final class b implements c2 {
                                         }
                                     } else {
                                         kVar.b();
-                                        this.f3143a = z12;
-                                        this.f3144b = null;
+                                        this.f3137a = z12;
+                                        this.f3138b = null;
                                     }
                                     l11.B(Boolean.TRUE, null);
                                 }
                                 Object r10 = l11.r();
-                                jd.a aVar = jd.a.f16999a;
+                                jd.a aVar = jd.a.f17384a;
                                 return r10;
                             } catch (Throwable th2) {
                                 th = th2;
@@ -130,19 +130,19 @@ public final class b implements c2 {
                         }
                     } else {
                         kVar.b();
-                        this.f3143a = z11;
+                        this.f3137a = z11;
                         return Boolean.valueOf(z10);
                     }
                 } else {
                     throw new IllegalStateException("unreachable");
                 }
             }
-            this.f3143a = e.f3164l;
+            this.f3137a = e.f3158l;
             Throwable m11 = cVar.m();
             if (m11 == null) {
                 z10 = false;
             } else {
-                int i11 = ee.s.f10631a;
+                int i11 = ee.s.f10949a;
                 throw m11;
             }
         }

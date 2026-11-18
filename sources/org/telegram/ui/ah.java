@@ -2,35 +2,35 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class ah implements Runnable {
-    public final int f45045a = 1;
-    public final an f45046b;
-    public final TLRPC.TL_attachMenuBot f45047c;
+    public final int f45594a = 1;
+    public final bn f45595b;
+    public final TLRPC.TL_attachMenuBot f45596c;
     public final TLRPC.TL_error d;
-    public final TLRPC.User f45048e;
+    public final TLRPC.User f45597e;
 
-    public ah(an anVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.TL_error tL_error, TLRPC.User user) {
-        this.f45046b = anVar;
-        this.f45047c = tL_attachMenuBot;
+    public ah(bn bnVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.TL_error tL_error, TLRPC.User user) {
+        this.f45595b = bnVar;
+        this.f45596c = tL_attachMenuBot;
         this.d = tL_error;
-        this.f45048e = user;
+        this.f45597e = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f45045a) {
+        switch (this.f45594a) {
             case 0:
-                an.j0(this.f45046b, this.f45047c, this.d, this.f45048e);
+                bn.j0(this.f45595b, this.f45596c, this.d, this.f45597e);
                 return;
             default:
-                an.x0(this.f45046b, this.f45047c, this.d, this.f45048e);
+                bn.x0(this.f45595b, this.f45596c, this.d, this.f45597e);
                 return;
         }
     }
 
-    public ah(an anVar, TLRPC.TL_error tL_error, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user) {
-        this.f45046b = anVar;
+    public ah(bn bnVar, TLRPC.TL_error tL_error, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user) {
+        this.f45595b = bnVar;
         this.d = tL_error;
-        this.f45047c = tL_attachMenuBot;
-        this.f45048e = user;
+        this.f45596c = tL_attachMenuBot;
+        this.f45597e = user;
     }
 }

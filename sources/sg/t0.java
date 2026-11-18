@@ -1,14 +1,14 @@
 package sg;
 public interface t0 {
-    void h0();
+    void e0();
 
-    void m();
+    void j();
 
-    void o();
+    void k();
 
-    void q0();
+    void n();
 
-    void t();
+    void n0();
 
-    boolean z();
+    boolean y();
 }

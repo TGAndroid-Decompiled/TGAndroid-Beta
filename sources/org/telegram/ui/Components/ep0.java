@@ -1,26 +1,25 @@
 package org.telegram.ui.Components;
-public final class ep0 implements Runnable {
-    public final int f34405a;
-    public final tr0 f34406b;
-    public final int f34407c;
+public final class ep0 implements org.telegram.messenger.x10 {
+    public final int f34781a;
+    public final gt0 f34782b;
 
-    public ep0(tr0 tr0Var, int i7, int i10) {
-        this.f34405a = i10;
-        this.f34406b = tr0Var;
-        this.f34407c = i7;
+    public ep0(gt0 gt0Var, int i7) {
+        this.f34781a = i7;
+        this.f34782b = gt0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34405a) {
+    public final void a(Object obj) {
+        int i7 = this.f34781a;
+        gt0 gt0Var = this.f34782b;
+        fi.i6 i6Var = (fi.i6) obj;
+        switch (i7) {
             case 0:
-                this.f34406b.h.scrollBy(0, this.f34407c);
-                return;
-            case 1:
-                this.f34406b.h.scrollBy(0, this.f34407c);
+                org.telegram.messenger.g0.h3(new hn0(3, gt0Var, i6Var), 100L);
                 return;
             default:
-                this.f34406b.h.scrollBy(0, this.f34407c);
+                int[] iArr = gt0.f35563t2;
+                org.telegram.messenger.g0.h3(new hn0(3, gt0Var, i6Var), 100L);
                 return;
         }
     }

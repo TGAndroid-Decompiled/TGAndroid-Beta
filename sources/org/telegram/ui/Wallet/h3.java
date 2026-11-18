@@ -1,31 +1,65 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-public final class h3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f43909a;
-    public final o3 f43910b;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.jc;
+import org.telegram.ui.bb1;
+public final class h3 implements org.telegram.ui.ActionBar.r1, r0.m, jc {
+    public final int f44305a;
+    public final Object f44306b;
 
-    public h3(o3 o3Var, int i7) {
-        this.f43909a = i7;
-        this.f43910b = o3Var;
+    public h3(Object obj, int i7) {
+        this.f44305a = i7;
+        this.f44306b = obj;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f43909a) {
-            case 0:
-                o3 o3Var = this.f43910b;
-                o3Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o3Var.R = floatValue;
-                o3Var.f44229r.setUseGyroscope(floatValue);
+    public r0.l1 P0(View view, r0.l1 l1Var) {
+        w3 w3Var = (w3) this.f44306b;
+        w3Var.I = l1Var.f56258a.f(647);
+        w3Var.h.requestLayout();
+        return r0.l1.f56257b;
+    }
+
+    public void a(float f10, float f11, int i7) {
+        switch (this.f44305a) {
+            case 2:
+                ((x6) this.f44306b).J.setShadowLayer(f10 * 2.0f, f11, -0.0f, i0.a.o(i7, Math.round(Color.alpha(i7) * 0.5f)));
+                return;
+            case 3:
+                ((TextPaint) this.f44306b).setShadowLayer(f10, 0.0f, f11, i7);
                 return;
             default:
-                o3 o3Var2 = this.f43910b;
-                o3Var2.getClass();
-                o3Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o3Var2.e();
+                ((org.telegram.ui.Components.m6) this.f44306b).s(f10, f11, i7);
                 return;
         }
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f44305a) {
+            case 0:
+                ((org.telegram.ui.ActionBar.h2) this.f44306b).presentFragment(new bb1(6, null));
+                return;
+            default:
+                d9.e0((d9) this.f44306b);
+                return;
+        }
+    }
+
+    @Override
+    public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+        ((q8) this.f44306b).f44832d0.f0();
+    }
+
+    @Override
+    public void V(ImageReceiver imageReceiver) {
+    }
+
+    @Override
+    public void G0(int i7, Drawable drawable) {
     }
 }

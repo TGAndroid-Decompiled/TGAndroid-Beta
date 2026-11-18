@@ -1,68 +1,122 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.messenger.Utilities;
-public final class r9 implements Runnable {
-    public boolean f38902a;
-    public int f38903b;
-    public int f38904c;
-    public final s9 d;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class r9 extends Drawable implements Drawable.Callback {
+    public static int[] f39066s;
+    public final Context f39067a;
+    public final m6 f39068b;
+    public Drawable f39069c;
+    public Drawable d;
+    public int f39070e;
+    public int f39071f;
+    public int h;
+    public int f39072n;
+    public int f39073r;
 
-    public r9(s9 s9Var) {
-        this.d = s9Var;
+    public r9(Context context) {
+        this.f39067a = context;
+        m6 m6Var = new m6(false, false, false);
+        this.f39068b = m6Var;
+        m6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
+        m6Var.n(0.2f, 160L, lr.h);
+        m6Var.w(org.telegram.messenger.g0.L(10.0f));
+        m6Var.f37377b = 17;
+        m6Var.setCallback(this);
+        m6Var.U = true;
+        if (f39066s != null) {
+            return;
+        }
+        f39066s = new int[]{2131232587, 2131232588, 2131232591, 2131232592, 2131232595, 2131232596, 2131232599, 2131232600, 2131232603, 2131232604, 2131232607, 2131232608, 2131232611, 2131232612, 2131232615, 2131232616, 2131232619, 2131232620, 2131232585, 2131232586, 2131232589, 2131232590, 2131232593, 2131232594, 2131232597, 2131232598, 2131232601, 2131232602, 2131232605, 2131232606, 2131232609, 2131232610, 2131232613, 2131232614, 2131232617, 2131232618, 2131232621, 2131232622};
     }
 
     @Override
-    public final void run() {
-        int i7;
-        Bitmap bitmap;
-        s9 s9Var = this.d;
-        Paint paint = s9Var.f39255w;
-        if (s9Var.f39240f == null) {
-            s9Var.f39240f = new Bitmap[2];
-            s9Var.f39242i = new Canvas[2];
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.d;
+        if (drawable != null && this.f39069c != null) {
+            drawable.draw(canvas);
+            this.f39069c.draw(canvas);
+            canvas.save();
+            canvas.translate(getBounds().exactCenterX(), getBounds().exactCenterY());
+            this.f39068b.draw(canvas);
+            canvas.restore();
         }
-        int i10 = (int) (this.f38903b / 15.0f);
-        for (int i11 = 0; i11 < 2; i11++) {
-            if (i11 == 0) {
-                i7 = s9Var.f39252s;
-            } else {
-                i7 = this.f38904c;
-            }
-            int i12 = (int) (i7 / 15.0f);
-            Bitmap bitmap2 = s9Var.f39240f[i11];
-            if (bitmap2 != null && ((bitmap2.getHeight() != i12 || s9Var.f39240f[i11].getWidth() != i10) && (bitmap = s9Var.f39240f[i11]) != null)) {
-                bitmap.recycle();
-                s9Var.f39240f[i11] = null;
-            }
-            System.currentTimeMillis();
-            Bitmap[] bitmapArr = s9Var.f39240f;
-            if (bitmapArr[i11] == null) {
-                try {
-                    bitmapArr[i11] = Bitmap.createBitmap(i10, i12, Bitmap.Config.ARGB_8888);
-                    s9Var.f39242i[i11] = new Canvas(s9Var.f39240f[i11]);
-                    s9Var.f39242i[i11].scale(i10 / s9Var.f39239e[i11].getWidth(), i12 / s9Var.f39239e[i11].getHeight());
-                } catch (Throwable th2) {
-                    org.telegram.messenger.a8.g(th2, true);
-                }
-            }
-            if (i11 == 1) {
-                s9Var.f39240f[i11].eraseColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f28849d6, s9Var.f39257y));
-            } else {
-                s9Var.f39240f[i11].eraseColor(0);
-            }
-            paint.setAlpha(255);
-            Utilities.stackBlurBitmap(s9Var.f39239e[i11], 15);
-            Canvas canvas = s9Var.f39242i[i11];
-            if (canvas != null) {
-                canvas.drawBitmap(s9Var.f39239e[i11], 0.0f, 0.0f, paint);
-            }
-            if (this.f38902a) {
-                return;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        Drawable drawable = this.f39069c;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+        }
+        Drawable drawable2 = this.d;
+        if (drawable2 != null) {
+            drawable2.setBounds(getBounds());
+        }
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        scheduleSelf(runnable, j3);
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        int o4 = i0.a.o(this.f39070e, i7);
+        if (this.f39070e != o4) {
+            this.f39070e = o4;
+            Drawable drawable = this.f39069c;
+            if (drawable != null) {
+                drawable.setColorFilter(o4, PorterDuff.Mode.MULTIPLY);
+                invalidateSelf();
             }
         }
-        org.telegram.messenger.g0.h3(new dg(this, 12));
+        int o10 = i0.a.o(this.f39071f, i7);
+        if (this.f39071f != o10) {
+            this.f39071f = o10;
+            if (this.f39069c != null) {
+                this.d.setColorFilter(o10, PorterDuff.Mode.MULTIPLY);
+                invalidateSelf();
+            }
+        }
+        int o11 = i0.a.o(this.h, i7);
+        if (this.h != o11) {
+            this.h = o11;
+            this.f39068b.v(o11, false);
+            invalidateSelf();
+        }
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

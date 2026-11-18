@@ -5,16 +5,16 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.RandomAccess;
 public final class t extends c implements RandomAccess {
-    public final Object[] f13838a;
-    public final int f13839b;
-    public int f13840c;
+    public final Object[] f14155a;
+    public final int f14156b;
+    public int f14157c;
     public int d;
 
     public t(int i7, Object[] objArr) {
-        this.f13838a = objArr;
+        this.f14155a = objArr;
         if (i7 >= 0) {
             if (i7 <= objArr.length) {
-                this.f13839b = objArr.length;
+                this.f14156b = objArr.length;
                 this.d = i7;
                 return;
             }
@@ -34,24 +34,24 @@ public final class t extends c implements RandomAccess {
     public final Object get(int i7) {
         int f10 = f();
         if (i7 >= 0 && i7 < f10) {
-            return this.f13838a[(this.f13840c + i7) % this.f13839b];
+            return this.f14155a[(this.f14157c + i7) % this.f14156b];
         }
         throw new IndexOutOfBoundsException(p0.m(i7, f10, "index: ", ", size: "));
     }
 
     public final void i() {
         if (20 <= this.d) {
-            int i7 = this.f13840c;
-            int i10 = this.f13839b;
+            int i7 = this.f14157c;
+            int i10 = this.f14156b;
             int i11 = (i7 + 20) % i10;
-            Object[] objArr = this.f13838a;
+            Object[] objArr = this.f14155a;
             if (i7 > i11) {
                 e.e(i7, i10, objArr);
                 e.e(0, i11, objArr);
             } else {
                 e.e(i7, i11, objArr);
             }
-            this.f13840c = i11;
+            this.f14157c = i11;
             this.d -= 20;
             return;
         }
@@ -79,12 +79,12 @@ public final class t extends c implements RandomAccess {
             kotlin.jvm.internal.j.d(array, "copyOf(...)");
         }
         int i10 = this.d;
-        int i11 = this.f13840c;
+        int i11 = this.f14157c;
         int i12 = 0;
         int i13 = 0;
         while (true) {
-            objArr = this.f13838a;
-            if (i13 >= i10 || i11 >= this.f13839b) {
+            objArr = this.f14155a;
+            if (i13 >= i10 || i11 >= this.f14156b) {
                 break;
             }
             array[i13] = objArr[i11];

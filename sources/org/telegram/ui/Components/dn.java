@@ -1,39 +1,136 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
-public final class dn implements View.OnKeyListener {
-    public final int f33997a;
-    public final Object f33998b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class dn implements rx {
+    public final org.telegram.messenger.x10 f34468a;
+    public final fi.n2 f34469b;
 
-    public dn(Object obj, int i7) {
-        this.f33997a = i7;
-        this.f33998b = obj;
+    public dn(org.telegram.messenger.x10 x10Var, fi.n2 n2Var) {
+        this.f34468a = x10Var;
+        this.f34469b = n2Var;
     }
 
     @Override
-    public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
-        switch (this.f33997a) {
-            case 0:
-                hn hnVar = (hn) this.f33998b;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = hnVar.f32119f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
-            default:
-                du duVar = (du) this.f33998b;
-                duVar.getClass();
-                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && duVar.isShowing()) {
-                    duVar.dismiss();
-                    return true;
-                }
-                return false;
-        }
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.bj bjVar, boolean z10, int i7) {
+        this.f34468a.a(new th.h(obj, document));
+        this.f34469b.a(true);
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
+        this.f34468a.a(new th.h(null, document));
+        this.f34469b.a(true);
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void i(int i7) {
+    }
+
+    @Override
+    public final void l(String str) {
+    }
+
+    @Override
+    public final void o(h41 h41Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i7) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j3) {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i7, int i10) {
     }
 }

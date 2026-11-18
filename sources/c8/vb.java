@@ -1,68 +1,75 @@
 package c8;
 
+import android.net.Uri;
 import android.os.Build;
-import android.util.SparseArray;
-import android.view.KeyEvent;
-import android.view.View;
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.WeakHashMap;
+import android.os.SystemClock;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 public abstract class vb {
-    public static boolean f4737a = false;
-    public static Method f4738b = null;
-    public static boolean f4739c = false;
-    public static Field d;
-
-    public static boolean a(View view, KeyEvent keyEvent) {
-        ArrayList arrayList;
-        int size;
-        int indexOfKey;
-        WeakHashMap weakHashMap = r0.i0.f55671a;
-        if (Build.VERSION.SDK_INT < 28) {
-            ArrayList arrayList2 = r0.h0.d;
-            r0.h0 h0Var = (r0.h0) view.getTag(2131296694);
-            WeakReference weakReference = null;
-            r0.h0 h0Var2 = h0Var;
-            if (h0Var == null) {
-                ?? obj = new Object();
-                obj.f55666a = null;
-                obj.f55667b = null;
-                obj.f55668c = null;
-                view.setTag(2131296694, obj);
-                h0Var2 = obj;
-            }
-            WeakReference weakReference2 = h0Var2.f55668c;
-            if (weakReference2 == null || weakReference2.get() != keyEvent) {
-                h0Var2.f55668c = new WeakReference(keyEvent);
-                if (h0Var2.f55667b == null) {
-                    h0Var2.f55667b = new SparseArray();
-                }
-                SparseArray sparseArray = h0Var2.f55667b;
-                if (keyEvent.getAction() == 1 && (indexOfKey = sparseArray.indexOfKey(keyEvent.getKeyCode())) >= 0) {
-                    weakReference = (WeakReference) sparseArray.valueAt(indexOfKey);
-                    sparseArray.removeAt(indexOfKey);
-                }
-                if (weakReference == null) {
-                    weakReference = (WeakReference) sparseArray.get(keyEvent.getKeyCode());
-                }
-                if (weakReference != null) {
-                    View view2 = (View) weakReference.get();
-                    if (view2 == null || !view2.isAttachedToWindow() || (arrayList = (ArrayList) view2.getTag(2131296695)) == null || (size = arrayList.size() - 1) < 0) {
-                        return true;
+    public static q2.v a(j2.h hVar, String str, byte[] bArr, Map map) {
+        Map map2;
+        List list;
+        j2.b0 b0Var = new j2.b0(hVar);
+        Map map3 = Collections.EMPTY_MAP;
+        Uri parse = Uri.parse(str);
+        a8.la.k(parse, "The uri must be set.");
+        j2.m mVar = new j2.m(parse, 2, bArr, map, 0L, -1L, null, 1);
+        int i7 = 0;
+        j2.m mVar2 = mVar;
+        while (true) {
+            try {
+                j2.k kVar = new j2.k(b0Var, mVar2);
+                try {
+                    byte[] b10 = i9.f.b(kVar);
+                    x2.u uVar = new x2.u(mVar, b0Var.f17156c, b0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
+                    ji.j jVar = new ji.j(b10, 22);
+                    jVar.f17949c = uVar;
+                    q2.v vVar = new q2.v(jVar);
+                    String str2 = h2.l0.f13786a;
+                    try {
+                        kVar.close();
+                    } catch (IOException unused) {
                     }
-                    arrayList.get(size).getClass();
-                    throw new ClassCastException();
+                    return vVar;
+                } catch (j2.x e10) {
+                    int i10 = e10.f17225c;
+                    String str3 = null;
+                    if ((i10 == 307 || i10 == 308) && i7 < 5 && (map2 = e10.d) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
+                        str3 = (String) list.get(0);
+                    }
+                    if (str3 != null) {
+                        i7++;
+                        j2.l a10 = mVar2.a();
+                        a10.f17184e = Uri.parse(str3);
+                        mVar2 = a10.d();
+                        String str4 = h2.l0.f13786a;
+                        try {
+                            kVar.close();
+                        } catch (IOException unused2) {
+                        }
+                    } else {
+                        throw e10;
+                    }
                 }
-                return false;
+            } catch (Exception e11) {
+                throw new q2.w(mVar, b0Var.f17156c, b0Var.f17154a.getResponseHeaders(), b0Var.f17155b, e11);
             }
-            return false;
+        }
+    }
+
+    public static boolean b(Throwable th2) {
+        if (Build.VERSION.SDK_INT == 34 && (th2 instanceof NoSuchMethodError) && th2.getMessage() != null && th2.getMessage().contains("Landroid/media/NotProvisionedException;.<init>(")) {
+            return true;
         }
         return false;
     }
 
-    public static boolean b(r0.i r7, android.view.View r8, android.view.Window.Callback r9, android.view.KeyEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.vb.b(r0.i, android.view.View, android.view.Window$Callback, android.view.KeyEvent):boolean");
+    public static boolean c(Throwable th2) {
+        if (Build.VERSION.SDK_INT == 34 && (th2 instanceof NoSuchMethodError) && th2.getMessage() != null && th2.getMessage().contains("Landroid/media/ResourceBusyException;.<init>(")) {
+            return true;
+        }
+        return false;
     }
 }

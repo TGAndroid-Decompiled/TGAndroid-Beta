@@ -7,8 +7,8 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
     public int F = 0;
 
     @Override
-    public final void d(Intent intent, boolean z10, boolean z11, boolean z12, int i7, int i10) {
-        if (!c(intent, z10, z11, z12, i7, i10)) {
+    public final void e(Intent intent, boolean z10, boolean z11, boolean z12, int i7, int i10) {
+        if (!d(intent, z10, z11, z12, i7, i10)) {
             return;
         }
         Bundle extras = intent.getExtras();
@@ -16,20 +16,20 @@ public class ChatsWidgetConfigActivity extends ExternalActionActivity {
             this.F = extras.getInt("appWidgetId", 0);
         }
         if (this.F != 0) {
-            org.telegram.ui.Cells.y0.j(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            gx gxVar = new gx(0, this.F);
-            gxVar.E = new w0(this, 28);
+            org.telegram.ui.Cells.c0.l(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            kx kxVar = new kx(0, this.F);
+            kxVar.E = new w0(this, 28);
             if (org.telegram.messenger.g0.Q1()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.c(-1, gxVar);
+                    this.d.c(-1, kxVar);
                 }
-            } else if (this.f42596c.getFragmentStack().isEmpty()) {
-                this.f42596c.c(-1, gxVar);
+            } else if (this.f43041c.getFragmentStack().isEmpty()) {
+                this.f43041c.c(-1, kxVar);
             }
             if (!org.telegram.messenger.g0.Q1()) {
-                this.f42597e.setVisibility(8);
+                this.f43042e.setVisibility(8);
             }
-            this.f42596c.f0();
+            this.f43041c.f0();
             if (org.telegram.messenger.g0.Q1()) {
                 this.d.f0();
             }

@@ -1,19 +1,19 @@
 package j9;
 
-import a8.ja;
-import c8.r0;
-import c8.u0;
+import a8.la;
+import c8.t0;
+import c8.w0;
 import java.math.RoundingMode;
 public abstract class c {
-    public static final int f16954a = 0;
+    public static final int f17339a = 0;
 
     static {
         Math.log(2.0d);
     }
 
     public static boolean a(double d) {
-        if (r0.b(d)) {
-            if (d == 0.0d || 52 - Long.numberOfTrailingZeros(r0.a(d)) <= Math.getExponent(d)) {
+        if (t0.b(d)) {
+            if (d == 0.0d || 52 - Long.numberOfTrailingZeros(t0.a(d)) <= Math.getExponent(d)) {
                 return true;
             }
             return false;
@@ -22,8 +22,8 @@ public abstract class c {
     }
 
     public static boolean b(double d) {
-        if (d > 0.0d && r0.b(d)) {
-            long a10 = r0.a(d);
+        if (d > 0.0d && t0.b(d)) {
+            long a10 = t0.a(d);
             if ((a10 & (a10 - 1)) == 0) {
                 return true;
             }
@@ -36,17 +36,17 @@ public abstract class c {
         boolean b10;
         RoundingMode roundingMode = RoundingMode.CEILING;
         boolean z11 = false;
-        if (d > 0.0d && r0.b(d)) {
+        if (d > 0.0d && t0.b(d)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        ja.e("x must be positive and finite", z10);
+        la.e("x must be positive and finite", z10);
         int exponent = Math.getExponent(d);
         if (Math.getExponent(d) >= -1022) {
-            switch (b.f16953a[roundingMode.ordinal()]) {
+            switch (b.f17338a[roundingMode.ordinal()]) {
                 case 1:
-                    u0.b(b(d));
+                    w0.b(b(d));
                     break;
                 case 2:
                     break;

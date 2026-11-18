@@ -1,115 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import java.io.File;
-import java.io.FileOutputStream;
+import android.content.Context;
+import android.view.View;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.pc1;
-public final class vo implements ii {
-    public final ki f40475a;
-    public final TL_stories.TL_premium_boostsStatus f40476b;
-    public final org.telegram.ui.ActionBar.e6 f40477c;
-    public final org.telegram.ui.f d;
-    public final long f40478e;
-    public final org.telegram.ui.vb f40479f;
-    public final org.telegram.ui.qc h;
+import org.telegram.ui.WallpapersListActivity;
+public final class vo implements View.OnClickListener {
+    public final int f40734a;
+    public final lp f40735b;
 
-    public vo(ki kiVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.f fVar, long j3, org.telegram.ui.vb vbVar, org.telegram.ui.qc qcVar) {
-        this.f40475a = kiVar;
-        this.f40476b = tL_premium_boostsStatus;
-        this.f40477c = e6Var;
-        this.d = fVar;
-        this.f40478e = j3;
-        this.f40479f = vbVar;
-        this.h = qcVar;
+    public vo(lp lpVar, int i7) {
+        this.f40734a = i7;
+        this.f40735b = lpVar;
     }
 
     @Override
-    public final void R0(Object obj) {
-        uo uoVar = new uo(obj, null, true, 1);
-        uoVar.X1 = this.f40476b;
-        uoVar.f51409a.f51119a = this.f40477c;
-        uoVar.f51459r1 = this.d;
-        uoVar.h1(this.f40478e);
-        uoVar.K1 = new to(this.f40475a, this.f40479f, 1);
-        ?? obj2 = new Object();
-        obj2.f28476a = true;
-        obj2.f28479e = true;
-        this.h.showAsSheet(uoVar, obj2);
-    }
-
-    @Override
-    public final boolean V1() {
-        System.currentTimeMillis();
-        return true;
-    }
-
-    @Override
-    public final void d0(vg vgVar) {
-        vgVar.run();
-    }
-
-    @Override
-    public final boolean g0() {
-        return false;
-    }
-
-    @Override
-    public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        ki kiVar = this.f40475a;
-        try {
-            HashMap<Object, Object> selectedPhotos = kiVar.f36435e2.getSelectedPhotos();
-            if (!selectedPhotos.isEmpty()) {
-                org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) selectedPhotos.values().iterator().next();
-                String str = ffVar.h;
-                if (str == null) {
-                    str = ffVar.I;
+    public final void onClick(View view) {
+        int i7 = this.f40734a;
+        lp lpVar = this.f40735b;
+        switch (i7) {
+            case 0:
+                si siVar = lpVar.S1;
+                if (siVar.f39732w2 == siVar.f39670e2) {
+                    lpVar.U1.setText(org.telegram.messenger.gd.M0(2131752127, null));
+                    si siVar2 = lpVar.S1;
+                    if (siVar2.f39694m2 == null) {
+                        Context context = siVar2.getContext();
+                        org.telegram.ui.ActionBar.i6 i6Var = siVar2.J0;
+                        ?? kiVar = new ki(context, i6Var, siVar2);
+                        kiVar.f35115r = org.telegram.messenger.g0.L(80.0f);
+                        kiVar.f35118x = 3;
+                        di.b1 b1Var = new di.b1(kiVar, context, i6Var, 14);
+                        kiVar.f35114n = b1Var;
+                        qa qaVar = new qa(kiVar, context);
+                        kiVar.f35117w = qaVar;
+                        b1Var.setAdapter(qaVar);
+                        b1Var.setClipToPadding(false);
+                        b1Var.setItemAnimator(null);
+                        b1Var.setLayoutAnimation(null);
+                        b1Var.setVerticalScrollBarEnabled(false);
+                        org.telegram.ui.ActionBar.u6.l(b1Var, 21, org.telegram.ui.ActionBar.n6.A5, i6Var);
+                        kiVar.addView(b1Var, c8.ma.c(-1.0f, -1));
+                        b1Var.setOnScrollListener(new oa(kiVar, 2));
+                        gi.g gVar = new gi.g(kiVar, kiVar.f35115r, 2);
+                        kiVar.f35116s = gVar;
+                        gVar.O = new bi.s2(kiVar, 9);
+                        b1Var.setLayoutManager(gVar);
+                        siVar2.f39694m2 = kiVar;
+                        kiVar.setDelegate(new xa(siVar2, 1));
+                    }
+                    siVar2.G1(siVar2.f39694m2);
+                    fj fjVar = lpVar.S1.f39694m2;
+                    boolean z10 = lpVar.H1;
+                    qa qaVar2 = fjVar.f35117w;
+                    ((ArrayList) qaVar2.f38754e).clear();
+                    WallpapersListActivity.E0((ArrayList) qaVar2.f38754e, z10);
+                    qaVar2.f();
+                    return;
                 }
-                if (str != null) {
-                    File z14 = org.telegram.messenger.w7.z(4);
-                    File file = new File(z14, Utilities.f22414b.nextInt() + ".jpg");
-                    Point c12 = org.telegram.messenger.g0.c1();
-                    Bitmap K = org.telegram.messenger.fc.K(str, null, (float) c12.x, (float) c12.y, true);
-                    K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    uo uoVar = new uo(new pc1(file, file, ""), K, false, 0);
-                    uoVar.X1 = this.f40476b;
-                    uoVar.f51409a.f51119a = this.f40477c;
-                    uoVar.f51459r1 = this.d;
-                    uoVar.H1 = false;
-                    uoVar.G1 = false;
-                    uoVar.f51454p1 = 0.2f;
-                    uoVar.h1(this.f40478e);
-                    uoVar.K1 = new to(kiVar, this.f40479f, 0);
-                    ?? obj = new Object();
-                    obj.f28476a = true;
-                    obj.f28479e = true;
-                    this.h.showAsSheet(uoVar, obj);
-                    kiVar.dismiss();
+                lpVar.U1.setText(org.telegram.messenger.gd.M0(2131745342, null));
+                si siVar3 = lpVar.S1;
+                siVar3.G1(siVar3.f39670e2);
+                return;
+            case 1:
+                if (lpVar.Q0()) {
+                    lpVar.U0(true);
+                    lpVar.a1(true);
+                    return;
                 }
-            }
-        } catch (Throwable th2) {
-            org.telegram.messenger.a8.g(th2, true);
+                lpVar.dismiss();
+                return;
+            case 2:
+                if (lpVar.N1 == null) {
+                    lpVar.W0(!lpVar.H1);
+                    return;
+                }
+                return;
+            default:
+                lpVar.L0(false);
+                return;
         }
-    }
-
-    @Override
-    public final void h1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void K0() {
-    }
-
-    @Override
-    public final void v0() {
-    }
-
-    @Override
-    public final void b2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
     }
 }

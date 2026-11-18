@@ -1,193 +1,176 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
 import java.util.ArrayList;
-import java.util.TreeSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-public final class pq implements Runnable {
-    public final boolean[] E;
-    public final org.telegram.messenger.z10 F;
-    public final org.telegram.ui.ActionBar.u2 G;
-    public final a2 H;
-    public final org.telegram.ui.ActionBar.e6 I;
-    public final org.telegram.ui.Cells.y8 J;
-    public final Context K;
-    public final boolean[] f38383a;
-    public final int[] f38384b;
-    public final org.telegram.ui.Cells.k3 f38385c;
-    public final TreeSet d;
-    public final String[] f38386e;
-    public final oq f38387f;
-    public final org.telegram.ui.Cells.k3 h;
-    public final int[] f38388n;
-    public final ci.p0 f38389r;
-    public final hi.d f38390s;
-    public final boolean f38391w;
-    public final int f38392x;
-    public final TLRPC.User f38393y;
+import java.util.List;
+public class pq extends Path {
+    public static ArrayList f38520g;
+    public int f38524e;
+    public int f38525f;
+    public boolean f38522b = false;
+    public boolean f38523c = true;
+    public float d = 0.0f;
+    public final ArrayList f38521a = new ArrayList(1);
 
-    public pq(boolean[] zArr, int[] iArr, org.telegram.ui.Cells.k3 k3Var, TreeSet treeSet, String[] strArr, oq oqVar, org.telegram.ui.Cells.k3 k3Var2, int[] iArr2, ci.p0 p0Var, hi.d dVar, boolean z10, int i7, TLRPC.User user, boolean[] zArr2, org.telegram.messenger.z10 z10Var, org.telegram.ui.ActionBar.u2 u2Var, a2 a2Var, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.Cells.y8 y8Var, Context context) {
-        this.f38383a = zArr;
-        this.f38384b = iArr;
-        this.f38385c = k3Var;
-        this.d = treeSet;
-        this.f38386e = strArr;
-        this.f38387f = oqVar;
-        this.h = k3Var2;
-        this.f38388n = iArr2;
-        this.f38389r = p0Var;
-        this.f38390s = dVar;
-        this.f38391w = z10;
-        this.f38392x = i7;
-        this.f38393y = user;
-        this.E = zArr2;
-        this.F = z10Var;
-        this.G = u2Var;
-        this.H = a2Var;
-        this.I = e6Var;
-        this.J = y8Var;
-        this.K = context;
+    public pq() {
+    }
+
+    public final void a() {
+        if (Build.VERSION.SDK_INT >= 34 && this.f38523c && !this.f38522b) {
+            b(this.f38521a);
+            this.f38522b = true;
+        }
     }
 
     @Override
-    public final void run() {
-        final org.telegram.ui.Cells.k3 k3Var = this.h;
-        org.telegram.ui.Cells.i3 i3Var = k3Var.d;
-        final boolean[] zArr = this.f38383a;
-        if (!zArr[0]) {
-            final int[] iArr = this.f38384b;
-            if (iArr[0] < 0) {
-                final org.telegram.ui.Cells.k3 k3Var2 = this.f38385c;
-                String charSequence = k3Var2.getText().toString();
-                StringBuilder m10 = com.google.android.gms.internal.vision.e2.m(charSequence);
-                String str = "bot";
-                boolean a10 = sq.a(charSequence, "bot");
-                final TreeSet treeSet = this.d;
-                m10.append((a10 || sq.c(charSequence, treeSet) != null) ? "" : "");
-                String sb2 = m10.toString();
-                final String[] strArr = this.f38386e;
-                if (!TextUtils.equals(strArr[0], sb2)) {
-                    this.f38387f.run();
-                    return;
+    public final void addRect(RectF rectF, Path.Direction direction) {
+        RectF rectF2;
+        if (Build.VERSION.SDK_INT >= 34 && this.f38523c) {
+            ArrayList arrayList = this.f38521a;
+            if (arrayList.size() <= 0 || !((RectF) i5.c.h(1, arrayList)).contains(rectF)) {
+                if (arrayList.size() > 0 && Math.abs(rectF.top - ((RectF) i5.c.h(1, arrayList)).top) <= this.d && Math.abs(rectF.bottom - ((RectF) i5.c.h(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) i5.c.h(1, arrayList)).union(rectF);
+                } else {
+                    ArrayList arrayList2 = f38520g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF2 = (RectF) f38520g.remove(0);
+                    } else {
+                        rectF2 = new RectF();
+                    }
+                    rectF2.set(rectF);
+                    arrayList.add(rectF2);
                 }
-                String trim = i3Var.getText().toString().trim();
-                boolean isEmpty = TextUtils.isEmpty(trim);
-                final int[] iArr2 = this.f38388n;
-                if (isEmpty) {
-                    int i7 = -iArr2[0];
-                    iArr2[0] = i7;
-                    org.telegram.messenger.g0.F3(i7, k3Var, null);
-                    return;
-                }
-                this.f38389r.run();
-                final hi.d dVar = this.f38390s;
-                dVar.setLoading(true);
-                dVar.setEnabled(false);
-                i3Var.setEnabled(false);
-                k3Var2.d.setEnabled(false);
-                final TL_bots.createBot createbot = new TL_bots.createBot();
-                createbot.via_deeplink = this.f38391w;
-                createbot.username = strArr[0];
-                createbot.name = trim;
-                final int i10 = this.f38392x;
-                org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(i10);
-                final TLRPC.User user = this.f38393y;
-                createbot.manager_id = s12.q1(user);
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
-                d3.b bVar = new d3.b(1);
-                final boolean[] zArr2 = this.E;
-                final org.telegram.messenger.z10 z10Var = this.F;
-                final org.telegram.ui.ActionBar.u2 u2Var = this.G;
-                final a2 a2Var = this.H;
-                final org.telegram.ui.ActionBar.e6 e6Var = this.I;
-                final org.telegram.ui.Cells.y8 y8Var = this.J;
-                final Context context = this.K;
-                iArr[0] = connectionsManager.sendRequestTyped(createbot, bVar, new org.telegram.messenger.s10() {
-                    @Override
-                    public final void a(Object obj, Object obj2) {
-                        String p10;
-                        String a02;
-                        TLRPC.User user2 = (TLRPC.User) obj;
-                        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                        if (!zArr[0]) {
-                            iArr[0] = -1;
-                            hi.d dVar2 = dVar;
-                            dVar2.setLoading(false);
-                            dVar2.setEnabled(true);
-                            k3Var.d.setEnabled(true);
-                            k3Var2.d.setEnabled(true);
-                            int i11 = i10;
-                            org.telegram.ui.ActionBar.u2 u2Var2 = u2Var;
-                            if (user2 != null) {
-                                zArr2[0] = true;
-                                org.telegram.messenger.np.s1(i11).X3(user2, false, false);
-                                ArrayList arrayList = new ArrayList();
-                                arrayList.add(user2);
-                                org.telegram.messenger.vr.a0(i11).m1(arrayList, null, false, false);
-                                z10Var.a(user2);
-                                u2Var2.dismiss();
-                            } else if (tL_error != null) {
-                                String str2 = createbot.username;
-                                String str3 = tL_error.text;
-                                TreeSet treeSet2 = treeSet;
-                                a2 a2Var2 = a2Var;
-                                org.telegram.ui.ActionBar.e6 e6Var2 = e6Var;
-                                CharSequence d = sq.d(i11, str2, treeSet2, str3, a2Var2, e6Var2);
-                                if (d != null) {
-                                    strArr[0] = null;
-                                    dVar2.setEnabled(false);
-                                    org.telegram.ui.Cells.y8 y8Var2 = y8Var;
-                                    y8Var2.setText(d);
-                                    org.telegram.ui.ActionBar.q6.U(y8Var2.getTextView(), org.telegram.ui.ActionBar.j6.f29090q7, e6Var2);
-                                    int[] iArr3 = iArr2;
-                                    int i12 = -iArr3[0];
-                                    iArr3[0] = i12;
-                                    org.telegram.messenger.g0.F3(i12, y8Var2, null);
-                                } else if ("BOT_CREATE_LIMIT_EXCEEDED".equalsIgnoreCase(tL_error.text)) {
-                                    org.telegram.messenger.p0 p0Var = org.telegram.messenger.np.s1(i11).f25451y7;
-                                    boolean q10 = org.telegram.messenger.m10.i(i11).q();
-                                    cc ccVar = new cc(u2Var2.F, e6Var2);
-                                    String M0 = org.telegram.messenger.hd.M0(2131751735, null);
-                                    if (q10) {
-                                        a02 = org.telegram.messenger.hd.a0(null, null, 2131751738, Integer.valueOf(((org.telegram.messenger.j0) p0Var.M.f15881b).f24498c));
-                                    } else {
-                                        a02 = org.telegram.messenger.hd.a0(null, null, 2131751737, Integer.valueOf(((org.telegram.messenger.j0) p0Var.M.f15881b).f24498c), Integer.valueOf(((org.telegram.messenger.j0) p0Var.L.f15881b).f24498c));
-                                    }
-                                    SpannableStringBuilder O2 = org.telegram.messenger.g0.O2(a02, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.xj, e6Var2), new fo(u2Var2, 4));
-                                    od odVar = new od(24, u2Var2, context);
-                                    int t6 = org.telegram.messenger.g0.t(O2, "@BotFather");
-                                    if (t6 >= 0) {
-                                        O2.setSpan(new org.telegram.ui.Cells.h(e6Var2, odVar, 6), t6, t6 + 10, 33);
-                                    }
-                                    xb I = ccVar.I(2131624012, M0, O2);
-                                    I.f41635j = 8000;
-                                    I.j();
-                                } else {
-                                    String str4 = tL_error.text;
-                                    if (str4 != null && str4.startsWith("FLOOD_WAIT_")) {
-                                        new cc(u2Var2.F, e6Var2).I(2131624012, org.telegram.messenger.hd.M0(2131751735, null), org.telegram.messenger.hd.a0(null, null, 2131751736, org.telegram.messenger.hd.z(Integer.parseInt(tL_error.text.substring(11))))).j();
-                                    } else if ("MANAGER_PERMISSION_MISSING".equalsIgnoreCase(tL_error.text)) {
-                                        TLRPC.User user3 = user;
-                                        if (!TextUtils.isEmpty(org.telegram.messenger.q10.n(user3))) {
-                                            p10 = "@" + org.telegram.messenger.q10.n(user3);
-                                        } else {
-                                            p10 = org.telegram.messenger.q10.p(user3);
-                                        }
-                                        new cc(u2Var2.F, e6Var2).Q(2131624012, 36, org.telegram.messenger.g0.P2(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.xj, e6Var2), org.telegram.messenger.hd.a0(null, null, 2131751730, p10))).j();
-                                    } else {
-                                        org.telegram.ui.Cells.y0.q(u2Var2.F, e6Var2, tL_error, false);
-                                    }
+                this.f38522b = false;
+                return;
+            }
+            return;
+        }
+        float f10 = rectF.left;
+        int i7 = this.f38524e;
+        float f11 = f10 - i7;
+        float f12 = rectF.top;
+        int i10 = this.f38525f;
+        super.addRect(f11, f12 - i10, rectF.right + i7, rectF.bottom + i10, direction);
+    }
+
+    public final void b(List list) {
+        if (!list.isEmpty()) {
+            boolean z10 = false;
+            if (list.size() == 1) {
+                super.addRect(((RectF) list.get(0)).left - this.f38524e, ((RectF) list.get(0)).top - this.f38525f, ((RectF) list.get(0)).right + this.f38524e, ((RectF) list.get(0)).bottom + this.f38525f, Path.Direction.CW);
+                return;
+            }
+            RectF rectF = (RectF) list.get(0);
+            int size = list.size() - 1;
+            super.moveTo(rectF.left - this.f38524e, rectF.top - this.f38525f);
+            for (int i7 = 1; i7 < list.size(); i7++) {
+                RectF rectF2 = (RectF) list.get(i7);
+                if (rectF2.width() != 0.0f) {
+                    float f10 = rectF.bottom;
+                    int i10 = this.f38525f;
+                    float f11 = f10 + i10;
+                    float f12 = rectF2.top;
+                    if (f11 >= f12 - i10) {
+                        float f13 = rectF.left;
+                        if (f13 <= rectF2.right) {
+                            float f14 = rectF.right;
+                            float f15 = rectF2.left;
+                            if (f14 >= f15) {
+                                if (f13 != f15) {
+                                    super.lineTo(f13 - this.f38524e, f12);
+                                    super.lineTo(rectF2.left - this.f38524e, rectF2.top);
                                 }
-                                org.telegram.messenger.g0.v1(u2Var2.getCurrentFocus());
+                                rectF = rectF2;
                             }
                         }
                     }
-                }, 1024);
+                    z10 = true;
+                    size = i7;
+                    break;
+                }
+            }
+            super.lineTo(rectF.left - this.f38524e, rectF.bottom + this.f38525f);
+            super.lineTo(rectF.right + this.f38524e, rectF.bottom + this.f38525f);
+            for (int i11 = size - 1; i11 >= 0; i11--) {
+                RectF rectF3 = (RectF) list.get(i11);
+                if (rectF3.width() != 0.0f) {
+                    float f16 = rectF.right;
+                    if (f16 != rectF3.right) {
+                        super.lineTo(f16 + this.f38524e, rectF.top);
+                        super.lineTo(rectF3.right + this.f38524e, rectF.top);
+                    }
+                    rectF = rectF3;
+                }
+            }
+            super.lineTo(rectF.right + this.f38524e, rectF.top - this.f38525f);
+            super.close();
+            if (z10) {
+                b(list.subList(size, list.size()));
             }
         }
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        if (Build.VERSION.SDK_INT >= 34 && this.f38523c) {
+            ArrayList arrayList = f38520g;
+            ArrayList arrayList2 = this.f38521a;
+            if (arrayList == null) {
+                f38520g = new ArrayList(arrayList2.size());
+            }
+            f38520g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f38522b = false;
+        }
+    }
+
+    @Override
+    public final void rewind() {
+        super.rewind();
+        if (Build.VERSION.SDK_INT >= 34 && this.f38523c) {
+            ArrayList arrayList = f38520g;
+            ArrayList arrayList2 = this.f38521a;
+            if (arrayList == null) {
+                f38520g = new ArrayList(arrayList2.size());
+            }
+            f38520g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f38522b = false;
+        }
+    }
+
+    public pq(int i7) {
+    }
+
+    @Override
+    public void addRect(float f10, float f11, float f12, float f13, Path.Direction direction) {
+        RectF rectF;
+        if (Build.VERSION.SDK_INT >= 34 && this.f38523c) {
+            ArrayList arrayList = this.f38521a;
+            if (arrayList.size() <= 0 || !((RectF) i5.c.h(1, arrayList)).contains(f10, f11, f12, f13)) {
+                if (arrayList.size() > 0 && Math.abs(f11 - ((RectF) i5.c.h(1, arrayList)).top) <= this.d && Math.abs(f13 - ((RectF) i5.c.h(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) i5.c.h(1, arrayList)).union(f10, f11, f12, f13);
+                } else {
+                    ArrayList arrayList2 = f38520g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF = (RectF) f38520g.remove(0);
+                    } else {
+                        rectF = new RectF();
+                    }
+                    rectF.set(f10, f11, f12, f13);
+                    arrayList.add(rectF);
+                }
+                this.f38522b = false;
+                return;
+            }
+            return;
+        }
+        int i7 = this.f38524e;
+        float f14 = f10 - i7;
+        int i10 = this.f38525f;
+        super.addRect(f14, f11 - i10, f12 + i7, f13 + i10, direction);
     }
 }

@@ -1,22 +1,37 @@
 package org.telegram.ui.Components;
-public final class na implements Runnable {
-    public final int f37507a;
-    public final cb f37508b;
 
-    public na(cb cbVar, int i7) {
-        this.f37507a = i7;
-        this.f37508b = cbVar;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class na extends org.telegram.ui.ActionBar.k {
+    public final au0 G1;
+    public final sa H1;
+
+    public na(sa saVar, Context context, au0 au0Var) {
+        super(context, null);
+        this.H1 = saVar;
+        this.G1 = au0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37507a) {
-            case 0:
-                this.f37508b.onExitTransitionStart();
-                return;
-            default:
-                this.f37508b.onEnterTransitionStart();
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        sa saVar = this.H1;
+        if (saVar.G1 && saVar.H1) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        if (getAlpha() != f10) {
+            super.setAlpha(f10);
+            this.G1.invalidate();
+        }
+    }
+
+    @Override
+    public final void setTag(Object obj) {
+        super.setTag(obj);
+        this.H1.b1();
     }
 }

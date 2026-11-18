@@ -9,16 +9,16 @@ import android.util.Log;
 import androidx.biometric.t;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class g {
-    public static boolean f21073b = false;
-    public static boolean f21074c = false;
-    public static final int f21075e = 0;
-    public static final AtomicBoolean f21072a = new AtomicBoolean();
+    public static boolean f21437b = false;
+    public static boolean f21438c = false;
+    public static final int f21439e = 0;
+    public static final AtomicBoolean f21436a = new AtomicBoolean();
     public static final AtomicBoolean d = new AtomicBoolean();
 
     public static boolean a(Context context) {
         int i7;
         try {
-            if (!f21074c) {
+            if (!f21438c) {
                 try {
                     t a10 = z6.b.a(context);
                     if (Build.VERSION.SDK_INT >= 28) {
@@ -26,25 +26,25 @@ public abstract class g {
                     } else {
                         i7 = 64;
                     }
-                    PackageInfo c10 = a10.c(i7, "com.google.android.gms");
+                    PackageInfo b10 = a10.b(i7, "com.google.android.gms");
                     h.a(context);
-                    if (c10 != null && !h.b(c10, false) && h.b(c10, true)) {
-                        f21073b = true;
+                    if (b10 != null && !h.b(b10, false) && h.b(b10, true)) {
+                        f21437b = true;
                     } else {
-                        f21073b = false;
+                        f21437b = false;
                     }
-                    f21074c = true;
+                    f21438c = true;
                 } catch (PackageManager.NameNotFoundException e10) {
                     Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e10);
-                    f21074c = true;
+                    f21438c = true;
                 }
             }
-            if (!f21073b && "user".equals(Build.TYPE)) {
+            if (!f21437b && "user".equals(Build.TYPE)) {
                 return false;
             }
             return true;
         } catch (Throwable th2) {
-            f21074c = true;
+            f21438c = true;
             throw th2;
         }
     }

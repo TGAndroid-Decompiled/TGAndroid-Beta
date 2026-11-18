@@ -1,82 +1,112 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.text.Collator;
+import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
-public final class v4 implements RequestDelegate {
-    public final int f26930a;
-    public final long f26931b;
-    public final Object f26932c;
+public final class v4 implements Comparator {
+    public final int f27322a;
+    public final Collator f27323b;
 
-    public v4(Object obj, long j3, int i7) {
-        this.f26930a = i7;
-        this.f26932c = obj;
-        this.f26931b = j3;
+    public v4(Collator collator, int i7) {
+        this.f27322a = i7;
+        this.f27323b = collator;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f26930a) {
+    public final int compare(Object obj, Object obj2) {
+        String str;
+        String m10;
+        switch (this.f27322a) {
             case 0:
-                g5 g5Var = (g5) this.f26932c;
-                ArrayList arrayList = g5Var.f23693x;
-                if (tL_error == null) {
-                    TLRPC.contacts_Contacts contacts_contacts = (TLRPC.contacts_Contacts) tLObject;
-                    if (this.f26931b != 0 && (contacts_contacts instanceof TLRPC.TL_contacts_contactsNotModified)) {
-                        g5Var.h = true;
-                        if (!arrayList.isEmpty() && g5Var.f23690r) {
-                            g5Var.c(arrayList, null, null, null);
-                            arrayList.clear();
-                        }
-                        g5Var.getUserConfig().f24964r = (int) (System.currentTimeMillis() / 1000);
-                        g5Var.getUserConfig().v(false);
-                        g0.h3(new k4(g5Var, 6));
-                        if (r2.f26206a) {
-                            a8.b("load contacts don't change");
-                            return;
-                        }
-                        return;
-                    }
-                    g5Var.getUserConfig().h = contacts_contacts.saved_count;
-                    g5Var.getUserConfig().v(false);
-                    g0.h3(new cg(g5Var, contacts_contacts.users, 0, contacts_contacts.contacts, 3));
-                    return;
+                String str2 = (String) obj;
+                String str3 = (String) obj2;
+                char charAt = str2.charAt(0);
+                char charAt2 = str3.charAt(0);
+                if (charAt == '#') {
+                    return 1;
                 }
-                return;
+                if (charAt2 == '#') {
+                    return -1;
+                }
+                return this.f27323b.compare(str2, str3);
             case 1:
-                rd rdVar = (rd) this.f26932c;
-                if (tL_error == null) {
-                    g0.h3(new a4(rdVar, this.f26931b, tLObject, 1));
-                    return;
+                f5 f5Var = (f5) obj;
+                f5 f5Var2 = (f5) obj2;
+                String str4 = f5Var.f23846i;
+                if (str4.length() == 0) {
+                    str4 = f5Var.f23847j;
                 }
-                return;
+                String str5 = f5Var2.f23846i;
+                if (str5.length() == 0) {
+                    str5 = f5Var2.f23847j;
+                }
+                return this.f27323b.compare(str4, str5);
             case 2:
-                g0.h3(new dr((tv) this.f26932c, tLObject, this.f26931b, 4));
-                return;
+                String str6 = "";
+                if (obj instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) obj;
+                    str = i5.m(0, user.first_name, user.last_name);
+                } else if (!(obj instanceof f5)) {
+                    str = "";
+                } else {
+                    f5 f5Var3 = (f5) obj;
+                    TLRPC.User user2 = f5Var3.f23850m;
+                    if (user2 != null) {
+                        str = i5.m(0, user2.first_name, user2.last_name);
+                    } else {
+                        str = i5.m(0, f5Var3.f23846i, f5Var3.f23847j);
+                    }
+                }
+                if (obj2 instanceof TLRPC.User) {
+                    TLRPC.User user3 = (TLRPC.User) obj2;
+                    str6 = i5.m(0, user3.first_name, user3.last_name);
+                } else if (obj2 instanceof f5) {
+                    f5 f5Var4 = (f5) obj2;
+                    TLRPC.User user4 = f5Var4.f23850m;
+                    if (user4 != null) {
+                        m10 = i5.m(0, user4.first_name, user4.last_name);
+                    } else {
+                        m10 = i5.m(0, f5Var4.f23846i, f5Var4.f23847j);
+                    }
+                    str6 = m10;
+                }
+                return this.f27323b.compare(str, str6);
             case 3:
-                bw bwVar = (bw) this.f26932c;
-                long j3 = this.f26931b;
-                if (j3 != 0) {
-                    bwVar.getMessagesStorage().q1(j3);
-                    return;
-                } else {
-                    bwVar.getClass();
-                    return;
+                String str7 = (String) obj;
+                String str8 = (String) obj2;
+                char charAt3 = str7.charAt(0);
+                char charAt4 = str8.charAt(0);
+                if (charAt3 == '#') {
+                    return 1;
                 }
+                if (charAt4 == '#') {
+                    return -1;
+                }
+                return this.f27323b.compare(str7, str8);
+            case 4:
+                String str9 = (String) obj;
+                String str10 = (String) obj2;
+                char charAt5 = str9.charAt(0);
+                char charAt6 = str10.charAt(0);
+                if (charAt5 == '#') {
+                    return 1;
+                }
+                if (charAt6 == '#') {
+                    return -1;
+                }
+                return this.f27323b.compare(str9, str10);
             default:
-                ez ezVar = (ez) this.f26932c;
-                if (tL_error == null) {
-                    ezVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
+                String str11 = (String) obj;
+                String str12 = (String) obj2;
+                char charAt7 = str11.charAt(0);
+                char charAt8 = str12.charAt(0);
+                if (charAt7 == '#') {
+                    return 1;
                 }
-                long j10 = this.f26931b;
-                if (j10 != 0) {
-                    ezVar.getMessagesStorage().q1(j10);
-                    return;
-                } else {
-                    ezVar.getClass();
-                    return;
+                if (charAt8 == '#') {
+                    return -1;
                 }
+                return this.f27323b.compare(str11, str12);
         }
     }
 }

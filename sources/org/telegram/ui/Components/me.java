@@ -1,48 +1,142 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class me implements h61, ij0 {
-    public final ChatActivityEnterView f37237a;
+import android.content.SharedPreferences;
+import org.telegram.messenger.CallReceiver;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class me implements Runnable {
+    public final int f37447a;
 
-    public me(ChatActivityEnterView chatActivityEnterView) {
-        this.f37237a = chatActivityEnterView;
-    }
-
-    public void a() {
-        ChatActivityEnterView chatActivityEnterView = this.f37237a;
-        ValueAnimator valueAnimator = chatActivityEnterView.f32298u5;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        chatActivityEnterView.f32313w5 = 0.0f;
-        chatActivityEnterView.f32305v5 = 0.0f;
-        fh0 fh0Var = chatActivityEnterView.f32207h1;
-        if (fh0Var != null) {
-            fh0Var.setRotation(0.0f);
-            fh0 fh0Var2 = chatActivityEnterView.f32207h1;
-            fh0Var2.setPivotX(fh0Var2.getWidth() / 2.0f);
-            fh0 fh0Var3 = chatActivityEnterView.f32207h1;
-            fh0Var3.setPivotY(fh0Var3.getHeight() / 2.0f);
-            if (chatActivityEnterView.f32207h1.getAnimatedDrawable() == chatActivityEnterView.s5) {
-                chatActivityEnterView.f32207h1.setProgress(0.0f);
-            }
-        }
-        od odVar = chatActivityEnterView.f32278r5;
-        chatActivityEnterView.f32278r5 = null;
-        if (odVar != null) {
-            odVar.run();
-        }
+    public me(int i7) {
+        this.f37447a = i7;
     }
 
     @Override
-    public boolean b(int i7, View view) {
-        if (view instanceof ki.y) {
-            ChatActivityEnterView chatActivityEnterView = this.f37237a;
-            chatActivityEnterView.setFieldText(((ki.y) view).getCommand() + " ");
-            chatActivityEnterView.f32246n0.c();
-            return true;
+    public final void run() {
+        switch (this.f37447a) {
+            case 0:
+                MediaController.B().B0(0, 0, false, false);
+                return;
+            case 1:
+                MediaController.B().B0(0, 0, false, false);
+                return;
+            case 2:
+                return;
+            case 3:
+                int i7 = rn.f39206s1;
+                return;
+            case 4:
+                PhotoViewer.p1().z0(false, false);
+                return;
+            case 5:
+                PhotoViewer.p1().z0(false, false);
+                return;
+            case 6:
+                int[] iArr = mt.d2;
+                return;
+            case 7:
+                org.telegram.messenger.ks.e().k(175, new Object[0]);
+                return;
+            case 8:
+                if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
+                    VoIPService.getSharedInstance().setMicMute(false, true, false);
+                    return;
+                }
+                return;
+            case 9:
+                org.telegram.messenger.ks.e().k(98, 512);
+                return;
+            case 10:
+                org.telegram.messenger.ks.e().k(99, 512);
+                return;
+            case 11:
+                org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
+                if (Q != 0) {
+                    ?? obj = new Object();
+                    obj.f28923a = true;
+                    Q.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
+                    return;
+                }
+                return;
+            case 12:
+                int i10 = wy0.f41815f;
+                return;
+            case 13:
+                SharedPreferences.Editor edit = org.telegram.messenger.mp.g1().edit();
+                mz0.f37674f = Boolean.TRUE;
+                edit.putBoolean("nothanos", true).apply();
+                return;
+            case 14:
+                SharedPreferences.Editor edit2 = org.telegram.messenger.mp.g1().edit();
+                mz0.f37674f = Boolean.TRUE;
+                edit2.putBoolean("nothanos", true).apply();
+                return;
+            case 15:
+                int i11 = z11.m0;
+                return;
+            case 16:
+                org.telegram.messenger.pv.h();
+                return;
+            case 17:
+                org.telegram.ui.Components.voip.e0.m();
+                return;
+            case 18:
+                org.telegram.ui.Components.voip.j1.o();
+                return;
+            case 19:
+                org.telegram.messenger.ks.e().k(175, new Object[0]);
+                return;
+            case 20:
+                org.telegram.ui.Components.voip.h2.b();
+                return;
+            case 21:
+                org.telegram.ui.Components.voip.i2.g();
+                return;
+            case 22:
+                fi.m5.J0();
+                return;
+            case 23:
+                org.telegram.ui.f40 f40Var = org.telegram.ui.f40.C5;
+                if (f40Var != null) {
+                    f40Var.show();
+                    return;
+                }
+                return;
+            case 24:
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().setMicMute(false, true, false);
+                    return;
+                }
+                return;
+            case 25:
+                String str = LaunchActivity.C1;
+                return;
+            case 26:
+                String str2 = LaunchActivity.C1;
+                return;
+            case 27:
+                String str3 = LaunchActivity.C1;
+                org.telegram.messenger.t0.F = false;
+                org.telegram.messenger.t0.H = System.currentTimeMillis();
+                return;
+            case 28:
+                return;
+            default:
+                CallReceiver.a();
+                return;
         }
-        return false;
+    }
+
+    public me(Object obj, int i7) {
+        this.f37447a = i7;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

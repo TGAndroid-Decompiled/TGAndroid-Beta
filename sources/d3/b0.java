@@ -6,37 +6,37 @@ import android.view.Choreographer;
 import android.view.Choreographer$VsyncCallback;
 import h2.l0;
 public final class b0 extends z implements Choreographer$VsyncCallback {
-    public final Handler f7353e;
+    public final Handler f7636e;
 
     public b0(Choreographer choreographer, DisplayManager displayManager) {
         super(choreographer, displayManager);
-        this.f7353e = l0.q(null);
+        this.f7636e = l0.q(null);
     }
 
     @Override
     public final void a() {
-        this.f7498b.registerDisplayListener(this, l0.q(null));
-        this.f7497a.postVsyncCallback(this);
+        this.f7781b.registerDisplayListener(this, l0.q(null));
+        this.f7780a.postVsyncCallback(this);
     }
 
     @Override
     public final void b() {
-        this.f7498b.unregisterDisplayListener(this);
-        this.f7353e.removeCallbacksAndMessages(null);
-        this.f7497a.removeVsyncCallback(this);
-        this.f7499c = -9223372036854775807L;
+        this.f7781b.unregisterDisplayListener(this);
+        this.f7636e.removeCallbacksAndMessages(null);
+        this.f7780a.removeVsyncCallback(this);
+        this.f7782c = -9223372036854775807L;
         this.d = -9223372036854775807L;
     }
 
     @Override
     public final void onDisplayChanged(int i7) {
         if (i7 == 0) {
-            this.f7497a.postVsyncCallback(this);
+            this.f7780a.postVsyncCallback(this);
         }
     }
 
     public final void onVsync(Choreographer.FrameData frameData) {
-        this.f7499c = frameData.getFrameTimeNanos();
+        this.f7782c = frameData.getFrameTimeNanos();
         Choreographer.FrameTimeline[] frameTimelines = frameData.getFrameTimelines();
         long j3 = -9223372036854775807L;
         if (frameTimelines.length >= 2) {
@@ -48,6 +48,6 @@ public final class b0 extends z implements Choreographer$VsyncCallback {
         } else {
             this.d = -9223372036854775807L;
         }
-        this.f7353e.postDelayed(new ch.w(this, 4), 500L);
+        this.f7636e.postDelayed(new ca.r(this, 8), 500L);
     }
 }

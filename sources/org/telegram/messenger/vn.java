@@ -1,123 +1,100 @@
 package org.telegram.messenger;
 
-import android.content.Context;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.Vector;
 public final class vn implements RequestDelegate {
-    public final int f27083a;
-    public final c1 f27084b;
-    public final Object f27085c;
+    public final int f27458a;
+    public final int f27459b;
+    public final Object f27460c;
     public final Object d;
-    public final Object f27086e;
-    public final Object f27087f;
-    public final TLObject f27088g;
 
-    public vn(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject, int i7) {
-        this.f27083a = i7;
-        this.f27084b = c1Var;
-        this.f27085c = obj;
+    public vn(Object obj, int i7, Object obj2, int i10) {
+        this.f27458a = i10;
+        this.f27460c = obj;
+        this.f27459b = i7;
         this.d = obj2;
-        this.f27086e = obj3;
-        this.f27087f = obj4;
-        this.f27088g = tLObject;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27083a) {
+        switch (this.f27458a) {
             case 0:
-                np npVar = (np) this.f27084b;
-                Context context = (Context) this.f27085c;
-                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.d;
-                nr nrVar = (nr) this.f27086e;
-                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.f27087f;
-                TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) this.f27088g;
-                npVar.getClass();
-                if (tL_error == null) {
-                    if (context != null) {
-                        g0.h3(new cn(1, context, t1Var));
+                mp mpVar = (mp) this.f27460c;
+                String str = (String) this.d;
+                if (tLObject instanceof TLRPC.TL_boolTrue) {
+                    boolean z10 = s2.f26723a;
+                    int i7 = this.f27459b;
+                    if (z10) {
+                        a8.b("account " + mpVar.currentAccount + " registered for push, push type: " + i7);
                     }
-                    npVar.O3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new a(nrVar, 27));
-                    return;
+                    mpVar.getUserConfig().d = true;
+                    bz.f23165g = str;
+                    bz.f23162f = i7;
+                    mpVar.getUserConfig().v(false);
                 }
-                g0.h3(new dn(npVar, nrVar, context, t1Var, tL_error, e2Var, tL_channels_convertToGigagroup, 1));
+                g0.g3(new qn(mpVar, 9));
                 return;
-            default:
-                final c10 c10Var = (c10) this.f27084b;
-                final TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f27085c;
-                final String str = (String) this.d;
-                final a10 a10Var = (a10) this.f27086e;
-                final di.x2 x2Var = (di.x2) this.f27087f;
-                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f27088g;
-                c10Var.getClass();
-                if (tLObject instanceof TLRPC.TL_messages_translateResult) {
-                    ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
-                    if (arrayList.size() <= 0) {
-                        g0.h3(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r6) {
-                                    case 0:
-                                        c10 c10Var2 = c10Var;
-                                        c10Var2.getClass();
-                                        TL_stories.StoryItem storyItem2 = storyItem;
-                                        storyItem2.translatedLng = str;
-                                        storyItem2.translatedText = null;
-                                        c10Var2.getMessagesController().P1().f12327k.h(storyItem2.dialogId, storyItem2);
-                                        c10Var2.K.remove(a10Var);
-                                        x2Var.run();
-                                        return;
-                                    default:
-                                        c10 c10Var3 = c10Var;
-                                        c10Var3.getClass();
-                                        TL_stories.StoryItem storyItem3 = storyItem;
-                                        storyItem3.translatedLng = str;
-                                        storyItem3.translatedText = null;
-                                        c10Var3.getMessagesController().P1().f12327k.h(storyItem3.dialogId, storyItem3);
-                                        c10Var3.K.remove(a10Var);
-                                        x2Var.run();
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    } else {
-                        g0.h3(new dn(c10Var, storyItem, str, tL_textWithEntities, arrayList.get(0), a10Var, x2Var, 4));
-                        return;
-                    }
-                }
-                g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r6) {
-                            case 0:
-                                c10 c10Var2 = c10Var;
-                                c10Var2.getClass();
-                                TL_stories.StoryItem storyItem2 = storyItem;
-                                storyItem2.translatedLng = str;
-                                storyItem2.translatedText = null;
-                                c10Var2.getMessagesController().P1().f12327k.h(storyItem2.dialogId, storyItem2);
-                                c10Var2.K.remove(a10Var);
-                                x2Var.run();
-                                return;
-                            default:
-                                c10 c10Var3 = c10Var;
-                                c10Var3.getClass();
-                                TL_stories.StoryItem storyItem3 = storyItem;
-                                storyItem3.translatedLng = str;
-                                storyItem3.translatedText = null;
-                                c10Var3.getMessagesController().P1().f12327k.h(storyItem3.dialogId, storyItem3);
-                                c10Var3.K.remove(a10Var);
-                                x2Var.run();
-                                return;
+            case 1:
+                i7 i7Var = (i7) this.f27460c;
+                h7 h7Var = (h7) this.d;
+                i7Var.f24646z0 = false;
+                boolean z11 = tLObject instanceof Vector;
+                int i10 = this.f27459b;
+                if (z11) {
+                    Vector vector = (Vector) tLObject;
+                    if (!vector.objects.isEmpty()) {
+                        if (i7Var.f24629q0 == null) {
+                            i7Var.f24629q0 = new HashMap();
+                        }
+                        for (int i11 = 0; i11 < vector.objects.size(); i11++) {
+                            TLRPC.TL_fileHash tL_fileHash = (TLRPC.TL_fileHash) vector.objects.get(i11);
+                            i7Var.f24629q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
                         }
                     }
-                });
+                    i7Var.s(i10);
+                    return;
+                } else if (tL_error != null) {
+                    if (!tL_error.text.equals("FILE_TOKEN_INVALID") && !tL_error.text.equals("REQUEST_TOKEN_INVALID")) {
+                        i7Var.j(0, false);
+                        return;
+                    }
+                    i7Var.f24637u0 = false;
+                    i7Var.e(h7Var, false, false);
+                    i7Var.s(i10);
+                    return;
+                } else {
+                    return;
+                }
+            case 2:
+                g0.g3(new l7((ri) this.f27460c, (TLRPC.StickerSet) this.d, this.f27459b, 9));
+                return;
+            case 3:
+                ri riVar = (ri) this.f27460c;
+                x10 x10Var = (x10) this.d;
+                boolean z12 = tLObject instanceof TLRPC.TL_messages_stickerSet;
+                int i12 = this.f27459b;
+                if (z12) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add((TLRPC.TL_messages_stickerSet) tLObject);
+                    riVar.C1(i12, arrayList, false, (int) (System.currentTimeMillis() / 1000), ri.s(arrayList), new fg(x10Var, 3));
+                    return;
+                }
+                riVar.C1(i12, null, false, (int) (System.currentTimeMillis() / 1000), 0L, new fg(x10Var, 4));
+                return;
+            default:
+                g0.g3(new dg((mp) this.f27460c, tLObject, this.f27459b, (oo) this.d));
                 return;
         }
+    }
+
+    public vn(ri riVar, TLRPC.StickerSet stickerSet, int i7) {
+        this.f27458a = 2;
+        this.f27460c = riVar;
+        this.d = stickerSet;
+        this.f27459b = i7;
     }
 }

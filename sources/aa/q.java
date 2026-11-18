@@ -1,23 +1,23 @@
 package aa;
 public final class q implements Runnable {
-    public final int f846a;
-    public final t f847b;
-    public final ia.c f848c;
+    public final int f845a;
+    public final t f846b;
+    public final ia.c f847c;
 
     public q(t tVar, ia.c cVar, int i7) {
-        this.f846a = i7;
-        this.f847b = tVar;
-        this.f848c = cVar;
+        this.f845a = i7;
+        this.f846b = tVar;
+        this.f847c = cVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f846a) {
+        switch (this.f845a) {
             case 0:
-                this.f847b.a(this.f848c);
+                this.f846b.a(this.f847c);
                 return;
             default:
-                this.f847b.a(this.f848c);
+                this.f846b.a(this.f847c);
                 return;
         }
     }

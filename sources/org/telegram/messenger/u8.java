@@ -3,26 +3,26 @@ package org.telegram.messenger;
 import android.util.SparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
 public final class u8 implements Runnable {
-    public final int f26796a;
-    public final y8 f26797b;
+    public final int f27135a;
+    public final y8 f27136b;
 
     public u8(y8 y8Var, int i7) {
-        this.f26796a = i7;
-        this.f26797b = y8Var;
+        this.f27135a = i7;
+        this.f27136b = y8Var;
     }
 
     @Override
     public final void run() {
         int i7;
-        switch (this.f26796a) {
+        switch (this.f27135a) {
             case 0:
-                y8 y8Var = this.f26797b;
-                y8Var.L = t0.f26609b.getSharedPreferences("uploadinfo", 0);
-                y8Var.f27676i = t0.p();
-                if (r2.f26206a) {
-                    a8.b("start upload on slow network = " + y8Var.f27676i);
+                y8 y8Var = this.f27136b;
+                y8Var.L = t0.f26915b.getSharedPreferences("uploadinfo", 0);
+                y8Var.f28092i = t0.p();
+                if (s2.f26723a) {
+                    a8.b("start upload on slow network = " + y8Var.f28092i);
                 }
-                if (y8Var.f27676i) {
+                if (y8Var.f28092i) {
                     i7 = 1;
                 } else {
                     i7 = 8;
@@ -33,17 +33,17 @@ public final class u8 implements Runnable {
                 y8Var.e();
                 return;
             case 1:
-                y8 y8Var2 = this.f26797b;
-                SparseIntArray sparseIntArray = y8Var2.f27683p;
+                y8 y8Var2 = this.f27136b;
+                SparseIntArray sparseIntArray = y8Var2.f28099p;
                 for (int i11 = 0; i11 < sparseIntArray.size(); i11++) {
-                    ConnectionsManager.getInstance(y8Var2.f27670a).cancelRequest(sparseIntArray.valueAt(i11), true);
+                    ConnectionsManager.getInstance(y8Var2.f28086a).cancelRequest(sparseIntArray.valueAt(i11), true);
                 }
                 return;
             case 2:
-                this.f26797b.f27684q.clear();
+                this.f27136b.f28100q.clear();
                 return;
             default:
-                this.f26797b.e();
+                this.f27136b.e();
                 return;
         }
     }

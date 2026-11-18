@@ -2,52 +2,83 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-public final class aw extends FrameLayout {
-    public final Paint f33095a;
-    public final ly f33096b;
+import android.view.MotionEvent;
+import j$.util.Objects;
+public final class aw extends rg.d {
+    public boolean f33472g3;
+    public final ry f33473h3;
 
-    public aw(ly lyVar, Context context) {
-        super(context);
-        this.f33096b = lyVar;
-        this.f33095a = new Paint();
+    public aw(ry ryVar, Context context) {
+        super(context, null);
+        this.f33473h3 = ryVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ly lyVar = this.f33096b;
-        zv zvVar = lyVar.C0;
-        float L = org.telegram.messenger.g0.L(50.0f) * lyVar.f36993u1.p();
-        if (L > getMeasuredHeight()) {
-            return;
-        }
-        canvas.save();
-        if (L != 0.0f) {
-            canvas.clipRect(0.0f, L, getMeasuredWidth(), getMeasuredHeight());
-        }
-        int z10 = lyVar.z(org.telegram.ui.ActionBar.j6.f29269zf);
-        Paint paint = this.f33095a;
-        paint.setColor(z10);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), zvVar.getExpandedOffset() + org.telegram.messenger.g0.L(36.0f), paint);
         super.dispatchDraw(canvas);
-        if (zvVar.f41400s != null) {
-            canvas.save();
-            float f10 = zvVar.f41382d0 - zvVar.f41384e0;
-            float f11 = zvVar.f41403w;
-            if (f11 > 0.0f) {
-                f10 = ((zvVar.f41400s.getX() - zvVar.getScrollX()) * zvVar.f41403w) + ((1.0f - f11) * f10);
+        this.f33473h3.f39378o2.g();
+    }
+
+    @Override
+    public final void l0(int i7) {
+        int i10;
+        ry ryVar = this.f33473h3;
+        my myVar = ryVar.A0;
+        if (ryVar.D0 != null) {
+            fw fwVar = ryVar.C0;
+            if (ryVar.E0.canScrollVertically(-1)) {
+                i10 = org.telegram.messenger.g0.f1();
+            } else {
+                i10 = 0;
             }
-            canvas.translate(f10, 0.0f);
-            zvVar.f41400s.draw(canvas);
-            canvas.restore();
+            fwVar.setUnderlineHeight(i10);
         }
-        canvas.restore();
+        if (myVar != null && getAdapter() == myVar && myVar.d == 0) {
+            my myVar2 = myVar.P.f37268x;
+            if (!myVar2.R.H0.G && !myVar2.E) {
+                if (ryVar.F0.N0() + 50 > myVar.b()) {
+                    ly lyVar = myVar.P;
+                    Objects.requireNonNull(lyVar);
+                    org.telegram.messenger.g0.g3(new zv(lyVar, 0));
+                }
+            }
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        ry ryVar = this.f33473h3;
+        if (!ryVar.f39350f) {
+            org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
+            aw awVar = ryVar.E0;
+            ryVar.getMeasuredHeight();
+            boolean q10 = p10.q(motionEvent, awVar, ryVar.f39359h2, this.f34074o2);
+            if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        ry ryVar = this.f33473h3;
+        if (ryVar.J0 && ryVar.f39414z0.b() > 0) {
+            this.f33472g3 = true;
+            ryVar.F0.h1(0, 0);
+            ryVar.J0 = false;
+            this.f33472g3 = false;
+        }
         super.onLayout(z10, i7, i10, i11, i12);
-        this.f33096b.Z();
+        ryVar.q(true);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f33472g3) {
+            return;
+        }
+        super.requestLayout();
     }
 }

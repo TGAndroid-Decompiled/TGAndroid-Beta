@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.r2;
+import org.telegram.messenger.s2;
 import org.telegram.messenger.t0;
 public class CameraSession {
     public static final int ORIENTATION_HYSTERESIS = 5;
@@ -51,20 +51,20 @@ public class CameraSession {
         this.pictureFormat = i7;
         this.cameraInfo = cameraInfo;
         this.isRound = z10;
-        SharedPreferences sharedPreferences = t0.f26609b.getSharedPreferences("camera", 0);
+        SharedPreferences sharedPreferences = t0.f26915b.getSharedPreferences("camera", 0);
         if (this.cameraInfo.frontCamera != 0) {
             str = "flashMode_front";
         } else {
             str = "flashMode";
         }
         this.currentFlashMode = sharedPreferences.getString(str, "off");
-        OrientationEventListener orientationEventListener = new OrientationEventListener(t0.f26609b) {
+        OrientationEventListener orientationEventListener = new OrientationEventListener(t0.f26915b) {
             @Override
             public void onOrientationChanged(int i10) {
                 if (CameraSession.this.orientationEventListener != null && CameraSession.this.initied && i10 != -1) {
                     CameraSession cameraSession = CameraSession.this;
                     cameraSession.jpegOrientation = cameraSession.roundOrientation(i10, cameraSession.jpegOrientation);
-                    int rotation = ((WindowManager) t0.f26609b.getSystemService("window")).getDefaultDisplay().getRotation();
+                    int rotation = ((WindowManager) t0.f26915b.getSystemService("window")).getDefaultDisplay().getRotation();
                     if (CameraSession.this.lastOrientation != CameraSession.this.jpegOrientation || rotation != CameraSession.this.lastDisplayOrientation) {
                         if (!CameraSession.this.isVideo) {
                             CameraSession.this.configurePhotoCamera();
@@ -86,7 +86,7 @@ public class CameraSession {
     }
 
     private int getDisplayOrientation(Camera.CameraInfo cameraInfo, boolean z10) {
-        int rotation = ((WindowManager) t0.f26609b.getSystemService("window")).getDefaultDisplay().getRotation();
+        int rotation = ((WindowManager) t0.f26915b.getSystemService("window")).getDefaultDisplay().getRotation();
         int i7 = 0;
         if (rotation != 0) {
             if (rotation == 1) {
@@ -146,7 +146,7 @@ public class CameraSession {
             return;
         }
         configurePhotoCamera();
-        SharedPreferences.Editor edit = t0.f26609b.getSharedPreferences("camera", 0).edit();
+        SharedPreferences.Editor edit = t0.f26915b.getSharedPreferences("camera", 0).edit();
         if (this.cameraInfo.frontCamera != 0) {
             str2 = "flashMode_front";
         } else {
@@ -285,11 +285,11 @@ public class CameraSession {
                 updateCameraInfo();
                 updateRotation();
                 if (parameters != null) {
-                    if (z10 && r2.f26206a) {
+                    if (z10 && s2.f26723a) {
                         a8.b("set preview size = " + this.previewSize.getWidth() + " " + this.previewSize.getHeight());
                     }
                     parameters.setPreviewSize(this.previewSize.getWidth(), this.previewSize.getHeight());
-                    if (z10 && r2.f26206a) {
+                    if (z10 && s2.f26723a) {
                         a8.b("set picture size = " + this.pictureSize.getWidth() + " " + this.pictureSize.getHeight());
                     }
                     parameters.setPictureSize(this.pictureSize.getWidth(), this.pictureSize.getHeight());
@@ -456,7 +456,7 @@ public class CameraSession {
             return;
         }
         configurePhotoCamera();
-        SharedPreferences.Editor edit = t0.f26609b.getSharedPreferences("camera", 0).edit();
+        SharedPreferences.Editor edit = t0.f26915b.getSharedPreferences("camera", 0).edit();
         if (this.cameraInfo.frontCamera != 0) {
             str2 = "flashMode_front";
         } else {

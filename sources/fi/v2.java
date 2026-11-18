@@ -1,90 +1,88 @@
 package fi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-public final class v2 extends FrameLayout {
-    public final int f12413a;
-    public final b4 f12414b;
+import android.app.Activity;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.ef;
+import org.telegram.messenger.zy;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.m40;
+public final class v2 implements m40 {
+    public final z3 f12639a;
 
-    public v2(b4 b4Var, Context context, int i7) {
-        super(context);
-        this.f12413a = i7;
-        this.f12414b = b4Var;
+    public v2(z3 z3Var) {
+        this.f12639a = z3Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int x10;
-        switch (this.f12413a) {
-            case 0:
-                b4 b4Var = this.f12414b;
-                if (b4Var.f11508p2.getVisibility() == 0 && b4Var.f11508p2.getLayoutParams().width != (x10 = (int) (((b4Var.f11491k2.getX() + b4Var.f11491k2.getMeasuredWidth()) - b4Var.f11508p2.getX()) + org.telegram.messenger.g0.L(10.0f)))) {
-                    b4Var.f11508p2.getLayoutParams().width = x10;
-                    b4Var.f11508p2.invalidate();
-                    b4Var.f11508p2.requestLayout();
+    public final long a() {
+        return this.f12639a.l1;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int getClassGuid() {
+        return this.f12639a.f12841j2;
+    }
+
+    @Override
+    public final View getFragmentView() {
+        return this.f12639a;
+    }
+
+    @Override
+    public final Activity getParentActivity() {
+        return org.telegram.messenger.g0.W(this.f12639a.getContext());
+    }
+
+    @Override
+    public final void u(ef efVar, e20 e20Var, boolean z10, int i7, int i10, boolean z11, long j3) {
+        org.telegram.messenger.c accountInstance;
+        org.telegram.messenger.c accountInstance2;
+        boolean z12;
+        org.telegram.messenger.c accountInstance3;
+        org.telegram.messenger.c accountInstance4;
+        z3 z3Var = this.f12639a;
+        TL_stories.StoryItem storyItem = z3Var.f12896y1.f12723a;
+        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            storyItem.dialogId = z3Var.l1;
+            if (efVar.f27849b) {
+                if (e20Var != null) {
+                    accountInstance4 = z3Var.getAccountInstance();
+                    String str = efVar.I;
+                    long j10 = z3Var.l1;
+                    ArrayList arrayList = efVar.f27859n;
+                    zy.b0(efVar.f27868x, i7, i10, j10, 0L, j3, 0L, efVar.f27848a, str, null, arrayList, accountInstance4, null, null, null, null, null, e20Var, null, storyItem, null, z10, false, efVar.M);
+                } else {
+                    accountInstance3 = z3Var.getAccountInstance();
+                    String str2 = efVar.I;
+                    long j11 = z3Var.l1;
+                    ArrayList arrayList2 = efVar.f27859n;
+                    zy.b0(efVar.f27868x, i7, i10, j11, 0L, j3, 0L, efVar.f27848a, str2, null, arrayList2, accountInstance3, null, null, null, null, null, null, null, storyItem, null, z10, false, efVar.M);
                 }
-                super.dispatchDraw(canvas);
-                return;
-            case 1:
-                super.dispatchDraw(canvas);
-                b4 b4Var2 = this.f12414b;
-                if (b4Var2.n1 && b4Var2.B0 != null) {
-                    canvas.save();
-                    float f10 = 0.0f;
-                    canvas.translate((getMeasuredWidth() - b4Var2.B0.c()) - org.telegram.messenger.g0.L(6.0f), 0.0f);
-                    org.telegram.ui.Components.u5 u5Var = b4Var2.D0;
-                    if (b4Var2.F0) {
-                        f10 = 1.0f;
-                    }
-                    float e10 = u5Var.e(false, f10);
-                    canvas.scale(e10, e10, b4Var2.B0.c() / 2.0f, org.telegram.messenger.g0.L(20.0f));
-                    org.telegram.ui.Components.g6 g6Var = b4Var2.B0;
-                    g6Var.C = 255;
-                    g6Var.draw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                b4 b4Var3 = this.f12414b;
-                if (b4Var3.n1 && b4Var3.A0 != null) {
-                    canvas.save();
-                    float f11 = 0.0f;
-                    canvas.translate((getMeasuredWidth() - b4Var3.A0.c()) - org.telegram.messenger.g0.L(6.0f), 0.0f);
-                    org.telegram.ui.Components.u5 u5Var2 = b4Var3.C0;
-                    if (b4Var3.E0) {
-                        f11 = 1.0f;
-                    }
-                    float e11 = u5Var2.e(false, f11);
-                    canvas.scale(e11, e11, b4Var3.A0.c() / 2.0f, org.telegram.messenger.g0.L(20.0f));
-                    org.telegram.ui.Components.g6 g6Var2 = b4Var3.A0;
-                    g6Var2.C = 255;
-                    g6Var2.draw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
+            } else if (efVar.h != null) {
+                accountInstance2 = z3Var.getAccountInstance();
+                zy.Z(accountInstance2, efVar.h, efVar.f27850c, null, z3Var.l1, null, null, null, efVar.f27859n, efVar.f27863r, null, efVar.f27868x, null, e20Var, z10, i7, false, efVar.f27848a, null, 0L, j3, 0L, null);
+            } else if (efVar.I != null) {
+                accountInstance = z3Var.getAccountInstance();
+                zy.Z(accountInstance, efVar.I, efVar.f27850c, null, z3Var.l1, null, null, null, efVar.f27859n, efVar.f27863r, null, efVar.f27868x, null, e20Var, z10, i7, false, efVar.f27848a, null, 0L, j3, 0L, null);
+            }
+            if (j3 <= 0) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            z3Var.i0(z12);
         }
     }
 
     @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f12413a) {
-            case 1:
-                if (drawable != this.f12414b.B0 && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            case 2:
-                if (drawable != this.f12414b.A0 && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
-        }
+    public final boolean z() {
+        return false;
     }
 }

@@ -1,202 +1,171 @@
 package kg;
 
-import a8.ja;
 import android.content.Context;
-import android.graphics.SurfaceTexture;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Looper;
-import ki.w2;
-import ki.x3;
-import oi.d2;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.tgnet.TLParseException;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Cells.i3;
-import org.telegram.ui.Cells.k3;
-public final class j1 implements Runnable {
-    public final int f17975a;
-    public final Object f17976b;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import c8.ma;
+import java.util.HashSet;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.fc;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.h20;
+import org.telegram.messenger.n10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.o80;
+public final class j1 extends LinearLayout implements c6 {
+    public final i6 f18361a;
+    public final o80 f18362b;
+    public final ImageReceiver f18363c;
+    public final TextView d;
+    public boolean f18364e;
 
-    public j1(Object obj, int i7) {
-        this.f17975a = i7;
-        this.f17976b = obj;
+    public j1(Context context, i6 i6Var) {
+        super(context);
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f18363c = imageReceiver;
+        this.f18361a = i6Var;
+        setOrientation(1);
+        o80 o80Var = new o80();
+        this.f18362b = o80Var;
+        int i14 = n6.G6;
+        int w02 = n6.w0(i14, i6Var);
+        o80Var.g(n6.r1(0.05f, w02), n6.r1(0.15f, w02), n6.r1(0.1f, w02), n6.r1(0.3f, w02));
+        o80Var.k(4.0f);
+        o80Var.f38032x.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        if (gd.f24216a0) {
+            i7 = 5;
+        } else {
+            i7 = 3;
+        }
+        textView.setGravity(i7);
+        u6.U(textView, i14, i6Var);
+        textView.setTextSize(1, 16.0f);
+        boolean z10 = gd.f24216a0;
+        if (z10) {
+            i10 = 70;
+        } else {
+            i10 = 18;
+        }
+        if (z10) {
+            i11 = 18;
+        } else {
+            i11 = 70;
+        }
+        addView(textView, ma.t(-1, -2, 55, i10, 10, i11, 4));
+        TextView textView2 = new TextView(context);
+        textView2.setGravity(gd.f24216a0 ? 5 : 3);
+        n10.r(textView2, n6.f29807z6, i6Var, null, 2131752678);
+        textView2.setTextSize(1, 13.0f);
+        boolean z11 = gd.f24216a0;
+        if (z11) {
+            i12 = 70;
+        } else {
+            i12 = 18;
+        }
+        if (z11) {
+            i13 = 18;
+        } else {
+            i13 = 70;
+        }
+        addView(textView2, ma.t(-1, -2, 55, i12, 0, i13, 8));
+        setWillNotDraw(false);
+    }
+
+    public final void a(TLRPC.TL_businessLocation tL_businessLocation, boolean z10) {
+        if (tL_businessLocation != null) {
+            this.d.setText(tL_businessLocation.address);
+            if (tL_businessLocation.geo_point != null) {
+                this.f18363c.p0(fc.p(h20.b(tL_businessLocation.geo_point, org.telegram.messenger.g0.L(44.0f), org.telegram.messenger.g0.L(44.0f), 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f24120p)))), "44_44", this.f18362b, 0L, null, null, 0);
+            } else {
+                this.f18363c.w0(null);
+            }
+        }
+        this.f18364e = z10;
+        setPadding(0, 0, 0, z10 ? 1 : 0);
+        invalidate();
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        Object obj;
-        int i7 = this.f17975a;
-        Object obj2 = this.f17976b;
-        switch (i7) {
-            case 0:
-                ((bi.o1) obj2).a(Boolean.FALSE);
-                return;
-            case 1:
-                ns.f(((v1) obj2).f18123a).k(121, new Object[0]);
-                return;
-            case 2:
-                ((ki.e0) obj2).invalidateSelf();
-                return;
-            case 3:
-                ((ki.f0) obj2).invalidateSelf();
-                return;
-            case 4:
-                ((ki.h0) obj2).d();
-                return;
-            case 5:
-                ((ki.t0) obj2).c();
-                return;
-            case 6:
-                ((ki.t0) obj2).c();
-                return;
-            case 7:
-                ((ki.u0) obj2).a();
-                return;
-            case 8:
-                ((ki.v0) obj2).a();
-                return;
-            case 9:
-                ((w2) obj2).invalidate();
-                return;
-            case 10:
-                ((h2.f) obj2).e();
-                return;
-            case 11:
-                x3 x3Var = (x3) obj2;
-                x3Var.R = x3Var.f18697r;
-                return;
-            case 12:
-                l2.f0 f0Var = (l2.f0) obj2;
-                h2.c cVar = f0Var.C;
-                Context context = f0Var.f18954e;
-                String str = h2.l0.f13471a;
-                int generateAudioSessionId = f2.h.d(context).generateAudioSessionId();
-                if (generateAudioSessionId == -1) {
-                    generateAudioSessionId = 0;
-                }
-                cVar.getClass();
-                Looper myLooper = Looper.myLooper();
-                if (myLooper == ((h2.i0) cVar.f13419c).f13456a.getLooper()) {
-                    obj = cVar.f13420e;
-                } else {
-                    if (myLooper == ((h2.i0) cVar.f13418b).f13456a.getLooper()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    ja.p(z10);
-                    obj = cVar.f13421f;
-                }
-                if (((Integer) obj).intValue() != generateAudioSessionId) {
-                    Integer valueOf = Integer.valueOf(generateAudioSessionId);
-                    cVar.f13421f = valueOf;
-                    h2.b bVar = new h2.b(cVar, valueOf, 0);
-                    h2.i0 i0Var = (h2.i0) cVar.f13419c;
-                    if (i0Var.f13456a.getLooper().getThread().isAlive()) {
-                        i0Var.d(bVar);
-                    }
-                    f0Var.t1(1, 10, Integer.valueOf(generateAudioSessionId));
-                    f0Var.t1(2, 10, Integer.valueOf(generateAudioSessionId));
-                    return;
-                }
-                return;
-            case 13:
-                l2.f0 f0Var2 = ((l2.z) obj2).f19233a;
-                f0Var2.x1(null);
-                f0Var2.q1(0, 0);
-                return;
-            case 14:
-                try {
-                    l2.o0.f((l2.j1) obj2);
-                    return;
-                } catch (l2.l e10) {
-                    h2.a.d("ExoPlayerImplInternal", "Unexpected error delivering message on external thread.", e10);
-                    throw new RuntimeException(e10);
-                }
-            case 15:
-                m2.e eVar = (m2.e) obj2;
-                m2.a Q = eVar.Q();
-                eVar.V(Q, 1028, new li.p(Q, 22));
-                eVar.f20128f.d();
-                return;
-            case 16:
-                ((mh.b) obj2).invalidate();
-                return;
-            case 17:
-                ((n2.e) obj2).c();
-                return;
-            case 18:
-                h2.r rVar = (h2.r) obj2;
-                rVar.getClass();
-                if (Thread.currentThread() == rVar.f13498a) {
-                    rVar.e(-1, new n2.a0(0));
-                    return;
-                }
-                return;
-            case 19:
-                n2.r0 r0Var = (n2.r0) obj2;
-                if (r0Var.f20851a0 >= 300000) {
-                    r0Var.f20863n.q();
-                    r0Var.f20851a0 = 0L;
-                    return;
-                }
-                return;
-            case 20:
-                nh.c cVar2 = (nh.c) obj2;
-                GroupCallMessage groupCallMessage = cVar2.I;
-                if (groupCallMessage != null) {
-                    cVar2.f21164a.a(groupCallMessage.isSendDelayed(), true);
-                    cVar2.f21165b.a(cVar2.I.isSendError(), true);
-                    return;
-                }
-                return;
-            case 21:
-                i3 i3Var = ((k3) obj2).d;
-                i3Var.requestFocus();
-                org.telegram.messenger.g0.J3(i3Var);
-                return;
-            case 22:
-                org.telegram.messenger.g0.J3(((oi.u) obj2).f22020a2.d);
-                return;
-            case 23:
-                ((oi.a0) obj2).invalidate();
-                return;
-            case 24:
-                ga.d dVar = (ga.d) obj2;
-                dVar.d = null;
-                dVar.f12965e = null;
-                dVar.f12966f = null;
-                dVar.h = null;
-                dVar.j(null);
-                return;
-            case 25:
-                ((oi.w1) obj2).invalidateSelf();
-                return;
-            case 26:
-                ((d2) obj2).c();
-                return;
-            case 27:
-                TLParseException.lambda$doThrowOrLog$0((TLParseException) obj2);
-                return;
-            case 28:
-                Drawable drawable = ActionBarLayout.f28322w1;
-                org.telegram.messenger.g0.h3((ci.p0) obj2);
-                return;
-            default:
-                ((org.telegram.ui.ActionBar.p0) obj2).setSelectedForDelete(false);
-                return;
+    public final void onDraw(Canvas canvas) {
+        int width;
+        float f10;
+        if (gd.f24216a0) {
+            width = org.telegram.messenger.g0.L(16.0f);
+        } else {
+            width = getWidth() - org.telegram.messenger.g0.L(60.0f);
+        }
+        float f11 = width;
+        ImageReceiver imageReceiver = this.f18363c;
+        imageReceiver.y0(f11, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(44.0f), org.telegram.messenger.g0.L(44.0f));
+        imageReceiver.h(canvas, null);
+        super.onDraw(canvas);
+        if (this.f18364e) {
+            Paint W0 = n6.W0("paintDivider", this.f18361a);
+            if (W0 == null) {
+                W0 = n6.f29519k0;
+            }
+            Paint paint = W0;
+            float f12 = 21.33f;
+            if (gd.f24216a0) {
+                f10 = 0.0f;
+            } else {
+                f10 = 21.33f;
+            }
+            float L = org.telegram.messenger.g0.L(f10);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width2 = getWidth();
+            if (!gd.f24216a0) {
+                f12 = 0.0f;
+            }
+            canvas.drawRect(L, measuredHeight, width2 - org.telegram.messenger.g0.L(f12), getMeasuredHeight(), paint);
         }
     }
 
-    public j1(l2.z zVar, SurfaceTexture surfaceTexture) {
-        this.f17975a = 13;
-        this.f17976b = zVar;
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 
-    public j1(l2.o0 o0Var, l2.j1 j1Var) {
-        this.f17975a = 14;
-        this.f17976b = j1Var;
+    @Override
+    public final void updateColors() {
+        o80 o80Var = this.f18362b;
+        if (o80Var != null) {
+            try {
+                int w02 = n6.w0(n6.G6, this.f18361a);
+                o80Var.g(n6.r1(0.05f, w02), n6.r1(0.15f, w02), n6.r1(0.1f, w02), n6.r1(0.3f, w02));
+                invalidate();
+            } catch (Exception e10) {
+                a8.g(e10, true);
+            }
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f18362b && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

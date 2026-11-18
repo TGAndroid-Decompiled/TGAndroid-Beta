@@ -1,19 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public interface nr0 {
-    void J();
+import android.content.Context;
+public final class nr0 extends at0 {
+    public final gt0 h;
 
-    void W();
+    public nr0(gt0 gt0Var, Context context) {
+        super(gt0Var, context);
+        this.h = gt0Var;
+    }
 
-    boolean Y();
-
-    uj0 f();
-
-    TLRPC.Chat g();
-
-    boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view);
-
-    boolean t();
+    @Override
+    public final void f() {
+        super.f();
+        gt0 gt0Var = this.h;
+        bs0 g02 = gt0Var.g0(0);
+        if (g02 != null && g02.f33771n.getVisibility() == 0) {
+            gt0Var.L.f();
+        }
+    }
 }

@@ -1,4 +1,8 @@
 package org.telegram.ui.Components;
+
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import androidx.recyclerview.widget.RecyclerView;
 public interface pt0 {
-    void d(Runnable runnable);
+    void a(Canvas canvas, RectF rectF, RecyclerView recyclerView);
 }

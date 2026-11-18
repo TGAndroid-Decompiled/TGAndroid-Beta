@@ -1,19 +1,12 @@
 package c8;
+public final class ua {
+    public final Long f4991a;
+    public final eb f4992b;
+    public final Boolean f4993c;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-public abstract class ua {
-    public static int a(w7.s sVar) {
-        sVar.getClass();
-        return Math.max(1, (int) Math.ceil(0.5f * org.telegram.messenger.g0.f23610p)) + (((int) Math.ceil(1.9f * org.telegram.messenger.g0.f23610p)) * 2);
-    }
-
-    public static void b(Canvas canvas, Bitmap bitmap, int i7, float f10, float f11, int i10, int i11, Paint paint) {
-        int min = Math.min(i7, bitmap.getWidth());
-        int i12 = (int) f10;
-        int i13 = (int) f11;
-        canvas.drawBitmap(bitmap, new Rect(0, i10, min, i10 + i11), new Rect(i12, i13, min + i12, i11 + i13), paint);
+    public ua(android.support.v4.media.session.a0 a0Var) {
+        this.f4991a = (Long) a0Var.f1704b;
+        this.f4992b = (eb) a0Var.f1705c;
+        this.f4993c = (Boolean) a0Var.d;
     }
 }

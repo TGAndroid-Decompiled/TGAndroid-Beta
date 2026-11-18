@@ -1,79 +1,108 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class d60 implements View.OnClickListener {
-    public final int f33853a;
-    public final m60 f33854b;
-    public final Runnable f33855c;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+public final class d60 extends bk0 {
+    public ArrayList f34285c = new ArrayList();
+    public ArrayList d = new ArrayList();
+    public final jg.z1 f34286e;
+    public int f34287f;
+    public Runnable h;
+    public final j60 f34288n;
 
-    public d60(m60 m60Var, Runnable runnable, int i7) {
-        this.f33853a = i7;
-        this.f33854b = m60Var;
-        this.f33855c = runnable;
+    public d60(j60 j60Var) {
+        this.f34288n = j60Var;
+        jg.z1 z1Var = new jg.z1(false);
+        this.f34286e = z1Var;
+        z1Var.f17730a = new iy(this, 6);
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f33853a) {
-            case 0:
-                this.f33854b.u();
-                Runnable runnable = this.f33855c;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                this.f33855c.run();
-                m60 m60Var = this.f33854b;
-                if (m60Var.J) {
-                    m60Var.u();
-                    return;
-                }
-                return;
-            case 2:
-                this.f33855c.run();
-                m60 m60Var2 = this.f33854b;
-                if (m60Var2.J) {
-                    m60Var2.u();
-                    return;
-                }
-                return;
-            case 3:
-                m60 m60Var3 = this.f33854b;
-                Runnable runnable2 = this.f33855c;
-                if (runnable2 != null) {
-                    int i7 = -m60Var3.K;
-                    m60Var3.K = i7;
-                    org.telegram.messenger.g0.F3(i7, view, null);
-                    org.telegram.messenger.p2.APP_ERROR.a();
-                    runnable2.run();
-                    return;
-                }
-                m60Var3.getClass();
-                return;
-            case 4:
-                Runnable runnable3 = this.f33855c;
-                if (runnable3 != null) {
-                    runnable3.run();
-                }
-                m60 m60Var4 = this.f33854b;
-                if (m60Var4.J) {
-                    m60Var4.u();
-                    return;
-                }
-                return;
-            default:
-                Runnable runnable4 = this.f33855c;
-                if (runnable4 != null) {
-                    runnable4.run();
-                }
-                m60 m60Var5 = this.f33854b;
-                if (m60Var5.J) {
-                    m60Var5.u();
-                    return;
-                }
-                return;
+    public final boolean D(v4.f1 f1Var) {
+        if (f1Var.f59126f == 1) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int b() {
+        int size = this.f34285c.size();
+        jg.z1 z1Var = this.f34286e;
+        int size2 = z1Var.d.size();
+        int size3 = z1Var.f17733e.size();
+        int i7 = size + size2;
+        if (size3 != 0) {
+            i7 += size3 + 1;
+        }
+        int i10 = i7 + 2;
+        this.f34287f = i10;
+        return i10;
+    }
+
+    @Override
+    public final int d(int i7) {
+        if (i7 == 0) {
+            return 2;
+        }
+        if (i7 == this.f34287f - 1) {
+            return 4;
+        }
+        if (i7 - 1 != this.f34286e.d.size() + this.f34285c.size()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void t(v4.f1 r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d60.t(v4.f1, int):void");
+    }
+
+    @Override
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        View view;
+        int i10;
+        Context context = viewGroup.getContext();
+        if (i7 != 1) {
+            if (i7 != 2) {
+                if (i7 != 4) {
+                    ?? frameLayout = new FrameLayout(context);
+                    org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29416e7, frameLayout, null);
+                    Drawable drawable = frameLayout.getResources().getDrawable(2131232725);
+                    frameLayout.f30646a = drawable;
+                    org.telegram.ui.ActionBar.u6.x(frameLayout, drawable, org.telegram.ui.ActionBar.n6.Qi, null, PorterDuff.Mode.MULTIPLY);
+                    TextView textView = new TextView(frameLayout.getContext());
+                    frameLayout.f30647b = textView;
+                    i5.c.x(textView, 1, 14.0f);
+                    org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.Ri, null);
+                    int i11 = 3;
+                    if (org.telegram.messenger.gd.f24216a0) {
+                        i10 = 5;
+                    } else {
+                        i10 = 3;
+                    }
+                    textView.setGravity(i10 | 16);
+                    if (org.telegram.messenger.gd.f24216a0) {
+                        i11 = 5;
+                    }
+                    frameLayout.addView(textView, c8.ma.d(-1, -1.0f, i11 | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+                    view = frameLayout;
+                } else {
+                    view = new View(context);
+                }
+            } else {
+                view = new bi.i3(21, context, this);
+            }
+        } else {
+            view = new org.telegram.ui.Cells.h4(context, 1, 0, false);
+        }
+        return new v4.f1(view);
     }
 }

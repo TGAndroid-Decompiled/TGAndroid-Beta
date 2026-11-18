@@ -1,26 +1,24 @@
 package org.telegram.ui;
 
 import android.net.Uri;
-public final class io0 implements org.telegram.messenger.z10 {
-    public final int f48092a;
-    public final oo0 f48093b;
-    public final boolean f48094c;
+public final class io0 implements org.telegram.messenger.x10 {
+    public final int f48773a;
+    public final ro0 f48774b;
 
-    public io0(oo0 oo0Var, boolean z10, int i7) {
-        this.f48092a = i7;
-        this.f48093b = oo0Var;
-        this.f48094c = z10;
+    public io0(ro0 ro0Var, int i7) {
+        this.f48773a = i7;
+        this.f48774b = ro0Var;
     }
 
     @Override
     public final void a(Object obj) {
         Uri uri = (Uri) obj;
-        switch (this.f48092a) {
+        switch (this.f48773a) {
             case 0:
-                org.telegram.ui.Components.cc.F(this.f48093b.f50016b.f42763f0, this.f48094c).j();
+                new org.telegram.ui.Components.lc(this.f48774b.f51721b.f43208f0, null).m(org.telegram.ui.Components.kc.f36729r, 1, -115203550, -1, null).j();
                 return;
             default:
-                org.telegram.ui.Components.cc.F(this.f48093b.f50016b.f42763f0, this.f48094c).j();
+                new org.telegram.ui.Components.lc(this.f48774b.f51721b.f43208f0, null).m(org.telegram.ui.Components.kc.f36729r, 1, -115203550, -1, null).j();
                 return;
         }
     }

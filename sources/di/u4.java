@@ -1,127 +1,165 @@
 package di;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
+import android.animation.ValueAnimator;
+import android.graphics.RectF;
+import android.opengl.Matrix;
 import android.view.View;
-import org.telegram.ui.Components.er;
-public final class u4 extends View {
-    public final Paint f9508a;
-    public final Paint f9509b;
-    public final Paint f9510c;
-    public final RadialGradient[] d;
-    public final Matrix f9511e;
-    public final org.telegram.ui.Components.u5 f9512f;
-    public final RadialGradient h;
-    public final Path f9513n;
-    public int f9514r;
-    public int f9515s;
+import java.util.ArrayList;
+import org.telegram.ui.Components.lr;
+public final class u4 {
+    public final v4 f9856a;
+    public ai.s d;
+    public int f9860f;
+    public int f9861g;
+    public float f9863j;
+    public float f9864k;
+    public final ArrayList f9857b = new ArrayList();
+    public int f9858c = 0;
+    public boolean f9859e = false;
+    public final float[] h = new float[16];
+    public float[] f9862i = new float[16];
+    public boolean f9865l = false;
 
-    public u4(Context context) {
-        super(context);
-        this.f9508a = new Paint(1);
-        this.f9509b = new Paint(1);
-        Paint paint = new Paint(1);
-        this.f9510c = paint;
-        this.d = new RadialGradient[2];
-        this.f9511e = new Matrix();
-        this.f9512f = new org.telegram.ui.Components.u5(1.0f, this, 0L, 420L, er.h);
-        this.h = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{0, -1, -1, 0}, new float[]{0.15f, 0.35f, 0.65f, 0.88f}, Shader.TileMode.CLAMP);
-        this.f9513n = new Path();
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+    public u4(v4 v4Var) {
+        this.f9856a = v4Var;
     }
 
-    public final void a(int i7, int i10) {
-        if (this.f9514r == i7 && this.f9515s == i10) {
-            return;
-        }
-        RadialGradient[] radialGradientArr = this.d;
-        radialGradientArr[0] = radialGradientArr[1];
-        this.f9514r = i7;
-        this.f9515s = i10;
-        radialGradientArr[1] = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f9512f.e(true, 0.0f);
-        invalidate();
+    public final void a(int i7) {
+        this.f9857b.add(new t4(3, 0.0f, 0.0f, i7, -1, 0.0f, null, null));
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        float f11 = 1.0f;
-        float e10 = this.f9512f.e(false, 1.0f);
-        float currentTimeMillis = (((float) (System.currentTimeMillis() % 15000)) / 15000.0f) * 360.0f;
-        if (getAlpha() > 0.0f) {
-            invalidate();
-        }
-        Paint.Style style = Paint.Style.STROKE;
-        Paint paint = this.f9509b;
-        paint.setStyle(style);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        Path path = this.f9513n;
-        path.rewind();
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float min = Math.min(getWidth(), getHeight()) / 2.0f;
-        for (int i7 = 0; i7 < 6; i7++) {
-            float e11 = r.b.e(i7, 60.0f, 12.5f, currentTimeMillis);
-            path.moveTo(width, height);
-            double d = ((e11 - 12.5f) / 180.0f) * 3.141592653589793d;
-            path.lineTo((((float) Math.cos(d)) * min) + width, (((float) Math.sin(d)) * min) + height);
-            double d2 = ((e11 + 12.5f) / 180.0f) * 3.141592653589793d;
-            path.lineTo((((float) Math.cos(d2)) * min) + width, (((float) Math.sin(d2)) * min) + height);
-            path.lineTo(width, height);
-        }
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        int i10 = 0;
-        while (true) {
-            RadialGradient[] radialGradientArr = this.d;
-            int length = radialGradientArr.length;
-            Matrix matrix = this.f9511e;
-            if (i10 < length) {
-                if (radialGradientArr[i10] == null) {
-                    f10 = e10;
-                } else {
-                    f10 = e10;
-                    float pow = (float) Math.pow(f11 - Math.abs(i10 - e10), 0.5d);
-                    if (pow > 0.0f) {
-                        matrix.reset();
-                        float f12 = min / 100.0f;
-                        matrix.postScale(f12, f12);
-                        matrix.postTranslate(width, height);
-                        radialGradientArr[i10].setLocalMatrix(matrix);
-                        RadialGradient radialGradient = radialGradientArr[i10];
-                        Paint paint2 = this.f9508a;
-                        paint2.setShader(radialGradient);
-                        float f13 = pow * 255.0f;
-                        paint2.setAlpha((int) (0.3f * f13));
-                        paint.setShader(radialGradientArr[i10]);
-                        paint.setAlpha((int) f13);
-                        canvas.drawPath(path, paint2);
-                        canvas.drawPath(path, paint);
+    public final void b() {
+        ai.s sVar;
+        boolean z10 = this.f9859e;
+        v4 v4Var = this.f9856a;
+        if (!z10) {
+            int i7 = this.f9858c;
+            ArrayList arrayList = this.f9857b;
+            if (i7 < arrayList.size()) {
+                t4 t4Var = (t4) arrayList.get(this.f9858c);
+                boolean z11 = true;
+                this.f9858c++;
+                int i10 = t4Var.f9802a;
+                int i11 = t4Var.f9805e;
+                float f10 = t4Var.f9803b;
+                int i12 = t4Var.d;
+                int c10 = p1.g.c(i10);
+                if (c10 != 0) {
+                    if (c10 != 1) {
+                        if (c10 != 2) {
+                            if (c10 != 3) {
+                                if (c10 != 4) {
+                                    if (c10 == 5) {
+                                        if (f10 <= 0.0f) {
+                                            z11 = false;
+                                        }
+                                        v4Var.f9919f = z11;
+                                        b();
+                                        return;
+                                    }
+                                    return;
+                                }
+                                this.f9865l = true;
+                                View view = t4Var.f9807g;
+                                ValueAnimator valueAnimator = v4Var.H;
+                                if (valueAnimator != null) {
+                                    valueAnimator.cancel();
+                                    v4Var.H = null;
+                                }
+                                RectF rectF = new RectF();
+                                rectF.left = view.getX() - v4Var.getX();
+                                rectF.top = view.getY() - v4Var.getY();
+                                rectF.right = rectF.left + view.getWidth();
+                                rectF.bottom = rectF.top + view.getHeight();
+                                org.telegram.messenger.g0.E2(view);
+                                int childCount = v4Var.getChildCount();
+                                v4Var.addView(view, c8.ma.e(64, 64, 17));
+                                v4Var.f9923w.add(Integer.valueOf(i11));
+                                v4Var.f9924x.put(Integer.valueOf(childCount), Integer.valueOf(i11));
+                                v4Var.f9925y.put(Integer.valueOf(childCount), rectF);
+                                v4Var.G = childCount;
+                                v4Var.F = 0.0f;
+                                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                                v4Var.H = ofFloat;
+                                ofFloat.addUpdateListener(new ah.g(v4Var, 7));
+                                v4Var.H.addListener(new ai.j0(v4Var, 6));
+                                v4Var.H.setDuration(i12 * 16);
+                                v4Var.H.setInterpolator(lr.h);
+                                v4Var.H.start();
+                                return;
+                            }
+                            System.arraycopy(v4Var.f9917c, 0, this.h, 0, 16);
+                            float f11 = t4Var.f9806f;
+                            float[] fArr = new float[16];
+                            Matrix.setIdentityM(fArr, 0);
+                            if (f11 != 0.0f) {
+                                Matrix.rotateM(fArr, 0, -f11, 0.0f, 0.0f, 1.0f);
+                            }
+                            if (i11 != 0) {
+                                if (i11 != 1) {
+                                    if (i11 != 2) {
+                                        if (i11 != 3) {
+                                            if (i11 == 4) {
+                                                Matrix.rotateM(fArr, 0, 180.0f, 0.0f, 1.0f, 0.0f);
+                                            }
+                                        } else {
+                                            Matrix.rotateM(fArr, 0, -90.0f, 1.0f, 0.0f, 0.0f);
+                                        }
+                                    } else {
+                                        Matrix.rotateM(fArr, 0, 90.0f, 1.0f, 0.0f, 0.0f);
+                                    }
+                                } else {
+                                    Matrix.rotateM(fArr, 0, -90.0f, 0.0f, 1.0f, 0.0f);
+                                }
+                            } else {
+                                Matrix.rotateM(fArr, 0, 90.0f, 0.0f, 1.0f, 0.0f);
+                            }
+                            this.f9862i = fArr;
+                            this.f9861g = i12;
+                            this.f9860f = i12;
+                            this.f9863j = v4Var.d;
+                            this.f9864k = v4Var.f9918e;
+                            return;
+                        }
+                        this.f9860f = i12;
+                        this.f9861g = i12;
+                        return;
                     }
+                    v4Var.d = (t4Var.f9804c * 0.01f) + v4Var.d;
+                    v4Var.f9918e = (f10 * 0.01f) + v4Var.f9918e;
+                    this.f9860f = 1;
+                    this.f9861g = 1;
+                    return;
                 }
-                i10++;
-                e10 = f10;
-                f11 = 1.0f;
-            } else {
-                matrix.reset();
-                float f14 = min / 100.0f;
-                matrix.postScale(f14, f14);
-                matrix.postTranslate(width, height);
-                RadialGradient radialGradient2 = this.h;
-                radialGradient2.setLocalMatrix(matrix);
-                Paint paint3 = this.f9510c;
-                paint3.setShader(radialGradient2);
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint3);
-                canvas.restore();
+                Runnable runnable = t4Var.h;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                b();
                 return;
             }
         }
+        v4Var.I = null;
+        if (!this.f9859e && (sVar = this.d) != null) {
+            sVar.run();
+        }
+    }
+
+    public final void c(float f10, float f11) {
+        this.f9857b.add(new t4(2, f10, f11, 0, -1, 0.0f, null, null));
+    }
+
+    public final void d(boolean z10) {
+        float f10;
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = -1.0f;
+        }
+        this.f9857b.add(new t4(6, f10, 0.0f, 0, -1, 0.0f, null, null));
+    }
+
+    public final void e(z4 z4Var, int i7, float f10) {
+        this.f9857b.add(new t4(5, 0.0f, 0.0f, 32, i7, f10, z4Var, null));
     }
 }

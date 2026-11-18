@@ -1,57 +1,37 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
-public final class i31 extends org.telegram.ui.Components.a41 {
+public final class i31 extends org.telegram.ui.Components.k41 {
+    public static final int f48570b = 0;
+
     static {
-        org.telegram.ui.Components.a41.h(new org.telegram.ui.Components.a41());
-    }
-
-    public static org.telegram.ui.Components.b41 i(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
-        org.telegram.ui.Components.b41 K = org.telegram.ui.Components.b41.K(i31.class);
-        K.f33184l = str;
-        K.f33185m = charSequence;
-        K.f33186n = str2;
-        K.D = onClickListener;
-        K.f33187o = charSequence2;
-        K.E = onClickListener2;
-        return K;
+        org.telegram.ui.Components.k41.h(new org.telegram.ui.Components.k41());
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.b41 b41Var, boolean z10, org.telegram.ui.Components.p41 p41Var, org.telegram.ui.Components.u41 u41Var) {
-        j31 j31Var = (j31) view;
-        CharSequence charSequence = b41Var.f33184l;
-        CharSequence charSequence2 = b41Var.f33185m;
-        CharSequence charSequence3 = b41Var.f33186n;
-        View.OnClickListener onClickListener = b41Var.D;
-        CharSequence charSequence4 = b41Var.f33187o;
-        View.OnClickListener onClickListener2 = b41Var.E;
-        hi.d dVar = j31Var.f48194e;
-        org.telegram.ui.Components.z70 z70Var = j31Var.f48192b;
-        int i7 = 0;
-        z70Var.setText(org.telegram.messenger.j6.m(charSequence, z70Var.getPaint().getFontMetricsInt(), false, null, 0));
-        org.telegram.ui.Components.z70 z70Var2 = j31Var.f48193c;
-        z70Var2.setText(org.telegram.messenger.j6.m(charSequence2, z70Var2.getPaint().getFontMetricsInt(), false, null, 0));
-        hi.d dVar2 = j31Var.d;
-        if (TextUtils.isEmpty(charSequence3)) {
-            i7 = 8;
+    public final void b(View view, org.telegram.ui.Components.l41 l41Var, boolean z10, org.telegram.ui.Components.z41 z41Var, org.telegram.ui.Components.e51 e51Var) {
+        ((j31) view).set(l41Var.A);
+    }
+
+    @Override
+    public final boolean c(org.telegram.ui.Components.l41 l41Var, org.telegram.ui.Components.l41 l41Var2) {
+        if (l41Var.A == l41Var2.A) {
+            return true;
         }
-        dVar2.setVisibility(i7);
-        dVar2.setText(charSequence3);
-        dVar2.setOnClickListener(onClickListener);
-        dVar.setText(charSequence4);
-        dVar.setOnClickListener(onClickListener2);
+        return false;
     }
 
     @Override
-    public final View d(Context context, org.telegram.ui.Components.uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new j31(context, e6Var);
+    public final View d(Context context, org.telegram.ui.Components.ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        return new j31(context, i6Var);
     }
 
     @Override
-    public final boolean f() {
+    public final boolean e(org.telegram.ui.Components.l41 l41Var, org.telegram.ui.Components.l41 l41Var2) {
+        if (l41Var.d == l41Var2.d) {
+            return true;
+        }
         return false;
     }
 }

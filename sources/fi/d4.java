@@ -1,75 +1,147 @@
 package fi;
 
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.fc;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.np;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.i10;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class d4 {
-    public final int f11624a;
-    public final ImageReceiver f11625b;
-    public int f11626c;
-    public boolean d;
-    public float f11627e;
-    public final org.telegram.ui.Components.u5 f11628f;
-    public final org.telegram.ui.Components.u5 f11629g;
-    public final org.telegram.ui.Components.u5 h;
-    public float f11630i;
-    public float f11631j;
-    public float f11632k;
-    public final boolean f11633l;
-    public final RectF f11634m;
-    public final RectF f11635n;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.g71;
+import org.telegram.ui.Components.i60;
+import org.telegram.ui.Components.q9;
+import org.telegram.ui.Components.w61;
+import org.telegram.ui.sb1;
+public final class d4 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f11849a;
+    public final Object f11850b;
 
-    public d4(ProfileStoriesView profileStoriesView, TL_stories.StoryItem storyItem) {
-        TLRPC.Photo photo;
-        ArrayList<TLRPC.PhotoSize> arrayList;
-        TLRPC.Document document;
-        org.telegram.ui.Components.t8 t8Var = new org.telegram.ui.Components.t8((org.telegram.ui.ActionBar.e6) null);
-        ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f11625b = imageReceiver;
-        this.f11626c = 0;
-        this.d = false;
-        this.f11627e = 1.0f;
-        er erVar = er.h;
-        this.f11628f = new org.telegram.ui.Components.u5(profileStoriesView, 420L, erVar);
-        this.f11629g = new org.telegram.ui.Components.u5(profileStoriesView, 420L, erVar);
-        this.h = new org.telegram.ui.Components.u5(profileStoriesView, 420L, erVar);
-        this.f11634m = new RectF();
-        this.f11635n = new RectF();
-        this.f11624a = storyItem.f28290id;
-        imageReceiver.J0(org.telegram.messenger.g0.L(200.0f));
-        imageReceiver.H0(profileStoriesView);
-        this.f11633l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-        if (profileStoriesView.f43380y) {
-            imageReceiver.P();
-        }
-        i10[] i10VarArr = l7.f12001a;
-        TLRPC.MessageMedia messageMedia = storyItem.media;
-        if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
-            TLObject e22 = np.s1(imageReceiver.d).e2(storyItem.dialogId);
-            t8Var.l(e22);
-            imageReceiver.i0(e22, t8Var, null);
-        } else if (messageMedia != null && (document = messageMedia.document) != null) {
-            imageReceiver.r0(gc.c(org.telegram.messenger.w7.w(document.thumbs, org.telegram.messenger.g0.L(Math.max(25, 25)), false, null, true), storyItem.media.document), "25_25", null, null, fc.m(storyItem.media.document.thumbs), 0L, null, storyItem, 0);
-        } else {
-            if (messageMedia != null) {
-                photo = messageMedia.photo;
-            } else {
-                photo = null;
-            }
-            if (photo != null && (arrayList = photo.sizes) != null) {
-                imageReceiver.u0(null, null, gc.i(org.telegram.messenger.w7.w(arrayList, org.telegram.messenger.g0.L(Math.max(25, 25)), false, null, true), photo), "25_25", null, null, fc.m(photo.sizes), 0L, null, storyItem, 0);
-            } else {
-                imageReceiver.f();
-            }
+    public d4(Object obj, int i7) {
+        this.f11849a = i7;
+        this.f11850b = obj;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float f10;
+        float f11;
+        float f12;
+        View view;
+        switch (this.f11849a) {
+            case 0:
+                f4 f4Var = (f4) this.f11850b;
+                f4Var.f11935e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f4Var.invalidate();
+                return;
+            case 1:
+                gi.m mVar = (gi.m) this.f11850b;
+                mVar.f13654c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mVar.f13656f.invalidate();
+                return;
+            case 2:
+                hi.e0 e0Var = (hi.e0) this.f11850b;
+                e0Var.f14518l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e0Var.f14522p.invalidate();
+                return;
+            case 3:
+                jg.k1 k1Var = (jg.k1) this.f11850b;
+                k1Var.f17562e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k1Var.invalidate();
+                for (int i7 = 0; i7 < 2; i7++) {
+                    k1Var.f17561c[i7].setTranslationX(org.telegram.messenger.g0.W1(k1Var.f17562e, 0, -org.telegram.messenger.g0.L(62.0f)));
+                    k1Var.f17561c[i7].setVisibility(0);
+                    TextView textView = k1Var.f17561c[i7];
+                    float f13 = 0.0f;
+                    if (i7 == 0) {
+                        f10 = 1.0f;
+                    } else {
+                        f10 = 0.0f;
+                    }
+                    if (i7 == 1) {
+                        f11 = 1.0f;
+                    } else {
+                        f11 = 0.0f;
+                    }
+                    textView.setAlpha(org.telegram.messenger.g0.T1(f10, f11, k1Var.f17562e));
+                    k1Var.d[i7].setTranslationX(org.telegram.messenger.g0.W1(k1Var.f17562e, 0, -org.telegram.messenger.g0.L(62.0f)));
+                    k1Var.d[i7].setVisibility(0);
+                    TextView textView2 = k1Var.d[i7];
+                    if (i7 == 0) {
+                        f12 = 1.0f;
+                    } else {
+                        f12 = 0.0f;
+                    }
+                    if (i7 == 1) {
+                        f13 = 1.0f;
+                    }
+                    textView2.setAlpha(org.telegram.messenger.g0.T1(f12, f13, k1Var.f17562e));
+                }
+                return;
+            case 4:
+                lg.k kVar = (lg.k) this.f11850b;
+                kVar.f19810k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar.I = true;
+                kVar.invalidate();
+                return;
+            case 5:
+                lg.p pVar = (lg.p) this.f11850b;
+                pVar.f19810k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pVar.I = true;
+                pVar.invalidate();
+                return;
+            case 6:
+                MediaController mediaController = (MediaController) this.f11850b;
+                mediaController.Q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mediaController.n0();
+                return;
+            case 7:
+                org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) this.f11850b;
+                o7Var.C0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o7Var.invalidate();
+                return;
+            case 8:
+                ((q9) this.f11850b).setRoundRadius(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                return;
+            case 9:
+                di.b1 b1Var = ((i60) this.f11850b).f36066e.f37984o1;
+                int i10 = b1Var.D1;
+                if (i10 != -1 && (view = b1Var.E1) != null) {
+                    b1Var.k1(i10, view);
+                    b1Var.invalidate();
+                    return;
+                }
+                return;
+            case 10:
+                g71 g71Var = (g71) this.f11850b;
+                View[] viewArr = g71Var.f35378e;
+                if (g71Var.f35385y) {
+                    float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
+                    g71Var.f35377c = abs;
+                    w61 w61Var = g71Var.N;
+                    if (w61Var != null) {
+                        w61Var.f(abs, g71Var.d, g71Var.f35376b);
+                    }
+                }
+                g71Var.t(false);
+                return;
+            case 11:
+                org.telegram.ui.Components.voip.q1 q1Var = (org.telegram.ui.Components.voip.q1) this.f11850b;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q1Var.K = floatValue;
+                org.telegram.ui.Components.voip.p1 p1Var = q1Var.f41153j0;
+                if (p1Var != null) {
+                    ((sb1) p1Var).f51966b.f48344e0.d(q1Var.Q, floatValue);
+                }
+                q1Var.invalidate();
+                return;
+            case 12:
+                ug.s0 s0Var = (ug.s0) this.f11850b;
+                s0Var.f58866s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s0Var.e();
+                return;
+            case 13:
+                ((ug.q0) this.f11850b).setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                ((v4.v) this.f11850b).f59242y = valueAnimator.getAnimatedFraction();
+                return;
         }
     }
 }

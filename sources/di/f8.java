@@ -1,47 +1,54 @@
 package di;
 
-import org.telegram.messenger.gj;
-import org.telegram.messenger.vr;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.x10;
+import org.telegram.ui.cd0;
 public final class f8 implements Runnable {
-    public final int f8553a = 0;
-    public final long f8554b;
-    public final boolean f8555c;
-    public final long d;
-    public final int f8556e;
-    public final Object f8557f;
-    public final Object h;
-    public final Object f8558n;
-    public final Object f8559r;
-    public final Object f8560s;
+    public final int f8831a;
+    public final boolean[] f8832b;
+    public final x10 f8833c;
 
-    public f8(u8 u8Var, TLObject tLObject, Runnable runnable, TLRPC.TL_error tL_error, boolean z10, long j3, int i7, gj gjVar, long j10) {
-        this.f8557f = u8Var;
-        this.h = tLObject;
-        this.f8558n = runnable;
-        this.f8559r = tL_error;
-        this.f8555c = z10;
-        this.f8554b = j3;
-        this.f8556e = i7;
-        this.f8560s = gjVar;
-        this.d = j10;
+    public f8(int i7, x10 x10Var, boolean[] zArr) {
+        this.f8831a = i7;
+        this.f8832b = zArr;
+        this.f8833c = x10Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: di.f8.run():void");
+        x10 x10Var;
+        x10 x10Var2;
+        x10 x10Var3;
+        switch (this.f8831a) {
+            case 0:
+                boolean[] zArr = this.f8832b;
+                if (!zArr[0] && (x10Var = this.f8833c) != null) {
+                    x10Var.a("cancelled");
+                    zArr[0] = true;
+                    return;
+                }
+                return;
+            case 1:
+                boolean[] zArr2 = this.f8832b;
+                if (!zArr2[0] && (x10Var2 = this.f8833c) != null) {
+                    zArr2[0] = true;
+                    x10Var2.a(Boolean.TRUE);
+                }
+                org.telegram.messenger.g0.h3(new cd0(4), 220L);
+                return;
+            default:
+                boolean[] zArr3 = this.f8832b;
+                if (!zArr3[0] && (x10Var3 = this.f8833c) != null) {
+                    zArr3[0] = true;
+                    x10Var3.a(Boolean.FALSE);
+                    return;
+                }
+                return;
+        }
     }
 
-    public f8(vr vrVar, long j3, boolean z10, String str, long j10, int i7, String str2, String str3, String str4) {
-        this.f8557f = vrVar;
-        this.f8554b = j3;
-        this.f8555c = z10;
-        this.h = str;
-        this.d = j10;
-        this.f8556e = i7;
-        this.f8558n = str2;
-        this.f8559r = str3;
-        this.f8560s = str4;
+    public f8(x8 x8Var, boolean[] zArr, x10 x10Var) {
+        this.f8831a = 0;
+        this.f8832b = zArr;
+        this.f8833c = x10Var;
     }
 }

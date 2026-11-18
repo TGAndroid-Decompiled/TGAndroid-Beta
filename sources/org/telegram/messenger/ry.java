@@ -1,15 +1,19 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-public final class ry {
-    public TLObject f26384a;
-    public gj f26385b;
-    public ArrayList f26386c;
-    public String d;
-    public ArrayList f26387e;
-    public ArrayList f26388f;
-    public qy f26389g;
-    public Object h;
-    public boolean f26390i;
+import org.telegram.tgnet.TLRPC;
+public final class ry implements RequestDelegate {
+    public final Runnable f26714a;
+    public final sy f26715b;
+
+    public ry(sy syVar, Runnable runnable) {
+        this.f26715b = syVar;
+        this.f26714a = runnable;
+    }
+
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        g0.g3(new kg(this, tLObject, this.f26714a, 28));
+    }
 }

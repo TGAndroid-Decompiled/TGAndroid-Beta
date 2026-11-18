@@ -1,41 +1,41 @@
 package ki;
 
 import android.app.Activity;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 public final class d implements Runnable {
-    public final int f18248a;
-    public final k f18249b;
+    public final int f18620a;
+    public final k f18621b;
 
     public d(k kVar, int i7) {
-        this.f18248a = i7;
-        this.f18249b = kVar;
+        this.f18620a = i7;
+        this.f18621b = kVar;
     }
 
     @Override
     public final void run() {
         int i7;
         int i10;
-        int i11 = this.f18248a;
+        int i11 = this.f18620a;
         String str = null;
-        k kVar = this.f18249b;
+        k kVar = this.f18621b;
         switch (i11) {
             case 0:
                 bi.s sVar = kVar.W;
-                if (kVar.f18378b0.end_date != 0) {
+                if (kVar.f18740b0.end_date != 0) {
                     str = ah.r.f((i7 - kVar.getConnectionsManager().getCurrentTime()) * 1000);
                 }
                 sVar.g(str, true);
-                if (kVar.f18378b0.end_date != 0 && kVar.f18381e0) {
-                    org.telegram.messenger.g0.i3(kVar.Y, 1000L);
+                if (kVar.f18740b0.end_date != 0 && kVar.f18743e0) {
+                    org.telegram.messenger.g0.h3(kVar.Y, 1000L);
                     return;
                 }
                 return;
             case 1:
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
-                updatestarrefprogram.bot = kVar.getMessagesController().o1(kVar.S);
-                TL_payments.starRefProgram starrefprogram = kVar.f18378b0;
+                updatestarrefprogram.bot = kVar.getMessagesController().q1(kVar.S);
+                TL_payments.starRefProgram starrefprogram = kVar.f18740b0;
                 updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
                 int i12 = starrefprogram.duration_months;
                 updatestarrefprogram.duration_months = i12;
@@ -46,18 +46,18 @@ public final class d implements Runnable {
                     updatestarrefprogram.flags &= -2;
                     starrefprogram.duration_months = i12 & (-2);
                 }
-                org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, kVar.getParentActivity(), null);
-                t1Var.r(150L);
-                kVar.getConnectionsManager().sendRequest(updatestarrefprogram, new b(kVar, t1Var, 1));
+                org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, kVar.getParentActivity(), null);
+                u1Var.r(150L);
+                kVar.getConnectionsManager().sendRequest(updatestarrefprogram, new b(kVar, u1Var, 1));
                 return;
             default:
                 Activity parentActivity = kVar.getParentActivity();
-                if (!kVar.Z && kVar.f18378b0.end_date == 0) {
-                    i10 = 2131754327;
+                if (!kVar.Z && kVar.f18740b0.end_date == 0) {
+                    i10 = 2131754325;
                 } else {
-                    i10 = 2131754314;
+                    i10 = 2131754312;
                 }
-                vf.c.t(parentActivity, hd.M0(i10, null));
+                vf.c.t(parentActivity, gd.M0(i10, null));
                 return;
         }
     }

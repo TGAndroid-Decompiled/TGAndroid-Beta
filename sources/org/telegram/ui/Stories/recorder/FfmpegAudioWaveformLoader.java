@@ -1,17 +1,17 @@
 package org.telegram.ui.Stories.recorder;
 
 import ai.a1;
-import hi.e1;
+import hi.k;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.s10;
+import org.telegram.messenger.q10;
 public class FfmpegAudioWaveformLoader {
-    private s10 onChunkReceived;
+    private q10 onChunkReceived;
     private volatile boolean running = true;
 
-    public FfmpegAudioWaveformLoader(String str, int i7, s10 s10Var) {
-        this.onChunkReceived = s10Var;
-        Utilities.h.c(new a1(this, str, i7, 13));
+    public FfmpegAudioWaveformLoader(String str, int i7, q10 q10Var) {
+        this.onChunkReceived = q10Var;
+        Utilities.h.c(new a1(this, str, i7, 14));
     }
 
     public static void b(FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader) {
@@ -29,10 +29,10 @@ public class FfmpegAudioWaveformLoader {
     }
 
     private void receiveChunk(short[] sArr, int i7) {
-        g0.h3(new a1(this, sArr, i7, 14));
+        g0.g3(new a1(this, sArr, i7, 15));
     }
 
     public void destroy() {
-        Utilities.h.c(new e1(this, 5));
+        Utilities.h.c(new k(this, 9));
     }
 }

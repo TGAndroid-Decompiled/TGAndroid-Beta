@@ -1,62 +1,93 @@
 package ug;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import di.ac;
-import org.telegram.messenger.qc;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.l8;
-import org.telegram.ui.Components.fh0;
-public final class m1 extends l8 {
-    public final ac f58221a0;
-    public final int f58222b0;
-    public final q2.d f58223c0;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import c8.ma;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class m1 extends FrameLayout {
+    public float f58765a;
+    public final l1 f58766b;
+    public final ImageReceiver f58767c;
+    public final ImageReceiver d;
+    public boolean f58768e;
+    public boolean f58769f;
+    public float h;
+    public float f58770n;
+    public TLRPC.Document f58771r;
+    public boolean f58772s;
+    public final v0 f58773w;
 
-    public m1(int i7, Context context, e6 e6Var) {
-        super(context, e6Var);
-        int i10;
-        this.f58221a0 = new ac(1, 15);
-        this.f58223c0 = new q2.d(this, 25);
-        if (i7 == 1) {
-            i10 = j6.Wk;
-        } else {
-            i10 = j6.Dk;
+    public m1(v0 v0Var, Context context) {
+        super(context);
+        this.f58773w = v0Var;
+        this.f58769f = true;
+        l1 l1Var = new l1(this, context);
+        this.f58766b = l1Var;
+        ImageReceiver imageReceiver = new ImageReceiver(l1Var);
+        this.f58767c = imageReceiver;
+        ImageReceiver imageReceiver2 = new ImageReceiver(l1Var);
+        this.d = imageReceiver2;
+        imageReceiver.f22667u0 = false;
+        imageReceiver2.f22667u0 = false;
+        setClipChildren(false);
+        addView(l1Var, ma.e(-1, -2, 21));
+    }
+
+    public final void a(boolean z10, boolean z11, boolean z12) {
+        float f10;
+        boolean z13 = this.f58768e;
+        l1 l1Var = this.f58766b;
+        float f11 = 0.0f;
+        if (z13 != z11) {
+            this.f58768e = z11;
+            if (!z12) {
+                if (z11) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                this.h = f10;
+            }
+            l1Var.invalidate();
         }
-        this.f58222b0 = i10;
+        if (this.f58769f != z10) {
+            this.f58769f = z10;
+            if (!z12) {
+                if (z10) {
+                    f11 = 1.0f;
+                }
+                this.f58770n = f11;
+            }
+            l1Var.invalidate();
+        }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean e10 = qc.e(131072);
-        q2.d dVar = this.f58223c0;
-        if (e10) {
-            ac acVar = this.f58221a0;
-            acVar.d();
-            acVar.a(canvas, j6.x0(null, this.f58222b0, false));
-            bg.k.d().a(15, dVar);
-        } else {
-            bg.k.d().f(dVar);
-        }
-        super.dispatchDraw(canvas);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f58767c.P();
+        this.d.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        bg.k.d().f(this.f58223c0);
+        this.f58767c.R();
+        this.d.R();
     }
 
     @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        fh0 fh0Var = this.f30656e;
-        float width = (fh0Var.getWidth() / 2.0f) + fh0Var.getX();
-        float y10 = fh0Var.getY();
-        float height = ((fh0Var.getHeight() / 2.0f) + (y10 + fh0Var.getPaddingTop())) - org.telegram.messenger.g0.L(3.0f);
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(width - org.telegram.messenger.g0.L(16.0f), height - org.telegram.messenger.g0.L(16.0f), width + org.telegram.messenger.g0.L(16.0f), height + org.telegram.messenger.g0.L(16.0f));
-        this.f58221a0.g(rectF);
+    public final void onMeasure(int i7, int i10) {
+        int i11 = (int) (this.f58773w.f58796s3 * 0.6f);
+        l1 l1Var = this.f58766b;
+        ViewGroup.LayoutParams layoutParams = l1Var.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = l1Var.getLayoutParams();
+        int L = i11 - org.telegram.messenger.g0.L(16.0f);
+        layoutParams2.height = L;
+        layoutParams.width = L;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (i11 * 0.7f), 1073741824));
     }
 }

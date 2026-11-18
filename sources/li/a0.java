@@ -1,6 +1,6 @@
 package li;
 
-import v4.e1;
+import v4.f1;
 public final class a0 extends v4.k {
     public final b0 F;
 
@@ -11,42 +11,42 @@ public final class a0 extends v4.k {
     @Override
     public final void M() {
         b0 b0Var = this.F;
-        d0 d0Var = b0Var.f19530f;
+        d0 d0Var = b0Var.f19897f;
         int i7 = d0.Q1;
-        d0Var.f29682b.invalidate();
-        b0Var.f19528c.invalidate();
+        d0Var.f30192b.invalidate();
+        b0Var.f19895c.invalidate();
     }
 
     @Override
     public final void O() {
         b0 b0Var = this.F;
-        d0 d0Var = b0Var.f19530f;
+        d0 d0Var = b0Var.f19897f;
         int i7 = d0.Q1;
-        d0Var.f29682b.invalidate();
-        b0Var.f19528c.invalidate();
+        d0Var.f30192b.invalidate();
+        b0Var.f19895c.invalidate();
     }
 
     @Override
-    public final void P(e1 e1Var) {
+    public final void P(f1 f1Var) {
         b0 b0Var = this.F;
-        d0 d0Var = b0Var.f19530f;
+        d0 d0Var = b0Var.f19897f;
         int i7 = d0.Q1;
-        d0Var.f29682b.invalidate();
-        b0Var.f19528c.invalidate();
+        d0Var.f30192b.invalidate();
+        b0Var.f19895c.invalidate();
         b0Var.d.invalidate();
     }
 
     @Override
     public final void Q() {
         b0 b0Var = this.F;
-        d0 d0Var = b0Var.f19530f;
+        d0 d0Var = b0Var.f19897f;
         int i7 = d0.Q1;
-        d0Var.f29682b.invalidate();
-        b0Var.f19528c.invalidate();
+        d0Var.f30192b.invalidate();
+        b0Var.f19895c.invalidate();
     }
 
     @Override
-    public final boolean t(e1 e1Var) {
+    public final boolean t(f1 f1Var) {
         return true;
     }
 }

@@ -1,64 +1,57 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
-public final class kz0 implements Runnable {
-    public final int f48798a;
-    public final pz0 f48799b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+public final class kz0 extends AnimatorListenerAdapter {
+    public final int f49386a;
+    public final org.telegram.ui.Components.al0 f49387b;
 
-    public kz0(pz0 pz0Var, int i7) {
-        this.f48798a = i7;
-        this.f48799b = pz0Var;
+    public kz0(org.telegram.ui.Components.al0 al0Var, int i7) {
+        this.f49386a = i7;
+        this.f49387b = al0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48798a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f49386a) {
             case 0:
-                pz0 pz0Var = this.f48799b;
-                kz0 kz0Var = pz0Var.f50391a0;
-                org.telegram.ui.Components.u51 u51Var = pz0Var.f50405x;
-                if (u51Var != null) {
-                    pz0Var.f50393b0 = ((float) u51Var.S()) / ((float) pz0Var.f50405x.U());
-                    nz0 nz0Var = pz0Var.O;
-                    if (nz0Var != null) {
-                        nz0Var.f31110pc = (pz0Var.f50405x.U() - pz0Var.f50405x.S()) / 1000;
-                        pz0Var.O.T3();
-                        org.telegram.ui.Components.tm0 seekBarWaveform = pz0Var.O.getSeekBarWaveform();
-                        if (seekBarWaveform != null) {
-                            float f10 = pz0Var.f50393b0;
-                            seekBarWaveform.J = true;
-                            seekBarWaveform.K = f10;
-                            org.telegram.ui.Cells.q1 q1Var = seekBarWaveform.f39733n;
-                            if (q1Var != null) {
-                                q1Var.invalidate();
-                            }
-                        }
-                    }
-                    if (pz0Var.f50405x.d0()) {
-                        org.telegram.messenger.g0.r(kz0Var);
-                        org.telegram.messenger.g0.i3(kz0Var, 16L);
-                        return;
-                    }
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f49387b.f33363b;
+                secretMediaViewer.Y.getNextView().setText((CharSequence) null);
+                wp0 wp0Var = secretMediaViewer.Z;
+                wp0Var.m0 = false;
+                if (wp0Var.f49066n0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) wp0Var.f49068p0.getLayoutParams()).topMargin = wp0Var.f49066n0;
+                    wp0Var.f49066n0 = -1;
+                    wp0Var.requestLayout();
                     return;
                 }
                 return;
-            case 1:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            case 2:
-                super/*android.app.Dialog*/.dismiss();
-                return;
             default:
-                pz0 pz0Var2 = this.f48799b;
-                if (pz0Var2.d == null) {
-                    org.telegram.messenger.g0.h3(new kz0(pz0Var2, 2));
-                    org.telegram.ui.Cells.q1 q1Var2 = pz0Var2.P;
-                    if (q1Var2 != null) {
-                        q1Var2.setVisibility(0);
-                        pz0Var2.P.invalidate();
+                ((SecretMediaViewer) this.f49387b.f33363b).Y.setTranslationY(0.0f);
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f49386a) {
+            case 0:
+                wp0 wp0Var = ((SecretMediaViewer) this.f49387b.f33363b).Z;
+                Method method = wp0Var.f49060g0;
+                if (method != null) {
+                    try {
+                        method.invoke(wp0Var, null);
+                        return;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                        return;
                     }
                 }
-                MediaController.B().F0();
+                return;
+            default:
+                super.onAnimationStart(animator);
                 return;
         }
     }

@@ -1,28 +1,29 @@
 package o2;
 
 import a3.u;
-import bg.v0;
+import b3.q;
+import bg.w0;
 import e2.s0;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
 public final class l {
-    public final b3.p f21283a;
-    public final xi.e f21284b;
-    public final int[] f21285c;
+    public final q f21650a;
+    public final xi.e f21651b;
+    public final int[] f21652c;
     public final int d;
-    public final j2.h f21286e;
-    public final long f21287f;
-    public final int f21288g;
+    public final j2.h f21653e;
+    public final long f21654f;
+    public final int f21655g;
     public final o h;
-    public final j[] f21289i;
-    public u f21290j;
-    public p2.c f21291k;
-    public int f21292l;
-    public x2.b f21293m;
-    public boolean f21294n;
+    public final j[] f21656i;
+    public u f21657j;
+    public p2.c f21658k;
+    public int f21659l;
+    public x2.b f21660m;
+    public boolean f21661n;
 
-    public l(v0 v0Var, b3.p pVar, p2.c cVar, xi.e eVar, int i7, int[] iArr, u uVar, int i10, j2.h hVar, long j3, int i11, boolean z10, ArrayList arrayList, o oVar) {
+    public l(w0 w0Var, q qVar, p2.c cVar, xi.e eVar, int i7, int[] iArr, u uVar, int i10, j2.h hVar, long j3, int i11, boolean z10, ArrayList arrayList, o oVar) {
         int i12;
         p2.m mVar;
         j[] jVarArr;
@@ -30,34 +31,34 @@ public final class l {
         f3.o hVar2;
         y2.e eVar2;
         ?? obj = new Object();
-        obj.f21283a = pVar;
-        obj.f21291k = cVar;
-        obj.f21284b = eVar;
-        obj.f21285c = iArr;
-        obj.f21290j = uVar;
+        obj.f21650a = qVar;
+        obj.f21658k = cVar;
+        obj.f21651b = eVar;
+        obj.f21652c = iArr;
+        obj.f21657j = uVar;
         obj.d = i10;
-        obj.f21286e = hVar;
-        obj.f21292l = i7;
-        obj.f21287f = j3;
-        obj.f21288g = i11;
+        obj.f21653e = hVar;
+        obj.f21659l = i7;
+        obj.f21654f = j3;
+        obj.f21655g = i11;
         o oVar2 = oVar;
         obj.h = oVar2;
         long d = cVar.d(i7);
         ArrayList a10 = obj.a();
-        obj.f21289i = new j[uVar.length()];
+        obj.f21656i = new j[uVar.length()];
         int i13 = 0;
         int i14 = 0;
         l lVar = obj;
-        while (i14 < lVar.f21289i.length) {
+        while (i14 < lVar.f21656i.length) {
             p2.m mVar2 = (p2.m) a10.get(uVar.i(i14));
-            p2.b I = eVar.I(mVar2.f54557b);
-            j[] jVarArr2 = lVar.f21289i;
-            p2.b bVar = I == null ? (p2.b) mVar2.f54557b.get(i13) : I;
-            e2.u uVar3 = mVar2.f54556a;
-            v0Var.getClass();
-            String str = uVar3.f10450r;
+            p2.b M = eVar.M(mVar2.f55126b);
+            j[] jVarArr2 = lVar.f21656i;
+            p2.b bVar = M == null ? (p2.b) mVar2.f55126b.get(i13) : M;
+            e2.u uVar3 = mVar2.f55125a;
+            w0Var.getClass();
+            String str = uVar3.f10768r;
             if (s0.l(str)) {
-                if (!v0Var.f3346a) {
+                if (!w0Var.f3353a) {
                     eVar2 = null;
                     mVar = mVar2;
                     jVarArr = jVarArr2;
@@ -71,14 +72,14 @@ public final class l {
                     d = j10;
                     i13 = 0;
                 } else {
-                    hVar2 = new c4.h(((nb.a) v0Var.f3348c).f(uVar3), uVar3);
+                    hVar2 = new c4.h(((nb.a) w0Var.f3355c).j(uVar3), uVar3);
                 }
             } else {
                 if (str != null && (str.startsWith("video/webm") || str.startsWith("audio/webm") || str.startsWith("application/webm") || str.startsWith("video/x-matroska") || str.startsWith("audio/x-matroska") || str.startsWith("application/x-matroska"))) {
                     mVar = mVar2;
                     uVar2 = uVar3;
                     jVarArr = jVarArr2;
-                    hVar2 = new x3.f((nb.a) v0Var.f3348c, v0Var.f3346a ? 1 : 3);
+                    hVar2 = new x3.f((nb.a) w0Var.f3355c, w0Var.f3353a ? 1 : 3);
                 } else if (Objects.equals(str, "image/jpeg")) {
                     hVar2 = new n3.a(1);
                 } else if (Objects.equals(str, "image/png")) {
@@ -89,11 +90,11 @@ public final class l {
                     } else {
                         i12 = 0;
                     }
-                    int g10 = (v0Var.f3346a ? i12 : i12 | 32) | z3.h.g(v0Var.f3347b);
+                    int g10 = (w0Var.f3353a ? i12 : i12 | 32) | z3.h.g(w0Var.f3354b);
                     mVar = mVar2;
                     jVarArr = jVarArr2;
                     uVar2 = uVar3;
-                    hVar2 = new z3.h((nb.a) v0Var.f3348c, g10, null, arrayList, oVar2);
+                    hVar2 = new z3.h((nb.a) w0Var.f3355c, g10, null, arrayList, oVar2);
                 }
                 eVar2 = new y2.e(hVar2, i10, uVar2);
                 y2.e eVar32 = eVar2;
@@ -123,20 +124,20 @@ public final class l {
     }
 
     public final ArrayList a() {
-        List list = this.f21291k.b(this.f21292l).f54545c;
+        List list = this.f21658k.b(this.f21659l).f55114c;
         ArrayList arrayList = new ArrayList();
-        for (int i7 : this.f21285c) {
-            arrayList.addAll(((p2.a) list.get(i7)).f54509c);
+        for (int i7 : this.f21652c) {
+            arrayList.addAll(((p2.a) list.get(i7)).f55078c);
         }
         return arrayList;
     }
 
     public final j b(int i7) {
-        j[] jVarArr = this.f21289i;
+        j[] jVarArr = this.f21656i;
         j jVar = jVarArr[i7];
-        p2.b I = this.f21284b.I(jVar.f21279b.f54557b);
-        if (I != null && !I.equals(jVar.f21280c)) {
-            j jVar2 = new j(jVar.f21281e, jVar.f21279b, I, jVar.f21278a, jVar.f21282f, jVar.d);
+        p2.b M = this.f21651b.M(jVar.f21646b.f55126b);
+        if (M != null && !M.equals(jVar.f21647c)) {
+            j jVar2 = new j(jVar.f21648e, jVar.f21646b, M, jVar.f21645a, jVar.f21649f, jVar.d);
             jVarArr[i7] = jVar2;
             return jVar2;
         }

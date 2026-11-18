@@ -10,27 +10,27 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.qz;
-import org.telegram.messenger.z10;
-import org.telegram.ui.x21;
+import org.telegram.messenger.mz;
+import org.telegram.messenger.x10;
+import org.telegram.ui.p51;
 public final class y0 extends AsyncTask {
-    public final int f52883a = 1;
-    public final HashMap f52884b = new HashMap();
-    public Exception f52885c;
-    public final z10 d;
+    public final int f53412a = 1;
+    public final HashMap f53413b = new HashMap();
+    public Exception f53414c;
+    public final x10 d;
 
-    public y0(z10 z10Var) {
-        this.d = z10Var;
+    public y0(x10 x10Var) {
+        this.d = x10Var;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         BufferedReader bufferedReader;
-        switch (this.f52883a) {
+        switch (this.f53412a) {
             case 0:
                 try {
                     HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry : this.f52884b.entrySet()) {
+                    for (Map.Entry entry : this.f53413b.entrySet()) {
                         if (entry.getKey() != null && entry.getValue() != null) {
                             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
                         }
@@ -40,20 +40,20 @@ public final class y0 extends AsyncTask {
                     int responseCode = httpURLConnection.getResponseCode();
                     if (responseCode >= 200 && responseCode < 300) {
                         if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                            return qz.g(new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64);
+                            return mz.g(new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64);
                         }
                         return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
                     }
                     httpURLConnection.disconnect();
                     return null;
                 } catch (Exception e10) {
-                    this.f52885c = e10;
+                    this.f53414c = e10;
                     return null;
                 }
             default:
                 try {
                     HttpURLConnection httpURLConnection2 = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry2 : this.f52884b.entrySet()) {
+                    for (Map.Entry entry2 : this.f53413b.entrySet()) {
                         if (entry2.getKey() != null && entry2.getValue() != null) {
                             httpURLConnection2.setRequestProperty((String) entry2.getKey(), (String) entry2.getValue());
                         }
@@ -77,7 +77,7 @@ public final class y0 extends AsyncTask {
                         }
                     }
                 } catch (Exception e11) {
-                    this.f52885c = e11;
+                    this.f53414c = e11;
                     return null;
                 }
                 break;
@@ -86,29 +86,29 @@ public final class y0 extends AsyncTask {
 
     @Override
     public final void onPostExecute(Object obj) {
-        switch (this.f52883a) {
+        switch (this.f53412a) {
             case 0:
                 Bitmap bitmap = (Bitmap) obj;
-                x21 x21Var = (x21) this.d;
-                if (x21Var != null) {
-                    if (this.f52885c == null) {
-                        x21Var.a(bitmap);
+                p51 p51Var = (p51) this.d;
+                if (p51Var != null) {
+                    if (this.f53414c == null) {
+                        p51Var.a(bitmap);
                         return;
                     } else {
-                        x21Var.a(null);
+                        p51Var.a(null);
                         return;
                     }
                 }
                 return;
             default:
                 String str = (String) obj;
-                z10 z10Var = this.d;
-                if (z10Var != null) {
-                    if (this.f52885c == null) {
-                        z10Var.a(str);
+                x10 x10Var = this.d;
+                if (x10Var != null) {
+                    if (this.f53414c == null) {
+                        x10Var.a(str);
                         return;
                     } else {
-                        z10Var.a(null);
+                        x10Var.a(null);
                         return;
                     }
                 }
@@ -116,7 +116,7 @@ public final class y0 extends AsyncTask {
         }
     }
 
-    public y0(x21 x21Var) {
-        this.d = x21Var;
+    public y0(p51 p51Var) {
+        this.d = p51Var;
     }
 }

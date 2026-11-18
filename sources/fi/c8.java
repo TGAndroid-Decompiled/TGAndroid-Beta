@@ -1,25 +1,32 @@
 package fi;
 
-import org.telegram.messenger.z10;
-import org.telegram.tgnet.TLRPC;
-public final class c8 implements z10 {
-    public final int f11611a;
-    public final d8 f11612b;
-
-    public c8(d8 d8Var, int i7) {
-        this.f11611a = i7;
-        this.f11612b = d8Var;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.tl.TL_stories;
+public abstract class c8 {
+    public static void a(TL_stories.StoryItem storyItem, NativeByteBuffer nativeByteBuffer) {
+        if (nativeByteBuffer == null) {
+            return;
+        }
+        int readInt32 = nativeByteBuffer.readInt32(true);
+        if (readInt32 == 1) {
+            new b8(storyItem).readParams(nativeByteBuffer, true);
+            return;
+        }
+        throw new RuntimeException(i5.c.i(readInt32, "(story) can't read params version = "));
     }
 
-    @Override
-    public final void a(Object obj) {
-        switch (this.f11611a) {
-            case 0:
-                d8.c(this.f11612b, (TLRPC.TL_messages_stickerSet) obj);
-                return;
-            default:
-                d8.b(this.f11612b, (TLRPC.TL_messages_stickerSet) obj);
-                return;
+    public static NativeByteBuffer b(TL_stories.StoryItem storyItem) {
+        if (storyItem.detectedLng == null && storyItem.translatedLng == null && !storyItem.translated && storyItem.translatedText == null) {
+            return null;
+        }
+        b8 b8Var = new b8(storyItem);
+        try {
+            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(b8Var.getObjectSize());
+            b8Var.serializeToStream(nativeByteBuffer);
+            return nativeByteBuffer;
+        } catch (Exception e10) {
+            e10.printStackTrace();
+            return null;
         }
     }
 }

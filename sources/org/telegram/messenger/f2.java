@@ -9,32 +9,32 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 public final class f2 extends c1 {
-    public static volatile f2[] f23417f = new f2[4];
-    public final ia.d f23418a;
-    public final ia.d f23419b;
-    public final Set f23420c;
+    public static volatile f2[] f23824f = new f2[4];
+    public final hi.u5 f23825a;
+    public final hi.u5 f23826b;
+    public final Set f23827c;
     public final LongSparseArray d;
-    public final SharedPreferences f23421e;
+    public final SharedPreferences f23828e;
 
     public f2(int i7) {
         super(i7);
-        this.f23418a = new ia.d();
-        this.f23419b = new ia.d();
-        this.f23420c = DesugarCollections.synchronizedSet(Collections.newSetFromMap(new WeakHashMap()));
+        this.f23825a = new hi.u5();
+        this.f23826b = new hi.u5();
+        this.f23827c = DesugarCollections.synchronizedSet(Collections.newSetFromMap(new WeakHashMap()));
         this.d = new LongSparseArray();
-        Context context = t0.f26609b;
-        this.f23421e = context.getSharedPreferences("bot_drafts" + i7, 0);
+        Context context = t0.f26915b;
+        this.f23828e = context.getSharedPreferences("bot_drafts" + i7, 0);
     }
 
     public static f2 b(int i7) {
         f2 f2Var;
-        f2 f2Var2 = f23417f[i7];
+        f2 f2Var2 = f23824f[i7];
         if (f2Var2 == null) {
             synchronized (f2.class) {
                 try {
-                    f2Var = f23417f[i7];
+                    f2Var = f23824f[i7];
                     if (f2Var == null) {
-                        f2[] f2VarArr = f23417f;
+                        f2[] f2VarArr = f23824f;
                         f2 f2Var3 = new f2(i7);
                         f2VarArr[i7] = f2Var3;
                         f2Var = f2Var3;
@@ -53,11 +53,11 @@ public final class f2 extends c1 {
     }
 
     public final boolean c(int i7, long j3) {
-        LongSparseArray w10 = this.f23418a.w(j3, i7);
-        if (w10 != null && w10.size() > 0) {
-            int size = w10.size();
+        LongSparseArray p10 = this.f23825a.p(j3, i7);
+        if (p10 != null && p10.size() > 0) {
+            int size = p10.size();
             for (int i10 = 0; i10 < size; i10++) {
-                if (!((a2) w10.valueAt(i10)).f22452e) {
+                if (!((a2) p10.valueAt(i10)).f22815e) {
                     return true;
                 }
             }
@@ -66,25 +66,25 @@ public final class f2 extends c1 {
     }
 
     public final boolean d(long j3, long j10) {
-        return this.f23421e.getBoolean(j3 + "_" + j10, false);
+        return this.f23828e.getBoolean(j3 + "_" + j10, false);
     }
 
     public final void e(long j3, int i7, long j10) {
         long j11 = i7;
-        a2 a2Var = (a2) this.f23418a.W(j3, j11, j10);
+        a2 a2Var = (a2) this.f23825a.y(j3, j11, j10);
         if (a2Var == null) {
             return;
         }
-        getNotificationCenter().k(ns.L5, new b2(j3, a2Var.f22450b, j11));
+        getNotificationCenter().k(ks.N5, new b2(j3, a2Var.f22813b, j11));
     }
 
     public final void f(int i7, long j3) {
         LongSparseArray longSparseArray = this.d;
-        List<pr> list = (List) longSparseArray.get(j3);
+        List<nr> list = (List) longSparseArray.get(j3);
         if (list != null) {
             longSparseArray.remove(j3);
-            for (pr prVar : list) {
-                prVar.a(i7);
+            for (nr nrVar : list) {
+                nrVar.a(i7);
             }
         }
     }
@@ -93,17 +93,17 @@ public final class f2 extends c1 {
         long j10;
         long j11;
         long j12 = i7;
-        LongSparseArray w10 = this.f23418a.w(j3, j12);
-        if (w10 != null) {
-            int size = w10.size();
+        LongSparseArray p10 = this.f23825a.p(j3, j12);
+        if (p10 != null) {
+            int size = p10.size();
             int i10 = 0;
             while (i10 < size) {
-                a2 a2Var = (a2) w10.valueAt(i10);
-                if (a2Var.f22452e) {
+                a2 a2Var = (a2) p10.valueAt(i10);
+                if (a2Var.f22815e) {
                     long j13 = j12;
                     j10 = j3;
-                    getNotificationCenter().k(ns.L5, new b2(j10, a2Var.f22450b, j13));
-                    this.f23418a.W(j10, j13, a2Var.f22449a);
+                    getNotificationCenter().k(ks.N5, new b2(j10, a2Var.f22813b, j13));
+                    this.f23825a.y(j10, j13, a2Var.f22812a);
                     j11 = j13;
                     i10--;
                     size--;
@@ -119,7 +119,7 @@ public final class f2 extends c1 {
     }
 
     public final void h(long j3, long j10, boolean z10) {
-        SharedPreferences.Editor edit = this.f23421e.edit();
+        SharedPreferences.Editor edit = this.f23828e.edit();
         edit.putBoolean(j3 + "_" + j10, z10).apply();
     }
 }

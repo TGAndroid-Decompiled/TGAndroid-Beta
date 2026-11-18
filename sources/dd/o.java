@@ -8,15 +8,15 @@ public enum o extends b2 {
     public final void d(l lVar, a aVar) {
         if (aVar.o()) {
             lVar.d(false);
-            j jVar = lVar.f8049i;
+            j jVar = lVar.f8331i;
             char i7 = aVar.i();
             jVar.getClass();
             jVar.h(String.valueOf(i7));
             lVar.h.append(aVar.i());
-            lVar.a(b2.f8023x);
+            lVar.a(b2.f8305x);
             return;
         }
         lVar.h("</");
-        lVar.f8045c = b2.f7996c;
+        lVar.f8327c = b2.f8278c;
     }
 }

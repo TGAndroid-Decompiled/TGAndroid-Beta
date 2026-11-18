@@ -1,154 +1,114 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.ui.jt0;
+import org.telegram.tgnet.tl.TL_iv;
 public final class r4 implements RequestDelegate {
-    public final int f26238a;
-    public final Object f26239b;
-    public final Object f26240c;
+    public final int f26540a = 2;
+    public final Object f26541b;
+    public final boolean f26542c;
+    public final c1 d;
+    public final Object f26543e;
+    public final Object f26544f;
 
-    public r4(int i7, Object obj, Object obj2) {
-        this.f26238a = i7;
-        this.f26239b = obj;
-        this.f26240c = obj2;
+    public r4(i5 i5Var, ArrayList arrayList, ArrayList arrayList2, boolean z10, String str) {
+        this.d = i5Var;
+        this.f26543e = arrayList;
+        this.f26544f = arrayList2;
+        this.f26542c = z10;
+        this.f26541b = str;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         int indexOf;
-        switch (this.f26238a) {
+        TL_iv.TL_inputRichMessage tL_inputRichMessage;
+        switch (this.f26540a) {
             case 0:
-                g5 g5Var = (g5) this.f26239b;
-                jt0 jt0Var = (jt0) this.f26240c;
+                i5 i5Var = (i5) this.d;
+                ArrayList arrayList = (ArrayList) this.f26543e;
+                ArrayList arrayList2 = (ArrayList) this.f26544f;
+                boolean z10 = this.f26542c;
+                String str = (String) this.f26541b;
                 if (tL_error == null) {
-                    g5Var.f23672a0.clear();
-                    g5Var.Z.clear();
-                    g5Var.f23689n0 = 0;
-                    g5Var.f23691s = false;
-                    g5Var.f23678e = false;
-                    g5Var.h = false;
-                    g5Var.f23673b = false;
-                    g5Var.f23690r = false;
-                    g5Var.f23692w = "";
-                    g0.h3(new b4(28, g5Var, jt0Var));
+                    i5Var.getMessagesController().V3((TLRPC.Updates) tLObject, false);
+                    tr messagesStorage = i5Var.getMessagesStorage();
+                    messagesStorage.getClass();
+                    if (!arrayList.isEmpty()) {
+                        messagesStorage.f27054a.c(new qp(messagesStorage, arrayList, 21));
+                    }
+                    Utilities.h.c(new y4(i5Var, arrayList2, 2));
+                    for (int i7 = 0; i7 < arrayList2.size(); i7++) {
+                        TLRPC.User user = (TLRPC.User) arrayList2.get(i7);
+                        if (!TextUtils.isEmpty(user.phone)) {
+                            i5Var.getMessagesStorage().f(user.phone, "");
+                            f5 f5Var = (f5) i5Var.f24561a0.get(user.phone);
+                            if (f5Var != null && (indexOf = f5Var.f23845g.indexOf(user.phone)) != -1) {
+                                f5Var.h.set(indexOf, 1);
+                            }
+                        }
+                    }
+                    g0.g3(new aa.c0(i5Var, arrayList2, z10, str, 11));
                     return;
                 }
-                g0.h3(jt0Var);
                 return;
             case 1:
-                g5 g5Var2 = (g5) this.f26239b;
-                TLRPC.User user = (TLRPC.User) this.f26240c;
-                if (tL_error == null) {
-                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
-                    if (userProfilePhoto != null && userProfilePhoto.personal) {
-                        for (int i7 = 0; i7 < updates.users.size(); i7++) {
-                            if (updates.users.get(i7).f28200id == user.f28200id) {
-                                updates.users.get(i7).photo = user.photo;
-                            }
-                        }
-                    }
-                    g5Var2.getMessagesController().O3(updates, false);
-                    for (int i10 = 0; i10 < updates.users.size(); i10++) {
-                        TLRPC.User user2 = updates.users.get(i10);
-                        if (user2.f28200id == user.f28200id) {
-                            Utilities.h.c(new b4(29, g5Var2, user2));
-                            TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
-                            tL_contact.user_id = user2.f28200id;
-                            ArrayList arrayList = new ArrayList();
-                            arrayList.add(tL_contact);
-                            g5Var2.getMessagesStorage().c1(arrayList, false);
-                            if (!TextUtils.isEmpty(user2.phone)) {
-                                g5.m(0, user2.first_name, user2.last_name);
-                                g5Var2.getMessagesStorage().f(user2.phone, "");
-                                d5 d5Var = (d5) g5Var2.f23672a0.get(user2.phone);
-                                if (d5Var != null && (indexOf = d5Var.f23044g.indexOf(user2.phone)) != -1) {
-                                    d5Var.h.set(indexOf, 0);
-                                }
-                            }
-                        }
-                    }
-                    g0.h3(new mg(g5Var2, updates, user, 16));
-                    return;
-                }
-                return;
-            case 2:
-                g5 g5Var3 = (g5) this.f26239b;
-                SharedPreferences.Editor editor = (SharedPreferences.Editor) this.f26240c;
-                if (tLObject instanceof Vector) {
-                    g0.h3(new mg(g5Var3, editor, (Vector) tLObject, 14));
-                    return;
-                }
-                return;
-            case 3:
-                si siVar = (si) this.f26239b;
-                TLRPC.TL_messages_saveGif tL_messages_saveGif = (TLRPC.TL_messages_saveGif) this.f26240c;
-                siVar.getClass();
-                if (tL_error != null && r8.r(tL_error.text)) {
-                    siVar.getFileRefController().u(new Object[]{tL_messages_saveGif}, "gif");
-                    return;
-                }
-                return;
-            case 4:
-                g0.h3(new kg((si) this.f26239b, tLObject, (TLRPC.Document) this.f26240c, 1));
-                return;
-            case 5:
-                si siVar2 = (si) this.f26239b;
-                Runnable runnable = (Runnable) this.f26240c;
-                siVar2.getClass();
-                int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-                if (tLObject instanceof TLRPC.TL_attachMenuBotsNotModified) {
-                    siVar2.v1(null, 0L, currentTimeMillis, false);
-                } else if (tLObject instanceof TLRPC.TL_attachMenuBots) {
-                    TLRPC.TL_attachMenuBots tL_attachMenuBots = (TLRPC.TL_attachMenuBots) tLObject;
-                    siVar2.v1(tL_attachMenuBots, tL_attachMenuBots.hash, currentTimeMillis, false);
-                }
-                if (runnable != null) {
-                    g0.h3(runnable);
-                    return;
-                }
-                return;
-            case 6:
-                g0.h3(new kg((np) this.f26239b, tLObject, (ArrayList) this.f26240c, 7));
-                return;
-            case 7:
-                np npVar = (np) this.f26239b;
-                Runnable runnable2 = (Runnable) this.f26240c;
-                npVar.getClass();
-                if (tL_error == null) {
-                    npVar.O3((TLRPC.Updates) tLObject, false);
-                    if (runnable2 != null) {
-                        g0.h3(runnable2);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 8:
-                g0.h3(new bm((tv) this.f26239b, tLObject, (ArrayList) this.f26240c, tL_error, 22));
-                return;
-            case 9:
-                ez ezVar = (ez) this.f26239b;
-                Runnable runnable3 = (Runnable) this.f26240c;
-                if (tLObject != null) {
-                    ezVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    if (runnable3 != null) {
-                        g0.h3(runnable3);
-                        return;
-                    }
-                    return;
-                }
-                ezVar.getClass();
+                g0.g3(new yx(0, (zy) this.d, tLObject, (TLRPC.TL_messages_requestUrlAuth) this.f26543e, (org.telegram.ui.bn) this.f26544f, (String) this.f26541b, this.f26542c));
                 return;
             default:
-                g0.i3(new n10((p10) this.f26239b, (String) this.f26240c, tL_error, tLObject, 0), 2L);
+                zy zyVar = (zy) this.d;
+                boolean z11 = this.f26542c;
+                fj fjVar = (fj) this.f26543e;
+                TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) this.f26544f;
+                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.f26541b;
+                if (tL_error == null) {
+                    if (z11 && fjVar != null) {
+                        fjVar.A2 = true;
+                    }
+                    zyVar.getMessagesController().V3((TLRPC.Updates) tLObject, false);
+                    g0.g3(new xr(zyVar, fjVar));
+                    return;
+                }
+                if (r8.r(tL_error.text)) {
+                    String str2 = tL_error.text;
+                    in inVar = new in(fjVar, zyVar, tL_messages_editMessage, h2Var, z11);
+                    zyVar = zyVar;
+                    if (fjVar != null && (tL_inputRichMessage = tL_messages_editMessage.rich_message) != null) {
+                        ArrayList arrayList3 = new ArrayList(tL_inputRichMessage.documents.size() + tL_inputRichMessage.photos.size());
+                        arrayList3.addAll(tL_inputRichMessage.photos);
+                        arrayList3.addAll(tL_inputRichMessage.documents);
+                        if (!arrayList3.isEmpty()) {
+                            int c10 = r8.c(str2);
+                            zyVar.getFileRefController().u(new Object[]{arrayList3.get((c10 < 0 || c10 >= arrayList3.size()) ? 0 : 0), inVar}, fjVar);
+                            return;
+                        }
+                    }
+                }
+                g0.g3(new rq(20, zyVar, fjVar));
+                if (h2Var != null) {
+                    g0.g3(new mw(zyVar, tL_error, h2Var, tL_messages_editMessage, 1));
+                    return;
+                }
                 return;
         }
+    }
+
+    public r4(fj fjVar, zy zyVar, TLRPC.TL_messages_editMessage tL_messages_editMessage, org.telegram.ui.ActionBar.h2 h2Var, boolean z10) {
+        this.d = zyVar;
+        this.f26542c = z10;
+        this.f26543e = fjVar;
+        this.f26544f = tL_messages_editMessage;
+        this.f26541b = h2Var;
+    }
+
+    public r4(zy zyVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.bn bnVar, String str, boolean z10) {
+        this.d = zyVar;
+        this.f26543e = tL_messages_requestUrlAuth;
+        this.f26544f = bnVar;
+        this.f26541b = str;
+        this.f26542c = z10;
     }
 }

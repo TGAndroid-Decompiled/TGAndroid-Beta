@@ -1,71 +1,92 @@
 package oi;
 
-import android.app.Activity;
-import android.net.Uri;
-import java.util.HashSet;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.s10;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.au0;
-import org.telegram.ui.zm0;
+import android.view.View;
 public final class n2 implements Runnable {
-    public final int f21834a = 2;
-    public final int f21835b;
-    public final boolean f21836c;
-    public final Object d;
-    public final Object f21837e;
-    public final Object f21838f;
-    public final Object h;
+    public final int f22188a;
+    public final s3 f22189b;
+    public final a f22190c;
+    public final int d;
 
-    public n2(Activity activity, int i7, TLRPC.InputGroupCall inputGroupCall, boolean z10, TLRPC.GroupCall groupCall, HashSet hashSet) {
-        this.d = activity;
-        this.f21835b = i7;
-        this.f21837e = inputGroupCall;
-        this.f21836c = z10;
-        this.f21838f = groupCall;
-        this.h = hashSet;
+    public n2(s3 s3Var, a aVar, int i7, int i10) {
+        this.f22188a = i10;
+        this.f22189b = s3Var;
+        this.f22190c = aVar;
+        this.d = i7;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: oi.n2.run():void");
-    }
-
-    public n2(q3 q3Var, Uri uri, boolean z10, String str, int i7, a aVar) {
-        this.d = q3Var;
-        this.f21837e = uri;
-        this.f21836c = z10;
-        this.f21838f = str;
-        this.f21835b = i7;
-        this.h = aVar;
-    }
-
-    public n2(au0 au0Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i7, gj gjVar, org.telegram.ui.Cells.q1 q1Var, boolean z10) {
-        this.d = au0Var;
-        this.f21837e = tL_messages_stickerSet;
-        this.f21835b = i7;
-        this.f21838f = gjVar;
-        this.h = q1Var;
-        this.f21836c = z10;
-    }
-
-    public n2(zm0 zm0Var, String str, int i7, TLObject tLObject, boolean z10, TLRPC.User user) {
-        this.d = zm0Var;
-        this.f21838f = str;
-        this.f21835b = i7;
-        this.f21837e = tLObject;
-        this.f21836c = z10;
-        this.h = user;
-    }
-
-    public n2(org.telegram.ui.Wallet.l0 l0Var, boolean z10, org.telegram.ui.Wallet.i0 i0Var, TL_wallet.proofChallenge proofchallenge, int i7, s10 s10Var) {
-        this.d = l0Var;
-        this.f21836c = z10;
-        this.f21837e = i0Var;
-        this.f21838f = proofchallenge;
-        this.f21835b = i7;
-        this.h = s10Var;
+        View C1;
+        View C12;
+        switch (this.f22188a) {
+            case 0:
+                s3 s3Var = this.f22189b;
+                a aVar = this.f22190c;
+                if (aVar == null) {
+                    s3Var.getClass();
+                    C1 = null;
+                } else {
+                    C1 = s3Var.C1(aVar);
+                }
+                if (C1 instanceof z5) {
+                    z5 z5Var = (z5) C1;
+                    z5Var.B();
+                    z5Var.getEditText().setSelection(Math.min(this.d, z5Var.getEditText().length()));
+                    return;
+                }
+                return;
+            case 1:
+                s3 s3Var2 = this.f22189b;
+                a aVar2 = this.f22190c;
+                if (aVar2 == null) {
+                    s3Var2.getClass();
+                    C12 = null;
+                } else {
+                    C12 = s3Var2.C1(aVar2);
+                }
+                if (C12 instanceof z5) {
+                    z5 z5Var2 = (z5) C12;
+                    z5Var2.B();
+                    z5Var2.getEditText().setSelection(Math.min(this.d, z5Var2.getEditText().length()));
+                    return;
+                }
+                return;
+            case 2:
+                View C13 = this.f22189b.C1(this.f22190c);
+                if (C13 instanceof z5) {
+                    z5 z5Var3 = (z5) C13;
+                    z5Var3.B();
+                    z5Var3.getEditText().setSelection(Math.max(0, Math.min(this.d, z5Var3.getEditText().length())));
+                    return;
+                }
+                return;
+            case 3:
+                View C14 = this.f22189b.C1(this.f22190c);
+                if (C14 instanceof z5) {
+                    z5 z5Var4 = (z5) C14;
+                    z5Var4.B();
+                    z5Var4.getEditText().setSelection(Math.max(0, Math.min(this.d, z5Var4.getEditText().length())));
+                    return;
+                }
+                return;
+            case 4:
+                View C15 = this.f22189b.C1(this.f22190c);
+                if (C15 instanceof z5) {
+                    z5 z5Var5 = (z5) C15;
+                    z5Var5.B();
+                    z5Var5.getEditText().setSelection(Math.max(0, Math.min(this.d, z5Var5.getEditText().length())));
+                    return;
+                }
+                return;
+            default:
+                View C16 = this.f22189b.C1(this.f22190c);
+                if (C16 instanceof z5) {
+                    z5 z5Var6 = (z5) C16;
+                    z5Var6.B();
+                    z5Var6.getEditText().setSelection(Math.max(0, Math.min(this.d, z5Var6.getEditText().length())));
+                    return;
+                }
+                return;
+        }
     }
 }

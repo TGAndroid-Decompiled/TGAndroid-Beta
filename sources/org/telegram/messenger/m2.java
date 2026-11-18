@@ -1,16 +1,35 @@
 package org.telegram.messenger;
-public abstract class m2 {
-    public int a() {
-        return 1;
+
+import java.util.ArrayList;
+public final class m2 {
+    public final ArrayList f25518a = new ArrayList();
+    public int f25519b;
+
+    public final void a() {
+        this.f25518a.add(new n2[]{new p2(4, 2131753063, 0)});
     }
 
-    public long b() {
-        return 0L;
+    public final void b(b3.j jVar) {
+        if (jVar != null) {
+            n2[][] n2VarArr = (n2[][]) jVar.f2902c;
+            int length = n2VarArr.length;
+            for (int i7 = 0; i7 < length; i7++) {
+                int length2 = n2VarArr[i7].length;
+                n2[] n2VarArr2 = new n2[length2];
+                for (int i10 = 0; i10 < length2; i10++) {
+                    n2VarArr2[i10] = n2VarArr[i7][i10];
+                }
+                ArrayList arrayList = this.f25518a;
+                arrayList.add(n2VarArr2);
+                if ((jVar.f2901b & (1 << i7)) != 0 && !arrayList.isEmpty()) {
+                    this.f25519b = (1 << (arrayList.size() - 1)) | this.f25519b;
+                }
+            }
+        }
     }
 
-    public int c() {
-        return 0;
+    public final b3.j c() {
+        ArrayList arrayList = this.f25518a;
+        return new b3.j((n2[][]) arrayList.toArray(new n2[arrayList.size()]), this.f25519b, 7);
     }
-
-    public abstract String d();
 }

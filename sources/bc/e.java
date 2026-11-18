@@ -1,17 +1,17 @@
 package bc;
 public final class e extends h {
-    public static final e f3125c;
+    public static final e f3119c;
 
     static {
         ?? exc = new Exception();
-        f3125c = exc;
-        exc.setStackTrace(h.f3132b);
+        f3119c = exc;
+        exc.setStackTrace(h.f3126b);
     }
 
     public static e a() {
-        if (h.f3131a) {
+        if (h.f3125a) {
             return new Exception();
         }
-        return f3125c;
+        return f3119c;
     }
 }

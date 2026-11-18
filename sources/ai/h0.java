@@ -1,30 +1,30 @@
 package ai;
 
-import org.telegram.messenger.z10;
+import org.telegram.messenger.x10;
 public final class h0 implements Runnable {
-    public final int f1220a = 1;
-    public final String f1221b;
-    public final z10 f1222c;
+    public final int f1214a = 1;
+    public final String f1215b;
+    public final x10 f1216c;
 
-    public h0(String str, z10 z10Var) {
-        this.f1221b = str;
-        this.f1222c = z10Var;
+    public h0(String str, x10 x10Var) {
+        this.f1215b = str;
+        this.f1216c = x10Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f1220a) {
+        switch (this.f1214a) {
             case 0:
-                this.f1222c.a(this.f1221b);
+                this.f1216c.a(this.f1215b);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new c1.c(18, this.f1222c, ci.f.c(this.f1221b, org.telegram.messenger.g0.L(240.0f), gc.c.M, 0.75f, null)));
+                org.telegram.messenger.g0.g3(new c1.c(17, this.f1216c, ci.f.c(this.f1215b, org.telegram.messenger.g0.L(240.0f), gc.b.M, 0.75f, null)));
                 return;
         }
     }
 
-    public h0(z10 z10Var, String str) {
-        this.f1222c = z10Var;
-        this.f1221b = str;
+    public h0(x10 x10Var, String str) {
+        this.f1216c = x10Var;
+        this.f1215b = str;
     }
 }

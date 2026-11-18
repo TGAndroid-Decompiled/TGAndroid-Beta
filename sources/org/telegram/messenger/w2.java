@@ -1,51 +1,40 @@
 package org.telegram.messenger;
 
 import android.util.Pair;
-import java.util.HashMap;
-public final class w2 implements w10 {
-    public final x2 f27292a;
-    public final Pair f27293b;
-    public final Object f27294c;
+public final class w2 implements q10 {
+    public final y2 f27634a;
+    public final Pair f27635b;
+    public final Object f27636c;
     public final int d;
-    public final Object f27295e;
 
-    public w2(x2 x2Var, Pair pair, Object obj, int i7, Object obj2) {
-        this.f27292a = x2Var;
-        this.f27293b = pair;
-        this.f27294c = obj;
+    public w2(y2 y2Var, Pair pair, Object obj, int i7) {
+        this.f27634a = y2Var;
+        this.f27635b = pair;
+        this.f27636c = obj;
         this.d = i7;
-        this.f27295e = obj2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
-        Boolean bool = (Boolean) obj;
-        Long l10 = (Long) obj3;
-        x2 x2Var = this.f27292a;
-        x2Var.getClass();
-        boolean booleanValue = ((Boolean) obj4).booleanValue();
-        Pair pair = this.f27293b;
-        if (booleanValue) {
-            if (x2Var.d == null) {
-                x2Var.d = new HashMap();
+    public final void a(Object obj, Object obj2) {
+        Object obj3;
+        Long l10 = (Long) obj;
+        y2 y2Var = this.f27634a;
+        Pair pair = this.f27635b;
+        if (y2Var.i(pair)) {
+            Object obj4 = this.f27636c;
+            if (obj2 != null && y2Var.b(obj4)) {
+                y2Var.a(pair, obj2);
+                obj3 = obj2;
+                g0.g3(new aa.c0((Object) y2Var, (Object) pair, obj3, false, 8));
+            } else {
+                obj3 = obj2;
             }
-            long currentTimeMillis = System.currentTimeMillis();
-            x2Var.d.put(pair, Long.valueOf(currentTimeMillis));
-            if (x2Var instanceof mo) {
-                x2Var.h(pair.hashCode(), currentTimeMillis);
-            }
-        }
-        if (bool.booleanValue()) {
-            Object obj5 = this.f27294c;
-            x2Var.a(pair, obj5);
-            g0.h3(new aa.c0((Object) x2Var, (Object) pair, obj5, true, 8));
+            long longValue = l10.longValue();
+            int i7 = this.d;
+            y2Var.f(i7, obj4, longValue, new x2(y2Var, pair, obj3, i7, obj4));
             return;
         }
-        if (obj2 != null) {
-            l10.getClass();
-            x2Var.g(this.d, this.f27295e, obj2);
-            x2Var.a(pair, obj2);
-        }
-        g0.h3(new aa.c0((Object) x2Var, (Object) pair, obj2, true, 8));
+        y2Var.a(pair, obj2);
+        g0.g3(new aa.c0((Object) y2Var, (Object) pair, obj2, true, 8));
     }
 }

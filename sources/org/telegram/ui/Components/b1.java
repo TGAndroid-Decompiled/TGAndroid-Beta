@@ -1,70 +1,107 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-public final class b1 implements Runnable {
-    public final int f33138a;
-    public final int f33139b;
-    public final long f33140c;
-    public final long d;
-    public final org.telegram.messenger.z10 f33141e;
-    public final long f33142f;
+import java.util.List;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class b1 implements org.telegram.ui.ActionBar.r1, org.telegram.messenger.q1 {
+    public final int f33500a;
+    public final Object f33501b;
+    public final Object f33502c;
+    public final Object d;
+    public final Object f33503e;
+    public final Object f33504f;
+    public final Object h;
 
-    public b1(int i7, long j3, long j10, org.telegram.messenger.z10 z10Var, long j11, int i10) {
-        this.f33138a = i10;
-        this.f33139b = i7;
-        this.f33140c = j3;
-        this.d = j10;
-        this.f33141e = z10Var;
-        this.f33142f = j11;
+    public b1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
+        this.f33500a = i7;
+        this.f33501b = obj;
+        this.f33502c = obj2;
+        this.d = obj3;
+        this.f33503e = obj4;
+        this.f33504f = obj5;
+        this.h = obj6;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.e6 bVar;
-        switch (this.f33138a) {
-            case 0:
-                int i7 = this.f33139b;
-                long j3 = di.u8.y(i7, false).p().amount;
-                long j10 = this.f33140c;
-                int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
-                org.telegram.messenger.z10 z10Var = this.f33141e;
-                long j11 = this.f33142f;
-                if (i10 < 0) {
-                    Activity u02 = org.telegram.messenger.g0.u0();
-                    org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
-                    if (!PhotoViewer.p1().P1() && (T == null || !T.hasShownSheet())) {
-                        if (T != null) {
-                            bVar = T.getResourceProvider();
-                        } else {
-                            bVar = null;
-                        }
-                    } else {
-                        bVar = new fi.b();
-                    }
-                    org.telegram.ui.ActionBar.e6 e6Var = bVar;
-                    if (u02 != null) {
-                        long j12 = this.d;
-                        new di.bb(u02, e6Var, j10, 13, org.telegram.messenger.m5.s(i7, j12), new org.telegram.ui.b6(1, j11, z10Var), j12).show();
-                        return;
-                    }
-                    return;
-                }
-                z10Var.a(Long.valueOf(j11));
+    public void a(f5.f fVar, List list) {
+        switch (this.f33500a) {
+            case 2:
+                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f33501b;
+                org.telegram.messenger.x10 x10Var = (org.telegram.messenger.x10) this.f33504f;
+                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.h;
+                f5.i a10 = ((f5.m) list.get(0)).a();
+                tL_inputStorePaymentPremiumGiftCode.currency = a10.f11292c;
+                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(((TLRPC.TL_premiumGiftCodeOption) this.f33502c).currency)) * (a10.f11291b / Math.pow(10.0d, 6.0d)));
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
+                ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore, new di.x6((org.telegram.messenger.x10) this.f33503e, list, fVar, x10Var, h2Var, tL_inputStorePaymentPremiumGiftCode, 4));
                 return;
             default:
-                int i11 = this.f33139b;
-                b1 b1Var = new b1(i11, this.f33140c, this.d, this.f33141e, this.f33142f, 0);
-                if (!di.u8.y(i11, false).f9532e) {
-                    di.u8 y10 = di.u8.y(i11, false);
-                    y10.f9532e = false;
-                    y10.q(b1Var, false, true);
-                    y10.f9532e = true;
-                    return;
-                }
-                b1Var.run();
+                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f33501b;
+                wg.v vVar = (wg.v) this.f33504f;
+                org.telegram.ui.ActionBar.h2 h2Var2 = (org.telegram.ui.ActionBar.h2) this.h;
+                f5.i a11 = ((f5.m) list.get(0)).a();
+                tL_inputStorePaymentPremiumGiveaway.currency = a11.f11292c;
+                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(((TLRPC.TL_premiumGiftCodeOption) this.f33502c).currency)) * (a11.f11291b / Math.pow(10.0d, 6.0d)));
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore2 = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore2.purpose = tL_inputStorePaymentPremiumGiveaway;
+                ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore2, new di.x6((wg.v) this.f33503e, list, fVar, vVar, h2Var2, tL_inputStorePaymentPremiumGiveaway, 3));
                 return;
         }
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f33500a) {
+            case 0:
+                TLRPC.User user = (TLRPC.User) this.f33501b;
+                org.telegram.messenger.c cVar = (org.telegram.messenger.c) this.f33502c;
+                org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.d;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f33503e;
+                org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) this.f33504f;
+                org.telegram.ui.Cells.c2[] c2VarArr = (org.telegram.ui.Cells.c2[]) this.h;
+                if (user != null) {
+                    org.telegram.messenger.tr a02 = org.telegram.messenger.tr.a0(cVar.f23221a);
+                    a02.f27054a.c(new org.telegram.messenger.np(3, bnVar.a(), user.f28554id, a02));
+                } else {
+                    org.telegram.messenger.tr a03 = org.telegram.messenger.tr.a0(cVar.f23221a);
+                    a03.f27054a.c(new org.telegram.messenger.np(3, bnVar.a(), -chat.f28405id, a03));
+                }
+                TLRPC.TL_contacts_blockFromReplies tL_contacts_blockFromReplies = new TLRPC.TL_contacts_blockFromReplies();
+                tL_contacts_blockFromReplies.msg_id = fjVar.e1();
+                tL_contacts_blockFromReplies.delete_message = true;
+                tL_contacts_blockFromReplies.delete_history = true;
+                if (c2VarArr[0].b()) {
+                    tL_contacts_blockFromReplies.report_spam = true;
+                    if (bnVar.getParentActivity() != null) {
+                        bnVar.h8();
+                        UndoView undoView = bnVar.N3;
+                        if (undoView != null) {
+                            undoView.j(74, 0L, null);
+                        }
+                    }
+                }
+                ConnectionsManager.getInstance(cVar.f23221a).sendRequest(tL_contacts_blockFromReplies, new e2(cVar, 0));
+                return;
+            default:
+                org.telegram.ui.qj0 qj0Var = (org.telegram.ui.qj0) this.f33501b;
+                org.telegram.ui.hk0 hk0Var = qj0Var.f51277a;
+                hk0Var.Z[0].setText((String) this.f33502c);
+                hk0Var.Z[1].setText((String) this.d);
+                hk0Var.Z[2].setText((String) this.f33503e);
+                hk0Var.R1(true, true);
+                qj0Var.c((org.telegram.ui.hf0) this.f33504f, (k8.a) this.h);
+                return;
+        }
+    }
+
+    public b1(TLRPC.User user, org.telegram.messenger.c cVar, org.telegram.ui.bn bnVar, TLRPC.Chat chat, org.telegram.messenger.fj fjVar, org.telegram.ui.Cells.c2[] c2VarArr, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.f33500a = 0;
+        this.f33501b = user;
+        this.f33502c = cVar;
+        this.d = bnVar;
+        this.f33503e = chat;
+        this.f33504f = fjVar;
+        this.h = c2VarArr;
     }
 }

@@ -1,98 +1,43 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.util.SparseArray;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-public abstract class os0 extends sr0 {
-    public final HashSet f38063k3;
-    public final ArrayList f38064l3;
-    public final ArrayList f38065m3;
-    public final ArrayList f38066n3;
-    public TextPaint f38067o3;
-    public StaticLayout f38068p3;
-    public float f38069q3;
-    public float f38070r3;
-    public fi.q9 f38071s3;
-    public int f38072t3;
-    public final ArrayList f38073u3;
+public final class os0 extends org.telegram.ui.Cells.q1 {
+    public final int f38170zd = 1;
 
-    public os0(Context context) {
-        super(context, null);
-        this.f38063k3 = new HashSet();
-        this.f38064l3 = new ArrayList();
-        this.f38065m3 = new ArrayList();
-        this.f38066n3 = new ArrayList();
-        this.f38073u3 = new ArrayList();
-    }
-
-    public abstract boolean A1();
-
-    public abstract boolean B1();
-
-    public boolean C1() {
-        return true;
+    public os0(Context context, int i7) {
+        super(context, i7);
     }
 
     @Override
-    public void dispatchDraw(android.graphics.Canvas r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.os0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        aj0 movingAdapter = getMovingAdapter();
-        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.n7)) {
-            return true;
+    public int getParentWidth() {
+        int i7;
+        int L;
+        switch (this.f38170zd) {
+            case 1:
+                if (getMeasuredWidth() != 0) {
+                    i7 = getMeasuredWidth();
+                    L = org.telegram.messenger.g0.L(24.0f);
+                } else {
+                    i7 = org.telegram.messenger.g0.f24121q.x;
+                    L = org.telegram.messenger.g0.L(24.0f);
+                }
+                return i7 - L;
+            default:
+                return super.getParentWidth();
         }
-        return super.drawChild(canvas, view, j3);
     }
 
-    public int getAnimateToColumnsCount() {
-        return 3;
+    @Override
+    public final boolean isPressed() {
+        switch (this.f38170zd) {
+            case 0:
+                return false;
+            default:
+                return false;
+        }
     }
 
-    public float getChangeColumnsProgress() {
-        return 0.0f;
-    }
-
-    public int getColumnsCount() {
-        return 3;
-    }
-
-    public SparseArray<Float> getMessageAlphaEnter() {
-        return null;
-    }
-
-    public aj0 getMovingAdapter() {
-        return null;
-    }
-
-    public int getPinchCenterPosition() {
-        return 0;
-    }
-
-    public aj0 getSupportingAdapter() {
-        return null;
-    }
-
-    public sr0 getSupportingListView() {
-        return null;
-    }
-
-    public os0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        this.f38063k3 = new HashSet();
-        this.f38064l3 = new ArrayList();
-        this.f38065m3 = new ArrayList();
-        this.f38066n3 = new ArrayList();
-        this.f38073u3 = new ArrayList();
-    }
-
-    public void z1(org.telegram.ui.Cells.n7 n7Var) {
+    public os0(Context context, int i7, boolean z10, h6.m mVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i7, z10, mVar, i6Var);
     }
 }

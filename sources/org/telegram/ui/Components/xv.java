@@ -1,31 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class xv extends g.p {
-    public final ly f41762c;
+import android.content.Context;
+public final class xv extends ey {
+    public final ry I;
 
-    public xv(ly lyVar) {
-        this.f41762c = lyVar;
+    public xv(ry ryVar, Context context) {
+        super(ryVar, context, 2);
+        this.I = ryVar;
     }
 
     @Override
-    public final int i(int i7) {
-        ly lyVar = this.f41762c;
-        gy gyVar = lyVar.A0;
-        v4.h0 adapter = lyVar.E0.getAdapter();
-        dy dyVar = lyVar.f37010z0;
-        if (adapter == dyVar) {
-            if (i7 == 0) {
-                return dyVar.d;
-            }
-            if (i7 == dyVar.f34091s || (dyVar.h.get(i7) != null && !(dyVar.h.get(i7) instanceof TLRPC.Document))) {
-                return dyVar.d;
-            }
-            return 1;
-        } else if (i7 != gyVar.f35091y && (gyVar.f35087r.get(i7) == null || (gyVar.f35087r.get(i7) instanceof TLRPC.Document))) {
-            return 1;
-        } else {
-            return dyVar.d;
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            super.setTranslationY(f10);
+            this.I.f39357h0.invalidate();
         }
     }
 }

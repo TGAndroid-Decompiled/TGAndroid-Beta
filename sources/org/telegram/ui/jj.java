@@ -1,126 +1,80 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class jj extends org.telegram.ui.Components.j90 {
-    public boolean W;
-    public final an f48352a0;
+public final class jj extends org.telegram.ui.Cells.u0 {
+    public final bn C2;
 
-    public jj(an anVar, Context context, long j3, long j10, an anVar2, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, j3, j10, anVar2, e6Var);
-        this.f48352a0 = anVar;
-        this.W = true;
+    public jj(Context context, org.telegram.ui.ActionBar.i6 i6Var, bn bnVar) {
+        super(context, i6Var, false);
+        this.C2 = bnVar;
     }
 
     @Override
-    public final boolean a() {
-        an anVar = this.f48352a0;
-        if (anVar.T.getVisibility() == 0 && !anVar.C3) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() <= 0.0f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void j() {
-        this.f48352a0.ad();
-    }
-
-    @Override
-    public final void k(TLRPC.BotInlineResult botInlineResult) {
-        an anVar = this.f48352a0;
-        if (anVar.getParentActivity() != null && botInlineResult.content != null) {
-            if (!botInlineResult.type.equals("video") && !botInlineResult.type.equals("web_player_video")) {
-                anVar.Za(0, botInlineResult.content.url, null, null, false);
-                return;
-            }
-            int[] g12 = org.telegram.messenger.gj.g1(botInlineResult);
-            rh rhVar = anVar.f45197fb;
-            String str = botInlineResult.title;
-            if (str == null) {
-                str = "";
-            }
-            String str2 = botInlineResult.description;
-            String str3 = botInlineResult.content.url;
-            org.telegram.ui.Components.bu.N0(anVar, null, rhVar, str, str2, str3, str3, g12[0], g12[1], -1, anVar.V9());
-        }
-    }
-
-    @Override
-    public final void l(boolean z10) {
-        String str;
-        an anVar = this.f48352a0;
-        qj qjVar = anVar.f45117a0;
-        if (qjVar != null) {
-            jg.h1 adapter = getAdapter();
-            TLRPC.User user = adapter.f17147x0;
-            if (user != null) {
-                str = user.bot_inline_placeholder;
-            } else {
-                String str2 = adapter.f17138r0;
-                if (str2 != null && str2.equals("gif")) {
-                    str = org.telegram.messenger.hd.M0(2131745764, null);
-                } else {
-                    str = null;
-                }
-            }
-            qjVar.setCaption(str);
-            org.telegram.ui.Components.ge geVar = anVar.f45117a0.f32318x2;
-            if (geVar != null) {
-                if (z10) {
-                    geVar.f41420e = true;
-                    geVar.f41418b = System.currentTimeMillis();
-                    geVar.invalidateSelf();
+    public final void onDraw(Canvas canvas) {
+        bn bnVar = this.C2;
+        if (bnVar.R8 == null) {
+            float y10 = ((bnVar.A0.getY() + bnVar.P9) - getY()) - org.telegram.messenger.g0.L(4.0f);
+            if (y10 > 0.0f) {
+                if (y10 < getMeasuredHeight()) {
+                    canvas.save();
+                    canvas.clipRect(0.0f, y10, getMeasuredWidth(), getMeasuredHeight());
+                    super.onDraw(canvas);
+                    canvas.restore();
                     return;
                 }
-                geVar.f41420e = false;
+                return;
             }
+            super.onDraw(canvas);
         }
     }
 
     @Override
-    public final void m() {
-        an anVar = this.f48352a0;
-        if (anVar.f45330q5 && ((getAdapter().S == null || anVar.f45344r5 || anVar.s5) && anVar.h != null && getAdapter().S != null)) {
-            SharedPreferences e12 = org.telegram.messenger.np.e1();
-            if (!e12.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar.getParentActivity(), anVar.Aa);
-                String M0 = org.telegram.messenger.hd.M0(2131689472, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                t1Var.S = M0;
-                t1Var.U = org.telegram.messenger.hd.M0(2131745694, null);
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
-                anVar.showDialog(t1Var);
-                e12.edit().putBoolean("secretbot", true).commit();
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            bn bnVar = this.C2;
+            kVar = ((org.telegram.ui.ActionBar.h2) bnVar).actionBar;
+            if (!kVar.y() && !bnVar.Y9()) {
+                return super.onInterceptTouchEvent(motionEvent);
             }
+            return false;
         }
-        anVar.ad();
+        return false;
     }
 
     @Override
-    public final void n(boolean z10) {
-        boolean z11;
-        if (this.W != z10) {
-            an anVar = this.f48352a0;
-            org.telegram.ui.Components.rw0 rw0Var = anVar.f45354s1;
-            if (!anVar.isInPreviewMode() && z10) {
-                z11 = true;
-            } else {
-                z11 = false;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            bn bnVar = this.C2;
+            kVar = ((org.telegram.ui.ActionBar.h2) bnVar).actionBar;
+            if (!kVar.y() && !bnVar.Y9()) {
+                return super.onTouchEvent(motionEvent);
             }
-            org.telegram.messenger.g0.U3(rw0Var, z11, false);
-            this.W = z10;
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        int i7;
+        super.setAlpha(f10);
+        if (f10 > 0.0f) {
+            i7 = 0;
+        } else {
+            i7 = 4;
+        }
+        setVisibility(i7);
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            invalidate();
+        }
+        super.setTranslationY(f10);
     }
 }

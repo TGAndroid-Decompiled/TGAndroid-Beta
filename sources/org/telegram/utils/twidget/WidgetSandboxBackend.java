@@ -9,16 +9,25 @@ import android.os.Build;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.os.Trace;
+import android.text.TextUtils;
 import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import org.json.JSONArray;
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
-public final class WidgetSandboxBackend implements b1, g {
+import org.telegram.messenger.a8;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.s2;
+import org.telegram.ui.ActionBar.h2;
+import org.telegram.ui.Components.az;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.LaunchActivity;
+public final class WidgetSandboxBackend implements g1, h {
     private static final int MAX_CANVAS_WORDS = 2097152;
+    private static final int MAX_COMPOSITION_LAYERS = 256;
     private static final int MAX_DISPLAY_OPS = 200000;
     private static final int MAX_FONTS = 4096;
     private static final int MAX_FRAMES_PER_SECOND = 240;
@@ -26,6 +35,8 @@ public final class WidgetSandboxBackend implements b1, g {
     static final long MAX_IMAGE_PIXELS = 4194304;
     static final int MAX_JSON_DEPTH = 32;
     private static final int MAX_LAYERS = 256;
+    private static final int MAX_LAYER_KEYS = 1024;
+    private static final long MAX_LAYER_PIXELS = 33554432;
     private static final long MAX_LIST_BYTES = 8388608;
     private static final long MAX_PENDING_LAYER_BYTES = 16777216;
     private static final long MEMORY_BUDGET = 33554432;
@@ -33,21 +44,22 @@ public final class WidgetSandboxBackend implements b1, g {
     private long layerParseNanos;
     private int nextFont;
     private int nextRecord;
-    private final l1 owner;
+    private final p1 owner;
     private long pendingLayerBytes;
-    private q1 text;
+    private v1 text;
     private final Object recordLock = new Object();
     private final long[] recordTimes = new long[240];
     private final ConcurrentHashMap<Integer, Paint> fonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Paint> deviceFonts = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<Integer, Bitmap> images = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<Integer, h> canvases = new ConcurrentHashMap<>();
-    private final HashMap<Integer, i> pendingLayers = new HashMap<>();
-    private HashMap<Long, v0> layerContents = new HashMap<>();
-    private final c1 painter = new c1();
+    private final ConcurrentHashMap<Integer, i> canvases = new ConcurrentHashMap<>();
+    private final Object canvasLock = new Object();
+    private final HashMap<Integer, j> pendingLayers = new HashMap<>();
+    private HashMap<Long, a1> layerContents = new HashMap<>();
+    private final h1 painter = new h1();
 
-    public WidgetSandboxBackend(l1 l1Var) {
-        this.owner = l1Var;
+    public WidgetSandboxBackend(p1 p1Var) {
+        this.owner = p1Var;
     }
 
     private static void assertWorker() {
@@ -55,31 +67,6 @@ public final class WidgetSandboxBackend implements b1, g {
             return;
         }
         throw new IllegalStateException("Native layout and recording must run off UI");
-    }
-
-    private void checkCanvasSize(int i7, int i10, int i11) {
-        long width;
-        long j3 = i10 * i11;
-        if (j3 <= 4194304) {
-            long imageBytes = (j3 * 8) + imageBytes();
-            for (Map.Entry<Integer, h> entry : this.canvases.entrySet()) {
-                if (entry.getKey().intValue() != i7) {
-                    h value = entry.getValue();
-                    Bitmap bitmap = value.f54232o;
-                    if (bitmap == null) {
-                        width = 0;
-                    } else {
-                        width = bitmap.getWidth() * value.f54232o.getHeight() * 8;
-                    }
-                    imageBytes += width;
-                }
-            }
-            if (imageBytes <= 33554432) {
-                return;
-            }
-            throw new IllegalArgumentException("Canvas memory budget");
-        }
-        throw new IllegalArgumentException("Canvas dimensions");
     }
 
     public static void checkJsonDepth(String str) {
@@ -98,7 +85,11 @@ public final class WidgetSandboxBackend implements b1, g {
             } else if (charAt == '\"') {
                 z10 = true;
             } else if (charAt != '[' && charAt != '{') {
-                if (charAt == ']' || charAt == '}') {
+                if (charAt != ']' && charAt != '}') {
+                    if (charAt == '\'' || charAt == '/' || charAt == '#') {
+                        throw new IllegalArgumentException("Not JSON");
+                    }
+                } else if (i10 > 0) {
                     i10--;
                 }
             } else {
@@ -163,143 +154,8 @@ public final class WidgetSandboxBackend implements b1, g {
         return true;
     }
 
-    private k1[] layers(JSONObject jSONObject, float f10) {
-        int length;
-        int i7;
-        JSONArray jSONArray;
-        int i10;
-        long j3;
-        float[] fArr;
-        float[] fArr2;
-        int length2;
-        boolean z10;
-        int i11;
-        int i12;
-        c0 b0Var;
-        JSONArray optJSONArray = jSONObject.optJSONArray("l");
-        int i13 = 0;
-        if (optJSONArray == null) {
-            length = 0;
-        } else {
-            length = optJSONArray.length();
-        }
-        HashMap<Long, v0> hashMap = new HashMap<>();
-        k1[] k1VarArr = new k1[length];
-        int i14 = 0;
-        int i15 = 0;
-        while (i14 < length) {
-            JSONObject optJSONObject = optJSONArray.optJSONObject(i14);
-            if (optJSONObject != null) {
-                long optLong = optJSONObject.optLong("id");
-                long optLong2 = optJSONObject.optLong("cv");
-                JSONArray optJSONArray2 = optJSONObject.optJSONArray("b");
-                if (optJSONArray2 != null) {
-                    double optDouble = optJSONArray2.optDouble(i13);
-                    i7 = length;
-                    double d = f10;
-                    jSONArray = optJSONArray;
-                    int floor = (int) Math.floor(optDouble * d);
-                    int floor2 = (int) Math.floor(optJSONArray2.optDouble(1) * d);
-                    int ceil = (int) Math.ceil((optJSONArray2.optDouble(2) + optJSONArray2.optDouble(0)) * d);
-                    int ceil2 = (int) Math.ceil((optJSONArray2.optDouble(3) + optJSONArray2.optDouble(1)) * d);
-                    v0 v0Var = this.layerContents.get(Long.valueOf(optLong));
-                    i iVar = this.pendingLayers.get(Integer.valueOf(i14));
-                    if (iVar != null) {
-                        if (Build.VERSION.SDK_INT >= 29) {
-                            c0 a0Var = new a0("widget-sandbox-layer", floor, floor2, ceil, ceil2);
-                            i12 = floor;
-                            i11 = floor2;
-                            i10 = i14;
-                            j3 = optLong;
-                            b0Var = a0Var;
-                        } else {
-                            i10 = i14;
-                            j3 = optLong;
-                            i11 = floor2;
-                            i12 = floor;
-                            b0Var = new b0(i12, i11, ceil, ceil2);
-                        }
-                        Canvas a10 = b0Var.a();
-                        try {
-                            a10.translate(-i12, -i11);
-                            a10.scale(f10, f10);
-                            this.painter.e(a10, iVar, this, f10);
-                            b0Var.d();
-                            v0Var = new v0(b0Var, (int) optLong2);
-                        } catch (Throwable th2) {
-                            b0Var.d();
-                            throw th2;
-                        }
-                    } else {
-                        i10 = i14;
-                        j3 = optLong;
-                        if (v0Var != null) {
-                            if (v0Var.f54419b != ((int) optLong2)) {
-                            }
-                        }
-                        i14 = i10 + 1;
-                        length = i7;
-                        optJSONArray = jSONArray;
-                        i13 = 0;
-                    }
-                    hashMap.put(Long.valueOf(j3), v0Var);
-                    JSONArray optJSONArray3 = optJSONObject.optJSONArray("l");
-                    float[] fArr3 = null;
-                    if (optJSONArray3 != null) {
-                        float[] fArr4 = new float[4];
-                        c1.c(optJSONArray3, fArr4, 4, new float[0]);
-                        JSONArray optJSONArray4 = optJSONObject.optJSONArray("q");
-                        if (optJSONArray4 != null) {
-                            fArr3 = new float[8];
-                            c1.c(optJSONArray4, fArr3, 8, new float[0]);
-                        }
-                        fArr2 = fArr3;
-                        fArr = fArr4;
-                    } else {
-                        fArr = null;
-                        fArr2 = null;
-                    }
-                    JSONArray optJSONArray5 = optJSONObject.optJSONArray("k");
-                    if (optJSONArray5 == null) {
-                        length2 = 0;
-                    } else {
-                        length2 = (optJSONArray5.length() / 8) * 8;
-                    }
-                    float[] fArr5 = new float[length2];
-                    c1.c(optJSONArray5, fArr5, length2, new float[0]);
-                    int i16 = i15 + 1;
-                    c0 c0Var = v0Var.f54418a;
-                    double optDouble2 = optJSONObject.optDouble("ts");
-                    double optDouble3 = optJSONObject.optDouble("td");
-                    if (optJSONObject.optInt("tr") != 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    k1VarArr[i15] = new k1(c0Var, fArr, fArr2, optDouble2, optDouble3, z10, fArr5);
-                    i15 = i16;
-                    i14 = i10 + 1;
-                    length = i7;
-                    optJSONArray = jSONArray;
-                    i13 = 0;
-                }
-            }
-            jSONArray = optJSONArray;
-            i7 = length;
-            i10 = i14;
-            i14 = i10 + 1;
-            length = i7;
-            optJSONArray = jSONArray;
-            i13 = 0;
-        }
-        int i17 = length;
-        this.layerContents = hashMap;
-        if (i15 == i17) {
-            return k1VarArr;
-        }
-        k1[] k1VarArr2 = new k1[i15];
-        System.arraycopy(k1VarArr, 0, k1VarArr2, 0, i15);
-        return k1VarArr2;
+    private org.telegram.utils.twidget.o1[] layers(org.json.JSONObject r41, float r42) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.layers(org.json.JSONObject, float):org.telegram.utils.twidget.o1[]");
     }
 
     public static float[] metrics(int i7, Paint paint, float f10, Rect rect) {
@@ -340,10 +196,11 @@ public final class WidgetSandboxBackend implements b1, g {
     }
 
     private void recordLocked(byte[] bArr, byte[] bArr2, double d, int i7, int i10, float f10, float f11, int i11, int i12) {
-        c0 b0Var;
         int i13;
         int i14;
-        if (bArr.length <= 8388608) {
+        d0 c0Var;
+        ?? r12 = bArr;
+        if (r12.length <= 8388608) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             long[] jArr = this.recordTimes;
             int i15 = this.nextRecord;
@@ -359,52 +216,90 @@ public final class WidgetSandboxBackend implements b1, g {
             long nanoTime = System.nanoTime();
             double d2 = d - (nanoTime / 1.0E9d);
             if (Build.VERSION.SDK_INT >= 29) {
-                b0Var = new a0("widget-sandbox-content", 0, 0, i7, i10);
-                i13 = i7;
+                c0Var = new b0("widget-sandbox-content", 0, 0, i7, i10);
                 i14 = i10;
+                i13 = i7;
             } else {
                 i13 = i7;
                 i14 = i10;
-                b0Var = new b0(0, 0, i13, i14);
+                c0Var = new c0(0, 0, i13, i14);
             }
-            c0 c0Var = b0Var;
+            d0 d0Var = c0Var;
             try {
                 try {
-                    i b10 = i.b(bArr);
-                    String text = text(bArr2);
-                    checkJsonDepth(text);
-                    JSONObject jSONObject = new JSONObject(text);
-                    System.nanoTime();
-                    c1 c1Var = this.painter;
-                    c1Var.v = 0;
-                    c1Var.f54191w = 0;
-                    c1Var.f54192x = 0L;
-                    Canvas a10 = c0Var.a();
                     try {
-                        a10.scale(f10, f10);
-                        this.painter.e(a10, b10, this, f10);
-                        c0Var.d();
-                        k1[] layers = layers(jSONObject, f10);
-                        l1 l1Var = this.owner;
+                        j b10 = j.b(r12);
+                        String text = text(bArr2);
+                        checkJsonDepth(text);
+                        JSONObject jSONObject = new JSONObject(text);
                         System.nanoTime();
-                        l1Var.getClass();
-                        this.owner.b(c0Var, layers, d2, i13, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f54248b, this.text);
-                        return;
-                    } catch (Throwable th2) {
-                        c0Var.d();
-                        throw th2;
+                        this.painter.b(i13, i14);
+                        Canvas a10 = d0Var.a();
+                        try {
+                            a10.scale(f10, f10);
+                            this.painter.f(a10, b10, this, f10, 0.0f, 0.0f, i13 / f10, i14 / f10);
+                            d0Var.d();
+                            o1[] layers = layers(jSONObject, f10);
+                            p1 p1Var = this.owner;
+                            System.nanoTime();
+                            p1Var.getClass();
+                            p1Var.S = null;
+                            this.owner.c(d0Var, layers, d2, i7, i14, f11, ((float) (System.nanoTime() - nanoTime)) / 1000000.0f, i11, i12, b10.f54790b, this.text);
+                            return;
+                        } catch (Throwable th2) {
+                            d0Var.d();
+                            throw th2;
+                        }
+                    } finally {
+                        clearPendingLayers();
+                        Trace.endSection();
                     }
                 } catch (Exception e10) {
-                    c0Var.b();
-                    throw e10;
+                    e = e10;
+                    r12 = d0Var;
+                    r12.b();
+                    throw e;
                 }
-            } finally {
-                clearPendingLayers();
-                Trace.endSection();
+            } catch (Exception e11) {
+                e = e11;
+                r12.b();
+                throw e;
             }
         }
         clearPendingLayers();
         throw new IllegalArgumentException("Display list");
+    }
+
+    private i reserveCanvas(int i7, int i10, int i11) {
+        i iVar;
+        long j3 = i10 * i11;
+        if (j3 <= 4194304) {
+            synchronized (this.canvasLock) {
+                long j10 = j3 * 8;
+                try {
+                    long imageBytes = imageBytes() + j10;
+                    for (Map.Entry<Integer, i> entry : this.canvases.entrySet()) {
+                        if (entry.getKey().intValue() != i7) {
+                            imageBytes += entry.getValue().W;
+                        }
+                    }
+                    if (imageBytes <= 33554432) {
+                        iVar = this.canvases.get(Integer.valueOf(i7));
+                        if (iVar == null) {
+                            iVar = new i(i7);
+                            this.canvases.put(Integer.valueOf(i7), iVar);
+                        }
+                        iVar.W = j10;
+                    } else {
+                        throw new IllegalArgumentException("Canvas memory budget");
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return iVar;
+        }
+        throw new IllegalArgumentException("Canvas dimensions");
     }
 
     public static String text(byte[] bArr) {
@@ -420,44 +315,44 @@ public final class WidgetSandboxBackend implements b1, g {
 
     @Override
     public Bitmap canvas(int i7) {
-        h hVar = this.canvases.get(Integer.valueOf(i7));
-        if (hVar == null) {
+        i iVar = this.canvases.get(Integer.valueOf(i7));
+        if (iVar == null) {
             return null;
         }
-        return hVar.i();
+        return iVar.j();
     }
 
     @Override
     public Bitmap canvasBitmap(int i7) {
-        h hVar = this.canvases.get(Integer.valueOf(i7));
-        if (hVar == null) {
+        i iVar = this.canvases.get(Integer.valueOf(i7));
+        if (iVar == null) {
             return null;
         }
-        return hVar.i();
+        return iVar.j();
     }
 
     public byte[] canvasRead(int i7, int i10, int i11, int i12, int i13) {
         int i14 = i10;
         assertWorker();
         if (i12 > 0 && i13 > 0 && i12 * i13 <= 4194304) {
-            h hVar = this.canvases.get(Integer.valueOf(i7));
-            if (hVar == null) {
+            i iVar = this.canvases.get(Integer.valueOf(i7));
+            if (iVar == null) {
                 return new byte[i12 * i13 * 4];
             }
-            synchronized (hVar) {
+            synchronized (iVar) {
                 byte[] bArr = new byte[Math.max(i12, 0) * Math.max(i13, 0) * 4];
-                if (hVar.f54232o == null) {
+                if (iVar.f54773o == null) {
                     return bArr;
                 }
                 int max = Math.max(0, i14);
                 int max2 = Math.max(0, i11);
-                int min = Math.min(hVar.f54232o.getWidth(), i14 + i12);
-                int min2 = Math.min(hVar.f54232o.getHeight(), i13 + i11);
+                int min = Math.min(iVar.f54773o.getWidth(), i14 + i12);
+                int min2 = Math.min(iVar.f54773o.getHeight(), i13 + i11);
                 if (min > max && min2 > max2) {
                     int i15 = min - max;
                     int i16 = min2 - max2;
                     int[] iArr = new int[i15 * i16];
-                    hVar.f54232o.getPixels(iArr, 0, i15, max, max2, i15, i16);
+                    iVar.f54773o.getPixels(iArr, 0, i15, max, max2, i15, i16);
                     int i17 = max2;
                     while (i17 < min2) {
                         int i18 = max;
@@ -483,22 +378,13 @@ public final class WidgetSandboxBackend implements b1, g {
     }
 
     public void canvasRelease(int i7) {
+        i remove;
         assertWorker();
-        h remove = this.canvases.remove(Integer.valueOf(i7));
+        synchronized (this.canvasLock) {
+            remove = this.canvases.remove(Integer.valueOf(i7));
+        }
         if (remove != null) {
-            synchronized (remove) {
-                try {
-                    Bitmap bitmap = remove.f54232o;
-                    if (bitmap != null) {
-                        bitmap.recycle();
-                    }
-                    remove.f54232o = null;
-                    remove.f54234q = null;
-                    remove.f54233p = null;
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
+            remove.i();
         }
     }
 
@@ -517,26 +403,42 @@ public final class WidgetSandboxBackend implements b1, g {
         if (this.fonts.size() >= 4096 && !this.fonts.containsKey(Integer.valueOf(i7))) {
             throw new IllegalArgumentException("Too many fonts");
         }
-        Paint[] paints = paints(text(bArr), f10, i10, z10, text(bArr2), this.owner.f54308l);
+        Paint[] paints = paints(text(bArr), f10, i10, z10, text(bArr2), this.owner.f54894l);
         this.fonts.put(Integer.valueOf(i7), paints[0]);
         this.deviceFonts.put(Integer.valueOf(i7), paints[1]);
-        return metrics(i7, paints[1], this.owner.f54308l, new Rect());
+        return metrics(i7, paints[1], this.owner.f54894l, new Rect());
     }
 
     public void defineImage(int i7, int i10, int i11, byte[] bArr) {
+        Bitmap put;
         if (bArr != null && i10 > 0 && i11 > 0) {
             long j3 = i10 * i11;
             if (j3 <= 4194304 && bArr.length == j3 * 4) {
                 synchronized (this.images) {
                     try {
-                        if (this.imageBytes + bArr.length > 33554432) {
+                        long j10 = this.imageBytes;
+                        if (bArr.length + j10 > 33554432) {
                             return;
                         }
-                        Bitmap createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
-                        createBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(bArr));
-                        putImage(i7, createBitmap);
-                    } catch (Throwable th2) {
-                        throw th2;
+                        this.imageBytes = j10 + bArr.length;
+                        try {
+                            Bitmap createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
+                            createBitmap.copyPixelsFromBuffer(ByteBuffer.wrap(bArr));
+                            synchronized (this.images) {
+                                try {
+                                    if (this.images.put(Integer.valueOf(i7), createBitmap) != null) {
+                                        this.imageBytes -= put.getAllocationByteCount();
+                                    }
+                                } finally {
+                                }
+                            }
+                        } catch (Throwable th2) {
+                            synchronized (this.images) {
+                                this.imageBytes -= bArr.length;
+                                throw th2;
+                            }
+                        }
+                    } finally {
                     }
                 }
             }
@@ -559,7 +461,7 @@ public final class WidgetSandboxBackend implements b1, g {
     }
 
     public byte[] formatIntl(byte[] bArr) {
-        return w0.b(text(bArr)).getBytes(StandardCharsets.UTF_8);
+        return b1.b(text(bArr)).getBytes(StandardCharsets.UTF_8);
     }
 
     @Override
@@ -587,7 +489,7 @@ public final class WidgetSandboxBackend implements b1, g {
         assertWorker();
         long nanoTime = System.nanoTime();
         if (i7 >= 0 && i7 < 256 && bArr.length <= 8388608) {
-            i b10 = i.b(bArr);
+            j b10 = j.b(bArr);
             synchronized (this.recordLock) {
                 try {
                     long j3 = this.pendingLayerBytes;
@@ -609,28 +511,305 @@ public final class WidgetSandboxBackend implements b1, g {
     }
 
     public void selectableText(byte[] bArr) {
-        q1 q1Var;
+        v1 v1Var;
         assertWorker();
         String text = text(bArr);
         checkJsonDepth(text);
         try {
             ConcurrentHashMap<Integer, Paint> concurrentHashMap = this.deviceFonts;
             Objects.requireNonNull(concurrentHashMap);
-            q1Var = q1.a(text, new o(concurrentHashMap), this.owner.f54308l);
+            v1Var = v1.a(text, new q(concurrentHashMap, 4), this.owner.f54894l);
         } catch (Exception unused) {
-            q1Var = null;
+            v1Var = null;
         }
         synchronized (this.recordLock) {
-            this.text = q1Var;
+            this.text = v1Var;
         }
     }
 
-    public l1 session() {
+    public p1 session() {
         return this.owner;
     }
 
-    public void signal(final int r19, byte[] r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.utils.twidget.WidgetSandboxBackend.signal(int, byte[]):void");
+    public void signal(final int i7, byte[] bArr) {
+        JSONObject jSONObject;
+        String str;
+        boolean d;
+        boolean z10;
+        boolean z11;
+        boolean isEmpty;
+        final String text = text(bArr);
+        if (jsonSignal(i7)) {
+            checkJsonDepth(text);
+        }
+        final p1 p1Var = this.owner;
+        try {
+            if (i7 == 8) {
+                p1Var.getClass();
+                if (text != null && text.length() <= 98368) {
+                    JSONObject jSONObject2 = new JSONObject(text);
+                    String optString = jSONObject2.optString("area");
+                    JSONObject optJSONObject = jSONObject2.optJSONObject("values");
+                    if ("local".equals(optString) || "session".equals(optString)) {
+                        synchronized (p1Var.f54904w) {
+                            try {
+                                isEmpty = p1Var.f54904w.isEmpty();
+                                HashMap hashMap = p1Var.f54904w;
+                                if (optJSONObject == null) {
+                                    optJSONObject = new JSONObject();
+                                }
+                                hashMap.put(optString, optJSONObject);
+                            } finally {
+                            }
+                        }
+                        if (isEmpty) {
+                            p1Var.f54880a.post(new j1(p1Var, 6));
+                        }
+                    }
+                }
+            } else if (i7 == 10) {
+                p1Var.getClass();
+            } else if (!p1Var.A) {
+                boolean z12 = false;
+                if (i7 != 12 && i7 != 19) {
+                    if (i7 != 13 && i7 != 14) {
+                        if (i7 == 11) {
+                            p1Var.f54880a.post(new g0(5, p1Var, text));
+                            return;
+                        } else if (i7 == 18) {
+                            JSONObject jSONObject3 = new JSONObject(text);
+                            p1Var.S = new float[]{(float) jSONObject3.optDouble("receive"), (float) jSONObject3.optDouble("animate"), (float) jSONObject3.optDouble("paint"), (float) jSONObject3.optDouble("serialize"), 0.0f, 0.0f, (float) jSONObject3.optDouble("ticks"), (float) jSONObject3.optDouble("framesSent"), (float) jSONObject3.optDouble("opsLatency"), (float) jSONObject3.optDouble("validate", -1.0d), (float) jSONObject3.optDouble("hop", -1.0d)};
+                            return;
+                        } else {
+                            if (i7 != 16 && i7 != 17 && i7 != 9) {
+                                if (i7 == 3) {
+                                    JSONObject jSONObject4 = new JSONObject(text);
+                                    p1Var.f54880a.post(new az(p1Var, jSONObject4.optBoolean("x"), jSONObject4.optBoolean("y"), jSONObject4.optBoolean("hold"), 2));
+                                    return;
+                                } else if (i7 == 4) {
+                                    JSONObject jSONObject5 = new JSONObject(text);
+                                    if (jSONObject5.optBoolean("loaded")) {
+                                        p1Var.B = true;
+                                    }
+                                    if (!p1Var.f54888e0 && jSONObject5.has("engine")) {
+                                        p1Var.f54888e0 = true;
+                                        if (s2.f26723a) {
+                                            a8.b("widget engine: " + jSONObject5.optString("engine") + ", " + jSONObject5.optString("boot"));
+                                        }
+                                    }
+                                    p1Var.G = "bottom".equals(jSONObject5.optString("resizeAnchor"));
+                                    if (jSONObject5.optBoolean("rendered") && !p1Var.E) {
+                                        double optDouble = jSONObject5.optDouble("height", -1.0d);
+                                        double min = Math.min(600.0f, Math.max(50.0f, p1Var.f54902t / p1Var.f54894l));
+                                        if (p1Var.f54903u && optDouble > 0.0d && Math.abs(min - optDouble) <= 1.0d) {
+                                            p1Var.F = true;
+                                            if (p1Var.D == 0) {
+                                                p1Var.D = SystemClock.uptimeMillis();
+                                            }
+                                        }
+                                        p1Var.E = true;
+                                    }
+                                    synchronized (p1Var.f54901s) {
+                                        if (p1Var.A) {
+                                            return;
+                                        }
+                                        p1Var.P = jSONObject5;
+                                        if (!p1Var.Q) {
+                                            p1Var.Q = true;
+                                            p1Var.f54880a.post(p1Var.V);
+                                        }
+                                        return;
+                                    }
+                                } else if (i7 == 5) {
+                                    JSONObject jSONObject6 = new JSONObject(text);
+                                    String optString2 = jSONObject6.optString("kind");
+                                    if (!"openLink".equals(optString2) && !"openTelegramLink".equals(optString2)) {
+                                        if ("haptic".equals(optString2)) {
+                                            z10 = p1Var.d.a(p1Var.L);
+                                        } else {
+                                            z10 = "ready".equals(optString2);
+                                        }
+                                    } else {
+                                        String optString3 = jSONObject6.optString("url");
+                                        boolean equals = "openTelegramLink".equals(optString2);
+                                        if (optString3 != null && optString3.length() <= 256 && optString3.length() >= 9 && optString3.regionMatches(true, 0, "https://", 0, 8)) {
+                                            int i10 = 8;
+                                            while (i10 < optString3.length() && "/?#".indexOf(optString3.charAt(i10)) < 0) {
+                                                i10++;
+                                            }
+                                            String substring = optString3.substring(8, i10);
+                                            if (substring.indexOf(64) < 0) {
+                                                int indexOf = substring.indexOf(58);
+                                                if (indexOf >= 0) {
+                                                    substring = substring.substring(0, indexOf);
+                                                }
+                                                if (!substring.isEmpty() && substring.length() <= 253) {
+                                                    String[] split = substring.split("\\.", -1);
+                                                    int length = split.length;
+                                                    int i11 = 0;
+                                                    loop1: while (true) {
+                                                        if (i11 < length) {
+                                                            String str2 = split[i11];
+                                                            if (str2.isEmpty() || str2.length() > 63 || str2.charAt(0) == '-' || str2.charAt(str2.length() - 1) == '-') {
+                                                                break;
+                                                            }
+                                                            for (int i12 = 0; i12 < str2.length(); i12++) {
+                                                                char charAt = str2.charAt(i12);
+                                                                if ((charAt < 'a' || charAt > 'z') && ((charAt < '0' || charAt > '9') && charAt != '-')) {
+                                                                    break loop1;
+                                                                }
+                                                            }
+                                                            i11++;
+                                                        } else {
+                                                            String[] strArr = e0.f54713m;
+                                                            boolean z13 = false;
+                                                            for (int i13 = 0; i13 < 3; i13++) {
+                                                                String str3 = strArr[i13];
+                                                                if (!substring.equals(str3)) {
+                                                                    if (!substring.endsWith("." + str3)) {
+                                                                        z11 = false;
+                                                                        z13 |= z11;
+                                                                    }
+                                                                }
+                                                                z11 = true;
+                                                                z13 |= z11;
+                                                            }
+                                                            if (z13 == equals && p1Var.d.c(p1Var.L)) {
+                                                                z12 = true;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        z10 = z12;
+                                    }
+                                    if (z10) {
+                                        p1Var.f54880a.post(new g0(7, p1Var, jSONObject6));
+                                        return;
+                                    }
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                    }
+                    if (i7 == 13) {
+                        if (text != null && text.length() <= 256) {
+                            z12 = true;
+                        }
+                        if (!z12 || !p1Var.d.c(p1Var.L)) {
+                            return;
+                        }
+                    }
+                    p1Var.f54880a.post(new Runnable() {
+                        @Override
+                        public final void run() {
+                            d1 d1Var;
+                            h2 h2Var;
+                            p1 p1Var2 = p1.this;
+                            int i14 = i7;
+                            String str4 = text;
+                            if (!p1Var2.A && (d1Var = p1Var2.R) != null) {
+                                if (i14 == 13) {
+                                    if (d1Var.f54693e != null && !TextUtils.isEmpty(str4)) {
+                                        org.telegram.messenger.g0.g(str4);
+                                        if (org.telegram.messenger.g0.G3()) {
+                                            h2Var = LaunchActivity.T();
+                                        } else {
+                                            h2Var = null;
+                                        }
+                                        if (h2Var != null) {
+                                            if (str4.length() > 80) {
+                                                str4 = str4.substring(0, 80) + "…";
+                                            }
+                                            lc.b0(h2Var).Q(2131623994, 36, gd.a0(null, null, 2131742608, str4)).j();
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    return;
+                                }
+                                boolean equals2 = "1".equals(str4);
+                                if (d1Var.A != equals2) {
+                                    d1Var.A = equals2;
+                                    sa.d dVar = d1Var.f54693e;
+                                    if (dVar != null) {
+                                        dVar.getClass();
+                                        n0.E();
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    return;
+                }
+                JSONObject jSONObject7 = new JSONObject(text);
+                long j3 = jSONObject7.getLong("id");
+                if (i7 == 19) {
+                    str = null;
+                    jSONObject = jSONObject7.getJSONObject("call");
+                } else {
+                    String string = jSONObject7.getString("data");
+                    z12 = jSONObject7.optBoolean("wallet");
+                    jSONObject = null;
+                    str = string;
+                }
+                boolean z14 = z12;
+                e0 e0Var = p1Var.d;
+                if (i7 == 19) {
+                    d = e0Var.e(jSONObject.toString(), p1Var.L);
+                } else {
+                    d = e0Var.d(str, z14, p1Var.L);
+                }
+                if (!d) {
+                    long j10 = p1Var.v;
+                    if (j10 != 0) {
+                        p1Var.f54884c.a(j10, j3, 3, null);
+                        return;
+                    }
+                    return;
+                }
+                p1Var.f54880a.post(new org.telegram.messenger.voip.p(p1Var, i7, j3, jSONObject, str, z14));
+            }
+        } catch (Exception unused) {
+        }
+    }
+
+    public void state(int i7, float f10) {
+        boolean z10;
+        p1 p1Var = this.owner;
+        if (!p1Var.A) {
+            if ((i7 & 8) != 0 && f10 == f10) {
+                AtomicBoolean atomicBoolean = p1Var.f54899q;
+                if (f10 == 0.0f) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                atomicBoolean.set(z10);
+                p1Var.f54905x = f10;
+                if (p1Var.f54906y.compareAndSet(false, true)) {
+                    p1Var.f54880a.post(new j1(p1Var, 5));
+                }
+            }
+            if ((i7 & 4) != 0) {
+                p1Var.f54897o.set(false);
+            }
+            if ((i7 & 2) != 0) {
+                p1Var.f54896n.set(true);
+            }
+            if ((i7 & 6) != 0) {
+                p1Var.f54880a.removeCallbacks(p1Var.W);
+                p1Var.f54880a.post(p1Var.W);
+            }
+            if ((i7 & 1) != 0) {
+                p1Var.f54898p.set(true);
+                p1Var.f54880a.post(p1Var.f54886d0);
+            }
+        }
     }
 
     public float textWidth(int i7, byte[] bArr) {
@@ -638,6 +817,6 @@ public final class WidgetSandboxBackend implements b1, g {
         if (paint == null) {
             return 0.0f;
         }
-        return paint.measureText(text(bArr)) / this.owner.f54308l;
+        return paint.measureText(text(bArr)) / this.owner.f54894l;
     }
 }

@@ -3,17 +3,17 @@ package oi;
 import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.fj;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.tj;
-public final class m implements tj {
-    public final ki f21805a;
-    public final o f21806b;
+import org.telegram.ui.Components.ak;
+import org.telegram.ui.Components.si;
+public final class m implements ak {
+    public final si f22171a;
+    public final o f22172b;
 
-    public m(o oVar, ki kiVar) {
-        this.f21806b = oVar;
-        this.f21805a = kiVar;
+    public m(o oVar, si siVar) {
+        this.f22172b = oVar;
+        this.f22171a = siVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class m implements tj {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f21806b.f33609b.f36424a2.startActivityForResult(intent, 21);
+            this.f22172b.f36766b.f39659a2.startActivityForResult(intent, 21);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -30,24 +30,24 @@ public final class m implements tj {
     @Override
     public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
         String str2;
-        q3 q3Var = this.f21806b.f21848r;
+        s3 s3Var = this.f22172b.f22210r;
         if (!arrayList.isEmpty()) {
-            q3Var.f2((String) arrayList.get(0));
+            s3Var.f2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
-            gj gjVar = (gj) arrayList3.get(0);
-            q3Var.getClass();
-            if (gjVar != null && gjVar.F0() != null) {
-                TLRPC.Document F0 = gjVar.F0();
-                TLRPC.Message message = gjVar.f23819k;
+            fj fjVar = (fj) arrayList3.get(0);
+            s3Var.getClass();
+            if (fjVar != null && fjVar.F0() != null) {
+                TLRPC.Document F0 = fjVar.F0();
+                TLRPC.Message message = fjVar.f23968k;
                 if (message != null) {
                     str2 = message.attachPath;
                 } else {
                     str2 = null;
                 }
-                q3Var.g2(F0, str2);
+                s3Var.g2(F0, str2);
             }
         }
-        this.f21805a.a(true);
+        this.f22171a.a(true);
     }
 
     @Override

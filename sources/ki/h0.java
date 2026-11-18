@@ -1,93 +1,141 @@
 package ki;
 
 import android.app.DownloadManager;
-import android.net.Uri;
-import android.os.Environment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Pair;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import org.json.JSONObject;
-import org.telegram.messenger.np;
-import org.telegram.messenger.q10;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.ks;
 public final class h0 {
-    public Long f18326a;
-    public final String f18327b;
-    public final String f18328c;
-    public File d;
-    public final String f18329e;
-    public long f18330f;
-    public long f18331g;
-    public boolean h;
-    public boolean f18332i;
-    public long f18333j;
-    public boolean f18334k;
-    public boolean f18335l;
-    public final Runnable f18336m = new kg.j1(this, 4);
-    public final i0 f18337n;
+    public static final HashMap f18708g = new HashMap();
+    public static final HashMap h = new HashMap();
+    public final Context f18709a;
+    public final int f18710b;
+    public final long f18711c;
+    public final DownloadManager d;
+    public final ArrayList f18712e = new ArrayList();
+    public g0 f18713f;
 
-    public h0(i0 i0Var, String str, String str2) {
-        this.f18337n = i0Var;
-        this.f18327b = str;
-        this.f18328c = str2;
-        TLRPC.User a22 = np.s1(i0Var.f18356b).a2(Long.valueOf(i0Var.f18357c));
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
-        request.setTitle(q10.p(a22));
-        request.setDescription(TextUtils.isEmpty(str2) ? "Downloading file..." : a8.p0.p("Downloading ", str2, "..."));
-        request.setNotificationVisibility(0);
-        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str2);
-        this.f18326a = Long.valueOf(i0Var.d.enqueue(request));
-    }
-
-    public final void a() {
-        i0 i0Var = this.f18337n;
-        i0Var.getClass();
-        this.f18332i = true;
-        Long l10 = this.f18326a;
-        if (l10 != null) {
-            i0Var.d.remove(l10.longValue());
-            this.f18326a = null;
-        }
-        i0Var.f18358e.remove(this);
-        i0Var.e();
-    }
-
-    public final Pair b() {
-        if (this.h) {
-            return new Pair(Long.valueOf(this.f18331g), Long.valueOf(this.f18331g));
-        }
-        if (this.f18326a != null && !this.f18332i) {
-            if (System.currentTimeMillis() - this.f18333j < 150) {
-                return new Pair(Long.valueOf(this.f18330f), Long.valueOf(this.f18331g));
+    public h0(Context context, int i7, long j3) {
+        this.f18709a = context;
+        this.f18710b = i7;
+        this.f18711c = j3;
+        this.d = (DownloadManager) context.getSystemService("download");
+        SharedPreferences sharedPreferences = context.getSharedPreferences("botdownloads_" + i7, 0);
+        Set<String> stringSet = sharedPreferences.getStringSet("" + j3, null);
+        if (stringSet != null) {
+            for (String str : stringSet) {
+                try {
+                    g0 g0Var = new g0(this, new JSONObject(str));
+                    File file = g0Var.d;
+                    if (file != null && file.exists()) {
+                        this.f18712e.add(g0Var);
+                    }
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                }
             }
-            d();
-            return new Pair(Long.valueOf(this.f18330f), Long.valueOf(this.f18331g));
         }
-        return new Pair(Long.valueOf(this.f18330f), Long.valueOf(this.f18331g));
     }
 
-    public final boolean c() {
-        if (!this.h && this.f18326a != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        throw new UnsupportedOperationException("Method not decompiled: ki.h0.d():void");
-    }
-
-    public h0(i0 i0Var, JSONObject jSONObject) {
-        this.f18337n = i0Var;
-        this.f18327b = jSONObject.optString("url");
-        this.f18328c = jSONObject.optString("file_name");
-        this.f18331g = jSONObject.optLong("size");
-        this.h = jSONObject.optBoolean("done");
-        this.f18329e = jSONObject.optString("mime");
-        String optString = jSONObject.optString("path");
-        if (TextUtils.isEmpty(optString)) {
+    public static void a() {
+        Context context = org.telegram.messenger.t0.f26915b;
+        if (context == null) {
             return;
         }
-        this.d = new File(optString);
+        for (int i7 = 0; i7 < 4; i7++) {
+            context.getSharedPreferences("botdownloads_" + i7, 0).edit().clear().apply();
+        }
+        f18708g.clear();
+    }
+
+    public static h0 c(Context context, int i7, long j3) {
+        Pair pair = new Pair(Integer.valueOf(i7), Long.valueOf(j3));
+        HashMap hashMap = f18708g;
+        h0 h0Var = (h0) hashMap.get(pair);
+        if (h0Var == null) {
+            h0 h0Var2 = new h0(context, i7, j3);
+            hashMap.put(pair, h0Var2);
+            return h0Var2;
+        }
+        return h0Var;
+    }
+
+    public final void b(String str, String str2) {
+        g0 d = d(str);
+        if (d != null) {
+            this.f18713f = d;
+            d.f18690k = true;
+            e();
+            return;
+        }
+        g0 g0Var = new g0(this, str, str2);
+        this.f18713f = g0Var;
+        g0Var.f18691l = false;
+        this.f18712e.add(g0Var);
+        f();
+        e();
+    }
+
+    public final g0 d(String str) {
+        ArrayList arrayList = this.f18712e;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            g0 g0Var = (g0) obj;
+            if (TextUtils.equals(g0Var.f18683b, str) && g0Var.h) {
+                return g0Var;
+            }
+        }
+        return null;
+    }
+
+    public final void e() {
+        ks.f(this.f18710b).k(ks.L3, new Object[0]);
+    }
+
+    public final void f() {
+        String absolutePath;
+        int i7 = 0;
+        SharedPreferences.Editor edit = this.f18709a.getSharedPreferences("botdownloads_" + this.f18710b, 0).edit();
+        edit.clear();
+        HashSet hashSet = new HashSet();
+        ArrayList arrayList = this.f18712e;
+        int size = arrayList.size();
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            g0 g0Var = (g0) obj;
+            g0Var.getClass();
+            JSONObject jSONObject = new JSONObject();
+            try {
+                jSONObject.put("url", g0Var.f18683b);
+                jSONObject.put("file_name", g0Var.f18684c);
+                jSONObject.put("size", g0Var.f18687g);
+                File file = g0Var.d;
+                if (file == null) {
+                    absolutePath = null;
+                } else {
+                    absolutePath = file.getAbsolutePath();
+                }
+                jSONObject.put("path", absolutePath);
+                jSONObject.put("done", g0Var.h);
+                jSONObject.put("mime", g0Var.f18685e);
+            } catch (Exception e10) {
+                a8.g(e10, true);
+            }
+            hashSet.add(jSONObject.toString());
+        }
+        edit.putStringSet("" + this.f18711c, hashSet);
+        edit.apply();
     }
 }

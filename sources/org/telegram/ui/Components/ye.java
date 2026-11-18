@@ -1,15 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class ye implements View.OnKeyListener {
-    public final ChatActivityEnterView f41980a;
+import android.view.ViewTreeObserver;
+public final class ye implements ViewTreeObserver.OnDrawListener {
+    public final rt0 f42481a;
+    public final nn0 f42482b;
 
-    public ye(ChatActivityEnterView chatActivityEnterView) {
-        this.f41980a = chatActivityEnterView;
+    public ye(rt0 rt0Var, nn0 nn0Var) {
+        this.f42481a = rt0Var;
+        this.f42482b = nn0Var;
     }
 
     @Override
-    public final boolean onKey(android.view.View r6, int r7, android.view.KeyEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ye.onKey(android.view.View, int, android.view.KeyEvent):boolean");
+    public final void onDraw() {
+        rt0 rt0Var = this.f42481a;
+        rt0Var.post(new k7(this, rt0Var, this.f42482b, 2));
     }
 }

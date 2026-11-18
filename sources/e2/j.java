@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.os.IBinder;
 import java.util.Arrays;
 public final class j {
-    public static final int f10122b = l.f10174a;
-    public final g f10123a;
+    public static final int f10440b = l.f10492a;
+    public final g f10441a;
 
     public j(byte[] bArr) {
         h9.f0 p10 = h9.i0.p();
         int length = bArr.length;
-        int i7 = f10122b;
+        int i7 = f10440b;
         int g10 = h2.l0.g(length, i7);
         for (int i10 = 0; i10 < g10; i10++) {
             Bundle bundle = new Bundle();
@@ -18,21 +18,21 @@ public final class j {
             bundle.putByteArray("bytes", Arrays.copyOfRange(bArr, i11, Math.min(i11 + i7, bArr.length)));
             p10.c(bundle);
         }
-        this.f10123a = new g(p10.f());
+        this.f10441a = new g(p10.f());
     }
 
     public static byte[] a(Bundle bundle) {
-        IBinder binder = bundle.getBinder(k.f10135g);
+        IBinder binder = bundle.getBinder(k.f10453g);
         if (binder != null) {
             try {
                 h9.i0 a10 = g.a(binder);
                 if (a10.isEmpty()) {
-                    return h2.l0.f13472b;
+                    return h2.l0.f13787b;
                 }
                 byte[] byteArray = ((Bundle) h9.o.n(a10)).getByteArray("bytes");
                 if (byteArray != null) {
                     int size = a10.size() - 1;
-                    int i7 = f10122b;
+                    int i7 = f10440b;
                     int i10 = size * i7;
                     byte[] bArr = new byte[byteArray.length + i10];
                     System.arraycopy(byteArray, 0, bArr, i10, byteArray.length);

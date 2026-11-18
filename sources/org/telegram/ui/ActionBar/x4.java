@@ -1,22 +1,44 @@
 package org.telegram.ui.ActionBar;
-public final class x4 {
-    public static final x4 f29869a;
-    public static final x4 f29870b;
-    public static final x4[] f29871c;
 
-    static {
-        ?? r02 = new Enum("ICON", 0);
-        f29869a = r02;
-        ?? r12 = new Enum("TEXT", 1);
-        f29870b = r12;
-        f29871c = new x4[]{r02, r12};
+import android.view.View;
+import android.widget.TextView;
+public final class x4 implements View.OnClickListener {
+    public final int f30242a;
+    public final a5 f30243b;
+
+    public x4(a5 a5Var, int i7) {
+        this.f30242a = i7;
+        this.f30243b = a5Var;
     }
 
-    public static x4 valueOf(String str) {
-        return (x4) Enum.valueOf(x4.class, str);
-    }
-
-    public static x4[] values() {
-        return (x4[]) f29871c.clone();
+    @Override
+    public final void onClick(View view) {
+        switch (this.f30242a) {
+            case 0:
+                a5 a5Var = this.f30243b;
+                if (!a5Var.H && a5Var.G) {
+                    a5Var.o(true);
+                    return;
+                }
+                j jVar = a5Var.W;
+                if (jVar != null) {
+                    jVar.b(-1);
+                    return;
+                }
+                return;
+            default:
+                a5 a5Var2 = this.f30243b;
+                if (a5Var2.f28784s.length() != 0) {
+                    a5Var2.f28784s.setText("");
+                } else {
+                    TextView textView = a5Var2.f28790x;
+                    if (textView != null && textView.getVisibility() == 0) {
+                        a5Var2.n();
+                    }
+                }
+                a5Var2.f28784s.requestFocus();
+                org.telegram.messenger.g0.I3(a5Var2.f28784s);
+                return;
+        }
     }
 }

@@ -7,19 +7,19 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.i20;
-public final class q0 extends i2 {
+import org.telegram.messenger.n10;
+public final class q0 extends c3 {
     public final t0 A0;
-    public final RectF f3799x0;
-    public final RectF f3800y0;
-    public final Path f3801z0;
+    public final RectF f3983x0;
+    public final RectF f3984y0;
+    public final Path f3985z0;
 
-    public q0(t0 t0Var, Context context, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(i7, context, e6Var);
+    public q0(t0 t0Var, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(i7, context, i6Var);
         this.A0 = t0Var;
-        this.f3799x0 = new RectF();
-        this.f3800y0 = new RectF();
-        this.f3801z0 = new Path();
+        this.f3983x0 = new RectF();
+        this.f3984y0 = new RectF();
+        this.f3985z0 = new Path();
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class q0 extends i2 {
         boolean drawChild = super.drawChild(canvas, view, j3);
         FrameLayout frameLayout = this.d;
         if (view == frameLayout) {
-            FrameLayout frameLayout2 = o0Var.f9648b;
+            FrameLayout frameLayout2 = o0Var.f10124b;
             n0 n0Var = t0Var.U1;
-            RectF rectF = this.f3799x0;
+            RectF rectF = this.f3983x0;
             if (jh.k.c(frameLayout2, n0Var, rectF)) {
-                RectF rectF2 = this.f3800y0;
+                RectF rectF2 = this.f3984y0;
                 if (!jh.k.c(frameLayout, this, rectF2)) {
                     return true;
                 }
@@ -46,17 +46,17 @@ public final class q0 extends i2 {
                 float centerY = rectF2.centerY() - org.telegram.messenger.g0.L(40.0f);
                 if (!rectF.isEmpty()) {
                     canvas.save();
-                    canvas.clipPath(this.f3801z0);
+                    canvas.clipPath(this.f3985z0);
                     canvas.scale(0.6f, 0.6f, rectF2.centerX(), rectF2.centerY());
                     float centerX2 = rectF2.centerX() - (o0Var.getWidth() / 2.0f);
-                    i20.j(o0Var.getHeight(), 2.0f, rectF2.centerY(), centerX2, canvas);
+                    n10.k(o0Var.getHeight(), 2.0f, rectF2.centerY(), centerX2, canvas);
                     o0Var.b(o0Var.getWidth() / 2.0f, org.telegram.messenger.g0.L(104.0f), o0Var.getWidth(), o0Var.getHeight(), canvas);
                     o0Var.c(o0Var.getWidth() / 2.0f, org.telegram.messenger.g0.L(104.0f), o0Var.getWidth(), o0Var.getHeight(), canvas);
                     canvas.restore();
                     canvas.save();
                     canvas.translate(centerX, centerY);
                     canvas.scale(org.telegram.messenger.g0.L(80.0f) / rectF.width(), org.telegram.messenger.g0.L(80.0f) / rectF.height());
-                    o0Var.f9648b.draw(canvas);
+                    o0Var.f10124b.draw(canvas);
                     canvas.restore();
                 }
             } else {
@@ -69,9 +69,9 @@ public final class q0 extends i2 {
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        Path path = this.f3801z0;
+        Path path = this.f3985z0;
         path.rewind();
-        RectF rectF = this.f3799x0;
+        RectF rectF = this.f3983x0;
         rectF.set(0.0f, 0.0f, i7, i10);
         rectF.inset(org.telegram.messenger.g0.L(3.33f), org.telegram.messenger.g0.L(4.0f));
         path.addRoundRect(rectF, org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), Path.Direction.CW);

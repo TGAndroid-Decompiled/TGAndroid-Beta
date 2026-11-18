@@ -1,120 +1,175 @@
 package ki;
 
 import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import di.u7;
-import java.util.ArrayList;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-import org.telegram.tgnet.TLObject;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j6;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.o10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.m60;
-public final class e3 implements View.OnClickListener {
-    public final int f18282a = 1;
-    public final int f18283b;
-    public final org.telegram.ui.ActionBar.u2 f18284c;
-    public final e6 d;
-    public final long f18285e;
-    public final Context f18286f;
-    public final TL_payments.connectedBotStarRef h;
-    public final Object f18287n;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.q6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.b9;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.z41;
+import org.telegram.ui.iz;
+public final class e3 extends k41 {
+    public static final int f18645b = 0;
 
-    public e3(int i7, org.telegram.ui.ActionBar.u2 u2Var, e6 e6Var, LinearLayout linearLayout, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref) {
-        this.f18283b = i7;
-        this.f18284c = u2Var;
-        this.d = e6Var;
-        this.f18287n = linearLayout;
-        this.f18285e = j3;
-        this.f18286f = context;
-        this.h = connectedbotstarref;
+    static {
+        k41.h(new k41());
     }
 
     @Override
-    public final void onClick(View view) {
-        long j3;
-        boolean z10;
-        switch (this.f18282a) {
-            case 0:
-                ai.r rVar = (ai.r) this.f18287n;
-                TL_payments.connectedBotStarRef connectedbotstarref = this.h;
-                if (connectedbotstarref.revoked) {
-                    int i7 = this.f18283b;
-                    TLRPC.User a22 = np.s1(i7).a2(Long.valueOf(connectedbotstarref.bot_id));
-                    if (a22 != null) {
-                        np.s1(i7).W2(a22, 0, true, new a3(this.f18284c, this.f18286f, i7, this.f18285e, this.d, 0));
-                        return;
-                    }
-                    return;
+    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        float f10;
+        Object obj = l41Var.H;
+        int i13 = 0;
+        if (obj instanceof TL_payments.connectedBotStarRef) {
+            f3 f3Var = (f3) view;
+            TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
+            boolean z11 = l41Var.f37024s;
+            i6 i6Var = f3Var.f18659b;
+            View view2 = f3Var.f18661e;
+            ImageView imageView = f3Var.f18662f;
+            TLRPC.User c22 = mp.u1(f3Var.f18658a).c2(Long.valueOf(connectedbotstarref.bot_id));
+            b9 b9Var = new b9((i6) null);
+            b9Var.r(c22);
+            f3Var.f18660c.f(c22, b9Var);
+            TextView textView = f3Var.h;
+            textView.setText(j6.m(o10.q(c22), textView.getPaint().getFontMetricsInt(), false, null, 0));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            if (connectedbotstarref.commission_permille > 0) {
+                spannableStringBuilder.append((CharSequence) " d");
+                iz izVar = new iz();
+                int i14 = n6.lk;
+                izVar.f48821f = n6.w0(i14, null);
+                izVar.f48823r = i14;
+                izVar.f48824s = null;
+                izVar.f48822n = true;
+                izVar.f48825w = k.J0(connectedbotstarref.commission_permille);
+                if (izVar.f48819c != null) {
+                    izVar.f48819c = null;
+                    izVar.a();
                 }
-                rVar.run();
-                return;
-            default:
-                LinearLayout linearLayout = (LinearLayout) this.f18287n;
-                int i10 = this.f18283b;
-                di.e0 g10 = di.e0.g(i10);
-                g10.n();
-                g10.o();
-                ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f8437j;
-                if (arrayList2 != null) {
-                    arrayList.addAll(arrayList2);
+                spannableStringBuilder.setSpan(izVar, 1, 2, 33);
+            }
+            int i15 = connectedbotstarref.duration_months;
+            if (i15 == 0) {
+                spannableStringBuilder.append((CharSequence) gd.M0(2131748794, null));
+            } else if (i15 >= 12 && i15 % 12 == 0) {
+                spannableStringBuilder.append((CharSequence) gd.G(i15 / 12, "Years", new Object[0]));
+            } else {
+                spannableStringBuilder.append((CharSequence) gd.G(i15, "Months", new Object[0]));
+            }
+            f3Var.f18663n.setText(spannableStringBuilder);
+            ImageView imageView2 = f3Var.f18664r;
+            if (z11) {
+                i7 = 0;
+            } else {
+                i7 = 8;
+            }
+            imageView2.setVisibility(i7);
+            f3Var.d.setVisibility(0);
+            imageView.setVisibility(0);
+            view2.setVisibility(0);
+            int L = org.telegram.messenger.g0.L(9.665f);
+            if (connectedbotstarref.revoked) {
+                i10 = n6.nk;
+            } else {
+                i10 = n6.lk;
+            }
+            ShapeDrawable L2 = n6.L(L, n6.w0(i10, i6Var));
+            if (connectedbotstarref.revoked) {
+                i11 = n6.nk;
+            } else {
+                i11 = n6.lk;
+            }
+            q6 M = u6.M(i11);
+            view2.setBackground(L2);
+            u6.j(view2, L2, M, null, i6Var);
+            if (connectedbotstarref.revoked) {
+                i12 = 2131232208;
+            } else {
+                i12 = 2131232202;
+            }
+            imageView.setImageResource(i12);
+            float f11 = 0.6f;
+            if (connectedbotstarref.revoked) {
+                f10 = 0.8f;
+            } else {
+                f10 = 0.6f;
+            }
+            imageView.setScaleX(f10);
+            if (connectedbotstarref.revoked) {
+                f11 = 0.8f;
+            }
+            imageView.setScaleY(f11);
+            f3Var.f18665s = z10;
+            f3Var.setWillNotDraw(!z10);
+        } else if (obj instanceof TL_payments.starRefProgram) {
+            f3 f3Var2 = (f3) view;
+            TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
+            boolean z12 = l41Var.f37024s;
+            TLRPC.User c23 = mp.u1(f3Var2.f18658a).c2(Long.valueOf(starrefprogram.bot_id));
+            b9 b9Var2 = new b9((i6) null);
+            b9Var2.r(c23);
+            f3Var2.f18660c.f(c23, b9Var2);
+            f3Var2.h.setText(o10.q(c23));
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            if (starrefprogram.commission_permille > 0) {
+                spannableStringBuilder2.append((CharSequence) " d");
+                iz izVar2 = new iz();
+                int i16 = n6.lk;
+                izVar2.f48821f = n6.w0(i16, null);
+                izVar2.f48823r = i16;
+                izVar2.f48824s = null;
+                izVar2.f48822n = true;
+                izVar2.f48825w = k.J0(starrefprogram.commission_permille);
+                if (izVar2.f48819c != null) {
+                    izVar2.f48819c = null;
+                    izVar2.a();
                 }
-                ArrayList arrayList3 = g10.f8439l;
-                if (arrayList3 != null) {
-                    arrayList.addAll(arrayList3);
-                }
-                arrayList.add(0, m10.i(i10).f());
-                org.telegram.ui.ActionBar.u2 u2Var = this.f18284c;
-                ViewGroup viewGroup = u2Var.f29682b;
-                e6 e6Var = this.d;
-                m60 m60Var = new m60(viewGroup, e6Var, linearLayout, false, false, true);
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    TLObject tLObject = (TLObject) obj;
-                    if (tLObject instanceof TLRPC.User) {
-                        j3 = ((TLRPC.User) tLObject).f28200id;
-                    } else if (tLObject instanceof TLRPC.Chat) {
-                        TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                        if (org.telegram.messenger.t3.V(chat)) {
-                            j3 = -chat.f28051id;
-                        }
-                    }
-                    long j10 = j3;
-                    if (j10 == this.f18285e) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    boolean z11 = z10;
-                    int i12 = i10;
-                    e6 e6Var2 = e6Var;
-                    m60Var.g(tLObject, z11, new u7(i12, j10, this.f18286f, this.h, u2Var, e6Var2));
-                    i10 = i12;
-                    e6Var = e6Var2;
-                }
-                m60Var.f37112t = false;
-                m60Var.f37111s = 0;
-                m60Var.V(5);
-                m60Var.a0(org.telegram.messenger.g0.L(24.0f), 0.0f);
-                m60Var.Z();
-                return;
+                spannableStringBuilder2.setSpan(izVar2, 1, 2, 33);
+            }
+            int i17 = starrefprogram.duration_months;
+            if (i17 == 0) {
+                spannableStringBuilder2.append((CharSequence) gd.M0(2131748794, null));
+            } else if (i17 >= 12 && i17 % 12 == 0) {
+                spannableStringBuilder2.append((CharSequence) gd.G(i17 / 12, "Years", new Object[0]));
+            } else {
+                spannableStringBuilder2.append((CharSequence) gd.G(i17, "Months", new Object[0]));
+            }
+            f3Var2.f18663n.setText(spannableStringBuilder2);
+            ImageView imageView3 = f3Var2.f18664r;
+            if (!z12) {
+                i13 = 8;
+            }
+            imageView3.setVisibility(i13);
+            f3Var2.d.setVisibility(8);
+            f3Var2.f18662f.setVisibility(8);
+            f3Var2.f18661e.setVisibility(8);
+            f3Var2.f18665s = z10;
+            f3Var2.setWillNotDraw(!z10);
         }
     }
 
-    public e3(TL_payments.connectedBotStarRef connectedbotstarref, int i7, org.telegram.ui.ActionBar.u2 u2Var, Context context, long j3, e6 e6Var, ai.r rVar) {
-        this.h = connectedbotstarref;
-        this.f18283b = i7;
-        this.f18284c = u2Var;
-        this.f18286f = context;
-        this.f18285e = j3;
-        this.d = e6Var;
-        this.f18287n = rVar;
+    @Override
+    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
+        return new f3(i7, context, i6Var);
     }
 }

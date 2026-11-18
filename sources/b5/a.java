@@ -1,28 +1,19 @@
 package b5;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import androidx.versionedparcelable.ParcelImpl;
-import m.m2;
+import gd.i;
+import gd.j;
 public abstract class a {
-    public static android.content.res.ColorStateList a(android.content.Context r8, int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: b5.a.a(android.content.Context, int):android.content.res.ColorStateList");
-    }
-
-    public static Drawable b(Context context, int i7) {
-        return m2.d().g(context, i7);
-    }
-
-    public static d c(Bundle bundle) {
+    public static d a(Bundle bundle) {
         try {
             Bundle bundle2 = (Bundle) bundle.getParcelable("android.support.v4.media.session.SESSION_TOKEN2");
             if (bundle2 != null) {
                 bundle2.setClassLoader(a.class.getClassLoader());
                 Parcelable parcelable = bundle2.getParcelable("a");
                 if (parcelable instanceof ParcelImpl) {
-                    return ((ParcelImpl) parcelable).f2841a;
+                    return ((ParcelImpl) parcelable).f2832a;
                 }
                 throw new IllegalArgumentException("Invalid parcel");
             }
@@ -30,5 +21,19 @@ public abstract class a {
         } catch (RuntimeException unused) {
             return null;
         }
+    }
+
+    public static gd.c b(rd.a aVar) {
+        gd.d[] dVarArr = gd.d.f13476a;
+        j jVar = j.f13487a;
+        ?? obj = new Object();
+        obj.f13482a = aVar;
+        obj.f13483b = jVar;
+        return obj;
+    }
+
+    public static i c(rd.a initializer) {
+        kotlin.jvm.internal.j.e(initializer, "initializer");
+        return new i(initializer);
     }
 }

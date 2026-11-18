@@ -1,81 +1,82 @@
 package fi;
 
-import android.animation.ValueAnimator;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import java.util.ArrayList;
-public final class e4 implements GestureDetector.OnGestureListener {
-    public final d5 f11672a;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.fc;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.p10;
+import org.telegram.ui.Components.wu0;
+public final class e4 {
+    public final ImageReceiver f11884a;
+    public int f11885b;
+    public StaticLayout f11886c;
+    public final TextPaint d;
+    public h5 f11887e;
+    public final f4 f11888f;
 
-    public e4(d5 d5Var) {
-        this.f11672a = d5Var;
+    public e4(f4 f4Var) {
+        this.f11888f = f4Var;
+        ImageReceiver imageReceiver = new ImageReceiver(f4Var);
+        this.f11884a = imageReceiver;
+        TextPaint textPaint = new TextPaint(1);
+        this.d = textPaint;
+        imageReceiver.A1 = true;
+        imageReceiver.J0(org.telegram.messenger.g0.L(6.0f));
+        textPaint.setColor(-1);
+        textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
     }
 
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        d5 d5Var = this.f11672a;
-        d5Var.d.abortAnimation();
-        ValueAnimator valueAnimator = d5Var.N;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            d5Var.N.cancel();
-            d5Var.N = null;
-        }
-        d5Var.M = false;
-        d5Var.P.f11936x = false;
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        d5 d5Var = this.f11672a;
-        d5Var.d.fling((int) d5Var.f11766e, 0, (int) (-f10), 0, (int) d5Var.f11767f, (int) d5Var.h, 0, 0);
-        d5Var.invalidate();
-        return false;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        d5 d5Var = this.f11672a;
-        float f12 = d5Var.f11766e + f10;
-        d5Var.f11766e = f12;
-        float f13 = d5Var.f11767f;
-        if (f12 < f13) {
-            d5Var.f11766e = f13;
-        }
-        float f14 = d5Var.f11766e;
-        float f15 = d5Var.h;
-        if (f14 > f15) {
-            d5Var.f11766e = f15;
-        }
-        d5Var.invalidate();
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        d5 d5Var = this.f11672a;
-        ArrayList arrayList = d5Var.H;
-        for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            g4 g4Var = (g4) arrayList.get(i7);
-            if (((g4) arrayList.get(i7)).f11736a.Q0.contains(motionEvent.getX(), motionEvent.getY())) {
-                int i10 = d5Var.L;
-                int i11 = g4Var.f11737b;
-                if (i10 != i11) {
-                    d5Var.c(i11, true, false);
+    public final void a(int i7) {
+        f4 f4Var = this.f11888f;
+        ArrayList arrayList = f4Var.F;
+        if (i7 >= 0 && i7 < arrayList.size()) {
+            this.f11887e = (h5) arrayList.get(i7);
+            boolean z10 = f4Var.f11940w;
+            ImageReceiver imageReceiver = this.f11884a;
+            if (z10) {
+                imageReceiver.P();
+            }
+            h5 h5Var = this.f11887e;
+            TL_stories.StoryItem storyItem = h5Var.f12040a;
+            if (storyItem != null) {
+                i7.x(imageReceiver, storyItem);
+            } else {
+                o6 o6Var = h5Var.f12041b;
+                p10[] p10VarArr = i7.f12115a;
+                if (o6Var.f12333c.K) {
+                    imageReceiver.r0(fc.g(o6Var.f12335f), "320_180", null, null, null, 0L, null, null, 0);
                 } else {
-                    d5Var.O.o(false);
+                    imageReceiver.r0(fc.g(o6Var.f12334e), "320_180", null, null, null, 0L, null, null, 0);
                 }
             }
+            b();
         }
-        return false;
     }
 
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public final void onShowPress(MotionEvent motionEvent) {
+    public final void b() {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        TL_stories.StoryItem storyItem = this.f11887e.f12040a;
+        f4 f4Var = this.f11888f;
+        if (storyItem != null) {
+            f4.a(f4Var, spannableStringBuilder, storyItem.views, false);
+        }
+        if (spannableStringBuilder.length() == 0) {
+            this.f11886c = null;
+            return;
+        }
+        int i7 = (int) (f4Var.K + 1.0f);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        TextPaint textPaint = this.d;
+        StaticLayout c10 = wu0.c(spannableStringBuilder, textPaint, i7, alignment, 0.0f, null, Integer.MAX_VALUE, 1, true);
+        this.f11886c = c10;
+        if (c10.getLineCount() > 1) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
+            f4.a(f4Var, spannableStringBuilder2, this.f11887e.f12040a.views, true);
+            this.f11886c = wu0.c(spannableStringBuilder2, textPaint, (int) (f4Var.K + 1.0f), alignment, 0.0f, null, Integer.MAX_VALUE, 2, true);
+        }
     }
 }

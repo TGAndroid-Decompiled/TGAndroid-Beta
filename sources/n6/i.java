@@ -14,10 +14,10 @@ public class i extends p {
     public final Dialog O() {
         Dialog dialog = this.B0;
         if (dialog == null) {
-            this.f2414s0 = false;
+            this.f2405s0 = false;
             if (this.D0 == null) {
                 Context n10 = n();
-                q6.m.g(n10);
+                q6.m.h(n10);
                 this.D0 = new AlertDialog.Builder(n10).create();
             }
             return this.D0;

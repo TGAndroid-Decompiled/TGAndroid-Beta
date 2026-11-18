@@ -1,41 +1,51 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
 public final class rv implements Runnable {
-    public final int f26367a;
-    public final tv f26368b;
+    public final int f26699a;
+    public final xv f26700b;
+    public final long f26701c;
 
-    public rv(tv tvVar, int i7) {
-        this.f26367a = i7;
-        this.f26368b = tvVar;
+    public rv(xv xvVar, long j3, int i7) {
+        this.f26699a = i7;
+        this.f26700b = xvVar;
+        this.f26701c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f26367a) {
+        int i7 = this.f26699a;
+        long j3 = this.f26701c;
+        xv xvVar = this.f26700b;
+        switch (i7) {
             case 0:
-                this.f26368b.g(false);
+                a0.h hVar = xvVar.getMessagesController().R;
+                long j10 = this.f26701c;
+                TLRPC.Dialog dialog = (TLRPC.Dialog) hVar.f(j10);
+                if (dialog != null) {
+                    dialog.unread_count = 0;
+                    xvVar.getMessagesController().S.l(dialog.f28409id);
+                }
+                xvVar.getMessagesStorage().f27054a.c(new rv(xvVar, j10, 1));
+                tr messagesStorage = xvVar.getMessagesStorage();
+                messagesStorage.f27054a.c(new vp(messagesStorage, 1, j10, 1));
+                xvVar.getNotificationCenter().k(3, new Object[0]);
+                xvVar.getNotificationCenter().k(41, Long.valueOf(j10), Boolean.FALSE, null);
                 return;
             case 1:
-                this.f26368b.f26747o = false;
+                g0.g3(new rv(xvVar, j3, 2));
                 return;
             case 2:
-                tv tvVar = this.f26368b;
-                tvVar.f26747o = false;
-                tvVar.f26744l = false;
-                return;
-            case 3:
-                this.f26368b.l();
+                xs notificationsController = xvVar.getNotificationsController();
+                long j11 = this.f26701c;
+                notificationsController.L(null, j11, 0, Integer.MAX_VALUE, false);
+                LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
+                longSparseIntArray.put(j11, 0);
+                xvVar.getNotificationsController().J(longSparseIntArray);
                 return;
             default:
-                tv tvVar2 = this.f26368b;
-                if (!tvVar2.f26747o) {
-                    tvVar2.f26747o = true;
-                    ArrayList arrayList = new ArrayList(tvVar2.f26742j);
-                    vr a02 = vr.a0(tvVar2.f26735a);
-                    a02.f27219a.c(new kg(tvVar2, a02, arrayList, 24));
-                    return;
-                }
+                xvVar.getMessagesController().X(0, j3, false);
                 return;
         }
     }

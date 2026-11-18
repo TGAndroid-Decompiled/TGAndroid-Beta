@@ -4,17 +4,17 @@ import android.text.SpannableString;
 import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.cj;
+import org.telegram.messenger.bj;
 import org.telegram.messenger.j6;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.mx;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.h41;
+import org.telegram.ui.Components.rx;
 import org.telegram.ui.StickersActivity;
-public final class q1 implements mx {
-    public final z1 f21906a;
+public final class q1 implements rx {
+    public final z1 f22256a;
 
     public q1(z1 z1Var) {
-        this.f21906a = z1Var;
+        this.f22256a = z1Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class q1 implements mx {
     public final void i(int i7) {
         e1 focusedEditTextOrNull;
         boolean z10 = false;
-        z1 z1Var = this.f21906a;
+        z1 z1Var = this.f22256a;
         if (i7 != 0 && (focusedEditTextOrNull = z1Var.Q.getFocusedEditTextOrNull()) != null) {
             z1Var.S0 = focusedEditTextOrNull;
             z1Var.T0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,7 +70,7 @@ public final class q1 implements mx {
 
     @Override
     public final boolean k() {
-        e1 f02 = z1.f0(this.f21906a);
+        e1 f02 = z1.f0(this.f22256a);
         if (f02 == null || f02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class q1 implements mx {
 
     @Override
     public final void l(String str) {
-        z1 z1Var = this.f21906a;
+        z1 z1Var = this.f22256a;
         e1 f02 = z1.f0(z1Var);
         if (f02 != null) {
             int g02 = z1.g0(z1Var, f02);
@@ -104,18 +104,18 @@ public final class q1 implements mx {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f21906a.presentFragment(new StickersActivity(5, arrayList));
+        this.f22256a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f21906a.presentFragment(new StickersActivity(0, null));
+        this.f22256a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.p5 p5Var;
-        z1 z1Var = this.f21906a;
+        org.telegram.ui.Components.x5 x5Var;
+        z1 z1Var = this.f22256a;
         e1 f02 = z1.f0(z1Var);
         if (f02 != null) {
             int g02 = z1.g0(z1Var, f02);
@@ -125,12 +125,12 @@ public final class q1 implements mx {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    p5Var = new org.telegram.ui.Components.p5(document, f02.getPaint().getFontMetricsInt());
+                    x5Var = new org.telegram.ui.Components.x5(document, f02.getPaint().getFontMetricsInt());
                 } else {
-                    p5Var = new org.telegram.ui.Components.p5(j3, f02.getPaint().getFontMetricsInt());
+                    x5Var = new org.telegram.ui.Components.x5(j3, f02.getPaint().getFontMetricsInt());
                 }
-                p5Var.cacheType = org.telegram.ui.Components.g5.f();
-                spannableString.setSpan(p5Var, 0, spannableString.length(), 33);
+                x5Var.cacheType = org.telegram.ui.Components.o5.f();
+                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
                 f02.setText(f02.getText().insert(g02, spannableString));
                 int length = g02 + spannableString.length();
                 f02.setSelection(length, length);
@@ -144,7 +144,7 @@ public final class q1 implements mx {
 
     @Override
     public final boolean z() {
-        return this.f21906a.D0;
+        return this.f22256a.D0;
     }
 
     @Override
@@ -164,7 +164,7 @@ public final class q1 implements mx {
     }
 
     @Override
-    public final void o(x31 x31Var) {
+    public final void o(h41 h41Var) {
     }
 
     @Override
@@ -188,7 +188,7 @@ public final class q1 implements mx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, cj cjVar, boolean z10, int i7) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, bj bjVar, boolean z10, int i7) {
     }
 
     @Override

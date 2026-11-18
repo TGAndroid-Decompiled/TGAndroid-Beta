@@ -3,18 +3,18 @@ package bi;
 import android.content.Context;
 import android.view.MotionEvent;
 public final class s extends hi.d {
-    public final int f3838l0;
+    public final int m0;
 
-    public s(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(context, e6Var, z10);
-        this.f3838l0 = i7;
+    public s(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
+        super(context, i6Var, z10);
+        this.m0 = i7;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f3838l0) {
+        switch (this.m0) {
             case 0:
-                if (!this.f14056d0) {
+                if (!this.f14342e0) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -25,7 +25,7 @@ public final class s extends hi.d {
 
     @Override
     public boolean j() {
-        switch (this.f3838l0) {
+        switch (this.m0) {
             case 1:
                 return false;
             case 2:

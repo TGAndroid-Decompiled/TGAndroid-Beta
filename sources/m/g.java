@@ -2,7 +2,7 @@ package m;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import c8.h9;
+import c8.j9;
 public final class g extends v implements i {
     public final h d;
 
@@ -13,7 +13,7 @@ public final class g extends v implements i {
         setFocusable(true);
         setVisibility(0);
         setEnabled(true);
-        h9.a(this, getContentDescription());
+        j9.a(this, getContentDescription());
         setOnTouchListener(new l.b(this, this));
     }
 

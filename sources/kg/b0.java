@@ -2,18 +2,18 @@ package kg;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.k5;
-public final class b0 extends v4.c0 {
-    public final c0 f17874r;
+import org.telegram.messenger.f3;
+public final class b0 extends v4.d0 {
+    public final c0 f18258r;
 
     public b0(c0 c0Var, Context context) {
         super(context);
-        this.f17874r = c0Var;
+        this.f18258r = c0Var;
     }
 
     @Override
     public final int k(int i7, View view) {
-        return k5.B(8.0f, ((g0) this.f17874r.V).f17945s.getPaddingTop() - org.telegram.messenger.g0.f23605m, super.k(i7, view));
+        return f3.B(8.0f, ((g0) this.f18258r.V).f18322s.getPaddingTop() - org.telegram.messenger.g0.f24115m, super.k(i7, view));
     }
 
     @Override

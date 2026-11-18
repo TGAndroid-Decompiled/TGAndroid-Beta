@@ -1,67 +1,77 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class ht implements Runnable {
-    public final int f35334a;
-    public final EditTextBoldCursor f35335b;
+import android.text.Editable;
+import android.text.style.CharacterStyle;
+import android.view.Surface;
+public final class ht implements lt, h2.j {
+    public final int f35964a;
+    public final int f35965b;
+    public final Object f35966c;
+    public final Object d;
 
-    public ht(EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f35334a = i7;
-        this.f35335b = editTextBoldCursor;
+    public ht(mt mtVar, int i7, int i10, Runnable runnable) {
+        this.f35966c = mtVar;
+        this.f35964a = i7;
+        this.f35965b = i10;
+        this.d = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35334a) {
-            case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f35335b;
-                int i7 = 0;
-                editTextBoldCursor.f36614y = false;
-                editTextBoldCursor.d = false;
-                editTextBoldCursor.h();
-                ArrayList arrayList = editTextBoldCursor.f36604a;
-                if (!arrayList.isEmpty()) {
-                    ((xh.f) arrayList.get(0)).f59995q = new ht(editTextBoldCursor, 1);
-                    float sqrt = (float) Math.sqrt(Math.pow(editTextBoldCursor.getHeight(), 2.0d) + Math.pow(editTextBoldCursor.getWidth(), 2.0d));
-                    int size = arrayList.size();
-                    while (i7 < size) {
-                        Object obj = arrayList.get(i7);
-                        i7++;
-                        ((xh.f) obj).j(editTextBoldCursor.f36612w, editTextBoldCursor.f36613x, sqrt, true);
+    public void a(String str) {
+        mt mtVar = (mt) this.f35966c;
+        Runnable runnable = (Runnable) this.d;
+        Editable text = mtVar.getText();
+        int i7 = this.f35964a;
+        int i10 = this.f35965b;
+        CharacterStyle[] characterStyleArr = (CharacterStyle[]) text.getSpans(i7, i10, CharacterStyle.class);
+        if (characterStyleArr != null && characterStyleArr.length > 0) {
+            for (CharacterStyle characterStyle : characterStyleArr) {
+                if (!(characterStyle instanceof x5) && !(characterStyle instanceof gh0)) {
+                    int spanStart = text.getSpanStart(characterStyle);
+                    int spanEnd = text.getSpanEnd(characterStyle);
+                    text.removeSpan(characterStyle);
+                    if (spanStart < i7) {
+                        text.setSpan(characterStyle, spanStart, i7, 33);
                     }
-                    return;
+                    if (spanEnd > i10) {
+                        text.setSpan(characterStyle, i10, spanEnd, 33);
+                    }
                 }
-                return;
-            case 1:
-                EditTextBoldCursor editTextBoldCursor2 = this.f35335b;
-                editTextBoldCursor2.post(new ht(editTextBoldCursor2, 2));
-                return;
-            case 2:
-                this.f35335b.j(false, true);
-                return;
-            case 3:
-                org.telegram.messenger.g0.J3(this.f35335b);
-                return;
-            case 4:
-                org.telegram.messenger.g0.J3(this.f35335b);
-                return;
-            case 5:
-                org.telegram.messenger.g0.J3(this.f35335b);
-                return;
-            case 6:
-                org.telegram.messenger.g0.J3(this.f35335b);
-                return;
-            case 7:
-                EditTextBoldCursor editTextBoldCursor3 = this.f35335b;
-                editTextBoldCursor3.requestFocus();
-                org.telegram.messenger.g0.J3(editTextBoldCursor3);
-                return;
-            default:
-                EditTextBoldCursor editTextBoldCursor4 = this.f35335b;
-                editTextBoldCursor4.requestFocus();
-                editTextBoldCursor4.setSelection(0, editTextBoldCursor4.length());
-                org.telegram.messenger.g0.J3(editTextBoldCursor4);
-                return;
+            }
         }
+        try {
+            text.setSpan(mtVar.B(str), i7, i10, 33);
+        } catch (Exception unused) {
+        }
+        kt ktVar = mtVar.T1;
+        if (ktVar != null) {
+            ktVar.g();
+        }
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public void accept(Object obj) {
+        p4.e1 e1Var = (p4.e1) this.f35966c;
+        Surface surface = (Surface) this.d;
+        p4.i1 i1Var = (p4.i1) obj;
+        ((p4.d0) e1Var.f55209a.get()).getClass();
+        if (surface == null) {
+            i1Var.S(null);
+            e1Var.f55214i = null;
+            return;
+        }
+        p4.d1 d1Var = new p4.d1(surface, this.f35964a, this.f35965b);
+        e1Var.f55214i = d1Var;
+        i1Var.S(d1Var);
+    }
+
+    public ht(p4.e1 e1Var, Surface surface, int i7, int i10) {
+        this.f35966c = e1Var;
+        this.d = surface;
+        this.f35964a = i7;
+        this.f35965b = i10;
     }
 }

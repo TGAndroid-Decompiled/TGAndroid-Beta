@@ -1,24 +1,6 @@
 package c8;
-
-import android.app.AppOpsManager;
-import android.content.Context;
-import android.os.Build;
-import android.os.Process;
-import android.provider.Settings;
 public abstract class kd {
-    public static wi.m f4577a;
-
-    public static boolean a(Context context) {
-        if (Settings.canDrawOverlays(context)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean b(Context context) {
-        if (Build.VERSION.SDK_INT < 26 || !context.getPackageManager().hasSystemFeature("android.software.picture_in_picture") || ((AppOpsManager) context.getSystemService("appops")).checkOpNoThrow("android:picture_in_picture", Process.myUid(), context.getPackageName()) != 0) {
-            return false;
-        }
-        return true;
+    public static int a(int i7) {
+        return (int) (Integer.rotateLeft((int) (i7 * (-862048943)), 15) * 461845907);
     }
 }

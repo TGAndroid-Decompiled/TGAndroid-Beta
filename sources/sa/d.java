@@ -16,46 +16,69 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import f3.b0;
 import f3.i0;
+import f3.n;
 import f3.q;
 import j$.util.Objects;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-import m2.j;
-import org.telegram.messenger.dj;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.l10;
-import org.telegram.messenger.o2;
+import m2.i;
+import org.telegram.messenger.cj;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.p2;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Cells.i9;
+import org.telegram.ui.Cells.c0;
+import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Cells.y0;
-import org.telegram.ui.Components.cg;
-import org.telegram.ui.Components.ii;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.vg;
-import org.telegram.ui.dr0;
-import org.telegram.ui.m11;
-import org.telegram.ui.qm;
-import q2.k;
-import q2.n;
-import q2.o;
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.kg;
+import org.telegram.ui.Components.pk0;
+import org.telegram.ui.Components.qi;
+import org.telegram.ui.Components.x5;
+import org.telegram.ui.fr0;
+import org.telegram.ui.q11;
+import org.telegram.ui.rm;
+import org.telegram.utils.twidget.d1;
+import org.telegram.utils.twidget.k0;
+import org.telegram.utils.twidget.n0;
+import q2.j;
+import q2.l;
+import q2.m;
 import u2.u;
-import y2.m;
-public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, Continuation, u9.d, ii, cg, gh.a, l1, n, u, m, yi.g {
-    public static final d f56559b = new d(13);
-    public final int f56560a;
+public class d implements SuccessContinuation, b7.c, q11, eg.a, q, fg.a, j2.g, Continuation, u9.d, qi, kg, gh.a, l1, m, u, y2.m, yi.f {
+    public static final d f57133b = new d(13);
+    public final int f57134a;
 
     public d(int i7) {
-        this.f56560a = i7;
+        this.f57134a = i7;
     }
 
-    public static void D2(String str) {
+    public static void D2(d1 d1Var, boolean z10) {
+        String str;
+        pk0 pk0Var;
+        k0 h = n0.h(d1Var);
+        StringBuilder sb2 = new StringBuilder("widget ");
+        sb2.append(d1Var.f54690a);
+        sb2.append(": engine process died");
+        if (z10) {
+            str = ", restarting";
+        } else {
+            str = "";
+        }
+        p5.c.s(str, sb2);
+        if (z10 && h != null && (pk0Var = h.f54818w) != null && pk0Var.f38469f0 && pk0Var.Y != null) {
+            pk0Var.s0();
+            pk0Var.r0();
+        }
+    }
+
+    public static void E2(String str) {
         if (str != null && str.length() != 0) {
             if (!str.startsWith("sk_")) {
                 return;
@@ -65,20 +88,12 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
         throw new tc.g("Invalid Publishable Key: You must use a valid publishable key to create a token.  For more info, see https://stripe.com/docs/stripe.js.", null);
     }
 
-    public static final CharSequence E2(Object obj) {
+    public static final CharSequence F2(Object obj) {
         Objects.requireNonNull(obj);
         if (obj instanceof CharSequence) {
             return (CharSequence) obj;
         }
         return obj.toString();
-    }
-
-    @Override
-    public q2.h A(k kVar, e2.u uVar) {
-        if (uVar.f10454w == null) {
-            return null;
-        }
-        return new o(new q2.g(6001, new Exception()));
     }
 
     @Override
@@ -91,13 +106,13 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
         return 0;
     }
 
-    public boolean C2(CharSequence charSequence) {
-        return false;
+    @Override
+    public int C(Context context, String str) {
+        return b7.f.a(context, str);
     }
 
-    @Override
-    public int D(Context context, String str) {
-        return b7.f.a(context, str);
+    public boolean C2(CharSequence charSequence) {
+        return false;
     }
 
     @Override
@@ -112,7 +127,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
 
     @Override
     public int E1(e2.u uVar) {
-        if (uVar.f10454w != null) {
+        if (uVar.f10772w != null) {
             return 1;
         }
         return 0;
@@ -124,18 +139,23 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
+    public TLRPC.TL_channels_sendAsPeers J() {
+        return null;
+    }
+
+    @Override
     public boolean J1() {
         return false;
     }
 
     @Override
-    public q2.m L(k kVar, e2.u uVar) {
-        return q2.m.f55188z;
+    public boolean L0(long j3) {
+        return false;
     }
 
     @Override
-    public boolean L0(long j3) {
-        return false;
+    public l M(j jVar, e2.u uVar) {
+        return l.f55762z;
     }
 
     @Override
@@ -149,8 +169,8 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public TLRPC.TL_channels_sendAsPeers O() {
-        return null;
+    public long O() {
+        throw new NoSuchElementException();
     }
 
     @Override
@@ -164,18 +184,8 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean Q(q1 q1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        return false;
-    }
-
-    @Override
     public void Q1(q1 q1Var, TLRPC.WebPage webPage, String str, boolean z10) {
         vf.c.t(q1Var.getContext(), str);
-    }
-
-    @Override
-    public boolean R() {
-        return false;
     }
 
     @Override
@@ -184,7 +194,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean S(q1 q1Var) {
+    public boolean S(q1 q1Var, TLRPC.TodoItem todoItem, boolean z10) {
         return false;
     }
 
@@ -199,7 +209,12 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean T1(q1 q1Var, gj gjVar) {
+    public boolean T1(q1 q1Var, fj fjVar) {
+        return false;
+    }
+
+    @Override
+    public boolean U(q1 q1Var) {
         return false;
     }
 
@@ -219,12 +234,12 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public int W1() {
-        return 0;
+    public boolean W() {
+        return false;
     }
 
     @Override
-    public int X() {
+    public int W1() {
         return 0;
     }
 
@@ -234,8 +249,8 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public jh.a Z() {
-        return null;
+    public int Z() {
+        return 0;
     }
 
     @Override
@@ -249,7 +264,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean a0(q1 q1Var) {
+    public boolean b() {
         return false;
     }
 
@@ -259,13 +274,8 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean c() {
-        return false;
-    }
-
-    @Override
-    public boolean c0(q1 q1Var, TLRPC.User user) {
-        return false;
+    public jh.a c0() {
+        return null;
     }
 
     @Override
@@ -274,7 +284,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public dr0 c2() {
+    public fr0 c2() {
         return null;
     }
 
@@ -284,68 +294,18 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void d0(vg vgVar) {
-        vgVar.run();
+    public boolean d0(q1 q1Var) {
+        return false;
     }
 
     @Override
     public i0 d2(int i7, int i10) {
-        return new f3.n();
+        return new n();
     }
 
     @Override
-    public MediaCodecInfo e(int i7) {
-        return MediaCodecList.getCodecInfoAt(i7);
-    }
-
-    @Override
-    public boolean e1(long j3) {
-        return false;
-    }
-
-    @Override
-    public boolean f0() {
-        return false;
-    }
-
-    @Override
-    public boolean f1(gj gjVar) {
-        return y0.a(gjVar);
-    }
-
-    @Override
-    public boolean f2(long j3) {
-        return false;
-    }
-
-    @Override
-    public boolean g() {
-        return true;
-    }
-
-    @Override
-    public boolean g0() {
-        return false;
-    }
-
-    @Override
-    public boolean g1() {
-        return false;
-    }
-
-    @Override
-    public String h(q1 q1Var) {
-        return null;
-    }
-
-    @Override
-    public boolean h2(q1 q1Var, TLRPC.TodoItem todoItem) {
-        return false;
-    }
-
-    @Override
-    public Object i(r7 r7Var) {
-        switch (this.f56560a) {
+    public Object e(r7 r7Var) {
+        switch (this.f57134a) {
             case 14:
                 return new pb.h();
             default:
@@ -370,23 +330,78 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public int i0(q1 q1Var) {
+    public boolean e0(q1 q1Var, TLRPC.User user) {
+        return false;
+    }
+
+    @Override
+    public boolean e1(long j3) {
+        return false;
+    }
+
+    @Override
+    public MediaCodecInfo f(int i7) {
+        return MediaCodecList.getCodecInfoAt(i7);
+    }
+
+    @Override
+    public void f0(eh ehVar) {
+        ehVar.run();
+    }
+
+    @Override
+    public boolean f1(fj fjVar) {
+        return c0.a(fjVar);
+    }
+
+    @Override
+    public boolean f2(long j3) {
+        return false;
+    }
+
+    @Override
+    public boolean g0() {
+        return false;
+    }
+
+    @Override
+    public boolean g1() {
+        return false;
+    }
+
+    @Override
+    public boolean h() {
+        return true;
+    }
+
+    @Override
+    public boolean h2(q1 q1Var, TLRPC.TodoItem todoItem) {
+        return false;
+    }
+
+    @Override
+    public String i(q1 q1Var) {
+        return null;
+    }
+
+    @Override
+    public boolean i0() {
+        return false;
+    }
+
+    @Override
+    public boolean k() {
+        return false;
+    }
+
+    @Override
+    public int k0(q1 q1Var) {
         return 0;
     }
 
     @Override
-    public long k0() {
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public boolean l() {
-        return false;
-    }
-
-    @Override
-    public boolean l0() {
-        return false;
+    public rm m0() {
+        return null;
     }
 
     @Override
@@ -400,18 +415,23 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
+    public boolean n0() {
+        return false;
+    }
+
+    @Override
     public boolean next() {
         return false;
     }
 
     @Override
-    public boolean o0(p5 p5Var) {
-        return false;
+    public int o(Context context, String str, boolean z10) {
+        return b7.f.d(context, str, z10);
     }
 
     @Override
-    public qm p0() {
-        return null;
+    public boolean p0(x5 x5Var) {
+        return false;
     }
 
     @Override
@@ -420,8 +440,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public int q(Context context, String str, boolean z10) {
-        return b7.f.d(context, str, z10);
+    public q2.g r(j jVar, e2.u uVar) {
+        if (uVar.f10772w == null) {
+            return null;
+        }
+        return new q2.n(new q2.f(6001, new Exception()));
     }
 
     @Override
@@ -429,7 +452,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
         if (i7 < i10) {
             fg.a.v.r0(shortBuffer, i7, shortBuffer2, i10, i11);
         } else if (i7 > i10) {
-            fg.a.f11293u.r0(shortBuffer, i7, shortBuffer2, i10, i11);
+            fg.a.f11613u.r0(shortBuffer, i7, shortBuffer2, i10, i11);
         } else if (i7 == i10) {
             shortBuffer2.put(shortBuffer);
         } else {
@@ -438,7 +461,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public TLRPC.Peer s() {
+    public TLRPC.Peer t() {
         return null;
     }
 
@@ -472,11 +495,6 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public String x(long j3) {
-        return null;
-    }
-
-    @Override
     public boolean x0(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
         if ("secure-playback".equals(str) && "video/avc".equals(str2)) {
             return true;
@@ -490,8 +508,13 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public boolean y0(gj gjVar) {
+    public boolean y0(fj fjVar) {
         return true;
+    }
+
+    @Override
+    public String z(long j3) {
+        return null;
     }
 
     @Override
@@ -500,12 +523,12 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public i9 z2() {
+    public j9 z2() {
         return null;
     }
 
     public d(Context context) {
-        this.f56560a = 10;
+        this.f57134a = 10;
     }
 
     @Override
@@ -523,7 +546,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void E() {
+    public void D() {
+    }
+
+    @Override
+    public void G() {
     }
 
     @Override
@@ -532,10 +559,6 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
 
     @Override
     public void G1() {
-    }
-
-    @Override
-    public void I() {
     }
 
     @Override
@@ -555,7 +578,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void Y() {
+    public void V() {
     }
 
     @Override
@@ -563,7 +586,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void b() {
+    public void b0() {
+    }
+
+    @Override
+    public void c() {
     }
 
     @Override
@@ -575,6 +602,10 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
+    public void g() {
+    }
+
+    @Override
     public void i1() {
     }
 
@@ -583,15 +614,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void k() {
-    }
-
-    @Override
     public void l1() {
     }
 
     @Override
-    public void m0() {
+    public void m() {
     }
 
     @Override
@@ -604,10 +631,6 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
 
     @Override
     public void o1() {
-    }
-
-    @Override
-    public void p() {
     }
 
     @Override
@@ -631,7 +654,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void t() {
+    public void u() {
     }
 
     @Override
@@ -655,11 +678,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void B(q1 q1Var) {
+    public void A(boolean z10) {
     }
 
     @Override
-    public void C(boolean z10) {
+    public void B(q1 q1Var) {
     }
 
     @Override
@@ -671,11 +694,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void F0(q1 q1Var) {
+    public void E(q1 q1Var) {
     }
 
     @Override
-    public void H(q1 q1Var) {
+    public void F0(q1 q1Var) {
     }
 
     @Override
@@ -683,7 +706,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void J(dj djVar) {
+    public void K(q1 q1Var) {
+    }
+
+    @Override
+    public void L(cj cjVar) {
     }
 
     @Override
@@ -691,27 +718,23 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void N(q1 q1Var) {
-    }
-
-    @Override
     public void N0(q1 q1Var) {
     }
 
     @Override
-    public void O1(gj gjVar) {
+    public void O1(fj fjVar) {
     }
 
     @Override
-    public void P(gj gjVar) {
+    public void P(q1 q1Var) {
+    }
+
+    @Override
+    public void R(fj fjVar) {
     }
 
     @Override
     public void R0(Object obj) {
-    }
-
-    @Override
-    public void V(q1 q1Var) {
     }
 
     @Override
@@ -723,19 +746,19 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
+    public void Y(q1 q1Var) {
+    }
+
+    @Override
+    public void a0(boolean z10) {
+    }
+
+    @Override
     public void a1(int i7) {
     }
 
     @Override
-    public void b0(boolean z10) {
-    }
-
-    @Override
-    public void e0(int i7) {
-    }
-
-    @Override
-    public void f(b0 b0Var) {
+    public void h0(int i7) {
     }
 
     @Override
@@ -743,7 +766,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void j0(q1 q1Var) {
+    public void j(b0 b0Var) {
     }
 
     @Override
@@ -755,7 +778,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void n0(String str) {
+    public void l0(q1 q1Var) {
     }
 
     @Override
@@ -763,7 +786,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void o(q1 q1Var) {
+    public void o0(String str) {
+    }
+
+    @Override
+    public void q(q1 q1Var) {
     }
 
     @Override
@@ -771,11 +798,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void r(q1 q1Var) {
-    }
-
-    @Override
-    public void u(q1 q1Var) {
+    public void s(q1 q1Var) {
     }
 
     @Override
@@ -787,11 +810,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void y(float f10) {
+    public void x(float f10) {
     }
 
     @Override
-    public void z(q1 q1Var) {
+    public void y(q1 q1Var) {
     }
 
     @Override
@@ -807,7 +830,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void G(q1 q1Var, o2 o2Var) {
+    public void I(q1 q1Var, p2 p2Var) {
     }
 
     @Override
@@ -823,7 +846,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void W(float f10, int i7) {
+    public void Q(float f10, int i7) {
     }
 
     @Override
@@ -831,7 +854,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void a2(q1 q1Var, l10 l10Var) {
+    public void a2(q1 q1Var, i10 i10Var) {
     }
 
     @Override
@@ -851,7 +874,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void r1(Looper looper, j jVar) {
+    public void r1(Looper looper, i iVar) {
     }
 
     @Override
@@ -871,12 +894,12 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void K(q1 q1Var, TLRPC.Document document, RectF rectF) {
+    public int M1(int i7, int i10, int i11) {
+        return i7;
     }
 
     @Override
-    public int M1(int i7, int i10, int i11) {
-        return i7;
+    public void N(q1 q1Var, TLRPC.Document document, RectF rectF) {
     }
 
     @Override
@@ -884,7 +907,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void h0(q1 q1Var, float f10, float f11) {
+    public void j0(q1 q1Var, float f10, float f11) {
     }
 
     @Override
@@ -912,7 +935,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void m(q1 q1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
+    public void p(q1 q1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
     }
 
     @Override
@@ -924,7 +947,11 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void M(CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
+    public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
+    }
+
+    @Override
+    public void H(CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
     }
 
     @Override
@@ -932,7 +959,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void j(q1 q1Var, ArrayList arrayList, int i7, int i10, int i11) {
+    public void l(q1 q1Var, ArrayList arrayList, int i7, int i10, int i11) {
     }
 
     @Override
@@ -940,11 +967,7 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-    }
-
-    @Override
-    public void U(q1 q1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z10) {
+    public void X(q1 q1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z10) {
     }
 
     @Override
@@ -952,10 +975,10 @@ public class d implements SuccessContinuation, b7.c, m11, eg.a, q, fg.a, j2.g, C
     }
 
     @Override
-    public void b2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
+    public void S1(fj fjVar, String str, String str2, String str3, String str4, int i7, int i10) {
     }
 
     @Override
-    public void S1(gj gjVar, String str, String str2, String str3, String str4, int i7, int i10) {
+    public void b2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
     }
 }

@@ -1,10 +1,26 @@
 package org.telegram.messenger;
-public final class dw {
-    public final byte[] f23170a;
-    public final byte[] f23171b;
 
-    public dw(byte[] bArr, byte[] bArr2) {
-        this.f23170a = bArr;
-        this.f23171b = bArr2;
+import org.telegram.tgnet.TLRPC;
+public final class dw implements Runnable {
+    public final int f23590a;
+    public final zy f23591b;
+    public final TLRPC.Updates f23592c;
+
+    public dw(zy zyVar, TLRPC.Updates updates, int i7) {
+        this.f23590a = i7;
+        this.f23591b = zyVar;
+        this.f23592c = updates;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f23590a) {
+            case 0:
+                this.f23591b.getMessagesController().V3(this.f23592c, false);
+                return;
+            default:
+                this.f23591b.getMessagesController().V3(this.f23592c, false);
+                return;
+        }
     }
 }

@@ -3,17 +3,17 @@ package oi;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 public final class j0 {
     public static ArrayList d;
-    public final int f21747a;
-    public final String f21748b;
-    public final List f21749c;
+    public final int f22115a;
+    public final String f22116b;
+    public final List f22117c;
 
     public j0(int i7, String str, String... strArr) {
-        this.f21747a = i7;
-        this.f21748b = str;
-        this.f21749c = Arrays.asList(strArr);
+        this.f22115a = i7;
+        this.f22116b = str;
+        this.f22117c = Arrays.asList(strArr);
     }
 
     public static ArrayList a(String str) {
@@ -32,28 +32,28 @@ public final class j0 {
         if (arrayList2 == null) {
             ArrayList arrayList3 = new ArrayList();
             d = arrayList3;
-            arrayList3.add(new j0(2131231558, hd.M0(2131754030, null), "#", "/h1", "/header", "/title", "/heading"));
-            d.add(new j0(2131231559, hd.M0(2131754029, null), "##", "/h2"));
-            d.add(new j0(2131231560, hd.M0(2131754028, null), "###", "/h3"));
-            d.add(new j0(2131231561, hd.M0(2131754027, null), "####", "/h4"));
-            d.add(new j0(2131231562, hd.M0(2131754026, null), "#####", "/h5"));
-            d.add(new j0(2131231563, hd.M0(2131754025, null), "######", "/h6"));
-            d.add(new j0(2131231580, hd.M0(2131753996, null), "|", "/quote"));
-            d.add(new j0(2131231579, hd.M0(2131753997, null), "/pullquote"));
-            d.add(new j0(2131231551, hd.M0(2131754055, null), "```", "/code", "/pre", "/preformatted"));
-            d.add(new j0(2131231554, hd.M0(2131754032, null), "/footer"));
-            d.add(new j0(2131231564, hd.M0(2131754051, null), "-", "/list"));
-            d.add(new j0(2131231576, hd.M0(2131754048, null), "1."));
-            d.add(new j0(2131231597, hd.M0(2131754004, null), "[]", "/todo", "/checklist"));
-            d.add(new j0(2131231552, hd.M0(2131754046, null), ">", "/toggle", "/details"));
-            d.add(new j0(2131231548, hd.M0(2131746011, null), "/button"));
-            d.add(new j0(2131231584, hd.M0(2131754047, null), "/table"));
-            d.add(new j0(2131231569, hd.M0(2131754049, null), "/math", "/latex", "/expression"));
-            d.add(new j0(2131231553, hd.M0(2131754053, null), "---"));
-            d.add(new j0(2131231570, hd.M0(2131754052, null), "/image", "/pic", "/picture", "/photo", "/img", "/media"));
-            d.add(new j0(2131231570, hd.M0(2131754045, null), "/video", "/vid", "/media"));
-            d.add(new j0(2131231546, hd.M0(2131754054, null), "/audio", "/music", "/media"));
-            d.add(new j0(2131231568, hd.M0(2131754050, null), "/map", "/location", "/venue"));
+            arrayList3.add(new j0(2131231559, gd.M0(2131754028, null), "#", "/h1", "/header", "/title", "/heading"));
+            d.add(new j0(2131231560, gd.M0(2131754027, null), "##", "/h2"));
+            d.add(new j0(2131231561, gd.M0(2131754026, null), "###", "/h3"));
+            d.add(new j0(2131231562, gd.M0(2131754025, null), "####", "/h4"));
+            d.add(new j0(2131231563, gd.M0(2131754024, null), "#####", "/h5"));
+            d.add(new j0(2131231564, gd.M0(2131754023, null), "######", "/h6"));
+            d.add(new j0(2131231581, gd.M0(2131753994, null), "|", "/quote"));
+            d.add(new j0(2131231580, gd.M0(2131753995, null), "/pullquote"));
+            d.add(new j0(2131231552, gd.M0(2131754053, null), "```", "/code", "/pre", "/preformatted"));
+            d.add(new j0(2131231555, gd.M0(2131754030, null), "/footer"));
+            d.add(new j0(2131231565, gd.M0(2131754049, null), "-", "/list"));
+            d.add(new j0(2131231577, gd.M0(2131754046, null), "1."));
+            d.add(new j0(2131231598, gd.M0(2131754002, null), "[]", "/todo", "/checklist"));
+            d.add(new j0(2131231553, gd.M0(2131754044, null), ">", "/toggle", "/details"));
+            d.add(new j0(2131231549, gd.M0(2131745816, null), "/button"));
+            d.add(new j0(2131231585, gd.M0(2131754045, null), "/table"));
+            d.add(new j0(2131231570, gd.M0(2131754047, null), "/math", "/latex", "/expression"));
+            d.add(new j0(2131231554, gd.M0(2131754051, null), "---"));
+            d.add(new j0(2131231571, gd.M0(2131754050, null), "/image", "/pic", "/picture", "/photo", "/img", "/media"));
+            d.add(new j0(2131231571, gd.M0(2131754043, null), "/video", "/vid", "/media"));
+            d.add(new j0(2131231547, gd.M0(2131754052, null), "/audio", "/music", "/media"));
+            d.add(new j0(2131231569, gd.M0(2131754048, null), "/map", "/location", "/venue"));
             arrayList2 = d;
         }
         int size = arrayList2.size();
@@ -63,7 +63,7 @@ public final class j0 {
             i7++;
             j0 j0Var = (j0) obj;
             if (!lowerCase.isEmpty()) {
-                String[] split = j0Var.f21748b.toLowerCase().split(" ");
+                String[] split = j0Var.f22116b.toLowerCase().split(" ");
                 int length = split.length;
                 int i10 = 0;
                 while (true) {
@@ -73,7 +73,7 @@ public final class j0 {
                         }
                         i10++;
                     } else {
-                        for (String str2 : j0Var.f21749c) {
+                        for (String str2 : j0Var.f22117c) {
                             String lowerCase2 = str2.toLowerCase();
                             if (lowerCase2.startsWith("/")) {
                                 lowerCase2 = lowerCase2.substring(1);

@@ -1,55 +1,358 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.z10;
-public final class d1 implements z10 {
-    public final int f14086a;
-    public final i2 f14087b;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Matrix;
+import android.graphics.PointF;
+import android.graphics.SurfaceTexture;
+import android.hardware.Camera;
+import android.os.Build;
+import android.view.MotionEvent;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.camera.CameraSessionWrapper;
+import org.telegram.messenger.camera.CameraView;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public abstract class d1 extends CameraView {
+    public static final int[] f14359b0 = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
+    public final Matrix E;
+    public boolean F;
+    public boolean G;
+    public boolean H;
+    public boolean I;
+    public float J;
+    public float K;
+    public long L;
+    public final Matrix M;
+    public c1 N;
+    public c1 O;
+    public final float[] P;
+    public float Q;
+    public float R;
+    public float S;
+    public float T;
+    public float U;
+    public final float[] V;
+    public float[] W;
+    public boolean f14360a;
+    public float[] f14361a0;
+    public final PointF f14362b;
+    public final PointF f14363c;
+    public float d;
+    public double f14364e;
+    public boolean f14365f;
+    public boolean h;
+    public final Matrix f14366n;
+    public final Matrix f14367r;
+    public boolean f14368s;
+    public float f14369w;
+    public boolean f14370x;
+    public final Matrix f14371y;
 
-    public d1(i2 i2Var, int i7) {
-        this.f14086a = i7;
-        this.f14087b = i2Var;
+    public d1(Context context, boolean z10) {
+        super(context, z10, false);
+        this.f14362b = new PointF();
+        this.f14363c = new PointF();
+        this.f14366n = new Matrix();
+        this.f14367r = new Matrix();
+        this.f14371y = new Matrix();
+        this.E = new Matrix();
+        this.F = true;
+        this.M = new Matrix();
+        this.P = new float[2];
+        new Matrix();
+        this.V = new float[2];
+        this.f14360a = q(context);
+    }
+
+    private Matrix getSavedDualMatrix() {
+        String string = mp.g1().getString("dualmatrix", null);
+        if (string != null) {
+            String[] split = string.split(";");
+            if (split.length == 9) {
+                float[] fArr = new float[9];
+                for (int i7 = 0; i7 < split.length; i7++) {
+                    try {
+                        fArr[i7] = Float.parseFloat(split[i7]);
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                        return null;
+                    }
+                }
+                Matrix matrix = new Matrix();
+                matrix.setValues(fArr);
+                return matrix;
+            }
+        }
+        return null;
+    }
+
+    public static boolean p(Context context, boolean z10) {
+        boolean z11;
+        boolean z12;
+        int i7 = 0;
+        boolean z13 = true;
+        if (bz.o() >= 1 && Camera.getNumberOfCameras() > 1 && bz.b()) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z11) {
+            if (context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent")) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            if (!z12 && z10) {
+                int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
+                while (true) {
+                    if (i7 < 32) {
+                        if (f14359b0[i7] == hashCode) {
+                            break;
+                        }
+                        i7++;
+                    } else {
+                        z13 = z12;
+                        break;
+                    }
+                }
+                if (!z13) {
+                    (Build.MANUFACTURER + Build.MODEL).toUpperCase().getClass();
+                }
+                return z13;
+            }
+            return z12;
+        }
+        return z11;
+    }
+
+    public static boolean q(Context context) {
+        return mp.g1().getBoolean("dual_available", p(context, true));
+    }
+
+    public static void t(boolean z10) {
+        int i7 = 0;
+        boolean p10 = p(org.telegram.messenger.t0.f26915b, false);
+        if (mp.u1(j10.f24773t0).L3) {
+            try {
+                TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
+                TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
+                tL_inputAppEvent.time = ConnectionsManager.getInstance(j10.f24773t0).getCurrentTime();
+                tL_inputAppEvent.type = "android_dual_camera";
+                TLRPC.TL_jsonObject tL_jsonObject = new TLRPC.TL_jsonObject();
+                TLRPC.TL_jsonObjectValue tL_jsonObjectValue = new TLRPC.TL_jsonObjectValue();
+                tL_jsonObjectValue.key = "device";
+                TLRPC.TL_jsonString tL_jsonString = new TLRPC.TL_jsonString();
+                tL_jsonString.value = "" + Build.MANUFACTURER + Build.MODEL;
+                tL_jsonObjectValue.value = tL_jsonString;
+                tL_jsonObject.value.add(tL_jsonObjectValue);
+                tL_inputAppEvent.data = tL_jsonObject;
+                if (p10) {
+                    i7 = 2;
+                }
+                tL_inputAppEvent.peer = (z10 ? 1 : 0) | i7;
+                tL_help_saveAppLog.events.add(tL_inputAppEvent);
+                ConnectionsManager.getInstance(j10.f24773t0).sendRequest(tL_help_saveAppLog, new fi.k5(4));
+            } catch (Exception unused) {
+            }
+        }
+        org.telegram.messenger.t0.f26914a.getClass();
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f14086a;
-        i2 i2Var = this.f14087b;
-        Integer num = (Integer) obj;
-        switch (i7) {
-            case 0:
-                org.telegram.ui.ActionBar.k2 k2Var = i2Var.f29685c;
-                boolean z10 = i2Var.f14411v1;
-                boolean z11 = i2Var.d;
-                if (z10 != z11) {
-                    i2Var.f14411v1 = z11;
-                    k2Var.clearAnimation();
-                    float f10 = 0.0f;
-                    if (i2Var.d) {
-                        int i10 = org.telegram.messenger.g0.f23611q.y;
-                        int i11 = i2Var.f29693f;
-                        f10 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - i2Var.f14414y1, (-i11) / 3.0f));
-                    }
-                    k2Var.animate().translationY(f10).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f28644w).start();
-                    return;
-                }
-                return;
-            case 1:
-                i1 i1Var = i2Var.f14406q1;
-                ValueAnimator valueAnimator = i1Var.T;
-                if ((valueAnimator == null || !valueAnimator.isRunning()) && i1Var.getCurrentPosition() != num.intValue()) {
-                    i1Var.C(num.intValue());
-                    h2 h2Var = i2Var.f14407r1;
-                    h2Var.G = num.intValue();
-                    h2Var.invalidate();
-                    return;
-                }
-                return;
-            default:
-                int intValue = num.intValue();
-                int i12 = i2.C1;
-                i2Var.M0(intValue);
-                return;
+    public final void destroy(boolean z10, Runnable runnable) {
+        v();
+        super.destroy(z10, runnable);
+    }
+
+    @Override
+    public final void onDualCameraSuccess() {
+        int i7;
+        v();
+        if (this.I) {
+            w9 w9Var = (w9) this;
+            if (mp.g1().getInt("storysvddualhint", 0) < 2) {
+                org.telegram.messenger.g0.h3(new k(w9Var, 20), 340L);
+            }
+            ta taVar = w9Var.f15695c0;
+            taVar.G0.setValue(w9Var.isDual());
+            fb fbVar = taVar.G0;
+            if (w9Var.isDual()) {
+                i7 = 2131754886;
+            } else {
+                i7 = 2131754887;
+            }
+            fbVar.setContentDescription(gd.M0(i7, null));
         }
+        t(true);
+    }
+
+    @Override
+    public final void onError(int i7, Camera camera, CameraSessionWrapper cameraSessionWrapper) {
+        if (isDual()) {
+            if (!p(getContext(), false)) {
+                SharedPreferences.Editor edit = mp.g1().edit();
+                this.f14360a = false;
+                edit.putBoolean("dual_available", false).apply();
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
+                String M0 = gd.M0(2131751329, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                u1Var.S = M0;
+                u1Var.U = gd.M0(2131751330, null);
+                org.telegram.messenger.f3.m(null, 2131747638, alertDialog$Builder, null);
+            }
+            t(false);
+            toggleDual();
+        }
+        if (getCameraSession(0) != null && getCameraSession(0).equals(cameraSessionWrapper)) {
+            resetCamera();
+        }
+        mp.g1().edit().putBoolean("dualcam", false).remove("dualmatrix").apply();
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && s(motionEvent.getX(), motionEvent.getY())) {
+            return x(motionEvent);
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        Matrix matrix = this.f14371y;
+        matrix.reset();
+        matrix.postTranslate(1.0f, -1.0f);
+        matrix.postScale(getMeasuredWidth() / 2.0f, (-getMeasuredHeight()) / 2.0f);
+        matrix.invert(this.E);
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
+        if (this.F) {
+            if (q(getContext()) && mp.g1().getBoolean("dualcam", p(org.telegram.messenger.t0.f26915b, false))) {
+                this.I = true;
+                w();
+                this.dual = true;
+            }
+            this.F = false;
+        }
+        super.onSurfaceTextureAvailable(surfaceTexture, i7, i10);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean x10 = x(motionEvent);
+        if (!super.onTouchEvent(motionEvent) && !x10) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void r(Matrix matrix) {
+        float[] fArr = this.P;
+        fArr[0] = 0.0f;
+        fArr[1] = 0.0f;
+        matrix.mapPoints(fArr);
+        this.Q = fArr[0];
+        this.R = fArr[1];
+        fArr[0] = 1.0f;
+        fArr[1] = 0.0f;
+        matrix.mapPoints(fArr);
+        this.S = (float) Math.toDegrees(Math.atan2(fArr[1] - this.R, fArr[0] - this.Q));
+        this.T = a8.w9.a(this.Q, this.R, fArr[0], fArr[1]) * 2.0f;
+        fArr[0] = 0.0f;
+        fArr[1] = 1.0f;
+        matrix.mapPoints(fArr);
+        this.U = a8.w9.a(this.Q, this.R, fArr[0], fArr[1]) * 2.0f;
+    }
+
+    public final boolean s(float f10, float f11) {
+        float f12;
+        if (!isDual()) {
+            return false;
+        }
+        float[] fArr = this.V;
+        fArr[0] = f10;
+        fArr[1] = f11;
+        this.E.mapPoints(fArr);
+        Matrix dualPosition = getDualPosition();
+        Matrix matrix = this.M;
+        dualPosition.invert(matrix);
+        matrix.mapPoints(fArr);
+        int dualShape = getDualShape() % 3;
+        if (dualShape != 0 && dualShape != 1 && dualShape != 3) {
+            f12 = 1.0f;
+        } else {
+            f12 = 0.5625f;
+        }
+        float f13 = fArr[0];
+        if (f13 >= -1.0f && f13 <= 1.0f) {
+            float f14 = fArr[1];
+            if (f14 >= (-f12) && f14 <= f12) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void toggleDual() {
+        if (!isDual() && !this.f14360a) {
+            return;
+        }
+        if (!isDual()) {
+            w();
+        } else {
+            mp.g1().edit().putBoolean("dualcam", false).remove("dualmatrix").apply();
+        }
+        super.toggleDual();
+    }
+
+    public abstract void u(boolean z10);
+
+    public final void v() {
+        SharedPreferences.Editor edit = mp.g1().edit();
+        edit.putBoolean("dualcam", isDual());
+        if (isDual()) {
+            float[] fArr = new float[9];
+            getDualPosition().getValues(fArr);
+            StringBuilder sb2 = new StringBuilder(108);
+            sb2.append(fArr[0]);
+            for (int i7 = 1; i7 < 9; i7++) {
+                sb2.append(";");
+                sb2.append(fArr[i7]);
+            }
+            edit.putString("dualmatrix", sb2.toString());
+        } else {
+            edit.remove("dualmatrix");
+        }
+        edit.apply();
+    }
+
+    public final void w() {
+        Matrix dualPosition = getDualPosition();
+        dualPosition.reset();
+        Matrix savedDualMatrix = getSavedDualMatrix();
+        if (savedDualMatrix != null) {
+            dualPosition.set(savedDualMatrix);
+        } else {
+            dualPosition.postConcat(this.f14371y);
+            float measuredWidth = getMeasuredWidth() * 0.43f;
+            float min = Math.min(getMeasuredWidth(), getMeasuredWidth()) * 0.025f;
+            dualPosition.postScale(measuredWidth / getMeasuredWidth(), (getMeasuredHeight() * 0.43f) / getMeasuredHeight());
+            dualPosition.postTranslate((getMeasuredWidth() - min) - measuredWidth, min);
+            dualPosition.postConcat(this.E);
+        }
+        updateDualPosition();
+    }
+
+    public final boolean x(android.view.MotionEvent r52) {
+        throw new UnsupportedOperationException("Method not decompiled: hi.d1.x(android.view.MotionEvent):boolean");
     }
 }

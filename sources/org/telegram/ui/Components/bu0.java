@@ -1,57 +1,74 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.PointF;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.view.View;
-public class bu0 extends v4.c0 {
-    public final er f33392r;
-    public int f33393s;
-    public float f33394t;
+public abstract class bu0 extends au0 {
+    public Activity f33780g0;
+    public final Rect f33781h0;
+    public int f33782i0;
+    public boolean f33783j0;
 
-    public bu0(Context context) {
-        super(context);
-        this.f33392r = er.f34419f;
-        this.f33394t = 1.0f;
+    public bu0(Context context, Activity activity) {
+        super(context, null);
+        this.f33781h0 = new Rect();
+        setActivity(activity);
     }
 
     @Override
-    public final void g(View view, v4.z0 z0Var) {
-        int j3 = j(o(), view);
-        int k10 = k(p(), view);
-        int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
-        if (m10 > 0) {
-            z0Var.b(-j3, -k10, m10, this.f33392r);
+    public int Q() {
+        View rootView = getRootView();
+        Rect rect = this.f33781h0;
+        getWindowVisibleDisplayFrame(rect);
+        int i7 = 0;
+        if (this.f33783j0) {
+            int height = rootView.getHeight();
+            if (rect.top != 0) {
+                i7 = org.telegram.messenger.g0.f24115m;
+            }
+            return ((height - i7) - org.telegram.messenger.g0.q1(rootView)) - (rect.bottom - rect.top);
         }
-        org.telegram.messenger.g0.i3(new ro0(this, 8), Math.max(0, m10));
+        int height2 = (this.f33780g0.getWindow().getDecorView().getHeight() - org.telegram.messenger.g0.q1(rootView)) - rootView.getBottom();
+        if (height2 <= Math.max(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.f24115m)) {
+            return 0;
+        }
+        return height2;
     }
 
     @Override
-    public final int k(int i7, View view) {
-        return super.k(i7, view) - this.f33393s;
-    }
-
-    @Override
-    public final int m(int i7) {
-        return Math.round(Math.min(super.m(i7), 500) * this.f33394t);
-    }
-
-    @Override
-    public final int n(int i7) {
-        return Math.round(Math.min(super.n(i7), 150) * this.f33394t);
-    }
-
-    @Override
-    public final void q(v4.z0 z0Var) {
-        PointF a10 = a(this.f58480a);
-        if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
-            v4.a1.b(a10);
-            this.f58517k = a10;
-            this.f58521o = (int) (a10.x * 10000.0f);
-            this.f58522p = (int) (a10.y * 10000.0f);
-            z0Var.b((int) (this.f58521o * 1.2f), (int) (this.f58522p * 1.2f), (int) (n(10000) * 1.2f), this.f33392r);
+    public void R() {
+        boolean z10;
+        if (this.f33464n == null && this.f33465r.isEmpty()) {
             return;
         }
-        z0Var.d = this.f58480a;
-        h();
+        this.f33782i0 = Q();
+        Point point = org.telegram.messenger.g0.f24121q;
+        if (point.x > point.y) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        post(new pp0(4, this, z10));
+    }
+
+    @Override
+    public int getKeyboardHeight() {
+        return this.f33782i0;
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        R();
+    }
+
+    public void setActivity(Activity activity) {
+        this.f33780g0 = activity;
+    }
+
+    public void setWithoutWindow(boolean z10) {
+        this.f33783j0 = z10;
     }
 }

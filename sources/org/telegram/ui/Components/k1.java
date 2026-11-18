@@ -1,58 +1,44 @@
 package org.telegram.ui.Components;
 
+import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ProfileActivity;
 public final class k1 implements View.OnClickListener {
-    public final int f36212a = 1;
-    public final LinearLayout f36213b;
-    public final int[] f36214c;
+    public final int f36611a;
+    public final TLRPC.User f36612b;
+    public final org.telegram.ui.ActionBar.h2 f36613c;
+    public final AlertDialog$Builder d;
 
-    public k1(LinearLayout linearLayout, int[] iArr) {
-        this.f36213b = linearLayout;
-        this.f36214c = iArr;
+    public k1(TLRPC.User user, org.telegram.ui.ActionBar.h2 h2Var, AlertDialog$Builder alertDialog$Builder, int i7) {
+        this.f36611a = i7;
+        this.f36612b = user;
+        this.f36613c = h2Var;
+        this.d = alertDialog$Builder;
     }
 
     @Override
     public final void onClick(View view) {
-        boolean z10;
-        boolean z11;
-        switch (this.f36212a) {
+        switch (this.f36611a) {
             case 0:
-                this.f36214c[0] = ((Integer) view.getTag()).intValue();
-                LinearLayout linearLayout = this.f36213b;
-                int childCount = linearLayout.getChildCount();
-                for (int i7 = 0; i7 < childCount; i7++) {
-                    View childAt = linearLayout.getChildAt(i7);
-                    if (childAt instanceof org.telegram.ui.Cells.i6) {
-                        org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) childAt;
-                        if (childAt == view) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        i6Var.f30439c.a(z10, true);
-                    }
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", this.f36612b.f28554id);
+                org.telegram.ui.ActionBar.h2 h2Var = this.f36613c;
+                if (h2Var.getMessagesController().E(bundle, h2Var, null, null)) {
+                    h2Var.presentFragment(new ProfileActivity(bundle, null));
                 }
+                this.d.f28746a.M0.run();
                 return;
             default:
-                LinearLayout linearLayout2 = this.f36213b;
-                int childCount2 = linearLayout2.getChildCount();
-                for (int i10 = 0; i10 < childCount2; i10++) {
-                    org.telegram.ui.Cells.i6 i6Var2 = (org.telegram.ui.Cells.i6) linearLayout2.getChildAt(i10);
-                    if (i6Var2 == view) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    i6Var2.f30439c.a(z11, true);
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", this.f36612b.f28554id);
+                org.telegram.ui.ActionBar.h2 h2Var2 = this.f36613c;
+                if (h2Var2.getMessagesController().E(bundle2, h2Var2, null, null)) {
+                    h2Var2.presentFragment(new ProfileActivity(bundle2, null));
                 }
-                this.f36214c[0] = org.telegram.ui.Cells.s8.f31430f[((Integer) view.getTag()).intValue()];
+                this.d.f28746a.M0.run();
                 return;
         }
-    }
-
-    public k1(int[] iArr, LinearLayout linearLayout) {
-        this.f36214c = iArr;
-        this.f36213b = linearLayout;
     }
 }

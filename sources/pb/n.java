@@ -2,21 +2,21 @@ package pb;
 
 import java.util.concurrent.Executor;
 public final class n implements Executor {
-    public static final n f54964a;
-    public static final n[] f54965b;
+    public static final n f55540a;
+    public static final n[] f55541b;
 
     static {
         ?? r02 = new Enum("INSTANCE", 0);
-        f54964a = r02;
-        f54965b = new n[]{r02};
+        f55540a = r02;
+        f55541b = new n[]{r02};
     }
 
     public static n[] values() {
-        return (n[]) f54965b.clone();
+        return (n[]) f55541b.clone();
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        f.a().f54945a.post(runnable);
+        f.a().f55521a.post(runnable);
     }
 }

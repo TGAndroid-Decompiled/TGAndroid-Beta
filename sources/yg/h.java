@@ -3,19 +3,19 @@ package yg;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-import c8.ja;
+import c8.ma;
 import java.util.Date;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n5;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
 public final class h extends FrameLayout {
-    public final j5 f60669a;
-    public long f60670b;
+    public final n5 f61236a;
+    public long f61237b;
 
-    public h(Context context, e6 e6Var) {
+    public h(Context context, i6 i6Var) {
         super(context);
         int i7;
         int i10;
@@ -24,29 +24,29 @@ public final class h extends FrameLayout {
         float f11;
         float f12;
         float f13;
-        j5 j5Var = new j5(context);
-        j5Var.setTextSize(16);
-        q6.X(j5Var, j6.f28957j5, e6Var);
-        if (hd.f24104a0) {
+        n5 n5Var = new n5(context);
+        n5Var.setTextSize(16);
+        u6.X(n5Var, n6.f29504j5, i6Var);
+        if (gd.f24216a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        j5Var.setGravity(i7);
-        addView(j5Var);
-        j5 j5Var2 = new j5(context);
-        this.f60669a = j5Var2;
-        j5Var2.setTextSize(16);
-        q6.X(j5Var2, j6.L6, e6Var);
-        if (hd.f24104a0) {
+        n5Var.setGravity(i7);
+        addView(n5Var);
+        n5 n5Var2 = new n5(context);
+        this.f61236a = n5Var2;
+        n5Var2.setTextSize(16);
+        u6.X(n5Var2, n6.L6, i6Var);
+        if (gd.f24216a0) {
             i10 = 3;
         } else {
             i10 = 5;
         }
-        j5Var2.setGravity(i10);
-        addView(j5Var2);
-        j5Var.l(hd.a0("BoostingDateAndTime", null, 2131753539, new Object[0]), false);
-        boolean z10 = hd.f24104a0;
+        n5Var2.setGravity(i10);
+        addView(n5Var2);
+        n5Var.l(gd.a0("BoostingDateAndTime", null, 2131753537, new Object[0]), false);
+        boolean z10 = gd.f24216a0;
         if (z10) {
             i11 = 5;
         } else {
@@ -63,8 +63,8 @@ public final class h extends FrameLayout {
         } else {
             f11 = 0.0f;
         }
-        j5Var.setLayoutParams(ja.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24104a0;
+        n5Var.setLayoutParams(ma.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
+        boolean z11 = gd.f24216a0;
         int i13 = (z11 ? 3 : 5) | 16;
         if (z11) {
             f12 = 21.0f;
@@ -76,12 +76,12 @@ public final class h extends FrameLayout {
         } else {
             f13 = 21.0f;
         }
-        j5Var2.setLayoutParams(ja.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
-        q6.h(j6.f28922h5, this, e6Var);
+        n5Var2.setLayoutParams(ma.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        u6.h(n6.f29469h5, this, i6Var);
     }
 
     public long getSelectedTime() {
-        return this.f60670b;
+        return this.f61237b;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j3) {
-        this.f60670b = j3;
+        this.f61237b = j3;
         Date date = new Date(j3);
-        this.f60669a.l(hd.a0("formatDateAtTime", null, 2131742783, hd.E0().q0().format(date), hd.E0().p0().format(date)), false);
+        this.f61236a.l(gd.a0("formatDateAtTime", null, 2131742525, gd.E0().q0().format(date), gd.E0().p0().format(date)), false);
     }
 }

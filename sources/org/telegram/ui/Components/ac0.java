@@ -1,44 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class ac0 extends AnimatorListenerAdapter {
-    public final int f32958a;
-    public final hi.y7 f32959b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.widget.TextView;
+public final class ac0 extends TextView {
+    public final bc0 f33330a;
 
-    public ac0(hi.y7 y7Var, int i7) {
-        this.f32958a = i7;
-        this.f32959b = y7Var;
+    public ac0(bc0 bc0Var, Context context, int i7) {
+        super(context);
+        this.f33330a = bc0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32958a) {
-            case 0:
-                hi.y7 y7Var = this.f32959b;
-                AnimatorSet animatorSet = (AnimatorSet) y7Var.f15430e;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    y7Var.f15430e = null;
-                    return;
-                }
-                return;
-            case 1:
-                hi.y7 y7Var2 = this.f32959b;
-                AnimatorSet animatorSet2 = (AnimatorSet) y7Var2.f15430e;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    y7Var2.f15430e = null;
-                    return;
-                }
-                return;
-            default:
-                hi.y7 y7Var3 = this.f32959b;
-                AnimatorSet animatorSet3 = (AnimatorSet) y7Var3.f15430e;
-                if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    y7Var3.f15430e = null;
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        bc0 bc0Var = this.f33330a;
+        if (bc0Var.f33656e.getAdapter() instanceof lx) {
+            ((lx) bc0Var.f33656e.getAdapter()).getClass();
         }
+    }
+
+    @Override
+    public final void setSelected(boolean z10) {
+        float f10;
+        float f11;
+        super.setSelected(z10);
+        Drawable background = getBackground();
+        bc0 bc0Var = this.f33330a;
+        if (background != null) {
+            if (z10) {
+                f11 = 0.1f;
+            } else {
+                f11 = 0.05f;
+            }
+            org.telegram.ui.ActionBar.n6.H1(background, bc0Var.c(f11), true);
+        }
+        if (z10) {
+            f10 = 0.8f;
+        } else {
+            f10 = 0.6f;
+        }
+        setTextColor(bc0Var.c(f10));
     }
 }

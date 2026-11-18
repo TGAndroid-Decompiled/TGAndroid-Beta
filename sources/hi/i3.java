@@ -1,52 +1,86 @@
 package hi;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.ui.Components.er;
-public final class i3 extends View implements m2 {
-    public final org.telegram.ui.Components.g6 f14416a;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.x10;
+import org.telegram.ui.Components.au0;
+import org.telegram.ui.Components.lr;
+public final class i3 extends org.telegram.ui.ActionBar.x2 {
+    public final h3 f14757m1;
+    public ValueAnimator n1;
+    public r1.g f14758o1;
+    public Boolean f14759p1;
+    public x10 f14760q1;
 
-    public i3(Activity activity) {
-        super(activity);
-        org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(true, true, true);
-        this.f14416a = g6Var;
-        g6Var.n(0.35f, 300L, er.h);
-        g6Var.u(-1);
-        g6Var.w(org.telegram.messenger.g0.L(14.0f));
-        g6Var.s(org.telegram.messenger.g0.L(1.4f), org.telegram.messenger.g0.L(0.4f), 1275068416);
-        g6Var.f34833b = 1;
-        g6Var.setCallback(this);
-        g6Var.N = org.telegram.messenger.g0.f23611q.x;
+    public i3(Context context, org.telegram.ui.ActionBar.i6 i6Var, String str, float f10) {
+        super(1, context, i6Var, false);
+        P(-14737633);
+        h3 h3Var = new h3(j10.f24773t0, context, new fi.b(), f10, str);
+        this.f14757m1 = h3Var;
+        h3Var.H.setVisibility(8);
+        h3Var.setMultipleOnClick(false);
+        h3Var.setOnBackClickListener(new f3(this, 0));
+        h3Var.setOnSelectListener(new bi.b(this, 27));
+        au0 au0Var = new au0(context, null);
+        this.f30192b = au0Var;
+        int i7 = this.f30227u0;
+        au0Var.setPadding(i7, 0, i7, 0);
+        this.f30192b.addView(h3Var);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        super.draw(canvas);
-        int width = getWidth();
-        int height = getHeight();
-        org.telegram.ui.Components.g6 g6Var = this.f14416a;
-        g6Var.setBounds(0, 0, width, height);
-        g6Var.draw(canvas);
+    public final boolean G() {
+        return !this.f14757m1.f14555x;
     }
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, i10);
-        this.f14416a.N = getMeasuredWidth();
-    }
-
-    @Override
-    public void setInvert(float f10) {
-        this.f14416a.u(i0.a.f(f10, -1, -16777216));
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f14416a && !super.verifyDrawable(drawable)) {
-            return false;
+    public final void K0(boolean z10, f3 f3Var) {
+        float height;
+        h3 h3Var = this.f14757m1;
+        float translationY = h3Var.getTranslationY();
+        if (z10) {
+            height = 0.0f;
+        } else {
+            height = (this.f30192b.getHeight() - h3Var.g()) + (org.telegram.messenger.g0.f24116n * 2.5f);
         }
-        return true;
+        this.f14759p1 = Boolean.valueOf(z10);
+        if (z10) {
+            r1.g gVar = new r1.g(h3Var, r1.g.f56307p, height);
+            this.f14758o1 = gVar;
+            gVar.f56323m.a(0.75f);
+            this.f14758o1.f56323m.b(350.0f);
+            this.f14758o1.a(new g3(this, height, f3Var));
+            this.f14758o1.h();
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(translationY, height);
+        this.n1 = ofFloat;
+        ofFloat.addUpdateListener(new ah.g(this, 29));
+        this.n1.addListener(new ah.l(5, this, f3Var));
+        this.n1.setDuration(450L);
+        this.n1.setInterpolator(lr.h);
+        this.n1.start();
+    }
+
+    @Override
+    public final void dismiss() {
+        K0(false, new f3(this, 1));
+        super.dismiss();
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f14757m1.g()) {
+            dismiss();
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void show() {
+        super.show();
+        K0(true, null);
     }
 }

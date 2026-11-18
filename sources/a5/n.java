@@ -85,9 +85,9 @@ public final class n {
                 if (f10 != 0.0f) {
                     Path path = this.f243a;
                     path.reset();
-                    i0.e[] eVarArr = mVar.f239a;
-                    if (eVarArr != null) {
-                        i0.e.b(eVarArr, path);
+                    i0.d[] dVarArr = mVar.f239a;
+                    if (dVarArr != null) {
+                        i0.d.b(dVarArr, path);
                     }
                     Path path2 = this.f244b;
                     path2.reset();

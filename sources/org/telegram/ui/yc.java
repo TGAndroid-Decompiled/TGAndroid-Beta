@@ -7,10 +7,10 @@ public final class yc extends RadialProgressView {
     public final int O;
     public final Object P;
 
-    public yc(org.telegram.ui.Components.l30 l30Var, Context context, int i7) {
+    public yc(org.telegram.ui.Components.t30 t30Var, Context context, int i7) {
         super(context, null);
         this.O = i7;
-        this.P = l30Var;
+        this.P = t30Var;
     }
 
     @Override
@@ -18,9 +18,9 @@ public final class yc extends RadialProgressView {
         switch (this.O) {
             case 3:
                 super.invalidate();
-                oq0 oq0Var = ((PhotoViewer) this.P).f42763f0;
-                if (oq0Var != null) {
-                    oq0Var.invalidate();
+                qq0 qq0Var = ((PhotoViewer) this.P).f43208f0;
+                if (qq0Var != null) {
+                    qq0Var.invalidate();
                     return;
                 }
                 return;
@@ -39,7 +39,7 @@ public final class yc extends RadialProgressView {
                 return;
             case 1:
                 super.setAlpha(f10);
-                ((c50) this.P).f46009e.invalidate();
+                ((f50) this.P).f47568e.invalidate();
                 return;
             case 2:
                 super.setAlpha(f10);
@@ -47,17 +47,17 @@ public final class yc extends RadialProgressView {
                 return;
             default:
                 super.setAlpha(f10);
-                oq0 oq0Var = ((PhotoViewer) this.P).f42763f0;
-                if (oq0Var != null) {
-                    oq0Var.invalidate();
+                qq0 qq0Var = ((PhotoViewer) this.P).f43208f0;
+                if (qq0Var != null) {
+                    qq0Var.invalidate();
                     return;
                 }
                 return;
         }
     }
 
-    public yc(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(contextThemeWrapper, e6Var);
+    public yc(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(contextThemeWrapper, i6Var);
         this.O = 3;
         this.P = photoViewer;
     }

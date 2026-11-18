@@ -1,74 +1,118 @@
 package hi;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.np;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.z10;
-public final class w0 implements z10 {
-    public final int f15270a;
-    public final a1 f15271b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Point;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.lr;
+public final class w0 extends View {
+    public final Paint f15623a;
+    public final TextPaint f15624b;
+    public final StaticLayout f15625c;
+    public final float d;
+    public final float f15626e;
+    public final Path f15627f;
+    public k h;
+    public boolean f15628n;
+    public final org.telegram.ui.Components.c6 f15629r;
 
-    public w0(a1 a1Var, int i7) {
-        this.f15270a = i7;
-        this.f15271b = a1Var;
+    public w0(Context context) {
+        super(context);
+        Point point;
+        float f10;
+        float f11;
+        Paint paint = new Paint(1);
+        this.f15623a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f15624b = textPaint;
+        this.f15627f = new Path();
+        org.telegram.ui.Components.c6 c6Var = new org.telegram.ui.Components.c6(this);
+        this.f15629r = c6Var;
+        paint.setColor(-869783512);
+        paint.setPathEffect(new CornerPathEffect(org.telegram.messenger.g0.L(6.0f)));
+        textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
+        textPaint.setColor(-1);
+        StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(gd.N0("StoryDraftSaved"), textPaint, point.x, TextUtils.TruncateAt.END), textPaint, org.telegram.messenger.g0.f24121q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f15625c = staticLayout;
+        if (staticLayout.getLineCount() > 0) {
+            f10 = staticLayout.getLineWidth(0);
+        } else {
+            f10 = 0.0f;
+        }
+        this.d = f10;
+        if (staticLayout.getLineCount() > 0) {
+            f11 = staticLayout.getLineLeft(0);
+        } else {
+            f11 = 0.0f;
+        }
+        this.f15626e = f11;
+        c6Var.e(true, 0.0f);
+    }
+
+    public final void a(boolean z10) {
+        k kVar;
+        if (!z10 && (kVar = this.h) != null) {
+            org.telegram.messenger.g0.r(kVar);
+            this.h = null;
+        }
+        this.f15628n = z10;
+        invalidate();
     }
 
     @Override
-    public final void a(Object obj) {
-        File file;
-        File file2;
-        ArrayList arrayList = (ArrayList) obj;
-        switch (this.f15270a) {
-            case 0:
-                long currentTimeMillis = System.currentTimeMillis();
-                ArrayList arrayList2 = new ArrayList();
-                ArrayList arrayList3 = new ArrayList();
-                ArrayList arrayList4 = new ArrayList();
-                for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                    d7 a10 = ((z0) arrayList.get(i7)).a();
-                    if ((!a10.v() && ((file = a10.L) == null || !file.exists())) || currentTimeMillis - a10.d > 604800000) {
-                        arrayList3.add(a10);
-                    } else {
-                        arrayList4.add(a10);
-                        arrayList2.add(Long.valueOf(a10.f14126b));
-                    }
-                }
-                a1 a1Var = this.f15271b;
-                a1Var.c(arrayList3);
-                a1Var.f13865f = false;
-                a1Var.f13864e = true;
-                fi.s6 P1 = np.s1(a1Var.f13861a).P1();
-                int size = arrayList4.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj2 = arrayList4.get(i10);
-                    i10++;
-                    fi.r6 r6Var = new fi.r6(P1, (d7) obj2);
-                    P1.d(r6Var.K, r6Var, P1.f12320b, false);
-                }
-                ns.f(P1.f12319a).k(324, new Object[0]);
-                return;
-            default:
-                a1 a1Var2 = this.f15271b;
-                a1Var2.getClass();
-                long currentTimeMillis2 = System.currentTimeMillis();
-                ArrayList arrayList5 = new ArrayList();
-                ArrayList arrayList6 = new ArrayList();
-                for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    d7 a11 = ((z0) arrayList.get(i11)).a();
-                    if ((!a11.v() && ((file2 = a11.L) == null || !file2.exists())) || (!a11.f14139g ? currentTimeMillis2 - a11.d > 604800000 : currentTimeMillis2 > a11.J)) {
-                        arrayList6.add(a11);
-                    } else {
-                        a1Var2.f13862b.add(a11);
-                        arrayList5.add(Long.valueOf(a11.f14126b));
-                    }
-                }
-                a1Var2.c(arrayList6);
-                a1Var2.d = false;
-                a1Var2.f13863c = true;
-                ns.f(a1Var2.f13861a).k(327, new Object[0]);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        float d = this.f15629r.d(this.f15628n);
+        if (d <= 0.0f) {
+            return;
         }
+        canvas.save();
+        if (this.f15628n) {
+            f10 = lr.f37212k.getInterpolation(d);
+        } else {
+            f10 = 1.0f;
+        }
+        canvas.translate(0.0f, f10 * org.telegram.messenger.g0.L(12.0f));
+        float interpolation = lr.h.getInterpolation(d);
+        float measuredWidth = getMeasuredWidth();
+        float measuredHeight = getMeasuredHeight();
+        float L = org.telegram.messenger.g0.L(22.0f) + this.d;
+        float min = (measuredWidth / 2.0f) - Math.min(org.telegram.messenger.g0.L(135.0f), 0.35f * measuredWidth);
+        float max = Math.max(org.telegram.messenger.g0.L(8.0f), min - (L / 2.0f));
+        Path path = this.f15627f;
+        path.rewind();
+        path.moveTo(max, 0.0f);
+        float f11 = L + max;
+        path.lineTo(f11, 0.0f);
+        path.lineTo(f11, measuredHeight - org.telegram.messenger.g0.L(18.0f));
+        path.lineTo(org.telegram.messenger.g0.L(7.0f) + min, measuredHeight - org.telegram.messenger.g0.L(18.0f));
+        path.lineTo(org.telegram.messenger.g0.L(1.0f) + min, measuredHeight - org.telegram.messenger.g0.L(12.0f));
+        path.lineTo(min - org.telegram.messenger.g0.L(1.0f), measuredHeight - org.telegram.messenger.g0.L(12.0f));
+        path.lineTo(min - org.telegram.messenger.g0.L(7.0f), measuredHeight - org.telegram.messenger.g0.L(18.0f));
+        path.lineTo(max, measuredHeight - org.telegram.messenger.g0.L(18.0f));
+        path.close();
+        Paint paint = this.f15623a;
+        paint.setAlpha((int) (204.0f * interpolation));
+        canvas.drawPath(path, paint);
+        canvas.save();
+        StaticLayout staticLayout = this.f15625c;
+        canvas.translate((max + org.telegram.messenger.g0.L(11.0f)) - this.f15626e, ((measuredHeight - org.telegram.messenger.g0.L(18.0f)) - staticLayout.getHeight()) / 2.0f);
+        this.f15624b.setAlpha((int) (interpolation * 255.0f));
+        staticLayout.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f));
     }
 }

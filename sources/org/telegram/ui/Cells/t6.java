@@ -1,82 +1,34 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.text.style.ImageSpan;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.w11;
-public final class t6 extends ImageSpan {
-    public static w11 f31679b;
-    public final int f31680a = 1;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.yo;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.z41;
+import org.telegram.ui.vw0;
+public final class t6 extends k41 {
+    public static final int f31980b = 0;
 
-    public t6(Drawable drawable) {
-        super(drawable);
+    static {
+        k41.h(new k41());
     }
 
     @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        switch (this.f31680a) {
-            case 0:
-                Drawable drawable = getDrawable();
-                canvas.save();
-                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-                int i14 = fontMetricsInt.descent;
-                canvas.translate(f10, ((i12 + i14) - ((i14 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
-                if (hd.f24104a0) {
-                    canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
-                }
-                drawable.draw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
-                return;
+    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+        Object obj = l41Var.H;
+        if (obj instanceof vw0) {
+            vw0 vw0Var = (vw0) obj;
+            ((v6) view).b(l41Var.f37018m, vw0Var.d, vw0Var.f52875e, z10);
+        } else if (obj instanceof yo) {
+            ((v6) view).a(l41Var.f37018m, ((yo) obj).f28172b, true, z10);
         }
     }
 
     @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f31680a) {
-            case 0:
-                Rect bounds = getDrawable().getBounds();
-                if (fontMetricsInt != null) {
-                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
-                    int i11 = fontMetricsInt2.descent;
-                    int i12 = fontMetricsInt2.ascent;
-                    int i13 = ((i11 - i12) / 2) + i12;
-                    int i14 = (bounds.bottom - bounds.top) / 2;
-                    int i15 = i13 - i14;
-                    fontMetricsInt.ascent = i15;
-                    fontMetricsInt.top = i15;
-                    int i16 = i13 + i14;
-                    fontMetricsInt.bottom = i16;
-                    fontMetricsInt.descent = i16;
-                }
-                return bounds.right;
-            default:
-                return super.getSize(paint, charSequence, i7, i10, fontMetricsInt);
-        }
-    }
-
-    @Override
-    public void updateDrawState(TextPaint textPaint) {
-        switch (this.f31680a) {
-            case 1:
-                float textSize = textPaint.getTextSize() * 0.89f;
-                int i7 = (int) (0.02f * textSize);
-                getDrawable().setBounds(0, i7, (int) textSize, ((int) (textSize * 1.25f)) + i7);
-                super.updateDrawState(textPaint);
-                return;
-            default:
-                super.updateDrawState(textPaint);
-                return;
-        }
-    }
-
-    public t6() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.t6.<init>():void");
+    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        return new v6(context);
     }
 }

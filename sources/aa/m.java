@@ -6,23 +6,23 @@ import j$.util.Objects;
 import j$.util.function.Predicate$CC;
 import java.io.File;
 import java.util.function.Predicate;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.fj;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 public final class m implements Predicate {
-    public final int f822a;
+    public final int f821a;
 
     public m(int i7) {
-        this.f822a = i7;
+        this.f821a = i7;
     }
 
     public Predicate and(Predicate predicate) {
-        int i7 = this.f822a;
+        int i7 = this.f821a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f822a) {
+        switch (this.f821a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -43,7 +43,7 @@ public final class m implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i7 = this.f822a;
+        int i7 = this.f821a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
@@ -51,7 +51,7 @@ public final class m implements Predicate {
     public final boolean test(Object obj) {
         boolean z10;
         boolean z11;
-        switch (this.f822a) {
+        switch (this.f821a) {
             case 0:
                 if (((Integer) obj).intValue() != 0) {
                     return true;
@@ -88,7 +88,7 @@ public final class m implements Predicate {
                 }
                 return false;
             case 6:
-                return !gj.c3(((gj) obj).f23819k);
+                return !fj.c3(((fj) obj).f23968k);
             default:
                 return Objects.nonNull((TLObject) obj);
         }

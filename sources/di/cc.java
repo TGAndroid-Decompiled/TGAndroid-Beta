@@ -1,70 +1,67 @@
 package di;
 
-import android.animation.ValueAnimator;
-import android.graphics.LinearGradient;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Shader;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.k10;
-public final class cc implements ValueAnimator.AnimatorUpdateListener {
-    public final int f8374a;
-    public final int f8375b;
-    public final int f8376c;
-    public final int d;
-    public final int f8377e;
-    public final View f8378f;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.t80;
+public final class cc extends AnimatorListenerAdapter {
+    public final ch.n0 f8634a;
+    public final View f8635b;
+    public final fi.m0[] f8636c;
+    public final boolean[] d;
+    public final RectF f8637e;
+    public final Runnable f8638f;
+    public final mc h;
 
-    public cc(View view, int i7, int i10, int i11, int i12, int i13) {
-        this.f8374a = i13;
-        this.f8378f = view;
-        this.f8375b = i7;
-        this.f8376c = i10;
-        this.d = i11;
-        this.f8377e = i12;
+    public cc(mc mcVar, ch.n0 n0Var, View view, fi.m0[] m0VarArr, boolean[] zArr, RectF rectF, Runnable runnable) {
+        this.h = mcVar;
+        this.f8634a = n0Var;
+        this.f8635b = view;
+        this.f8636c = m0VarArr;
+        this.d = zArr;
+        this.f8637e = rectF;
+        this.f8638f = runnable;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f8374a;
-        int i10 = this.f8377e;
-        int i11 = this.d;
-        int i12 = this.f8376c;
-        int i13 = this.f8375b;
-        View view = this.f8378f;
-        switch (i7) {
-            case 0:
-                fc fcVar = (fc) view;
-                fcVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fcVar.f8587r = i0.a.f(floatValue, i13, i12);
-                fcVar.f8588s = i0.a.f(floatValue, i11, i10);
-                fcVar.E = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{fcVar.f8587r, fcVar.f8588s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                fcVar.invalidate();
-                return;
-            case 1:
-                k10 k10Var = (k10) view;
-                k10Var.M = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i13, i12);
-                k10Var.N = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i11, i10);
-                k10Var.G.setColorFilter(new PorterDuffColorFilter(k10Var.M, PorterDuff.Mode.MULTIPLY));
-                k10Var.F.setColor(k10Var.M);
-                k10Var.f36221r.setColor(k10Var.N);
-                k10Var.K.d(i0.a.o(k10Var.N, 38));
-                k10Var.invalidate();
-                return;
-            default:
-                org.telegram.ui.Components.voip.z zVar = (org.telegram.ui.Components.voip.z) view;
-                zVar.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                zVar.E0 = i0.a.f(floatValue2, i13, i12);
-                int f10 = i0.a.f(floatValue2, i11, i10);
-                zVar.G0 = f10;
-                zVar.U.setColor(f10);
-                if (zVar.T > 0.0f) {
-                    zVar.invalidate();
-                    return;
-                }
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        t80 t80Var;
+        mc mcVar = this.h;
+        bc bcVar = mcVar.F1;
+        bcVar.setVisibility(4);
+        bcVar.setPaused(true);
+        ch.n0 n0Var = this.f8634a;
+        if (n0Var != null) {
+            n0Var.f5444k = true;
+        }
+        View view = this.f8635b;
+        if (view != null) {
+            view.invalidate();
+        }
+        fi.m0 m0Var = this.f8636c[0];
+        if (m0Var != null) {
+            m0Var.setDrawStar(true);
+        }
+        super/*org.telegram.ui.ActionBar.x2*/.L();
+        boolean[] zArr = this.d;
+        if (!zArr[0]) {
+            zArr[0] = true;
+            RectF rectF = this.f8637e;
+            LaunchActivity.b0(rectF.centerX(), rectF.centerY(), 1.5f);
+            try {
+                mcVar.f30195c.performHapticFeedback(0, 1);
+            } catch (Exception unused) {
+            }
+            Runnable runnable = this.f8638f;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+        LaunchActivity launchActivity = LaunchActivity.H1;
+        if (launchActivity != null && (t80Var = launchActivity.f43108w0) != null) {
+            t80Var.c(true);
         }
     }
 }

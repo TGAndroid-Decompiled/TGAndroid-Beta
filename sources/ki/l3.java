@@ -1,36 +1,29 @@
 package ki;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.a41;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.u41;
-import org.telegram.ui.Components.uj0;
-public final class l3 extends a41 {
-    public static final int f18429b = 0;
+import android.animation.ValueAnimator;
+public final class l3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f18766a;
+    public final t3 f18767b;
 
-    static {
-        a41.h(new a41());
+    public l3(t3 t3Var, int i7) {
+        this.f18766a = i7;
+        this.f18767b = t3Var;
     }
 
     @Override
-    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
-        m3 m3Var = (m3) view;
-        CharSequence charSequence = b41Var.f33184l;
-        CharSequence charSequence2 = b41Var.f33185m;
-        m3Var.setText(charSequence);
-        m3Var.f18454r.setText(charSequence2);
-    }
-
-    @Override
-    public final View d(Context context, uj0 uj0Var, int i7, e6 e6Var) {
-        return new m3(context, e6Var);
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f18766a) {
+            case 0:
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                l2 l2Var = this.f18767b.f18958n;
+                if (l2Var.getWebView() != null) {
+                    l2Var.getWebView().setScrollY(intValue);
+                    return;
+                }
+                return;
+            default:
+                this.f18767b.J.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+        }
     }
 }

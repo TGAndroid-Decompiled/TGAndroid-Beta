@@ -1,21 +1,24 @@
 package org.telegram.messenger;
+public final class ct implements Runnable {
+    public final int f23419a;
+    public final q10 f23420b;
+    public final Exception f23421c;
 
-import java.util.HashSet;
-public abstract class ct {
-    public static final HashSet f22940a;
+    public ct(q10 q10Var, Exception exc, int i7) {
+        this.f23419a = i7;
+        this.f23420b = q10Var;
+        this.f23421c = exc;
+    }
 
-    static {
-        HashSet hashSet = new HashSet();
-        f22940a = hashSet;
-        hashSet.add("com.google.android.projection.gearhead");
-        hashSet.add("com.google.android.mediasimulator");
-        hashSet.add("com.android.car.media");
-        hashSet.add("com.android.car.carlauncher");
-        hashSet.add("com.google.android.car.kitchensink");
-        hashSet.add("com.google.android.wearable.app");
-        hashSet.add("com.google.android.wearable.media.sessions");
-        hashSet.add("com.google.android.googlequicksearchbox");
-        hashSet.add("com.google.android.apps.gsa.staticplugins");
-        hashSet.add("com.google.android.bluetooth");
+    @Override
+    public final void run() {
+        switch (this.f23419a) {
+            case 0:
+                this.f23420b.a(null, this.f23421c.getMessage());
+                return;
+            default:
+                this.f23420b.a(null, this.f23421c.getMessage());
+                return;
+        }
     }
 }

@@ -1,44 +1,98 @@
 package li;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import c8.ja;
-import java.util.HashSet;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Components.i9;
-public final class m extends FrameLayout implements z5 {
-    public final i9 f19608a;
+import android.widget.TextView;
+import bi.y3;
+import java.util.ArrayList;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.mp;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.b5;
+import org.telegram.ui.bn;
+public final class m implements Runnable {
+    public final int f19974a;
+    public final boolean f19975b;
+    public final boolean f19976c;
+    public final long d;
+    public final fs f19977e;
 
-    public m(Context context) {
-        super(context);
-        i9 i9Var = new i9(context);
-        this.f19608a = i9Var;
-        i9Var.setRoundRadius(org.telegram.messenger.g0.L(20.0f));
-        addView(i9Var, ja.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
+    public m(fs fsVar, boolean z10, boolean z11, long j3, int i7) {
+        this.f19974a = i7;
+        this.f19977e = fsVar;
+        this.f19975b = z10;
+        this.f19976c = z11;
+        this.d = j3;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        Drawable drawable = j6.S0;
-        i9 i9Var = this.f19608a;
-        bg.s.a(canvas, drawable, (i9Var.getWidth() / 2.0f) + i9Var.getLeft(), (i9Var.getHeight() / 2.0f) + i9Var.getTop(), i9Var.getHeight());
+    public final void run() {
+        ArrayList arrayList;
+        int i7 = this.f19974a;
+        int i10 = 2131751903;
+        boolean z10 = this.f19976c;
+        boolean z11 = this.f19975b;
+        long j3 = this.d;
+        fs fsVar = this.f19977e;
+        switch (i7) {
+            case 0:
+                p pVar = (p) fsVar;
+                String M0 = gd.M0(2131751904, null);
+                if (z11) {
+                    i10 = 2131751906;
+                } else if (z10) {
+                    i10 = 2131751905;
+                }
+                b5.s0(pVar, M0, gd.M0(i10, null), gd.M0(2131746126, null), true, new h(pVar, j3, 0));
+                return;
+            case 1:
+                d0 d0Var = (d0) fsVar;
+                Context context = d0Var.getContext();
+                i6 i6Var = d0Var.J0;
+                String M02 = gd.M0(2131751904, null);
+                if (z11) {
+                    i10 = 2131751906;
+                } else if (z10) {
+                    i10 = 2131751905;
+                }
+                u1 M = b5.M(context, i6Var, M02, gd.M0(i10, null), gd.M0(2131746126, null), new y3(d0Var, j3, 12));
+                M.show();
+                TextView textView = (TextView) M.d(-1);
+                if (textView != null) {
+                    u6.U(textView, n6.f29637q7, null);
+                    return;
+                }
+                return;
+            case 2:
+                mp mpVar = (mp) fsVar;
+                if (z11) {
+                    arrayList = mpVar.f25792w0;
+                } else {
+                    arrayList = mpVar.f25782v0;
+                }
+                if (z10) {
+                    if (!arrayList.contains(Long.valueOf(j3))) {
+                        arrayList.add(Long.valueOf(j3));
+                        return;
+                    }
+                    return;
+                }
+                arrayList.remove(Long.valueOf(j3));
+                return;
+            default:
+                bn.y1((bn) fsVar, j3, z11, z10);
+                return;
+        }
     }
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(136.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public m(bn bnVar, long j3, boolean z10, boolean z11) {
+        this.f19974a = 3;
+        this.f19977e = bnVar;
+        this.d = j3;
+        this.f19975b = z10;
+        this.f19976c = z11;
     }
 }

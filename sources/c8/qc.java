@@ -1,45 +1,27 @@
 package c8;
+
+import java.io.Serializable;
 public abstract class qc {
-    public static void a(int i7, int i10) {
-        String a10;
-        if (i7 >= 0 && i7 < i10) {
-            return;
+    public static String a(byte[] bArr) {
+        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
+        for (int i7 = 0; i7 < bArr.length; i7++) {
+            sb2.append(String.format("%02x", Byte.valueOf(bArr[i7])));
         }
-        if (i7 >= 0) {
-            if (i10 < 0) {
-                throw new IllegalArgumentException(i5.c.i(i10, "negative size: "));
-            }
-            a10 = rc.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i7), Integer.valueOf(i10));
-        } else {
-            a10 = rc.a("%s (%s) must not be negative", "index", Integer.valueOf(i7));
-        }
-        throw new IndexOutOfBoundsException(a10);
+        return sb2.toString();
     }
 
-    public static void b(int i7, int i10, int i11) {
-        String c10;
-        if (i7 >= 0 && i10 >= i7 && i10 <= i11) {
-            return;
-        }
-        if (i7 >= 0 && i7 <= i11) {
-            if (i10 >= 0 && i10 <= i11) {
-                c10 = rc.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i10), Integer.valueOf(i7));
-            } else {
-                c10 = c(i10, i11, "end index");
+    public static long[] b(Serializable serializable) {
+        if (serializable instanceof int[]) {
+            int[] iArr = (int[]) serializable;
+            long[] jArr = new long[iArr.length];
+            for (int i7 = 0; i7 < iArr.length; i7++) {
+                jArr[i7] = iArr[i7];
             }
+            return jArr;
+        } else if (serializable instanceof long[]) {
+            return (long[]) serializable;
         } else {
-            c10 = c(i7, i11, "start index");
+            return null;
         }
-        throw new IndexOutOfBoundsException(c10);
-    }
-
-    public static String c(int i7, int i10, String str) {
-        if (i7 < 0) {
-            return rc.a("%s (%s) must not be negative", str, Integer.valueOf(i7));
-        }
-        if (i10 >= 0) {
-            return rc.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i7), Integer.valueOf(i10));
-        }
-        throw new IllegalArgumentException(i5.c.i(i10, "negative size: "));
     }
 }

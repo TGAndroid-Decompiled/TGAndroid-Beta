@@ -1,55 +1,50 @@
 package org.telegram.ui.Wallet;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.nb1;
-public final class j2 implements DialogInterface.OnDismissListener {
-    public final int f44005a;
-    public final Object f44006b;
+import android.util.Base64;
+import org.json.JSONObject;
+public final class j2 {
+    public final String f44385a;
+    public final String f44386b;
+    public final String f44387c;
+    public final String d;
+    public final long f44388e;
+    public final boolean f44389f;
 
-    public j2(Object obj, int i7) {
-        this.f44005a = i7;
-        this.f44006b = obj;
-    }
-
-    @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f44005a) {
-            case 0:
-                r2 r2Var = (r2) this.f44006b;
-                if (!r2Var.f44432e) {
-                    r2Var.f44432e = true;
-                    nb1 nb1Var = r2Var.h;
-                    if (nb1Var != null) {
-                        nb1Var.run();
+    public j2(JSONObject jSONObject) {
+        String str;
+        String string = jSONObject.getString("address");
+        this.f44385a = string;
+        if (!string.contains(":") && WalletEngine2.isValidAddress(string)) {
+            this.f44389f = (Base64.decode(string.replace('-', '+').replace('_', '/'), 2)[0] & Byte.MAX_VALUE) == 17;
+            Object obj = jSONObject.get("amount");
+            if (obj instanceof String) {
+                String str2 = (String) obj;
+                if (str2.matches("[0-9]+")) {
+                    long parseLong = Long.parseLong(str2);
+                    this.f44388e = parseLong;
+                    if (jSONObject.has("extra_currency") && jSONObject.getJSONObject("extra_currency").length() != 0) {
+                        throw new IllegalArgumentException("Extra currencies are not supported");
                     }
-                    if (!r2Var.f44433f) {
-                        r2Var.f44433f = true;
-                        r2Var.f44430b.c();
+                    if (parseLong >= 0) {
+                        if (jSONObject.has("payload")) {
+                            str = jSONObject.getString("payload");
+                        } else {
+                            str = null;
+                        }
+                        this.f44386b = str;
+                        String string2 = jSONObject.has("stateInit") ? jSONObject.getString("stateInit") : null;
+                        this.f44387c = string2;
+                        if ((str != null && !WalletEngine2.isValidCellBoc(str)) || (string2 != null && !WalletEngine2.isValidCellBoc(string2))) {
+                            throw new IllegalArgumentException("Invalid transaction cell");
+                        }
+                        this.d = WalletEngine2.textCommentFromBody(str);
                         return;
                     }
-                    return;
+                    throw new IllegalArgumentException("Transfer amount must not be negative");
                 }
-                return;
-            case 1:
-                TLRPC.User user = (TLRPC.User) this.f44006b;
-                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
-                if (T != null) {
-                    T.presentFragment(new p9(user));
-                    return;
-                }
-                return;
-            default:
-                p9 p9Var = (p9) this.f44006b;
-                EditTextBoldCursor editTextBoldCursor = p9Var.I;
-                if (editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    org.telegram.messenger.g0.J3(p9Var.I);
-                    return;
-                }
-                return;
+            }
+            throw new IllegalArgumentException("Invalid transfer amount");
         }
+        throw new IllegalArgumentException("Expected a friendly destination address");
     }
 }

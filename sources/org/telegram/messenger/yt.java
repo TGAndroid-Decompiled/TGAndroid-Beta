@@ -1,18 +1,32 @@
 package org.telegram.messenger;
-public final class yt {
-    public final int f27823a;
-    public final int f27824b;
-    public final int f27825c;
-    public final int d;
-    public final int f27826e;
-    public final int f27827f;
 
-    public yt(int i7, int i10, int i11, int i12, int i13, int i14) {
-        this.f27823a = i7;
-        this.f27824b = i10;
-        this.f27825c = i11;
-        this.d = i12;
-        this.f27826e = i13;
-        this.f27827f = i14;
+import android.text.Spanned;
+import java.util.Comparator;
+public final class yt implements Comparator {
+    public final int f28181a;
+    public final Spanned f28182b;
+
+    public yt(Spanned spanned, int i7) {
+        this.f28181a = i7;
+        this.f28182b = spanned;
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        int spanStart;
+        int spanStart2;
+        switch (this.f28181a) {
+            case 0:
+                Spanned spanned = this.f28182b;
+                spanStart = spanned.getSpanStart((org.telegram.ui.Cells.o9) obj2);
+                spanStart2 = spanned.getSpanStart((org.telegram.ui.Cells.o9) obj);
+                break;
+            default:
+                Spanned spanned2 = this.f28182b;
+                spanStart = spanned2.getSpanStart((cu) obj2);
+                spanStart2 = spanned2.getSpanStart((cu) obj);
+                break;
+        }
+        return spanStart - spanStart2;
     }
 }

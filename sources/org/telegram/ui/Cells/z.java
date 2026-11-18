@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.pt0;
-public abstract class z extends ViewGroup implements pt0 {
-    public boolean f32088a;
-    public androidx.emoji2.text.j f32089b;
-    public int f32090c;
+import org.telegram.ui.Components.xt0;
+public abstract class z extends ViewGroup implements xt0 {
+    public boolean f32476a;
+    public androidx.emoji2.text.j f32477b;
+    public int f32478c;
     public j6.o d;
-    public Runnable f32091e;
+    public Runnable f32479e;
 
     public z(Context context) {
         super(context);
-        this.f32088a = false;
-        this.f32089b = null;
-        this.f32090c = 0;
+        this.f32476a = false;
+        this.f32477b = null;
+        this.f32478c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -42,8 +42,8 @@ public abstract class z extends ViewGroup implements pt0 {
     }
 
     @Override
-    public final void d(Runnable runnable) {
-        this.f32091e = runnable;
+    public final void e(Runnable runnable) {
+        this.f32479e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class z extends ViewGroup implements pt0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f32091e;
+        Runnable runnable = this.f32479e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class z extends ViewGroup implements pt0 {
     }
 
     public final void n() {
-        this.f32088a = false;
-        androidx.emoji2.text.j jVar = this.f32089b;
+        this.f32476a = false;
+        androidx.emoji2.text.j jVar = this.f32477b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class z extends ViewGroup implements pt0 {
     }
 
     public final void u() {
-        if (this.f32088a) {
+        if (this.f32476a) {
             return;
         }
-        this.f32088a = true;
+        this.f32476a = true;
         if (this.d == null) {
             this.d = new j6.o(this, 22);
         }

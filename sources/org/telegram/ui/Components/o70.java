@@ -1,31 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.app.Activity;
+import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
-public final class o70 extends po0 {
-    public final t70 V2;
+public final class o70 extends org.telegram.ui.bn {
+    public boolean f38006vd;
+    public final boolean f38007wd;
+    public final long f38008xd;
+    public final p70 f38009yd;
 
-    public o70(t70 t70Var, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, str, false, str2, false, e6Var);
-        this.V2 = t70Var;
+    public o70(p70 p70Var, Bundle bundle, boolean z10, long j3) {
+        super(bundle);
+        this.f38009yd = p70Var;
+        this.f38007wd = z10;
+        this.f38008xd = j3;
+        this.f38006vd = false;
+    }
+
+    public static void Hd(o70 o70Var, long j3, TLRPC.Chat chat) {
+        boolean z10;
+        if (!org.telegram.messenger.g0.E1(o70Var.getParentActivity())) {
+            return;
+        }
+        Activity parentActivity = o70Var.getParentActivity();
+        int i7 = o70Var.currentAccount;
+        long j10 = -j3;
+        TLRPC.User f10 = o70Var.getUserConfig().f();
+        if (chat.admin_rights != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        ny0.c(parentActivity, i7, j10, f10, null, z10, chat.creator, o70Var.f38009yd.J0);
     }
 
     @Override
-    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        String a02;
-        if (!z10) {
-            return;
-        }
-        if (hVar != null && hVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) hVar.n(0)).f28055id;
-            if (j3 != 0 && j3 != org.telegram.messenger.m10.i(this.f29679a).e()) {
-                a02 = org.telegram.messenger.hd.a0(null, null, 2131749184, org.telegram.messenger.np.s1(this.f29679a).B1(j3, true));
-            } else {
-                a02 = org.telegram.messenger.hd.M0(2131749185, null);
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.f38006vd && this.f38007wd) {
+            this.f38006vd = true;
+            org.telegram.messenger.mp messagesController = getMessagesController();
+            long j3 = this.f38008xd;
+            TLRPC.Chat O0 = messagesController.O0(Long.valueOf(j3));
+            if (org.telegram.messenger.v3.h(O0)) {
+                gc K = lc.b0(this).K(2131623990, org.telegram.messenger.gd.M0(2131748879, null), org.telegram.messenger.gd.M0(2131748878, null), new bi.m2(this, j3, O0, 24));
+                K.f35469r = false;
+                K.k(true);
+                return;
             }
-        } else {
-            a02 = org.telegram.messenger.hd.a0(null, null, 2131749187, org.telegram.messenger.hd.G(i7, "Chats", new Object[0]));
+            gc Q = lc.b0(this).Q(2131623990, 36, org.telegram.messenger.gd.M0(2131748879, null));
+            Q.f35469r = false;
+            Q.k(true);
         }
-        this.V2.e(org.telegram.messenger.g0.X2(a02));
     }
 }

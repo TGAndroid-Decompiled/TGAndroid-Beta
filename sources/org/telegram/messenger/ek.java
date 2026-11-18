@@ -1,62 +1,95 @@
 package org.telegram.messenger;
 
+import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.session.MediaSessionCompat$QueueItem;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class ek implements Runnable {
-    public final int f23323a = 2;
-    public final np f23324b;
-    public final ArrayList f23325c;
-    public final long d;
-    public final long f23326e;
+    public final int f23728a;
+    public final Object f23729b;
+    public final long f23730c;
+    public final int d;
+    public final Object f23731e;
 
-    public ek(np npVar, long j3, long j10, ArrayList arrayList) {
-        this.f23324b = npVar;
-        this.d = j3;
-        this.f23326e = j10;
-        this.f23325c = arrayList;
+    public ek(int i7, int i10, long j3, Object obj, Object obj2) {
+        this.f23728a = i10;
+        this.f23729b = obj;
+        this.f23731e = obj2;
+        this.f23730c = j3;
+        this.d = i7;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ek.a():void");
+    }
+
+    private final void b() {
+        qz qzVar = (qz) this.f23729b;
+        tr trVar = (tr) this.f23731e;
+        long j3 = this.f23730c;
+        int i7 = this.d;
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        try {
+            SQLiteDatabase sQLiteDatabase = trVar.f27056b;
+            Locale locale = Locale.US;
+            SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, mid FROM media_v4 WHERE uid = " + j3 + " AND mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
+            while (queryFinalized.next()) {
+                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
+                if (byteBufferValue != null) {
+                    TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                    TLdeserialize.readAttachPath(byteBufferValue, j10.i(i7).f24792n);
+                    byteBufferValue.reuse();
+                    if (fj.K3(TLdeserialize)) {
+                        TLdeserialize.f28426id = queryFinalized.intValue(1);
+                        TLdeserialize.dialog_id = j3;
+                        fj fjVar = new fj(i7, TLdeserialize, false, true);
+                        arrayList.add(fjVar);
+                        arrayList2.add(new MediaSessionCompat$QueueItem(null, new MediaDescriptionCompat(j3 + "_" + arrayList.size(), fjVar.y1(true), fjVar.w1(true), null, null, null, null, null), arrayList2.size()));
+                    }
+                }
+            }
+            queryFinalized.dispose();
+            Collections.reverse(arrayList);
+            Collections.reverse(arrayList2);
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+        g0.g3(new z1(qzVar, i7, j3, arrayList, arrayList2, 6));
     }
 
     @Override
     public final void run() {
-        int i7 = this.f23323a;
-        np npVar = this.f23324b;
-        switch (i7) {
-            case 0:
-                long j3 = this.d;
-                ArrayList arrayList = this.f23325c;
-                npVar.getMessagesStorage().R1(j3, -j3, arrayList, npVar.getMessagesStorage().P0(j3, arrayList, false, true, 5, (int) this.f23326e));
-                return;
-            case 1:
-                np npVar2 = this.f23324b;
-                ArrayList arrayList2 = this.f23325c;
-                long j10 = this.d;
-                g0.h3(new dk(npVar2, arrayList2, j10, 1));
-                vr messagesStorage = npVar2.getMessagesStorage();
-                long j11 = this.f23326e;
-                messagesStorage.E(arrayList2, j11);
-                npVar2.getMessagesStorage().R1(j11, j10, arrayList2, npVar2.getMessagesStorage().P0(j11, arrayList2, false, true, 0, 0));
-                return;
-            default:
-                h00 h00Var = npVar.getMessagesController().f25386r7;
-                long j12 = this.d;
-                long j13 = this.f23326e;
-                h00Var.B(0, j12, j13, false);
-                npVar.getMessagesStorage().h2(0, j12, j13, false);
-                npVar.getNotificationCenter().k(302, Long.valueOf(j12), Long.valueOf(j13), 0, this.f23325c);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ek.run():void");
     }
 
-    public ek(np npVar, long j3, ArrayList arrayList, long j10) {
-        this.f23324b = npVar;
-        this.d = j3;
-        this.f23325c = arrayList;
-        this.f23326e = j10;
+    public ek(c1 c1Var, long j3, int i7, Object obj, int i10) {
+        this.f23728a = i10;
+        this.f23729b = c1Var;
+        this.f23730c = j3;
+        this.d = i7;
+        this.f23731e = obj;
     }
 
-    public ek(np npVar, ArrayList arrayList, long j3, long j10) {
-        this.f23324b = npVar;
-        this.f23325c = arrayList;
-        this.d = j3;
-        this.f23326e = j10;
+    public ek(c1 c1Var, long j3, TLObject tLObject, int i7, int i10) {
+        this.f23728a = i10;
+        this.f23729b = c1Var;
+        this.f23730c = j3;
+        this.f23731e = tLObject;
+        this.d = i7;
+    }
+
+    public ek(tr trVar, int i7, long j3, TLObject tLObject, int i10) {
+        this.f23728a = i10;
+        this.f23729b = trVar;
+        this.d = i7;
+        this.f23730c = j3;
+        this.f23731e = tLObject;
     }
 }

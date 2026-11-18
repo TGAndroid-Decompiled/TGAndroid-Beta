@@ -1,22 +1,124 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class i40 extends ug.j0 {
-    public final j40 T2;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class i40 extends org.telegram.ui.Components.bk0 {
+    public org.telegram.messenger.t3 f48574c;
+    public final int d;
+    public ArrayList f48576f;
+    public b20 h;
+    public final f40 f48577n;
+    public final ArrayList f48575e = new ArrayList();
+    public boolean f48578r = false;
 
-    public i40(j40 j40Var, j40 j40Var2, Activity activity, int i7, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(i7, i10, activity, j40Var2, e6Var);
-        this.T2 = j40Var;
+    public i40(org.telegram.messenger.t3 t3Var, int i7, f40 f40Var) {
+        this.f48574c = t3Var;
+        this.d = i7;
+        this.f48577n = f40Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.T2.C0 = false;
+    public final boolean D(v4.f1 f1Var) {
+        return false;
+    }
+
+    public final void E(org.telegram.ui.Components.voip.r rVar, boolean z10) {
+        if (z10 && rVar.getRenderer() == null) {
+            rVar.setRenderer(org.telegram.ui.Components.voip.y.c(this.f48576f, this.h, null, null, rVar, rVar.getParticipant(), this.f48574c, this.f48577n));
+        } else if (!z10 && rVar.getRenderer() != null) {
+            rVar.getRenderer().setTabletGridView(null);
+            rVar.setRenderer(null);
+        }
+    }
+
+    public final int F() {
+        org.telegram.ui.Components.ck0 ck0Var = this.f48577n.f47492m4;
+        int size = this.f48575e.size();
+        if (size <= 1) {
+            return ck0Var.getMeasuredHeight();
+        }
+        if (size <= 4) {
+            return ck0Var.getMeasuredHeight() / 2;
+        }
+        return (int) (ck0Var.getMeasuredHeight() / 2.5f);
+    }
+
+    public final void G(ArrayList arrayList, b20 b20Var) {
+        this.f48576f = arrayList;
+        this.h = b20Var;
+    }
+
+    public final void H(org.telegram.ui.Components.ck0 ck0Var, boolean z10, boolean z11) {
+        this.f48578r = z10;
+        if (z11) {
+            for (int i7 = 0; i7 < ck0Var.getChildCount(); i7++) {
+                View childAt = ck0Var.getChildAt(i7);
+                if (childAt instanceof org.telegram.ui.Components.voip.r) {
+                    org.telegram.ui.Components.voip.r rVar = (org.telegram.ui.Components.voip.r) childAt;
+                    if (rVar.getParticipant() != null) {
+                        E(rVar, z10);
+                    }
+                }
+            }
+        }
+    }
+
+    public final void I(org.telegram.ui.Components.ck0 ck0Var, boolean z10) {
+        if (this.f48574c == null) {
+            return;
+        }
+        ArrayList arrayList = this.f48575e;
+        if (z10) {
+            ArrayList arrayList2 = new ArrayList();
+            arrayList2.addAll(arrayList);
+            arrayList.clear();
+            arrayList.addAll(this.f48574c.f26940f);
+            v4.o.c(new jg.g(this, arrayList2, 4), true).c(this);
+            org.telegram.messenger.g0.Z3(ck0Var);
+            return;
+        }
+        arrayList.clear();
+        arrayList.addAll(this.f48574c.f26940f);
+        f();
     }
 
     @Override
-    public final void v() {
-        this.T2.C0 = false;
+    public final int b() {
+        return this.f48575e.size();
+    }
+
+    @Override
+    public final void t(v4.f1 f1Var, int i7) {
+        org.telegram.ui.Components.voip.r rVar = (org.telegram.ui.Components.voip.r) f1Var.f59122a;
+        org.telegram.messenger.u3 participant = rVar.getParticipant();
+        ArrayList arrayList = this.f48575e;
+        org.telegram.messenger.u3 u3Var = (org.telegram.messenger.u3) arrayList.get(i7);
+        TLRPC.GroupCallParticipant groupCallParticipant = ((org.telegram.messenger.u3) arrayList.get(i7)).f27119a;
+        int size = arrayList.size();
+        int i10 = 6;
+        if (size > 1 && size != 2 && (size != 3 || i7 == 0 || i7 == 1)) {
+            i10 = 3;
+        }
+        rVar.f41173a = i10;
+        rVar.f41174b = this;
+        if (rVar.getMeasuredHeight() != F()) {
+            rVar.requestLayout();
+        }
+        org.telegram.messenger.c.a(this.d);
+        TLRPC.Peer peer = this.f48574c.J;
+        rVar.d = u3Var;
+        if (participant != null && !participant.equals(u3Var) && rVar.f41176e && rVar.getRenderer() != null) {
+            E(rVar, false);
+            E(rVar, true);
+        } else if (rVar.getRenderer() != null) {
+            rVar.getRenderer().j(true);
+        }
+    }
+
+    @Override
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        return new v4.f1(new y30(this, viewGroup.getContext()));
     }
 }

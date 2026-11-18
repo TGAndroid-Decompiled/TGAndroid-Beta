@@ -7,21 +7,21 @@ import java.util.function.Predicate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class p8 implements Predicate {
-    public final int f50157a;
-    public final long f50158b;
+    public final int f50808a;
+    public final long f50809b;
 
     public p8(long j3, int i7) {
-        this.f50157a = i7;
-        this.f50158b = j3;
+        this.f50808a = i7;
+        this.f50809b = j3;
     }
 
     public Predicate and(Predicate predicate) {
-        int i7 = this.f50157a;
+        int i7 = this.f50808a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f50157a) {
+        switch (this.f50808a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -34,37 +34,37 @@ public final class p8 implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i7 = this.f50157a;
+        int i7 = this.f50808a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
     public final boolean test(Object obj) {
-        switch (this.f50157a) {
+        switch (this.f50808a) {
             case 0:
-                if (((TLRPC.User) obj).f28200id == this.f50158b) {
+                if (((TLRPC.User) obj).f28554id == this.f50809b) {
                     return true;
                 }
                 return false;
             case 1:
-                if (((TLRPC.User) obj).f28200id == this.f50158b) {
+                if (((TLRPC.User) obj).f28554id == this.f50809b) {
                     return true;
                 }
                 return false;
             case 2:
                 TLObject tLObject = (TLObject) obj;
                 if (tLObject instanceof TLRPC.User) {
-                    if (((TLRPC.User) tLObject).f28200id != this.f50158b) {
+                    if (((TLRPC.User) tLObject).f28554id != this.f50809b) {
                         return true;
                     }
                 } else if (tLObject instanceof TLRPC.Chat) {
-                    return true ^ org.telegram.messenger.t3.N((TLRPC.Chat) tLObject);
+                    return true ^ org.telegram.messenger.v3.N((TLRPC.Chat) tLObject);
                 }
                 return false;
             default:
                 Map.Entry entry = (Map.Entry) obj;
                 if (((View) entry.getKey()).isAttachedToWindow() && ((View) entry.getKey()).isShown() && ((View) entry.getKey()).getWindowVisibility() == 0) {
-                    if (this.f50158b - ((Long) entry.getValue()).longValue() <= 300) {
+                    if (this.f50809b - ((Long) entry.getValue()).longValue() <= 300) {
                         return false;
                     }
                 }

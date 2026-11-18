@@ -9,55 +9,55 @@ import org.telegram.messenger.g0;
 public final class h {
     public float A;
     public boolean B;
-    public final RenderNode f8135a;
-    public final RuntimeShader f8136b;
-    public RuntimeShader f8137c;
+    public final RenderNode f8417a;
+    public final RuntimeShader f8418b;
+    public RuntimeShader f8419c;
     public RuntimeShader d;
-    public RenderEffect f8138e;
-    public RenderEffect[] f8139f;
-    public float[] f8140g;
+    public RenderEffect f8420e;
+    public RenderEffect[] f8421f;
+    public float[] f8422g;
     public float[] h;
-    public int f8141i;
-    public float f8142j;
-    public float f8143k;
-    public float f8144l;
-    public float f8145m;
-    public float f8146n;
-    public float f8147o;
-    public float f8148p;
-    public float f8149q;
-    public float f8150r;
-    public int f8151s;
-    public float f8152t;
-    public float f8153u;
+    public int f8423i;
+    public float f8424j;
+    public float f8425k;
+    public float f8426l;
+    public float f8427m;
+    public float f8428n;
+    public float f8429o;
+    public float f8430p;
+    public float f8431q;
+    public float f8432r;
+    public int f8433s;
+    public float f8434t;
+    public float f8435u;
     public float v;
-    public float f8154w;
-    public float f8155x;
-    public float f8156y;
-    public float f8157z;
+    public float f8436w;
+    public float f8437x;
+    public float f8438y;
+    public float f8439z;
 
     public h(RenderNode renderNode) {
-        this.f8135a = renderNode;
+        this.f8417a = renderNode;
         RuntimeShader runtimeShader = new RuntimeShader(g0.y2(null, 2131624083));
-        this.f8136b = runtimeShader;
+        this.f8418b = runtimeShader;
         this.d = runtimeShader;
         RenderEffect createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
-        this.f8138e = createRuntimeShaderEffect;
+        this.f8420e = createRuntimeShaderEffect;
         renderNode.setRenderEffect(createRuntimeShaderEffect);
     }
 
     public final void a(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {
-        if (this.f8155x == f10 && this.f8156y == f11 && this.f8157z == f12 && this.A == f13 && this.f8152t == f14 && this.f8153u == f15 && this.v == f16 && this.f8154w == f17) {
+        if (this.f8437x == f10 && this.f8438y == f11 && this.f8439z == f12 && this.A == f13 && this.f8434t == f14 && this.f8435u == f15 && this.v == f16 && this.f8436w == f17) {
             return;
         }
-        this.f8155x = f10;
-        this.f8156y = f11;
-        this.f8157z = f12;
+        this.f8437x = f10;
+        this.f8438y = f11;
+        this.f8439z = f12;
         this.A = f13;
-        this.f8152t = f14;
-        this.f8153u = f15;
+        this.f8434t = f14;
+        this.f8435u = f15;
         this.v = f16;
-        this.f8154w = f17;
+        this.f8436w = f17;
         this.B = true;
     }
 
@@ -85,49 +85,49 @@ public final class h {
             f25 = f15;
             f26 = f16;
         }
-        if (this.f8141i != i10 || Math.abs(this.f8142j - f10) > 0.1f || Math.abs(this.f8143k - f11) > 0.1f || Math.abs(this.f8144l - f23) > 0.1f || Math.abs(this.f8145m - f25) > 0.1f || Math.abs(this.f8146n - f26) > 0.1f || Math.abs(this.f8147o - f24) > 0.1f || Math.abs(this.f8148p - f18) > 0.1f || Math.abs(this.f8149q - f19) > 0.1f || Math.abs(this.f8150r - f20) > 0.1f || this.f8151s != i7 || this.B) {
+        if (this.f8423i != i10 || Math.abs(this.f8424j - f10) > 0.1f || Math.abs(this.f8425k - f11) > 0.1f || Math.abs(this.f8426l - f23) > 0.1f || Math.abs(this.f8427m - f25) > 0.1f || Math.abs(this.f8428n - f26) > 0.1f || Math.abs(this.f8429o - f24) > 0.1f || Math.abs(this.f8430p - f18) > 0.1f || Math.abs(this.f8431q - f19) > 0.1f || Math.abs(this.f8432r - f20) > 0.1f || this.f8433s != i7 || this.B) {
             this.B = false;
-            if (this.f8152t > 0.0f) {
-                if (this.f8137c == null) {
-                    this.f8137c = new RuntimeShader(g0.y2(null, 2131624082));
+            if (this.f8434t > 0.0f) {
+                if (this.f8419c == null) {
+                    this.f8419c = new RuntimeShader(g0.y2(null, 2131624082));
                 }
-                this.d = this.f8137c;
+                this.d = this.f8419c;
             } else {
-                this.d = this.f8136b;
+                this.d = this.f8418b;
             }
-            this.f8151s = i7;
+            this.f8433s = i7;
             float alpha = Color.alpha(i7) / 255.0f;
             float f31 = 1.0f / i10;
-            this.f8141i = i10;
-            this.f8142j = f10;
-            this.f8143k = f11;
-            this.f8146n = f26;
-            this.f8145m = f25;
-            this.f8147o = f24;
-            this.f8144l = f23;
-            this.f8148p = f18;
+            this.f8423i = i10;
+            this.f8424j = f10;
+            this.f8425k = f11;
+            this.f8428n = f26;
+            this.f8427m = f25;
+            this.f8429o = f24;
+            this.f8426l = f23;
+            this.f8430p = f18;
             this.d.setFloatUniform("size", (f10 / 2.0f) * f31, (f11 / 2.0f) * f31);
             this.d.setFloatUniform("radius", f26 * f31, f25 * f31, f24 * f31, f23 * f31);
             this.d.setFloatUniform("thickness", f18 * f31);
             RuntimeShader runtimeShader = this.d;
-            this.f8149q = f19;
+            this.f8431q = f19;
             runtimeShader.setFloatUniform("refract_intensity", f19);
             RuntimeShader runtimeShader2 = this.d;
-            this.f8150r = f20;
+            this.f8432r = f20;
             runtimeShader2.setFloatUniform("refract_index", f20);
             this.d.setFloatUniform("foreground_color_premultiplied", (Color.red(i7) / 255.0f) * alpha, (Color.green(i7) / 255.0f) * alpha, (Color.blue(i7) / 255.0f) * alpha, alpha);
             RuntimeShader runtimeShader3 = this.d;
-            if (runtimeShader3 == this.f8137c) {
-                runtimeShader3.setFloatUniform("arrow", this.f8152t * f31, this.f8153u * f31, this.v * f31, this.f8154w * f31);
-                this.d.setFloatUniform("arrow_axis", this.f8155x * f31, this.f8156y * f31, this.f8157z, this.A);
+            if (runtimeShader3 == this.f8419c) {
+                runtimeShader3.setFloatUniform("arrow", this.f8434t * f31, this.f8435u * f31, this.v * f31, this.f8436w * f31);
+                this.d.setFloatUniform("arrow_axis", this.f8437x * f31, this.f8438y * f31, this.f8439z, this.A);
             }
             int i11 = (i10 * i10) + 1;
-            RenderEffect[] renderEffectArr = this.f8139f;
+            RenderEffect[] renderEffectArr = this.f8421f;
             if (renderEffectArr != null && renderEffectArr.length == i11) {
                 Arrays.fill(renderEffectArr, (Object) null);
             } else {
-                this.f8139f = new RenderEffect[i11];
-                this.f8140g = new float[i11];
+                this.f8421f = new RenderEffect[i11];
+                this.f8422g = new float[i11];
                 this.h = new float[i11];
             }
         }
@@ -146,19 +146,19 @@ public final class h {
             int i15 = i14 % i10;
             length = (i13 * i10) + (i15 == 0 ? 0 : (((i14 ^ i10) >> 31) | 1) > 0 ? i15 : i15 + i10);
         } else {
-            length = this.f8139f.length - 1;
+            length = this.f8421f.length - 1;
         }
-        RenderEffect renderEffect = this.f8139f[length];
-        if (renderEffect == null || this.f8140g[length] != f33 || this.h[length] != f34) {
+        RenderEffect renderEffect = this.f8421f[length];
+        if (renderEffect == null || this.f8422g[length] != f33 || this.h[length] != f34) {
             this.d.setFloatUniform("center", f33, f34);
             renderEffect = RenderEffect.createRuntimeShaderEffect(this.d, "img");
-            this.f8139f[length] = renderEffect;
-            this.f8140g[length] = f33;
+            this.f8421f[length] = renderEffect;
+            this.f8422g[length] = f33;
             this.h[length] = f34;
         }
-        if (this.f8138e != renderEffect) {
-            RenderNode renderNode = this.f8135a;
-            this.f8138e = renderEffect;
+        if (this.f8420e != renderEffect) {
+            RenderNode renderNode = this.f8417a;
+            this.f8420e = renderEffect;
             renderNode.setRenderEffect(renderEffect);
         }
     }

@@ -1,25 +1,25 @@
 package gb;
 public final class b1 extends kd.j implements rd.p {
-    public final int f12979a;
-    public Object f12980b;
-    public final d1 f12981c;
+    public final int f13296a;
+    public Object f13297b;
+    public final d1 f13298c;
 
     public b1(d1 d1Var, id.c cVar, int i7) {
         super(2, cVar);
-        this.f12979a = i7;
-        this.f12981c = d1Var;
+        this.f13296a = i7;
+        this.f13298c = d1Var;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f12979a) {
+        switch (this.f13296a) {
             case 0:
-                b1 b1Var = new b1(this.f12981c, cVar, 0);
-                b1Var.f12980b = obj;
+                b1 b1Var = new b1(this.f13298c, cVar, 0);
+                b1Var.f13297b = obj;
                 return b1Var;
             default:
-                b1 b1Var2 = new b1(this.f12981c, cVar, 1);
-                b1Var2.f12980b = obj;
+                b1 b1Var2 = new b1(this.f13298c, cVar, 1);
+                b1Var2.f13297b = obj;
                 return b1Var2;
         }
     }
@@ -28,11 +28,11 @@ public final class b1 extends kd.j implements rd.p {
     public final Object invoke(Object obj, Object obj2) {
         j0 j0Var = (j0) obj;
         id.c cVar = (id.c) obj2;
-        switch (this.f12979a) {
+        switch (this.f13296a) {
             case 0:
-                return ((b1) create(j0Var, cVar)).invokeSuspend(gd.k.f13173a);
+                return ((b1) create(j0Var, cVar)).invokeSuspend(gd.k.f13488a);
             default:
-                return ((b1) create(j0Var, cVar)).invokeSuspend(gd.k.f13173a);
+                return ((b1) create(j0Var, cVar)).invokeSuspend(gd.k.f13488a);
         }
     }
 

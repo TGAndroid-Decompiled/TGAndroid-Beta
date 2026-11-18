@@ -1,100 +1,62 @@
 package di;
 
 import android.content.Context;
-import android.text.SpannableString;
-import android.text.TextUtils;
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.hd;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.a41;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.e80;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.u41;
-import org.telegram.ui.Components.uj0;
-public final class xa extends a41 {
-    public static final int f9743b = 0;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.gd;
+public final class xa extends FrameLayout {
+    public final org.telegram.ui.Components.n6 f10049a;
+    public final ImageView f10050b;
+    public int f10051c;
+    public boolean d;
 
-    static {
-        a41.h(new a41());
-    }
-
-    public static b41 i(int i7, int i10, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
-        String f10;
-        b41 K = b41.K(xa.class);
-        K.d = i7;
-        K.f33197z = i10;
-        long j3 = tL_starsTopupOption.stars;
-        K.B = j3;
-        K.f33184l = hd.H(' ', "StarsCount", (int) j3);
-        if (tL_starsTopupOption.loadingStorePrice) {
-            f10 = null;
-        } else {
-            f10 = org.telegram.messenger.r1.i().f(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
-        }
-        K.f33185m = f10;
-        K.G = tL_starsTopupOption;
-        return K;
+    public xa(Context context) {
+        super(context);
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(context, false, false, false);
+        this.f10049a = n6Var;
+        n6Var.getDrawable().r(true, true);
+        n6Var.setTextSize(org.telegram.messenger.g0.L(15.0f));
+        addView(n6Var, c8.ma.i(-1.0f, -1.0f, 8388627, 22.0f, 0.0f, 58.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.f10050b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(2131230871);
+        addView(imageView, c8.ma.i(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 17.0f, 0.0f));
     }
 
     @Override
-    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
-        float f10;
-        ya yaVar = (ya) view;
-        int i7 = b41Var.f33197z;
-        CharSequence charSequence = b41Var.f33184l;
-        CharSequence charSequence2 = b41Var.f33185m;
-        org.telegram.ui.Components.h6 h6Var = yaVar.f9803e;
-        TextView textView = yaVar.d;
-        boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        yaVar.f9805n = i7;
-        if (!equals) {
-            yaVar.f9806r.e(true, i7);
-        }
-        textView.setText(charSequence);
-        if (charSequence2 == null) {
-            if (yaVar.f9804f == null) {
-                SpannableString spannableString = new SpannableString("x");
-                yaVar.f9804f = spannableString;
-                spannableString.setSpan(new e80(org.telegram.messenger.g0.L(55.0f), h6Var), 0, yaVar.f9804f.length(), 33);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f10051c = Integer.MAX_VALUE;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float L;
+        int i7;
+        super.onDraw(canvas);
+        if (this.d) {
+            if (gd.f24216a0) {
+                L = 0.0f;
+            } else {
+                L = org.telegram.messenger.g0.L(22.0f);
             }
-            charSequence2 = yaVar.f9804f;
+            float f10 = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (gd.f24216a0) {
+                i7 = org.telegram.messenger.g0.L(22.0f);
+            } else {
+                i7 = 0;
+            }
+            canvas.drawRect(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight(), org.telegram.ui.ActionBar.n6.f29519k0);
         }
-        h6Var.setText(charSequence2);
-        if (hd.f24104a0) {
-            f10 = -1.0f;
-        } else {
-            f10 = 1.0f;
-        }
-        if (equals) {
-            textView.animate().translationX(f10 * (i7 - 1) * org.telegram.messenger.g0.L(2.66f)).setDuration(320L).setInterpolator(er.h).start();
-        } else {
-            textView.setTranslationX(f10 * (i7 - 1) * org.telegram.messenger.g0.L(2.66f));
-        }
-        yaVar.h = z10;
-        yaVar.invalidate();
     }
 
     @Override
-    public final boolean c(b41 b41Var, b41 b41Var2) {
-        if (b41Var.f33197z == b41Var2.f33197z && b41Var.d == b41Var2.d && TextUtils.equals(b41Var.f33185m, b41Var2.f33185m)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new ya(context, e6Var);
-    }
-
-    @Override
-    public final boolean e(b41 b41Var, b41 b41Var2) {
-        if (b41Var.d == b41Var2.d) {
-            return true;
-        }
-        return false;
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
     }
 }

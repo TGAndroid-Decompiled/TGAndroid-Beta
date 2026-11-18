@@ -1,18 +1,9 @@
 package c8;
-
-import java.io.Closeable;
 public abstract class ob {
-    public static final void a(Closeable closeable, Throwable th2) {
-        if (closeable != null) {
-            if (th2 == null) {
-                closeable.close();
-                return;
-            }
-            try {
-                closeable.close();
-            } catch (Throwable th3) {
-                a8.ma.a(th2, th3);
-            }
+    public static int a(long j3) {
+        if (j3 <= 2147483647L && j3 >= -2147483648L) {
+            return (int) j3;
         }
+        throw new RuntimeException(p5.c.j(j3, "A cast to int has gone wrong. Please contact the mp4parser discussion group (", ")"));
     }
 }

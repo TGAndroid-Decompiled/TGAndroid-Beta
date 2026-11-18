@@ -1,37 +1,32 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.PremiumPreviewFragment;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
 public final class d8 implements Runnable {
-    public final int f33864a;
-    public final q8 f33865b;
+    public final int f34300a;
+    public final f8 f34301b;
+    public final String f34302c;
 
-    public d8(q8 q8Var, int i7) {
-        this.f33864a = i7;
-        this.f33865b = q8Var;
+    public d8(f8 f8Var, String str, int i7) {
+        this.f34300a = i7;
+        this.f34301b = f8Var;
+        this.f34302c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f33864a) {
+        switch (this.f34300a) {
             case 0:
-                q8 q8Var = this.f33865b;
-                if (!q8Var.V) {
-                    if (q8Var.O > 0.0f) {
-                        if (q8Var.N != null) {
-                            q8Var.F = 1.0f;
-                            q8Var.G = true;
-                        }
-                        org.telegram.messenger.g0.v1(q8Var.fragmentView);
-                        return;
-                    }
-                    q8Var.l0(!q8Var.f38562a.f38244w, true, false);
-                    return;
-                }
+                f8 f8Var = this.f34301b;
+                String str = this.f34302c;
+                f8Var.f35021f = null;
+                org.telegram.messenger.g0.g3(new d8(f8Var, str, 1));
                 return;
             default:
-                q8 q8Var2 = this.f33865b;
-                q8Var2.getClass();
-                q8Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
+                f8 f8Var2 = this.f34301b;
+                String str2 = this.f34302c;
+                f8Var2.getClass();
+                Utilities.f22784g.c(new e8(f8Var2, str2, new ArrayList(f8Var2.f35022n.f35407r2)));
                 return;
         }
     }

@@ -1,5 +1,5 @@
 package jg;
 public final class x1 {
-    public String f17333a;
-    public int f17334b;
+    public String f17719a;
+    public int f17720b;
 }

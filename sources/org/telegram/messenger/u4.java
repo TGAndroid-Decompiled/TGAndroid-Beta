@@ -1,64 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class u4 implements Runnable {
-    public final int f26779a;
-    public final g5 f26780b;
-    public final HashMap f26781c;
-    public final ArrayList d;
-    public final HashMap f26782e;
+import java.text.Collator;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class u4 implements Comparator {
+    public final int f27122a;
+    public final Collator f27123b;
+    public final Object f27124c;
 
-    public u4(g5 g5Var, ArrayList arrayList, HashMap hashMap, HashMap hashMap2) {
-        this.f26779a = 4;
-        this.f26780b = g5Var;
-        this.d = arrayList;
-        this.f26781c = hashMap;
-        this.f26782e = hashMap2;
+    public u4(Object obj, Collator collator, int i7) {
+        this.f27122a = i7;
+        this.f27124c = obj;
+        this.f27123b = collator;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26779a) {
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f27122a) {
             case 0:
-                HashMap hashMap = this.f26782e;
-                g5 g5Var = this.f26780b;
-                g5Var.E(this.f26781c, this.d, hashMap, true);
-                g5Var.N();
-                g5Var.getNotificationCenter().k(25, new Object[0]);
-                g5Var.getNotificationCenter().k(26, new Object[0]);
-                return;
-            case 1:
-                HashMap hashMap2 = this.f26782e;
-                g5 g5Var2 = this.f26780b;
-                g5Var2.E(this.f26781c, this.d, hashMap2, true);
-                g5Var2.N();
-                g5Var2.getNotificationCenter().k(25, new Object[0]);
-                g5Var2.getNotificationCenter().k(26, new Object[0]);
-                return;
-            case 2:
-                this.f26780b.E(this.f26781c, this.d, this.f26782e, true);
-                return;
-            case 3:
-                HashMap hashMap3 = this.f26782e;
-                g5 g5Var3 = this.f26780b;
-                g5Var3.E(this.f26781c, this.d, hashMap3, true);
-                g5Var3.getNotificationCenter().k(26, new Object[0]);
-                return;
+                i5 i5Var = (i5) this.f27124c;
+                TLRPC.User c22 = i5Var.getMessagesController().c2(Long.valueOf(((TLRPC.TL_contact) obj).user_id));
+                TLRPC.User c23 = i5Var.getMessagesController().c2(Long.valueOf(((TLRPC.TL_contact) obj2).user_id));
+                return this.f27123b.compare(o10.k(c22, true), o10.k(c23, true));
             default:
-                g5 g5Var4 = this.f26780b;
-                g5Var4.f23677d0 = this.d;
-                g5Var4.f23679e0 = this.f26781c;
-                g5Var4.f23676c0 = this.f26782e;
-                return;
+                a0.h hVar = (a0.h) this.f27124c;
+                return this.f27123b.compare(o10.k((TLRPC.User) hVar.f(((TLRPC.TL_contact) obj).user_id), true), o10.k((TLRPC.User) hVar.f(((TLRPC.TL_contact) obj2).user_id), true));
         }
-    }
-
-    public u4(g5 g5Var, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, int i7) {
-        this.f26779a = i7;
-        this.f26780b = g5Var;
-        this.f26781c = hashMap;
-        this.d = arrayList;
-        this.f26782e = hashMap2;
     }
 }

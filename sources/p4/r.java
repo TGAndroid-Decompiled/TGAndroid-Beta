@@ -1,6 +1,6 @@
 package p4;
 
-import a8.ja;
+import a8.la;
 import android.content.Context;
 import android.graphics.Point;
 import android.os.Build;
@@ -8,69 +8,69 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.WindowManager;
-import h9.s1;
+import h9.t1;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.ui.LaunchActivity;
 public final class r {
-    public static final AtomicReference f54842n = new AtomicReference(null);
-    public final Context f54843a;
-    public final e2.c1 f54844b;
-    public String f54845c;
+    public static final AtomicReference f55413n = new AtomicReference(null);
+    public final Context f55414a;
+    public final e2.c1 f55415b;
+    public String f55416c;
     public final w7.s d;
-    public final Bundle f54846e;
-    public final Bundle f54847f;
-    public h2.d f54848g;
+    public final Bundle f55417e;
+    public final Bundle f55418f;
+    public h2.d f55419g;
     public final boolean h;
-    public final s1 f54849i;
-    public final s1 f54850j;
-    public final s1 f54851k;
-    public final boolean f54852l;
-    public boolean f54853m;
+    public final t1 f55420i;
+    public final t1 f55421j;
+    public final t1 f55422k;
+    public final boolean f55423l;
+    public boolean f55424m;
 
     public r(LaunchActivity launchActivity, e2.c1 c1Var) {
         w7.s sVar = new w7.s(20);
         Context applicationContext = launchActivity.getApplicationContext();
         applicationContext.getClass();
-        this.f54843a = applicationContext;
-        this.f54844b = c1Var;
-        ja.f(c1Var.P());
-        this.f54845c = "";
+        this.f55414a = applicationContext;
+        this.f55415b = c1Var;
+        la.f(c1Var.P());
+        this.f55416c = "";
         this.d = sVar;
-        this.f54846e = new Bundle();
-        this.f54847f = new Bundle();
-        h9.g0 g0Var = h9.i0.f13686b;
-        s1 s1Var = s1.f13749e;
-        this.f54849i = s1Var;
-        this.f54850j = s1Var;
+        this.f55417e = new Bundle();
+        this.f55418f = new Bundle();
+        h9.g0 g0Var = h9.i0.f14006b;
+        t1 t1Var = t1.f14074e;
+        this.f55420i = t1Var;
+        this.f55421j = t1Var;
         this.h = true;
-        this.f54852l = true;
-        this.f54851k = s1Var;
+        this.f55423l = true;
+        this.f55422k = t1Var;
     }
 
     public final x a() {
-        ja.p(!this.f54853m);
-        this.f54853m = true;
-        Object obj = x.f54879b;
+        la.p(!this.f55424m);
+        this.f55424m = true;
+        Object obj = x.f55451b;
         int intValue = ((Integer) d0.C.get()).intValue();
         int i7 = Build.VERSION.SDK_INT;
-        Context context = this.f54843a;
+        Context context = this.f55414a;
         if (i7 < 27) {
             intValue = Math.max(intValue, (int) TypedValue.applyDimension(1, 320.0f, context.getResources().getDisplayMetrics()));
         }
-        h2.d dVar = this.f54848g;
+        h2.d dVar = this.f55419g;
         if (dVar == null) {
             ?? obj2 = new Object();
-            obj2.f3348c = context;
-            obj2.f3347b = -1;
-            obj2.f3347b = intValue;
-            obj2.f3346a = true;
-            this.f54848g = new j2.i(obj2);
+            obj2.f3355c = context;
+            obj2.f3354b = -1;
+            obj2.f3354b = intValue;
+            obj2.f3353a = true;
+            this.f55419g = new j2.i(obj2);
         } else {
-            this.f54848g = new f5.v(dVar, intValue, 11);
+            this.f55419g = new b3.j(dVar, intValue, 10);
         }
         if (i7 == 29) {
-            h2.d dVar2 = this.f54848g;
-            AtomicReference atomicReference = f54842n;
+            h2.d dVar2 = this.f55419g;
+            AtomicReference atomicReference = f55413n;
             l9.a aVar = (l9.a) atomicReference.get();
             if (aVar == null) {
                 Display defaultDisplay = ((WindowManager) context.getSystemService(WindowManager.class)).getDefaultDisplay();
@@ -85,9 +85,9 @@ public final class r {
                 atomicReference.set(aVar2);
                 aVar = aVar2;
             }
-            this.f54848g = new ji.j(20, dVar2, aVar);
+            this.f55419g = new ji.j(20, dVar2, aVar);
         }
-        this.f54848g = new k8.a(this.f54848g);
-        return new x(this.f54843a, this.f54845c, this.f54844b, this.f54849i, this.f54850j, this.f54851k, this.d, this.f54846e, this.f54847f, this.f54848g, this.h, this.f54852l);
+        this.f55419g = new k8.a(this.f55419g);
+        return new x(this.f55414a, this.f55416c, this.f55415b, this.f55420i, this.f55421j, this.f55422k, this.d, this.f55417e, this.f55418f, this.f55419g, this.h, this.f55423l);
     }
 }

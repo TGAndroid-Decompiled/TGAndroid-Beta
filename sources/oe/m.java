@@ -1,45 +1,44 @@
 package oe;
 
-import a8.bb;
-import c8.u9;
-import c8.uc;
+import c8.w9;
+import c8.xc;
 import gb.g0;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 public class m implements me.d, b {
-    public final String f21445a;
-    public final e f21446b;
-    public final int f21447c;
+    public final String f21811a;
+    public final e f21812b;
+    public final int f21813c;
     public int d = -1;
-    public final String[] f21448e;
-    public final List[] f21449f;
-    public final boolean[] f21450g;
+    public final String[] f21814e;
+    public final List[] f21815f;
+    public final boolean[] f21816g;
     public Object h;
-    public final Object f21451i;
-    public final Object f21452j;
-    public final Object f21453k;
+    public final Object f21817i;
+    public final Object f21818j;
+    public final Object f21819k;
 
     public m(String str, e eVar, int i7) {
-        this.f21445a = str;
-        this.f21446b = eVar;
-        this.f21447c = i7;
+        this.f21811a = str;
+        this.f21812b = eVar;
+        this.f21813c = i7;
         String[] strArr = new String[i7];
         for (int i10 = 0; i10 < i7; i10++) {
             strArr[i10] = "[UNINITIALIZED]";
         }
-        this.f21448e = strArr;
-        int i11 = this.f21447c;
-        this.f21449f = new List[i11];
-        this.f21450g = new boolean[i11];
-        this.h = hd.o.f13832a;
-        gd.d[] dVarArr = gd.d.f13161a;
-        this.f21451i = bb.a(new rd.a(this) {
-            public final m f21444b;
+        this.f21814e = strArr;
+        int i11 = this.f21813c;
+        this.f21815f = new List[i11];
+        this.f21816g = new boolean[i11];
+        this.h = hd.o.f14149a;
+        gd.d[] dVarArr = gd.d.f13476a;
+        this.f21817i = b5.a.b(new rd.a(this) {
+            public final m f21810b;
 
             {
-                this.f21444b = this;
+                this.f21810b = this;
             }
 
             @Override
@@ -49,10 +48,10 @@ public class m implements me.d, b {
                 int i12;
                 switch (r2) {
                     case 0:
-                        return this.f21444b.f21446b.c();
+                        return this.f21810b.f21812b.c();
                     default:
-                        m mVar = this.f21444b;
-                        me.d[] typeParams = (me.d[]) mVar.f21452j.getValue();
+                        m mVar = this.f21810b;
+                        me.d[] typeParams = (me.d[]) mVar.f21818j.getValue();
                         kotlin.jvm.internal.j.e(typeParams, "typeParams");
                         int hashCode = (mVar.a().hashCode() * 31) + Arrays.hashCode(typeParams);
                         int f10 = mVar.f();
@@ -85,7 +84,7 @@ public class m implements me.d, b {
                                     if (z11) {
                                         int i18 = f11 - 1;
                                         int i19 = i17 * 31;
-                                        u9 e10 = mVar.i(mVar.f() - f11).e();
+                                        w9 e10 = mVar.i(mVar.f() - f11).e();
                                         if (e10 != null) {
                                             i12 = e10.hashCode();
                                         } else {
@@ -102,12 +101,12 @@ public class m implements me.d, b {
                 }
             }
         });
-        this.f21452j = bb.a(new g0(this));
-        this.f21453k = bb.a(new rd.a(this) {
-            public final m f21444b;
+        this.f21818j = b5.a.b(new g0(this));
+        this.f21819k = b5.a.b(new rd.a(this) {
+            public final m f21810b;
 
             {
-                this.f21444b = this;
+                this.f21810b = this;
             }
 
             @Override
@@ -117,10 +116,10 @@ public class m implements me.d, b {
                 int i12;
                 switch (r2) {
                     case 0:
-                        return this.f21444b.f21446b.c();
+                        return this.f21810b.f21812b.c();
                     default:
-                        m mVar = this.f21444b;
-                        me.d[] typeParams = (me.d[]) mVar.f21452j.getValue();
+                        m mVar = this.f21810b;
+                        me.d[] typeParams = (me.d[]) mVar.f21818j.getValue();
                         kotlin.jvm.internal.j.e(typeParams, "typeParams");
                         int hashCode = (mVar.a().hashCode() * 31) + Arrays.hashCode(typeParams);
                         int f10 = mVar.f();
@@ -153,7 +152,7 @@ public class m implements me.d, b {
                                     if (z11) {
                                         int i18 = f11 - 1;
                                         int i19 = i17 * 31;
-                                        u9 e10 = mVar.i(mVar.f() - f11).e();
+                                        w9 e10 = mVar.i(mVar.f() - f11).e();
                                         if (e10 != null) {
                                             i12 = e10.hashCode();
                                         } else {
@@ -174,7 +173,7 @@ public class m implements me.d, b {
 
     @Override
     public final String a() {
-        return this.f21445a;
+        return this.f21811a;
     }
 
     @Override
@@ -198,17 +197,17 @@ public class m implements me.d, b {
     }
 
     @Override
-    public final u9 e() {
-        return me.f.f20610b;
+    public final w9 e() {
+        return me.f.f20974b;
     }
 
     public boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof m) {
                 me.d dVar = (me.d) obj;
-                if (this.f21445a.equals(dVar.a()) && Arrays.equals((me.d[]) this.f21452j.getValue(), (me.d[]) ((m) obj).f21452j.getValue())) {
+                if (this.f21811a.equals(dVar.a()) && Arrays.equals((me.d[]) this.f21818j.getValue(), (me.d[]) ((m) obj).f21818j.getValue())) {
                     int f10 = dVar.f();
-                    int i7 = this.f21447c;
+                    int i7 = this.f21813c;
                     if (i7 == f10) {
                         for (int i10 = 0; i10 < i7; i10++) {
                             if (kotlin.jvm.internal.j.a(i(i10).a(), dVar.i(i10).a()) && kotlin.jvm.internal.j.a(i(i10).e(), dVar.i(i10).e())) {
@@ -225,35 +224,35 @@ public class m implements me.d, b {
 
     @Override
     public final int f() {
-        return this.f21447c;
+        return this.f21813c;
     }
 
     @Override
     public final String g(int i7) {
-        return this.f21448e[i7];
+        return this.f21814e[i7];
     }
 
     @Override
     public final List getAnnotations() {
-        return hd.n.f13831a;
+        return hd.n.f14148a;
     }
 
     @Override
     public final List h(int i7) {
-        List list = this.f21449f[i7];
+        List list = this.f21815f[i7];
         if (list == null) {
-            return hd.n.f13831a;
+            return hd.n.f14148a;
         }
         return list;
     }
 
     public int hashCode() {
-        return ((Number) this.f21453k.getValue()).intValue();
+        return ((Number) this.f21819k.getValue()).intValue();
     }
 
     @Override
     public final me.d i(int i7) {
-        return ((ke.a[]) this.f21451i.getValue())[i7].d();
+        return ((ke.a[]) this.f21817i.getValue())[i7].d();
     }
 
     @Override
@@ -263,17 +262,17 @@ public class m implements me.d, b {
 
     @Override
     public final boolean j(int i7) {
-        return this.f21450g[i7];
+        return this.f21816g[i7];
     }
 
     public final void k(String str, boolean z10) {
         int i7 = this.d + 1;
         this.d = i7;
-        String[] strArr = this.f21448e;
+        String[] strArr = this.f21814e;
         strArr[i7] = str;
-        this.f21450g[i7] = z10;
-        this.f21449f[i7] = null;
-        if (i7 == this.f21447c - 1) {
+        this.f21816g[i7] = z10;
+        this.f21815f[i7] = null;
+        if (i7 == this.f21813c - 1) {
             HashMap hashMap = new HashMap();
             int length = strArr.length;
             for (int i10 = 0; i10 < length; i10++) {
@@ -284,6 +283,6 @@ public class m implements me.d, b {
     }
 
     public final String toString() {
-        return hd.f.g(uc.a(0, this.f21447c), ", ", this.f21445a.concat("("), ")", new c1.b(this, 6), 24);
+        return hd.f.g(xc.a(0, this.f21813c), ", ", this.f21811a.concat("("), ")", new c1.b(this, 6), 24);
     }
 }

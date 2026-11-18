@@ -1,58 +1,35 @@
 package c8;
 
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.NinePatchDrawable;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
+import java.util.Map;
 public abstract class o0 {
-    public static NinePatchDrawable a(Bitmap bitmap, Rect rect, int i7, int i10) {
-        if (bitmap != null) {
-            if (!bitmap.isRecycled()) {
-                if (i7 >= 0 && i7 < bitmap.getWidth() && i10 >= 0 && i10 < bitmap.getHeight()) {
-                    return new NinePatchDrawable(org.telegram.messenger.t0.f26609b.getResources(), bitmap, c(i7, i7 + 1, i10, i10 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i7, i10)).array(), rect, null);
-                }
-                StringBuilder n10 = i5.c.n("center pixel is outside bitmap: (", i7, ", ", i10, ") for ");
-                n10.append(bitmap.getWidth());
-                n10.append("x");
-                n10.append(bitmap.getHeight());
-                throw new IllegalArgumentException(n10.toString());
+    public static i4.f a(i4.f fVar, String[] strArr, Map map) {
+        int i7 = 0;
+        if (fVar == null) {
+            if (strArr == null) {
+                return null;
             }
-            throw new IllegalArgumentException("bitmap is recycled");
+            if (strArr.length == 1) {
+                return (i4.f) map.get(strArr[0]);
+            }
+            if (strArr.length > 1) {
+                i4.f fVar2 = new i4.f();
+                int length = strArr.length;
+                while (i7 < length) {
+                    fVar2.a((i4.f) map.get(strArr[i7]));
+                    i7++;
+                }
+                return fVar2;
+            }
+        } else if (strArr != null && strArr.length == 1) {
+            fVar.a((i4.f) map.get(strArr[0]));
+            return fVar;
+        } else if (strArr != null && strArr.length > 1) {
+            int length2 = strArr.length;
+            while (i7 < length2) {
+                fVar.a((i4.f) map.get(strArr[i7]));
+                i7++;
+            }
         }
-        throw new IllegalArgumentException("bitmap == null");
-    }
-
-    public static android.graphics.drawable.NinePatchDrawable b(android.graphics.Bitmap[] r38, int r39, float[] r40, float r41, int r42, float r43, int r44) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.o0.b(android.graphics.Bitmap[], int, float[], float, int, float, int):android.graphics.drawable.NinePatchDrawable");
-    }
-
-    public static ByteBuffer c(int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        ByteBuffer order = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
-        order.put((byte) 1);
-        order.put((byte) 2);
-        order.put((byte) 2);
-        order.put((byte) 9);
-        order.putInt(0);
-        order.putInt(0);
-        order.putInt(i13);
-        order.putInt(i15);
-        order.putInt(i14);
-        order.putInt(i16);
-        order.putInt(0);
-        order.putInt(i7);
-        order.putInt(i10);
-        order.putInt(i11);
-        order.putInt(i12);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(i17);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        return order;
+        return fVar;
     }
 }

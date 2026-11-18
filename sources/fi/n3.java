@@ -1,40 +1,98 @@
 package fi;
-public final class n3 implements Runnable {
-    public final int f12073a;
-    public final t3 f12074b;
 
-    public n3(t3 t3Var, int i7) {
-        this.f12073a = i7;
-        this.f12074b = t3Var;
+import org.telegram.messenger.u10;
+import org.telegram.ui.Components.ph0;
+public final class n3 implements u10 {
+    public final int f12299a;
+    public final r3 f12300b;
+    public final w3 f12301c;
+
+    public n3(r3 r3Var, w3 w3Var, int i7) {
+        this.f12299a = i7;
+        this.f12300b = r3Var;
+        this.f12301c = w3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f12073a) {
+    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
+        switch (this.f12299a) {
             case 0:
-                ((z8) this.f12074b.f12360x.A1).g(false);
-                return;
-            case 1:
-                b4 b4Var = this.f12074b.f12360x;
-                u3 u3Var = b4Var.A1;
-                if (u3Var != null) {
-                    i9 i9Var = ((z8) u3Var).d;
-                    i9Var.Z0 = false;
-                    i9Var.V();
+                Long l10 = (Long) obj;
+                Runnable runnable = (Runnable) obj2;
+                Boolean bool = (Boolean) obj3;
+                Long l11 = (Long) obj4;
+                long currentTimeMillis = System.currentTimeMillis();
+                z3 z3Var = this.f12300b.f12501x;
+                y3 y3Var = z3Var.f12889w2;
+                e9 e9Var = (e9) y3Var.f12775c;
+                if (e9Var == null) {
+                    ((w8) z3Var.A1).g(false);
+                    z3Var.setActive(true);
+                    z3Var.E3 = false;
+                    z3Var.S0 = new ai.z0(2, runnable);
+                    if (bool.booleanValue()) {
+                        z3Var.d1(false);
+                    }
+                    org.telegram.messenger.g0.h3(runnable, 400L);
+                    return;
                 }
-                b4Var.d1(false);
-                b4Var.R2 = true;
-                b4Var.f11526u0.E(true);
-                return;
-            case 2:
-                b4 b4Var2 = this.f12074b.f12360x;
-                b4Var2.E3 = true;
-                b4Var2.setActive(false);
+                e9Var.firstFrameRendered = false;
+                y3Var.f12773a = false;
+                e9Var.setOnReadyListener(new y1(1, currentTimeMillis, runnable));
+                ((w8) z3Var.A1).g(false);
+                ph0 ph0Var = z3Var.f12839j0;
+                if (ph0Var != null) {
+                    ph0Var.setAnimation(this.f12301c.f12698u);
+                }
+                if (z3Var.B2 > 0 && l10.longValue() > z3Var.B2 - 1400) {
+                    l10 = 0L;
+                }
+                z3Var.R0(l10.longValue(), true);
+                z3Var.E3 = false;
+                org.telegram.messenger.g0.h3(runnable, 400L);
+                if (bool.booleanValue()) {
+                    z3Var.d1(false);
+                    return;
+                }
                 return;
             default:
-                b4 b4Var3 = this.f12074b.f12360x;
-                b4Var3.E3 = true;
-                b4Var3.setActive(false);
+                Long l12 = (Long) obj;
+                Runnable runnable2 = (Runnable) obj2;
+                Boolean bool2 = (Boolean) obj3;
+                Long l13 = (Long) obj4;
+                long currentTimeMillis2 = System.currentTimeMillis();
+                z3 z3Var2 = this.f12300b.f12501x;
+                y3 y3Var2 = z3Var2.f12889w2;
+                e9 e9Var2 = (e9) y3Var2.f12775c;
+                if (e9Var2 == null) {
+                    ((w8) z3Var2.A1).g(false);
+                    z3Var2.setActive(true);
+                    z3Var2.E3 = false;
+                    z3Var2.S0 = new ai.z0(3, runnable2);
+                    if (bool2.booleanValue()) {
+                        z3Var2.d1(false);
+                    }
+                    org.telegram.messenger.g0.h3(runnable2, 400L);
+                    return;
+                }
+                e9Var2.firstFrameRendered = false;
+                y3Var2.f12773a = false;
+                e9Var2.setOnReadyListener(new y1(2, currentTimeMillis2, runnable2));
+                ((w8) z3Var2.A1).g(false);
+                ph0 ph0Var2 = z3Var2.f12839j0;
+                if (ph0Var2 != null) {
+                    ph0Var2.setAnimation(this.f12301c.f12698u);
+                }
+                if (z3Var2.B2 > 0 && l12.longValue() > z3Var2.B2 - 1400) {
+                    l12 = 0L;
+                }
+                z3Var2.R0(l12.longValue(), true);
+                z3Var2.E3 = false;
+                org.telegram.messenger.g0.h3(runnable2, 400L);
+                if (bool2.booleanValue()) {
+                    z3Var2.d1(false);
+                    return;
+                }
                 return;
         }
     }

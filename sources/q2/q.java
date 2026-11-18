@@ -1,10 +1,35 @@
 package q2;
-public final class q {
-    public final byte[] f55192a;
-    public final String f55193b;
 
-    public q(String str, byte[] bArr) {
-        this.f55192a = bArr;
-        this.f55193b = str;
-    }
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.telegram.ui.Cells.b5;
+public interface q {
+    void A(byte[] bArr);
+
+    byte[] C(byte[] bArr, byte[] bArr2);
+
+    void D(byte[] bArr);
+
+    void G(byte[] bArr, m2.i iVar);
+
+    o H(byte[] bArr, List list, int i7, HashMap hashMap);
+
+    int J();
+
+    boolean O(String str, byte[] bArr);
+
+    void a(b5 b5Var);
+
+    Map d(byte[] bArr);
+
+    p n();
+
+    k2.b r(byte[] bArr);
+
+    void release();
+
+    byte[] t();
+
+    void x(byte[] bArr, byte[] bArr2);
 }

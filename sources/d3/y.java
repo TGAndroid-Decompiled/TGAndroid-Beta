@@ -1,19 +1,19 @@
 package d3;
 
-import a8.ja;
+import a8.la;
 import android.util.Range;
 public final class y {
-    public long f7494a;
-    public long f7495b;
-    public double f7496c;
+    public long f7777a;
+    public long f7778b;
+    public double f7779c;
     public Range d;
 
     public y() {
         Range range = new Range(Double.valueOf(0.0d), Double.valueOf(1.0d / 1.0f));
         this.d = range;
-        this.f7496c = ((Double) range.getUpper()).doubleValue();
-        this.f7494a = -9223372036854775807L;
-        this.f7495b = -9223372036854775807L;
+        this.f7779c = ((Double) range.getUpper()).doubleValue();
+        this.f7777a = -9223372036854775807L;
+        this.f7778b = -9223372036854775807L;
     }
 
     public final void a(long j3, long j10) {
@@ -26,30 +26,30 @@ public final class y {
         } else {
             z10 = false;
         }
-        ja.f(z10);
+        la.f(z10);
         if (j10 != -9223372036854775807L) {
             z11 = true;
         }
-        ja.f(z11);
-        long j12 = this.f7494a;
+        la.f(z11);
+        long j12 = this.f7777a;
         if (j12 != -9223372036854775807L) {
-            if (this.f7495b != -9223372036854775807L && j3 != j12) {
+            if (this.f7778b != -9223372036854775807L && j3 != j12) {
                 doubleValue = (j10 - j11) / (j3 - j12);
-                this.f7496c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f7496c * 0.800000011920929d);
-                this.f7494a = j3;
-                this.f7495b = j10;
+                this.f7779c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f7779c * 0.800000011920929d);
+                this.f7777a = j3;
+                this.f7778b = j10;
             }
         }
         doubleValue = ((Double) this.d.getUpper()).doubleValue();
-        this.f7496c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f7496c * 0.800000011920929d);
-        this.f7494a = j3;
-        this.f7495b = j10;
+        this.f7779c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f7779c * 0.800000011920929d);
+        this.f7777a = j3;
+        this.f7778b = j10;
     }
 
     public final void b() {
-        this.f7496c = ((Double) this.d.getUpper()).doubleValue();
-        this.f7494a = -9223372036854775807L;
-        this.f7495b = -9223372036854775807L;
+        this.f7779c = ((Double) this.d.getUpper()).doubleValue();
+        this.f7777a = -9223372036854775807L;
+        this.f7778b = -9223372036854775807L;
     }
 
     public final void c(float f10) {
@@ -59,7 +59,7 @@ public final class y {
         } else {
             z10 = false;
         }
-        ja.f(z10);
+        la.f(z10);
         this.d = new Range(Double.valueOf(0.0d), Double.valueOf(1.0d / f10));
         b();
     }

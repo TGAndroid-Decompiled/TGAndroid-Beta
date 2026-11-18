@@ -13,11 +13,11 @@ import android.media.MediaCodecInfo;
 import android.os.Binder;
 import android.os.Build;
 import android.util.Log;
-import c8.oc;
+import c8.rc;
 import e2.s0;
-import h9.g2;
-import h9.s1;
+import h9.h2;
 import h9.t0;
+import h9.t1;
 import java.util.List;
 public abstract class y {
     public static void a(AudioAttributes.Builder builder, boolean z10) {
@@ -44,22 +44,22 @@ public abstract class y {
                     break;
                 }
             }
-            if (i11 == 1 && oc.f4617a == null) {
+            if (i11 == 1 && rc.f4944a == null) {
                 int i13 = Build.VERSION.SDK_INT;
                 if (i13 < 37) {
                     int c10 = c(true);
                     if (i13 < 35) {
-                        oc.f4617a = Boolean.valueOf(z10);
+                        rc.f4944a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     } else {
-                        oc.f4617a = Boolean.valueOf(z10);
+                        rc.f4944a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     }
                 }
                 z10 = false;
-                oc.f4617a = Boolean.valueOf(z10);
+                rc.f4944a = Boolean.valueOf(z10);
                 if (z10) {
                 }
             }
@@ -74,21 +74,21 @@ public abstract class y {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             e2.t tVar = new e2.t();
-            tVar.f10399r = s0.n("video/avc");
+            tVar.f10717r = s0.n("video/avc");
             e2.u uVar = new e2.u(tVar);
-            String str = uVar.f10451s;
+            String str = uVar.f10769s;
             if (str != null) {
                 List e11 = u2.w.e(str, z10, false);
                 String c10 = u2.w.c(uVar);
                 if (c10 == null) {
-                    e10 = s1.f13749e;
+                    e10 = t1.f14074e;
                 } else {
                     e10 = u2.w.e(c10, z10, false);
                 }
                 h9.f0 p10 = h9.i0.p();
                 p10.d(e11);
                 p10.d(e10);
-                s1 f10 = p10.f();
+                t1 f10 = p10.f();
                 for (int i7 = 0; i7 < f10.d; i7++) {
                     if (((u2.o) f10.get(i7)).d != null && (videoCapabilities = ((u2.o) f10.get(i7)).d.getVideoCapabilities()) != null && (supportedPerformancePoints = videoCapabilities.getSupportedPerformancePoints()) != null && !supportedPerformancePoints.isEmpty()) {
                         MediaCodecInfo.VideoCapabilities.PerformancePoint performancePoint = new MediaCodecInfo.VideoCapabilities.PerformancePoint(1280, 720, 60);
@@ -106,15 +106,15 @@ public abstract class y {
         return 0;
     }
 
-    public static s1 d(e2.e eVar) {
+    public static t1 d(e2.e eVar) {
         h9.f0 p10 = h9.i0.p();
         h9.l0 l0Var = n2.b.h;
-        t0 t0Var = l0Var.f13700b;
+        t0 t0Var = l0Var.f14020b;
         if (t0Var == null) {
             t0Var = l0Var.d();
-            l0Var.f13700b = t0Var;
+            l0Var.f14020b = t0Var;
         }
-        g2 it = t0Var.iterator();
+        h2 it = t0Var.iterator();
         while (it.hasNext()) {
             Integer num = (Integer) it.next();
             int intValue = num.intValue();

@@ -10,17 +10,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 public final class t extends c {
-    public RandomAccessFile f16836a;
-    public Uri f16837b;
-    public long f16838c;
+    public RandomAccessFile f17221a;
+    public Uri f17222b;
+    public long f17223c;
     public boolean d;
 
     @Override
     public final void close() {
-        this.f16837b = null;
+        this.f17222b = null;
         try {
             try {
-                RandomAccessFile randomAccessFile = this.f16836a;
+                RandomAccessFile randomAccessFile = this.f17221a;
                 if (randomAccessFile != null) {
                     randomAccessFile.close();
                 }
@@ -28,7 +28,7 @@ public final class t extends c {
                 throw new j(e10, 2000);
             }
         } finally {
-            this.f16836a = null;
+            this.f17221a = null;
             if (this.d) {
                 this.d = false;
                 transferEnded();
@@ -38,32 +38,32 @@ public final class t extends c {
 
     @Override
     public final Uri getUri() {
-        return this.f16837b;
+        return this.f17222b;
     }
 
     @Override
     public final long open(m mVar) {
-        Uri uri = mVar.f16803a;
-        long j3 = mVar.f16806e;
-        this.f16837b = uri;
+        Uri uri = mVar.f17188a;
+        long j3 = mVar.f17191e;
+        this.f17222b = uri;
         transferInitializing(mVar);
         int i7 = 2006;
         try {
             String path = uri.getPath();
             path.getClass();
             RandomAccessFile randomAccessFile = new RandomAccessFile(path, "r");
-            this.f16836a = randomAccessFile;
+            this.f17221a = randomAccessFile;
             try {
                 randomAccessFile.seek(j3);
-                long j10 = mVar.f16807f;
+                long j10 = mVar.f17192f;
                 if (j10 == -1) {
-                    j10 = this.f16836a.length() - j3;
+                    j10 = this.f17221a.length() - j3;
                 }
-                this.f16838c = j10;
+                this.f17223c = j10;
                 if (j10 >= 0) {
                     this.d = true;
                     transferStarted(mVar);
-                    return this.f16838c;
+                    return this.f17223c;
                 }
                 throw new j(null, null, 2008);
             } catch (IOException e10) {
@@ -91,16 +91,16 @@ public final class t extends c {
         if (i10 == 0) {
             return 0;
         }
-        long j3 = this.f16838c;
+        long j3 = this.f17223c;
         if (j3 == 0) {
             return -1;
         }
         try {
-            RandomAccessFile randomAccessFile = this.f16836a;
-            String str = l0.f13471a;
+            RandomAccessFile randomAccessFile = this.f17221a;
+            String str = l0.f13786a;
             int read = randomAccessFile.read(bArr, i7, (int) Math.min(j3, i10));
             if (read > 0) {
-                this.f16838c -= read;
+                this.f17223c -= read;
                 bytesTransferred(read);
             }
             return read;

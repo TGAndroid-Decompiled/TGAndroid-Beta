@@ -1,103 +1,159 @@
 package org.telegram.ui.Wallet;
 
-import java.io.InputStream;
+import android.graphics.Bitmap;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import org.json.JSONObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.q10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_toncenter;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class e implements Runnable {
-    public final int f43780a;
-    public final f f43781b;
-    public final TL_wallet.currencyRates f43782c;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.z41;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Wallet.WalletEngine2;
+import org.telegram.ui.p51;
+public final class e implements q10 {
+    public final int f44095a;
+    public final Object f44096b;
 
-    public e(f fVar, TL_wallet.currencyRates currencyrates, int i7) {
-        this.f43780a = i7;
-        this.f43781b = fVar;
-        this.f43782c = currencyrates;
+    public e(Object obj, int i7) {
+        this.f44095a = i7;
+        this.f44096b = obj;
     }
 
     @Override
-    public final void run() {
-        int i7;
-        boolean z10;
+    public final void a(Object obj, Object obj2) {
         String str;
-        switch (this.f43780a) {
+        String z10;
+        z41 z41Var;
+        switch (this.f44095a) {
             case 0:
-                f fVar = this.f43781b;
-                TL_wallet.currencyRates currencyrates = this.f43782c;
-                boolean z11 = true;
-                if (currencyrates == null || currencyrates.rates == null) {
-                    i7 = 1;
+                g gVar = (g) this.f44096b;
+                TL_wallet.currencyRates currencyrates = (TL_wallet.currencyRates) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error != null) {
+                    p5.c.s(tL_error.text, new StringBuilder("[gram-wallet] failed to load currency rates: "));
+                    return;
                 } else {
-                    try {
-                        InputStream open = org.telegram.messenger.t0.f26609b.getAssets().open("currencies.json");
-                        String str2 = h2.l0.f13471a;
-                        JSONObject jSONObject = new JSONObject(new String(i9.f.b(open), g9.j.f12938a));
-                        ArrayList<TL_wallet.currencyRate> arrayList = currencyrates.rates;
-                        int size = arrayList.size();
-                        int i10 = 0;
-                        while (i10 < size) {
-                            TL_wallet.currencyRate currencyrate = arrayList.get(i10);
-                            i10++;
-                            TL_wallet.currencyRate currencyrate2 = currencyrate;
-                            if (currencyrate2 != null) {
-                                JSONObject optJSONObject = jSONObject.optJSONObject(currencyrate2.currency);
-                                if (optJSONObject == null) {
-                                    String str3 = currencyrate2.currency;
-                                    currencyrate2.title = str3;
-                                    currencyrate2.symbol = str3;
-                                    currencyrate2.thousandsSeparator = ",";
-                                    currencyrate2.decimalSeparator = ".";
-                                    currencyrate2.spaceBetween = z11;
-                                    currencyrate2.exp = 2;
-                                } else {
-                                    currencyrate2.title = optJSONObject.optString("title", currencyrate2.currency);
-                                    String optString = optJSONObject.optString("native", currencyrate2.currency);
-                                    String optString2 = optJSONObject.optString("symbol", currencyrate2.currency);
-                                    if (("$".equals(optString) && !"USD".equals(currencyrate2.currency)) || "kr".equals(optString)) {
-                                        z10 = true;
-                                    } else {
-                                        z10 = false;
-                                    }
-                                    if ("AED".equals(currencyrate2.currency)) {
-                                        str = "\u20c3";
-                                    } else if ("GEL".equals(currencyrate2.currency)) {
-                                        str = "₾";
-                                    } else if (z10) {
-                                        str = optString2;
-                                    } else {
-                                        str = optString;
-                                    }
-                                    currencyrate2.symbol = str;
-                                    currencyrate2.thousandsSeparator = optJSONObject.optString("thousands_sep", ",");
-                                    currencyrate2.decimalSeparator = optJSONObject.optString("decimal_sep", ".");
-                                    currencyrate2.symbolLeft = optJSONObject.optBoolean("symbol_left");
-                                    currencyrate2.spaceBetween = optJSONObject.optBoolean("space_between");
-                                    currencyrate2.dropZeros = optJSONObject.optBoolean("drop_zeros");
-                                    currencyrate2.exp = optJSONObject.optInt("exp", 2);
-                                    if ("AED".equals(currencyrate2.currency)) {
-                                        currencyrate2.title = currencyrate2.title.replace("United Arab Emirates", "UAE");
-                                    } else if ("USD".equalsIgnoreCase(currencyrate2.currency)) {
-                                        currencyrate2.title = currencyrate2.title.replace("United States", "US");
-                                    }
-                                    z11 = true;
-                                }
-                            }
-                        }
-                        open.close();
-                        i7 = 1;
-                    } catch (Exception e10) {
-                        i7 = 1;
-                        org.telegram.messenger.a8.g(e10, true);
-                    }
+                    Utilities.d.c(new f(gVar, currencyrates, 0));
+                    return;
                 }
-                org.telegram.messenger.g0.h3(new e(fVar, currencyrates, i7));
+            case 1:
+                j jVar = (j) this.f44096b;
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
+                String str2 = (String) obj2;
+                if (wallettransaction == null) {
+                    if (str2 == null) {
+                        str = "NULL_ERROR";
+                    } else {
+                        str = str2;
+                    }
+                    u0.n("emulate disable backup, no transaction: ".concat(str));
+                    if (str2 == null) {
+                        str2 = "NULL_ERROR";
+                    }
+                    jVar.a(null, str2);
+                    return;
+                }
+                jVar.a(Long.valueOf(wallettransaction.fee), null);
+                return;
+            case 2:
+                ((q10) this.f44096b).a((r0) obj, (String) obj2);
+                return;
+            case 3:
+                p51 p51Var = (p51) this.f44096b;
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
+                    z10 = null;
+                } else {
+                    z10 = l2.z(tL_error2, "closeSession");
+                }
+                p51Var.a(z10);
+                return;
+            case 4:
+                l2 l2Var = (l2) this.f44096b;
+                TL_wallet.tonConnectSessions tonconnectsessions = (TL_wallet.tonConnectSessions) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                u0 u0Var = l2Var.f44480b;
+                ArrayList arrayList = l2Var.d;
+                l2Var.f44482e = -1;
+                if (tL_error3 == null && tonconnectsessions != null) {
+                    arrayList.clear();
+                    ArrayList<TL_wallet.tonConnectSession> arrayList2 = tonconnectsessions.sessions;
+                    if (arrayList2 != null) {
+                        arrayList.addAll(arrayList2);
+                    }
+                    u0Var.T();
+                    return;
+                }
+                l2.z(tL_error3, "getSessions");
+                u0Var.T();
+                return;
+            case 5:
+                z41 z41Var2 = (z41) obj2;
+                ((ArrayList) obj).add(l41.k(((e3) this.f44096b).U1));
+                return;
+            case 6:
+                w3 w3Var = (w3) this.f44096b;
+                Bitmap bitmap = (Bitmap) obj;
+                Bitmap bitmap2 = (Bitmap) obj2;
+                if (!w3Var.T && !w3Var.S) {
+                    w3Var.H = bitmap;
+                    w3Var.f45205n.invalidate();
+                    w3Var.d();
+                    w3Var.F.a(bitmap2);
+                    w3Var.h.post(new q3(w3Var, 0));
+                    return;
+                }
+                bitmap.recycle();
+                bitmap2.recycle();
+                return;
+            case 7:
+                n6 n6Var = (n6) this.f44096b;
+                TL_account.Password password = (TL_account.Password) obj;
+                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
+                if (password != null) {
+                    n6Var.V0 = true;
+                    n6Var.W0 = password.has_password;
+                    bi.d6 d6Var = n6Var.f33530a;
+                    if (d6Var != null && (z41Var = d6Var.f34607g3) != null) {
+                        z41Var.O(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 8:
+                w4 w4Var = (w4) this.f44096b;
+                TL_toncenter.onrampSession onrampsession = (TL_toncenter.onrampSession) obj;
+                TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
+                if (onrampsession != null && !TextUtils.isEmpty(onrampsession.url)) {
+                    w4Var.a(null);
+                    org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
+                    if (T != null) {
+                        vf.c.t(T.getContext(), onrampsession.url);
+                        return;
+                    }
+                    return;
+                }
+                w4Var.a((tL_error5 == null || (r5 = tL_error5.text) == null) ? "NO_SESSION" : "NO_SESSION");
+                return;
+            case 9:
+                WalletEngine2.HttpTransport.lambda$execute$0((z7) this.f44096b, (TL_toncenter.apiResponse) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                f fVar2 = this.f43781b;
-                fVar2.d = this.f43782c;
-                fVar2.f43812c = false;
-                fVar2.f43811b.L();
+                String str3 = (String) obj;
+                Boolean bool2 = (Boolean) obj2;
+                ((na) this.f44096b).h = false;
                 return;
         }
+    }
+
+    public e(u0 u0Var, j jVar) {
+        this.f44095a = 1;
+        this.f44096b = jVar;
     }
 }

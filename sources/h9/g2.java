@@ -2,8 +2,27 @@ package h9;
 
 import java.util.Iterator;
 public abstract class g2 implements Iterator {
+    public final Iterator f14002a;
+
+    public g2(Iterator it) {
+        it.getClass();
+        this.f14002a = it;
+    }
+
+    public abstract Object a(Object obj);
+
+    @Override
+    public final boolean hasNext() {
+        return this.f14002a.hasNext();
+    }
+
+    @Override
+    public final Object next() {
+        return a(this.f14002a.next());
+    }
+
     @Override
     public final void remove() {
-        throw new UnsupportedOperationException();
+        this.f14002a.remove();
     }
 }

@@ -2,20 +2,20 @@ package oi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.ff;
-import org.telegram.messenger.ns;
+import org.telegram.messenger.ef;
+import org.telegram.messenger.ks;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.ii;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.vg;
-public final class l implements ii {
-    public final ki f21781a;
-    public final o f21782b;
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.qi;
+import org.telegram.ui.Components.si;
+public final class l implements qi {
+    public final si f22141a;
+    public final o f22142b;
 
-    public l(o oVar, ki kiVar) {
-        this.f21782b = oVar;
-        this.f21781a = kiVar;
+    public l(o oVar, si siVar) {
+        this.f22142b = oVar;
+        this.f22141a = siVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class l implements ii {
     }
 
     @Override
-    public final void d0(vg vgVar) {
-        ns.f(this.f21782b.f21847n).d(vgVar);
+    public final void f0(eh ehVar) {
+        ks.f(this.f22142b.f22209n).d(ehVar);
     }
 
     @Override
@@ -35,33 +35,33 @@ public final class l implements ii {
 
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        ki kiVar = this.f21781a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = kiVar.f36435e2;
-        q3 q3Var = this.f21782b.f21848r;
+        si siVar = this.f22141a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = siVar.f39670e2;
+        s3 s3Var = this.f22142b.f22210r;
         if (i7 == 7 || i7 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = q3Var.f21924j4;
-            q3Var.f21924j4 = null;
+            a aVar = s3Var.f22330j4;
+            s3Var.f22330j4 = null;
             int i12 = 0;
             while (true) {
                 if (i12 >= selectedPhotosOrder.size()) {
                     break;
                 }
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i12));
-                if (obj instanceof ff) {
+                if (obj instanceof ef) {
                     if (aVar != null) {
-                        q3Var.X1(aVar, (ff) obj);
+                        s3Var.X1(aVar, (ef) obj);
                     } else {
-                        q3Var.i2((ff) obj);
+                        s3Var.i2((ef) obj);
                     }
                 } else {
                     i12++;
                 }
             }
         }
-        q3Var.f21924j4 = null;
-        kiVar.a(true);
+        s3Var.f22330j4 = null;
+        siVar.a(true);
     }
 
     @Override

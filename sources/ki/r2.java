@@ -1,31 +1,14 @@
 package ki;
 
-import org.telegram.messenger.np;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class r2 implements RequestDelegate {
-    public final int f18531a;
-    public final s2 f18532b;
-
-    public r2(s2 s2Var, int i7) {
-        this.f18531a = i7;
-        this.f18532b = s2Var;
-    }
-
+import android.graphics.Point;
+import android.view.View;
+public final class r2 extends o3 {
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18531a) {
-            case 0:
-                x2 x2Var = this.f18532b.d;
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    np.s1(x2Var.I).O3((TLRPC.TL_updates) tLObject, false);
-                }
-                org.telegram.messenger.g0.h3(new x1(x2Var, 16));
-                return;
-            default:
-                org.telegram.messenger.g0.h3(new n(this.f18532b, tLObject, tL_error, 2));
-                return;
+    public final void onMeasure(int i7, int i10) {
+        if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
+            Point point = org.telegram.messenger.g0.f24121q;
+            i7 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
         }
+        super.onMeasure(i7, i10);
     }
 }

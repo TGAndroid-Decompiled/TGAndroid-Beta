@@ -1,43 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class fe0 extends AnimatorListenerAdapter {
-    public final int f34587a;
-    public final ge0 f34588b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class fe0 extends LinearLayout {
+    public final int f35071a = 0;
+    public final LinearLayout f35072b;
+    public final LinearLayout f35073c;
 
-    public fe0(ge0 ge0Var, int i7) {
-        this.f34587a = i7;
-        this.f34588b = ge0Var;
+    public fe0(Context context) {
+        super(context);
+        setOrientation(0);
+        setGravity(17);
+        setPadding(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f));
+        LinearLayout a10 = a(2131232333, org.telegram.messenger.gd.M0(2131746076, null));
+        this.f35073c = a10;
+        addView(a10, c8.ma.o(-2, -1));
+        LinearLayout a11 = a(2131231729, org.telegram.messenger.gd.M0(2131751324, null));
+        this.f35072b = a11;
+        addView(a11, c8.ma.o(-2, -1));
+    }
+
+    public LinearLayout a(int i7, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(7.0f));
+        linearLayout.addView(org.telegram.messenger.n10.e(context, i7), c8.ma.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, c8.ma.o(-2, -2));
+        c8.ra.a(linearLayout);
+        return linearLayout;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f34587a) {
+    public final void onMeasure(int i7, int i10) {
+        switch (this.f35071a) {
             case 0:
-                ge0 ge0Var = this.f34588b;
-                ge0Var.h = false;
-                ge0Var.f34917a = ge0Var.f34919c;
-                ge0Var.invalidate();
-                int i7 = ge0Var.K;
-                if (i7 >= 0) {
-                    ge0Var.b(i7);
-                    ge0Var.K = -1;
-                    return;
-                }
+                LinearLayout linearLayout = this.f35072b;
+                ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+                int size = View.MeasureSpec.getSize(i7);
+                int size2 = View.MeasureSpec.getSize(i10);
+                int paddingRight = getPaddingRight() + getPaddingLeft();
+                int paddingTop = getPaddingTop();
+                int max = Math.max(0, size - paddingRight);
+                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+                linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+                LinearLayout linearLayout2 = this.f35073c;
+                linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+                int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+                layoutParams2.width = min;
+                layoutParams.width = min;
+                super.onMeasure(i7, i10);
                 return;
             default:
-                ge0 ge0Var2 = this.f34588b;
-                ge0Var2.f34922n = false;
-                ge0Var2.h = false;
-                ge0Var2.invalidate();
-                int i10 = ge0Var2.K;
-                if (i10 >= 0) {
-                    ge0Var2.b(i10);
-                    ge0Var2.K = -1;
+                int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), Integer.MIN_VALUE);
+                int makeMeasureSpec4 = View.MeasureSpec.makeMeasureSpec(0, 0);
+                LinearLayout linearLayout3 = this.f35072b;
+                linearLayout3.measure(makeMeasureSpec3, makeMeasureSpec4);
+                LinearLayout linearLayout4 = this.f35073c;
+                if (linearLayout4 != null) {
+                    linearLayout4.measure(View.MeasureSpec.makeMeasureSpec(linearLayout3.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                    setMeasuredDimension(linearLayout3.getMeasuredWidth(), linearLayout4.getMeasuredHeight() + linearLayout3.getMeasuredHeight());
+                    return;
                 }
-                ge0Var2.a();
+                setMeasuredDimension(linearLayout3.getMeasuredWidth(), linearLayout3.getMeasuredHeight());
                 return;
         }
+    }
+
+    public fe0(Context context, LinearLayout linearLayout, LinearLayout linearLayout2) {
+        super(context);
+        this.f35072b = linearLayout;
+        this.f35073c = linearLayout2;
     }
 }

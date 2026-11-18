@@ -8,21 +8,21 @@ import android.os.Parcel;
 import android.text.TextUtils;
 import com.google.android.gms.common.api.Status;
 public final class h0 extends com.google.android.gms.common.api.internal.d {
-    public final int f3012q = 0;
-    public final byte[] f3013r;
-    public final String f3014s;
-    public final Object f3015t;
+    public final int f3006q = 0;
+    public final byte[] f3007r;
+    public final String f3008s;
+    public final Object f3009t;
 
     public h0(com.google.android.gms.common.api.m mVar, byte[] bArr, String str) {
-        super(p8.c.f54916a, mVar);
-        this.f3013r = bArr;
-        this.f3014s = str;
-        this.f3015t = new e8.e(this);
+        super(p8.c.f55492a, mVar);
+        this.f3007r = bArr;
+        this.f3008s = str;
+        this.f3009t = new e8.e(this);
     }
 
     @Override
     public final void a(com.google.android.gms.common.api.r rVar) {
-        switch (this.f3012q) {
+        switch (this.f3006q) {
             case 0:
                 a(rVar);
                 return;
@@ -34,7 +34,7 @@ public final class h0 extends com.google.android.gms.common.api.internal.d {
 
     @Override
     public final com.google.android.gms.common.api.r d(Status status) {
-        switch (this.f3012q) {
+        switch (this.f3006q) {
             case 0:
                 return new i0(status, -1);
             default:
@@ -48,18 +48,18 @@ public final class h0 extends com.google.android.gms.common.api.internal.d {
         Parcel obtain2;
         ApplicationInfo applicationInfo;
         Bundle bundle;
-        int i7 = this.f3012q;
-        String str = this.f3014s;
-        byte[] bArr = this.f3013r;
-        Object obj = this.f3015t;
+        int i7 = this.f3006q;
+        String str = this.f3008s;
+        byte[] bArr = this.f3007r;
+        Object obj = this.f3009t;
         switch (i7) {
             case 0:
                 f0 f0Var = (f0) ((z0) cVar).n();
                 ?? aVar = new a();
-                aVar.f3085b = this;
+                aVar.f3079b = this;
                 obtain = Parcel.obtain();
                 obtain.writeInterfaceToken(f0Var.f307c);
-                int i10 = i8.a.f15853a;
+                int i10 = i8.a.f16171a;
                 obtain.writeStrongBinder(aVar);
                 obtain.writeString(str);
                 obtain.writeString((String) obj);
@@ -91,7 +91,7 @@ public final class h0 extends com.google.android.gms.common.api.internal.d {
                 e8.c cVar2 = (e8.c) aVar2.n();
                 obtain = Parcel.obtain();
                 obtain.writeInterfaceToken("com.google.android.gms.safetynet.internal.ISafetyNetService");
-                int i11 = e8.b.f10555a;
+                int i11 = e8.b.f10873a;
                 if (eVar == null) {
                     obtain.writeStrongBinder(null);
                 } else {
@@ -101,7 +101,7 @@ public final class h0 extends com.google.android.gms.common.api.internal.d {
                 obtain.writeString(str);
                 obtain2 = Parcel.obtain();
                 try {
-                    cVar2.f10556a.transact(7, obtain, obtain2, 0);
+                    cVar2.f10874a.transact(7, obtain, obtain2, 0);
                     obtain2.readException();
                     return;
                 } finally {
@@ -111,8 +111,8 @@ public final class h0 extends com.google.android.gms.common.api.internal.d {
 
     public h0(com.google.android.gms.common.api.internal.p0 p0Var, String str, String str2, byte[] bArr) {
         super(a9.c.f754a, p0Var);
-        this.f3014s = str;
-        this.f3015t = str2;
-        this.f3013r = bArr;
+        this.f3008s = str;
+        this.f3009t = str2;
+        this.f3007r = bArr;
     }
 }

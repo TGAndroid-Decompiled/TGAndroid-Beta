@@ -1,15 +1,31 @@
 package org.telegram.ui;
-public final class xx0 extends e11 {
-    public final zx0 f53349e;
 
-    public xx0(zx0 zx0Var, wx0 wx0Var) {
-        super(wx0Var);
-        this.f53349e = zx0Var;
+import android.transition.Transition;
+public final class xx0 implements Transition.TransitionListener {
+    public final Runnable f53964a;
+
+    public xx0(Runnable runnable) {
+        this.f53964a = runnable;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f53349e.f54059n = null;
+    public final void onTransitionEnd(Transition transition) {
+        this.f53964a.run();
+    }
+
+    @Override
+    public final void onTransitionCancel(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionPause(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionStart(Transition transition) {
     }
 }

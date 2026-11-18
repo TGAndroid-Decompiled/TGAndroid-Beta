@@ -1,50 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class fx extends c5.a {
-    public final ly f34717c;
-
-    public fx(ly lyVar) {
-        this.f34717c = lyVar;
-    }
-
-    @Override
-    public final void a(c5.l lVar, Object obj) {
-        lVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.f34717c.f36942e.size();
-    }
-
-    @Override
-    public final CharSequence d(int i7) {
-        if (i7 != 0) {
-            if (i7 != 1) {
-                if (i7 != 2) {
-                    return null;
-                }
-                return org.telegram.messenger.hd.M0(2131754756, null);
-            }
-            return org.telegram.messenger.hd.M0(2131754879, null);
-        }
-        return org.telegram.messenger.hd.M0(2131751196, null);
-    }
-
-    @Override
-    public final Object e(c5.l lVar, int i7) {
-        FrameLayout frameLayout = ((hy) this.f34717c.f36942e.get(i7)).f35360b;
-        lVar.addView(frameLayout);
-        return frameLayout;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
-        }
-        return false;
-    }
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class fx {
+    public Long f35171a;
+    public TLRPC.StickerSet f35172b;
+    public ArrayList f35173c = new ArrayList();
+    public TLRPC.TL_inputStickerSetID d;
+    public boolean f35174e;
+    public boolean f35175f;
+    public boolean f35176g;
+    public boolean h;
+    public boolean f35177i;
+    public int f35178j;
 }

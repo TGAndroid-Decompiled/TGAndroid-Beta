@@ -43,7 +43,7 @@ public final class z0 extends q6.h {
         this.N = new g0(0);
         this.O = new g0(0);
         this.P = new g0(0);
-        q6.m.g(unconfigurableExecutorService);
+        q6.m.h(unconfigurableExecutorService);
         this.F = unconfigurableExecutorService;
         this.Q = a10;
         File file = new File(new File(context.getFilesDir(), "wearos_assets"), "streamtmp");
@@ -72,7 +72,7 @@ public final class z0 extends q6.h {
     @Override
     public final void h(q6.b bVar) {
         int i7;
-        q6.c0 c0Var = this.f55294k;
+        q6.c0 c0Var = this.f55868k;
         AtomicInteger atomicInteger = this.C;
         Context context = this.h;
         if (!c()) {
@@ -89,15 +89,15 @@ public final class z0 extends q6.h {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, i8.b.f15854a);
-                    q6.m.h(bVar, "Connection progress callbacks cannot be null.");
-                    this.f55298o = bVar;
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, i8.b.f16172a);
+                    q6.m.i(bVar, "Connection progress callbacks cannot be null.");
+                    this.f55872o = bVar;
                     c0Var.sendMessage(c0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
                     return;
                 }
             } catch (PackageManager.NameNotFoundException unused) {
-                q6.m.h(bVar, "Connection progress callbacks cannot be null.");
-                this.f55298o = bVar;
+                q6.m.i(bVar, "Connection progress callbacks cannot be null.");
+                this.f55872o = bVar;
                 c0Var.sendMessage(c0Var.obtainMessage(3, atomicInteger.get(), 16, null));
                 return;
             }

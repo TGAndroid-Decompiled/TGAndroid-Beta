@@ -1,52 +1,13 @@
 package org.telegram.ui.ActionBar;
-
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class o3 implements ig.a {
-    public i6 f29436a;
-    public TLRPC.TL_theme f29437b;
-    public TLRPC.TL_chatThemeUniqueGift f29438c;
-    public int d;
-    public int f29439e = -1;
-    public SparseIntArray f29440f;
-    public String f29441g;
-    public int h;
-    public int f29442i;
-    public int f29443j;
-    public int f29444k;
-    public int f29445l;
-    public int f29446m;
-    public int f29447n;
-    public int f29448o;
-
-    public final long a() {
-        TLRPC.TL_theme tL_theme = this.f29437b;
-        if (tL_theme != null) {
-            return tL_theme.f28190id;
+public final class o3 extends u1 {
+    @Override
+    public final int f(int i7) {
+        if (i7 == n6.f29469h5) {
+            return -14277082;
         }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f29438c;
-        if (tL_chatThemeUniqueGift != null) {
-            return tL_chatThemeUniqueGift.gift.gift_id;
+        if (i7 != n6.f29504j5 && i7 != n6.H5 && i7 != n6.A5) {
+            return n6.w0(i7, this.S0);
         }
-        return 0L;
-    }
-
-    public final TLRPC.ThemeSettings b(int i7) {
-        ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.f29437b;
-        if (tL_theme != null) {
-            arrayList = tL_theme.settings;
-        } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f29438c;
-            if (tL_chatThemeUniqueGift != null) {
-                arrayList = tL_chatThemeUniqueGift.theme_settings;
-            }
-            return null;
-        }
-        if (arrayList != null && i7 >= 0 && arrayList.size() > i7) {
-            return arrayList.get(i7);
-        }
-        return null;
+        return -1;
     }
 }

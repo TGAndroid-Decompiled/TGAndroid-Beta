@@ -1,11 +1,24 @@
 package c8;
 
-import java.util.Locale;
+import android.app.AppOpsManager;
+import android.content.Context;
+import android.os.Build;
+import android.os.Process;
+import android.provider.Settings;
 public abstract class nd {
-    public static int a(int i7) {
-        if (i7 < 100 && i7 >= 0) {
-            return Integer.parseInt(String.format(Locale.US, "%s%02d", com.google.android.gms.internal.vision.e2.k(String.valueOf(w7.s.m0().get(1)), 2, 0), Integer.valueOf(i7)));
+    public static wi.m f4893a;
+
+    public static boolean a(Context context) {
+        if (Settings.canDrawOverlays(context)) {
+            return true;
         }
-        return i7;
+        return false;
+    }
+
+    public static boolean b(Context context) {
+        if (Build.VERSION.SDK_INT < 26 || !context.getPackageManager().hasSystemFeature("android.software.picture_in_picture") || ((AppOpsManager) context.getSystemService("appops")).checkOpNoThrow("android:picture_in_picture", Process.myUid(), context.getPackageName()) != 0) {
+            return false;
+        }
+        return true;
     }
 }

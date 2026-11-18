@@ -1,6 +1,6 @@
 package i9;
 
-import a8.ja;
+import a8.la;
 public final class c extends d {
     public c(java.lang.String r2, java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: i9.c.<init>(java.lang.String, java.lang.String):void");
@@ -9,15 +9,15 @@ public final class c extends d {
     @Override
     public final void b(StringBuilder sb2, byte[] bArr, int i7) {
         int i10 = 0;
-        ja.n(0, i7, bArr.length);
+        la.n(0, i7, bArr.length);
         for (int i11 = i7; i11 >= 3; i11 -= 3) {
             int i12 = i10 + 2;
             int i13 = (bArr[i10 + 1] & 255) << 8;
             i10 += 3;
             int i14 = i13 | ((bArr[i10] & 255) << 16) | (bArr[i12] & 255);
-            a aVar = this.f15862a;
-            char[] cArr = aVar.f15856b;
-            char[] cArr2 = aVar.f15856b;
+            a aVar = this.f16180a;
+            char[] cArr = aVar.f16174b;
+            char[] cArr2 = aVar.f16174b;
             sb2.append(cArr[i14 >>> 18]);
             sb2.append(cArr2[(i14 >>> 12) & 63]);
             sb2.append(cArr2[(i14 >>> 6) & 63]);

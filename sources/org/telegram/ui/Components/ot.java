@@ -1,19 +1,18 @@
 package org.telegram.ui.Components;
+public final class ot implements xh.j, org.telegram.ui.ActionBar.r1 {
+    public final EditTextBoldCursor f38171a;
 
-import android.app.Dialog;
-import android.content.Context;
-public final class ot extends Dialog {
-    public final bi.t6 f38074a;
-
-    public ot(bi.t6 t6Var, Context context) {
-        super(context);
-        this.f38074a = t6Var;
+    public ot(EditTextBoldCursor editTextBoldCursor) {
+        this.f38171a = editTextBoldCursor;
     }
 
     @Override
-    public final void dismiss() {
-        pt ptVar = (pt) this.f38074a.f3885b;
-        ptVar.f38408a.k(false);
-        ptVar.f38408a.e();
+    public void a(xh.f fVar, float f10, float f11) {
+        this.f38171a.i(fVar, f10, f11);
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        org.telegram.messenger.g0.v1(this.f38171a);
     }
 }

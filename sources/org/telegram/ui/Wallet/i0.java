@@ -1,110 +1,44 @@
 package org.telegram.ui.Wallet;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-public final class i0 implements AutoCloseable {
-    public final byte[] f43960a;
-    public boolean f43961b;
+import org.telegram.messenger.q10;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class i0 implements Runnable {
+    public volatile boolean f44322a;
+    public Runnable f44323b;
+    public final String f44324c;
+    public final TL_wallet.nftItem d;
+    public final String f44325e;
+    public final q10 f44326f;
+    public final u0 h;
 
-    public i0(byte[] bArr) {
-        if (bArr != null) {
-            this.f43960a = (byte[]) bArr.clone();
-            return;
-        }
-        throw new IllegalArgumentException("Missing recovery phrase");
-    }
-
-    public static boolean e(byte b10) {
-        if (b10 != 32 && b10 != 9 && b10 != 10 && b10 != 13 && b10 != 12 && b10 != 11) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void a() {
-        if (!this.f43961b) {
-            return;
-        }
-        throw new IllegalStateException("Recovery phrase is closed");
-    }
-
-    public final synchronized i0 b() {
-        a();
-        return new i0(this.f43960a);
-    }
-
-    public final synchronized byte[] c() {
-        a();
-        return (byte[]) this.f43960a.clone();
+    public i0(u0 u0Var, String str, TL_wallet.nftItem nftitem, String str2, q10 q10Var) {
+        this.h = u0Var;
+        this.f44324c = str;
+        this.d = nftitem;
+        this.f44325e = str2;
+        this.f44326f = q10Var;
     }
 
     @Override
-    public final synchronized void close() {
-        Arrays.fill(this.f43960a, (byte) 0);
-        this.f43961b = true;
-    }
-
-    public final synchronized boolean d() {
-        boolean z10;
-        if (g() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        return z10;
-    }
-
-    public final synchronized ArrayList f() {
-        ArrayList arrayList;
+    public final synchronized void run() {
         try {
-            a();
-            arrayList = new ArrayList();
-            int i7 = 0;
-            while (i7 < this.f43960a.length) {
-                while (true) {
-                    byte[] bArr = this.f43960a;
-                    if (i7 >= bArr.length || !e(bArr[i7])) {
-                        break;
-                    }
-                    i7++;
+            try {
+                if (this.f44322a) {
+                    return;
                 }
-                int i10 = i7;
-                while (true) {
-                    byte[] bArr2 = this.f43960a;
-                    if (i10 >= bArr2.length || e(bArr2[i10])) {
-                        break;
-                    }
-                    i10++;
-                }
-                if (i10 > i7) {
-                    arrayList.add(new String(this.f43960a, i7, i10 - i7, StandardCharsets.UTF_8));
-                }
-                i7 = i10;
+                WalletEngine2 walletEngine2 = this.h.f45084b;
+                String str = this.f44324c;
+                TL_wallet.nftItem nftitem = this.d;
+                String str2 = nftitem.address;
+                String str3 = this.f44325e;
+                this.f44323b = walletEngine2.emulateSendNFT(str, str2, str3, new s(this, nftitem, str3, this.f44326f, 4));
+            } catch (Throwable th2) {
+                th = th2;
+                throw th;
             }
-        } catch (Throwable th2) {
-            throw th2;
+        } catch (Throwable th3) {
+            th = th3;
+            throw th;
         }
-        return arrayList;
-    }
-
-    public final synchronized int g() {
-        int i7;
-        a();
-        i7 = 0;
-        boolean z10 = false;
-        for (byte b10 : this.f43960a) {
-            if (e(b10)) {
-                z10 = false;
-            } else if (!z10) {
-                i7++;
-                z10 = true;
-            }
-        }
-        return i7;
-    }
-
-    public final String toString() {
-        return "SecretPhrase[redacted]";
     }
 }

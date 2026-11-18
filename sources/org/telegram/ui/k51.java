@@ -1,40 +1,71 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-public final class k51 implements org.telegram.ui.Components.dj0, org.telegram.ui.ActionBar.q1 {
-    public final int f48546a;
-    public final ThemeActivity f48547b;
-
-    public k51(ThemeActivity themeActivity, int i7) {
-        this.f48546a = i7;
-        this.f48547b = themeActivity;
-    }
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class k51 extends View {
+    public ImageReceiver f49183a;
+    public ImageReceiver f49184b;
+    public View f49185c;
+    public org.telegram.ui.Components.qd0 d;
+    public Path f49186e;
+    public Drawable f49187f;
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f48546a) {
-            case 1:
-                ThemeActivity themeActivity = this.f48547b;
-                if (themeActivity.getParentActivity() != null) {
-                    try {
-                        themeActivity.getParentActivity().startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
-            default:
-                ThemeActivity themeActivity2 = this.f48547b;
-                themeActivity2.getClass();
-                org.telegram.ui.Components.t4.T(themeActivity2, 0, null, null);
-                return;
+    public final void draw(Canvas canvas) {
+        int measuredWidth = getMeasuredWidth() >> 1;
+        int measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.L(30.0f);
+        int L = org.telegram.messenger.g0.L(46.0f) + measuredWidth;
+        ImageReceiver imageReceiver = this.f49183a;
+        imageReceiver.y0((measuredWidth - org.telegram.messenger.g0.L(46.0f)) - org.telegram.messenger.g0.L(30.0f), measuredHeight - org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
+        this.f49184b.y0(L - org.telegram.messenger.g0.L(30.0f), measuredHeight - org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
+        Drawable drawable = this.f49187f;
+        drawable.setBounds(org.telegram.ui.Cells.c0.C(2, measuredWidth, drawable), org.telegram.ui.Cells.c0.A(2, measuredHeight, drawable), org.telegram.ui.Cells.c0.y(2, measuredWidth, drawable), org.telegram.ui.Cells.c0.j(2, measuredHeight, drawable));
+        drawable.draw(canvas);
+        Path path = this.f49186e;
+        path.reset();
+        path.addCircle(L, measuredHeight, org.telegram.messenger.g0.L(30.0f), Path.Direction.CW);
+        imageReceiver.h(canvas, null);
+        if (this.f49185c != null) {
+            CropAreaView cropAreaView = this.d.f38763b.f21896a;
+            float L2 = org.telegram.messenger.g0.L(60.0f) / cropAreaView.f32873a;
+            float left = (0.0f - this.d.getLeft()) - cropAreaView.f32875b;
+            canvas.save();
+            canvas.clipPath(path);
+            canvas.scale(L2, L2, 0.0f, 0.0f);
+            canvas.translate(left, (0.0f - this.d.getTop()) - cropAreaView.f32877c);
+            canvas.translate((L - org.telegram.messenger.g0.L(30.0f)) / L2, (measuredHeight - org.telegram.messenger.g0.L(30.0f)) / L2);
+            PhotoViewer.p1().f43221g4 = true;
+            this.f49185c.draw(canvas);
+            PhotoViewer.p1().f43221g4 = false;
+            canvas.restore();
         }
+        super.draw(canvas);
+        this.f49185c.invalidate();
+        invalidate();
     }
 
     @Override
-    public int run() {
-        int i7;
-        i7 = this.f48547b.sensitiveContentRow;
-        return i7;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f49183a.P();
+        this.f49184b.P();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f49183a.R();
+        this.f49184b.R();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        this.f49183a.J0(org.telegram.messenger.g0.L(30.0f));
+        this.f49184b.J0(org.telegram.messenger.g0.L(30.0f));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(86.0f), 1073741824));
     }
 }

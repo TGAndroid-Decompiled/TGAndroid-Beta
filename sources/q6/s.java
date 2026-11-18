@@ -5,12 +5,12 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.Log;
-import c8.x9;
+import c8.z9;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class s {
-    public static final a0.l f55380a = new a0.l(0);
-    public static Locale f55381b;
+    public static final a0.l f55954a = new a0.l(0);
+    public static Locale f55955b;
 
     public static String a(Context context, int i7) {
         Resources resources = context.getResources();
@@ -122,7 +122,7 @@ public abstract class s {
     public static String d(Context context) {
         String packageName = context.getPackageName();
         try {
-            Context context2 = z6.b.a(context).f1971a;
+            Context context2 = z6.b.a(context).f1962a;
             return context2.getPackageManager().getApplicationLabel(context2.getPackageManager().getApplicationInfo(packageName, 0)).toString();
         } catch (PackageManager.NameNotFoundException | NullPointerException unused) {
             String str = context.getApplicationInfo().name;
@@ -144,19 +144,19 @@ public abstract class s {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.l lVar = f55380a;
+        a0.l lVar = f55954a;
         synchronized (lVar) {
             try {
-                Locale locale = x9.a(context.getResources().getConfiguration()).f20687a.get(0);
-                if (!locale.equals(f55381b)) {
+                Locale locale = z9.a(context.getResources().getConfiguration()).f21051a.get(0);
+                if (!locale.equals(f55955b)) {
                     lVar.clear();
-                    f55381b = locale;
+                    f55955b = locale;
                 }
                 String str2 = (String) lVar.get(str);
                 if (str2 != null) {
                     return str2;
                 }
-                AtomicBoolean atomicBoolean = n6.g.f21072a;
+                AtomicBoolean atomicBoolean = n6.g.f21436a;
                 try {
                     resources = context.getPackageManager().getResourcesForApplication("com.google.android.gms");
                 } catch (PackageManager.NameNotFoundException unused) {

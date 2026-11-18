@@ -3,12 +3,12 @@ package kotlin.jvm.internal;
 import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicReference;
 public final class a implements g, Serializable {
-    public final Object f18743a;
-    public final boolean f18744b = false;
-    public final int f18745c = 2;
+    public final Object f19110a;
+    public final boolean f19111b = false;
+    public final int f19112c = 2;
 
     public a(Object obj) {
-        this.f18743a = obj;
+        this.f19110a = obj;
     }
 
     public final boolean equals(Object obj) {
@@ -17,7 +17,7 @@ public final class a implements g, Serializable {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.f18744b == aVar.f18744b && this.f18745c == aVar.f18745c && j.a(this.f18743a, aVar.f18743a) && AtomicReference.class.equals(AtomicReference.class)) {
+            if (this.f19111b == aVar.f19111b && this.f19112c == aVar.f19112c && j.a(this.f19110a, aVar.f19110a) && AtomicReference.class.equals(AtomicReference.class)) {
                 return true;
             }
             return false;
@@ -33,23 +33,23 @@ public final class a implements g, Serializable {
     public final int hashCode() {
         int i7;
         int i10;
-        Object obj = this.f18743a;
+        Object obj = this.f19110a;
         if (obj != null) {
             i7 = obj.hashCode();
         } else {
             i7 = 0;
         }
         int hashCode = (((((AtomicReference.class.hashCode() + (i7 * 31)) * 31) + 113762) * 31) - 869290769) * 31;
-        if (this.f18744b) {
+        if (this.f19111b) {
             i10 = 1231;
         } else {
             i10 = 1237;
         }
-        return ((((hashCode + i10) * 31) + 2) * 31) + this.f18745c;
+        return ((((hashCode + i10) * 31) + 2) * 31) + this.f19112c;
     }
 
     public final String toString() {
-        s.f18758a.getClass();
+        s.f19125a.getClass();
         return t.a(this);
     }
 }

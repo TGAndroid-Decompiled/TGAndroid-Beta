@@ -1,26 +1,26 @@
 package bi;
 
-import org.telegram.ui.an;
-import org.telegram.ui.u91;
+import org.telegram.ui.bn;
+import org.telegram.ui.y91;
 public final class i implements Runnable {
-    public final int f3571a;
-    public final an f3572b;
+    public final int f3715a;
+    public final bn f3716b;
 
-    public i(an anVar, int i7) {
-        this.f3571a = i7;
-        this.f3572b = anVar;
+    public i(bn bnVar, int i7) {
+        this.f3715a = i7;
+        this.f3716b = bnVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f3571a) {
+        switch (this.f3715a) {
             case 0:
-                this.f3572b.Fc();
+                this.f3716b.Fc();
                 return;
             default:
-                an anVar = this.f3572b;
-                if (anVar.getParentLayout() != null) {
-                    u91.M0(anVar);
+                bn bnVar = this.f3716b;
+                if (bnVar.getParentLayout() != null) {
+                    y91.M0(bnVar);
                     return;
                 }
                 return;

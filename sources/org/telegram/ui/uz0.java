@@ -1,42 +1,62 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
 public final class uz0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f52069a;
-    public final n11 f52070b;
-    public final boolean f52071c;
+    public final int f52645a;
+    public final r11 f52646b;
 
-    public uz0(n11 n11Var, boolean z10, int i7) {
-        this.f52069a = i7;
-        this.f52070b = n11Var;
-        this.f52071c = z10;
+    public uz0(r11 r11Var, int i7) {
+        this.f52645a = i7;
+        this.f52646b = r11Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f52069a) {
+        switch (this.f52645a) {
             case 0:
-                n11 n11Var = this.f52070b;
-                l01 l01Var = n11Var.f49385i0;
-                b01 b01Var = n11Var.f49387j0;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f52071c) {
-                    floatValue = 1.0f - floatValue;
+                r11 r11Var = this.f52646b;
+                r11Var.getClass();
+                r11Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 1:
+                this.f52646b.m();
+                return;
+            case 2:
+                r11 r11Var2 = this.f52646b;
+                View view = r11Var2.f51462u0;
+                if (view != null) {
+                    view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 }
-                float f10 = 1.0f - floatValue;
-                l01Var.setAlpha(f10);
-                l01Var.setTranslationY(org.telegram.messenger.g0.L(8.0f) * floatValue);
-                b01Var.setAlpha(floatValue);
-                b01Var.setTranslationY(org.telegram.messenger.g0.L(8.0f) * f10);
-                n11Var.f49389k0.setAlpha(b01Var.getAlpha() * floatValue);
+                int w10 = org.telegram.ui.ActionBar.n6.w(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G8, r11Var2.f51418a1), i0.a.o(-16777216, (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f)));
+                View view2 = r11Var2.f51447n0;
+                if (view2 != null) {
+                    view2.getBackground().setColorFilter(new PorterDuffColorFilter(w10, PorterDuff.Mode.MULTIPLY));
+                }
+                org.telegram.ui.Components.jn jnVar = r11Var2.f51448o0;
+                if (jnVar != null) {
+                    jnVar.getBackground().setColorFilter(new PorterDuffColorFilter(w10, PorterDuff.Mode.MULTIPLY));
+                    return;
+                }
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f52071c) {
-                    floatValue2 = 1.0f - floatValue2;
+                r11 r11Var3 = this.f52646b;
+                m01 m01Var = r11Var3.f51421b0;
+                float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r11Var3.setTranslationY((1.0f - floatValue) * org.telegram.messenger.g0.L(8.0f));
+                View view3 = r11Var3.f51447n0;
+                if (view3 != null) {
+                    view3.setAlpha(floatValue);
                 }
-                n11 n11Var2 = this.f52070b;
-                n11Var2.f49389k0.setAlpha(n11Var2.f49387j0.getAlpha() * floatValue2);
+                org.telegram.ui.Components.jn jnVar2 = r11Var3.f51448o0;
+                if (jnVar2 != null) {
+                    jnVar2.setAlpha(floatValue * floatValue);
+                }
+                m01Var.setAlpha(floatValue);
+                m01Var.invalidate();
+                r11Var3.invalidate();
                 return;
         }
     }

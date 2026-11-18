@@ -1,10 +1,72 @@
 package org.telegram.messenger;
-public final class hs {
-    public final int f24214a;
-    public final Object[] f24215b;
 
-    public hs(int i7, Object[] objArr) {
-        this.f24214a = i7;
-        this.f24215b = objArr;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+public final class hs extends ArrayList {
+    public HashSet f24503a;
+
+    @Override
+    public final boolean add(Object obj) {
+        if (this.f24503a.add(obj)) {
+            return super.add(obj);
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean addAll(Collection collection) {
+        boolean z10 = false;
+        for (Object obj : collection) {
+            if (add(obj)) {
+                z10 = true;
+            }
+        }
+        return z10;
+    }
+
+    @Override
+    public final void clear() {
+        this.f24503a.clear();
+        super.clear();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        return this.f24503a.contains(obj);
+    }
+
+    @Override
+    public final Object remove(int i7) {
+        Object remove = super.remove(i7);
+        if (remove != null) {
+            this.f24503a.remove(remove);
+        }
+        return remove;
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void add(int i7, Object obj) {
+        if (this.f24503a.add(obj)) {
+            super.add(i7, obj);
+        }
+    }
+
+    @Override
+    public final boolean addAll(int i7, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        if (this.f24503a.remove(obj)) {
+            return super.remove(obj);
+        }
+        return false;
     }
 }

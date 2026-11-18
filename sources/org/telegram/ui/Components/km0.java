@@ -1,25 +1,31 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.LinearLayout;
-public class km0 extends LinearLayout {
-    public km0(Context context) {
-        super(context);
-        setWillNotDraw(false);
+public final class km0 extends jg.h0 {
+    public final org.telegram.ui.cx J0;
+    public final Context K0;
+    public final org.telegram.ui.kw L0;
+
+    public km0(org.telegram.ui.kw kwVar, Context context, org.telegram.ui.cx cxVar, int i7, int i10, v4.k kVar, boolean z10, org.telegram.ui.cx cxVar2, Context context2) {
+        super(context, cxVar, i7, i10, kVar, z10);
+        this.L0 = kwVar;
+        this.J0 = cxVar2;
+        this.K0 = context2;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        if (getParent() instanceof lm0) {
-            ((lm0) getParent()).invalidate();
+    public final void f() {
+        di.b1 b1Var;
+        int i7 = this.C0;
+        super.f();
+        org.telegram.ui.kw kwVar = this.L0;
+        if (!kwVar.L0 && (b1Var = kwVar.f39182b0) != null) {
+            b1Var.v0(0);
+            kwVar.L0 = true;
         }
+        if (b() != 0 || i7 == 0 || this.E0 > 0) {
+            return;
+        }
+        kwVar.f39183c0.e(false, false);
     }
 }

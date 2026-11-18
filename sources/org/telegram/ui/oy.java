@@ -1,25 +1,27 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class oy implements RequestDelegate {
-    public final int f50057a;
-    public final hz f50058b;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class oy implements org.telegram.messenger.x10 {
+    public final int f50679a;
+    public final kz f50680b;
 
-    public oy(hz hzVar, int i7) {
-        this.f50057a = i7;
-        this.f50058b = hzVar;
+    public oy(kz kzVar, int i7) {
+        this.f50679a = i7;
+        this.f50680b = kzVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f50057a) {
+    public final void a(Object obj) {
+        switch (this.f50679a) {
             case 0:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.voip.u(19, this.f50058b, tLObject));
+                Boolean bool = (Boolean) obj;
+                this.f50680b.finishFragment();
+                return;
+            case 1:
+                this.f50680b.s0((TL_chatlists.TL_exportedChatlistInvite) obj);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new tp(this.f50058b, tL_error, tLObject, 6));
+                this.f50680b.r0((TL_chatlists.TL_exportedChatlistInvite) obj);
                 return;
         }
     }

@@ -1,29 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class d41 extends URLSpan {
-    public final wy0 f33843a;
+import android.animation.ValueAnimator;
+public final class d41 implements ValueAnimator.AnimatorUpdateListener {
+    public int f34275a = 0;
+    public final int f34276b;
+    public final h41 f34277c;
 
-    public d41(String str, wy0 wy0Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f33843a = wy0Var;
+    public d41(h41 h41Var, int i7) {
+        this.f34277c = h41Var;
+        this.f34276b = i7;
     }
 
     @Override
-    public final void onClick(View view) {
-        vf.c.q(view.getContext(), Uri.parse(getURL()), true, true);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        wy0 wy0Var = this.f33843a;
-        if (wy0Var != null) {
-            wy0Var.a(textPaint);
-        }
-        textPaint.setUnderlineText(true);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int floatValue = (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * this.f34276b);
+        h41 h41Var = this.f34277c;
+        h41Var.O = true;
+        h41Var.f35719n.scrollBy(0, floatValue - this.f34275a);
+        h41Var.O = false;
+        this.f34275a = floatValue;
     }
 }

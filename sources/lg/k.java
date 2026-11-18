@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import com.google.android.gms.internal.vision.e2;
-import fi.f4;
+import fi.d4;
 import java.util.ArrayList;
 public final class k extends g {
     @Override
@@ -14,7 +14,7 @@ public final class k extends g {
         if (g.C1) {
             ArrayList arrayList = this.d;
             int i7 = 0;
-            if (((ng.f) arrayList.get(0)).f21149n) {
+            if (((ng.f) arrayList.get(0)).f21513n) {
                 super.K();
                 return;
             }
@@ -24,26 +24,26 @@ public final class k extends g {
                 Object obj = arrayList.get(i7);
                 i7++;
                 ng.f fVar = (ng.f) obj;
-                if (fVar.f21149n) {
-                    long j10 = fVar.f21138a.f20616e;
+                if (fVar.f21513n) {
+                    long j10 = fVar.f21502a.f20980e;
                     if (j10 > j3) {
                         j3 = j10;
                     }
                 }
             }
             if (arrayList.size() > 1) {
-                j3 = ((float) j3) * ((mg.c) this.f19439i0).f20629l[1];
+                j3 = ((float) j3) * ((mg.c) this.f19806i0).f20993l[1];
             }
             if (j3 > 0) {
                 float f10 = (float) j3;
                 if (f10 != this.m0) {
                     this.m0 = f10;
-                    Animator animator = this.f19430e0;
+                    Animator animator = this.f19797e0;
                     if (animator != null) {
                         animator.cancel();
                     }
-                    ValueAnimator e10 = g.e(this.f19443k0, this.m0, new f4(this, 4));
-                    this.f19430e0 = e10;
+                    ValueAnimator e10 = g.e(this.f19810k0, this.m0, new d4(this, 4));
+                    this.f19797e0 = e10;
                     e10.start();
                 }
             }
@@ -52,7 +52,7 @@ public final class k extends g {
 
     @Override
     public final ng.d f(long j3, int i7, long j10) {
-        float[] fArr = ((mg.c) this.f19439i0).f20629l;
+        float[] fArr = ((mg.c) this.f19806i0).f20993l;
         float f10 = 1.0f;
         if (fArr.length >= 2) {
             char c10 = 0;
@@ -82,30 +82,30 @@ public final class k extends g {
         float f15;
         int i10;
         char c11;
-        if (this.f19439i0 != null) {
+        if (this.f19806i0 != null) {
             float f16 = this.G0;
-            j jVar = this.f19437h0;
-            float f17 = jVar.f19480l;
-            float f18 = jVar.f19479k;
+            j jVar = this.f19804h0;
+            float f17 = jVar.f19847l;
+            float f18 = jVar.f19846k;
             float f19 = f16 / (f17 - f18);
             float f20 = g.l1;
             float f21 = (f18 * f19) - f20;
             canvas.save();
-            int i11 = this.f19464z0;
+            int i11 = this.f19831z0;
             float f22 = 2.0f;
             int i12 = 2;
             char c12 = 1;
             if (i11 == 2) {
                 ng.j jVar2 = this.A0;
-                float f23 = jVar2.f21159f;
+                float f23 = jVar2.f21523f;
                 if (f23 > 0.5f) {
                     f10 = 0.0f;
                 } else {
                     f10 = 1.0f - (f23 * 2.0f);
                 }
-                canvas.scale((f23 * 2.0f) + 1.0f, 1.0f, jVar2.d, jVar2.f21158e);
+                canvas.scale((f23 * 2.0f) + 1.0f, 1.0f, jVar2.d, jVar2.f21522e);
             } else if (i11 == 1) {
-                float f24 = this.A0.f21159f;
+                float f24 = this.A0.f21523f;
                 if (f24 < 0.3f) {
                     f10 = 0.0f;
                 } else {
@@ -113,10 +113,10 @@ public final class k extends g {
                 }
                 canvas.save();
                 ng.j jVar3 = this.A0;
-                float f25 = jVar3.f21159f;
-                canvas.scale(f25, f25, jVar3.d, jVar3.f21158e);
+                float f25 = jVar3.f21523f;
+                canvas.scale(f25, f25, jVar3.d, jVar3.f21522e);
             } else if (i11 == 3) {
-                f10 = this.A0.f21159f;
+                f10 = this.A0.f21523f;
             } else {
                 f10 = 1.0f;
             }
@@ -126,21 +126,21 @@ public final class k extends g {
                 ArrayList arrayList = this.d;
                 if (i14 < arrayList.size()) {
                     ng.f fVar = (ng.f) arrayList.get(i14);
-                    boolean z11 = fVar.f21149n;
-                    float[] fArr = fVar.f21146k;
+                    boolean z11 = fVar.f21513n;
+                    float[] fArr = fVar.f21510k;
                     float f26 = f22;
-                    Path path = fVar.f21142f;
-                    Paint paint = fVar.f21140c;
-                    if (!z11 && fVar.f21150o == 0.0f) {
+                    Path path = fVar.f21506f;
+                    Paint paint = fVar.f21504c;
+                    if (!z11 && fVar.f21514o == 0.0f) {
                         f12 = f19;
                         f13 = f21;
                         f14 = f20;
                         i7 = i13;
                         c10 = c12;
                     } else {
-                        long[] jArr = fVar.f21138a.f20613a;
+                        long[] jArr = fVar.f21502a.f20977a;
                         path.reset();
-                        float[] fArr2 = ((mg.c) this.f19439i0).f20621b;
+                        float[] fArr2 = ((mg.c) this.f19806i0).f20985b;
                         c10 = c12;
                         if (fArr2.length < i12) {
                             f11 = 1.0f;
@@ -149,7 +149,7 @@ public final class k extends g {
                         }
                         int i15 = ((int) (f20 / f11)) + 1;
                         int max = Math.max(i13, this.G - i15);
-                        int min = Math.min(((mg.c) this.f19439i0).f20621b.length - 1, this.H + i15);
+                        int min = Math.min(((mg.c) this.f19806i0).f20985b.length - 1, this.H + i15);
                         char c13 = c10;
                         int i16 = 0;
                         while (true) {
@@ -166,14 +166,14 @@ public final class k extends g {
                                 c11 = c13;
                             } else {
                                 f15 = f20;
-                                mg.c cVar = (mg.c) this.f19439i0;
+                                mg.c cVar = (mg.c) this.f19806i0;
                                 i10 = min;
-                                float f29 = (cVar.f20621b[max] * f27) - f28;
-                                float f30 = ((float) j3) * cVar.f20629l[i14];
-                                float f31 = this.f19460x;
+                                float f29 = (cVar.f20985b[max] * f27) - f28;
+                                float f30 = ((float) j3) * cVar.f20993l[i14];
+                                float f31 = this.f19827x;
                                 float strokeWidth = paint.getStrokeWidth() / f26;
                                 c11 = c13;
-                                float t6 = e2.t((getMeasuredHeight() - this.f19453s) - g.f19406o1, strokeWidth, (f30 - f31) / (this.f19458w - f31), (getMeasuredHeight() - this.f19453s) - strokeWidth);
+                                float t6 = e2.t((getMeasuredHeight() - this.f19820s) - g.f19773o1, strokeWidth, (f30 - f31) / (this.f19825w - f31), (getMeasuredHeight() - this.f19820s) - strokeWidth);
                                 if (z10) {
                                     if (i16 == 0) {
                                         int i17 = i16 + 1;
@@ -215,7 +215,7 @@ public final class k extends g {
                         } else {
                             paint.setStrokeCap(Paint.Cap.ROUND);
                         }
-                        paint.setAlpha((int) (fVar.f21150o * 255.0f * f10));
+                        paint.setAlpha((int) (fVar.f21514o * 255.0f * f10));
                         if (!z10) {
                             canvas.drawPath(path, paint);
                             i7 = 0;
@@ -252,29 +252,29 @@ public final class k extends g {
         int i13;
         float f10;
         int measuredHeight = getMeasuredHeight();
-        int i14 = g.f19409r1;
+        int i14 = g.f19776r1;
         int i15 = measuredHeight - i14;
         int measuredHeight2 = (getMeasuredHeight() - this.C0) - i14;
         ArrayList arrayList3 = this.d;
         int size = arrayList3.size();
-        if (this.f19439i0 != null) {
+        if (this.f19806i0 != null) {
             int i16 = 0;
             while (i16 < size) {
                 ng.f fVar = (ng.f) arrayList3.get(i16);
-                boolean z11 = fVar.f21149n;
-                Paint paint = fVar.f21139b;
-                float[] fArr = fVar.f21147l;
-                Path path = fVar.f21141e;
-                if (!z11 && fVar.f21150o == 0.0f) {
+                boolean z11 = fVar.f21513n;
+                Paint paint = fVar.f21503b;
+                float[] fArr = fVar.f21511l;
+                Path path = fVar.f21505e;
+                if (!z11 && fVar.f21514o == 0.0f) {
                     i7 = i15;
                     arrayList = arrayList3;
                     i10 = measuredHeight2;
                     i11 = i16;
                 } else {
                     path.reset();
-                    int length = ((mg.c) this.f19439i0).f20621b.length;
-                    long[] jArr = fVar.f21138a.f20613a;
-                    fVar.f21142f.reset();
+                    int length = ((mg.c) this.f19806i0).f20985b.length;
+                    long[] jArr = fVar.f21502a.f20977a;
+                    fVar.f21506f.reset();
                     int i17 = 0;
                     int i18 = 0;
                     while (true) {
@@ -290,18 +290,18 @@ public final class k extends g {
                             i13 = measuredHeight2;
                         } else {
                             i12 = i15;
-                            mg.b bVar = this.f19439i0;
-                            float f11 = this.D0 * ((mg.c) bVar).f20621b[i18];
+                            mg.b bVar = this.f19806i0;
+                            float f11 = this.D0 * ((mg.c) bVar).f20985b[i18];
                             if (g.C1) {
                                 arrayList2 = arrayList3;
-                                f10 = this.f19443k0;
+                                f10 = this.f19810k0;
                                 i13 = measuredHeight2;
                             } else {
                                 arrayList2 = arrayList3;
                                 i13 = measuredHeight2;
-                                f10 = (float) ((mg.c) bVar).f20623e;
+                                f10 = (float) ((mg.c) bVar).f20987e;
                             }
-                            float f12 = (1.0f - ((((float) j3) * ((mg.c) bVar).f20629l[i19]) / f10)) * (i12 - i13);
+                            float f12 = (1.0f - ((((float) j3) * ((mg.c) bVar).f20993l[i19]) / f10)) * (i12 - i13);
                             if (z10) {
                                 if (i17 == 0) {
                                     int i20 = i17 + 1;
@@ -332,11 +332,11 @@ public final class k extends g {
                     arrayList = arrayList3;
                     i10 = measuredHeight2;
                     i11 = i16;
-                    fVar.f21145j = i17;
-                    if (fVar.f21149n || fVar.f21150o != 0.0f) {
-                        paint.setAlpha((int) (fVar.f21150o * 255.0f));
+                    fVar.f21509j = i17;
+                    if (fVar.f21513n || fVar.f21514o != 0.0f) {
+                        paint.setAlpha((int) (fVar.f21514o * 255.0f));
                         if (z10) {
-                            canvas.drawLines(fArr, 0, fVar.f21145j, paint);
+                            canvas.drawLines(fArr, 0, fVar.f21509j, paint);
                         } else {
                             canvas.drawPath(path, paint);
                         }
@@ -356,38 +356,38 @@ public final class k extends g {
 
     @Override
     public final void o(Canvas canvas) {
-        int i7 = this.f19455t0;
-        if (i7 >= 0 && this.f19457v0) {
+        int i7 = this.f19822t0;
+        if (i7 >= 0 && this.f19824v0) {
             float f10 = this.G0;
-            j jVar = this.f19437h0;
-            float f11 = jVar.f19480l;
-            float f12 = jVar.f19479k;
+            j jVar = this.f19804h0;
+            float f11 = jVar.f19847l;
+            float f12 = jVar.f19846k;
             float f13 = f10 / (f11 - f12);
-            float f14 = (((mg.c) this.f19439i0).f20621b[i7] * f13) - ((f12 * f13) - g.l1);
+            float f14 = (((mg.c) this.f19806i0).f20985b[i7] * f13) - ((f12 * f13) - g.l1);
             Paint paint = this.N;
-            paint.setAlpha((int) (this.f19451r * this.f19459w0));
+            paint.setAlpha((int) (this.f19818r * this.f19826w0));
             canvas.drawLine(f14, 0.0f, f14, this.I0.bottom, paint);
             ArrayList arrayList = this.d;
-            this.f19447n0 = arrayList.size();
+            this.f19814n0 = arrayList.size();
             int i10 = 0;
             while (true) {
-                this.f19448o0 = i10;
-                int i11 = this.f19448o0;
-                if (i11 < this.f19447n0) {
+                this.f19815o0 = i10;
+                int i11 = this.f19815o0;
+                if (i11 < this.f19814n0) {
                     ng.f fVar = (ng.f) arrayList.get(i11);
-                    boolean z10 = fVar.f21149n;
+                    boolean z10 = fVar.f21513n;
                     Paint paint2 = fVar.d;
-                    if (z10 || fVar.f21150o != 0.0f) {
-                        float f15 = ((float) fVar.f21138a.f20613a[this.f19455t0]) * ((mg.c) this.f19439i0).f20629l[this.f19448o0];
-                        float f16 = this.f19460x;
-                        float measuredHeight = (getMeasuredHeight() - this.f19453s) - (((f15 - f16) / (this.f19458w - f16)) * ((getMeasuredHeight() - this.f19453s) - g.f19406o1));
-                        paint2.setAlpha((int) (fVar.f21150o * 255.0f * this.f19459w0));
+                    if (z10 || fVar.f21514o != 0.0f) {
+                        float f15 = ((float) fVar.f21502a.f20977a[this.f19822t0]) * ((mg.c) this.f19806i0).f20993l[this.f19815o0];
+                        float f16 = this.f19827x;
+                        float measuredHeight = (getMeasuredHeight() - this.f19820s) - (((f15 - f16) / (this.f19825w - f16)) * ((getMeasuredHeight() - this.f19820s) - g.f19773o1));
+                        paint2.setAlpha((int) (fVar.f21514o * 255.0f * this.f19826w0));
                         Paint paint3 = this.T;
-                        paint3.setAlpha((int) (fVar.f21150o * 255.0f * this.f19459w0));
+                        paint3.setAlpha((int) (fVar.f21514o * 255.0f * this.f19826w0));
                         canvas.drawPoint(f14, measuredHeight, paint2);
                         canvas.drawPoint(f14, measuredHeight, paint3);
                     }
-                    i10 = this.f19448o0 + 1;
+                    i10 = this.f19815o0 + 1;
                 } else {
                     return;
                 }
@@ -410,8 +410,8 @@ public final class k extends g {
         int size = arrayList.size();
         long j10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
-            if (((ng.f) arrayList.get(i11)).f21149n) {
-                j3 = ((float) ((mg.a) ((mg.c) this.f19439i0).d.get(i11)).f20614b.Y0(i7, i10)) * ((mg.c) this.f19439i0).f20629l[i11];
+            if (((ng.f) arrayList.get(i11)).f21513n) {
+                j3 = ((float) ((mg.a) ((mg.c) this.f19806i0).d.get(i11)).f20978b.U0(i7, i10)) * ((mg.c) this.f19806i0).f20993l[i11];
             } else {
                 j3 = 0;
             }
@@ -432,8 +432,8 @@ public final class k extends g {
         int size = arrayList.size();
         long j10 = Long.MAX_VALUE;
         for (int i11 = 0; i11 < size; i11++) {
-            if (((ng.f) arrayList.get(i11)).f21149n) {
-                j3 = (int) (((float) ((mg.a) ((mg.c) this.f19439i0).d.get(i11)).f20614b.a1(i7, i10)) * ((mg.c) this.f19439i0).f20629l[i11]);
+            if (((ng.f) arrayList.get(i11)).f21513n) {
+                j3 = (int) (((float) ((mg.a) ((mg.c) this.f19806i0).d.get(i11)).f20978b.Z0(i7, i10)) * ((mg.c) this.f19806i0).f20993l[i11]);
             } else {
                 j3 = 2147483647L;
             }

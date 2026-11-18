@@ -35,45 +35,45 @@ import q6.m;
 import q6.p;
 public final class d extends pb.e {
     public boolean d = true;
-    public final u8 f60560e;
-    public final a f60561f;
-    public final ua f60562g;
+    public final u8 f61125e;
+    public final a f61126f;
+    public final ua f61127g;
     public final wa h;
 
     public d(xb.a aVar, a aVar2, ua uaVar) {
-        m.h(aVar, "ImageLabelerOptions can not be null");
-        this.f60561f = aVar2;
-        this.f60562g = uaVar;
+        m.i(aVar, "ImageLabelerOptions can not be null");
+        this.f61126f = aVar2;
+        this.f61127g = uaVar;
         ?? obj = new Object();
-        obj.f649a = Float.valueOf(aVar.f59093a);
-        this.f60560e = new u8(obj);
+        obj.f649a = Float.valueOf(aVar.f59658a);
+        this.f61125e = new u8(obj);
         this.h = new wa(g.c().b(), 0);
     }
 
     @Override
     public final synchronized void b() {
-        this.f60561f.zzb();
-        ua uaVar = this.f60562g;
+        this.f61126f.zzb();
+        ua uaVar = this.f61127g;
         ?? obj = new Object();
         obj.f343c = y7.TYPE_THIN;
         q qVar = new q(2, false);
-        qVar.f55252b = this.f60560e;
+        qVar.f55826b = this.f61125e;
         s sVar = u.f650b;
         Object[] objArr = {z7.NO_ERROR};
         u0.a(1, objArr);
-        qVar.f55253c = new a0(1, objArr);
+        qVar.f55827c = new a0(1, objArr);
         obj.d = new s8(qVar);
-        n.f54964a.execute(new qa(uaVar, new xa((b8) obj, 0), a8.ON_DEVICE_IMAGE_LABEL_LOAD, uaVar.b(), 0));
+        n.f55540a.execute(new qa(uaVar, new xa((b8) obj, 0), a8.ON_DEVICE_IMAGE_LABEL_LOAD, uaVar.b(), 0));
     }
 
     @Override
     public final synchronized void c() {
-        this.f60561f.zzc();
+        this.f61126f.zzc();
         this.d = true;
-        ua uaVar = this.f60562g;
+        ua uaVar = this.f61127g;
         ?? obj = new Object();
         obj.f343c = y7.TYPE_THIN;
-        n.f54964a.execute(new qa(uaVar, new xa((b8) obj, 0), a8.ON_DEVICE_IMAGE_LABEL_CLOSE, uaVar.b(), 0));
+        n.f55540a.execute(new qa(uaVar, new xa((b8) obj, 0), a8.ON_DEVICE_IMAGE_LABEL_CLOSE, uaVar.b(), 0));
     }
 
     @Override
@@ -83,11 +83,11 @@ public final class d extends pb.e {
         synchronized (this) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             try {
-                c10 = this.f60561f.c(aVar);
+                c10 = this.f61126f.c(aVar);
                 f(z7.NO_ERROR, aVar, elapsedRealtime);
                 this.d = false;
             } catch (lb.a e10) {
-                if (e10.f19343a == 14) {
+                if (e10.f19710a == 14) {
                     z7Var = z7.MODEL_NOT_DOWNLOADED;
                 } else {
                     z7Var = z7.UNKNOWN_ERROR;
@@ -103,7 +103,7 @@ public final class d extends pb.e {
         int i7;
         o7 o7Var;
         long elapsedRealtime = SystemClock.elapsedRealtime() - j3;
-        ua uaVar = this.f60562g;
+        ua uaVar = this.f61127g;
         a8 a8Var = a8.ON_DEVICE_IMAGE_LABEL_DETECT;
         uaVar.getClass();
         long elapsedRealtime2 = SystemClock.elapsedRealtime();
@@ -119,21 +119,21 @@ public final class d extends pb.e {
             Boolean bool = Boolean.TRUE;
             r7Var.f619e = bool;
             r7Var.f620f = bool;
-            a0Var.f1713b = new s7(r7Var);
-            int i10 = aVar.f58000e;
+            a0Var.f1704b = new s7(r7Var);
+            int i10 = aVar.f58565e;
             if (i10 == -1) {
-                Bitmap bitmap = aVar.f57997a;
-                m.g(bitmap);
+                Bitmap bitmap = aVar.f58562a;
+                m.h(bitmap);
                 i7 = bitmap.getAllocationByteCount();
             } else if (i10 != 17 && i10 != 842094169) {
                 if (i10 != 35) {
                     i7 = 0;
                 } else {
-                    m.g(null);
+                    m.h(null);
                     throw null;
                 }
             } else {
-                m.g(null);
+                m.h(null);
                 throw null;
             }
             wf.b bVar = new wf.b(1, false);
@@ -158,18 +158,18 @@ public final class d extends pb.e {
             } else {
                 o7Var = o7.BITMAP;
             }
-            bVar.f59107b = o7Var;
-            bVar.f59108c = Integer.valueOf(i7 & Integer.MAX_VALUE);
+            bVar.f59672b = o7Var;
+            bVar.f59673c = Integer.valueOf(i7 & Integer.MAX_VALUE);
             a0Var.d = new p7(bVar);
-            a0Var.f1714c = this.f60560e;
+            a0Var.f1705c = this.f61125e;
             obj.f344e = new r8(a0Var);
-            n.f54964a.execute(new qa(uaVar, new xa((b8) obj, 0), a8Var, uaVar.b(), 0));
+            n.f55540a.execute(new qa(uaVar, new xa((b8) obj, 0), a8Var, uaVar.b(), 0));
         }
         android.support.v4.media.session.a0 a0Var2 = new android.support.v4.media.session.a0(3, false);
-        a0Var2.d = this.f60560e;
-        a0Var2.f1713b = z7Var;
-        a0Var2.f1714c = Boolean.valueOf(this.d);
-        n.f54964a.execute(new ra(this.f60562g, new e1(a0Var2), elapsedRealtime));
+        a0Var2.d = this.f61125e;
+        a0Var2.f1704b = z7Var;
+        a0Var2.f1705c = Boolean.valueOf(this.d);
+        n.f55540a.execute(new ra(this.f61127g, new e1(a0Var2), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         wa waVar = this.h;
         int i11 = z7Var.f750a;

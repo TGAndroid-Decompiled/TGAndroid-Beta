@@ -13,21 +13,21 @@ import java.lang.reflect.InvocationTargetException;
 import w7.s;
 public final class f {
     public static Boolean d = null;
-    public static String f2953e = null;
-    public static boolean f2954f = false;
-    public static int f2955g = -1;
+    public static String f2947e = null;
+    public static boolean f2948f = false;
+    public static int f2949g = -1;
     public static Boolean h;
-    public static m f2959l;
-    public static n f2960m;
-    public final Context f2961a;
-    public static final ThreadLocal f2956i = new ThreadLocal();
-    public static final j f2957j = new j(0);
-    public static final sa.d f2958k = new sa.d(4);
-    public static final s f2951b = new s(4);
-    public static final nb.a f2952c = new nb.a(5);
+    public static m f2953l;
+    public static n f2954m;
+    public final Context f2955a;
+    public static final ThreadLocal f2950i = new ThreadLocal();
+    public static final j f2951j = new j(0);
+    public static final sa.d f2952k = new sa.d(4);
+    public static final s f2945b = new s(4);
+    public static final nb.a f2946c = new nb.a(5);
 
     public f(Context context) {
-        this.f2961a = context;
+        this.f2955a = context;
     }
 
     public static int a(Context context, String str) {
@@ -40,7 +40,7 @@ public final class f {
             Class<?> loadClass = classLoader.loadClass(sb2.toString());
             Field declaredField = loadClass.getDeclaredField("MODULE_ID");
             Field declaredField2 = loadClass.getDeclaredField("MODULE_VERSION");
-            if (!q6.m.k(declaredField.get(null), str)) {
+            if (!q6.m.l(declaredField.get(null), str)) {
                 String valueOf = String.valueOf(declaredField.get(null));
                 StringBuilder sb3 = new StringBuilder(valueOf.length() + 50 + String.valueOf(str).length() + 1);
                 sb3.append("Module descriptor id '");
@@ -89,13 +89,13 @@ public final class f {
                 i7 = 0;
             }
             ProviderInfo resolveContentProvider = packageManager.resolveContentProvider("com.google.android.gms.chimera", i7);
-            if (n6.e.f21070b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
+            if (n6.e.f21434b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
                 z10 = true;
             }
             h = Boolean.valueOf(z10);
             if (z10 && (applicationInfo = resolveContentProvider.applicationInfo) != null && (applicationInfo.flags & 129) == 0) {
                 Log.i("DynamiteModule", "Non-system-image GmsCore APK, forcing V1");
-                f2954f = true;
+                f2948f = true;
             }
         }
         if (!z10) {
@@ -120,7 +120,7 @@ public final class f {
                     nVar = new a8.a(iBinder, "com.google.android.gms.dynamite.IDynamiteLoaderV2", 9);
                 }
             }
-            f2960m = nVar;
+            f2954m = nVar;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e10) {
             throw new Exception("Failed to instantiate dynamite loader", e10);
         }
@@ -129,7 +129,7 @@ public final class f {
     public static m h(Context context) {
         m mVar;
         synchronized (f.class) {
-            m mVar2 = f2959l;
+            m mVar2 = f2953l;
             if (mVar2 != null) {
                 return mVar2;
             }
@@ -146,7 +146,7 @@ public final class f {
                     }
                 }
                 if (mVar != 0) {
-                    f2959l = mVar;
+                    f2953l = mVar;
                     return mVar;
                 }
             } catch (Exception e10) {
@@ -162,7 +162,7 @@ public final class f {
 
     public final IBinder b(String str) {
         try {
-            return (IBinder) this.f2961a.getClassLoader().loadClass(str).newInstance();
+            return (IBinder) this.f2955a.getClassLoader().loadClass(str).newInstance();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e10) {
             throw new Exception("Failed to instantiate module class: ".concat(str), e10);
         }

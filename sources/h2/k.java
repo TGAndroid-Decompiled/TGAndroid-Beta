@@ -9,17 +9,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 public final class k implements Iterable {
-    public final Object f13460a = new Object();
-    public final HashMap f13461b = new HashMap();
-    public Set f13462c = Collections.EMPTY_SET;
+    public final Object f13775a = new Object();
+    public final HashMap f13776b = new HashMap();
+    public Set f13777c = Collections.EMPTY_SET;
     public List d = Collections.EMPTY_LIST;
 
-    public final int f(q2.k kVar) {
+    public final int f(q2.j jVar) {
         int i7;
-        synchronized (this.f13460a) {
+        synchronized (this.f13775a) {
             try {
-                if (this.f13461b.containsKey(kVar)) {
-                    i7 = ((Integer) this.f13461b.get(kVar)).intValue();
+                if (this.f13776b.containsKey(jVar)) {
+                    i7 = ((Integer) this.f13776b.get(jVar)).intValue();
                 } else {
                     i7 = 0;
                 }
@@ -30,23 +30,23 @@ public final class k implements Iterable {
         return i7;
     }
 
-    public final void i(q2.k kVar) {
-        synchronized (this.f13460a) {
+    public final void i(q2.j jVar) {
+        synchronized (this.f13775a) {
             try {
-                Integer num = (Integer) this.f13461b.get(kVar);
+                Integer num = (Integer) this.f13776b.get(jVar);
                 if (num == null) {
                     return;
                 }
                 ArrayList arrayList = new ArrayList(this.d);
-                arrayList.remove(kVar);
+                arrayList.remove(jVar);
                 this.d = DesugarCollections.unmodifiableList(arrayList);
                 if (num.intValue() == 1) {
-                    this.f13461b.remove(kVar);
-                    HashSet hashSet = new HashSet(this.f13462c);
-                    hashSet.remove(kVar);
-                    this.f13462c = DesugarCollections.unmodifiableSet(hashSet);
+                    this.f13776b.remove(jVar);
+                    HashSet hashSet = new HashSet(this.f13777c);
+                    hashSet.remove(jVar);
+                    this.f13777c = DesugarCollections.unmodifiableSet(hashSet);
                 } else {
-                    this.f13461b.put(kVar, Integer.valueOf(num.intValue() - 1));
+                    this.f13776b.put(jVar, Integer.valueOf(num.intValue() - 1));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -57,7 +57,7 @@ public final class k implements Iterable {
     @Override
     public final Iterator iterator() {
         Iterator it;
-        synchronized (this.f13460a) {
+        synchronized (this.f13775a) {
             it = this.d.iterator();
         }
         return it;

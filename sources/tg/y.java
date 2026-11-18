@@ -3,32 +3,32 @@ package tg;
 import android.content.Context;
 import android.graphics.PointF;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.Components.nt0;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.mh0;
+import org.telegram.ui.Components.vt0;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.tp0;
+import org.telegram.ui.vp0;
 public final class y extends f2 {
-    public final g0 f57604z0;
+    public final g0 f58171z0;
 
-    public y(g0 g0Var, Context context, PointF pointF, float f10, float f11, nt0 nt0Var, TLRPC.Document document, Object obj) {
-        super(context, pointF, f10, f11, nt0Var, document, obj);
-        this.f57604z0 = g0Var;
+    public y(g0 g0Var, Context context, PointF pointF, float f10, float f11, vt0 vt0Var, TLRPC.Document document, Object obj) {
+        super(context, pointF, f10, f11, vt0Var, document, obj);
+        this.f58171z0 = g0Var;
     }
 
     @Override
-    public final void q(ch0 ch0Var) {
-        PhotoViewer photoViewer = ((tp0) this.f57604z0).Y1;
-        u51 u51Var = photoViewer.G2;
-        if (u51Var == null) {
+    public final void q(mh0 mh0Var) {
+        PhotoViewer photoViewer = ((vp0) this.f58171z0).Y1;
+        f61 f61Var = photoViewer.G2;
+        if (f61Var == null) {
             return;
         }
-        long S = u51Var.S();
-        long j3 = photoViewer.f42829m8;
+        long S = f61Var.S();
+        long j3 = photoViewer.f43274m8;
         long j10 = 0;
         if (j3 > 0) {
             j10 = j3 / 1000;
         }
-        ch0Var.U(S - j10);
+        mh0Var.U(S - j10);
     }
 }

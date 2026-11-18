@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class sv extends yx {
-    public final ly I;
+public final class sv extends ey {
+    public final ry I;
 
-    public sv(ly lyVar, Context context) {
-        super(lyVar, context, 2);
-        this.I = lyVar;
+    public sv(ry ryVar, Context context) {
+        super(ryVar, context, 1);
+        this.I = ryVar;
     }
 
     @Override
     public final void setTranslationY(float f10) {
-        if (getTranslationY() != f10) {
+        if (f10 != getTranslationY()) {
             super.setTranslationY(f10);
-            this.I.f36953h0.invalidate();
+            this.I.K.invalidate();
         }
     }
 }

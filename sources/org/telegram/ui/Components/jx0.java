@@ -1,32 +1,26 @@
 package org.telegram.ui.Components;
-public final class jx0 {
-    public final int f36188a;
-    public final int f36189b;
+public final class jx0 extends nx0 {
+    public int d;
 
-    public jx0(int i7, int i10) {
-        this.f36188a = i7;
-        this.f36189b = i10;
+    @Override
+    public final int a(wx0 wx0Var, px0 px0Var, ix0 ix0Var, int i7, boolean z10) {
+        return Math.max(0, this.f37870a - ix0Var.a(px0Var, i7));
     }
 
-    public final int a() {
-        return this.f36189b - this.f36188a;
+    @Override
+    public final void b(int i7, int i10) {
+        super.b(i7, i10);
+        this.d = Math.max(this.d, i7 + i10);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || jx0.class != obj.getClass()) {
-            return false;
-        }
-        jx0 jx0Var = (jx0) obj;
-        if (this.f36189b == jx0Var.f36189b && this.f36188a == jx0Var.f36188a) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void c() {
+        super.c();
+        this.d = Integer.MIN_VALUE;
     }
 
-    public final int hashCode() {
-        return (this.f36188a * 31) + this.f36189b;
+    @Override
+    public final int d(boolean z10) {
+        return Math.max(super.d(z10), this.d);
     }
 }

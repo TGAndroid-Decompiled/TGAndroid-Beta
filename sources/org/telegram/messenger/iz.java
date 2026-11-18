@@ -1,12 +1,12 @@
 package org.telegram.messenger;
-public final class iz {
-    public final float f24492a;
-    public final float f24493b;
-    public final float f24494c;
 
-    public iz(float f10, float f11, float f12) {
-        this.f24492a = f10;
-        this.f24493b = f11;
-        this.f24494c = f12;
+import android.graphics.RectF;
+public final class iz {
+    public final RectF f24762a;
+    public final float f24763b;
+
+    public iz(RectF rectF, float f10) {
+        this.f24762a = rectF;
+        this.f24763b = f10;
     }
 }

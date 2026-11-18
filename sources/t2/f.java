@@ -1,6 +1,6 @@
 package t2;
 
-import a8.ja;
+import a8.la;
 import android.graphics.Bitmap;
 import android.os.Trace;
 import androidx.emoji2.text.n;
@@ -26,17 +26,17 @@ public final class f extends l2.b {
     public h0 X;
     public Bitmap Y;
     public boolean Z;
-    public m5.b f56973a0;
-    public m5.b f56974b0;
-    public int f56975c0;
-    public boolean f56976d0;
+    public m5.b f57549a0;
+    public m5.b f57550b0;
+    public int f57551c0;
+    public boolean f57552d0;
 
     public f(n nVar) {
         super(4);
         this.J = nVar;
-        this.W = d.f56969a;
+        this.W = d.f57545a;
         this.K = new h(0, 0);
-        this.O = e.f56970c;
+        this.O = e.f57546c;
         this.L = new ArrayDeque();
         this.Q = -9223372036854775807L;
         this.P = -9223372036854775807L;
@@ -47,7 +47,7 @@ public final class f extends l2.b {
     @Override
     public final int C(u uVar) {
         this.J.getClass();
-        return n.d(uVar);
+        return n.f(uVar);
     }
 
     public final boolean F(long r13) {
@@ -59,23 +59,23 @@ public final class f extends l2.b {
     }
 
     public final void H() {
-        if (!this.f56976d0) {
+        if (!this.f57552d0) {
             return;
         }
         u uVar = this.T;
         uVar.getClass();
         n nVar = this.J;
         nVar.getClass();
-        int d = n.d(uVar);
-        if (d != i5.c.a(4, 0, 0, 0) && d != i5.c.a(3, 0, 0, 0)) {
+        int f10 = n.f(uVar);
+        if (f10 != i5.c.a(4, 0, 0, 0) && f10 != i5.c.a(3, 0, 0, 0)) {
             throw d(new Exception("Provided decoder factory can't create decoder for format."), this.T, false, 4005);
         }
         b bVar = this.U;
         if (bVar != null) {
             bVar.release();
         }
-        this.U = new b(nVar.f2269a);
-        this.f56976d0 = false;
+        this.U = new b(nVar.f2260a);
+        this.f57552d0 = false;
     }
 
     public final void I() {
@@ -105,7 +105,7 @@ public final class f extends l2.b {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f56969a;
+            dVar = d.f57545a;
         }
         this.W = dVar;
     }
@@ -135,7 +135,7 @@ public final class f extends l2.b {
     @Override
     public final void n() {
         this.T = null;
-        this.O = e.f56970c;
+        this.O = e.f57546c;
         this.L.clear();
         I();
         this.W.getClass();
@@ -152,8 +152,8 @@ public final class f extends l2.b {
         this.N = false;
         this.M = false;
         this.Y = null;
-        this.f56973a0 = null;
-        this.f56974b0 = null;
+        this.f57549a0 = null;
+        this.f57550b0 = null;
         this.Z = false;
         this.V = null;
         b bVar = this.U;
@@ -175,26 +175,26 @@ public final class f extends l2.b {
     }
 
     @Override
-    public final void u(e2.u[] r5, long r6, long r8, x2.f0 r10) {
-        throw new UnsupportedOperationException("Method not decompiled: t2.f.u(e2.u[], long, long, x2.f0):void");
+    public final void u(e2.u[] r5, long r6, long r8, x2.g0 r10) {
+        throw new UnsupportedOperationException("Method not decompiled: t2.f.u(e2.u[], long, long, x2.g0):void");
     }
 
     @Override
     public final void x(long j3, long j10) {
         if (!this.N) {
             if (this.T == null) {
-                k8.a aVar = this.f18890c;
-                aVar.x0();
+                k8.a aVar = this.f19257c;
+                aVar.g0();
                 h hVar = this.K;
                 hVar.clear();
                 int w10 = w(aVar, hVar, 2);
                 if (w10 == -5) {
-                    u uVar = (u) aVar.f17789c;
+                    u uVar = (u) aVar.f18184c;
                     uVar.getClass();
                     this.T = uVar;
-                    this.f56976d0 = true;
+                    this.f57552d0 = true;
                 } else if (w10 == -4) {
-                    ja.p(hVar.isEndOfStream());
+                    la.p(hVar.isEndOfStream());
                     this.M = true;
                     this.N = true;
                     return;

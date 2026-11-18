@@ -1,168 +1,351 @@
 package org.telegram.messenger;
 
-import android.util.SparseArray;
+import android.content.SharedPreferences;
+import j$.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
+import java.util.Map;
+import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class pq implements Runnable {
-    public final int f25967a;
-    public final Object f25968b;
-    public final Object f25969c;
+    public final int f26289a;
+    public final tr f26290b;
 
-    public pq(int i7, Object obj, Object obj2) {
-        this.f25967a = i7;
-        this.f25968b = obj;
-        this.f25969c = obj2;
+    public pq(tr trVar, int i7) {
+        this.f26289a = i7;
+        this.f26290b = trVar;
     }
 
     private final void a() {
-        long j3;
-        at atVar = (at) this.f25968b;
-        a0.h hVar = (a0.h) this.f25969c;
-        ArrayList arrayList = atVar.f22567b;
-        ArrayList arrayList2 = atVar.f22565a;
-        int m10 = hVar.m();
-        boolean z10 = false;
-        for (int i7 = 0; i7 < m10; i7++) {
-            hVar.j(i7);
-            ArrayList arrayList3 = (ArrayList) hVar.n(i7);
-            int size = arrayList3.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                gj gjVar = (gj) arrayList3.get(i10);
-                if (gjVar.J) {
-                    j3 = gj.B0(gjVar.f23819k);
-                } else {
-                    long j10 = gjVar.f23819k.peer_id.channel_id;
-                    if (j10 != 0) {
-                        j3 = -j10;
-                    } else {
-                        j3 = 0;
-                    }
-                }
-                SparseArray sparseArray = (SparseArray) atVar.f22569c.f(j3);
-                if (sparseArray == null) {
-                    break;
-                }
-                gj gjVar2 = (gj) sparseArray.get(gjVar.e1());
-                if (gjVar2 != null && (gjVar2.I || gjVar2.J)) {
-                    gjVar2 = null;
-                }
-                if (gjVar2 != null) {
-                    sparseArray.put(gjVar.e1(), gjVar);
-                    int indexOf = arrayList2.indexOf(gjVar2);
-                    if (indexOf >= 0) {
-                        arrayList2.set(indexOf, gjVar);
-                    }
-                    int indexOf2 = arrayList.indexOf(gjVar2);
-                    if (indexOf2 >= 0) {
-                        arrayList.set(indexOf2, gjVar);
-                    }
-                    z10 = true;
-                }
-            }
-        }
-        if (z10) {
-            atVar.Z(false);
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.pq.a():void");
     }
 
     private final void b() {
-        bw bwVar = (bw) this.f25968b;
-        TLRPC.Message message = (TLRPC.Message) this.f25969c;
-        message.send_state = 2;
-        bwVar.getNotificationCenter().k(ns.M, Integer.valueOf(message.f28072id));
-        bwVar.getSendMessagesHelper().d0(message.f28072id);
-        bwVar.getSendMessagesHelper().i0(message.f28072id, false);
-    }
-
-    private final void c() {
-        TLRPC.Message message;
-        ez ezVar = (ez) this.f25968b;
-        gj gjVar = (gj) this.f25969c;
-        if (gjVar != null && (message = gjVar.f23819k) != null) {
-            message.reqId = 0;
-            if (message.send_state == 3) {
-                message.send_state = 0;
-                ezVar.getNotificationCenter().k(ns.m0, Long.valueOf(gj.B0(gjVar.f23819k)), k5.j(gjVar));
-            }
-        }
-    }
-
-    private final void d() {
-        TLRPC.TL_updateShortSentMessage tL_updateShortSentMessage = (TLRPC.TL_updateShortSentMessage) this.f25969c;
-        ((ez) this.f25968b).getMessagesController().M3(tL_updateShortSentMessage.pts, tL_updateShortSentMessage.date, tL_updateShortSentMessage.pts_count);
-    }
-
-    private final void f() {
-        vy vyVar = ((ty) this.f25968b).f26761b;
-        HashSet hashSet = vyVar.f27267c;
-        hashSet.remove((String) this.f25969c);
-        vyVar.f27279q.getNotificationCenter().k(ns.f25588v1, Long.valueOf(vyVar.f27272j));
-        if (hashSet.isEmpty()) {
-            vy.a(vyVar);
-        }
-    }
-
-    private final void g() {
-        zy zyVar = (zy) this.f25968b;
-        HashMap hashMap = zyVar.f28031a;
-        hashMap.remove((String) this.f25969c);
-        zyVar.f28043o.getNotificationCenter().k(ns.f25595w1, zyVar.f28034e);
-        if (hashMap.isEmpty()) {
-            zyVar.b();
-        }
-    }
-
-    private final void h() {
-        long j3;
-        h00 h00Var = (h00) this.f25968b;
-        ArrayList arrayList = (ArrayList) this.f25969c;
-        HashSet hashSet = new HashSet();
-        for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            ur urVar = (ur) arrayList.get(i7);
-            long j10 = -urVar.f26861a;
-            a0.h hVar = (a0.h) h00Var.f24012b.f(j10);
-            if (hVar != null) {
-                hVar.l(urVar.f26862b);
-            }
-            ArrayList arrayList2 = (ArrayList) h00Var.f24011a.f(j10);
-            if (arrayList2 != null) {
-                int i10 = 0;
-                while (true) {
-                    if (i10 >= arrayList2.size()) {
-                        break;
-                    }
-                    if (h00Var.getMessagesController().y2(urVar.f26861a)) {
-                        j3 = m5.o(((TLRPC.TL_forumTopic) arrayList2.get(i10)).from_id);
-                    } else {
-                        j3 = ((TLRPC.TL_forumTopic) arrayList2.get(i10)).f28103id;
-                    }
-                    if (j3 == urVar.f26862b) {
-                        arrayList2.remove(i10);
-                        h00Var.getNotificationCenter().k(ns.f25609y1, Long.valueOf(-j10), Long.valueOf(urVar.f26862b));
-                        hashSet.add(Long.valueOf(j10));
-                        break;
-                    }
-                    i10++;
-                }
-            }
-        }
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()) {
-            h00Var.y(((Long) it.next()).longValue(), true);
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.pq.b():void");
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.pq.run():void");
-    }
-
-    public pq(tv tvVar, vr vrVar) {
-        this.f25967a = 17;
-        this.f25969c = tvVar;
-        this.f25968b = vrVar;
+        Integer num;
+        SQLiteCursor queryFinalized;
+        boolean z10;
+        SQLiteCursor sQLiteCursor = null;
+        int i7 = 0;
+        switch (this.f26289a) {
+            case 0:
+                tr trVar = this.f26290b;
+                trVar.getClass();
+                try {
+                    a0.h hVar = new a0.h();
+                    Map<String, ?> all = mp.u1(trVar.currentAccount).f25660g7.getAll();
+                    for (Map.Entry<String, ?> entry : all.entrySet()) {
+                        String key = entry.getKey();
+                        if (key.startsWith("notify2_")) {
+                            Integer num2 = (Integer) entry.getValue();
+                            if (num2.intValue() != 2 && num2.intValue() != 3) {
+                            }
+                            String replace = key.replace("notify2_", "");
+                            long j3 = 1;
+                            if (num2.intValue() != 2) {
+                                if (((Integer) all.get("notifyuntil_" + replace)) != null) {
+                                    j3 = 1 | (num.intValue() << 32);
+                                }
+                            }
+                            try {
+                                hVar.k(Long.valueOf(j3), Long.parseLong(replace));
+                            } catch (Exception e10) {
+                                e10.printStackTrace();
+                            }
+                        }
+                    }
+                    try {
+                        trVar.f27056b.beginTransaction();
+                        SQLitePreparedStatement executeFast = trVar.f27056b.executeFast("REPLACE INTO dialog_settings VALUES(?, ?)");
+                        while (i7 < hVar.m()) {
+                            executeFast.requery();
+                            executeFast.bindLong(1, hVar.j(i7));
+                            executeFast.bindLong(2, ((Long) hVar.n(i7)).longValue());
+                            executeFast.step();
+                            i7++;
+                        }
+                        executeFast.dispose();
+                        trVar.f27056b.commitTransaction();
+                        return;
+                    } catch (Exception e11) {
+                        trVar.o(e11, true);
+                        return;
+                    }
+                } catch (Throwable th2) {
+                    trVar.o(th2, true);
+                    return;
+                }
+            case 1:
+                tr trVar2 = this.f26290b;
+                try {
+                    trVar2.f27056b.executeFast("DELETE FROM widget_heights").stepThis().dispose();
+                } catch (Exception e12) {
+                    trVar2.o(e12, true);
+                }
+                int i10 = trVar2.currentAccount;
+                ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.n0.f54845a;
+                g0.g3(new jg.x(i10, 14));
+                return;
+            case 2:
+                tr trVar3 = this.f26290b;
+                if (trVar3.R) {
+                    trVar3.R = false;
+                    ks.f(trVar3.currentAccount).k(297, Boolean.FALSE);
+                    return;
+                }
+                return;
+            case 3:
+                ks.f(this.f26290b.currentAccount).k(305, new Object[0]);
+                return;
+            case 4:
+                tr trVar4 = this.f26290b;
+                trVar4.R = true;
+                ks.f(trVar4.currentAccount).k(297, Boolean.TRUE);
+                return;
+            case 5:
+                tr trVar5 = this.f26290b;
+                trVar5.R = false;
+                ks.f(trVar5.currentAccount).k(297, Boolean.FALSE);
+                return;
+            case 6:
+                try {
+                    this.f26290b.f27056b.executeFast("DELETE FROM fact_checks WHERE expires > " + System.currentTimeMillis()).stepThis().dispose();
+                    return;
+                } catch (Exception e13) {
+                    a8.g(e13, true);
+                    return;
+                }
+            case 7:
+                tr trVar6 = this.f26290b;
+                ArrayList arrayList = trVar6.getMessagesController().Q0;
+                int size = arrayList.size();
+                while (i7 < size) {
+                    ((ro) arrayList.get(i7)).d = ((ro) arrayList.get(i7)).f26677e;
+                    i7++;
+                }
+                trVar6.L = trVar6.N;
+                trVar6.M = trVar6.O;
+                return;
+            case 8:
+                this.f26290b.getNotificationCenter().k(78, new Object[0]);
+                return;
+            case 9:
+                this.f26290b.V0(1);
+                return;
+            case 10:
+                tr trVar7 = this.f26290b;
+                for (int i11 = 0; i11 < 2; i11++) {
+                    trVar7.getUserConfig().x(i11, 0, 0, 0L, 0L, 0L, 0L);
+                    trVar7.getUserConfig().z(i11, 0);
+                }
+                j10 userConfig = trVar7.getUserConfig();
+                userConfig.k().edit().remove("filtersLoaded").apply();
+                userConfig.Q = false;
+                j10 userConfig2 = trVar7.getUserConfig();
+                SharedPreferences.Editor edit = userConfig2.k().edit();
+                for (String str : userConfig2.k().getAll().keySet()) {
+                    if (str.startsWith("2pinnedDialogsLoaded")) {
+                        edit.remove(str);
+                    }
+                }
+                edit.apply();
+                trVar7.getNotificationCenter().k(290, new Object[0]);
+                trVar7.getMediaDataController().H0(false, true, null);
+                trVar7.getNotificationCenter().k(324, new Object[0]);
+                trVar7.getMessagesController().R1().q();
+                return;
+            case 11:
+                tr trVar8 = this.f26290b;
+                trVar8.getClass();
+                try {
+                    trVar8.f27056b.executeFast("DELETE FROM sent_files_v2 WHERE 1").stepThis().dispose();
+                    return;
+                } catch (Exception e14) {
+                    trVar8.o(e14, true);
+                    return;
+                }
+            case 12:
+                tr trVar9 = this.f26290b;
+                trVar9.p(true);
+                trVar9.s();
+                trVar9.V0(1);
+                g0.g3(new pq(trVar9, 20));
+                return;
+            case 13:
+                this.f26290b.getNotificationCenter().k(121, new Object[0]);
+                return;
+            case 14:
+                tr trVar10 = this.f26290b;
+                trVar10.getClass();
+                try {
+                    trVar10.f27056b.executeFast("DELETE FROM story_pushes").stepThis().dispose();
+                    return;
+                } catch (Exception e15) {
+                    trVar10.o(e15, true);
+                    return;
+                }
+            case 15:
+                tr trVar11 = this.f26290b;
+                ArrayList arrayList2 = trVar11.getMessagesController().Q0;
+                int size2 = arrayList2.size();
+                for (int i12 = 0; i12 < size2; i12++) {
+                    ((ro) arrayList2.get(i12)).d = ((ro) arrayList2.get(i12)).f26677e;
+                }
+                trVar11.L = trVar11.N;
+                trVar11.M = trVar11.O;
+                ks notificationCenter = trVar11.getNotificationCenter();
+                int i13 = mp.I8;
+                notificationCenter.k(2, 256);
+                return;
+            case 16:
+                this.f26290b.z0();
+                return;
+            case 17:
+                this.f26290b.getMessagesController().I1().a();
+                return;
+            case 18:
+                tr trVar12 = this.f26290b;
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                try {
+                    try {
+                        queryFinalized = trVar12.f27056b.queryFinalized("SELECT * FROM contacts WHERE 1", new Object[0]);
+                    } catch (Exception e16) {
+                        e = e16;
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                }
+                try {
+                    ArrayList arrayList5 = new ArrayList();
+                    while (queryFinalized.next()) {
+                        long intValue = queryFinalized.intValue(0);
+                        TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
+                        tL_contact.user_id = intValue;
+                        if (queryFinalized.intValue(1) == 1) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        tL_contact.mutual = z10;
+                        arrayList3.add(tL_contact);
+                        arrayList5.add(Long.valueOf(tL_contact.user_id));
+                    }
+                    queryFinalized.dispose();
+                    if (!arrayList5.isEmpty()) {
+                        trVar12.n0(arrayList5, arrayList4, false);
+                    }
+                } catch (Exception e17) {
+                    e = e17;
+                    sQLiteCursor = queryFinalized;
+                    arrayList3.clear();
+                    arrayList4.clear();
+                    trVar12.o(e, true);
+                    if (sQLiteCursor != null) {
+                        sQLiteCursor.dispose();
+                    }
+                    i5 contactsController = trVar12.getContactsController();
+                    contactsController.getClass();
+                    g0.g3(new dg(contactsController, arrayList4, 1, arrayList3, 3));
+                    return;
+                } catch (Throwable th4) {
+                    th = th4;
+                    sQLiteCursor = queryFinalized;
+                    if (sQLiteCursor != null) {
+                        sQLiteCursor.dispose();
+                    }
+                    throw th;
+                }
+                i5 contactsController2 = trVar12.getContactsController();
+                contactsController2.getClass();
+                g0.g3(new dg(contactsController2, arrayList4, 1, arrayList3, 3));
+                return;
+            case 19:
+                tr trVar13 = this.f26290b;
+                trVar13.getClass();
+                try {
+                    trVar13.f27056b.executeFast("DELETE FROM unread_push_messages WHERE is_reaction = 2").stepThis().dispose();
+                    return;
+                } catch (Exception e18) {
+                    trVar13.o(e18, true);
+                    return;
+                }
+            case 20:
+                tr trVar14 = this.f26290b;
+                trVar14.getNotificationCenter().k(324, new Object[0]);
+                trVar14.getNotificationCenter().k(290, new Object[0]);
+                trVar14.getMessagesController().I1().a();
+                return;
+            case 21:
+                this.f26290b.D0();
+                return;
+            case 22:
+                this.f26290b.C0();
+                return;
+            case 23:
+                tr trVar15 = this.f26290b;
+                try {
+                    try {
+                        sQLiteCursor = trVar15.f27056b.queryFinalized("SELECT data FROM wallpapers2 WHERE 1 ORDER BY num ASC", new Object[0]);
+                        ArrayList arrayList6 = new ArrayList();
+                        while (sQLiteCursor.next()) {
+                            NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
+                            if (byteBufferValue != null) {
+                                TLRPC.WallPaper TLdeserialize = TLRPC.WallPaper.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
+                                byteBufferValue.reuse();
+                                if (TLdeserialize != null) {
+                                    arrayList6.add(TLdeserialize);
+                                }
+                            }
+                        }
+                        g0.g3(new k(5, arrayList6));
+                    } catch (Throwable th5) {
+                        if (sQLiteCursor != null) {
+                            sQLiteCursor.dispose();
+                        }
+                        throw th5;
+                    }
+                } catch (Exception e19) {
+                    trVar15.o(e19, true);
+                    if (sQLiteCursor == null) {
+                        return;
+                    }
+                }
+                sQLiteCursor.dispose();
+                return;
+            case 24:
+                this.f26290b.getNotificationCenter().k(324, new Object[0]);
+                return;
+            case 25:
+                tr trVar16 = this.f26290b;
+                ArrayList arrayList7 = trVar16.getMessagesController().Q0;
+                int size3 = arrayList7.size();
+                for (int i14 = 0; i14 < size3; i14++) {
+                    ((ro) arrayList7.get(i14)).d = ((ro) arrayList7.get(i14)).f26677e;
+                }
+                trVar16.L = trVar16.N;
+                trVar16.M = trVar16.O;
+                ks notificationCenter2 = trVar16.getNotificationCenter();
+                int i15 = mp.I8;
+                notificationCenter2.k(2, 256);
+                return;
+            case 26:
+                this.f26290b.t1(true);
+                return;
+            case 27:
+                a();
+                return;
+            case 28:
+                b();
+                return;
+            default:
+                this.f26290b.getMessagesController().Z0();
+                return;
+        }
     }
 }

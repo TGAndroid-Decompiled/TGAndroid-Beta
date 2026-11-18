@@ -6,8 +6,8 @@ public final class p7 {
     public final Integer f581b;
 
     public p7(wf.b bVar) {
-        this.f580a = (o7) bVar.f59107b;
-        this.f581b = (Integer) bVar.f59108c;
+        this.f580a = (o7) bVar.f59672b;
+        this.f581b = (Integer) bVar.f59673c;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class p7 {
             return false;
         }
         p7 p7Var = (p7) obj;
-        if (q6.m.k(this.f580a, p7Var.f580a) && q6.m.k(this.f581b, p7Var.f581b) && q6.m.k(null, null) && q6.m.k(null, null)) {
+        if (q6.m.l(this.f580a, p7Var.f580a) && q6.m.l(this.f581b, p7Var.f581b) && q6.m.l(null, null) && q6.m.l(null, null)) {
             return true;
         }
         return false;

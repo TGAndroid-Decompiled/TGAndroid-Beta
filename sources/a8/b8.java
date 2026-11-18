@@ -21,14 +21,14 @@ import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.os.Bundle;
 import android.view.Surface;
-import c8.kc;
+import c8.nc;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.messenger.as;
-import org.telegram.messenger.az;
-import org.telegram.messenger.pd;
-import org.telegram.ui.Components.aw0;
+import org.telegram.messenger.od;
+import org.telegram.messenger.vy;
+import org.telegram.messenger.xr;
+import org.telegram.ui.Components.hw0;
 public class b8 {
     public Object f341a;
     public Object f342b;
@@ -63,10 +63,10 @@ public class b8 {
 
     public static ColorStateList e(Context context, int i7) {
         int c10 = m.z2.c(context, 2130968728);
-        return new ColorStateList(new int[][]{m.z2.f19914b, m.z2.d, m.z2.f19915c, m.z2.f19917f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
+        return new ColorStateList(new int[][]{m.z2.f20281b, m.z2.d, m.z2.f20282c, m.z2.f20284f}, new int[]{m.z2.b(context, 2130968726), i0.a.k(c10, i7), i0.a.k(c10, i7), i7});
     }
 
-    public static x2.f0 f(e2.c1 c1Var, h9.i0 i0Var, x2.f0 f0Var, e2.i1 i1Var) {
+    public static x2.g0 f(e2.c1 c1Var, h9.i0 i0Var, x2.g0 g0Var, e2.i1 i1Var) {
         Object l10;
         int i7;
         e2.l1 y02 = c1Var.y0();
@@ -77,21 +77,21 @@ public class b8 {
             l10 = y02.l(B);
         }
         if (!c1Var.p() && !y02.p()) {
-            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10119e);
+            i7 = y02.f(B, i1Var, false).b(h2.l0.S(c1Var.l()) - i1Var.f10437e);
         } else {
             i7 = -1;
         }
         int i10 = i7;
         for (int i11 = 0; i11 < i0Var.size(); i11++) {
-            x2.f0 f0Var2 = (x2.f0) i0Var.get(i11);
-            if (i(f0Var2, l10, c1Var.p(), c1Var.n0(), c1Var.O(), i10)) {
-                return f0Var2;
+            x2.g0 g0Var2 = (x2.g0) i0Var.get(i11);
+            if (i(g0Var2, l10, c1Var.p(), c1Var.n0(), c1Var.O(), i10)) {
+                return g0Var2;
             }
         }
-        if (!i0Var.isEmpty() || f0Var == null || !i(f0Var, l10, c1Var.p(), c1Var.n0(), c1Var.O(), i10)) {
+        if (!i0Var.isEmpty() || g0Var == null || !i(g0Var, l10, c1Var.p(), c1Var.n0(), c1Var.O(), i10)) {
             return null;
         }
-        return f0Var;
+        return g0Var;
     }
 
     public static LayerDrawable g(m.m2 m2Var, Context context, int i7) {
@@ -129,14 +129,14 @@ public class b8 {
         return layerDrawable;
     }
 
-    public static boolean i(x2.f0 f0Var, Object obj, boolean z10, int i7, int i10, int i11) {
-        Object obj2 = f0Var.f59523a;
-        int i12 = f0Var.f59524b;
+    public static boolean i(x2.g0 g0Var, Object obj, boolean z10, int i7, int i10, int i11) {
+        Object obj2 = g0Var.f60087a;
+        int i12 = g0Var.f60088b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z10 || i12 != i7 || f0Var.f59525c != i10) {
-            if (z10 || i12 != -1 || f0Var.f59526e != i11) {
+        if (!z10 || i12 != i7 || g0Var.f60089c != i10) {
+            if (z10 || i12 != -1 || g0Var.f60090e != i11) {
                 return false;
             }
             return true;
@@ -146,27 +146,27 @@ public class b8 {
 
     public static void n(Drawable drawable, int i7, PorterDuff.Mode mode) {
         PorterDuffColorFilter h;
-        int[] iArr = m.l1.f19752a;
+        int[] iArr = m.l1.f20119a;
         Drawable mutate = drawable.mutate();
         if (mode == null) {
-            mode = m.q.f19815b;
+            mode = m.q.f20182b;
         }
-        PorterDuff.Mode mode2 = m.q.f19815b;
+        PorterDuff.Mode mode2 = m.q.f20182b;
         synchronized (m.q.class) {
             h = m.m2.h(i7, mode);
         }
         mutate.setColorFilter(h);
     }
 
-    public void a(xa xaVar, x2.f0 f0Var, e2.l1 l1Var) {
-        if (f0Var != null) {
-            if (l1Var.b(f0Var.f59523a) != -1) {
-                xaVar.u(f0Var, l1Var);
+    public void a(xa xaVar, x2.g0 g0Var, e2.l1 l1Var) {
+        if (g0Var != null) {
+            if (l1Var.b(g0Var.f60087a) != -1) {
+                xaVar.w(g0Var, l1Var);
                 return;
             }
-            e2.l1 l1Var2 = (e2.l1) ((h9.x1) this.f343c).get(f0Var);
+            e2.l1 l1Var2 = (e2.l1) ((h9.y1) this.f343c).get(g0Var);
             if (l1Var2 != null) {
-                xaVar.u(f0Var, l1Var2);
+                xaVar.w(g0Var, l1Var2);
             }
         }
     }
@@ -174,7 +174,7 @@ public class b8 {
     public t9.b c() {
         String str;
         String str2;
-        q6.m.h((String) this.f345f, "setActionToken is required before calling build().");
+        q6.m.i((String) this.f345f, "setActionToken is required before calling build().");
         new String((String) this.f344e);
         j("actionToken", (String) this.f345f);
         String str3 = (String) this.f343c;
@@ -199,47 +199,47 @@ public class b8 {
             } else {
                 str2 = new String("https://developers.google.com/actions?invocation=");
             }
-            q6.m.g(str2);
+            q6.m.h(str2);
             this.d = str2;
             j("url", str2);
         }
-        q6.m.h((String) this.f343c, "setObject is required before calling build().");
-        q6.m.h((String) this.d, "setObject is required before calling build().");
+        q6.m.i((String) this.f343c, "setObject is required before calling build().");
+        q6.m.i((String) this.d, "setObject is required before calling build().");
         return new t9.b((String) this.f342b, (String) this.f343c, (String) this.d, null, new t9.a(), (String) this.f344e, (Bundle) this.f341a);
     }
 
     public void d() {
-        ((LocationManager) this.f342b).removeUpdates((pd) this.f343c);
-        ((LocationManager) this.f342b).removeUpdates((pd) this.d);
+        ((LocationManager) this.f342b).removeUpdates((od) this.f343c);
+        ((LocationManager) this.f342b).removeUpdates((od) this.d);
         this.f345f = null;
         this.f344e = null;
     }
 
     public ColorStateList h(Context context, int i7) {
         if (i7 == 2131230803) {
-            return b5.a.a(context, 2131099669);
+            return c8.z.a(context, 2131099669);
         }
         if (i7 == 2131230849) {
-            return b5.a.a(context, 2131099672);
+            return c8.z.a(context, 2131099672);
         }
         if (i7 == 2131230848) {
             int[][] iArr = new int[3];
             int[] iArr2 = new int[3];
             ColorStateList d = m.z2.d(context, 2130968734);
             if (d != null && d.isStateful()) {
-                int[] iArr3 = m.z2.f19914b;
+                int[] iArr3 = m.z2.f20281b;
                 iArr[0] = iArr3;
                 iArr2[0] = d.getColorForState(iArr3, 0);
-                iArr[1] = m.z2.f19916e;
+                iArr[1] = m.z2.f20283e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f19917f;
+                iArr[2] = m.z2.f20284f;
                 iArr2[2] = d.getDefaultColor();
             } else {
-                iArr[0] = m.z2.f19914b;
+                iArr[0] = m.z2.f20281b;
                 iArr2[0] = m.z2.b(context, 2130968734);
-                iArr[1] = m.z2.f19916e;
+                iArr[1] = m.z2.f20283e;
                 iArr2[1] = m.z2.c(context, 2130968727);
-                iArr[2] = m.z2.f19917f;
+                iArr[2] = m.z2.f20284f;
                 iArr2[2] = m.z2.c(context, 2130968734);
             }
             return new ColorStateList(iArr, iArr2);
@@ -257,17 +257,17 @@ public class b8 {
                     return m.z2.d(context, 2130968729);
                 }
                 if (b((int[]) this.f344e, i7)) {
-                    return b5.a.a(context, 2131099668);
+                    return c8.z.a(context, 2131099668);
                 }
                 if (b((int[]) this.f345f, i7)) {
-                    return b5.a.a(context, 2131099667);
+                    return c8.z.a(context, 2131099667);
                 }
                 if (i7 == 2131230841) {
-                    return b5.a.a(context, 2131099670);
+                    return c8.z.a(context, 2131099670);
                 }
                 return null;
             }
-            return b5.a.a(context, 2131099671);
+            return c8.z.a(context, 2131099671);
         }
     }
 
@@ -284,7 +284,7 @@ public class b8 {
                     sb2.append("String at ");
                     sb2.append(i10);
                     sb2.append(" is null and is ignored by put method.");
-                    kc.a(sb2.toString());
+                    nc.a(sb2.toString());
                 } else {
                     int i11 = 20000;
                     if (str2.length() > 20000) {
@@ -292,7 +292,7 @@ public class b8 {
                         sb3.append("String at ");
                         sb3.append(i10);
                         sb3.append(" is too long, truncating string.");
-                        kc.a(sb3.toString());
+                        nc.a(sb3.toString());
                         String str3 = strArr2[i7];
                         if (str3.length() > 20000) {
                             if (Character.isHighSurrogate(str3.charAt(19999)) && Character.isLowSurrogate(str3.charAt(20000))) {
@@ -308,7 +308,7 @@ public class b8 {
             if (i7 > 0) {
                 Object[] objArr = (String[]) Arrays.copyOfRange(strArr2, 0, i7);
                 if (objArr.length >= 100) {
-                    kc.a("Input Array of elements is too big, cutting off.");
+                    nc.a("Input Array of elements is too big, cutting off.");
                     objArr = Arrays.copyOf(objArr, 100);
                 }
                 bundle.putStringArray(str, (String[]) objArr);
@@ -316,7 +316,7 @@ public class b8 {
             }
             return;
         }
-        kc.a("String array is empty and is ignored by put method.");
+        nc.a("String array is empty and is ignored by put method.");
     }
 
     public void k(float f10, float f11, float f12, float f13) {
@@ -346,15 +346,15 @@ public class b8 {
 
     public void o() {
         if (((LocationManager) this.f342b) == null) {
-            this.f342b = (LocationManager) org.telegram.messenger.t0.f26609b.getSystemService("location");
+            this.f342b = (LocationManager) org.telegram.messenger.t0.f26915b.getSystemService("location");
         }
         try {
-            ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (pd) this.f343c);
+            ((LocationManager) this.f342b).requestLocationUpdates("gps", 1L, 0.0f, (od) this.f343c);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
         try {
-            ((LocationManager) this.f342b).requestLocationUpdates("network", 1L, 0.0f, (pd) this.d);
+            ((LocationManager) this.f342b).requestLocationUpdates("network", 1L, 0.0f, (od) this.d);
         } catch (Exception e11) {
             org.telegram.messenger.a8.g(e11, true);
         }
@@ -367,22 +367,22 @@ public class b8 {
         } catch (Exception e12) {
             org.telegram.messenger.a8.g(e12, true);
         }
-        as asVar = (as) this.f344e;
-        if (asVar != null) {
-            org.telegram.messenger.g0.r(asVar);
+        xr xrVar = (xr) this.f344e;
+        if (xrVar != null) {
+            org.telegram.messenger.g0.r(xrVar);
         }
-        as asVar2 = new as(this, 14);
-        this.f344e = asVar2;
-        org.telegram.messenger.g0.i3(asVar2, 5000L);
+        xr xrVar2 = new xr(this, 14);
+        this.f344e = xrVar2;
+        org.telegram.messenger.g0.h3(xrVar2, 5000L);
     }
 
     public void p() {
         if (((LocationManager) this.f342b) == null) {
             return;
         }
-        as asVar = (as) this.f344e;
-        if (asVar != null) {
-            org.telegram.messenger.g0.r(asVar);
+        xr xrVar = (xr) this.f344e;
+        if (xrVar != null) {
+            org.telegram.messenger.g0.r(xrVar);
         }
         d();
     }
@@ -395,7 +395,7 @@ public class b8 {
             ((ValueAnimator) arrayList3.get(i7)).cancel();
             if (z10) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ArrayList) this.d).get(i7)).floatValue(), 0.0f);
-                ofFloat.addUpdateListener(new aw0(this, i7, 0));
+                ofFloat.addUpdateListener(new hw0(this, i7, 0));
                 ofFloat.setDuration(100L);
                 ofFloat.start();
             }
@@ -404,7 +404,7 @@ public class b8 {
             ((ValueAnimator) arrayList2.get(i10)).cancel();
             if (z10) {
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f344e).get(i10)).floatValue(), 0.0f);
-                ofFloat2.addUpdateListener(new aw0(this, i10, 1));
+                ofFloat2.addUpdateListener(new hw0(this, i10, 1));
                 ofFloat2.setDuration(100L);
                 ofFloat2.start();
             }
@@ -413,7 +413,7 @@ public class b8 {
             ((ValueAnimator) arrayList.get(i11)).cancel();
             if (z10) {
                 ValueAnimator ofFloat3 = ValueAnimator.ofFloat(((Float) ((ArrayList) this.f345f).get(i11)).floatValue(), 0.0f);
-                ofFloat3.addUpdateListener(new aw0(this, i11, 2));
+                ofFloat3.addUpdateListener(new hw0(this, i11, 2));
                 ofFloat3.setDuration(100L);
                 ofFloat3.start();
             }
@@ -442,19 +442,19 @@ public class b8 {
     public void s(e2.l1 l1Var) {
         xa xaVar = new xa(4, 10);
         if (((h9.i0) this.f342b).isEmpty()) {
-            a(xaVar, (x2.f0) this.f344e, l1Var);
-            if (!Objects.equals((x2.f0) this.f345f, (x2.f0) this.f344e)) {
-                a(xaVar, (x2.f0) this.f345f, l1Var);
+            a(xaVar, (x2.g0) this.f344e, l1Var);
+            if (!Objects.equals((x2.g0) this.f345f, (x2.g0) this.f344e)) {
+                a(xaVar, (x2.g0) this.f345f, l1Var);
             }
-            if (!Objects.equals((x2.f0) this.d, (x2.f0) this.f344e) && !Objects.equals((x2.f0) this.d, (x2.f0) this.f345f)) {
-                a(xaVar, (x2.f0) this.d, l1Var);
+            if (!Objects.equals((x2.g0) this.d, (x2.g0) this.f344e) && !Objects.equals((x2.g0) this.d, (x2.g0) this.f345f)) {
+                a(xaVar, (x2.g0) this.d, l1Var);
             }
         } else {
             for (int i7 = 0; i7 < ((h9.i0) this.f342b).size(); i7++) {
-                a(xaVar, (x2.f0) ((h9.i0) this.f342b).get(i7), l1Var);
+                a(xaVar, (x2.g0) ((h9.i0) this.f342b).get(i7), l1Var);
             }
-            if (!((h9.i0) this.f342b).contains((x2.f0) this.d)) {
-                a(xaVar, (x2.f0) this.d, l1Var);
+            if (!((h9.i0) this.f342b).contains((x2.g0) this.d)) {
+                a(xaVar, (x2.g0) this.d, l1Var);
             }
         }
         this.f343c = xaVar.c(true);
@@ -508,9 +508,9 @@ public class b8 {
         this.f345f = jVar;
     }
 
-    public b8(az azVar) {
-        this.f343c = new pd(this, 1);
-        this.d = new pd(this, 1);
-        this.f341a = azVar;
+    public b8(vy vyVar) {
+        this.f343c = new od(this, 1);
+        this.d = new od(this, 1);
+        this.f341a = vyVar;
     }
 }

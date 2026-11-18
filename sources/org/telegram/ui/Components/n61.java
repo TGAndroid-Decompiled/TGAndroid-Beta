@@ -1,30 +1,7 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-public abstract class n61 {
-    public abstract void b(View view, int i7, int i10);
-
-    public boolean c(int i7) {
-        return false;
-    }
-
-    public abstract View d(int i7);
-
-    public abstract int e();
-
-    public CharSequence g(int i7) {
-        return "";
-    }
-
-    public int h(int i7) {
-        return 0;
-    }
-
-    public void a(ArrayList arrayList) {
-    }
-
-    public int f(int i7) {
-        return i7;
-    }
+import android.graphics.Bitmap;
+public final class n61 {
+    public Bitmap f37745a;
+    public float f37746b;
 }

@@ -1,6 +1,6 @@
 package xd;
 
-import c8.rd;
+import c8.ud;
 public abstract class d extends l {
     public static boolean e(String str, String str2) {
         kotlin.jvm.internal.j.e(str, "<this>");
@@ -34,9 +34,9 @@ public abstract class d extends l {
         }
         ud.d dVar = new ud.d(i7, length, 1);
         boolean z12 = other instanceof String;
-        int i10 = dVar.f58028c;
-        int i11 = dVar.f58027b;
-        int i12 = dVar.f58026a;
+        int i10 = dVar.f58593c;
+        int i11 = dVar.f58592b;
+        int i12 = dVar.f58591a;
         if (z12 && (string instanceof String)) {
             if ((i10 <= 0 || i12 > i11) && (i10 >= 0 || i11 > i12)) {
                 return -1;
@@ -74,7 +74,7 @@ public abstract class d extends l {
                 kotlin.jvm.internal.j.e(other, "other");
                 if (i12 >= 0 && string.length() - length4 >= 0 && i12 <= other.length() - length4) {
                     for (int i14 = 0; i14 < length4; i14++) {
-                        if (rd.a(string.charAt(i14), other.charAt(i12 + i14), z10)) {
+                        if (ud.a(string.charAt(i14), other.charAt(i12 + i14), z10)) {
                         }
                     }
                     return i12;
@@ -102,7 +102,7 @@ public abstract class d extends l {
             }
             int f10 = f(charSequence);
             if (i7 <= f10) {
-                while (!rd.a(cArr[0], charSequence.charAt(i7), false)) {
+                while (!ud.a(cArr[0], charSequence.charAt(i7), false)) {
                     if (i7 != f10) {
                         i7++;
                     } else {

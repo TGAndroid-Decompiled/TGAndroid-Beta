@@ -1,45 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.view.View;
-import java.util.ArrayList;
-public final class ez0 {
-    public final View f34454a;
-    public final ArrayList f34455b;
-    public final Runnable f34456c;
-    public Runnable d;
-    public final Bitmap f34457e;
-    public final Matrix f34458f;
-    public float f34459g;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class ez0 extends MetricAffectingSpan {
+    public final int f34852a;
+    public final dz0 f34853b;
 
-    public ez0(View view, Runnable runnable) {
-        this.f34459g = 1.0f;
-        this.f34454a = view;
-        this.f34455b = null;
-        this.f34456c = null;
-        this.d = runnable;
-        this.f34457e = null;
-        this.f34458f = null;
+    public ez0(dz0 dz0Var, int i7) {
+        this.f34853b = dz0Var;
+        if (i7 > 0) {
+            this.f34852a = i7;
+        }
     }
 
-    public ez0(ArrayList arrayList, lv0 lv0Var) {
-        this.f34459g = 1.0f;
-        this.f34454a = null;
-        this.f34455b = arrayList;
-        this.f34456c = null;
-        this.d = lv0Var;
-        this.f34457e = null;
-        this.f34458f = null;
+    public final void a(TextPaint textPaint) {
+        dz0 dz0Var = this.f34853b;
+        if (c8.dd.a(dz0Var.f34537a, 49152)) {
+            float textSize = textPaint.getTextSize();
+            textPaint.setTextSize(0.75f * textSize);
+            if (c8.dd.a(dz0Var.f34537a, 32768)) {
+                textPaint.baselineShift -= (int) (textSize * 0.35f);
+            } else if (c8.dd.a(dz0Var.f34537a, 16384)) {
+                textPaint.baselineShift += (int) (textSize * 0.12f);
+            }
+        }
     }
 
-    public ez0(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.f34459g = 1.0f;
-        this.f34454a = null;
-        this.f34455b = null;
-        this.f34456c = runnable;
-        this.d = runnable2;
-        this.f34458f = matrix;
-        this.f34457e = bitmap;
+    public final dz0 b() {
+        return this.f34853b;
+    }
+
+    public final boolean c() {
+        if ((this.f34853b.f34537a & 256) > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        int i7 = this.f34852a;
+        if (i7 != 0) {
+            textPaint.setTextSize(i7);
+        }
+        a(textPaint);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.f34853b.a(textPaint);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        int i7 = this.f34852a;
+        if (i7 != 0) {
+            textPaint.setTextSize(i7);
+        }
+        a(textPaint);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.f34853b.a(textPaint);
     }
 }

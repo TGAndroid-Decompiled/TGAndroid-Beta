@@ -1,98 +1,62 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.x41;
-public final class bv extends cu implements Drawable.Callback {
-    public final x41 X;
-    public final int Y;
-    public final int Z;
-    public final int f22756a0;
-    public final int f22757b0;
-    public w7.s f22758c0;
-    public Bitmap f22759d0;
+import java.util.ArrayList;
+public final class bv implements Runnable {
+    public final int f23136a = 0;
+    public final dv f23137b;
+    public final ev f23138c;
+    public final View d;
 
-    public bv(iv ivVar, Rect rect, int i7, int i10, int i11) {
-        super(ivVar, rect, i7);
-        this.f22756a0 = i10;
-        this.f22757b0 = i11;
-        x41 x41Var = new x41();
-        this.X = x41Var;
-        x41Var.setCallback(this);
-        x41Var.f41579n = hd.M0(2131743831, null);
-        x41Var.f41580o = hd.M0(2131743832, null);
-        x41Var.f41581p = hd.M0(2131743826, null);
-        x41Var.f41575j = new as(ivVar, 7);
-        int i12 = this.f22943c;
-        this.Y = i12;
-        this.Z = x41Var.a(i12);
+    public bv(dv dvVar, View view, ev evVar) {
+        this.f23137b = dvVar;
+        this.d = view;
+        this.f23138c = evVar;
     }
 
     @Override
-    public final int I() {
-        Rect rect = this.f22942b;
-        return rect.top + this.Z + rect.bottom;
-    }
-
-    @Override
-    public final boolean Y(MotionEvent motionEvent) {
-        View view = this.W;
-        if (view != null) {
-            return this.X.f41574i.a(view, motionEvent);
-        }
-        return false;
-    }
-
-    public final float i0(org.telegram.ui.Cells.x1 x1Var) {
-        int i7;
-        if (x1Var != null) {
-            iv ivVar = this.f22941a;
-            if (ivVar.f24461s || ivVar.f24463u) {
-                i7 = g0.W1(Math.max(0.0f, Math.min(1.0f, x1Var.L1)), this.Q, this.O);
-                return i7;
-            }
-        }
-        i7 = this.O;
-        return i7;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        View view = this.W;
-        if (view != null) {
-            view.invalidate();
+    public final void run() {
+        switch (this.f23136a) {
+            case 0:
+                dv dvVar = this.f23137b;
+                dvVar.getClass();
+                View view = this.d;
+                if (view != null) {
+                    view.post(new bv(dvVar, this.f23138c, view));
+                    return;
+                }
+                return;
+            default:
+                dv dvVar2 = this.f23137b;
+                ev evVar = this.f23138c;
+                if (evVar != null) {
+                    dvVar2.getClass();
+                    fj fjVar = evVar.f23771b;
+                    if (fjVar != null) {
+                        fjVar.N0 = true;
+                    }
+                    ArrayList arrayList = evVar.f23781n;
+                    int size = arrayList.size();
+                    int i7 = 0;
+                    while (i7 < size) {
+                        Object obj = arrayList.get(i7);
+                        i7++;
+                        org.telegram.ui.Cells.t9 t9Var = (org.telegram.ui.Cells.t9) obj;
+                        if (t9Var instanceof dv) {
+                            ((dv) t9Var).f23588x.clear();
+                        }
+                    }
+                } else {
+                    dvVar2.f23588x.clear();
+                }
+                this.d.invalidate();
+                return;
         }
     }
 
-    public final float j0(org.telegram.ui.Cells.x1 x1Var) {
-        if (x1Var != null) {
-            iv ivVar = this.f22941a;
-            if (ivVar.f24461s || ivVar.f24463u) {
-                return g0.T1(this.P, this.N, Math.max(0.0f, Math.min(1.0f, x1Var.L1)));
-            }
-        }
-        return this.N;
-    }
-
-    @Override
-    public final void q(Canvas canvas) {
-        Rect rect = this.f22942b;
-        int i7 = rect.left;
-        int i10 = rect.top;
-        x41 x41Var = this.X;
-        x41Var.setBounds(i7, i10, this.Y + i7, this.Z + i10);
-        x41Var.draw(canvas);
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+    public bv(dv dvVar, ev evVar, View view) {
+        this.f23137b = dvVar;
+        this.f23138c = evVar;
+        this.d = view;
     }
 }

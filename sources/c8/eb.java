@@ -55,14 +55,14 @@ public enum eb implements u {
     LOW_MEMORY(603),
     UNKNOWN_ERROR(9999);
     
-    public final int f4278a;
+    public final int f4564a;
 
     eb(int i7) {
-        this.f4278a = i7;
+        this.f4564a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f4278a;
+        return this.f4564a;
     }
 }

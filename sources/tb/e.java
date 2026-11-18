@@ -9,23 +9,23 @@ import pb.i;
 import q6.m;
 public final class e extends i {
     public ThickLanguageIdentifier d;
-    public final Context f57078e;
-    public final sb.a f57079f;
-    public final boolean f57080g;
+    public final Context f57650e;
+    public final sb.a f57651f;
+    public final boolean f57652g;
 
     public e(Context context, sb.a aVar) {
-        this.f57078e = context;
-        this.f57079f = aVar;
+        this.f57650e = context;
+        this.f57651f = aVar;
         aVar.getClass();
-        this.f57080g = true;
+        this.f57652g = true;
     }
 
     @Override
     public final void b() {
-        m.j(Thread.currentThread().equals(((AtomicReference) this.f54951a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f55527a.d).get()));
         if (this.d == null) {
-            this.f57079f.getClass();
-            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f57078e);
+            this.f57651f.getClass();
+            ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.f57650e);
             this.d = thickLanguageIdentifier;
             thickLanguageIdentifier.b();
         }
@@ -33,7 +33,7 @@ public final class e extends i {
 
     @Override
     public final void c() {
-        m.j(Thread.currentThread().equals(((AtomicReference) this.f54951a.d).get()));
+        m.k(Thread.currentThread().equals(((AtomicReference) this.f55527a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();
@@ -48,7 +48,7 @@ public final class e extends i {
         }
         if (!str.isEmpty()) {
             ThickLanguageIdentifier thickLanguageIdentifier = this.d;
-            m.g(thickLanguageIdentifier);
+            m.h(thickLanguageIdentifier);
             ArrayList a10 = thickLanguageIdentifier.a(str);
             int size = a10.size();
             int i7 = 0;
@@ -57,8 +57,8 @@ public final class e extends i {
                     Object obj = a10.get(i7);
                     i7++;
                     IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
-                    if (!"unknown".equals(identifiedLanguage.f7291a)) {
-                        str2 = identifiedLanguage.f7291a;
+                    if (!"unknown".equals(identifiedLanguage.f7574a)) {
+                        str2 = identifiedLanguage.f7574a;
                         break;
                     }
                 } else {

@@ -11,25 +11,25 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import bi.x2;
-import c8.ja;
-import hi.j3;
+import bi.f5;
+import c8.ma;
+import hi.k3;
 import java.util.List;
-import org.telegram.messenger.k5;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.fh0;
-import org.telegram.ui.g71;
+import org.telegram.messenger.f3;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.mh0;
+import org.telegram.ui.Components.ph0;
+import org.telegram.ui.k71;
 public final class h1 extends LinearLayout {
-    public final fh0[] f57326a;
-    public g1 f57327b;
-    public final Paint f57328c;
+    public final ph0[] f57898a;
+    public g1 f57899b;
+    public final Paint f57900c;
     public final int d;
-    public boolean f57329e;
-    public int f57330f;
+    public boolean f57901e;
+    public int f57902f;
     public int h;
-    public float f57331n;
-    public ValueAnimator f57332r;
+    public float f57903n;
+    public ValueAnimator f57904r;
 
     public h1(Context context, boolean z10) {
         super(context);
@@ -37,13 +37,13 @@ public final class h1 extends LinearLayout {
         Object[] objArr2;
         float f10;
         float f11;
-        List list = sg.h.f56640a;
-        this.f57326a = new fh0[list.size() + 2];
+        List list = sg.h.f57214a;
+        this.f57898a = new ph0[list.size() + 2];
         Paint paint = new Paint(1);
-        this.f57328c = paint;
-        this.f57330f = 1;
+        this.f57900c = paint;
+        this.f57902f = 1;
         this.h = -1;
-        this.f57331n = 0.0f;
+        this.f57903n = 0.0f;
         setOrientation(0);
         setGravity(16);
         setWillNotDraw(false);
@@ -53,9 +53,9 @@ public final class h1 extends LinearLayout {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            List list2 = sg.h.f56640a;
+            List list2 = sg.h.f57214a;
             if (i7 < list2.size() + 2) {
-                fh0[] fh0VarArr = this.f57326a;
+                ph0[] ph0VarArr = this.f57898a;
                 if (i7 == 0) {
                     objArr = 1;
                 } else {
@@ -80,25 +80,25 @@ public final class h1 extends LinearLayout {
                     f11 = 8.0f;
                 }
                 imageView.setPadding(L, L2, org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(8.0f));
-                imageView.setLayoutParams(ja.l(1.0f, 0, 40));
+                imageView.setLayoutParams(ma.l(1.0f, 0, 40));
                 imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-                fh0VarArr[i10] = imageView;
+                ph0VarArr[i10] = imageView;
                 if (i7 == 0) {
-                    this.f57326a[i10].setOnClickListener(new View.OnClickListener(this) {
-                        public final h1 f57267b;
+                    this.f57898a[i10].setOnClickListener(new View.OnClickListener(this) {
+                        public final h1 f57839b;
 
                         {
-                            this.f57267b = this;
+                            this.f57839b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    this.f57267b.f57327b.a();
+                                    this.f57839b.f57899b.a();
                                     return;
                                 default:
-                                    this.f57267b.f57327b.A();
+                                    this.f57839b.f57899b.A();
                                     return;
                             }
                         }
@@ -106,34 +106,34 @@ public final class h1 extends LinearLayout {
                 } else if (i7 > 0 && i7 <= list2.size()) {
                     sg.h hVar = (sg.h) list2.get(i7 - 1);
                     if (z10 || !(hVar instanceof sg.b)) {
-                        this.f57326a[i10].f(hVar.e(), 28, 28, null);
-                        this.f57326a[i10].setOnClickListener(new x2(this, i10, hVar, 25));
+                        this.f57898a[i10].f(hVar.e(), 28, 28, null);
+                        this.f57898a[i10].setOnClickListener(new f5(this, i10, hVar, 25));
                     } else {
                         i7++;
                     }
                 } else if (i7 == list2.size() + 1) {
-                    this.f57326a[i10].setImageResource(2131232043);
-                    this.f57326a[i10].setOnClickListener(new View.OnClickListener(this) {
-                        public final h1 f57267b;
+                    this.f57898a[i10].setImageResource(2131232044);
+                    this.f57898a[i10].setOnClickListener(new View.OnClickListener(this) {
+                        public final h1 f57839b;
 
                         {
-                            this.f57267b = this;
+                            this.f57839b = this;
                         }
 
                         @Override
                         public final void onClick(View view) {
                             switch (r2) {
                                 case 0:
-                                    this.f57267b.f57327b.a();
+                                    this.f57839b.f57899b.a();
                                     return;
                                 default:
-                                    this.f57267b.f57327b.A();
+                                    this.f57839b.f57899b.A();
                                     return;
                             }
                         }
                     });
                 }
-                addView(this.f57326a[i10]);
+                addView(this.f57898a[i10]);
                 i10++;
                 i7++;
             } else {
@@ -144,35 +144,35 @@ public final class h1 extends LinearLayout {
 
     public final void a(int i7) {
         if (i7 >= 0) {
-            fh0[] fh0VarArr = this.f57326a;
-            if (i7 < fh0VarArr.length) {
-                if (this.f57332r == null || this.h != i7) {
-                    fh0 fh0Var = fh0VarArr[i7];
-                    if (fh0Var != null) {
-                        Drawable drawable = fh0Var.getDrawable();
-                        if (drawable instanceof ch0) {
-                            ch0 ch0Var = (ch0) drawable;
-                            ch0Var.M(0);
-                            ch0Var.start();
+            ph0[] ph0VarArr = this.f57898a;
+            if (i7 < ph0VarArr.length) {
+                if (this.f57904r == null || this.h != i7) {
+                    ph0 ph0Var = ph0VarArr[i7];
+                    if (ph0Var != null) {
+                        Drawable drawable = ph0Var.getDrawable();
+                        if (drawable instanceof mh0) {
+                            mh0 mh0Var = (mh0) drawable;
+                            mh0Var.M(0);
+                            mh0Var.start();
                         }
                     }
-                    ValueAnimator valueAnimator = this.f57332r;
+                    ValueAnimator valueAnimator = this.f57904r;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
-                    if (this.f57330f != i7) {
-                        if (this.f57329e) {
-                            this.f57329e = false;
-                            org.telegram.messenger.g0.Q3(fh0VarArr[this.d + 1], 2131232043);
+                    if (this.f57902f != i7) {
+                        if (this.f57901e) {
+                            this.f57901e = false;
+                            org.telegram.messenger.g0.P3(ph0VarArr[this.d + 1], 2131232044);
                         }
                         this.h = i7;
-                        this.f57331n = 0.0f;
+                        this.f57903n = 0.0f;
                         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(250L);
-                        this.f57332r = duration;
-                        duration.setInterpolator(er.f34419f);
-                        this.f57332r.addUpdateListener(new j3(this, 27));
-                        this.f57332r.addListener(new g71(this, 18));
-                        this.f57332r.start();
+                        this.f57904r = duration;
+                        duration.setInterpolator(lr.f37208f);
+                        this.f57904r.addUpdateListener(new k3(this, 27));
+                        this.f57904r.addListener(new k71(this, 18));
+                        this.f57904r.start();
                     }
                 }
             }
@@ -181,7 +181,7 @@ public final class h1 extends LinearLayout {
 
     public final void b(int i7) {
         a(i7);
-        this.f57327b.x().i(i7 - 1, true);
+        this.f57899b.x().i(i7 - 1, true);
     }
 
     @Override
@@ -192,15 +192,15 @@ public final class h1 extends LinearLayout {
             for (int i7 = 1; i7 < getChildCount() - 1; i7++) {
                 View childAt = getChildAt(i7);
                 if (x10 >= childAt.getLeft() && x10 <= childAt.getRight()) {
-                    if (this.f57332r != null) {
+                    if (this.f57904r != null) {
                         if (this.h != i7) {
                             a(i7);
-                            post(new org.telegram.ui.ActionBar.j1(1, childAt));
+                            post(new org.telegram.ui.ActionBar.k1(1, childAt));
                             return true;
                         }
-                    } else if (this.f57330f != i7) {
+                    } else if (this.f57902f != i7) {
                         a(i7);
-                        post(new org.telegram.ui.ActionBar.j1(1, childAt));
+                        post(new org.telegram.ui.ActionBar.k1(1, childAt));
                         return true;
                     }
                 }
@@ -211,33 +211,33 @@ public final class h1 extends LinearLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        fh0 fh0Var;
+        ph0 ph0Var;
         float f10;
         float f11;
         float f12;
         super.onDraw(canvas);
-        int i7 = this.f57330f;
-        fh0[] fh0VarArr = this.f57326a;
-        fh0 fh0Var2 = fh0VarArr[i7];
+        int i7 = this.f57902f;
+        ph0[] ph0VarArr = this.f57898a;
+        ph0 ph0Var2 = ph0VarArr[i7];
         int i10 = this.h;
         if (i10 != -1) {
-            fh0Var = fh0VarArr[i10];
+            ph0Var = ph0VarArr[i10];
         } else {
-            fh0Var = null;
+            ph0Var = null;
         }
         float f13 = 0.0f;
-        if (fh0Var != null) {
-            f10 = this.f57331n;
+        if (ph0Var != null) {
+            f10 = this.f57903n;
         } else {
             f10 = 0.0f;
         }
         float f14 = 1.0f;
         if (f10 > 0.25f && f10 < 0.75f) {
-            f14 = (f10 <= 0.25f || f10 >= 0.5f) ? k5.y(0.75f, f10, 0.25f, 1.0f) : (0.5f - f10) / 0.25f;
+            f14 = (f10 <= 0.25f || f10 >= 0.5f) ? f3.y(0.75f, f10, 0.25f, 1.0f) : (0.5f - f10) / 0.25f;
         }
-        float L = (org.telegram.messenger.g0.L(3.0f) * f14) + (Math.min((fh0Var2.getWidth() - fh0Var2.getPaddingLeft()) - fh0Var2.getPaddingRight(), (fh0Var2.getHeight() - fh0Var2.getPaddingTop()) - fh0Var2.getPaddingBottom()) / 2.0f) + org.telegram.messenger.g0.L(3.0f);
-        float width = (fh0Var2.getWidth() / 2.0f) + fh0Var2.getX();
-        int i11 = this.f57330f;
+        float L = (org.telegram.messenger.g0.L(3.0f) * f14) + (Math.min((ph0Var2.getWidth() - ph0Var2.getPaddingLeft()) - ph0Var2.getPaddingRight(), (ph0Var2.getHeight() - ph0Var2.getPaddingTop()) - ph0Var2.getPaddingBottom()) / 2.0f) + org.telegram.messenger.g0.L(3.0f);
+        float width = (ph0Var2.getWidth() / 2.0f) + ph0Var2.getX();
+        int i11 = this.f57902f;
         int i12 = this.d;
         if (i11 == i12 + 1) {
             f11 = org.telegram.messenger.g0.L(4.0f);
@@ -245,8 +245,8 @@ public final class h1 extends LinearLayout {
             f11 = 0.0f;
         }
         float f15 = f11 + width;
-        if (fh0Var != null) {
-            f12 = (fh0Var.getWidth() / 2.0f) + fh0Var.getX();
+        if (ph0Var != null) {
+            f12 = (ph0Var.getWidth() / 2.0f) + ph0Var.getX();
         } else {
             f12 = 0.0f;
         }
@@ -254,18 +254,18 @@ public final class h1 extends LinearLayout {
         if (i13 != -1 && i13 == i12 + 1) {
             f13 = org.telegram.messenger.g0.L(4.0f);
         }
-        canvas.drawCircle(org.telegram.messenger.g0.T1(f15, f12 + f13, f10), (fh0Var2.getHeight() / 2.0f) + fh0Var2.getY(), L, this.f57328c);
+        canvas.drawCircle(org.telegram.messenger.g0.T1(f15, f12 + f13, f10), (ph0Var2.getHeight() / 2.0f) + ph0Var2.getY(), L, this.f57900c);
     }
 
     public void setDelegate(g1 g1Var) {
-        this.f57327b = g1Var;
+        this.f57899b = g1Var;
     }
 
     public void setSelectedIndex(int i7) {
-        this.f57330f = i7;
-        if (this.f57329e) {
-            this.f57329e = false;
-            org.telegram.messenger.g0.Q3(this.f57326a[this.d + 1], 2131232043);
+        this.f57902f = i7;
+        if (this.f57901e) {
+            this.f57901e = false;
+            org.telegram.messenger.g0.P3(this.f57898a[this.d + 1], 2131232044);
         }
         invalidate();
     }

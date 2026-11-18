@@ -1,36 +1,44 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class o40 extends org.telegram.ui.Components.z00 {
-    public final w40 f49794r;
+import android.view.View;
+public final class o40 implements View.OnClickListener {
+    public final int f50461a;
+    public final z40 f50462b;
 
-    public o40(w40 w40Var, Context context, int i7) {
-        super(context, i7);
-        this.f49794r = w40Var;
+    public o40(z40 z40Var, int i7) {
+        this.f50461a = i7;
+        this.f50462b = z40Var;
     }
 
     @Override
-    public final void a(org.telegram.ui.Components.f20 f20Var) {
-        super.a(f20Var);
-        w40.e0(this.f49794r);
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        w40.e0(this.f49794r);
-    }
-
-    @Override
-    public final void c(org.telegram.ui.Components.f20 f20Var) {
-        w40 w40Var = this.f49794r;
-        if (f20Var == w40Var.Y) {
-            w40Var.Y = null;
+    public final void onClick(View view) {
+        switch (this.f50461a) {
+            case 0:
+                z40 z40Var = this.f50462b;
+                z40Var.Y = null;
+                z40Var.f54398a0.b();
+                z40Var.h.b();
+                z40Var.p0();
+                z40Var.w0();
+                z40Var.x0();
+                return;
+            case 1:
+                z40 z40Var2 = this.f50462b;
+                z40Var2.f54406f.f33845r.clearFocus();
+                z40Var2.f54406f.f33845r.requestFocus();
+                org.telegram.messenger.g0.I3(z40Var2.f54406f.f33845r);
+                return;
+            case 2:
+                this.f50462b.t0();
+                return;
+            case 3:
+                z40 z40Var3 = this.f50462b;
+                z40Var3.s0(z40Var3.q0());
+                return;
+            default:
+                z40 z40Var4 = this.f50462b;
+                z40Var4.s0(z40Var4.q0());
+                return;
         }
-        if (f20Var == w40Var.Z) {
-            w40Var.Z = null;
-        }
-        super.c(f20Var);
-        w40.e0(w40Var);
     }
 }

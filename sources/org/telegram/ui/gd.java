@@ -8,33 +8,33 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class gd implements View.OnClickListener {
-    public final int f47415a = 1;
-    public final int f47416b;
-    public final long f47417c;
+    public final int f48047a = 1;
+    public final int f48048b;
+    public final long f48049c;
     public final FrameLayout d;
-    public final Object f47418e;
+    public final Object f48050e;
 
-    public gd(int i7, hi.d dVar, org.telegram.ui.ActionBar.u2 u2Var, long j3) {
-        this.f47416b = i7;
+    public gd(int i7, hi.d dVar, org.telegram.ui.ActionBar.x2 x2Var, long j3) {
+        this.f48048b = i7;
         this.d = dVar;
-        this.f47418e = u2Var;
-        this.f47417c = j3;
+        this.f48050e = x2Var;
+        this.f48049c = j3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f47415a) {
+        switch (this.f48047a) {
             case 0:
                 xd xdVar = (xd) this.d;
-                Context context = (Context) this.f47418e;
+                Context context = (Context) this.f48050e;
                 if (view.isEnabled()) {
                     hi.d dVar = xdVar.K0;
                     if (!dVar.R) {
                         dVar.setLoading(true);
                         TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-                        int i7 = this.f47416b;
-                        tL_payments_getStarsRevenueAdsAccountUrl.peer = org.telegram.messenger.np.s1(i7).j1(this.f47417c);
-                        ConnectionsManager.getInstance(i7).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new v7(2, xdVar, context));
+                        int i7 = this.f48048b;
+                        tL_payments_getStarsRevenueAdsAccountUrl.peer = org.telegram.messenger.mp.u1(i7).l1(this.f48049c);
+                        ConnectionsManager.getInstance(i7).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new u7(2, xdVar, context));
                         return;
                     }
                     return;
@@ -42,19 +42,19 @@ public final class gd implements View.OnClickListener {
                 return;
             default:
                 hi.d dVar2 = (hi.d) this.d;
-                org.telegram.ui.ActionBar.u2 u2Var = (org.telegram.ui.ActionBar.u2) this.f47418e;
+                org.telegram.ui.ActionBar.x2 x2Var = (org.telegram.ui.ActionBar.x2) this.f48050e;
                 TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-                createconferencecall.random_id = Utilities.f22414b.nextInt();
-                int i10 = this.f47416b;
-                ConnectionsManager.getInstance(i10).sendRequest(createconferencecall, new di.v(i10, dVar2, u2Var, this.f47417c));
+                createconferencecall.random_id = Utilities.f22780b.nextInt();
+                int i10 = this.f48048b;
+                ConnectionsManager.getInstance(i10).sendRequest(createconferencecall, new di.v(i10, dVar2, x2Var, this.f48049c));
                 return;
         }
     }
 
     public gd(xd xdVar, int i7, long j3, Context context) {
         this.d = xdVar;
-        this.f47416b = i7;
-        this.f47417c = j3;
-        this.f47418e = context;
+        this.f48048b = i7;
+        this.f48049c = j3;
+        this.f48050e = context;
     }
 }

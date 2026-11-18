@@ -1,37 +1,72 @@
 package ki;
 
-import org.telegram.messenger.gj;
+import j$.util.function.Predicate$CC;
+import java.util.HashSet;
+import java.util.function.Predicate;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class i1 extends gj {
-    public TL_iv.RichMessage f18360u3;
-    public final boolean f18361v3;
-    public final TLRPC.BotInlineResult f18362w3;
+import org.telegram.tgnet.tl.TL_stars;
+public final class i1 implements Predicate {
+    public final int f18719a;
+    public final Object f18720b;
 
-    public i1(int i7, TLRPC.TL_message tL_message, boolean z10, TLRPC.BotInlineResult botInlineResult) {
-        super(i7, tL_message, true, true);
-        this.f18361v3 = z10;
-        this.f18362w3 = botInlineResult;
+    public i1(Object obj, int i7) {
+        this.f18719a = i7;
+        this.f18720b = obj;
     }
 
-    @Override
-    public final TL_iv.RichMessage E0() {
-        if (this.f18361v3) {
-            if (this.f18360u3 == null) {
-                this.f18360u3 = org.telegram.utils.twidget.n0.o(org.telegram.utils.twidget.n0.v(this.K1, this.f18362w3));
-            }
-            return this.f18360u3;
+    public Predicate and(Predicate predicate) {
+        int i7 = this.f18719a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f18719a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
         }
-        return super.E0();
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i7 = this.f18719a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final boolean N3() {
-        return false;
-    }
-
-    @Override
-    public final boolean P3() {
-        return false;
+    public final boolean test(Object obj) {
+        boolean contains;
+        boolean z10;
+        switch (this.f18719a) {
+            case 0:
+                contains = ((HashSet) this.f18720b).contains(Long.valueOf(((k1) obj).f18752b));
+                break;
+            case 1:
+                contains = ((HashSet) this.f18720b).contains(Long.valueOf(((k1) obj).f18752b));
+                break;
+            default:
+                bi.j3 j3Var = (bi.j3) this.f18720b;
+                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
+                if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                    z10 = j3Var.W1.disallow_unique_stargifts;
+                } else {
+                    j3Var.getClass();
+                    if (starGift.limited) {
+                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = j3Var.W1;
+                        if (!disallowedGiftsSettings.disallow_limited_stargifts) {
+                            return true;
+                        }
+                        if (starGift.can_upgrade && !disallowedGiftsSettings.disallow_unique_stargifts) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    z10 = j3Var.W1.disallow_unlimited_stargifts;
+                }
+                return true ^ z10;
+        }
+        return !contains;
     }
 }

@@ -1,54 +1,26 @@
 package u7;
 
-import c8.qc;
-public final class t extends s {
-    public static final t f57898e = new t(0, new Object[0]);
-    public final transient Object[] f57899c;
-    public final transient int d;
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.bc;
+import com.google.android.gms.common.api.Status;
+public final class t extends r6.a implements com.google.android.gms.common.api.r {
+    public static final Parcelable.Creator<t> CREATOR = new m(2);
+    public final Status f58465a;
 
-    public t(int i7, Object[] objArr) {
-        this.f57899c = objArr;
-        this.d = i7;
+    public t(Status status) {
+        this.f58465a = status;
     }
 
     @Override
-    public final int f(Object[] objArr) {
-        Object[] objArr2 = this.f57899c;
-        int i7 = this.d;
-        System.arraycopy(objArr2, 0, objArr, 0, i7);
-        return i7;
+    public final Status a() {
+        return this.f58465a;
     }
 
     @Override
-    public final Object get(int i7) {
-        qc.a(i7, this.d);
-        Object obj = this.f57899c[i7];
-        obj.getClass();
-        return obj;
-    }
-
-    @Override
-    public final int i() {
-        return this.d;
-    }
-
-    @Override
-    public final int j() {
-        return 0;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final Object[] l() {
-        return this.f57899c;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = bc.r(parcel, 20293);
+        bc.k(parcel, 1, this.f58465a, i7);
+        bc.s(parcel, r10);
     }
 }

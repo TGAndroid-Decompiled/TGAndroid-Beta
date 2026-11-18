@@ -2,46 +2,46 @@ package jg;
 
 import java.util.Locale;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 public final class a implements Runnable {
-    public final int f17013a;
-    public final c f17014b;
-    public final String f17015c;
+    public final int f17399a;
+    public final c f17400b;
+    public final String f17401c;
 
     public a(c cVar, String str, int i7) {
-        this.f17013a = i7;
-        this.f17014b = cVar;
-        this.f17015c = str;
+        this.f17399a = i7;
+        this.f17400b = cVar;
+        this.f17401c = str;
     }
 
     @Override
     public final void run() {
         Locale locale;
-        switch (this.f17013a) {
+        switch (this.f17399a) {
             case 0:
-                c cVar = this.f17014b;
-                String str = this.f17015c;
+                c cVar = this.f17400b;
+                String str = this.f17401c;
                 cVar.getClass();
-                org.telegram.messenger.g0.h3(new a(cVar, str, 1));
+                org.telegram.messenger.g0.g3(new a(cVar, str, 1));
                 return;
             default:
-                c cVar2 = this.f17014b;
-                String str2 = this.f17015c;
+                c cVar2 = this.f17400b;
+                String str2 = this.f17401c;
                 Locale locale2 = null;
-                cVar2.f17025r = null;
-                int i7 = cVar2.f17026s + 1;
-                cVar2.f17026s = i7;
-                Locale locale3 = hd.E0().f24132y;
+                cVar2.f17411r = null;
+                int i7 = cVar2.f17412s + 1;
+                cVar2.f17412s = i7;
+                Locale locale3 = gd.E0().f24244y;
                 if (cVar2.d) {
                     if (locale3.getLanguage().contains("en")) {
                         locale = locale3;
-                        Utilities.f22416e.c(new ai.g1(cVar2, locale3, str2, locale, i7, 3));
+                        Utilities.f22782e.c(new ai.g1(cVar2, locale3, str2, locale, i7, 3));
                         return;
                     }
                     locale2 = Locale.US;
                 }
                 locale = locale2;
-                Utilities.f22416e.c(new ai.g1(cVar2, locale3, str2, locale, i7, 3));
+                Utilities.f22782e.c(new ai.g1(cVar2, locale3, str2, locale, i7, 3));
                 return;
         }
     }

@@ -21,14 +21,14 @@ import org.json.JSONObject;
 import q6.m;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset f59866e = Charset.forName("UTF-8");
-    public final Context f59867a;
-    public final ua.b f59868b;
-    public final d f59869c = new d();
+    public static final Charset f60435e = Charset.forName("UTF-8");
+    public final Context f60436a;
+    public final ua.b f60437b;
+    public final d f60438c = new d();
 
     public c(Context context, ua.b bVar) {
-        this.f59867a = context;
-        this.f59868b = bVar;
+        this.f60436a = context;
+        this.f60437b = bVar;
     }
 
     public static URL a(String str) {
@@ -44,7 +44,7 @@ public final class c {
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f59866e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f60435e));
             try {
                 StringBuilder sb2 = new StringBuilder();
                 while (true) {
@@ -74,9 +74,9 @@ public final class c {
             if (TextUtils.isEmpty(str)) {
                 k10 = "";
             } else {
-                k10 = r.b.k(", ", str);
+                k10 = p5.c.k(", ", str);
             }
-            Log.w("Firebase-Installations", r.b.l("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, k10));
+            Log.w("Firebase-Installations", p5.c.l("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, k10));
         }
     }
 
@@ -90,7 +90,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f59866e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f60435e));
         byte b10 = (byte) (0 | 1);
         jsonReader.beginObject();
         String str = null;
@@ -138,7 +138,7 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f59866e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f60435e));
         byte b10 = (byte) (0 | 1);
         jsonReader.beginObject();
         String str = null;

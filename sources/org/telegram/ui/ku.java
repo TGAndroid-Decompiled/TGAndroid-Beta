@@ -1,41 +1,25 @@
 package org.telegram.ui;
-public final class ku implements org.telegram.messenger.pr {
-    public final int f48772a;
-    public final yw f48773b;
 
-    public ku(yw ywVar, int i7) {
-        this.f48772a = i7;
-        this.f48773b = ywVar;
+import android.animation.ValueAnimator;
+public final class ku implements ValueAnimator.AnimatorUpdateListener {
+    public final int f49335a;
+    public final cx f49336b;
+    public final float f49337c;
+
+    public ku(cx cxVar, float f10, int i7) {
+        this.f49335a = i7;
+        this.f49336b = cxVar;
+        this.f49337c = f10;
     }
 
     @Override
-    public final void a(int i7) {
-        boolean z10;
-        boolean z11;
-        switch (this.f48772a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f49335a) {
             case 0:
-                yw ywVar = this.f48773b;
-                ywVar.getClass();
-                if (i7 != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                ywVar.W1 = z10;
-                org.telegram.messenger.np.f1().edit().putBoolean("askAboutContacts", ywVar.W1).apply();
-                ywVar.u3(false);
+                cx.o0(this.f49336b, this.f49337c, valueAnimator);
                 return;
             default:
-                yw ywVar2 = this.f48773b;
-                ywVar2.getClass();
-                if (i7 != 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                ywVar2.W1 = z11;
-                org.telegram.messenger.np.f1().edit().putBoolean("askAboutContacts", ywVar2.W1).commit();
-                ywVar2.u3(false);
+                cx.H0(this.f49336b, this.f49337c, valueAnimator);
                 return;
         }
     }

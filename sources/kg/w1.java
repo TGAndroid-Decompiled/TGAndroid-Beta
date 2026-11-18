@@ -1,177 +1,711 @@
 package kg;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Space;
-import android.widget.TextView;
-import c8.ja;
-import di.tb;
-import hi.l3;
-import java.util.HashSet;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.m10;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.z5;
-public final class w1 extends LinearLayout implements z5 {
-    public final int f18133a = 0;
-    public final e6 f18134b;
-    public final TextView f18135c;
-    public final View d;
-    public final TextView f18136e;
+import android.text.TextUtils;
+import bi.u4;
+import di.i2;
+import fi.k5;
+import java.util.ArrayList;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.tr;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
+public final class w1 {
+    public static volatile w1[] f18521g = new w1[4];
+    public static final Object[] h = new Object[4];
+    public final int f18522a;
+    public final ArrayList f18523b = new ArrayList();
+    public final ArrayList f18524c = new ArrayList();
+    public final ArrayList d = new ArrayList();
+    public boolean f18525e;
+    public boolean f18526f;
 
-    public w1(Activity activity, int i7, long j3, String str, e6 e6Var) {
-        super(activity);
-        setOrientation(1);
-        this.f18134b = e6Var;
-        TextView textView = new TextView(activity);
-        this.f18135c = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setTextAlignment(4);
-        textView.setLineSpacing(org.telegram.messenger.g0.L(1.66f), 1.0f);
-        textView.setGravity(17);
-        tb tbVar = new tb(activity, 2);
-        this.d = tbVar;
-        tbVar.setTextAlignment(4);
-        tbVar.setGravity(17);
-        tbVar.setTextSize(1, 12.0f);
-        tbVar.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
-        tbVar.setGravity(1);
-        ImageView imageView = new ImageView(activity);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        tbVar.setMaxWidth(org.telegram.messenger.g0.L(160.0f));
-        int i10 = 22;
-        if (i7 == 9) {
-            imageView.setImageResource(2131231606);
-            textView.setText(hd.M0(2131742896, null));
-            tbVar.setText(hd.M0(2131742897, null));
-            tbVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(tbVar.getText(), tbVar.getPaint())));
-        } else if ("hello".equalsIgnoreCase(str)) {
-            imageView.setImageResource(2131231606);
-            textView.setText(hd.M0(2131752765, null));
-            tbVar.setText(hd.M0(2131752766, null));
-            tbVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(tbVar.getText(), tbVar.getPaint())));
-        } else if ("away".equalsIgnoreCase(str)) {
-            imageView.setImageResource(2131231603);
-            textView.setText(hd.M0(2131752833, null));
-            tbVar.setText(hd.M0(2131752834, null));
-            tbVar.setMaxWidth(Math.min(org.telegram.messenger.g0.L(160.0f), l3.a(tbVar.getText(), tbVar.getPaint())));
-        } else {
-            if (i7 == 5) {
-                imageView.setImageResource(2131231614);
-                u1 c10 = v1.f(m10.f24940t0).c(j3);
-                String str2 = c10 == null ? str : c10.f18114b;
-                textView.setText(hd.M0(2131752667, null));
-                tbVar.setMaxWidth(org.telegram.messenger.g0.L(208.0f));
-                tbVar.setTextAlignment(2);
-                tbVar.setGravity(3);
-                tbVar.setText(org.telegram.messenger.g0.X2(hd.a0(null, null, 2131752669, str2)));
-                tbVar.setPadding(org.telegram.messenger.g0.L(28.0f), 0, 0, 0);
-                tb tbVar2 = new tb(activity, 2);
-                this.f18136e = tbVar2;
-                tbVar2.setMaxWidth(org.telegram.messenger.g0.L(208.0f));
-                tbVar2.setTextAlignment(2);
-                tbVar2.setGravity(3);
-                tbVar2.setTextSize(1, 13.0f);
-                tbVar2.setText(org.telegram.messenger.g0.X2(hd.M0(2131752668, null)));
-                tbVar2.setPadding(org.telegram.messenger.g0.L(28.0f), 0, 0, 0);
-            }
-            i10 = 12;
-        }
-        int i11 = i10;
-        addView(imageView, ja.t(78, 78, 49, 20, 17, 20, 9));
-        addView(textView, ja.t(-2, -2, 49, 20, 0, 20, 6));
-        addView(tbVar, ja.t(-2, -2, 49, i11, 0, i11, ((tb) this.f18136e) == null ? 19 : 9));
-        View view = (tb) this.f18136e;
-        if (view != null) {
-            addView(view, ja.t(-2, -2, 49, 12, 0, 12, 19));
-        }
-        updateColors();
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        switch (this.f18133a) {
-            case 0:
-                return;
-            default:
-                hashSet.add(Integer.valueOf(j6.G6));
-                return;
+    static {
+        for (int i7 = 0; i7 < 4; i7++) {
+            h[i7] = new Object();
         }
     }
 
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f18133a) {
-            case 1:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                return;
-        }
+    public w1(int i7) {
+        this.f18522a = i7;
     }
 
-    @Override
-    public final void updateColors() {
-        switch (this.f18133a) {
-            case 0:
-                tb tbVar = (tb) this.d;
-                TextView textView = this.f18135c;
-                if (textView != null && tbVar != null) {
-                    int i7 = j6.Zc;
-                    e6 e6Var = this.f18134b;
-                    textView.setTextColor(j6.w0(i7, e6Var));
-                    tbVar.setTextColor(j6.w0(i7, e6Var));
-                    tb tbVar2 = (tb) this.f18136e;
-                    if (tbVar2 != null) {
-                        tbVar2.setTextColor(j6.w0(i7, e6Var));
-                        return;
+    public static w1 f(int i7) {
+        w1 w1Var;
+        w1 w1Var2 = f18521g[i7];
+        if (w1Var2 == null) {
+            synchronized (h[i7]) {
+                try {
+                    w1Var = f18521g[i7];
+                    if (w1Var == null) {
+                        w1[] w1VarArr = f18521g;
+                        w1 w1Var3 = new w1(i7);
+                        w1VarArr[i7] = w1Var3;
+                        w1Var = w1Var3;
                     }
-                    return;
+                } catch (Throwable th2) {
+                    throw th2;
                 }
-                return;
-            default:
-                int i10 = j6.G6;
-                e6 e6Var2 = this.f18134b;
-                ((ImageView) this.d).setColorFilter(new PorterDuffColorFilter(j6.w0(i10, e6Var2), PorterDuff.Mode.SRC_IN));
-                this.f18135c.setTextColor(j6.w0(i10, e6Var2));
-                this.f18136e.setTextColor(j6.r1(0.75f, j6.w0(i10, e6Var2)));
-                return;
+            }
+            return w1Var;
+        }
+        return w1Var2;
+    }
+
+    public static boolean g(String str) {
+        if (!"hello".equalsIgnoreCase(str) && !"away".equalsIgnoreCase(str)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void a(String str) {
+        v1 v1Var;
+        ArrayList arrayList = this.f18524c;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (true) {
+            if (i7 < size) {
+                Object obj = arrayList.get(i7);
+                i7++;
+                v1Var = (v1) obj;
+                if (TextUtils.equals(str, v1Var.f18510b)) {
+                    break;
+                }
+            } else {
+                v1Var = null;
+                break;
+            }
+        }
+        if (v1Var != null) {
+            arrayList.remove(v1Var);
+            ks.f(this.f18522a).k(ks.F1, new Object[0]);
         }
     }
 
-    private final void a(HashSet hashSet) {
+    public final void b(Runnable runnable) {
+        if (this.f18526f) {
+            runnable.run();
+        } else {
+            i(runnable, true);
+        }
     }
 
-    public w1(Context context, oi.j0 j0Var, e6 e6Var) {
-        super(context);
-        this.f18134b = e6Var;
-        setOrientation(0);
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, ja.t(42, 42, 19, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.f18135c = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView textView2 = new TextView(context);
-        this.f18136e = textView2;
-        textView2.setTextSize(1, 16.0f);
-        textView2.setGravity(5);
-        addView(textView, ja.t(-2, -2, 19, 8, 0, 0, 0));
-        addView(new Space(context), ja.p(0, -2, 1.0f, 119));
-        addView(textView2, ja.t(-2, -2, 21, 8, 0, 0, 0));
-        imageView.setImageResource(j0Var.f21747a);
-        textView.setText(j0Var.f21748b);
-        textView2.setText((CharSequence) j0Var.f21749c.get(0));
-        updateColors();
+    public final v1 c(long j3) {
+        ArrayList arrayList = this.f18523b;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            v1 v1Var = (v1) obj;
+            if (v1Var.f18509a == j3) {
+                return v1Var;
+            }
+        }
+        return null;
+    }
+
+    public final v1 d(String str) {
+        ArrayList arrayList = this.f18523b;
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            v1 v1Var = (v1) obj;
+            if (TextUtils.equals(str, v1Var.f18510b)) {
+                return v1Var;
+            }
+        }
+        return null;
+    }
+
+    public final ArrayList e() {
+        ArrayList arrayList = this.d;
+        arrayList.clear();
+        int i7 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.f18523b;
+            if (i7 < arrayList2.size()) {
+                if (!g(((v1) arrayList2.get(i7)).f18510b)) {
+                    arrayList.add((v1) arrayList2.get(i7));
+                }
+                i7++;
+            } else {
+                return arrayList;
+            }
+        }
+    }
+
+    public final void h() {
+        i(null, true);
+    }
+
+    public final void i(java.lang.Runnable r37, boolean r38) {
+        throw new UnsupportedOperationException("Method not decompiled: kg.w1.i(java.lang.Runnable, boolean):void");
+    }
+
+    public final boolean j(final TLRPC.Update update, String str, int i7) {
+        if (update instanceof TL_update.TL_updateQuickReplyMessage) {
+            b(new u4(this, ((TL_update.TL_updateQuickReplyMessage) update).message, str, i7, 8));
+            return true;
+        } else if (update instanceof TL_update.TL_updateQuickReplies) {
+            b(new Runnable(this) {
+                public final w1 f18497b;
+
+                {
+                    this.f18497b = this;
+                }
+
+                @Override
+                public final void run() {
+                    int i10;
+                    v1 v1Var;
+                    switch (r3) {
+                        case 0:
+                            w1 w1Var = this.f18497b;
+                            ArrayList arrayList = w1Var.f18523b;
+                            int i11 = w1Var.f18522a;
+                            TLRPC.TL_quickReply tL_quickReply = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
+                            v1 c10 = w1Var.c(tL_quickReply.shortcut_id);
+                            if (c10 != null) {
+                                c10.f18510b = tL_quickReply.shortcut;
+                                c10.f18513f = tL_quickReply.count;
+                                c10.d = tL_quickReply.top_message;
+                                fj fjVar = c10.f18512e;
+                                if (fjVar != null && fjVar.e1() != tL_quickReply.top_message) {
+                                    c10.f18512e = null;
+                                    long e10 = j10.i(i11).e();
+                                    tr a02 = tr.a0(i11);
+                                    a02.f27054a.c(new i2(w1Var, a02, c10, e10, 13));
+                                    return;
+                                }
+                            } else {
+                                v1 v1Var2 = new v1();
+                                v1Var2.f18509a = tL_quickReply.shortcut_id;
+                                v1Var2.f18510b = tL_quickReply.shortcut;
+                                v1Var2.f18513f = tL_quickReply.count;
+                                v1Var2.d = tL_quickReply.top_message;
+                                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                                    ((v1) arrayList.get(i12)).f18511c = i12;
+                                }
+                                arrayList.add(v1Var2);
+                                w1Var.a(v1Var2.f18510b);
+                            }
+                            w1Var.l();
+                            ks.f(i11).k(121, new Object[0]);
+                            return;
+                        case 1:
+                            w1 w1Var2 = this.f18497b;
+                            int i13 = w1Var2.f18522a;
+                            v1 c11 = w1Var2.c(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
+                            if (c11 != null) {
+                                w1Var2.f18523b.remove(c11);
+                                w1Var2.a(c11.f18510b);
+                                int i14 = c11.f18509a;
+                                tr a03 = tr.a0(i13);
+                                a03.f27054a.c(new ai.w0(a03, i14, 16));
+                                w1Var2.l();
+                                ks.f(i13).k(121, new Object[0]);
+                                return;
+                            }
+                            return;
+                        case 2:
+                            w1 w1Var3 = this.f18497b;
+                            int i15 = w1Var3.f18522a;
+                            TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
+                            v1 c12 = w1Var3.c(tL_updateDeleteQuickReplyMessages.shortcut_id);
+                            if (c12 != null) {
+                                int size = c12.f18513f - tL_updateDeleteQuickReplyMessages.messages.size();
+                                c12.f18513f = size;
+                                if (size <= 0) {
+                                    w1Var3.f18523b.remove(c12);
+                                }
+                                ArrayList<Integer> arrayList2 = tL_updateDeleteQuickReplyMessages.messages;
+                                fj fjVar2 = c12.f18512e;
+                                if (fjVar2 != null) {
+                                    i10 = fjVar2.e1();
+                                } else {
+                                    i10 = c12.d;
+                                }
+                                if (!arrayList2.contains(Integer.valueOf(i10)) && c12.f18512e != null) {
+                                    w1Var3.l();
+                                    ks.f(i15).k(121, new Object[0]);
+                                    return;
+                                }
+                                c12.f18512e = null;
+                                long e11 = j10.i(i15).e();
+                                tr a04 = tr.a0(i15);
+                                a04.f27054a.c(new i2(w1Var3, a04, c12, e11, 13));
+                                return;
+                            }
+                            return;
+                        default:
+                            ArrayList<TLRPC.TL_quickReply> arrayList3 = ((TL_update.TL_updateQuickReplies) update).quick_replies;
+                            w1 w1Var4 = this.f18497b;
+                            ArrayList arrayList4 = w1Var4.f18523b;
+                            ArrayList arrayList5 = new ArrayList(arrayList4);
+                            arrayList4.clear();
+                            for (int i16 = 0; i16 < arrayList3.size(); i16++) {
+                                TLRPC.TL_quickReply tL_quickReply2 = arrayList3.get(i16);
+                                int i17 = 0;
+                                while (true) {
+                                    if (i17 < arrayList5.size()) {
+                                        if (((v1) arrayList5.get(i17)).f18509a == tL_quickReply2.shortcut_id) {
+                                            v1Var = (v1) arrayList5.get(i17);
+                                        } else {
+                                            i17++;
+                                        }
+                                    } else {
+                                        v1Var = null;
+                                    }
+                                }
+                                if (v1Var == null) {
+                                    v1Var = new v1();
+                                }
+                                v1Var.f18509a = tL_quickReply2.shortcut_id;
+                                v1Var.f18510b = tL_quickReply2.shortcut;
+                                v1Var.f18513f = tL_quickReply2.count;
+                                v1Var.f18511c = i16;
+                                v1Var.d = tL_quickReply2.top_message;
+                                fj fjVar3 = v1Var.f18512e;
+                                if (fjVar3 != null && fjVar3.e1() != tL_quickReply2.top_message) {
+                                    v1Var.f18512e = null;
+                                }
+                                arrayList4.add(v1Var);
+                                w1Var4.a(v1Var.f18510b);
+                            }
+                            w1Var4.l();
+                            ks.f(w1Var4.f18522a).k(121, new Object[0]);
+                            return;
+                    }
+                }
+            });
+            return true;
+        } else if (update instanceof TL_update.TL_updateNewQuickReply) {
+            b(new Runnable(this) {
+                public final w1 f18497b;
+
+                {
+                    this.f18497b = this;
+                }
+
+                @Override
+                public final void run() {
+                    int i10;
+                    v1 v1Var;
+                    switch (r3) {
+                        case 0:
+                            w1 w1Var = this.f18497b;
+                            ArrayList arrayList = w1Var.f18523b;
+                            int i11 = w1Var.f18522a;
+                            TLRPC.TL_quickReply tL_quickReply = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
+                            v1 c10 = w1Var.c(tL_quickReply.shortcut_id);
+                            if (c10 != null) {
+                                c10.f18510b = tL_quickReply.shortcut;
+                                c10.f18513f = tL_quickReply.count;
+                                c10.d = tL_quickReply.top_message;
+                                fj fjVar = c10.f18512e;
+                                if (fjVar != null && fjVar.e1() != tL_quickReply.top_message) {
+                                    c10.f18512e = null;
+                                    long e10 = j10.i(i11).e();
+                                    tr a02 = tr.a0(i11);
+                                    a02.f27054a.c(new i2(w1Var, a02, c10, e10, 13));
+                                    return;
+                                }
+                            } else {
+                                v1 v1Var2 = new v1();
+                                v1Var2.f18509a = tL_quickReply.shortcut_id;
+                                v1Var2.f18510b = tL_quickReply.shortcut;
+                                v1Var2.f18513f = tL_quickReply.count;
+                                v1Var2.d = tL_quickReply.top_message;
+                                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                                    ((v1) arrayList.get(i12)).f18511c = i12;
+                                }
+                                arrayList.add(v1Var2);
+                                w1Var.a(v1Var2.f18510b);
+                            }
+                            w1Var.l();
+                            ks.f(i11).k(121, new Object[0]);
+                            return;
+                        case 1:
+                            w1 w1Var2 = this.f18497b;
+                            int i13 = w1Var2.f18522a;
+                            v1 c11 = w1Var2.c(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
+                            if (c11 != null) {
+                                w1Var2.f18523b.remove(c11);
+                                w1Var2.a(c11.f18510b);
+                                int i14 = c11.f18509a;
+                                tr a03 = tr.a0(i13);
+                                a03.f27054a.c(new ai.w0(a03, i14, 16));
+                                w1Var2.l();
+                                ks.f(i13).k(121, new Object[0]);
+                                return;
+                            }
+                            return;
+                        case 2:
+                            w1 w1Var3 = this.f18497b;
+                            int i15 = w1Var3.f18522a;
+                            TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
+                            v1 c12 = w1Var3.c(tL_updateDeleteQuickReplyMessages.shortcut_id);
+                            if (c12 != null) {
+                                int size = c12.f18513f - tL_updateDeleteQuickReplyMessages.messages.size();
+                                c12.f18513f = size;
+                                if (size <= 0) {
+                                    w1Var3.f18523b.remove(c12);
+                                }
+                                ArrayList<Integer> arrayList2 = tL_updateDeleteQuickReplyMessages.messages;
+                                fj fjVar2 = c12.f18512e;
+                                if (fjVar2 != null) {
+                                    i10 = fjVar2.e1();
+                                } else {
+                                    i10 = c12.d;
+                                }
+                                if (!arrayList2.contains(Integer.valueOf(i10)) && c12.f18512e != null) {
+                                    w1Var3.l();
+                                    ks.f(i15).k(121, new Object[0]);
+                                    return;
+                                }
+                                c12.f18512e = null;
+                                long e11 = j10.i(i15).e();
+                                tr a04 = tr.a0(i15);
+                                a04.f27054a.c(new i2(w1Var3, a04, c12, e11, 13));
+                                return;
+                            }
+                            return;
+                        default:
+                            ArrayList<TLRPC.TL_quickReply> arrayList3 = ((TL_update.TL_updateQuickReplies) update).quick_replies;
+                            w1 w1Var4 = this.f18497b;
+                            ArrayList arrayList4 = w1Var4.f18523b;
+                            ArrayList arrayList5 = new ArrayList(arrayList4);
+                            arrayList4.clear();
+                            for (int i16 = 0; i16 < arrayList3.size(); i16++) {
+                                TLRPC.TL_quickReply tL_quickReply2 = arrayList3.get(i16);
+                                int i17 = 0;
+                                while (true) {
+                                    if (i17 < arrayList5.size()) {
+                                        if (((v1) arrayList5.get(i17)).f18509a == tL_quickReply2.shortcut_id) {
+                                            v1Var = (v1) arrayList5.get(i17);
+                                        } else {
+                                            i17++;
+                                        }
+                                    } else {
+                                        v1Var = null;
+                                    }
+                                }
+                                if (v1Var == null) {
+                                    v1Var = new v1();
+                                }
+                                v1Var.f18509a = tL_quickReply2.shortcut_id;
+                                v1Var.f18510b = tL_quickReply2.shortcut;
+                                v1Var.f18513f = tL_quickReply2.count;
+                                v1Var.f18511c = i16;
+                                v1Var.d = tL_quickReply2.top_message;
+                                fj fjVar3 = v1Var.f18512e;
+                                if (fjVar3 != null && fjVar3.e1() != tL_quickReply2.top_message) {
+                                    v1Var.f18512e = null;
+                                }
+                                arrayList4.add(v1Var);
+                                w1Var4.a(v1Var.f18510b);
+                            }
+                            w1Var4.l();
+                            ks.f(w1Var4.f18522a).k(121, new Object[0]);
+                            return;
+                    }
+                }
+            });
+            return true;
+        } else if (update instanceof TL_update.TL_updateDeleteQuickReply) {
+            b(new Runnable(this) {
+                public final w1 f18497b;
+
+                {
+                    this.f18497b = this;
+                }
+
+                @Override
+                public final void run() {
+                    int i10;
+                    v1 v1Var;
+                    switch (r3) {
+                        case 0:
+                            w1 w1Var = this.f18497b;
+                            ArrayList arrayList = w1Var.f18523b;
+                            int i11 = w1Var.f18522a;
+                            TLRPC.TL_quickReply tL_quickReply = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
+                            v1 c10 = w1Var.c(tL_quickReply.shortcut_id);
+                            if (c10 != null) {
+                                c10.f18510b = tL_quickReply.shortcut;
+                                c10.f18513f = tL_quickReply.count;
+                                c10.d = tL_quickReply.top_message;
+                                fj fjVar = c10.f18512e;
+                                if (fjVar != null && fjVar.e1() != tL_quickReply.top_message) {
+                                    c10.f18512e = null;
+                                    long e10 = j10.i(i11).e();
+                                    tr a02 = tr.a0(i11);
+                                    a02.f27054a.c(new i2(w1Var, a02, c10, e10, 13));
+                                    return;
+                                }
+                            } else {
+                                v1 v1Var2 = new v1();
+                                v1Var2.f18509a = tL_quickReply.shortcut_id;
+                                v1Var2.f18510b = tL_quickReply.shortcut;
+                                v1Var2.f18513f = tL_quickReply.count;
+                                v1Var2.d = tL_quickReply.top_message;
+                                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                                    ((v1) arrayList.get(i12)).f18511c = i12;
+                                }
+                                arrayList.add(v1Var2);
+                                w1Var.a(v1Var2.f18510b);
+                            }
+                            w1Var.l();
+                            ks.f(i11).k(121, new Object[0]);
+                            return;
+                        case 1:
+                            w1 w1Var2 = this.f18497b;
+                            int i13 = w1Var2.f18522a;
+                            v1 c11 = w1Var2.c(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
+                            if (c11 != null) {
+                                w1Var2.f18523b.remove(c11);
+                                w1Var2.a(c11.f18510b);
+                                int i14 = c11.f18509a;
+                                tr a03 = tr.a0(i13);
+                                a03.f27054a.c(new ai.w0(a03, i14, 16));
+                                w1Var2.l();
+                                ks.f(i13).k(121, new Object[0]);
+                                return;
+                            }
+                            return;
+                        case 2:
+                            w1 w1Var3 = this.f18497b;
+                            int i15 = w1Var3.f18522a;
+                            TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
+                            v1 c12 = w1Var3.c(tL_updateDeleteQuickReplyMessages.shortcut_id);
+                            if (c12 != null) {
+                                int size = c12.f18513f - tL_updateDeleteQuickReplyMessages.messages.size();
+                                c12.f18513f = size;
+                                if (size <= 0) {
+                                    w1Var3.f18523b.remove(c12);
+                                }
+                                ArrayList<Integer> arrayList2 = tL_updateDeleteQuickReplyMessages.messages;
+                                fj fjVar2 = c12.f18512e;
+                                if (fjVar2 != null) {
+                                    i10 = fjVar2.e1();
+                                } else {
+                                    i10 = c12.d;
+                                }
+                                if (!arrayList2.contains(Integer.valueOf(i10)) && c12.f18512e != null) {
+                                    w1Var3.l();
+                                    ks.f(i15).k(121, new Object[0]);
+                                    return;
+                                }
+                                c12.f18512e = null;
+                                long e11 = j10.i(i15).e();
+                                tr a04 = tr.a0(i15);
+                                a04.f27054a.c(new i2(w1Var3, a04, c12, e11, 13));
+                                return;
+                            }
+                            return;
+                        default:
+                            ArrayList<TLRPC.TL_quickReply> arrayList3 = ((TL_update.TL_updateQuickReplies) update).quick_replies;
+                            w1 w1Var4 = this.f18497b;
+                            ArrayList arrayList4 = w1Var4.f18523b;
+                            ArrayList arrayList5 = new ArrayList(arrayList4);
+                            arrayList4.clear();
+                            for (int i16 = 0; i16 < arrayList3.size(); i16++) {
+                                TLRPC.TL_quickReply tL_quickReply2 = arrayList3.get(i16);
+                                int i17 = 0;
+                                while (true) {
+                                    if (i17 < arrayList5.size()) {
+                                        if (((v1) arrayList5.get(i17)).f18509a == tL_quickReply2.shortcut_id) {
+                                            v1Var = (v1) arrayList5.get(i17);
+                                        } else {
+                                            i17++;
+                                        }
+                                    } else {
+                                        v1Var = null;
+                                    }
+                                }
+                                if (v1Var == null) {
+                                    v1Var = new v1();
+                                }
+                                v1Var.f18509a = tL_quickReply2.shortcut_id;
+                                v1Var.f18510b = tL_quickReply2.shortcut;
+                                v1Var.f18513f = tL_quickReply2.count;
+                                v1Var.f18511c = i16;
+                                v1Var.d = tL_quickReply2.top_message;
+                                fj fjVar3 = v1Var.f18512e;
+                                if (fjVar3 != null && fjVar3.e1() != tL_quickReply2.top_message) {
+                                    v1Var.f18512e = null;
+                                }
+                                arrayList4.add(v1Var);
+                                w1Var4.a(v1Var.f18510b);
+                            }
+                            w1Var4.l();
+                            ks.f(w1Var4.f18522a).k(121, new Object[0]);
+                            return;
+                    }
+                }
+            });
+            return true;
+        } else if (update instanceof TL_update.TL_updateDeleteQuickReplyMessages) {
+            b(new Runnable(this) {
+                public final w1 f18497b;
+
+                {
+                    this.f18497b = this;
+                }
+
+                @Override
+                public final void run() {
+                    int i10;
+                    v1 v1Var;
+                    switch (r3) {
+                        case 0:
+                            w1 w1Var = this.f18497b;
+                            ArrayList arrayList = w1Var.f18523b;
+                            int i11 = w1Var.f18522a;
+                            TLRPC.TL_quickReply tL_quickReply = ((TL_update.TL_updateNewQuickReply) update).quick_reply;
+                            v1 c10 = w1Var.c(tL_quickReply.shortcut_id);
+                            if (c10 != null) {
+                                c10.f18510b = tL_quickReply.shortcut;
+                                c10.f18513f = tL_quickReply.count;
+                                c10.d = tL_quickReply.top_message;
+                                fj fjVar = c10.f18512e;
+                                if (fjVar != null && fjVar.e1() != tL_quickReply.top_message) {
+                                    c10.f18512e = null;
+                                    long e10 = j10.i(i11).e();
+                                    tr a02 = tr.a0(i11);
+                                    a02.f27054a.c(new i2(w1Var, a02, c10, e10, 13));
+                                    return;
+                                }
+                            } else {
+                                v1 v1Var2 = new v1();
+                                v1Var2.f18509a = tL_quickReply.shortcut_id;
+                                v1Var2.f18510b = tL_quickReply.shortcut;
+                                v1Var2.f18513f = tL_quickReply.count;
+                                v1Var2.d = tL_quickReply.top_message;
+                                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                                    ((v1) arrayList.get(i12)).f18511c = i12;
+                                }
+                                arrayList.add(v1Var2);
+                                w1Var.a(v1Var2.f18510b);
+                            }
+                            w1Var.l();
+                            ks.f(i11).k(121, new Object[0]);
+                            return;
+                        case 1:
+                            w1 w1Var2 = this.f18497b;
+                            int i13 = w1Var2.f18522a;
+                            v1 c11 = w1Var2.c(((TL_update.TL_updateDeleteQuickReply) update).shortcut_id);
+                            if (c11 != null) {
+                                w1Var2.f18523b.remove(c11);
+                                w1Var2.a(c11.f18510b);
+                                int i14 = c11.f18509a;
+                                tr a03 = tr.a0(i13);
+                                a03.f27054a.c(new ai.w0(a03, i14, 16));
+                                w1Var2.l();
+                                ks.f(i13).k(121, new Object[0]);
+                                return;
+                            }
+                            return;
+                        case 2:
+                            w1 w1Var3 = this.f18497b;
+                            int i15 = w1Var3.f18522a;
+                            TL_update.TL_updateDeleteQuickReplyMessages tL_updateDeleteQuickReplyMessages = (TL_update.TL_updateDeleteQuickReplyMessages) update;
+                            v1 c12 = w1Var3.c(tL_updateDeleteQuickReplyMessages.shortcut_id);
+                            if (c12 != null) {
+                                int size = c12.f18513f - tL_updateDeleteQuickReplyMessages.messages.size();
+                                c12.f18513f = size;
+                                if (size <= 0) {
+                                    w1Var3.f18523b.remove(c12);
+                                }
+                                ArrayList<Integer> arrayList2 = tL_updateDeleteQuickReplyMessages.messages;
+                                fj fjVar2 = c12.f18512e;
+                                if (fjVar2 != null) {
+                                    i10 = fjVar2.e1();
+                                } else {
+                                    i10 = c12.d;
+                                }
+                                if (!arrayList2.contains(Integer.valueOf(i10)) && c12.f18512e != null) {
+                                    w1Var3.l();
+                                    ks.f(i15).k(121, new Object[0]);
+                                    return;
+                                }
+                                c12.f18512e = null;
+                                long e11 = j10.i(i15).e();
+                                tr a04 = tr.a0(i15);
+                                a04.f27054a.c(new i2(w1Var3, a04, c12, e11, 13));
+                                return;
+                            }
+                            return;
+                        default:
+                            ArrayList<TLRPC.TL_quickReply> arrayList3 = ((TL_update.TL_updateQuickReplies) update).quick_replies;
+                            w1 w1Var4 = this.f18497b;
+                            ArrayList arrayList4 = w1Var4.f18523b;
+                            ArrayList arrayList5 = new ArrayList(arrayList4);
+                            arrayList4.clear();
+                            for (int i16 = 0; i16 < arrayList3.size(); i16++) {
+                                TLRPC.TL_quickReply tL_quickReply2 = arrayList3.get(i16);
+                                int i17 = 0;
+                                while (true) {
+                                    if (i17 < arrayList5.size()) {
+                                        if (((v1) arrayList5.get(i17)).f18509a == tL_quickReply2.shortcut_id) {
+                                            v1Var = (v1) arrayList5.get(i17);
+                                        } else {
+                                            i17++;
+                                        }
+                                    } else {
+                                        v1Var = null;
+                                    }
+                                }
+                                if (v1Var == null) {
+                                    v1Var = new v1();
+                                }
+                                v1Var.f18509a = tL_quickReply2.shortcut_id;
+                                v1Var.f18510b = tL_quickReply2.shortcut;
+                                v1Var.f18513f = tL_quickReply2.count;
+                                v1Var.f18511c = i16;
+                                v1Var.d = tL_quickReply2.top_message;
+                                fj fjVar3 = v1Var.f18512e;
+                                if (fjVar3 != null && fjVar3.e1() != tL_quickReply2.top_message) {
+                                    v1Var.f18512e = null;
+                                }
+                                arrayList4.add(v1Var);
+                                w1Var4.a(v1Var.f18510b);
+                            }
+                            w1Var4.l();
+                            ks.f(w1Var4.f18522a).k(121, new Object[0]);
+                            return;
+                    }
+                }
+            });
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public final void k(int i7, String str) {
+        v1 c10 = c(i7);
+        if (c10 == null) {
+            return;
+        }
+        c10.f18510b = str;
+        TLRPC.TL_messages_editQuickReplyShortcut tL_messages_editQuickReplyShortcut = new TLRPC.TL_messages_editQuickReplyShortcut();
+        tL_messages_editQuickReplyShortcut.shortcut_id = i7;
+        tL_messages_editQuickReplyShortcut.shortcut = str;
+        int i10 = this.f18522a;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_editQuickReplyShortcut, new k5(7));
+        l();
+        ks.f(i10).k(ks.F1, new Object[0]);
+    }
+
+    public final void l() {
+        tr a02 = tr.a0(this.f18522a);
+        a02.f27054a.c(new h0(5, this, a02));
     }
 }

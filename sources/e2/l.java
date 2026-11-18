@@ -4,12 +4,12 @@ import android.os.Build;
 import android.os.IBinder;
 import java.util.UUID;
 public abstract class l {
-    public static final int f10174a;
-    public static final UUID f10175b;
-    public static final UUID f10176c;
+    public static final int f10492a;
+    public static final UUID f10493b;
+    public static final UUID f10494c;
     public static final UUID d;
-    public static final UUID f10177e;
-    public static final UUID f10178f;
+    public static final UUID f10495e;
+    public static final UUID f10496f;
 
     static {
         int i7;
@@ -18,11 +18,11 @@ public abstract class l {
         } else {
             i7 = 65536;
         }
-        f10174a = i7;
-        f10175b = new UUID(0L, 0L);
-        f10176c = new UUID(1186680826959645954L, -5988876978535335093L);
+        f10492a = i7;
+        f10493b = new UUID(0L, 0L);
+        f10494c = new UUID(1186680826959645954L, -5988876978535335093L);
         d = new UUID(-2129748144642739255L, 8654423357094679310L);
-        f10177e = new UUID(-1301668207276963122L, -6645017420763422227L);
-        f10178f = new UUID(-7348484286925749626L, -6083546864340672619L);
+        f10495e = new UUID(-1301668207276963122L, -6645017420763422227L);
+        f10496f = new UUID(-7348484286925749626L, -6083546864340672619L);
     }
 }

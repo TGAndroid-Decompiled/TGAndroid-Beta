@@ -1,495 +1,160 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.SurfaceTexture;
-import android.opengl.GLES20;
-import android.opengl.Matrix;
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.util.Locale;
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLContext;
-import javax.microedition.khronos.egl.EGLDisplay;
-import javax.microedition.khronos.egl.EGLSurface;
-public final class wy extends org.telegram.messenger.q5 {
-    public final float[] E;
-    public final int[] F;
-    public boolean G;
-    public boolean H;
-    public final u9 I;
-    public z9 J;
-    public final zy K;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+public class wy extends v4.c0 {
+    public final SparseArray I;
+    public int J;
+    public int K;
     public int L;
     public int M;
-    public int N;
-    public int O;
-    public int P;
-    public int Q;
-    public int R;
+    public final RecyclerView N;
+    public boolean O;
+    public boolean P;
+    public final boolean Q;
+    public boolean R;
     public int S;
-    public int T;
-    public boolean U;
-    public int V;
-    public int W;
-    public int X;
-    public int Y;
-    public final FloatBuffer Z;
-    public final SurfaceTexture f41471a;
-    public boolean f41472a0;
-    public EGL10 f41473b;
-    public long f41474b0;
-    public EGLDisplay f41475c;
-    public final gx f41476c0;
-    public EGLContext d;
-    public boolean f41477d0;
-    public EGLSurface f41478e;
-    public final Runnable f41479e0;
-    public boolean f41480f;
-    public final boolean h;
-    public volatile int f41481n;
-    public volatile int f41482r;
-    public Bitmap f41483s;
-    public final int f41484w;
-    public SurfaceTexture f41485x;
-    public boolean f41486y;
+    public final boolean T;
 
-    public wy(SurfaceTexture surfaceTexture, Bitmap bitmap, int i7, boolean z10, boolean z11, u9 u9Var, int i10, int i11) {
-        super("PhotoFilterGLThread", false);
-        this.E = new float[16];
-        this.F = new int[1];
-        this.f41479e0 = new ty(this, 1);
-        this.f41471a = surfaceTexture;
-        this.f41481n = i10;
-        this.f41482r = i11;
-        this.f41483s = bitmap;
-        this.f41484w = i7;
-        this.I = u9Var;
-        boolean z12 = u9Var != null;
-        this.H = z12;
-        if (z12) {
-            z9 z9Var = new z9();
-            this.J = z9Var;
-            u9 u9Var2 = z9Var.f42323t;
-            if (u9Var2 != null && u9Var2.f39976m != null) {
-                u9Var2.f39976m = null;
-            }
-            z9Var.f42323t = u9Var;
-            if (u9Var != null && u9Var.f39976m != z9Var) {
-                u9Var.f39976m = z9Var;
-                u9Var.d();
-            }
-        }
-        this.h = false;
-        zy zyVar = new zy(false, null);
-        this.K = zyVar;
-        zyVar.f42462i1 = z11;
-        float[] fArr = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
-        if (z10) {
-            fArr[2] = 0.0f;
-            fArr[0] = 1.0f;
-            fArr[6] = 0.0f;
-            fArr[4] = 1.0f;
-        }
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
-        allocateDirect.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
-        this.Z = asFloatBuffer;
-        asFloatBuffer.put(fArr);
-        asFloatBuffer.position(0);
-        start();
-    }
-
-    public static void a(wy wyVar) {
-        yy yyVar;
-        if (wyVar.f41480f) {
-            wyVar.b();
-            if (wyVar.f41486y) {
-                wyVar.f41485x.updateTexImage();
-                wyVar.f41485x.getTransformMatrix(wyVar.E);
-                wyVar.f();
-                wyVar.f41486y = false;
-                zy zyVar = wyVar.K;
-                zyVar.P0 = wyVar.E;
-                zyVar.W0 = false;
-                wyVar.G = true;
-            }
-            if (wyVar.f41472a0) {
-                if (wyVar.h && ((yyVar = wyVar.K.f42454f1) == null || yyVar.h())) {
-                    GLES20.glViewport(0, 0, wyVar.f41481n, wyVar.f41482r);
-                    GLES20.glBindFramebuffer(36160, 0);
-                    GLES20.glUseProgram(wyVar.P);
-                    GLES20.glActiveTexture(33984);
-                    GLES20.glBindTexture(36197, wyVar.F[0]);
-                    GLES20.glUniform1i(wyVar.T, 0);
-                    GLES20.glEnableVertexAttribArray(wyVar.S);
-                    int i7 = wyVar.S;
-                    FloatBuffer floatBuffer = wyVar.Z;
-                    if (floatBuffer == null) {
-                        floatBuffer = wyVar.K.f42440a1;
-                    }
-                    GLES20.glVertexAttribPointer(i7, 2, 5126, false, 8, (Buffer) floatBuffer);
-                    GLES20.glEnableVertexAttribArray(wyVar.Q);
-                    GLES20.glVertexAttribPointer(wyVar.Q, 2, 5126, false, 8, (Buffer) wyVar.K.f42443b1);
-                    GLES20.glUniformMatrix4fv(wyVar.R, 1, false, wyVar.E, 0);
-                    GLES20.glDrawArrays(5, 0, 4);
-                    wyVar.f41473b.eglSwapBuffers(wyVar.f41475c, wyVar.f41478e);
-                    z9 z9Var = wyVar.J;
-                    if (z9Var != null) {
-                        z9Var.a(wyVar.F[0], wyVar.X, wyVar.Y, wyVar.E);
-                        return;
-                    }
-                    return;
-                }
-                if (wyVar.f41476c0 == null || wyVar.G) {
-                    GLES20.glViewport(0, 0, wyVar.V, wyVar.W);
-                    wyVar.K.f();
-                    wyVar.K.d();
-                    if (wyVar.f41476c0 == null) {
-                        wyVar.K.e();
-                    }
-                    wyVar.K.c();
-                    wyVar.U = wyVar.K.b();
-                    wyVar.f41477d0 = true;
-                }
-                if (wyVar.f41477d0) {
-                    GLES20.glViewport(0, 0, wyVar.f41481n, wyVar.f41482r);
-                    GLES20.glBindFramebuffer(36160, 0);
-                    int g10 = wyVar.K.g(1 ^ (wyVar.U ? 1 : 0));
-                    GLES20.glUseProgram(wyVar.L);
-                    GLES20.glActiveTexture(33984);
-                    GLES20.glBindTexture(3553, g10);
-                    GLES20.glUniform1i(wyVar.O, 0);
-                    GLES20.glEnableVertexAttribArray(wyVar.N);
-                    int i10 = wyVar.N;
-                    FloatBuffer floatBuffer2 = wyVar.Z;
-                    if (floatBuffer2 == null) {
-                        floatBuffer2 = wyVar.K.f42440a1;
-                    }
-                    GLES20.glVertexAttribPointer(i10, 2, 5126, false, 8, (Buffer) floatBuffer2);
-                    GLES20.glEnableVertexAttribArray(wyVar.M);
-                    GLES20.glVertexAttribPointer(wyVar.M, 2, 5126, false, 8, (Buffer) wyVar.K.Z0);
-                    GLES20.glDrawArrays(5, 0, 4);
-                    wyVar.f41473b.eglSwapBuffers(wyVar.f41475c, wyVar.f41478e);
-                    z9 z9Var2 = wyVar.J;
-                    if (z9Var2 != null) {
-                        z9Var2.a(g10, wyVar.V, wyVar.W, null);
-                    }
-                }
-            }
-        }
-    }
-
-    public final void b() {
-        if (!this.d.equals(this.f41473b.eglGetCurrentContext()) || !this.f41478e.equals(this.f41473b.eglGetCurrentSurface(12377))) {
-            EGL10 egl10 = this.f41473b;
-            EGLDisplay eGLDisplay = this.f41475c;
-            EGLSurface eGLSurface = this.f41478e;
-            if (!egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.d) && org.telegram.messenger.r2.f26206a) {
-                org.telegram.messenger.i20.u(this.f41473b, new StringBuilder("eglMakeCurrent failed "));
-            }
-        }
-    }
-
-    public final void c(boolean z10, boolean z11, boolean z12) {
-        postRunnable(new uy(this, z10, z12, z11, 0));
-    }
-
-    public final void d(yy yyVar) {
-        postRunnable(new vs(11, this, yyVar));
-    }
-
-    public final void f() {
-        int i7;
-        int i10;
-        if (!this.f41472a0 && (i7 = this.X) > 0 && (i10 = this.Y) > 0) {
-            this.K.i(this.f41483s, this.f41484w, this.F[0], i7, i10);
-            this.f41472a0 = true;
-            zy zyVar = this.K;
-            this.V = zyVar.X0;
-            this.W = zyVar.Y0;
-        }
-    }
-
-    public final void finish() {
-        this.f41483s = null;
-        if (this.f41478e != null) {
-            EGL10 egl10 = this.f41473b;
-            EGLDisplay eGLDisplay = this.f41475c;
-            EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-            egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
-            this.f41473b.eglDestroySurface(this.f41475c, this.f41478e);
-            this.f41478e = null;
-        }
-        EGLContext eGLContext = this.d;
-        if (eGLContext != null) {
-            u9 u9Var = this.I;
-            if (u9Var != null) {
-                synchronized (u9Var.f39970f) {
-                    try {
-                        if (u9Var.f39971g == eGLContext) {
-                            u9Var.f39971g = null;
-                        }
-                    } finally {
-                    }
-                }
-            }
-            this.f41473b.eglDestroyContext(this.f41475c, this.d);
-            this.d = null;
-        }
-        EGLDisplay eGLDisplay2 = this.f41475c;
-        if (eGLDisplay2 != null) {
-            this.f41473b.eglTerminate(eGLDisplay2);
-            this.f41475c = null;
-        }
-        SurfaceTexture surfaceTexture = this.f41471a;
-        if (surfaceTexture != null) {
-            surfaceTexture.release();
-        }
-    }
-
-    public final boolean g(hi.c7 c7Var) {
-        int i7;
-        String str;
-        int h;
-        int h7;
-        if (c7Var != null) {
-            i7 = c7Var.a();
-        } else {
-            i7 = 0;
-        }
-        if (i7 == 1) {
-            str = org.telegram.messenger.g0.y2(null, 2131624046);
-        } else if (i7 == 2) {
-            str = org.telegram.messenger.g0.y2(null, 2131624047);
-        } else {
-            str = "";
-        }
-        if (i7 != 0) {
-            h = zy.h(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
-            h7 = zy.h(35632, String.format(Locale.US, "%1$s\nvarying highp vec2 vTextureCoord;void main() {gl_FragColor = TEX(vTextureCoord);}", str));
-        } else {
-            h = zy.h(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
-            h7 = zy.h(35632, "#extension GL_OES_EGL_image_external : require\n" + "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;void main() {gl_FragColor = texture2D(sTexture, vTextureCoord);}".replace("sampler2D", "samplerExternalOES"));
-        }
-        if (h == 0 || h7 == 0) {
-            return false;
-        }
-        int i10 = this.P;
-        if (i10 != 0) {
-            GLES20.glDeleteProgram(i10);
-        }
-        int glCreateProgram = GLES20.glCreateProgram();
-        this.P = glCreateProgram;
-        GLES20.glAttachShader(glCreateProgram, h);
-        GLES20.glAttachShader(this.P, h7);
-        GLES20.glBindAttribLocation(this.P, 0, "position");
-        GLES20.glBindAttribLocation(this.P, 1, "inputTexCoord");
-        GLES20.glLinkProgram(this.P);
-        int[] iArr = new int[1];
-        GLES20.glGetProgramiv(this.P, 35714, iArr, 0);
-        if (iArr[0] == 0) {
-            GLES20.glDeleteProgram(this.P);
-            this.P = 0;
-        } else {
-            this.Q = GLES20.glGetAttribLocation(this.P, "position");
-            this.S = GLES20.glGetAttribLocation(this.P, "inputTexCoord");
-            this.T = GLES20.glGetUniformLocation(this.P, "sourceImage");
-            this.R = GLES20.glGetUniformLocation(this.P, "videoMatrix");
-        }
-        return true;
-    }
-
-    public final void h(int i7, int i10) {
-        if (this.J == null) {
-            return;
-        }
-        postRunnable(new sy(this, i7, i10, 2));
+    public wy(int i7, ck0 ck0Var) {
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = ck0Var;
+        this.M = i7;
     }
 
     @Override
-    public final void run() {
-        EGLContext eGLContext;
-        int i7;
-        int i10;
-        z9 z9Var;
-        EGL10 egl10 = (EGL10) EGLContext.getEGL();
-        this.f41473b = egl10;
-        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        this.f41475c = eglGetDisplay;
-        boolean z10 = false;
-        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            if (org.telegram.messenger.r2.f26206a) {
-                org.telegram.messenger.i20.u(this.f41473b, new StringBuilder("eglGetDisplay failed "));
-            }
-            finish();
-        } else if (!this.f41473b.eglInitialize(eglGetDisplay, new int[2])) {
-            if (org.telegram.messenger.r2.f26206a) {
-                org.telegram.messenger.i20.u(this.f41473b, new StringBuilder("eglInitialize failed "));
-            }
-            finish();
-        } else {
-            int[] iArr = new int[1];
-            EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (!this.f41473b.eglChooseConfig(this.f41475c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
-                if (org.telegram.messenger.r2.f26206a) {
-                    org.telegram.messenger.i20.u(this.f41473b, new StringBuilder("eglChooseConfig failed "));
-                }
-                finish();
-            } else if (iArr[0] > 0) {
-                EGLConfig eGLConfig = eGLConfigArr[0];
-                int[] iArr2 = {12440, 2, 12344};
-                u9 u9Var = this.I;
-                if (u9Var != null) {
-                    synchronized (u9Var.f39970f) {
-                        try {
-                            eGLContext = u9Var.f39971g;
-                            if (eGLContext == null) {
-                                eGLContext = EGL10.EGL_NO_CONTEXT;
-                            }
-                        } finally {
-                        }
-                    }
-                } else {
-                    eGLContext = EGL10.EGL_NO_CONTEXT;
-                }
-                EGLContext eglCreateContext = this.f41473b.eglCreateContext(this.f41475c, eGLConfig, eGLContext, iArr2);
-                this.d = eglCreateContext;
-                if (eglCreateContext == null) {
-                    if (org.telegram.messenger.r2.f26206a) {
-                        org.telegram.messenger.i20.u(this.f41473b, new StringBuilder("eglCreateContext failed "));
-                    }
-                    finish();
-                } else {
-                    u9 u9Var2 = this.I;
-                    if (u9Var2 != null) {
-                        u9Var2.a(eglCreateContext);
-                    }
-                    SurfaceTexture surfaceTexture = this.f41471a;
-                    if (surfaceTexture != null) {
-                        EGLSurface eglCreateWindowSurface = this.f41473b.eglCreateWindowSurface(this.f41475c, eGLConfig, surfaceTexture, null);
-                        this.f41478e = eglCreateWindowSurface;
-                        if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
-                            if (!this.f41473b.eglMakeCurrent(this.f41475c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
-                                if (org.telegram.messenger.r2.f26206a) {
-                                    org.telegram.messenger.i20.u(this.f41473b, new StringBuilder("eglMakeCurrent failed "));
-                                }
-                                finish();
-                            } else {
-                                int h = zy.h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
-                                int h7 = zy.h(35632, "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;void main() {gl_FragColor = texture2D(sTexture, vTextureCoord);}");
-                                if (h != 0 && h7 != 0) {
-                                    int glCreateProgram = GLES20.glCreateProgram();
-                                    this.L = glCreateProgram;
-                                    GLES20.glAttachShader(glCreateProgram, h);
-                                    GLES20.glAttachShader(this.L, h7);
-                                    GLES20.glBindAttribLocation(this.L, 0, "position");
-                                    GLES20.glBindAttribLocation(this.L, 1, "inputTexCoord");
-                                    GLES20.glLinkProgram(this.L);
-                                    int[] iArr3 = new int[1];
-                                    GLES20.glGetProgramiv(this.L, 35714, iArr3, 0);
-                                    if (iArr3[0] == 0) {
-                                        GLES20.glDeleteProgram(this.L);
-                                        this.L = 0;
-                                    } else {
-                                        this.M = GLES20.glGetAttribLocation(this.L, "position");
-                                        this.N = GLES20.glGetAttribLocation(this.L, "inputTexCoord");
-                                        this.O = GLES20.glGetUniformLocation(this.L, "sourceImage");
-                                    }
-                                    if (g(null)) {
-                                        Bitmap bitmap = this.f41483s;
-                                        if (bitmap != null) {
-                                            i7 = bitmap.getWidth();
-                                            i10 = this.f41483s.getHeight();
-                                        } else {
-                                            i7 = this.X;
-                                            i10 = this.Y;
-                                        }
-                                        int i11 = i7;
-                                        int i12 = i10;
-                                        if (this.f41476c0 != null) {
-                                            GLES20.glGenTextures(1, this.F, 0);
-                                            Matrix.setIdentityM(this.E, 0);
-                                            SurfaceTexture surfaceTexture2 = new SurfaceTexture(this.F[0]);
-                                            this.f41485x = surfaceTexture2;
-                                            surfaceTexture2.setOnFrameAvailableListener(new vy(this, 0));
-                                            GLES20.glBindTexture(36197, this.F[0]);
-                                            GLES20.glTexParameterf(36197, 10240, 9729.0f);
-                                            GLES20.glTexParameterf(36197, 10241, 9728.0f);
-                                            GLES20.glTexParameteri(36197, 10242, 33071);
-                                            GLES20.glTexParameteri(36197, 10243, 33071);
-                                            org.telegram.messenger.g0.h3(new ty(this, 2));
-                                        }
-                                        if (this.H && (z9Var = this.J) != null && !z9Var.b(this.f41481n / this.f41482r, this.I.f39966a)) {
-                                            org.telegram.messenger.a8.d("Failed to create uiBlurFramebuffer");
-                                            this.H = false;
-                                            this.J = null;
-                                        }
-                                        if (!this.K.a()) {
-                                            finish();
-                                        } else {
-                                            if (i11 != 0 && i12 != 0) {
-                                                this.K.i(this.f41483s, this.f41484w, this.F[0], i11, i12);
-                                                this.f41472a0 = true;
-                                                zy zyVar = this.K;
-                                                this.V = zyVar.X0;
-                                                this.W = zyVar.Y0;
-                                            }
-                                            z10 = true;
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            if (org.telegram.messenger.r2.f26206a) {
-                                org.telegram.messenger.i20.u(this.f41473b, new StringBuilder("createWindowSurface failed "));
-                            }
-                            finish();
-                        }
-                    } else {
-                        finish();
-                    }
-                }
+    public final void P(View view) {
+        v4.f1 T;
+        if (this.T) {
+            RecyclerView recyclerView = this.N;
+            View F = recyclerView.F(view);
+            if (F == null) {
+                T = null;
             } else {
-                if (org.telegram.messenger.r2.f26206a) {
-                    org.telegram.messenger.a8.d("eglConfig not initialized");
-                }
-                finish();
+                T = recyclerView.T(F);
+            }
+            if (T.b() == B() - 1) {
+                ((ViewGroup.MarginLayoutParams) ((v4.q0) view.getLayoutParams())).height = Math.max(this.J, 0);
             }
         }
-        this.f41480f = z10;
-        super.run();
+        super.P(view);
     }
 
-    public wy(SurfaceTexture surfaceTexture, gx gxVar, hi.c7 c7Var, u9 u9Var, int i7, int i10) {
-        super("VideoFilterGLThread", false);
-        this.E = new float[16];
-        this.F = new int[1];
-        this.f41479e0 = new ty(this, 1);
-        this.f41471a = surfaceTexture;
-        this.f41481n = i7;
-        this.f41482r = i10;
-        this.f41476c0 = gxVar;
-        this.I = u9Var;
-        boolean z10 = u9Var != null;
-        this.H = z10;
-        if (z10) {
-            z9 z9Var = new z9();
-            this.J = z9Var;
-            u9 u9Var2 = z9Var.f42323t;
-            if (u9Var2 != null && u9Var2.f39976m != null) {
-                u9Var2.f39976m = null;
+    @Override
+    public final void Q() {
+        this.I.clear();
+        p1();
+    }
+
+    @Override
+    public final void V(RecyclerView recyclerView, int i7, int i10) {
+        p1();
+    }
+
+    @Override
+    public final void W(RecyclerView recyclerView) {
+        this.I.clear();
+        p1();
+    }
+
+    @Override
+    public final void X(RecyclerView recyclerView, int i7, int i10) {
+        p1();
+    }
+
+    @Override
+    public final void Y(RecyclerView recyclerView, int i7, int i10) {
+        p1();
+    }
+
+    @Override
+    public final void Z() {
+        p1();
+    }
+
+    @Override
+    public final void a0(RecyclerView recyclerView, int i7, int i10, Object obj) {
+        p1();
+        p1();
+    }
+
+    @Override
+    public final void d0(v4.x0 x0Var, v4.c1 c1Var, int i7, int i10) {
+        int i11 = this.K;
+        this.L = View.MeasureSpec.getSize(i7);
+        int size = View.MeasureSpec.getSize(i10);
+        this.K = size;
+        if (i11 != size) {
+            p1();
+        }
+        super.d0(x0Var, c1Var, i7, i10);
+    }
+
+    @Override
+    public final boolean e() {
+        return this.Q;
+    }
+
+    public final void p1() {
+        RecyclerView recyclerView;
+        v4.i0 adapter;
+        if (this.K <= 0 || (adapter = (recyclerView = this.N).getAdapter()) == null) {
+            return;
+        }
+        int b10 = adapter.b() - 1;
+        int i7 = 0;
+        int i10 = 0;
+        for (int i11 = this.O; i11 < b10; i11++) {
+            int d = adapter.d(i11);
+            SparseArray sparseArray = this.I;
+            v4.f1 f1Var = (v4.f1) sparseArray.get(d, null);
+            if (f1Var == null) {
+                f1Var = adapter.a(recyclerView, d);
+                View view = f1Var.f59122a;
+                sparseArray.put(d, f1Var);
+                if (view.getLayoutParams() == null) {
+                    view.setLayoutParams(n());
+                }
             }
-            z9Var.f42323t = u9Var;
-            if (u9Var != null && u9Var.f39976m != z9Var) {
-                u9Var.f39976m = z9Var;
-                u9Var.d();
+            View view2 = f1Var.f59122a;
+            if (this.P) {
+                adapter.t(f1Var, i11);
+            }
+            v4.q0 q0Var = (v4.q0) view2.getLayoutParams();
+            view2.measure(v4.p0.s(d(), this.L, this.f59214k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), v4.p0.s(this.Q, this.K, this.f59215l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
+            i7 += view2.getMeasuredHeight();
+            if (i11 == 0) {
+                i10 = view2.getMeasuredHeight();
+            }
+            if (this.R) {
+                if (i7 >= this.K + i10) {
+                    break;
+                }
+            } else if (i7 >= this.K) {
+                break;
             }
         }
-        this.h = true;
-        this.K = new zy(true, c7Var);
-        start();
+        if (this.R) {
+            this.J = Math.max(this.S, (((this.K - i7) - this.M) - recyclerView.getPaddingBottom()) + i10);
+        } else {
+            this.J = Math.max(this.S, ((this.K - i7) - this.M) - recyclerView.getPaddingBottom());
+        }
+    }
+
+    public wy(int i7, int i10, ck0 ck0Var) {
+        super(1, false);
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = ck0Var;
+        this.M = i7;
     }
 }

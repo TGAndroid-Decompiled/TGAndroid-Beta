@@ -1,38 +1,39 @@
 package sc;
 
 import android.os.AsyncTask;
-import c8.pd;
-import f5.g;
+import c8.sd;
+import ee.t;
 import java.util.Locale;
 import org.telegram.messenger.g0;
-import org.telegram.ui.Components.cf;
-import org.telegram.ui.ef0;
+import org.telegram.ui.Cells.b5;
 import org.telegram.ui.f;
-import org.telegram.ui.kl0;
-import org.telegram.ui.ld0;
+import org.telegram.ui.hf0;
+import org.telegram.ui.md0;
+import org.telegram.ui.ml0;
+import tc.g;
 public final class a extends AsyncTask {
-    public final String f56565a;
-    public final uc.a f56566b;
-    public final f f56567c;
-    public final cf d;
+    public final String f57139a;
+    public final uc.a f57140b;
+    public final f f57141c;
+    public final b5 d;
 
-    public a(cf cfVar, String str, uc.a aVar, f fVar) {
-        this.d = cfVar;
-        this.f56565a = str;
-        this.f56566b = aVar;
-        this.f56567c = fVar;
+    public a(b5 b5Var, String str, uc.a aVar, f fVar) {
+        this.d = b5Var;
+        this.f57139a = str;
+        this.f57140b = aVar;
+        this.f57141c = fVar;
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
         Void[] voidArr = (Void[]) objArr;
-        cf cfVar = this.d;
+        b5 b5Var = this.d;
         try {
-            ld0 c10 = vc.b.c(pd.a(this.f56566b), new g(this.f56565a, 3));
-            Object obj = cfVar.f33545a;
+            md0 c10 = vc.b.c(sd.a(this.f57140b), new t(this.f57139a, 2));
+            Object obj = b5Var.f30431a;
             return new b(c10, null);
-        } catch (tc.g e10) {
-            Object obj2 = cfVar.f33545a;
+        } catch (g e10) {
+            Object obj2 = b5Var.f30431a;
             return new b(null, e10);
         }
     }
@@ -40,19 +41,19 @@ public final class a extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         b bVar = (b) obj;
-        Object obj2 = this.d.f33545a;
-        ld0 ld0Var = bVar.f56568a;
-        f fVar = this.f56567c;
-        if (ld0Var != null) {
-            kl0 kl0Var = (kl0) fVar.f46930b;
-            if (kl0Var.R0) {
+        Object obj2 = this.d.f30431a;
+        md0 md0Var = bVar.f57142a;
+        f fVar = this.f57141c;
+        if (md0Var != null) {
+            ml0 ml0Var = (ml0) fVar.f47404b;
+            if (ml0Var.R0) {
                 return;
             }
-            kl0Var.f48713x0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) ld0Var.f48972b, (String) ld0Var.d);
-            g0.h3(new ef0(fVar, 11));
+            ml0Var.f49918x0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) md0Var.f49838b, (String) md0Var.d);
+            g0.g3(new hf0(fVar, 11));
             return;
         }
-        Exception exc = bVar.f56569b;
+        Exception exc = bVar.f57143b;
         if (exc != null) {
             fVar.y1(exc);
         } else {

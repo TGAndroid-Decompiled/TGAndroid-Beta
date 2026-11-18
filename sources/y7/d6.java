@@ -1,14 +1,14 @@
 package y7;
 
-import org.telegram.ui.ld0;
+import org.telegram.ui.md0;
 public final class d6 {
-    public final Long f60222a;
-    public final k6 f60223b;
-    public final Boolean f60224c;
+    public final Long f60787a;
+    public final k6 f60788b;
+    public final Boolean f60789c;
 
-    public d6(ld0 ld0Var) {
-        this.f60222a = (Long) ld0Var.f48972b;
-        this.f60223b = (k6) ld0Var.f48973c;
-        this.f60224c = (Boolean) ld0Var.d;
+    public d6(md0 md0Var) {
+        this.f60787a = (Long) md0Var.f49838b;
+        this.f60788b = (k6) md0Var.f49839c;
+        this.f60789c = (Boolean) md0Var.d;
     }
 }

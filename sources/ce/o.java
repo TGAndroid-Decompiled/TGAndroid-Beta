@@ -1,13 +1,13 @@
 package ce;
 public final class o implements d {
-    public final int f4958a = 1;
-    public final Object f4959b;
-    public final Object f4960c;
+    public final int f5244a = 1;
+    public final Object f5245b;
+    public final Object f5246c;
     public final kd.j d;
 
     public o(kotlin.jvm.internal.o oVar, d dVar, ka.b bVar) {
-        this.f4959b = oVar;
-        this.f4960c = dVar;
+        this.f5245b = oVar;
+        this.f5246c = dVar;
         this.d = bVar;
     }
 
@@ -17,8 +17,8 @@ public final class o implements d {
     }
 
     public o(d dVar, id.h hVar) {
-        this.f4959b = hVar;
-        this.f4960c = ee.a.k(hVar);
+        this.f5245b = hVar;
+        this.f5246c = ee.a.k(hVar);
         this.d = new be.l(dVar, (id.c) null, 3);
     }
 }

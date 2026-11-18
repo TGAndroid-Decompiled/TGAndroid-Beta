@@ -2,21 +2,22 @@ package ia;
 
 import android.util.Log;
 import com.google.android.gms.internal.vision.e2;
-import hi.l0;
+import h9.g1;
+import hi.u5;
 import java.util.concurrent.atomic.AtomicReference;
 import org.json.JSONObject;
 import p1.g;
 import w7.s;
 public final class c {
-    public Object f15873a;
-    public Object f15874b;
-    public Object f15875c;
+    public Object f16191a;
+    public Object f16192b;
+    public Object f16193c;
     public Object d;
-    public Object f15876e;
-    public Object f15877f;
-    public Object f15878g;
+    public Object f16194e;
+    public Object f16195f;
+    public Object f16196g;
     public Object h;
-    public Object f15879i;
+    public Object f16197i;
 
     public static void d(String str, JSONObject jSONObject) {
         StringBuilder m10 = e2.m(str);
@@ -31,13 +32,13 @@ public final class c {
         b bVar = null;
         try {
             if (!g.b(2, i7)) {
-                JSONObject U = ((l0) this.f15876e).U();
-                if (U != null) {
-                    b S = ((d) this.f15875c).S(U);
-                    d("Loaded cached settings: ", U);
+                JSONObject K = ((g1) this.f16194e).K();
+                if (K != null) {
+                    b s5 = ((u5) this.f16193c).s(K);
+                    d("Loaded cached settings: ", K);
                     ((s) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!g.b(3, i7) && S.f15870c < currentTimeMillis) {
+                    if (!g.b(3, i7) && s5.f16188c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;
@@ -47,10 +48,10 @@ public final class c {
                             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                                 Log.v("FirebaseCrashlytics", "Returning cached settings.", null);
                             }
-                            return S;
+                            return s5;
                         } catch (Exception e10) {
                             e = e10;
-                            bVar = S;
+                            bVar = s5;
                             Log.e("FirebaseCrashlytics", "Failed to get cached settings", e);
                             return bVar;
                         }
@@ -69,7 +70,7 @@ public final class c {
         return (b) ((AtomicReference) this.h).get();
     }
 
-    public void c(o5.i r48, int r49) {
+    public void c(o5.i r49, int r50) {
         throw new UnsupportedOperationException("Method not decompiled: ia.c.c(o5.i, int):void");
     }
 }

@@ -2,40 +2,40 @@ package c4;
 
 import java.util.List;
 public abstract class j extends k2.j implements d {
-    public d f4112a;
-    public long f4113b;
+    public d f4393a;
+    public long f4394b;
 
     @Override
     public final void clear() {
         super.clear();
-        this.f4112a = null;
+        this.f4393a = null;
     }
 
     @Override
     public final int d(long j3) {
-        d dVar = this.f4112a;
+        d dVar = this.f4393a;
         dVar.getClass();
-        return dVar.d(j3 - this.f4113b);
+        return dVar.d(j3 - this.f4394b);
     }
 
     @Override
-    public final long i(int i7) {
-        d dVar = this.f4112a;
+    public final long h(int i7) {
+        d dVar = this.f4393a;
         dVar.getClass();
-        return dVar.i(i7) + this.f4113b;
+        return dVar.h(i7) + this.f4394b;
     }
 
     @Override
-    public final List q(long j3) {
-        d dVar = this.f4112a;
+    public final List m(long j3) {
+        d dVar = this.f4393a;
         dVar.getClass();
-        return dVar.q(j3 - this.f4113b);
+        return dVar.m(j3 - this.f4394b);
     }
 
     @Override
-    public final int u() {
-        d dVar = this.f4112a;
+    public final int p() {
+        d dVar = this.f4393a;
         dVar.getClass();
-        return dVar.u();
+        return dVar.p();
     }
 }

@@ -1,15 +1,15 @@
 package z7;
 public abstract class oa {
-    public static a8.ab f61122a;
+    public static a8.ab f61686a;
 
     public static synchronized ma a(ja jaVar) {
         ma maVar;
         synchronized (oa.class) {
             try {
-                if (f61122a == null) {
-                    f61122a = new a8.ab(4);
+                if (f61686a == null) {
+                    f61686a = new a8.ab(4);
                 }
-                maVar = (ma) f61122a.R0(jaVar);
+                maVar = (ma) f61686a.R0(jaVar);
             } catch (Throwable th2) {
                 throw th2;
             }

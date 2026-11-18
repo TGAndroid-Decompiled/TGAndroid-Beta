@@ -1,29 +1,37 @@
 package org.telegram.ui.Components;
+public final class jp0 implements Runnable {
+    public final int f36512a;
+    public final gt0 f36513b;
+    public final int f36514c;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stories;
-public final class jp0 implements org.telegram.messenger.tr, org.telegram.ui.ActionBar.q1 {
-    public final ys0 f36127a;
-    public final TL_stories.StoryItem f36128b;
-
-    public jp0(ys0 ys0Var, TL_stories.StoryItem storyItem) {
-        this.f36127a = ys0Var;
-        this.f36128b = storyItem;
+    public jp0(gt0 gt0Var, int i7, int i10) {
+        this.f36512a = i10;
+        this.f36513b = gt0Var;
+        this.f36514c = i7;
     }
 
     @Override
-    public void a(String str) {
-        r0.getStoriesController().r(r0.f42116m1, str, new gh(10, this.f36127a, this.f36128b));
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        ArrayList arrayList = new ArrayList(1);
-        arrayList.add(this.f36128b);
-        ys0 ys0Var = this.f36127a;
-        org.telegram.ui.ActionBar.e2 e2Var = ys0Var.f42152y1;
-        e2Var.getMessagesController().P1().s(arrayList, ys0Var.f42116m1);
-        cc.a0(e2Var).Q(2131624052, 36, org.telegram.messenger.hd.G(1, "StoriesDeleted", new Object[0])).j();
-        ys0Var.V(false);
+    public final void run() {
+        switch (this.f36512a) {
+            case 0:
+                this.f36513b.s1(this.f36514c);
+                return;
+            case 1:
+                gt0 gt0Var = this.f36513b;
+                org.telegram.ui.ActionBar.h2 h2Var = gt0Var.f35642y1;
+                gt0Var.a1(this.f36514c, gt0Var.f35606m1, h2Var);
+                return;
+            case 2:
+                this.f36513b.r1(this.f36514c, false);
+                return;
+            case 3:
+                this.f36513b.s1(this.f36514c);
+                return;
+            default:
+                gt0 gt0Var2 = this.f36513b;
+                org.telegram.ui.ActionBar.h2 h2Var2 = gt0Var2.f35642y1;
+                gt0Var2.b1(this.f36514c, gt0Var2.f35606m1, h2Var2);
+                return;
+        }
     }
 }

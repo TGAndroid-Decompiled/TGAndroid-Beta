@@ -1,80 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-public final class uh implements tj {
-    public final ki f40029a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.view.View;
+public final class uh extends View {
+    public final int f40352a;
+    public final si f40353b;
 
-    public uh(ki kiVar) {
-        this.f40029a = kiVar;
+    public uh(si siVar, Context context, int i7) {
+        super(context);
+        this.f40352a = i7;
+        this.f40353b = siVar;
     }
 
     @Override
-    public final void A() {
-        ki kiVar = this.f40029a;
-        tj tjVar = kiVar.S1;
-        if (tjVar != null) {
-            tjVar.A();
-            return;
-        }
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
-        if (e2Var instanceof tj) {
-            ((tj) e2Var).A();
-        } else if (e2Var instanceof org.telegram.ui.ek0) {
-            org.telegram.ui.ek0 ek0Var = (org.telegram.ui.ek0) e2Var;
-            try {
-                Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-                intent.setType("*/*");
-                ek0Var.startActivityForResult(intent, 21);
-            } catch (Exception e10) {
-                org.telegram.messenger.a8.g(e10, true);
-            }
+    public void draw(Canvas canvas) {
+        switch (this.f40352a) {
+            case 0:
+                super.draw(canvas);
+                this.f40353b.W1.draw(canvas);
+                return;
+            default:
+                super.draw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void T() {
-        this.f40029a.p1(true);
+    public void onDraw(Canvas canvas) {
+        switch (this.f40352a) {
+            case 1:
+                si siVar = this.f40353b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, siVar.f39732w2.getSelectedItemsCount())));
+                int ceil = (int) Math.ceil(siVar.H2.measureText(format));
+                int max = Math.max(org.telegram.messenger.g0.L(16.0f) + ceil, org.telegram.messenger.g0.L(24.0f));
+                int measuredWidth = getMeasuredWidth() / 2;
+                int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.C5, siVar.J0);
+                siVar.H2.setColor(i0.a.o(w02, (int) (((siVar.T2 * 0.42d) + 0.58d) * Color.alpha(w02))));
+                siVar.J2.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29469h5, siVar.J0));
+                int i7 = max / 2;
+                int i10 = measuredWidth - i7;
+                int i11 = i7 + measuredWidth;
+                siVar.I2.set(i10, 0.0f, i11, getMeasuredHeight());
+                canvas.drawRoundRect(siVar.I2, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), siVar.J2);
+                siVar.J2.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.W9, siVar.J0));
+                siVar.I2.set(org.telegram.messenger.g0.L(2.0f) + i10, org.telegram.messenger.g0.L(2.0f), i11 - org.telegram.messenger.g0.L(2.0f), getMeasuredHeight() - org.telegram.messenger.g0.L(2.0f));
+                canvas.drawRoundRect(siVar.I2, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), siVar.J2);
+                canvas.drawText(format, measuredWidth - (ceil / 2), org.telegram.messenger.g0.L(16.2f), siVar.H2);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
-        ki kiVar = this.f40029a;
-        tj tjVar = kiVar.S1;
-        if (tjVar != null) {
-            tjVar.n(arrayList, str, arrayList2, arrayList3, z10, i7, j3, z11, j10);
-            return;
-        }
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
-        if (e2Var instanceof tj) {
-            ((tj) e2Var).n(arrayList, str, arrayList2, arrayList3, z10, i7, j3, z11, j10);
-        } else if (e2Var instanceof org.telegram.ui.ek0) {
-            org.telegram.ui.ek0 ek0Var = (org.telegram.ui.ek0) e2Var;
-            ArrayList arrayList4 = new ArrayList();
-            int size = arrayList.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                ?? obj = new Object();
-                obj.f23196c = (String) arrayList.get(i10);
-                arrayList4.add(obj);
-            }
-            ek0Var.K1(arrayList4);
-        }
-    }
-
-    @Override
-    public final void p(ArrayList arrayList, boolean z10, int i7, long j3) {
-        ki kiVar = this.f40029a;
-        tj tjVar = kiVar.S1;
-        if (tjVar != null) {
-            tjVar.p(arrayList, z10, i7, j3);
-            return;
-        }
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
-        if (e2Var instanceof org.telegram.ui.an) {
-            ((org.telegram.ui.an) e2Var).p(arrayList, z10, i7, j3);
-        } else if (e2Var instanceof org.telegram.ui.ek0) {
-            ((org.telegram.ui.ek0) e2Var).K1(arrayList);
+    public void onSizeChanged(int i7, int i10, int i11, int i12) {
+        switch (this.f40352a) {
+            case 0:
+                super.onSizeChanged(i7, i10, i11, i12);
+                this.f40353b.W1.setBounds(0, (i10 - org.telegram.messenger.g0.f24116n) - org.telegram.messenger.g0.L(48.0f), i7, i10);
+                return;
+            default:
+                super.onSizeChanged(i7, i10, i11, i12);
+                return;
         }
     }
 }

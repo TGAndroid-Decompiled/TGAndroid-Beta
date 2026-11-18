@@ -1,33 +1,40 @@
 package hi;
+public final class o implements Runnable {
+    public final int f15126a;
+    public final ja f15127b;
 
-import org.telegram.messenger.z10;
-public final class o implements z10 {
-    public final int f14788a;
-    public final ia f14789b;
-
-    public o(ia iaVar, int i7) {
-        this.f14788a = i7;
-        this.f14789b = iaVar;
+    public o(ja jaVar, int i7) {
+        this.f15126a = i7;
+        this.f15127b = jaVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        Integer num = (Integer) obj;
-        switch (this.f14788a) {
+    public final void run() {
+        switch (this.f15126a) {
             case 0:
-                int intValue = num.intValue();
-                ia iaVar = this.f14789b;
-                iaVar.setPeriod(intValue);
-                z10 z10Var = iaVar.B1;
-                if (z10Var != null) {
-                    z10Var.a(num);
-                    return;
-                }
+                this.f15127b.n();
+                return;
+            case 1:
+                ja jaVar = this.f15127b;
+                jaVar.K0 = false;
+                jaVar.L0 = Integer.MIN_VALUE;
+                jaVar.invalidate();
+                jaVar.S0.setVisibility(0);
+                jaVar.T0.setVisibility(0);
                 return;
             default:
-                z10 z10Var2 = this.f14789b.C1;
-                if (z10Var2 != null) {
-                    z10Var2.a(num);
+                ta taVar = this.f15127b.S1;
+                ha haVar = taVar.Y0;
+                if (haVar != null) {
+                    haVar.P = false;
+                    haVar.c();
+                    ha haVar2 = taVar.Y0;
+                    haVar2.m(0L);
+                    db dbVar = haVar2.G;
+                    if (dbVar != null) {
+                        dbVar.setProgress(0L);
+                        return;
+                    }
                     return;
                 }
                 return;

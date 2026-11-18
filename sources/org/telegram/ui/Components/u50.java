@@ -1,147 +1,64 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class u50 implements Runnable {
-    public final int f39907a;
-    public final v50 f39908b;
-    public final String f39909c;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class u50 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public final ImageView f40212a;
+    public final TextView f40213b;
+    public final TextView f40214c;
+    public int d;
+    public int f40215e;
+    public final x50 f40216f;
 
-    public u50(v50 v50Var, String str, int i7) {
-        this.f39907a = i7;
-        this.f39908b = v50Var;
-        this.f39909c = str;
+    public u50(x50 x50Var, Context context) {
+        super(context);
+        this.f40216f = x50Var;
+        ImageView imageView = new ImageView(context);
+        this.f40212a = imageView;
+        imageView.setBackground(org.telegram.ui.ActionBar.n6.M(46, org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.R7, false), org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Y7, false)));
+        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        imageView.setImageResource(2131231610);
+        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        addView(imageView, c8.ma.d(46, 46.0f, 19, 13.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f40213b = textView;
+        i5.c.x(textView, 1, 16.0f);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.G6, null);
+        addView(textView, c8.ma.d(-1, -2.0f, 51, 72.0f, 9.0f, 0.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f40214c = textView2;
+        textView2.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29788y6, null);
+        addView(textView2, c8.ma.d(-1, -2.0f, 51, 72.0f, 32.0f, 0.0f, 0.0f));
     }
 
     @Override
-    public final void run() {
-        int i7;
-        String str;
-        String K;
-        ArrayList arrayList;
-        boolean z10;
-        char c10;
-        Object obj;
-        switch (this.f39907a) {
-            case 0:
-                v50 v50Var = this.f39908b;
-                String str2 = this.f39909c;
-                v50Var.getClass();
-                org.telegram.messenger.g0.h3(new u50(v50Var, str2, 1));
-                return;
-            case 1:
-                v50 v50Var2 = this.f39908b;
-                String str3 = this.f39909c;
-                jg.z1 z1Var = v50Var2.f40271e;
-                org.telegram.ui.zr zrVar = v50Var2.f40273n.f32873h2;
-                boolean z11 = false;
-                boolean z12 = false;
-                if (zrVar != null) {
-                    z11 = true;
-                }
-                if (zrVar != null) {
-                    z12 = true;
-                }
-                z1Var.g(str3, true, z11, true, z12, 0L, false, 0, 0);
-                org.telegram.messenger.p5 p5Var = Utilities.f22418g;
-                u50 u50Var = new u50(v50Var2, str3, 2);
-                v50Var2.h = u50Var;
-                p5Var.c(u50Var);
-                return;
-            default:
-                v50 v50Var3 = this.f39908b;
-                String str4 = this.f39909c;
-                ArrayList arrayList2 = v50Var3.f40273n.Z1;
-                String lowerCase = str4.trim().toLowerCase();
-                if (lowerCase.length() == 0) {
-                    org.telegram.messenger.g0.h3(new yf(v50Var3, new ArrayList(), new ArrayList(), 13));
-                    return;
-                }
-                boolean z13 = true;
-                ?? r62 = 0;
-                String S0 = org.telegram.messenger.hd.E0().S0(lowerCase, true, false);
-                S0 = (lowerCase.equals(S0) || S0.length() == 0) ? null : null;
-                if (S0 != null) {
-                    i7 = 1;
-                } else {
-                    i7 = 0;
-                }
-                int i10 = i7 + 1;
-                String[] strArr = new String[i10];
-                strArr[0] = lowerCase;
-                if (S0 != null) {
-                    strArr[1] = S0;
-                }
-                ArrayList arrayList3 = new ArrayList();
-                ArrayList arrayList4 = new ArrayList();
-                int i11 = 0;
-                while (i11 < arrayList2.size()) {
-                    TLObject tLObject = (TLObject) arrayList2.get(i11);
-                    boolean z14 = tLObject instanceof TLRPC.User;
-                    if (z14) {
-                        TLRPC.User user = (TLRPC.User) tLObject;
-                        str = org.telegram.messenger.g5.m(r62, user.first_name, user.last_name).toLowerCase();
-                        K = org.telegram.messenger.q10.n(user);
-                    } else {
-                        TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                        str = chat.title;
-                        K = org.telegram.messenger.t3.K(chat, r62);
-                    }
-                    String S02 = org.telegram.messenger.hd.E0().S0(str, z13, r62);
-                    if (str.equals(S02)) {
-                        S02 = null;
-                    }
-                    char c11 = r62;
-                    int i12 = r62;
-                    while (true) {
-                        if (i12 < i10) {
-                            String str5 = strArr[i12];
-                            if (!str.startsWith(str5) && !i5.c.A(" ", str5, str) && (S02 == null || (!S02.startsWith(str5) && !i5.c.A(" ", str5, S02)))) {
-                                if (K != null && K.startsWith(str5)) {
-                                    c11 = 2;
-                                }
-                                c10 = c11;
-                            } else {
-                                c10 = 1;
-                            }
-                            if (c10 != 0) {
-                                arrayList = arrayList2;
-                                z10 = true;
-                                if (c10 == 1) {
-                                    if (z14) {
-                                        TLRPC.User user2 = (TLRPC.User) tLObject;
-                                        arrayList4.add(org.telegram.messenger.g0.r0(user2.first_name, user2.last_name, str5));
-                                        obj = null;
-                                    } else {
-                                        obj = null;
-                                        arrayList4.add(org.telegram.messenger.g0.r0(((TLRPC.Chat) tLObject).title, null, str5));
-                                    }
-                                } else {
-                                    obj = null;
-                                    arrayList4.add(org.telegram.messenger.g0.r0(r.b.k("@", K), null, "@" + str5));
-                                }
-                                arrayList3.add(tLObject);
-                            } else {
-                                char c12 = c10;
-                                z13 = true;
-                                arrayList2 = arrayList2;
-                                c11 = c12;
-                                i12++;
-                            }
-                        } else {
-                            arrayList = arrayList2;
-                            z10 = z13;
-                        }
-                    }
-                    i11++;
-                    z13 = z10;
-                    arrayList2 = arrayList;
-                    r62 = 0;
-                }
-                org.telegram.messenger.g0.h3(new yf(v50Var3, arrayList3, arrayList4, 13));
-                return;
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(58.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.R7, false);
+        int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Y7, false);
+        ImageView imageView = this.f40212a;
+        if (imageView != null) {
+            if (x02 != this.d || x03 != this.f40215e) {
+                this.d = x02;
+                this.f40215e = x03;
+                imageView.setBackground(org.telegram.ui.ActionBar.n6.M(46, x02, x03));
+                invalidate();
+            }
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

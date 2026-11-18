@@ -2,11 +2,11 @@ package org.telegram.utils.twidget;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Process;
 import android.os.SystemClock;
+import android.system.OsConstants;
 import android.util.Log;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -15,178 +15,37 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-public final class WidgetEngineService extends Service {
-    public static volatile String f54152b;
-    public static String f54153c;
+import java.util.zip.ZipFile;
+public class WidgetEngineService extends Service {
+    public static volatile String f54670b;
+    public static String f54671c;
     public static final ExecutorService d = Executors.newSingleThreadExecutor(new ai.y0(6));
-    public final z f54154a = new z(this);
+    public static volatile boolean f54672e;
+    public final a0 f54673a = new a0(this);
 
-    public static String a(AssetManager assetManager) {
-        int i7;
-        int i10;
-        String[] strArr;
-        int i11;
-        AssetManager assetManager2 = assetManager;
-        synchronized (WidgetEngineService.class) {
-            try {
-                String str = f54153c;
-                if (str != null) {
-                    return str;
-                }
-                InputStream open = assetManager2.open("WidgetSandbox/manifest.txt");
-                try {
-                    ExecutorService executorService = d1.f54204a;
-                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    byte[] bArr = new byte[16384];
-                    while (true) {
-                        int read = open.read(bArr);
-                        i7 = 0;
-                        if (read == -1) {
-                            break;
-                        }
-                        byteArrayOutputStream.write(bArr, 0, read);
-                    }
-                    String str2 = new String(byteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8);
-                    open.close();
-                    String[] split = str2.split("\n");
-                    int length = split.length;
-                    byte[] bArr2 = null;
-                    byte[] bArr3 = null;
-                    byte[] bArr4 = null;
-                    byte[] bArr5 = null;
-                    byte[] bArr6 = null;
-                    int i12 = 0;
-                    while (i12 < length) {
-                        String str3 = split[i12];
-                        if (str3.isEmpty()) {
-                            strArr = split;
-                            i11 = length;
-                            i10 = i7;
-                        } else {
-                            String[] split2 = str3.split(" ", 2);
-                            byte[] b10 = b(assetManager2, split2[1]);
-                            StringBuilder sb2 = new StringBuilder();
-                            i10 = i7;
-                            byte[] digest = MessageDigest.getInstance("SHA-256").digest(b10);
-                            int length2 = digest.length;
-                            int i13 = i10;
-                            while (i13 < length2) {
-                                int i14 = i13;
-                                int i15 = length;
-                                Object[] objArr = new Object[1];
-                                objArr[i10] = Integer.valueOf(digest[i14] & 255);
-                                sb2.append(String.format("%02x", objArr));
-                                i13 = i14 + 1;
-                                split = split;
-                                length = i15;
-                            }
-                            strArr = split;
-                            i11 = length;
-                            if (split2[i10].equals(sb2.toString())) {
-                                String str4 = split2[1];
-                                switch (str4.hashCode()) {
-                                    case -1927203231:
-                                        if (!str4.equals("validator-bundle.qbc")) {
-                                            break;
-                                        } else {
-                                            bArr6 = b10;
-                                            continue;
-                                        }
-                                    case -1818708305:
-                                        if (str4.equals("sandbox-bundle.js")) {
-                                            bArr2 = b10;
-                                            break;
-                                        } else {
-                                            continue;
-                                        }
-                                    case -1529025109:
-                                        if (str4.equals("renderer-bundle.js")) {
-                                            bArr4 = b10;
-                                            break;
-                                        } else {
-                                            continue;
-                                        }
-                                    case -754904710:
-                                        if (str4.equals("validator-bundle.js")) {
-                                            bArr3 = b10;
-                                            break;
-                                        } else {
-                                            continue;
-                                        }
-                                    case -545376308:
-                                        if (str4.equals("sandbox-bundle.qbc")) {
-                                            bArr5 = b10;
-                                            break;
-                                        } else {
-                                            continue;
-                                        }
-                                    default:
-                                        continue;
-                                }
-                            } else {
-                                throw new IllegalStateException("Bundle checksum mismatch: " + split2[1]);
-                            }
-                        }
-                        i12++;
-                        assetManager2 = assetManager;
-                        i7 = i10;
-                        split = strArr;
-                        length = i11;
-                    }
-                    int i16 = i7;
-                    if (bArr2 != null && bArr3 != null) {
-                        byte[] digest2 = MessageDigest.getInstance("SHA-256").digest(str2.getBytes(StandardCharsets.UTF_8));
-                        StringBuilder sb3 = new StringBuilder("assets:");
-                        for (int i17 = i16; i17 < 12; i17++) {
-                            Object[] objArr2 = new Object[1];
-                            objArr2[i16] = Integer.valueOf(digest2[i17] & 255);
-                            sb3.append(String.format("%02x", objArr2));
-                        }
-                        WidgetSandboxNative.registerResources(sb3.toString().getBytes(StandardCharsets.UTF_8), bArr2, bArr3, bArr4, bArr5, bArr6);
-                        String sb4 = sb3.toString();
-                        f54153c = sb4;
-                        return sb4;
-                    }
-                    throw new IllegalStateException("Widget bundles are missing");
-                } catch (Throwable th2) {
-                    if (open != null) {
-                        try {
-                            open.close();
-                        } catch (Throwable th3) {
-                            th2.addSuppressed(th3);
-                        }
-                    }
-                    throw th2;
-                }
-            } catch (RuntimeException e10) {
-                throw e10;
-            } catch (Exception e11) {
-                throw new IllegalStateException("Widget bundles: " + e11);
-            } finally {
-            }
-        }
+    public static final class Forked extends WidgetEngineService {
     }
 
-    public static byte[] b(AssetManager assetManager, String str) {
+    public static byte[] a(q qVar, String str) {
         if (!str.contains("..") && !str.startsWith("/")) {
-            InputStream open = assetManager.open("WidgetSandbox/WidgetJS/".concat(str));
+            InputStream b10 = qVar.b("WidgetJS/".concat(str));
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 byte[] bArr = new byte[16384];
                 while (true) {
-                    int read = open.read(bArr);
+                    int read = b10.read(bArr);
                     if (read != -1) {
                         byteArrayOutputStream.write(bArr, 0, read);
                     } else {
                         byte[] byteArray = byteArrayOutputStream.toByteArray();
-                        open.close();
+                        b10.close();
                         return byteArray;
                     }
                 }
             } catch (Throwable th2) {
-                if (open != null) {
+                if (b10 != null) {
                     try {
-                        open.close();
+                        b10.close();
                     } catch (Throwable th3) {
                         th2.addSuppressed(th3);
                     }
@@ -198,11 +57,11 @@ public final class WidgetEngineService extends Service {
         }
     }
 
-    public static boolean c() {
+    public static boolean b() {
         if (Build.VERSION.SDK_INT >= 28 && Process.isIsolated()) {
             return true;
         }
-        String str = f54152b;
+        String str = f54670b;
         if (str == null) {
             try {
                 FileInputStream fileInputStream = new FileInputStream("/proc/self/cmdline");
@@ -218,40 +77,183 @@ public final class WidgetEngineService extends Service {
             } catch (Exception unused) {
                 str = "";
             }
-            f54152b = str;
+            f54670b = str;
         }
         return str.contains(":widgets");
+    }
+
+    public static void c(String str) {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        if (WidgetSandboxNative.available()) {
+            ZipFile zipFile = new ZipFile(str);
+            try {
+                d(new q(zipFile, 2));
+                zipFile.close();
+                String[] strArr = {"WidgetEngineBackend", "WidgetSandboxBackend", "WidgetSandboxIntl", "WidgetPng", "IWidgetEngine$Stub", "IWidgetEngineCallback$Stub$Proxy"};
+                for (int i7 = 0; i7 < 6; i7++) {
+                    String str2 = strArr[i7];
+                    try {
+                        Class.forName("org.telegram.utils.twidget." + str2);
+                    } catch (Throwable unused) {
+                    }
+                }
+                Log.i("WidgetEngine", "app zygote: library and bundles in " + (SystemClock.uptimeMillis() - uptimeMillis) + " ms");
+                return;
+            } catch (Throwable th2) {
+                try {
+                    zipFile.close();
+                } catch (Throwable th3) {
+                    th2.addSuppressed(th3);
+                }
+                throw th2;
+            }
+        }
+        throw new IllegalStateException("libtwidget is missing");
+    }
+
+    public static synchronized String d(q qVar) {
+        String[] strArr;
+        int i7;
+        q qVar2 = qVar;
+        synchronized (WidgetEngineService.class) {
+            try {
+                String str = f54671c;
+                if (str != null) {
+                    return str;
+                }
+                try {
+                    InputStream b10 = qVar2.b("manifest.txt");
+                    try {
+                        String a10 = i1.a(b10);
+                        b10.close();
+                        String[] split = a10.split("\n");
+                        int length = split.length;
+                        byte[] bArr = null;
+                        byte[] bArr2 = null;
+                        byte[] bArr3 = null;
+                        int i10 = 0;
+                        while (i10 < length) {
+                            String str2 = split[i10];
+                            if (str2.isEmpty()) {
+                                strArr = split;
+                                i7 = length;
+                            } else {
+                                String[] split2 = str2.split(" ", 2);
+                                byte[] a11 = a(qVar2, split2[1]);
+                                StringBuilder sb2 = new StringBuilder();
+                                byte[] digest = MessageDigest.getInstance("SHA-256").digest(a11);
+                                int length2 = digest.length;
+                                int i11 = 0;
+                                while (i11 < length2) {
+                                    sb2.append(String.format("%02x", Integer.valueOf(digest[i11] & 255)));
+                                    i11++;
+                                    split = split;
+                                    length = length;
+                                }
+                                strArr = split;
+                                i7 = length;
+                                if (split2[0].equals(sb2.toString())) {
+                                    String str3 = split2[1];
+                                    int hashCode = str3.hashCode();
+                                    if (hashCode != -1818708305) {
+                                        if (hashCode != -1529025109) {
+                                            if (hashCode == -754904710 && str3.equals("validator-bundle.js")) {
+                                                bArr2 = a11;
+                                            }
+                                        } else if (str3.equals("renderer-bundle.js")) {
+                                            bArr3 = a11;
+                                        }
+                                    } else if (str3.equals("sandbox-bundle.js")) {
+                                        bArr = a11;
+                                    }
+                                } else {
+                                    throw new IllegalStateException("Bundle checksum mismatch: " + split2[1]);
+                                }
+                            }
+                            i10++;
+                            qVar2 = qVar;
+                            split = strArr;
+                            length = i7;
+                        }
+                        if (bArr != null && bArr2 != null) {
+                            byte[] digest2 = MessageDigest.getInstance("SHA-256").digest(a10.getBytes(StandardCharsets.UTF_8));
+                            StringBuilder sb3 = new StringBuilder("assets:");
+                            for (int i12 = 0; i12 < 12; i12++) {
+                                sb3.append(String.format("%02x", Integer.valueOf(digest2[i12] & 255)));
+                            }
+                            WidgetSandboxNative.registerResources(sb3.toString().getBytes(StandardCharsets.UTF_8), bArr, bArr2, bArr3);
+                            String sb4 = sb3.toString();
+                            f54671c = sb4;
+                            return sb4;
+                        }
+                        throw new IllegalStateException("Widget bundles are missing");
+                    } catch (Throwable th2) {
+                        if (b10 != null) {
+                            try {
+                                b10.close();
+                            } catch (Throwable th3) {
+                                th2.addSuppressed(th3);
+                            }
+                        }
+                        throw th2;
+                    }
+                } catch (RuntimeException e10) {
+                    throw e10;
+                } catch (Exception e11) {
+                    throw new IllegalStateException("Widget bundles: " + e11);
+                }
+            } catch (Throwable th4) {
+                throw th4;
+            }
+        }
     }
 
     private static native int installSeccomp(boolean z10);
 
     @Override
     public final IBinder onBind(Intent intent) {
-        return this.f54154a;
+        return this.f54673a;
     }
 
     @Override
     public final void onCreate() {
         long j3;
+        String str;
         super.onCreate();
         long uptimeMillis = SystemClock.uptimeMillis();
         if (WidgetSandboxNative.available()) {
             long uptimeMillis2 = SystemClock.uptimeMillis() - uptimeMillis;
-            installSeccomp(true);
-            StringBuilder sb2 = new StringBuilder("engine up: ");
-            if (Build.VERSION.SDK_INT >= 24) {
-                j3 = uptimeMillis - Process.getStartUptimeMillis();
+            int installSeccomp = installSeccomp(true);
+            if (installSeccomp == 0) {
+                StringBuilder sb2 = new StringBuilder("engine up: ");
+                if (Build.VERSION.SDK_INT >= 24) {
+                    j3 = uptimeMillis - Process.getStartUptimeMillis();
+                } else {
+                    j3 = -1;
+                }
+                sb2.append(j3);
+                sb2.append(" ms from fork to onCreate, library ");
+                sb2.append(uptimeMillis2);
+                sb2.append(" ms, seccomp ");
+                sb2.append((SystemClock.uptimeMillis() - uptimeMillis) - uptimeMillis2);
+                sb2.append(" ms");
+                if (f54671c != null) {
+                    str = ", bundles from the app zygote";
+                } else {
+                    str = "";
+                }
+                sb2.append(str);
+                Log.i("WidgetEngine", sb2.toString());
+                return;
+            } else if (installSeccomp != OsConstants.ENOSYS && installSeccomp != OsConstants.EINVAL) {
+                Log.e("WidgetEngine", "seccomp filter refused (errno " + installSeccomp + "): the engine does not start");
+                Process.killProcess(Process.myPid());
+                return;
             } else {
-                j3 = -1;
+                f54672e = true;
+                Log.e("WidgetEngine", "no seccomp filter in this kernel (errno " + installSeccomp + "): the engine makes no session");
+                return;
             }
-            sb2.append(j3);
-            sb2.append(" ms from fork to onCreate, library ");
-            sb2.append(uptimeMillis2);
-            sb2.append(" ms, seccomp ");
-            sb2.append((SystemClock.uptimeMillis() - uptimeMillis) - uptimeMillis2);
-            sb2.append(" ms");
-            Log.i("WidgetEngine", sb2.toString());
-            return;
         }
         throw new IllegalStateException("libtwidget is missing");
     }

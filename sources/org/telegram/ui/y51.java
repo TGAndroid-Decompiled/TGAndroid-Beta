@@ -1,35 +1,38 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.HashSet;
-public final class y51 extends org.telegram.ui.Cells.i0 implements org.telegram.ui.ActionBar.z5 {
-    public int f53432e;
-    public final c61 f53433f;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+public final class y51 implements LocationListener {
+    public final ThemeActivity f54045a;
 
-    public y51(c61 c61Var, Context context) {
-        super(context);
-        this.f53433f = c61Var;
+    public y51(ThemeActivity themeActivity) {
+        this.f54045a = themeActivity;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.Mj));
-    }
-
-    @Override
-    public final void updateColors() {
-        org.telegram.ui.Cells.h0 h0Var = this.d;
-        if (h0Var != null) {
-            try {
-                int x02 = org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Mj, false);
-                if (x02 != this.f53432e) {
-                    this.f53432e = x02;
-                    h0Var.setOuterColor(x02);
-                    h0Var.invalidate();
-                }
-            } catch (Exception e10) {
-                org.telegram.messenger.a8.g(e10, true);
-            }
+    public final void onLocationChanged(Location location) {
+        ThemeActivity themeActivity = this.f54045a;
+        if (location == null) {
+            return;
         }
+        themeActivity.M0 = false;
+        LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f26915b.getSystemService("location");
+        locationManager.removeUpdates(themeActivity.S0);
+        locationManager.removeUpdates(themeActivity.T0);
+        themeActivity.G0(location, false);
+    }
+
+    @Override
+    public final void onProviderDisabled(String str) {
+    }
+
+    @Override
+    public final void onProviderEnabled(String str) {
+    }
+
+    @Override
+    public final void onStatusChanged(String str, int i7, Bundle bundle) {
     }
 }

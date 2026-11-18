@@ -1,32 +1,26 @@
 package org.telegram.ui.Components;
+public final class iz0 implements Runnable {
+    public final int f36270a;
+    public final kz0 f36271b;
+    public final jz0 f36272c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class iz0 extends AnimatorListenerAdapter {
-    public final int f35804a;
-    public final ThemeEditorView f35805b;
-
-    public iz0(ThemeEditorView themeEditorView, int i7) {
-        this.f35804a = i7;
-        this.f35805b = themeEditorView;
+    public iz0(kz0 kz0Var, jz0 jz0Var, int i7) {
+        this.f36270a = i7;
+        this.f36271b = kz0Var;
+        this.f36272c = jz0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35804a) {
+    public final void run() {
+        switch (this.f36270a) {
             case 0:
-                ThemeEditorView themeEditorView = this.f35805b;
-                gz0 gz0Var = themeEditorView.f32750c;
-                if (gz0Var != null) {
-                    gz0Var.setBackground(null);
-                    themeEditorView.f32755j.removeView(themeEditorView.f32750c);
-                    return;
-                }
+                this.f36271b.a(this.f36272c);
+                return;
+            case 1:
+                this.f36271b.a(this.f36272c);
                 return;
             default:
-                ThemeEditorView themeEditorView2 = this.f35805b;
-                org.telegram.ui.ActionBar.j6.x1(themeEditorView2.f32760o, true, false, false);
-                themeEditorView2.b();
+                this.f36271b.a(this.f36272c);
                 return;
         }
     }

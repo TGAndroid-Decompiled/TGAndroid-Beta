@@ -1,46 +1,31 @@
 package hi;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.im;
-import org.telegram.ui.t71;
-public final class u2 extends org.telegram.ui.ActionBar.q0 {
-    public final int A0;
-    public final Object B0;
+import androidx.recyclerview.widget.RecyclerView;
+public final class u2 extends v4.u0 {
+    public final int f15530a;
+    public final e3 f15531b;
 
-    public u2(FrameLayout frameLayout, Context context, org.telegram.ui.ActionBar.y yVar, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
-        super(context, yVar, 0, 0, false, e6Var);
-        this.A0 = i7;
-        this.B0 = frameLayout;
+    public u2(e3 e3Var, int i7) {
+        this.f15530a = i7;
+        this.f15531b = e3Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.A0) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        org.telegram.ui.ActionBar.r0 r0Var;
+        switch (this.f15530a) {
             case 0:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((d3) this.B0).E.getText());
-                return;
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.B0).f32413y.getText());
-                return;
-            case 2:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((im) this.B0).f35654y.getText());
+                e3 e3Var = this.f15531b;
+                e3Var.getClass();
+                e3Var.invalidate();
                 return;
             default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((t71) this.B0).h.getText());
+                e3 e3Var2 = this.f15531b;
+                if (e3Var2.f14551n.J1 && (r0Var = e3Var2.H) != null && r0Var.getSearchField() != null) {
+                    org.telegram.messenger.g0.v1(e3Var2.H.getSearchContainer());
+                    return;
+                }
                 return;
         }
-    }
-
-    public u2(t71 t71Var, Context context, org.telegram.ui.ActionBar.y yVar) {
-        super(context, yVar, 0);
-        this.A0 = 3;
-        this.B0 = t71Var;
     }
 }

@@ -1,72 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.widget.TextView;
-public final class ux0 extends TextView {
-    public final vx0 f40185a;
-    public boolean f40186b;
-    public boolean f40187c;
+import android.graphics.Rect;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_iv;
+public final class ux0 extends k1.b {
+    public final Rect f40435o;
+    public final wx0 f40436p;
 
-    public ux0(vx0 vx0Var, CharSequence charSequence) {
-        super(vx0Var.getContext());
-        this.f40185a = vx0Var;
-        org.telegram.ui.ActionBar.e6 e6Var = vx0Var.f41177a;
-        setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
-        org.telegram.ui.ActionBar.q6.U(this, org.telegram.ui.ActionBar.j6.G6, e6Var);
-        setTypeface(org.telegram.messenger.g0.o());
-        setTextSize(1, 14.0f);
-        setText(charSequence);
+    public ux0(wx0 wx0Var, wx0 wx0Var2) {
+        super(wx0Var2);
+        this.f40436p = wx0Var;
+        this.f40435o = new Rect();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float f10;
-        boolean z10 = this.f40186b;
-        vx0 vx0Var = this.f40185a;
-        if (z10 || this.f40187c) {
-            canvas2 = canvas;
-            float L = org.telegram.messenger.g0.L(10.0f);
-            float[] fArr = vx0Var.f41179c;
-            if (this.f40186b) {
-                f10 = L;
-            } else {
-                f10 = 0.0f;
+    public final int g(float f10, float f11) {
+        int i7;
+        wx0 wx0Var = this.f40436p;
+        int childCount = wx0Var.getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            px0 d = wx0Var.d(i10);
+            int i11 = d.f38600k;
+            if (i11 > 0 && (i7 = d.f38601l) > 0) {
+                int i12 = d.f38605p;
+                if (f10 >= i12 && f10 < i12 + i11) {
+                    int i13 = d.f38606q;
+                    if (f11 >= i13 && f11 < i13 + i7) {
+                        return i10;
+                    }
+                }
             }
-            int i7 = 1;
-            fArr[1] = f10;
-            fArr[0] = f10;
-            fArr[3] = 0.0f;
-            fArr[2] = 0.0f;
-            fArr[5] = 0.0f;
-            fArr[4] = 0.0f;
-            if (!this.f40187c) {
-                L = 0.0f;
-            }
-            fArr[7] = L;
-            fArr[6] = L;
-            vx0Var.f41178b.rewind();
-            RectF rectF = org.telegram.messenger.g0.P;
-            float f11 = vx0Var.h;
-            float width = getWidth() + vx0Var.h;
-            float height = getHeight();
-            float f12 = vx0Var.h;
-            if (this.f40187c) {
-                i7 = -1;
-            }
-            rectF.set(f11, f11, width, (f12 * i7) + height);
-            vx0Var.f41178b.addRoundRect(rectF, vx0Var.f41179c, Path.Direction.CW);
-            canvas2.drawPath(vx0Var.f41178b, vx0Var.d);
-            canvas2.drawPath(vx0Var.f41178b, vx0Var.f41180e);
-        } else {
-            float f13 = vx0Var.h;
-            canvas2 = canvas;
-            canvas2.drawRect(f13, f13, getWidth() + vx0Var.h, getHeight() + vx0Var.h, vx0Var.d);
-            float f14 = vx0Var.h;
-            canvas2.drawRect(f14, f14, getWidth() + vx0Var.h, getHeight() + vx0Var.h, vx0Var.f41180e);
         }
-        super.onDraw(canvas2);
+        return Integer.MIN_VALUE;
+    }
+
+    @Override
+    public final void h(ArrayList arrayList) {
+        wx0 wx0Var = this.f40436p;
+        int childCount = wx0Var.getChildCount();
+        for (int i7 = 0; i7 < childCount; i7++) {
+            px0 d = wx0Var.d(i7);
+            if (d.f38600k > 0 && d.f38601l > 0) {
+                arrayList.add(Integer.valueOf(i7));
+            }
+        }
+    }
+
+    @Override
+    public final boolean k(int i7, int i10) {
+        return false;
+    }
+
+    @Override
+    public final void l(int i7, s0.c cVar) {
+        String str;
+        Rect rect = this.f40435o;
+        if (i7 >= 0) {
+            wx0 wx0Var = this.f40436p;
+            if (i7 < wx0Var.getChildCount()) {
+                px0 d = wx0Var.d(i7);
+                int i10 = d.f38605p;
+                int i11 = d.f38606q;
+                rect.set(i10, i11, d.f38600k + i10, d.f38601l + i11);
+                cVar.h(rect);
+                cVar.i("android.widget.TextView");
+                cVar.f56740a.setEnabled(true);
+                ox0 ox0Var = d.f38593b;
+                if (ox0Var != null) {
+                    str = ox0Var.getText();
+                } else {
+                    str = null;
+                }
+                cVar.o((str == null || str.length() == 0) ? " " : " ");
+                TL_iv.pageTableCell pagetablecell = d.f38594c;
+                if (pagetablecell != null && pagetablecell.header) {
+                    cVar.k(true);
+                    return;
+                }
+                return;
+            }
+        }
+        rect.set(0, 0, 1, 1);
+        cVar.h(rect);
+        cVar.p(false);
+        cVar.j("");
     }
 }

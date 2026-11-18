@@ -1,13 +1,15 @@
 package fi;
-public final class f6 implements Runnable {
-    public final int f11705a;
-    public final Object f11706b;
-    public final Object f11707c;
 
-    public f6(int i7, Object obj, Object obj2) {
-        this.f11705a = i7;
-        this.f11706b = obj;
-        this.f11707c = obj2;
+import org.telegram.messenger.tr;
+public final class f6 implements Runnable {
+    public final int f11945a;
+    public final h6 f11946b;
+    public final tr f11947c;
+
+    public f6(h6 h6Var, tr trVar, int i7) {
+        this.f11945a = i7;
+        this.f11946b = h6Var;
+        this.f11947c = trVar;
     }
 
     @Override

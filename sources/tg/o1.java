@@ -9,43 +9,43 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.view.View;
-import hi.j3;
+import hi.k3;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.z20;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.c30;
 public abstract class o1 extends View {
-    public Bitmap f57496a;
-    public Paint f57497b;
-    public Paint f57498c;
+    public Bitmap f58071a;
+    public Paint f58072b;
+    public Paint f58073c;
     public Paint d;
-    public float f57499e;
-    public float f57500f;
+    public float f58074e;
+    public float f58075f;
     public Path h;
-    public Rect f57501n;
-    public RectF f57502r;
-    public int f57503s;
-    public boolean f57504w;
-    public q0.a f57505x;
-    public float f57506y;
+    public Rect f58076n;
+    public RectF f58077r;
+    public int f58078s;
+    public boolean f58079w;
+    public q0.a f58080x;
+    public float f58081y;
 
     public final void a(boolean z10) {
-        if (this.f57504w) {
+        if (this.f58079w) {
             return;
         }
-        this.f57504w = true;
+        this.f58079w = true;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-        duration.setInterpolator(er.f34419f);
-        duration.addUpdateListener(new j3(this, 28));
-        duration.addListener(new z20(15, this, z10));
+        duration.setInterpolator(lr.f37208f);
+        duration.addUpdateListener(new k3(this, 28));
+        duration.addListener(new c30(15, this, z10));
         duration.start();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ((sg.i) this).E.f56749s1.d();
-        this.f57496a.recycle();
-        this.f57496a = null;
+        ((sg.i) this).E.f57323s1.d();
+        this.f58071a.recycle();
+        this.f58071a = null;
     }
 
     @Override
@@ -53,33 +53,33 @@ public abstract class o1 extends View {
         Bitmap bitmap;
         int i7;
         float f10;
-        Rect rect = this.f57501n;
-        Paint paint = this.f57497b;
-        RectF rectF = this.f57502r;
+        Rect rect = this.f58076n;
+        Paint paint = this.f58072b;
+        RectF rectF = this.f58077r;
         Path path = this.h;
         super.onDraw(canvas);
         float min = Math.min(getWidth(), getHeight()) * 0.2f;
-        float width = this.f57499e * getWidth();
-        float height = this.f57500f * getHeight();
-        int round = Math.round(this.f57499e * this.f57496a.getWidth());
-        int round2 = Math.round(this.f57500f * this.f57496a.getHeight());
-        int pixel = this.f57496a.getPixel(Utilities.j(round, bitmap.getWidth() - 1, 0), Utilities.j(round2, this.f57496a.getHeight() - 1, 0));
-        this.f57503s = pixel;
+        float width = this.f58074e * getWidth();
+        float height = this.f58075f * getHeight();
+        int round = Math.round(this.f58074e * this.f58071a.getWidth());
+        int round2 = Math.round(this.f58075f * this.f58071a.getHeight());
+        int pixel = this.f58071a.getPixel(Utilities.j(round, bitmap.getWidth() - 1, 0), Utilities.j(round2, this.f58071a.getHeight() - 1, 0));
+        this.f58078s = pixel;
         Paint paint2 = this.d;
         paint2.setColor(pixel);
-        float f11 = this.f57506y;
+        float f11 = this.f58081y;
         if (f11 != 0.0f && f11 != 1.0f) {
             RectF rectF2 = org.telegram.messenger.g0.P;
             f10 = 1.0f;
             i7 = round;
             rectF2.set(width - min, height - min, width + min, height + min);
-            canvas.saveLayerAlpha(rectF2, (int) (this.f57506y * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF2, (int) (this.f58081y * 255.0f), 31);
         } else {
             i7 = round;
             f10 = 1.0f;
             canvas.save();
         }
-        float f12 = (this.f57506y * 0.5f) + 0.5f;
+        float f12 = (this.f58081y * 0.5f) + 0.5f;
         canvas.scale(f12, f12, width, height);
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
@@ -88,7 +88,7 @@ public abstract class o1 extends View {
         int round3 = Math.round(3.5f);
         rect.set(i7 - round3, round2 - round3, i7 + round3, round2 + round3);
         rectF.set(width - min, height - min, width + min, height + min);
-        canvas.drawBitmap(this.f57496a, rect, rectF, (Paint) null);
+        canvas.drawBitmap(this.f58071a, rect, rectF, (Paint) null);
         float strokeWidth = min - (paint2.getStrokeWidth() / 2.0f);
         canvas.drawCircle(width, height, strokeWidth, paint2);
         float strokeWidth2 = (strokeWidth - (paint2.getStrokeWidth() / 2.0f)) - (paint.getStrokeWidth() / 2.0f);
@@ -109,7 +109,7 @@ public abstract class o1 extends View {
             path.moveTo(width - strokeWidth3, f17);
             path.lineTo(width + strokeWidth3, f17);
         }
-        canvas.drawPath(path, this.f57498c);
+        canvas.drawPath(path, this.f58073c);
         float f18 = f13 / 2.0f;
         rectF.set(width - f18, height - f18, width + f18, height + f18);
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(f10), paint);
@@ -120,8 +120,8 @@ public abstract class o1 extends View {
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
         if (i7 != 0 && i10 != 0 && i11 != 0 && i12 != 0 && isLaidOut()) {
-            this.f57499e = (i11 * this.f57499e) / i7;
-            this.f57500f = (i12 * this.f57500f) / i10;
+            this.f58074e = (i11 * this.f58074e) / i7;
+            this.f58075f = (i12 * this.f58075f) / i10;
         }
     }
 
@@ -137,22 +137,22 @@ public abstract class o1 extends View {
                     a(false);
                     return true;
                 }
-                this.f57499e = motionEvent.getX() / getWidth();
-                this.f57500f = motionEvent.getY() / getHeight();
+                this.f58074e = motionEvent.getX() / getWidth();
+                this.f58075f = motionEvent.getY() / getHeight();
                 invalidate();
                 return true;
             }
             a(true);
             return true;
         }
-        this.f57499e = motionEvent.getX() / getWidth();
-        this.f57500f = motionEvent.getY() / getHeight();
+        this.f58074e = motionEvent.getX() / getWidth();
+        this.f58075f = motionEvent.getY() / getHeight();
         invalidate();
         getParent().requestDisallowInterceptTouchEvent(true);
         return true;
     }
 
     public void setColorListener(q0.a aVar) {
-        this.f57505x = aVar;
+        this.f58080x = aVar;
     }
 }

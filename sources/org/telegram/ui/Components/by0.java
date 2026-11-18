@@ -1,34 +1,72 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class by0 extends ReplacementSpan {
-    public float f33430a;
-    public final String f33431b;
-    public final int f33432c;
-    public final Paint d;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.widget.TextView;
+public final class by0 extends TextView {
+    public final cy0 f33814a;
+    public boolean f33815b;
+    public boolean f33816c;
 
-    public by0(int i7, Paint paint, String str) {
-        this.f33431b = str;
-        this.f33432c = i7;
-        this.d = paint;
+    public by0(cy0 cy0Var, CharSequence charSequence) {
+        super(cy0Var.getContext());
+        this.f33814a = cy0Var;
+        org.telegram.ui.ActionBar.i6 i6Var = cy0Var.f34196a;
+        setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
+        org.telegram.ui.ActionBar.u6.U(this, org.telegram.ui.ActionBar.n6.G6, i6Var);
+        setTypeface(org.telegram.messenger.g0.o());
+        setTextSize(1, 14.0f);
+        setText(charSequence);
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        float f11 = (i11 + i13) / 2.0f;
-        paint.setColor(this.f33432c);
-        float L = org.telegram.messenger.g0.L(19.0f) / 2.0f;
-        canvas.drawRoundRect(f10, f11 - L, f10 + this.f33430a + org.telegram.messenger.g0.L(11.33f), f11 + L, L, L, this.d);
-        canvas.drawText(this.f33431b, org.telegram.messenger.g0.N(5.66f) + f10, i13 - org.telegram.messenger.g0.L(6.0f), paint);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        float N = org.telegram.messenger.g0.N(11.33f);
-        float measureText = paint.measureText(this.f33431b);
-        this.f33430a = measureText;
-        return (int) (N + measureText);
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float f10;
+        boolean z10 = this.f33815b;
+        cy0 cy0Var = this.f33814a;
+        if (z10 || this.f33816c) {
+            canvas2 = canvas;
+            float L = org.telegram.messenger.g0.L(10.0f);
+            float[] fArr = cy0Var.f34198c;
+            if (this.f33815b) {
+                f10 = L;
+            } else {
+                f10 = 0.0f;
+            }
+            int i7 = 1;
+            fArr[1] = f10;
+            fArr[0] = f10;
+            fArr[3] = 0.0f;
+            fArr[2] = 0.0f;
+            fArr[5] = 0.0f;
+            fArr[4] = 0.0f;
+            if (!this.f33816c) {
+                L = 0.0f;
+            }
+            fArr[7] = L;
+            fArr[6] = L;
+            cy0Var.f34197b.rewind();
+            RectF rectF = org.telegram.messenger.g0.P;
+            float f11 = cy0Var.h;
+            float width = getWidth() + cy0Var.h;
+            float height = getHeight();
+            float f12 = cy0Var.h;
+            if (this.f33816c) {
+                i7 = -1;
+            }
+            rectF.set(f11, f11, width, (f12 * i7) + height);
+            cy0Var.f34197b.addRoundRect(rectF, cy0Var.f34198c, Path.Direction.CW);
+            canvas2.drawPath(cy0Var.f34197b, cy0Var.d);
+            canvas2.drawPath(cy0Var.f34197b, cy0Var.f34199e);
+        } else {
+            float f13 = cy0Var.h;
+            canvas2 = canvas;
+            canvas2.drawRect(f13, f13, getWidth() + cy0Var.h, getHeight() + cy0Var.h, cy0Var.d);
+            float f14 = cy0Var.h;
+            canvas2.drawRect(f14, f14, getWidth() + cy0Var.h, getHeight() + cy0Var.h, cy0Var.f34199e);
+        }
+        super.onDraw(canvas2);
     }
 }

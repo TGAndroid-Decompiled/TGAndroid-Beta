@@ -1,6 +1,6 @@
 package org.telegram.ui.Stories;
 
-import a8.t9;
+import a8.w9;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,122 +15,122 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import cb.c;
-import fi.c4;
-import fi.d4;
-import fi.j7;
-import fi.r6;
-import fi.s6;
+import d6.i;
+import fi.a4;
+import fi.b4;
+import fi.g7;
+import fi.o6;
+import fi.p6;
 import java.util.ArrayList;
+import org.telegram.messenger.fs;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.is;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.t3;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.v3;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.gh0;
-import org.telegram.ui.Components.u5;
-import org.telegram.ui.av0;
-import org.telegram.ui.vv0;
-public class ProfileStoriesView extends View implements is {
-    public static final int f43351t0 = 0;
-    public gh0 E;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.m6;
+import org.telegram.ui.Components.qh0;
+import org.telegram.ui.cv0;
+import org.telegram.ui.wv0;
+public class ProfileStoriesView extends View implements fs {
+    public static final int f43797t0 = 0;
+    public qh0 E;
     public boolean F;
     public boolean G;
     public float H;
     public float I;
     public float J;
     public int K;
-    public r6 L;
-    public final j7 M;
-    public final s6 N;
+    public o6 L;
+    public final g7 M;
+    public final p6 N;
     public float O;
     public float P;
     public final RectF Q;
     public final RectF R;
     public final RectF S;
     public final Path T;
-    public final u5 U;
-    public final u5 V;
-    public final u5 W;
-    public final Paint f43352a;
-    public float f43353a0;
-    public final Paint f43354b;
-    public ValueAnimator f43355b0;
-    public final int f43356c;
-    public final Path f43357c0;
+    public final c6 U;
+    public final c6 V;
+    public final c6 W;
+    public final Paint f43798a;
+    public float f43799a0;
+    public final Paint f43800b;
+    public ValueAnimator f43801b0;
+    public final int f43802c;
+    public final Path f43803c0;
     public final long d;
-    public final Matrix f43358d0;
-    public final boolean f43359e;
-    public final PathMeasure f43360e0;
-    public final View f43361f;
-    public final Path f43362f0;
-    public float f43363g0;
-    public final vv0 h;
-    public float f43364h0;
-    public float f43365i0;
-    public float f43366j0;
-    public float f43367k0;
-    public boolean f43368l0;
-    public final u5 m0;
-    public final g6 f43369n;
-    public final u5 f43370n0;
-    public final c f43371o0;
-    public final c4 f43372p0;
-    public long f43373q0;
-    public int f43374r;
-    public float f43375r0;
-    public int f43376s;
-    public float f43377s0;
-    public d4 f43378w;
-    public final ArrayList f43379x;
-    public boolean f43380y;
+    public final Matrix f43804d0;
+    public final boolean f43805e;
+    public final PathMeasure f43806e0;
+    public final View f43807f;
+    public final Path f43808f0;
+    public float f43809g0;
+    public final wv0 h;
+    public float f43810h0;
+    public float f43811i0;
+    public float f43812j0;
+    public float f43813k0;
+    public boolean f43814l0;
+    public final c6 m0;
+    public final m6 f43815n;
+    public final c6 f43816n0;
+    public final i f43817o0;
+    public final a4 f43818p0;
+    public long f43819q0;
+    public int f43820r;
+    public float f43821r0;
+    public int f43822s;
+    public float f43823s0;
+    public b4 f43824w;
+    public final ArrayList f43825x;
+    public boolean f43826y;
 
-    public ProfileStoriesView(Context context, int i7, long j3, boolean z10, View view, vv0 vv0Var, e6 e6Var) {
+    public ProfileStoriesView(Context context, int i7, long j3, boolean z10, View view, wv0 wv0Var, i6 i6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f43352a = paint;
+        this.f43798a = paint;
         Paint paint2 = new Paint(1);
-        this.f43354b = paint2;
+        this.f43800b = paint2;
         Paint paint3 = new Paint(1);
-        g6 g6Var = new g6(false, true, true);
-        this.f43369n = g6Var;
+        m6 m6Var = new m6(false, true, true);
+        this.f43815n = m6Var;
         Paint paint4 = new Paint(1);
-        this.f43379x = new ArrayList();
+        this.f43825x = new ArrayList();
         Paint paint5 = new Paint(1);
         this.H = 1.0f;
         this.I = 1.0f;
-        this.M = new j7(this);
+        this.M = new g7(this);
         this.Q = new RectF();
         this.R = new RectF();
         this.S = new RectF();
         this.T = new Path();
-        er erVar = er.h;
-        this.U = new u5(this, 0L, 480L, erVar);
-        this.V = new u5(this, 0L, 240L, erVar);
-        this.W = new u5(this, 0L, 150L, er.f34419f);
-        this.f43353a0 = 1.0f;
-        this.f43357c0 = new Path();
-        this.f43358d0 = new Matrix();
-        this.f43360e0 = new PathMeasure();
-        this.f43362f0 = new Path();
-        this.m0 = new u5(this, 0L, 350L, erVar);
-        this.f43370n0 = new u5(this, 0L, 350L, erVar);
-        av0 av0Var = (av0) this;
-        this.f43371o0 = new c(av0Var, 25);
-        this.f43372p0 = new c4(av0Var, 0);
-        this.f43356c = i7;
+        lr lrVar = lr.h;
+        this.U = new c6(this, 0L, 480L, lrVar);
+        this.V = new c6(this, 0L, 240L, lrVar);
+        this.W = new c6(this, 0L, 150L, lr.f37208f);
+        this.f43799a0 = 1.0f;
+        this.f43803c0 = new Path();
+        this.f43804d0 = new Matrix();
+        this.f43806e0 = new PathMeasure();
+        this.f43808f0 = new Path();
+        this.m0 = new c6(this, 0L, 350L, lrVar);
+        this.f43816n0 = new c6(this, 0L, 350L, lrVar);
+        cv0 cv0Var = (cv0) this;
+        this.f43817o0 = new i(cv0Var, 21);
+        this.f43818p0 = new a4(cv0Var, 0);
+        this.f43802c = i7;
         this.d = j3;
-        this.f43359e = z10;
-        this.f43361f = view;
-        this.h = vv0Var;
-        vv0Var.getImageReceiver().F1 = new c4(av0Var, 1);
-        this.N = np.s1(i7).P1();
+        this.f43805e = z10;
+        this.f43807f = view;
+        this.h = wv0Var;
+        wv0Var.getImageReceiver().F1 = new a4(cv0Var, 1);
+        this.N = mp.u1(i7).R1();
         paint.setColor(1526726655);
         paint.getAlpha();
         paint.setStrokeWidth(g0.N(1.5f));
@@ -138,41 +138,41 @@ public class ProfileStoriesView extends View implements is {
         paint.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
         paint.setStrokeCap(cap);
-        paint2.setColor(j6.w0(j6.el, e6Var));
+        paint2.setColor(n6.w0(n6.el, i6Var));
         paint2.setStrokeWidth(g0.N(1.5f));
         paint2.setStyle(style);
         paint2.setStrokeCap(cap);
-        paint3.setColor(j6.w0(j6.f28849d6, e6Var));
-        g6Var.w(g0.L(18.0f));
-        g6Var.n(0.4f, 320L, erVar);
-        g6Var.x(g0.o());
-        g6Var.u(-1);
-        g6Var.q(true);
-        g6Var.setCallback(this);
+        paint3.setColor(n6.w0(n6.f29396d6, i6Var));
+        m6Var.w(g0.L(18.0f));
+        m6Var.n(0.4f, 320L, lrVar);
+        m6Var.x(g0.o());
+        m6Var.u(-1);
+        m6Var.q(true);
+        m6Var.setCallback(this);
         paint4.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint5.setStrokeWidth(g0.N(2.33f));
         paint5.setStyle(style);
         f(false, false);
     }
 
-    public static d4 d(d4 d4Var, d4 d4Var2, d4 d4Var3) {
-        if (d4Var3 != null) {
-            RectF rectF = d4Var3.f11635n;
-            if (d4Var != null || d4Var2 != null) {
-                if (d4Var != null) {
-                    RectF rectF2 = d4Var.f11635n;
-                    if (d4Var2 != null) {
-                        RectF rectF3 = d4Var2.f11635n;
+    public static b4 d(b4 b4Var, b4 b4Var2, b4 b4Var3) {
+        if (b4Var3 != null) {
+            RectF rectF = b4Var3.f11779n;
+            if (b4Var != null || b4Var2 != null) {
+                if (b4Var != null) {
+                    RectF rectF2 = b4Var.f11779n;
+                    if (b4Var2 != null) {
+                        RectF rectF3 = b4Var2.f11779n;
                         if (Math.min(Math.abs(rectF2.left - rectF.right), Math.abs(rectF2.right - rectF.left)) > Math.min(Math.abs(rectF3.left - rectF.right), Math.abs(rectF3.right - rectF.left))) {
-                            return d4Var;
+                            return b4Var;
                         }
-                        return d4Var2;
+                        return b4Var2;
                     }
                 }
-                if (d4Var != null) {
-                    return d4Var;
+                if (b4Var != null) {
+                    return b4Var;
                 }
-                return d4Var2;
+                return b4Var2;
             }
             return null;
         }
@@ -180,21 +180,21 @@ public class ProfileStoriesView extends View implements is {
     }
 
     private float getExpandRight() {
-        return this.f43366j0 - (this.m0.d(this.f43368l0) * g0.L(71.0f));
+        return this.f43812j0 - (this.m0.d(this.f43814l0) * g0.L(71.0f));
     }
 
-    public final void a(Canvas canvas, d4 d4Var, d4 d4Var2) {
-        if (d4Var2 == null) {
+    public final void a(Canvas canvas, b4 b4Var, b4 b4Var2) {
+        if (b4Var2 == null) {
             return;
         }
-        RectF rectF = d4Var2.f11634m;
+        RectF rectF = b4Var2.f11778m;
         RectF rectF2 = g0.P;
         rectF2.set(rectF);
-        float f10 = -(g0.N(1.66f) * d4Var2.f11631j);
+        float f10 = -(g0.N(1.66f) * b4Var2.f11775j);
         rectF2.inset(f10, f10);
         float centerX = rectF.centerX();
         float width = rectF.width() / 2.0f;
-        RectF rectF3 = d4Var.f11634m;
+        RectF rectF3 = b4Var.f11778m;
         float centerX2 = rectF3.centerX();
         float width2 = rectF3.width() / 2.0f;
         Path path = this.T;
@@ -215,7 +215,7 @@ public class ProfileStoriesView extends View implements is {
     }
 
     public final void b(float f10, float f11, Canvas canvas, Paint paint, RectF rectF) {
-        if (t3.b0(m10.f24940t0, this.d)) {
+        if (v3.b0(j10.f24773t0, this.d)) {
             float height = rectF.height() * 0.32f;
             if (Math.abs(f11) == 360.0f) {
                 canvas.drawRoundRect(rectF, height, height, paint);
@@ -224,17 +224,17 @@ public class ProfileStoriesView extends View implements is {
             float f12 = f10 + f11;
             float f13 = (((int) f12) / 90) * 90;
             float f14 = (-199.0f) + f13;
-            Path path = this.f43357c0;
+            Path path = this.f43803c0;
             path.rewind();
             path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = this.f43358d0;
+            Matrix matrix = this.f43804d0;
             matrix.reset();
             matrix.postRotate(f13, rectF.centerX(), rectF.centerY());
             path.transform(matrix);
-            PathMeasure pathMeasure = this.f43360e0;
+            PathMeasure pathMeasure = this.f43806e0;
             pathMeasure.setPath(path, false);
             float length = pathMeasure.getLength();
-            Path path2 = this.f43362f0;
+            Path path2 = this.f43808f0;
             path2.reset();
             pathMeasure.getSegment(((f12 - f14) / 360.0f) * length, length * (((f12 - f11) - f14) / 360.0f), path2, true);
             path2.rLineTo(0.0f, 0.0f);
@@ -244,21 +244,21 @@ public class ProfileStoriesView extends View implements is {
         canvas.drawArc(rectF, f10, f11, false, paint);
     }
 
-    public final void c(Canvas canvas, d4 d4Var, d4 d4Var2, d4 d4Var3, Paint paint) {
+    public final void c(Canvas canvas, b4 b4Var, b4 b4Var2, b4 b4Var3, Paint paint) {
         float width;
         boolean z10;
         double degrees;
         double degrees2;
-        d4 d4Var4 = d4Var;
-        RectF rectF = d4Var2.f11635n;
-        if (d4Var4 == null && d4Var3 == null) {
+        b4 b4Var4 = b4Var;
+        RectF rectF = b4Var2.f11779n;
+        if (b4Var4 == null && b4Var3 == null) {
             b(0.0f, 360.0f, canvas, paint, rectF);
             return;
         }
-        if (d4Var4 != null) {
-            RectF rectF2 = d4Var4.f11635n;
-            if (d4Var3 != null) {
-                RectF rectF3 = d4Var3.f11635n;
+        if (b4Var4 != null) {
+            RectF rectF2 = b4Var4.f11779n;
+            if (b4Var3 != null) {
+                RectF rectF3 = b4Var3.f11779n;
                 float centerX = rectF2.centerX();
                 float width2 = rectF2.width() / 2.0f;
                 float centerX2 = rectF.centerX();
@@ -305,14 +305,14 @@ public class ProfileStoriesView extends View implements is {
                 }
             }
         }
-        if (d4Var4 == null && d4Var3 == null) {
+        if (b4Var4 == null && b4Var3 == null) {
             return;
         }
-        if (d4Var4 == null) {
-            d4Var4 = d4Var3;
+        if (b4Var4 == null) {
+            b4Var4 = b4Var3;
         }
-        float centerX4 = d4Var4.f11635n.centerX();
-        float width5 = d4Var4.f11635n.width() / 2.0f;
+        float centerX4 = b4Var4.f11779n.centerX();
+        float width5 = b4Var4.f11779n.width() / 2.0f;
         float centerX5 = rectF.centerX();
         if (Math.abs(centerX4 - centerX5) > width5 + (rectF.width() / 2.0f)) {
             b(0.0f, 360.0f, canvas, paint, rectF);
@@ -327,7 +327,7 @@ public class ProfileStoriesView extends View implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25592v5) {
+        if (i7 == ks.f25225x5) {
             f(true, true);
         }
     }
@@ -348,15 +348,15 @@ public class ProfileStoriesView extends View implements is {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f43380y = true;
+        this.f43826y = true;
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f43379x;
+            ArrayList arrayList = this.f43825x;
             if (i7 < arrayList.size()) {
-                ((d4) arrayList.get(i7)).f11625b.P();
+                ((b4) arrayList.get(i7)).f11769b.P();
                 i7++;
             } else {
-                ns.f(this.f43356c).c(this, ns.f25592v5);
+                ks.f(this.f43802c).c(this, ks.f25225x5);
                 return;
             }
         }
@@ -366,14 +366,14 @@ public class ProfileStoriesView extends View implements is {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = 0;
-        this.f43380y = false;
+        this.f43826y = false;
         while (true) {
-            ArrayList arrayList = this.f43379x;
+            ArrayList arrayList = this.f43825x;
             if (i7 < arrayList.size()) {
-                ((d4) arrayList.get(i7)).f11625b.R();
+                ((b4) arrayList.get(i7)).f11769b.R();
                 i7++;
             } else {
-                ns.f(this.f43356c).n(this, ns.f25592v5);
+                ks.f(this.f43802c).n(this, ks.f25225x5);
                 return;
             }
         }
@@ -384,39 +384,39 @@ public class ProfileStoriesView extends View implements is {
         boolean z10;
         if (this.O < 0.9f) {
             z10 = this.R.contains(motionEvent.getX(), motionEvent.getY());
-        } else if (motionEvent.getX() >= this.f43363g0 && motionEvent.getX() <= this.f43364h0 && Math.abs(motionEvent.getY() - this.f43365i0) < g0.L(32.0f)) {
+        } else if (motionEvent.getX() >= this.f43809g0 && motionEvent.getX() <= this.f43810h0 && Math.abs(motionEvent.getY() - this.f43811i0) < g0.L(32.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        c4 c4Var = this.f43372p0;
+        a4 a4Var = this.f43818p0;
         if (z10 && motionEvent.getAction() == 0) {
-            this.f43373q0 = System.currentTimeMillis();
-            this.f43375r0 = motionEvent.getX();
-            this.f43377s0 = motionEvent.getY();
-            g0.r(c4Var);
-            g0.i3(c4Var, ViewConfiguration.getLongPressTimeout());
+            this.f43819q0 = System.currentTimeMillis();
+            this.f43821r0 = motionEvent.getX();
+            this.f43823s0 = motionEvent.getY();
+            g0.r(a4Var);
+            g0.h3(a4Var, ViewConfiguration.getLongPressTimeout());
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            g0.r(c4Var);
-            if (z10 && System.currentTimeMillis() - this.f43373q0 <= ViewConfiguration.getTapTimeout() && t9.a(this.f43375r0, this.f43377s0, motionEvent.getX(), motionEvent.getY()) <= g0.L(12.0f)) {
-                s6 s6Var = this.N;
+            g0.r(a4Var);
+            if (z10 && System.currentTimeMillis() - this.f43819q0 <= ViewConfiguration.getTapTimeout() && w9.a(this.f43821r0, this.f43823s0, motionEvent.getX(), motionEvent.getY()) <= g0.L(12.0f)) {
+                p6 p6Var = this.N;
                 long j3 = this.d;
-                if (s6Var.M(j3) || s6Var.K(j3) || !this.f43379x.isEmpty()) {
-                    e(this.f43371o0);
+                if (p6Var.M(j3) || p6Var.K(j3) || !this.f43825x.isEmpty()) {
+                    e(this.f43817o0);
                     return true;
                 }
             }
         } else if (motionEvent.getAction() == 3) {
-            this.f43373q0 = -1L;
-            g0.r(c4Var);
+            this.f43819q0 = -1L;
+            g0.r(a4Var);
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setActionBarActionMode(float f10) {
-        if (j6.I.q()) {
+        if (n6.I.q()) {
             return;
         }
         this.P = f10;
@@ -452,12 +452,12 @@ public class ProfileStoriesView extends View implements is {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f43369n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f43815n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
     }
 
-    public void e(c cVar) {
+    public void e(i iVar) {
     }
 }

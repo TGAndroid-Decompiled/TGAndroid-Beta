@@ -1,18 +1,37 @@
 package org.telegram.ui.Components;
-public final class kz {
-    public float f36643a;
-    public float f36644b;
-    public float f36645c;
-    public float d;
-    public float f36646e;
-    public float f36647f;
-    public float f36648g;
-    public float h;
-    public float f36649i;
-    public int f36650j;
-    public final lz f36651k;
 
-    public kz(lz lzVar) {
-        this.f36651k = lzVar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class kz extends AnimatorListenerAdapter {
+    public final int f36919a;
+    public final pz f36920b;
+
+    public kz(pz pzVar, int i7) {
+        this.f36919a = i7;
+        this.f36920b = pzVar;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36919a) {
+            case 0:
+                pz pzVar = this.f36920b;
+                if (pzVar.C0 == animator) {
+                    pzVar.C0 = null;
+                    return;
+                }
+                return;
+            default:
+                pz pzVar2 = this.f36920b;
+                pzVar2.V = pzVar2.f38620d0;
+                pzVar2.f38619c0 = pzVar2.f38625g0;
+                pzVar2.W = pzVar2.f38622e0;
+                pzVar2.f38615a0 = pzVar2.f38624f0;
+                pzVar2.f38620d0 = -1;
+                pzVar2.f38622e0 = -1;
+                pzVar2.f38624f0 = -1;
+                pzVar2.f38625g0 = -1;
+                return;
+        }
     }
 }

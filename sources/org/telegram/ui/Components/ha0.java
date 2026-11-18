@@ -1,14 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-public final class ha0 {
-    public final int f35205a;
-    public final oy0 f35206b;
-    public final RectF f35207c = new RectF();
-    public final RectF d = new RectF();
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ha0 extends org.telegram.ui.ActionBar.z0 {
+    public final int W;
 
-    public ha0(int i7, String str) {
-        this.f35205a = i7;
-        this.f35206b = new oy0(str, 14.0f, org.telegram.messenger.g0.o());
+    public ha0(int i7, int i10, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10, boolean z11) {
+        super(i7, context, i6Var, z10, z11);
+        this.W = i10;
+    }
+
+    @Override
+    public final void l() {
+        switch (this.W) {
+            case 0:
+                setBackground(null);
+                return;
+            default:
+                setBackground(null);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.W) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+        }
     }
 }

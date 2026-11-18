@@ -1,22 +1,30 @@
 package org.telegram.ui.Components;
-public final class ys extends g6 {
-    public final int f42071e0;
-    public final ft f42072f0;
 
-    public ys(ft ftVar, int i7) {
-        super(false, false, false);
-        this.f42071e0 = i7;
-        this.f42072f0 = ftVar;
+import java.util.ArrayList;
+public final class ys implements zs {
+    public final int f42624a;
+    public final Object f42625b;
+
+    public ys(Object obj, int i7) {
+        this.f42624a = i7;
+        this.f42625b = obj;
     }
 
     @Override
-    public final void invalidateSelf() {
-        switch (this.f42071e0) {
+    public final void a(int i7, boolean z10) {
+        switch (this.f42624a) {
             case 0:
-                this.f42072f0.invalidate();
+                ArrayList arrayList = ((bt) this.f42625b).f33778b;
+                int size = arrayList.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    ((zs) obj).a(i7, z10);
+                }
                 return;
             default:
-                this.f42072f0.invalidate();
+                ((Runnable) this.f42625b).run();
                 return;
         }
     }

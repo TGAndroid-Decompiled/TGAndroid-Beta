@@ -1,43 +1,43 @@
 package w7;
 
-import c8.fd;
+import c8.id;
 public final class c extends d {
-    public final transient int f59038c;
+    public final transient int f59603c;
     public final transient int d;
-    public final d f59039e;
+    public final d f59604e;
 
     public c(d dVar, int i7, int i10) {
-        this.f59039e = dVar;
-        this.f59038c = i7;
+        this.f59604e = dVar;
+        this.f59603c = i7;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i7) {
-        fd.a(i7, this.d);
-        return this.f59039e.get(i7 + this.f59038c);
+        id.a(i7, this.d);
+        return this.f59604e.get(i7 + this.f59603c);
     }
 
     @Override
     public final int i() {
-        return this.f59039e.j() + this.f59038c + this.d;
+        return this.f59604e.j() + this.f59603c + this.d;
     }
 
     @Override
     public final int j() {
-        return this.f59039e.j() + this.f59038c;
+        return this.f59604e.j() + this.f59603c;
     }
 
     @Override
     public final Object[] k() {
-        return this.f59039e.k();
+        return this.f59604e.k();
     }
 
     @Override
     public final d subList(int i7, int i10) {
-        fd.c(i7, i10, this.d);
-        int i11 = this.f59038c;
-        return this.f59039e.subList(i7 + i11, i10 + i11);
+        id.c(i7, i10, this.d);
+        int i11 = this.f59603c;
+        return this.f59604e.subList(i7 + i11, i10 + i11);
     }
 
     @Override

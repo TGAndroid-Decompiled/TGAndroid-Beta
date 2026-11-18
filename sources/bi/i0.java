@@ -1,7 +1,7 @@
 package bi;
 
 import android.view.MotionEvent;
-public final class i0 extends i2 {
+public final class i0 extends c3 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         return false;

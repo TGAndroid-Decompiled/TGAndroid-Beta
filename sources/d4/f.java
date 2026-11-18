@@ -1,6 +1,6 @@
 package d4;
 
-import a8.ja;
+import a8.la;
 import androidx.datastore.preferences.protobuf.b0;
 import androidx.datastore.preferences.protobuf.b1;
 import androidx.datastore.preferences.protobuf.c0;
@@ -15,15 +15,15 @@ import h2.x;
 import java.io.IOException;
 import java.nio.charset.Charset;
 public final class f {
-    public final int f7552a;
-    public Object f7553b;
-    public int f7554c;
+    public final int f7835a;
+    public Object f7836b;
+    public int f7837c;
     public int d;
-    public int f7555e;
+    public int f7838e;
 
     public f() {
-        this.f7552a = 2;
-        this.f7553b = l0.f13472b;
+        this.f7835a = 2;
+        this.f7836b = l0.f13787b;
     }
 
     public static void O(int i7) {
@@ -42,8 +42,8 @@ public final class f {
 
     public void A(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 0) {
             if (i7 == 2) {
                 int b10 = kVar.b() + kVar.v();
@@ -61,14 +61,14 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public void B(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 0) {
             if (i7 == 2) {
                 int b10 = kVar.b() + kVar.v();
@@ -86,15 +86,15 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public void C(b0 b0Var, boolean z10) {
         String s5;
         int u10;
-        k kVar = (k) this.f7553b;
-        if ((this.f7554c & 7) == 2) {
+        k kVar = (k) this.f7836b;
+        if ((this.f7837c & 7) == 2) {
             do {
                 if (z10) {
                     G(2);
@@ -108,8 +108,8 @@ public final class f {
                     return;
                 }
                 u10 = kVar.u();
-            } while (u10 == this.f7554c);
-            this.f7555e = u10;
+            } while (u10 == this.f7837c);
+            this.f7838e = u10;
             return;
         }
         throw e0.b();
@@ -117,8 +117,8 @@ public final class f {
 
     public void D(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 0) {
             if (i7 == 2) {
                 int b10 = kVar.b() + kVar.v();
@@ -136,14 +136,14 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public void E(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 0) {
             if (i7 == 2) {
                 int b10 = kVar.b() + kVar.v();
@@ -161,39 +161,39 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public void F(int i7) {
-        if (((k) this.f7553b).b() == i7) {
+        if (((k) this.f7836b).b() == i7) {
             return;
         }
         throw e0.e();
     }
 
     public void G(int i7) {
-        if ((this.f7554c & 7) == i7) {
+        if ((this.f7837c & 7) == i7) {
             return;
         }
         throw e0.b();
     }
 
     public void H(int i7, byte[] bArr) {
-        this.f7553b = bArr;
-        this.f7554c = 0;
+        this.f7836b = bArr;
+        this.f7837c = 0;
         this.d = 0;
-        this.f7555e = i7;
+        this.f7838e = i7;
     }
 
     public void I(x xVar) {
-        H(xVar.f13523c, xVar.f13521a);
-        J(xVar.f13522b * 8);
+        H(xVar.f13838c, xVar.f13836a);
+        J(xVar.f13837b * 8);
     }
 
     public void J(int i7) {
         int i10 = i7 / 8;
-        this.f7554c = i10;
+        this.f7837c = i10;
         this.d = i7 - (i10 * 8);
         a();
     }
@@ -203,39 +203,39 @@ public final class f {
         this.d = i7;
         if (i7 == 8) {
             this.d = 0;
-            this.f7554c++;
+            this.f7837c++;
         }
         a();
     }
 
     public void L(int i7) {
         int i10;
-        switch (this.f7552a) {
+        switch (this.f7835a) {
             case 1:
                 int i11 = i7 / 8;
                 int i12 = this.d + i11;
                 this.d = i12;
-                int i13 = (i7 - (i11 * 8)) + this.f7555e;
-                this.f7555e = i13;
+                int i13 = (i7 - (i11 * 8)) + this.f7838e;
+                this.f7838e = i13;
                 boolean z10 = true;
                 if (i13 > 7) {
                     this.d = i12 + 1;
-                    this.f7555e = i13 - 8;
+                    this.f7838e = i13 - 8;
                 }
                 int i14 = this.d;
-                if (i14 < 0 || (i14 >= (i10 = this.f7554c) && (i14 != i10 || this.f7555e != 0))) {
+                if (i14 < 0 || (i14 >= (i10 = this.f7837c) && (i14 != i10 || this.f7838e != 0))) {
                     z10 = false;
                 }
-                ja.p(z10);
+                la.p(z10);
                 return;
             default:
                 int i15 = i7 / 8;
-                int i16 = this.f7554c + i15;
-                this.f7554c = i16;
+                int i16 = this.f7837c + i15;
+                this.f7837c = i16;
                 int i17 = (i7 - (i15 * 8)) + this.d;
                 this.d = i17;
                 if (i17 > 7) {
-                    this.f7554c = i16 + 1;
+                    this.f7837c = i16 + 1;
                     this.d = i17 - 8;
                 }
                 a();
@@ -250,15 +250,15 @@ public final class f {
         } else {
             z10 = false;
         }
-        ja.p(z10);
-        this.f7554c += i7;
+        la.p(z10);
+        this.f7837c += i7;
         a();
     }
 
     public boolean N() {
         int i7;
-        k kVar = (k) this.f7553b;
-        if (!kVar.c() && (i7 = this.f7554c) != this.d) {
+        k kVar = (k) this.f7836b;
+        if (!kVar.c() && (i7 = this.f7837c) != this.d) {
             return kVar.x(i7);
         }
         return false;
@@ -267,17 +267,17 @@ public final class f {
     public void a() {
         boolean z10;
         int i7;
-        int i10 = this.f7554c;
-        if (i10 >= 0 && (i10 < (i7 = this.f7555e) || (i10 == i7 && this.d == 0))) {
+        int i10 = this.f7837c;
+        if (i10 >= 0 && (i10 < (i7 = this.f7838e) || (i10 == i7 && this.d == 0))) {
             z10 = true;
         } else {
             z10 = false;
         }
-        ja.p(z10);
+        la.p(z10);
     }
 
     public int b() {
-        return ((this.f7555e - this.f7554c) * 8) - this.d;
+        return ((this.f7838e - this.f7837c) * 8) - this.d;
     }
 
     public void c() {
@@ -285,7 +285,7 @@ public final class f {
             return;
         }
         this.d = 0;
-        this.f7554c++;
+        this.f7837c++;
         a();
     }
 
@@ -296,19 +296,19 @@ public final class f {
         } else {
             z10 = false;
         }
-        ja.p(z10);
-        return this.f7554c;
+        la.p(z10);
+        return this.f7837c;
     }
 
     public int e() {
-        int i7 = this.f7555e;
+        int i7 = this.f7838e;
         if (i7 != 0) {
-            this.f7554c = i7;
-            this.f7555e = 0;
+            this.f7837c = i7;
+            this.f7838e = 0;
         } else {
-            this.f7554c = ((k) this.f7553b).u();
+            this.f7837c = ((k) this.f7836b).u();
         }
-        int i10 = this.f7554c;
+        int i10 = this.f7837c;
         if (i10 != 0 && i10 != this.d) {
             return i10 >>> 3;
         }
@@ -316,15 +316,15 @@ public final class f {
     }
 
     public int f() {
-        return (this.f7554c * 8) + this.d;
+        return (this.f7837c * 8) + this.d;
     }
 
     public void g(Object obj, b1 b1Var, p pVar) {
         int i7 = this.d;
-        this.d = ((this.f7554c >>> 3) << 3) | 4;
+        this.d = ((this.f7837c >>> 3) << 3) | 4;
         try {
             b1Var.i(obj, this, pVar);
-            if (this.f7554c == this.d) {
+            if (this.f7837c == this.d) {
                 return;
             }
             throw new IOException("Failed to parse the message.");
@@ -334,14 +334,14 @@ public final class f {
     }
 
     public void h(Object obj, b1 b1Var, p pVar) {
-        k kVar = (k) this.f7553b;
+        k kVar = (k) this.f7836b;
         int v = kVar.v();
-        if (kVar.f2160a < 100) {
+        if (kVar.f2151a < 100) {
             int e10 = kVar.e(v);
-            kVar.f2160a++;
+            kVar.f2151a++;
             b1Var.i(obj, this, pVar);
             kVar.a(0);
-            kVar.f2160a--;
+            kVar.f2151a--;
             kVar.d(e10);
             return;
         }
@@ -351,9 +351,9 @@ public final class f {
     public boolean i() {
         boolean z10;
         boolean z11;
-        switch (this.f7552a) {
+        switch (this.f7835a) {
             case 1:
-                if ((((((byte[]) this.f7553b)[this.d] & 255) >> this.f7555e) & 1) == 1) {
+                if ((((((byte[]) this.f7836b)[this.d] & 255) >> this.f7838e) & 1) == 1) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -361,7 +361,7 @@ public final class f {
                 L(1);
                 return z10;
             default:
-                if ((((byte[]) this.f7553b)[this.f7554c] & (128 >> this.d)) != 0) {
+                if ((((byte[]) this.f7836b)[this.f7837c] & (128 >> this.d)) != 0) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -372,13 +372,13 @@ public final class f {
     }
 
     public int j(int i7) {
-        switch (this.f7552a) {
+        switch (this.f7835a) {
             case 1:
                 int i10 = this.d;
-                int min = Math.min(i7, 8 - this.f7555e);
-                byte[] bArr = (byte[]) this.f7553b;
+                int min = Math.min(i7, 8 - this.f7838e);
+                byte[] bArr = (byte[]) this.f7836b;
                 int i11 = i10 + 1;
-                int i12 = ((bArr[i10] & 255) >> this.f7555e) & (255 >> (8 - min));
+                int i12 = ((bArr[i10] & 255) >> this.f7838e) & (255 >> (8 - min));
                 while (min < i7) {
                     i12 |= (bArr[i11] & 255) << min;
                     min += 8;
@@ -398,15 +398,15 @@ public final class f {
                     if (i15 > 8) {
                         int i16 = i15 - 8;
                         this.d = i16;
-                        int i17 = this.f7554c;
-                        this.f7554c = i17 + 1;
-                        i14 |= (((byte[]) this.f7553b)[i17] & 255) << i16;
+                        int i17 = this.f7837c;
+                        this.f7837c = i17 + 1;
+                        i14 |= (((byte[]) this.f7836b)[i17] & 255) << i16;
                     } else {
-                        int i18 = this.f7554c;
-                        int i19 = ((-1) >>> (32 - i7)) & (i14 | ((((byte[]) this.f7553b)[i18] & 255) >> (8 - i15)));
+                        int i18 = this.f7837c;
+                        int i19 = ((-1) >>> (32 - i7)) & (i14 | ((((byte[]) this.f7836b)[i18] & 255) >> (8 - i15)));
                         if (i15 == 8) {
                             this.d = 0;
-                            this.f7554c = i18 + 1;
+                            this.f7837c = i18 + 1;
                         }
                         a();
                         return i19;
@@ -418,10 +418,10 @@ public final class f {
     public void k(int i7, byte[] bArr) {
         int i10 = i7 >> 3;
         for (int i11 = 0; i11 < i10; i11++) {
-            byte[] bArr2 = (byte[]) this.f7553b;
-            int i12 = this.f7554c;
+            byte[] bArr2 = (byte[]) this.f7836b;
+            int i12 = this.f7837c;
             int i13 = i12 + 1;
-            this.f7554c = i13;
+            this.f7837c = i13;
             byte b10 = bArr2[i12];
             int i14 = this.d;
             byte b11 = (byte) (b10 << i14);
@@ -436,18 +436,18 @@ public final class f {
         bArr[i10] = b12;
         int i16 = this.d;
         if (i16 + i15 > 8) {
-            int i17 = this.f7554c;
-            this.f7554c = i17 + 1;
-            bArr[i10] = (byte) (b12 | ((((byte[]) this.f7553b)[i17] & 255) << i16));
+            int i17 = this.f7837c;
+            this.f7837c = i17 + 1;
+            bArr[i10] = (byte) (b12 | ((((byte[]) this.f7836b)[i17] & 255) << i16));
             this.d = i16 - 8;
         }
         int i18 = this.d + i15;
         this.d = i18;
-        int i19 = this.f7554c;
-        bArr[i10] = (byte) (((byte) (((255 & ((byte[]) this.f7553b)[i19]) >> (8 - i18)) << (8 - i15))) | bArr[i10]);
+        int i19 = this.f7837c;
+        bArr[i10] = (byte) (((byte) (((255 & ((byte[]) this.f7836b)[i19]) >> (8 - i18)) << (8 - i15))) | bArr[i10]);
         if (i18 == 8) {
             this.d = 0;
-            this.f7554c = i19 + 1;
+            this.f7837c = i19 + 1;
         }
         a();
     }
@@ -455,19 +455,19 @@ public final class f {
     public long l(int i7) {
         if (i7 <= 32) {
             int j3 = j(i7);
-            String str = l0.f13471a;
+            String str = l0.f13786a;
             return 4294967295L & j3;
         }
         int j10 = j(i7 - 32);
         int j11 = j(32);
-        String str2 = l0.f13471a;
+        String str2 = l0.f13786a;
         return (4294967295L & j11) | ((j10 & 4294967295L) << 32);
     }
 
     public void m(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 0) {
             if (i7 == 2) {
                 int b10 = kVar.b() + kVar.v();
@@ -485,13 +485,13 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public androidx.datastore.preferences.protobuf.h n() {
         G(2);
-        return ((k) this.f7553b).g();
+        return ((k) this.f7836b).g();
     }
 
     public void o(int i7, byte[] bArr) {
@@ -501,24 +501,24 @@ public final class f {
         } else {
             z10 = false;
         }
-        ja.p(z10);
-        System.arraycopy((byte[]) this.f7553b, this.f7554c, bArr, 0, i7);
-        this.f7554c += i7;
+        la.p(z10);
+        System.arraycopy((byte[]) this.f7836b, this.f7837c, bArr, 0, i7);
+        this.f7837c += i7;
         a();
     }
 
     public void p(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        if ((this.f7554c & 7) == 2) {
+        k kVar = (k) this.f7836b;
+        if ((this.f7837c & 7) == 2) {
             do {
                 b0Var.add(n());
                 if (kVar.c()) {
                     return;
                 }
                 u10 = kVar.u();
-            } while (u10 == this.f7554c);
-            this.f7555e = u10;
+            } while (u10 == this.f7837c);
+            this.f7838e = u10;
             return;
         }
         throw e0.b();
@@ -526,8 +526,8 @@ public final class f {
 
     public void q(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 1) {
             if (i7 == 2) {
                 int v = kVar.v();
@@ -546,14 +546,14 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public void r(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 0) {
             if (i7 == 2) {
                 int b10 = kVar.b() + kVar.v();
@@ -571,12 +571,12 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public Object s(v1 v1Var, Class cls, p pVar) {
-        k kVar = (k) this.f7553b;
+        k kVar = (k) this.f7836b;
         switch (v1Var.ordinal()) {
             case 0:
                 G(1);
@@ -610,7 +610,7 @@ public final class f {
                 throw new IllegalArgumentException("unsupported field type.");
             case 10:
                 G(2);
-                b1 a10 = y0.f2239c.a(cls);
+                b1 a10 = y0.f2230c.a(cls);
                 z a11 = a10.a();
                 h(a11, a10, pVar);
                 a10.d(a11);
@@ -640,8 +640,8 @@ public final class f {
 
     public void t(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 2) {
             if (i7 == 5) {
                 do {
@@ -651,8 +651,8 @@ public final class f {
                     } else {
                         return;
                     }
-                } while (u10 == this.f7554c);
-                this.f7555e = u10;
+                } while (u10 == this.f7837c);
+                this.f7838e = u10;
                 return;
             }
             throw e0.b();
@@ -667,8 +667,8 @@ public final class f {
 
     public void u(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 1) {
             if (i7 == 2) {
                 int v = kVar.v();
@@ -687,14 +687,14 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public void v(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 2) {
             if (i7 == 5) {
                 do {
@@ -704,8 +704,8 @@ public final class f {
                     } else {
                         return;
                     }
-                } while (u10 == this.f7554c);
-                this.f7555e = u10;
+                } while (u10 == this.f7837c);
+                this.f7838e = u10;
                 return;
             }
             throw e0.b();
@@ -720,8 +720,8 @@ public final class f {
 
     public void w(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 0) {
             if (i7 == 2) {
                 int b10 = kVar.b() + kVar.v();
@@ -739,14 +739,14 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public void x(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 0) {
             if (i7 == 2) {
                 int b10 = kVar.b() + kVar.v();
@@ -764,14 +764,14 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public void y(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 2) {
             if (i7 == 5) {
                 do {
@@ -781,8 +781,8 @@ public final class f {
                     } else {
                         return;
                     }
-                } while (u10 == this.f7554c);
-                this.f7555e = u10;
+                } while (u10 == this.f7837c);
+                this.f7838e = u10;
                 return;
             }
             throw e0.b();
@@ -797,8 +797,8 @@ public final class f {
 
     public void z(b0 b0Var) {
         int u10;
-        k kVar = (k) this.f7553b;
-        int i7 = this.f7554c & 7;
+        k kVar = (k) this.f7836b;
+        int i7 = this.f7837c & 7;
         if (i7 != 1) {
             if (i7 == 2) {
                 int v = kVar.v();
@@ -817,35 +817,35 @@ public final class f {
                 return;
             }
             u10 = kVar.u();
-        } while (u10 == this.f7554c);
-        this.f7555e = u10;
+        } while (u10 == this.f7837c);
+        this.f7838e = u10;
     }
 
     public f(k kVar) {
-        this.f7552a = 3;
-        this.f7555e = 0;
-        Charset charset = c0.f2107a;
-        this.f7553b = kVar;
-        kVar.f2161b = this;
+        this.f7835a = 3;
+        this.f7838e = 0;
+        Charset charset = c0.f2098a;
+        this.f7836b = kVar;
+        kVar.f2152b = this;
     }
 
     public f(byte[] bArr) {
-        this.f7552a = 1;
-        this.f7553b = bArr;
-        this.f7554c = bArr.length;
+        this.f7835a = 1;
+        this.f7836b = bArr;
+        this.f7837c = bArr.length;
     }
 
     public f(byte[] bArr, int i7) {
-        this.f7552a = 2;
-        this.f7553b = bArr;
-        this.f7555e = i7;
+        this.f7835a = 2;
+        this.f7836b = bArr;
+        this.f7838e = i7;
     }
 
     public f(int i7, int i10) {
-        this.f7552a = 0;
-        this.f7554c = i7;
+        this.f7835a = 0;
+        this.f7837c = i7;
         this.d = i10;
-        this.f7553b = new byte[(i10 * 2) - 1];
-        this.f7555e = 0;
+        this.f7836b = new byte[(i10 * 2) - 1];
+        this.f7838e = 0;
     }
 }

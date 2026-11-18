@@ -1,72 +1,115 @@
 package org.telegram.ui.ActionBar;
 
-import android.transition.Transition;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.v00;
-public final class j0 implements Transition.TransitionListener {
-    public final int f28720a;
-    public final FrameLayout f28721b;
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
+import android.transition.TransitionValues;
+import android.transition.Visibility;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.lr;
+public final class j0 extends Visibility {
+    public final int f29018a;
 
-    public j0(int i7, FrameLayout frameLayout) {
-        this.f28720a = i7;
-        this.f28721b = frameLayout;
+    public j0(int i7) {
+        this.f29018a = i7;
     }
 
     @Override
-    public final void onTransitionCancel(Transition transition) {
-        switch (this.f28720a) {
+    public final Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f29018a) {
             case 0:
-                ((q0) this.f28721b).f29509j0.e();
-                return;
+                if (view instanceof q0) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.5f, 1.0f));
+                    animatorSet.setInterpolator(lr.f37208f);
+                    return animatorSet;
+                }
+                return ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f);
+            case 1:
+                if (view instanceof q0) {
+                    AnimatorSet animatorSet2 = new AnimatorSet();
+                    animatorSet2.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.5f, 1.0f));
+                    animatorSet2.setInterpolator(lr.f37208f);
+                    return animatorSet2;
+                }
+                return ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f);
+            case 2:
+                AnimatorSet animatorSet3 = new AnimatorSet();
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.5f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.5f, 1.0f));
+                animatorSet3.setInterpolator(lr.f37208f);
+                return animatorSet3;
+            case 3:
+                AnimatorSet animatorSet4 = new AnimatorSet();
+                view.setAlpha(0.0f);
+                view.setScaleY(0.6f);
+                view.setScaleX(0.6f);
+                animatorSet4.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.6f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.6f, 1.0f));
+                animatorSet4.setInterpolator(lr.f37212k);
+                return animatorSet4;
+            case 4:
+                ObjectAnimator ofPropertyValuesHolder = ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, org.telegram.messenger.g0.L(100.0f), 0.0f), PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.0f, 1.0f), PropertyValuesHolder.ofFloat(View.SCALE_X, 0.0f, 1.0f));
+                if (view instanceof org.telegram.ui.Components.voip.q2) {
+                    view.setTranslationY(org.telegram.messenger.g0.L(100.0f));
+                    view.setScaleX(0.0f);
+                    view.setScaleY(0.0f);
+                    ofPropertyValuesHolder.setStartDelay(((org.telegram.ui.Components.voip.q2) view).G);
+                }
+                if (view instanceof org.telegram.ui.Components.voip.e3) {
+                    view.setTranslationY(org.telegram.messenger.g0.L(100.0f));
+                    view.setScaleX(0.0f);
+                    view.setScaleY(0.0f);
+                    ofPropertyValuesHolder.setStartDelay(((org.telegram.ui.Components.voip.e3) view).f40860f);
+                }
+                return ofPropertyValuesHolder;
             default:
-                ((v00) this.f28721b).F.e();
-                return;
+                AnimatorSet animatorSet5 = new AnimatorSet();
+                animatorSet5.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, org.telegram.messenger.g0.L(20.0f), 0.0f));
+                animatorSet5.setInterpolator(lr.f37208f);
+                return animatorSet5;
         }
     }
 
     @Override
-    public final void onTransitionEnd(Transition transition) {
-        switch (this.f28720a) {
+    public final Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f29018a) {
             case 0:
-                ((q0) this.f28721b).f29509j0.e();
-                return;
+                if (view instanceof q0) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, view.getScaleX(), 0.5f), ObjectAnimator.ofFloat(view, View.SCALE_Y, view.getScaleX(), 0.5f));
+                    animatorSet.setInterpolator(lr.f37208f);
+                    return animatorSet;
+                }
+                return ObjectAnimator.ofFloat(view, View.ALPHA, 1.0f, 0.0f);
+            case 1:
+                if (view instanceof q0) {
+                    AnimatorSet animatorSet2 = new AnimatorSet();
+                    animatorSet2.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, view.getScaleX(), 0.5f), ObjectAnimator.ofFloat(view, View.SCALE_Y, view.getScaleX(), 0.5f));
+                    animatorSet2.setInterpolator(lr.f37208f);
+                    return animatorSet2;
+                }
+                return ObjectAnimator.ofFloat(view, View.ALPHA, 1.0f, 0.0f);
+            case 2:
+                AnimatorSet animatorSet3 = new AnimatorSet();
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, view.getScaleX(), 0.5f), ObjectAnimator.ofFloat(view, View.SCALE_Y, view.getScaleX(), 0.5f));
+                animatorSet3.setInterpolator(lr.f37208f);
+                return animatorSet3;
+            case 3:
+                AnimatorSet animatorSet4 = new AnimatorSet();
+                if (view instanceof org.telegram.ui.Components.voip.c2) {
+                    ((org.telegram.ui.Components.voip.c2) view).d = true;
+                }
+                animatorSet4.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, 0.7f, 0.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 1.0f, 0.6f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f, 0.6f));
+                animatorSet4.setInterpolator(lr.f37208f);
+                return animatorSet4;
+            case 4:
+                return ObjectAnimator.ofPropertyValuesHolder(view, PropertyValuesHolder.ofFloat(View.TRANSLATION_Y, view.getTranslationY(), org.telegram.messenger.g0.L(100.0f)), PropertyValuesHolder.ofFloat(View.SCALE_Y, view.getScaleY(), 0.0f), PropertyValuesHolder.ofFloat(View.SCALE_X, view.getScaleX(), 0.0f));
             default:
-                ((v00) this.f28721b).F.e();
-                return;
+                AnimatorSet animatorSet5 = new AnimatorSet();
+                animatorSet5.playTogether(ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f), ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0.0f, -org.telegram.messenger.g0.L(20.0f)));
+                animatorSet5.setInterpolator(lr.f37208f);
+                return animatorSet5;
         }
-    }
-
-    @Override
-    public final void onTransitionPause(Transition transition) {
-        int i7 = this.f28720a;
-    }
-
-    @Override
-    public final void onTransitionResume(Transition transition) {
-        int i7 = this.f28720a;
-    }
-
-    @Override
-    public final void onTransitionStart(Transition transition) {
-        switch (this.f28720a) {
-            case 0:
-                ((q0) this.f28721b).f29509j0.d();
-                return;
-            default:
-                ((v00) this.f28721b).F.d();
-                return;
-        }
-    }
-
-    private final void a(Transition transition) {
-    }
-
-    private final void b(Transition transition) {
-    }
-
-    private final void c(Transition transition) {
-    }
-
-    private final void d(Transition transition) {
     }
 }

@@ -19,11 +19,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class h {
-    public static final Charset f4840b = Charset.forName("UTF-8");
-    public final ga.d f4841a;
+    public static final Charset f5122b = Charset.forName("UTF-8");
+    public final ga.d f5123a;
 
     public h(ga.d dVar) {
-        this.f4841a = dVar;
+        this.f5123a = dVar;
     }
 
     public static HashMap a(String str) {
@@ -60,7 +60,7 @@ public final class h {
         JSONArray jSONArray = new JSONArray();
         for (int i7 = 0; i7 < list.size(); i7++) {
             try {
-                jSONArray.put(new JSONObject(p.f4861a.o(list.get(i7))));
+                jSONArray.put(new JSONObject(p.f5143a.v(list.get(i7))));
             } catch (JSONException e10) {
                 Log.w("FirebaseCrashlytics", "Exception parsing rollout assignment!", e10);
             }
@@ -86,7 +86,7 @@ public final class h {
         Throwable th2;
         FileInputStream fileInputStream;
         Exception e10;
-        ga.d dVar = this.f4841a;
+        ga.d dVar = this.f5123a;
         if (z10) {
             b10 = dVar.b(str, "internal-keys");
         } else {
@@ -130,7 +130,7 @@ public final class h {
     public final String d(String str) {
         FileInputStream fileInputStream;
         String str2;
-        File b10 = this.f4841a.b(str, "user-data");
+        File b10 = this.f5123a.b(str, "user-data");
         Closeable closeable = null;
         if (b10.exists()) {
             ?? r32 = (b10.length() > 0L ? 1 : (b10.length() == 0L ? 0 : -1));
@@ -172,7 +172,7 @@ public final class h {
                 closeable = r32;
             }
         }
-        String k10 = r.b.k("No userId set for session ", str);
+        String k10 = p5.c.k("No userId set for session ", str);
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", k10, null);
         }
@@ -184,7 +184,7 @@ public final class h {
         File b10;
         String jSONObject;
         BufferedWriter bufferedWriter;
-        ga.d dVar = this.f4841a;
+        ga.d dVar = this.f5123a;
         if (z10) {
             b10 = dVar.b(str, "internal-keys");
         } else {
@@ -194,7 +194,7 @@ public final class h {
         try {
             try {
                 jSONObject = new JSONObject(map).toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f4840b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f5122b));
             } catch (Exception e10) {
                 e = e10;
             }
@@ -222,14 +222,14 @@ public final class h {
     public final void i(String str, String str2) {
         String obj;
         BufferedWriter bufferedWriter;
-        File b10 = this.f4841a.b(str, "user-data");
+        File b10 = this.f5123a.b(str, "user-data");
         BufferedWriter bufferedWriter2 = null;
         try {
             try {
                 JSONObject jSONObject = new JSONObject();
                 jSONObject.put("userId", str2);
                 obj = jSONObject.toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f4840b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f5122b));
             } catch (Exception e10) {
                 e = e10;
             }

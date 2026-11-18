@@ -2,55 +2,55 @@ package s7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import java.util.Locale;
 import q4.x;
 public final class m extends r6.a {
     public static final Parcelable.Creator<m> CREATOR = new x(23);
-    public final f f56529a;
-    public final long f56530b;
-    public final int f56531c;
+    public final f f57103a;
+    public final long f57104b;
+    public final int f57105c;
     public final String d;
-    public final e f56532e;
-    public final boolean f56533f;
+    public final e f57106e;
+    public final boolean f57107f;
     public final int h;
-    public final int f56534n;
-    public final String f56535r;
+    public final int f57108n;
+    public final String f57109r;
 
     public m(f fVar, long j3, int i7, String str, e eVar, boolean z10, int i10, int i11, String str2) {
-        this.f56529a = fVar;
-        this.f56530b = j3;
-        this.f56531c = i7;
+        this.f57103a = fVar;
+        this.f57104b = j3;
+        this.f57105c = i7;
         this.d = str;
-        this.f56532e = eVar;
-        this.f56533f = z10;
+        this.f57106e = eVar;
+        this.f57107f = z10;
         this.h = i10;
-        this.f56534n = i11;
-        this.f56535r = str2;
+        this.f57108n = i11;
+        this.f57109r = str2;
     }
 
     public final String toString() {
         Locale locale = Locale.US;
-        return "UsageInfo[documentId=" + this.f56529a + ", timestamp=" + this.f56530b + ", usageType=" + this.f56531c + ", status=" + this.f56534n + "]";
+        return "UsageInfo[documentId=" + this.f57103a + ", timestamp=" + this.f57104b + ", usageType=" + this.f57105c + ", status=" + this.f57108n + "]";
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.k(parcel, 1, this.f56529a, i7);
-        yb.q(parcel, 2, 8);
-        parcel.writeLong(this.f56530b);
-        yb.q(parcel, 3, 4);
-        parcel.writeInt(this.f56531c);
-        yb.l(parcel, 4, this.d);
-        yb.k(parcel, 5, this.f56532e, i7);
-        yb.q(parcel, 6, 4);
-        parcel.writeInt(this.f56533f ? 1 : 0);
-        yb.q(parcel, 7, 4);
+        int r10 = bc.r(parcel, 20293);
+        bc.k(parcel, 1, this.f57103a, i7);
+        bc.q(parcel, 2, 8);
+        parcel.writeLong(this.f57104b);
+        bc.q(parcel, 3, 4);
+        parcel.writeInt(this.f57105c);
+        bc.l(parcel, 4, this.d);
+        bc.k(parcel, 5, this.f57106e, i7);
+        bc.q(parcel, 6, 4);
+        parcel.writeInt(this.f57107f ? 1 : 0);
+        bc.q(parcel, 7, 4);
         parcel.writeInt(this.h);
-        yb.q(parcel, 8, 4);
-        parcel.writeInt(this.f56534n);
-        yb.l(parcel, 9, this.f56535r);
-        yb.s(parcel, r10);
+        bc.q(parcel, 8, 4);
+        parcel.writeInt(this.f57108n);
+        bc.l(parcel, 9, this.f57109r);
+        bc.s(parcel, r10);
     }
 }

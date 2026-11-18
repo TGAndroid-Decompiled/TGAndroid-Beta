@@ -12,7 +12,7 @@ import android.graphics.drawable.RippleDrawable;
 import android.os.ProfilingResult;
 import android.util.Log;
 import android.view.View;
-import ci.i0;
+import ci.j0;
 import da.k0;
 import da.l0;
 import j$.util.function.Consumer$CC;
@@ -21,14 +21,14 @@ import java.util.WeakHashMap;
 import java.util.function.Consumer;
 import org.telegram.messenger.g0;
 public final class k implements Consumer {
-    public final int f818a;
-    public final Object f819b;
-    public final Object f820c;
+    public final int f817a;
+    public final Object f818b;
+    public final Object f819c;
 
     public k(int i7, Object obj, Object obj2) {
-        this.f818a = i7;
-        this.f820c = obj;
-        this.f819b = obj2;
+        this.f817a = i7;
+        this.f819c = obj;
+        this.f818b = obj2;
     }
 
     @Override
@@ -38,19 +38,19 @@ public final class k implements Consumer {
         float f10;
         float f11;
         float[] fArr;
-        switch (this.f818a) {
+        switch (this.f817a) {
             case 0:
-                p.a((p) this.f820c, (String) this.f819b, (ProfilingResult) obj);
+                p.a((p) this.f819c, (String) this.f818b, (ProfilingResult) obj);
                 return;
             case 1:
-                String str = (String) this.f819b;
-                ga.b bVar = ((e0) this.f820c).f801b;
+                String str = (String) this.f818b;
+                ga.b bVar = ((e0) this.f819c).f800b;
                 int intValue = ((Integer) obj).intValue();
                 if (((byte) 1) == 1) {
                     k0 k0Var = new k0(new l0(intValue));
                     try {
-                        ga.b.f12956g.getClass();
-                        ga.b.g(bVar.f12959b.b(str, "profiling-manager-info"), ea.a.f10562a.o(k0Var));
+                        ga.b.f13273g.getClass();
+                        ga.b.g(bVar.f13276b.b(str, "profiling-manager-info"), ea.a.f10880a.v(k0Var));
                         return;
                     } catch (IOException e10) {
                         Log.w("FirebaseCrashlytics", "Could not persist Profiling Manager info " + str, e10);
@@ -59,13 +59,13 @@ public final class k implements Consumer {
                 }
                 throw new IllegalStateException("Missing required properties: trigger");
             default:
-                i0 i0Var = (i0) this.f820c;
-                ci.m mVar2 = (ci.m) this.f819b;
+                j0 j0Var = (j0) this.f819c;
+                ci.m mVar2 = (ci.m) this.f818b;
                 Canvas canvas = (Canvas) obj;
-                ci.c cVar2 = i0Var.f5415y;
+                ci.c cVar2 = j0Var.f5701y;
                 RectF rectF = cVar2.N;
                 WeakHashMap weakHashMap = cVar2.O;
-                Paint paint = cVar2.f5315c;
+                Paint paint = cVar2.f5600c;
                 long b10 = ci.c.b();
                 int i7 = 0;
                 while (i7 < mVar2.getChildCount()) {
@@ -88,7 +88,7 @@ public final class k implements Consumer {
                             f11 = 2.5f;
                         }
                         String key = ((ci.l) childAt).getKey();
-                        if (key != null && (fArr = (float[]) cVar2.f5322n.get(key)) != null) {
+                        if (key != null && (fArr = (float[]) cVar2.f5607n.get(key)) != null) {
                             float c10 = ci.c.c(fArr, b10);
                             if (c10 > 0.004f) {
                                 float translationX = childAt.getTranslationX() + childAt.getLeft();
@@ -112,8 +112,8 @@ public final class k implements Consumer {
                     mVar2 = mVar;
                     cVar2 = cVar;
                 }
-                if (!i0Var.d.J.isEmpty()) {
-                    i0Var.f5415y.invalidate();
+                if (!j0Var.d.J.isEmpty()) {
+                    j0Var.f5701y.invalidate();
                     return;
                 }
                 return;
@@ -121,7 +121,7 @@ public final class k implements Consumer {
     }
 
     public Consumer andThen(Consumer consumer) {
-        int i7 = this.f818a;
+        int i7 = this.f817a;
         return Consumer$CC.$default$andThen(this, consumer);
     }
 }

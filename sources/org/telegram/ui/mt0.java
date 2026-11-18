@@ -1,46 +1,36 @@
 package org.telegram.ui;
+public final class mt0 implements Runnable {
+    public final int f49970a;
+    public final PrivacySettingsActivity f49971b;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.Iterator;
-public final class mt0 implements org.telegram.messenger.j9, org.telegram.ui.Components.ij0, s40 {
-    public final pt0 f49314a;
-
-    public mt0(pt0 pt0Var) {
-        this.f49314a = pt0Var;
+    public mt0(PrivacySettingsActivity privacySettingsActivity, int i7) {
+        this.f49970a = i7;
+        this.f49971b = privacySettingsActivity;
     }
 
     @Override
-    public void a(ArrayList arrayList, boolean z10, boolean z11) {
-        Iterator it = arrayList.iterator();
-        if (!it.hasNext()) {
-            this.f49314a.a0();
-        } else {
-            Long l10 = (Long) it.next();
-            throw null;
+    public final void run() {
+        int i7 = this.f49970a;
+        PrivacySettingsActivity privacySettingsActivity = this.f49971b;
+        switch (i7) {
+            case 0:
+                privacySettingsActivity.f43492a.f();
+                privacySettingsActivity.S = true;
+                return;
+            case 1:
+                privacySettingsActivity.f43496c.dismiss();
+                return;
+            default:
+                org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(privacySettingsActivity.getParentActivity(), null);
+                obVar.d(2131624009, new String[0]);
+                obVar.f38055b.setText(org.telegram.messenger.gd.M0(2131742553, null));
+                org.telegram.ui.Components.gc.g(privacySettingsActivity, obVar, 1500).j();
+                try {
+                    privacySettingsActivity.fragmentView.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                privacySettingsActivity.E0();
+                return;
         }
-    }
-
-    @Override
-    public boolean b(int i7, View view) {
-        pt0 pt0Var = this.f49314a;
-        if (i7 >= pt0Var.f50358r && i7 < pt0Var.f50359s) {
-            if (pt0Var.E == 1) {
-                pt0Var.Z(Long.valueOf(pt0Var.getMessagesController().H0.keyAt(i7 - pt0Var.f50358r)), view);
-                return true;
-            }
-            throw null;
-        }
-        return false;
-    }
-
-    @Override
-    public Object o(Object obj) {
-        pt0 pt0Var = this.f49314a;
-        pt0Var.getClass();
-        if (((Integer) obj).intValue() != pt0Var.f50361x) {
-            return null;
-        }
-        return Integer.valueOf(org.telegram.ui.ActionBar.j6.r1(0.12f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.f29070p7, false)));
     }
 }

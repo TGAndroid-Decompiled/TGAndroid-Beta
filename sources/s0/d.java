@@ -2,11 +2,11 @@ package s0;
 
 import android.os.Bundle;
 import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.ui.Components.cf;
-import org.telegram.ui.Components.df0;
-public final class d extends df0 {
+import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Components.nf0;
+public final class d extends nf0 {
     @Override
     public final void addExtraDataToAccessibilityNodeInfo(int i7, AccessibilityNodeInfo accessibilityNodeInfo, String str, Bundle bundle) {
-        ((cf) this.f33929b).getClass();
+        ((b5) this.f37781b).getClass();
     }
 }

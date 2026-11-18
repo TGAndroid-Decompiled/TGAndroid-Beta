@@ -1,26 +1,45 @@
 package org.telegram.ui.Components;
-public final class jm implements org.telegram.messenger.z10 {
-    public final int f36031a;
-    public final jn f36032b;
-    public final int f36033c;
 
-    public jm(jn jnVar, int i7, int i10) {
-        this.f36031a = i10;
-        this.f36032b = jnVar;
-        this.f36033c = i7;
+import android.content.Context;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class jm {
+    public float f36486a;
+    public int f36487b;
+    public int f36488c;
+    public int d;
+    public final Object f36489e;
+    public final Object f36490f;
+    public Object f36491g;
+    public final Object h;
+
+    public jm(Context context, hn hnVar) {
+        this.f36487b = -1;
+        this.f36488c = -1;
+        this.d = -1;
+        this.h = new int[]{Integer.MAX_VALUE, 0};
+        this.f36489e = context;
+        this.f36490f = hnVar;
     }
 
-    @Override
-    public final void a(Object obj) {
-        switch (this.f36031a) {
-            case 0:
-                this.f36032b.j0(this.f36033c, (sh.c) obj);
-                return;
-            default:
-                jn jnVar = this.f36032b;
-                jnVar.getClass();
-                jnVar.j0(this.f36033c, new th.e((String) obj));
-                return;
+    public static float b(int i7, int i10, float[] fArr) {
+        float f10 = 0.0f;
+        while (i7 < i10) {
+            f10 += fArr[i7];
+            i7++;
         }
+        return 1000.0f / f10;
+    }
+
+    public void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.jm.a():void");
+    }
+
+    public jm(pm pmVar, ArrayList arrayList) {
+        this.h = pmVar;
+        this.f36489e = new ArrayList();
+        this.f36491g = new HashMap();
+        this.f36490f = arrayList;
+        a();
     }
 }

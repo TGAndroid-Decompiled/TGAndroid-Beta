@@ -1,75 +1,25 @@
 package org.telegram.ui;
+public final class te implements Runnable {
+    public final int f52270a;
+    public final bn f52271b;
+    public final long f52272c;
+    public final long d;
 
-import org.telegram.tgnet.TLRPC;
-public final class te implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.yo, jl0 {
-    public final int f51567a;
-    public final Runnable f51568b;
-
-    public te(int i7, Runnable runnable) {
-        this.f51567a = i7;
-        this.f51568b = runnable;
+    public te(bn bnVar, long j3, long j10, int i7) {
+        this.f52270a = i7;
+        this.f52271b = bnVar;
+        this.f52272c = j3;
+        this.d = j10;
     }
 
     @Override
-    public boolean d(TLRPC.TL_error tL_error) {
-        switch (this.f51567a) {
-            case 3:
-                this.f51568b.run();
-                return true;
-            case 4:
-                this.f51568b.run();
-                return true;
-            case 5:
-                this.f51568b.run();
-                return true;
-            case 6:
-                this.f51568b.run();
-                return true;
-            case 7:
-                this.f51568b.run();
-                return true;
-            default:
-                this.f51568b.run();
-                return true;
-        }
-    }
-
-    @Override
-    public void e(int i7) {
-        int i10 = this.f51567a;
-        Runnable runnable = this.f51568b;
-        switch (i10) {
-            case 9:
-                String str = LaunchActivity.C1;
-                if (i7 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                if (i7 == 1) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f51567a) {
+    public final void run() {
+        switch (this.f52270a) {
             case 0:
-                this.f51568b.run();
-                return;
-            case 1:
-                this.f51568b.run();
+                bn.p0(this.f52271b, this.f52272c, this.d);
                 return;
             default:
-                Runnable runnable = this.f51568b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                bn.G1(this.f52271b, this.f52272c, this.d);
                 return;
         }
     }

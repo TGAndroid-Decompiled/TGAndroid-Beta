@@ -1,31 +1,22 @@
 package fi;
-public final class x5 implements Runnable {
-    public final int f12501a;
-    public final s6 f12502b;
 
-    public x5(s6 s6Var, int i7) {
-        this.f12501a = i7;
-        this.f12502b = s6Var;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class x5 implements RequestDelegate {
+    public final long f12735a;
+    public final x10 f12736b;
+    public final p6 f12737c;
+
+    public x5(p6 p6Var, long j3, x10 x10Var) {
+        this.f12737c = p6Var;
+        this.f12735a = j3;
+        this.f12736b = x10Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f12501a) {
-            case 0:
-                s6 s6Var = this.f12502b;
-                s6Var.R = false;
-                s6Var.S = null;
-                return;
-            case 1:
-                s6 s6Var2 = this.f12502b;
-                s6Var2.f12335s = true;
-                s6Var2.f12328l.edit().putBoolean("read_loaded", true).apply();
-                return;
-            default:
-                s6 s6Var3 = this.f12502b;
-                s6Var3.R = false;
-                s6Var3.S = null;
-                return;
-        }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        org.telegram.messenger.g0.g3(new di.i2(this, tLObject, this.f12735a, this.f12736b, 9));
     }
 }

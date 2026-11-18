@@ -4,14 +4,14 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import java.util.Iterator;
 public final class d implements a, dh.b, si.a {
-    public final a f58432a;
-    public final a f58433b;
-    public final xe.b f58434c = new xe.b();
+    public final a f58999a;
+    public final a f59000b;
+    public final xe.b f59001c = new xe.b();
     public float d;
 
     public d(a aVar, a aVar2) {
-        this.f58432a = aVar;
-        this.f58433b = aVar2;
+        this.f58999a = aVar;
+        this.f59000b = aVar2;
     }
 
     public static si.a h(a aVar) {
@@ -37,42 +37,8 @@ public final class d implements a, dh.b, si.a {
     }
 
     @Override
-    public final void b0(float f10, float f11, float f12, float f13, Canvas canvas) {
-        float f14;
-        float f15;
-        float f16;
-        float f17;
-        Canvas canvas2;
-        if (this.d < 1.0f) {
-            this.f58432a.b0(f10, f11, f12, f13, canvas);
-            f14 = f10;
-            canvas2 = canvas;
-            f17 = f13;
-            f16 = f12;
-            f15 = f11;
-        } else {
-            f14 = f10;
-            f15 = f11;
-            f16 = f12;
-            f17 = f13;
-            canvas2 = canvas;
-        }
-        float f18 = this.d;
-        if (f18 > 0.0f) {
-            if (f18 < 1.0f) {
-                canvas2.saveLayerAlpha(f14, f15, f16, f17, (int) (f18 * 255.0f));
-            }
-            Canvas canvas3 = canvas2;
-            this.f58433b.b0(f14, f15, f16, f17, canvas3);
-            if (this.d < 1.0f) {
-                canvas3.restore();
-            }
-        }
-    }
-
-    @Override
     public final void c(fh.g gVar) {
-        this.f58434c.add(gVar);
+        this.f59001c.add(gVar);
     }
 
     @Override
@@ -88,7 +54,7 @@ public final class d implements a, dh.b, si.a {
             i10 = i7;
             canvas2 = canvas;
             rectF2 = rectF;
-            h(this.f58432a).d(f12, f13, i10, canvas2, rectF2);
+            h(this.f58999a).d(f12, f13, i10, canvas2, rectF2);
         } else {
             f12 = f10;
             f13 = f11;
@@ -104,7 +70,7 @@ public final class d implements a, dh.b, si.a {
             RectF rectF3 = rectF2;
             Canvas canvas3 = canvas2;
             int i11 = i10;
-            h(this.f58433b).d(f12, f13, i11, canvas3, rectF3);
+            h(this.f59000b).d(f12, f13, i11, canvas3, rectF3);
             if (this.d < 1.0f) {
                 canvas3.restore();
             }
@@ -123,15 +89,15 @@ public final class d implements a, dh.b, si.a {
 
     @Override
     public final boolean g() {
-        if (h(this.f58432a) != null && h(this.f58433b) != null) {
+        if (h(this.f58999a) != null && h(this.f59000b) != null) {
             return true;
         }
         return false;
     }
 
     public final si.a i() {
-        si.a h = h(this.f58432a);
-        si.a h7 = h(this.f58433b);
+        si.a h = h(this.f58999a);
+        si.a h7 = h(this.f59000b);
         if (h.e() <= h7.e()) {
             return h;
         }
@@ -141,11 +107,45 @@ public final class d implements a, dh.b, si.a {
     public final void j(float f10) {
         if (this.d != f10) {
             this.d = f10;
-            Iterator it = this.f58434c.iterator();
+            Iterator it = this.f59001c.iterator();
             while (it.hasNext()) {
                 fh.g gVar = (fh.g) it.next();
                 gVar.updateColors();
                 gVar.invalidateSelf();
+            }
+        }
+    }
+
+    @Override
+    public final void o(float f10, float f11, float f12, float f13, Canvas canvas) {
+        float f14;
+        float f15;
+        float f16;
+        float f17;
+        Canvas canvas2;
+        if (this.d < 1.0f) {
+            this.f58999a.o(f10, f11, f12, f13, canvas);
+            f14 = f10;
+            canvas2 = canvas;
+            f17 = f13;
+            f16 = f12;
+            f15 = f11;
+        } else {
+            f14 = f10;
+            f15 = f11;
+            f16 = f12;
+            f17 = f13;
+            canvas2 = canvas;
+        }
+        float f18 = this.d;
+        if (f18 > 0.0f) {
+            if (f18 < 1.0f) {
+                canvas2.saveLayerAlpha(f14, f15, f16, f17, (int) (f18 * 255.0f));
+            }
+            Canvas canvas3 = canvas2;
+            this.f59000b.o(f14, f15, f16, f17, canvas3);
+            if (this.d < 1.0f) {
+                canvas3.restore();
             }
         }
     }

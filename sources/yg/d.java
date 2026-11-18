@@ -1,16 +1,16 @@
 package yg;
 
 import android.content.Context;
-import c8.ja;
+import c8.ma;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
 public class d extends c {
-    public static final int f60661w = 0;
-    public int f60662s;
+    public static final int f61228w = 0;
+    public int f61229s;
 
-    public d(Context context, e6 e6Var) {
-        super(context, e6Var);
+    public d(Context context, i6 i6Var) {
+        super(context, i6Var);
         this.d.setTypeface(g0.o());
     }
 
@@ -29,13 +29,13 @@ public class d extends c {
         float f12;
         float f13;
         int i12 = 3;
-        if (hd.f24104a0) {
+        if (gd.f24216a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        this.f60645c.setLayoutParams(ja.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
-        boolean z10 = hd.f24104a0;
+        this.f61212c.setLayoutParams(ma.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        boolean z10 = gd.f24216a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -52,8 +52,8 @@ public class d extends c {
         } else {
             f11 = 20.0f;
         }
-        this.d.setLayoutParams(ja.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24104a0;
+        this.d.setLayoutParams(ma.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
+        boolean z11 = gd.f24216a0;
         if (z11) {
             i11 = 5;
         } else {
@@ -70,14 +70,14 @@ public class d extends c {
         } else {
             f13 = 20.0f;
         }
-        this.f60646e.setLayoutParams(ja.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
-        if (hd.f24104a0) {
+        this.f61213e.setLayoutParams(ma.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
+        if (gd.f24216a0) {
             i12 = 5;
         }
-        this.f60647f.setLayoutParams(ja.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f61214f.setLayoutParams(ma.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f60662s;
+        return this.f61229s;
     }
 }

@@ -1,165 +1,362 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
+import android.graphics.Bitmap;
+import android.os.SystemClock;
+import android.util.SparseArray;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
 public final class tl implements Runnable {
-    public final int f26699a = 0;
-    public final boolean f26700b;
-    public final String f26701c;
-    public final boolean d;
-    public final Object f26702e;
-    public final Object f26703f;
-    public final Object h;
-    public final Object f26704n;
-    public final Object f26705r;
-    public final Object f26706s;
+    public final int f27026a;
+    public final Object f27027b;
+    public final Object f27028c;
+    public final Object d;
+    public final Object f27029e;
 
-    public tl(t7 t7Var, boolean z10, String str, boolean z11, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, y8 y8Var) {
-        this.f26702e = t7Var;
-        this.f26700b = z10;
-        this.f26701c = str;
-        this.d = z11;
-        this.f26703f = inputFile;
-        this.h = inputEncryptedFile;
-        this.f26704n = bArr;
-        this.f26705r = bArr2;
-        this.f26706s = y8Var;
+    public tl(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
+        this.f27026a = i7;
+        this.f27027b = obj;
+        this.f27028c = obj2;
+        this.d = obj3;
+        this.f27029e = obj4;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.tl.a():void");
+    }
+
+    private final void b() {
+        tr trVar = (tr) this.f27027b;
+        TLRPC.Document document = (TLRPC.Document) this.f27028c;
+        String str = (String) this.d;
+        String str2 = (String) this.f27029e;
+        trVar.getClass();
+        SQLitePreparedStatement sQLitePreparedStatement = null;
+        try {
+            try {
+                if (document != null) {
+                    sQLitePreparedStatement = trVar.f27056b.executeFast("UPDATE web_recent_v3 SET document = ? WHERE image_url = ?");
+                    sQLitePreparedStatement.requery();
+                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(document.getObjectSize());
+                    document.serializeToStream(nativeByteBuffer);
+                    sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
+                    sQLitePreparedStatement.bindString(2, str);
+                    sQLitePreparedStatement.step();
+                    sQLitePreparedStatement.dispose();
+                    nativeByteBuffer.reuse();
+                } else {
+                    sQLitePreparedStatement = trVar.f27056b.executeFast("UPDATE web_recent_v3 SET local_url = ? WHERE image_url = ?");
+                    sQLitePreparedStatement.requery();
+                    sQLitePreparedStatement.bindString(1, str2);
+                    sQLitePreparedStatement.bindString(2, str);
+                    sQLitePreparedStatement.step();
+                    sQLitePreparedStatement.dispose();
+                }
+                sQLitePreparedStatement.dispose();
+            } catch (Exception e10) {
+                trVar.o(e10, true);
+                if (sQLitePreparedStatement != null) {
+                    sQLitePreparedStatement.dispose();
+                }
+            }
+        } catch (Throwable th2) {
+            if (sQLitePreparedStatement != null) {
+                sQLitePreparedStatement.dispose();
+            }
+            throw th2;
+        }
+    }
+
+    private final void c() {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        pv pvVar = (pv) this.f27027b;
+        nv nvVar = pvVar.f26306n;
+        TLObject tLObject = (TLObject) this.f27028c;
+        ArrayList arrayList = (ArrayList) this.d;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f27029e;
+        ArrayList arrayList2 = pvVar.f26297c;
+        ArrayList arrayList3 = pvVar.f26301i;
+        int i7 = pvVar.f26295a;
+        boolean z13 = pvVar.f26296b;
+        int i10 = 0;
+        boolean z14 = true;
+        if (tLObject instanceof TLRPC.TL_messages_savedDialogs) {
+            pvVar.f26298e = true;
+            TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject;
+            mp.u1(i7).f4(tL_messages_savedDialogs.users, false);
+            mp.u1(i7).Z3(tL_messages_savedDialogs.chats, false);
+            tr.a0(i7).m1(tL_messages_savedDialogs.users, tL_messages_savedDialogs.chats, true, true);
+            tr.a0(i7).j1(tL_messages_savedDialogs.messages, false, true, false, 0, false, 3, 0L);
+            int i11 = 0;
+            while (i11 < tL_messages_savedDialogs.dialogs.size()) {
+                ov b10 = ov.b(i7, tL_messages_savedDialogs.dialogs.get(i11), tL_messages_savedDialogs.messages);
+                int i12 = i10;
+                while (true) {
+                    if (i12 < arrayList2.size()) {
+                        z12 = z14;
+                        if (((ov) arrayList2.get(i12)).f26106a == b10.f26106a) {
+                            b10.f26109e = ((ov) arrayList2.get(i12)).f26109e;
+                            ((ov) arrayList2.get(i12)).f26107b = b10.f26107b;
+                            break;
+                        }
+                        i12++;
+                        z14 = z12;
+                    } else {
+                        z12 = z14;
+                        break;
+                    }
+                }
+                int i13 = 0;
+                while (true) {
+                    if (i13 < arrayList3.size()) {
+                        if (((ov) arrayList3.get(i13)).f26106a == b10.f26106a) {
+                            break;
+                        }
+                        i13++;
+                    } else {
+                        arrayList3.add(b10);
+                        if (b10.d()) {
+                            pvVar.h++;
+                        }
+                    }
+                }
+                i11++;
+                z14 = z12;
+                i10 = 0;
+            }
+            pvVar.f26299f = z14;
+            pvVar.f26300g = tL_messages_savedDialogs.dialogs.size();
+            pvVar.m();
+            g0.r(nvVar);
+            g0.h3(nvVar, 450L);
+            pvVar.f26296b = false;
+        } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsSlice) {
+            pvVar.f26298e = true;
+            TLRPC.TL_messages_savedDialogsSlice tL_messages_savedDialogsSlice = (TLRPC.TL_messages_savedDialogsSlice) tLObject;
+            mp.u1(i7).f4(tL_messages_savedDialogsSlice.users, false);
+            mp.u1(i7).Z3(tL_messages_savedDialogsSlice.chats, false);
+            tr.a0(i7).m1(tL_messages_savedDialogsSlice.users, tL_messages_savedDialogsSlice.chats, true, true);
+            tr.a0(i7).j1(tL_messages_savedDialogsSlice.messages, false, true, false, 0, false, 3, 0L);
+            for (int i14 = 0; i14 < tL_messages_savedDialogsSlice.dialogs.size(); i14++) {
+                ov b11 = ov.b(i7, tL_messages_savedDialogsSlice.dialogs.get(i14), tL_messages_savedDialogsSlice.messages);
+                int i15 = 0;
+                while (true) {
+                    if (i15 >= arrayList2.size()) {
+                        break;
+                    } else if (((ov) arrayList2.get(i15)).f26106a == b11.f26106a) {
+                        b11.f26109e = ((ov) arrayList2.get(i15)).f26109e;
+                        ((ov) arrayList2.get(i15)).f26107b = b11.f26107b;
+                        break;
+                    } else {
+                        i15++;
+                    }
+                }
+                int i16 = 0;
+                while (true) {
+                    if (i16 < arrayList3.size()) {
+                        if (((ov) arrayList3.get(i16)).f26106a == b11.f26106a) {
+                            break;
+                        }
+                        i16++;
+                    } else {
+                        arrayList3.add(b11);
+                        if (b11.d()) {
+                            pvVar.h++;
+                        }
+                    }
+                }
+            }
+            pvVar.f26300g = tL_messages_savedDialogsSlice.count;
+            ArrayList arrayList4 = pvVar.f26302j;
+            int i17 = 0;
+            for (int i18 = 0; i18 < arrayList4.size(); i18++) {
+                if (((ov) arrayList4.get(i18)).f26107b) {
+                    i17++;
+                }
+            }
+            if (arrayList3.size() + i17 < pvVar.f26300g && tL_messages_savedDialogsSlice.dialogs.size() != 0) {
+                z11 = false;
+            } else {
+                z11 = true;
+            }
+            pvVar.f26299f = z11;
+            pvVar.m();
+            g0.r(nvVar);
+            g0.h3(nvVar, 450L);
+            pvVar.f26296b = false;
+        } else if (tLObject instanceof TLRPC.TL_messages_savedDialogsNotModified) {
+            pvVar.f26298e = true;
+            arrayList3.addAll(arrayList);
+            pvVar.f26300g = ((TLRPC.TL_messages_savedDialogsNotModified) tLObject).count;
+            pvVar.h = 0;
+            for (int i19 = 0; i19 < arrayList.size(); i19++) {
+                if (((ov) arrayList.get(i19)).d()) {
+                    pvVar.h++;
+                }
+            }
+            boolean z15 = pvVar.f26299f;
+            if (arrayList3.size() >= pvVar.f26300g) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            pvVar.f26299f = z10;
+            pvVar.f26296b = false;
+            if (z10 && !z15) {
+                pvVar.m();
+            }
+        } else if (tL_error != null) {
+            pvVar.f26298e = true;
+            if ("SAVED_DIALOGS_UNSUPPORTED".equals(tL_error.text)) {
+                pvVar.f26296b = true;
+            }
+        }
+        if (pvVar.f26296b != z13) {
+            mp.u1(i7).h7.edit().putBoolean("savedMessagesUnsupported", pvVar.f26296b).apply();
+        }
+        pvVar.d = false;
+    }
+
+    private final void d() {
+        zy zyVar = (zy) this.f27027b;
+        ly lyVar = (ly) this.f27028c;
+        File file = (File) this.d;
+        fj fjVar = (fj) this.f27029e;
+        TLRPC.Document F0 = lyVar.f25467m.F0();
+        boolean z10 = false;
+        if (F0.thumbs.isEmpty() || (F0.thumbs.get(0).location instanceof TLRPC.TL_fileLocationUnavailable)) {
+            try {
+                Bitmap K = ec.K(file.getAbsolutePath(), null, 90.0f, 90.0f, true);
+                if (K != null) {
+                    F0.thumbs.clear();
+                    ArrayList<TLRPC.PhotoSize> arrayList = F0.thumbs;
+                    if (lyVar.d != null) {
+                        z10 = true;
+                    }
+                    arrayList.add(ec.Z(K, 90.0f, 90.0f, 55, z10));
+                    K.recycle();
+                }
+            } catch (Exception e10) {
+                F0.thumbs.clear();
+                a8.g(e10, true);
+            }
+        }
+        g0.g3(new fn(zyVar, lyVar, file, F0, fjVar, 16));
+    }
+
+    private final void f() {
+        boolean z10;
+        zy zyVar = (zy) this.f27027b;
+        TLObject tLObject = (TLObject) this.f27028c;
+        ly lyVar = (ly) this.d;
+        String str = (String) this.f27029e;
+        if (tLObject != null) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
+            ri mediaDataController = zyVar.getMediaDataController();
+            mediaDataController.getClass();
+            TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+            if (stickerSet != null) {
+                mediaDataController.J.k(tL_messages_stickerSet, stickerSet.f28432id);
+                String str2 = tL_messages_stickerSet.set.short_name;
+                if (str2 != null) {
+                    mediaDataController.O.put(str2.toLowerCase(), tL_messages_stickerSet);
+                }
+            }
+            TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
+            ((TLRPC.TL_documentAttributeSticker_layer55) lyVar.h).stickerset = tL_inputStickerSetShortName;
+            tL_inputStickerSetShortName.short_name = tL_messages_stickerSet.set.short_name;
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        ArrayList arrayList = (ArrayList) zyVar.f28387a.remove(str);
+        if (arrayList != null && !arrayList.isEmpty()) {
+            if (z10) {
+                zyVar.getMessagesStorage().r1(((ly) arrayList.get(0)).f25467m.f23968k, null, null, false);
+            }
+            fj fjVar = lyVar.f25467m;
+            zyVar.getSecretChatHelper().j((TLRPC.DecryptedMessage) lyVar.d, fjVar.f23968k, lyVar.f25468n, null, null, fjVar);
+        }
+    }
+
+    private final void g() {
+        TLObject tLObject = (TLObject) this.f27028c;
+        TLRPC.TL_messages_initHistoryImport tL_messages_initHistoryImport = (TLRPC.TL_messages_initHistoryImport) this.d;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f27029e;
+        qy qyVar = ((ny) this.f27027b).f26009b;
+        zy zyVar = qyVar.f26499q;
+        boolean z10 = tLObject instanceof TLRPC.TL_messages_historyImport;
+        int i7 = ks.f25207v1;
+        if (z10) {
+            qyVar.f26493k = ((TLRPC.TL_messages_historyImport) tLObject).f28508id;
+            ArrayList arrayList = qyVar.f26489f;
+            HashSet hashSet = qyVar.f26487c;
+            hashSet.remove(qyVar.f26485a);
+            zyVar.getNotificationCenter().k(i7, Long.valueOf(qyVar.f26492j));
+            if (hashSet.isEmpty()) {
+                qy.a(qyVar);
+            }
+            qyVar.f26496n = SystemClock.elapsedRealtime();
+            int size = arrayList.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                zyVar.getFileLoader().h0(false, 67108864, (String) arrayList.get(i10), true);
+            }
+            return;
+        }
+        zyVar.E.l(qyVar.f26492j);
+        zyVar.getNotificationCenter().k(i7, Long.valueOf(qyVar.f26492j), tL_messages_initHistoryImport, tL_error);
+    }
+
+    private final void h() {
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f27028c;
+        TLRPC.TL_stickers_createStickerSet tL_stickers_createStickerSet = (TLRPC.TL_stickers_createStickerSet) this.d;
+        TLObject tLObject = (TLObject) this.f27029e;
+        uy uyVar = ((ty) this.f27027b).f27099b;
+        zy zyVar = uyVar.f27300o;
+        zyVar.G.remove(uyVar.f27291e);
+        int i7 = ks.f25214w1;
+        if (tL_error == null) {
+            zyVar.getNotificationCenter().k(i7, uyVar.f27291e);
+        } else {
+            zyVar.getNotificationCenter().k(i7, uyVar.f27291e, tL_stickers_createStickerSet, tL_error);
+        }
+        if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
+            SparseArray sparseArray = zyVar.getNotificationCenter().f25240a;
+            int i10 = ks.f25221x1;
+            if (sparseArray.indexOfKey(i10) >= 0) {
+                zyVar.getNotificationCenter().k(i10, tLObject);
+            } else {
+                zyVar.getMediaDataController().k2(null, tLObject, 2, null, false, false);
+            }
+        }
+    }
+
+    private final void i() {
+        z00 z00Var = (z00) this.f27027b;
+        fj fjVar = (fj) this.f27028c;
+        f3.s sVar = (f3.s) this.d;
+        fjVar.f23968k.originalLanguage = "und";
+        z00Var.getMessagesStorage().X1(sVar.f11199a, fjVar.f23968k);
+        z00Var.L.remove(sVar);
+        ((di.o9) this.f27029e).a("und");
     }
 
     @Override
     public final void run() {
-        y8 y8Var;
-        y8 y8Var2;
-        switch (this.f26699a) {
-            case 0:
-                np npVar = (np) this.f26702e;
-                org.telegram.ui.kx kxVar = (org.telegram.ui.ActionBar.e2) this.f26703f;
-                vf.b bVar = (vf.b) this.h;
-                boolean[] zArr = (boolean[]) this.f26704n;
-                TLRPC.User user = (TLRPC.User) this.f26705r;
-                String str = this.f26701c;
-                boolean z10 = this.f26700b;
-                boolean z11 = this.d;
-                TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) this.f26706s;
-                if (kxVar == null) {
-                    kxVar = LaunchActivity.T();
-                }
-                if (kxVar != null) {
-                    if (bVar != null) {
-                        bVar.b();
-                    }
-                    if (!zArr[0]) {
-                        String F1 = npVar.F1(user.restriction_reason);
-                        if (!TextUtils.isEmpty(F1)) {
-                            np.S4(F1, kxVar);
-                            return;
-                        } else if (user.bot_has_main_app) {
-                            long j3 = user.f28200id;
-                            if (kxVar instanceof org.telegram.ui.an) {
-                                j3 = ((org.telegram.ui.an) kxVar).a();
-                            } else if (kxVar instanceof ProfileActivity) {
-                                j3 = ((ProfileActivity) kxVar).a();
-                            }
-                            if (kxVar.getParentLayout() instanceof ActionBarLayout) {
-                                kxVar = ((ActionBarLayout) kxVar.getParentLayout()).getSheetFragment();
-                            }
-                            g0.v1(kxVar.getFragmentView());
-                            ki.k4 b10 = ki.k4.b(npVar.currentAccount, j3, user.f28200id, null, null, 4, 0, 0L, null, false, str, user, 0, z10, z11);
-                            LaunchActivity launchActivity = LaunchActivity.H1;
-                            if (launchActivity == null || launchActivity.N() == null || LaunchActivity.H1.N().k(b10) == null) {
-                                ki.x2 x2Var = new ki.x2(kxVar.getContext(), kxVar.getResourceProvider());
-                                x2Var.B(true);
-                                x2Var.C0 = false;
-                                x2Var.m0 = kxVar.getParentActivity();
-                                x2Var.x(kxVar, b10);
-                                x2Var.show();
-                                return;
-                            }
-                            return;
-                        } else {
-                            TL_bots.BotInfo botInfo = botInfoArr[0];
-                            if (botInfo != null && (botInfo.menu_button instanceof TL_bots.TL_botMenuButton)) {
-                                if (kxVar.getParentLayout() instanceof ActionBarLayout) {
-                                    kxVar = ((ActionBarLayout) kxVar.getParentLayout()).getSheetFragment();
-                                }
-                                TL_bots.TL_botMenuButton tL_botMenuButton = (TL_bots.TL_botMenuButton) botInfoArr[0].menu_button;
-                                g0.v1(kxVar.getFragmentView());
-                                int i7 = npVar.currentAccount;
-                                long j10 = user.f28200id;
-                                ki.k4 b11 = ki.k4.b(i7, j10, j10, tL_botMenuButton.text, tL_botMenuButton.url, 2, 0, 0L, null, false, str, user, 0, z10, z11);
-                                LaunchActivity launchActivity2 = LaunchActivity.H1;
-                                if (launchActivity2 == null || launchActivity2.N() == null || LaunchActivity.H1.N().k(b11) == null) {
-                                    ki.x2 x2Var2 = new ki.x2(kxVar.getContext(), kxVar.getResourceProvider());
-                                    x2Var2.B(false);
-                                    x2Var2.C0 = true;
-                                    x2Var2.m0 = kxVar.getParentActivity();
-                                    x2Var2.x(kxVar, b11);
-                                    x2Var2.show();
-                                    return;
-                                }
-                                return;
-                            }
-                            kxVar.presentFragment(org.telegram.ui.an.ua(user.f28200id));
-                            return;
-                        }
-                    }
-                    return;
-                }
-                return;
-            default:
-                t7 t7Var = (t7) this.f26702e;
-                boolean z12 = this.f26700b;
-                String str2 = this.f26701c;
-                boolean z13 = this.d;
-                TLRPC.InputFile inputFile = (TLRPC.InputFile) this.f26703f;
-                TLRPC.InputEncryptedFile inputEncryptedFile = (TLRPC.InputEncryptedFile) this.h;
-                byte[] bArr = (byte[]) this.f26704n;
-                byte[] bArr2 = (byte[]) this.f26705r;
-                y8 y8Var3 = (y8) this.f26706s;
-                if (z12) {
-                    t7Var.d.f27311n.remove(str2);
-                } else {
-                    t7Var.d.h.remove(str2);
-                }
-                if (z13) {
-                    w7 w7Var = t7Var.d;
-                    int i10 = w7Var.f27313s - 1;
-                    w7Var.f27313s = i10;
-                    if (i10 < 1 && (y8Var2 = (y8) w7Var.f27310f.poll()) != null) {
-                        t7Var.d.f27313s++;
-                        y8Var2.c();
-                    }
-                } else {
-                    w7 w7Var2 = t7Var.d;
-                    int i11 = w7Var2.f27312r - 1;
-                    w7Var2.f27312r = i11;
-                    if (i11 < 1 && (y8Var = (y8) w7Var2.f27309e.poll()) != null) {
-                        t7Var.d.f27312r++;
-                        y8Var.c();
-                    }
-                }
-                pb pbVar = t7Var.d.F;
-                if (pbVar != null) {
-                    Utilities.d.c(new ki.z0(pbVar, pbVar.f25920a, str2, inputFile, inputEncryptedFile, bArr, bArr2, y8Var3.f27687t));
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.tl.run():void");
     }
 
-    public tl(np npVar, org.telegram.ui.ActionBar.e2 e2Var, vf.b bVar, boolean[] zArr, TLRPC.User user, String str, boolean z10, boolean z11, TL_bots.BotInfo[] botInfoArr) {
-        this.f26702e = npVar;
-        this.f26703f = e2Var;
-        this.h = bVar;
-        this.f26704n = zArr;
-        this.f26705r = user;
-        this.f26701c = str;
-        this.f26700b = z10;
-        this.d = z11;
-        this.f26706s = botInfoArr;
+    public tl(mp mpVar, ArrayList arrayList, TLRPC.updates_Difference updates_difference, a0.h hVar) {
+        this.f27026a = 17;
+        this.f27027b = mpVar;
+        this.f27029e = arrayList;
+        this.f27028c = updates_difference;
+        this.d = hVar;
     }
 }

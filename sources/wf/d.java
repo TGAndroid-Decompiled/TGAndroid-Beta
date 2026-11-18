@@ -20,46 +20,46 @@ import java.util.logging.Level;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.messenger.t0;
-import org.telegram.ui.Components.mg;
+import org.telegram.ui.Components.vg;
 import ug.x;
-import v4.w0;
+import v4.x0;
 import yc.f;
 import yc.g;
 import yc.i;
 public final class d extends i {
-    public static final e f59112l;
-    public static final HashMap f59113m;
-    public final ExtendedDefaultDataSourceFactory f59114e;
-    public final x f59115f;
-    public final sa.d f59116g;
+    public static final e f59677l;
+    public static final HashMap f59678m;
+    public final ExtendedDefaultDataSourceFactory f59679e;
+    public final x f59680f;
+    public final sa.d f59681g;
     public final HashMap h;
-    public Pair f59117i;
-    public boolean f59118j;
-    public final AtomicInteger f59119k;
+    public Pair f59682i;
+    public boolean f59683j;
+    public final AtomicInteger f59684k;
 
     static {
-        e eVar = new e(new w0(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f59112l = eVar;
+        e eVar = new e(new x0(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
+        f59677l = eVar;
         e[] eVarArr = {eVar};
         HashMap hashMap = new HashMap();
-        f59113m = hashMap;
+        f59678m = hashMap;
         e eVar2 = eVarArr[0];
         hashMap.put(eVar2.d, eVar2);
     }
 
     public d() {
-        this.f60605c = new va(10);
+        this.f61170c = new va(10);
         this.h = new HashMap();
-        this.f59117i = null;
-        this.f59118j = false;
-        this.f59119k = new AtomicInteger();
-        this.f59115f = new x(15);
-        this.f59116g = new sa.d(11);
-        this.f59114e = new ExtendedDefaultDataSourceFactory(t0.f26609b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+        this.f59682i = null;
+        this.f59683j = false;
+        this.f59684k = new AtomicInteger();
+        this.f59680f = new x(16);
+        this.f59681g = new sa.d(11);
+        this.f59679e = new ExtendedDefaultDataSourceFactory(t0.f26915b, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
     public static String i() {
-        int ipAddress = ((WifiManager) t0.f26609b.getSystemService("wifi")).getConnectionInfo().getIpAddress();
+        int ipAddress = ((WifiManager) t0.f26915b.getSystemService("wifi")).getConnectionInfo().getIpAddress();
         if (ipAddress == 0) {
             try {
                 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -90,9 +90,9 @@ public final class d extends i {
     @Override
     public final g e(yc.d dVar) {
         String str;
-        int incrementAndGet = this.f59119k.incrementAndGet();
+        int incrementAndGet = this.f59684k.incrementAndGet();
         StringBuilder m10 = i5.c.m(incrementAndGet, "Request ", " ");
-        switch (dVar.f60581g) {
+        switch (dVar.f61146g) {
             case 1:
                 str = "GET";
                 break;
@@ -147,35 +147,35 @@ public final class d extends i {
         }
         m10.append(str);
         m10.append(" ");
-        m10.append(dVar.f60580f);
+        m10.append(dVar.f61145f);
         m10.append(" ");
-        r.b.t(m10, (String) dVar.f60582i.get("range"), "CAST_SERVER");
+        p5.c.t(m10, (String) dVar.f61147i.get("range"), "CAST_SERVER");
         try {
             g k10 = k(dVar);
-            mg mgVar = k10.f60597e;
-            mgVar.put("Access-Control-Allow-Origin", "*");
-            mgVar.put("Access-Control-Max-Age", "3628800");
-            mgVar.put("Access-Control-Allow-Methods", "*");
-            mgVar.put("Access-Control-Allow-Headers", "*");
+            vg vgVar = k10.f61162e;
+            vgVar.put("Access-Control-Allow-Origin", "*");
+            vgVar.put("Access-Control-Max-Age", "3628800");
+            vgVar.put("Access-Control-Allow-Methods", "*");
+            vgVar.put("Access-Control-Allow-Headers", "*");
             return k10;
         } catch (Throwable unused) {
             Log.d("CAST_SERVER", "Error " + incrementAndGet);
             g c10 = i.c(f.INTERNAL_ERROR, "text/plain", "Error reading file");
-            mg mgVar2 = c10.f60597e;
-            mgVar2.put("Access-Control-Allow-Origin", "*");
-            mgVar2.put("Access-Control-Max-Age", "3628800");
-            mgVar2.put("Access-Control-Allow-Methods", "*");
-            mgVar2.put("Access-Control-Allow-Headers", "*");
+            vg vgVar2 = c10.f61162e;
+            vgVar2.put("Access-Control-Allow-Origin", "*");
+            vgVar2.put("Access-Control-Max-Age", "3628800");
+            vgVar2.put("Access-Control-Allow-Methods", "*");
+            vgVar2.put("Access-Control-Allow-Headers", "*");
             return c10;
         }
     }
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f59118j) {
+            if (this.f59683j) {
                 try {
-                    i.d(this.f60603a);
-                    va vaVar = this.f60605c;
+                    i.d(this.f61168a);
+                    va vaVar = this.f61170c;
                     vaVar.getClass();
                     ArrayList arrayList = new ArrayList((List) vaVar.f694c);
                     int size = arrayList.size();
@@ -184,22 +184,22 @@ public final class d extends i {
                         Object obj = arrayList.get(i7);
                         i7++;
                         yc.a aVar = (yc.a) obj;
-                        i.d(aVar.f60566a);
-                        i.d(aVar.f60567b);
+                        i.d(aVar.f61131a);
+                        i.d(aVar.f61132b);
                     }
-                    Thread thread = this.f60604b;
+                    Thread thread = this.f61169b;
                     if (thread != null) {
                         thread.join();
                     }
                 } catch (Exception e10) {
                     i.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e10);
                 }
-                this.f59118j = false;
+                this.f59683j = false;
             }
-        } else if (!this.f59118j) {
+        } else if (!this.f59683j) {
             try {
                 f();
-                this.f59118j = true;
+                this.f59683j = true;
             } catch (IOException e11) {
                 throw new RuntimeException(e11);
             }
@@ -212,16 +212,16 @@ public final class d extends i {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f59117i = new Pair(str, file);
+            this.f59682i = new Pair(str, file);
         } else {
-            Pair pair = this.f59117i;
+            Pair pair = this.f59682i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f59117i.second).delete();
+                    ((File) this.f59682i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f59117i = null;
+            this.f59682i = null;
         }
         h();
     }

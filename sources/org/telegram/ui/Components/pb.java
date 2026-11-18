@@ -1,33 +1,80 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
-import android.widget.ImageView;
-public class pb extends va {
-    public final ImageView f38261a;
-    public final z70 f38262b;
+import android.view.MotionEvent;
+import android.view.WindowManager;
+public final class pb extends vi0 {
+    public final int n1 = 0;
+    public final Object f38335o1;
 
-    public pb(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        int i7 = org.telegram.ui.ActionBar.j6.yj;
-        getThemedColor(i7);
-        ImageView imageView = new ImageView(context);
-        this.f38261a = imageView;
-        org.telegram.ui.ActionBar.q6.s(imageView, i7, e6Var, PorterDuff.Mode.MULTIPLY);
-        addView(imageView, c8.ja.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
-        z70 z70Var = new z70(context, null);
-        this.f38262b = z70Var;
-        z70Var.setDisablePaddingsOffsetY(true);
-        z70Var.setSingleLine();
-        org.telegram.ui.ActionBar.q6.U(z70Var, i7, e6Var);
-        z70Var.setTypeface(Typeface.SANS_SERIF);
-        z70Var.setTextSize(1, 15.0f);
-        addView(z70Var, c8.ja.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+    public pb(org.telegram.ui.ns nsVar, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(4, i7, context, null, i6Var);
+        this.f38335o1 = nsVar;
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.f38262b.getText();
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        gc gcVar;
+        switch (this.n1) {
+            case 0:
+                rb rbVar = (rb) this.f38335o1;
+                if (motionEvent.getAction() == 0) {
+                    gc gcVar2 = rbVar.f39086n;
+                    if (gcVar2 != null) {
+                        gcVar2.i(false);
+                    }
+                } else if (motionEvent.getAction() == 1 && (gcVar = rbVar.f39086n) != null) {
+                    gcVar.i(true);
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void j() {
+        switch (this.n1) {
+            case 1:
+                super.j();
+                org.telegram.ui.ns nsVar = (org.telegram.ui.ns) this.f38335o1;
+                if (getReactionsWindow() != null) {
+                    WindowManager.LayoutParams layoutParams = nsVar.f50314x;
+                    layoutParams.flags &= -131073;
+                    layoutParams.softInputMode = 16;
+                } else {
+                    nsVar.f50314x.flags |= 131072;
+                }
+                try {
+                    ((WindowManager) nsVar.f50313w.getSystemService("window")).updateViewLayout(nsVar.f50315y, nsVar.f50314x);
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return;
+                }
+            default:
+                super.j();
+                return;
+        }
+    }
+
+    @Override
+    public void m() {
+        switch (this.n1) {
+            case 0:
+                gc gcVar = gc.f35453w;
+                if (gcVar != null) {
+                    gcVar.i(false);
+                }
+                ((rb) this.f38335o1).d.getReactionsWindow().f5299c.setOnClickListener(new n0(this, 3));
+                return;
+            default:
+                return;
+        }
+    }
+
+    public pb(rb rbVar, org.telegram.ui.ActionBar.h2 h2Var, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(3, i7, context, h2Var, i6Var);
+        this.f38335o1 = rbVar;
     }
 }

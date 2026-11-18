@@ -1,86 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Typeface;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
-public class dc {
-    public View f33898a;
-    public final float f33899b;
-    public final float f33900c;
-    public final float d;
-    public long f33901e;
-    public Runnable f33902f;
-    public ValueAnimator f33903g;
-    public final float h;
-    public boolean f33904i;
-    public float f33905j;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+public final class dc extends eb {
+    public final ph0 f34369a;
+    public final k80 f34370b;
+    public final k80 f34371c;
+    public final LinearLayout d;
+    public final int f34372e;
 
-    public dc(View view) {
-        this(view, 1.0f, 5.0f);
+    public dc(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i6Var);
+        int i7 = org.telegram.ui.ActionBar.n6.yj;
+        this.f34372e = getThemedColor(i7);
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.n6.wj));
+        ?? imageView = new ImageView(context);
+        this.f34369a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView((View) imageView, c8.ma.h(56.0f, 48.0f, 8388627));
+        getThemedColor(i7);
+        int i10 = org.telegram.ui.ActionBar.n6.xj;
+        getThemedColor(i10);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.d = linearLayout;
+        linearLayout.setOrientation(1);
+        addView(linearLayout, c8.ma.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+        k80 k80Var = new k80(context, null);
+        this.f34370b = k80Var;
+        k80Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
+        org.telegram.ui.ActionBar.u6.U(k80Var, i7, i6Var);
+        k80Var.setTextSize(1, 14.0f);
+        k80Var.setTypeface(org.telegram.messenger.g0.o());
+        linearLayout.addView(k80Var);
+        k80 k80Var2 = new k80(context, null);
+        this.f34371c = k80Var2;
+        k80Var2.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
+        org.telegram.ui.ActionBar.u6.U(k80Var2, i7, i6Var);
+        org.telegram.ui.ActionBar.u6.G(k80Var2, i10, i6Var);
+        k80Var2.setTypeface(Typeface.SANS_SERIF);
+        k80Var2.setTextSize(1, 13.0f);
+        linearLayout.addView(k80Var2);
     }
 
-    public final float a(float f10) {
-        return com.google.android.gms.internal.vision.e2.z(1.0f, this.f33905j, f10, 1.0f - f10) * this.h;
-    }
-
-    public void b() {
-        View view = this.f33898a;
-        if (view != null) {
-            view.invalidate();
-        }
-        Runnable runnable = this.f33902f;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public final void c(boolean z10) {
-        float f10;
-        if (this.f33904i != z10) {
-            this.f33904i = z10;
-            ValueAnimator valueAnimator = this.f33903g;
-            this.f33903g = null;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f11 = this.f33905j;
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.f33903g = ofFloat;
-            ofFloat.addUpdateListener(new c6(this, 7));
-            this.f33903g.addListener(new org.telegram.ui.nn(2, this, z10));
-            if (this.f33904i) {
-                this.f33903g.setInterpolator(er.f34419f);
-                this.f33903g.setDuration(this.f33899b * 60.0f);
-                this.f33903g.setStartDelay(0L);
-            } else {
-                this.f33903g.setInterpolator(new OvershootInterpolator(this.d));
-                this.f33903g.setDuration(this.f33900c * 350.0f);
-                this.f33903g.setStartDelay(this.f33901e);
-            }
-            this.f33903g.start();
+    public final void c(int i7, int i10, int i11, String... strArr) {
+        ph0 ph0Var = this.f34369a;
+        ph0Var.f(i7, i10, i11, null);
+        for (String str : strArr) {
+            ph0Var.h(this.f34372e, str);
         }
     }
 
-    public dc(View view, float f10, float f11) {
-        this.f33901e = 0L;
-        this.h = 1.0f;
-        this.f33898a = view;
-        this.f33900c = f10;
-        this.f33899b = f10;
-        this.d = f11;
+    @Override
+    public CharSequence getAccessibilityText() {
+        return ((Object) this.f34370b.getText()) + ".\n" + ((Object) this.f34371c.getText());
     }
 
-    public dc(hi.k5 k5Var) {
-        this.f33901e = 0L;
-        this.h = 1.0f;
-        this.f33898a = k5Var;
-        this.f33899b = 1.5f;
-        this.f33900c = 1.0f;
-        this.d = 2.0f;
+    @Override
+    public final void onShow() {
+        super.onShow();
+        this.f34369a.d();
     }
 }

@@ -1,6 +1,8 @@
 package org.telegram.messenger;
+public final class aa implements sa {
+    public final hi.w4 f22853a;
 
-import com.google.android.gms.location.LocationRequest;
-public final class aa implements ra {
-    public LocationRequest f22484a;
+    public aa(hi.w4 w4Var) {
+        this.f22853a = w4Var;
+    }
 }

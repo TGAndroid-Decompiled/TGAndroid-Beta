@@ -1,25 +1,25 @@
 package sg;
 public final class t implements Runnable {
-    public final int f56774a;
-    public final v f56775b;
-    public final j0 f56776c;
+    public final int f57348a;
+    public final v f57349b;
+    public final j0 f57350c;
 
     public t(v vVar, j0 j0Var, int i7) {
-        this.f56774a = i7;
-        this.f56775b = vVar;
-        this.f56776c = j0Var;
+        this.f57348a = i7;
+        this.f57349b = vVar;
+        this.f57350c = j0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f56774a) {
+        switch (this.f57348a) {
             case 0:
-                org.telegram.messenger.g0.h3(new t(this.f56775b, this.f56776c, 1));
+                org.telegram.messenger.g0.g3(new t(this.f57349b, this.f57350c, 1));
                 return;
             default:
-                v vVar = this.f56775b;
+                v vVar = this.f57349b;
                 vVar.getClass();
-                vVar.f56799i = this.f56776c.f56674a;
+                vVar.f57373i = this.f57350c.f57248a;
                 return;
         }
     }

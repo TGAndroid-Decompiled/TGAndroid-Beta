@@ -1,82 +1,10 @@
 package org.telegram.ui.Components;
-
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-public abstract class om0 extends View.AccessibilityDelegate {
-    public static final String f38024c = "android.widget.SeekBar";
-    public final HashMap f38025a = new HashMap(4);
-    public final bi.x1 f38026b = new bi.x1(this, 15);
-
-    public abstract boolean a();
-
-    public abstract boolean b();
-
-    public abstract void c(boolean z10);
-
-    public CharSequence d() {
-        return null;
-    }
-
-    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        accessibilityNodeInfo.setClassName(f38024c);
-        CharSequence d = d();
-        if (!TextUtils.isEmpty(d)) {
-            accessibilityNodeInfo.setText(d);
-        }
-        if (a()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
-        }
-        if (b()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
-        }
-    }
-
-    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
-        e(null, accessibilityNodeInfo);
-    }
-
-    public boolean g(View view, int i7, Bundle bundle) {
-        boolean z10 = false;
-        if (i7 != 4096 && i7 != 8192) {
-            return false;
-        }
-        if (i7 == 8192) {
-            z10 = true;
-        }
-        c(z10);
-        if (view != null) {
-            WeakHashMap weakHashMap = r0.i0.f55671a;
-            if (view.isAttachedToWindow()) {
-                HashMap hashMap = this.f38025a;
-                Runnable runnable = (Runnable) hashMap.get(view);
-                if (runnable == null) {
-                    runnable = new hh0(3, this, view);
-                    hashMap.put(view, runnable);
-                    view.addOnAttachStateChangeListener(this.f38026b);
-                } else {
-                    view.removeCallbacks(runnable);
-                }
-                view.postDelayed(runnable, 400L);
-            }
-        }
-        return true;
-    }
+public final class om0 extends NumberTextView {
+    public int f38135w;
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-        e(view, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(View view, int i7, Bundle bundle) {
-        if (super.performAccessibilityAction(view, i7, bundle)) {
-            return true;
-        }
-        return g(view, i7, bundle);
+    public final void setTextColor(int i7) {
+        super.setTextColor(i7);
+        this.f38135w = i7;
     }
 }

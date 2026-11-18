@@ -1,31 +1,22 @@
 package org.telegram.ui.Components;
+public enum n30 {
+    f37704c(-15431455, "BLUE"),
+    EF4(-15497247, "BLUE_ALT"),
+    d(-13276952, "BLUE_DEEP"),
+    f37705e(-15431455, "BLUE_LIGHT"),
+    f37706f(-1996271, "ORANGE"),
+    h(-1940716, "ORANGE_DEEP"),
+    f37707n(-14175180, "GREEN"),
+    f37708r(-2148011, "RED"),
+    f37709s(-14836538, "CYAN"),
+    f37710w(-6335009, "PURPLE"),
+    f37711x(-9534569, "GRAY");
+    
+    public final int f37713a;
+    public final int f37714b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class n30 extends FrameLayout {
-    public View f37444a;
-    public TextView f37445b;
-    public fh0 f37446c;
-    public LinearLayout d;
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
-    }
-
-    public void setGravity(int i7) {
-        this.f37445b.setGravity(i7);
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f37445b.setText(charSequence);
-    }
-
-    public void setTextColor(int i7) {
-        TextView textView = this.f37445b;
-        org.telegram.ui.ActionBar.q6.q(textView);
-        textView.setTextColor(i7);
+    n30(int i7, String str) {
+        this.f37713a = r2;
+        this.f37714b = i7;
     }
 }

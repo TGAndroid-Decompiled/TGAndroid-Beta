@@ -2,66 +2,66 @@ package dd;
 
 import java.util.Locale;
 public abstract class j extends k {
-    public String f8032c;
+    public String f8314c;
     public String d;
-    public String f8033e;
-    public final StringBuilder f8034f;
-    public String f8035g;
+    public String f8315e;
+    public final StringBuilder f8316f;
+    public String f8317g;
     public boolean h;
-    public boolean f8036i;
-    public boolean f8037j;
-    public cd.c f8038k;
+    public boolean f8318i;
+    public boolean f8319j;
+    public cd.c f8320k;
 
     public j(int i7) {
         super(i7, 0);
-        this.f8034f = new StringBuilder();
+        this.f8316f = new StringBuilder();
         this.h = false;
-        this.f8036i = false;
-        this.f8037j = false;
+        this.f8318i = false;
+        this.f8319j = false;
     }
 
     public final void d(char c10) {
         String valueOf = String.valueOf(c10);
-        String str = this.f8033e;
+        String str = this.f8315e;
         if (str != null) {
             valueOf = str.concat(valueOf);
         }
-        this.f8033e = valueOf;
+        this.f8315e = valueOf;
     }
 
     public final void e(char c10) {
-        this.f8036i = true;
-        String str = this.f8035g;
-        StringBuilder sb2 = this.f8034f;
+        this.f8318i = true;
+        String str = this.f8317g;
+        StringBuilder sb2 = this.f8316f;
         if (str != null) {
             sb2.append(str);
-            this.f8035g = null;
+            this.f8317g = null;
         }
         sb2.append(c10);
     }
 
     public final void f(String str) {
-        this.f8036i = true;
-        String str2 = this.f8035g;
-        StringBuilder sb2 = this.f8034f;
+        this.f8318i = true;
+        String str2 = this.f8317g;
+        StringBuilder sb2 = this.f8316f;
         if (str2 != null) {
             sb2.append(str2);
-            this.f8035g = null;
+            this.f8317g = null;
         }
         if (sb2.length() == 0) {
-            this.f8035g = str;
+            this.f8317g = str;
         } else {
             sb2.append(str);
         }
     }
 
     public final void g(int[] iArr) {
-        this.f8036i = true;
-        String str = this.f8035g;
-        StringBuilder sb2 = this.f8034f;
+        this.f8318i = true;
+        String str = this.f8317g;
+        StringBuilder sb2 = this.f8316f;
         if (str != null) {
             sb2.append(str);
-            this.f8035g = null;
+            this.f8317g = null;
         }
         for (int i7 : iArr) {
             sb2.appendCodePoint(i7);
@@ -70,11 +70,11 @@ public abstract class j extends k {
 
     public final void h(String str) {
         String str2;
-        String str3 = this.f8032c;
+        String str3 = this.f8314c;
         if (str3 != null) {
             str = str3.concat(str);
         }
-        this.f8032c = str;
+        this.f8314c = str;
         if (str != null) {
             str2 = str.toLowerCase(Locale.ENGLISH);
         } else {
@@ -84,45 +84,45 @@ public abstract class j extends k {
     }
 
     public final String i() {
-        String str = this.f8032c;
+        String str = this.f8314c;
         if (str != null && str.length() != 0) {
-            return this.f8032c;
+            return this.f8314c;
         }
         throw new IllegalArgumentException("Must be false");
     }
 
     public final void j() {
         String str;
-        if (this.f8038k == null) {
-            this.f8038k = new cd.c();
+        if (this.f8320k == null) {
+            this.f8320k = new cd.c();
         }
-        String str2 = this.f8033e;
-        StringBuilder sb2 = this.f8034f;
+        String str2 = this.f8315e;
+        StringBuilder sb2 = this.f8316f;
         if (str2 != null) {
             String trim = str2.trim();
-            this.f8033e = trim;
+            this.f8315e = trim;
             if (trim.length() > 0) {
-                if (this.f8036i) {
+                if (this.f8318i) {
                     if (sb2.length() > 0) {
                         str = sb2.toString();
                     } else {
-                        str = this.f8035g;
+                        str = this.f8317g;
                     }
                 } else if (this.h) {
                     str = "";
                 } else {
                     str = null;
                 }
-                cd.c cVar = this.f8038k;
-                String str3 = this.f8033e;
+                cd.c cVar = this.f8320k;
+                String str3 = this.f8315e;
                 int f10 = cVar.f(str3);
                 if (f10 != -1) {
-                    cVar.f4913c[f10] = str;
+                    cVar.f5199c[f10] = str;
                 } else {
-                    int i7 = cVar.f4911a;
+                    int i7 = cVar.f5197a;
                     int i10 = i7 + 1;
                     if (i10 >= i7) {
-                        String[] strArr = cVar.f4912b;
+                        String[] strArr = cVar.f5198b;
                         int length = strArr.length;
                         if (length < i10) {
                             int i11 = 4;
@@ -134,41 +134,41 @@ public abstract class j extends k {
                             }
                             String[] strArr2 = new String[i10];
                             System.arraycopy(strArr, 0, strArr2, 0, Math.min(strArr.length, i10));
-                            cVar.f4912b = strArr2;
-                            String[] strArr3 = cVar.f4913c;
+                            cVar.f5198b = strArr2;
+                            String[] strArr3 = cVar.f5199c;
                             String[] strArr4 = new String[i10];
                             System.arraycopy(strArr3, 0, strArr4, 0, Math.min(strArr3.length, i10));
-                            cVar.f4913c = strArr4;
+                            cVar.f5199c = strArr4;
                         }
-                        String[] strArr5 = cVar.f4912b;
-                        int i12 = cVar.f4911a;
+                        String[] strArr5 = cVar.f5198b;
+                        int i12 = cVar.f5197a;
                         strArr5[i12] = str3;
-                        cVar.f4913c[i12] = str;
-                        cVar.f4911a = i12 + 1;
+                        cVar.f5199c[i12] = str;
+                        cVar.f5197a = i12 + 1;
                     } else {
                         throw new IllegalArgumentException("Must be true");
                     }
                 }
             }
         }
-        this.f8033e = null;
+        this.f8315e = null;
         this.h = false;
-        this.f8036i = false;
+        this.f8318i = false;
         k.c(sb2);
-        this.f8035g = null;
+        this.f8317g = null;
     }
 
     @Override
     public j b() {
-        this.f8032c = null;
+        this.f8314c = null;
         this.d = null;
-        this.f8033e = null;
-        k.c(this.f8034f);
-        this.f8035g = null;
+        this.f8315e = null;
+        k.c(this.f8316f);
+        this.f8317g = null;
         this.h = false;
-        this.f8036i = false;
-        this.f8037j = false;
-        this.f8038k = null;
+        this.f8318i = false;
+        this.f8319j = false;
+        this.f8320k = null;
         return this;
     }
 }

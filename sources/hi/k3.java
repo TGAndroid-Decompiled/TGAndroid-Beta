@@ -1,332 +1,241 @@
 package hi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Outline;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import androidx.appcompat.widget.ActionBarContainer;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.oy0;
-public final class k3 extends Drawable {
-    public final int f14499a;
-    public Object f14500b;
-
-    public k3() {
-        this.f14499a = 3;
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f14499a) {
-            case 0:
-                canvas.save();
-                l3 l3Var = (l3) this.f14500b;
-                canvas.drawPath(l3Var.F0, l3Var.f14552c0);
-                canvas.restore();
-                return;
-            case 1:
-                canvas.save();
-                canvas.translate(0.0f, org.telegram.messenger.g0.L(1.0f));
-                ki.x2 x2Var = (ki.x2) this.f14500b;
-                x2Var.N0.setBounds(getBounds());
-                x2Var.N0.draw(canvas);
-                canvas.restore();
-                return;
-            case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f14500b;
-                if (actionBarContainer.h) {
-                    Drawable drawable = actionBarContainer.f1864f;
-                    if (drawable != null) {
-                        drawable.draw(canvas);
-                        return;
-                    }
-                    return;
-                }
-                Drawable drawable2 = actionBarContainer.d;
-                if (drawable2 != null) {
-                    drawable2.draw(canvas);
-                }
-                Drawable drawable3 = actionBarContainer.f1863e;
-                if (drawable3 != null && actionBarContainer.f1865n) {
-                    drawable3.draw(canvas);
-                    return;
-                }
-                return;
-            case 3:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - org.telegram.messenger.g0.L(1.0f), (getBounds().width() - org.telegram.messenger.g0.L(8.0f)) / 2.0f, (Paint) this.f14500b);
-                return;
-            case 4:
-                Drawable[] drawableArr = (Drawable[]) this.f14500b;
-                for (int i7 = 0; i7 < drawableArr.length; i7++) {
-                    drawableArr[i7].setBounds(getBounds());
-                    drawableArr[i7].draw(canvas);
-                }
-                return;
-            case 5:
-                ug.z0 z0Var = (ug.z0) this.f14500b;
-                Rect bounds = getBounds();
-                z0Var.getClass();
-                z0Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, z0Var.f58392f);
-                return;
-            case 6:
-                ImageReceiver imageReceiver = (ImageReceiver) this.f14500b;
-                imageReceiver.z0(getBounds());
-                imageReceiver.h(canvas, null);
-                return;
-            case 7:
-                ((oy0) this.f14500b).c(getBounds().centerX() - (((oy0) this.f14500b).f38103c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.G6, false), canvas);
-                return;
-            case 8:
-                canvas.save();
-                org.telegram.messenger.f6 f6Var = (org.telegram.messenger.f6) this.f14500b;
-                if (f6Var.getBounds() != null) {
-                    canvas.scale(0.8333333f, 0.8333333f, f6Var.getBounds().centerX(), f6Var.getBounds().centerY());
-                }
-                f6Var.draw(canvas);
-                canvas.restore();
-                return;
-            default:
-                canvas.save();
-                canvas.translate(getBounds().left, getBounds().top);
-                ((x5) this.f14500b).draw(canvas);
-                canvas.restore();
-                return;
-        }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f14499a) {
-            case 1:
-                return org.telegram.messenger.g0.L(20.0f);
-            case 4:
-                return ((Drawable[]) this.f14500b)[0].getIntrinsicHeight();
-            case 6:
-                return org.telegram.messenger.g0.L(30.0f);
-            case 9:
-                return ((x5) this.f14500b).getHeight();
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f14499a) {
-            case 1:
-                return org.telegram.messenger.g0.L(20.0f);
-            case 4:
-                return ((Drawable[]) this.f14500b)[0].getIntrinsicWidth();
-            case 6:
-                return org.telegram.messenger.g0.L(30.0f);
-            case 9:
-                return ((x5) this.f14500b).getWidth();
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f14499a) {
-            case 0:
-                return -2;
-            case 1:
-                return -2;
-            case 2:
-                return 0;
-            case 3:
-                return 0;
-            case 4:
-                return -2;
-            case 5:
-                return -2;
-            case 6:
-                return -2;
-            case 7:
-                return -2;
-            case 8:
-                return ((org.telegram.messenger.f6) this.f14500b).getOpacity();
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public void getOutline(Outline outline) {
-        switch (this.f14499a) {
-            case 2:
-                ActionBarContainer actionBarContainer = (ActionBarContainer) this.f14500b;
-                if (actionBarContainer.h) {
-                    if (actionBarContainer.f1864f != null) {
-                        actionBarContainer.d.getOutline(outline);
-                        return;
-                    }
-                    return;
-                }
-                Drawable drawable = actionBarContainer.d;
-                if (drawable != null) {
-                    drawable.getOutline(outline);
-                    return;
-                }
-                return;
-            default:
-                super.getOutline(outline);
-                return;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        switch (this.f14499a) {
-            case 0:
-                return;
-            case 1:
-                ((ki.x2) this.f14500b).N0.setAlpha(i7);
-                return;
-            case 2:
-                return;
-            case 3:
-                ((Paint) this.f14500b).setAlpha(i7);
-                return;
-            case 4:
-                int i10 = 0;
-                while (true) {
-                    Drawable[] drawableArr = (Drawable[]) this.f14500b;
-                    if (i10 < drawableArr.length) {
-                        drawableArr[i10].setAlpha(i7);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-            case 5:
-                return;
-            case 6:
-                ((ImageReceiver) this.f14500b).setAlpha(i7 / 255.0f);
-                return;
-            case 7:
-                return;
-            case 8:
-                ((org.telegram.messenger.f6) this.f14500b).setAlpha(i7);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void setBounds(Rect rect) {
-        switch (this.f14499a) {
-            case 8:
-                ((org.telegram.messenger.f6) this.f14500b).setBounds(rect);
-                return;
-            default:
-                super.setBounds(rect);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f14499a) {
-            case 0:
-                return;
-            case 1:
-                ((ki.x2) this.f14500b).N0.setColorFilter(colorFilter);
-                return;
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return;
-            case 6:
-                ((ImageReceiver) this.f14500b).f22290p1 = colorFilter;
-                return;
-            case 7:
-                return;
-            case 8:
-                ((org.telegram.messenger.f6) this.f14500b).setColorFilter(colorFilter);
-                return;
-            default:
-                return;
-        }
-    }
+import android.animation.ValueAnimator;
+import android.view.View;
+import java.util.Iterator;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.x10;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.bc1;
+import org.telegram.ui.bn;
+import org.telegram.ui.up0;
+public final class k3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f14863a;
+    public final Object f14864b;
 
     public k3(Object obj, int i7) {
-        this.f14499a = i7;
-        this.f14500b = obj;
+        this.f14863a = i7;
+        this.f14864b = obj;
     }
 
     @Override
-    public void setBounds(int i7, int i10, int i11, int i12) {
-        switch (this.f14499a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f14863a) {
+            case 0:
+                m3 m3Var = (m3) this.f14864b;
+                m3Var.getClass();
+                m3Var.A0 = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                m3Var.invalidate();
+                return;
+            case 1:
+                ((x3) this.f14864b).invalidate();
+                return;
+            case 2:
+                p5 p5Var = (p5) this.f14864b;
+                p5Var.getClass();
+                p5Var.f15236n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p5Var.e();
+                return;
+            case 3:
+                o5 o5Var = (o5) this.f14864b;
+                o5Var.getClass();
+                o5Var.f15170w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o5Var.invalidate();
+                return;
+            case 4:
+                j6 j6Var = (j6) this.f14864b;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j6Var.F = floatValue;
+                i6 i6Var = j6Var.f14813a;
+                i6Var.setScaleX(1.0f - floatValue);
+                i6Var.setScaleY(1.0f - j6Var.F);
+                j6Var.invalidate();
+                return;
+            case 5:
+                o7 o7Var = (o7) this.f14864b;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o7Var.f15190r = floatValue2;
+                x10 x10Var = o7Var.f15194y;
+                if (x10Var != null) {
+                    x10Var.a(Float.valueOf(Utilities.i(floatValue2, 1.0f, -1.0f)));
+                }
+                o7Var.f15184a.invalidate();
+                return;
+            case 6:
+                ((l8) this.f14864b).f14965y.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 7:
+                n8 n8Var = (n8) this.f14864b;
+                n8Var.getClass();
+                n8Var.setContainerHeight(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
             case 8:
-                ((org.telegram.messenger.f6) this.f14500b).setBounds(i7, i10, i11, i12);
+                lg.h hVar = (lg.h) this.f14864b;
+                hVar.f19836f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hVar.f19837g.f19838a.invalidate();
+                return;
+            case 9:
+                oi.r4 r4Var = (oi.r4) this.f14864b;
+                r4Var.getClass();
+                r4Var.f22295b0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r4Var.requestLayout();
+                r4Var.invalidate();
+                return;
+            case 10:
+                org.telegram.ui.ActionBar.w0 w0Var = (org.telegram.ui.ActionBar.w0) this.f14864b;
+                w0Var.getClass();
+                w0Var.f30125a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w0Var.invalidate();
+                return;
+            case 11:
+                org.telegram.ui.ActionBar.z0 z0Var = (org.telegram.ui.ActionBar.z0) this.f14864b;
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z0Var.setTextColor(i0.a.f(floatValue3, -1, -9194260));
+                z0Var.setIconColor(i0.a.f(floatValue3, -1, -9194260));
+                return;
+            case 12:
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f14864b;
+                int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                for (int i7 = 0; i7 < itemsCount; i7++) {
+                    View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.M.getChildAt(i7);
+                    if (!(childAt instanceof org.telegram.ui.ActionBar.e1)) {
+                        float s5 = org.telegram.messenger.g0.s(floatValue4, actionBarPopupWindow$ActionBarPopupWindowLayout.f28743w ? (itemsCount - 1) - i7 : i7, itemsCount, 4.0f);
+                        float f10 = 1.0f;
+                        childAt.setTranslationY((1.0f - s5) * org.telegram.messenger.g0.L(-6.0f));
+                        if (!childAt.isEnabled()) {
+                            f10 = 0.5f;
+                        }
+                        childAt.setAlpha(s5 * f10);
+                    }
+                }
+                return;
+            case 13:
+                org.telegram.ui.ActionBar.j1 j1Var = (org.telegram.ui.ActionBar.j1) this.f14864b;
+                if (!j1Var.f29023e) {
+                    float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    if (j1Var.f29035r) {
+                        floatValue5 = 1.0f - floatValue5;
+                    }
+                    float z10 = (int) com.google.android.gms.internal.vision.e2.z(1.0f, floatValue5, j1Var.f29034q, j1Var.f29033p * floatValue5);
+                    if (!(j1Var instanceof ch.l)) {
+                        j1Var.f29020a.setTranslationY(z10);
+                    }
+                    j1Var.e(-z10, floatValue5, j1Var.f29036s);
+                    return;
+                }
+                return;
+            case 14:
+                org.telegram.ui.ActionBar.g3 g3Var = (org.telegram.ui.ActionBar.g3) this.f14864b;
+                g3Var.getClass();
+                g3Var.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                Iterator it = g3Var.J.iterator();
+                while (it.hasNext()) {
+                    ((Runnable) it.next()).run();
+                }
+                g3Var.invalidate();
+                return;
+            case 15:
+                org.telegram.ui.ActionBar.m3 m3Var2 = (org.telegram.ui.ActionBar.m3) this.f14864b;
+                m3Var2.f29223i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                org.telegram.ui.ActionBar.n3 n3Var = m3Var2.f29218b;
+                if (n3Var != null) {
+                    n3Var.invalidate();
+                    return;
+                }
+                return;
+            case 16:
+                org.telegram.ui.Components.voip.a0 a0Var = (org.telegram.ui.Components.voip.a0) this.f14864b;
+                a0Var.getClass();
+                a0Var.f40756r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a0Var.e();
+                return;
+            case 17:
+                org.telegram.ui.Components.voip.o0 o0Var = (org.telegram.ui.Components.voip.o0) this.f14864b;
+                o0Var.getClass();
+                o0Var.f41100i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 18:
+                org.telegram.ui.Components.voip.q0 q0Var = (org.telegram.ui.Components.voip.q0) this.f14864b;
+                q0Var.getClass();
+                q0Var.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q0Var.invalidateSelf();
+                return;
+            case 19:
+                bc1 bc1Var = (bc1) this.f14864b;
+                bc1Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int L = (org.telegram.messenger.g0.f24121q.x - org.telegram.messenger.g0.L(36.0f)) - org.telegram.messenger.g0.L(52.0f);
+                org.telegram.ui.Components.voip.a1 a1Var = bc1Var.f40790c;
+                a1Var.getLayoutParams().width = org.telegram.messenger.g0.L(52.0f) + ((int) (L * bc1Var.F));
+                a1Var.requestLayout();
+                return;
+            case 20:
+                org.telegram.ui.Components.voip.q1 q1Var = (org.telegram.ui.Components.voip.q1) this.f14864b;
+                q1Var.getClass();
+                q1Var.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q1Var.invalidate();
+                return;
+            case 21:
+                org.telegram.ui.Components.voip.h2 h2Var = (org.telegram.ui.Components.voip.h2) this.f14864b;
+                h2Var.getClass();
+                h2Var.f40910w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h2Var.f40903b.invalidate();
+                return;
+            case 22:
+                fi.s2 s2Var = (fi.s2) this.f14864b;
+                ((fi.t3) s2Var.L1).f38742a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                s2Var.invalidate();
+                return;
+            case 23:
+                org.telegram.ui.web.j1 j1Var2 = (org.telegram.ui.web.j1) this.f14864b;
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j1Var2.V = floatValue6;
+                j1Var2.W.setAlpha(floatValue6);
+                j1Var2.invalidate();
+                return;
+            case 24:
+                org.telegram.ui.l0 l0Var = (org.telegram.ui.l0) this.f14864b;
+                float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l0Var.f53179b0 = floatValue7;
+                l0Var.j(floatValue7);
+                l0Var.f53181c0.setAlpha(l0Var.f53179b0);
+                l0Var.S.setTranslationX(org.telegram.messenger.g0.L(56.0f) * l0Var.f53179b0);
+                l0Var.P.setTranslationX(org.telegram.messenger.g0.L(112.0f) * l0Var.f53179b0);
+                l0Var.invalidate();
+                return;
+            case 25:
+                pi.k kVar = (pi.k) this.f14864b;
+                bn bnVar = kVar.F;
+                if (bnVar != null) {
+                    bnVar.O9();
+                    if (bnVar.Z8 != null) {
+                        bnVar.fragmentView.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                kVar.G.invalidate();
+                return;
+            case 26:
+                ((up0) ((tg.o0) this.f14864b)).L.f43208f0.invalidate();
+                return;
+            case 27:
+                tg.h1 h1Var = (tg.h1) this.f14864b;
+                h1Var.getClass();
+                h1Var.f57903n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h1Var.invalidate();
+                return;
+            case 28:
+                tg.o1 o1Var = (tg.o1) this.f14864b;
+                o1Var.getClass();
+                o1Var.f58081y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o1Var.invalidate();
                 return;
             default:
-                super.setBounds(i7, i10, i11, i12);
+                sg.i iVar = (sg.i) this.f14864b;
+                iVar.f58081y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                iVar.invalidate();
                 return;
         }
-    }
-
-    public k3(ActionBarContainer actionBarContainer) {
-        this.f14499a = 2;
-        this.f14500b = actionBarContainer;
-    }
-
-    public k3(Context context) {
-        this.f14499a = 4;
-        this.f14500b = r0;
-        Drawable g10 = i5.c.g(context, 2131232792);
-        g10.setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
-        Drawable[] drawableArr = {g10, context.getResources().getDrawable(2131232793).mutate()};
-    }
-
-    public k3(String str) {
-        this.f14499a = 7;
-        this.f14500b = new oy0(str.substring(0, !str.isEmpty()), 14.0f, org.telegram.messenger.g0.o());
-    }
-
-    private final void a(int i7) {
-    }
-
-    private final void b(int i7) {
-    }
-
-    private final void c(int i7) {
-    }
-
-    private final void d(int i7) {
-    }
-
-    private final void e(int i7) {
-    }
-
-    private final void f(ColorFilter colorFilter) {
-    }
-
-    private final void g(ColorFilter colorFilter) {
-    }
-
-    private final void h(ColorFilter colorFilter) {
-    }
-
-    private final void i(ColorFilter colorFilter) {
-    }
-
-    private final void j(ColorFilter colorFilter) {
-    }
-
-    private final void k(ColorFilter colorFilter) {
-    }
-
-    private final void l(ColorFilter colorFilter) {
     }
 }

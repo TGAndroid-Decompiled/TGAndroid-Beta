@@ -1,83 +1,131 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.Editable;
 import android.text.TextUtils;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.LaunchActivity;
-public final class qf implements Runnable {
-    public final org.telegram.messenger.gj f38643a;
-    public final long f38644b;
-    public final TL_keyboard.KeyboardButtonProto f38645c;
-    public final org.telegram.messenger.gj d;
-    public final TLRPC.User f38646e;
-    public final ChatActivityEnterView f38647f;
+import android.util.SparseArray;
+public final class qf {
+    public final ChatActivityEnterView f38784a;
 
-    public qf(ChatActivityEnterView chatActivityEnterView, org.telegram.messenger.gj gjVar, long j3, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.messenger.gj gjVar2, TLRPC.User user) {
-        this.f38647f = chatActivityEnterView;
-        this.f38643a = gjVar;
-        this.f38644b = j3;
-        this.f38645c = keyboardButtonProto;
-        this.d = gjVar2;
-        this.f38646e = user;
+    public qf(ChatActivityEnterView chatActivityEnterView) {
+        this.f38784a = chatActivityEnterView;
     }
 
-    @Override
-    public final void run() {
-        int i7;
-        long j92;
-        String F1;
-        ChatActivityEnterView chatActivityEnterView = this.f38647f;
-        org.telegram.ui.an anVar = chatActivityEnterView.f32319x3;
-        if (chatActivityEnterView.U1.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.G0()) {
-            if (anVar != null) {
-                int i10 = chatActivityEnterView.R;
-                long j3 = this.f38643a.f23819k.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f38645c;
-                String text = keyboardButtonProto.getText();
-                String url = keyboardButtonProto.getUrl();
-                boolean c10 = cg.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
-                org.telegram.messenger.gj gjVar = this.d;
-                if (gjVar != null) {
-                    i7 = gjVar.f23819k.f28072id;
-                } else {
-                    i7 = 0;
-                }
-                if (anVar == null) {
-                    j92 = 0;
-                } else {
-                    j92 = anVar.j9();
-                }
-                ki.k4 b10 = ki.k4.b(i10, j3, this.f38644b, text, url, c10 ? 1 : 0, i7, j92, null, false, null, null, 0, false, false);
-                LaunchActivity launchActivity = LaunchActivity.H1;
-                if (launchActivity != null && launchActivity.N() != null && LaunchActivity.H1.N().k(b10) != null) {
-                    ki.a0 a0Var = chatActivityEnterView.m0;
-                    if (a0Var != null) {
-                        a0Var.setOpened(false);
-                        return;
-                    }
-                    return;
-                }
-                TLRPC.User user = this.f38646e;
-                if (user == null) {
-                    F1 = null;
-                } else {
-                    F1 = org.telegram.messenger.np.s1(chatActivityEnterView.R).F1(user.restriction_reason);
-                }
-                if (!TextUtils.isEmpty(F1)) {
-                    org.telegram.messenger.np.s1(chatActivityEnterView.R);
-                    org.telegram.messenger.np.S4(F1, anVar);
-                    return;
-                }
-                ki.x2 x2Var = new ki.x2(chatActivityEnterView.getContext(), chatActivityEnterView.E4);
-                x2Var.m0 = chatActivityEnterView.f32311w3;
-                x2Var.x(anVar, b10);
-                x2Var.show();
+    public final void a(Canvas canvas) {
+        org.telegram.ui.bj bjVar;
+        ChatActivityEnterView chatActivityEnterView = this.f38784a;
+        Drawable backgroundImage = chatActivityEnterView.f32542a2.getBackgroundImage();
+        if (backgroundImage != null) {
+            backgroundImage.draw(canvas);
+        }
+        org.telegram.ui.bn bnVar = chatActivityEnterView.D3;
+        if (bnVar != null) {
+            bjVar = bnVar.A0;
+        } else {
+            bjVar = null;
+        }
+        if (bjVar != null && bjVar.getWidth() > 0) {
+            canvas.save();
+            canvas.translate(bjVar.getX(), bjVar.getY());
+            bjVar.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    public final void b() {
+        boolean z10;
+        Editable text;
+        ChatActivityEnterView chatActivityEnterView = this.f38784a;
+        fe feVar = chatActivityEnterView.R0;
+        if (feVar != null) {
+            feVar.invalidate();
+        }
+        ai.n0 n0Var = chatActivityEnterView.f32614j1;
+        boolean z11 = true;
+        if (n0Var != null && n0Var.m()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        gf gfVar = chatActivityEnterView.F0;
+        if (gfVar == null) {
+            text = null;
+        } else {
+            text = gfVar.getText();
+        }
+        gf gfVar2 = chatActivityEnterView.F0;
+        if (gfVar2 == null || gfVar2.getLineCount() <= 2 || text == null || TextUtils.isEmpty(text.toString().trim())) {
+            z11 = false;
+        }
+        chatActivityEnterView.V1(z11);
+        chatActivityEnterView.f32626k6 = z10;
+        org.telegram.ui.bn bnVar = chatActivityEnterView.D3;
+        if (bnVar != null) {
+            bnVar.dd();
+            yw0 yw0Var = bnVar.f46170s1;
+            if (yw0Var != null) {
+                yw0Var.e();
+            }
+        }
+    }
+
+    public final void c(float f10, int i7) {
+        ChatActivityEnterView chatActivityEnterView = this.f38784a;
+        fe feVar = chatActivityEnterView.R0;
+        SparseArray sparseArray = chatActivityEnterView.A1;
+        int i10 = org.telegram.ui.ActionBar.n6.Nl;
+        int i11 = ChatActivityEnterView.f32538n7;
+        int C0 = chatActivityEnterView.C0(i10);
+        if (f10 <= 0.004f) {
+            if (chatActivityEnterView.f32729z1 != 0) {
+                chatActivityEnterView.f32729z1 = 0;
+                feVar.setColorFilter(new PorterDuffColorFilter(C0, PorterDuff.Mode.SRC_IN));
                 return;
             }
             return;
         }
-        chatActivityEnterView.y0(false);
-        org.telegram.messenger.g0.v1(chatActivityEnterView);
-        org.telegram.messenger.g0.i3(this, 150L);
+        int f11 = i0.a.f(Math.min(1.0f, f10), C0, i7 | (-16777216)) & (-117901064);
+        if (f11 == chatActivityEnterView.f32729z1) {
+            return;
+        }
+        chatActivityEnterView.f32729z1 = f11;
+        ColorFilter colorFilter = (ColorFilter) sparseArray.get(f11);
+        if (colorFilter == null) {
+            colorFilter = new PorterDuffColorFilter(f11, PorterDuff.Mode.SRC_IN);
+            if (sparseArray.size() > 512) {
+                sparseArray.clear();
+            }
+            sparseArray.put(f11, colorFilter);
+        }
+        feVar.setColorFilter(colorFilter);
+    }
+
+    public final void d(float f10) {
+        boolean z10;
+        ChatActivityEnterView chatActivityEnterView = this.f38784a;
+        chatActivityEnterView.f32706w1 = f10;
+        if (f10 >= 1.0f || f10 <= 0.0f) {
+            Editable text = chatActivityEnterView.F0.getText();
+            if (chatActivityEnterView.F0.getLineCount() > 2 && text != null && !TextUtils.isEmpty(text.toString().trim())) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            chatActivityEnterView.P1(z10);
+        }
+        chatActivityEnterView.i2();
+        org.telegram.ui.d61 d61Var = chatActivityEnterView.d2;
+        if (d61Var != null) {
+            d61Var.invalidate();
+        }
+        ie ieVar = chatActivityEnterView.f32585f2;
+        if (ieVar != null) {
+            ieVar.invalidate();
+        }
+        chatActivityEnterView.f32651o2.setAlpha((1.0f - f10) * chatActivityEnterView.f32714x1);
     }
 }

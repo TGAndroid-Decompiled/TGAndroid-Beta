@@ -7,244 +7,244 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import c8.ja;
+import c8.ma;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.is;
-import org.telegram.messenger.ns;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.Components.fh0;
-import org.telegram.ui.Components.pg;
-public final class e1 extends FrameLayout implements is {
-    public static final List f57218x = Arrays.asList(new b1(0, 1, 20, 0), new b1(0, 2, 20, 40), new b1(1, 0, 0, 20), new b1(1, 2, 60, 40), new b1(2, 0, 40, 20), new b1(2, 1, 40, 60));
-    public int f57219a;
-    public final fh0 f57220b;
-    public final ImageView f57221c;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.mh0;
+import org.telegram.ui.Components.ph0;
+import org.telegram.ui.Components.yg;
+public final class e1 extends FrameLayout implements fs {
+    public static final List f57790x = Arrays.asList(new b1(0, 1, 20, 0), new b1(0, 2, 20, 40), new b1(1, 0, 0, 20), new b1(1, 2, 60, 40), new b1(2, 0, 40, 20), new b1(2, 1, 40, 60));
+    public int f57791a;
+    public final ph0 f57792b;
+    public final ImageView f57793c;
     public final ImageView d;
-    public final View f57222e;
-    public final d1 f57223f;
+    public final View f57794e;
+    public final d1 f57795f;
     public c1 h;
-    public int f57224n;
-    public int f57225r;
-    public int f57226s;
-    public String f57227w;
+    public int f57796n;
+    public int f57797r;
+    public int f57798s;
+    public String f57799w;
 
     public e1(Context context) {
         super(context);
-        this.f57219a = 0;
+        this.f57791a = 0;
         setWillNotDraw(false);
         View view = new View(context);
-        this.f57222e = view;
+        this.f57794e = view;
         view.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f57155b;
+            public final e1 f57727b;
 
             {
-                this.f57155b = this;
+                this.f57727b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f57155b.h.a();
+                        this.f57727b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f57155b;
-                        e1Var.d((e1Var.f57219a + 1) % 3, true);
+                        e1 e1Var = this.f57727b;
+                        e1Var.d((e1Var.f57791a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f57155b.h.b();
+                        this.f57727b.h.b();
                         return;
                     case 3:
-                        this.f57155b.h.t();
+                        this.f57727b.h.t();
                         return;
                     default:
-                        this.f57155b.h.D();
+                        this.f57727b.h.D();
                         return;
                 }
             }
         });
-        addView(view, ja.d(24, 24.0f, 48, 0.0f, 0.0f, 16.0f, 0.0f));
+        addView(view, ma.d(24, 24.0f, 48, 0.0f, 0.0f, 16.0f, 0.0f));
         ?? imageView = new ImageView(context);
-        this.f57220b = imageView;
+        this.f57792b = imageView;
         imageView.f(2131624134, 24, 24, null);
-        ch0 animatedDrawable = imageView.getAnimatedDrawable();
+        mh0 animatedDrawable = imageView.getAnimatedDrawable();
         animatedDrawable.h = true;
         animatedDrawable.P(20);
         animatedDrawable.M(20);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f57155b;
+            public final e1 f57727b;
 
             {
-                this.f57155b = this;
+                this.f57727b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f57155b.h.a();
+                        this.f57727b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f57155b;
-                        e1Var.d((e1Var.f57219a + 1) % 3, true);
+                        e1 e1Var = this.f57727b;
+                        e1Var.d((e1Var.f57791a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f57155b.h.b();
+                        this.f57727b.h.b();
                         return;
                     case 3:
-                        this.f57155b.h.t();
+                        this.f57727b.h.t();
                         return;
                     default:
-                        this.f57155b.h.D();
+                        this.f57727b.h.D();
                         return;
                 }
             }
         });
         imageView.setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
-        addView((View) imageView, ja.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
+        addView((View) imageView, ma.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f57221c = imageView2;
-        imageView2.setImageResource(2131232400);
+        this.f57793c = imageView2;
+        imageView2.setImageResource(2131232401);
         imageView2.setPadding(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f57155b;
+            public final e1 f57727b;
 
             {
-                this.f57155b = this;
+                this.f57727b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f57155b.h.a();
+                        this.f57727b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f57155b;
-                        e1Var.d((e1Var.f57219a + 1) % 3, true);
+                        e1 e1Var = this.f57727b;
+                        e1Var.d((e1Var.f57791a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f57155b.h.b();
+                        this.f57727b.h.b();
                         return;
                     case 3:
-                        this.f57155b.h.t();
+                        this.f57727b.h.t();
                         return;
                     default:
-                        this.f57155b.h.D();
+                        this.f57727b.h.D();
                         return;
                 }
             }
         });
-        addView(imageView2, ja.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
+        addView(imageView2, ma.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
-        imageView3.setImageResource(2131232043);
+        imageView3.setImageResource(2131232044);
         imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView3.setBackground(j6.h0(1090519039, 1, -1));
+        imageView3.setBackground(n6.h0(1090519039, 1, -1));
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f57155b;
+            public final e1 f57727b;
 
             {
-                this.f57155b = this;
+                this.f57727b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f57155b.h.a();
+                        this.f57727b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f57155b;
-                        e1Var.d((e1Var.f57219a + 1) % 3, true);
+                        e1 e1Var = this.f57727b;
+                        e1Var.d((e1Var.f57791a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f57155b.h.b();
+                        this.f57727b.h.b();
                         return;
                     case 3:
-                        this.f57155b.h.t();
+                        this.f57727b.h.t();
                         return;
                     default:
-                        this.f57155b.h.D();
+                        this.f57727b.h.D();
                         return;
                 }
             }
         });
         imageView3.setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
-        addView(imageView3, ja.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
+        addView(imageView3, ma.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
         d1 d1Var = new d1(context);
-        this.f57223f = d1Var;
+        this.f57795f = d1Var;
         d1Var.setCurrent(true);
         d1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final e1 f57155b;
+            public final e1 f57727b;
 
             {
-                this.f57155b = this;
+                this.f57727b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f57155b.h.a();
+                        this.f57727b.h.a();
                         return;
                     case 1:
-                        e1 e1Var = this.f57155b;
-                        e1Var.d((e1Var.f57219a + 1) % 3, true);
+                        e1 e1Var = this.f57727b;
+                        e1Var.d((e1Var.f57791a + 1) % 3, true);
                         return;
                     case 2:
-                        this.f57155b.h.b();
+                        this.f57727b.h.b();
                         return;
                     case 3:
-                        this.f57155b.h.t();
+                        this.f57727b.h.t();
                         return;
                     default:
-                        this.f57155b.h.D();
+                        this.f57727b.h.D();
                         return;
                 }
             }
         });
-        addView(d1Var, ja.p(-2, -2, 0.0f, 21));
+        addView(d1Var, ma.p(-2, -2, 0.0f, 21));
     }
 
     public final void a(int i7) {
         if (i7 == 0) {
-            i7 = 2131232043;
+            i7 = 2131232044;
         }
-        if (this.f57226s != i7) {
-            this.f57226s = i7;
-            org.telegram.messenger.g0.Q3(this.d, i7);
+        if (this.f57798s != i7) {
+            this.f57798s = i7;
+            org.telegram.messenger.g0.P3(this.d, i7);
         }
     }
 
     public final void b(RectF rectF) {
-        d1 d1Var = this.f57223f;
+        d1 d1Var = this.f57795f;
         rectF.set(org.telegram.messenger.g0.L(8.0f) + d1Var.getLeft(), d1Var.getTop(), org.telegram.messenger.g0.L(8.0f) + d1Var.getRight(), d1Var.getBottom());
     }
 
     public final void c(View view) {
         if (view.getVisibility() != 8) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-            int i7 = this.f57225r + layoutParams.leftMargin;
-            this.f57225r = i7;
-            view.layout(i7, (getMeasuredHeight() - layoutParams.height) / 2, this.f57225r + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
-            this.f57225r = layoutParams.width + layoutParams.rightMargin + this.f57225r;
+            int i7 = this.f57797r + layoutParams.leftMargin;
+            this.f57797r = i7;
+            view.layout(i7, (getMeasuredHeight() - layoutParams.height) / 2, this.f57797r + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
+            this.f57797r = layoutParams.width + layoutParams.rightMargin + this.f57797r;
         }
     }
 
     public final void d(int i7, boolean z10) {
-        int i10 = this.f57219a;
-        this.f57219a = i7;
-        List list = f57218x;
-        fh0 fh0Var = this.f57220b;
+        int i10 = this.f57791a;
+        this.f57791a = i7;
+        List list = f57790x;
+        ph0 ph0Var = this.f57792b;
         if (i10 == i7) {
-            ch0 animatedDrawable = fh0Var.getAnimatedDrawable();
+            mh0 animatedDrawable = ph0Var.getAnimatedDrawable();
             b1 b1Var = (b1) list.get(0);
             Iterator it = list.iterator();
             while (true) {
@@ -252,7 +252,7 @@ public final class e1 extends FrameLayout implements is {
                     break;
                 }
                 b1 b1Var2 = (b1) it.next();
-                if (this.f57219a == b1Var2.f57157b) {
+                if (this.f57791a == b1Var2.f57729b) {
                     b1Var = b1Var2;
                     break;
                 }
@@ -272,13 +272,13 @@ public final class e1 extends FrameLayout implements is {
                 break;
             }
             b1 b1Var4 = (b1) it2.next();
-            if (i10 == b1Var4.f57156a && this.f57219a == b1Var4.f57157b) {
+            if (i10 == b1Var4.f57728a && this.f57791a == b1Var4.f57729b) {
                 b1Var3 = b1Var4;
                 break;
             }
         }
-        ch0 animatedDrawable2 = fh0Var.getAnimatedDrawable();
-        animatedDrawable2.M(b1Var3.f57158c);
+        mh0 animatedDrawable2 = ph0Var.getAnimatedDrawable();
+        animatedDrawable2.M(b1Var3.f57730c);
         animatedDrawable2.P(b1Var3.d);
         animatedDrawable2.start();
         if (z10) {
@@ -289,72 +289,72 @@ public final class e1 extends FrameLayout implements is {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         String str;
-        if (i7 == ns.C5 && (str = this.f57227w) != null) {
+        if (i7 == ks.E5 && (str = this.f57799w) != null) {
             setTypeface(str);
-            this.f57227w = null;
+            this.f57799w = null;
         }
     }
 
     public final void e(int i7, boolean z10) {
         int i10;
-        if (this.f57224n == i7) {
+        if (this.f57796n == i7) {
             return;
         }
-        this.f57224n = i7;
+        this.f57796n = i7;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
-                    i10 = 2131232288;
+                    i10 = 2131232289;
                 } else {
-                    i10 = 2131232291;
+                    i10 = 2131232292;
                 }
             } else {
-                i10 = 2131232290;
+                i10 = 2131232291;
             }
         } else {
-            i10 = 2131232289;
+            i10 = 2131232290;
         }
-        ImageView imageView = this.f57221c;
+        ImageView imageView = this.f57793c;
         if (z10) {
-            org.telegram.messenger.g0.Q3(imageView, i10);
+            org.telegram.messenger.g0.P3(imageView, i10);
         } else {
             imageView.setImageResource(i10);
         }
     }
 
     public View getColorClickableView() {
-        return this.f57222e;
+        return this.f57794e;
     }
 
-    public pg getEmojiButton() {
+    public yg getEmojiButton() {
         return null;
     }
 
     public d1 getTypefaceCell() {
-        return this.f57223f;
+        return this.f57795f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ns.e().c(this, ns.C5);
+        ks.e().c(this, ks.E5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ns.e().n(this, ns.C5);
+        ks.e().n(this, ks.E5);
     }
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        this.f57225r = getPaddingLeft();
-        c(this.f57222e);
-        c(this.f57220b);
-        c(this.f57221c);
+        this.f57797r = getPaddingLeft();
+        c(this.f57794e);
+        c(this.f57792b);
+        c(this.f57793c);
         c(this.d);
         int measuredWidth = getMeasuredWidth() - getPaddingRight();
-        d1 d1Var = this.f57223f;
+        d1 d1Var = this.f57795f;
         d1Var.layout(measuredWidth - d1Var.getMeasuredWidth(), (getMeasuredHeight() - d1Var.getMeasuredHeight()) / 2, getMeasuredWidth() - getPaddingRight(), (d1Var.getMeasuredHeight() + getMeasuredHeight()) / 2);
     }
 
@@ -365,7 +365,7 @@ public final class e1 extends FrameLayout implements is {
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
         for (int i11 = 0; i11 < getChildCount(); i11++) {
             View childAt = getChildAt(i11);
-            d1 d1Var = this.f57223f;
+            d1 d1Var = this.f57795f;
             if (childAt == d1Var) {
                 d1Var.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
             } else {
@@ -390,15 +390,15 @@ public final class e1 extends FrameLayout implements is {
     }
 
     public void setTypeface(String str) {
-        this.f57227w = str;
-        d1 d1Var = this.f57223f;
+        this.f57799w = str;
+        d1 d1Var = this.f57795f;
         if (d1Var != null) {
             for (sg.a0 a0Var : sg.a0.c()) {
-                if (a0Var.f56580a.equals(str)) {
+                if (a0Var.f57154a.equals(str)) {
                     d1Var.setTypeface(a0Var.d());
-                    String str2 = a0Var.f56582c;
+                    String str2 = a0Var.f57156c;
                     if (str2 == null) {
-                        str2 = hd.N0(a0Var.f56581b);
+                        str2 = gd.N0(a0Var.f57155b);
                     }
                     d1Var.setText(str2);
                     return;

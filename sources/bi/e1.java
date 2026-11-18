@@ -1,28 +1,26 @@
 package bi;
 
 import android.widget.FrameLayout;
-import fi.i9;
-import fi.z8;
-import hi.sa;
-import org.telegram.ui.Components.bw0;
-import org.telegram.ui.Components.cb;
-import org.telegram.ui.Components.n7;
-import org.telegram.ui.Components.wa;
-import org.telegram.ui.Components.xb;
-import org.telegram.ui.Components.xl;
-import org.telegram.ui.Components.y80;
-public final class e1 implements wa {
-    public final int f3454a;
-    public final Object f3455b;
+import fi.f9;
+import hi.ta;
+import org.telegram.ui.Components.em;
+import org.telegram.ui.Components.fb;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.i90;
+import org.telegram.ui.Components.iw0;
+import org.telegram.ui.Components.lb;
+public final class e1 implements fb {
+    public final int f3568a;
+    public final Object f3569b;
 
     public e1(Object obj, int i7) {
-        this.f3454a = i7;
-        this.f3455b = obj;
+        this.f3568a = i7;
+        this.f3569b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f3454a) {
+        switch (this.f3568a) {
             case 0:
                 return true;
             case 1:
@@ -51,30 +49,24 @@ public final class e1 implements wa {
     }
 
     @Override
-    public final void b(xb xbVar) {
-        fi.u3 u3Var;
-        switch (this.f3454a) {
+    public final void b(gc gcVar) {
+        fi.s3 s3Var;
+        switch (this.f3568a) {
             case 0:
-                cb cbVar = xbVar.f41631e;
-                f1 f1Var = (f1) this.f3455b;
-                fh.g c10 = f1Var.f3501p1.c(cbVar, null, true);
-                gh.e eVar = new gh.e(f1Var.J0);
-                eVar.f13313e = new g0.e(11);
-                float N = org.telegram.messenger.g0.N(0.5f);
-                float N2 = org.telegram.messenger.g0.N(0.5f);
-                eVar.f13314f = N;
-                eVar.h = N2;
-                c10.p(eVar);
+                lb lbVar = gcVar.f35457e;
+                g1 g1Var = (g1) this.f3569b;
+                fh.g c10 = g1Var.f3623p1.c(lbVar, null, true);
+                c10.p(c8.i0.c(g1Var.J0));
                 c10.r(org.telegram.messenger.g0.L(16.0f));
-                cbVar.setCustomBackground(c10);
+                lbVar.setCustomBackground(c10);
                 return;
             case 1:
                 return;
             case 2:
-                if (xbVar.f41628a == 2 && (u3Var = ((fi.e3) this.f3455b).f11671y.A1) != null) {
-                    i9 i9Var = ((z8) u3Var).d;
-                    i9Var.Y0 = true;
-                    i9Var.V();
+                if (gcVar.f35454a == 2 && (s3Var = ((fi.c3) this.f3569b).f11811y.A1) != null) {
+                    f9 f9Var = ((fi.w8) s3Var).d;
+                    f9Var.Y0 = true;
+                    f9Var.V();
                     return;
                 }
                 return;
@@ -93,21 +85,21 @@ public final class e1 implements wa {
 
     @Override
     public final void c(float f10) {
-        int i7 = this.f3454a;
+        int i7 = this.f3568a;
     }
 
     @Override
-    public final void d(xb xbVar) {
-        fi.u3 u3Var;
-        switch (this.f3454a) {
+    public final void d(gc gcVar) {
+        fi.s3 s3Var;
+        switch (this.f3568a) {
             case 0:
             case 1:
                 return;
             case 2:
-                if (xbVar.f41628a == 2 && (u3Var = ((fi.e3) this.f3455b).f11671y.A1) != null) {
-                    i9 i9Var = ((z8) u3Var).d;
-                    i9Var.Y0 = false;
-                    i9Var.V();
+                if (gcVar.f35454a == 2 && (s3Var = ((fi.c3) this.f3569b).f11811y.A1) != null) {
+                    f9 f9Var = ((fi.w8) s3Var).d;
+                    f9Var.Y0 = false;
+                    f9Var.V();
                     return;
                 }
                 return;
@@ -126,7 +118,7 @@ public final class e1 implements wa {
 
     @Override
     public final boolean e() {
-        switch (this.f3454a) {
+        switch (this.f3568a) {
             case 0:
                 return true;
             case 1:
@@ -158,51 +150,51 @@ public final class e1 implements wa {
     public final int f(int i7) {
         int editTextHeight;
         int L;
-        switch (this.f3454a) {
+        switch (this.f3568a) {
             case 0:
                 return 0;
             case 1:
-                return (int) ((ch.b0) ((ai.k0) this.f3455b).f1273c).f5029u;
+                return (int) ((ch.b0) ((ai.k0) this.f3569b).f1264c).f5315u;
             case 2:
-                if (((fi.e3) this.f3455b).f11671y.f11480h2) {
+                if (((fi.c3) this.f3569b).f11811y.f12833h2) {
                     return 0;
                 }
                 return org.telegram.messenger.g0.L(64.0f);
             case 3:
-                return ((fi.c5) this.f3455b).f11603r.getPaddingBottom();
+                return ((fi.a5) this.f3569b).f11734r.getPaddingBottom();
             case 4:
                 return 0;
             case 5:
-                editTextHeight = ((sa) this.f3455b).f15048d1.getEditTextHeight();
+                editTextHeight = ((ta) this.f3569b).f15436d1.getEditTextHeight();
                 L = org.telegram.messenger.g0.L(12.0f);
                 break;
             case 6:
-                return ((n7) this.f3455b).f37470e.f41920y1.getHeight();
+                return ((org.telegram.ui.Components.u7) this.f3569b).f40236e.f35420y1.getHeight();
             case 7:
-                wa waVar = (wa) this.f3455b;
-                if (waVar == null) {
+                fb fbVar = (fb) this.f3569b;
+                if (fbVar == null) {
                     return 0;
                 }
-                return waVar.f(i7);
+                return fbVar.f(i7);
             case 8:
                 editTextHeight = org.telegram.messenger.g0.L(126.0f);
-                L = ((xl) this.f3455b).f41715c.f33609b.R();
+                L = ((em) this.f3569b).f34767c.f36766b.R();
                 break;
             case 9:
-                editTextHeight = y80.Z((y80) this.f3455b).d;
+                editTextHeight = i90.Z((i90) this.f3569b).d;
                 L = org.telegram.messenger.g0.L(72.0f);
                 break;
             case 10:
-                FrameLayout frameLayout = ((bw0) this.f3455b).f33424w1;
+                FrameLayout frameLayout = ((iw0) this.f3569b).f36258w1;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
                 return 0;
             default:
-                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.f3455b;
-                if (v0Var.getParent() instanceof ki.x3) {
-                    ki.x3 x3Var = (ki.x3) v0Var.getParent();
-                    return (int) ((x3Var.getSwipeOffsetY() + x3Var.getOffsetY()) - x3Var.getTopActionBarOffsetY());
+                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.f3569b;
+                if (v0Var.getParent() instanceof ki.s3) {
+                    ki.s3 s3Var = (ki.s3) v0Var.getParent();
+                    return (int) ((s3Var.getSwipeOffsetY() + s3Var.getOffsetY()) - s3Var.getTopActionBarOffsetY());
                 }
                 return 0;
         }
@@ -211,7 +203,7 @@ public final class e1 implements wa {
 
     @Override
     public final boolean g(int i7) {
-        switch (this.f3454a) {
+        switch (this.f3568a) {
             case 0:
                 return false;
             case 1:
@@ -230,8 +222,8 @@ public final class e1 implements wa {
             case 6:
                 return false;
             case 7:
-                wa waVar = (wa) this.f3455b;
-                if (waVar != null && waVar.g(i7)) {
+                fb fbVar = (fb) this.f3569b;
+                if (fbVar != null && fbVar.g(i7)) {
                     return true;
                 }
                 return false;
@@ -248,9 +240,9 @@ public final class e1 implements wa {
 
     @Override
     public final int h(int i7) {
-        switch (this.f3454a) {
+        switch (this.f3568a) {
             case 0:
-                return org.telegram.messenger.g0.f23605m;
+                return org.telegram.messenger.g0.f24115m;
             case 1:
                 return 0;
             case 2:
@@ -258,17 +250,17 @@ public final class e1 implements wa {
             case 3:
                 return 0;
             case 4:
-                return (int) (((fi.n5) this.f3455b).f12076a + org.telegram.messenger.g0.L(58.0f));
+                return (int) (((fi.l5) this.f3569b).f12221a + org.telegram.messenger.g0.L(58.0f));
             case 5:
                 return 0;
             case 6:
                 return 0;
             case 7:
-                wa waVar = (wa) this.f3455b;
-                if (waVar == null) {
-                    return org.telegram.messenger.g0.f23605m;
+                fb fbVar = (fb) this.f3569b;
+                if (fbVar == null) {
+                    return org.telegram.messenger.g0.f24115m;
                 }
-                return waVar.h(i7);
+                return fbVar.h(i7);
             case 8:
                 return 0;
             case 9:
@@ -280,49 +272,49 @@ public final class e1 implements wa {
         }
     }
 
-    private final void A(xb xbVar) {
+    private final void A(gc gcVar) {
     }
 
-    private final void B(xb xbVar) {
+    private final void B(gc gcVar) {
     }
 
-    private final void C(xb xbVar) {
+    private final void C(gc gcVar) {
     }
 
-    private final void D(xb xbVar) {
+    private final void D(gc gcVar) {
     }
 
-    private final void E(xb xbVar) {
+    private final void E(gc gcVar) {
     }
 
-    private final void F(xb xbVar) {
+    private final void F(gc gcVar) {
     }
 
-    private final void G(xb xbVar) {
+    private final void G(gc gcVar) {
     }
 
-    private final void H(xb xbVar) {
+    private final void H(gc gcVar) {
     }
 
-    private final void I(xb xbVar) {
+    private final void I(gc gcVar) {
     }
 
-    private final void J(xb xbVar) {
+    private final void J(gc gcVar) {
     }
 
-    private final void K(xb xbVar) {
+    private final void K(gc gcVar) {
     }
 
-    private final void L(xb xbVar) {
+    private final void L(gc gcVar) {
     }
 
-    private final void M(xb xbVar) {
+    private final void M(gc gcVar) {
     }
 
-    private final void N(xb xbVar) {
+    private final void N(gc gcVar) {
     }
 
-    private final void O(xb xbVar) {
+    private final void O(gc gcVar) {
     }
 
     private final void i(float f10) {
@@ -361,21 +353,21 @@ public final class e1 implements wa {
     private final void t(float f10) {
     }
 
-    private final void u(xb xbVar) {
+    private final void u(gc gcVar) {
     }
 
-    private final void v(xb xbVar) {
+    private final void v(gc gcVar) {
     }
 
-    private final void w(xb xbVar) {
+    private final void w(gc gcVar) {
     }
 
-    private final void x(xb xbVar) {
+    private final void x(gc gcVar) {
     }
 
-    private final void y(xb xbVar) {
+    private final void y(gc gcVar) {
     }
 
-    private final void z(xb xbVar) {
+    private final void z(gc gcVar) {
     }
 }

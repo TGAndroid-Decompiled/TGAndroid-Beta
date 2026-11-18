@@ -1,20 +1,143 @@
 package x2;
-public final class b0 {
-    public final int f59496a;
-    public final int f59497b;
-    public final e2.u f59498c;
-    public final int d;
-    public final Object f59499e;
-    public final long f59500f;
-    public final long f59501g;
 
-    public b0(int i7, int i10, e2.u uVar, int i11, Object obj, long j3, long j10) {
-        this.f59496a = i7;
-        this.f59497b = i10;
-        this.f59498c = uVar;
-        this.d = i11;
-        this.f59499e = obj;
-        this.f59500f = j3;
-        this.f59501g = j10;
+import a8.la;
+public final class b0 extends t1 {
+    public final boolean f60032l;
+    public final e2.k1 f60033m;
+    public final e2.i1 f60034n;
+    public z f60035o;
+    public y f60036p;
+    public boolean f60037q;
+    public boolean f60038r;
+    public boolean f60039s;
+
+    public b0(a aVar, boolean z10) {
+        super(aVar);
+        boolean z11;
+        if (z10 && aVar.j()) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f60032l = z11;
+        this.f60033m = new e2.k1();
+        this.f60034n = new e2.i1();
+        e2.l1 h = aVar.h();
+        if (h != null) {
+            this.f60035o = new z(h, null, null);
+            this.f60039s = true;
+            return;
+        }
+        this.f60035o = new z(new a0(aVar.i()), e2.k1.f10469q, z.h);
+    }
+
+    @Override
+    public final void A(e2.l1 r12) {
+        throw new UnsupportedOperationException("Method not decompiled: x2.b0.A(e2.l1):void");
+    }
+
+    @Override
+    public final void C() {
+        if (!this.f60032l) {
+            this.f60037q = true;
+            B();
+        }
+    }
+
+    @Override
+    public final y c(g0 g0Var, h6.m mVar, long j3) {
+        boolean z10;
+        y yVar = new y(g0Var, mVar, j3);
+        if (yVar.d == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        la.p(z10);
+        yVar.d = this.f60235k;
+        if (this.f60038r) {
+            Object obj = g0Var.f60087a;
+            if (this.f60035o.f60297g != null && obj.equals(z.h)) {
+                obj = this.f60035o.f60297g;
+            }
+            yVar.a(g0Var.a(obj));
+            return yVar;
+        }
+        this.f60036p = yVar;
+        if (!this.f60037q) {
+            this.f60037q = true;
+            B();
+        }
+        return yVar;
+    }
+
+    public final boolean E(long j3) {
+        y yVar = this.f60036p;
+        int b10 = this.f60035o.b(yVar.f60279a.f60087a);
+        if (b10 == -1) {
+            return false;
+        }
+        z zVar = this.f60035o;
+        e2.i1 i1Var = this.f60034n;
+        zVar.f(b10, i1Var, false);
+        long j10 = i1Var.d;
+        if (j10 != -9223372036854775807L && j3 >= j10) {
+            j3 = Math.max(0L, j10 - 1);
+        }
+        yVar.h = j3;
+        return true;
+    }
+
+    @Override
+    public final boolean a(e2.l0 l0Var) {
+        return this.f60235k.a(l0Var);
+    }
+
+    @Override
+    public final void o(e0 e0Var) {
+        y yVar = (y) e0Var;
+        if (yVar.f60282e != null) {
+            a aVar = yVar.d;
+            aVar.getClass();
+            aVar.o(yVar.f60282e);
+        }
+        if (e0Var == this.f60036p) {
+            this.f60036p = null;
+        }
+    }
+
+    @Override
+    public final void q() {
+        this.f60038r = false;
+        this.f60037q = false;
+        super.q();
+    }
+
+    @Override
+    public final void t(e2.l0 l0Var) {
+        q1 q1Var;
+        if (this.f60039s) {
+            z zVar = this.f60035o;
+            e2.l1 l1Var = zVar.f60215e;
+            if (l1Var instanceof q1) {
+                q1Var = new q1(((q1) l1Var).f60215e, l0Var);
+            } else {
+                q1Var = new q1(l1Var, l0Var);
+            }
+            this.f60035o = new z(q1Var, zVar.f60296f, zVar.f60297g);
+        } else {
+            this.f60035o = new z(new a0(l0Var), e2.k1.f10469q, z.h);
+        }
+        this.f60235k.t(l0Var);
+    }
+
+    @Override
+    public final g0 z(g0 g0Var) {
+        Object obj = g0Var.f60087a;
+        Object obj2 = this.f60035o.f60297g;
+        if (obj2 != null && obj2.equals(obj)) {
+            obj = z.h;
+        }
+        return g0Var.a(obj);
     }
 }

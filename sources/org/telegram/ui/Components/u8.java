@@ -1,17 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import j$.util.Objects;
 public final class u8 {
-    public t8 f39954a;
-    public org.telegram.ui.Cells.e4 f39955b;
-    public long f39956c;
-    public long d;
-    public ImageReceiver f39957e;
-    public TLRPC.GroupCallParticipant f39958f;
-    public long f39959g;
-    public TLObject h;
-    public int f39960i;
-    public int f39961j;
+    public int f40250a;
+    public boolean f40251b;
+    public int f40252c;
+    public int d;
+    public int f40253e;
+    public int f40254f;
+
+    public final u8 a() {
+        ?? obj = new Object();
+        obj.f40252c = this.f40252c;
+        obj.d = this.d;
+        obj.f40253e = this.f40253e;
+        obj.f40254f = this.f40254f;
+        obj.f40251b = this.f40251b;
+        return obj;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof u8)) {
+            return false;
+        }
+        u8 u8Var = (u8) obj;
+        if (this.f40252c == u8Var.f40252c && this.d == u8Var.d && this.f40253e == u8Var.f40253e && this.f40254f == u8Var.f40254f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f40250a), Integer.valueOf(this.f40252c), Integer.valueOf(this.d), Integer.valueOf(this.f40253e), Integer.valueOf(this.f40254f));
+    }
 }

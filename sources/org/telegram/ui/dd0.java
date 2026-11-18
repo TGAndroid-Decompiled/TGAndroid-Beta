@@ -1,26 +1,24 @@
 package org.telegram.ui;
 
-import java.util.TimerTask;
-public final class dd0 extends TimerTask {
-    public final int f46345a;
-    public final ed0 f46346b;
+import android.content.Context;
+public final class dd0 extends br {
+    public final int h;
+    public final gd0 f46929n;
 
-    public dd0(ed0 ed0Var, int i7) {
-        this.f46345a = i7;
-        this.f46346b = ed0Var;
+    public dd0(gd0 gd0Var, Context context, int i7) {
+        super(context);
+        this.h = i7;
+        this.f46929n = gd0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46345a) {
+    public final void a() {
+        switch (this.h) {
             case 0:
-                org.telegram.messenger.g0.h3(new iz(this, 26));
+                this.f46929n.h(null);
                 return;
             default:
-                if (this.f46346b.U != null) {
-                    org.telegram.messenger.g0.h3(new iz(this, 27));
-                    return;
-                }
+                this.f46929n.h(null);
                 return;
         }
     }

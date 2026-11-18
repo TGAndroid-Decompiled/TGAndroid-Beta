@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.InflateException;
 import android.view.animation.AnimationUtils;
-import c8.j0;
+import c8.l0;
 import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 import org.xmlpull.v1.XmlPullParser;
@@ -86,13 +86,13 @@ public abstract class a {
         if (i7 == 2) {
             String string = typedArray.getString(i10);
             String string2 = typedArray.getString(i11);
-            i0.e[] c10 = j0.c(string);
-            i0.e[] c11 = j0.c(string2);
+            i0.d[] c10 = l0.c(string);
+            i0.d[] c11 = l0.c(string2);
             if (c10 != null || c11 != null) {
                 if (c10 != null) {
                     ?? obj = new Object();
                     if (c11 != null) {
-                        if (j0.a(c10, c11)) {
+                        if (l0.a(c10, c11)) {
                             return PropertyValuesHolder.ofObject(str, (TypeEvaluator) obj, c10, c11);
                         }
                         throw new InflateException(e2.l(" Can't morph from ", string, " to ", string2));
@@ -277,7 +277,7 @@ public abstract class a {
                 if (b12 == null && b13 == null) {
                     throw new InflateException(f11.getPositionDescription() + " propertyXName or propertyYName is needed for PathData");
                 }
-                Path d2 = j0.d(b11);
+                Path d2 = l0.d(b11);
                 PathMeasure pathMeasure = new PathMeasure(d2, false);
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(Float.valueOf(0.0f));

@@ -3,14 +3,14 @@ package hh;
 import android.graphics.Color;
 import gh.e;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 public final class b extends e {
-    public final e6 f13848s;
+    public final i6 f14165s;
 
-    public b(e6 e6Var, e6 e6Var2) {
-        super(e6Var);
-        this.f13848s = e6Var2;
+    public b(i6 i6Var, i6 i6Var2) {
+        super(i6Var);
+        this.f14165s = i6Var2;
     }
 
     @Override
@@ -20,18 +20,18 @@ public final class b extends e {
 
     @Override
     public final int D1() {
-        e6 e6Var = this.f13848s;
-        if (j6.i1(e6Var)) {
-            return j6.w0(j6.ya, e6Var);
+        i6 i6Var = this.f14165s;
+        if (n6.i1(i6Var)) {
+            return n6.w0(n6.ya, i6Var);
         }
         return 0;
     }
 
     @Override
     public final int M0() {
-        e6 e6Var = this.f13848s;
-        if (j6.i1(e6Var)) {
-            return j6.w0(j6.f29207wa, e6Var);
+        i6 i6Var = this.f14165s;
+        if (n6.i1(i6Var)) {
+            return n6.w0(n6.f29754wa, i6Var);
         }
         return 0;
     }
@@ -39,8 +39,8 @@ public final class b extends e {
     @Override
     public final int U0() {
         int a10 = a(this.d);
-        e6 e6Var = this.f13848s;
-        if (j6.i1(e6Var) && Color.alpha(j6.w0(j6.f29207wa, e6Var)) != 0) {
+        i6 i6Var = this.f14165s;
+        if (n6.i1(i6Var) && Color.alpha(n6.w0(n6.f29754wa, i6Var)) != 0) {
             return 0;
         }
         return a10;
@@ -48,34 +48,34 @@ public final class b extends e {
 
     @Override
     public final int W1() {
-        e6 e6Var = this.f13848s;
-        if (j6.i1(e6Var)) {
-            return j6.w0(j6.f29226xa, e6Var);
+        i6 i6Var = this.f14165s;
+        if (n6.i1(i6Var)) {
+            return n6.w0(n6.f29773xa, i6Var);
         }
-        return a(this.f13311b);
+        return a(this.f13626b);
     }
 
     @Override
     public final float b() {
-        if (j6.i1(this.f13848s)) {
+        if (n6.i1(this.f14165s)) {
             return g0.N(1.0f);
         }
-        return this.f13316r;
+        return this.f13631r;
     }
 
     @Override
     public final float c() {
-        if (j6.i1(this.f13848s)) {
+        if (n6.i1(this.f14165s)) {
             return g0.N(2.25f);
         }
-        return this.f13315n;
+        return this.f13630n;
     }
 
     @Override
     public final int t0() {
-        int a10 = a(this.f13312c);
-        e6 e6Var = this.f13848s;
-        if (j6.i1(e6Var) && Color.alpha(j6.w0(j6.f29207wa, e6Var)) != 0) {
+        int a10 = a(this.f13627c);
+        i6 i6Var = this.f14165s;
+        if (n6.i1(i6Var) && Color.alpha(n6.w0(n6.f29754wa, i6Var)) != 0) {
             return 0;
         }
         return a10;

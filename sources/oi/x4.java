@@ -1,186 +1,261 @@
 package oi;
 
+import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import org.telegram.messenger.np;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.w7;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-public abstract class x4 {
-    public static ArrayList a(int i7, ArrayList arrayList) {
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            b((TL_iv.PageBlock) obj, linkedHashSet);
-        }
-        ArrayList arrayList2 = new ArrayList(linkedHashSet.size());
-        np s12 = np.s1(i7);
-        Iterator it = linkedHashSet.iterator();
-        while (it.hasNext()) {
-            Long l10 = (Long) it.next();
-            l10.getClass();
-            TLRPC.User a22 = s12.a2(l10);
-            if (a22 != null) {
-                TLRPC.InputUser q12 = s12.q1(a22);
-                if (!(q12 instanceof TLRPC.TL_inputUserEmpty)) {
-                    arrayList2.add(q12);
-                }
-            }
-        }
-        return arrayList2;
+public final class x4 implements fs {
+    public int E;
+    public volatile String F;
+    public String G;
+    public TLRPC.InputFile H;
+    public boolean I;
+    public final int f22483a;
+    public final String f22484b;
+    public final boolean f22485c;
+    public final boolean d;
+    public final boolean f22486e;
+    public final int f22487f;
+    public final int h;
+    public final int f22488n;
+    public final TLRPC.Document f22489r;
+    public final w4 f22490s;
+    public boolean f22491w;
+    public boolean f22492x;
+    public boolean f22493y;
+
+    public x4(int i7, String str, boolean z10, int i10, int i11, int i12, f3 f3Var) {
+        this.f22483a = i7;
+        this.f22484b = str;
+        this.f22485c = z10;
+        this.d = false;
+        this.f22486e = false;
+        this.f22487f = i10;
+        this.h = i11;
+        this.f22488n = i12;
+        this.f22489r = null;
+        this.f22490s = f3Var;
     }
 
-    public static void b(TL_iv.PageBlock pageBlock, LinkedHashSet linkedHashSet) {
-        ArrayList<TL_iv.pageTableCell> arrayList;
-        if (pageBlock != null) {
-            d(pageBlock.text, linkedHashSet);
-            TL_iv.PageCaption pageCaption = pageBlock.caption;
-            if (pageCaption != null) {
-                d(pageCaption.text, linkedHashSet);
-                d(pageCaption.credit, linkedHashSet);
+    public final void a(String str) {
+        int i7;
+        boolean z10;
+        if (!this.f22492x && !this.f22493y) {
+            this.F = str;
+            ks f10 = ks.f(this.f22483a);
+            f10.b(this, ks.U1);
+            f10.b(this, ks.V1);
+            f10.b(this, ks.W1);
+            if (this.f22485c) {
+                i7 = 33554432;
+            } else if (this.d) {
+                i7 = 50331648;
+            } else if (this.f22486e) {
+                i7 = 67108864;
+            } else {
+                i7 = 16777216;
             }
-            int i7 = 0;
-            if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
-                ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
-                if (arrayList2 != null) {
-                    int size = arrayList2.size();
-                    while (i7 < size) {
-                        TL_keyboard.PageButton pageButton = arrayList2.get(i7);
-                        i7++;
-                        TL_keyboard.PageButton pageButton2 = pageButton;
-                        if (pageButton2 != null) {
-                            TL_keyboard.InlineButtonType inlineButtonType = pageButton2.type;
-                            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                                long j3 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
-                                if (j3 != 0) {
-                                    linkedHashSet.add(Long.valueOf(j3));
-                                }
+            w7 G = w7.G(this.f22483a);
+            String str2 = this.F;
+            if (!this.f22485c && !this.d && !this.f22486e) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            G.h0(false, i7, str2, z10);
+        }
+    }
+
+    public final void b() {
+        if (!this.f22493y && !this.f22492x) {
+            this.f22492x = true;
+            try {
+                if (this.F != null) {
+                    w7.G(this.f22483a).b(this.F, false);
+                }
+            } catch (Throwable unused) {
+            }
+            if (this.E != 0) {
+                ConnectionsManager.getInstance(this.f22483a).cancelRequest(this.E, true);
+                this.E = 0;
+            }
+            e();
+        }
+    }
+
+    public final void c(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2) {
+        String str;
+        TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
+        tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
+        if (this.f22485c) {
+            TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
+            tL_inputMediaUploadedDocument.file = inputFile;
+            tL_inputMediaUploadedDocument.mime_type = "video/mp4";
+            TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
+            tL_documentAttributeVideo.supports_streaming = true;
+            tL_documentAttributeVideo.duration = this.f22488n;
+            tL_documentAttributeVideo.f28412w = this.f22487f;
+            tL_documentAttributeVideo.h = this.h;
+            tL_inputMediaUploadedDocument.attributes.add(tL_documentAttributeVideo);
+            tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
+        } else {
+            boolean z10 = this.d;
+            boolean z11 = this.f22486e;
+            if (!z10 && !z11) {
+                TLRPC.TL_inputMediaUploadedPhoto tL_inputMediaUploadedPhoto = new TLRPC.TL_inputMediaUploadedPhoto();
+                tL_inputMediaUploadedPhoto.file = inputFile;
+                tL_messages_uploadMedia.media = tL_inputMediaUploadedPhoto;
+            } else {
+                TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument2 = new TLRPC.TL_inputMediaUploadedDocument();
+                tL_inputMediaUploadedDocument2.file = inputFile;
+                TLRPC.Document document = this.f22489r;
+                if (z11) {
+                    str = "application/octet-stream";
+                } else if (document == null || (str = document.mime_type) == null) {
+                    str = "audio/mpeg";
+                }
+                tL_inputMediaUploadedDocument2.mime_type = str;
+                if (document != null) {
+                    if (z11) {
+                        ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
+                        int size = arrayList.size();
+                        int i7 = 0;
+                        while (i7 < size) {
+                            TLRPC.DocumentAttribute documentAttribute = arrayList.get(i7);
+                            i7++;
+                            TLRPC.DocumentAttribute documentAttribute2 = documentAttribute;
+                            if (documentAttribute2 instanceof TLRPC.TL_documentAttributeFilename) {
+                                tL_inputMediaUploadedDocument2.attributes.add(documentAttribute2);
                             }
-                            d(pageButton2.text, linkedHashSet);
                         }
+                    } else {
+                        tL_inputMediaUploadedDocument2.attributes.addAll(document.attributes);
                     }
                 }
-            } else if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
-                d(((TL_iv.pageBlockBlockquote) pageBlock).caption, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockPullquote) {
-                d(((TL_iv.pageBlockPullquote) pageBlock).caption, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
-                TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
-                d(pageblockblockquoteblocks.caption, linkedHashSet);
-                c(pageblockblockquoteblocks.blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockDetails) {
-                TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
-                d(pageblockdetails.title, linkedHashSet);
-                c(pageblockdetails.blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockList) {
-                ArrayList<TL_iv.PageListItem> arrayList3 = ((TL_iv.pageBlockList) pageBlock).items;
-                if (arrayList3 != null) {
-                    int size2 = arrayList3.size();
-                    while (i7 < size2) {
-                        TL_iv.PageListItem pageListItem = arrayList3.get(i7);
-                        i7++;
-                        TL_iv.PageListItem pageListItem2 = pageListItem;
-                        if (pageListItem2 instanceof TL_iv.TL_pageListItemText) {
-                            d(((TL_iv.TL_pageListItemText) pageListItem2).text, linkedHashSet);
-                        } else if (pageListItem2 instanceof TL_iv.TL_pageListItemBlocks) {
-                            c(((TL_iv.TL_pageListItemBlocks) pageListItem2).blocks, linkedHashSet);
-                        }
+                if (z11) {
+                    tL_inputMediaUploadedDocument2.force_file = true;
+                    if (inputFile2 != null) {
+                        tL_inputMediaUploadedDocument2.thumb = inputFile2;
+                        tL_inputMediaUploadedDocument2.flags |= 4;
                     }
                 }
-            } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
-                ArrayList<TL_iv.PageListOrderedItem> arrayList4 = ((TL_iv.pageBlockOrderedList) pageBlock).items;
-                if (arrayList4 != null) {
-                    int size3 = arrayList4.size();
-                    while (i7 < size3) {
-                        TL_iv.PageListOrderedItem pageListOrderedItem = arrayList4.get(i7);
-                        i7++;
-                        TL_iv.PageListOrderedItem pageListOrderedItem2 = pageListOrderedItem;
-                        if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemText) {
-                            d(((TL_iv.TL_pageListOrderedItemText) pageListOrderedItem2).text, linkedHashSet);
-                        } else if (pageListOrderedItem2 instanceof TL_iv.TL_pageListOrderedItemBlocks) {
-                            c(((TL_iv.TL_pageListOrderedItemBlocks) pageListOrderedItem2).blocks, linkedHashSet);
-                        }
-                    }
+                tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument2;
+            }
+        }
+        this.E = ConnectionsManager.getInstance(this.f22483a).sendRequest(tL_messages_uploadMedia, new ai.e1(this, 24));
+    }
+
+    public final void d() {
+        int i7;
+        int i10;
+        if (!this.f22491w && !this.f22492x && !this.f22493y) {
+            this.f22491w = true;
+            if (this.f22485c) {
+                w4 w4Var = this.f22490s;
+                int i11 = this.f22487f;
+                if (i11 > 0 && (i10 = this.h) > 0) {
+                    w4Var.b(i11, i10);
                 }
-            } else if (pageBlock instanceof TL_iv.pageBlockTable) {
-                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
-                d(pageblocktable.title, linkedHashSet);
-                ArrayList<TL_iv.pageTableRow> arrayList5 = pageblocktable.rows;
-                if (arrayList5 != null) {
-                    int size4 = arrayList5.size();
-                    int i10 = 0;
-                    while (i10 < size4) {
-                        TL_iv.pageTableRow pagetablerow = arrayList5.get(i10);
-                        i10++;
-                        TL_iv.pageTableRow pagetablerow2 = pagetablerow;
-                        if (pagetablerow2 != null && (arrayList = pagetablerow2.cells) != null) {
-                            int size5 = arrayList.size();
-                            int i11 = 0;
-                            while (i11 < size5) {
-                                TL_iv.pageTableCell pagetablecell = arrayList.get(i11);
-                                i11++;
-                                TL_iv.pageTableCell pagetablecell2 = pagetablecell;
-                                if (pagetablecell2 != null) {
-                                    d(pagetablecell2.text, linkedHashSet);
-                                }
-                            }
-                        }
+                a(this.f22484b);
+            } else if (this.f22486e) {
+                Utilities.f22782e.c(new v4(this, 0));
+            } else if (this.d) {
+                a(this.f22484b);
+            } else {
+                try {
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeFile(this.f22484b, options);
+                    int i12 = options.outWidth;
+                    if (i12 > 0 && (i7 = options.outHeight) > 0) {
+                        this.f22490s.b(i12, i7);
                     }
+                } catch (Exception unused) {
                 }
-            } else if (pageBlock instanceof TL_iv.pageBlockCollage) {
-                c(((TL_iv.pageBlockCollage) pageBlock).items, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
-                c(((TL_iv.pageBlockSlideshow) pageBlock).items, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockEmbedPost) {
-                c(((TL_iv.pageBlockEmbedPost) pageBlock).blocks, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockCover) {
-                b(((TL_iv.pageBlockCover) pageBlock).cover, linkedHashSet);
-            } else if (pageBlock instanceof TL_iv.pageBlockRelatedArticles) {
-                d(((TL_iv.pageBlockRelatedArticles) pageBlock).title, linkedHashSet);
+                Utilities.f22782e.c(new v4(this, 1));
             }
         }
     }
 
-    public static void c(ArrayList arrayList, LinkedHashSet linkedHashSet) {
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i7 = 0;
-            while (i7 < size) {
-                Object obj = arrayList.get(i7);
-                i7++;
-                b((TL_iv.PageBlock) obj, linkedHashSet);
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        float f10;
+        TLRPC.InputFile inputFile;
+        if (i10 == this.f22483a && !this.f22492x && !this.f22493y) {
+            String str = (String) objArr[0];
+            if (this.F != null && this.F.equals(str)) {
+                if (i7 == ks.U1) {
+                    TLRPC.InputFile inputFile2 = (TLRPC.InputFile) objArr[1];
+                    if (this.f22486e && !this.I && !TextUtils.isEmpty(this.G)) {
+                        this.H = inputFile2;
+                        this.I = true;
+                        this.F = this.G;
+                        w7.G(this.f22483a).h0(false, 16777216, this.F, true);
+                    } else if (this.f22486e && this.I) {
+                        c(this.H, inputFile2);
+                    } else {
+                        c(inputFile2, null);
+                    }
+                } else if (i7 == ks.V1) {
+                    if (this.f22486e && this.I && (inputFile = this.H) != null) {
+                        c(inputFile, null);
+                        return;
+                    }
+                    this.f22493y = true;
+                    e();
+                    this.f22490s.a();
+                } else if (i7 == ks.W1) {
+                    long longValue = ((Long) objArr[1]).longValue();
+                    long longValue2 = ((Long) objArr[2]).longValue();
+                    w4 w4Var = this.f22490s;
+                    if (!this.I) {
+                        if (longValue2 > 0) {
+                            f10 = ((float) longValue) / ((float) longValue2);
+                        } else {
+                            f10 = 0.0f;
+                        }
+                        w4Var.g(f10);
+                    }
+                }
             }
         }
     }
 
-    public static void d(TL_iv.RichText richText, LinkedHashSet linkedHashSet) {
-        if (richText != null) {
-            if (richText instanceof TL_iv.textButton) {
-                TL_keyboard.InlineButtonType inlineButtonType = ((TL_iv.textButton) richText).type;
-                if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                    long j3 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
-                    if (j3 != 0) {
-                        linkedHashSet.add(Long.valueOf(j3));
-                    }
-                }
-            } else if (richText instanceof TL_iv.textDiff) {
-                d(((TL_iv.textDiff) richText).old_text, linkedHashSet);
-            }
-            d(richText.text, linkedHashSet);
-            ArrayList<TL_iv.RichText> arrayList = richText.texts;
-            if (arrayList != null) {
-                int size = arrayList.size();
-                int i7 = 0;
-                while (i7 < size) {
-                    TL_iv.RichText richText2 = arrayList.get(i7);
-                    i7++;
-                    d(richText2, linkedHashSet);
-                }
-            }
-        }
+    public final void e() {
+        ks f10 = ks.f(this.f22483a);
+        f10.n(this, ks.U1);
+        f10.n(this, ks.V1);
+        f10.n(this, ks.W1);
+    }
+
+    public x4(int i7, String str, TLRPC.Document document, e3 e3Var) {
+        this.f22483a = i7;
+        this.f22484b = str;
+        this.f22485c = false;
+        this.d = true;
+        this.f22486e = false;
+        this.f22487f = 0;
+        this.h = 0;
+        this.f22488n = 0;
+        this.f22489r = document;
+        this.f22490s = e3Var;
+    }
+
+    public x4(int i7, String str, TLRPC.Document document, d3 d3Var) {
+        this.f22483a = i7;
+        this.f22484b = str;
+        this.f22485c = false;
+        this.d = false;
+        this.f22486e = true;
+        this.f22487f = 0;
+        this.h = 0;
+        this.f22488n = 0;
+        this.f22489r = document;
+        this.f22490s = d3Var;
     }
 }

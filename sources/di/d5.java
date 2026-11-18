@@ -1,36 +1,119 @@
 package di;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.e30;
-public final class d5 extends FrameLayout {
-    public final int[] f8395a;
-    public final e5 f8396b;
+import java.util.HashSet;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.tl.TL_stars;
+public final class d5 extends View implements org.telegram.ui.ActionBar.c6 {
+    public final q5 f8657a;
+    public final ImageReceiver f8658b;
+    public final Path f8659c;
+    public final Paint d;
 
-    public d5(e5 e5Var, Context context) {
+    public d5(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
         super(context);
-        this.f8396b = e5Var;
-        this.f8395a = new int[2];
+        Path path = new Path();
+        this.f8659c = path;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30084a;
+        q5 q5Var = new q5(this, starGift, 60, 0.27f);
+        this.f8657a = q5Var;
+        q5Var.L = 3;
+        org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
+        b9Var.l(tLObject);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f8658b = imageReceiver;
+        imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
+        imageReceiver.i0(tLObject, b9Var, null);
+        paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.E6, false));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        path.rewind();
+        path.moveTo(0.0f, -org.telegram.messenger.g0.L(8.0f));
+        path.lineTo(org.telegram.messenger.g0.L(6.166f), 0.0f);
+        path.lineTo(0.0f, org.telegram.messenger.g0.L(8.0f));
     }
 
     @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        FrameLayout frameLayout;
-        super.onLayout(z10, i7, i10, i11, i12);
-        e5 e5Var = this.f8396b;
-        e30 e30Var = e5Var.f8455i;
-        if (e30Var != null && e30Var.d.getChildCount() >= 2 && e5Var.f8464r != null && (frameLayout = e5Var.f8459m) != null) {
-            int[] iArr = this.f8395a;
-            frameLayout.getLocationInWindow(iArr);
-            float translationX = iArr[0] - e5Var.f8459m.getTranslationX();
-            float translationY = iArr[1] - e5Var.f8459m.getTranslationY();
-            View childAt = e30Var.d.getChildAt(1);
-            childAt.getLocationInWindow(iArr);
-            float translationY2 = iArr[1] - childAt.getTranslationY();
-            hi.l3 l3Var = e5Var.f8464r;
-            l3Var.setTranslationY(((translationY2 - translationY) - l3Var.getMeasuredHeight()) - e30Var.getMeasuredHeight());
-            e5Var.f8464r.p(0.0f, ((childAt.getMeasuredWidth() / 2.0f) + ((iArr[0] - childAt.getTranslationX()) - translationX)) - org.telegram.messenger.g0.L(12.0f));
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f8658b.P();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f8658b.R();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int width = (getWidth() / 2) - (org.telegram.messenger.g0.L(156.0f) / 2);
+        int height = (getHeight() / 2) - org.telegram.messenger.g0.L(30.0f);
+        q5 q5Var = this.f8657a;
+        q5Var.setBounds(width, height, org.telegram.messenger.g0.L(60.0f) + width, org.telegram.messenger.g0.L(60.0f) + height);
+        q5Var.draw(canvas);
+        canvas.save();
+        canvas.translate((getWidth() / 2.0f) - (org.telegram.messenger.g0.L(6.166f) / 2.0f), getHeight() / 2.0f);
+        canvas.drawPath(this.f8659c, this.d);
+        canvas.restore();
+        ImageReceiver imageReceiver = this.f8658b;
+        imageReceiver.y0(org.telegram.messenger.g0.L(96.0f) + width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
+        imageReceiver.h(canvas, null);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(100.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        Paint paint = this.d;
+        try {
+            int i7 = org.telegram.ui.ActionBar.n6.E6;
+            paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, i7, false));
+            paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, i7, false));
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
+    }
+
+    public d5(Context context, TL_stars.StarGift starGift) {
+        super(context);
+        Path path = new Path();
+        this.f8659c = path;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30084a;
+        q5 q5Var = new q5(this, starGift, 60, 0.27f);
+        this.f8657a = q5Var;
+        q5Var.L = 3;
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f8658b = imageReceiver;
+        imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
+        imageReceiver.w0(org.telegram.ui.Cells.s6.a(60, "fragment"));
+        paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.E6, false));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.33f));
+        path.rewind();
+        path.moveTo(0.0f, -org.telegram.messenger.g0.L(8.0f));
+        path.lineTo(org.telegram.messenger.g0.L(6.166f), 0.0f);
+        path.lineTo(0.0f, org.telegram.messenger.g0.L(8.0f));
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

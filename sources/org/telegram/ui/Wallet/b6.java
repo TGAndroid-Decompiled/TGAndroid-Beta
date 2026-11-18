@@ -2,17 +2,31 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-public final class b6 extends View {
-    public boolean f43506a;
-    public final c6 f43507b;
+public final class b6 extends x6 {
+    public final n6 m0;
 
-    public b6(c6 c6Var, Context context) {
+    public b6(n6 n6Var, Context context) {
         super(context);
-        this.f43507b = c6Var;
+        this.m0 = n6Var;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r40) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.b6.onDraw(android.graphics.Canvas):void");
+    public final void onMeasure(int i7, int i10) {
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+        super.onMeasure(i7, makeMeasureSpec);
+        n6 n6Var = this.m0;
+        if (n6Var.f44640r > 0 && getMeasuredHeight() > n6Var.f44640r) {
+            int paddingRight = getPaddingRight() + getPaddingLeft();
+            int paddingBottom = getPaddingBottom() + getPaddingTop();
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, n6Var.f44640r - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
+        }
+    }
+
+    @Override
+    public final void setStickerStyle(float[] fArr) {
+        super.setStickerStyle(fArr);
+        n6 n6Var = this.m0;
+        n6Var.Z0(n6Var.A0);
+        n6Var.a1(fArr);
     }
 }

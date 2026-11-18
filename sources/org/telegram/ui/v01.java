@@ -1,35 +1,21 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class v01 extends AnimatorListenerAdapter {
-    public final int f52080a;
-    public final x01 f52081b;
-
-    public v01(x01 x01Var, int i7) {
-        this.f52080a = i7;
-        this.f52081b = x01Var;
-    }
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class v01 extends FrameLayout {
+    public FrameLayout f52654a;
+    public org.telegram.ui.Cells.w3 f52655b;
+    public ug.s0 f52656c;
+    public String d;
+    public ValueAnimator f52657e;
+    public float f52658f;
+    public Boolean h;
+    public ValueAnimator f52659n;
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f52080a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f52081b.J = null;
-                return;
-            case 1:
-                super.onAnimationEnd(animator);
-                this.f52081b.J = null;
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                x01 x01Var = this.f52081b;
-                x01Var.O = 0.0f;
-                x01Var.J = null;
-                x01Var.N = false;
-                x01Var.d(true, false);
-                return;
-        }
+    public final void onMeasure(int i7, int i10) {
+        setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(8.0f));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + org.telegram.messenger.g0.L(44.0f), 1073741824));
     }
 }

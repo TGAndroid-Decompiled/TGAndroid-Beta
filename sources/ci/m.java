@@ -1,30 +1,30 @@
 package ci;
 
 import android.graphics.Canvas;
-import org.telegram.ui.Components.uj0;
-public final class m extends uj0 {
-    public aa.k f5435f3;
-    public c0 f5436g3;
+import org.telegram.ui.Components.ck0;
+public final class m extends ck0 {
+    public aa.k f5715f3;
+    public d0 f5716g3;
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int i7;
-        if (this.f5436g3 != null) {
+        if (this.f5716g3 != null) {
             canvas2 = canvas;
             i7 = canvas2.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null);
         } else {
             canvas2 = canvas;
             i7 = -1;
         }
-        aa.k kVar = this.f5435f3;
+        aa.k kVar = this.f5715f3;
         if (kVar != null) {
             kVar.accept(canvas2);
         }
         super.dispatchDraw(canvas2);
-        c0 c0Var = this.f5436g3;
-        if (c0Var != null) {
-            c0Var.accept(canvas2);
+        d0 d0Var = this.f5716g3;
+        if (d0Var != null) {
+            d0Var.accept(canvas2);
             canvas2.restoreToCount(i7);
         }
     }

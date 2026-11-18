@@ -1,3 +1,11 @@
 package org.telegram.ui.Components;
-public abstract class ot0 {
+
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public interface ot0 {
+    float j(RecyclerView recyclerView);
+
+    RecyclerView n(View view);
+
+    void r(RecyclerView recyclerView);
 }

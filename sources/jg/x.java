@@ -1,11 +1,11 @@
 package jg;
 public final class x implements Runnable {
-    public final int f17330a;
-    public final int f17331b;
+    public final int f17716a;
+    public final int f17717b;
 
     public x(int i7, int i10) {
-        this.f17330a = i10;
-        this.f17331b = i7;
+        this.f17716a = i10;
+        this.f17717b = i7;
     }
 
     @Override

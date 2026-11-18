@@ -1,54 +1,42 @@
 package hi;
 
-import android.net.Uri;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.z10;
-public final class q0 implements z10 {
-    public final int f14894a;
-    public final u0 f14895b;
+import java.io.File;
+import org.telegram.messenger.MediaController;
+public final class q0 implements Runnable {
+    public final int f15261a;
+    public final v0 f15262b;
+    public final File f15263c;
 
-    public q0(u0 u0Var, int i7) {
-        this.f14894a = i7;
-        this.f14895b = u0Var;
+    public q0(v0 v0Var, File file, int i7) {
+        this.f15261a = i7;
+        this.f15262b = v0Var;
+        this.f15263c = file;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f14894a;
-        u0 u0Var = this.f14895b;
-        switch (i7) {
+    public final void run() {
+        switch (this.f15261a) {
             case 0:
-                Float f10 = (Float) obj;
-                t0 t0Var = u0Var.f15173n;
-                if (t0Var != null) {
-                    t0Var.setProgress(f10.floatValue());
+                v0 v0Var = this.f15262b;
+                if (v0Var.f15561c && v0Var.f15565r != null) {
+                    MediaController.d0(this.f15263c.getAbsolutePath(), v0Var.getContext(), 1, null, null, new r0(v0Var, 1));
                     return;
                 }
                 return;
             case 1:
-                Uri uri = (Uri) obj;
-                if (u0Var.f15170c && u0Var.f15174r != null) {
-                    u0Var.f15173n.b(2131624056, 3500, hd.N0("VideoSavedHint"));
-                    u0Var.f15170c = false;
-                    u0Var.d();
-                    u0Var.f15176w = uri;
+                v0 v0Var2 = this.f15262b;
+                d7 d7Var = v0Var2.f15565r;
+                File file = this.f15263c;
+                d7Var.c(file);
+                if (v0Var2.f15561c && v0Var2.f15565r != null) {
+                    org.telegram.messenger.g0.g3(new q0(v0Var2, file, 2));
                     return;
                 }
                 return;
             default:
-                Uri uri2 = (Uri) obj;
-                u0Var.f15170c = false;
-                u0Var.d();
-                t0 t0Var2 = u0Var.f15173n;
-                if (t0Var2 != null) {
-                    t0Var2.a();
-                    u0Var.f15173n = null;
-                }
-                t0 t0Var3 = new t0(u0Var.getContext());
-                u0Var.f15173n = t0Var3;
-                t0Var3.b(2131624056, 2500, hd.N0("PhotoSavedHint"));
-                u0Var.f15169b.addView(u0Var.f15173n);
-                u0Var.f15176w = uri2;
+                String absolutePath = this.f15263c.getAbsolutePath();
+                v0 v0Var3 = this.f15262b;
+                MediaController.d0(absolutePath, v0Var3.getContext(), 0, null, null, new r0(v0Var3, 2));
                 return;
         }
     }

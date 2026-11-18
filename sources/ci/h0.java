@@ -1,32 +1,43 @@
 package ci;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class h0 extends ViewOutlineProvider {
-    public final int f5385a;
-    public final i0 f5386b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+public final class h0 extends s {
+    public final j0 N;
 
-    public h0(i0 i0Var, int i7) {
-        this.f5385a = i7;
-        this.f5386b = i0Var;
+    public h0(j0 j0Var, Activity activity, int i7, g0 g0Var) {
+        super(activity, i7, g0Var);
+        this.N = j0Var;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.f5385a) {
-            case 0:
-                float translationY = view.getTranslationY() + view.getTop();
-                float translationX = view.getTranslationX() + view.getLeft();
-                i0 i0Var = this.f5386b;
-                outline.setRoundRect(Math.round(i0Var.f5404n - translationX), Math.round(i0Var.f5409r - translationY), Math.round(i0Var.f5411s - translationX), Math.round(i0Var.f5413w - translationY), i0Var.f5414x);
-                return;
-            default:
-                int height = view.getHeight();
-                i0 i0Var2 = this.f5386b;
-                int i7 = i0Var2.f5392c0;
-                outline.setRoundRect(i0Var2.f5390b0, i7, view.getWidth() - i0Var2.f5390b0, view.getHeight() - i0Var2.f5393d0, ((height - i7) - i0Var2.f5393d0) / 2.0f);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        j0 j0Var = this.N;
+        float min = Math.min(getHeight(), j0Var.f5699w - (getTranslationY() + getTop()));
+        c cVar = j0Var.f5701y;
+        if (cVar != null) {
+            cVar.H = min;
         }
+        j0Var.L = min;
+        if (cVar != null) {
+            cVar.V = j0Var.f5697s - cVar.getLeft();
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        j0 j0Var = this.N;
+        z0 z0Var = j0Var.d;
+        if (z0Var != null && (z0Var.f5970m1 > 0.5f || z0Var.l1 > 0.5f)) {
+            if (motionEvent.getActionMasked() == 1) {
+                z0 z0Var2 = j0Var.d;
+                z0Var2.f5970m1 = 0.0f;
+                z0Var2.invalidate();
+            }
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

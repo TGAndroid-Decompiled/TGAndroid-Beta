@@ -1,11 +1,11 @@
 package hi;
 
-import org.telegram.messenger.gj;
-import org.telegram.messenger.xy;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.sy;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.m60;
+import org.telegram.ui.Components.ph;
+import org.telegram.ui.Components.y60;
 import org.telegram.ui.ls;
 public final class q1 implements ls {
     @Override
@@ -24,7 +24,7 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final m60 E(ai.k0 k0Var) {
+    public final y60 E(ai.k0 k0Var) {
         return null;
     }
 
@@ -119,8 +119,24 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final gj z() {
+    public final fj z() {
         return null;
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void s() {
     }
 
     @Override
@@ -140,7 +156,7 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final void i(xy xyVar) {
+    public final void i(sy syVar) {
     }
 
     @Override
@@ -164,22 +180,6 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
     }
 
@@ -192,7 +192,7 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final void y(CharSequence charSequence, String str, gh ghVar) {
+    public final void y(CharSequence charSequence, String str, ph phVar) {
     }
 
     @Override

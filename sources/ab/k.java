@@ -8,14 +8,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import java.util.concurrent.ExecutorService;
 public final class k {
-    public static final Object f958c = new Object();
+    public static final Object f957c = new Object();
     public static p0 d;
-    public final Object f959a;
-    public final Object f960b;
+    public final Object f958a;
+    public final Object f959b;
 
     public k(ExecutorService executorService) {
-        this.f960b = new a0.l(0);
-        this.f959a = executorService;
+        this.f959b = new a0.l(0);
+        this.f958a = executorService;
     }
 
     public static Task a(Context context, Intent intent, boolean z10) {
@@ -23,7 +23,7 @@ public final class k {
         if (Log.isLoggable("FirebaseMessaging", 3)) {
             Log.d("FirebaseMessaging", "Binding to service");
         }
-        synchronized (f958c) {
+        synchronized (f957c) {
             try {
                 if (d == null) {
                     d = new p0(context);
@@ -34,7 +34,7 @@ public final class k {
             }
         }
         if (z10) {
-            if (c0.q().w(context)) {
+            if (c0.s().y(context)) {
                 m0.c(context, p0Var, intent);
             } else {
                 p0Var.b(intent);
@@ -52,8 +52,8 @@ public final class k {
             intent.putExtra("rawData", Base64.decode(stringExtra, 0));
             intent.removeExtra("gcm.rawData64");
         }
-        Context context = (Context) this.f959a;
-        d3.b bVar = (d3.b) this.f960b;
+        Context context = (Context) this.f958a;
+        d3.b bVar = (d3.b) this.f959b;
         if (x6.b.d() && context.getApplicationInfo().targetSdkVersion >= 26) {
             z10 = true;
         } else {
@@ -69,12 +69,12 @@ public final class k {
     }
 
     public k(Context context) {
-        this.f959a = context;
-        this.f960b = new d3.b(3);
+        this.f958a = context;
+        this.f959b = new d3.b(3);
     }
 
     public k(e0.q qVar, String str) {
-        this.f959a = qVar;
-        this.f960b = str;
+        this.f958a = qVar;
+        this.f959b = str;
     }
 }

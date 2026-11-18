@@ -8,21 +8,21 @@ import android.content.pm.ResolveInfo;
 import android.util.Log;
 import java.util.List;
 public final class v {
-    public int f1001a;
-    public int f1002b;
-    public Object f1003c;
+    public int f1000a;
+    public int f1001b;
+    public Object f1002c;
     public Object d;
-    public Object f1004e;
+    public Object f1003e;
 
     public static String b(o9.g gVar) {
         gVar.a();
-        o9.i iVar = gVar.f21399c;
-        String str = iVar.f21412e;
+        o9.i iVar = gVar.f21765c;
+        String str = iVar.f21778e;
         if (str != null) {
             return str;
         }
         gVar.a();
-        String str2 = iVar.f21410b;
+        String str2 = iVar.f21776b;
         if (!str2.startsWith("1:")) {
             return str2;
         }
@@ -51,18 +51,18 @@ public final class v {
     public synchronized int c() {
         PackageInfo d;
         try {
-            if (this.f1001a == 0 && (d = d("com.google.android.gms")) != null) {
-                this.f1001a = d.versionCode;
+            if (this.f1000a == 0 && (d = d("com.google.android.gms")) != null) {
+                this.f1000a = d.versionCode;
             }
         } catch (Throwable th2) {
             throw th2;
         }
-        return this.f1001a;
+        return this.f1000a;
     }
 
     public PackageInfo d(String str) {
         try {
-            return ((Context) this.f1003c).getPackageManager().getPackageInfo(str, 0);
+            return ((Context) this.f1002c).getPackageManager().getPackageInfo(str, 0);
         } catch (PackageManager.NameNotFoundException e10) {
             Log.w("FirebaseMessaging", "Failed to find package " + e10);
             return null;
@@ -72,9 +72,9 @@ public final class v {
     public boolean e() {
         int i7;
         synchronized (this) {
-            i7 = this.f1002b;
+            i7 = this.f1001b;
             if (i7 == 0) {
-                PackageManager packageManager = ((Context) this.f1003c).getPackageManager();
+                PackageManager packageManager = ((Context) this.f1002c).getPackageManager();
                 if (packageManager.checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
                     Log.e("FirebaseMessaging", "Google Play services missing or without correct permission.");
                     i7 = 0;
@@ -84,7 +84,7 @@ public final class v {
                         intent.setPackage("com.google.android.gms");
                         List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
                         if (queryIntentServices != null && queryIntentServices.size() > 0) {
-                            this.f1002b = 1;
+                            this.f1001b = 1;
                             i7 = 1;
                         }
                     }
@@ -92,16 +92,16 @@ public final class v {
                     intent2.setPackage("com.google.android.gms");
                     List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
                     if (queryBroadcastReceivers != null && queryBroadcastReceivers.size() > 0) {
-                        this.f1002b = 2;
+                        this.f1001b = 2;
                         i7 = 2;
                     } else {
                         Log.w("FirebaseMessaging", "Failed to resolve IID implementation package, falling back");
                         if (x6.b.d()) {
-                            this.f1002b = 2;
+                            this.f1001b = 2;
                         } else {
-                            this.f1002b = 1;
+                            this.f1001b = 1;
                         }
-                        i7 = this.f1002b;
+                        i7 = this.f1001b;
                     }
                 }
             }
@@ -113,10 +113,10 @@ public final class v {
     }
 
     public synchronized void f() {
-        PackageInfo d = d(((Context) this.f1003c).getPackageName());
+        PackageInfo d = d(((Context) this.f1002c).getPackageName());
         if (d != null) {
             this.d = Integer.toString(d.versionCode);
-            this.f1004e = d.versionName;
+            this.f1003e = d.versionName;
         }
     }
 }

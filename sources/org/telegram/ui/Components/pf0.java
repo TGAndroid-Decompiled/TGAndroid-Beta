@@ -1,84 +1,32 @@
 package org.telegram.ui.Components;
+public enum pf0 {
+    MESSAGE(2131746538, 2131231154, 2131232496),
+    NOTIFICATION_MUTE(2131746492, 2131231155, 2131232497),
+    NOTIFICATION_UNMUTE(2131746491, 2131231161, 2131232502),
+    DISCUSS(2131746547, 2131231154, 2131232496),
+    GIFT(2131746542, 2131231216, 2131231504),
+    SHARE(2131746536, 2131230863, 2131232365),
+    CALL(2131746548, 2131231151, 2131232493),
+    VIDEO(2131746534, 2131231162, 2131232503),
+    JOIN(2131746541, 2131231153, 2131232495),
+    REPORT(2131746537, 2131232677, 2131232335),
+    LEAVE(2131746540, 2131231621, 2131231621),
+    VOICE_CHAT(2131746533, 2131231634, 2131231634),
+    STREAM(2131746539, 2131231634, 2131231634),
+    STORY(2131746549, 2131231160, 2131232501),
+    STOP(2131746535, 2131231159, 2131232500),
+    SET_PHOTO(2131746544, 2131231156, 2131232498),
+    EDIT_USERNAME(2131746543, 2131231152, 2131232494),
+    EDIT_INFO(2131746546, 2131231152, 2131232494),
+    SETTINGS(2131745300, 2131231158, 2131232499);
+    
+    public final int f38393a;
+    public final int f38394b;
+    public final int f38395c;
 
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class pf0 implements c5.h {
-    public final org.telegram.ui.yu0 f38295a;
-
-    public pf0(org.telegram.ui.yu0 yu0Var) {
-        this.f38295a = yu0Var;
-    }
-
-    @Override
-    public final void a(int i7) {
-        boolean z10;
-        org.telegram.ui.yu0 yu0Var = this.f38295a;
-        int i10 = yu0Var.f40406p1;
-        int i11 = 0;
-        if (i7 >= i10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i7 != i10) {
-            yu0Var.f40406p1 = i7;
-        }
-        org.telegram.messenger.vo voVar = yu0Var.T0;
-        if (voVar != null) {
-            uf0 uf0Var = yu0Var.E0;
-            if (uf0Var != null) {
-                i11 = uf0Var.j();
-            }
-            voVar.b(i7 - i11, z10);
-        }
-    }
-
-    @Override
-    public final void b(float f10, int i7, int i10) {
-        org.telegram.messenger.gc gcVar;
-        org.telegram.ui.yu0 yu0Var = this.f38295a;
-        yu0Var.B(f10, i7);
-        if (i10 == 0) {
-            int k10 = yu0Var.E0.k(i7);
-            yu0Var.getCurrentItemView();
-            int childCount = yu0Var.getChildCount();
-            for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = yu0Var.getChildAt(i11);
-                if (childAt instanceof i9) {
-                    uf0 uf0Var = yu0Var.E0;
-                    int k11 = uf0Var.k(uf0Var.d.indexOf(childAt));
-                    ImageReceiver imageReceiver = ((i9) childAt).getImageReceiver();
-                    boolean z10 = imageReceiver.f22301u0;
-                    if (k11 >= 0 && k11 < yu0Var.X0.size()) {
-                        if (k11 == k10) {
-                            if (!z10) {
-                                imageReceiver.f22301u0 = true;
-                                imageReceiver.P0(false);
-                            }
-                            org.telegram.messenger.gc gcVar2 = (org.telegram.messenger.gc) yu0Var.X0.get(k11);
-                            if (gcVar2 != null) {
-                                org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(yu0Var.M0);
-                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = gcVar2.f23717f;
-                                if (tL_fileLocationToBeDeprecated != null) {
-                                    org.telegram.messenger.w7.K.c(new org.telegram.messenger.x4(9, G, tL_fileLocationToBeDeprecated));
-                                }
-                            }
-                        } else if (z10) {
-                            t5 m10 = imageReceiver.m();
-                            if (m10 != null && (gcVar = (org.telegram.messenger.gc) yu0Var.X0.get(k11)) != null) {
-                                m10.y(gcVar.f23720j, false, true);
-                            }
-                            imageReceiver.f22301u0 = false;
-                            imageReceiver.Q0();
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void c(int i7) {
+    pf0(int i7, int i10, int i11) {
+        this.f38393a = i7;
+        this.f38394b = i10;
+        this.f38395c = i11;
     }
 }

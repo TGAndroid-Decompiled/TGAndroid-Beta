@@ -1,10 +1,19 @@
 package q2;
-public final class w {
-    public final byte[] f55202a;
-    public final x2.t f55203b;
 
-    public w(ji.j jVar) {
-        this.f55202a = (byte[]) jVar.f17555b;
-        this.f55203b = (x2.t) jVar.f17556c;
+import android.net.Uri;
+import java.io.IOException;
+import java.util.Map;
+public final class w extends IOException {
+    public final j2.m f55778a;
+    public final Uri f55779b;
+    public final Map f55780c;
+    public final long d;
+
+    public w(j2.m mVar, Uri uri, Map map, long j3, Exception exc) {
+        super(exc);
+        this.f55778a = mVar;
+        this.f55779b = uri;
+        this.f55780c = map;
+        this.d = j3;
     }
 }

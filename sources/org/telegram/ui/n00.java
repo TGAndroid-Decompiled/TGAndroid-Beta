@@ -1,7 +1,6 @@
 package org.telegram.ui;
-public final class n00 extends ug.r1 {
-    @Override
-    public final int b() {
-        return i0.a.o(org.telegram.ui.ActionBar.j6.F0(this.Q), 200);
-    }
+
+import android.widget.LinearLayout;
+public abstract class n00 extends LinearLayout {
+    public static final float f50047a = 1.0f;
 }

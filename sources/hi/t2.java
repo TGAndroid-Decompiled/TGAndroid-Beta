@@ -1,31 +1,336 @@
 package hi;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class t2 extends v4.t0 {
-    public final int f15142a;
-    public final d3 f15143b;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.text.TextUtils;
+import android.util.Property;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.gd;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.cn0;
+import org.telegram.ui.hf0;
+public final class t2 extends org.telegram.ui.ActionBar.n0 {
+    public final int f15407a;
+    public Object f15408b;
+    public final Object f15409c;
 
-    public t2(d3 d3Var, int i7) {
-        this.f15142a = i7;
-        this.f15143b = d3Var;
+    public t2(e3 e3Var) {
+        this.f15407a = 0;
+        this.f15409c = e3Var;
+    }
+
+    public static boolean n(String str, String str2) {
+        if (str != null && str2 != null) {
+            String lowerCase = str.toLowerCase();
+            String lowerCase2 = str2.toLowerCase();
+            if (!lowerCase.startsWith(lowerCase2) && !i5.c.B(" ", lowerCase2, lowerCase) && !i5.c.B(".", lowerCase2, lowerCase)) {
+                String M3 = org.telegram.messenger.g0.M3(lowerCase);
+                String M32 = org.telegram.messenger.g0.M3(lowerCase2);
+                if (M3.startsWith(M32) || M3.contains(" ".concat(M32)) || M3.contains(".".concat(M32))) {
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        org.telegram.ui.ActionBar.q0 q0Var;
-        switch (this.f15142a) {
+    public boolean b() {
+        switch (this.f15407a) {
+            case 1:
+                ((cn0) this.f15409c).finishFragment();
+                return false;
+            default:
+                return super.b();
+        }
+    }
+
+    @Override
+    public void h() {
+        int i7;
+        int i10 = this.f15407a;
+        Object obj = this.f15409c;
+        switch (i10) {
             case 0:
-                d3 d3Var = this.f15143b;
-                d3Var.getClass();
-                d3Var.invalidate();
+                e3 e3Var = (e3) obj;
+                di.b1 b1Var = e3Var.d;
+                v2 v2Var = e3Var.G;
+                AnimatorSet animatorSet = (AnimatorSet) this.f15408b;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                }
+                ArrayList arrayList = new ArrayList();
+                v2Var.setVisibility(0);
+                Property property = View.SCALE_X;
+                arrayList.add(ObjectAnimator.ofFloat(v2Var, property, 1.0f));
+                Property property2 = View.SCALE_Y;
+                arrayList.add(ObjectAnimator.ofFloat(v2Var, property2, 1.0f));
+                Property property3 = View.ALPHA;
+                arrayList.add(ObjectAnimator.ofFloat(v2Var, property3, 1.0f));
+                EditTextBoldCursor searchField = e3Var.H.getSearchField();
+                if (searchField != null) {
+                    arrayList.add(ObjectAnimator.ofFloat(searchField, property, 0.8f));
+                    arrayList.add(ObjectAnimator.ofFloat(searchField, property2, 0.8f));
+                    arrayList.add(ObjectAnimator.ofFloat(searchField, property3, 0.0f));
+                }
+                b1Var.setVisibility(0);
+                arrayList.add(ObjectAnimator.ofFloat(b1Var, property3, 1.0f));
+                b1Var.setFastScrollVisible(true);
+                arrayList.add(ObjectAnimator.ofFloat(e3Var.h, property3, 0.0f));
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                ofFloat.addUpdateListener(new s2(this, 1));
+                arrayList.add(ofFloat);
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.f15408b = animatorSet2;
+                animatorSet2.setDuration(320L);
+                ((AnimatorSet) this.f15408b).setInterpolator(lr.h);
+                ((AnimatorSet) this.f15408b).playTogether(arrayList);
+                ((AnimatorSet) this.f15408b).addListener(new ah.l(4, this, searchField));
+                ((AnimatorSet) this.f15408b).start();
+                return;
+            case 1:
+            default:
+                return;
+            case 2:
+                org.telegram.ui.web.m mVar = (org.telegram.ui.web.m) obj;
+                mVar.f53239w = null;
+                org.telegram.messenger.g0.r((oi.a2) this.f15408b);
+                org.telegram.ui.web.i iVar = mVar.f53235f;
+                if (iVar != null) {
+                    iVar.c();
+                    mVar.f53235f = null;
+                }
+                bi.d6 d6Var = mVar.f33530a;
+                if (d6Var != null) {
+                    d6Var.f34607g3.O(true);
+                    mVar.f33530a.f34606f3.h1(0, 0);
+                    return;
+                }
+                return;
+            case 3:
+                org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) obj;
+                x0Var.f53400r = null;
+                x0Var.f53399n = false;
+                org.telegram.messenger.g0.r((oi.a2) this.f15408b);
+                bi.d6 d6Var2 = x0Var.f33530a;
+                if (d6Var2 != null) {
+                    d6Var2.f34607g3.O(true);
+                    x0Var.f33530a.f34606f3.h1(0, 0);
+                }
+                xh.l lVar = x0Var.f53404y.d;
+                if (TextUtils.isEmpty(x0Var.f53400r)) {
+                    i7 = 2131742660;
+                } else {
+                    i7 = 2131742659;
+                }
+                lVar.setText(gd.M0(i7, null));
+                return;
+        }
+    }
+
+    @Override
+    public final void i() {
+        switch (this.f15407a) {
+            case 0:
+                e3 e3Var = (e3) this.f15409c;
+                di.b1 b1Var = e3Var.d;
+                FrameLayout frameLayout = e3Var.h;
+                v2 v2Var = e3Var.G;
+                AnimatorSet animatorSet = (AnimatorSet) this.f15408b;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                }
+                ArrayList arrayList = new ArrayList();
+                Property property = View.SCALE_X;
+                arrayList.add(ObjectAnimator.ofFloat(v2Var, property, 0.8f));
+                Property property2 = View.SCALE_Y;
+                arrayList.add(ObjectAnimator.ofFloat(v2Var, property2, 0.8f));
+                Property property3 = View.ALPHA;
+                arrayList.add(ObjectAnimator.ofFloat(v2Var, property3, 0.0f));
+                EditTextBoldCursor searchField = e3Var.H.getSearchField();
+                if (searchField != null) {
+                    searchField.setVisibility(0);
+                    searchField.setHandlesColor(-1);
+                    arrayList.add(ObjectAnimator.ofFloat(searchField, property, 1.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(searchField, property2, 1.0f));
+                    arrayList.add(ObjectAnimator.ofFloat(searchField, property3, 1.0f));
+                }
+                frameLayout.setVisibility(0);
+                arrayList.add(ObjectAnimator.ofFloat(b1Var, property3, 0.0f));
+                b1Var.setFastScrollVisible(false);
+                arrayList.add(ObjectAnimator.ofFloat(frameLayout, property3, 1.0f));
+                e3Var.f14553s.setVisibility(0);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                ofFloat.addUpdateListener(new s2(this, 0));
+                arrayList.add(ofFloat);
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.f15408b = animatorSet2;
+                animatorSet2.setDuration(320L);
+                ((AnimatorSet) this.f15408b).setInterpolator(lr.h);
+                ((AnimatorSet) this.f15408b).playTogether(arrayList);
+                ((AnimatorSet) this.f15408b).addListener(new ai.j0(this, 20));
+                ((AnimatorSet) this.f15408b).start();
+                return;
+            case 1:
+            case 2:
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void k(EditTextBoldCursor editTextBoldCursor) {
+        switch (this.f15407a) {
+            case 1:
+                ((cn0) this.f15409c).g0(editTextBoldCursor);
                 return;
             default:
-                d3 d3Var2 = this.f15143b;
-                if (d3Var2.f14114n.J1 && (q0Var = d3Var2.H) != null && q0Var.getSearchField() != null) {
-                    org.telegram.messenger.g0.v1(d3Var2.H.getSearchContainer());
+                return;
+        }
+    }
+
+    @Override
+    public final void l(EditText editText) {
+        int i7;
+        int i10;
+        int i11 = this.f15407a;
+        Object obj = this.f15409c;
+        switch (i11) {
+            case 0:
+                String obj2 = editText.getText().toString();
+                w2 w2Var = ((e3) obj).f14552r;
+                k kVar = w2Var.f14378w;
+                if (!TextUtils.equals(w2Var.f14374f, obj2)) {
+                    if (w2Var.f14373e != -1) {
+                        ConnectionsManager.getInstance(w2Var.f14379x.f14536a).cancelRequest(w2Var.f14373e, true);
+                        w2Var.f14373e = -1;
+                    }
+                    w2Var.d = false;
+                    w2Var.h = null;
+                }
+                w2Var.f14374f = obj2;
+                org.telegram.messenger.g0.r(kVar);
+                if (TextUtils.isEmpty(obj2)) {
+                    w2Var.f14372c.clear();
+                    w2Var.F(false);
+                    w2Var.f();
+                    return;
+                }
+                w2Var.F(true);
+                org.telegram.messenger.g0.h3(kVar, 1500L);
+                return;
+            case 1:
+                hf0 hf0Var = (hf0) this.f15408b;
+                cn0 cn0Var = (cn0) obj;
+                if (editText.getText().length() == 0) {
+                    cn0Var.f46566f.clear();
+                    cn0Var.h.clear();
+                    cn0Var.f46586w = null;
+                    cn0Var.f46581s = true;
+                    cn0Var.f46579r = false;
+                    if (cn0Var.f46590y != 0) {
+                        ConnectionsManager.getInstance(cn0.b0(cn0Var)).cancelRequest(cn0Var.f46590y, true);
+                        cn0Var.f46590y = 0;
+                    }
+                    cn0Var.O.d.setText(gd.M0(2131747977, null));
+                    cn0Var.O.e(false, true);
+                    cn0Var.o0();
+                    return;
+                }
+                org.telegram.messenger.g0.r(hf0Var);
+                org.telegram.messenger.g0.h3(hf0Var, 1200L);
+                return;
+            case 2:
+                org.telegram.ui.web.m mVar = (org.telegram.ui.web.m) obj;
+                boolean z10 = !TextUtils.isEmpty(mVar.f53239w);
+                String obj3 = editText.getText().toString();
+                if (!TextUtils.equals(mVar.f53239w, obj3)) {
+                    mVar.f53239w = obj3;
+                    org.telegram.ui.web.i iVar = mVar.f53235f;
+                    if (iVar != null) {
+                        iVar.c();
+                    }
+                    i7 = ((org.telegram.ui.ActionBar.h2) mVar).currentAccount;
+                    org.telegram.ui.web.i iVar2 = new org.telegram.ui.web.i(obj3, i7, new org.telegram.ui.web.l(mVar, 1));
+                    mVar.f53235f = iVar2;
+                    iVar2.a();
+                    oi.a2 a2Var = (oi.a2) this.f15408b;
+                    org.telegram.messenger.g0.r(a2Var);
+                    org.telegram.messenger.g0.h3(a2Var, 500L);
+                }
+                bi.d6 d6Var = mVar.f33530a;
+                if (d6Var != null) {
+                    d6Var.f34607g3.O(true);
+                    if (z10 != (!TextUtils.isEmpty(obj3))) {
+                        mVar.f33530a.f34606f3.h1(0, 0);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) obj;
+                boolean z11 = !TextUtils.isEmpty(x0Var.f53400r);
+                String obj4 = editText.getText().toString();
+                if (!TextUtils.equals(x0Var.f53400r, obj4)) {
+                    x0Var.f53400r = obj4;
+                    x0Var.f53399n = true;
+                    oi.a2 a2Var2 = (oi.a2) this.f15408b;
+                    org.telegram.messenger.g0.r(a2Var2);
+                    org.telegram.messenger.g0.h3(a2Var2, 500L);
+                    xh.l lVar = x0Var.f53404y.d;
+                    if (TextUtils.isEmpty(obj4)) {
+                        i10 = 2131742660;
+                    } else {
+                        i10 = 2131742659;
+                    }
+                    lVar.setText(gd.M0(i10, null));
+                }
+                bi.d6 d6Var2 = x0Var.f33530a;
+                if (d6Var2 != null) {
+                    d6Var2.f34607g3.O(true);
+                    if (z11 != (!TextUtils.isEmpty(obj4))) {
+                        x0Var.f33530a.f34606f3.h1(0, 0);
+                        return;
+                    }
                     return;
                 }
                 return;
         }
+    }
+
+    public t2(cn0 cn0Var) {
+        this.f15407a = 1;
+        this.f15409c = cn0Var;
+        this.f15408b = new hf0(this, 15);
+    }
+
+    public t2(org.telegram.ui.web.m mVar) {
+        this.f15407a = 2;
+        this.f15409c = mVar;
+        this.f15408b = new oi.a2(this, 26);
+    }
+
+    public t2(org.telegram.ui.web.x0 x0Var) {
+        this.f15407a = 3;
+        this.f15409c = x0Var;
+        this.f15408b = new oi.a2(this, 29);
+    }
+
+    private final void o() {
+    }
+
+    private final void p() {
+    }
+
+    private final void q() {
     }
 }

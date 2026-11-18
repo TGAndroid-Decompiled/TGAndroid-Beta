@@ -1,60 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class tq0 extends g.p {
-    public final int f39780c;
-    public final Object d;
-    public final ViewGroup f39781e;
+import android.graphics.Point;
+public final class tq0 implements rj0 {
+    public final iq0 f40085a;
+    public final gt0 f40086b;
 
-    public tq0(ViewGroup viewGroup, Object obj, int i7) {
-        this.f39780c = i7;
-        this.f39781e = viewGroup;
-        this.d = obj;
+    public tq0(gt0 gt0Var, iq0 iq0Var) {
+        this.f40086b = gt0Var;
+        this.f40085a = iq0Var;
     }
 
     @Override
-    public final int i(int i7) {
-        int i10;
-        int i11;
-        switch (this.f39780c) {
-            case 0:
-                tr0 tr0Var = (tr0) this.d;
-                v4.h0 adapter = tr0Var.f39792n.getAdapter();
-                ys0 ys0Var = (ys0) this.f39781e;
-                ss0 ss0Var = ys0Var.L;
-                if (adapter == ss0Var) {
-                    if (ss0Var.d(i7) != 2) {
-                        return 1;
-                    }
-                    return tr0Var.f39793r.J;
-                } else if (ys0.y(ys0Var, adapter) == -1) {
-                    return 1;
-                } else {
-                    ((vs0) adapter).getClass();
-                    return 1;
-                }
-            case 1:
-                s41 s41Var = (s41) this.d;
-                p41 p41Var = ((u41) this.f39781e).f39892g3;
-                if (p41Var == null) {
-                    return s41Var.J;
-                }
-                b41 G = p41Var.G(i7);
-                if (G == null || (i10 = G.f33193u) == -1) {
-                    return s41Var.J;
-                }
-                return i10;
-            default:
-                s41 s41Var2 = (s41) this.d;
-                p41 p41Var2 = ((u41) this.f39781e).f39892g3;
-                if (p41Var2 == null) {
-                    return s41Var2.J;
-                }
-                b41 G2 = p41Var2.G(i7);
-                if (G2 == null || (i11 = G2.f33193u) == -1) {
-                    return s41Var2.J;
-                }
-                return i11;
+    public final boolean mo23f(float r18, float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.tq0.mo23f(float, float, int, android.view.View):boolean");
+    }
+
+    @Override
+    public final void j() {
+        org.telegram.ui.ActionBar.h2 h2Var = this.f40086b.f35642y1;
+        if (h2Var != null) {
+            Point point = org.telegram.messenger.g0.f24121q;
+            if (point.x > point.y) {
+                h2Var.finishPreviewFragment();
+            }
+        }
+    }
+
+    @Override
+    public final void r(float f10) {
+        org.telegram.ui.ActionBar.h2 h2Var = this.f40086b.f35642y1;
+        if (h2Var != null) {
+            Point point = org.telegram.messenger.g0.f24121q;
+            if (point.x > point.y) {
+                h2Var.movePreviewFragment(f10);
+            }
         }
     }
 }

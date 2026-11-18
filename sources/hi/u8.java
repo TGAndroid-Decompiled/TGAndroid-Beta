@@ -12,111 +12,111 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.np;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.ke0;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.mp;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.ue0;
 public final class u8 implements View.OnClickListener {
-    public final int f15197a;
-    public final sa f15198b;
+    public final int f15547a;
+    public final ta f15548b;
 
-    public u8(sa saVar, int i7) {
-        this.f15197a = i7;
-        this.f15198b = saVar;
+    public u8(ta taVar, int i7) {
+        this.f15547a = i7;
+        this.f15548b = taVar;
     }
 
     @Override
     public final void onClick(View view) {
         long j3;
-        er erVar;
+        lr lrVar;
         boolean z10;
         int i7;
         String M0;
         int i10;
         int i11;
-        y yVar;
-        int i12 = this.f15197a;
+        z zVar;
+        int i12 = this.f15547a;
         boolean z11 = false;
-        sa saVar = this.f15198b;
+        ta taVar = this.f15548b;
         switch (i12) {
             case 0:
-                sa saVar2 = this.f15198b;
-                if (saVar2.L1 != null && saVar2.D2 == null && saVar2.f15067j1 != null) {
-                    ValueAnimator valueAnimator = saVar2.F2;
+                ta taVar2 = this.f15548b;
+                if (taVar2.L1 != null && taVar2.D2 == null && taVar2.f15455j1 != null) {
+                    ValueAnimator valueAnimator = taVar2.F2;
                     if (valueAnimator == null || !valueAnimator.isRunning()) {
-                        boolean z12 = saVar2.L1.f14173y0;
-                        Bitmap createBitmap = Bitmap.createBitmap(saVar2.f15076n.getWidth(), saVar2.f15076n.getHeight(), Bitmap.Config.ARGB_8888);
+                        boolean z12 = taVar2.L1.f14438y0;
+                        Bitmap createBitmap = Bitmap.createBitmap(taVar2.f15464n.getWidth(), taVar2.f15464n.getHeight(), Bitmap.Config.ARGB_8888);
                         Canvas canvas = new Canvas(createBitmap);
-                        saVar2.f15067j1.setAlpha(0.0f);
-                        ga gaVar = saVar2.Y0;
-                        if (gaVar != null) {
-                            gaVar.f15350h0 = true;
+                        taVar2.f15455j1.setAlpha(0.0f);
+                        ha haVar = taVar2.Y0;
+                        if (haVar != null) {
+                            haVar.f15658h0 = true;
                         }
-                        u9 u9Var = saVar2.f15107w1;
-                        if (u9Var != null) {
-                            u9Var.f14688s0 = true;
+                        v9 v9Var = taVar2.f15495w1;
+                        if (v9Var != null) {
+                            v9Var.f14927s0 = true;
                         }
-                        saVar2.f15076n.draw(canvas);
-                        ga gaVar2 = saVar2.Y0;
-                        if (gaVar2 != null) {
-                            gaVar2.f15350h0 = false;
+                        taVar2.f15464n.draw(canvas);
+                        ha haVar2 = taVar2.Y0;
+                        if (haVar2 != null) {
+                            haVar2.f15658h0 = false;
                         }
-                        u9 u9Var2 = saVar2.f15107w1;
-                        if (u9Var2 != null) {
-                            u9Var2.f14688s0 = false;
+                        v9 v9Var2 = taVar2.f15495w1;
+                        if (v9Var2 != null) {
+                            v9Var2.f14927s0 = false;
                         }
-                        saVar2.f15067j1.setAlpha(1.0f);
+                        taVar2.f15455j1.setAlpha(1.0f);
                         Paint paint = new Paint(1);
                         paint.setColor(-16777216);
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                         Paint paint2 = new Paint(1);
                         paint2.setFilterBitmap(true);
                         int[] iArr = new int[2];
-                        saVar2.f15067j1.getLocationInWindow(iArr);
+                        taVar2.f15455j1.getLocationInWindow(iArr);
                         float f10 = iArr[0];
                         float f11 = iArr[1];
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         paint2.setShader(new BitmapShader(createBitmap, tileMode, tileMode));
-                        aa aaVar = new aa(saVar2, saVar2.f15039b, z12, canvas, (saVar2.f15067j1.getMeasuredWidth() / 2.0f) + f10, (saVar2.f15067j1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f23606n, paint, createBitmap, paint2, f10, f11);
-                        saVar2.D2 = aaVar;
-                        aaVar.setOnTouchListener(new gi.a(2));
-                        saVar2.E2 = 0.0f;
+                        ba baVar = new ba(taVar2, taVar2.f15427b, z12, canvas, (taVar2.f15455j1.getMeasuredWidth() / 2.0f) + f10, (taVar2.f15455j1.getMeasuredHeight() / 2.0f) + f11, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + org.telegram.messenger.g0.f24116n, paint, createBitmap, paint2, f10, f11);
+                        taVar2.D2 = baVar;
+                        baVar.setOnTouchListener(new gi.a(2));
+                        taVar2.E2 = 0.0f;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        saVar2.F2 = ofFloat;
-                        ofFloat.addUpdateListener(new ba(saVar2, 0));
-                        saVar2.F2.addListener(new s9(saVar2, 2));
-                        saVar2.F2.setStartDelay(80L);
-                        ValueAnimator valueAnimator2 = saVar2.F2;
+                        taVar2.F2 = ofFloat;
+                        ofFloat.addUpdateListener(new ca(taVar2, 0));
+                        taVar2.F2.addListener(new t9(taVar2, 2));
+                        taVar2.F2.setStartDelay(80L);
+                        ValueAnimator valueAnimator2 = taVar2.F2;
                         if (z12) {
                             j3 = 320;
                         } else {
                             j3 = 450;
                         }
                         valueAnimator2.setDuration(j3);
-                        ValueAnimator valueAnimator3 = saVar2.F2;
+                        ValueAnimator valueAnimator3 = taVar2.F2;
                         if (z12) {
-                            erVar = er.f34421i;
+                            lrVar = lr.f37210i;
                         } else {
-                            erVar = er.h;
+                            lrVar = lr.h;
                         }
-                        valueAnimator3.setInterpolator(erVar);
-                        saVar2.F2.start();
-                        saVar2.f15076n.addView(saVar2.D2, new ViewGroup.LayoutParams(-1, -1));
-                        org.telegram.messenger.g0.h3(new s8(saVar2, 4));
+                        valueAnimator3.setInterpolator(lrVar);
+                        taVar2.F2.start();
+                        taVar2.f15464n.addView(taVar2.D2, new ViewGroup.LayoutParams(-1, -1));
+                        org.telegram.messenger.g0.g3(new s8(taVar2, 4));
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                if (!saVar.T1) {
-                    saVar.L();
+                if (!taVar.T1) {
+                    taVar.L();
                     return;
                 }
                 return;
             case 2:
-                d7 d7Var = saVar.L1;
-                if (d7Var != null && !saVar.T1) {
+                d7 d7Var = taVar.L1;
+                if (d7Var != null && !taVar.T1) {
                     d7Var.Y = !d7Var.Y;
                     ArrayList arrayList = d7Var.T;
                     if (arrayList != null) {
@@ -125,188 +125,188 @@ public final class u8 implements View.OnClickListener {
                         while (i13 < size) {
                             Object obj = arrayList.get(i13);
                             i13++;
-                            ((d7) obj).Y = saVar.L1.Y;
+                            ((d7) obj).Y = taVar.L1.Y;
                         }
                     }
-                    boolean isEmpty = TextUtils.isEmpty(saVar.L1.f14172y);
-                    d7 d7Var2 = saVar.L1;
-                    if (d7Var2.f14154o0 != null) {
+                    boolean isEmpty = TextUtils.isEmpty(taVar.L1.f14437y);
+                    d7 d7Var2 = taVar.L1;
+                    if (d7Var2.f14419o0 != null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (saVar.f15060h0 == -1) {
-                        l3 l3Var = saVar.l1;
+                    if (taVar.f15448h0 == -1) {
+                        m3 m3Var = taVar.l1;
                         if (d7Var2.Y) {
                             if (isEmpty && !z10) {
-                                i10 = 2131744460;
+                                i10 = 2131744225;
                             } else {
-                                i10 = 2131744592;
+                                i10 = 2131744357;
                             }
-                            M0 = hd.M0(i10, null);
+                            M0 = gd.M0(i10, null);
                         } else {
                             if (isEmpty && !z10) {
-                                i7 = 2131744459;
+                                i7 = 2131744224;
                             } else {
-                                i7 = 2131744591;
+                                i7 = 2131744356;
                             }
-                            M0 = hd.M0(i7, null);
+                            M0 = gd.M0(i7, null);
                         }
-                        boolean z13 = saVar.l1.W;
-                        if (l3Var.getMeasuredWidth() < 0) {
-                            l3Var.H = M0;
+                        boolean z13 = taVar.l1.W;
+                        if (m3Var.getMeasuredWidth() < 0) {
+                            m3Var.H = M0;
                         } else {
-                            org.telegram.ui.Components.g6 g6Var = l3Var.I;
-                            if (!hd.f24104a0 && z13) {
+                            org.telegram.ui.Components.m6 m6Var = m3Var.I;
+                            if (!gd.f24216a0 && z13) {
                                 z11 = true;
                             }
-                            g6Var.t(M0, z11, true);
+                            m6Var.t(M0, z11, true);
                         }
-                        saVar.l1.w();
+                        taVar.l1.x();
                     }
-                    saVar.e0(saVar.L1.Y, true);
-                    saVar.Y0.c();
+                    taVar.e0(taVar.L1.Y, true);
+                    taVar.Y0.c();
                     return;
                 }
                 return;
             case 3:
-                boolean k10 = saVar.Y0.k();
-                saVar.Y0.x(-9982, k10);
-                ((ke0) saVar.f15070k1.f14762c).a(!k10, true);
+                boolean k10 = taVar.Y0.k();
+                taVar.Y0.x(-9982, k10);
+                ((ue0) taVar.f15458k1.f15032c).a(!k10, true);
                 return;
             case 4:
-                if (saVar.C0 != null && !saVar.T1) {
-                    String B = saVar.B();
-                    String E = saVar.E();
+                if (taVar.C0 != null && !taVar.T1) {
+                    String B = taVar.B();
+                    String E = taVar.E();
                     if (B != null && !B.equals(E)) {
-                        v9 v9Var = saVar.C0;
-                        if (v9Var != null && v9Var.getCameraSession() != null) {
-                            if (saVar.C0.isFrontface() && !saVar.C0.getCameraSession().hasFlashModes()) {
-                                int indexOf = saVar.f15104v2.indexOf(E);
+                        w9 w9Var = taVar.C0;
+                        if (w9Var != null && w9Var.getCameraSession() != null) {
+                            if (taVar.C0.isFrontface() && !taVar.C0.getCameraSession().hasFlashModes()) {
+                                int indexOf = taVar.f15492v2.indexOf(E);
                                 if (indexOf >= 0) {
-                                    saVar.f15101u2 = indexOf;
-                                    np.e1().edit().putInt("frontflash", saVar.f15101u2).apply();
+                                    taVar.f15489u2 = indexOf;
+                                    mp.g1().edit().putInt("frontflash", taVar.f15489u2).apply();
                                 }
                             } else {
-                                saVar.C0.getCameraSession().setCurrentFlashMode(E);
+                                taVar.C0.getCameraSession().setCurrentFlashMode(E);
                             }
                         }
-                        saVar.d0(E);
+                        taVar.d0(E);
                         return;
                     }
                     return;
                 }
                 return;
             case 5:
-                v9 v9Var2 = saVar.C0;
-                if (v9Var2 != null && saVar.f15057g0 == 0) {
-                    v9Var2.toggleDual();
-                    saVar.G0.setValue(saVar.C0.isDual());
-                    eb ebVar = saVar.G0;
-                    if (saVar.C0.isDual()) {
+                w9 w9Var2 = taVar.C0;
+                if (w9Var2 != null && taVar.f15445g0 == 0) {
+                    w9Var2.toggleDual();
+                    taVar.G0.setValue(taVar.C0.isDual());
+                    fb fbVar = taVar.G0;
+                    if (taVar.C0.isDual()) {
                         i11 = 2131754886;
                     } else {
                         i11 = 2131754887;
                     }
-                    ebVar.setContentDescription(hd.M0(i11, null));
-                    saVar.f15074m1.f(true);
-                    np.e1().edit().putInt("storydualhint", 2).apply();
-                    if (saVar.n1.W) {
-                        np.e1().edit().putInt("storysvddualhint", 2).apply();
+                    fbVar.setContentDescription(gd.M0(i11, null));
+                    taVar.f15462m1.f(true);
+                    mp.g1().edit().putInt("storydualhint", 2).apply();
+                    if (taVar.n1.W) {
+                        mp.g1().edit().putInt("storysvddualhint", 2).apply();
                     }
-                    saVar.n1.f(true);
+                    taVar.n1.f(true);
                     return;
                 }
                 return;
             case 6:
-                if (saVar.f15057g0 == 0 && !saVar.f15042b2) {
-                    v9 v9Var3 = saVar.C0;
-                    if (v9Var3 != null && v9Var3.isDual()) {
-                        saVar.C0.toggleDual();
+                if (taVar.f15445g0 == 0 && !taVar.f15430b2) {
+                    w9 w9Var3 = taVar.C0;
+                    if (w9Var3 != null && w9Var3.isDual()) {
+                        taVar.C0.toggleDual();
                     }
-                    if (!saVar.J0.f15403e && !saVar.B0.j()) {
-                        saVar.B0.o(saVar.A0);
-                        saVar.J0.setSelected(saVar.A0);
-                        saVar.H0.a(new u(saVar.A0, false), true);
-                        saVar.H0.setSelected(true);
-                        v9 v9Var4 = saVar.C0;
-                        if (v9Var4 != null) {
-                            v9Var4.recordHevc = !saVar.B0.j();
+                    if (!taVar.J0.f15797e && !taVar.B0.j()) {
+                        taVar.B0.o(taVar.A0);
+                        taVar.J0.setSelected(taVar.A0);
+                        taVar.H0.a(new v(taVar.A0, false), true);
+                        taVar.H0.setSelected(true);
+                        w9 w9Var4 = taVar.C0;
+                        if (w9Var4 != null) {
+                            w9Var4.recordHevc = !taVar.B0.j();
                         }
-                        g3 g3Var = saVar.N0;
-                        if (g3Var != null) {
-                            g3Var.setMultipleOnClick(saVar.B0.j());
-                            saVar.N0.setMaxCount(Math.min(10, t.b() - saVar.B0.getFilledCount()));
+                        h3 h3Var = taVar.N0;
+                        if (h3Var != null) {
+                            h3Var.setMultipleOnClick(taVar.B0.j());
+                            taVar.N0.setMaxCount(Math.min(10, u.b() - taVar.B0.getFilledCount()));
                         }
                     }
-                    saVar.J0.a(!yVar.f15403e, true);
-                    saVar.l0(true);
+                    taVar.J0.a(!zVar.f15797e, true);
+                    taVar.l0(true);
                     return;
                 }
                 return;
             case 7:
-                saVar.B0.o(null);
-                saVar.B0.c();
-                saVar.J0.setSelected((t) null);
-                v9 v9Var5 = saVar.C0;
-                if (v9Var5 != null) {
-                    v9Var5.recordHevc = !saVar.B0.j();
+                taVar.B0.o(null);
+                taVar.B0.c();
+                taVar.J0.setSelected((u) null);
+                w9 w9Var5 = taVar.C0;
+                if (w9Var5 != null) {
+                    w9Var5.recordHevc = !taVar.B0.j();
                 }
-                saVar.J0.a(false, true);
-                saVar.l0(true);
-                g3 g3Var2 = saVar.N0;
-                if (g3Var2 != null) {
-                    g3Var2.setMultipleOnClick(saVar.B0.j());
-                    saVar.N0.setMaxCount(Math.min(10, t.b() - saVar.B0.getFilledCount()));
+                taVar.J0.a(false, true);
+                taVar.l0(true);
+                h3 h3Var2 = taVar.N0;
+                if (h3Var2 != null) {
+                    h3Var2.setMultipleOnClick(taVar.B0.j());
+                    taVar.N0.setMaxCount(Math.min(10, u.b() - taVar.B0.getFilledCount()));
                     return;
                 }
                 return;
             case 8:
-                saVar.j0();
+                taVar.j0();
                 return;
             case 9:
-                v9 v9Var6 = saVar.C0;
-                if (v9Var6 != null && !saVar.T1 && !saVar.Q1 && v9Var6.isInited() && saVar.f15057g0 == 0) {
-                    saVar.C0.switchCamera();
-                    saVar.P0.d(180.0f);
-                    sa.Z(saVar.C0.isFrontface());
-                    if (saVar.p0()) {
-                        saVar.f15092s.c(null);
+                w9 w9Var6 = taVar.C0;
+                if (w9Var6 != null && !taVar.T1 && !taVar.Q1 && w9Var6.isInited() && taVar.f15445g0 == 0) {
+                    taVar.C0.switchCamera();
+                    taVar.P0.d(180.0f);
+                    ta.Z(taVar.C0.isFrontface());
+                    if (taVar.p0()) {
+                        taVar.f15480s.c(null);
                         return;
                     } else {
-                        saVar.f15092s.d();
+                        taVar.f15480s.d();
                         return;
                     }
                 }
                 return;
             case 10:
-                saVar.j0();
+                taVar.j0();
                 return;
             case 11:
-                d7 d7Var3 = saVar.L1;
+                d7 d7Var3 = taVar.L1;
                 if (d7Var3 != null) {
-                    d7Var3.f14138f0 = true;
-                    d7Var3.f14135e0 = saVar.N1;
-                    saVar.W();
-                    d7 d7Var4 = saVar.L1;
-                    if (d7Var4 != null && !d7Var4.f14127b0) {
-                        org.telegram.messenger.g0.i3(new s8(saVar, 24), 400L);
+                    d7Var3.f14403f0 = true;
+                    d7Var3.f14400e0 = taVar.N1;
+                    taVar.W();
+                    d7 d7Var4 = taVar.L1;
+                    if (d7Var4 != null && !d7Var4.f14392b0) {
+                        org.telegram.messenger.g0.h3(new s8(taVar, 24), 400L);
                         return;
                     }
                     return;
                 }
                 return;
             case 12:
-                if (saVar.f15098t2) {
-                    saVar.Y(true);
+                if (taVar.f15486t2) {
+                    taVar.Y(true);
                     return;
                 }
                 return;
             case 13:
-                saVar.k0(-1, false, true);
+                taVar.k0(-1, false, true);
                 return;
             default:
-                saVar.k0(-1, false, true);
+                taVar.k0(-1, false, true);
                 return;
         }
     }

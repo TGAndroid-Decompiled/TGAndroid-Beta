@@ -1,31 +1,34 @@
 package org.telegram.ui.Components;
-public final class e21 implements Runnable {
-    public final int f34157a;
-    public final org.telegram.messenger.s10 f34158b;
-    public final String f34159c;
 
-    public e21(String str, int i7, org.telegram.messenger.s10 s10Var) {
-        this.f34157a = i7;
-        this.f34158b = s10Var;
-        this.f34159c = str;
+import java.io.File;
+public final class e21 implements org.telegram.messenger.fs {
+    public final String f34585a;
+    public final org.telegram.messenger.ks f34586b;
+    public final org.telegram.messenger.fj f34587c;
+
+    public e21(String str, org.telegram.messenger.ks ksVar, org.telegram.messenger.fj fjVar) {
+        this.f34585a = str;
+        this.f34586b = ksVar;
+        this.f34587c = fjVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34157a) {
-            case 0:
-                org.telegram.messenger.s10 s10Var = this.f34158b;
-                if (s10Var != null) {
-                    s10Var.a(this.f34159c, Boolean.FALSE);
-                    return;
-                }
-                return;
-            case 1:
-                this.f34158b.a(null, this.f34159c);
-                return;
-            default:
-                this.f34158b.a(null, this.f34159c);
-                return;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (!this.f34585a.equals(objArr[0])) {
+            return;
         }
+        org.telegram.messenger.ks ksVar = this.f34586b;
+        int i11 = org.telegram.messenger.ks.Y1;
+        ksVar.n(this, i11);
+        ksVar.n(this, org.telegram.messenger.ks.Z1);
+        org.telegram.messenger.fj fjVar = this.f34587c;
+        if (i7 == i11 && objArr.length > 1) {
+            Object obj = objArr[1];
+            if (obj instanceof File) {
+                g21.w(fjVar, ((File) obj).getAbsolutePath());
+                return;
+            }
+        }
+        g21.m(fjVar);
     }
 }

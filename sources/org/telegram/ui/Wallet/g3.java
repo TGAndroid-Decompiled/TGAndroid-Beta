@@ -1,51 +1,41 @@
 package org.telegram.ui.Wallet;
 
-import android.app.Activity;
-import android.view.View;
-public final class g3 implements View.OnClickListener {
-    public final int f43870a;
-    public final Object f43871b;
+import org.telegram.messenger.q10;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.y10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.oa1;
+public final class g3 implements oa1 {
+    public final int f44252a;
+    public final int f44253b;
+    public final y10 f44254c;
+    public final q10 d;
+    public final m3 f44255e;
+    public final s10 f44256f;
+    public final boolean h;
+    public final boolean f44257n;
+    public final m.b3 f44258r;
 
-    public g3(Object obj, int i7) {
-        this.f43870a = i7;
-        this.f43871b = obj;
+    public g3(int i7, y10 y10Var, q10 q10Var, m3 m3Var, s10 s10Var, boolean z10, boolean z11, m.b3 b3Var, int i10) {
+        this.f44252a = i10;
+        this.f44253b = i7;
+        this.f44254c = y10Var;
+        this.d = q10Var;
+        this.f44255e = m3Var;
+        this.f44256f = s10Var;
+        this.h = z10;
+        this.f44257n = z11;
+        this.f44258r = b3Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f43870a) {
+    public final void k(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
+        switch (this.f44252a) {
             case 0:
-                ((o3) this.f43871b).dismiss();
-                return;
-            case 1:
-                vf.c.v((Activity) this.f43871b, "https://fragment.com/", false);
-                return;
-            case 2:
-                ((w4) this.f43871b).dismiss();
-                return;
-            case 3:
-                ((Runnable) this.f43871b).run();
-                return;
-            case 4:
-                w6 w6Var = (w6) this.f43871b;
-                if (!w6Var.f44654y && w6Var.f44650r && !w6Var.h.b()) {
-                    w6Var.h.setProgress(0.0f);
-                    w6Var.h.d();
-                    return;
-                }
-                return;
-            case 5:
-                u8 u8Var = (u8) this.f43871b;
-                u8Var.b(!u8Var.f44575y);
-                return;
-            case 6:
-                org.telegram.ui.Cells.c2 c2Var = (org.telegram.ui.Cells.c2) this.f43871b;
-                c2Var.c(!c2Var.b(), true);
+                n3.a(this.f44253b, this.f44254c, this.d, tL_inputCheckPasswordSRP, this.f44255e, this.f44256f, this.h, this.f44257n, this.f44258r);
                 return;
             default:
-                k9 k9Var = ((o9) this.f43871b).f44275c;
-                k9Var.requestFocus();
-                org.telegram.messenger.g0.J3(k9Var);
+                n3.a(this.f44253b, this.f44254c, this.d, tL_inputCheckPasswordSRP, this.f44255e, this.f44256f, this.h, this.f44257n, this.f44258r);
                 return;
         }
     }

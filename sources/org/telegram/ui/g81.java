@@ -1,64 +1,61 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.widget.EditText;
-import org.telegram.messenger.Utilities;
-public final class g81 extends org.telegram.ui.ActionBar.m0 {
-    public boolean f47376a = false;
-    public final l81 f47377b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+public final class g81 extends org.telegram.ui.Cells.q1 {
+    public final Paint Ad;
+    public final int Bd;
+    public final int Cd;
+    public final int Dd;
+    public final i81 Ed;
+    public final Path f48002zd;
 
-    public g81(l81 l81Var) {
-        this.f47377b = l81Var;
+    public g81(i81 i81Var, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var, int i10, int i11, int i12) {
+        super(context, i7, false, null, i6Var);
+        this.Ed = i81Var;
+        this.Bd = i10;
+        this.Cd = i11;
+        this.Dd = i12;
+        this.f48002zd = new Path();
+        this.Ad = new Paint(1);
     }
 
     @Override
-    public final void h() {
-        l81 l81Var = this.f47377b;
-        if (l81Var.f48891a.getVisibility() != 0) {
-            l81Var.f48891a.setVisibility(0);
-            l81Var.f48891a.setAlpha(0.0f);
-        }
-        l81Var.f48897r.setVisibility(8);
-        l81Var.d.f();
-        l81Var.f48891a.animate().alpha(1.0f).setDuration(150L).setListener(null).start();
-        l81Var.f48898s.animate().alpha(0.0f).setDuration(150L).setListener(new f81(this, 0)).start();
-        this.f47376a = false;
+    public final void j1(Canvas canvas) {
+        this.S4 = 0;
+        this.T4 = this.Q4.size() - 1;
+        super.j1(canvas);
     }
 
     @Override
-    public final void l(EditText editText) {
-        String obj = editText.getText().toString();
-        k81 k81Var = this.f47377b.f48894e;
-        if (k81Var.f48600e != null) {
-            Utilities.f22418g.a(k81Var.f48600e);
-            k81Var.f48600e = null;
-        }
-        if (TextUtils.isEmpty(obj)) {
-            k81Var.f48599c.clear();
-            k81Var.d.clear();
-            k81Var.f();
-            k81Var.h.f48897r.setVisibility(8);
-        } else {
-            int i7 = k81Var.f48601f + 1;
-            k81Var.f48601f = i7;
-            org.telegram.messenger.p5 p5Var = Utilities.f22418g;
-            j81 j81Var = new j81(k81Var, obj, i7, 0);
-            k81Var.f48600e = j81Var;
-            p5Var.d(j81Var, 300L);
-        }
-        if (!this.f47376a && !TextUtils.isEmpty(obj)) {
-            if (this.f47377b.f48898s.getVisibility() != 0) {
-                this.f47377b.f48898s.setVisibility(0);
-                this.f47377b.f48898s.setAlpha(0.0f);
-            }
-            this.f47377b.f48891a.animate().alpha(0.0f).setDuration(150L).setListener(new f81(this, 1)).start();
-            this.f47377b.f48894e.d.clear();
-            this.f47377b.f48894e.f48599c.clear();
-            this.f47377b.f48894e.f();
-            this.f47377b.f48898s.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
-            this.f47376a = true;
-        } else if (this.f47376a && TextUtils.isEmpty(obj)) {
-            h();
-        }
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        int c22 = c2(this.Bd);
+        float V1 = V1(c22);
+        float U1 = U1(c22);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(getPollButtonsLeft(), V1, getPollButtonsRight(), U1);
+        Path path = this.f48002zd;
+        path.rewind();
+        path.addRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), Path.Direction.CW);
+        Paint paint = this.Ad;
+        paint.setColor(0);
+        paint.setShadowLayer(org.telegram.messenger.g0.L(2.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.n6.r1(this.Ed.f48653y * 0.2f, -16777216));
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
+        canvas.clipPath(path);
+        d1(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        setMeasuredDimension(this.Cd, this.Dd);
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
     }
 }

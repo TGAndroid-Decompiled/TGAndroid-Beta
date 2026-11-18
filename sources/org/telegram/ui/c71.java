@@ -1,18 +1,24 @@
 package org.telegram.ui;
-public final class c71 extends t71 {
-    public final an f46036m2;
-    public final boolean f46037n2;
 
-    public c71(Object obj, an anVar, boolean z10) {
-        super(obj, null, true);
-        this.f46036m2 = anVar;
-        this.f46037n2 = z10;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class c71 extends AnimatorListenerAdapter {
+    public final x71 f46453a;
+
+    public c71(x71 x71Var) {
+        this.f46453a = x71Var;
     }
 
     @Override
-    public final void onFragmentClosed() {
-        super.onFragmentClosed();
-        ym ymVar = this.f46036m2.Aa;
-        ymVar.r(ymVar.f53545f, ymVar.f53546g, false, Boolean.valueOf(this.f46037n2), false);
+    public final void onAnimationEnd(Animator animator) {
+        char c10;
+        x71 x71Var = this.f46453a;
+        org.telegram.ui.Components.h71[] h71VarArr = x71Var.L0;
+        if (x71Var.Y0 != null) {
+            c10 = 0;
+        } else {
+            c10 = 2;
+        }
+        h71VarArr[c10].setVisibility(4);
     }
 }

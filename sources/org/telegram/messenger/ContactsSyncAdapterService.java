@@ -5,13 +5,13 @@ import android.content.AbstractThreadedSyncAdapter;
 import android.content.Intent;
 import android.os.IBinder;
 public class ContactsSyncAdapterService extends Service {
-    public static j5 f22249a;
+    public static l5 f22615a;
 
     @Override
     public final IBinder onBind(Intent intent) {
-        if (f22249a == null) {
-            f22249a = new AbstractThreadedSyncAdapter(this, true);
+        if (f22615a == null) {
+            f22615a = new AbstractThreadedSyncAdapter(this, true);
         }
-        return f22249a.getSyncAdapterBinder();
+        return f22615a.getSyncAdapterBinder();
     }
 }

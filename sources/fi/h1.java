@@ -1,27 +1,36 @@
 package fi;
 
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class h1 extends TLRPC.TL_messageMediaStory {
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.user_id = inputSerializedData.readInt64(z10);
-        this.f28073id = inputSerializedData.readInt32(z10);
-        this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        this.via_mention = inputSerializedData.readBool(z10);
-        this.peer = np.s1(m10.f24940t0).z1(this.user_id);
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+public final class h1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f12032a;
+    public final j1 f12033b;
+
+    public h1(j1 j1Var, int i7) {
+        this.f12032a = i7;
+        this.f12033b = j1Var;
     }
 
     @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeInt32(-946147811);
-        outputSerializedData.writeInt64(this.user_id);
-        outputSerializedData.writeInt32(this.f28073id);
-        this.storyItem.serializeToStream(outputSerializedData);
-        outputSerializedData.writeBool(this.via_mention);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f12032a) {
+            case 0:
+                this.f12033b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                j1 j1Var = this.f12033b;
+                j1Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j1Var.f12144n = floatValue;
+                View view = j1Var.f12140b;
+                view.setAlpha(1.0f - floatValue);
+                view.setScaleX(1.0f - j1Var.f12144n);
+                view.setScaleY(1.0f - j1Var.f12144n);
+                j1Var.f12141c.setColorFilter(new PorterDuffColorFilter(i0.a.f(j1Var.f12144n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+                j1Var.f12139a.invalidate();
+                return;
+        }
     }
 }

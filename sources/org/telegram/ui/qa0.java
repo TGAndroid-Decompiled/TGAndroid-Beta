@@ -2,34 +2,34 @@ package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qa0 implements Runnable {
-    public final int f50533a;
-    public final ce0 f50534b;
+    public final int f51185a;
+    public final de0 f51186b;
 
-    public qa0(ce0 ce0Var, int i7) {
-        this.f50533a = i7;
-        this.f50534b = ce0Var;
+    public qa0(de0 de0Var, int i7) {
+        this.f51185a = i7;
+        this.f51186b = de0Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f50533a;
-        ce0 ce0Var = this.f50534b;
+        int i7 = this.f51185a;
+        de0 de0Var = this.f51186b;
         switch (i7) {
             case 0:
-                ce0Var.f46080d0 = false;
+                de0Var.f46939d0 = false;
                 return;
             case 1:
-                ce0Var.f46108y0 = false;
-                ce0Var.P1(true, true);
+                de0Var.f46967y0 = false;
+                de0Var.P1(true, true);
                 return;
             default:
-                if (ce0Var.getParentActivity() != null && !ce0Var.getParentActivity().isFinishing() && ce0Var.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ce0Var.getParentActivity());
-                    String M0 = org.telegram.messenger.hd.M0(2131746071, null);
-                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                    t1Var.S = M0;
-                    t1Var.U = org.telegram.messenger.hd.M0(2131745949, null);
-                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), new ta0(ce0Var, 1));
+                if (de0Var.getParentActivity() != null && !de0Var.getParentActivity().isFinishing() && de0Var.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(de0Var.getParentActivity());
+                    String M0 = org.telegram.messenger.gd.M0(2131745876, null);
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                    u1Var.S = M0;
+                    u1Var.U = org.telegram.messenger.gd.M0(2131745754, null);
+                    alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131747638, null), new ta0(de0Var, 1));
                     alertDialog$Builder.p();
                     return;
                 }

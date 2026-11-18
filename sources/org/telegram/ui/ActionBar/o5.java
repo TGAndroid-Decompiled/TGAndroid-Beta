@@ -1,68 +1,54 @@
 package org.telegram.ui.ActionBar;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.os.SystemClock;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.gj;
-public final class o5 implements SensorEventListener {
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.TextView;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.sp;
+public abstract class o5 extends TextView {
+    public boolean f29829a;
+    public final org.telegram.ui.Components.c6 f29830b;
+    public final sp f29831c;
+
+    public o5(Context context) {
+        super(context);
+        this.f29829a = false;
+        this.f29830b = new org.telegram.ui.Components.c6(this, 320L, lr.h);
+        this.f29831c = new sp(-1);
+    }
+
     @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        float f10 = sensorEvent.values[0];
-        if (f10 <= 0.0f) {
-            f10 = 0.1f;
-        }
-        if (!org.telegram.messenger.t0.f26617x && org.telegram.messenger.t0.f26616w) {
-            if (f10 > 500.0f) {
-                j6.h = 1.0f;
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float d = this.f29830b.d(this.f29829a);
+        if (d < 1.0f) {
+            if (d <= 0.0f) {
+                canvas.save();
+                canvas2 = canvas;
             } else {
-                j6.h = ((float) Math.ceil((Math.log(f10) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
+                canvas2 = canvas;
+                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - d) * 255.0f), 31);
             }
-            long j3 = 1800;
-            if (j6.h <= j6.f29082q) {
-                MediaController B = MediaController.B();
-                if (B.J) {
-                    if (!B.J()) {
-                        gj gjVar = B.f22377v0;
-                        if (gjVar != null && (gj.R4(gjVar.f23819k) || B.f22377v0.h4())) {
-                            return;
-                        }
-                    } else {
-                        return;
-                    }
-                }
-                if (j6.f28952j) {
-                    j6.f28952j = false;
-                    org.telegram.messenger.g0.r(j6.f28990l);
-                }
-                if (!j6.f28971k) {
-                    j6.f28971k = true;
-                    androidx.emoji2.text.o oVar = j6.f29008m;
-                    if (Math.abs(j6.f28934i - SystemClock.elapsedRealtime()) < 12000) {
-                        j3 = 12000;
-                    }
-                    org.telegram.messenger.g0.i3(oVar, j3);
-                    return;
-                }
-                return;
-            }
-            if (j6.f28971k) {
-                j6.f28971k = false;
-                org.telegram.messenger.g0.r(j6.f29008m);
-            }
-            if (!j6.f28952j) {
-                j6.f28952j = true;
-                androidx.emoji2.text.o oVar2 = j6.f28990l;
-                if (Math.abs(j6.f28934i - SystemClock.elapsedRealtime()) < 12000) {
-                    j3 = 12000;
-                }
-                org.telegram.messenger.g0.i3(oVar2, j3);
-            }
+            canvas2.translate(0.0f, org.telegram.messenger.g0.L(6.0f) * d);
+            super.onDraw(canvas2);
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+        }
+        if (d > 0.0f) {
+            int height = getHeight() / 2;
+            int width = (getWidth() / 2) - ((int) ((1.0f - d) * org.telegram.messenger.g0.L(6.0f)));
+            sp spVar = this.f29831c;
+            spVar.setAlpha((int) (d * 255.0f));
+            spVar.setBounds(width - (spVar.getIntrinsicWidth() / 2), height - (spVar.getIntrinsicWidth() / 2), (spVar.getIntrinsicWidth() / 2) + width, (spVar.getIntrinsicHeight() / 2) + height);
+            spVar.draw(canvas2);
+            invalidate();
         }
     }
 
     @Override
-    public final void onAccuracyChanged(Sensor sensor, int i7) {
+    public void setTextColor(int i7) {
+        super.setTextColor(i7);
+        this.f29831c.b(i7);
     }
 }

@@ -1,12 +1,8 @@
 package a8;
 public abstract class ia {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj != obj2) {
-            if (obj == null || !obj.equals(obj2)) {
-                return false;
-            }
-            return true;
-        }
-        return true;
+    public static long a(long j3) {
+        long j10 = (j3 ^ (j3 >>> 33)) * (-49064778989728563L);
+        long j11 = (j10 ^ (j10 >>> 33)) * (-4265267296055464877L);
+        return j11 ^ (j11 >>> 33);
     }
 }

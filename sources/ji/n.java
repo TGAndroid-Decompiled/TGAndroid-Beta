@@ -6,39 +6,39 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.g0;
 public final class n extends View {
-    public final int f17592a;
-    public final p f17593b;
+    public final int f17985a;
+    public final p f17986b;
 
     public n(p pVar, Context context, int i7) {
         super(context);
-        this.f17592a = i7;
-        this.f17593b = pVar;
+        this.f17985a = i7;
+        this.f17986b = pVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i7;
         int i10;
-        switch (this.f17592a) {
+        switch (this.f17985a) {
             case 0:
                 RectF rectF = g0.P;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                p pVar = this.f17593b;
-                if (pVar.f17609e0) {
+                p pVar = this.f17986b;
+                if (pVar.f18009g0) {
                     i7 = -1;
                 } else {
-                    i7 = pVar.f17612f0;
+                    i7 = pVar.f18011h0;
                 }
                 pVar.j(canvas, rectF, i7, 1.0f);
                 return;
             default:
                 RectF rectF2 = g0.P;
                 rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                p pVar2 = this.f17593b;
-                if (pVar2.f17609e0) {
+                p pVar2 = this.f17986b;
+                if (pVar2.f18009g0) {
                     i10 = -1;
                 } else {
-                    i10 = pVar2.f17612f0;
+                    i10 = pVar2.f18011h0;
                 }
                 pVar2.e(canvas, rectF2, i10, 1.0f);
                 return;

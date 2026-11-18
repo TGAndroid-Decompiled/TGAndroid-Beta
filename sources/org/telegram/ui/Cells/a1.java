@@ -7,27 +7,27 @@ import android.text.Spannable;
 import android.text.style.ClickableSpan;
 import android.view.accessibility.AccessibilityNodeProvider;
 import java.util.ArrayList;
-import org.telegram.messenger.cu;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.iv;
+import org.telegram.messenger.ev;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.zt;
 public final class a1 extends AccessibilityNodeProvider {
-    public final q1 f29985a;
-    public final Path f29986b = new Path();
-    public final RectF f29987c = new RectF();
+    public final q1 f30362a;
+    public final Path f30363b = new Path();
+    public final RectF f30364c = new RectF();
     public final Rect d = new Rect();
 
     public a1(q1 q1Var) {
-        this.f29985a = q1Var;
+        this.f30362a = q1Var;
     }
 
     public final ClickableSpan a(int i7, boolean z10) {
         if (i7 == 5000) {
             return null;
         }
-        q1 q1Var = this.f29985a;
+        q1 q1Var = this.f30362a;
         if (z10) {
             int i10 = i7 - 3000;
-            CharSequence charSequence = q1Var.Q5.f23877z;
+            CharSequence charSequence = q1Var.Q5.f24026z;
             if (!(charSequence instanceof Spannable) || i10 < 0) {
                 return null;
             }
@@ -51,27 +51,27 @@ public final class a1 extends AccessibilityNodeProvider {
         return clickableSpanArr2[i11];
     }
 
-    public final cu b(int[] iArr, int i7) {
-        iv ivVar;
+    public final zt b(int[] iArr, int i7) {
+        ev evVar;
         int i10;
-        gj gjVar = this.f29985a.Q5;
-        if (gjVar != null && (ivVar = gjVar.f23876y2) != null) {
-            ArrayList arrayList = ivVar.f24450g;
+        fj fjVar = this.f30362a.Q5;
+        if (fjVar != null && (evVar = fjVar.f24025y2) != null) {
+            ArrayList arrayList = evVar.f23775g;
             int i11 = i7 - 6000;
             if (i11 >= 0) {
                 int i12 = 0;
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    cu cuVar = (cu) arrayList.get(i13);
-                    if (cuVar.S()) {
-                        if (cuVar.f22947r == null) {
+                    zt ztVar = (zt) arrayList.get(i13);
+                    if (ztVar.S()) {
+                        if (ztVar.f28357r == null) {
                             i10 = 0;
                         } else {
                             i10 = 1;
                         }
-                        int B = cuVar.B() + i10 + i12;
+                        int B = ztVar.B() + i10 + i12;
                         if (i11 < B) {
                             iArr[0] = i11 - i12;
-                            return cuVar;
+                            return ztVar;
                         }
                         i12 = B;
                     }

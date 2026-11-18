@@ -4,31 +4,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 public final class k1 {
-    public j1 f56697a;
-    public final HashMap f56698b = new HashMap();
-    public final ArrayList f56699c = new ArrayList();
+    public j1 f57271a;
+    public final HashMap f57272b = new HashMap();
+    public final ArrayList f57273c = new ArrayList();
 
     public final boolean a() {
-        return !this.f56699c.isEmpty();
+        return !this.f57273c.isEmpty();
     }
 
     public final void b(UUID uuid, Runnable runnable) {
-        this.f56698b.put(uuid, runnable);
-        this.f56699c.add(uuid);
-        org.telegram.messenger.g0.h3(new q2.d(this, 11));
+        this.f57272b.put(uuid, runnable);
+        this.f57273c.add(uuid);
+        org.telegram.messenger.g0.g3(new org.telegram.ui.web.z0(this, 14));
     }
 
     public final void c() {
-        ArrayList arrayList = this.f56699c;
+        ArrayList arrayList = this.f57273c;
         if (arrayList.size() == 0) {
             return;
         }
         int size = arrayList.size() - 1;
         UUID uuid = (UUID) arrayList.get(size);
-        HashMap hashMap = this.f56698b;
+        HashMap hashMap = this.f57272b;
         hashMap.remove(uuid);
         arrayList.remove(size);
         ((Runnable) hashMap.get(uuid)).run();
-        org.telegram.messenger.g0.h3(new q2.d(this, 11));
+        org.telegram.messenger.g0.g3(new org.telegram.ui.web.z0(this, 14));
     }
 }

@@ -1,15 +1,39 @@
 package org.telegram.ui;
-public final class y81 extends v4.t0 {
-    public int f53475a;
-    public int f53476b;
-    public final u91 f53477c;
+public final class y81 implements Runnable {
+    public final int f54095a;
+    public final y91 f54096b;
 
-    public y81(u91 u91Var) {
-        this.f53477c = u91Var;
+    public y81(y91 y91Var, int i7) {
+        this.f54095a = i7;
+        this.f54096b = y91Var;
     }
 
     @Override
-    public final void b(androidx.recyclerview.widget.RecyclerView r5, int r6, int r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.y81.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
+    public final void run() {
+        switch (this.f54095a) {
+            case 0:
+                y91 y91Var = this.f54096b;
+                y91Var.B0();
+                y91Var.F0();
+                return;
+            case 1:
+                this.f54096b.B0();
+                return;
+            case 2:
+                this.f54096b.S0(true);
+                return;
+            case 3:
+                this.f54096b.finishPreviewFragment();
+                return;
+            case 4:
+                y91 y91Var2 = this.f54096b;
+                y91Var2.B0 = null;
+                y91Var2.Z0(true, false);
+                return;
+            default:
+                y91 y91Var3 = this.f54096b;
+                y91Var3.O.postOnAnimation(new y81(y91Var3, 1));
+                return;
+        }
     }
 }

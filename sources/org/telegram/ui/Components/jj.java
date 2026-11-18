@@ -1,29 +1,41 @@
 package org.telegram.ui.Components;
-public final class jj implements Runnable {
-    public final int f36009a;
-    public final lj f36010b;
 
-    public jj(lj ljVar, int i7) {
-        this.f36009a = i7;
-        this.f36010b = ljVar;
+import j$.util.Objects;
+import org.telegram.tgnet.TLRPC;
+public final class jj {
+    public final int f36446a;
+    public final long f36447b;
+
+    public jj(int i7, long j3) {
+        this.f36446a = i7;
+        this.f36447b = j3;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f36009a) {
-            case 0:
-                lj ljVar = this.f36010b;
-                if (ljVar.f36819f != null) {
-                    ljVar.f36823w = org.telegram.messenger.k5.h(new StringBuilder("+"), ljVar.f36819f.phone, pf.b.c());
-                    ljVar.f36822s = ljVar.f36819f;
-                    org.telegram.messenger.g0.h3(new jj(ljVar, 1));
-                    return;
-                }
-                return;
-            default:
-                lj ljVar2 = this.f36010b;
-                ljVar2.f36817c.l(ljVar2.f36823w, false);
-                return;
+    public static jj a(Object obj) {
+        if (obj instanceof org.telegram.messenger.f5) {
+            return new jj(2, ((org.telegram.messenger.f5) obj).f23840a);
         }
+        if (obj instanceof TLRPC.User) {
+            return new jj(1, ((TLRPC.User) obj).f28554id);
+        }
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && jj.class == obj.getClass()) {
+                jj jjVar = (jj) obj;
+                if (this.f36447b == jjVar.f36447b && this.f36446a == jjVar.f36446a) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(p1.g.a(this.f36446a), Long.valueOf(this.f36447b));
     }
 }

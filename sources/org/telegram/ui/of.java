@@ -1,46 +1,23 @@
 package org.telegram.ui;
-public final class of implements org.telegram.messenger.s10 {
-    public final int f49941a;
-    public final an f49942b;
-    public final String f49943c;
 
-    public of(an anVar, String str, int i7) {
-        this.f49941a = i7;
-        this.f49942b = anVar;
-        this.f49943c = str;
+import android.view.View;
+public final class of implements View.OnLongClickListener {
+    public final int f50599a;
+    public final Object f50600b;
+    public final Object f50601c;
+    public final Object d;
+    public final Object f50602e;
+
+    public of(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
+        this.f50599a = i7;
+        this.f50600b = obj;
+        this.f50601c = obj2;
+        this.d = obj3;
+        this.f50602e = obj4;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f49941a) {
-            case 0:
-                if (bool.booleanValue()) {
-                    boolean booleanValue = bool2.booleanValue();
-                    an anVar = this.f49942b;
-                    String str = this.f49943c;
-                    if (booleanValue) {
-                        anVar.getMessagesController().p(str, false);
-                    }
-                    anVar.getParentActivity();
-                    vf.c.o(str);
-                    return;
-                }
-                return;
-            default:
-                an anVar2 = this.f49942b;
-                anVar2.getClass();
-                if (bool.booleanValue()) {
-                    boolean booleanValue2 = bool2.booleanValue();
-                    String str2 = this.f49943c;
-                    if (booleanValue2) {
-                        anVar2.getMessagesController().p(str2, true);
-                    }
-                    vf.c.n(anVar2.getParentActivity(), str2, false, null);
-                    return;
-                }
-                return;
-        }
+    public final boolean onLongClick(android.view.View r50) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.of.onLongClick(android.view.View):boolean");
     }
 }

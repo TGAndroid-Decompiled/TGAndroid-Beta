@@ -1,60 +1,89 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.messenger.z10;
-import org.telegram.tgnet.TLRPC;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.jj;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.jm0;
-import org.telegram.ui.ll0;
-public final class u5 implements z10 {
-    public final int f3902a = 0;
-    public final cg.b f3903b;
-    public final TL_stars.TL_starGiftUnique f3904c;
-    public final long d;
-    public final Object f3905e;
-    public final Object f3906f;
+import org.telegram.ui.Components.ea0;
+import org.telegram.ui.Components.eq0;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.oa0;
+import org.telegram.ui.Components.ta0;
+import org.telegram.ui.Components.ua0;
+import org.telegram.ui.Components.y60;
+public final class u5 implements View.OnClickListener {
+    public final int f4113a;
+    public final boolean f4114b;
+    public final FrameLayout f4115c;
+    public final Object d;
+    public final Object f4116e;
+    public final Object f4117f;
 
-    public u5(z5 z5Var, org.telegram.ui.ActionBar.t1 t1Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
-        this.f3905e = z5Var;
-        this.f3906f = t1Var;
-        this.f3903b = bVar;
-        this.f3904c = tL_starGiftUnique;
-        this.d = j3;
+    public u5(FrameLayout frameLayout, boolean z10, Object obj, Object obj2, Object obj3, int i7) {
+        this.f4113a = i7;
+        this.f4115c = frameLayout;
+        this.f4114b = z10;
+        this.d = obj;
+        this.f4116e = obj2;
+        this.f4117f = obj3;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f3902a) {
+    public final void onClick(View view) {
+        int i7 = this.f4113a;
+        Object obj = this.f4117f;
+        Object obj2 = this.f4116e;
+        Object obj3 = this.d;
+        boolean z10 = this.f4114b;
+        FrameLayout frameLayout = this.f4115c;
+        switch (i7) {
             case 0:
-                z5 z5Var = (z5) this.f3905e;
-                TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) obj;
-                ((org.telegram.ui.ActionBar.t1) this.f3906f).dismiss();
-                if (tL_payments_paymentFormStarGift != null) {
-                    di.c5 c5Var = new di.c5(this.f3903b, tL_payments_paymentFormStarGift);
-                    Context context = z5Var.getContext();
-                    org.telegram.ui.ActionBar.e6 e6Var = z5Var.J0;
-                    int i7 = z5Var.f29679a;
-                    StringBuilder sb2 = new StringBuilder();
-                    TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f3904c;
-                    sb2.append(tL_starGiftUnique.title);
-                    sb2.append(" #");
-                    String l10 = i5.c.l(tL_starGiftUnique.num, ',', sb2);
-                    long j3 = this.d;
-                    new di.e5(context, e6Var, tL_starGiftUnique, c5Var, i7, j3, l10, true, new v5(z5Var, tL_starGiftUnique, j3, 0)).b();
-                    return;
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
+                y60 y60Var = (y60) obj;
+                eq0 eq0Var = ((k6) frameLayout).f3813a;
+                if (!z10) {
+                    di.m8 m8Var = eq0Var.f4006e;
+                    int i10 = tL_starGiftCollection.collection_id;
+                    m8Var.getClass();
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(savedStarGift);
+                    m8Var.a(i10, arrayList);
+                    lc.b0(eq0Var.f4003a).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(gd.a0(null, null, 2131750377, di.f6.F1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                } else {
+                    eq0Var.f4006e.k(tL_starGiftCollection.collection_id, savedStarGift);
+                    lc.b0(eq0Var.f4003a).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(gd.a0(null, null, 2131750021, di.f6.F1(savedStarGift.gift), tL_starGiftCollection.title))).j();
                 }
+                y60Var.v();
+                eq0Var.o();
                 return;
             default:
-                jm0.a0((jm0) this.f3905e, this.f3903b, this.f3904c, this.d, (ll0) this.f3906f, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                oa0 oa0Var = (oa0) frameLayout;
+                Context context = (Context) obj3;
+                ta0 ta0Var = (ta0) obj2;
+                ta0 ta0Var2 = (ta0) obj;
+                ua0 ua0Var = oa0Var.f38045d0;
+                jj jjVar = ua0Var.d;
+                if (!z10) {
+                    new lc(ua0Var, ua0Var.G).Q(2131624217, 36, org.telegram.messenger.g0.T2(gd.M0(2131750567, null), new ea0(oa0Var, context, 0))).j();
+                    return;
+                }
+                boolean z11 = jjVar.f24875k;
+                jjVar.f24875k = !z11;
+                ua0Var.f40287y = false;
+                if (z11) {
+                    jjVar.f24876l = false;
+                    if (ta0Var != null) {
+                        ta0Var.a(false, true);
+                    }
+                }
+                ta0Var2.a(jjVar.f24875k, true);
+                oa0Var.i();
+                oa0Var.l(true);
                 return;
         }
-    }
-
-    public u5(jm0 jm0Var, cg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, ll0 ll0Var) {
-        this.f3905e = jm0Var;
-        this.f3903b = bVar;
-        this.f3904c = tL_starGiftUnique;
-        this.d = j3;
-        this.f3906f = ll0Var;
     }
 }

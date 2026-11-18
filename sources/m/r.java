@@ -1,8 +1,8 @@
 package m;
 public final class r {
-    public final s f19821a;
+    public final s f20188a;
 
     public r(s sVar) {
-        this.f19821a = sVar;
+        this.f20188a = sVar;
     }
 }

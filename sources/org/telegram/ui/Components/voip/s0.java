@@ -1,158 +1,159 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
+import android.animation.LayoutTransition;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Build;
-import android.text.Layout;
+import android.graphics.RenderNode;
+import android.os.SystemClock;
+import android.text.SpannableStringBuilder;
+import android.util.Property;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.k5;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.u5;
-public final class s0 extends ViewGroup {
-    public int E;
-    public boolean F;
-    public final t0 G;
-    public final long f40933a;
-    public boolean f40934b;
-    public long f40935c;
-    public final ImageReceiver d;
-    public final TextView f40936e;
-    public final ai.h2 f40937f;
-    public final Paint h;
-    public final u5 f40938n;
-    public final u5 f40939r;
-    public final RectF f40940s;
-    public final Path f40941w;
-    public int f40942x;
-    public int f40943y;
+import c8.ma;
+import java.util.ArrayList;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.o10;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.b9;
+import org.telegram.ui.Components.i41;
+import org.telegram.ui.Components.lr;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.l30;
+public final class s0 extends LinearLayout {
+    public final ArrayList f41199a;
+    public RenderNode f41200b;
+    public float f41201c;
+    public l30 d;
+    public Runnable f41202e;
+    public int f41203f;
+    public final oi.a2 h;
 
-    public s0(t0 t0Var, Context context, long j3) {
-        super(context);
-        this.G = t0Var;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.d = imageReceiver;
-        Paint paint = new Paint(1);
-        this.h = paint;
-        er erVar = er.h;
-        this.f40938n = new u5(this, 0L, 320L, erVar);
-        this.f40939r = new u5(this, 0L, 320L, erVar);
-        this.f40940s = new RectF();
-        this.f40941w = new Path();
-        this.f40933a = j3;
-        TextView textView = new TextView(context);
-        this.f40936e = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTextColor(-1);
-        textView.setIncludeFontPadding(false);
-        addView(textView);
-        ai.h2 h2Var = new ai.h2(textView);
-        this.f40937f = h2Var;
-        h2Var.c(-9717249, -1, true);
-        imageReceiver.J0(org.telegram.messenger.g0.L(11.0f));
-        paint.setColor(-13946053);
-        setWillNotDraw(false);
+    public s0(LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f41199a = new ArrayList();
+        this.h = new oi.a2(this, 18);
+        setOrientation(1);
+        setGravity(80);
+        setPadding(org.telegram.messenger.g0.L(22.0f), 0, org.telegram.messenger.g0.L(22.0f), 0);
+        setClipToPadding(false);
+        LayoutTransition layoutTransition = new LayoutTransition();
+        layoutTransition.enableTransitionType(4);
+        layoutTransition.setDuration(320L);
+        lr lrVar = lr.h;
+        layoutTransition.setInterpolator(4, lrVar);
+        layoutTransition.setInterpolator(0, lrVar);
+        layoutTransition.setInterpolator(1, lrVar);
+        Property property = View.ALPHA;
+        layoutTransition.setAnimator(2, ObjectAnimator.ofPropertyValuesHolder(null, PropertyValuesHolder.ofFloat(property, 0.0f, 1.0f), PropertyValuesHolder.ofFloat(View.SCALE_X, 0.6f, 1.0f), PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.6f, 1.0f)));
+        layoutTransition.setInterpolator(2, lrVar);
+        layoutTransition.setAnimator(3, ObjectAnimator.ofFloat((Object) null, property, 1.0f, 0.0f));
+        layoutTransition.setStartDelay(2, 0L);
+        layoutTransition.setStartDelay(0, 0L);
+        layoutTransition.setStartDelay(3, 0L);
+        layoutTransition.setStartDelay(1, 0L);
+        setLayoutTransition(layoutTransition);
+    }
+
+    public final void a(int i7, long j3, long j10, String str, boolean z10) {
+        r0 r0Var;
+        String str2;
+        ArrayList arrayList = this.f41199a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (true) {
+            if (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                r0Var = (r0) obj;
+                if (r0Var.f41178a == j10) {
+                    break;
+                }
+            } else {
+                r0Var = null;
+                break;
+            }
+        }
+        if (r0Var == null) {
+            if (!str.trim().isEmpty()) {
+                r0Var = new r0(this, getContext(), j10);
+                TLObject g22 = mp.u1(i7).g2(j3);
+                if (g22 instanceof TLRPC.User) {
+                    str2 = o10.k((TLRPC.User) g22, true);
+                } else if (g22 instanceof TLRPC.Chat) {
+                    str2 = ((TLRPC.Chat) g22).title;
+                } else {
+                    str2 = "";
+                }
+                b9 b9Var = new b9((i6) null);
+                b9Var.p(g22);
+                r0Var.d.i0(g22, b9Var, null);
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str2);
+                spannableStringBuilder.setSpan(new i41(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.append((CharSequence) "  ");
+                r0Var.f41187x = spannableStringBuilder.length();
+                r0Var.f41181e.setText(spannableStringBuilder, TextView.BufferType.EDITABLE);
+                arrayList.add(r0Var);
+                addView(r0Var, ma.k(0.0f, 6.0f, 0.0f, 0.0f, -1, -2));
+                while (arrayList.size() > 3) {
+                    View view = (r0) arrayList.get(0);
+                    arrayList.remove(view);
+                    removeView(view);
+                }
+            } else {
+                return;
+            }
+        }
+        r0Var.f41182f.e(r0Var.f41187x, -1, str.trim());
+        r0Var.f41179b = z10;
+        r0Var.f41180c = SystemClock.uptimeMillis();
+        Runnable runnable = this.h;
+        removeCallbacks(runnable);
+        if (!arrayList.isEmpty()) {
+            postDelayed(runnable, 500L);
+        }
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        boolean z10 = false;
-        float e10 = this.f40938n.e(false, this.f40943y);
-        float e11 = this.f40939r.e(false, this.E);
-        RectF rectF = this.f40940s;
-        float f10 = 0.0f;
-        rectF.set(0.0f, 0.0f, e10, e11);
-        Path path = this.f40941w;
-        path.rewind();
-        path.addRoundRect(rectF, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), Path.Direction.CW);
-        canvas.drawPath(path, this.h);
-        if (Build.VERSION.SDK_INT >= 29) {
-            t0 t0Var = this.G;
-            if (t0Var.f40955b != null && canvas.isHardwareAccelerated()) {
-                View view = this;
-                float f11 = 0.0f;
-                while (true) {
-                    if (view != t0Var.d) {
-                        f10 += view.getX();
-                        f11 += view.getY();
-                        ViewParent parent = view.getParent();
-                        if (!(parent instanceof View)) {
-                            break;
-                        }
-                        view = (View) parent;
-                    } else {
-                        z10 = true;
-                        break;
-                    }
-                }
-                if (z10) {
-                    canvas.save();
-                    canvas.clipPath(path);
-                    canvas.translate(-f10, -f11);
-                    float f12 = t0Var.f40956c;
-                    canvas.scale(f12, f12);
-                    canvas.drawRenderNode(t0Var.f40955b);
-                    canvas.restore();
-                }
+        super.dispatchDraw(canvas);
+        float height = getHeight();
+        for (int i7 = 0; i7 < getChildCount(); i7++) {
+            View childAt = getChildAt(i7);
+            if (childAt.getVisibility() == 0 && childAt.getAlpha() > 0.0f) {
+                height = Math.min(height, childAt.getY() - org.telegram.messenger.g0.L(6.0f));
             }
         }
-        canvas.save();
-        canvas.clipPath(path);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        this.d.h(canvas, null);
+        int max = Math.max(0, Math.round(getHeight() - height));
+        if (max != this.f41203f) {
+            this.f41203f = max;
+            Runnable runnable = this.f41202e;
+            if (runnable != null) {
+                post(runnable);
+            }
+        }
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.d.P();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    public int getContentHeight() {
+        return this.f41203f;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.d.R();
+        removeCallbacks(this.h);
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        TextView textView = this.f40936e;
-        Layout layout = textView.getLayout();
-        int L = org.telegram.messenger.g0.L(19.0f);
-        int i13 = 0;
-        if (layout != null && layout.getLineCount() > 0) {
-            i13 = layout.getLineBaseline(0);
-        }
-        int i14 = L - i13;
-        textView.layout(org.telegram.messenger.g0.L(32.0f), i14, textView.getMeasuredWidth() + org.telegram.messenger.g0.L(32.0f), textView.getMeasuredHeight() + i14);
-        this.d.y0(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(22.0f));
-        setPivotX(0.0f);
-        setPivotY(i12 - i10);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        int size = View.MeasureSpec.getSize(i7);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.g0.L(44.0f)), Integer.MIN_VALUE);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(0, 0);
-        TextView textView = this.f40936e;
-        textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f40943y = org.telegram.messenger.g0.L(44.0f) + textView.getMeasuredWidth();
-        int b10 = k5.b(8.0f, textView.getMeasuredHeight(), org.telegram.messenger.g0.L(28.0f));
-        this.E = b10;
-        setMeasuredDimension(size, b10);
-        if (!this.F) {
-            this.F = true;
-            this.f40938n.e(true, this.f40943y);
-            this.f40939r.e(true, this.E);
-        }
-        invalidate();
+    public void setOnContentHeightChanged(Runnable runnable) {
+        this.f41202e = runnable;
     }
 }

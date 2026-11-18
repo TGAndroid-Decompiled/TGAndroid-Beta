@@ -2,106 +2,64 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
-public final class l9 implements s10 {
-    public final int f24817a;
-    public final c1 f24818b;
-    public final Object f24819c;
+public final class l9 implements q10 {
+    public final int f25338a = 0;
+    public final u9 f25339b;
+    public final r9 f25340c;
     public final Object d;
-    public final Object f24820e;
 
-    public l9(c1 c1Var, Object obj, Object obj2, Object obj3, int i7) {
-        this.f24817a = i7;
-        this.f24818b = c1Var;
-        this.f24819c = obj;
-        this.d = obj2;
-        this.f24820e = obj3;
+    public l9(u9 u9Var, r9 r9Var, bi.n nVar) {
+        this.f25339b = u9Var;
+        this.f25340c = r9Var;
+        this.d = nVar;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        Integer num;
-        int i7 = this.f24817a;
-        Object obj3 = this.f24820e;
-        Object obj4 = this.d;
-        Object obj5 = this.f24819c;
-        c1 c1Var = this.f24818b;
-        switch (i7) {
+        switch (this.f25338a) {
             case 0:
-                v9 v9Var = (v9) c1Var;
-                bi.n nVar = (bi.n) obj5;
-                s9 s9Var = (s9) obj4;
-                TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = (TLRPC.TL_payments_getPaymentForm) obj3;
-                TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) obj;
+                u9 u9Var = this.f25339b;
+                r9 r9Var = this.f25340c;
+                bi.n nVar = (bi.n) this.d;
+                TLRPC.payments_PaymentResult payments_paymentresult = (TLRPC.payments_PaymentResult) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (tL_error != null) {
-                    nVar.a(Boolean.FALSE, tL_error.text);
-                    s9Var.f26432f = false;
+                r9Var.f26563f = false;
+                if (payments_paymentresult instanceof TLRPC.TL_payments_paymentResult) {
+                    Utilities.d.c(new w3(4, u9Var, (TLRPC.TL_payments_paymentResult) payments_paymentresult));
+                    nVar.a(Boolean.TRUE, null);
                     return;
-                } else if (!(paymentForm instanceof TLRPC.TL_payments_paymentFormStarGift)) {
-                    nVar.a(Boolean.FALSE, "NO_PAYMENT_FORM");
-                    s9Var.f26432f = false;
+                } else if (tL_error != null) {
+                    nVar.a(Boolean.FALSE, tL_error.text);
                     return;
                 } else {
-                    TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
-                    tL_payments_sendStarsForm.form_id = ((TLRPC.TL_payments_paymentFormStarGift) paymentForm).form_id;
-                    tL_payments_sendStarsForm.invoice = tL_payments_getPaymentForm.invoice;
-                    v9Var.getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new d3.b(1), new m9(v9Var, s9Var, nVar));
+                    nVar.a(Boolean.FALSE, null);
                     return;
                 }
-            case 1:
-                si siVar = (si) c1Var;
-                qi qiVar = (qi) obj5;
-                ri riVar = (ri) obj4;
-                z10 z10Var = (z10) obj3;
-                TLRPC.messages_FoundStickers messages_foundstickers = (TLRPC.messages_FoundStickers) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                siVar.Q1.remove(qiVar);
-                if (riVar == null) {
-                    riVar = new ri();
-                }
-                ArrayList arrayList = riVar.f26303a;
-                if (messages_foundstickers instanceof TLRPC.TL_messages_foundStickers) {
-                    TLRPC.TL_messages_foundStickers tL_messages_foundStickers = (TLRPC.TL_messages_foundStickers) messages_foundstickers;
-                    arrayList.addAll(tL_messages_foundStickers.stickers);
-                    if ((tL_messages_foundStickers.flags & 1) != 0) {
-                        num = Integer.valueOf(tL_messages_foundStickers.next_offset);
-                    } else {
-                        num = null;
-                    }
-                    riVar.f26304b = num;
-                }
-                siVar.R1.put(qiVar, riVar);
-                z10Var.a(arrayList);
-                return;
             default:
-                si siVar2 = (si) c1Var;
-                z10 z10Var2 = (z10) obj4;
-                TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) obj3;
-                Boolean bool = (Boolean) obj;
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
-                siVar2.J0.remove((String) obj5);
-                if (z10Var2 != null) {
-                    z10Var2.a(tL_messages_stickerSet);
-                }
-                if (tL_messages_stickerSet != null) {
-                    TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
-                    if (stickerSet != null) {
-                        siVar2.J.k(tL_messages_stickerSet, stickerSet.f28078id);
-                        siVar2.O.put(tL_messages_stickerSet.set.short_name.toLowerCase(), tL_messages_stickerSet);
-                        boolean z10 = inputStickerSet instanceof TLRPC.TL_inputStickerSetEmojiDefaultStatuses;
-                        if (z10) {
-                            siVar2.P = tL_messages_stickerSet;
-                        }
-                        if (z10) {
-                            siVar2.Q = tL_messages_stickerSet;
-                        }
-                    }
-                    siVar2.U1(tL_messages_stickerSet);
-                    siVar2.getNotificationCenter().k(64, Long.valueOf(tL_messages_stickerSet.set.f28078id), tL_messages_stickerSet);
+                u9 u9Var2 = this.f25339b;
+                x10 x10Var = (x10) this.d;
+                r9 r9Var2 = this.f25340c;
+                TL_payments.TL_StarGiftAuctionAcquiredGifts tL_StarGiftAuctionAcquiredGifts = (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                if (tL_StarGiftAuctionAcquiredGifts == null) {
+                    u9Var2.getClass();
+                    x10Var.a(null);
                     return;
                 }
+                u9Var2.getMessagesController().f4(tL_StarGiftAuctionAcquiredGifts.users, false);
+                u9Var2.getMessagesController().Z3(tL_StarGiftAuctionAcquiredGifts.chats, false);
+                ArrayList<TL_stars.TL_StarGiftAuctionAcquiredGift> arrayList = tL_StarGiftAuctionAcquiredGifts.gifts;
+                r9Var2.f26564g = arrayList;
+                x10Var.a(arrayList);
                 return;
         }
+    }
+
+    public l9(u9 u9Var, x10 x10Var, r9 r9Var) {
+        this.f25339b = u9Var;
+        this.d = x10Var;
+        this.f25340c = r9Var;
     }
 }

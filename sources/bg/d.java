@@ -2,24 +2,24 @@ package bg;
 
 import java.util.Map;
 import java.util.function.ToIntFunction;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.r9;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.q9;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.v5;
+import org.telegram.ui.Components.d6;
 public final class d implements ToIntFunction {
-    public final int f3224a;
+    public final int f3213a;
 
     public d(int i7) {
-        this.f3224a = i7;
+        this.f3213a = i7;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f3224a) {
+        switch (this.f3213a) {
             case 0:
-                return ((h) obj).f3245a;
+                return ((h) obj).f3236a;
             case 1:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 2:
@@ -47,24 +47,24 @@ public final class d implements ToIntFunction {
             case 10:
                 return ((Integer) ((Object[]) obj)[1]).intValue();
             case 11:
-                return ((r9) obj).f26269e.bid_date;
+                return ((q9) obj).f26373e.bid_date;
             case 12:
                 return Integer.parseInt((String) obj);
             case 13:
-                return ((gj) obj).e1();
+                return ((fj) obj).e1();
             case 14:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 15:
-                return ((TLRPC.Message) obj).f28072id;
+                return ((TLRPC.Message) obj).f28426id;
             case 16:
-                return ((TLRPC.Message) obj).f28072id;
+                return ((TLRPC.Message) obj).f28426id;
             case 17:
-                return ((v5) obj).d;
+                return ((d6) obj).d;
             case 18:
-                return ((v5) obj).f40269e;
+                return ((d6) obj).f34284e;
             case 19:
                 ad.c cVar = (ad.c) obj;
-                return cVar.d - cVar.f1034b;
+                return cVar.d - cVar.f1033b;
             case 20:
                 TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
                 int i7 = messagePeerReaction.date;

@@ -1,39 +1,60 @@
 package hi;
 
-import android.graphics.Canvas;
-import org.telegram.ui.LaunchActivity;
-public final class ma extends na {
-    public final fi.p f14710g;
-    public final float h;
+import org.telegram.ui.wv0;
+public final class ma extends oa {
+    public final int f15039g;
+    public final Object h;
 
-    public ma(fi.p pVar, float f10) {
-        this.f14710g = pVar;
-        this.h = f10;
-    }
-
-    @Override
-    public final void a(Canvas canvas, float f10) {
-        float pow = (float) Math.pow(f10, 16.0d);
-        fi.p pVar = this.f14710g;
-        float f11 = this.h;
-        pVar.c(canvas, f11, f11, pow);
+    public ma(Object obj, int i7) {
+        this.f15039g = i7;
+        this.h = obj;
     }
 
     @Override
     public final void e() {
-        fi.p pVar = this.f14710g;
-        pVar.post(new fi.o(pVar, 1));
+        switch (this.f15039g) {
+            case 0:
+                wv0 wv0Var = (wv0) this.h;
+                wv0Var.R = false;
+                wv0Var.invalidate();
+                return;
+            case 1:
+                fi.z3 z10 = ((fi.f9) this.h).z();
+                if (z10 != null) {
+                    z10.k0(true);
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Components.q9 q9Var = (org.telegram.ui.Components.q9) this.h;
+                q9Var.post(new k(q9Var, 21));
+                return;
+        }
     }
 
     @Override
     public final void f(boolean z10) {
-        fi.p pVar = this.f14710g;
-        pVar.f12155x = true;
-        pVar.invalidate();
-        if (z10) {
-            int[] iArr = new int[2];
-            pVar.getLocationInWindow(iArr);
-            LaunchActivity.b0((pVar.getWidth() / 2.0f) + iArr[0], (pVar.getHeight() / 2.0f) + iArr[1], 1.0f);
+        switch (this.f15039g) {
+            case 0:
+                wv0 wv0Var = (wv0) this.h;
+                wv0Var.R = true;
+                wv0Var.invalidate();
+                return;
+            case 1:
+                fi.z3 z11 = ((fi.f9) this.h).z();
+                if (z11 != null) {
+                    z11.k0(false);
+                }
+                fi.c3 c3Var = this.f15206f;
+                if (c3Var != null) {
+                    c3Var.setTranslationX(0.0f);
+                    this.f15206f.setTranslationY(0.0f);
+                    return;
+                }
+                return;
+            default:
+                ((org.telegram.ui.Components.q9) this.h).setVisibility(0);
+                return;
         }
     }
 }

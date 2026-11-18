@@ -3,17 +3,16 @@ package j7;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import com.google.android.gms.internal.vision.e2;
-import org.telegram.ui.Cells.y0;
 public final class i extends r6.a {
     public static final Parcelable.Creator<i> CREATOR = new b(7);
-    public final String f16923a;
-    public final Bundle f16924b;
-    public final Bundle f16925c;
+    public final String f17308a;
+    public final Bundle f17309b;
+    public final Bundle f17310c;
     public final String d;
-    public final String f16926e;
-    public final String f16927f;
+    public final String f17311e;
+    public final String f17312f;
 
     public i(String type, Bundle credentialRetrievalData, Bundle candidateQueryData, String requestMatcher, String requestType, String protocolType) {
         boolean z10;
@@ -23,12 +22,12 @@ public final class i extends r6.a {
         kotlin.jvm.internal.j.e(requestMatcher, "requestMatcher");
         kotlin.jvm.internal.j.e(requestType, "requestType");
         kotlin.jvm.internal.j.e(protocolType, "protocolType");
-        this.f16923a = type;
-        this.f16924b = credentialRetrievalData;
-        this.f16925c = candidateQueryData;
+        this.f17308a = type;
+        this.f17309b = credentialRetrievalData;
+        this.f17310c = candidateQueryData;
         this.d = requestMatcher;
-        this.f16926e = requestType;
-        this.f16927f = protocolType;
+        this.f17311e = requestType;
+        this.f17312f = protocolType;
         boolean z11 = true;
         if (!xd.d.j(requestType) && !xd.d.j(protocolType)) {
             z10 = true;
@@ -39,20 +38,20 @@ public final class i extends r6.a {
         if (!z10 && !z11) {
             StringBuilder sb2 = new StringBuilder(protocolType.length() + requestType.length() + type.length() + 31 + 19 + 69);
             e2.r(sb2, "Either type: ", type, ", or requestType: ", requestType);
-            throw new IllegalArgumentException(y0.m(" and protocolType: ", protocolType, " must be specified, but at least one contains an invalid blank value.", sb2));
+            throw new IllegalArgumentException(p5.c.m(" and protocolType: ", protocolType, " must be specified, but at least one contains an invalid blank value.", sb2));
         }
     }
 
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
-        int r10 = yb.r(dest, 20293);
-        yb.l(dest, 1, this.f16923a);
-        yb.b(dest, 2, this.f16924b);
-        yb.b(dest, 3, this.f16925c);
-        yb.l(dest, 4, this.d);
-        yb.l(dest, 5, this.f16926e);
-        yb.l(dest, 6, this.f16927f);
-        yb.s(dest, r10);
+        int r10 = bc.r(dest, 20293);
+        bc.l(dest, 1, this.f17308a);
+        bc.b(dest, 2, this.f17309b);
+        bc.b(dest, 3, this.f17310c);
+        bc.l(dest, 4, this.d);
+        bc.l(dest, 5, this.f17311e);
+        bc.l(dest, 6, this.f17312f);
+        bc.s(dest, r10);
     }
 }

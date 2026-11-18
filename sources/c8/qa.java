@@ -2,12 +2,12 @@ package c8;
 
 import java.util.Arrays;
 public final class qa {
-    public final pa f4648a;
-    public final Integer f4649b;
+    public final pa f4932a;
+    public final Integer f4933b;
 
     public qa(wf.b bVar) {
-        this.f4648a = (pa) bVar.f59107b;
-        this.f4649b = (Integer) bVar.f59108c;
+        this.f4932a = (pa) bVar.f59672b;
+        this.f4933b = (Integer) bVar.f59673c;
     }
 
     public final boolean equals(Object obj) {
@@ -18,13 +18,13 @@ public final class qa {
             return false;
         }
         qa qaVar = (qa) obj;
-        if (q6.m.k(this.f4648a, qaVar.f4648a) && q6.m.k(this.f4649b, qaVar.f4649b) && q6.m.k(null, null) && q6.m.k(null, null)) {
+        if (q6.m.l(this.f4932a, qaVar.f4932a) && q6.m.l(this.f4933b, qaVar.f4933b) && q6.m.l(null, null) && q6.m.l(null, null)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4648a, this.f4649b, null, null});
+        return Arrays.hashCode(new Object[]{this.f4932a, this.f4933b, null, null});
     }
 }

@@ -5,18 +5,18 @@ import j$.util.function.IntConsumer$CC;
 import java.lang.ref.WeakReference;
 import java.util.function.IntConsumer;
 public final class e0 {
-    public final WeakReference f18929a;
-    public final c0 f18930b;
-    public final f0 f18931c;
+    public final WeakReference f19296a;
+    public final c0 f19297b;
+    public final f0 f19298c;
 
     public e0(f0 f0Var, Context context) {
-        this.f18931c = f0Var;
-        this.f18929a = new WeakReference(context);
+        this.f19298c = f0Var;
+        this.f19296a = new WeakReference(context);
         ?? r02 = new IntConsumer() {
             @Override
             public final void accept(int i7) {
-                f0 f0Var2 = e0.this.f18931c;
-                if (f0Var2.f18962i0) {
+                f0 f0Var2 = e0.this.f19298c;
+                if (f0Var2.f19329i0) {
                     return;
                 }
                 f0Var2.t1(1, 19, Integer.valueOf(i7));
@@ -26,15 +26,15 @@ public final class e0 {
                 return IntConsumer$CC.$default$andThen(this, intConsumer);
             }
         };
-        this.f18930b = r02;
-        context.registerDeviceIdChangeListener(new d0(f0Var.v.a(f0Var.f18982t, null), 0), r02);
+        this.f19297b = r02;
+        context.registerDeviceIdChangeListener(new d0(f0Var.v.a(f0Var.f19349t, null), 0), r02);
     }
 
     public static void a(e0 e0Var) {
-        Context context = (Context) e0Var.f18929a.get();
+        Context context = (Context) e0Var.f19296a.get();
         if (context == null) {
             return;
         }
-        context.unregisterDeviceIdChangeListener(e0Var.f18930b);
+        context.unregisterDeviceIdChangeListener(e0Var.f19297b);
     }
 }

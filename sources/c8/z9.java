@@ -1,12 +1,12 @@
 package c8;
+
+import android.content.res.Configuration;
+import android.os.Build;
 public abstract class z9 {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj != obj2) {
-            if (obj == null || !obj.equals(obj2)) {
-                return false;
-            }
-            return true;
+    public static n0.c a(Configuration configuration) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            return new n0.c(new n0.f(androidx.emoji2.text.x.f(configuration)));
         }
-        return true;
+        return n0.c.a(configuration.locale);
     }
 }

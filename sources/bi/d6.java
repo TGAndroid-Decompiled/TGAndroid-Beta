@@ -1,84 +1,132 @@
 package bi;
 
-import di.l8;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-import org.telegram.ui.Components.m60;
-public final class d6 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.q0 f3446a;
-    public final long f3447b;
-    public final e6 f3448c;
+import android.content.Context;
+import hi.m9;
+import org.telegram.ui.Components.a51;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.cj;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.eq0;
+import org.telegram.ui.Components.si;
+import org.telegram.ui.Components.wi;
+public final class d6 extends e51 {
+    public final int f3556n3 = 0;
+    public final Object f3557o3;
 
-    public d6(e6 e6Var, org.telegram.ui.ActionBar.q0 q0Var, long j3) {
-        this.f3448c = e6Var;
-        this.f3446a = q0Var;
-        this.f3447b = j3;
+    public d6(b51 b51Var, b51 b51Var2, org.telegram.ui.Components.d dVar, a51 a51Var, a51 a51Var2) {
+        super(b51Var2, dVar, a51Var, a51Var2);
+        this.f3557o3 = b51Var;
     }
 
     @Override
-    public final void b(int i7) {
-        boolean w10;
-        org.telegram.ui.ActionBar.z0 z0Var;
-        org.telegram.ui.ActionBar.z0 z0Var2;
-        e6 e6Var = this.f3448c;
-        l8 l8Var = e6Var.U1;
-        if (i7 == 1) {
-            m60 m60Var = e6Var.Z1;
-            if (m60Var != null) {
-                m60Var.u();
-            }
-            m60 F = m60.F(e6Var.f29685c, e6Var.J0, this.f3446a);
-            e6Var.Z1 = F;
-            long e10 = m10.i(e6Var.f29679a).e();
-            long j3 = this.f3447b;
-            if (j3 == e10) {
-                w10 = true;
-            } else if (j3 >= 0) {
-                w10 = false;
-            } else {
-                w10 = org.telegram.messenger.t3.w(5, np.s1(e6Var.f29679a).M0(Long.valueOf(-j3)));
-            }
-            org.telegram.ui.ActionBar.z0 z0Var3 = new org.telegram.ui.ActionBar.z0(0, F.f37086e, F.d, false, false);
-            F.d(z0Var3);
-            F.k();
-            org.telegram.ui.ActionBar.z0 h = F.h();
-            h.setText(hd.M0(2131750195, null));
-            org.telegram.ui.ActionBar.z0 h7 = F.h();
-            h7.setText(hd.M0(2131750199, null));
-            org.telegram.ui.ActionBar.z0 h10 = F.h();
-            h10.setText(hd.M0(2131750194, null));
-            org.telegram.ui.ActionBar.z0 h11 = F.h();
-            h11.setText(hd.M0(2131750196, null));
-            if (w10) {
-                F.k();
-                org.telegram.ui.ActionBar.z0 h12 = F.h();
-                h12.setText(hd.M0(2131750201, null));
-                org.telegram.ui.ActionBar.z0 h13 = F.h();
-                h13.setText(hd.M0(2131750200, null));
-                z0Var2 = h13;
-                z0Var = h12;
-            } else {
-                z0Var = null;
-                z0Var2 = null;
-            }
-            c6 c6Var = new c6(this, z0Var3, h, h7, h10, h11, w10, z0Var, z0Var2);
-            c6Var.run();
-            z0Var3.setOnClickListener(new ai.v2(6, this, c6Var));
-            i4.j(h, l8Var, c6Var, 1);
-            i4.j(h7, l8Var, c6Var, 2);
-            i4.j(h10, l8Var, c6Var, 4);
-            i4.j(h11, l8Var, c6Var, 8);
-            if (w10) {
-                i4.j(z0Var, l8Var, c6Var, 256);
-                i4.j(z0Var2, l8Var, c6Var, 512);
-            }
-            F.Y = true;
-            F.J = false;
-            F.f37111s = 0;
-            F.Z();
-        } else if (i7 == -1) {
-            e6Var.dismiss();
+    public boolean E0(float f10) {
+        int i7;
+        switch (this.f3556n3) {
+            case 2:
+                si siVar = ((cj) this.f3557o3).f36766b;
+                int L = org.telegram.messenger.g0.L(30.0f) + siVar.Z3[0];
+                if (!siVar.f39662b2) {
+                    i7 = org.telegram.messenger.g0.f24115m;
+                } else {
+                    i7 = 0;
+                }
+                if (f10 < L + i7) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.E0(f10);
         }
+    }
+
+    @Override
+    public void F1() {
+        switch (this.f3556n3) {
+            case 2:
+                cj cjVar = (cj) this.f3557o3;
+                cjVar.f36766b.N1(cjVar, 0);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void K1() {
+        switch (this.f3556n3) {
+            case 1:
+                org.telegram.messenger.g0.d0(((m9) this.f3557o3).f15716b, new ai.g0(this, 27));
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public Integer V0(int i7) {
+        switch (this.f3556n3) {
+            case 1:
+                return 0;
+            default:
+                return super.V0(i7);
+        }
+    }
+
+    @Override
+    public void l0(int i7) {
+        org.telegram.ui.web.i iVar;
+        switch (this.f3556n3) {
+            case 4:
+                if (!canScrollVertically(1) && (iVar = ((org.telegram.ui.web.k) this.f3557o3).E) != null && iVar.h) {
+                    iVar.d();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        switch (this.f3556n3) {
+            case 0:
+                super.onLayout(z10, i7, i10, i11, i12);
+                ((eq0) this.f3557o3).p();
+                return;
+            case 1:
+            default:
+                super.onLayout(z10, i7, i10, i11, i12);
+                return;
+            case 2:
+                super.onLayout(z10, i7, i10, i11, i12);
+                cj cjVar = (cj) this.f3557o3;
+                cjVar.f36766b.N1(cjVar, 0);
+                return;
+            case 3:
+                super.onLayout(z10, i7, i10, i11, i12);
+                ((b51) this.f3557o3).f33532c = -1;
+                return;
+        }
+    }
+
+    public d6(m9 m9Var, Context context, int i7, hi.s3 s3Var, di.c7 c7Var, fi.b bVar) {
+        super(context, i7, 0, false, s3Var, c7Var, null, bVar, -1, 0);
+        this.f3557o3 = m9Var;
+    }
+
+    public d6(org.telegram.ui.web.k kVar, Context context, int i7, org.telegram.ui.web.b bVar, org.telegram.ui.web.a aVar, hi.d5 d5Var) {
+        super(context, i7, 0, false, bVar, aVar, null, d5Var);
+        this.f3557o3 = kVar;
+    }
+
+    public d6(cj cjVar, Context context, int i7, org.telegram.ui.Components.d dVar, wi wiVar, wi wiVar2, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i7, 0, false, dVar, wiVar, wiVar2, i6Var);
+        this.f3557o3 = cjVar;
+    }
+
+    public d6(Context context, int i7, b bVar, b6 b6Var, b6 b6Var2, org.telegram.ui.ActionBar.i6 i6Var, eq0 eq0Var) {
+        super(context, i7, 0, false, bVar, b6Var, b6Var2, i6Var, 3, 1);
+        this.f3557o3 = eq0Var;
     }
 }

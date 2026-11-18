@@ -1,31 +1,100 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class vi0 implements RequestDelegate {
-    public final int f52236a;
-    public final ek0 f52237b;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class vi0 implements View.OnClickListener {
+    public final int f52800a;
+    public final hk0 f52801b;
 
-    public vi0(ek0 ek0Var, int i7) {
-        this.f52236a = i7;
-        this.f52237b = ek0Var;
+    public vi0(hk0 hk0Var, int i7) {
+        this.f52800a = i7;
+        this.f52801b = hk0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f52236a) {
+    public final void onClick(View view) {
+        int i7 = this.f52800a;
+        hk0 hk0Var = this.f52801b;
+        switch (i7) {
             case 0:
-                org.telegram.messenger.g0.h3(new lc0(this.f52237b, tL_error, tLObject, 12));
+                hk0Var.T0 = 2;
+                hk0Var.H1();
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new jd0(17, this.f52237b, tL_error));
+                hk0Var.h1();
                 return;
             case 2:
-                org.telegram.messenger.g0.h3(new ri0(this.f52237b, 5));
+                hk0Var.T0 = 3;
+                hk0Var.H1();
+                return;
+            case 3:
+                hk0Var.T0 = 1;
+                hk0Var.H1();
+                return;
+            case 4:
+                hk0Var.T0 = 4;
+                hk0Var.H1();
+                return;
+            case 5:
+                if (hk0Var.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                    hk0Var.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
+                    return;
+                }
+                t9 t9Var = new t9(0);
+                t9Var.N = new hj0(hk0Var);
+                hk0Var.presentFragment(t9Var);
+                return;
+            case 6:
+                hk0Var.f48427f = true;
+                hk0Var.M.callOnClick();
+                hk0Var.f48427f = false;
+                return;
+            case 7:
+                hk0Var.T0 = 0;
+                hk0Var.H1();
+                return;
+            case 8:
+                hk0Var.T0 = 4;
+                hk0Var.H1();
+                return;
+            case 9:
+                hk0Var.h1();
+                return;
+            case 10:
+                hk0.g0(hk0Var);
+                return;
+            case 11:
+                hk0.h0(hk0Var);
+                return;
+            case 12:
+                hk0Var.G1();
+                return;
+            case 13:
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hk0Var.getParentActivity());
+                String M0 = org.telegram.messenger.gd.M0(2131743997, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                u1Var.S = M0;
+                u1Var.U = org.telegram.messenger.gd.M0(2131743998, null);
+                alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131751587, null), new xi0(hk0Var, 5));
+                alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
+                hk0Var.showDialog(u1Var);
+                TextView textView = (TextView) u1Var.d(-1);
+                if (textView != null) {
+                    org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29637q7, null);
+                    return;
+                }
+                return;
+            case 14:
+                hk0Var.G1();
+                return;
+            case 15:
+                hk0.a0(hk0Var);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new jd0(16, this.f52237b, tLObject));
+                hk0Var.f48427f = true;
+                hk0Var.M.callOnClick();
+                hk0Var.f48427f = false;
                 return;
         }
     }

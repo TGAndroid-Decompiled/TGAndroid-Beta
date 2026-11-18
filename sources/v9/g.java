@@ -1,7 +1,7 @@
 package v9;
 
 import java.util.concurrent.ScheduledFuture;
-import org.telegram.ui.Components.cf;
+import v4.f0;
 public interface g {
-    ScheduledFuture a(cf cfVar);
+    ScheduledFuture a(f0 f0Var);
 }

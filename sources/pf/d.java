@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class d {
-    public static final Pattern f55014c = Pattern.compile("[0-9]+");
-    public int f55015a;
-    public ArrayList f55016b;
+    public static final Pattern f55590c = Pattern.compile("[0-9]+");
+    public int f55591a;
+    public ArrayList f55592b;
 
     public final String a(String str, String str2, String str3, boolean z10) {
         int i7;
         int length = str.length();
-        int i10 = this.f55015a;
+        int i10 = this.f55591a;
         if (length >= i10) {
             int i11 = 0;
-            Matcher matcher = f55014c.matcher(str.substring(0, i10));
+            Matcher matcher = f55590c.matcher(str.substring(0, i10));
             if (matcher.find()) {
                 i7 = Integer.parseInt(matcher.group(0));
             } else {
                 i7 = 0;
             }
-            ArrayList arrayList = this.f55016b;
+            ArrayList arrayList = this.f55592b;
             int size = arrayList.size();
             int i12 = 0;
             while (i12 < size) {
                 Object obj = arrayList.get(i12);
                 i12++;
                 c cVar = (c) obj;
-                if (i7 >= cVar.f55010a && i7 <= cVar.f55011b && str.length() <= cVar.f55012c) {
+                if (i7 >= cVar.f55586a && i7 <= cVar.f55587b && str.length() <= cVar.f55588c) {
                     if (z10) {
                         int i13 = cVar.d;
                         if (((i13 & 3) == 0 && str3 == null && str2 == null) || ((str3 != null && (i13 & 1) != 0) || (str2 != null && (i13 & 2) != 0))) {
@@ -40,25 +40,25 @@ public final class d {
             }
             if (!z10) {
                 if (str2 != null) {
-                    ArrayList arrayList2 = this.f55016b;
+                    ArrayList arrayList2 = this.f55592b;
                     int size2 = arrayList2.size();
                     while (i11 < size2) {
                         Object obj2 = arrayList2.get(i11);
                         i11++;
                         c cVar2 = (c) obj2;
-                        if (i7 >= cVar2.f55010a && i7 <= cVar2.f55011b && str.length() <= cVar2.f55012c && (str3 == null || (cVar2.d & 1) != 0)) {
+                        if (i7 >= cVar2.f55586a && i7 <= cVar2.f55587b && str.length() <= cVar2.f55588c && (str3 == null || (cVar2.d & 1) != 0)) {
                             return cVar2.a(str, str2, str3);
                         }
                     }
                     return null;
                 } else if (str3 != null) {
-                    ArrayList arrayList3 = this.f55016b;
+                    ArrayList arrayList3 = this.f55592b;
                     int size3 = arrayList3.size();
                     while (i11 < size3) {
                         Object obj3 = arrayList3.get(i11);
                         i11++;
                         c cVar3 = (c) obj3;
-                        if (i7 >= cVar3.f55010a && i7 <= cVar3.f55011b && str.length() <= cVar3.f55012c && (str2 == null || (cVar3.d & 2) != 0)) {
+                        if (i7 >= cVar3.f55586a && i7 <= cVar3.f55587b && str.length() <= cVar3.f55588c && (str2 == null || (cVar3.d & 2) != 0)) {
                             return cVar3.a(str, str2, str3);
                         }
                     }

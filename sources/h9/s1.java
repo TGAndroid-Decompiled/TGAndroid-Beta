@@ -1,55 +1,67 @@
 package h9;
+public final class s1 extends a0 {
+    public static final s1 f14067r = new s1();
+    public final transient Object d;
+    public final transient Object[] f14068e;
+    public final transient int f14069f;
+    public final transient int h;
+    public final transient s1 f14070n;
 
-import a8.ja;
-import j$.util.Objects;
-public final class s1 extends i0 {
-    public static final s1 f13749e = new s1(0, new Object[0]);
-    public final transient Object[] f13750c;
-    public final transient int d;
-
-    public s1(int i7, Object[] objArr) {
-        this.f13750c = objArr;
-        this.d = i7;
+    public s1() {
+        this.d = null;
+        this.f14068e = new Object[0];
+        this.f14069f = 0;
+        this.h = 0;
+        this.f14070n = this;
     }
 
     @Override
-    public final Object get(int i7) {
-        ja.j(i7, this.d);
-        Object obj = this.f13750c[i7];
-        Objects.requireNonNull(obj);
-        return obj;
+    public final v1 c() {
+        return new v1(this, this.f14068e, this.f14069f, this.h);
     }
 
     @Override
-    public final int i(int i7, Object[] objArr) {
-        Object[] objArr2 = this.f13750c;
-        int i10 = this.d;
-        System.arraycopy(objArr2, 0, objArr, i7, i10);
-        return i7 + i10;
+    public final w1 d() {
+        return new w1(this, new x1(this.f14069f, this.h, this.f14068e));
     }
 
     @Override
-    public final Object[] j() {
-        return this.f13750c;
-    }
-
-    @Override
-    public final int k() {
-        return this.d;
-    }
-
-    @Override
-    public final int l() {
-        return 0;
-    }
-
-    @Override
-    public final boolean m() {
-        return false;
+    public final Object get(Object obj) {
+        Object i7 = y1.i(this.d, this.f14068e, this.h, this.f14069f, obj);
+        if (i7 == null) {
+            return null;
+        }
+        return i7;
     }
 
     @Override
     public final int size() {
-        return this.d;
+        return this.h;
+    }
+
+    public s1(int i7, Object[] objArr) {
+        this.f14068e = objArr;
+        this.h = i7;
+        this.f14069f = 0;
+        int o4 = i7 >= 2 ? t0.o(i7) : 0;
+        Object h = y1.h(objArr, i7, o4, 0);
+        if (!(h instanceof Object[])) {
+            this.d = h;
+            Object h7 = y1.h(objArr, i7, o4, 1);
+            if (!(h7 instanceof Object[])) {
+                this.f14070n = new s1(h7, objArr, i7, this);
+                return;
+            }
+            throw ((k0) ((Object[]) h7)[2]).a();
+        }
+        throw ((k0) ((Object[]) h)[2]).a();
+    }
+
+    public s1(Object obj, Object[] objArr, int i7, s1 s1Var) {
+        this.d = obj;
+        this.f14068e = objArr;
+        this.f14069f = 1;
+        this.h = i7;
+        this.f14070n = s1Var;
     }
 }

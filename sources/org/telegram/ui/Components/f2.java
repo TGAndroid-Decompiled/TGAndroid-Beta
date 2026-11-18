@@ -1,30 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class f2 implements DialogInterface.OnShowListener {
-    public final int f34475a;
-    public final EditTextBoldCursor f34476b;
+import java.util.HashMap;
+public final class f2 implements Runnable {
+    public final int f34900a;
+    public final org.telegram.messenger.x10 f34901b;
+    public final HashMap f34902c;
 
-    public f2(EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f34475a = i7;
-        this.f34476b = editTextBoldCursor;
+    public f2(org.telegram.messenger.x10 x10Var, HashMap hashMap, int i7) {
+        this.f34900a = i7;
+        this.f34901b = x10Var;
+        this.f34902c = hashMap;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f34475a) {
+    public final void run() {
+        switch (this.f34900a) {
             case 0:
-                z3 z3Var = (z3) this.f34476b;
-                z3Var.requestFocus();
-                org.telegram.messenger.g0.J3(z3Var);
-                return;
-            case 1:
-                kg.x0 x0Var = (kg.x0) this.f34476b;
-                x0Var.requestFocus();
-                org.telegram.messenger.g0.J3(x0Var);
+                this.f34901b.a(this.f34902c);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new ht(this.f34476b, 7));
+                this.f34901b.a(this.f34902c);
                 return;
         }
     }

@@ -1,19 +1,12 @@
 package c8;
-
-import java.nio.ByteBuffer;
 public abstract class ba {
-    public e2.q0 a(o3.a aVar) {
-        boolean z10;
-        ByteBuffer byteBuffer = aVar.f17732c;
-        byteBuffer.getClass();
-        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public static boolean a(Object obj, Object obj2) {
+        if (obj != obj2) {
+            if (obj == null || !obj.equals(obj2)) {
+                return false;
+            }
+            return true;
         }
-        a8.ja.f(z10);
-        return b(aVar, byteBuffer);
+        return true;
     }
-
-    public abstract e2.q0 b(o3.a aVar, ByteBuffer byteBuffer);
 }

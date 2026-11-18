@@ -1,266 +1,52 @@
 package org.telegram.ui;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class be implements RequestDelegate {
-    public final int f45679a;
-    public final an f45680b;
+import android.animation.ValueAnimator;
+public final class be implements ValueAnimator.AnimatorUpdateListener {
+    public final int f45850a;
+    public final bn f45851b;
 
-    public be(an anVar, int i7) {
-        this.f45679a = i7;
-        this.f45680b = anVar;
+    public be(bn bnVar, int i7) {
+        this.f45850a = i7;
+        this.f45851b = bnVar;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f45679a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f45850a) {
             case 0:
-                final an anVar = this.f45680b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        boolean z10 = false;
-                        switch (r3) {
-                            case 0:
-                                an.B0(anVar, tLObject);
-                                return;
-                            case 1:
-                                an.q0(anVar, tLObject);
-                                return;
-                            case 2:
-                                an anVar2 = anVar;
-                                TLObject tLObject2 = tLObject;
-                                anVar2.F5 = 0;
-                                if (tLObject2 == null && anVar2.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar2.getParentActivity(), anVar2.Aa);
-                                    alertDialog$Builder.f28392a.S = org.telegram.messenger.hd.M0(2131689472, null);
-                                    alertDialog$Builder.f28392a.U = org.telegram.messenger.hd.M0(2131751271, null);
-                                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
-                                    anVar2.showDialog(alertDialog$Builder.f28392a);
-                                    qj qjVar = anVar2.f45117a0;
-                                    if (qjVar != null) {
-                                        qjVar.s1(null, null, false);
-                                        anVar2.D9(true);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                an anVar3 = anVar;
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 != null) {
-                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
-                                    try {
-                                        ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
-                                        if (org.telegram.ui.Components.cc.a(anVar3)) {
-                                            org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(anVar3);
-                                            if (!anVar3.fa() && tL_exportedMessageLink.link.contains("/c/")) {
-                                                z10 = true;
-                                            }
-                                            a02.k(z10).j();
-                                            return;
-                                        }
-                                        return;
-                                    } catch (Exception e10) {
-                                        org.telegram.messenger.a8.g(e10, true);
-                                        return;
-                                    }
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                final an anVar2 = this.f45680b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        boolean z10 = false;
-                        switch (r3) {
-                            case 0:
-                                an.B0(anVar2, tLObject);
-                                return;
-                            case 1:
-                                an.q0(anVar2, tLObject);
-                                return;
-                            case 2:
-                                an anVar22 = anVar2;
-                                TLObject tLObject2 = tLObject;
-                                anVar22.F5 = 0;
-                                if (tLObject2 == null && anVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar22.getParentActivity(), anVar22.Aa);
-                                    alertDialog$Builder.f28392a.S = org.telegram.messenger.hd.M0(2131689472, null);
-                                    alertDialog$Builder.f28392a.U = org.telegram.messenger.hd.M0(2131751271, null);
-                                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
-                                    anVar22.showDialog(alertDialog$Builder.f28392a);
-                                    qj qjVar = anVar22.f45117a0;
-                                    if (qjVar != null) {
-                                        qjVar.s1(null, null, false);
-                                        anVar22.D9(true);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                an anVar3 = anVar2;
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 != null) {
-                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
-                                    try {
-                                        ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
-                                        if (org.telegram.ui.Components.cc.a(anVar3)) {
-                                            org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(anVar3);
-                                            if (!anVar3.fa() && tL_exportedMessageLink.link.contains("/c/")) {
-                                                z10 = true;
-                                            }
-                                            a02.k(z10).j();
-                                            return;
-                                        }
-                                        return;
-                                    } catch (Exception e10) {
-                                        org.telegram.messenger.a8.g(e10, true);
-                                        return;
-                                    }
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 2:
-                final an anVar3 = this.f45680b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        boolean z10 = false;
-                        switch (r3) {
-                            case 0:
-                                an.B0(anVar3, tLObject);
-                                return;
-                            case 1:
-                                an.q0(anVar3, tLObject);
-                                return;
-                            case 2:
-                                an anVar22 = anVar3;
-                                TLObject tLObject2 = tLObject;
-                                anVar22.F5 = 0;
-                                if (tLObject2 == null && anVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar22.getParentActivity(), anVar22.Aa);
-                                    alertDialog$Builder.f28392a.S = org.telegram.messenger.hd.M0(2131689472, null);
-                                    alertDialog$Builder.f28392a.U = org.telegram.messenger.hd.M0(2131751271, null);
-                                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
-                                    anVar22.showDialog(alertDialog$Builder.f28392a);
-                                    qj qjVar = anVar22.f45117a0;
-                                    if (qjVar != null) {
-                                        qjVar.s1(null, null, false);
-                                        anVar22.D9(true);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                an anVar32 = anVar3;
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 != null) {
-                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
-                                    try {
-                                        ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
-                                        if (org.telegram.ui.Components.cc.a(anVar32)) {
-                                            org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(anVar32);
-                                            if (!anVar32.fa() && tL_exportedMessageLink.link.contains("/c/")) {
-                                                z10 = true;
-                                            }
-                                            a02.k(z10).j();
-                                            return;
-                                        }
-                                        return;
-                                    } catch (Exception e10) {
-                                        org.telegram.messenger.a8.g(e10, true);
-                                        return;
-                                    }
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 3:
-                final an anVar4 = this.f45680b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        boolean z10 = false;
-                        switch (r3) {
-                            case 0:
-                                an.B0(anVar4, tLObject);
-                                return;
-                            case 1:
-                                an.q0(anVar4, tLObject);
-                                return;
-                            case 2:
-                                an anVar22 = anVar4;
-                                TLObject tLObject2 = tLObject;
-                                anVar22.F5 = 0;
-                                if (tLObject2 == null && anVar22.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar22.getParentActivity(), anVar22.Aa);
-                                    alertDialog$Builder.f28392a.S = org.telegram.messenger.hd.M0(2131689472, null);
-                                    alertDialog$Builder.f28392a.U = org.telegram.messenger.hd.M0(2131751271, null);
-                                    alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747831, null), null);
-                                    anVar22.showDialog(alertDialog$Builder.f28392a);
-                                    qj qjVar = anVar22.f45117a0;
-                                    if (qjVar != null) {
-                                        qjVar.s1(null, null, false);
-                                        anVar22.D9(true);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                an anVar32 = anVar4;
-                                TLObject tLObject3 = tLObject;
-                                if (tLObject3 != null) {
-                                    TLRPC.TL_exportedMessageLink tL_exportedMessageLink = (TLRPC.TL_exportedMessageLink) tLObject3;
-                                    try {
-                                        ((ClipboardManager) org.telegram.messenger.t0.f26609b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", tL_exportedMessageLink.link));
-                                        if (org.telegram.ui.Components.cc.a(anVar32)) {
-                                            org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(anVar32);
-                                            if (!anVar32.fa() && tL_exportedMessageLink.link.contains("/c/")) {
-                                                z10 = true;
-                                            }
-                                            a02.k(z10).j();
-                                            return;
-                                        }
-                                        return;
-                                    } catch (Exception e10) {
-                                        org.telegram.messenger.a8.g(e10, true);
-                                        return;
-                                    }
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 4:
-                an anVar5 = this.f45680b;
-                if (tL_error != null) {
-                    anVar5.getClass();
-                    return;
-                } else {
-                    anVar5.getMessagesController().O3((TLRPC.Updates) tLObject, false);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bn bnVar = this.f45851b;
+                bnVar.f45941a9 = floatValue;
+                pl plVar = bnVar.f46093m1;
+                if (plVar != null) {
+                    plVar.invalidate();
+                    bnVar.A0.invalidate();
                     return;
                 }
+                return;
+            case 1:
+                bn bnVar2 = this.f45851b;
+                bnVar2.getClass();
+                bnVar2.f46235x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bnVar2.Tc();
+                return;
+            case 2:
+                bn bnVar3 = this.f45851b;
+                bnVar3.getClass();
+                bnVar3.f46235x3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bnVar3.Tc();
+                return;
+            case 3:
+                bn bnVar4 = this.f45851b;
+                bnVar4.getClass();
+                bnVar4.f45958bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bnVar4.M9();
+                return;
             default:
-                an.n1(this.f45680b, tLObject);
+                bn bnVar5 = this.f45851b;
+                bnVar5.getClass();
+                bnVar5.f45958bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bnVar5.M9();
                 return;
         }
     }

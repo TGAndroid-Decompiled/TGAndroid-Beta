@@ -1,17 +1,17 @@
 package zd;
 public abstract class q0 implements Runnable, Comparable, l0 {
     private volatile Object _heap;
-    public long f61316a;
-    public int f61317b = -1;
+    public long f61880a;
+    public int f61881b = -1;
 
     public q0(long j3) {
-        this.f61316a = j3;
+        this.f61880a = j3;
     }
 
-    public final ee.u b() {
+    public final ee.v b() {
         Object obj = this._heap;
-        if (obj instanceof ee.u) {
-            return (ee.u) obj;
+        if (obj instanceof ee.v) {
+            return (ee.v) obj;
         }
         return null;
     }
@@ -20,17 +20,17 @@ public abstract class q0 implements Runnable, Comparable, l0 {
         q0 q0Var;
         boolean z10;
         synchronized (this) {
-            if (this._heap == b0.f61253b) {
+            if (this._heap == b0.f61817b) {
                 return 2;
             }
             synchronized (r0Var) {
-                q0[] q0VarArr = r0Var.f10634a;
+                q0[] q0VarArr = r0Var.f10954a;
                 if (q0VarArr != null) {
                     q0Var = q0VarArr[0];
                 } else {
                     q0Var = null;
                 }
-                if (s0.f61320r.get(s0Var) != 0) {
+                if (s0.f61884r.get(s0Var) != 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -39,20 +39,20 @@ public abstract class q0 implements Runnable, Comparable, l0 {
                     return 1;
                 }
                 if (q0Var == null) {
-                    r0Var.f61318c = j3;
+                    r0Var.f61882c = j3;
                 } else {
-                    long j10 = q0Var.f61316a;
+                    long j10 = q0Var.f61880a;
                     if (j10 - j3 < 0) {
                         j3 = j10;
                     }
-                    if (j3 - r0Var.f61318c > 0) {
-                        r0Var.f61318c = j3;
+                    if (j3 - r0Var.f61882c > 0) {
+                        r0Var.f61882c = j3;
                     }
                 }
-                long j11 = this.f61316a;
-                long j12 = r0Var.f61318c;
+                long j11 = this.f61880a;
+                long j12 = r0Var.f61882c;
                 if (j11 - j12 < 0) {
-                    this.f61316a = j12;
+                    this.f61880a = j12;
                 }
                 r0Var.a(this);
                 return 0;
@@ -62,7 +62,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
 
     @Override
     public final int compareTo(Object obj) {
-        int i7 = ((this.f61316a - ((q0) obj).f61316a) > 0L ? 1 : ((this.f61316a - ((q0) obj).f61316a) == 0L ? 0 : -1));
+        int i7 = ((this.f61880a - ((q0) obj).f61880a) > 0L ? 1 : ((this.f61880a - ((q0) obj).f61880a) == 0L ? 0 : -1));
         if (i7 > 0) {
             return 1;
         }
@@ -73,7 +73,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
     }
 
     public final void d(r0 r0Var) {
-        if (this._heap != b0.f61253b) {
+        if (this._heap != b0.f61817b) {
             this._heap = r0Var;
             return;
         }
@@ -86,8 +86,8 @@ public abstract class q0 implements Runnable, Comparable, l0 {
         synchronized (this) {
             try {
                 Object obj = this._heap;
-                aa.b0 b0Var = b0.f61253b;
-                if (obj == b0Var) {
+                ee.t tVar = b0.f61817b;
+                if (obj == tVar) {
                     return;
                 }
                 if (obj instanceof r0) {
@@ -98,7 +98,7 @@ public abstract class q0 implements Runnable, Comparable, l0 {
                 if (r0Var != null) {
                     r0Var.b(this);
                 }
-                this._heap = b0Var;
+                this._heap = tVar;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -106,6 +106,6 @@ public abstract class q0 implements Runnable, Comparable, l0 {
     }
 
     public String toString() {
-        return "Delayed[nanos=" + this.f61316a + ']';
+        return "Delayed[nanos=" + this.f61880a + ']';
     }
 }

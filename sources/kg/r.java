@@ -3,28 +3,28 @@ package kg;
 import android.content.DialogInterface;
 import android.view.View;
 public final class r implements DialogInterface.OnDismissListener {
-    public final int f18077a;
-    public final View f18078b;
+    public final int f18436a;
+    public final View f18437b;
 
     public r(int i7, View view) {
-        this.f18077a = i7;
-        this.f18078b = view;
+        this.f18436a = i7;
+        this.f18437b = view;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f18077a) {
+        switch (this.f18436a) {
             case 0:
-                v.f18119e = null;
-                View view = this.f18078b;
+                v.f18499e = null;
+                View view = this.f18437b;
                 if (view != null) {
                     view.requestFocus();
                     return;
                 }
                 return;
             default:
-                r1.f18081f = null;
-                View view2 = this.f18078b;
+                t1.f18488f = null;
+                View view2 = this.f18437b;
                 if (view2 != null) {
                     view2.requestFocus();
                     return;

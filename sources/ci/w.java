@@ -1,70 +1,156 @@
 package ci;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import c8.ja;
-import com.google.android.gms.internal.vision.u2;
-import com.google.android.gms.internal.vision.x1;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraView;
-public final class w implements Runnable {
-    public final int f5528a;
-    public final a0 f5529b;
+import android.content.res.Resources;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Region;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.os.Build;
+import android.view.RoundedCorner;
+import android.view.View;
+import android.view.WindowInsets;
+public abstract class w {
+    public static float f5810a = -1.0f;
 
-    public w(a0 a0Var, int i7) {
-        this.f5528a = i7;
-        this.f5529b = a0Var;
+    public static Canvas a(int i7, int i10, Object obj) {
+        RenderNode d = n2.a0.d(obj);
+        d.setPosition(0, 0, i7, i10);
+        return d.beginRecording();
     }
 
-    @Override
-    public final void run() {
-        switch (this.f5528a) {
-            case 0:
-                a0 a0Var = this.f5529b;
-                a0Var.g();
-                a0Var.f5258a.g(a0Var);
-                return;
-            case 1:
-                a0 a0Var2 = this.f5529b;
-                u8.n nVar = a0Var2.f5272j0;
-                if (nVar != null) {
-                    nVar.X0();
-                    a0Var2.f5272j0 = null;
-                }
-                Bitmap bitmap = a0Var2.f5274l0;
-                if (bitmap != null) {
-                    bitmap.recycle();
-                    a0Var2.f5274l0 = null;
-                }
-                a0Var2.f5269g0.quitSafely();
-                return;
-            case 2:
-                a0 a0Var3 = this.f5529b;
-                try {
-                    Context context = org.telegram.messenger.t0.f26609b;
-                    ?? obj = new Object();
-                    obj.f7049a = 256;
-                    a0Var3.f5272j0 = new u8.n(new u2(context, (x1) obj));
-                } catch (Throwable th2) {
-                    a8.g(th2, true);
-                }
-                a0Var3.f5273k0 = new cb.c(24);
-                return;
-            default:
-                a0 a0Var4 = this.f5529b;
-                if (!a0Var4.W && !a0Var4.V && a0Var4.f5260b == null && CameraView.isCameraAllowed()) {
-                    CameraController.getInstance().initCamera(null);
-                    CameraView cameraView = new CameraView(a0Var4.getContext(), false);
-                    cameraView.setUseMaxPreview(true);
-                    cameraView.setOptimizeForBarcode(true);
-                    cameraView.setAlpha(0.0f);
-                    cameraView.setDelegate(new ab.g(11, a0Var4, cameraView));
-                    a0Var4.f5260b = cameraView;
-                    a0Var4.addView(cameraView, 0, ja.c(-1.0f, -1));
-                    return;
-                }
-                return;
+    public static void b(Canvas canvas, Path path) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            canvas.clipOutPath(path);
+        } else {
+            canvas.clipPath(path, Region.Op.DIFFERENCE);
         }
+    }
+
+    public static void c(Canvas canvas, Object obj) {
+        canvas.drawRenderNode(n2.a0.d(obj));
+    }
+
+    public static void d(Object obj) {
+        n2.a0.d(obj).endRecording();
+    }
+
+    public static boolean e(Object obj) {
+        if (obj != null && n2.a0.d(obj).hasDisplayList()) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean f() {
+        if (Build.VERSION.SDK_INT >= 31) {
+            return true;
+        }
+        return false;
+    }
+
+    public static float g(View view) {
+        float f10;
+        int identifier;
+        WindowInsets windowInsets;
+        float f11;
+        if (Build.VERSION.SDK_INT >= 31) {
+            if (view != null) {
+                windowInsets = view.getRootWindowInsets();
+            } else {
+                windowInsets = null;
+            }
+            if (windowInsets == null) {
+                f11 = -1.0f;
+            } else {
+                RoundedCorner roundedCorner = windowInsets.getRoundedCorner(0);
+                if (roundedCorner != null) {
+                    f11 = roundedCorner.getRadius();
+                } else {
+                    f11 = 0.0f;
+                }
+            }
+            if (f11 >= 0.0f) {
+                return f11;
+            }
+        }
+        if (f5810a < 0.0f) {
+            try {
+                Resources system = Resources.getSystem();
+                int identifier2 = system.getIdentifier("rounded_corner_radius_top", "dimen", "android");
+                if (identifier2 != 0) {
+                    f10 = system.getDimensionPixelSize(identifier2);
+                } else {
+                    f10 = 0.0f;
+                }
+                if (f10 <= 0.0f && (identifier = system.getIdentifier("rounded_corner_radius", "dimen", "android")) != 0) {
+                    f10 = system.getDimensionPixelSize(identifier);
+                }
+            } catch (Exception unused) {
+                f10 = 0.0f;
+            }
+            f5810a = Math.max(0.0f, f10);
+        }
+        return f5810a;
+    }
+
+    public static void h(Object obj, float f10) {
+        n2.a0.d(obj).setAlpha(f10);
+    }
+
+    public static void i(int i7, Paint paint) {
+        BlendMode blendMode;
+        switch (i7) {
+            case 1:
+                blendMode = BlendMode.PLUS;
+                break;
+            case 2:
+                blendMode = BlendMode.SCREEN;
+                break;
+            case 3:
+                blendMode = BlendMode.COLOR_DODGE;
+                break;
+            case 4:
+                blendMode = BlendMode.OVERLAY;
+                break;
+            case 5:
+                blendMode = BlendMode.SOFT_LIGHT;
+                break;
+            case 6:
+                blendMode = BlendMode.COLOR_BURN;
+                break;
+            default:
+                blendMode = null;
+                break;
+        }
+        paint.setBlendMode(blendMode);
+    }
+
+    public static void j(Object obj, float f10) {
+        RenderEffect renderEffect;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        RenderNode renderNode = (RenderNode) obj;
+        if (f10 > 0.0f) {
+            renderEffect = RenderEffect.createBlurEffect(f10, f10, tileMode);
+        } else {
+            renderEffect = null;
+        }
+        renderNode.setRenderEffect(renderEffect);
+    }
+
+    public static void k(Object obj, float f10, float[] fArr) {
+        n2.a0.d(obj).setRenderEffect(RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(fArr), RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP)));
+    }
+
+    public static ColorFilter l(int i7) {
+        BlendMode blendMode;
+        blendMode = BlendMode.SRC_IN;
+        return new BlendModeColorFilter(i7, blendMode);
     }
 }

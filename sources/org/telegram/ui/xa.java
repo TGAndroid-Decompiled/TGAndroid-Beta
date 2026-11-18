@@ -1,20 +1,20 @@
 package org.telegram.ui;
-public final class xa extends org.telegram.ui.ActionBar.g1 {
-    public final lb f53133o;
+public final class xa extends org.telegram.ui.ActionBar.h1 {
+    public final lb f53770o;
 
     public xa(lb lbVar, wa waVar) {
         super(waVar, -2, -2);
-        this.f53133o = lbVar;
+        this.f53770o = lbVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        lb lbVar = this.f53133o;
+        lb lbVar = this.f53770o;
         if (lbVar.G0 != this) {
             return;
         }
-        org.telegram.ui.Components.xb.e();
+        org.telegram.ui.Components.gc.e();
         lbVar.G0 = null;
     }
 }

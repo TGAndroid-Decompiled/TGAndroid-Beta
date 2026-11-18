@@ -1,12 +1,12 @@
 package gb;
 public final class t0 implements q0 {
-    public static final double f13098f = Math.random();
-    public static final int f13099g = 0;
-    public final o9.g f13100a;
-    public final va.d f13101b;
-    public final jb.l f13102c;
+    public static final double f13415f = Math.random();
+    public static final int f13416g = 0;
+    public final o9.g f13417a;
+    public final va.d f13418b;
+    public final jb.l f13419c;
     public final l d;
-    public final id.h f13103e;
+    public final id.h f13420e;
 
     public t0(o9.g firebaseApp, va.d firebaseInstallations, jb.l sessionSettings, l eventGDTLogger, id.h backgroundDispatcher) {
         kotlin.jvm.internal.j.e(firebaseApp, "firebaseApp");
@@ -14,11 +14,11 @@ public final class t0 implements q0 {
         kotlin.jvm.internal.j.e(sessionSettings, "sessionSettings");
         kotlin.jvm.internal.j.e(eventGDTLogger, "eventGDTLogger");
         kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
-        this.f13100a = firebaseApp;
-        this.f13101b = firebaseInstallations;
-        this.f13102c = sessionSettings;
+        this.f13417a = firebaseApp;
+        this.f13418b = firebaseInstallations;
+        this.f13419c = sessionSettings;
         this.d = eventGDTLogger;
-        this.f13103e = backgroundDispatcher;
+        this.f13420e = backgroundDispatcher;
     }
 
     public static final java.lang.Object a(gb.t0 r6, kd.c r7) {

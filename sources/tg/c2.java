@@ -3,37 +3,37 @@ package tg;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.g20;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.s10;
-import org.telegram.messenger.z10;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.q10;
+import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLRPC;
 public final class c2 {
-    public String f57181a;
-    public String f57182b;
-    public String f57183c;
+    public String f57753a;
+    public String f57754b;
+    public String f57755c;
     public CharSequence d;
-    public TLRPC.TL_inputStickerSetItem f57184e;
-    public TLRPC.TL_messageMediaDocument f57185f;
-    public TLRPC.InputFile f57186g;
+    public TLRPC.TL_inputStickerSetItem f57756e;
+    public TLRPC.TL_messageMediaDocument f57757f;
+    public TLRPC.InputFile f57758g;
     public boolean h;
-    public long f57187i;
-    public TLRPC.StickerSet f57188j;
-    public TLRPC.Document f57189k;
-    public String f57190l;
-    public s10 f57191m;
-    public z10 f57192n;
-    public boolean f57193o;
-    public ArrayList f57194p;
-    public ArrayList f57195q;
-    public gj f57196r;
-    public g20 f57197s;
-    public float f57198t;
-    public float f57199u;
+    public long f57759i;
+    public TLRPC.StickerSet f57760j;
+    public TLRPC.Document f57761k;
+    public String f57762l;
+    public q10 f57763m;
+    public x10 f57764n;
+    public boolean f57765o;
+    public ArrayList f57766p;
+    public ArrayList f57767q;
+    public fj f57768r;
+    public e20 f57769s;
+    public float f57770t;
+    public float f57771u;
 
     public final void a() {
-        ArrayList arrayList = this.f57195q;
-        ArrayList arrayList2 = this.f57194p;
+        ArrayList arrayList = this.f57767q;
+        ArrayList arrayList2 = this.f57766p;
         int size = arrayList2.size();
         int i7 = 0;
         int i10 = 0;
@@ -62,14 +62,14 @@ public final class c2 {
 
     public final float b() {
         float f10;
-        if (this.f57191m == null) {
+        if (this.f57763m == null) {
             f10 = 0.9f;
         } else {
             f10 = 1.0f;
         }
-        if (this.f57197s == null) {
-            return f10 * this.f57199u;
+        if (this.f57769s == null) {
+            return f10 * this.f57771u;
         }
-        return com.google.android.gms.internal.vision.e2.B(this.f57199u, 0.5f, this.f57198t * 0.5f, f10);
+        return com.google.android.gms.internal.vision.e2.B(this.f57771u, 0.5f, this.f57770t * 0.5f, f10);
     }
 }

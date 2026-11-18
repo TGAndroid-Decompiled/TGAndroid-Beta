@@ -1,16 +1,16 @@
 package ge;
 
-import ee.t;
+import ee.u;
 import java.util.concurrent.Executor;
 import zd.u0;
 import zd.x;
 public final class d extends u0 implements Executor {
-    public static final d f13195c = new x();
+    public static final d f13510c = new x();
     public static final x d;
 
     static {
-        l lVar = l.f13206c;
-        int i7 = t.f10632a;
+        l lVar = l.f13521c;
+        int i7 = u.f10952a;
         if (64 >= i7) {
             i7 = 64;
         }
@@ -29,7 +29,7 @@ public final class d extends u0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(id.i.f15913a, runnable);
+        c(id.i.f16229a, runnable);
     }
 
     @Override

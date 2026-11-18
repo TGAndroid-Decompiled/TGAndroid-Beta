@@ -1,33 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class y70 implements RequestDelegate {
-    public final int f53466a;
-    public final LaunchActivity f53467b;
+import android.graphics.Point;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class y70 implements ViewTreeObserver.OnGlobalLayoutListener {
+    public final int f54083a;
+    public final Object f54084b;
 
-    public y70(LaunchActivity launchActivity, int i7) {
-        this.f53466a = i7;
-        this.f53467b = launchActivity;
+    public y70(Object obj, int i7) {
+        this.f54083a = i7;
+        this.f54084b = obj;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f53466a;
-        LaunchActivity launchActivity = this.f53467b;
+    public final void onGlobalLayout() {
+        int i7 = this.f54083a;
+        Object obj = this.f54084b;
         switch (i7) {
             case 0:
                 String str = LaunchActivity.C1;
-                if (tLObject != null) {
-                    org.telegram.messenger.g0.h3(new g50(9, launchActivity, (TL_account.Password) tLObject));
+                int measuredHeight = ((View) obj).getMeasuredHeight();
+                StringBuilder m10 = i5.c.m(measuredHeight, "height = ", " displayHeight = ");
+                Point point = org.telegram.messenger.g0.f24121q;
+                i5.c.t(point.y, m10);
+                int i10 = (measuredHeight - org.telegram.messenger.g0.f24116n) - org.telegram.messenger.g0.f24115m;
+                if (i10 > org.telegram.messenger.g0.L(100.0f) && i10 < point.y && org.telegram.messenger.g0.L(100.0f) + i10 > point.y) {
+                    point.y = i10;
+                    if (org.telegram.messenger.s2.f26723a) {
+                        i5.c.t(point.y, new StringBuilder("fix display size y to "));
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                String str2 = LaunchActivity.C1;
-                org.telegram.messenger.g0.h3(new g50(5, launchActivity, tLObject));
+                x71 x71Var = (x71) obj;
+                x71Var.R = SystemClock.elapsedRealtime() + 1500;
+                x71Var.m0.invalidate();
                 return;
         }
     }

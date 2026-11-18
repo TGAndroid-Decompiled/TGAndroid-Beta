@@ -42,38 +42,38 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.function.Predicate;
 import m.o3;
 public final class e0 {
-    public final u f800a;
-    public final ga.b f801b;
-    public final ha.a f802c;
+    public final u f799a;
+    public final ga.b f800b;
+    public final ha.a f801c;
     public final ca.f d;
-    public final o3 f803e;
-    public final a0 f804f;
-    public final ba.e f805g;
+    public final o3 f802e;
+    public final a0 f803f;
+    public final ba.e f804g;
 
     public e0(u uVar, ga.b bVar, ha.a aVar, ca.f fVar, o3 o3Var, a0 a0Var, ba.e eVar) {
-        this.f800a = uVar;
-        this.f801b = bVar;
-        this.f802c = aVar;
+        this.f799a = uVar;
+        this.f800b = bVar;
+        this.f801c = aVar;
         this.d = fVar;
-        this.f803e = o3Var;
-        this.f804f = a0Var;
-        this.f805g = eVar;
+        this.f802e = o3Var;
+        this.f803f = a0Var;
+        this.f804g = eVar;
     }
 
     public static t0 a(t0 t0Var, ca.f fVar, o3 o3Var, Map map) {
         Map unmodifiableMap;
         s0 a10 = t0Var.a();
-        String n10 = ((ca.d) fVar.f4839b).n();
+        String n10 = ((ca.d) fVar.f5121b).n();
         if (n10 != null) {
-            a10.f7900e = new h1(n10);
+            a10.f8182e = new h1(n10);
         } else if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", "No log data to include with this event.", null);
         }
         ab.q qVar = (ab.q) o3Var.d;
         if (map.isEmpty()) {
-            unmodifiableMap = ((ca.e) ((AtomicMarkableReference) qVar.f989b).getReference()).a();
+            unmodifiableMap = ((ca.e) ((AtomicMarkableReference) qVar.f988b).getReference()).a();
         } else {
-            HashMap hashMap = new HashMap(((ca.e) ((AtomicMarkableReference) qVar.f989b).getReference()).a());
+            HashMap hashMap = new HashMap(((ca.e) ((AtomicMarkableReference) qVar.f988b).getReference()).a());
             int i7 = 0;
             for (Map.Entry entry : map.entrySet()) {
                 String b10 = ca.e.b(1024, (String) entry.getKey());
@@ -89,37 +89,37 @@ public final class e0 {
             unmodifiableMap = DesugarCollections.unmodifiableMap(hashMap);
         }
         List f10 = f(unmodifiableMap);
-        List f11 = f(((ca.e) ((AtomicMarkableReference) ((ab.q) o3Var.f19797e).f989b).getReference()).a());
+        List f11 = f(((ca.e) ((AtomicMarkableReference) ((ab.q) o3Var.f20164e).f988b).getReference()).a());
         if (!f10.isEmpty() || !f11.isEmpty()) {
-            u0 a11 = t0Var.f7910c.a();
-            a11.f7920b = f10;
-            a11.f7921c = f11;
-            a10.f7899c = a11.a();
+            u0 a11 = t0Var.f8192c.a();
+            a11.f8202b = f10;
+            a11.f8203c = f11;
+            a10.f8181c = a11.a();
         }
         return a10.a();
     }
 
     public static q2 b(t0 t0Var, o3 o3Var) {
-        List o4 = ((f5.v) o3Var.f19798f).o();
+        List a10 = ((ca.q) o3Var.f20165f).a();
         ArrayList arrayList = new ArrayList();
-        for (int i7 = 0; i7 < o4.size(); i7++) {
-            ca.p pVar = (ca.p) o4.get(i7);
+        for (int i7 = 0; i7 < a10.size(); i7++) {
+            ca.p pVar = (ca.p) a10.get(i7);
             pVar.getClass();
             ?? obj = new Object();
             ca.b bVar = (ca.b) pVar;
-            String str = bVar.f4829e;
+            String str = bVar.f5111e;
             if (str != null) {
-                String str2 = bVar.f4827b;
+                String str2 = bVar.f5109b;
                 if (str2 != null) {
-                    obj.f7769a = new k1(str2, str);
-                    String str3 = bVar.f4828c;
+                    obj.f8051a = new k1(str2, str);
+                    String str3 = bVar.f5110c;
                     if (str3 != null) {
-                        obj.f7770b = str3;
+                        obj.f8052b = str3;
                         String str4 = bVar.d;
                         if (str4 != null) {
-                            obj.f7771c = str4;
-                            obj.d = bVar.f4830f;
-                            obj.f7772e = (byte) (obj.f7772e | 1);
+                            obj.f8053c = str4;
+                            obj.d = bVar.f5112f;
+                            obj.f8054e = (byte) (obj.f8054e | 1);
                             arrayList.add(obj.a());
                         } else {
                             throw new NullPointerException("Null parameterValue");
@@ -137,9 +137,9 @@ public final class e0 {
         if (arrayList.isEmpty()) {
             return t0Var;
         }
-        s0 a10 = t0Var.a();
-        a10.f7901f = new l1(arrayList);
-        return a10.a();
+        s0 a11 = t0Var.a();
+        a11.f8183f = new l1(arrayList);
+        return a11.a();
     }
 
     public static String c(InputStream inputStream) {
@@ -171,9 +171,9 @@ public final class e0 {
     public static e0 d(Context context, a0 a0Var, ga.d dVar, a aVar, ca.f fVar, o3 o3Var, wf.b bVar, ia.c cVar, q4.q qVar, j jVar, ba.e eVar) {
         u uVar = new u(context, a0Var, aVar, bVar, cVar);
         ga.b bVar2 = new ga.b(dVar, cVar, jVar);
-        ea.a aVar2 = ha.a.f13785b;
-        o5.t.b(context);
-        return new e0(uVar, bVar2, new ha.a(new ha.b(o5.t.a().c(new m5.a(ha.a.f13786c, ha.a.d)).a("FIREBASE_CRASHLYTICS_REPORT", new l5.c("json"), ha.a.f13787e), cVar.b(), qVar)), fVar, o3Var, a0Var, eVar);
+        ea.a aVar2 = ha.a.f14102b;
+        o5.s.b(context);
+        return new e0(uVar, bVar2, new ha.a(new ha.b(o5.s.a().c(new m5.a(ha.a.f14103c, ha.a.d)).a("FIREBASE_CRASHLYTICS_REPORT", new l5.c("json"), ha.a.f14104e), cVar.b(), qVar)), fVar, o3Var, a0Var, eVar);
     }
 
     public static List f(Map map) {
@@ -197,7 +197,7 @@ public final class e0 {
     }
 
     public final ApplicationExitInfo e(String str, List list, Predicate predicate) {
-        long lastModified = this.f801b.f12959b.b(str, "start-time").lastModified();
+        long lastModified = this.f800b.f13276b.b(str, "start-time").lastModified();
         Iterator it = list.iterator();
         while (it.hasNext()) {
             ApplicationExitInfo applicationExitInfo = (ApplicationExitInfo) it.next();
@@ -213,9 +213,9 @@ public final class e0 {
         byte b10;
         boolean z11;
         boolean equals = str.equals("crash");
-        long j3 = cVar.f4832b;
-        u uVar = this.f800a;
-        Context context = uVar.f868a;
+        long j3 = cVar.f5114b;
+        u uVar = this.f799a;
+        Context context = uVar.f867a;
         int i7 = context.getResources().getConfiguration().orientation;
         wf.b bVar = uVar.d;
         Stack stack = new Stack();
@@ -226,15 +226,15 @@ public final class e0 {
         ab.c0 c0Var = null;
         while (!stack.isEmpty()) {
             Throwable th4 = (Throwable) stack.pop();
-            c0Var = new ab.c0(th4.getLocalizedMessage(), th4.getClass().getName(), bVar.q(th4.getStackTrace()), c0Var, 4);
+            c0Var = new ab.c0(th4.getLocalizedMessage(), th4.getClass().getName(), bVar.o(th4.getStackTrace()), c0Var, 4);
         }
         ab.c0 c0Var2 = c0Var;
         ?? obj = new Object();
-        obj.f7898b = str;
-        obj.f7897a = j3;
-        obj.f7902g = (byte) (obj.f7902g | 1);
-        j2 b11 = x9.c.f59857a.b(context);
-        int i10 = ((e1) b11).f7729c;
+        obj.f8180b = str;
+        obj.f8179a = j3;
+        obj.f8184g = (byte) (obj.f8184g | 1);
+        j2 b11 = x9.c.f60427a.b(context);
+        int i10 = ((e1) b11).f8011c;
         if (i10 > 0) {
             if (i10 != 100) {
                 z11 = true;
@@ -261,11 +261,11 @@ public final class e0 {
                             Map.Entry<Thread, StackTraceElement[]> next = it2.next();
                             Thread key = next.getKey();
                             if (!key.equals(thread)) {
-                                StackTraceElement[] q10 = bVar.q(next.getValue());
+                                StackTraceElement[] o4 = bVar.o(next.getValue());
                                 String name2 = key.getName();
                                 if (name2 != null) {
                                     it = it2;
-                                    List d2 = u.d(q10, 0);
+                                    List d2 = u.d(o4, 0);
                                     if (d2 != null) {
                                         if (b13 == 1) {
                                             b10 = b13;
@@ -299,18 +299,18 @@ public final class e0 {
                     if (a11 != null) {
                         w0 w0Var = new w0(unmodifiableList, c10, null, null, e10, a11);
                         if (b12 == 1) {
-                            obj.f7899c = new v0(w0Var, null, null, bool2, b11, a10, i7);
+                            obj.f8181c = new v0(w0Var, null, null, bool2, b11, a10, i7);
                             obj.d = uVar.b(i7);
                             t0 a12 = obj.a();
-                            Map map = cVar.f4833c;
+                            Map map = cVar.f5115c;
                             ca.f fVar = this.d;
-                            o3 o3Var = this.f803e;
+                            o3 o3Var = this.f802e;
                             q2 b15 = b(a(a12, fVar, o3Var, map), o3Var);
                             if (!z10) {
-                                this.f805g.f3094b.a(new c0(this, b15, cVar, equals, 0));
+                                this.f804g.f3088b.a(new c0(this, b15, cVar, equals, 0));
                                 return;
                             } else {
-                                this.f801b.e(b15, cVar.f4831a, equals);
+                                this.f800b.e(b15, cVar.f5113a, equals);
                                 return;
                             }
                         }
@@ -336,7 +336,7 @@ public final class e0 {
     public final Task h(String str, Executor executor) {
         b bVar;
         TaskCompletionSource taskCompletionSource;
-        ArrayList c10 = this.f801b.c();
+        ArrayList c10 = this.f800b.c();
         ArrayList arrayList = new ArrayList();
         int size = c10.size();
         int i7 = 0;
@@ -344,7 +344,7 @@ public final class e0 {
             int i10 = i7 + 1;
             File file = (File) c10.get(i7);
             try {
-                ea.a aVar = ga.b.f12956g;
+                ea.a aVar = ga.b.f13273g;
                 String f10 = ga.b.f(file);
                 aVar.getClass();
                 arrayList.add(new b(ea.a.j(f10), file.getName(), file));
@@ -362,38 +362,38 @@ public final class e0 {
             i11++;
             b bVar2 = (b) obj;
             if (str == null || str.equals(bVar2.f780b)) {
-                ha.a aVar2 = this.f802c;
+                ha.a aVar2 = this.f801c;
                 da.d0 d0Var = bVar2.f779a;
                 boolean z10 = true;
-                if (d0Var.f7705f != null && d0Var.f7706g != null) {
+                if (d0Var.f7987f != null && d0Var.f7988g != null) {
                     bVar = bVar2;
                 } else {
-                    z b10 = this.f804f.b(true);
+                    z b10 = this.f803f.b(true);
                     da.d0 d0Var2 = bVar2.f779a;
-                    String str2 = b10.f886a;
+                    String str2 = b10.f885a;
                     da.c0 a10 = d0Var2.a();
-                    a10.f7679e = str2;
+                    a10.f7961e = str2;
                     da.d0 a11 = a10.a();
-                    String str3 = b10.f887b;
+                    String str3 = b10.f886b;
                     da.c0 a12 = a11.a();
-                    a12.f7680f = str3;
+                    a12.f7962f = str3;
                     bVar = new b(a12.a(), bVar2.f780b, bVar2.f781c);
                 }
                 if (str == null) {
                     z10 = false;
                 }
-                ha.b bVar3 = aVar2.f13788a;
-                synchronized (bVar3.f13793f) {
+                ha.b bVar3 = aVar2.f14105a;
+                synchronized (bVar3.f14110f) {
                     try {
                         TaskCompletionSource taskCompletionSource2 = new TaskCompletionSource();
                         if (z10) {
-                            ((AtomicInteger) bVar3.f13795i.f55252b).getAndIncrement();
-                            if (bVar3.f13793f.size() < bVar3.f13792e) {
-                                x9.b bVar4 = x9.b.f59856a;
+                            ((AtomicInteger) bVar3.f14112i.f55826b).getAndIncrement();
+                            if (bVar3.f14110f.size() < bVar3.f14109e) {
+                                x9.b bVar4 = x9.b.f60426a;
                                 bVar4.b("Enqueueing report: " + bVar.f780b);
-                                bVar4.b("Queue size: " + bVar3.f13793f.size());
+                                bVar4.b("Queue size: " + bVar3.f14110f.size());
                                 taskCompletionSource = taskCompletionSource2;
-                                bVar3.f13794g.execute(new a9.h(bVar3, bVar, taskCompletionSource2, false, 5));
+                                bVar3.f14111g.execute(new a9.h(bVar3, bVar, taskCompletionSource2, false, 5));
                                 bVar4.b("Closing task for report: " + bVar.f780b);
                                 taskCompletionSource.trySetResult(bVar);
                             } else {
@@ -403,7 +403,7 @@ public final class e0 {
                                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                                     Log.d("FirebaseCrashlytics", str4, null);
                                 }
-                                ((AtomicInteger) bVar3.f13795i.f55253c).getAndIncrement();
+                                ((AtomicInteger) bVar3.f14112i.f55827c).getAndIncrement();
                                 taskCompletionSource.trySetResult(bVar);
                             }
                         } else {

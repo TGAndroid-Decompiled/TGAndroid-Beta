@@ -1,77 +1,49 @@
 package org.telegram.ui;
 
-import android.os.RemoteException;
-import android.os.SystemClock;
-import android.os.Trace;
+import android.content.Context;
+import android.widget.LinearLayout;
 import java.util.HashSet;
-public final class n31 implements Runnable {
-    public final int f49438a;
-    public final long f49439b;
-    public final Object f49440c;
+public final class n31 extends LinearLayout implements org.telegram.ui.ActionBar.c6 {
+    public final org.telegram.ui.ActionBar.i6 f50075a;
+    public final org.telegram.ui.Components.k80 f50076b;
+    public final org.telegram.ui.Components.k80 f50077c;
+    public final hi.d d;
+    public final hi.d f50078e;
 
-    public n31(Object obj, long j3, int i7) {
-        this.f49438a = i7;
-        this.f49440c = obj;
-        this.f49439b = j3;
+    public n31(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context);
+        this.f50075a = i6Var;
+        setOrientation(1);
+        int i7 = org.telegram.ui.ActionBar.n6.G6;
+        org.telegram.ui.Components.k80 a10 = c8.va.a(context, 15.0f, i7, true, i6Var);
+        this.f50076b = a10;
+        a10.setGravity(17);
+        addView(a10, c8.ma.t(-1, -2, 55, 32, 20, 32, 0));
+        org.telegram.ui.Components.k80 a11 = c8.va.a(context, 13.0f, i7, false, i6Var);
+        this.f50077c = a11;
+        a11.setGravity(17);
+        addView(a11, c8.ma.s(-1, -2, 55, 32.0f, 9.33f, 32.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        hi.d g10 = org.telegram.messenger.n10.g(24, context, i6Var, true);
+        this.d = g10;
+        hi.d g11 = org.telegram.messenger.n10.g(24, context, i6Var, true);
+        this.f50078e = g11;
+        linearLayout.addView(g10, c8.ma.q(0, 42, 1.0f, 112, 0, 0, 12, 0));
+        linearLayout.addView(g11, c8.ma.q(0, 42, 1.0f, 112, 0, 0, 0, 0));
+        addView(linearLayout, c8.ma.t(-1, -2, 55, 24, 18, 24, 16));
     }
 
     @Override
-    public final void run() {
-        int i7;
-        switch (this.f49438a) {
-            case 0:
-                ((li.v) this.f49440c).a(Long.valueOf(this.f49439b));
-                return;
-            case 1:
-                org.telegram.ui.web.a0 a0Var = (org.telegram.ui.web.a0) this.f49440c;
-                long j3 = this.f49439b;
-                a0Var.getClass();
-                a0Var.presentFragment(an.ua(j3));
-                return;
-            case 2:
-                org.telegram.utils.twidget.l1 l1Var = (org.telegram.utils.twidget.l1) this.f49440c;
-                long j10 = this.f49439b;
-                Trace.beginSection("WidgetSandbox:Destroy");
-                try {
-                    org.telegram.utils.twidget.u0 u0Var = l1Var.f54301c;
-                    org.telegram.utils.twidget.r0 r0Var = (org.telegram.utils.twidget.r0) u0Var.f54414e.remove(Long.valueOf(j10));
-                    if (r0Var != null) {
-                        org.telegram.utils.twidget.b h12 = r0Var.h1();
-                        if (h12 != null) {
-                            try {
-                                h12.K(r0Var.d);
-                            } catch (RemoteException unused) {
-                            }
-                        }
-                        synchronized (u0Var.f54412b) {
-                            u0Var.j(r0Var.f54388a);
-                        }
-                    }
-                    return;
-                } finally {
-                    Trace.endSection();
-                }
-            case 3:
-                wg.u0 u0Var2 = (wg.u0) this.f49440c;
-                long j11 = this.f49439b;
-                HashSet hashSet = u0Var2.f59243a2;
-                hashSet.remove(Long.valueOf(j11));
-                u0Var2.U1.b(true, hashSet, new wg.p0(u0Var2, 5), null);
-                u0Var2.n1(true, false);
-                return;
-            default:
-                long j12 = this.f49439b;
-                yi.j jVar = (yi.j) ((ac.e) this.f49440c).f1023c;
-                if (j12 == jVar.f60764o && (i7 = jVar.G) != 9 && i7 != 10 && i7 != 8) {
-                    SystemClock.elapsedRealtime();
-                    jVar.f60771w = false;
-                    jVar.s(3);
-                    jVar.f60758i.removeCallbacks(jVar.D);
-                    yi.b bVar = jVar.h;
-                    bVar.b("recording started: retainedDurationMs=" + yi.j.r(jVar.f60765p));
-                    return;
-                }
-                return;
-        }
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.G6));
+    }
+
+    @Override
+    public final void updateColors() {
+        int i7 = org.telegram.ui.ActionBar.n6.G6;
+        org.telegram.ui.ActionBar.i6 i6Var = this.f50075a;
+        this.f50076b.setTextColor(org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
+        this.f50077c.setTextColor(org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
     }
 }

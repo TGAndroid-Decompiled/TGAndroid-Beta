@@ -1,35 +1,31 @@
 package org.telegram.ui;
 
-import android.content.ComponentName;
-import android.content.Context;
-public enum w80 {
-    DEFAULT("DefaultIcon", 2131231490, 2131558426, 2131754237, false),
-    VINTAGE("VintageIcon", 2131231485, 2131558419, 2131754233, false),
-    AQUA("AquaIcon", 2131231479, 2131558426, 2131754239, false),
-    PREMIUM("PremiumIcon", 2131231476, 2131558407, 2131754235, true),
-    TURBO("TurboIcon", 2131231482, 2131558414, 2131754234, true),
-    NOX("NoxIcon", 2131558402, 2131558426, 2131754236, true);
-    
-    public final String f52496a;
-    public final int f52497b;
-    public final int f52498c;
-    public final int d;
-    public final boolean f52499e;
-    public ComponentName f52500f;
+import android.window.OnBackInvokedCallback;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class w80 implements OnBackInvokedCallback {
+    public final LaunchActivity f53008a;
 
-    w80(String str, int i7, int i10, int i11, boolean z10) {
-        this.f52496a = str;
-        this.f52497b = i7;
-        this.f52498c = i10;
-        this.d = i11;
-        this.f52499e = z10;
+    public w80(LaunchActivity launchActivity) {
+        this.f53008a = launchActivity;
     }
 
-    public final ComponentName a(Context context) {
-        if (this.f52500f == null) {
-            String packageName = context.getPackageName();
-            this.f52500f = new ComponentName(packageName, "org.telegram.messenger." + this.f52496a);
+    public final void onBackInvoked() {
+        if (org.telegram.messenger.g0.Q1()) {
+            this.f53008a.onBackPressed();
+        } else if (!this.f53008a.d0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f53008a;
+            ActionBarLayout actionBarLayout = launchActivity.f43094p0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f28703j1) {
+                    actionBarLayout.I();
+                    return;
+                }
+                actionBarLayout.f28703j1 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
         }
-        return this.f52500f;
     }
 }

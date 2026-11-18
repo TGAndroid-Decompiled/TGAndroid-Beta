@@ -1,39 +1,89 @@
 package org.telegram.ui.Components;
+public final class m8 implements org.telegram.ui.ActionBar.r1, jq {
+    public final int f37416a;
+    public final y8 f37417b;
 
-import j$.util.Objects;
-public final class m8 {
-    public int f37161a;
-    public boolean f37162b;
-    public int f37163c;
-    public int d;
-    public int f37164e;
-    public int f37165f;
-
-    public final m8 a() {
-        ?? obj = new Object();
-        obj.f37163c = this.f37163c;
-        obj.d = this.d;
-        obj.f37164e = this.f37164e;
-        obj.f37165f = this.f37165f;
-        obj.f37162b = this.f37162b;
-        return obj;
+    public m8(y8 y8Var, int i7) {
+        this.f37416a = i7;
+        this.f37417b = y8Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public void c(int i7, int i10, boolean z10) {
+        y8 y8Var = this.f37417b;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 == 3) {
+                        u8 u8Var = y8Var.Z;
+                        int i11 = u8Var.f40254f;
+                        if (i11 != i7 && (i11 == 0 || i7 == 0)) {
+                            u8 a10 = u8Var.a();
+                            y8Var.Z = a10;
+                            y8Var.f42394a.b(a10, true);
+                            y8Var.s0();
+                        }
+                        y8Var.Z.f40254f = i7;
+                    }
+                } else {
+                    u8 u8Var2 = y8Var.Z;
+                    int i12 = u8Var2.f40253e;
+                    if (i12 != i7 && (i12 == 0 || i7 == 0)) {
+                        u8 a11 = u8Var2.a();
+                        y8Var.Z = a11;
+                        y8Var.f42394a.b(a11, true);
+                        y8Var.s0();
+                    }
+                    y8Var.Z.f40253e = i7;
+                }
+            } else {
+                u8 u8Var3 = y8Var.Z;
+                int i13 = u8Var3.d;
+                if (i13 != i7 && (i13 == 0 || i7 == 0)) {
+                    u8 a12 = u8Var3.a();
+                    y8Var.Z = a12;
+                    y8Var.f42394a.b(a12, true);
+                    y8Var.s0();
+                }
+                y8Var.Z.d = i7;
+            }
+        } else {
+            u8 u8Var4 = y8Var.Z;
+            int i14 = u8Var4.f40252c;
+            if (i14 != i7 && (i14 == 0 || i7 == 0)) {
+                u8 a13 = u8Var4.a();
+                y8Var.Z = a13;
+                y8Var.f42394a.b(a13, true);
+                y8Var.s0();
+            }
+            y8Var.Z.f40252c = i7;
         }
-        if (!(obj instanceof m8)) {
-            return false;
-        }
-        m8 m8Var = (m8) obj;
-        if (this.f37163c == m8Var.f37163c && this.d == m8Var.d && this.f37164e == m8Var.f37164e && this.f37165f == m8Var.f37165f) {
-            return true;
-        }
-        return false;
+        org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.f25197t4, new Object[0]);
+        y8Var.f42394a.invalidate();
     }
 
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f37161a), Integer.valueOf(this.f37163c), Integer.valueOf(this.d), Integer.valueOf(this.f37164e), Integer.valueOf(this.f37165f));
+    @Override
+    public int d(int i7) {
+        return 0;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f37416a) {
+            case 0:
+                this.f37417b.finishFragment();
+                return;
+            default:
+                this.f37417b.finishFragment();
+                return;
+        }
+    }
+
+    @Override
+    public void a(boolean z10) {
+    }
+
+    @Override
+    public void b() {
     }
 }

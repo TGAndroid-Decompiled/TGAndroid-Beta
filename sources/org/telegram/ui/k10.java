@@ -1,15 +1,8 @@
 package org.telegram.ui;
+public final class k10 {
+    public final f40 f49149a;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class k10 extends v4.t0 {
-    public final c40 f48493a;
-
-    public k10(c40 c40Var) {
-        this.f48493a = c40Var;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        this.f48493a.f29682b.invalidate();
+    public k10(f40 f40Var) {
+        this.f49149a = f40Var;
     }
 }

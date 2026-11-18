@@ -2,29 +2,29 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 public final class lu implements ValueAnimator.AnimatorUpdateListener {
-    public final int f49035a;
-    public final yw f49036b;
+    public final int f49695a;
+    public final cx f49696b;
 
-    public lu(yw ywVar, int i7) {
-        this.f49035a = i7;
-        this.f49036b = ywVar;
+    public lu(cx cxVar, int i7) {
+        this.f49695a = i7;
+        this.f49696b = cxVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f49035a) {
+        switch (this.f49695a) {
             case 0:
-                this.f49036b.P4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f49696b.X4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                yw ywVar = this.f49036b;
-                ywVar.getClass();
-                ywVar.R4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                cx cxVar = this.f49696b;
+                cxVar.getClass();
+                cxVar.Z4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                yw ywVar2 = this.f49036b;
-                ywVar2.getClass();
-                ywVar2.L4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                cx cxVar2 = this.f49696b;
+                cxVar2.getClass();
+                cxVar2.T4(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

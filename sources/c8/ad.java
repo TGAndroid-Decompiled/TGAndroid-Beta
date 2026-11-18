@@ -1,6 +1,18 @@
 package c8;
 public abstract class ad {
-    public static int a(android.content.Context r15, java.lang.String r16, java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.ad.a(android.content.Context, java.lang.String, java.lang.String):int");
+    public static int a(int i7) {
+        if (i7 != 0) {
+            if (i7 != 90) {
+                if (i7 != 180) {
+                    if (i7 == 270) {
+                        return 3;
+                    }
+                    throw new IllegalArgumentException(i5.c.i(i7, "Invalid rotation: "));
+                }
+                return 2;
+            }
+            return 1;
+        }
+        return 0;
     }
 }

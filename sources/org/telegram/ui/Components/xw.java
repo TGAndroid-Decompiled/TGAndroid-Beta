@@ -1,9 +1,7 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import org.telegram.tgnet.TLRPC;
 public final class xw {
-    public float f41768a;
-    public float f41769b;
-    public long f41770c;
-    public View d;
+    public TLRPC.TL_messages_stickerSet f42198a;
+    public long f42199b;
 }

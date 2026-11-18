@@ -1,33 +1,49 @@
 package org.telegram.ui.Components;
-public final class q11 implements Runnable {
-    public final int f38470a;
-    public final org.telegram.messenger.gj f38471b;
-    public final long f38472c;
-    public final String d;
 
-    public q11(org.telegram.messenger.gj gjVar, long j3, String str, int i7) {
-        this.f38470a = i7;
-        this.f38471b = gjVar;
-        this.f38472c = j3;
-        this.d = str;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class q11 extends Drawable {
+    public final Drawable f38681a;
+    public final Paint f38682b = new Paint(1);
+    public final RectF f38683c = new RectF();
+
+    public q11(Context context) {
+        this.f38681a = i5.c.g(context, 2131231905);
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f38470a;
-        String str = this.d;
-        long j3 = this.f38472c;
-        org.telegram.messenger.gj gjVar = this.f38471b;
-        switch (i7) {
-            case 0:
-                org.telegram.messenger.ns f10 = org.telegram.messenger.ns.f(gjVar.K1);
-                Long valueOf = Long.valueOf(j3);
-                Boolean bool = Boolean.TRUE;
-                f10.k(115, gjVar, valueOf, str, bool, bool);
-                return;
-            default:
-                x11.f(gjVar, j3, str);
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        Paint paint = this.f38682b;
+        canvas.drawRoundRect(this.f38683c, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), paint);
+        this.f38681a.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f38683c.set(rect);
+        int centerX = rect.centerX() - org.telegram.messenger.g0.L(12.0f);
+        int centerY = rect.centerY() - org.telegram.messenger.g0.L(12.0f);
+        this.f38681a.setBounds(centerX, centerY, org.telegram.messenger.g0.L(24.0f) + centerX, org.telegram.messenger.g0.L(24.0f) + centerY);
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f38682b.setAlpha(i7);
+        this.f38681a.setAlpha(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

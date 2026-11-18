@@ -1,25 +1,44 @@
 package bi;
 
-import android.view.ViewTreeObserver;
-public final class c2 extends a6 {
-    public final ViewTreeObserver T;
-    public final j1 U;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.x10;
+import org.telegram.ui.Components.z41;
+public final class c2 implements x10 {
+    public final int f3484a;
+    public final j3 f3485b;
 
-    public c2(long j3, String str, long j10, org.telegram.ui.ActionBar.e6 e6Var, ViewTreeObserver viewTreeObserver, j1 j1Var) {
-        super(j3, str, j10, e6Var);
-        this.T = viewTreeObserver;
-        this.U = j1Var;
+    public c2(j3 j3Var, int i7) {
+        this.f3484a = i7;
+        this.f3485b = j3Var;
     }
 
     @Override
-    public final void onPause() {
-        super.onPause();
-        this.T.removeOnPreDrawListener(this.U);
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        this.T.addOnPreDrawListener(this.U);
+    public final void a(Object obj) {
+        switch (this.f3484a) {
+            case 0:
+                this.f3485b.f3762v2.setTitleMinSideInset(org.telegram.messenger.g0.L(6.0f) + ((Integer) obj).intValue());
+                return;
+            default:
+                List list = (List) obj;
+                j3 j3Var = this.f3485b;
+                if (j3Var.getContext() != null && !j3Var.J) {
+                    ArrayList b10 = wg.s.b(1, list);
+                    j3Var.V1 = b10;
+                    List c10 = wg.s.c(b10);
+                    j3Var.V1 = c10;
+                    if (!((ArrayList) c10).isEmpty()) {
+                        j3Var.h1();
+                        z41 z41Var = j3Var.U1;
+                        if (z41Var != null) {
+                            z41Var.O(true);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,32 +1,30 @@
 package org.telegram.ui.Components;
-public enum ff0 {
-    MESSAGE(2131746731, 2131231154, 2131232495),
-    NOTIFICATION_MUTE(2131746687, 2131231155, 2131232496),
-    NOTIFICATION_UNMUTE(2131746686, 2131231161, 2131232501),
-    DISCUSS(2131746740, 2131231154, 2131232495),
-    GIFT(2131746735, 2131231216, 2131231503),
-    SHARE(2131746729, 2131230863, 2131232364),
-    CALL(2131746741, 2131231151, 2131232492),
-    VIDEO(2131746727, 2131231162, 2131232502),
-    JOIN(2131746734, 2131231153, 2131232494),
-    REPORT(2131746730, 2131232676, 2131232334),
-    LEAVE(2131746733, 2131231620, 2131231620),
-    VOICE_CHAT(2131746726, 2131231633, 2131231633),
-    STREAM(2131746732, 2131231633, 2131231633),
-    STORY(2131746742, 2131231160, 2131232500),
-    STOP(2131746728, 2131231159, 2131232499),
-    SET_PHOTO(2131746737, 2131231156, 2131232497),
-    EDIT_USERNAME(2131746736, 2131231152, 2131232493),
-    EDIT_INFO(2131746739, 2131231152, 2131232493),
-    SETTINGS(2131745495, 2131231158, 2131232498);
-    
-    public final int f34599a;
-    public final int f34600b;
-    public final int f34601c;
 
-    ff0(int i7, int i10, int i11) {
-        this.f34599a = i7;
-        this.f34600b = i10;
-        this.f34601c = i11;
+import android.animation.ValueAnimator;
+public final class ff0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35075a;
+    public final if0 f35076b;
+
+    public ff0(if0 if0Var, int i7) {
+        this.f35075a = i7;
+        this.f35076b = if0Var;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35075a) {
+            case 0:
+                if0 if0Var = this.f35076b;
+                if0Var.getClass();
+                if0Var.f36113b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if0Var.c(true);
+                return;
+            default:
+                if0 if0Var2 = this.f35076b;
+                if0Var2.getClass();
+                if0Var2.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if0Var2.c(true);
+                return;
+        }
     }
 }

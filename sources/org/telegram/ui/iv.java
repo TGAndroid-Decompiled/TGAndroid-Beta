@@ -1,53 +1,194 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class iv extends FragmentContextView {
-    public final int Y0;
-    public final yw Z0;
+import android.animation.ValueAnimator;
+import android.os.Build;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class iv extends v4.u0 {
+    public boolean f48806a;
+    public final bx f48807b;
+    public final vw f48808c;
+    public final cx d;
 
-    public iv(yw ywVar, Context context, yw ywVar2, int i7) {
-        super(context, ywVar2, true);
-        this.Y0 = i7;
-        switch (i7) {
-            case 1:
-                this.Z0 = ywVar;
-                super(context, ywVar2, false);
-                return;
-            default:
-                this.Z0 = ywVar;
-                return;
+    public iv(cx cxVar, bx bxVar, vw vwVar) {
+        this.d = cxVar;
+        this.f48807b = bxVar;
+        this.f48808c = vwVar;
+    }
+
+    @Override
+    public final void a(RecyclerView recyclerView, int i7) {
+        cx cxVar = this.d;
+        if (i7 == 1) {
+            this.f48806a = true;
+            cxVar.f46691g3 = true;
+            a8.xa xaVar = cxVar.f46683f0[0].f46308b;
+            ValueAnimator valueAnimator = (ValueAnimator) xaVar.f714c;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                ((ValueAnimator) xaVar.f714c).cancel();
+                xaVar.f714c = null;
+            }
+            if (cxVar.Y.f33845r.getText().length() == 0 && cxVar.Y.f33845r.hasFocus()) {
+                org.telegram.messenger.g0.v1(cxVar.Y.f33845r);
+                cxVar.Y.f33845r.clearFocus();
+            }
+        } else {
+            cxVar.f46691g3 = false;
+        }
+        if (i7 == 0) {
+            this.f48806a = false;
+            cxVar.f46690g2 = false;
+            boolean z10 = cxVar.f46673d1;
+            bx bxVar = this.f48807b;
+            if (z10) {
+                cxVar.f46673d1 = false;
+                if (cxVar.f46684f1) {
+                    yw ywVar = bxVar.f46307a;
+                    int i10 = yw.C3;
+                    ywVar.D1();
+                    cxVar.f46684f1 = false;
+                }
+                bxVar.d.f();
+            }
+            cx.w1(cxVar, bxVar);
         }
     }
 
     @Override
-    public final void setVisibility(int i7) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        int i11;
+        dh.g gVar;
+        yw ywVar;
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        View childAt;
+        int i12;
         boolean z10;
-        boolean z11;
-        switch (this.Y0) {
-            case 0:
-                yw ywVar = this.Z0;
-                org.telegram.ui.Components.vr vrVar = ywVar.L1;
-                FrameLayout frameLayout = ywVar.I1;
-                if (i7 == 0) {
+        Object[] objArr;
+        this.f48808c.V();
+        bx bxVar = this.f48807b;
+        ev evVar = bxVar.f46317y;
+        int i13 = -i10;
+        ArrayList arrayList = evVar.f39289x;
+        ArrayList arrayList2 = evVar.f39281o;
+        boolean z11 = false;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            for (int i14 = 0; i14 < size; i14++) {
+                View view = ((v4.f1) arrayList2.get(i14)).f59122a;
+                view.setTranslationY(view.getTranslationY() + i13);
+            }
+        }
+        if (!arrayList.isEmpty()) {
+            int size2 = arrayList.size();
+            for (int i15 = 0; i15 < size2; i15++) {
+                View view2 = ((v4.f1) arrayList.get(i15)).f59122a;
+                view2.setTranslationY(view2.getTranslationY() + i13);
+            }
+        }
+        int i16 = -1;
+        int i17 = -1;
+        for (int i18 = 0; i18 < recyclerView.getChildCount(); i18++) {
+            int R = RecyclerView.R(recyclerView.getChildAt(i18));
+            if (R >= 0) {
+                if (i16 == -1 || R > i16) {
+                    i16 = R;
+                }
+                if (i17 == -1 || R < i17) {
+                    i17 = R;
+                }
+            }
+        }
+        cx cxVar = this.d;
+        cxVar.C3(bxVar);
+        cxVar.R = true;
+        View view3 = cxVar.fragmentView;
+        if (view3 != null) {
+            view3.invalidate();
+        }
+        if (cxVar.T0 != 10 && this.f48806a && recyclerView.getChildCount() > 0 && i17 != -1) {
+            v4.f1 K = recyclerView.K(i17);
+            if (!cxVar.n4() || (K != null && K.b() >= 0)) {
+                if (K != null) {
+                    i12 = K.f59122a.getTop();
+                } else {
+                    i12 = 0;
+                }
+                int i19 = cxVar.f46657a2;
+                if (i19 == i17) {
+                    int i20 = cxVar.f46663b2;
+                    int i21 = i20 - i12;
+                    if (i12 < i20) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (Math.abs(i21) <= 1) {
+                        objArr = null;
+                        if (objArr != null && cxVar.f46669c2 && (z10 || cxVar.f46691g3)) {
+                            cxVar.q4(z10);
+                        }
+                        cxVar.f46657a2 = i17;
+                        cxVar.f46663b2 = i12;
+                        cxVar.f46669c2 = true;
+                    }
+                } else if (i17 > i19) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                vrVar.i(frameLayout, z10, true);
-                return;
-            default:
-                yw ywVar2 = this.Z0;
-                org.telegram.ui.Components.vr vrVar2 = ywVar2.L1;
-                FrameLayout frameLayout2 = ywVar2.K1;
-                if (i7 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
+                objArr = 1;
+                if (objArr != null) {
+                    cxVar.q4(z10);
                 }
-                vrVar2.i(frameLayout2, z11, true);
-                return;
+                cxVar.f46657a2 = i17;
+                cxVar.f46663b2 = i12;
+                cxVar.f46669c2 = true;
+            }
+        }
+        if (!cxVar.L && recyclerView == cxVar.f46683f0[0].f46307a && !cxVar.f46713l2) {
+            kVar = ((org.telegram.ui.ActionBar.h2) cxVar).actionBar;
+            if (kVar != null) {
+                kVar2 = ((org.telegram.ui.ActionBar.h2) cxVar).actionBar;
+                if (!kVar2.y() && !cxVar.f46690g2 && !cxVar.H3.c()) {
+                    if (i10 > 0 && cxVar.n4() && cxVar.f46683f0[0].f46314s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
+                        int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
+                        if (top + i10 > 0) {
+                            if (top < 0) {
+                                i10 = -top;
+                            } else {
+                                return;
+                            }
+                        }
+                    }
+                    cxVar.R = true;
+                    View view4 = cxVar.fragmentView;
+                    if (view4 != null) {
+                        view4.invalidate();
+                    }
+                }
+            }
+        }
+        xv xvVar = cxVar.H3;
+        if (xvVar != null && xvVar.c() && (ywVar = bxVar.f46307a) != null) {
+            ywVar.invalidate();
+        }
+        tv tvVar = cxVar.F0;
+        if (tvVar != null && tvVar.getPremiumHint() != null && cxVar.F0.getPremiumHint().W) {
+            cxVar.F0.getPremiumHint().f(true);
+        }
+        ?? n42 = cxVar.n4();
+        View childAt2 = bxVar.f46307a.getChildAt(n42 == true ? 1 : 0);
+        if (childAt2 != null) {
+            i11 = childAt2.getTop();
+        } else {
+            i11 = 0;
+        }
+        cxVar.f46676e.a((i17 > n42 || (i11 - cxVar.O) + org.telegram.messenger.g0.L(5.0f) < bxVar.f46307a.getPaddingTop()) ? true : true, true);
+        if (i10 != 0 && (gVar = cxVar.o4) != null && Build.VERSION.SDK_INT >= 31) {
+            gVar.f(i7, i10);
         }
     }
 }

@@ -1,143 +1,60 @@
 package hi;
 
-import android.content.Context;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.app.Activity;
+import android.graphics.Matrix;
 import android.view.View;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.qk;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.f20;
-import org.telegram.ui.oc0;
-public final class ha extends ClickableSpan {
-    public final int f14387a;
-    public final Object f14388b;
+public final class ha extends w5 {
+    public final ta D0;
 
-    public ha(Object obj, int i7) {
-        this.f14387a = i7;
-        this.f14388b = obj;
+    public ha(ta taVar, Activity activity, org.telegram.ui.Components.ca caVar, v5 v5Var) {
+        super(activity, caVar, v5Var);
+        this.D0 = taVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        GroupCallMessage groupCallMessage;
-        switch (this.f14387a) {
-            case 0:
-                ((ia) this.f14388b).S1.S();
-                return;
-            case 1:
-                nh.c cVar = (nh.c) this.f14388b;
-                nh.a aVar = cVar.J;
-                if (aVar != null && (groupCallMessage = cVar.I) != null) {
-                    ((f20) aVar).a(groupCallMessage);
-                    return;
+    public final void b() {
+        d7 d7Var = this.d;
+        if (d7Var != null && !d7Var.f14430u) {
+            if (this.f15663n != null) {
+                Matrix matrix = d7Var.f14417n0;
+                Matrix matrix2 = this.f15647a0;
+                matrix2.set(matrix);
+                float width = 1.0f / getWidth();
+                int i7 = this.d.f14412k0;
+                if (i7 < 0) {
+                    i7 = this.f15655f;
                 }
-                return;
-            case 2:
-                org.telegram.ui.Cells.b2 b2Var = (org.telegram.ui.Cells.b2) this.f14388b;
-                Context context = b2Var.getContext();
-                vf.c.t(context, "https://fragment.com/username/" + ((org.telegram.ui.ka) b2Var.N).f48611e.f48912r);
-                return;
-            case 3:
-                ((org.telegram.ui.lb) this.f14388b).finishFragment();
-                return;
-            case 4:
-                ((org.telegram.ui.o1) this.f14388b).run();
-                return;
-            case 5:
-                ((cc) this.f14388b).f33534a.presentFragment(new PremiumPreviewFragment(0, "settings"));
-                return;
-            case 6:
-                qk qkVar = (qk) this.f14388b;
-                org.telegram.ui.Wallet.y5.J0(qkVar.f38676n, qkVar.getContext(), qkVar.f33608a);
-                return;
-            case 7:
-                ((ActionBarLayout) ((LaunchActivity) this.f14388b).M()).S(new PremiumPreviewFragment(0, "gift"));
-                return;
-            case 8:
-                ((oc0) this.f14388b).p(false);
-                return;
-            case 9:
-                org.telegram.ui.Wallet.p9 p9Var = (org.telegram.ui.Wallet.p9) this.f14388b;
-                org.telegram.ui.Wallet.y5.J0(org.telegram.ui.Wallet.p9.i0(p9Var), p9Var.getParentActivity(), p9Var.getResourceProvider());
-                return;
-            case 10:
-                ug.j0 j0Var = ((ug.c0) this.f14388b).f58054c;
-                wg.l.I0(j0Var.f35935s1, j0Var.J0, j0Var.W1, null);
-                return;
-            default:
-                return;
+                float f10 = width * i7;
+                float height = 1.0f / getHeight();
+                int i10 = this.d.f14414l0;
+                if (i10 < 0) {
+                    i10 = this.h;
+                }
+                matrix2.preScale(f10, height * i10);
+                matrix2.postScale(getWidth() / this.d.f14408i0, getHeight() / this.d.f14410j0);
+                Matrix matrix3 = this.f15661k0;
+                matrix3.reset();
+                this.f15660j0.invert(matrix3);
+                this.f15663n.setTransform(matrix2);
+                this.f15663n.invalidate();
+            }
+            invalidate();
         }
+        this.D0.i();
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i7 = this.f14387a;
-        Object obj = this.f14388b;
-        switch (i7) {
-            case 0:
-                textPaint.setUnderlineText(false);
-                return;
-            case 1:
-                return;
-            case 2:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 3:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 4:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 5:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 6:
-                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Fi, ((qk) obj).f33608a));
-                textPaint.setUnderlineText(false);
-                return;
-            case 7:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 8:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 9:
-                textPaint.setColor(((org.telegram.ui.Wallet.p9) obj).getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
-                textPaint.setUnderlineText(false);
-                return;
-            case 10:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                int i10 = org.telegram.ui.ActionBar.j6.Xc;
-                ug.j0 j0Var = ((ug.c0) obj).f58054c;
-                int i11 = ug.j0.S2;
-                textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(i10, j0Var.J0));
-                return;
-            default:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                Integer num = ((ug.g1) obj).f58102q2;
-                if (num != null) {
-                    textPaint.setColor(num.intValue());
-                    return;
+    public final void i() {
+        v9 v9Var;
+        ta taVar = this.D0;
+        d7 d7Var = taVar.L1;
+        if (d7Var != null && d7Var.f14430u && d7Var.K && (v9Var = taVar.f15495w1) != null && v9Var.B0 != null) {
+            for (int i7 = 0; i7 < taVar.f15495w1.B0.getChildCount(); i7++) {
+                View childAt = taVar.f15495w1.B0.getChildAt(i7);
+                if (childAt instanceof tg.u0) {
+                    ((tg.u0) childAt).s();
                 }
-                return;
+            }
         }
-    }
-
-    private final void a(View view) {
-    }
-
-    private final void b(TextPaint textPaint) {
     }
 }

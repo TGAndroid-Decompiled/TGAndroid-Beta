@@ -1,28 +1,19 @@
 package org.telegram.ui;
-public final class d71 implements l71 {
-    public boolean f46303a;
-    public final an f46304b;
 
-    public d71(an anVar, boolean z10) {
-        this.f46304b = anVar;
-        this.f46303a = z10;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class d71 extends AnimatorListenerAdapter {
+    public final x71 f46888a;
+
+    public d71(x71 x71Var) {
+        this.f46888a = x71Var;
     }
 
     @Override
-    public final boolean Y0() {
-        return true;
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f46303a;
-    }
-
-    @Override
-    public final void m1(boolean z10) {
-        boolean z11 = !this.f46303a;
-        this.f46303a = z11;
-        ym ymVar = this.f46304b.Aa;
-        ymVar.r(ymVar.f53545f, ymVar.f53546g, z10, Boolean.valueOf(z11), false);
+    public final void onAnimationEnd(Animator animator) {
+        x71 x71Var = this.f46888a;
+        if (x71Var.Y0 == null) {
+            x71Var.L0[0].setVisibility(4);
+        }
     }
 }

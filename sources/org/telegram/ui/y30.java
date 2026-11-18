@@ -1,83 +1,53 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.view.View;
-public final class y30 extends Drawable {
-    public long f53401b;
-    public int d;
-    public final View f53403e;
-    public final Paint f53400a = new Paint(1);
-    public float f53402c = 1.0f;
+import android.content.Context;
+public final class y30 extends org.telegram.ui.Components.voip.r {
+    public final int h = 1;
+    public final org.telegram.ui.Components.bk0 f54013n;
 
-    public y30(View view) {
-        this.f53403e = view;
+    public y30(i40 i40Var, Context context) {
+        super(context, true);
+        this.f54013n = i40Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int L;
-        int centerX = getBounds().centerX();
-        int centerY = getBounds().centerY();
-        View view = this.f53403e;
-        if (view instanceof org.telegram.ui.ActionBar.j5) {
-            L = org.telegram.messenger.g0.L(1.0f) + centerY;
-            centerX -= org.telegram.messenger.g0.L(3.0f);
-        } else {
-            L = org.telegram.messenger.g0.L(2.0f) + centerY;
+    public final void onAttachedToWindow() {
+        switch (this.h) {
+            case 0:
+                super.onAttachedToWindow();
+                f40 f40Var = ((z30) this.f54013n).N;
+                if (f40Var.L1.getVisibility() == 0 && f40Var.O4) {
+                    f40.K0(f40Var, this, true);
+                    return;
+                }
+                return;
+            default:
+                super.onAttachedToWindow();
+                i40 i40Var = (i40) this.f54013n;
+                if (i40Var.f48578r && getParticipant() != null) {
+                    i40Var.E(this, true);
+                    return;
+                }
+                return;
         }
-        Paint paint = this.f53400a;
-        paint.setColor(-1147527);
-        paint.setAlpha((int) (this.f53402c * 255.0f));
-        canvas.drawCircle(centerX, L, org.telegram.messenger.g0.L(4.0f), paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j3 = elapsedRealtime - this.f53401b;
-        if (j3 > 17) {
-            j3 = 17;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        switch (this.h) {
+            case 0:
+                super.onDetachedFromWindow();
+                f40.K0(((z30) this.f54013n).N, this, false);
+                return;
+            default:
+                super.onDetachedFromWindow();
+                ((i40) this.f54013n).E(this, false);
+                return;
         }
-        this.f53401b = elapsedRealtime;
-        int i7 = this.d;
-        if (i7 == 0) {
-            float f10 = (((float) j3) / 2000.0f) + this.f53402c;
-            this.f53402c = f10;
-            if (f10 >= 1.0f) {
-                this.f53402c = 1.0f;
-                this.d = 1;
-            }
-        } else if (i7 == 1) {
-            float f11 = this.f53402c - (((float) j3) / 2000.0f);
-            this.f53402c = f11;
-            if (f11 < 0.5f) {
-                this.f53402c = 0.5f;
-                this.d = 0;
-            }
-        }
-        view.invalidate();
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public y30(z30 z30Var, Context context) {
+        super(context, false);
+        this.f54013n = z30Var;
     }
 }

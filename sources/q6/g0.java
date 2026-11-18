@@ -2,24 +2,24 @@ package q6;
 
 import android.os.Bundle;
 public final class g0 extends y {
-    public final d f55332g;
+    public final d f55906g;
 
     public g0(d dVar, int i7, Bundle bundle) {
         super(dVar, i7, bundle);
-        this.f55332g = dVar;
+        this.f55906g = dVar;
     }
 
     @Override
     public final boolean a() {
-        this.f55332g.f55298o.a(n6.a.f21056f);
+        this.f55906g.f55872o.a(n6.a.f21420f);
         return true;
     }
 
     @Override
     public final void b(n6.a aVar) {
-        d dVar = this.f55332g;
+        d dVar = this.f55906g;
         dVar.getClass();
-        dVar.f55298o.a(aVar);
+        dVar.f55872o.a(aVar);
         dVar.u(aVar);
     }
 }

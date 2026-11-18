@@ -1,32 +1,44 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class wv implements Runnable {
-    public final int f27420a;
-    public final bw f27421b;
-    public final TLRPC.TL_encryptedChatDiscarded f27422c;
+public final class wv extends TLObject {
+    public int f27767a;
+    public TLRPC.TL_decryptedMessageLayer f27768b;
+    public TLRPC.EncryptedFile f27769c;
+    public boolean d;
+    public int f27770e;
 
-    public wv(bw bwVar, TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded, int i7) {
-        this.f27420a = i7;
-        this.f27421b = bwVar;
-        this.f27422c = tL_encryptedChatDiscarded;
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        inputSerializedData.readInt64(z10);
+        this.f27767a = inputSerializedData.readInt32(z10);
+        this.f27768b = TLRPC.TL_decryptedMessageLayer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        if (inputSerializedData.readBool(z10)) {
+            this.f27769c = TLRPC.EncryptedFile.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+        this.d = inputSerializedData.readBool(z10);
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f27420a;
-        TLRPC.TL_encryptedChatDiscarded tL_encryptedChatDiscarded = this.f27422c;
-        bw bwVar = this.f27421b;
-        switch (i7) {
-            case 0:
-                bwVar.getMessagesController().U3(tL_encryptedChatDiscarded, false);
-                bwVar.getNotificationCenter().k(35, tL_encryptedChatDiscarded);
-                return;
-            default:
-                bwVar.getMessagesController().U3(tL_encryptedChatDiscarded, false);
-                bwVar.getMessagesStorage().V1(tL_encryptedChatDiscarded);
-                bwVar.getNotificationCenter().k(35, tL_encryptedChatDiscarded);
-                return;
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        boolean z10;
+        outputSerializedData.writeInt32(1431655929);
+        outputSerializedData.writeInt64(0L);
+        outputSerializedData.writeInt32(this.f27767a);
+        this.f27768b.serializeToStream(outputSerializedData);
+        if (this.f27769c != null) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        outputSerializedData.writeBool(z10);
+        TLRPC.EncryptedFile encryptedFile = this.f27769c;
+        if (encryptedFile != null) {
+            encryptedFile.serializeToStream(outputSerializedData);
+        }
+        outputSerializedData.writeBool(this.d);
     }
 }

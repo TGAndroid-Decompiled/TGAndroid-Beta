@@ -19,14 +19,14 @@ public class d implements Iterator {
     public d(f fVar, ListIterator listIterator) {
         this.f363a = 0;
         this.d = fVar;
-        this.f365c = fVar.f393c;
+        this.f365c = fVar.f387c;
         this.f364b = listIterator;
     }
 
     public void a() {
         f fVar = (f) this.d;
         fVar.i();
-        if (fVar.f393c == ((Collection) this.f365c)) {
+        if (fVar.f387c == ((Collection) this.f365c)) {
             return;
         }
         throw new ConcurrentModificationException();
@@ -37,14 +37,14 @@ public class d implements Iterator {
             case 0:
                 f fVar = (f) this.d;
                 fVar.zzb();
-                if (fVar.f393c == ((Collection) this.f365c)) {
+                if (fVar.f387c == ((Collection) this.f365c)) {
                     return;
                 }
                 throw new ConcurrentModificationException();
             default:
                 f fVar2 = (f) this.d;
                 fVar2.zzb();
-                if (fVar2.f393c == ((Collection) this.f365c)) {
+                if (fVar2.f387c == ((Collection) this.f365c)) {
                     return;
                 }
                 throw new ConcurrentModificationException();
@@ -149,7 +149,7 @@ public class d implements Iterator {
             case 0:
                 this.f364b.remove();
                 f fVar = (f) this.d;
-                i iVar = (i) fVar.f395f;
+                i iVar = (i) fVar.f389f;
                 iVar.d--;
                 fVar.l();
                 return;
@@ -208,7 +208,7 @@ public class d implements Iterator {
                 if (z13) {
                     Collection collection2 = (Collection) entry2.getValue();
                     this.f364b.remove();
-                    ((cd) this.d).f4236c.getClass();
+                    ((cd) this.d).f4522c.getClass();
                     collection2.size();
                     collection2.clear();
                     this.f365c = null;
@@ -225,9 +225,9 @@ public class d implements Iterator {
                 } else {
                     z14 = false;
                 }
-                ja.o("no calls to next() since the last call to remove()", z14);
+                la.o("no calls to next() since the last call to remove()", z14);
                 this.f364b.remove();
-                ((h9.k1) ((lb) this.d).f535e).f13695f -= ((Collection) this.f365c).size();
+                ((h9.l1) ((lb) this.d).f535e).f14023f -= ((Collection) this.f365c).size();
                 ((Collection) this.f365c).clear();
                 this.f365c = null;
                 return;
@@ -237,18 +237,18 @@ public class d implements Iterator {
                 } else {
                     z15 = false;
                 }
-                ja.o("no calls to next() since the last call to remove()", z15);
+                la.o("no calls to next() since the last call to remove()", z15);
                 Collection collection3 = (Collection) ((Map.Entry) this.f365c).getValue();
                 this.f364b.remove();
-                ((h9.d) this.d).f13669c.f13695f -= collection3.size();
+                ((h9.d) this.d).f13987c.f14023f -= collection3.size();
                 collection3.clear();
                 this.f365c = null;
                 return;
             default:
                 this.f364b.remove();
                 f fVar2 = (f) this.d;
-                h9.k1 k1Var = (h9.k1) fVar2.f395f;
-                k1Var.f13695f--;
+                h9.l1 l1Var = (h9.l1) fVar2.f389f;
+                l1Var.f14023f--;
                 fVar2.j();
                 return;
         }
@@ -257,7 +257,7 @@ public class d implements Iterator {
     public d(f fVar, ListIterator listIterator, byte b10) {
         this.f363a = 5;
         this.d = fVar;
-        this.f365c = fVar.f393c;
+        this.f365c = fVar.f387c;
         this.f364b = listIterator;
     }
 
@@ -271,7 +271,7 @@ public class d implements Iterator {
         Iterator it;
         this.f363a = 0;
         this.d = fVar;
-        Collection collection = fVar.f393c;
+        Collection collection = fVar.f387c;
         this.f365c = collection;
         if (collection instanceof List) {
             it = ((List) collection).listIterator();
@@ -285,7 +285,7 @@ public class d implements Iterator {
         Iterator it;
         this.f363a = 5;
         this.d = fVar;
-        Collection collection = fVar.f393c;
+        Collection collection = fVar.f387c;
         this.f365c = collection;
         if (collection instanceof List) {
             it = ((List) collection).listIterator();
@@ -311,7 +311,7 @@ public class d implements Iterator {
         Iterator it;
         this.f363a = 8;
         this.d = fVar;
-        Collection collection = fVar.f393c;
+        Collection collection = fVar.f387c;
         this.f365c = collection;
         if (collection instanceof List) {
             it = ((List) collection).listIterator();
@@ -324,7 +324,7 @@ public class d implements Iterator {
     public d(f fVar, ListIterator listIterator, char c10) {
         this.f363a = 8;
         this.d = fVar;
-        this.f365c = fVar.f393c;
+        this.f365c = fVar.f387c;
         this.f364b = listIterator;
     }
 

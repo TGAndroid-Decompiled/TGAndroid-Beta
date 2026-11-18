@@ -5,36 +5,36 @@ import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 public final class c implements Application.ActivityLifecycleCallbacks {
-    public Object f9863a;
-    public Activity f9864b;
-    public final int f9865c;
+    public Object f10181a;
+    public Activity f10182b;
+    public final int f10183c;
     public boolean d = false;
-    public boolean f9866e = false;
-    public boolean f9867f = false;
+    public boolean f10184e = false;
+    public boolean f10185f = false;
 
     public c(Activity activity) {
-        this.f9864b = activity;
-        this.f9865c = activity.hashCode();
+        this.f10182b = activity;
+        this.f10183c = activity.hashCode();
     }
 
     @Override
     public final void onActivityDestroyed(Activity activity) {
-        if (this.f9864b == activity) {
-            this.f9864b = null;
-            this.f9866e = true;
+        if (this.f10182b == activity) {
+            this.f10182b = null;
+            this.f10184e = true;
         }
     }
 
     @Override
     public final void onActivityPaused(Activity activity) {
-        if (this.f9866e && !this.f9867f && !this.d) {
-            Object obj = this.f9863a;
+        if (this.f10184e && !this.f10185f && !this.d) {
+            Object obj = this.f10181a;
             try {
-                Object obj2 = d.f9870c.get(activity);
-                if (obj2 == obj && activity.hashCode() == this.f9865c) {
-                    d.f9873g.postAtFrontOfQueue(new m9.u(11, d.f9869b.get(activity), obj2));
-                    this.f9867f = true;
-                    this.f9863a = null;
+                Object obj2 = d.f10188c.get(activity);
+                if (obj2 == obj && activity.hashCode() == this.f10183c) {
+                    d.f10191g.postAtFrontOfQueue(new m9.u(11, d.f10187b.get(activity), obj2));
+                    this.f10185f = true;
+                    this.f10181a = null;
                 }
             } catch (Throwable th2) {
                 Log.e("ActivityRecreator", "Exception while fetching field values", th2);
@@ -44,7 +44,7 @@ public final class c implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public final void onActivityStarted(Activity activity) {
-        if (this.f9864b == activity) {
+        if (this.f10182b == activity) {
             this.d = true;
         }
     }

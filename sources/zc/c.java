@@ -5,16 +5,16 @@ import ed.h;
 import java.util.regex.Pattern;
 import kf.p;
 public final class c extends h {
-    public static final Pattern f61244e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
+    public static final Pattern f61808e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
 
     @Override
     public final p b() {
-        String a10 = a(f61244e);
+        String a10 = a(f61808e);
         if (a10 == null) {
             return null;
         }
         ?? pVar = new p();
-        pVar.f61245g = e2.k(a10, 2, 2);
+        pVar.f61809g = e2.k(a10, 2, 2);
         return pVar;
     }
 

@@ -1,99 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.ViewPropertyAnimator;
-import org.telegram.messenger.Utilities;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class wz0 implements TextWatcher {
-    public final xz0 f41493a;
+public final class wz0 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f41831a;
 
-    public wz0(xz0 xz0Var) {
-        this.f41493a = xz0Var;
+    public wz0(ThemeEditorView.EditorAlert editorAlert) {
+        this.f41831a = editorAlert;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        boolean z11;
-        float f10;
-        if (this.f41493a.f41808b.length() > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f41831a;
+        if (editorAlert.n1.getAdapter() == editorAlert.f33164t1) {
+            c01 c01Var = editorAlert.f33161q1.f34556b;
+            c01Var.requestFocus();
+            org.telegram.messenger.g0.I3(c01Var);
         }
-        float f11 = 0.0f;
-        if (this.f41493a.f41807a.getAlpha() != 0.0f) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (z10 != z11) {
-            ViewPropertyAnimator animate = this.f41493a.f41807a.animate();
-            float f12 = 1.0f;
-            if (z10) {
-                f11 = 1.0f;
-            }
-            ViewPropertyAnimator duration = animate.alpha(f11).setDuration(150L);
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.1f;
-            }
-            ViewPropertyAnimator scaleX = duration.scaleX(f10);
-            if (!z10) {
-                f12 = 0.1f;
-            }
-            scaleX.scaleY(f12).start();
-        }
-        String obj = this.f41493a.f41808b.getText().toString();
-        if (obj.length() != 0) {
-            ny nyVar = this.f41493a.f41809c.f32763p1;
-            if (nyVar != null) {
-                nyVar.setText(org.telegram.messenger.hd.M0(2131748167, null));
-            }
-        } else {
-            v4.h0 adapter = this.f41493a.f41809c.n1.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f41493a.f41809c;
-            if (adapter != editorAlert.f32766s1) {
-                int J0 = ThemeEditorView.EditorAlert.J0(editorAlert);
-                this.f41493a.f41809c.f32763p1.setText(org.telegram.messenger.hd.M0(2131748230, null));
-                this.f41493a.f41809c.f32763p1.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f41493a.f41809c;
-                editorAlert2.n1.setAdapter(editorAlert2.f32766s1);
-                this.f41493a.f41809c.f32766s1.f();
-                if (J0 > 0) {
-                    this.f41493a.f41809c.f32765r1.h1(0, -J0);
-                }
-            }
-        }
-        tz0 tz0Var = this.f41493a.f41809c.f32767t1;
-        if (tz0Var != null && !obj.equals(tz0Var.f39839n)) {
-            tz0Var.f39839n = obj;
-            if (tz0Var.h != null) {
-                Utilities.f22418g.a(tz0Var.h);
-                tz0Var.h = null;
-            }
-            if (obj.length() == 0) {
-                tz0Var.f39837e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = tz0Var.f39840r;
-                editorAlert3.A1 = ThemeEditorView.EditorAlert.J0(editorAlert3);
-                tz0Var.d = -1;
-                tz0Var.f();
-                return;
-            }
-            int i7 = tz0Var.d + 1;
-            tz0Var.d = i7;
-            tz0Var.h = new org.telegram.ui.f0(tz0Var, obj, i7, 28);
-            Utilities.f22418g.d(tz0Var.h, 300L);
-        }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        editorAlert.f33158m1.setVisibility(8);
+        editorAlert.f33166v1.setVisibility(8);
+        editorAlert.C1 = false;
     }
 }

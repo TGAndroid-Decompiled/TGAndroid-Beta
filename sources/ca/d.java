@@ -1,6 +1,6 @@
 package ca;
 public interface d {
-    void b();
+    void f();
 
     String n();
 }

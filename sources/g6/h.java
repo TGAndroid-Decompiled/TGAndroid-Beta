@@ -1,16 +1,16 @@
 package g6;
 public interface h {
-    void b(f fVar, boolean z10);
+    void a(f fVar, boolean z10);
 
-    void c(f fVar, int i7);
-
-    void d(f fVar, int i7);
+    void b(f fVar, int i7);
 
     void e(f fVar, int i7);
 
-    void f(f fVar, String str);
+    void f(f fVar, int i7);
 
-    void i(f fVar, int i7);
+    void h(f fVar, String str);
+
+    void k(f fVar, int i7);
 
     void l(f fVar, String str);
 

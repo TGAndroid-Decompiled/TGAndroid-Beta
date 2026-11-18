@@ -1,46 +1,46 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class kb extends c8.ma {
-    public org.telegram.messenger.gj f48613a;
-    public int f48614b = 0;
-    public boolean f48615c = true;
+public final class kb extends c8.oa {
+    public org.telegram.messenger.fj f49231a;
+    public int f49232b = 0;
+    public boolean f49233c = true;
     public int d = 0;
-    public int f48616e;
-    public final lb f48617f;
+    public int f49234e;
+    public final lb f49235f;
 
     public kb(lb lbVar) {
-        this.f48617f = lbVar;
+        this.f49235f = lbVar;
     }
 
     @Override
     public final void a() {
-        org.telegram.messenger.gj gjVar = this.f48613a;
-        lb lbVar = this.f48617f;
-        if (gjVar != null) {
-            int indexOf = lbVar.f48945p0.indexOf(gjVar) + lbVar.F.f48002f;
+        org.telegram.messenger.fj fjVar = this.f49231a;
+        lb lbVar = this.f49235f;
+        if (fjVar != null) {
+            int indexOf = lbVar.f49546p0.indexOf(fjVar) + lbVar.F.f48685f;
             if (indexOf >= 0) {
-                lbVar.f48958y.i1(indexOf, this.f48616e, false);
+                lbVar.f49559y.i1(indexOf, this.f49234e, false);
             }
         } else {
-            lbVar.f48958y.i1(this.f48614b, this.d, this.f48615c);
+            lbVar.f49559y.i1(this.f49232b, this.d, this.f49233c);
         }
-        this.f48613a = null;
+        this.f49231a = null;
         lbVar.W = true;
         lbVar.i1();
-        org.telegram.messenger.g0.h3(new fq0(this, 21));
+        org.telegram.messenger.g0.g3(new hq0(this, 21));
     }
 
     @Override
     public final void c() {
-        lb lbVar = this.f48617f;
+        lb lbVar = this.f49235f;
         lbVar.L0 = lbVar.getNotificationCenter().q(lb.S0, lbVar.L0, true);
     }
 
     @Override
     public final void d(View view) {
         if (view instanceof org.telegram.ui.Cells.q1) {
-            this.f48617f.h.add((org.telegram.ui.Cells.q1) view);
+            this.f49235f.h.add((org.telegram.ui.Cells.q1) view);
         }
     }
 }

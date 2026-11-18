@@ -3,26 +3,26 @@ package wi;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.m51;
-import org.telegram.ui.Components.um0;
+import org.telegram.ui.Components.cn0;
+import org.telegram.ui.Components.x51;
 public final class d extends FrameLayout {
-    public final int f59372a;
-    public final h f59373b;
+    public final int f59936a;
+    public final h f59937b;
 
     public d(h hVar, Activity activity, int i7) {
         super(activity);
-        this.f59372a = i7;
-        this.f59373b = hVar;
+        this.f59936a = i7;
+        this.f59937b = hVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f59372a) {
+        switch (this.f59936a) {
             case 0:
                 super.dispatchDraw(canvas);
-                h hVar = this.f59373b;
-                um0 um0Var = hVar.G;
-                if (um0Var != null && um0Var.a()) {
+                h hVar = this.f59937b;
+                cn0 cn0Var = hVar.G;
+                if (cn0Var != null && cn0Var.a()) {
                     hVar.G.setBounds(getLeft(), getTop(), getRight(), getBottom());
                     hVar.G.draw(canvas);
                     return;
@@ -41,17 +41,17 @@ public final class d extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f59372a) {
+        switch (this.f59936a) {
             case 0:
-                h hVar = this.f59373b;
-                m51 m51Var = hVar.F;
-                if (m51Var.f37069j) {
-                    m51Var.setBounds(getLeft(), getTop(), getRight(), getBottom());
-                    m51Var.draw(canvas);
+                h hVar = this.f59937b;
+                x51 x51Var = hVar.F;
+                if (x51Var.f41915j) {
+                    x51Var.setBounds(getLeft(), getTop(), getRight(), getBottom());
+                    x51Var.draw(canvas);
                 }
                 canvas.save();
                 canvas.translate(getLeft(), getTop());
-                hVar.f59382b.o0(canvas, getRight() - getLeft(), getBottom() - getTop());
+                hVar.f59946b.j0(canvas, getRight() - getLeft(), getBottom() - getTop());
                 canvas.restore();
                 return;
             default:

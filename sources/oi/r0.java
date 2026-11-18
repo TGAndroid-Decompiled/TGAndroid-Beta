@@ -5,32 +5,32 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 import java.util.HashSet;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-public final class r0 extends View implements org.telegram.ui.ActionBar.z5 {
-    public final e6 f21969a;
-    public final Paint f21970b;
-    public a f21971c;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+public final class r0 extends View implements org.telegram.ui.ActionBar.c6 {
+    public final i6 f22273a;
+    public final Paint f22274b;
+    public a f22275c;
 
-    public r0(Context context, e6 e6Var) {
+    public r0(Context context, i6 i6Var) {
         super(context);
-        this.f21970b = new Paint();
-        this.f21969a = e6Var;
+        this.f22274b = new Paint();
+        this.f22273a = i6Var;
         updateColors();
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(j6.wl));
+        hashSet.add(Integer.valueOf(n6.wl));
     }
 
     public a getRow() {
-        return this.f21971c;
+        return this.f22275c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, org.telegram.messenger.g0.L(6.0f), getMeasuredWidth(), org.telegram.messenger.g0.L(6.0f) + 1, this.f21970b);
+        canvas.drawRect(0.0f, org.telegram.messenger.g0.L(6.0f), getMeasuredWidth(), org.telegram.messenger.g0.L(6.0f) + 1, this.f22274b);
     }
 
     @Override
@@ -40,6 +40,6 @@ public final class r0 extends View implements org.telegram.ui.ActionBar.z5 {
 
     @Override
     public final void updateColors() {
-        this.f21970b.setColor(j6.w0(j6.wl, this.f21969a));
+        this.f22274b.setColor(n6.w0(n6.wl, this.f22273a));
     }
 }

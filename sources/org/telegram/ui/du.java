@@ -1,55 +1,29 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
-public final class du implements Runnable {
-    public final int f46479a;
-    public final Context f46480b;
+import android.widget.FrameLayout;
+public final class du extends FrameLayout {
+    public org.telegram.ui.ActionBar.h2 f47048a;
+    public FrameLayout f47049b;
+    public org.telegram.ui.ActionBar.k f47050c;
+    public org.telegram.ui.Components.ck0 d;
+    public di.b1 f47051e;
+    public int f47052f;
+    public final eu h;
 
-    public du(Context context, int i7) {
-        this.f46479a = i7;
-        this.f46480b = context;
+    public du(eu euVar, Context context) {
+        super(context);
+        this.h = euVar;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f46479a;
-        Context context = this.f46480b;
-        switch (i7) {
-            case 0:
-                org.telegram.ui.ActionBar.j6.K(context, false);
-                return;
-            case 1:
-                Activity W = org.telegram.messenger.g0.W(context);
-                if (W == null) {
-                    W = LaunchActivity.H1;
-                }
-                if (W != null && !W.isFinishing()) {
-                    W.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                vf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                vf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                vf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                vf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                vf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                vf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            default:
-                vf.c.t(context, org.telegram.messenger.hd.M0(2131742943, null));
-                return;
+    public final void setTranslationX(float f10) {
+        du duVar;
+        super.setTranslationX(f10);
+        eu euVar = this.h;
+        du[] duVarArr = euVar.f47359f;
+        if (euVar.f47360n && (duVar = duVarArr[0]) == this) {
+            euVar.f47358e.i(Math.abs(duVar.getTranslationX()) / duVarArr[0].getMeasuredWidth(), duVarArr[1].f47052f);
         }
     }
 }

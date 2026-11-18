@@ -8,50 +8,50 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import bi.s;
-import c8.ja;
-import c8.na;
-import di.ab;
-import di.qa;
+import c8.ma;
+import c8.ra;
+import di.eb;
+import di.ua;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.Components.u5;
-import org.telegram.ui.Components.uj0;
-import org.telegram.ui.Components.z70;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.k80;
 public final class a extends LinearLayout {
-    public final int f1054a = 1;
-    public final Object f1055b;
-    public final View f1056c;
+    public final int f1053a = 1;
+    public final Object f1054b;
+    public final View f1055c;
     public final Object d;
-    public final Object f1057e;
+    public final Object f1056e;
 
-    public a(Context context, e6 e6Var, uj0 uj0Var) {
+    public a(Context context, i6 i6Var, ck0 ck0Var) {
         super(context);
         this.d = new Paint(1);
-        this.f1057e = new u5(this);
-        this.f1055b = e6Var;
-        this.f1056c = uj0Var;
+        this.f1056e = new c6(this);
+        this.f1054b = i6Var;
+        this.f1055c = ck0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f1054a) {
+        switch (this.f1053a) {
             case 0:
-                u5 u5Var = (u5) this.f1057e;
+                c6 c6Var = (c6) this.f1056e;
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.d;
-                paint.setColor(j6.w0(j6.f28792a7, (e6) this.f1055b));
-                uj0 uj0Var = (uj0) this.f1056c;
+                paint.setColor(n6.w0(n6.f29339a7, (i6) this.f1054b));
+                ck0 ck0Var = (ck0) this.f1055c;
                 float f10 = 1.0f;
-                if (uj0Var != null) {
-                    if (!uj0Var.canScrollVertically(1)) {
+                if (ck0Var != null) {
+                    if (!ck0Var.canScrollVertically(1)) {
                         f10 = 0.0f;
                     }
-                    paint.setAlpha((int) (u5Var.e(false, f10) * 255.0f));
+                    paint.setAlpha((int) (c6Var.e(false, f10) * 255.0f));
                 } else {
-                    paint.setAlpha((int) (u5Var.e(false, 1.0f) * 255.0f));
+                    paint.setAlpha((int) (c6Var.e(false, 1.0f) * 255.0f));
                 }
                 canvas.drawRect(0.0f, 0.0f, getWidth(), g0.f1(), paint);
                 return;
@@ -66,94 +66,94 @@ public final class a extends LinearLayout {
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
-        addView(frameLayout, ja.r(-1, -2, 1));
+        addView(frameLayout, ma.r(-1, -2, 1));
         frameLayout.setClipChildren(false);
         setClipChildren(false);
         TextView textView = new TextView(context);
-        this.f1055b = textView;
+        this.f1054b = textView;
         textView.setTextSize(1, 22.0f);
         textView.setTypeface(g0.o());
         textView.setGravity(1);
-        addView(textView, ja.q(-2, -2, 0.0f, 1, 16, 20, 16, 0));
-        z70 z70Var = new z70(context, null);
-        this.f1056c = z70Var;
-        z70Var.setTextSize(1, 14.0f);
-        z70Var.setLineSpacing(g0.L(2.0f), 1.0f);
-        z70Var.setGravity(1);
-        addView(z70Var, ja.q(-1, -2, 0.0f, 1, 24, 7, 24, 0));
+        addView(textView, ma.q(-2, -2, 0.0f, 1, 16, 20, 16, 0));
+        k80 k80Var = new k80(context, null);
+        this.f1055c = k80Var;
+        k80Var.setTextSize(1, 14.0f);
+        k80Var.setLineSpacing(g0.L(2.0f), 1.0f);
+        k80Var.setGravity(1);
+        addView(k80Var, ma.q(-1, -2, 0.0f, 1, 24, 7, 24, 0));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f1057e = frameLayout2;
-        addView(frameLayout2, ja.r(-1, -2, 1));
+        this.f1056e = frameLayout2;
+        addView(frameLayout2, ma.r(-1, -2, 1));
         frameLayout2.setClipChildren(false);
     }
 
-    public a(Context context, e6 e6Var) {
+    public a(Context context, i6 i6Var) {
         super(context);
         setPadding(g0.L(24.0f), g0.L(21.0f), g0.L(24.0f), g0.L(21.0f));
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f1055b = textView;
-        int i7 = j6.f29241y6;
-        q6.U(textView, i7, e6Var);
+        this.f1054b = textView;
+        int i7 = n6.f29788y6;
+        u6.U(textView, i7, i6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
         textView.setTextAlignment(4);
-        addView(textView, ja.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
-        s sVar = new s(2, context, e6Var, true);
-        this.f1056c = sVar;
+        addView(textView, ma.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
+        s sVar = new s(2, context, i6Var, true);
+        this.f1055c = sVar;
         sVar.setMinWidth(g0.L(200.0f));
-        sVar.i(hd.M0(2131746715, null), false, true);
-        addView(sVar, ja.r(-2, 44, 17));
-        gi.j jVar = new gi.j(context, e6Var);
+        sVar.i(gd.M0(2131746522, null), false, true);
+        addView(sVar, ma.r(-2, 44, 17));
+        gi.j jVar = new gi.j(context, i6Var);
         this.d = jVar;
-        q6.U(jVar, i7, e6Var);
-        jVar.setText(hd.M0(2131746703, null));
+        u6.U(jVar, i7, i6Var);
+        jVar.setText(gd.M0(2131746508, null));
         jVar.setTextSize(1, 14.0f);
         jVar.setTextAlignment(4);
         jVar.setGravity(17);
         jVar.setTypeface(g0.o());
-        addView(jVar, ja.t(165, -2, 17, 0, 17, 0, 12));
-        hi.d dVar = new hi.d(context, e6Var, false);
-        this.f1057e = dVar;
+        addView(jVar, ma.t(165, -2, 17, 0, 17, 0, 12));
+        hi.d dVar = new hi.d(context, i6Var, false);
+        this.f1056e = dVar;
         dVar.setMinWidth(g0.L(200.0f));
-        addView(dVar, ja.r(-2, 44, 17));
+        addView(dVar, ma.r(-2, 44, 17));
     }
 
-    public a(int i7, Context context, e6 e6Var) {
+    public a(int i7, Context context, i6 i6Var) {
         super(context);
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
-        qa qaVar = new qa(context, 70, 0, 0);
-        frameLayout.addView(qaVar, ja.c(-1.0f, -1));
+        ua uaVar = new ua(context, 70, 0, 0);
+        frameLayout.addView(uaVar, ma.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
-        this.f1055b = mVar;
-        vg.f fVar = mVar.f58893b;
-        fVar.f58877z = j6.Wk;
-        fVar.A = j6.Xk;
+        this.f1054b = mVar;
+        vg.f fVar = mVar.f59462b;
+        fVar.f59446z = n6.Wk;
+        fVar.A = n6.Xk;
         fVar.b();
-        mVar.setStarParticlesView(qaVar);
-        frameLayout.addView(mVar, ja.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+        mVar.setStarParticlesView(uaVar);
+        frameLayout.addView(mVar, ma.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         mVar.setPaused(false);
-        ab abVar = new ab(i7, context, e6Var);
-        this.f1056c = abVar;
-        na.a(abVar);
-        abVar.setOnClickListener(new d(this, 19));
-        frameLayout.addView(abVar, ja.d(-2, -2.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
-        addView(frameLayout, ja.c(150.0f, -1));
+        eb ebVar = new eb(i7, context, i6Var);
+        this.f1055c = ebVar;
+        ra.a(ebVar);
+        ebVar.setOnClickListener(new d(this, 21));
+        frameLayout.addView(ebVar, ma.d(-2, -2.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
+        addView(frameLayout, ma.c(150.0f, -1));
         TextView textView = new TextView(context);
         this.d = textView;
-        i5.c.v(textView, 1, 20.0f);
-        int i10 = j6.f28957j5;
-        q6.U(textView, i10, e6Var);
+        i5.c.x(textView, 1, 20.0f);
+        int i10 = n6.f29504j5;
+        u6.U(textView, i10, i6Var);
         textView.setGravity(17);
-        addView(textView, ja.t(-2, -2, 1, 0, 2, 0, 0));
+        addView(textView, ma.t(-2, -2, 1, 0, 2, 0, 0));
         TextView textView2 = new TextView(context);
-        this.f1057e = textView2;
+        this.f1056e = textView2;
         textView2.setTextSize(1, 14.0f);
-        q6.U(textView2, i10, e6Var);
+        u6.U(textView2, i10, i6Var);
         textView2.setGravity(17);
-        addView(textView2, ja.t(-2, -2, 1, 0, 9, 0, 18));
+        addView(textView2, ma.t(-2, -2, 1, 0, 9, 0, 18));
     }
 }

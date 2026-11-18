@@ -1,25 +1,103 @@
 package f2;
 
-import h2.l0;
-import j$.util.Objects;
+import a8.la;
+import h9.i0;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
 public final class j {
-    public static final j f10729e = new j(-1, -1, -1);
-    public final int f10730a;
-    public final int f10731b;
-    public final int f10732c;
-    public final int d;
+    public final i0 f11048a;
+    public final ArrayList f11049b = new ArrayList();
+    public ByteBuffer[] f11050c = new ByteBuffer[0];
+    public boolean d;
 
-    public j(int i7, int i10, int i11) {
-        int i12;
-        this.f10730a = i7;
-        this.f10731b = i10;
-        this.f10732c = i11;
-        if (l0.M(i11)) {
-            i12 = l0.u(i11) * i10;
-        } else {
-            i12 = -1;
+    public j(i0 i0Var) {
+        this.f11048a = i0Var;
+        k kVar = k.f11051e;
+        this.d = false;
+    }
+
+    public final void a() {
+        boolean z10;
+        l lVar = l.f11055b;
+        ArrayList arrayList = this.f11049b;
+        arrayList.clear();
+        this.d = false;
+        long j3 = lVar.f11056a;
+        int i7 = 0;
+        while (true) {
+            i0 i0Var = this.f11048a;
+            if (i7 >= i0Var.size()) {
+                break;
+            }
+            n nVar = (n) i0Var.get(i7);
+            nVar.d(new l(j3));
+            if (nVar.isActive()) {
+                j3 = nVar.g(j3);
+                if (j3 >= 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                la.p(z10);
+                arrayList.add(nVar);
+            }
+            i7++;
         }
-        this.d = i12;
+        this.f11050c = new ByteBuffer[arrayList.size()];
+        for (int i10 = 0; i10 <= b(); i10++) {
+            this.f11050c[i10] = ((n) arrayList.get(i10)).b();
+        }
+    }
+
+    public final int b() {
+        return this.f11050c.length - 1;
+    }
+
+    public final boolean c() {
+        if (this.d && ((n) this.f11049b.get(b())).a() && !this.f11050c[b()].hasRemaining()) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean d() {
+        return !this.f11049b.isEmpty();
+    }
+
+    public final void e(ByteBuffer byteBuffer) {
+        boolean z10;
+        ByteBuffer byteBuffer2;
+        boolean z11;
+        for (boolean z12 = true; z12; z12 = z10) {
+            z10 = false;
+            for (int i7 = 0; i7 <= b(); i7++) {
+                if (!this.f11050c[i7].hasRemaining()) {
+                    ArrayList arrayList = this.f11049b;
+                    n nVar = (n) arrayList.get(i7);
+                    if (nVar.a()) {
+                        if (!this.f11050c[i7].hasRemaining() && i7 < b()) {
+                            ((n) arrayList.get(i7 + 1)).f();
+                        }
+                    } else {
+                        if (i7 > 0) {
+                            byteBuffer2 = this.f11050c[i7 - 1];
+                        } else if (byteBuffer.hasRemaining()) {
+                            byteBuffer2 = byteBuffer;
+                        } else {
+                            byteBuffer2 = n.f11057a;
+                        }
+                        nVar.c(byteBuffer2);
+                        this.f11050c[i7] = nVar.b();
+                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f11050c[i7].hasRemaining()) {
+                            z11 = false;
+                        } else {
+                            z11 = true;
+                        }
+                        z10 |= z11;
+                    }
+                }
+            }
+        }
     }
 
     public final boolean equals(Object obj) {
@@ -29,18 +107,20 @@ public final class j {
         if (!(obj instanceof j)) {
             return false;
         }
-        j jVar = (j) obj;
-        if (this.f10730a == jVar.f10730a && this.f10731b == jVar.f10731b && this.f10732c == jVar.f10732c) {
-            return true;
+        i0 i0Var = ((j) obj).f11048a;
+        i0 i0Var2 = this.f11048a;
+        if (i0Var2.size() != i0Var.size()) {
+            return false;
         }
-        return false;
+        for (int i7 = 0; i7 < i0Var2.size(); i7++) {
+            if (i0Var2.get(i7) != i0Var.get(i7)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f10730a), Integer.valueOf(this.f10731b), Integer.valueOf(this.f10732c));
-    }
-
-    public final String toString() {
-        return "AudioFormat[sampleRate=" + this.f10730a + ", channelCount=" + this.f10731b + ", encoding=" + this.f10732c + ']';
+        return this.f11048a.hashCode();
     }
 }

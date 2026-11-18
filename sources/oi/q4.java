@@ -1,44 +1,49 @@
 package oi;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
-public abstract class q4 {
-    public static final HashMap f21953a = new HashMap();
-    public static final HashMap f21954b = new HashMap();
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+public final class q4 extends k41 {
+    public static final int f22258b = 0;
 
-    public static synchronized void a(ArrayList arrayList, ArrayList arrayList2) {
-        synchronized (q4.class) {
-            try {
-                f21953a.clear();
-                f21954b.clear();
-                int i7 = 0;
-                if (arrayList != null) {
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        TLRPC.Photo photo = (TLRPC.Photo) obj;
-                        if (photo != null) {
-                            f21953a.put(Long.valueOf(photo.f28075id), photo);
-                        }
-                    }
-                }
-                if (arrayList2 != null) {
-                    int size2 = arrayList2.size();
-                    while (i7 < size2) {
-                        Object obj2 = arrayList2.get(i7);
-                        i7++;
-                        TLRPC.Document document = (TLRPC.Document) obj2;
-                        if (document != null) {
-                            f21954b.put(Long.valueOf(document.f28057id), document);
-                        }
-                    }
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    static {
+        k41.h(new k41());
+    }
+
+    @Override
+    public final void b(android.view.View r2, org.telegram.ui.Components.l41 r3, boolean r4, org.telegram.ui.Components.z41 r5, org.telegram.ui.Components.e51 r6) {
+        throw new UnsupportedOperationException("Method not decompiled: oi.q4.b(android.view.View, org.telegram.ui.Components.l41, boolean, org.telegram.ui.Components.z41, org.telegram.ui.Components.e51):void");
+    }
+
+    @Override
+    public final boolean c(l41 l41Var, l41 l41Var2) {
+        if (l41Var.d == l41Var2.d) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
+        r4 r4Var = new r4(context, i6Var);
+        r4Var.setBackground(new w1(n6.w0(n6.f29396d6, i6Var)));
+        return r4Var;
+    }
+
+    @Override
+    public final boolean e(l41 l41Var, l41 l41Var2) {
+        if (l41Var.d == l41Var2.d) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
     }
 }

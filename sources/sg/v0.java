@@ -4,10 +4,10 @@ import android.graphics.Color;
 import android.opengl.GLES20;
 import java.util.HashMap;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.r2;
+import org.telegram.messenger.s2;
 public final class v0 {
-    public int f56816a;
-    public HashMap f56817b;
+    public int f57390a;
+    public HashMap f57391b;
 
     public static void a(int i7, int i10) {
         GLES20.glUniform4f(i7, Color.red(i10) / 255.0f, Color.green(i10) / 255.0f, Color.blue(i10) / 255.0f, Color.alpha(i10) / 255.0f);
@@ -19,13 +19,13 @@ public final class v0 {
         GLES20.glCompileShader(glCreateShader);
         int[] iArr = new int[1];
         GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-        if (iArr[0] == 0 && r2.f26206a) {
+        if (iArr[0] == 0 && s2.f26723a) {
             a8.d(GLES20.glGetShaderInfoLog(glCreateShader));
         }
         int i10 = iArr[0];
         ?? obj = new Object();
-        obj.f10369a = glCreateShader;
-        obj.f10370b = i10;
+        obj.f10687a = glCreateShader;
+        obj.f10688b = i10;
         return obj;
     }
 
@@ -42,6 +42,6 @@ public final class v0 {
     }
 
     public final int d(String str) {
-        return ((Integer) this.f56817b.get(str)).intValue();
+        return ((Integer) this.f57391b.get(str)).intValue();
     }
 }

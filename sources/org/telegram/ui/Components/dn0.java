@@ -1,28 +1,23 @@
 package org.telegram.ui.Components;
-public final class dn0 implements za {
-    public final xb f33999a;
-    public final oe f34000b;
 
-    public dn0(oe oeVar, xb xbVar) {
-        this.f34000b = oeVar;
-        this.f33999a = xbVar;
-    }
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class dn0 extends sb {
+    public int f34470c;
 
     @Override
-    public final void a() {
-        this.f34000b.G.add(this.f33999a);
-    }
-
-    @Override
-    public final void b() {
-        this.f34000b.G.remove(this.f33999a);
-    }
-
-    @Override
-    public final void c(xb xbVar) {
-    }
-
-    @Override
-    public final void d() {
+    public final void updateColors() {
+        super.updateColors();
+        try {
+            int themedColor = getThemedColor(org.telegram.ui.ActionBar.n6.yj);
+            q9 q9Var = this.f39555a;
+            if (q9Var != null && themedColor != this.f34470c) {
+                this.f34470c = themedColor;
+                q9Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));
+            }
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
     }
 }

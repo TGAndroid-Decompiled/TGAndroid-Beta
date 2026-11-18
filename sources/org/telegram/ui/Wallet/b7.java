@@ -1,29 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.s10;
-public final class b7 implements Runnable {
-    public final int f43508a;
-    public final WalletEngine2 f43509b;
-    public final s10 f43510c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class b7 extends FrameLayout {
+    public final e7 f43961a;
 
-    public b7(WalletEngine2 walletEngine2, s10 s10Var, int i7) {
-        this.f43508a = i7;
-        this.f43509b = walletEngine2;
-        this.f43510c = s10Var;
+    public b7(e7 e7Var, Context context) {
+        super(context);
+        this.f43961a = e7Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43508a) {
-            case 0:
-                this.f43509b.lambda$emulateRotateKey$30(this.f43510c);
-                return;
-            case 1:
-                this.f43509b.lambda$balance$14(this.f43510c);
-                return;
-            default:
-                this.f43509b.lambda$prepareSendNFT$24(this.f43510c);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(-getLeft(), -getTop());
+        e7 e7Var = this.f43961a;
+        e7Var.f44121j.c(canvas);
+        canvas.restore();
+        super.dispatchDraw(canvas);
+        if (e7Var.f44121j.d()) {
+            postInvalidateOnAnimation();
         }
     }
 }

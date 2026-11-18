@@ -1,35 +1,27 @@
 package fi;
 
-import org.webrtc.VideoFrame;
-import org.webrtc.VideoSink;
-public final class f1 implements VideoSink {
-    public volatile VideoSink f11691a;
-    public volatile int f11692b;
-    public volatile int f11693c;
-    public final c1 d = new c1(this, 2);
-    public final g1 f11694e;
-
-    public f1(g1 g1Var) {
-        this.f11694e = g1Var;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class f1 extends TLRPC.TL_messageMediaStory {
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        this.user_id = inputSerializedData.readInt64(z10);
+        this.f28427id = inputSerializedData.readInt32(z10);
+        this.storyItem = TL_stories.StoryItem.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        this.via_mention = inputSerializedData.readBool(z10);
+        this.peer = mp.u1(j10.f24773t0).B1(this.user_id);
     }
 
     @Override
-    public final void onFrame(VideoFrame videoFrame) {
-        int rotatedWidth = videoFrame.getRotatedWidth();
-        int rotatedHeight = videoFrame.getRotatedHeight();
-        if (rotatedWidth != this.f11692b || rotatedHeight != this.f11693c) {
-            this.f11692b = rotatedWidth;
-            this.f11693c = rotatedHeight;
-            org.telegram.messenger.g0.h3(this.d);
-        }
-        VideoSink videoSink = this.f11691a;
-        if (videoSink != null) {
-            videoSink.onFrame(videoFrame);
-        }
-    }
-
-    @Override
-    public final void setParentSink(VideoSink videoSink) {
-        org.webrtc.d0.a(this, videoSink);
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt32(-946147811);
+        outputSerializedData.writeInt64(this.user_id);
+        outputSerializedData.writeInt32(this.f28427id);
+        this.storyItem.serializeToStream(outputSerializedData);
+        outputSerializedData.writeBool(this.via_mention);
     }
 }

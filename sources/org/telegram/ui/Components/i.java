@@ -1,105 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
 import java.util.ArrayList;
-public final class i implements View.OnLongClickListener {
-    public final int f35371a;
-    public final Object f35372b;
-    public final Object f35373c;
-    public final Object d;
+public final class i implements Runnable {
+    public final int f36014a;
+    public final EditTextBoldCursor f36015b;
 
-    public i(Object obj, Object obj2, Object obj3, int i7) {
-        this.f35371a = i7;
-        this.f35372b = obj;
-        this.f35373c = obj2;
-        this.d = obj3;
+    public i(EditTextBoldCursor editTextBoldCursor, int i7) {
+        this.f36014a = i7;
+        this.f36015b = editTextBoldCursor;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        boolean z10;
-        int i7;
-        xe xeVar;
-        boolean z11;
-        int i10 = this.f35371a;
-        Object obj = this.d;
-        Object obj2 = this.f35373c;
-        Object obj3 = this.f35372b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f36014a) {
             case 0:
-                d0 d0Var = (d0) obj3;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj2;
-                Context context = (Context) obj;
-                if (d0Var.f33756i2) {
-                    return false;
-                }
-                if (d0Var.f33758k2 != null) {
-                    if (d0Var.l1() == null) {
-                        return false;
+                org.telegram.messenger.g0.v1(this.f36015b);
+                return;
+            case 1:
+                EditTextBoldCursor editTextBoldCursor = this.f36015b;
+                int i7 = 0;
+                editTextBoldCursor.f38560y = false;
+                editTextBoldCursor.d = false;
+                editTextBoldCursor.h();
+                ArrayList arrayList = editTextBoldCursor.f38550a;
+                if (!arrayList.isEmpty()) {
+                    ((xh.f) arrayList.get(0)).f60560q = new i(editTextBoldCursor, 2);
+                    float sqrt = (float) Math.sqrt(Math.pow(editTextBoldCursor.getHeight(), 2.0d) + Math.pow(editTextBoldCursor.getWidth(), 2.0d));
+                    int size = arrayList.size();
+                    while (i7 < size) {
+                        Object obj = arrayList.get(i7);
+                        i7++;
+                        ((xh.f) obj).j(editTextBoldCursor.f38558w, editTextBoldCursor.f38559x, sqrt, true);
                     }
-                } else if (d0Var.f33757j2 == null || d0Var.m1() == null) {
-                    return false;
+                    return;
                 }
-                if (d0Var.f33755h2 == org.telegram.messenger.m10.i(d0Var.f29679a).e()) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                m60 F = m60.F(d0Var.f29685c, e6Var, d0Var.B2);
-                F.l(2131231508, org.telegram.messenger.hd.M0(2131745583, null), new a(d0Var, 4), !z10);
-                if (z10) {
-                    i7 = 2131745514;
-                } else {
-                    i7 = 2131745859;
-                }
-                F.c(2131232078, org.telegram.messenger.hd.M0(i7, null), new ki.n(d0Var, context, e6Var, 26), false);
-                F.Z();
-                return true;
+                return;
+            case 2:
+                EditTextBoldCursor editTextBoldCursor2 = this.f36015b;
+                editTextBoldCursor2.post(new i(editTextBoldCursor2, 3));
+                return;
+            case 3:
+                this.f36015b.j(false, true);
+                return;
+            case 4:
+                org.telegram.messenger.g0.I3(this.f36015b);
+                return;
+            case 5:
+                org.telegram.messenger.g0.I3(this.f36015b);
+                return;
+            case 6:
+                org.telegram.messenger.g0.I3(this.f36015b);
+                return;
+            case 7:
+                org.telegram.messenger.g0.I3(this.f36015b);
+                return;
+            case 8:
+                EditTextBoldCursor editTextBoldCursor3 = this.f36015b;
+                editTextBoldCursor3.requestFocus();
+                org.telegram.messenger.g0.I3(editTextBoldCursor3);
+                return;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj3;
-                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) obj2;
-                org.telegram.messenger.bj bjVar = (org.telegram.messenger.bj) obj;
-                org.telegram.ui.ActionBar.e6 e6Var2 = chatActivityEnterView.E4;
-                if (gjVar.F3() || (xeVar = chatActivityEnterView.F0) == null || TextUtils.isEmpty(xeVar.getTextToUse())) {
-                    return false;
-                }
-                if (bjVar != null && (!bjVar.f22709c || bjVar.f22713i)) {
-                    return false;
-                }
-                int i11 = gjVar.D;
-                if (i11 != 1 && i11 != 3 && i11 != 8) {
-                    return false;
-                }
-                org.telegram.ui.bg0 bg0Var = new org.telegram.ui.bg0(chatActivityEnterView.getContext(), e6Var2);
-                bg0Var.f45718h0 = true;
-                ArrayList arrayList = new ArrayList();
-                if (bjVar != null) {
-                    ArrayList arrayList2 = bjVar.d;
-                    for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                        org.telegram.messenger.gj gjVar2 = (org.telegram.messenger.gj) arrayList2.get(i12);
-                        if (i12 == 0) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        arrayList.add(chatActivityEnterView.n0(gjVar2, z11));
-                    }
-                } else {
-                    arrayList.add(chatActivityEnterView.n0(gjVar, true));
-                }
-                bg0Var.r(arrayList);
-                m60 F2 = m60.F(chatActivityEnterView.U1, e6Var2, chatActivityEnterView.f32247n2);
-                ja0 ja0Var = new ja0(chatActivityEnterView.getContext(), 2131624140, org.telegram.messenger.hd.M0(2131752560, null), 2131624139, org.telegram.messenger.hd.M0(2131752559, null), chatActivityEnterView.E4);
-                ja0Var.a(!chatActivityEnterView.f32244m6, false);
-                ja0Var.setOnClickListener(new bi.f4(chatActivityEnterView, arrayList, ja0Var, bg0Var, 11));
-                F2.q(ja0Var);
-                F2.Y();
-                bg0Var.q(F2);
-                bg0Var.s(chatActivityEnterView.f32247n2, false, new bi.f4(chatActivityEnterView, bjVar, gjVar, bg0Var, 12));
-                bg0Var.show();
-                return true;
+                EditTextBoldCursor editTextBoldCursor4 = this.f36015b;
+                editTextBoldCursor4.requestFocus();
+                editTextBoldCursor4.setSelection(0, editTextBoldCursor4.length());
+                org.telegram.messenger.g0.I3(editTextBoldCursor4);
+                return;
         }
     }
 }

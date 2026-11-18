@@ -1,60 +1,110 @@
 package c8;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public abstract class je {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String sb2;
-        int i7 = 0;
-        int i10 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i10 >= length) {
-                break;
-            }
-            Object obj = objArr[i10];
-            if (obj == null) {
-                sb2 = "null";
-            } else {
-                try {
-                    sb2 = obj.toString();
-                } catch (Exception e10) {
-                    String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e10);
-                    StringBuilder u10 = a8.p0.u("<", str2, " threw ");
-                    u10.append(e10.getClass().getName());
-                    u10.append(">");
-                    sb2 = u10.toString();
+    public static final w0.d a(CharSequence charSequence, String str) {
+        String str2;
+        switch (str.hashCode()) {
+            case -2055374133:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_USER_CANCELED")) {
+                    return new w0.b(charSequence);
                 }
-            }
-            objArr[i10] = sb2;
-            i10++;
-        }
-        StringBuilder sb3 = new StringBuilder(str.length() + (length * 16));
-        int i11 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i7 >= length2 || (indexOf = str.indexOf("%s", i11)) == -1) {
                 break;
-            }
-            sb3.append((CharSequence) str, i11, indexOf);
-            sb3.append(objArr[i7]);
-            i7++;
-            i11 = indexOf + 2;
+            case -1166690414:
+                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
+                    return new w0.c(3, charSequence);
+                }
+                break;
+            case -580283253:
+                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
+                    return new w0.c(1, charSequence);
+                }
+                break;
+            case 1316905704:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_UNKNOWN")) {
+                    return new w0.c(2, charSequence);
+                }
+                break;
+            case 2092588512:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_INTERRUPTED")) {
+                    return new w0.e(charSequence);
+                }
+                break;
+            case 2131915191:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_NO_CREATE_OPTIONS")) {
+                    return new w0.f(charSequence);
+                }
+                break;
         }
-        sb3.append((CharSequence) str, i11, str.length());
-        if (i7 < length2) {
-            sb3.append(" [");
-            sb3.append(objArr[i7]);
-            for (int i12 = i7 + 1; i12 < objArr.length; i12++) {
-                sb3.append(", ");
-                sb3.append(objArr[i12]);
+        if (xd.l.d(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+            int i7 = y0.a.f60653c;
+            if (charSequence != null) {
+                str2 = charSequence.toString();
+            } else {
+                str2 = null;
             }
-            sb3.append(']');
+            try {
+                if (xd.d.e(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+                    int i10 = y0.a.f60653c;
+                    return yd.a(str, str2);
+                }
+                throw new Exception();
+            } catch (z0.a unused) {
+                return new w0.c(str2, str);
+            }
         }
-        return sb3.toString();
+        return new w0.c(charSequence, str);
+    }
+
+    public static final w0.i b(CharSequence charSequence, String str) {
+        String str2;
+        switch (str.hashCode()) {
+            case -781118336:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_UNKNOWN")) {
+                    return new w0.h(2, charSequence);
+                }
+                break;
+            case -408155724:
+                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
+                    return new w0.h(3, charSequence);
+                }
+                break;
+            case -45448328:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_INTERRUPTED")) {
+                    return new w0.j(charSequence);
+                }
+                break;
+            case 580557411:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_USER_CANCELED")) {
+                    return new w0.g(charSequence);
+                }
+                break;
+            case 627896683:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_NO_CREDENTIAL")) {
+                    return new w0.k(charSequence);
+                }
+                break;
+            case 1594095913:
+                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
+                    return new w0.h(1, charSequence);
+                }
+                break;
+        }
+        if (xd.l.d(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+            int i7 = y0.b.f60655c;
+            if (charSequence != null) {
+                str2 = charSequence.toString();
+            } else {
+                str2 = null;
+            }
+            try {
+                if (xd.l.d(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+                    int i10 = y0.b.f60655c;
+                    return ee.a(str, str2);
+                }
+                throw new Exception();
+            } catch (z0.a unused) {
+                return new w0.h(str2, str);
+            }
+        }
+        return new w0.h(charSequence, str);
     }
 }

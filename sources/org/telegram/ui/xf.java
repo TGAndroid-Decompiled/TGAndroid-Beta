@@ -1,44 +1,118 @@
 package org.telegram.ui;
-public final class xf implements Runnable {
-    public final int f53219a;
-    public final org.telegram.ui.ActionBar.t1[] f53220b;
 
-    public xf(org.telegram.ui.ActionBar.t1[] t1VarArr, int i7) {
-        this.f53219a = i7;
-        this.f53220b = t1VarArr;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class xf implements org.telegram.messenger.q10 {
+    public final int f53836a;
+    public final int f53837b;
+    public final Object f53838c;
+    public final Object d;
+
+    public xf(Object obj, int i7, TLObject tLObject, int i10) {
+        this.f53836a = i10;
+        this.f53838c = obj;
+        this.f53837b = i7;
+        this.d = tLObject;
     }
 
     @Override
-    public final void run() {
-        switch (this.f53219a) {
+    public final void a(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        int i7 = this.f53836a;
+        int i10 = this.f53837b;
+        Object obj3 = this.d;
+        Object obj4 = this.f53838c;
+        switch (i7) {
             case 0:
-                org.telegram.ui.ActionBar.t1[] t1VarArr = this.f53220b;
-                try {
-                    t1VarArr[0].dismiss();
-                } catch (Throwable unused) {
-                }
-                t1VarArr[0] = null;
+                org.telegram.messenger.g0.g3(new ai.g1((bn) obj4, this.f53837b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 12));
                 return;
             case 1:
-                org.telegram.ui.ActionBar.t1[] t1VarArr2 = this.f53220b;
-                try {
-                    t1VarArr2[0].dismiss();
-                } catch (Throwable unused2) {
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                n60 n60Var = (n60) obj3;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                String str = LaunchActivity.C1;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    org.telegram.messenger.mp.u1(launchActivity.P).V3(updates2, false);
+                    updates = updates2;
+                } else {
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        org.telegram.messenger.g0.g3(new n60(1, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
+                    }
+                    updates = null;
                 }
-                t1VarArr2[0] = null;
+                org.telegram.messenger.g0.g3(new ai.g1(launchActivity, n60Var, tL_error, updates, this.f53837b, 21));
                 return;
             case 2:
-                org.telegram.messenger.g0.h3(new xf(this.f53220b, 4));
-                return;
-            case 3:
-                org.telegram.messenger.g0.h3(new xf(this.f53220b, 5));
-                return;
-            case 4:
-                this.f53220b[0].dismiss();
-                return;
+                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                ArrayList arrayList = passkeysActivity.f43150b;
+                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
+                    org.telegram.ui.Components.lc.b0(passkeysActivity).f0("FALSE", false);
+                    arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
+                    passkeysActivity.f43149a.f34607g3.O(true);
+                    return;
+                } else if (tL_error2 != null) {
+                    org.telegram.ui.Components.lc.b0(passkeysActivity).g0(tL_error2, false);
+                    arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
+                    passkeysActivity.f43149a.f34607g3.O(true);
+                    return;
+                } else {
+                    return;
+                }
             default:
-                this.f53220b[0].dismiss();
+                org.telegram.ui.Wallet.r8 r8Var = (org.telegram.ui.Wallet.r8) obj4;
+                TL_wallet.card cardVar = (TL_wallet.card) obj3;
+                TL_wallet.card cardVar2 = (TL_wallet.card) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                r8Var.f44901g1 = 0;
+                if (cardVar2 != null) {
+                    org.telegram.ui.Wallet.r8.e0(i10, cardVar2);
+                    if (!r8Var.f44888b1) {
+                        if (r8Var.f44896e1) {
+                            r8Var.f44891c1 = cardVar2;
+                            r8Var.f44893d1 = org.telegram.ui.Wallet.r8.T(cardVar2);
+                            r8Var.Q();
+                            return;
+                        }
+                        r8Var.d(cardVar2);
+                        return;
+                    }
+                    return;
+                }
+                if (cardVar != null) {
+                    org.telegram.ui.Wallet.r8.e0(i10, cardVar);
+                }
+                if (!r8Var.f44888b1) {
+                    if (tL_error3 != null) {
+                        org.telegram.ui.Components.lc.b0(r8Var.f44883a).g0(tL_error3, false);
+                    }
+                    if (tL_error3 != null && "WALLET_NFT_NOT_OWNED".equals(tL_error3.text)) {
+                        r8Var.E1 = true;
+                        org.telegram.ui.Wallet.u0.D(i10).B().e();
+                    }
+                    r8Var.f44896e1 = false;
+                    TL_wallet.card cardVar3 = r8Var.f44891c1;
+                    if (cardVar3 != null) {
+                        r8Var.d(cardVar3);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
+    }
+
+    public xf(LaunchActivity launchActivity, n60 n60Var, int i7) {
+        this.f53836a = 1;
+        this.f53838c = launchActivity;
+        this.d = n60Var;
+        this.f53837b = i7;
     }
 }

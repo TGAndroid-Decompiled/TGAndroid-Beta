@@ -1,80 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class r6 implements org.telegram.ui.ActionBar.l0, ij0 {
-    public final int f38888a;
-    public final y7 f38889b;
-
-    public r6(y7 y7Var, int i7) {
-        this.f38888a = i7;
-        this.f38889b = y7Var;
-    }
-
-    @Override
-    public boolean b(int i7, View view) {
-        boolean z10 = view instanceof org.telegram.ui.Cells.w;
-        y7 y7Var = this.f38889b;
-        if (z10) {
-            if (!y7Var.O0()) {
-                org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) view;
-                y7Var.X0(wVar, wVar.getMessageObject());
-                return true;
-            }
-            return false;
-        }
-        y7Var.getClass();
-        return false;
-    }
-
-    @Override
-    public void g(int i7) {
-        switch (this.f38888a) {
-            case 0:
-                y7 y7Var = this.f38889b;
-                y7Var.getClass();
-                if (i7 >= 0) {
-                    float[] fArr = y7.U2;
-                    if (i7 < 6) {
-                        MediaController.B().m0(true, fArr[i7]);
-                        y7Var.a1(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                y7 y7Var2 = this.f38889b;
-                if (i7 != 1 && i7 != 2) {
-                    if (i7 == 4) {
-                        if (org.telegram.messenger.gz.S0 == 1) {
-                            org.telegram.messenger.gz.E(0);
-                        } else {
-                            org.telegram.messenger.gz.E(1);
-                        }
-                    } else if (org.telegram.messenger.gz.S0 == 2) {
-                        org.telegram.messenger.gz.E(0);
-                    } else {
-                        org.telegram.messenger.gz.E(2);
-                    }
-                } else {
-                    boolean z10 = org.telegram.messenger.gz.O0;
-                    if ((z10 && i7 == 1) || (org.telegram.messenger.gz.N0 && i7 == 2)) {
-                        MediaController.B().l0(0);
-                    } else {
-                        MediaController.B().l0(i7);
-                    }
-                    y7Var2.f41912u1.f();
-                    if (z10 != org.telegram.messenger.gz.O0) {
-                        y7Var2.f41908s1.C0();
-                        y7Var2.S0(false);
-                    }
-                }
-                y7Var2.c1();
-                return;
-            default:
-                this.f38889b.P0(i7);
-                return;
-        }
+import android.graphics.Typeface;
+import android.widget.TextView;
+import org.telegram.ui.LaunchActivity;
+public final class r6 extends eb {
+    public r6(LaunchActivity launchActivity, org.telegram.ui.y80 y80Var) {
+        super(launchActivity, null);
+        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
+        TextView textView = new TextView(getContext());
+        addView(qVar, c8.ma.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        textView.setGravity(8388611);
+        textView.setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.yj, null);
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(Typeface.SANS_SERIF);
+        addView(textView, c8.ma.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        qVar.setImageDrawable(launchActivity.getDrawable(y80Var.f54091b));
+        qVar.setOuterPadding(org.telegram.messenger.g0.L(8.0f));
+        qVar.setBackgroundOuterPadding(org.telegram.messenger.g0.L(24.0f));
+        qVar.setForeground(y80Var.f54092c);
+        org.telegram.messenger.f3.q(null, null, 2131754236, new Object[]{org.telegram.messenger.gd.M0(y80Var.d, null)}, textView);
     }
 }

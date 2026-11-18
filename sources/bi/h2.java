@@ -3,195 +3,272 @@ package bi;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.text.style.CharacterStyle;
 import android.widget.TextView;
-import di.ba;
-import di.lb;
-import org.telegram.messenger.hd;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.a41;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.i9;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.u41;
-import org.telegram.ui.Components.uj0;
-import org.telegram.ui.Components.y31;
-public final class h2 extends a41 {
-    public static final int f3564b = 0;
+import java.util.Arrays;
+import org.json.JSONObject;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.q10;
+import org.telegram.messenger.tr;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.p80;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.Wallet.WalletEngine2;
+import org.telegram.ui.b21;
+import org.telegram.ui.bn;
+import org.telegram.ui.gi0;
+import org.telegram.ui.hk0;
+import org.telegram.ui.ne;
+import org.telegram.ui.p51;
+import org.telegram.ui.qy0;
+import org.telegram.ui.yj0;
+public final class h2 implements Runnable {
+    public final int f3684a;
+    public final Object f3685b;
+    public final Object f3686c;
+    public final Object d;
+    public final Object f3687e;
+    public final Object f3688f;
+    public final Object h;
 
-    static {
-        a41.h(new a41());
+    public h2(di.x8 x8Var, Object obj, fj fjVar, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, x10 x10Var, int i7) {
+        this.f3684a = i7;
+        this.d = x8Var;
+        this.f3687e = obj;
+        this.f3685b = fjVar;
+        this.f3688f = inputInvoice;
+        this.f3686c = tL_payments_paymentFormStars;
+        this.h = x10Var;
     }
 
-    public static b41 i(int i7, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        b41 K = b41.K(h2.class);
-        K.f33193u = 1;
-        K.f33197z = i7;
-        K.G = starGift;
-        K.f33178e = z10;
-        K.H = Boolean.valueOf(z11);
-        K.f33190r = z13;
-        K.f33189q = z12;
-        K.f33192t = z14;
-        return K;
-    }
-
-    @Override
-    public final void a(uj0 uj0Var, View view, b41 b41Var) {
-        ((i2) view).e(b41Var.h, false);
-    }
-
-    @Override
-    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
-        boolean z11;
-        float f10;
-        int i7;
-        i2 i2Var = (i2) view;
-        Object obj = b41Var.G;
-        boolean z12 = false;
-        if (obj instanceof ug.j) {
-            ug.j jVar = (ug.j) obj;
-            g2 g2Var = i2Var.K;
-            TextView textView = i2Var.J;
-            TextView textView2 = i2Var.I;
-            e2 e2Var = i2Var.f3585e;
-            i9 i9Var = i2Var.E;
-            TextView textView3 = i2Var.M;
-            TextView textView4 = i2Var.N;
-            int d = jVar.d();
-            if (i2Var.f3593k0 != jVar) {
-                ba f12 = lb.f1(i9Var, i9Var.getImageReceiver(), d);
-                i2Var.O = f12;
-                f12.run();
-                i2Var.O = null;
-            }
-            e2Var.d(null);
-            e2Var.e(null);
-            e2Var.g(null);
-            textView2.setText(hd.G(d, "Gift2Months", new Object[0]));
-            textView.setText(hd.M0(2131744230, null));
-            textView2.setVisibility(0);
-            textView.setVisibility(0);
-            i9Var.setTranslationY(-org.telegram.messenger.g0.L(8.0f));
-            i2Var.f3595n.setVisibility(8);
-            i2Var.G.setVisibility(8);
-            if (jVar.f58126c == null && jVar.d == null) {
-                textView4.setVisibility(8);
-            } else {
-                if (org.telegram.ui.ActionBar.j6.I.q()) {
-                    i7 = -1333971;
-                } else {
-                    i7 = -2722014;
-                }
-                textView4.setTextColor(i7);
-                textView4.setVisibility(0);
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("" + hd.E(jVar.g(), ','));
-                spannableStringBuilder.setSpan(new y31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
-                eq[] eqVarArr = new eq[1];
-                textView4.setText(lb.a1(false, hd.V(null, null, 2131747028, spannableStringBuilder), 0.48f, eqVarArr));
-                eqVarArr[0].H = 0.8f;
-            }
-            FrameLayout.LayoutParams layoutParams = i2Var.F;
-            layoutParams.gravity = 49;
-            i9Var.setLayoutParams(layoutParams);
-            textView3.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
-            textView3.setTextSize(1, 12.0f);
-            textView3.setText(jVar.c());
-            i2Var.f3604t0 = 0;
-            i2Var.L.setBackground(org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(13.0f), 422810068));
-            textView3.setTextColor(-13397548);
-            ((ViewGroup.MarginLayoutParams) g2Var.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(130.0f);
-            ((FrameLayout.LayoutParams) g2Var.getLayoutParams()).gravity = 49;
-            i2Var.f3593k0 = jVar;
-            i2Var.f3594l0 = null;
-            i2Var.f3581b0 = jVar;
-            i2Var.f3583c0 = null;
-            i2Var.f3586e0 = false;
-            i2Var.f3588f0 = null;
-            i2Var.f3589g0 = false;
-            i2Var.f3590h0 = false;
-            i2Var.f3591i0 = false;
-            i2Var.R = null;
-            i2Var.S = null;
-            i2Var.d(false, false);
-            i2Var.l();
-        } else if (obj instanceof TL_stars.StarGift) {
-            TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-            boolean z13 = b41Var.f33178e;
-            Object obj2 = b41Var.H;
-            if (obj2 instanceof Boolean) {
-                z11 = ((Boolean) obj2).booleanValue();
-            } else {
-                z11 = false;
-            }
-            i2Var.h(starGift, z13, z11, b41Var.f33189q, b41Var.f33190r, b41Var.f33192t);
-        } else if (obj instanceof TL_stars.SavedStarGift) {
-            z12 = i2Var.i((TL_stars.SavedStarGift) obj, b41Var.f33189q, b41Var.f33190r);
+    private final void a() {
+        byte[] bArr = (byte[]) this.f3685b;
+        org.telegram.ui.Wallet.i2 i2Var = (org.telegram.ui.Wallet.i2) this.f3688f;
+        byte[] bArr2 = i2Var.f44342b;
+        org.telegram.ui.Wallet.e0 e0Var = (org.telegram.ui.Wallet.e0) this.h;
+        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.f3686c;
+        org.telegram.ui.Wallet.u0 u0Var = ((org.telegram.ui.Wallet.l2) this.d).f44480b;
+        if (TextUtils.equals((String) this.f3687e, u0Var.y()) && Arrays.equals(bArr, u0Var.E())) {
+            TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = new TL_wallet.inputTonConnectOauthSession();
+            inputtonconnectoauthsession.session_id = tonconnectsession.f28667id;
+            inputtonconnectoauthsession.challenge_answer = bArr2;
+            inputtonconnectoauthsession.body = i2Var.f44343c;
+            inputtonconnectoauthsession.proof = i2Var.d;
+            e0Var.a(inputtonconnectoauthsession, null);
+            return;
         }
-        if (b41Var.f33179f) {
-            i2Var.c(b41Var.f33178e, z12);
-        }
-        i2Var.e(b41Var.h, z12);
-        FrameLayout frameLayout = i2Var.d;
-        float f11 = 1.0f;
-        if (b41Var.f33180g) {
-            f10 = 1.0f;
+        Arrays.fill(bArr2, (byte) 0);
+        e0Var.a(null, "Wallet changed. Open the request again.");
+    }
+
+    private final void b() {
+        org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) this.d;
+        String str = (String) this.f3687e;
+        x10 x10Var = (x10) this.h;
+        org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) this.f3685b;
+        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f3688f;
+        TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) this.f3686c;
+        if (str != null) {
+            x10Var.a(str);
+        } else if (l2Var.A(h2Var) && !l2Var.j(h2Var)) {
+            l2Var.f44483f.sendRequestTyped(sendtransfer, new d3.b(1), new ne(l2Var, x10Var, h2Var, r0Var, sendtransfer, 6));
         } else {
-            f10 = 0.65f;
+            x10Var.a("Request expired or wallet changed");
         }
-        frameLayout.setAlpha(f10);
-        j2 j2Var = i2Var.f3587f;
-        if (!b41Var.f33180g) {
-            f11 = 0.5f;
+    }
+
+    private final void c() {
+        int i7;
+        org.telegram.ui.Wallet.l2 l2Var = (org.telegram.ui.Wallet.l2) this.d;
+        org.telegram.ui.Wallet.h2 h2Var = (org.telegram.ui.Wallet.h2) this.f3687e;
+        org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f3685b;
+        p51 p51Var = (p51) this.f3688f;
+        JSONObject jSONObject = (JSONObject) this.h;
+        String str = (String) this.f3686c;
+        if (l2Var.A(h2Var) && !l2Var.j(h2Var)) {
+            if (jSONObject == null) {
+                i7 = 0;
+            } else {
+                i7 = -1;
+            }
+            l2Var.y(h2Var, r0Var, jSONObject, i7, str, p51Var);
+            return;
         }
-        j2Var.setAlpha(f11);
+        l2Var.y(h2Var, r0Var, null, 0, "Request expired or wallet changed", p51Var);
+    }
+
+    private final void d() {
+        org.telegram.ui.Wallet.y2 y2Var = (org.telegram.ui.Wallet.y2) this.d;
+        int[] iArr = (int[]) this.f3687e;
+        TextView textView = (TextView) this.f3685b;
+        org.telegram.ui.Wallet.v7 v7Var = (org.telegram.ui.Wallet.v7) this.f3688f;
+        org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) this.h;
+        org.telegram.ui.Wallet.k2 k2Var = (org.telegram.ui.Wallet.k2) this.f3686c;
+        if (!y2Var.f45302e && !y2Var.d) {
+            iArr[0] = 0;
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(" ");
+            spannableStringBuilder.setSpan(new p80(org.telegram.messenger.g0.L(80.0f), textView), 0, spannableStringBuilder.length(), 33);
+            textView.setText(gd.V(null, null, 2131742881, spannableStringBuilder));
+            v7Var.run();
+            WalletEngine2 walletEngine2 = u0Var.f45084b;
+            if (walletEngine2 == null) {
+                iArr[0] = 3;
+                textView.setText(gd.M0(2131742728, null));
+                v7Var.run();
+                return;
+            }
+            walletEngine2.previewTonConnect(k2Var, new di.s1(y2Var, iArr, u0Var, textView, k2Var, v7Var));
+        }
+    }
+
+    private final void f() {
+        ((WalletEngine2) this.d).lambda$prepareSendNFT$29((String) this.f3687e, (String) this.f3685b, (String) this.f3688f, (byte[]) this.h, (q10) this.f3686c);
+    }
+
+    private final void g() {
+        org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) this.d;
+        TLObject tLObject = (TLObject) this.f3685b;
+        TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) this.f3687e;
+        String str = (String) this.f3688f;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f3686c;
+        String str2 = (String) this.h;
+        org.telegram.ui.ActionBar.i6 i6Var = v0Var.f53350e;
+        if (tLObject != null) {
+            if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
+                gi0.b(false, v0Var.N, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, v0Var);
+            } else if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
+                gi0.b(false, v0Var.N, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject, null, null, null, false, v0Var);
+            } else if (tLObject instanceof TLRPC.TL_urlAuthResultDefault) {
+                org.telegram.ui.Components.b5.m0(v0Var.getContext(), str, false, true, true, false, 0L, null, null, null);
+            }
+        } else if (tL_error != null) {
+            if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                new lc(v0Var, i6Var).I(2131624012, gd.M0(2131753126, null), org.telegram.messenger.g0.P2(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.xj, i6Var), gd.a0(null, null, 2131753128, str2))).j();
+            } else {
+                new lc(v0Var, i6Var).g0(tL_error, false);
+            }
+        }
     }
 
     @Override
-    public final View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new i2(i7, context, e6Var);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: bi.h2.run():void");
     }
 
-    @Override
-    public final boolean e(b41 b41Var, b41 b41Var2) {
-        if (b41Var.f33189q == b41Var2.f33189q) {
-            Object obj = b41Var.G;
-            if (obj != null || b41Var2.G != null) {
-                if (obj instanceof ug.j) {
-                    if (obj == b41Var2.G) {
-                        return true;
-                    }
-                    return false;
-                }
-                if (obj instanceof TL_stars.StarGift) {
-                    Object obj2 = b41Var2.G;
-                    if (obj2 instanceof TL_stars.StarGift) {
-                        if (((TL_stars.StarGift) obj).f28280id == ((TL_stars.StarGift) obj2).f28280id) {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-                if (obj instanceof TL_stars.SavedStarGift) {
-                    Object obj3 = b41Var2.G;
-                    if (obj3 instanceof TL_stars.SavedStarGift) {
-                        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                        TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                        if (savedStarGift.gift.f28280id == savedStarGift2.gift.f28280id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
-            }
-            if (b41Var.f33197z == b41Var2.f33197z && b41Var.f33178e == b41Var2.f33178e && b41Var.B == b41Var2.B && TextUtils.equals(b41Var.f33184l, b41Var2.f33184l)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    public h2(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
+        this.f3684a = i7;
+        this.d = obj;
+        this.f3687e = obj2;
+        this.f3685b = obj3;
+        this.f3688f = obj4;
+        this.h = obj5;
+        this.f3686c = obj6;
+    }
+
+    public h2(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7, boolean z10) {
+        this.f3684a = i7;
+        this.d = obj;
+        this.f3685b = obj2;
+        this.f3687e = obj3;
+        this.f3688f = obj4;
+        this.h = obj5;
+        this.f3686c = obj6;
+    }
+
+    public h2(jg.z0 z0Var, String str, TLRPC.TL_error tL_error, TLObject tLObject, mp mpVar, tr trVar) {
+        this.f3684a = 10;
+        this.d = z0Var;
+        this.f3687e = str;
+        this.f3686c = tL_error;
+        this.f3685b = tLObject;
+        this.f3688f = mpVar;
+        this.h = trVar;
+    }
+
+    public h2(TLObject tLObject, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
+        this.f3684a = i7;
+        this.f3685b = tLObject;
+        this.d = obj;
+        this.f3687e = obj2;
+        this.f3688f = obj3;
+        this.h = obj4;
+        this.f3686c = obj5;
+    }
+
+    public h2(TLRPC.TL_error tL_error, Context context, org.telegram.ui.ActionBar.i6 i6Var, hi.d dVar, org.telegram.ui.o6 o6Var, Runnable runnable) {
+        this.f3684a = 15;
+        this.f3686c = tL_error;
+        this.d = context;
+        this.f3687e = i6Var;
+        this.f3685b = dVar;
+        this.f3688f = o6Var;
+        this.h = runnable;
+    }
+
+    public h2(bn bnVar, vf.b bVar, org.telegram.ui.Cells.q1 q1Var, String str, TLObject tLObject, CharacterStyle characterStyle) {
+        this.f3684a = 13;
+        this.d = bnVar;
+        this.f3687e = bVar;
+        this.f3688f = q1Var;
+        this.h = str;
+        this.f3685b = tLObject;
+        this.f3686c = characterStyle;
+    }
+
+    public h2(hk0 hk0Var, TLRPC.TL_error tL_error, String str, yj0 yj0Var, TLObject tLObject, TL_account.sendVerifyPhoneCode sendverifyphonecode) {
+        this.f3684a = 17;
+        this.d = hk0Var;
+        this.f3686c = tL_error;
+        this.f3687e = str;
+        this.f3688f = yj0Var;
+        this.f3685b = tLObject;
+        this.h = sendverifyphonecode;
+    }
+
+    public h2(qy0 qy0Var, TLObject tLObject, CharSequence charSequence, TLRPC.TL_error tL_error, byte[] bArr, String str) {
+        this.f3684a = 18;
+        this.d = qy0Var;
+        this.f3685b = tLObject;
+        this.f3687e = charSequence;
+        this.f3686c = tL_error;
+        this.f3688f = bArr;
+        this.h = str;
+    }
+
+    public h2(b21 b21Var, TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TLRPC.User user, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
+        this.f3684a = 20;
+        this.d = b21Var;
+        this.f3686c = tL_error;
+        this.f3687e = inputCheckPasswordSRP;
+        this.f3685b = user;
+        this.f3688f = twoStepVerificationActivity;
+        this.h = tL_channels_editCreator;
+    }
+
+    public h2(org.telegram.ui.Wallet.l2 l2Var, String str, x10 x10Var, org.telegram.ui.Wallet.h2 h2Var, org.telegram.ui.Wallet.r0 r0Var, TL_wallet.sendTransfer sendtransfer) {
+        this.f3684a = 23;
+        this.d = l2Var;
+        this.f3687e = str;
+        this.h = x10Var;
+        this.f3685b = h2Var;
+        this.f3688f = r0Var;
+        this.f3686c = sendtransfer;
+    }
+
+    public h2(org.telegram.ui.web.v0 v0Var, TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_error tL_error, String str2) {
+        this.f3684a = 28;
+        this.d = v0Var;
+        this.f3685b = tLObject;
+        this.f3687e = tL_messages_requestUrlAuth;
+        this.f3688f = str;
+        this.f3686c = tL_error;
+        this.h = str2;
     }
 }

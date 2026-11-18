@@ -1,30 +1,25 @@
 package org.telegram.ui.Components;
+public final class qm implements org.telegram.messenger.x10 {
+    public final int f38838a;
+    public final rn f38839b;
+    public final int f38840c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class qm extends AnimatorListenerAdapter {
-    public final int f38701a;
-    public final jn f38702b;
-
-    public qm(jn jnVar, int i7) {
-        this.f38701a = i7;
-        this.f38702b = jnVar;
+    public qm(rn rnVar, int i7, int i10) {
+        this.f38838a = i10;
+        this.f38839b = rnVar;
+        this.f38840c = i7;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38701a) {
+    public final void a(Object obj) {
+        switch (this.f38838a) {
             case 0:
-                this.f38702b.F.setTranslationY(0.0f);
-                return;
-            case 1:
-                this.f38702b.F.setTranslationY(0.0f);
+                this.f38839b.j0(this.f38840c, (sh.d) obj);
                 return;
             default:
-                jn jnVar = this.f38702b;
-                jnVar.f36075g1 = false;
-                jnVar.F.setTranslationY(0.0f);
-                jnVar.f0();
+                rn rnVar = this.f38839b;
+                rnVar.getClass();
+                rnVar.j0(this.f38840c, new th.e((String) obj));
                 return;
         }
     }

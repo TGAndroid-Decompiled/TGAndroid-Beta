@@ -1,39 +1,142 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.tl.TL_update;
-public final class gk implements Runnable {
-    public final int f23881a;
-    public final np f23882b;
-    public final TL_update.TL_updatePeerBlocked f23883c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+public final class gk implements x10 {
+    public final int f24269a = 2;
+    public final mp f24270b;
+    public final Object f24271c;
+    public final int d;
+    public final Object f24272e;
+    public final Object f24273f;
+    public final Object f24274g;
 
-    public gk(np npVar, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i7) {
-        this.f23881a = i7;
-        this.f23882b = npVar;
-        this.f23883c = tL_updatePeerBlocked;
+    public gk(mp mpVar, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i7, TLRPC.Chat chat, Runnable runnable) {
+        this.f24270b = mpVar;
+        this.f24272e = tL_messages_invitedUsers;
+        this.f24273f = iArr;
+        this.d = i7;
+        this.f24274g = chat;
+        this.f24271c = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.f23881a) {
+    public final void a(Object obj) {
+        int i7 = this.f24269a;
+        Object obj2 = this.f24271c;
+        Object obj3 = this.f24274g;
+        int i10 = this.d;
+        Object obj4 = this.f24273f;
+        Object obj5 = this.f24272e;
+        mp mpVar = this.f24270b;
+        switch (i7) {
             case 0:
-                g0.h3(new gk(this.f23882b, this.f23883c, 1));
+                vf.b bVar = (vf.b) obj5;
+                org.telegram.ui.ActionBar.u1[] u1VarArr = (org.telegram.ui.ActionBar.u1[]) obj4;
+                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) obj3;
+                boolean[] zArr = (boolean[]) obj2;
+                Long l10 = (Long) obj;
+                try {
+                    if (bVar != null) {
+                        bVar.b();
+                    } else {
+                        u1VarArr[0].dismiss();
+                    }
+                } catch (Exception unused) {
+                }
+                u1VarArr[0] = null;
+                h2Var.setVisibleDialog(null);
+                if (!zArr[0]) {
+                    if (l10 != null) {
+                        if (l10.longValue() < 0) {
+                            mpVar.G3(null, mpVar.O0(Long.valueOf(-l10.longValue())), h2Var, 1);
+                            return;
+                        } else {
+                            mpVar.G3(mpVar.c2(l10), null, h2Var, i10);
+                            return;
+                        }
+                    } else if (h2Var.getParentActivity() != null) {
+                        try {
+                            if (h2Var instanceof org.telegram.ui.bn) {
+                                ((org.telegram.ui.bn) h2Var).Xb();
+                            }
+                            org.telegram.ui.Components.lc.b0(h2Var).t(gd.M0(2131747942, null), null).j();
+                            return;
+                        } catch (Exception e10) {
+                            a8.g(e10, true);
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                boolean[] zArr2 = (boolean[]) obj2;
+                TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) obj5;
+                TLRPC.User user = (TLRPC.User) obj4;
+                ql qlVar = (ql) obj3;
+                TL_bots.BotInfo botInfo = (TL_bots.BotInfo) obj;
+                if (!zArr2[0]) {
+                    botInfoArr[0] = botInfo;
+                    if (botInfo == null) {
+                        TLRPC.UserFull d2 = mpVar.d2(user.f28554id);
+                        if (d2 == null) {
+                            if (!zArr2[0]) {
+                                mpVar.c3(user, i10, true, new e3(zArr2, botInfoArr, qlVar, 5));
+                                return;
+                            }
+                            return;
+                        }
+                        botInfoArr[0] = d2.bot_info;
+                        qlVar.run();
+                        return;
+                    }
+                    qlVar.run();
+                    return;
+                }
                 return;
             default:
-                np npVar = this.f23882b;
-                LongSparseIntArray longSparseIntArray = npVar.H0;
-                TL_update.TL_updatePeerBlocked tL_updatePeerBlocked = this.f23883c;
-                long B1 = gj.B1(tL_updatePeerBlocked.peer_id);
-                if (tL_updatePeerBlocked.blocked) {
-                    if (longSparseIntArray.indexOfKey(B1) < 0) {
-                        longSparseIntArray.put(B1, 1);
-                    }
-                } else {
-                    longSparseIntArray.delete(B1);
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) obj5;
+                int[] iArr = (int[]) obj4;
+                TLRPC.Chat chat = (TLRPC.Chat) obj3;
+                Runnable runnable = (Runnable) obj2;
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
+                mpVar.getClass();
+                if (tL_messages_invitedUsers2 != null) {
+                    tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
-                npVar.getNotificationCenter().k(43, new Object[0]);
-                npVar.P1().m0(B1, tL_updatePeerBlocked.blocked_my_stories_from, false);
+                int i11 = iArr[0] + 1;
+                iArr[0] = i11;
+                if (i11 >= i10) {
+                    if (!tL_messages_invitedUsers.missing_invitees.isEmpty()) {
+                        g0.g3(new yf(mpVar, chat, tL_messages_invitedUsers, 2));
+                    }
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
+    }
+
+    public gk(mp mpVar, vf.b bVar, org.telegram.ui.ActionBar.u1[] u1VarArr, org.telegram.ui.ActionBar.h2 h2Var, boolean[] zArr, int i7) {
+        this.f24270b = mpVar;
+        this.f24272e = bVar;
+        this.f24273f = u1VarArr;
+        this.f24274g = h2Var;
+        this.f24271c = zArr;
+        this.d = i7;
+    }
+
+    public gk(mp mpVar, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i7, ql qlVar) {
+        this.f24270b = mpVar;
+        this.f24271c = zArr;
+        this.f24272e = botInfoArr;
+        this.f24273f = user;
+        this.d = i7;
+        this.f24274g = qlVar;
     }
 }

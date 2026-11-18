@@ -1,63 +1,73 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.HashSet;
+import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
-public final class h00 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public TextView f47554a;
-    public TextView f47555b;
-    public org.telegram.ui.Components.dg0 f47556c;
-    public boolean d;
-    public TLRPC.TL_dialogFilterSuggested f47557e;
+public final class h00 extends rg.a {
+    public CharSequence f48183c;
+    public org.telegram.messenger.ro d;
+    public TLRPC.TL_dialogFilterSuggested f48184e;
 
-    public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
-        return this.f47557e;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.d) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
+    public final boolean equals(Object obj) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        if (obj == this) {
+            return true;
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setText(this.f47556c.getText());
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(64.0f));
-        measureChildWithMargins(this.f47556c, i7, 0, i10, 0);
-        TextView textView = this.f47554a;
-        org.telegram.ui.Components.dg0 dg0Var = this.f47556c;
-        measureChildWithMargins(textView, i7, dg0Var.getMeasuredWidth(), i10, 0);
-        measureChildWithMargins(this.f47555b, i7, dg0Var.getMeasuredWidth(), i10, 0);
-    }
-
-    public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f47556c.setOnClickListener(onClickListener);
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            this.f47556c.setProgressColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.Ei, false));
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+        if (!(obj instanceof h00)) {
+            return false;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+        h00 h00Var = (h00) obj;
+        int i7 = h00Var.f56589a;
+        int i10 = this.f56589a;
+        if (i7 != i10) {
+            return false;
+        }
+        if ((i10 == 0 || i10 == 4 || i10 == 3 || i10 == 6) && !TextUtils.equals(this.f48183c, h00Var.f48183c)) {
+            return false;
+        }
+        int i11 = this.f56589a;
+        if (i11 == 2) {
+            org.telegram.messenger.ro roVar = this.d;
+            if (roVar == null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            org.telegram.messenger.ro roVar2 = h00Var.d;
+            if (roVar2 == null) {
+                z13 = true;
+            } else {
+                z13 = false;
+            }
+            if (z12 != z13) {
+                return false;
+            }
+            if (roVar != null && roVar.f26674a != roVar2.f26674a) {
+                return false;
+            }
+        }
+        if (i11 == 5) {
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.f48184e;
+            if (tL_dialogFilterSuggested == null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = h00Var.f48184e;
+            if (tL_dialogFilterSuggested2 == null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (z10 != z11) {
+                return false;
+            }
+            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f28410id != tL_dialogFilterSuggested2.filter.f28410id) {
+                return false;
+            }
+        }
+        return true;
     }
 }

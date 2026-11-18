@@ -1,19 +1,64 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 public final class w4 implements Runnable {
-    public final int f27299a;
-    public final g5 f27300b;
-    public final ArrayList f27301c;
+    public final int f27640a;
+    public final i5 f27641b;
+    public final HashMap f27642c;
+    public final ArrayList d;
+    public final HashMap f27643e;
 
-    public w4(g5 g5Var, ArrayList arrayList, int i7) {
-        this.f27299a = i7;
-        this.f27300b = g5Var;
-        this.f27301c = arrayList;
+    public w4(i5 i5Var, ArrayList arrayList, HashMap hashMap, HashMap hashMap2) {
+        this.f27640a = 4;
+        this.f27641b = i5Var;
+        this.d = arrayList;
+        this.f27642c = hashMap;
+        this.f27643e = hashMap2;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.w4.run():void");
+        switch (this.f27640a) {
+            case 0:
+                HashMap hashMap = this.f27643e;
+                i5 i5Var = this.f27641b;
+                i5Var.E(this.f27642c, this.d, hashMap, true);
+                i5Var.N();
+                i5Var.getNotificationCenter().k(25, new Object[0]);
+                i5Var.getNotificationCenter().k(26, new Object[0]);
+                return;
+            case 1:
+                HashMap hashMap2 = this.f27643e;
+                i5 i5Var2 = this.f27641b;
+                i5Var2.E(this.f27642c, this.d, hashMap2, true);
+                i5Var2.N();
+                i5Var2.getNotificationCenter().k(25, new Object[0]);
+                i5Var2.getNotificationCenter().k(26, new Object[0]);
+                return;
+            case 2:
+                this.f27641b.E(this.f27642c, this.d, this.f27643e, true);
+                return;
+            case 3:
+                HashMap hashMap3 = this.f27643e;
+                i5 i5Var3 = this.f27641b;
+                i5Var3.E(this.f27642c, this.d, hashMap3, true);
+                i5Var3.getNotificationCenter().k(26, new Object[0]);
+                return;
+            default:
+                i5 i5Var4 = this.f27641b;
+                i5Var4.f24566d0 = this.d;
+                i5Var4.f24568e0 = this.f27642c;
+                i5Var4.f24565c0 = this.f27643e;
+                return;
+        }
+    }
+
+    public w4(i5 i5Var, HashMap hashMap, ArrayList arrayList, HashMap hashMap2, int i7) {
+        this.f27640a = i7;
+        this.f27641b = i5Var;
+        this.f27642c = hashMap;
+        this.d = arrayList;
+        this.f27643e = hashMap2;
     }
 }

@@ -1,98 +1,88 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import java.util.WeakHashMap;
+import android.window.BackEvent;
+import android.window.OnBackAnimationCallback;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class v80 extends RelativeLayout {
-    public i0.c f52160a;
-    public boolean f52161b;
-    public final LaunchActivity f52162c;
+public final class v80 implements OnBackAnimationCallback {
+    public boolean f52727b;
+    public boolean f52729e;
+    public final LaunchActivity f52730f;
+    public final h2.f f52726a = new h2.f((int[]) null);
+    public boolean f52728c = false;
+    public boolean d = false;
 
-    public v80(LaunchActivity launchActivity, LaunchActivity launchActivity2) {
-        super(launchActivity2);
-        this.f52162c = launchActivity;
-        this.f52160a = i0.c.f15573e;
-        zr zrVar = new zr(this, 17);
-        WeakHashMap weakHashMap = r0.i0.f55671a;
-        r0.a0.i(this, zrVar);
+    public v80(LaunchActivity launchActivity) {
+        this.f52730f = launchActivity;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        ActionBarLayout actionBarLayout = this.f52162c.f42651q0;
-        if (actionBarLayout != null) {
-            actionBarLayout.Q(canvas, this);
+    public final void onBackCancelled() {
+        ActionBarLayout actionBarLayout;
+        this.f52728c = false;
+        this.d = false;
+        if (this.f52727b) {
+            this.f52726a.e();
+            this.f52727b = false;
         }
-        super.dispatchDraw(canvas);
+        if (!org.telegram.messenger.g0.Q1() && (actionBarLayout = this.f52730f.f43094p0) != null && actionBarLayout.f28703j1) {
+            actionBarLayout.f28703j1 = false;
+            actionBarLayout.e(true);
+        }
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        int measuredWidth = getMeasuredWidth();
-        getMeasuredHeight();
-        LaunchActivity launchActivity = this.f52162c;
-        if (!launchActivity.N0) {
-            i0.c cVar = this.f52160a;
-            int l1 = org.telegram.messenger.g0.l1(measuredWidth, cVar.f15574a, cVar.f15576c);
-            launchActivity.f42649p0.getView().layout(0, 0, launchActivity.f42649p0.getView().getMeasuredWidth(), launchActivity.f42649p0.getView().getMeasuredHeight());
-            launchActivity.f42653r0.getView().layout(l1, 0, launchActivity.f42653r0.getView().getMeasuredWidth() + l1, launchActivity.f42653r0.getView().getMeasuredHeight());
+    public final void onBackInvoked() {
+        this.d = true;
+        if (this.f52727b) {
+            this.f52726a.e();
+            this.f52727b = false;
+        }
+        if (org.telegram.messenger.g0.Q1()) {
+            this.f52730f.onBackPressed();
+        } else if (!this.f52730f.d0(true)) {
         } else {
-            launchActivity.f42649p0.getView().layout(0, 0, launchActivity.f42649p0.getView().getMeasuredWidth(), launchActivity.f42649p0.getView().getMeasuredHeight());
+            LaunchActivity launchActivity = this.f52730f;
+            ActionBarLayout actionBarLayout = launchActivity.f43094p0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f28703j1) {
+                    actionBarLayout.I();
+                    return;
+                }
+                actionBarLayout.f28703j1 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
         }
-        int measuredWidth2 = (measuredWidth - launchActivity.f42651q0.getView().getMeasuredWidth()) / 2;
-        int L = org.telegram.messenger.g0.L(8.0f) + this.f52160a.f15575b;
-        launchActivity.f42651q0.getView().layout(measuredWidth2, L, launchActivity.f42651q0.getView().getMeasuredWidth() + measuredWidth2, launchActivity.f42651q0.getView().getMeasuredHeight() + L);
-        v8 v8Var = launchActivity.f42659u0;
-        v8Var.layout(0, 0, v8Var.getMeasuredWidth(), launchActivity.f42659u0.getMeasuredHeight());
-        FrameLayout frameLayout = launchActivity.f42657t0;
-        frameLayout.layout(0, 0, frameLayout.getMeasuredWidth(), launchActivity.f42657t0.getMeasuredHeight());
     }
 
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        boolean z10;
-        this.f52161b = true;
-        int size = View.MeasureSpec.getSize(i7);
-        int size2 = View.MeasureSpec.getSize(i10);
-        setMeasuredDimension(size, size2);
-        String str = LaunchActivity.C1;
-        boolean z11 = org.telegram.messenger.g0.E;
-        LaunchActivity launchActivity = this.f52162c;
-        if (!z11 && (!org.telegram.messenger.g0.P1() || launchActivity.getResources().getConfiguration().orientation == 2)) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onBackProgressed(BackEvent backEvent) {
+        ActionBarLayout actionBarLayout;
+        ActionBarLayout actionBarLayout2;
+        if (!this.f52728c || !this.d) {
+            float progress = backEvent.getProgress();
+            boolean z10 = false;
+            if (!this.f52729e && progress > 0.015f) {
+                this.f52729e = true;
+                if (!org.telegram.messenger.g0.Q1() && this.f52730f.d0(false) && (actionBarLayout2 = this.f52730f.f43094p0) != null && actionBarLayout2.J(backEvent.getTouchX(), backEvent.getTouchY()) && !this.f52727b) {
+                    this.f52726a.d();
+                    this.f52727b = true;
+                }
+            }
+            float max = Math.max(0.0f, progress - 0.015f) / 0.985f;
+            if (!org.telegram.messenger.g0.Q1() && (actionBarLayout = this.f52730f.f43094p0) != null && actionBarLayout.f28703j1) {
+                float interpolation = org.telegram.ui.Components.lr.f37213l.getInterpolation(max) * org.telegram.messenger.g0.L(56.0f);
+                if (max > 0.0f) {
+                    z10 = true;
+                }
+                actionBarLayout.l1 = z10;
+                actionBarLayout.f28719s.setTranslationX(interpolation);
+                actionBarLayout.setInnerTranslationX(interpolation);
+            }
         }
-        if (z10 == launchActivity.N0 && !launchActivity.O0) {
-            launchActivity.O0 = true;
-            org.telegram.messenger.g0.h3(new iz(this, 18));
-        }
-        if (!launchActivity.N0) {
-            i0.c cVar = this.f52160a;
-            int l1 = org.telegram.messenger.g0.l1(size, cVar.f15574a, cVar.f15576c);
-            launchActivity.f42649p0.getView().measure(View.MeasureSpec.makeMeasureSpec(l1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            launchActivity.f42653r0.getView().measure(View.MeasureSpec.makeMeasureSpec(size - l1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        } else {
-            launchActivity.f42649p0.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        }
-        launchActivity.f42659u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        launchActivity.f42657t0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        ViewGroup view = launchActivity.f42651q0.getView();
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(500.0f), size - org.telegram.messenger.g0.L(16.0f)), 1073741824);
-        i0.c cVar2 = this.f52160a;
-        view.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(((size2 - cVar2.f15575b) - cVar2.d) - org.telegram.messenger.g0.L(16.0f), 1073741824));
-        this.f52161b = false;
     }
 
-    @Override
-    public final void requestLayout() {
-        if (this.f52161b) {
-            return;
-        }
-        super.requestLayout();
+    public final void onBackStarted(BackEvent backEvent) {
+        this.f52728c = true;
+        this.d = false;
+        this.f52729e = false;
     }
 }

@@ -3,25 +3,25 @@ package uh;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Cells.y;
 public abstract class c extends Drawable {
-    public final y f58419a;
-    public int f58420b;
-    public int f58421c = 255;
+    public final y f58986a;
+    public int f58987b;
+    public int f58988c = 255;
 
-    public c(e6 e6Var) {
-        int w02 = j6.w0(j6.f28941i6, e6Var);
-        this.f58420b = w02;
-        this.f58419a = j6.a0(w02, 0, 0);
+    public c(i6 i6Var) {
+        int w02 = n6.w0(n6.f29488i6, i6Var);
+        this.f58987b = w02;
+        this.f58986a = n6.a0(w02, 0, 0);
     }
 
     public abstract void a(int i7);
 
     @Override
     public final int getAlpha() {
-        return this.f58421c;
+        return this.f58988c;
     }
 
     @Override
@@ -32,13 +32,13 @@ public abstract class c extends Drawable {
     @Override
     public void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f58419a.setBounds(rect);
+        this.f58986a.setBounds(rect);
     }
 
     @Override
     public final void setAlpha(int i7) {
-        if (this.f58421c != i7) {
-            this.f58421c = i7;
+        if (this.f58988c != i7) {
+            this.f58988c = i7;
             a(i7);
         }
     }

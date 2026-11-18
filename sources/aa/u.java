@@ -13,45 +13,45 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 public final class u {
-    public static final HashMap f866f;
-    public static final String f867g;
-    public final Context f868a;
-    public final a0 f869b;
-    public final a f870c;
+    public static final HashMap f865f;
+    public static final String f866g;
+    public final Context f867a;
+    public final a0 f868b;
+    public final a f869c;
     public final wf.b d;
-    public final ia.c f871e;
+    public final ia.c f870e;
 
     static {
         HashMap hashMap = new HashMap();
-        f866f = hashMap;
+        f865f = hashMap;
         e2.p(5, hashMap, "armeabi", 6, "armeabi-v7a");
         e2.p(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f867g = "Crashlytics Android SDK/20.1.1";
+        f866g = "Crashlytics Android SDK/20.1.1";
     }
 
     public u(Context context, a0 a0Var, a aVar, wf.b bVar, ia.c cVar) {
-        this.f868a = context;
-        this.f869b = a0Var;
-        this.f870c = aVar;
+        this.f867a = context;
+        this.f868b = a0Var;
+        this.f869c = aVar;
         this.d = bVar;
-        this.f871e = cVar;
+        this.f870e = cVar;
     }
 
     public static y0 c(ab.c0 c0Var, int i7) {
-        String str = (String) c0Var.f910c;
-        String str2 = (String) c0Var.f909b;
+        String str = (String) c0Var.f909c;
+        String str2 = (String) c0Var.f908b;
         StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) c0Var.d;
         int i10 = 0;
         if (stackTraceElementArr == null) {
             stackTraceElementArr = new StackTraceElement[0];
         }
-        ab.c0 c0Var2 = (ab.c0) c0Var.f911e;
+        ab.c0 c0Var2 = (ab.c0) c0Var.f910e;
         if (i7 >= 8) {
             ab.c0 c0Var3 = c0Var2;
             while (c0Var3 != null) {
-                c0Var3 = (ab.c0) c0Var3.f911e;
+                c0Var3 = (ab.c0) c0Var3.f910e;
                 i10++;
             }
         }
@@ -80,8 +80,8 @@ public final class u {
         ArrayList arrayList = new ArrayList();
         for (StackTraceElement stackTraceElement : stackTraceElementArr) {
             ?? obj = new Object();
-            obj.f7671e = i7;
-            obj.f7672f = (byte) (obj.f7672f | 4);
+            obj.f7953e = i7;
+            obj.f7954f = (byte) (obj.f7954f | 4);
             long j10 = 0;
             if (stackTraceElement.isNativeMethod()) {
                 j3 = Math.max(stackTraceElement.getLineNumber(), 0L);
@@ -93,14 +93,14 @@ public final class u {
             if (!stackTraceElement.isNativeMethod() && stackTraceElement.getLineNumber() > 0) {
                 j10 = stackTraceElement.getLineNumber();
             }
-            obj.f7668a = j3;
-            byte b10 = (byte) (obj.f7672f | 1);
-            obj.f7672f = b10;
+            obj.f7950a = j3;
+            byte b10 = (byte) (obj.f7954f | 1);
+            obj.f7954f = b10;
             if (str != null) {
-                obj.f7669b = str;
-                obj.f7670c = fileName;
+                obj.f7951b = str;
+                obj.f7952c = fileName;
                 obj.d = j10;
-                obj.f7672f = (byte) (b10 | 2);
+                obj.f7954f = (byte) (b10 | 2);
                 arrayList.add(obj.a());
             } else {
                 throw new NullPointerException("Null symbol");
@@ -123,7 +123,7 @@ public final class u {
 
     public final List a() {
         byte b10 = (byte) (((byte) (0 | 1)) | 2);
-        a aVar = this.f870c;
+        a aVar = this.f869c;
         String str = aVar.f770e;
         if (str != null) {
             String str2 = aVar.f768b;

@@ -1,112 +1,49 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-public final class fx extends FrameLayout {
-    public org.telegram.ui.Components.g9 f47201a;
-    public org.telegram.ui.Components.g9 f47202b;
-    public Drawable f47203c;
-    public Drawable d;
-    public final Drawable f47204e;
-    public Paint f47205f;
-    public RectF h;
-    public final ViewGroup[] f47206n;
-    public final gx f47207r;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+public final class fx implements DialogInterface.OnClickListener {
+    public final int f47836a;
+    public final int f47837b;
+    public final Object f47838c;
 
-    public fx(gx gxVar, Context context) {
-        super(context);
-        this.f47207r = gxVar;
-        this.f47205f = new Paint(1);
-        this.h = new RectF();
-        this.f47206n = new ViewGroup[2];
-        int i7 = 0;
-        setWillNotDraw(false);
-        setPadding(0, org.telegram.messenger.g0.L(24.0f), 0, org.telegram.messenger.g0.L(24.0f));
-        LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
-        addView(f10, c8.ja.e(-2, -2, 17));
-        org.telegram.ui.Cells.t0 t0Var = new org.telegram.ui.Cells.t0(context);
-        t0Var.setCustomText(org.telegram.messenger.hd.M0(2131742869, null));
-        f10.addView(t0Var, c8.ja.t(-2, -2, 17, 0, 0, 0, 4));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setBackgroundResource(2131232858);
-        f10.addView(linearLayout, c8.ja.t(-2, -2, 17, 10, 0, 10, 0));
-        gxVar.d = new ImageView(context);
-        int i10 = gxVar.f47535x;
-        if (i10 == 0) {
-            while (i7 < 2) {
-                this.f47206n[i7] = (ViewGroup) gxVar.getParentActivity().getLayoutInflater().inflate(2131492957, (ViewGroup) null);
-                linearLayout.addView(this.f47206n[i7], c8.ja.o(-1, -2));
-                i7++;
-            }
-            linearLayout.addView(gxVar.d, c8.ja.r(218, 160, 17));
-            gxVar.d.setImageResource(2131231003);
-        } else if (i10 == 1) {
-            while (i7 < 2) {
-                this.f47206n[i7] = (ViewGroup) gxVar.getParentActivity().getLayoutInflater().inflate(2131492900, (ViewGroup) null);
-                linearLayout.addView(this.f47206n[i7], c8.ja.o(160, -2));
-                i7++;
-            }
-            linearLayout.addView(gxVar.d, c8.ja.r(160, 160, 17));
-            gxVar.d.setImageResource(2131231031);
+    public fx(Object obj, int i7, int i10) {
+        this.f47836a = i10;
+        this.f47838c = obj;
+        this.f47837b = i7;
+    }
+
+    @Override
+    public final void onClick(DialogInterface dialogInterface, int i7) {
+        switch (this.f47836a) {
+            case 0:
+                kx kxVar = (kx) ((ji.j) this.f47838c).f17949c;
+                if (i7 == 0) {
+                    kxVar.f49349e.remove(this.f47837b - kxVar.f49351n);
+                    kxVar.e0();
+                    jx jxVar = kxVar.f49350f;
+                    if (jxVar != null) {
+                        jxVar.a();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                NotificationsSettingsActivity.c0((NotificationsSettingsActivity) this.f47838c, this.f47837b, i7);
+                return;
+            default:
+                ThemeActivity themeActivity = (ThemeActivity) this.f47838c;
+                themeActivity.getClass();
+                SharedPreferences.Editor edit = org.telegram.messenger.mp.g1().edit();
+                edit.putInt("sortContactsBy", i7);
+                edit.commit();
+                g61 g61Var = themeActivity.f43830a;
+                if (g61Var != null) {
+                    g61Var.g(this.f47837b);
+                    return;
+                }
+                return;
         }
-        a();
-        this.f47204e = org.telegram.ui.ActionBar.j6.Y0(context, 2131231230, org.telegram.ui.ActionBar.j6.f28813b7);
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fx.a():void");
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.ui.Components.g9 g9Var = this.f47201a;
-        if (g9Var != null) {
-            g9Var.dispose();
-            this.f47201a = null;
-        }
-        org.telegram.ui.Components.g9 g9Var2 = this.f47202b;
-        if (g9Var2 != null) {
-            g9Var2.dispose();
-            this.f47202b = null;
-        }
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fx.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(264.0f), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void dispatchSetPressed(boolean z10) {
     }
 }

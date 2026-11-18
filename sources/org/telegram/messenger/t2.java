@@ -1,13 +1,10 @@
 package org.telegram.messenger;
+public final class t2 {
+    public final long f26934a;
+    public int f26935b;
 
-import java.io.File;
-public class t2 {
-    public final File f26626a;
-    public int f26627b = -1;
-    public int f26628c = 2;
-    public boolean d;
-
-    public t2(File file) {
-        this.f26626a = file;
+    public t2(long j3, int i7) {
+        this.f26934a = j3;
+        this.f26935b = i7;
     }
 }

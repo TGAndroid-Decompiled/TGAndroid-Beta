@@ -1,52 +1,52 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.support.LongSparseIntArray;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class vv implements Runnable {
-    public final int f27248a;
-    public final bw f27249b;
-    public final long f27250c;
+    public final int f27603a;
+    public final xv f27604b;
+    public final ArrayList f27605c;
 
-    public vv(bw bwVar, long j3, int i7) {
-        this.f27248a = i7;
-        this.f27249b = bwVar;
-        this.f27250c = j3;
+    public vv(xv xvVar, ArrayList arrayList, int i7) {
+        this.f27603a = i7;
+        this.f27604b = xvVar;
+        this.f27605c = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27248a;
-        long j3 = this.f27250c;
-        bw bwVar = this.f27249b;
-        switch (i7) {
+        switch (this.f27603a) {
             case 0:
-                a0.h hVar = bwVar.getMessagesController().R;
-                long j10 = this.f27250c;
-                TLRPC.Dialog dialog = (TLRPC.Dialog) hVar.f(j10);
-                if (dialog != null) {
-                    dialog.unread_count = 0;
-                    bwVar.getMessagesController().S.l(dialog.f28055id);
+                xv xvVar = this.f27604b;
+                xvVar.getClass();
+                int i7 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f27605c;
+                    if (i7 < arrayList.size()) {
+                        fj fjVar = new fj(xvVar.currentAccount, (TLRPC.Message) arrayList.get(i7), false, true);
+                        fjVar.C0 = true;
+                        xvVar.getSendMessagesHelper().k0(0L, fjVar, true);
+                        i7++;
+                    } else {
+                        return;
+                    }
                 }
-                bwVar.getMessagesStorage().f27219a.c(new vv(bwVar, j10, 1));
-                vr messagesStorage = bwVar.getMessagesStorage();
-                messagesStorage.f27219a.c(new wp(messagesStorage, 1, j10, 1));
-                bwVar.getNotificationCenter().k(3, new Object[0]);
-                bwVar.getNotificationCenter().k(41, Long.valueOf(j10), Boolean.FALSE, null);
-                return;
-            case 1:
-                g0.h3(new vv(bwVar, j3, 2));
-                return;
-            case 2:
-                at notificationsController = bwVar.getNotificationsController();
-                long j11 = this.f27250c;
-                notificationsController.L(null, j11, 0, Integer.MAX_VALUE, false);
-                LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
-                longSparseIntArray.put(j11, 0);
-                bwVar.getNotificationsController().J(longSparseIntArray);
-                return;
             default:
-                bwVar.getMessagesController().X(0, j3, false);
-                return;
+                xv xvVar2 = this.f27604b;
+                xvVar2.getClass();
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f27605c;
+                    if (i10 < arrayList2.size()) {
+                        fj fjVar2 = (fj) xvVar2.getMessagesController().T.f(((Long) arrayList2.get(i10)).longValue());
+                        if (fjVar2 != null) {
+                            fjVar2.Z = true;
+                        }
+                        i10++;
+                    } else {
+                        return;
+                    }
+                }
         }
     }
 }

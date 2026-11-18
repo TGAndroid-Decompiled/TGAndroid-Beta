@@ -1,64 +1,78 @@
 package hi;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.camera.CameraView;
-import org.telegram.messenger.gz;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-public final class b6 {
-    public final t8 f13933c;
-    public z5 d;
-    public CameraView f13935f;
-    public Bitmap f13936g;
-    public final AtomicReference f13931a = new AtomicReference();
-    public final AtomicBoolean f13932b = new AtomicBoolean(false);
-    public final y5 h = new y5(this, 0);
-    public final String f13934e = np.s1(m10.f24940t0).V2;
+import android.os.SystemClock;
+public final class b6 implements Runnable {
+    public final int f14272a;
+    public final e6 f14273b;
 
-    public b6(Context context, t8 t8Var) {
-        this.f13933c = t8Var;
-        Utilities.f22416e.c(new h4(5, this, context));
+    public b6(e6 e6Var, int i7) {
+        this.f14272a = i7;
+        this.f14273b = e6Var;
     }
 
-    public final void a(CameraView cameraView) {
-        this.f13935f = cameraView;
-        if (this.f13931a.get() != null && !this.f13932b.get()) {
-            Utilities.f22416e.a(this.h);
-            Utilities.f22416e.d(this.h, b());
-        }
-    }
-
-    public final long b() {
-        if (this.d == null) {
-            return 750L;
-        }
-        int o4 = gz.o();
-        if (o4 != 1) {
-            if (o4 != 2) {
-                return 800L;
-            }
-            return 80L;
-        }
-        return 400L;
-    }
-
-    public final void c(boolean z10) {
-        if (this.f13932b.getAndSet(z10) != z10) {
-            if (z10) {
-                Utilities.f22416e.a(this.h);
-                if (this.d != null) {
-                    this.d = null;
-                    org.telegram.messenger.g0.h3(new y5(this, 1));
+    @Override
+    public final void run() {
+        switch (this.f14272a) {
+            case 0:
+                e6 e6Var = this.f14273b;
+                e6Var.f14586s0 = false;
+                e6Var.A0 = false;
+                e6Var.f14591w0 = SystemClock.elapsedRealtime();
+                e6Var.f14589v0 = true;
+                e6Var.f14593x0 = false;
+                e6Var.K.c(false);
+                e6Var.L.c(false);
+                e6Var.M.c(false);
+                ((q9) e6Var.f14561a).e(true);
+                return;
+            case 1:
+                long currentTimeMillis = System.currentTimeMillis();
+                e6 e6Var2 = this.f14273b;
+                e6Var2.R = currentTimeMillis;
+                e6Var2.S = 0L;
+                e6Var2.f14586s0 = true;
+                ((q9) e6Var2.f14561a).f15296a.K0.a(0L, true);
+                return;
+            case 2:
+                e6 e6Var3 = this.f14273b;
+                if (!e6Var3.f14586s0 && !e6Var3.b()) {
+                    if (!ta.c(((q9) e6Var3.f14561a).f15296a)) {
+                        e6Var3.f14593x0 = false;
+                        e6Var3.K.c(false);
+                        e6Var3.L.c(false);
+                        e6Var3.M.c(false);
+                        return;
+                    }
+                    e6Var3.A0 = true;
+                    e6Var3.B0 = true;
+                    ((q9) e6Var3.f14561a).f(new b6(e6Var3, 4), true);
                     return;
                 }
                 return;
-            }
-            Utilities.f22416e.a(this.h);
-            Utilities.f22416e.d(this.h, b());
+            case 3:
+                e6 e6Var4 = this.f14273b;
+                if (!e6Var4.f14586s0 && !e6Var4.b()) {
+                    w9 w9Var = ((q9) e6Var4.f14561a).f15296a.C0;
+                    if (w9Var != null) {
+                        w9Var.toggleDual();
+                    }
+                    e6Var4.d(360.0f);
+                    e6Var4.f14593x0 = false;
+                    e6Var4.K.c(false);
+                    e6Var4.L.c(false);
+                    e6Var4.M.c(false);
+                    return;
+                }
+                return;
+            default:
+                long currentTimeMillis2 = System.currentTimeMillis();
+                e6 e6Var5 = this.f14273b;
+                e6Var5.R = currentTimeMillis2;
+                e6Var5.f14586s0 = true;
+                c6 c6Var = e6Var5.f14561a;
+                e6Var5.S = 0L;
+                ((q9) c6Var).f15296a.K0.a(0L, true);
+                return;
         }
     }
 }

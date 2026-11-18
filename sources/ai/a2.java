@@ -1,12 +1,12 @@
 package ai;
 public interface a2 {
-    void M(int i7, String str);
-
-    void P(String str);
-
     void a(String str, String str2);
 
     void h(float f10);
 
-    void r(String str);
+    void i(String str);
+
+    void l(int i7, String str);
+
+    void x(String str);
 }

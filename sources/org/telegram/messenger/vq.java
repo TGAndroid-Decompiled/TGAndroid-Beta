@@ -1,45 +1,33 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class vq implements Comparator {
-    public final int f27214a;
-    public final LongSparseIntArray f27215b;
+import org.telegram.tgnet.TLRPC;
+public final class vq implements Runnable {
+    public final int f27582a;
+    public final tr f27583b;
+    public final TLRPC.TL_chatFull f27584c;
 
-    public vq(LongSparseIntArray longSparseIntArray, int i7) {
-        this.f27214a = i7;
-        this.f27215b = longSparseIntArray;
+    public vq(tr trVar, TLRPC.TL_chatFull tL_chatFull, int i7) {
+        this.f27582a = i7;
+        this.f27583b = trVar;
+        this.f27584c = tL_chatFull;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        Long l10 = (Long) obj;
-        Long l11 = (Long) obj2;
-        switch (this.f27214a) {
+    public final void run() {
+        int i7 = this.f27582a;
+        TLRPC.TL_chatFull tL_chatFull = this.f27584c;
+        tr trVar = this.f27583b;
+        switch (i7) {
             case 0:
-                long longValue = l10.longValue();
-                LongSparseIntArray longSparseIntArray = this.f27215b;
-                int i7 = longSparseIntArray.get(longValue);
-                int i10 = longSparseIntArray.get(l11.longValue());
-                if (i7 > i10) {
-                    return 1;
-                }
-                if (i7 < i10) {
-                    return -1;
-                }
-                return 0;
+                ks notificationCenter = trVar.getNotificationCenter();
+                Boolean bool = Boolean.FALSE;
+                notificationCenter.k(30, tL_chatFull, 0, bool, bool);
+                return;
             default:
-                long longValue2 = l10.longValue();
-                LongSparseIntArray longSparseIntArray2 = this.f27215b;
-                int i11 = longSparseIntArray2.get(longValue2);
-                int i12 = longSparseIntArray2.get(l11.longValue());
-                if (i11 < i12) {
-                    return 1;
-                }
-                if (i11 > i12) {
-                    return -1;
-                }
-                return 0;
+                ks notificationCenter2 = trVar.getNotificationCenter();
+                Boolean bool2 = Boolean.FALSE;
+                notificationCenter2.k(30, tL_chatFull, 0, bool2, bool2);
+                return;
         }
     }
 }

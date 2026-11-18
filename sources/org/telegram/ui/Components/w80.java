@@ -1,45 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class w80 implements nr0 {
-    public final y80 f41317a;
+import java.util.ArrayList;
+public final class w80 {
+    public final ad.a f41625a;
+    public final int f41626b;
+    public final ArrayList f41627c = new ArrayList();
 
-    public w80(y80 y80Var) {
-        this.f41317a = y80Var;
-    }
-
-    @Override
-    public final void W() {
-        this.f41317a.g0();
-    }
-
-    @Override
-    public final boolean Y() {
-        return false;
-    }
-
-    @Override
-    public final uj0 f() {
-        return null;
-    }
-
-    @Override
-    public final TLRPC.Chat g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h(TLRPC.ChatParticipant chatParticipant, boolean z10, boolean z11, View view) {
-        return false;
-    }
-
-    @Override
-    public final boolean t() {
-        return true;
-    }
-
-    @Override
-    public final void J() {
+    public w80(ad.a aVar, int i7) {
+        this.f41625a = aVar;
+        this.f41626b = i7;
     }
 }

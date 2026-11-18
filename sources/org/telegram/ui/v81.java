@@ -1,54 +1,50 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-public final class v81 implements zh.c, org.telegram.messenger.yo, r0.m, org.telegram.ui.Components.jj0 {
-    public final u91 f52163a;
+import org.telegram.tgnet.tl.TL_stars;
+public final class v81 extends r11 {
+    public boolean f52731f2;
+    public final w81 f52732g2;
 
-    public v81(u91 u91Var) {
-        this.f52163a = u91Var;
+    public v81(w81 w81Var, w81 w81Var2, Activity activity) {
+        super(w81Var2, activity, false, null, 3, null);
+        this.f52732g2 = w81Var;
+        this.f52731f2 = true;
     }
 
     @Override
-    public r0.k1 M0(View view, r0.k1 k1Var) {
-        int i7 = k1Var.f55682a.f(519).d;
-        u91 u91Var = this.f52163a;
-        u91Var.f51853g1 = i7;
-        q91 q91Var = u91Var.f51875s0;
-        if (q91Var != null) {
-            q91Var.setPadding(0, 0, 0, i7);
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (this.f52731f2) {
+            this.f52731f2 = false;
+            this.f52732g2.f53013f.s(null);
         }
-        q81 q81Var = u91Var.f51864n;
-        if (q81Var != null) {
-            ((TextView) q81Var.d).setTranslationY((-u91Var.f51853g1) - u91Var.f51851f1);
+    }
+
+    @Override
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i7;
+        int i10;
+        long j3;
+        w81 w81Var = this.f52732g2;
+        i7 = ((org.telegram.ui.ActionBar.h2) w81Var).currentAccount;
+        boolean z10 = false;
+        if (!TextUtils.isEmpty(org.telegram.messenger.j10.i(i7).f24785f0)) {
+            org.telegram.messenger.ri mediaDataController = w81Var.getMediaDataController();
+            i10 = ((org.telegram.ui.ActionBar.h2) w81Var).currentAccount;
+            TLRPC.TL_messages_stickerSet p02 = mediaDataController.p0(org.telegram.messenger.j10.i(i10).f24785f0);
+            if (p02 == null) {
+                j3 = 0;
+            } else {
+                j3 = p02.set.f28432id;
+            }
+            if (j3 == org.telegram.messenger.ri.s0(document)) {
+                z10 = true;
+            }
         }
-        u91Var.h.setTranslationY(((-u91Var.Y0) - u91Var.f51853g1) - u91Var.f51851f1);
-        u91Var.F0();
-        return r0.k1.f55681b;
-    }
-
-    @Override
-    public boolean d(TLRPC.TL_error tL_error) {
-        return u91.Z(this.f52163a, tL_error);
-    }
-
-    @Override
-    public void e(boolean z10, boolean z11) {
-        u91 u91Var = this.f52163a;
-        u91Var.V0.i(u91Var.S0.b(), z10, z11);
-    }
-
-    @Override
-    public boolean mo0f(float f10, float f11, int i7, View view) {
-        return u91.b0(this.f52163a, view, f10);
-    }
-
-    @Override
-    public void q(float f10) {
-    }
-
-    @Override
-    public void i() {
+        w81Var.g0(l10, z10);
     }
 }

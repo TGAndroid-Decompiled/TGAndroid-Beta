@@ -15,7 +15,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 public abstract class g {
-    public static final char[] f810a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    public static final char[] f809a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     public static synchronized long a(Context context) {
         long j3;
@@ -88,7 +88,7 @@ public abstract class g {
         for (int i7 = 0; i7 < bArr.length; i7++) {
             byte b10 = bArr[i7];
             int i10 = i7 * 2;
-            char[] cArr2 = f810a;
+            char[] cArr2 = f809a;
             cArr[i10] = cArr2[(b10 & 255) >>> 4];
             cArr[i10 + 1] = cArr2[b10 & 15];
         }

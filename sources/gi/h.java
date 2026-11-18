@@ -1,33 +1,33 @@
 package gi;
 
 import android.content.Context;
-import fi.k6;
-import org.telegram.ui.Components.cv0;
+import fi.h6;
+import org.telegram.ui.Components.kv0;
 public final class h extends l {
-    public final m f13325w;
+    public final m f13640w;
 
     public h(m mVar, Context context) {
         super(mVar, context);
-        this.f13325w = mVar;
+        this.f13640w = mVar;
     }
 
     @Override
     public final void f() {
         boolean z10;
         super.f();
-        m mVar = this.f13325w;
-        if (mVar.f13343r.getVisibility() == 0) {
-            mVar.f13346x.f();
+        m mVar = this.f13640w;
+        if (mVar.f13658r.getVisibility() == 0) {
+            mVar.f13661x.f();
         }
-        cv0 cv0Var = mVar.E;
-        if (cv0Var != null) {
-            k6 k6Var = this.f13330e;
-            if (k6Var != null && k6Var.k()) {
+        kv0 kv0Var = mVar.E;
+        if (kv0Var != null) {
+            h6 h6Var = this.f13645e;
+            if (h6Var != null && h6Var.k()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            cv0Var.e(z10, true);
+            kv0Var.e(z10, true);
         }
     }
 }

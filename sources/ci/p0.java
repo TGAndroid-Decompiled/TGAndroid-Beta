@@ -1,68 +1,76 @@
 package ci;
 
-import kg.v1;
-import org.telegram.tgnet.TLRPC;
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import bi.u4;
+import com.google.android.gms.internal.vision.e2;
+import java.nio.ByteBuffer;
 public final class p0 implements Runnable {
-    public final int f5462a;
-    public final Object f5463b;
-    public final int f5464c;
-    public final Object d;
-    public final Object f5465e;
+    public final int f5745a;
+    public final z0 f5746b;
+    public final int f5747c;
 
-    public p0(int i7, Object obj, Object obj2, Object obj3, int i10) {
-        this.f5462a = i10;
-        this.f5464c = i7;
-        this.f5463b = obj;
-        this.d = obj2;
-        this.f5465e = obj3;
-    }
-
-    private final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: ci.p0.a():void");
+    public p0(z0 z0Var, int i7, int i10) {
+        this.f5745a = i10;
+        this.f5746b = z0Var;
+        this.f5747c = i7;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ci.p0.run():void");
-    }
-
-    public p0(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f5462a = i10;
-        this.f5463b = obj;
-        this.f5464c = i7;
-        this.d = obj2;
-        this.f5465e = obj3;
-    }
-
-    public p0(Object obj, int i7, Object obj2, String str, int i10) {
-        this.f5462a = i10;
-        this.f5463b = obj;
-        this.f5464c = i7;
-        this.f5465e = obj2;
-        this.d = str;
-    }
-
-    public p0(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f5462a = i10;
-        this.f5463b = obj;
-        this.d = obj2;
-        this.f5464c = i7;
-        this.f5465e = obj3;
-    }
-
-    public p0(Object obj, Object obj2, Object obj3, int i7, int i10) {
-        this.f5462a = i10;
-        this.f5463b = obj;
-        this.d = obj2;
-        this.f5465e = obj3;
-        this.f5464c = i7;
-    }
-
-    public p0(v1 v1Var, TLRPC.Message message, String str, int i7) {
-        this.f5462a = 7;
-        this.f5463b = v1Var;
-        this.f5465e = message;
-        this.d = str;
-        this.f5464c = i7;
+        byte[] bArr;
+        switch (this.f5745a) {
+            case 0:
+                z0 z0Var = this.f5746b;
+                int i7 = this.f5747c;
+                synchronized (z0.class) {
+                    if (z0.O9 != null) {
+                        bArr = z0.O9;
+                    } else {
+                        float y10 = e2.y(org.telegram.messenger.g0.L(24.0f), 0.57735f, 0.5f, 4.0f);
+                        float L = org.telegram.messenger.g0.L(30.0f) / 4.0f;
+                        int ceil = (int) Math.ceil(3.0f * y10);
+                        int ceil2 = ((int) Math.ceil(L)) + ceil + 1;
+                        int i10 = (ceil2 * 2) + 2;
+                        Bitmap createBitmap = Bitmap.createBitmap(i10, i10, Bitmap.Config.ARGB_8888);
+                        Paint paint = new Paint(1);
+                        paint.setMaskFilter(new BlurMaskFilter(org.telegram.ui.Cells.c0.x(y10, 0.5f, 0.57735f, 0.1f), BlurMaskFilter.Blur.NORMAL));
+                        float f10 = ceil;
+                        float f11 = i10 - ceil;
+                        new Canvas(createBitmap).drawRoundRect(f10, f10, f11, f11, L, L, paint);
+                        Bitmap extractAlpha = createBitmap.extractAlpha();
+                        createBitmap.recycle();
+                        int rowBytes = extractAlpha.getRowBytes();
+                        byte[] bArr2 = new byte[rowBytes * i10];
+                        byte[] bArr3 = new byte[i10 * i10];
+                        extractAlpha.copyPixelsToBuffer(ByteBuffer.wrap(bArr2));
+                        extractAlpha.recycle();
+                        for (int i11 = 0; i11 < i10; i11++) {
+                            System.arraycopy(bArr2, i11 * rowBytes, bArr3, i11 * i10, i10);
+                        }
+                        z0.P9 = i10;
+                        z0.Q9 = ceil;
+                        z0.R9 = ceil2;
+                        z0.O9 = bArr3;
+                        bArr = bArr3;
+                    }
+                }
+                int i12 = z0.P9;
+                Bitmap createBitmap2 = Bitmap.createBitmap(i12, i12, Bitmap.Config.ARGB_8888);
+                int[] iArr = new int[i12 * i12];
+                z0.s(iArr, bArr, i7);
+                createBitmap2.setPixels(iArr, 0, i12, 0, 0, i12, i12);
+                createBitmap2.prepareToDraw();
+                org.telegram.messenger.g0.g3(new u4(z0Var, createBitmap2, iArr, i7, 2));
+                return;
+            case 1:
+                this.f5746b.F0(this.f5747c);
+                return;
+            default:
+                this.f5746b.F0(this.f5747c);
+                return;
+        }
     }
 }

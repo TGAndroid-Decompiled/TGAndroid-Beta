@@ -1,6 +1,6 @@
 package a4;
 
-import a8.ja;
+import a8.la;
 import e2.t0;
 import f3.p;
 import h2.x;
@@ -25,7 +25,7 @@ public final class g {
         x xVar = this.f175g;
         xVar.K(27);
         try {
-            z11 = pVar.h(xVar.f13521a, 0, 27, z10);
+            z11 = pVar.g(xVar.f13836a, 0, 27, z10);
         } catch (EOFException e10) {
             if (z10) {
                 z11 = false;
@@ -49,7 +49,7 @@ public final class g {
                 this.d = A + 27;
                 xVar.K(A);
                 try {
-                    z12 = pVar.h(xVar.f13521a, 0, this.f172c, z10);
+                    z12 = pVar.g(xVar.f13836a, 0, this.f172c, z10);
                 } catch (EOFException e11) {
                     if (z10) {
                         z12 = false;
@@ -74,12 +74,12 @@ public final class g {
         boolean z10;
         int i7;
         boolean z11;
-        if (pVar.getPosition() == pVar.j()) {
+        if (pVar.getPosition() == pVar.l()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        ja.f(z10);
+        la.f(z10);
         x xVar = this.f175g;
         xVar.K(4);
         while (true) {
@@ -88,7 +88,7 @@ public final class g {
                 break;
             }
             try {
-                z11 = pVar.h(xVar.f13521a, 0, 4, true);
+                z11 = pVar.g(xVar.f13836a, 0, 4, true);
             } catch (EOFException unused) {
                 z11 = false;
             }
@@ -97,10 +97,10 @@ public final class g {
             }
             xVar.N(0);
             if (xVar.C() == 1332176723) {
-                pVar.l();
+                pVar.n();
                 return true;
             }
-            pVar.m(1);
+            pVar.r(1);
         }
         do {
             if (i7 != 0 && pVar.getPosition() >= j3) {

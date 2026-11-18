@@ -1,9 +1,9 @@
 package rc;
 public final class j extends v {
-    public final int f55942b;
+    public final int f56516b;
 
     public j(int i7) {
         super(20, "The end of the stream has been reached unexpectedly.");
-        this.f55942b = i7;
+        this.f56516b = i7;
     }
 }

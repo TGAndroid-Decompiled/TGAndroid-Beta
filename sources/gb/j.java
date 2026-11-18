@@ -1,28 +1,28 @@
 package gb;
 
-import c8.l1;
+import c8.n1;
 public final class j implements pa.f {
-    public static final j f13055b;
-    public static final j f13056c;
+    public static final j f13372b;
+    public static final j f13373c;
     public static final j d;
-    public static final j[] f13057e;
-    public final int f13058a;
+    public static final j[] f13374e;
+    public final int f13375a;
 
     static {
         j jVar = new j("COLLECTION_UNKNOWN", 0, 0);
         j jVar2 = new j("COLLECTION_SDK_NOT_INSTALLED", 1, 1);
-        f13055b = jVar2;
+        f13372b = jVar2;
         j jVar3 = new j("COLLECTION_ENABLED", 2, 2);
-        f13056c = jVar3;
+        f13373c = jVar3;
         j jVar4 = new j("COLLECTION_DISABLED", 3, 3);
         d = jVar4;
         j[] jVarArr = {jVar, jVar2, jVar3, jVar4, new j("COLLECTION_DISABLED_REMOTE", 4, 4), new j("COLLECTION_SAMPLED", 5, 5)};
-        f13057e = jVarArr;
-        l1.a(jVarArr);
+        f13374e = jVarArr;
+        n1.a(jVarArr);
     }
 
     public j(String str, int i7, int i10) {
-        this.f13058a = i10;
+        this.f13375a = i10;
     }
 
     public static j valueOf(String str) {
@@ -30,11 +30,11 @@ public final class j implements pa.f {
     }
 
     public static j[] values() {
-        return (j[]) f13057e.clone();
+        return (j[]) f13374e.clone();
     }
 
     @Override
     public final int a() {
-        return this.f13058a;
+        return this.f13375a;
     }
 }

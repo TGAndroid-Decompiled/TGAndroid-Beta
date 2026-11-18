@@ -1,12 +1,33 @@
 package org.telegram.ui;
+public final class d00 implements Runnable {
+    public final int f46807a;
+    public final FiltersSetupActivity f46808b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class d00 extends FrameLayout {
-    public org.telegram.ui.Components.fh0 f46252a;
+    public d00(FiltersSetupActivity filtersSetupActivity, int i7) {
+        this.f46807a = i7;
+        this.f46808b = filtersSetupActivity;
+    }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+    public final void run() {
+        switch (this.f46807a) {
+            case 0:
+                FiltersSetupActivity filtersSetupActivity = this.f46808b;
+                filtersSetupActivity.getClass();
+                filtersSetupActivity.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                return;
+            case 1:
+                FiltersSetupActivity filtersSetupActivity2 = this.f46808b;
+                filtersSetupActivity2.f43049a.e1(new zr(filtersSetupActivity2, 12), 700, true);
+                return;
+            case 2:
+                FiltersSetupActivity filtersSetupActivity3 = this.f46808b;
+                filtersSetupActivity3.getClass();
+                filtersSetupActivity3.showDialog(new ug.z0((org.telegram.ui.ActionBar.h2) filtersSetupActivity3, 9, true));
+                return;
+            default:
+                this.f46808b.getMessagesController().i3(true, null);
+                return;
+        }
     }
 }

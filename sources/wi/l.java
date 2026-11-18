@@ -6,50 +6,50 @@ import android.graphics.SurfaceTexture;
 import android.view.View;
 import e2.c1;
 import java.util.ArrayList;
-import org.telegram.ui.Components.um0;
+import org.telegram.ui.Components.cn0;
 import org.telegram.ui.LaunchActivity;
 public interface l {
-    void A(View view);
+    void B(View view);
 
-    void C(SurfaceTexture surfaceTexture);
+    void D(SurfaceTexture surfaceTexture);
 
-    View D();
+    View E();
 
-    boolean F();
+    boolean G();
 
-    void G();
+    void H();
 
-    int L();
+    int J();
 
-    void M(float f10);
+    void L(float f10);
 
     boolean N();
 
-    boolean P();
+    boolean O();
 
-    c1 R();
+    c1 Q();
 
-    boolean T();
+    boolean S();
 
-    void V();
+    void U();
 
-    boolean X(boolean z10, float f10, um0 um0Var);
+    boolean V(boolean z10, float f10, cn0 cn0Var);
 
-    void Y(View view);
+    void X(View view);
 
     void Z();
 
-    void a(View view);
+    int a0();
 
     void b();
 
-    int b0();
+    float b0();
 
     void c(long j3);
 
-    float c0();
+    void d(View view);
 
-    int d();
+    int e();
 
     void f();
 
@@ -57,25 +57,25 @@ public interface l {
 
     boolean h();
 
-    void j(o oVar);
+    void h0(int i7, ArrayList arrayList);
 
-    void j0(int i7, ArrayList arrayList);
+    void i(o oVar);
+
+    void j0(Canvas canvas, int i7, int i10);
 
     long l();
 
-    void o0(Canvas canvas, int i7, int i10);
+    boolean o0();
 
     boolean p();
 
-    boolean q();
+    void p0(int i7);
 
-    boolean t0();
+    boolean s();
 
     void u(Rect rect);
 
-    void u0(int i7);
+    View v(LaunchActivity launchActivity);
 
-    View w(LaunchActivity launchActivity);
-
-    void x(View view);
+    void w(View view);
 }

@@ -1,6 +1,6 @@
 package wd;
 
-import c8.d0;
+import c8.f0;
 import hd.n;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,11 +11,11 @@ public abstract class d extends f {
         j.e(bVar, "<this>");
         Iterator it = bVar.iterator();
         if (!it.hasNext()) {
-            return n.f13831a;
+            return n.f14148a;
         }
         Object next = it.next();
         if (!it.hasNext()) {
-            return d0.a(next);
+            return f0.a(next);
         }
         ArrayList arrayList = new ArrayList();
         arrayList.add(next);

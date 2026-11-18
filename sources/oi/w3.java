@@ -1,60 +1,58 @@
 package oi;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.logging.Level;
-public final class w3 {
-    public final ArrayList f22093a;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import org.telegram.ui.Cells.i9;
+public final class w3 extends HorizontalScrollView {
+    public final int f22440a;
+    public final FrameLayout f22441b;
 
-    public w3(int i7) {
-        switch (i7) {
-            case 1:
-                File file = new File(System.getProperty("java.io.tmpdir"));
-                if (!file.exists()) {
-                    file.mkdirs();
+    public w3(FrameLayout frameLayout, Context context, int i7) {
+        super(context);
+        this.f22440a = i7;
+        this.f22441b = frameLayout;
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.f22440a) {
+            case 0:
+                int mode = View.MeasureSpec.getMode(i7);
+                if (mode == 1073741824) {
+                    super.onMeasure(i7, i10);
+                    return;
                 }
-                this.f22093a = new ArrayList();
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 0), i10);
+                int measuredWidth = getMeasuredWidth();
+                int i11 = ((x3) this.f22441b).L;
+                if (mode == Integer.MIN_VALUE) {
+                    i11 = Math.min(i11, View.MeasureSpec.getSize(i7));
+                }
+                setMeasuredDimension(Math.min(measuredWidth, i11), getMeasuredHeight());
                 return;
             default:
-                this.f22093a = new ArrayList();
+                super.onMeasure(i7, i10);
                 return;
         }
     }
 
-    public void a() {
-        ArrayList arrayList = this.f22093a;
-        int size = arrayList.size();
-        int i7 = 0;
-        while (i7 < size) {
-            Object obj = arrayList.get(i7);
-            i7++;
-            if (obj == null) {
-                try {
-                    throw null;
-                    break;
-                } catch (Exception e10) {
-                    yc.i.d.log(Level.WARNING, "could not delete file ", (Throwable) e10);
+    @Override
+    public void onScrollChanged(int i7, int i10, int i11, int i12) {
+        i9 textSelectionHelper;
+        switch (this.f22440a) {
+            case 1:
+                super.onScrollChanged(i7, i10, i11, i12);
+                a3 a3Var = ((l5) this.f22441b).F;
+                if (a3Var != null && (textSelectionHelper = a3Var.f21935a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
+                    textSelectionHelper.w();
                 }
-            } else {
-                throw new ClassCastException();
-            }
-        }
-        arrayList.clear();
-    }
-
-    public void b(StringBuilder sb2) {
-        String str;
-        if (((Boolean) r.b.g(1, this.f22093a)).booleanValue()) {
-            str = "</ol>";
-        } else {
-            str = "</ul>";
-        }
-        sb2.append(str);
-    }
-
-    public void c(StringBuilder sb2) {
-        while (!this.f22093a.isEmpty()) {
-            b(sb2);
+                invalidate();
+                return;
+            default:
+                super.onScrollChanged(i7, i10, i11, i12);
+                return;
         }
     }
 }

@@ -1,24 +1,33 @@
 package org.telegram.ui;
-public final class ys0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f53587a;
-    public final PrivacyControlActivity f53588b;
+public final class ys0 implements Runnable {
+    public final int f54283a;
+    public final PrivacyControlActivity f54284b;
 
     public ys0(PrivacyControlActivity privacyControlActivity, int i7) {
-        this.f53587a = i7;
-        this.f53588b = privacyControlActivity;
+        this.f54283a = i7;
+        this.f54284b = privacyControlActivity;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f53587a) {
+    public final void run() {
+        switch (this.f54283a) {
             case 0:
-                this.f53588b.K0();
+                PrivacyControlActivity privacyControlActivity = this.f54284b;
+                privacyControlActivity.getClass();
+                privacyControlActivity.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
                 return;
             case 1:
-                this.f53588b.finishFragment();
+                PrivacyControlActivity.Z(this.f54284b);
+                return;
+            case 2:
+                PrivacyControlActivity privacyControlActivity2 = this.f54284b;
+                privacyControlActivity2.getClass();
+                privacyControlActivity2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
                 return;
             default:
-                this.f53588b.finishFragment();
+                PrivacyControlActivity privacyControlActivity3 = this.f54284b;
+                privacyControlActivity3.getClass();
+                privacyControlActivity3.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
         }
     }

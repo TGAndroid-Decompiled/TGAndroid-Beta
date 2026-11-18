@@ -1,35 +1,73 @@
 package ch;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.p5;
-public final class n extends p5 {
-    public final Bitmap f5141a;
+import android.app.Activity;
+import android.text.SpannableString;
+import android.view.View;
+import c8.l9;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.gd;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.o5;
+import org.telegram.ui.Components.x5;
+import org.telegram.ui.r11;
+public final class n extends r11 {
+    public boolean f5428f2;
+    public final p f5429g2;
 
-    public n(o oVar) {
-        super(-1L, (Paint.FontMetricsInt) null);
-        Bitmap createBitmap = Bitmap.createBitmap(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), Bitmap.Config.ARGB_8888);
-        this.f5141a = createBitmap;
-        Drawable mutate = oVar.getParentActivity().getResources().getDrawable(2131232753).mutate();
-        mutate.setBounds(0, 0, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));
-        mutate.draw(new Canvas(createBitmap));
+    public n(p pVar, p pVar2, Activity activity, i6 i6Var, int i7) {
+        super(pVar2, activity, false, null, 6, false, i6Var, 16, i7);
+        this.f5429g2 = pVar;
+        this.f5428f2 = true;
+        setDrawBackground(false);
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
-        canvas.save();
-        canvas.translate(f10, ((i11 + i13) / 2.0f) - org.telegram.messenger.g0.L(12.0f));
-        float f11 = this.extraScale;
-        canvas.scale(f11, f11, f10 + org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
-        canvas.drawBitmap(this.f5141a, 0.0f, 0.0f, (Paint) null);
-        canvas.restore();
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        if (this.f5428f2) {
+            this.f5428f2 = false;
+            this.f5429g2.f5463b.s(null);
+        }
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        return org.telegram.messenger.g0.L(5.0f) + super.getSize(paint, charSequence, i7, i10, fontMetricsInt);
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        p pVar = this.f5429g2;
+        int i7 = pVar.O;
+        ArrayList arrayList = pVar.J;
+        LinkedHashMap linkedHashMap = pVar.I;
+        if (linkedHashMap.containsKey(l10)) {
+            arrayList.remove(l10);
+            x5 x5Var = (x5) linkedHashMap.remove(l10);
+            x5Var.setRemoved(new c1.c(3, this, x5Var));
+            pVar.c0(x5Var);
+            pVar.f5463b.x(l10, true);
+            pVar.e0(false);
+        } else if (linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0) >= i7) {
+            lc.b0(pVar).t(gd.G(i7, "ReactionMaxCountError", new Object[0]), null).j();
+        } else {
+            try {
+                int editTextSelectionEnd = pVar.h.getEditTextSelectionEnd();
+                SpannableString spannableString = new SpannableString("b");
+                x5 e10 = s0.e(document, l10, pVar.h.getFontMetricsInt());
+                e10.cacheType = o5.f();
+                e10.setAdded();
+                arrayList.add(l9.b(editTextSelectionEnd, 0, arrayList.size()), l10);
+                linkedHashMap.put(l10, e10);
+                spannableString.setSpan(e10, 0, spannableString.length(), 33);
+                pVar.h.getText().insert(editTextSelectionEnd, spannableString);
+                pVar.h.setSelection(editTextSelectionEnd + spannableString.length());
+                pVar.f5463b.x(l10, true);
+                pVar.e0(true);
+                pVar.c0(e10);
+            } catch (Exception e11) {
+                a8.g(e11, true);
+            }
+        }
     }
 }

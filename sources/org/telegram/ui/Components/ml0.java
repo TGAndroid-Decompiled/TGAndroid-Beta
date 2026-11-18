@@ -1,78 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class ml0 implements gj0 {
-    public final int f37319a;
-    public final int f37320b;
-    public final org.telegram.ui.ActionBar.e2 f37321c;
-    public final Object d;
+public final class ml0 extends v4.o {
+    public final int f37553b;
+    public final int f37554c;
+    public final int d;
+    public final int f37555e;
+    public final int f37556f;
+    public final ArrayList f37557g;
+    public final int h;
+    public final int f37558i;
+    public final ArrayList f37559j;
+    public final ql0 f37560k;
 
-    public ml0(Object obj, int i7, org.telegram.ui.ActionBar.e2 e2Var, int i10) {
-        this.f37319a = i10;
-        this.d = obj;
-        this.f37320b = i7;
-        this.f37321c = e2Var;
+    public ml0(ql0 ql0Var, int i7, int i10, int i11, int i12, int i13, ArrayList arrayList, int i14, int i15, ArrayList arrayList2) {
+        this.f37560k = ql0Var;
+        this.f37553b = i7;
+        this.f37554c = i10;
+        this.d = i11;
+        this.f37555e = i12;
+        this.f37556f = i13;
+        this.f37557g = arrayList;
+        this.h = i14;
+        this.f37558i = i15;
+        this.f37559j = arrayList2;
     }
 
     @Override
-    public final void b(int i7, View view) {
-        ch.p0 p0Var;
-        switch (this.f37319a) {
-            case 0:
-                ul0 ul0Var = (ul0) this.d;
-                ArrayList arrayList = ul0Var.f40102r;
-                di.c1 c1Var = ul0Var.d;
-                if (i7 >= 0 && i7 < arrayList.size()) {
-                    if (!org.telegram.messenger.m10.i(this.f37320b).q()) {
-                        new ug.x0(this.f37321c, 24, true).show();
-                        return;
-                    }
-                    long j3 = ((rl0) arrayList.get(i7)).f38995a.h;
-                    if (ul0Var.h == j3) {
-                        p0Var = null;
-                    } else {
-                        p0Var = ((rl0) arrayList.get(i7)).f38995a;
-                    }
-                    if (ul0Var.f(p0Var)) {
-                        for (int i10 = 0; i10 < c1Var.getChildCount(); i10++) {
-                            if (c1Var.getChildAt(i10) == view) {
-                                float f10 = 50.0f;
-                                if (i10 <= 1) {
-                                    if (i10 == 0) {
-                                        f10 = 90.0f;
-                                    }
-                                    c1Var.w0(-org.telegram.messenger.g0.L(f10), 0, null);
-                                } else if (i10 >= c1Var.getChildCount() - 2) {
-                                    if (i10 == c1Var.getChildCount() - 1) {
-                                        f10 = 80.0f;
-                                    }
-                                    c1Var.w0(org.telegram.messenger.g0.L(f10), 0, null);
-                                }
-                            }
-                        }
-                        c1Var.M(new org.telegram.ui.gq(3));
-                        if (ul0Var.h == j3) {
-                            ul0Var.h = 0L;
-                            return;
-                        }
-                        ul0Var.h = j3;
-                        ((tl0) view).a(true, true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ug.g1 g1Var = (ug.g1) this.d;
-                if (view instanceof org.telegram.ui.fs0) {
-                    org.telegram.ui.fs0 fs0Var = (org.telegram.ui.fs0) view;
-                    PremiumPreviewFragment.v0(this.f37320b, fs0Var.f47180f.f51269a);
-                    g1Var.t(new ug.x0(this.f37321c, fs0Var.f47180f.f51269a, false));
-                    return;
-                }
-                return;
+    public final boolean a(int i7, int i10) {
+        return b(i7, i10);
+    }
+
+    @Override
+    public final boolean b(int i7, int i10) {
+        org.telegram.messenger.fj fjVar;
+        ql0 ql0Var = this.f37560k;
+        if (i7 >= 0 && i10 >= 0) {
+            if (i7 == this.f37554c && i10 == ql0Var.f38834s) {
+                return true;
+            }
+            if (i7 == this.d && i10 == ql0Var.f38837y) {
+                return true;
+            }
         }
+        org.telegram.messenger.fj fjVar2 = null;
+        int i11 = this.f37555e;
+        if (i7 >= i11 && i7 < this.f37556f) {
+            fjVar = (org.telegram.messenger.fj) this.f37557g.get(i7 - i11);
+        } else {
+            int i12 = this.h;
+            if (i7 >= i12 && i7 < this.f37558i) {
+                fjVar = (org.telegram.messenger.fj) this.f37559j.get(i7 - i12);
+            } else {
+                fjVar = null;
+            }
+        }
+        int i13 = ql0Var.f38835w;
+        if (i10 >= i13 && i10 < ql0Var.f38836x) {
+            fjVar2 = (org.telegram.messenger.fj) ql0Var.f38830e.get(i10 - i13);
+        } else {
+            int i14 = ql0Var.E;
+            if (i10 >= i14 && i10 < ql0Var.F) {
+                fjVar2 = (org.telegram.messenger.fj) ql0Var.f38831f.get(i10 - i14);
+            }
+        }
+        if (fjVar2 != null && fjVar != null && fjVar2.F0() != null && fjVar.F0() != null && fjVar2.F0().f28411id == fjVar.F0().f28411id) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f37560k.f38833r;
+    }
+
+    @Override
+    public final int e() {
+        return this.f37553b;
     }
 }

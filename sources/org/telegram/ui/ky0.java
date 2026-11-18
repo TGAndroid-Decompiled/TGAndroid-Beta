@@ -1,147 +1,33 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import android.util.LongSparseArray;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class ky0 implements View.OnClickListener {
-    public final int f48788a;
-    public final Object f48789b;
+import android.content.Context;
+public final class ky0 implements ly0 {
+    public final org.telegram.messenger.video.a f49371a;
+    public final org.telegram.ui.Components.lc f49372b;
+    public final Context f49373c;
+    public final fi.h0 d;
+    public final org.telegram.messenger.video.d f49374e;
 
-    public ky0(Object obj, int i7) {
-        this.f48788a = i7;
-        this.f48789b = obj;
+    public ky0(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.lc lcVar, Context context, fi.h0 h0Var, org.telegram.messenger.video.d dVar) {
+        this.f49371a = aVar;
+        this.f49372b = lcVar;
+        this.f49373c = context;
+        this.d = h0Var;
+        this.f49374e = dVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Cells.q1[] cells;
-        org.telegram.ui.Cells.c2 c2Var;
-        float f10;
-        switch (this.f48788a) {
-            case 0:
-                iy0 iy0Var = (iy0) ((di.k4) this.f48789b).f8910e;
-                if (iy0Var != null) {
-                    iy0Var.run();
-                    return;
-                }
-                return;
-            case 1:
-                ((qy0) this.f48789b).dismiss();
-                return;
-            case 2:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f48789b;
-                if (saveToGallerySettingsActivity.d) {
-                    LongSparseArray m10 = saveToGallerySettingsActivity.getUserConfig().m(saveToGallerySettingsActivity.f43258a);
-                    org.telegram.messenger.ov ovVar = saveToGallerySettingsActivity.f43260c;
-                    m10.put(ovVar.d, ovVar);
-                    saveToGallerySettingsActivity.getUserConfig().A(saveToGallerySettingsActivity.f43258a, m10);
-                }
-                saveToGallerySettingsActivity.finishFragment();
-                return;
-            case 3:
-                ((org.telegram.ui.Components.p20) this.f48789b).dismiss();
-                return;
-            case 4:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f48789b;
-                org.telegram.messenger.gj gjVar = secretMediaViewer.f43285g0;
-                if (gjVar != null) {
-                    TLRPC.Message message = gjVar.f23819k;
-                    if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                        hi.l3 l3Var = secretMediaViewer.f43305r;
-                        if (l3Var.W) {
-                            l3Var.f(true);
-                            return;
-                        } else {
-                            secretMediaViewer.m();
-                            return;
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                x11 x11Var = (x11) this.f48789b;
-                if (x11Var.W1 instanceof TLRPC.User) {
-                    hi.d dVar = x11Var.d2;
-                    if (!dVar.R) {
-                        dVar.setLoading(true);
-                        x11Var.e1((TLRPC.User) x11Var.W1, null, null);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 6:
-                SessionsActivity sessionsActivity = ((w21) this.f48789b).f52375f;
-                if (sessionsActivity.getParentActivity() != null) {
-                    if (sessionsActivity.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                        sessionsActivity.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
-                        return;
-                    }
-                    t9.j0(sessionsActivity.getParentActivity(), 2, new u21(sessionsActivity));
-                    return;
-                }
-                return;
-            case 7:
-                d61 d61Var = (d61) this.f48789b;
-                org.telegram.messenger.gz.H0 = !org.telegram.messenger.gz.H0;
-                SharedPreferences.Editor edit = org.telegram.messenger.np.e1().edit();
-                edit.putBoolean("compactMode", org.telegram.messenger.gz.H0);
-                edit.apply();
-                org.telegram.ui.ActionBar.j6.k(false, false);
-                d61Var.f46289c.setChecked(org.telegram.messenger.gz.H0);
-                org.telegram.ui.Cells.z9 z9Var = d61Var.f46287a;
-                for (org.telegram.ui.Cells.q1 q1Var : z9Var.getCells()) {
-                    q1Var.getMessageObject().S1 = false;
-                    q1Var.H1();
-                    q1Var.requestLayout();
-                }
-                z9Var.invalidate();
-                org.telegram.messenger.ns.e().k(276, new Object[0]);
-                return;
-            case 8:
-                ((e81) this.f48789b).c(true);
-                return;
-            case 9:
-                ((e81) ((di.f4) this.f48789b).f8537c).c(true);
-                return;
-            case 10:
-                l81 l81Var = (l81) this.f48789b;
-                ArrayList arrayList = l81Var.f48895f;
-                HashSet hashSet = l81Var.f48900x;
-                if (!hashSet.isEmpty()) {
-                    TLRPC.User a22 = l81Var.getMessagesController().a2(Long.valueOf(l81Var.getUserConfig().e()));
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i7)).f28051id))) {
-                            arrayList2.add((TLRPC.Chat) arrayList.get(i7));
-                        }
-                    }
-                    for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                        TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i10);
-                        l81Var.getMessagesController().Q3(chat, false);
-                        l81Var.getMessagesController().f0(chat.f28051id, a22);
-                    }
-                    l81Var.finishFragment();
-                    return;
-                }
-                return;
-            default:
-                wc1 wc1Var = (wc1) this.f48789b;
-                wc1Var.f52548a.c(!c2Var.b(), true);
-                wc1Var.f52550c.setEnabled(wc1Var.f52548a.b());
-                ViewPropertyAnimator animate = wc1Var.f52550c.animate();
-                if (wc1Var.f52548a.b()) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.5f;
-                }
-                animate.alpha(f10).start();
-                return;
-        }
+    public final void a() {
+        org.telegram.messenger.g0.h3(new iy0(this.f49371a, this.f49372b, this.f49373c, this.d, 2), 200L);
+    }
+
+    @Override
+    public final void d() {
+        org.telegram.messenger.g0.h3(new tr0(25, this.f49371a, this.f49372b), 200L);
+    }
+
+    @Override
+    public final void h() {
+        this.f49374e.run();
     }
 }

@@ -1,53 +1,47 @@
 package ki;
 
-import org.telegram.messenger.np;
-import org.telegram.messenger.voip.VoIPGroupNotification;
-import org.telegram.messenger.voip.VoIPPreNotificationService;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.m5;
-import org.telegram.ui.LaunchActivity;
-public final class g2 implements RequestDelegate {
-    public final int f18315a;
-    public final int f18316b;
+import android.animation.ValueAnimator;
+public final class g2 implements ValueAnimator.AnimatorUpdateListener {
+    public final boolean f18697a;
+    public final float f18698b;
+    public final float f18699c;
+    public final float d;
+    public final float f18700e;
+    public final t2 f18701f;
 
-    public g2(int i7, int i10) {
-        this.f18315a = i10;
-        this.f18316b = i7;
+    public g2(t2 t2Var, boolean z10, float f10, float f11, float f12, float f13) {
+        this.f18701f = t2Var;
+        this.f18697a = z10;
+        this.f18698b = f10;
+        this.f18699c = f11;
+        this.d = f12;
+        this.f18700e = f13;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f18315a;
-        int i10 = this.f18316b;
-        switch (i7) {
-            case 0:
-                org.telegram.messenger.g0.h3(new jg.x(i10, 1));
-                return;
-            case 1:
-                VoIPGroupNotification.lambda$decline$3(i10, tLObject, tL_error);
-                return;
-            case 2:
-                VoIPPreNotificationService.lambda$decline$4(i10, tLObject, tL_error);
-                return;
-            case 3:
-                org.telegram.messenger.g0.h3(new m5(i10, tLObject));
-                return;
-            case 4:
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    np.s1(i10).O3((TLRPC.TL_updates) tLObject, false);
-                    return;
-                }
-                return;
-            case 5:
-                String str = LaunchActivity.C1;
-                org.telegram.messenger.g0.h3(new m5(i10, 2, tLObject));
-                return;
-            default:
-                String str2 = LaunchActivity.C1;
-                org.telegram.messenger.g0.h3(new m5(i10, 1, tLObject));
-                return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        t2 t2Var = this.f18701f;
+        l2 l2Var = t2Var.E;
+        q2 q2Var = t2Var.Y;
+        k2 k2Var = t2Var.f18952x;
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        t2Var.f18934i0 = floatValue;
+        if (!this.f18697a) {
+            floatValue = 1.0f - floatValue;
         }
+        t2Var.f18933h0 = floatValue;
+        q2Var.setAlpha(1.0f - floatValue);
+        q2Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * t2Var.f18933h0);
+        float f10 = this.f18698b;
+        float f11 = t2Var.f18934i0;
+        float f12 = this.f18699c;
+        k2Var.setTranslationY(org.telegram.messenger.g0.T1(f10, f12, f11));
+        k2Var.setTranslationX(org.telegram.messenger.g0.T1(this.d, 0.0f, t2Var.f18934i0));
+        t2Var.f18939n0.setTranslationX(org.telegram.messenger.g0.T1(this.f18700e, 0.0f, t2Var.f18934i0));
+        t2Var.f18940o0.setAlpha(t2Var.f18933h0);
+        t2Var.f18930f.invalidate();
+        l2Var.setViewPortHeightOffset(k2Var.getTranslationY() - f12);
+        l2Var.n(false, false);
+        t2Var.H();
     }
 }

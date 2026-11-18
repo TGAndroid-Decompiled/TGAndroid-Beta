@@ -1,18 +1,15 @@
 package org.telegram.ui.Wallet;
-public abstract class ea {
-    public static org.telegram.messenger.q5 f43808a;
-    public static final int[] f43809b = new int[129];
-
-    static {
-        int i7 = 0;
-        while (true) {
-            int[] iArr = f43809b;
-            if (i7 < iArr.length) {
-                iArr[i7] = (int) (Math.max(0.0d, Math.min(1.0d, 7.5d - Math.sqrt(i7))) * 255.0d);
-                i7++;
-            } else {
-                return;
-            }
-        }
-    }
+public final class ea {
+    public float f44148a;
+    public float f44149b;
+    public float f44150c;
+    public float d;
+    public float f44151e;
+    public float f44152f;
+    public float f44153g;
+    public float h;
+    public float f44154i;
+    public float f44155j;
+    public int f44156k;
+    public float f44157l;
 }

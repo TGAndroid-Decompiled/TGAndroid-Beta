@@ -1,17 +1,26 @@
 package org.telegram.ui;
+public final class dz implements Runnable {
+    public final int f47089a;
+    public final ez f47090b;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class dz extends bz {
-    public final ez F;
-
-    public dz(ez ezVar, Context context, org.telegram.ui.ActionBar.e2 e2Var, int i7, int i10) {
-        super(context, e2Var, i7, i10);
-        this.F = ezVar;
+    public dz(ez ezVar, int i7) {
+        this.f47089a = i7;
+        this.f47090b = ezVar;
     }
 
     @Override
-    public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
-        this.F.f46926e.r0(tL_exportedChatlistInvite);
+    public final void run() {
+        switch (this.f47089a) {
+            case 0:
+                this.f47090b.d();
+                return;
+            case 1:
+                this.f47090b.a();
+                return;
+            default:
+                ez ezVar = this.f47090b;
+                ezVar.b(ezVar.E);
+                return;
+        }
     }
 }

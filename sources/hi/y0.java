@@ -1,68 +1,61 @@
 package hi;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.vr;
+import org.telegram.messenger.tr;
 import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.tl.TL_account;
 public final class y0 implements Runnable {
-    public final int f15405a;
-    public final vr f15406b;
-    public final ArrayList f15407c;
+    public final int f15750a;
+    public final tr f15751b;
+    public final a1 f15752c;
 
-    public y0(vr vrVar, ArrayList arrayList, int i7) {
-        this.f15405a = i7;
-        this.f15406b = vrVar;
-        this.f15407c = arrayList;
+    public y0(tr trVar, a1 a1Var, int i7) {
+        this.f15750a = i7;
+        this.f15751b = trVar;
+        this.f15752c = a1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f15405a) {
+        SQLiteDatabase sQLiteDatabase;
+        SQLiteDatabase sQLiteDatabase2;
+        switch (this.f15750a) {
             case 0:
-                vr vrVar = this.f15406b;
-                ArrayList arrayList = this.f15407c;
-                try {
-                    SQLiteDatabase sQLiteDatabase = vrVar.f27221b;
-                    if (sQLiteDatabase != null) {
-                        sQLiteDatabase.executeFast("DELETE FROM story_drafts WHERE id IN (" + TextUtils.join(", ", arrayList) + ")").stepThis().dispose();
-                        return;
-                    }
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
-            case 1:
-                vr vrVar2 = this.f15406b;
-                ArrayList arrayList2 = this.f15407c;
+                tr trVar = this.f15751b;
+                a1 a1Var = this.f15752c;
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        SQLiteDatabase sQLiteDatabase2 = vrVar2.f27221b;
-                        sQLiteDatabase2.executeFast("DELETE FROM business_links").stepThis().dispose();
-                        sQLitePreparedStatement = sQLiteDatabase2.executeFast("REPLACE INTO business_links VALUES(?, ?)");
-                        for (int i7 = 0; i7 < arrayList2.size(); i7++) {
-                            TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList2.get(i7);
-                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_businessChatLink.getObjectSize());
-                            tL_businessChatLink.serializeToStream(nativeByteBuffer);
-                            sQLitePreparedStatement.requery();
-                            sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
-                            sQLitePreparedStatement.bindInteger(2, i7);
-                            sQLitePreparedStatement.step();
-                        }
-                        if (sQLitePreparedStatement == null) {
-                            return;
-                        }
-                    } catch (Exception e11) {
-                        org.telegram.messenger.a8.g(e11, true);
+                        sQLiteDatabase = trVar.f27056b;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
                         if (sQLitePreparedStatement == null) {
                             return;
                         }
                     }
-                    sQLitePreparedStatement.dispose();
+                    if (sQLiteDatabase != null) {
+                        sQLitePreparedStatement = sQLiteDatabase.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?, ?)");
+                        sQLitePreparedStatement.requery();
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(true);
+                        a1Var.b(nativeByteBuffer);
+                        NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(nativeByteBuffer.length());
+                        a1Var.b(nativeByteBuffer2);
+                        sQLitePreparedStatement.bindLong(1, a1Var.f14176a);
+                        int i7 = 2;
+                        sQLitePreparedStatement.bindLong(2, a1Var.f14178b);
+                        sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer2);
+                        if (a1Var.G) {
+                            i7 = 1;
+                        } else if (!a1Var.M) {
+                            i7 = 0;
+                        }
+                        sQLitePreparedStatement.bindInteger(4, i7);
+                        sQLitePreparedStatement.step();
+                        nativeByteBuffer2.reuse();
+                        sQLitePreparedStatement.dispose();
+                        sQLitePreparedStatement.dispose();
+                        return;
+                    }
                     return;
                 } catch (Throwable th2) {
                     if (sQLitePreparedStatement != null) {
@@ -71,16 +64,47 @@ public final class y0 implements Runnable {
                     throw th2;
                 }
             default:
-                vr vrVar3 = this.f15406b;
-                ArrayList arrayList3 = this.f15407c;
+                tr trVar2 = this.f15751b;
+                a1 a1Var2 = this.f15752c;
+                SQLitePreparedStatement sQLitePreparedStatement2 = null;
                 try {
-                    SQLiteDatabase sQLiteDatabase3 = vrVar3.f27221b;
-                    String join = TextUtils.join(", ", arrayList3);
-                    sQLiteDatabase3.executeFast("DELETE FROM quick_replies_messages WHERE topic_id IN (" + join + ")").stepThis().dispose();
+                    try {
+                        sQLiteDatabase2 = trVar2.f27056b;
+                    } catch (Exception e11) {
+                        org.telegram.messenger.a8.g(e11, true);
+                        if (sQLitePreparedStatement2 == null) {
+                            return;
+                        }
+                    }
+                    if (sQLiteDatabase2 != null) {
+                        sQLitePreparedStatement2 = sQLiteDatabase2.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?, ?)");
+                        sQLitePreparedStatement2.requery();
+                        NativeByteBuffer nativeByteBuffer3 = new NativeByteBuffer(true);
+                        a1Var2.b(nativeByteBuffer3);
+                        NativeByteBuffer nativeByteBuffer4 = new NativeByteBuffer(nativeByteBuffer3.length());
+                        a1Var2.b(nativeByteBuffer4);
+                        sQLitePreparedStatement2.bindLong(1, a1Var2.f14176a);
+                        int i10 = 2;
+                        sQLitePreparedStatement2.bindLong(2, a1Var2.f14178b);
+                        sQLitePreparedStatement2.bindByteBuffer(3, nativeByteBuffer4);
+                        if (a1Var2.G) {
+                            i10 = 1;
+                        } else if (!a1Var2.M) {
+                            i10 = 0;
+                        }
+                        sQLitePreparedStatement2.bindInteger(4, i10);
+                        sQLitePreparedStatement2.step();
+                        nativeByteBuffer4.reuse();
+                        sQLitePreparedStatement2.dispose();
+                        sQLitePreparedStatement2.dispose();
+                        return;
+                    }
                     return;
-                } catch (Exception e12) {
-                    org.telegram.messenger.a8.g(e12, true);
-                    return;
+                } catch (Throwable th3) {
+                    if (sQLitePreparedStatement2 != null) {
+                        sQLitePreparedStatement2.dispose();
+                    }
+                    throw th3;
                 }
         }
     }

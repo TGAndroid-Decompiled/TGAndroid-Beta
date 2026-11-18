@@ -2,31 +2,66 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Rect;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 public final class eh0 extends Drawable {
-    public final int f34318a;
-    public final int f34319b;
-    public final fh0 f34320c;
+    public final View f34704a;
+    public final Paint f34705b;
+    public final Path f34706c;
+    public int d;
+    public boolean f34707e;
+    public final c6 f34708f;
 
-    public eh0(fh0 fh0Var, int i7, int i10) {
-        this.f34320c = fh0Var;
-        this.f34318a = i7;
-        this.f34319b = i10;
+    public eh0(View view) {
+        Paint paint = new Paint(1);
+        this.f34705b = paint;
+        Path path = new Path();
+        this.f34706c = path;
+        this.d = 255;
+        this.f34704a = view;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        this.f34708f = new c6(view, 0L, 350L, lr.h);
+        float N = org.telegram.messenger.g0.N(4.66f);
+        float N2 = org.telegram.messenger.g0.N(2.16f);
+        path.rewind();
+        path.moveTo(N / 2.0f, 0.0f);
+        float f10 = (-N) / 2.0f;
+        path.lineTo(f10, 0.0f);
+        float f11 = f10 + N2;
+        path.lineTo(f11, -N2);
+        path.moveTo(f10, 0.0f);
+        path.lineTo(f11, N2);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Rect rect = org.telegram.messenger.g0.Q;
         int centerX = getBounds().centerX();
-        float f10 = this.f34318a;
-        int L = centerX - (org.telegram.messenger.g0.L(f10) / 2);
         int centerY = getBounds().centerY();
-        float f11 = this.f34319b;
-        rect.set(L, centerY - (org.telegram.messenger.g0.L(f11) / 2), (org.telegram.messenger.g0.L(f10) / 2) + getBounds().centerX(), (org.telegram.messenger.g0.L(f11) / 2) + getBounds().centerY());
-        fh0 fh0Var = this.f34320c;
-        fh0Var.f34612c.z0(rect);
-        fh0Var.f34612c.h(canvas, null);
+        float d = this.f34708f.d(this.f34707e);
+        float N = org.telegram.messenger.g0.N(2.51f);
+        canvas.save();
+        canvas.translate(centerX, centerY);
+        canvas.save();
+        canvas.translate(N, N);
+        canvas.rotate(45.0f);
+        canvas.scale(org.telegram.messenger.g0.T1(-1.0f, 1.0f, d), 1.0f);
+        Path path = this.f34706c;
+        Paint paint = this.f34705b;
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.save();
+        float f10 = -N;
+        canvas.translate(f10, f10);
+        canvas.rotate(225.0f);
+        canvas.scale(org.telegram.messenger.g0.T1(-1.0f, 1.0f, d), 1.0f);
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.restore();
     }
 
     @Override
@@ -36,11 +71,11 @@ public final class eh0 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f34320c.f34612c.setAlpha(i7 / 255.0f);
+        this.d = i7;
+        this.f34705b.setAlpha(i7);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34320c.f34612c.f22290p1 = colorFilter;
     }
 }

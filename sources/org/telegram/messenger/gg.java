@@ -1,35 +1,35 @@
 package org.telegram.messenger;
 public final class gg implements Runnable {
-    public final int f23753a;
-    public final si f23754b;
-    public final long f23755c;
+    public final int f24254a;
+    public final ri f24255b;
+    public final long f24256c;
     public final long d;
-    public final int[] f23756e;
+    public final int[] f24257e;
 
-    public gg(si siVar, long j3, long j10, int[] iArr, int i7) {
-        this.f23753a = i7;
-        this.f23754b = siVar;
-        this.f23755c = j3;
+    public gg(ri riVar, long j3, long j10, int[] iArr, int i7) {
+        this.f24254a = i7;
+        this.f24255b = riVar;
+        this.f24256c = j3;
         this.d = j10;
-        this.f23756e = iArr;
+        this.f24257e = iArr;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f23753a;
-        int[] iArr = this.f23756e;
+        int i7 = this.f24254a;
+        int[] iArr = this.f24257e;
         long j3 = this.d;
-        long j10 = this.f23755c;
-        si siVar = this.f23754b;
+        long j10 = this.f24256c;
+        ri riVar = this.f24255b;
         switch (i7) {
             case 0:
-                siVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
+                riVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
                 return;
             case 1:
-                siVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
+                riVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
                 return;
             default:
-                siVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
+                riVar.getNotificationCenter().k(34, Long.valueOf(j10), Long.valueOf(j3), iArr);
                 return;
         }
     }

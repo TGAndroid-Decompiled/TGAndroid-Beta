@@ -1,69 +1,31 @@
 package bi;
 
-import org.telegram.ui.Components.i60;
-import org.telegram.ui.Components.m60;
-public final class u3 implements Runnable {
-    public final int f3898a;
-    public final m60 f3899b;
+import android.content.DialogInterface;
+public final class u3 implements DialogInterface.OnDismissListener {
+    public final int f4106a;
+    public final boolean[] f4107b;
+    public final long f4108c;
 
-    public u3(m60 m60Var, int i7) {
-        this.f3898a = i7;
-        this.f3899b = m60Var;
+    public u3(boolean[] zArr, long j3, int i7) {
+        this.f4106a = i7;
+        this.f4107b = zArr;
+        this.f4108c = j3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3898a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f4106a) {
             case 0:
-                this.f3899b.s();
-                return;
-            case 1:
-                i60 i60Var = this.f3899b.f37101m;
-                if (i60Var != null) {
-                    org.telegram.messenger.g0.v1(i60Var.getContentView());
+                if (!this.f4107b[0]) {
+                    f4.f(this.f4108c);
                     return;
                 }
-                return;
-            case 2:
-                i60 i60Var2 = this.f3899b.f37101m;
-                if (i60Var2 != null) {
-                    org.telegram.messenger.g0.v1(i60Var2.getContentView());
-                    return;
-                }
-                return;
-            case 3:
-                i60 i60Var3 = this.f3899b.f37101m;
-                if (i60Var3 != null) {
-                    org.telegram.messenger.g0.v1(i60Var3.getContentView());
-                    return;
-                }
-                return;
-            case 4:
-                i60 i60Var4 = this.f3899b.f37101m;
-                if (i60Var4 != null) {
-                    org.telegram.messenger.g0.v1(i60Var4.getContentView());
-                    return;
-                }
-                return;
-            case 5:
-                i60 i60Var5 = this.f3899b.f37101m;
-                if (i60Var5 != null) {
-                    org.telegram.messenger.g0.v1(i60Var5.getContentView());
-                    return;
-                }
-                return;
-            case 6:
-                i60 i60Var6 = this.f3899b.f37101m;
-                if (i60Var6 != null) {
-                    org.telegram.messenger.g0.v1(i60Var6.getContentView());
-                    return;
-                }
-                return;
-            case 7:
-                this.f3899b.s();
                 return;
             default:
-                this.f3899b.s();
+                if (!this.f4107b[0]) {
+                    f4.f(this.f4108c);
+                    return;
+                }
                 return;
         }
     }

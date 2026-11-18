@@ -16,30 +16,32 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import c8.ja;
-import c8.z0;
+import c8.b1;
+import c8.ma;
 import hi.d8;
-import hi.h4;
+import hi.r1;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.bz;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gz;
-import org.telegram.messenger.xr;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.vr;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.gf;
-import org.telegram.ui.Components.st0;
+import org.telegram.ui.Components.au0;
+import org.telegram.ui.Components.pf;
 import org.telegram.ui.Dictation.DictationAsr;
-import org.telegram.ui.an;
+import org.telegram.ui.bn;
 public final class m implements a2 {
-    public static boolean f17567n0;
-    public static final HashMap f17568o0 = new HashMap();
+    public static boolean f17960n0;
+    public static final HashMap f17961o0 = new HashMap();
     public volatile int E;
     public volatile int F;
     public volatile boolean G;
@@ -53,26 +55,26 @@ public final class m implements a2 {
     public EditTextBoldCursor X;
     public int Y;
     public int Z;
-    public final Context f17569a;
-    public final gf f17571b;
-    public int f17572b0;
+    public final Context f17962a;
+    public final pf f17964b;
+    public int f17965b0;
     public z d;
-    public q f17576e;
-    public String f17577e0;
-    public c2 f17578f;
-    public int f17579f0;
-    public String f17580g0;
+    public q f17969e;
+    public String f17970e0;
+    public c2 f17971f;
+    public int f17972f0;
+    public String f17973g0;
     public p h;
-    public boolean f17581h0;
-    public boolean f17582i0;
-    public String f17585l0;
-    public long f17587r;
-    public long f17588s;
-    public volatile long f17589w;
-    public volatile long f17590x;
-    public volatile int f17591y;
-    public int f17573c = 0;
-    public String f17586n = "";
+    public boolean f17974h0;
+    public boolean f17975i0;
+    public String f17978l0;
+    public long f17980r;
+    public long f17981s;
+    public volatile long f17982w;
+    public volatile long f17983x;
+    public volatile int f17984y;
+    public int f17966c = 0;
+    public String f17979n = "";
     public final i I = new i(this, 0);
     public final ArrayList L = new ArrayList();
     public final ArrayList M = new ArrayList();
@@ -82,83 +84,50 @@ public final class m implements a2 {
     public float S = 1.0f;
     public final float[] V = new float[3];
     public final i W = new i(this, 1);
-    public String f17570a0 = "";
-    public final int[] f17574c0 = new int[2];
-    public final int[] f17575d0 = new int[2];
-    public final f f17583j0 = new f(this, 1);
-    public final i f17584k0 = new i(this, 2);
+    public String f17963a0 = "";
+    public final int[] f17967c0 = new int[2];
+    public final int[] f17968d0 = new int[2];
+    public final f f17976j0 = new f(this, 1);
+    public final i f17977k0 = new i(this, 2);
     public final f m0 = new f(this, 2);
 
-    public m(Context context, gf gfVar) {
-        this.f17569a = context;
-        this.f17571b = gfVar;
+    public m(Context context, pf pfVar) {
+        this.f17962a = context;
+        this.f17964b = pfVar;
     }
 
     public static void b(m mVar, c2 c2Var, String str, int i7) {
-        if (c2Var == mVar.f17578f || c2Var == mVar.U) {
+        if (c2Var == mVar.f17971f || c2Var == mVar.U) {
             if (!mVar.J) {
-                mVar.M(i7, str);
+                mVar.l(i7, str);
                 return;
             }
-            int i10 = mVar.f17573c;
+            int i10 = mVar.f17966c;
             if (i10 != 2 && i10 != 4) {
                 return;
             }
-            mVar.u(c2Var, str);
-            mVar.n();
-        }
-    }
-
-    @Override
-    public final void M(int i7, String str) {
-        if (this.f17573c == 2) {
-            if (str == null) {
-                str = "";
-            }
-            this.f17586n = str;
-            p pVar = this.h;
-            if (pVar != null) {
-                pVar.t(i7, str);
-            }
-        }
-    }
-
-    @Override
-    public final void P(String str) {
-        String l10;
-        if (str == null) {
-            l10 = null;
-        } else {
-            l10 = n0.l(str);
-        }
-        p pVar = this.h;
-        if (pVar != null && this.f17573c == 2) {
-            pVar.setLanguage(l10);
-        }
-        e eVar = this.K;
-        if (eVar != null && this.J && this.f17573c == 2) {
-            this.f17585l0 = l10;
-            eVar.setLanguage(l10);
+            mVar.v(c2Var, str);
+            mVar.p();
         }
     }
 
     @Override
     public final void a(String str, String str2) {
-        if (this.f17573c == 2) {
+        if (this.f17966c == 2) {
             if (!str.isEmpty()) {
-                this.f17586n = str;
+                this.f17979n = str;
             }
             StringBuilder u10 = p0.u("recogniser ended error=", str2, " chars=");
-            u10.append(this.f17586n.length());
+            u10.append(this.f17979n.length());
             u10.append(" (the voice recording goes on)");
             Log.d("VoiceLive", u10.toString());
-            this.f17578f = null;
-            if (xr.f27577k == this) {
-                xr.f27577k = null;
+            this.f17971f = null;
+            if (vr.f27593k == this) {
+                vr.f27593k = null;
             }
             this.d = null;
-            this.f17576e = null;
-            if (TextUtils.isEmpty(this.f17586n.trim())) {
+            this.f17969e = null;
+            if (TextUtils.isEmpty(this.f17979n.trim())) {
                 p pVar = this.h;
                 if (pVar != null) {
                     pVar.m();
@@ -168,7 +137,7 @@ public final class m implements a2 {
             }
             p pVar2 = this.h;
             if (pVar2 != null) {
-                pVar2.setText(this.f17586n);
+                pVar2.setText(this.f17979n);
                 this.h.setListening(false);
             }
         }
@@ -187,15 +156,15 @@ public final class m implements a2 {
     public final void d() {
         String U = DictationAsr.U();
         if (U != null) {
-            String l10 = n0.l(U);
+            String p10 = n0.p(U);
             p pVar = this.h;
             if (pVar != null) {
-                pVar.setLanguage(l10);
+                pVar.setLanguage(p10);
             }
             e eVar = this.K;
             if (eVar != null && this.J) {
-                this.f17585l0 = l10;
-                eVar.setLanguage(l10);
+                this.f17978l0 = p10;
+                eVar.setLanguage(p10);
             }
         }
     }
@@ -211,7 +180,7 @@ public final class m implements a2 {
         long max;
         boolean z10;
         boolean[] zArr = new boolean[arrayList.size()];
-        if (this.f17573c == 4) {
+        if (this.f17966c == 4) {
             long j3 = this.O;
             long j10 = 0;
             if (j3 > 0 && (f10 > 0.001f || f11 < 0.999f)) {
@@ -221,10 +190,10 @@ public final class m implements a2 {
                 long j13 = 0;
                 int i7 = 0;
                 while (i7 < arrayList.size()) {
-                    long j14 = ((l) arrayList.get(i7)).f17565b;
+                    long j14 = ((l) arrayList.get(i7)).f17958b;
                     long j15 = j10;
-                    if (((l) arrayList.get(i7)).f17566c >= j15) {
-                        max = ((l) arrayList.get(i7)).f17566c;
+                    if (((l) arrayList.get(i7)).f17959c >= j15) {
+                        max = ((l) arrayList.get(i7)).f17959c;
                     } else {
                         max = Math.max(j13, j14 - 900);
                     }
@@ -250,19 +219,19 @@ public final class m implements a2 {
         e eVar;
         String str2;
         String str3;
-        int i7 = this.f17573c;
+        int i7 = this.f17966c;
         if (i7 != 0 || this.h != null || this.K != null) {
-            if (this.J && i7 == 4 && this.f17571b.c() && ("chat paused".equals(str) || "destroy".equals(str))) {
+            if (this.J && i7 == 4 && this.f17964b.c() && ("chat paused".equals(str) || "destroy".equals(str))) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            if (this.J && this.f17573c != 0 && !z11) {
-                f17568o0.remove(p());
+            if (this.J && this.f17966c != 0 && !z11) {
+                f17961o0.remove(r());
             }
-            if (this.f17573c != 0) {
+            if (this.f17966c != 0) {
                 StringBuilder u10 = p0.u("dispose (", str, ") state=");
-                int i10 = this.f17573c;
+                int i10 = this.f17966c;
                 if (i10 == 2) {
                     str3 = "live";
                 } else if (i10 == 3) {
@@ -274,12 +243,12 @@ public final class m implements a2 {
                 }
                 u10.append(str3);
                 u10.append(" chars=");
-                u10.append(this.f17586n.length());
+                u10.append(this.f17979n.length());
                 u10.append(" chunks=");
-                u10.append(this.f17591y);
+                u10.append(this.f17984y);
                 Log.d("VoiceLive", u10.toString());
             }
-            this.f17573c = 0;
+            this.f17966c = 0;
             this.H = null;
             g0.r(this.W);
             c2 c2Var = this.U;
@@ -287,13 +256,13 @@ public final class m implements a2 {
                 c2Var.c();
                 this.U = null;
             }
-            i(true);
+            j(true);
             if (z11) {
                 if (this.U == null) {
                     e();
                 }
                 k kVar = new k();
-                ArrayList arrayList = kVar.f17557a;
+                ArrayList arrayList = kVar.f17950a;
                 ArrayList arrayList2 = this.L;
                 int size = arrayList2.size();
                 int i11 = 0;
@@ -301,8 +270,8 @@ public final class m implements a2 {
                     Object obj = arrayList2.get(i11);
                     i11++;
                     l lVar = (l) obj;
-                    l lVar2 = new l(lVar.f17564a, lVar.f17565b);
-                    lVar2.f17566c = lVar.f17566c;
+                    l lVar2 = new l(lVar.f17957a, lVar.f17958b);
+                    lVar2.f17959c = lVar.f17959c;
                     arrayList.add(lVar2);
                 }
                 ArrayList arrayList3 = this.M;
@@ -312,23 +281,23 @@ public final class m implements a2 {
                     Object obj2 = arrayList3.get(i12);
                     i12++;
                     l lVar3 = (l) obj2;
-                    l lVar4 = new l(lVar3.f17564a, lVar3.f17565b);
-                    lVar4.f17566c = lVar3.f17566c;
+                    l lVar4 = new l(lVar3.f17957a, lVar3.f17958b);
+                    lVar4.f17959c = lVar3.f17959c;
                     arrayList.add(lVar4);
                 }
-                kVar.f17558b = this.O;
-                kVar.f17559c = this.P;
+                kVar.f17951b = this.O;
+                kVar.f17952c = this.P;
                 kVar.d = this.Q;
-                kVar.f17560e = this.f17577e0;
-                kVar.f17562g = this.f17579f0;
-                kVar.f17561f = this.f17580g0;
-                kVar.h = this.f17581h0;
-                kVar.f17563i = this.f17585l0;
-                f17568o0.put(p(), kVar);
+                kVar.f17953e = this.f17970e0;
+                kVar.f17955g = this.f17972f0;
+                kVar.f17954f = this.f17973g0;
+                kVar.h = this.f17974h0;
+                kVar.f17956i = this.f17978l0;
+                f17961o0.put(r(), kVar);
                 StringBuilder sb2 = new StringBuilder("field: kept for the chat (");
                 sb2.append(arrayList.size());
                 sb2.append(" words");
-                if (this.f17577e0 != null) {
+                if (this.f17970e0 != null) {
                     str2 = ", styled / edited";
                 } else {
                     str2 = "";
@@ -337,33 +306,33 @@ public final class m implements a2 {
                 sb2.append(")");
                 Log.d("VoiceLive", sb2.toString());
             }
-            this.f17577e0 = null;
-            this.f17580g0 = null;
-            this.f17582i0 = false;
-            this.f17571b.g(Float.NaN, 0.0f);
+            this.f17970e0 = null;
+            this.f17973g0 = null;
+            this.f17975i0 = false;
+            this.f17964b.g(Float.NaN, 0.0f);
             if (z10 && (eVar = this.K) != null && eVar.R) {
                 eVar.R = false;
-                eVar.f17477f0 = -1;
+                eVar.f17862f0 = -1;
                 eVar.invalidate();
             }
             g0.r(this.I);
             DictationAsr.N(this.m0);
-            g0.r(this.f17584k0);
-            g0.r(this.f17583j0);
-            if (xr.f27577k == this) {
-                xr.f27577k = null;
+            g0.r(this.f17977k0);
+            g0.r(this.f17976j0);
+            if (vr.f27593k == this) {
+                vr.f27593k = null;
             }
-            c2 c2Var2 = this.f17578f;
+            c2 c2Var2 = this.f17971f;
             if (c2Var2 != null) {
                 c2Var2.c();
-                this.f17578f = null;
+                this.f17971f = null;
             }
             z zVar = this.d;
             if (zVar != null) {
                 zVar.d();
                 this.d = null;
             }
-            this.f17576e = null;
+            this.f17969e = null;
             if (z10 && (pVar = this.h) != null) {
                 pVar.m();
             }
@@ -372,7 +341,7 @@ public final class m implements a2 {
 
     @Override
     public final void h(float f10) {
-        if (this.f17573c == 2) {
+        if (this.f17966c == 2) {
             if (this.J) {
                 e eVar = this.K;
                 if (eVar != null) {
@@ -388,7 +357,12 @@ public final class m implements a2 {
         }
     }
 
-    public final void i(boolean z10) {
+    @Override
+    public final void i(String str) {
+        l(-1, str);
+    }
+
+    public final void j(boolean z10) {
         String obj;
         EditTextBoldCursor editTextBoldCursor = this.X;
         if (editTextBoldCursor == null) {
@@ -396,16 +370,16 @@ public final class m implements a2 {
         }
         this.X = null;
         if (editTextBoldCursor.getText() == null) {
-            obj = this.f17586n;
+            obj = this.f17979n;
         } else {
             obj = editTextBoldCursor.getText().toString();
         }
-        this.f17586n = obj;
-        this.f17577e0 = obj.trim();
-        this.f17579f0 = c().size();
+        this.f17979n = obj;
+        this.f17970e0 = obj.trim();
+        this.f17972f0 = c().size();
         if (z10 && this.K != null) {
             ArrayList arrayList = new ArrayList();
-            arrayList.add(this.f17586n);
+            arrayList.add(this.f17979n);
             this.K.x(arrayList, null, false);
         }
         if (editTextBoldCursor.hasFocus()) {
@@ -414,29 +388,29 @@ public final class m implements a2 {
         g0.E2(editTextBoldCursor);
     }
 
-    public final void j(Object obj) {
+    public final void k(Object obj) {
         String str;
-        if (obj != null && !this.f17582i0 && this.K != null) {
+        if (obj != null && !this.f17975i0 && this.K != null) {
             boolean z10 = false;
             if (this.X != null) {
-                i(false);
+                j(false);
             }
-            if (this.f17580g0 == null) {
-                this.f17580g0 = this.f17586n.trim();
-                if (this.f17577e0 != null) {
+            if (this.f17973g0 == null) {
+                this.f17973g0 = this.f17979n.trim();
+                if (this.f17970e0 != null) {
                     z10 = true;
                 }
-                this.f17581h0 = z10;
+                this.f17974h0 = z10;
             }
-            String str2 = this.f17580g0;
+            String str2 = this.f17973g0;
             if (!str2.isEmpty()) {
-                this.f17582i0 = true;
+                this.f17975i0 = true;
                 this.K.setBusy(true);
                 StringBuilder sb2 = new StringBuilder("field: style ");
-                gf gfVar = this.f17571b;
-                gfVar.getClass();
-                if (obj instanceof ai.h) {
-                    str = ((ai.h) obj).f1216a;
+                pf pfVar = this.f17964b;
+                pfVar.getClass();
+                if (obj instanceof ai.g) {
+                    str = ((ai.g) obj).a();
                 } else {
                     str = null;
                 }
@@ -445,31 +419,45 @@ public final class m implements a2 {
                 sb2.append(str2.length());
                 sb2.append(" chars");
                 Log.d("VoiceLive", sb2.toString());
-                gfVar.f(obj, str2, new d8(this, SystemClock.uptimeMillis(), 1));
+                pfVar.f(obj, str2, new d8(this, SystemClock.uptimeMillis(), 1));
             }
         }
     }
 
-    public final void k() {
-        int i7 = this.f17573c;
-        gf gfVar = this.f17571b;
+    @Override
+    public final void l(int i7, String str) {
+        if (this.f17966c == 2) {
+            if (str == null) {
+                str = "";
+            }
+            this.f17979n = str;
+            p pVar = this.h;
+            if (pVar != null) {
+                pVar.t(i7, str);
+            }
+        }
+    }
+
+    public final void m() {
+        int i7 = this.f17966c;
+        pf pfVar = this.f17964b;
         if (i7 == 4) {
-            s();
-            an anVar = gfVar.f34928a.f32319x3;
-            if (anVar != null) {
-                anVar.presentFragment(new x2());
+            t();
+            bn bnVar = pfVar.f38384a.D3;
+            if (bnVar != null) {
+                bnVar.presentFragment(new x2());
             }
         } else if (i7 != 2) {
         } else {
-            gfVar.e();
-            g0.i3(new f(this, 4), 300L);
+            pfVar.e();
+            g0.h3(new f(this, 4), 300L);
         }
     }
 
-    public final void l(String str) {
+    public final void n(String str) {
         boolean z10;
         long j3;
-        if (this.f17573c == 4) {
+        if (this.f17966c == 4) {
             z10 = true;
         } else {
             z10 = false;
@@ -479,34 +467,34 @@ public final class m implements a2 {
         if (eVar == null) {
             return;
         }
-        h4 h4Var = new h4(23, this, eVar);
+        r1 r1Var = new r1(26, this, eVar);
         if (z10) {
             j3 = 470;
         } else {
             j3 = 60;
         }
-        g0.i3(h4Var, j3);
+        g0.h3(r1Var, j3);
     }
 
-    public final void m(ByteBuffer byteBuffer, int i7, int i10, int i11) {
+    public final void o(ByteBuffer byteBuffer, int i7, int i10, int i11) {
         z zVar = this.d;
-        q qVar = this.f17576e;
+        q qVar = this.f17969e;
         if (zVar != null && qVar != null) {
             this.E = i10;
             this.F = i11;
-            this.f17591y++;
-            this.f17589w += i7;
+            this.f17984y++;
+            this.f17982w += i7;
             int c10 = qVar.c(byteBuffer, i7, i10);
-            if (qVar.f17659c <= 0) {
+            if (qVar.f18054c <= 0) {
                 if (!this.G) {
                     this.G = true;
                     Log.w("VoiceLive", "recorder rate " + i10 + " Hz isn't a multiple of 16 kHz: no transcript");
                 }
             } else if (c10 > 0) {
-                this.f17590x += c10;
-                byte[] bArr = (byte[]) qVar.f17662g;
+                this.f17983x += c10;
+                byte[] bArr = (byte[]) qVar.f18057g;
                 if (c10 > 0) {
-                    synchronized (zVar.f1636a) {
+                    synchronized (zVar.f1627a) {
                         try {
                             if (zVar.d) {
                                 return;
@@ -518,13 +506,13 @@ public final class m implements a2 {
                                 double d = (short) ((bArr[i14 + 1] << 8) | (bArr[i14] & 255));
                                 zVar.h = (d * d) + zVar.h;
                             }
-                            int i15 = zVar.f1642i + i12;
-                            zVar.f1642i = i15;
+                            int i15 = zVar.f1633i + i12;
+                            zVar.f1633i = i15;
                             if (i15 >= 1600) {
                                 double sqrt = Math.sqrt(zVar.h / Math.max(1, i15));
                                 zVar.h = 0.0d;
-                                zVar.f1642i = 0;
-                                u1 u1Var = zVar.f1641g;
+                                zVar.f1633i = 0;
+                                u1 u1Var = zVar.f1632g;
                                 if (u1Var != null) {
                                     u1Var.a((float) Math.max(0.0d, Math.min(1.0d, ((Math.log10(Math.max(1.0d, sqrt)) * 20.0d) - 42.0d) / 30.0d)));
                                 }
@@ -538,7 +526,7 @@ public final class m implements a2 {
         }
     }
 
-    public final void n() {
+    public final void p() {
         int i7;
         ArrayList c10 = c();
         EditTextBoldCursor editTextBoldCursor = this.X;
@@ -548,23 +536,23 @@ public final class m implements a2 {
             if (text != null) {
                 int i11 = this.Z;
                 String str = "";
-                if (i11 < 0 || this.f17570a0.length() + i11 != text.length() || !text.toString().substring(this.Z).equals(this.f17570a0)) {
-                    this.Y = Math.min(this.f17572b0, c10.size());
+                if (i11 < 0 || this.f17963a0.length() + i11 != text.length() || !text.toString().substring(this.Z).equals(this.f17963a0)) {
+                    this.Y = Math.min(this.f17965b0, c10.size());
                     this.Z = text.length();
-                    this.f17570a0 = "";
+                    this.f17963a0 = "";
                 }
                 if (this.Y > c10.size()) {
                     this.Y = c10.size();
                 }
-                this.f17572b0 = c10.size();
+                this.f17965b0 = c10.size();
                 StringBuilder sb2 = new StringBuilder();
                 for (int i12 = this.Y; i12 < c10.size(); i12++) {
                     if (sb2.length() > 0) {
                         sb2.append(' ');
                     }
-                    sb2.append(((l) c10.get(i12)).f17564a);
+                    sb2.append(((l) c10.get(i12)).f17957a);
                 }
-                if (sb2.length() != 0 || !this.f17570a0.isEmpty()) {
+                if (sb2.length() != 0 || !this.f17963a0.isEmpty()) {
                     if (sb2.length() > 0 && (i7 = this.Z) > 0 && !Character.isWhitespace(text.charAt(i7 - 1))) {
                         i10 = 1;
                     }
@@ -577,9 +565,9 @@ public final class m implements a2 {
                         sb3.append((Object) sb2);
                         str = sb3.toString();
                     }
-                    if (!str.equals(this.f17570a0)) {
+                    if (!str.equals(this.f17963a0)) {
                         text.replace(this.Z, text.length(), str);
-                        this.f17570a0 = str;
+                        this.f17963a0 = str;
                         return;
                     }
                     return;
@@ -589,19 +577,19 @@ public final class m implements a2 {
             return;
         }
         boolean[] zArr = null;
-        if (this.f17577e0 != null) {
-            if (this.f17579f0 > c10.size()) {
-                this.f17579f0 = c10.size();
+        if (this.f17970e0 != null) {
+            if (this.f17972f0 > c10.size()) {
+                this.f17972f0 = c10.size();
             }
             ArrayList arrayList = new ArrayList();
-            arrayList.add(this.f17577e0);
-            StringBuilder sb4 = new StringBuilder(this.f17577e0);
-            for (int i13 = this.f17579f0; i13 < c10.size(); i13++) {
-                arrayList.add(((l) c10.get(i13)).f17564a);
+            arrayList.add(this.f17970e0);
+            StringBuilder sb4 = new StringBuilder(this.f17970e0);
+            for (int i13 = this.f17972f0; i13 < c10.size(); i13++) {
+                arrayList.add(((l) c10.get(i13)).f17957a);
                 sb4.append(' ');
-                sb4.append(((l) c10.get(i13)).f17564a);
+                sb4.append(((l) c10.get(i13)).f17957a);
             }
-            this.f17586n = sb4.toString();
+            this.f17979n = sb4.toString();
             e eVar = this.K;
             if (eVar != null) {
                 eVar.x(arrayList, null, false);
@@ -619,238 +607,222 @@ public final class m implements a2 {
         int i14 = 0;
         while (i10 < c10.size()) {
             if (zArr == null || !zArr[i10] || !f10[i10]) {
-                arrayList2.add(((l) c10.get(i10)).f17564a);
+                arrayList2.add(((l) c10.get(i10)).f17957a);
                 int i15 = i14 + 1;
                 zArr2[i14] = f10[i10];
                 if (!f10[i10]) {
                     if (sb5.length() > 0) {
                         sb5.append(' ');
                     }
-                    sb5.append(((l) c10.get(i10)).f17564a);
+                    sb5.append(((l) c10.get(i10)).f17957a);
                 }
                 i14 = i15;
             }
             i10++;
         }
-        this.f17586n = sb5.toString();
+        this.f17979n = sb5.toString();
         e eVar2 = this.K;
         if (eVar2 != null) {
             eVar2.x(arrayList2, Arrays.copyOf(zArr2, i14), this.T);
         }
     }
 
-    public final void o() {
+    public final void q() {
         int i7;
-        gf gfVar = this.f17571b;
-        st0 st0Var = gfVar.f34928a.U1;
-        if (st0Var == null) {
+        pf pfVar = this.f17964b;
+        au0 au0Var = pfVar.f38384a.f32542a2;
+        if (au0Var == null) {
             return;
         }
         if (this.K == null) {
-            e6 e6Var = gfVar.f34928a.E4;
+            i6 i6Var = pfVar.f38384a.K4;
             ?? obj = new Object();
             obj.d = this;
-            obj.f60057c = st0Var;
-            obj.f60055a = new int[2];
-            obj.f60056b = new int[2];
-            this.K = new e(this.f17569a, e6Var, obj);
+            obj.f60622c = au0Var;
+            obj.f60620a = new int[2];
+            obj.f60621b = new int[2];
+            this.K = new e(this.f17962a, i6Var, obj);
         }
-        View a10 = gfVar.a();
-        if (this.K.getParent() != st0Var) {
+        View a10 = pfVar.a();
+        if (this.K.getParent() != au0Var) {
             g0.E2(this.K);
-            if (a10 != null && a10.getParent() == st0Var) {
-                i7 = st0Var.indexOfChild(a10);
+            if (a10 != null && a10.getParent() == au0Var) {
+                i7 = au0Var.indexOfChild(a10);
             } else {
                 i7 = -1;
             }
             if (i7 >= 0) {
-                st0Var.addView(this.K, i7, ja.c(-1.0f, -1));
+                au0Var.addView(this.K, i7, ma.c(-1.0f, -1));
             } else {
-                st0Var.addView(this.K, ja.c(-1.0f, -1));
+                au0Var.addView(this.K, ma.c(-1.0f, -1));
             }
         }
         this.K.E();
         this.K.setPaused(false);
         this.K.setListening(true);
-        n();
+        p();
         this.K.z();
         Log.d("VoiceLive", "field shown");
     }
 
-    public final String p() {
+    public final String r() {
         StringBuilder sb2 = new StringBuilder();
-        gf gfVar = this.f17571b;
-        sb2.append(gfVar.f34928a.R);
+        pf pfVar = this.f17964b;
+        sb2.append(pfVar.f38384a.R);
         sb2.append(":");
-        sb2.append(gfVar.f34928a.f32327y3);
+        sb2.append(pfVar.f38384a.E3);
         return sb2.toString();
     }
 
-    public final void q() {
+    public final void s() {
         j jVar = new j(this);
-        ChatActivityEnterView chatActivityEnterView = this.f17571b.f34928a;
-        c2 c2Var = new c2(this.f17569a, chatActivityEnterView.R, chatActivityEnterView.f32327y3, false, jVar);
-        jVar.f17555b = c2Var;
-        this.f17578f = c2Var;
-        c2Var.L = this.d;
+        ChatActivityEnterView chatActivityEnterView = this.f17964b.f38384a;
+        c2 c2Var = new c2(this.f17962a, chatActivityEnterView.R, chatActivityEnterView.E3, false, jVar);
+        jVar.f17948b = c2Var;
+        this.f17971f = c2Var;
+        c2Var.J = this.d;
         c2Var.s();
     }
 
-    @Override
-    public final void r(String str) {
-        M(-1, str);
-    }
-
-    public final void s() {
-        float f10;
+    public final void t() {
         String str;
         int i7;
         int i10;
         boolean z10;
-        int f11;
-        float f12;
+        int f10;
+        float f11;
         boolean z11;
         int i11;
         String str2;
         long j3;
         int i12;
+        k kVar;
         boolean z12;
         boolean z13;
         boolean z14;
+        float f12;
         float f13;
-        float f14;
         long j10;
-        int i13 = this.f17573c;
+        int i13 = this.f17966c;
         if (i13 != 3) {
-            if (i13 == 0 && z0.c() && !this.f17571b.d() && this.f17571b.c()) {
-                f10 = 0.999f;
-                k kVar = (k) f17568o0.get(p());
-                if (kVar != null) {
-                    i iVar = this.f17584k0;
-                    i iVar2 = this.W;
-                    float[] fArr = this.V;
-                    this.J = true;
-                    ArrayList arrayList = this.L;
-                    arrayList.clear();
-                    ArrayList arrayList2 = kVar.f17557a;
-                    int size = arrayList2.size();
-                    int i14 = 0;
-                    while (i14 < size) {
-                        Object obj = arrayList2.get(i14);
-                        i14++;
-                        l lVar = (l) obj;
-                        l lVar2 = new l(lVar.f17564a, lVar.f17565b);
-                        lVar2.f17566c = lVar.f17566c;
-                        arrayList.add(lVar2);
+            if (i13 == 0 && mp.g1().getBoolean("design_voice_live_field", true) && !this.f17964b.d() && this.f17964b.c() && (kVar = (k) f17961o0.get(r())) != null) {
+                i iVar = this.f17977k0;
+                i iVar2 = this.W;
+                float[] fArr = this.V;
+                this.J = true;
+                ArrayList arrayList = this.L;
+                arrayList.clear();
+                ArrayList arrayList2 = kVar.f17950a;
+                int size = arrayList2.size();
+                for (int i14 = 0; i14 < size; i14++) {
+                    l lVar = (l) arrayList2.get(i14);
+                    l lVar2 = new l(lVar.f17957a, lVar.f17958b);
+                    lVar2.f17959c = lVar.f17959c;
+                    arrayList.add(lVar2);
+                }
+                long j11 = 0;
+                this.M.clear();
+                this.O = kVar.f17951b;
+                this.f17970e0 = kVar.f17953e;
+                this.f17972f0 = Math.min(kVar.f17955g, arrayList.size());
+                this.f17973g0 = kVar.f17954f;
+                this.f17974h0 = kVar.h;
+                this.f17978l0 = kVar.f17956i;
+                this.f17966c = 4;
+                this.P = 0.0f;
+                this.Q = 1.0f;
+                this.T = false;
+                if (kVar.f17952c <= 0.001f && kVar.d >= 0.999f) {
+                    z12 = false;
+                } else {
+                    z12 = true;
+                }
+                if (this.f17964b.b(fArr) && (fArr[0] > 0.001f || fArr[1] < 0.999f)) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                if (z12 && !z13 && this.O > 0) {
+                    float f14 = kVar.f17952c;
+                    this.P = f14;
+                    float f15 = kVar.d;
+                    this.Q = f15;
+                    boolean[] f16 = f(arrayList, f14, f15);
+                    float f17 = this.P;
+                    float f18 = (float) this.O;
+                    long j12 = f17 * f18;
+                    long j13 = this.Q * f18;
+                    ArrayList arrayList3 = new ArrayList();
+                    int i15 = 0;
+                    while (i15 < arrayList.size()) {
+                        if (f16[i15]) {
+                            j10 = j13;
+                        } else {
+                            l lVar3 = (l) arrayList.get(i15);
+                            j10 = j13;
+                            long j14 = j11;
+                            lVar3.f17958b = Math.max(j14, lVar3.f17958b - j12);
+                            long j15 = lVar3.f17959c;
+                            if (j15 >= j14) {
+                                lVar3.f17959c = Math.max(j14, j15 - j12);
+                            }
+                            arrayList3.add(lVar3);
+                        }
+                        i15++;
+                        j13 = j10;
+                        j11 = 0;
                     }
-                    long j11 = 0;
-                    this.M.clear();
-                    this.O = kVar.f17558b;
-                    this.f17577e0 = kVar.f17560e;
-                    this.f17579f0 = Math.min(kVar.f17562g, arrayList.size());
-                    this.f17580g0 = kVar.f17561f;
-                    this.f17581h0 = kVar.h;
-                    this.f17585l0 = kVar.f17563i;
-                    this.f17573c = 4;
+                    arrayList.clear();
+                    arrayList.addAll(arrayList3);
+                    this.O = Math.max(0L, j13 - j12);
                     this.P = 0.0f;
                     this.Q = 1.0f;
-                    this.T = false;
-                    if (kVar.f17559c <= 0.001f && kVar.d >= 0.999f) {
-                        z12 = false;
-                    } else {
-                        z12 = true;
-                    }
-                    if (this.f17571b.b(fArr) && (fArr[0] > 0.001f || fArr[1] < 0.999f)) {
-                        z13 = true;
-                    } else {
-                        z13 = false;
-                    }
-                    if (z12 && !z13 && this.O > 0) {
-                        float f15 = kVar.f17559c;
-                        this.P = f15;
-                        float f16 = kVar.d;
-                        this.Q = f16;
-                        boolean[] f17 = f(arrayList, f15, f16);
-                        float f18 = this.P;
-                        float f19 = (float) this.O;
-                        long j12 = f18 * f19;
-                        long j13 = this.Q * f19;
-                        ArrayList arrayList3 = new ArrayList();
-                        int i15 = 0;
-                        while (i15 < arrayList.size()) {
-                            if (f17[i15]) {
-                                j10 = j13;
-                            } else {
-                                l lVar3 = (l) arrayList.get(i15);
-                                j10 = j13;
-                                long j14 = j11;
-                                lVar3.f17565b = Math.max(j14, lVar3.f17565b - j12);
-                                long j15 = lVar3.f17566c;
-                                if (j15 >= j14) {
-                                    lVar3.f17566c = Math.max(j14, j15 - j12);
-                                }
-                                arrayList3.add(lVar3);
-                            }
-                            i15++;
-                            j13 = j10;
-                            j11 = 0;
-                        }
-                        arrayList.clear();
-                        arrayList.addAll(arrayList3);
-                        this.O = Math.max(0L, j13 - j12);
-                        this.P = 0.0f;
-                        this.Q = 1.0f;
-                    } else if (z13) {
-                        this.P = fArr[0];
-                        this.Q = fArr[1];
-                    }
-                    Log.d("VoiceLive", "field: back with the chat (" + arrayList.size() + " words, " + this.O + " ms)");
-                    o();
-                    e eVar = this.K;
-                    if (eVar != null) {
-                        eVar.setListening(false);
-                        this.K.setPaused(true);
-                        e eVar2 = this.K;
-                        if (this.f17580g0 != null) {
-                            z14 = true;
-                        } else {
-                            z14 = false;
-                        }
-                        eVar2.setRevertShown(z14);
-                        e eVar3 = this.K;
-                        eVar3.z();
-                        eVar3.W = 1.0f;
-                        boolean z15 = eVar3.T;
-                        if (z15) {
-                            f13 = 1.0f;
-                        } else {
-                            f13 = 0.0f;
-                        }
-                        eVar3.f17454a0 = f13;
-                        if (z15) {
-                            f14 = 1.0f;
-                        } else {
-                            f14 = 0.0f;
-                        }
-                        eVar3.T0 = f14;
-                        eVar3.f17459b0 = 0.0f;
-                        eVar3.E0 = -1.0f;
-                        eVar3.invalidate();
-                        this.K.setLanguage(this.f17585l0);
-                        d();
-                    }
-                    n();
-                    g0.r(iVar2);
-                    g0.i3(iVar2, 50L);
-                    g0.r(iVar);
-                    g0.i3(iVar, 250L);
-                    return;
+                } else if (z13) {
+                    this.P = fArr[0];
+                    this.Q = fArr[1];
                 }
-            } else {
-                f10 = 0.999f;
-            }
-            if (this.f17573c == 4) {
-                if (this.f17571b.d()) {
+                Log.d("VoiceLive", "field: back with the chat (" + arrayList.size() + " words, " + this.O + " ms)");
+                q();
+                e eVar = this.K;
+                if (eVar != null) {
+                    eVar.setListening(false);
+                    this.K.setPaused(true);
+                    e eVar2 = this.K;
+                    if (this.f17973g0 != null) {
+                        z14 = true;
+                    } else {
+                        z14 = false;
+                    }
+                    eVar2.setRevertShown(z14);
+                    e eVar3 = this.K;
+                    eVar3.z();
+                    eVar3.W = 1.0f;
+                    boolean z15 = eVar3.T;
+                    if (z15) {
+                        f12 = 1.0f;
+                    } else {
+                        f12 = 0.0f;
+                    }
+                    eVar3.f17839a0 = f12;
+                    if (z15) {
+                        f13 = 1.0f;
+                    } else {
+                        f13 = 0.0f;
+                    }
+                    eVar3.T0 = f13;
+                    eVar3.f17844b0 = 0.0f;
+                    eVar3.E0 = -1.0f;
+                    eVar3.invalidate();
+                    this.K.setLanguage(this.f17978l0);
+                    d();
+                }
+                p();
+                g0.r(iVar2);
+                g0.h3(iVar2, 50L);
+                g0.r(iVar);
+                g0.h3(iVar, 250L);
+            } else if (this.f17966c == 4) {
+                if (this.f17964b.d()) {
                     g0.r(this.W);
                     c2 c2Var = this.U;
                     if (c2Var != null) {
@@ -859,26 +831,26 @@ public final class m implements a2 {
                         e();
                     }
                     e();
-                    float f20 = this.P;
+                    float f19 = this.P;
                     long j16 = this.O;
-                    float f21 = (float) j16;
-                    long j17 = f20 * f21;
-                    float f22 = this.Q;
-                    long j18 = f21 * f22;
-                    if (j16 > 0 && (f20 > 0.001f || f22 < f10)) {
-                        boolean[] f23 = f(this.L, f20, f22);
+                    float f20 = (float) j16;
+                    long j17 = f19 * f20;
+                    float f21 = this.Q;
+                    long j18 = f20 * f21;
+                    if (j16 > 0 && (f19 > 0.001f || f21 < 0.999f)) {
+                        boolean[] f22 = f(this.L, f19, f21);
                         ArrayList arrayList4 = new ArrayList();
                         int i16 = 0;
                         while (i16 < this.L.size()) {
-                            if (f23[i16]) {
+                            if (f22[i16]) {
                                 i12 = i16;
                             } else {
                                 l lVar4 = (l) this.L.get(i16);
                                 i12 = i16;
-                                lVar4.f17565b = Math.max(0L, lVar4.f17565b - j17);
-                                long j19 = lVar4.f17566c;
+                                lVar4.f17958b = Math.max(0L, lVar4.f17958b - j17);
+                                long j19 = lVar4.f17959c;
                                 if (j19 >= 0) {
-                                    lVar4.f17566c = Math.max(0L, j19 - j17);
+                                    lVar4.f17959c = Math.max(0L, j19 - j17);
                                 }
                                 arrayList4.add(lVar4);
                             }
@@ -900,21 +872,21 @@ public final class m implements a2 {
                     this.P = 0.0f;
                     this.Q = 1.0f;
                     this.T = false;
-                    if (this.f17577e0 != null) {
-                        this.f17579f0 = this.L.size();
+                    if (this.f17970e0 != null) {
+                        this.f17972f0 = this.L.size();
                     }
                     if (this.X != null) {
                         int size2 = this.L.size();
-                        this.f17572b0 = size2;
+                        this.f17965b0 = size2;
                         this.Y = size2;
                         this.Z = this.X.length();
-                        this.f17570a0 = "";
+                        this.f17963a0 = "";
                     }
                     this.d = new z();
-                    this.f17576e = new q(0);
-                    xr.f27577k = this;
-                    this.f17573c = 2;
-                    q();
+                    this.f17969e = new q(0);
+                    vr.f27593k = this;
+                    this.f17966c = 2;
+                    s();
                     e eVar4 = this.K;
                     if (eVar4 != null) {
                         eVar4.setPaused(false);
@@ -922,26 +894,26 @@ public final class m implements a2 {
                     }
                     d();
                     DictationAsr.N(this.m0);
-                    DictationAsr.f42584g.add(this.m0);
-                    t();
-                    n();
-                    g0.r(this.f17584k0);
-                    g0.i3(this.f17584k0, 250L);
-                } else if (!this.f17571b.c()) {
+                    DictationAsr.f43028g.add(this.m0);
+                    u();
+                    p();
+                    g0.r(this.f17977k0);
+                    g0.h3(this.f17977k0, 250L);
+                } else if (!this.f17964b.c()) {
                     g("draft gone", true);
                 }
-            } else if (!z0.a()) {
-                if (this.f17573c != 0) {
+            } else if (!b1.a()) {
+                if (this.f17966c != 0) {
                     g("unavailable", true);
                 }
-            } else if (!this.f17571b.d()) {
-                if (this.J && this.f17573c == 2) {
-                    gf gfVar = this.f17571b;
-                    gfVar.getClass();
-                    if ((MediaController.B().K() || gfVar.f34928a.J3 != null) && this.f17571b.c()) {
+            } else if (!this.f17964b.d()) {
+                if (this.J && this.f17966c == 2) {
+                    pf pfVar = this.f17964b;
+                    pfVar.getClass();
+                    if ((MediaController.B().K() || pfVar.f38384a.P3 != null) && this.f17964b.c()) {
                         i iVar3 = this.W;
-                        this.f17573c = 4;
-                        g0.r(this.f17583j0);
+                        this.f17966c = 4;
+                        g0.r(this.f17976j0);
                         z zVar = this.d;
                         if (zVar != null) {
                             j3 = zVar.c() / 32;
@@ -949,13 +921,13 @@ public final class m implements a2 {
                             j3 = 0;
                         }
                         this.O = this.N + j3;
-                        if (xr.f27577k == this) {
-                            xr.f27577k = null;
+                        if (vr.f27593k == this) {
+                            vr.f27593k = null;
                         }
-                        c2 c2Var2 = this.f17578f;
+                        c2 c2Var2 = this.f17971f;
                         if (c2Var2 != null) {
                             this.U = c2Var2;
-                            this.f17578f = null;
+                            this.f17971f = null;
                             z zVar2 = this.d;
                             if (zVar2 != null) {
                                 zVar2.d();
@@ -965,7 +937,7 @@ public final class m implements a2 {
                             e();
                         }
                         this.d = null;
-                        this.f17576e = null;
+                        this.f17969e = null;
                         this.P = 0.0f;
                         this.Q = 1.0f;
                         this.T = false;
@@ -975,20 +947,20 @@ public final class m implements a2 {
                             eVar5.setListening(false);
                             this.K.setPaused(true);
                         }
-                        n();
+                        p();
                         g0.r(iVar3);
-                        g0.i3(iVar3, 50L);
+                        g0.h3(iVar3, 50L);
                         return;
                     }
                 }
-                if (this.f17573c != 0) {
+                if (this.f17966c != 0) {
                     g("not recording", true);
                 }
             } else {
                 int i17 = 1;
-                if (this.f17573c == 0) {
-                    if (!f17567n0) {
-                        f17567n0 = true;
+                if (this.f17966c == 0) {
+                    if (!f17960n0) {
+                        f17960n0 = true;
                         StringBuilder sb2 = new StringBuilder("resampler self-test (expect 1000Hz≈0dB, 12000Hz<-50dB): ");
                         StringBuilder sb3 = new StringBuilder();
                         int[] iArr = {1000, 12000};
@@ -1009,12 +981,12 @@ public final class m implements a2 {
                             }
                             int[] iArr3 = iArr;
                             int c10 = qVar.c(allocate, 19200, 48000);
-                            byte[] bArr = (byte[]) qVar.f17662g;
+                            byte[] bArr = (byte[]) qVar.f18057g;
                             double d = 0.0d;
                             int i22 = 0;
                             for (int i23 = 200; i23 < c10 / 2; i23++) {
                                 int i24 = i23 * 2;
-                                double d2 = (short) ((bArr[i24 + 1] << 8) | (bArr[i24] & 255));
+                                double d2 = (short) ((bArr[i24] & 255) | (bArr[i24 + 1] << 8));
                                 d += d2 * d2;
                                 i22++;
                             }
@@ -1029,37 +1001,37 @@ public final class m implements a2 {
                         Log.d("VoiceLive", sb2.toString());
                     }
                     this.d = new z();
-                    this.f17576e = new q(0);
-                    this.f17590x = 0L;
-                    this.f17589w = 0L;
-                    this.f17591y = 0;
+                    this.f17969e = new q(0);
+                    this.f17983x = 0L;
+                    this.f17982w = 0L;
+                    this.f17984y = 0;
                     this.E = 0;
                     this.F = 0;
                     this.G = false;
-                    this.f17586n = "";
-                    this.J = z0.c();
+                    this.f17979n = "";
+                    this.J = mp.g1().getBoolean("design_voice_live_field", true);
                     this.L.clear();
                     this.M.clear();
                     this.N = 0L;
                     this.P = 0.0f;
                     this.Q = 1.0f;
                     this.T = false;
-                    this.f17587r = SystemClock.elapsedRealtime();
+                    this.f17980r = SystemClock.elapsedRealtime();
                     i17 = 1;
-                    this.f17573c = 1;
-                    xr.f27577k = this;
-                    g0.r(this.f17584k0);
-                    g0.i3(this.f17584k0, 250L);
+                    this.f17966c = 1;
+                    vr.f27593k = this;
+                    g0.r(this.f17977k0);
+                    g0.h3(this.f17977k0, 250L);
                     Log.d("VoiceLive", "buffering: recorder tap on");
                 }
-                if (this.f17573c == i17 && this.f17571b.f34928a.I0()) {
-                    this.f17573c = 2;
-                    this.f17585l0 = null;
-                    this.f17588s = SystemClock.elapsedRealtime();
+                if (this.f17966c == i17 && this.f17964b.f38384a.Q0()) {
+                    this.f17966c = 2;
+                    this.f17978l0 = null;
+                    this.f17981s = SystemClock.elapsedRealtime();
                     StringBuilder sb4 = new StringBuilder("locked → live: buffered ");
                     sb4.append((this.d.c() * 1000) / 32000);
                     sb4.append(" ms, chunks=");
-                    sb4.append(this.f17591y);
+                    sb4.append(this.f17984y);
                     sb4.append(" rate=");
                     sb4.append(this.E);
                     sb4.append(" source=");
@@ -1073,170 +1045,185 @@ public final class m implements a2 {
                     }
                     sb4.append(str);
                     sb4.append(" (");
-                    sb4.append(this.f17588s - this.f17587r);
+                    sb4.append(this.f17981s - this.f17980r);
                     sb4.append(" ms since start)");
                     Log.d("VoiceLive", sb4.toString());
-                    q();
+                    s();
                     if (this.J) {
-                        o();
+                        q();
                     } else {
-                        gf gfVar2 = this.f17571b;
-                        st0 st0Var = gfVar2.f34928a.U1;
-                        if (st0Var != null) {
+                        pf pfVar2 = this.f17964b;
+                        au0 au0Var = pfVar2.f38384a.f32542a2;
+                        if (au0Var != null) {
                             if (this.h == null) {
-                                this.h = new p(this.f17569a, gfVar2.f34928a.E4, this);
+                                this.h = new p(this.f17962a, pfVar2.f38384a.K4, this);
                             }
-                            View a10 = gfVar2.a();
-                            if (a10 != null && a10.getParent() == st0Var) {
-                                i7 = st0Var.indexOfChild(a10);
+                            View a10 = pfVar2.a();
+                            if (a10 != null && a10.getParent() == au0Var) {
+                                i7 = au0Var.indexOfChild(a10);
                             } else {
                                 i7 = -1;
                             }
-                            if (this.h.getParent() != st0Var || (i7 >= 0 && st0Var.indexOfChild(this.h) != i7 - 1)) {
+                            if (this.h.getParent() != au0Var || (i7 >= 0 && au0Var.indexOfChild(this.h) != i7 - 1)) {
                                 g0.E2(this.h);
-                                if (a10 != null && a10.getParent() == st0Var) {
-                                    i10 = st0Var.indexOfChild(a10);
+                                if (a10 != null && a10.getParent() == au0Var) {
+                                    i10 = au0Var.indexOfChild(a10);
                                 } else {
                                     i10 = -1;
                                 }
                                 if (i10 >= 0) {
-                                    st0Var.addView(this.h, i10, ja.e(-1, -1, 80));
+                                    au0Var.addView(this.h, i10, ma.e(-1, -1, 80));
                                 } else {
-                                    st0Var.addView(this.h, ja.e(-1, -1, 80));
+                                    au0Var.addView(this.h, ma.e(-1, -1, 80));
                                     Log.w("VoiceLive", "composer isn't a direct child of the root: overlay on top");
                                 }
                             }
                             p pVar = this.h;
-                            ChatActivityEnterView chatActivityEnterView = gfVar2.f34928a;
-                            int i26 = j6.Pe;
-                            int i27 = ChatActivityEnterView.N6;
-                            pVar.setAccent(chatActivityEnterView.u0(i26) | (-16777216));
+                            ChatActivityEnterView chatActivityEnterView = pfVar2.f38384a;
+                            int i26 = n6.Pe;
+                            int i27 = ChatActivityEnterView.f32538n7;
+                            pVar.setAccent(chatActivityEnterView.C0(i26) | (-16777216));
                             p pVar2 = this.h;
-                            TextPaint textPaint = pVar2.f17603c;
-                            int i28 = j6.f28849d6;
-                            e6 e6Var = pVar2.f17600b;
-                            if (g0.B(j6.w0(i28, e6Var)) < 0.5f) {
+                            TextPaint textPaint = pVar2.f17998c;
+                            int i28 = n6.f29396d6;
+                            i6 i6Var = pVar2.f17995b;
+                            if (g0.B(n6.w0(i28, i6Var)) < 0.5f) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
-                            pVar2.f17609e0 = z10;
-                            int w02 = (-16777216) | j6.w0(j6.G6, e6Var);
-                            pVar2.f17612f0 = w02;
+                            pVar2.f18009g0 = z10;
+                            int w02 = (-16777216) | n6.w0(n6.G6, i6Var);
+                            pVar2.f18011h0 = w02;
                             textPaint.setColor(w02);
-                            int i29 = pVar2.f17612f0;
-                            p.W1 = i29;
-                            if (pVar2.f17609e0) {
-                                f11 = i0.a.f(0.12f, pVar2.f17614g0, -1);
+                            int i29 = pVar2.f18011h0;
+                            p.Y1 = i29;
+                            if (pVar2.f18009g0) {
+                                f10 = i0.a.f(0.12f, pVar2.f18013i0, -1);
                             } else {
-                                f11 = i0.a.f(0.32f, pVar2.f17614g0, i29);
+                                f10 = i0.a.f(0.32f, pVar2.f18013i0, i29);
                             }
-                            p.V1 = f11;
-                            p.X1 = g0.L(7.0f);
+                            p.X1 = f10;
+                            p.Z1 = g0.L(7.0f);
                             TextPaint textPaint2 = pVar2.d;
-                            int i30 = pVar2.f17612f0;
-                            if (pVar2.f17609e0) {
-                                f12 = 0.42f;
+                            int i30 = pVar2.f18011h0;
+                            if (pVar2.f18009g0) {
+                                f11 = 0.42f;
                             } else {
-                                f12 = 0.36f;
+                                f11 = 0.36f;
                             }
-                            textPaint2.setColor(j6.r1(f12, i30));
-                            if (Build.VERSION.SDK_INT >= 31 && gz.o() != 0) {
+                            textPaint2.setColor(n6.r1(f11, i30));
+                            if (Build.VERSION.SDK_INT >= 31 && bz.o() != 0) {
                                 z11 = true;
                             } else {
                                 z11 = false;
                             }
-                            pVar2.f17616h0 = z11;
-                            pVar2.f17634r = 0;
-                            Paint paint = pVar2.f17637s;
-                            if (pVar2.f17609e0) {
+                            pVar2.f18015j0 = z11;
+                            pVar2.f18029r = 0;
+                            Paint paint = pVar2.f18032s;
+                            if (pVar2.f18009g0) {
                                 i11 = 0;
                             } else {
                                 i11 = 335544320;
                             }
                             paint.setColor(i11);
-                            pVar2.f17618i0 = "";
-                            pVar2.f17648w1 = -1;
-                            pVar2.f17620j0 = null;
-                            pVar2.m0.clear();
-                            pVar2.S0 = true;
-                            pVar2.B0 = 0.0f;
-                            pVar2.A0 = 0.0f;
-                            pVar2.C0 = 0.0f;
+                            pVar2.f18017k0 = "";
+                            pVar2.f18049y1 = -1;
+                            pVar2.f18019l0 = null;
+                            pVar2.f18023o0.clear();
+                            pVar2.U0 = true;
                             pVar2.D0 = 0.0f;
-                            pVar2.F0 = -1.0f;
-                            pVar2.E0 = -1.0f;
+                            pVar2.C0 = 0.0f;
+                            pVar2.E0 = 0.0f;
+                            pVar2.F0 = 0.0f;
                             pVar2.H0 = -1.0f;
-                            pVar2.J0 = false;
+                            pVar2.G0 = -1.0f;
+                            pVar2.J0 = -1.0f;
+                            pVar2.L0 = false;
                             pVar2.setStyleIcon(null);
-                            pVar2.K0 = false;
-                            pVar2.N0 = false;
-                            pVar2.f17645v1 = null;
-                            pVar2.N1 = false;
-                            pVar2.f17651x1 = false;
-                            pVar2.B1 = null;
-                            pVar2.C1.clear();
+                            pVar2.M0 = false;
+                            pVar2.P0 = false;
+                            pVar2.f18046x1 = null;
+                            pVar2.P1 = false;
+                            pVar2.f18051z1 = false;
+                            pVar2.D1 = null;
+                            pVar2.E1.clear();
                             textPaint.setShader(null);
-                            pVar2.Q0 = 0L;
-                            pVar2.R0 = 0.0f;
-                            pVar2.f17653y0 = true;
-                            pVar2.V0 = 0.0f;
-                            pVar2.W0 = 0.0f;
-                            pVar2.X0 = true;
-                            pVar2.Y0 = 1.0f;
-                            pVar2.Z0 = 0.0f;
-                            pVar2.f17621j1 = -1;
-                            Arrays.fill(pVar2.f17623k1, 0.0f);
-                            pVar2.M = null;
-                            pVar2.N = 0.0f;
-                            pVar2.O = 0.0f;
-                            pVar2.U = false;
-                            pVar2.P.setEmpty();
+                            pVar2.S0 = 0L;
+                            pVar2.T0 = 0.0f;
+                            pVar2.A0 = true;
+                            pVar2.X0 = 0.0f;
+                            pVar2.Y0 = 0.0f;
+                            pVar2.Z0 = true;
+                            pVar2.f17994a1 = 1.0f;
+                            pVar2.f17997b1 = 0.0f;
+                            pVar2.l1 = -1;
+                            Arrays.fill(pVar2.f18020m1, 0.0f);
+                            pVar2.O = null;
+                            pVar2.P = 0.0f;
+                            pVar2.Q = 0.0f;
+                            pVar2.W = false;
+                            pVar2.R.setEmpty();
                             pVar2.setPlaceholder(null);
-                            pVar2.f17627n0 = true;
-                            pVar2.f17630p0 = SystemClock.uptimeMillis();
-                            pVar2.f17635r0 = 0L;
-                            pVar2.f17606d0 = 0L;
+                            pVar2.f18025p0 = true;
+                            pVar2.f18030r0 = SystemClock.uptimeMillis();
+                            pVar2.f18035t0 = 0L;
+                            pVar2.f18007f0 = 0L;
                             pVar2.setVisibility(0);
                             pVar2.invalidate();
-                            Log.d("VoiceLive", "overlay shown at index " + st0Var.indexOfChild(this.h) + "/" + st0Var.getChildCount());
+                            Log.d("VoiceLive", "overlay shown at index " + au0Var.indexOfChild(this.h) + "/" + au0Var.getChildCount());
                         }
                     }
                     e eVar6 = this.K;
-                    if (eVar6 != null && this.J && (str2 = this.f17585l0) != null) {
+                    if (eVar6 != null && this.J && (str2 = this.f17978l0) != null) {
                         eVar6.setLanguage(str2);
                     }
                     d();
                     DictationAsr.N(this.m0);
-                    DictationAsr.f42584g.add(this.m0);
-                    t();
-                    g0.i3(this.f17583j0, 1500L);
+                    DictationAsr.f43028g.add(this.m0);
+                    u();
+                    g0.h3(this.f17976j0, 1500L);
                 }
             }
         }
     }
 
-    public final void t() {
-        String r10;
+    public final void u() {
         long[] jArr = new long[2];
-        if (!DictationAsr.F(jArr)) {
-            r10 = null;
-        } else {
-            Locale locale = Locale.US;
-            long round = Math.round(jArr[0] / 1048576.0d);
-            r10 = p0.r(p0.t(round, "Downloading models… ", " / "), Math.max(1L, Math.round(jArr[1] / 1048576.0d)), "MB");
+        String str = null;
+        if (DictationAsr.F(jArr)) {
+            str = gd.a0(null, null, 2131745067, Long.valueOf(Math.round(jArr[0] / 1048576.0d)), Long.valueOf(Math.max(1L, Math.round(jArr[1] / 1048576.0d))));
         }
         p pVar = this.h;
         if (pVar != null) {
-            pVar.setPlaceholder(r10);
+            pVar.setPlaceholder(str);
         }
         e eVar = this.K;
         if (eVar != null && this.J) {
-            eVar.setPlaceholder(r10);
+            eVar.setPlaceholder(str);
         }
     }
 
-    public final void u(ai.c2 r25, java.lang.String r26) {
-        throw new UnsupportedOperationException("Method not decompiled: ji.m.u(ai.c2, java.lang.String):void");
+    public final void v(ai.c2 r25, java.lang.String r26) {
+        throw new UnsupportedOperationException("Method not decompiled: ji.m.v(ai.c2, java.lang.String):void");
+    }
+
+    @Override
+    public final void x(String str) {
+        String p10;
+        if (str == null) {
+            p10 = null;
+        } else {
+            p10 = n0.p(str);
+        }
+        p pVar = this.h;
+        if (pVar != null && this.f17966c == 2) {
+            pVar.setLanguage(p10);
+        }
+        e eVar = this.K;
+        if (eVar != null && this.J && this.f17966c == 2) {
+            this.f17978l0 = p10;
+            eVar.setLanguage(p10);
+        }
     }
 }

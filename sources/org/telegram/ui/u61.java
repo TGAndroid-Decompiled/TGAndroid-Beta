@@ -1,82 +1,61 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.Scroller;
-import org.telegram.messenger.Utilities;
-public final class u61 implements org.telegram.ui.Components.pm0, org.telegram.ui.Components.c10 {
-    public final t71 f51811a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+public final class u61 extends FrameLayout {
+    public final int f52453a;
+    public final RectF f52454b;
+    public final x71 f52455c;
 
-    public u61(t71 t71Var) {
-        this.f51811a = t71Var;
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        return null;
-    }
-
-    @Override
-    public void l(boolean z10, float f10) {
-        t71 t71Var = this.f51811a;
-        t71Var.n1 = f10;
-        t71Var.p1();
-    }
-
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        Scroller scroller = this.f51811a.f51417c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            return true;
+    public u61(x71 x71Var, Context context, int i7) {
+        super(context);
+        this.f52453a = i7;
+        switch (i7) {
+            case 1:
+                this.f52455c = x71Var;
+                super(context);
+                this.f52454b = new RectF();
+                return;
+            default:
+                this.f52455c = x71Var;
+                this.f52454b = new RectF();
+                return;
         }
-        return true;
     }
 
     @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        t71 t71Var = this.f51811a;
-        Scroller scroller = t71Var.f51417c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-            t71Var.f51417c.fling((int) t71Var.Z1, 0, Math.round(-f10), Math.round(f11), 0, (int) t71Var.Y1, 0, Integer.MAX_VALUE);
-            t71Var.f51478z0.postInvalidate();
-            return true;
+    public final void onDraw(Canvas canvas) {
+        switch (this.f52453a) {
+            case 0:
+                RectF rectF = this.f52454b;
+                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                x71 x71Var = this.f52455c;
+                u61 u61Var = x71Var.F0;
+                n71 n71Var = x71Var.f53751z0;
+                w61 w61Var = x71Var.f53682a;
+                org.telegram.ui.ActionBar.n6.t(u61Var, n71Var, w61Var);
+                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, w61Var.g("paintChatActionBackground"));
+                if (org.telegram.ui.ActionBar.n6.d1()) {
+                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, w61Var.g("paintChatActionBackgroundDarken"));
+                    return;
+                }
+                return;
+            default:
+                RectF rectF2 = this.f52454b;
+                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                x71 x71Var2 = this.f52455c;
+                u61 u61Var2 = x71Var2.G0;
+                n71 n71Var2 = x71Var2.f53751z0;
+                w61 w61Var2 = x71Var2.f53682a;
+                org.telegram.ui.ActionBar.n6.t(u61Var2, n71Var2, w61Var2);
+                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, w61Var2.g("paintChatActionBackground"));
+                if (org.telegram.ui.ActionBar.n6.d1()) {
+                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, w61Var2.g("paintChatActionBackgroundDarken"));
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        t71 t71Var = this.f51811a;
-        Scroller scroller = t71Var.f51417c;
-        if (scroller != null) {
-            scroller.abortAnimation();
-        }
-        t71Var.Z1 = Utilities.i(t71Var.Z1 + f10, t71Var.Y1, 0.0f);
-        t71Var.a1();
-        t71Var.f51478z0.invalidate();
-        return true;
-    }
-
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public int p0() {
-        return 0;
-    }
-
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
-    }
-
-    @Override
-    public void C() {
-    }
-
-    @Override
-    public void a1() {
     }
 }

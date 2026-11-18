@@ -1,31 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.ShapeDrawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class uv0 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public org.telegram.ui.ActionBar.e6 f40169a;
-    public ShapeDrawable f40170b;
-    public View f40171c;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class uv0 extends yo0 {
+    public final iw0 V2;
+
+    public uv0(iw0 iw0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, null, str, false, str2, false, i6Var);
+        this.V2 = iw0Var;
+    }
 
     @Override
-    public final void updateColors() {
-        try {
-            ShapeDrawable shapeDrawable = this.f40170b;
-            if (shapeDrawable != null) {
-                org.telegram.ui.ActionBar.j6.C1(org.telegram.ui.ActionBar.j6.r1(0.12f, org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Ef, this.f40169a)), shapeDrawable);
-                View view = this.f40171c;
-                if (view != null) {
-                    view.invalidate();
-                }
+    public final void L() {
+        super.L();
+        org.telegram.ui.ActionBar.h2 h2Var = this.V2.G1;
+        if (h2Var instanceof org.telegram.ui.bn) {
+            org.telegram.messenger.g0.Z2(h2Var.getParentActivity(), h2Var.getClassGuid());
+            if (((org.telegram.ui.bn) h2Var).f45932a0.getVisibility() == 0) {
+                h2Var.getFragmentView().requestLayout();
             }
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        org.telegram.messenger.g0.h3(new org.telegram.ui.b0(this, hVar, i7, 27), 100L);
     }
 }

@@ -1,29 +1,44 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-public final class k4 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f44066a;
-    public final y5 f44067b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import org.telegram.ui.Components.o80;
+public final class k4 extends o80 {
+    public final Paint M;
+    public final m4 N;
 
-    public k4(y5 y5Var, int i7) {
-        this.f44066a = i7;
-        this.f44067b = y5Var;
+    public k4(m4 m4Var, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(i6Var);
+        this.N = m4Var;
+        Paint paint = new Paint(1);
+        this.M = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f44066a) {
-            case 0:
-                y5 y5Var = this.f44067b;
-                y5Var.getClass();
-                y5Var.N0(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            default:
-                y5 y5Var2 = this.f44067b;
-                y5Var2.getClass();
-                y5Var2.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y5Var2.U0();
-                return;
+    public final void b(Canvas canvas, Path path) {
+        super.b(canvas, path);
+        m4 m4Var = this.N;
+        RectF rectF = m4Var.f44524f;
+        if (m4Var.f44541o0 != null) {
+            canvas.saveLayer(rectF, null);
+            m4Var.f44541o0.c((org.telegram.messenger.g0.L(206.0f) - m4Var.f44541o0.k()) / 2.0f, (rectF.bottom - org.telegram.messenger.g0.L(7.0f)) - m4Var.f44541o0.i(), 1.0f, -1, canvas);
+            Shader shader = this.f38032x.getShader();
+            Paint paint = this.M;
+            paint.setShader(shader);
+            canvas.drawRect(rectF, paint);
+            canvas.restore();
         }
+    }
+
+    @Override
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        this.N.f44515a.invalidate();
     }
 }

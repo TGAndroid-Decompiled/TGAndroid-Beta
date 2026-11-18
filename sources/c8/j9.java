@@ -1,6 +1,28 @@
 package c8;
+
+import android.os.Build;
+import android.text.TextUtils;
+import android.view.View;
 public abstract class j9 {
-    public static final java.lang.Object a(java.util.List r6, m1.j r7, kd.c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.j9.a(java.util.List, m1.j, kd.c):java.lang.Object");
+    public static void a(View view, CharSequence charSequence) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            m.l3.a(view, charSequence);
+            return;
+        }
+        m.n3 n3Var = m.n3.f20142w;
+        if (n3Var != null && n3Var.f20144a == view) {
+            m.n3.b(null);
+        }
+        if (TextUtils.isEmpty(charSequence)) {
+            m.n3 n3Var2 = m.n3.f20143x;
+            if (n3Var2 != null && n3Var2.f20144a == view) {
+                n3Var2.a();
+            }
+            view.setOnLongClickListener(null);
+            view.setLongClickable(false);
+            view.setOnHoverListener(null);
+            return;
+        }
+        new m.n3(view, charSequence);
     }
 }

@@ -1,75 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class dr extends Drawable {
-    public final Drawable f34039a;
-    public final Drawable f34040b;
-    public float f34041c;
-    public float d = 255.0f;
+import android.text.SpannableStringBuilder;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+public final class dr implements RequestDelegate {
+    public final int f34487a;
+    public final hr f34488b;
+    public final hi.d f34489c;
 
-    public dr(Drawable drawable, Drawable drawable2) {
-        this.f34039a = drawable;
-        this.f34040b = drawable2;
-        if (drawable != null) {
-            drawable.setCallback(new cr(this, 0));
+    public dr(hr hrVar, hi.d dVar, int i7) {
+        this.f34487a = i7;
+        this.f34488b = hrVar;
+        this.f34489c = dVar;
+    }
+
+    @Override
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f34487a) {
+            case 0:
+                final hr hrVar = this.f34488b;
+                final hi.d dVar = this.f34489c;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                hr hrVar2 = hrVar;
+                                hrVar2.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    hrVar2.X1 = groupcallstreamrtmpurl.url;
+                                    hrVar2.Y1 = groupcallstreamrtmpurl.key;
+                                    hrVar2.Z1 = new SpannableStringBuilder(hrVar2.Y1);
+                                    hrVar2.f35952a2.O(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                hr hrVar3 = hrVar;
+                                hrVar3.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    hrVar3.X1 = groupcallstreamrtmpurl2.url;
+                                    hrVar3.Y1 = groupcallstreamrtmpurl2.key;
+                                    hrVar3.Z1 = new SpannableStringBuilder(hrVar3.Y1);
+                                    hrVar3.f35952a2.O(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final hr hrVar2 = this.f34488b;
+                final hi.d dVar2 = this.f34489c;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                hr hrVar22 = hrVar2;
+                                hrVar22.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    hrVar22.X1 = groupcallstreamrtmpurl.url;
+                                    hrVar22.Y1 = groupcallstreamrtmpurl.key;
+                                    hrVar22.Z1 = new SpannableStringBuilder(hrVar22.Y1);
+                                    hrVar22.f35952a2.O(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                hr hrVar3 = hrVar2;
+                                hrVar3.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    hrVar3.X1 = groupcallstreamrtmpurl2.url;
+                                    hrVar3.Y1 = groupcallstreamrtmpurl2.key;
+                                    hrVar3.Z1 = new SpannableStringBuilder(hrVar3.Y1);
+                                    hrVar3.f35952a2.O(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        if (drawable2 != null) {
-            drawable2.setCallback(new cr(this, 1));
-        }
-    }
-
-    public final void a(float f10) {
-        this.f34041c = f10;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int i7 = (int) ((1.0f - this.f34041c) * this.d);
-        Drawable drawable = this.f34039a;
-        drawable.setAlpha(i7);
-        int i10 = (int) (this.d * this.f34041c);
-        Drawable drawable2 = this.f34040b;
-        drawable2.setAlpha(i10);
-        if (i7 > 0) {
-            drawable.draw(canvas);
-        }
-        if (i10 > 0) {
-            drawable2.draw(canvas);
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f34039a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f34039a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f34039a.setBounds(rect);
-        this.f34040b.setBounds(rect);
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.d = i7;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34039a.setColorFilter(colorFilter);
     }
 }

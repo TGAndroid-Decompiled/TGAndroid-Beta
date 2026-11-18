@@ -6,27 +6,27 @@ import org.telegram.messenger.a8;
 import ru.noties.jlatexmath.JLatexMathAndroid;
 import ru.noties.jlatexmath.JLatexMathDrawable;
 public final class p {
-    public static volatile boolean f21861e = false;
-    public final Bitmap f21862a;
-    public final int f21863b;
-    public final int f21864c;
+    public static volatile boolean f22228e = false;
+    public final Bitmap f22229a;
+    public final int f22230b;
+    public final int f22231c;
     public final int d;
 
     public p(Bitmap bitmap, int i7, int i10, int i11) {
-        this.f21862a = bitmap;
-        this.f21863b = i7;
-        this.f21864c = i10;
+        this.f22229a = bitmap;
+        this.f22230b = i7;
+        this.f22231c = i10;
         this.d = i11;
     }
 
     public static p a(String str, float f10, boolean z10) {
         if (str != null && !str.isEmpty()) {
             try {
-                if (!f21861e) {
+                if (!f22228e) {
                     synchronized (p.class) {
-                        if (!f21861e) {
-                            JLatexMathAndroid.init(org.telegram.messenger.t0.f26609b);
-                            f21861e = true;
+                        if (!f22228e) {
+                            JLatexMathAndroid.init(org.telegram.messenger.t0.f26915b);
+                            f22228e = true;
                         }
                     }
                 }

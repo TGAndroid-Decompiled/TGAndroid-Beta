@@ -5,22 +5,22 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 public final class b implements Iterator {
-    public final Iterator f13650a;
-    public Object f13651b = null;
-    public Collection f13652c = null;
-    public Iterator d = y0.f13773a;
-    public final k1 f13653e;
-    public final int f13654f;
+    public final Iterator f13969a;
+    public Object f13970b = null;
+    public Collection f13971c = null;
+    public Iterator d = y0.f14093a;
+    public final l1 f13972e;
+    public final int f13973f;
 
-    public b(k1 k1Var, int i7) {
-        this.f13654f = i7;
-        this.f13653e = k1Var;
-        this.f13650a = k1Var.f13694e.entrySet().iterator();
+    public b(l1 l1Var, int i7) {
+        this.f13973f = i7;
+        this.f13972e = l1Var;
+        this.f13969a = l1Var.f14022e.entrySet().iterator();
     }
 
     @Override
     public final boolean hasNext() {
-        if (!this.f13650a.hasNext() && !this.d.hasNext()) {
+        if (!this.f13969a.hasNext() && !this.d.hasNext()) {
             return false;
         }
         return true;
@@ -29,15 +29,15 @@ public final class b implements Iterator {
     @Override
     public final Object next() {
         if (!this.d.hasNext()) {
-            Map.Entry entry = (Map.Entry) this.f13650a.next();
-            this.f13651b = entry.getKey();
+            Map.Entry entry = (Map.Entry) this.f13969a.next();
+            this.f13970b = entry.getKey();
             Collection collection = (Collection) entry.getValue();
-            this.f13652c = collection;
+            this.f13971c = collection;
             this.d = collection.iterator();
         }
-        Object obj = this.f13651b;
+        Object obj = this.f13970b;
         Object next = this.d.next();
-        switch (this.f13654f) {
+        switch (this.f13973f) {
             case 0:
                 return next;
             default:
@@ -48,12 +48,12 @@ public final class b implements Iterator {
     @Override
     public final void remove() {
         this.d.remove();
-        Collection collection = this.f13652c;
+        Collection collection = this.f13971c;
         Objects.requireNonNull(collection);
         if (collection.isEmpty()) {
-            this.f13650a.remove();
+            this.f13969a.remove();
         }
-        k1 k1Var = this.f13653e;
-        k1Var.f13695f--;
+        l1 l1Var = this.f13972e;
+        l1Var.f14023f--;
     }
 }

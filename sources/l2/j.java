@@ -1,19 +1,19 @@
 package l2;
 
 import android.content.Context;
-import fi.a4;
+import fi.y3;
 public class j {
-    public final Context f19046a;
-    public final androidx.emoji2.text.n f19047b;
-    public int f19048c = 0;
+    public final Context f19413a;
+    public final androidx.emoji2.text.n f19414b;
+    public int f19415c = 0;
 
     public j(Context context) {
-        this.f19046a = context;
-        this.f19047b = new androidx.emoji2.text.n(context, 2);
+        this.f19413a = context;
+        this.f19414b = new androidx.emoji2.text.n(context, (char) 0);
     }
 
     public n2.r0 a(Context context) {
-        return new a4(context, 1).a();
+        return new y3(context, 1).a();
     }
 
     public final l2.b[] b(android.os.Handler r23, l2.z r24, l2.z r25, l2.z r26, l2.z r27) {

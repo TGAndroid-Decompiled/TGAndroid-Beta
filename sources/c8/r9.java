@@ -1,45 +1,40 @@
 package c8;
 
-import java.util.concurrent.Future;
+import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.RemoteException;
 public abstract class r9 {
-    public static Object a(Future future) {
-        Object obj;
-        boolean z10 = false;
-        if (future.isDone()) {
-            while (true) {
-                try {
-                    obj = future.get();
-                    break;
-                } catch (InterruptedException unused) {
-                    z10 = true;
-                } catch (Throwable th2) {
-                    if (z10) {
-                        Thread.currentThread().interrupt();
-                    }
-                    throw th2;
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-            return obj;
+    public static v7.e f4943a;
+
+    public static hi.u5 a(Bitmap bitmap) {
+        try {
+            v7.e eVar = f4943a;
+            q6.m.i(eVar, "IBitmapDescriptorFactory is not initialized");
+            v7.c cVar = (v7.c) eVar;
+            Parcel p12 = cVar.p1();
+            v7.b.b(p12, bitmap);
+            Parcel o12 = cVar.o1(p12, 6);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new hi.u5(m12);
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
         }
-        throw new IllegalStateException(a8.ka.a("Future was expected to be done: %s", future));
     }
 
-    public static m9.w b(Object obj) {
-        if (obj == null) {
-            return m9.w.f20596b;
+    public static hi.u5 b(int i7) {
+        try {
+            v7.e eVar = f4943a;
+            q6.m.i(eVar, "IBitmapDescriptorFactory is not initialized");
+            v7.c cVar = (v7.c) eVar;
+            Parcel p12 = cVar.p1();
+            p12.writeInt(i7);
+            Parcel o12 = cVar.o1(p12, 1);
+            a7.a m12 = a7.b.m1(o12.readStrongBinder());
+            o12.recycle();
+            return new hi.u5(m12);
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
         }
-        return new m9.w(obj);
-    }
-
-    public static m9.p c(m9.y yVar, g9.k kVar) {
-        ?? obj = new Object();
-        yVar.getClass();
-        obj.f20589n = yVar;
-        obj.f20590r = kVar;
-        yVar.b(obj, m9.r.f20591a);
-        return obj;
     }
 }

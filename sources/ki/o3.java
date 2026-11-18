@@ -1,103 +1,91 @@
 package ki;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.graphics.Paint;
 import android.view.View;
-import android.widget.FrameLayout;
+import hi.f9;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.z5;
-public final class o3 extends FrameLayout implements z5 {
-    public Path f18479a;
-    public float f18480b;
-    public int f18481c;
-    public boolean d;
-    public int f18482e;
-    public int f18483f;
-    public View h;
-    public a0 f18484n;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.ut0;
+public class o3 extends View implements c6 {
+    public final ut0 f18820a;
+    public final Paint f18821b;
+    public float f18822c;
+    public r1.g d;
+    public final i6 f18823e;
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(j6.Uf));
-        hashSet.add(Integer.valueOf(j6.Fi));
+    public o3(Context context, i6 i6Var) {
+        super(context);
+        ut0 ut0Var = new ut0(new f9(18), new f9(19));
+        ut0Var.f40416c = 100.0f;
+        this.f18820a = ut0Var;
+        Paint paint = new Paint(1);
+        this.f18821b = paint;
+        this.f18823e = i6Var;
+        paint.setColor(n6.w0(n6.Fi, i6Var));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        canvas.save();
-        float height = (getHeight() - org.telegram.messenger.g0.L(32.0f)) / 2.0f;
-        float max = Math.max((getWidth() - this.f18483f) - org.telegram.messenger.g0.L(4.0f), getHeight()) * this.f18480b;
-        float L = org.telegram.messenger.g0.L(16.0f) + max;
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(org.telegram.messenger.g0.L(14.0f) - max, (org.telegram.messenger.g0.L(4.0f) + height) - max, org.telegram.messenger.g0.L(6.0f) + this.f18483f + max, (getHeight() - org.telegram.messenger.g0.L(12.0f)) + max);
-        Path path = this.f18479a;
-        path.rewind();
-        path.addRoundRect(rectF, L, L, Path.Direction.CW);
-        canvas.clipPath(path);
-        canvas.drawColor(this.f18482e);
-        canvas.saveLayerAlpha(rectF, (int) ((1.0f - (Math.min(0.5f, this.f18480b) / 0.5f)) * 255.0f), 31);
-        canvas.translate(org.telegram.messenger.g0.L(10.0f), height);
-        a0 a0Var = this.f18484n;
-        if (a0Var != null) {
-            a0Var.setDrawBackgroundDrawable(false);
-            this.f18484n.draw(canvas);
-            this.f18484n.setDrawBackgroundDrawable(true);
-        }
-        canvas.restore();
-        canvas.translate((1.0f - this.f18480b) * (-org.telegram.messenger.g0.L(8.0f)), 0.0f);
         super.draw(canvas);
-        canvas.restore();
+        if (this.f18822c > 0.0f) {
+            Paint paint = this.f18821b;
+            float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
+            canvas.drawLine(0.0f, height, getWidth() * this.f18822c, height, paint);
+        }
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11;
-        int size = View.MeasureSpec.getSize(i10);
-        if (getParent() instanceof View) {
-            i11 = ((View) getParent()).getHeight();
-        } else {
-            i11 = 0;
-        }
-        if (i11 > 0) {
-            size = Math.min(size, i11);
-        }
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.getMode(i10)));
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        r1.g gVar = new r1.g(this, this.f18820a);
+        r1.h hVar = new r1.h();
+        hVar.b(400.0f);
+        hVar.a(1.0f);
+        gVar.f56323m = hVar;
+        this.d = gVar;
     }
 
-    public void setBotMenuButton(a0 a0Var) {
-        this.f18484n = a0Var;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.d.d();
+        this.d = null;
+    }
+
+    public void setLoadProgress(float f10) {
+        this.f18822c = f10;
         invalidate();
     }
 
-    public void setMeasuredButtonWidth(int i7) {
-        this.f18483f = i7;
-        invalidate();
-    }
-
-    public void setProgress(float f10) {
-        this.f18480b = f10;
-        this.f18482e = i0.a.f(f10, j6.x0(null, j6.Uf, false), this.f18481c);
-        for (int i7 = 0; i7 < getChildCount(); i7++) {
-            getChildAt(i7).setAlpha(f10);
+    public void setLoadProgressAnimated(float f10) {
+        r1.g gVar = this.d;
+        if (gVar == null) {
+            setLoadProgress(f10);
+            return;
         }
-        invalidate();
+        gVar.f56323m.f56331i = f10 * 100.0f;
+        gVar.h();
     }
 
     @Override
     public final void updateColors() {
         try {
-            if (this.d) {
-                this.f18481c = j6.x0(null, j6.Fi, false);
-            }
-            if (this.f18482e != 0) {
-                this.f18482e = i0.a.f(this.f18480b, j6.x0(null, j6.Uf, false), this.f18481c);
-                invalidate();
-            }
+            this.f18821b.setColor(n6.w0(n6.Fi, this.f18823e));
+            invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

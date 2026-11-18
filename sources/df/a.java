@@ -7,20 +7,20 @@ public final class a implements nf.a {
     @Override
     public final void a(s sVar, s sVar2, int i7) {
         p pVar = new p();
-        for (p pVar2 = (p) sVar.f17843f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f17843f) {
+        for (p pVar2 = (p) sVar.f18238f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f18238f) {
             pVar.b(pVar2);
         }
         pVar.g();
-        p pVar3 = (p) sVar.f17843f;
-        pVar.f17843f = pVar3;
+        p pVar3 = (p) sVar.f18238f;
+        pVar.f18238f = pVar3;
         if (pVar3 != null) {
-            pVar3.f17842e = pVar;
+            pVar3.f18237e = pVar;
         }
-        pVar.f17842e = sVar;
-        sVar.f17843f = pVar;
-        p pVar4 = (p) sVar.f17840b;
-        pVar.f17840b = pVar4;
-        if (((p) pVar.f17843f) == null) {
+        pVar.f18237e = sVar;
+        sVar.f18238f = pVar;
+        p pVar4 = (p) sVar.f18235b;
+        pVar.f18235b = pVar4;
+        if (((p) pVar.f18238f) == null) {
             pVar4.d = pVar;
         }
     }
@@ -32,7 +32,7 @@ public final class a implements nf.a {
 
     @Override
     public final int c(e eVar, e eVar2) {
-        if (eVar.f13229g >= 2 && eVar2.f13229g >= 2) {
+        if (eVar.f13544g >= 2 && eVar2.f13544g >= 2) {
             return 2;
         }
         return 0;

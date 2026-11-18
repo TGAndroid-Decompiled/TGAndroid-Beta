@@ -1,84 +1,80 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.voip.VoIPGroupNotification;
 import org.telegram.tgnet.TLRPC;
 public final class yl implements Runnable {
-    public final int f27787a = 0;
-    public final np f27788b;
-    public final TLObject f27789c;
-    public final long d;
+    public final int f28158a;
+    public final mp f28159b;
+    public final a0.h f28160c;
 
-    public yl(np npVar, long j3, TLObject tLObject) {
-        this.f27788b = npVar;
-        this.d = j3;
-        this.f27789c = tLObject;
+    public yl(mp mpVar, a0.h hVar, int i7) {
+        this.f28158a = i7;
+        this.f28159b = mpVar;
+        this.f28160c = hVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27787a;
-        long j3 = this.d;
-        TLObject tLObject = this.f27789c;
-        np npVar = this.f27788b;
-        switch (i7) {
+        TLRPC.Message message;
+        switch (this.f28158a) {
             case 0:
-                npVar.f25405u0.l(j3);
-                if (tLObject != null) {
-                    TLRPC.TL_messages_peerSettings tL_messages_peerSettings = (TLRPC.TL_messages_peerSettings) tLObject;
-                    TLRPC.PeerSettings peerSettings = tL_messages_peerSettings.settings;
-                    npVar.Y3(tL_messages_peerSettings.users, false);
-                    npVar.S3(tL_messages_peerSettings.chats, false);
-                    npVar.u4(j3, peerSettings);
-                    return;
+                mp mpVar = this.f28159b;
+                a0.h hVar = this.f28160c;
+                xs notificationsController = mpVar.getNotificationsController();
+                notificationsController.getClass();
+                if (hVar.m() != 0) {
+                    for (int i7 = 0; i7 < hVar.m(); i7++) {
+                        ArrayList arrayList = (ArrayList) hVar.n(i7);
+                        if (arrayList != null) {
+                            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                                fj fjVar = (fj) arrayList.get(i10);
+                                if (fjVar != null && (message = fjVar.f23968k) != null) {
+                                    TLRPC.MessageAction messageAction = message.action;
+                                    if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
+                                        TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
+                                        if (tL_messageActionConferenceCall.active || tL_messageActionConferenceCall.missed) {
+                                            VoIPGroupNotification.hide(t0.f26915b, notificationsController.currentAccount, fjVar.e1());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    new ArrayList(0);
+                    xs.f27959l0.c(new rq(16, notificationsController, hVar));
                 }
+                e00 e00Var = mpVar.f25771t7;
+                e00Var.getClass();
+                HashSet hashSet = new HashSet();
+                for (int i11 = 0; i11 < hVar.m(); i11++) {
+                    ArrayList arrayList2 = (ArrayList) hVar.n(i11);
+                    for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                        TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) e00Var.f23626e.f(e00.p(((fj) arrayList2.get(i12)).e1(), -fj.B0(((fj) arrayList2.get(i12)).f23968k)));
+                        if (tL_forumTopic != null) {
+                            tL_forumTopic.topMessage = ((fj) arrayList2.get(i12)).f23968k;
+                            hashSet.add(Long.valueOf(-fj.B0(((fj) arrayList2.get(i12)).f23968k)));
+                        }
+                    }
+                }
+                Iterator it = hashSet.iterator();
+                while (it.hasNext()) {
+                    e00Var.y(((Long) it.next()).longValue(), true);
+                }
+                return;
+            case 1:
+                g0.g3(new yl(this.f28159b, this.f28160c, 0));
                 return;
             default:
-                TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
-                TLRPC.User a22 = npVar.a2(Long.valueOf(npVar.getUserConfig().e()));
-                if (a22 == null) {
-                    a22 = npVar.getUserConfig().f();
-                    npVar.X3(a22, false, false);
-                } else {
-                    npVar.getUserConfig().w(a22);
+                mp mpVar2 = this.f28159b;
+                a0.h hVar2 = this.f28160c;
+                for (int i13 = 0; i13 < hVar2.m(); i13++) {
+                    mpVar2.x5(0, hVar2.j(i13), (ArrayList) hVar2.n(i13));
                 }
-                if (a22 != null) {
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(a22);
-                    npVar.getMessagesStorage().m1(arrayList, null, false, true);
-                    if (tL_photos_photo.photo instanceof TLRPC.TL_photo) {
-                        TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
-                        a22.photo = tL_userProfilePhoto;
-                        tL_userProfilePhoto.has_video = !tL_photos_photo.photo.video_sizes.isEmpty();
-                        TLRPC.UserProfilePhoto userProfilePhoto = a22.photo;
-                        TLRPC.Photo photo = tL_photos_photo.photo;
-                        userProfilePhoto.photo_id = photo.f28075id;
-                        userProfilePhoto.photo_small = w7.w(photo.sizes, 150, false, null, false).location;
-                        a22.photo.photo_big = w7.w(tL_photos_photo.photo.sizes, 800, false, null, false).location;
-                        a22.photo.dc_id = tL_photos_photo.photo.dc_id;
-                    } else {
-                        a22.photo = new TLRPC.TL_userProfilePhotoEmpty();
-                    }
-                    TLRPC.UserFull b22 = npVar.b2(j3);
-                    if (b22 != null) {
-                        b22.profile_photo = tL_photos_photo.photo;
-                        npVar.getMessagesStorage().j2(b22, false);
-                    }
-                    npVar.getUserConfig().f().photo = a22.photo;
-                    npVar.X3(a22, false, false);
-                    npVar.getNotificationCenter().k(46, new Object[0]);
-                    npVar.getNotificationCenter().k(2, Integer.valueOf(np.D8));
-                    npVar.getNotificationCenter().k(2, 2);
-                    npVar.getUserConfig().v(true);
-                    return;
-                }
+                mpVar2.getNotificationCenter().k(3, new Object[0]);
                 return;
         }
-    }
-
-    public yl(np npVar, TLObject tLObject, long j3) {
-        this.f27788b = npVar;
-        this.f27789c = tLObject;
-        this.d = j3;
     }
 }

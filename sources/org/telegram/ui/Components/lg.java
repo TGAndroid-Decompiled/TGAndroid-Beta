@@ -1,285 +1,222 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Typeface;
-import android.os.SystemClock;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-public final class lg extends View {
-    public StaticLayout E;
-    public float F;
-    public TextPaint G;
-    public final float H;
-    public float I;
-    public final ChatActivityEnterView J;
-    public boolean f36779a;
-    public boolean f36780b;
-    public String f36781c;
-    public long d;
-    public long f36782e;
-    public long f36783f;
-    public long h;
-    public long f36784n;
-    public boolean f36785r;
-    public final SpannableStringBuilder f36786s;
-    public final SpannableStringBuilder f36787w;
-    public SpannableStringBuilder f36788x;
-    public StaticLayout f36789y;
+import android.util.SparseArray;
+import android.widget.EditText;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class lg implements Runnable {
+    public final int f37120a;
+    public final Object f37121b;
 
-    public lg(ChatActivityEnterView chatActivityEnterView, Context context) {
-        super(context);
-        this.J = chatActivityEnterView;
-        this.f36786s = new SpannableStringBuilder();
-        this.f36787w = new SpannableStringBuilder();
-        this.f36788x = new SpannableStringBuilder();
-        this.H = org.telegram.messenger.g0.L(15.0f);
-    }
-
-    public final void a(long j3) {
-        this.f36779a = true;
-        long currentTimeMillis = System.currentTimeMillis() - j3;
-        this.d = currentTimeMillis;
-        this.h = j3;
-        this.f36783f = currentTimeMillis;
-        invalidate();
-    }
-
-    public final void b() {
-        if (this.f36779a) {
-            this.f36779a = false;
-            if (this.d > 0) {
-                this.f36782e = System.currentTimeMillis();
-            }
-            invalidate();
-        }
-        this.f36783f = 0L;
-    }
-
-    public float getLeftProperty() {
-        return this.I;
+    public lg(Object obj, int i7) {
+        this.f37120a = i7;
+        this.f37121b = obj;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j3;
-        long j10;
-        SpannableStringBuilder spannableStringBuilder;
-        long min;
-        String str;
-        int threadMessageId;
-        int i7;
-        int i10;
-        TextPaint textPaint = this.G;
-        ChatActivityEnterView chatActivityEnterView = this.J;
-        if (textPaint == null) {
-            TextPaint textPaint2 = new TextPaint(1);
-            this.G = textPaint2;
-            textPaint2.setTextSize(org.telegram.messenger.g0.L(14.0f));
-            this.G.setTypeface(org.telegram.messenger.g0.o());
-            this.G.setFontFeatureSettings("tnum");
-            TextPaint textPaint3 = this.G;
-            int i11 = org.telegram.ui.ActionBar.j6.G6;
-            int i12 = ChatActivityEnterView.N6;
-            textPaint3.setColor(chatActivityEnterView.u0(i11));
-        }
-        long currentTimeMillis = System.currentTimeMillis();
-        if (this.f36779a) {
-            if (this.f36785r) {
-                j3 = this.h;
-            } else {
-                j3 = currentTimeMillis - this.d;
-            }
-        } else {
-            j3 = this.f36782e - this.d;
-        }
-        long j11 = j3 / 1000;
-        int i13 = ((int) (j3 % 1000)) / 10;
-        long j12 = 0;
-        if (chatActivityEnterView.f32178d1 && j3 >= 59500 && !this.f36780b) {
-            chatActivityEnterView.f32235l3 = -1.0f;
-            cg cgVar = chatActivityEnterView.H3;
-            if (chatActivityEnterView.P) {
-                i10 = Integer.MAX_VALUE;
-            } else {
-                i10 = 0;
-            }
-            cgVar.o2(3, 0, i10, chatActivityEnterView.f32251n6, 0L, true);
-            he heVar = chatActivityEnterView.K0;
-            chatActivityEnterView.f32251n6 = 0L;
-            heVar.setEffect(0L);
-            this.f36780b = true;
-        }
-        if (this.f36779a && currentTimeMillis > this.f36783f + 5000) {
-            this.f36783f = currentTimeMillis;
-            org.telegram.messenger.np s12 = org.telegram.messenger.np.s1(chatActivityEnterView.R);
-            long j13 = chatActivityEnterView.f32327y3;
-            threadMessageId = chatActivityEnterView.getThreadMessageId();
-            long j14 = threadMessageId;
-            if (chatActivityEnterView.f32178d1) {
-                i7 = 7;
-            } else {
-                i7 = 1;
-            }
-            s12.D4(i7, 0, j13, j14, null);
-        }
-        long j15 = (int) j11;
-        Typeface typeface = org.telegram.messenger.g0.f23583a;
-        StringBuilder sb2 = new StringBuilder();
-        long j16 = j15 / 60;
-        if (j16 >= 60) {
-            sb2.append(j16 / 60);
-            sb2.append(":");
-            org.telegram.messenger.g0.q2(j16 % 60, sb2);
-            sb2.append(":");
-            org.telegram.messenger.g0.q2(j15 % 60, sb2);
-            sb2.append(",");
-            sb2.append(i13 / 10);
-        } else {
-            sb2.append(j16);
-            sb2.append(":");
-            org.telegram.messenger.g0.q2(j15 % 60, sb2);
-            sb2.append(",");
-            sb2.append(i13 / 10);
-        }
-        String sb3 = sb2.toString();
-        if (sb3.length() >= 3 && (str = this.f36781c) != null && str.length() >= 3 && sb3.length() == this.f36781c.length() && sb3.charAt(sb3.length() - 3) != this.f36781c.charAt(sb3.length() - 3)) {
-            int length = sb3.length();
-            SpannableStringBuilder spannableStringBuilder2 = this.f36786s;
-            spannableStringBuilder2.clear();
-            SpannableStringBuilder spannableStringBuilder3 = this.f36787w;
-            spannableStringBuilder3.clear();
-            this.f36788x.clear();
-            spannableStringBuilder2.append((CharSequence) sb3);
-            spannableStringBuilder3.append((CharSequence) this.f36781c);
-            this.f36788x.append((CharSequence) sb3);
-            int i14 = -1;
-            int i15 = -1;
-            int i16 = 0;
-            int i17 = 0;
-            int i18 = 0;
-            while (true) {
-                j10 = j12;
-                if (i16 >= length - 1) {
-                    break;
+    public final void run() {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
+        int i7 = this.f37120a;
+        Object obj = this.f37121b;
+        switch (i7) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = ((pg) obj).Q0;
+                if (!MediaController.B().K()) {
+                    org.telegram.messenger.mp.g1().edit().putInt("voicepausehint", 3).apply();
                 }
-                if (this.f36781c.charAt(i16) != sb3.charAt(i16)) {
-                    if (i18 == 0) {
-                        i15 = i16;
-                    }
-                    i18++;
-                    if (i17 != 0) {
-                        my myVar = new my(false);
-                        if (i16 == length - 2) {
-                            i17++;
-                        }
-                        int i19 = i17 + i14;
-                        spannableStringBuilder2.setSpan(myVar, i14, i19, 33);
-                        spannableStringBuilder3.setSpan(myVar, i14, i19, 33);
-                        i17 = 0;
-                    }
-                } else {
-                    if (i17 == 0) {
-                        i14 = i16;
-                    }
-                    i17++;
-                    if (i18 != 0) {
-                        this.f36788x.setSpan(new my(false), i15, i18 + i15, 33);
-                        i18 = 0;
-                    }
+                if (chatActivityEnterView.f32596g5) {
+                    chatActivityEnterView.f32717x4 = true;
                 }
-                i16++;
-                j12 = j10;
-            }
-            if (i17 != 0) {
-                my myVar2 = new my(false);
-                int i20 = i17 + i14 + 1;
-                spannableStringBuilder2.setSpan(myVar2, i14, i20, 33);
-                spannableStringBuilder3.setSpan(myVar2, i14, i20, 33);
-            }
-            if (i18 != 0) {
-                this.f36788x.setSpan(new my(false), i15, i18 + i15, 33);
-            }
-            TextPaint textPaint4 = this.G;
-            int measuredWidth = getMeasuredWidth();
-            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            this.f36789y = new StaticLayout(spannableStringBuilder2, textPaint4, measuredWidth, alignment, 1.0f, 0.0f, false);
-            this.E = new StaticLayout(spannableStringBuilder3, this.G, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
-            this.F = 1.0f;
-        } else {
-            j10 = 0;
-            if (this.f36788x == null) {
-                this.f36788x = new SpannableStringBuilder(sb3);
-            }
-            if (this.f36788x.length() != 0 && this.f36788x.length() == sb3.length()) {
-                this.f36788x.replace(spannableStringBuilder.length() - 1, this.f36788x.length(), (CharSequence) sb3, (sb3.length() - 1) - (sb3.length() - this.f36788x.length()), sb3.length());
-            } else {
-                this.f36788x.clear();
-                this.f36788x.append((CharSequence) sb3);
-            }
+                MediaController.B().D0(chatActivityEnterView.P);
+                chatActivityEnterView.N3.a1(0);
+                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.Y1;
+                if (slideTextView != null) {
+                    slideTextView.setEnabled(false);
+                    return;
+                }
+                return;
+            case 1:
+                lc lcVar = (lc) obj;
+                new ug.z0(42, lcVar.X(), lcVar.f37093c).show();
+                return;
+            case 2:
+                a5 a5Var = (a5) obj;
+                a5Var.requestFocus();
+                org.telegram.messenger.g0.I3(a5Var);
+                return;
+            case 3:
+                org.telegram.messenger.g0.I3((EditText) obj);
+                return;
+            case 4:
+                SparseArray sparseArray = o5.f37962r;
+                ((o5) obj).u();
+                return;
+            case 5:
+                k5 k5Var = (k5) obj;
+                ArrayList arrayList = new ArrayList(k5Var.f36680c);
+                k5Var.f36680c.clear();
+                org.telegram.messenger.tr.a0(k5Var.f36681e).f27054a.c(new h5(k5Var, arrayList, 0));
+                k5Var.d = null;
+                return;
+            case 6:
+                ((m5) obj).invalidate();
+                return;
+            case 7:
+                ((r1.g) obj).h();
+                return;
+            case 8:
+                n6 n6Var = (n6) obj;
+                CharSequence charSequence = n6Var.f37739f;
+                if (charSequence != null) {
+                    n6Var.c(charSequence, n6Var.h, true);
+                    n6Var.f37739f = null;
+                    n6Var.h = false;
+                    return;
+                }
+                return;
+            case 9:
+                ((f8) obj).f35022n.f35408s1.setVisibility(8);
+                return;
+            case 10:
+                ((k8) ((org.telegram.messenger.pe) obj).d).d1();
+                return;
+            case 11:
+                aa aaVar = (aa) obj;
+                aaVar.f33313o = true;
+                aaVar.d.invalidate();
+                return;
+            case 12:
+                z9 z9Var = (z9) obj;
+                if (!z9Var.f42825a) {
+                    aa aaVar2 = z9Var.d;
+                    Bitmap[] bitmapArr = aaVar2.f33306g;
+                    Canvas[] canvasArr = aaVar2.h;
+                    aaVar2.f33306g = aaVar2.f33305f;
+                    aaVar2.h = aaVar2.f33307i;
+                    aaVar2.f33305f = bitmapArr;
+                    aaVar2.f33307i = canvasArr;
+                    aaVar2.f33309k = false;
+                    hi.m5 m5Var = aaVar2.d;
+                    if (m5Var != null) {
+                        m5Var.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 13:
+                ca caVar = ((ha) obj).f35843t;
+                if (caVar != null) {
+                    caVar.d();
+                    return;
+                }
+                return;
+            case 14:
+                ca caVar2 = (ca) obj;
+                caVar2.f33953o = (Bitmap) caVar2.f33952n.f13734c;
+                caVar2.d();
+                return;
+            case 15:
+                gc gcVar = ((ab) obj).f33324b;
+                lb lbVar = gcVar.f35457e;
+                lbVar.transitionRunningEnter = false;
+                lbVar.onEnterTransitionEnd();
+                if (gcVar.f35472u) {
+                    gcVar.i(true);
+                    return;
+                }
+                return;
+            case 16:
+                wc wcVar = (wc) obj;
+                wcVar.getClass();
+                if (org.telegram.messenger.pc.e(512)) {
+                    wcVar.invalidateSelf();
+                    return;
+                }
+                return;
+            case 17:
+                yc ycVar = (yc) obj;
+                if (ycVar.f42463o1) {
+                    ycVar.f42463o1 = false;
+                    ycVar.invalidate();
+                    return;
+                }
+                return;
+            case 18:
+                int i10 = ChatActivityEnterView.f32538n7;
+                ((hd) obj).a(Boolean.FALSE, 0, 0);
+                return;
+            case 19:
+                int i11 = ChatActivityEnterView.f32538n7;
+                org.telegram.messenger.g0.O3((Activity) obj);
+                return;
+            case 20:
+                ((Dialog) obj).dismiss();
+                return;
+            case 21:
+                ChatActivityEnterView chatActivityEnterView2 = ((jf) obj).f36427f;
+                int i12 = ChatActivityEnterView.f32538n7;
+                chatActivityEnterView2.Q1();
+                return;
+            case 22:
+                org.telegram.messenger.g0.E2((ji.n) obj);
+                return;
+            case 23:
+                ((yg) obj).f42486s = null;
+                return;
+            case 24:
+                ((fi) obj).f35104l0.f39741y3.f();
+                return;
+            case 25:
+                kk kkVar = (kk) ((androidx.mediarouter.app.f) obj).f2667b;
+                try {
+                    File file = kkVar.P;
+                    if (file == null) {
+                        kkVar.T();
+                    } else {
+                        kkVar.S(file);
+                    }
+                    kkVar.a0();
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return;
+                }
+            case 26:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ((am) obj).f33364b;
+                boolean z10 = ChatAttachAlertPhotoLayout.f32762r1;
+                chatAttachAlertPhotoLayout2.s0(-1, true);
+                return;
+            case 27:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = ((yl) obj).f42518c;
+                em emVar = chatAttachAlertPhotoLayout3.Q;
+                if (emVar != null && !chatAttachAlertPhotoLayout3.f36766b.J) {
+                    emVar.setSystemUiVisibility(1028);
+                    return;
+                }
+                return;
+            case 28:
+                pm pmVar = (pm) obj;
+                si siVar = pmVar.f36766b;
+                if (pmVar.R && (chatAttachAlertPhotoLayout = siVar.f39670e2) != null) {
+                    org.telegram.ui.ActionBar.z0 z0Var = chatAttachAlertPhotoLayout.f32774d1;
+                    z0Var.setIcon(2131231240);
+                    z0Var.setText(org.telegram.messenger.gd.M0(2131753754, null));
+                    z0Var.setRightIcon(0);
+                    return;
+                }
+                return;
+            default:
+                rn rnVar = (rn) obj;
+                rnVar.f39230m1 = -1;
+                rnVar.l1 = null;
+                return;
         }
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j17 = this.f36784n;
-        if (j17 == j10) {
-            min = 16;
-        } else {
-            min = Math.min(50L, elapsedRealtime - j17);
-        }
-        this.f36784n = elapsedRealtime;
-        float f10 = this.F;
-        if (f10 != 0.0f) {
-            float f11 = f10 - (((float) min) / 116.0f);
-            this.F = f11;
-            if (f11 < 0.0f) {
-                this.F = 0.0f;
-            }
-        }
-        float measuredHeight = getMeasuredHeight() / 2;
-        if (this.F == 0.0f) {
-            this.f36788x.clearSpans();
-            StaticLayout staticLayout = new StaticLayout(this.f36788x, this.G, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            canvas.save();
-            org.telegram.messenger.i20.j(staticLayout.getHeight(), 2.0f, measuredHeight, 0.0f, canvas);
-            staticLayout.draw(canvas);
-            canvas.restore();
-            this.I = staticLayout.getLineWidth(0) + 0.0f;
-        } else {
-            StaticLayout staticLayout2 = this.f36789y;
-            float f12 = this.H;
-            if (staticLayout2 != null) {
-                canvas.save();
-                this.G.setAlpha((int) ((1.0f - this.F) * 255.0f));
-                canvas.translate(0.0f, (measuredHeight - (this.f36789y.getHeight() / 2.0f)) - (this.F * f12));
-                this.f36789y.draw(canvas);
-                canvas.restore();
-            }
-            if (this.E != null) {
-                canvas.save();
-                this.G.setAlpha((int) (this.F * 255.0f));
-                canvas.translate(0.0f, com.google.android.gms.internal.vision.e2.z(1.0f, this.F, f12, measuredHeight - (this.E.getHeight() / 2.0f)));
-                this.E.draw(canvas);
-                canvas.restore();
-            }
-            canvas.save();
-            this.G.setAlpha(255);
-            StaticLayout staticLayout3 = new StaticLayout(this.f36788x, this.G, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            org.telegram.messenger.i20.j(staticLayout3.getHeight(), 2.0f, measuredHeight, 0.0f, canvas);
-            staticLayout3.draw(canvas);
-            canvas.restore();
-            this.I = staticLayout3.getLineWidth(0) + 0.0f;
-        }
-        this.f36781c = sb3;
-        if ((this.f36779a || this.F != 0.0f) && !this.f36785r) {
-            invalidate();
-        }
-    }
-
-    public void setExternalFrameClock(boolean z10) {
-        this.f36785r = z10;
-        this.f36784n = SystemClock.elapsedRealtime();
-        invalidate();
     }
 }

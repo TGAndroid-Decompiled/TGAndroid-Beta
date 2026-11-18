@@ -1,55 +1,33 @@
 package org.telegram.messenger;
+public final class nk implements Runnable {
+    public final int f25937a;
+    public final boolean[] f25938b;
+    public final Runnable[] f25939c;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class nk implements RequestDelegate {
-    public final int f25209a;
-    public final np f25210b;
-    public final long f25211c;
-    public final long d;
-
-    public nk(int i7, long j3, long j10, np npVar) {
-        this.f25209a = i7;
-        this.f25210b = npVar;
-        this.f25211c = j3;
-        this.d = j10;
+    public nk(boolean[] zArr, Runnable[] runnableArr, int i7) {
+        this.f25937a = i7;
+        this.f25938b = zArr;
+        this.f25939c = runnableArr;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f25209a) {
+    public final void run() {
+        switch (this.f25937a) {
             case 0:
-                np npVar = this.f25210b;
-                npVar.getClass();
-                if (tL_error == null) {
-                    TLRPC.TL_messages_affectedMessages tL_messages_affectedMessages = (TLRPC.TL_messages_affectedMessages) tLObject;
-                    npVar.L3(tL_messages_affectedMessages.pts, tL_messages_affectedMessages.pts_count, this.f25211c);
-                }
-                long j3 = this.d;
-                if (j3 != 0) {
-                    npVar.getMessagesStorage().q1(j3);
+                this.f25938b[0] = true;
+                Runnable runnable = this.f25939c[0];
+                if (runnable != null) {
+                    runnable.run();
                     return;
                 }
                 return;
             default:
-                np npVar2 = this.f25210b;
-                if (tLObject != null) {
-                    TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
-                    if (!tL_messages_peerDialogs.dialogs.isEmpty()) {
-                        TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
-                        tL_messages_dialogs.dialogs.addAll(tL_messages_peerDialogs.dialogs);
-                        tL_messages_dialogs.messages.addAll(tL_messages_peerDialogs.messages);
-                        tL_messages_dialogs.users.addAll(tL_messages_peerDialogs.users);
-                        tL_messages_dialogs.chats.addAll(tL_messages_peerDialogs.chats);
-                        npVar2.J3(tL_messages_dialogs, null, null, ((TLRPC.TL_dialog) tL_messages_peerDialogs.dialogs.get(0)).folder_id, 0, 1, npVar2.Q7, false, false, false);
-                    }
+                this.f25938b[0] = true;
+                Runnable runnable2 = this.f25939c[0];
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
                 }
-                long j10 = this.f25211c;
-                if (j10 != 0) {
-                    npVar2.getMessagesStorage().q1(j10);
-                }
-                npVar2.f25258d1.e(this.d);
                 return;
         }
     }

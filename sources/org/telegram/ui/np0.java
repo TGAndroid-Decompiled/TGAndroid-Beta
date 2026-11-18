@@ -1,57 +1,20 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class np0 extends AnimatorListenerAdapter {
-    public final int f49591a;
-    public final op0 f49592b;
+import android.media.MediaFormat;
+public final class np0 implements d3.v {
+    public final PhotoViewer f50278a;
 
-    public np0(op0 op0Var, int i7) {
-        this.f49592b = op0Var;
-        this.f49591a = i7;
+    public np0(PhotoViewer photoViewer) {
+        this.f50278a = photoViewer;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        if (this.f49592b.f50021b.f42813k8) {
-            PhotoViewer photoViewer = this.f49592b.f50021b;
-            if (photoViewer.f42877s1) {
-                photoViewer.A3();
-            }
+    public final void a(long j3, long j10, e2.u uVar, MediaFormat mediaFormat) {
+        org.telegram.ui.Components.f61 f61Var;
+        PhotoViewer photoViewer = this.f50278a;
+        if (!photoViewer.J4 || (f61Var = photoViewer.G2) == null) {
+            return;
         }
-        if (this.f49591a == 3) {
-            PhotoViewer photoViewer2 = this.f49592b.f50021b;
-            photoViewer2.E2(photoViewer2.P4, false, true, true);
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        int i7;
-        PhotoViewer photoViewer = this.f49592b.f50021b;
-        photoViewer.Q0.setVisibility(0);
-        if (photoViewer.D3()) {
-            photoViewer.f42839o0.setVisibility(0);
-        } else {
-            photoViewer.T0.setVisibility(0);
-        }
-        photoViewer.G.setVisibility(0);
-        if (photoViewer.f42799j2) {
-            kq0 kq0Var = photoViewer.R1;
-            if (kq0Var.getTag() != null) {
-                i7 = 0;
-            } else {
-                i7 = 4;
-            }
-            kq0Var.setVisibility(i7);
-        }
-        if (!photoViewer.f42755e2 && !photoViewer.f42765f2) {
-            int i10 = photoViewer.d2;
-            if ((i10 == 0 || i10 == 4 || ((i10 == 2 || i10 == 5) && photoViewer.f42779g7.size() > 1)) && !photoViewer.f42767f4) {
-                photoViewer.O0.setVisibility(0);
-                photoViewer.P0.setVisibility(0);
-                photoViewer.q3();
-            }
-        }
+        org.telegram.messenger.g0.g3(new ve0(24, this, f61Var));
     }
 }

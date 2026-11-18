@@ -1,64 +1,64 @@
 package p4;
 
-import a8.ja;
+import a8.la;
 import android.os.Bundle;
-import android.os.SystemClock;
+import j$.util.Objects;
 public final class m1 {
-    public static final String f54798e;
-    public static final String f54799f;
-    public static final String f54800g;
-    public static final String h;
-    public final int f54801a;
-    public final Bundle f54802b;
-    public final long f54803c;
-    public final k1 d;
+    public static final String d;
+    public static final String f55343e;
+    public static final String f55344f;
+    public final int f55345a;
+    public final String f55346b;
+    public final Bundle f55347c;
 
     static {
-        String str = h2.l0.f13471a;
-        f54798e = Integer.toString(0, 36);
-        f54799f = Integer.toString(1, 36);
-        f54800g = Integer.toString(2, 36);
-        h = Integer.toString(3, 36);
+        String str = h2.l0.f13786a;
+        d = Integer.toString(0, 36);
+        f55343e = Integer.toString(1, 36);
+        f55344f = Integer.toString(2, 36);
     }
 
     public m1(int i7) {
-        this(i7, Bundle.EMPTY, SystemClock.elapsedRealtime(), null);
+        this("no error message provided", i7, Bundle.EMPTY);
     }
 
-    public static m1 a(Bundle bundle) {
-        k1 k1Var;
-        int i7 = bundle.getInt(f54798e, -1);
-        Bundle o4 = h2.l0.o(bundle.getBundle(f54799f));
-        long j3 = bundle.getLong(f54800g, SystemClock.elapsedRealtime());
-        Bundle bundle2 = bundle.getBundle(h);
-        if (bundle2 != null) {
-            int i10 = bundle2.getInt(k1.d, 1000);
-            String string = bundle2.getString(k1.f54756e, "");
-            Bundle o10 = h2.l0.o(bundle2.getBundle(k1.f54757f));
-            if (o10 == null) {
-                o10 = Bundle.EMPTY;
-            }
-            k1Var = new k1(string, i10, o10);
-        } else if (i7 != 0) {
-            k1Var = new k1(i7);
-        } else {
-            k1Var = null;
+    public final Bundle a() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(d, this.f55345a);
+        bundle.putString(f55343e, this.f55346b);
+        Bundle bundle2 = this.f55347c;
+        if (!bundle2.isEmpty()) {
+            bundle.putBundle(f55344f, bundle2);
         }
-        k1 k1Var2 = k1Var;
-        if (o4 == null) {
-            o4 = Bundle.EMPTY;
-        }
-        return new m1(i7, o4, j3, k1Var2);
+        return bundle;
     }
 
-    public m1(int i7, Bundle bundle, long j3, k1 k1Var) {
-        ja.f(k1Var == null || i7 < 0);
-        this.f54801a = i7;
-        this.f54802b = new Bundle(bundle);
-        this.f54803c = j3;
-        if (k1Var == null && i7 < 0) {
-            k1Var = new k1(i7);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        this.d = k1Var;
+        if (!(obj instanceof m1)) {
+            return false;
+        }
+        m1 m1Var = (m1) obj;
+        if (this.f55345a == m1Var.f55345a && Objects.equals(this.f55346b, m1Var.f55346b)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f55345a), this.f55346b);
+    }
+
+    public m1(String str, int i7, Bundle bundle) {
+        boolean z10 = true;
+        if (i7 >= 0 && i7 != 1) {
+            z10 = false;
+        }
+        la.f(z10);
+        this.f55345a = i7;
+        this.f55346b = str;
+        this.f55347c = bundle;
     }
 }

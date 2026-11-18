@@ -5,10 +5,11 @@ import android.os.Build;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.PopupWindow;
+import hi.u5;
 import java.lang.reflect.Method;
 public final class j2 extends d2 implements e2 {
     public static final Method U;
-    public ia.d T;
+    public u5 T;
 
     static {
         try {
@@ -21,25 +22,25 @@ public final class j2 extends d2 implements e2 {
     }
 
     @Override
-    public final void j(l.k kVar, MenuItem menuItem) {
-        ia.d dVar = this.T;
-        if (dVar != null) {
-            dVar.j(kVar, menuItem);
+    public final void h(l.k kVar, MenuItem menuItem) {
+        u5 u5Var = this.T;
+        if (u5Var != null) {
+            u5Var.h(kVar, menuItem);
         }
     }
 
     @Override
-    public final r1 p(Context context, boolean z10) {
+    public final void n(l.k kVar, l.m mVar) {
+        u5 u5Var = this.T;
+        if (u5Var != null) {
+            u5Var.n(kVar, mVar);
+        }
+    }
+
+    @Override
+    public final r1 q(Context context, boolean z10) {
         i2 i2Var = new i2(context, z10);
         i2Var.setHoverListener(this);
         return i2Var;
-    }
-
-    @Override
-    public final void q(l.k kVar, l.m mVar) {
-        ia.d dVar = this.T;
-        if (dVar != null) {
-            dVar.q(kVar, mVar);
-        }
     }
 }

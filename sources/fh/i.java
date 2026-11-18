@@ -2,23 +2,23 @@ package fh;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;
-import hi.z2;
+import hi.a3;
 public final class i extends LruCache {
-    public final int f11363a;
+    public final int f11683a;
 
     public i(int i7, int i10) {
         super(i7);
-        this.f11363a = i10;
+        this.f11683a = i10;
     }
 
     @Override
     public void entryRemoved(boolean z10, Object obj, Object obj2, Object obj3) {
-        switch (this.f11363a) {
+        switch (this.f11683a) {
             case 1:
                 String str = (String) obj;
                 Bitmap bitmap = (Bitmap) obj2;
                 Bitmap bitmap2 = (Bitmap) obj3;
-                if (!bitmap.isRecycled() && !z2.f15481f0.containsKey(str)) {
+                if (!bitmap.isRecycled() && !a3.f14214f0.containsKey(str)) {
                     bitmap.recycle();
                     return;
                 }
@@ -31,7 +31,7 @@ public final class i extends LruCache {
 
     @Override
     public int sizeOf(Object obj, Object obj2) {
-        switch (this.f11363a) {
+        switch (this.f11683a) {
             case 0:
                 Long l10 = (Long) obj;
                 return ((j) obj2).d;

@@ -5,73 +5,73 @@ import android.view.View;
 import android.widget.PopupWindow;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.g1;
-import org.telegram.ui.Components.hk;
-import org.telegram.ui.Components.s;
+import org.telegram.ui.ActionBar.h1;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.b0;
+import org.telegram.ui.Components.ok;
 public abstract class a {
-    public boolean f17663a;
-    public Object f17664b;
+    public boolean f18058a;
+    public Object f18059b;
 
-    public a(Context context, e6 e6Var, boolean z10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232566, z10 ? 1 : 0, context, e6Var);
+    public a(Context context, i6 i6Var, boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232567, z10 ? 1 : 0, context, i6Var);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new hk(this, 1));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new s(this, 27));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new ok(this, 1));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new b0(this, 26));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
-        k(actionBarPopupWindow$ActionBarPopupWindowLayout);
-        g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f17664b = g1Var;
-        g1Var.f28553b = false;
-        g1Var.setAnimationStyle(2131755193);
-        g1Var.setOutsideTouchable(true);
-        g1Var.setClippingEnabled(true);
-        g1Var.setInputMethodMode(2);
-        g1Var.setSoftInputMode(0);
-        g1Var.getContentView().setFocusableInTouchMode(true);
+        l(actionBarPopupWindow$ActionBarPopupWindowLayout);
+        h1 h1Var = new h1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f18059b = h1Var;
+        h1Var.f28991b = false;
+        h1Var.setAnimationStyle(2131755193);
+        h1Var.setOutsideTouchable(true);
+        h1Var.setClippingEnabled(true);
+        h1Var.setInputMethodMode(2);
+        h1Var.setSoftInputMode(0);
+        h1Var.getContentView().setFocusableInTouchMode(true);
         if (g0.C1()) {
-            g1Var.setFocusable(true);
+            h1Var.setFocusable(true);
         }
-        g1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        h1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public final void onDismiss() {
                 k.a aVar = k.a.this;
-                aVar.l();
-                aVar.f17663a = false;
+                aVar.m();
+                aVar.f18058a = false;
             }
         });
     }
 
     public void a() {
-        g1 g1Var = (g1) this.f17664b;
-        if (g1Var != null) {
-            g1Var.dismiss();
+        h1 h1Var = (h1) this.f18059b;
+        if (h1Var != null) {
+            h1Var.dismiss();
         }
     }
 
-    public abstract void b();
+    public abstract void c();
 
-    public abstract View c();
+    public abstract View d();
 
-    public abstract l.k d();
+    public abstract l.k e();
 
-    public abstract h e();
-
-    public abstract CharSequence f();
+    public abstract h f();
 
     public abstract CharSequence g();
 
-    public abstract void h();
+    public abstract CharSequence i();
 
-    public abstract boolean j();
+    public abstract void j();
 
-    public abstract void k(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
+    public abstract boolean k();
 
-    public abstract void l();
+    public abstract void l(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
 
-    public abstract void m(View view);
+    public abstract void m();
 
-    public abstract void n(int i7);
+    public abstract void n(View view);
+
+    public abstract void o(int i7);
 
     public abstract void p(CharSequence charSequence);
 

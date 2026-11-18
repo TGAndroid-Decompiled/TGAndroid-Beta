@@ -1,8 +1,8 @@
 package d3;
 public final class g {
-    public f f7404a;
-    public f f7405b;
-    public boolean f7406c;
+    public f f7687a;
+    public f f7688b;
+    public boolean f7689c;
     public long d;
-    public int f7407e;
+    public int f7690e;
 }

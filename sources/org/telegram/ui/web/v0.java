@@ -1,6 +1,5 @@
 package org.telegram.ui.web;
 
-import a8.p9;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -30,12 +29,10 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import bi.f4;
-import c8.ja;
-import c8.sa;
-import di.a3;
-import fi.i7;
-import fi.v3;
+import c8.ma;
+import c8.va;
+import fi.f7;
+import fi.t3;
 import j$.util.Objects;
 import java.io.File;
 import java.net.HttpURLConnection;
@@ -47,48 +44,48 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import ki.k4;
-import ki.x2;
-import ki.x3;
+import ki.f4;
+import ki.s3;
+import ki.t2;
 import org.chromium.support_lib_boundary.ScriptHandlerBoundaryInterface;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.gc;
-import org.telegram.messenger.gz;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.is;
-import org.telegram.messenger.k5;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.m5;
-import org.telegram.messenger.np;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.pz;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.qz;
-import org.telegram.messenger.si;
-import org.telegram.messenger.w10;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.f3;
+import org.telegram.messenger.fc;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.lz;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.mz;
+import org.telegram.messenger.n5;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.e2;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.h2;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.ActionBar.u2;
-import org.telegram.ui.ActionBar.z5;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.x2;
 import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Cells.y8;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.fq;
-import org.telegram.ui.Components.i9;
-import org.telegram.ui.Components.lv0;
-import org.telegram.ui.Components.t8;
+import org.telegram.ui.Cells.z8;
+import org.telegram.ui.Components.b9;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.mq;
+import org.telegram.ui.Components.q9;
+import org.telegram.ui.Components.sv0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.g71;
-import org.telegram.ui.o9;
-import org.telegram.ui.ok0;
-public abstract class v0 extends FrameLayout implements is, z5 {
+import org.telegram.ui.jg0;
+import org.telegram.ui.k71;
+import org.telegram.ui.p9;
+public abstract class v0 extends FrameLayout implements fs, c6 {
     public static boolean R0 = true;
     public static int S0;
     public static HashMap T0;
@@ -101,7 +98,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public int F;
     public boolean F0;
     public String G;
-    public k4 G0;
+    public f4 G0;
     public String H;
     public String H0;
     public int I;
@@ -109,7 +106,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public int J;
     public int J0;
     public String K;
-    public i7 K0;
+    public f7 K0;
     public String L;
     public final q L0;
     public String M;
@@ -121,67 +118,67 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public boolean P;
     public final int P0;
     public long Q;
-    public w10 Q0;
+    public u10 Q0;
     public long R;
     public boolean S;
     public boolean T;
     public boolean U;
     public TLRPC.User V;
-    public lv0 W;
-    public s0 f52814a;
-    public Activity f52815a0;
-    public String f52816b;
-    public boolean f52817b0;
-    public c0 f52818c;
-    public String f52819c0;
+    public sv0 W;
+    public s0 f53343a;
+    public Activity f53344a0;
+    public String f53345b;
+    public boolean f53346b0;
+    public c0 f53347c;
+    public String f53348c0;
     public u0 d;
-    public org.telegram.ui.ActionBar.t1 f52820d0;
-    public final e6 f52821e;
-    public int f52822e0;
-    public final TextView f52823f;
-    public long f52824f0;
-    public long f52825g0;
+    public org.telegram.ui.ActionBar.u1 f53349d0;
+    public final i6 f53350e;
+    public int f53351e0;
+    public final TextView f53352f;
+    public long f53353f0;
+    public long f53354g0;
     public boolean h;
-    public o9 f52826h0;
-    public boolean f52827i0;
-    public String f52828j0;
-    public ki.r f52829k0;
-    public ki.s0 f52830l0;
-    public ki.i0 m0;
-    public final org.telegram.ui.Components.voip.n f52831n;
-    public ki.n1 f52832n0;
-    public ki.n1 f52833o0;
-    public final boolean f52834p0;
-    public int f52835q0;
-    public pz f52836r;
-    public boolean f52837r0;
-    public final v3 f52838s;
-    public BotWebViewContainer$BotWebViewProxy f52839s0;
-    public long f52840t0;
-    public boolean f52841u0;
-    public BotWebViewContainer$WebViewProxy f52842v0;
-    public boolean f52843w;
-    public s0 f52844w0;
-    public q0.a f52845x;
-    public int f52846x0;
-    public ValueCallback f52847y;
-    public boolean f52848y0;
-    public boolean f52849z0;
+    public p9 f53355h0;
+    public boolean f53356i0;
+    public String f53357j0;
+    public ki.q f53358k0;
+    public ki.s0 f53359l0;
+    public ki.h0 m0;
+    public final org.telegram.ui.Components.voip.n f53360n;
+    public ki.l1 f53361n0;
+    public ki.l1 f53362o0;
+    public final boolean f53363p0;
+    public int f53364q0;
+    public lz f53365r;
+    public boolean f53366r0;
+    public final t3 f53367s;
+    public BotWebViewContainer$BotWebViewProxy f53368s0;
+    public long f53369t0;
+    public boolean f53370u0;
+    public BotWebViewContainer$WebViewProxy f53371v0;
+    public boolean f53372w;
+    public s0 f53373w0;
+    public q0.a f53374x;
+    public int f53375x0;
+    public ValueCallback f53376y;
+    public boolean f53377y0;
+    public boolean f53378z0;
 
-    public v0(int i7, Context context, e6 e6Var, boolean z10) {
+    public v0(int i7, Context context, i6 i6Var, boolean z10) {
         super(context);
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
-        this.f52831n = nVar;
-        int i10 = j6.Fi;
+        this.f53360n = nVar;
+        int i10 = n6.Fi;
         this.E = j(i10);
-        int i11 = j6.Ji;
+        int i11 = n6.Ji;
         this.F = j(i11);
         this.G = "";
         this.I = j(i10);
         this.J = j(i11);
         this.K = "";
         this.L = "";
-        this.N = m10.f24940t0;
+        this.N = j10.f24773t0;
         this.B0 = -1;
         this.I0 = new Rect(0, 0, 0, 0);
         this.J0 = 0;
@@ -191,31 +188,31 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         int i12 = S0;
         S0 = i12 + 1;
         this.P0 = i12;
-        this.f52834p0 = z10;
-        this.f52821e = e6Var;
+        this.f53363p0 = z10;
+        this.f53350e = i6Var;
         g("created new webview container");
         if (context instanceof Activity) {
-            this.f52815a0 = (Activity) context;
+            this.f53344a0 = (Activity) context;
         }
-        nVar.f40802k = false;
+        nVar.f41054k = false;
         nVar.b(i7, 153);
-        v3 v3Var = new v3(this, context);
-        this.f52838s = v3Var;
-        int j3 = j(j6.Bj);
-        this.f52835q0 = j3;
-        v3Var.setColorFilter(new PorterDuffColorFilter(j3, PorterDuff.Mode.SRC_IN));
-        v3Var.getImageReceiver().S0 = true;
-        addView(v3Var, ja.e(-1, -2, 48));
+        t3 t3Var = new t3(this, context);
+        this.f53367s = t3Var;
+        int j3 = j(n6.Bj);
+        this.f53364q0 = j3;
+        t3Var.setColorFilter(new PorterDuffColorFilter(j3, PorterDuff.Mode.SRC_IN));
+        t3Var.getImageReceiver().S0 = true;
+        addView(t3Var, ma.e(-1, -2, 48));
         TextView textView = new TextView(context);
-        this.f52823f = textView;
-        textView.setText(hd.M0(2131752913, null));
-        q6.U(textView, j6.f29241y6, e6Var);
+        this.f53352f = textView;
+        textView.setText(gd.M0(2131752902, null));
+        u6.U(textView, n6.f29788y6, i6Var);
         textView.setTextSize(1, 15.0f);
         textView.setGravity(17);
         textView.setVisibility(8);
         int L = org.telegram.messenger.g0.L(16.0f);
         textView.setPadding(L, L, L, L);
-        addView(textView, ja.e(-1, -2, 17));
+        addView(textView, ma.e(-1, -2, 17));
         setFocusable(false);
     }
 
@@ -285,7 +282,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             sb2.append(split[i7].replaceAll("\\-", "-h"));
         }
         sb2.append(".");
-        sb2.append(np.s1(m10.f24940t0).V5);
+        sb2.append(mp.u1(j10.f24773t0).X5);
         return sb2.toString();
     }
 
@@ -293,8 +290,8 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         v0Var.getClass();
         for (String str : strArr) {
             if (v0Var.getContext().checkSelfPermission(str) != 0) {
-                v0Var.W = new lv0(v0Var, aVar, strArr, 7);
-                Activity activity = v0Var.f52815a0;
+                v0Var.W = new sv0(v0Var, aVar, strArr, 10);
+                Activity activity = v0Var.f53344a0;
                 if (activity != null) {
                     activity.requestPermissions(strArr, 4000);
                     return;
@@ -365,9 +362,9 @@ public abstract class v0 extends FrameLayout implements is, z5 {
 
     private void setupFlickerParams(boolean z10) {
         int i7;
-        this.f52843w = z10;
-        v3 v3Var = this.f52838s;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) v3Var.getLayoutParams();
+        this.f53372w = z10;
+        t3 t3Var = this.f53367s;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) t3Var.getLayoutParams();
         if (z10) {
             i7 = 17;
         } else {
@@ -382,7 +379,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             layoutParams.width = -1;
             layoutParams.height = -2;
         }
-        v3Var.requestLayout();
+        t3Var.requestLayout();
     }
 
     private void setupWebView(s0 s0Var) {
@@ -396,7 +393,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         }
         String K0 = org.telegram.messenger.g0.K0(str, false);
         if (K0 != null) {
-            if (K0.endsWith("." + np.s1(m10.f24940t0).V5) && (str2 = (String) T0.get(K0)) != null) {
+            if (K0.endsWith("." + mp.u1(j10.f24773t0).X5) && (str2 = (String) T0.get(K0)) != null) {
                 return vf.c.w(Uri.parse(str), "tonsite", null, str2, null);
             }
             return str;
@@ -404,23 +401,23 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         return str;
     }
 
-    public static void w(int i7, s0 s0Var, i7 i7Var, String str, JSONObject jSONObject) {
+    public static void w(int i7, s0 s0Var, f7 f7Var, String str, JSONObject jSONObject) {
         if (s0Var == null) {
             return;
         }
-        ns.f(i7).d(new ok0(s0Var, i7Var, str, jSONObject, 24));
+        ks.f(i7).d(new jg0(s0Var, f7Var, str, jSONObject, 27));
     }
 
     public final boolean D() {
-        if (this.f52814a != null && this.S) {
+        if (this.f53343a != null && this.S) {
             y("back_button_pressed", null);
             return true;
         }
         return false;
     }
 
-    public final void F(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy r57, final fi.i7 r58, java.lang.String r59, java.lang.String r60) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.v0.F(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy, fi.i7, java.lang.String, java.lang.String):void");
+    public final void F(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy r57, final fi.f7 r58, java.lang.String r59, java.lang.String r60) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.v0.F(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy, fi.f7, java.lang.String, java.lang.String):void");
     }
 
     public final void G(String str, String str2, boolean z10) {
@@ -430,8 +427,8 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             jSONObject.put("status", str2);
             y("invoice_closed", jSONObject);
             a8.b("invoice_closed " + jSONObject);
-            if (!z10 && Objects.equals(this.f52819c0, str)) {
-                this.f52819c0 = null;
+            if (!z10 && Objects.equals(this.f53348c0, str)) {
+                this.f53348c0 = null;
             }
         } catch (JSONException e10) {
             a8.g(e10, true);
@@ -444,7 +441,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         }
         this.Q = 0L;
         boolean[] zArr = {false};
-        if (vf.c.g(uri, false, zArr) && !zArr[0] && this.f52818c != null) {
+        if (vf.c.g(uri, false, zArr) && !zArr[0] && this.f53347c != null) {
             setKeyboardFocusable(false);
         }
         vf.c.s(getContext(), uri, true, z10, false, null, str, false, true, z12, false);
@@ -455,22 +452,22 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void M() {
         g("preserveWebView");
         this.C0 = true;
-        if (this.f52834p0) {
+        if (this.f53363p0) {
             y("visibility_changed", A(Boolean.FALSE, "is_visible"));
-            this.f52840t0++;
+            this.f53369t0++;
         }
-        s0 s0Var = this.f52814a;
+        s0 s0Var = this.f53343a;
         if (s0Var != null) {
             s0Var.f(null, null);
-            this.f52814a.setCloseListener(null);
+            this.f53343a.setCloseListener(null);
         }
-        BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = this.f52839s0;
+        BotWebViewContainer$BotWebViewProxy botWebViewContainer$BotWebViewProxy = this.f53368s0;
         if (botWebViewContainer$BotWebViewProxy != null) {
-            botWebViewContainer$BotWebViewProxy.f52561a = null;
+            botWebViewContainer$BotWebViewProxy.f53092a = null;
         }
-        BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f52842v0;
+        BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f53371v0;
         if (botWebViewContainer$WebViewProxy != null) {
-            botWebViewContainer$WebViewProxy.f52562a = null;
+            botWebViewContainer$WebViewProxy.f53093a = null;
         }
     }
 
@@ -478,10 +475,10 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         String str2;
         this.N = i7;
         this.C0 = false;
-        boolean z11 = this.f52834p0;
+        boolean z11 = this.f53363p0;
         if (z11) {
-            this.f52840t0++;
-            this.f52841u0 = z10;
+            this.f53369t0++;
+            this.f53370u0 = z10;
             if (z10) {
                 str2 = k(str);
             } else {
@@ -499,7 +496,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         if (!z10 && i7 == this.J0) {
             return;
         }
-        y("content_safe_area_changed", C("left", 0, "top", Float.valueOf(i7 / org.telegram.messenger.g0.f23610p), "right", 0, "bottom", 0));
+        y("content_safe_area_changed", C("left", 0, "top", Float.valueOf(i7 / org.telegram.messenger.g0.f24120p), "right", 0, "bottom", 0));
         this.J0 = i7;
     }
 
@@ -507,7 +504,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         if (rect != null) {
             Rect rect2 = this.I0;
             if (z10 || !rect2.equals(rect)) {
-                y("safe_area_changed", C("left", Float.valueOf(rect.left / org.telegram.messenger.g0.f23610p), "top", Float.valueOf(rect.top / org.telegram.messenger.g0.f23610p), "right", Float.valueOf(rect.right / org.telegram.messenger.g0.f23610p), "bottom", Float.valueOf(rect.bottom / org.telegram.messenger.g0.f23610p)));
+                y("safe_area_changed", C("left", Float.valueOf(rect.left / org.telegram.messenger.g0.f24120p), "top", Float.valueOf(rect.top / org.telegram.messenger.g0.f24120p), "right", Float.valueOf(rect.right / org.telegram.messenger.g0.f24120p), "bottom", Float.valueOf(rect.bottom / org.telegram.messenger.g0.f24120p)));
                 rect2.set(rect);
             }
         }
@@ -516,21 +513,21 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void R() {
         try {
             if (this.H != null) {
-                F(this.f52839s0, f(), "web_app_setup_main_button", this.H);
+                F(this.f53368s0, f(), "web_app_setup_main_button", this.H);
             }
             if (this.M != null) {
-                F(this.f52839s0, f(), "web_app_setup_secondary_button", this.M);
+                F(this.f53368s0, f(), "web_app_setup_secondary_button", this.M);
             }
         } catch (Exception e10) {
             a8.g(e10, true);
         }
     }
 
-    public final void S(i7 i7Var, ki.n1 n1Var, String str) {
-        e6 e6Var;
+    public final void S(f7 f7Var, ki.l1 l1Var, String str) {
+        i6 i6Var;
         boolean z10;
         boolean z11;
-        if (n1Var != null && this.V != null) {
+        if (l1Var != null && this.V != null) {
             boolean z12 = true;
             try {
                 JSONObject jSONObject = new JSONObject(str);
@@ -538,107 +535,107 @@ public abstract class v0 extends FrameLayout implements is, z5 {
                 try {
                     String optString = jSONObject.optString("key");
                     if (optString == null) {
-                        x(i7Var, "secure_storage_failed", B("req_id", string, "error", "KEY_INVALID"));
+                        x(f7Var, "secure_storage_failed", B("req_id", string, "error", "KEY_INVALID"));
                         return;
                     }
                     try {
-                        ArrayList h = n1Var.h(optString);
+                        ArrayList h = l1Var.h(optString);
                         if (h.isEmpty()) {
-                            x(i7Var, "secure_storage_failed", B("req_id", string, "error", "RESTORE_UNAVAILABLE"));
+                            x(f7Var, "secure_storage_failed", B("req_id", string, "error", "RESTORE_UNAVAILABLE"));
                             return;
                         }
                         Context context = getContext();
-                        v vVar = new v(this, i7Var, string, n1Var, optString);
-                        e2 T = LaunchActivity.T();
+                        v vVar = new v(this, f7Var, string, l1Var, optString);
+                        h2 T = LaunchActivity.T();
                         if (T != null) {
-                            e6Var = T.getResourceProvider();
+                            i6Var = T.getResourceProvider();
                         } else {
-                            e6Var = null;
+                            i6Var = null;
                         }
                         String[] strArr = new String[1];
                         boolean[] zArr = new boolean[1];
-                        u2 k10 = k5.k(1, context, e6Var, false);
-                        ViewGroup f10 = k5.f(context, 1);
-                        i9 i9Var = new i9(context);
-                        TLRPC.User a22 = np.s1(n1Var.f18460a).a2(Long.valueOf(n1Var.f18461b));
-                        t8 t8Var = new t8((e6) null);
-                        t8Var.r(a22);
-                        i9Var.f(a22, t8Var);
-                        f10.addView(i9Var, ja.t(80, 80, 49, 0, 21, 0, 13));
-                        int i7 = j6.G6;
+                        x2 j3 = f3.j(1, context, i6Var, false);
+                        ViewGroup g10 = f3.g(context, 1);
+                        q9 q9Var = new q9(context);
+                        TLRPC.User c22 = mp.u1(l1Var.f18762a).c2(Long.valueOf(l1Var.f18763b));
+                        b9 b9Var = new b9((i6) null);
+                        b9Var.r(c22);
+                        q9Var.f(c22, b9Var);
+                        g10.addView(q9Var, ma.t(80, 80, 49, 0, 21, 0, 13));
+                        int i7 = n6.G6;
                         Context context2 = context;
-                        TextView b10 = sa.b(context2, 20.0f, i7, true, null);
-                        b10.setText(hd.M0(2131752990, null));
+                        TextView b10 = va.b(context2, 20.0f, i7, true, null);
+                        b10.setText(gd.M0(2131752979, null));
                         b10.setGravity(17);
-                        f10.addView(b10, ja.t(-1, -2, 7, 32, 0, 32, 10));
-                        TextView b11 = sa.b(context2, 14.0f, i7, false, null);
-                        k5.q(null, null, 2131752991, new Object[]{m5.H(null, null, a22)}, b11);
+                        g10.addView(b10, ma.t(-1, -2, 7, 32, 0, 32, 10));
+                        TextView b11 = va.b(context2, 14.0f, i7, false, null);
+                        f3.q(null, null, 2131752980, new Object[]{n5.H(null, null, c22)}, b11);
                         b11.setGravity(17);
-                        f10.addView(b11, ja.t(-1, -2, 7, 32, 0, 32, 19));
-                        y8 y8Var = new y8(context2, e6Var);
+                        g10.addView(b11, ma.t(-1, -2, 7, 32, 0, 32, 19));
+                        z8 z8Var = new z8(context2, i6Var);
                         ColorDrawable colorDrawable = new ColorDrawable(-1);
-                        y8Var.setBackground(new fq(colorDrawable, j6.X0(context2, 2131231229, j6.w0(j6.f28813b7, e6Var))));
-                        q6.x(y8Var, colorDrawable, j6.f28792a7, e6Var, PorterDuff.Mode.SRC_IN);
-                        y8Var.setFixedSize(12);
-                        f10.addView(y8Var, ja.t(-1, 12, 7, 0, 0, 0, 0));
-                        n4 n4Var = new n4(context2, e6Var);
-                        n4Var.setText(hd.M0(2131752992, null));
-                        f10.addView(n4Var, ja.t(-1, -2, 7, 0, 0, 0, 0));
-                        hi.d dVar = new hi.d(context2, e6Var, true);
+                        z8Var.setBackground(new mq(colorDrawable, n6.X0(context2, 2131231229, n6.w0(n6.f29360b7, i6Var))));
+                        u6.x(z8Var, colorDrawable, n6.f29339a7, i6Var, PorterDuff.Mode.SRC_IN);
+                        z8Var.setFixedSize(12);
+                        g10.addView(z8Var, ma.t(-1, 12, 7, 0, 0, 0, 0));
+                        n4 n4Var = new n4(context2, i6Var);
+                        n4Var.setText(gd.M0(2131752981, null));
+                        g10.addView(n4Var, ma.t(-1, -2, 7, 0, 0, 0, 0));
+                        hi.d dVar = new hi.d(context2, i6Var, true);
                         ArrayList arrayList = new ArrayList();
                         int i10 = 0;
                         while (i10 < h.size()) {
-                            ki.m1 m1Var = (ki.m1) h.get(i10);
+                            ki.k1 k1Var = (ki.k1) h.get(i10);
                             boolean z13 = z12;
                             if (i10 < h.size() - 1) {
                                 z11 = z13;
                             } else {
                                 z11 = false;
                             }
-                            ki.l1 l1Var = new ki.l1(m1Var, z11, context2);
-                            int i11 = j6.f28941i6;
+                            ki.j1 j1Var = new ki.j1(k1Var, z11, context2);
+                            int i11 = n6.f29488i6;
                             v vVar2 = vVar;
-                            org.telegram.ui.Cells.y h02 = j6.h0(j6.w0(i11, e6Var), 2, -1);
-                            m6 M = q6.M(i11);
-                            l1Var.setBackground(h02);
-                            q6.j(l1Var, h02, null, M, e6Var);
-                            ViewGroup viewGroup = f10;
-                            l1Var.setOnClickListener(new f4(strArr, m1Var, arrayList, dVar, 3));
-                            viewGroup.addView(l1Var, ja.o(-1, 56));
-                            arrayList.add(l1Var);
+                            org.telegram.ui.Cells.y h02 = n6.h0(n6.w0(i11, i6Var), 2, -1);
+                            q6 M = u6.M(i11);
+                            j1Var.setBackground(h02);
+                            u6.j(j1Var, h02, null, M, i6Var);
+                            ViewGroup viewGroup = g10;
+                            j1Var.setOnClickListener(new bi.n6(strArr, k1Var, arrayList, dVar, 3));
+                            viewGroup.addView(j1Var, ma.o(-1, 56));
+                            arrayList.add(j1Var);
                             i10++;
                             context2 = context2;
-                            f10 = viewGroup;
+                            g10 = viewGroup;
                             z12 = z13;
                             vVar = vVar2;
                             zArr = zArr;
                         }
                         v vVar3 = vVar;
                         boolean[] zArr2 = zArr;
-                        ViewGroup viewGroup2 = f10;
-                        dVar.i(hd.M0(2131752994, null), false, z12);
+                        ViewGroup viewGroup2 = g10;
+                        dVar.i(gd.M0(2131752983, null), false, z12);
                         if (strArr[0] != null) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         dVar.setEnabled(z10);
-                        viewGroup2.addView(dVar, ja.t(-1, 48, 7, 8, 8, 8, 4));
-                        k10.O = viewGroup2;
-                        k10.Q(j6.f28922h5);
-                        dVar.setOnClickListener(new f4(zArr2, vVar3, strArr, k10, 4));
-                        k10.setOnDismissListener(new a3(4, zArr2, vVar3));
-                        k10.show();
+                        viewGroup2.addView(dVar, ma.t(-1, 48, 7, 8, 8, 8, 4));
+                        j3.O = viewGroup2;
+                        j3.Q(n6.f29469h5);
+                        dVar.setOnClickListener(new bi.n6(zArr2, vVar3, strArr, j3, 4));
+                        j3.setOnDismissListener(new di.u1(5, zArr2, vVar3));
+                        j3.show();
                     } catch (Exception e10) {
-                        x(i7Var, "secure_storage_failed", B("req_id", string, "error", e10.getMessage()));
+                        x(f7Var, "secure_storage_failed", B("req_id", string, "error", e10.getMessage()));
                     }
                 } catch (Exception unused) {
-                    x(i7Var, "secure_storage_failed", B("req_id", string, "error", "KEY_INVALID"));
+                    x(f7Var, "secure_storage_failed", B("req_id", string, "error", "KEY_INVALID"));
                 }
             } catch (Exception e11) {
                 a8.g(e11, true);
                 if (!TextUtils.isEmpty("")) {
-                    x(i7Var, "secure_storage_failed", B("req_id", "", "error", "UNKNOWN_ERROR"));
+                    x(f7Var, "secure_storage_failed", B("req_id", "", "error", "UNKNOWN_ERROR"));
                 }
             }
         }
@@ -647,7 +644,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public void U(String str, boolean z10) {
         boolean z11;
         boolean z12;
-        s0 s0Var = this.f52814a;
+        s0 s0Var = this.f53343a;
         if (s0Var != null) {
             boolean z13 = s0Var.F;
         }
@@ -656,96 +653,96 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         } else {
             z11 = true;
         }
-        s0 s0Var2 = this.f52814a;
+        s0 s0Var2 = this.f53343a;
         if (s0Var2 != null && s0Var2.canGoForward()) {
             z12 = false;
         } else {
             z12 = true;
         }
         J(z11, z12);
-        s0 s0Var3 = this.f52814a;
+        s0 s0Var3 = this.f53343a;
         if (s0Var3 != null) {
-            s0Var3.f52770b = true;
+            s0Var3.f53299b = true;
         }
         if (this.O) {
             g("setPageLoaded: already loaded");
             return;
         }
-        v3 v3Var = this.f52838s;
-        if (z10 && s0Var3 != null && v3Var != null) {
+        t3 t3Var = this.f53367s;
+        if (z10 && s0Var3 != null && t3Var != null) {
             AnimatorSet animatorSet = new AnimatorSet();
             Property property = View.ALPHA;
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.f52814a, property, 1.0f), ObjectAnimator.ofFloat(v3Var, property, 0.0f));
-            animatorSet.addListener(new g71(this, 14));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.f53343a, property, 1.0f), ObjectAnimator.ofFloat(t3Var, property, 0.0f));
+            animatorSet.addListener(new k71(this, 14));
             animatorSet.start();
         } else {
             if (s0Var3 != null) {
                 s0Var3.setAlpha(1.0f);
             }
-            if (v3Var != null) {
-                v3Var.setAlpha(0.0f);
-                v3Var.setVisibility(8);
+            if (t3Var != null) {
+                t3Var.setAlpha(0.0f);
+                t3Var.setVisibility(8);
             }
         }
-        this.f52816b = str;
+        this.f53345b = str;
         g("setPageLoaded: isPageLoaded = true!");
         this.O = true;
-        this.f52818c.getClass();
+        this.f53347c.getClass();
     }
 
-    public final void V(i7 i7Var, ki.n1 n1Var, String str, String str2, String str3) {
-        if (n1Var != null && this.V != null) {
+    public final void V(f7 f7Var, ki.l1 l1Var, String str, String str2, String str3) {
+        if (l1Var != null && this.V != null) {
             try {
                 JSONObject jSONObject = new JSONObject(str);
                 String string = jSONObject.getString("req_id");
                 try {
                     String optString = jSONObject.optString("key");
                     if (optString == null) {
-                        x(i7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
+                        x(f7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
                         return;
                     }
                     try {
                         try {
-                            n1Var.n(optString, jSONObject.optString("value"));
-                            x(i7Var, str2, A(string, "req_id"));
+                            l1Var.n(optString, jSONObject.optString("value"));
+                            x(f7Var, str2, A(string, "req_id"));
                         } catch (RuntimeException e10) {
-                            x(i7Var, str3, B("req_id", string, "error", e10.getMessage()));
+                            x(f7Var, str3, B("req_id", string, "error", e10.getMessage()));
                         }
                     } catch (Exception unused) {
-                        x(i7Var, str3, B("req_id", string, "error", "VALUE_INVALID"));
+                        x(f7Var, str3, B("req_id", string, "error", "VALUE_INVALID"));
                     }
                 } catch (Exception unused2) {
-                    x(i7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
+                    x(f7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
                 }
             } catch (Exception e11) {
                 a8.g(e11, true);
                 if (!TextUtils.isEmpty("")) {
-                    x(i7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
+                    x(f7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
                 }
             }
         }
     }
 
     public final void W() {
-        s0 s0Var = this.f52814a;
-        if (s0Var != null && this.f52834p0) {
+        s0 s0Var = this.f53343a;
+        if (s0Var != null && this.f53363p0) {
             s0Var.removeJavascriptInterface("TelegramWebviewProxy");
-            if (!p9.a("WEB_MESSAGE_LISTENER")) {
+            if (!a8.q9.a("WEB_MESSAGE_LISTENER")) {
                 g("Bot WebMessageListener is unsupported; native bridge disabled");
                 return;
             }
             Set singleton = Collections.singleton("*");
-            s0 s0Var2 = this.f52814a;
+            s0 s0Var2 = this.f53343a;
             if (!s0Var2.S) {
-                d5.b.a(s0Var2, "TelegramWebviewProxyMessage", singleton, new org.telegram.ui.ActionBar.z(s0Var2, 8));
-                this.f52814a.S = true;
+                d5.b.a(s0Var2, "TelegramWebviewProxyMessage", singleton, new org.telegram.ui.ActionBar.p(s0Var2, 9));
+                this.f53343a.S = true;
             }
-            if (p9.a("DOCUMENT_START_SCRIPT")) {
-                s0 s0Var3 = this.f52814a;
+            if (a8.q9.a("DOCUMENT_START_SCRIPT")) {
+                s0 s0Var3 = this.f53343a;
                 if (s0Var3.T == null) {
-                    boolean z10 = d5.b.f7573a;
+                    boolean z10 = d5.b.f7856a;
                     if (e5.k.d.b()) {
-                        s0Var3.T = new ob.c((ScriptHandlerBoundaryInterface) af.b.a(ScriptHandlerBoundaryInterface.class, d5.b.c(s0Var3).f10551a.addDocumentStartJavaScript("window.TelegramWebviewProxy={postEvent:function(eventType,eventData){window.TelegramWebviewProxyMessage.postMessage(JSON.stringify({eventType:eventType,eventData:eventData}));}};", (String[]) singleton.toArray(new String[0]))), 16);
+                        s0Var3.T = new cb.c((ScriptHandlerBoundaryInterface) af.b.b(ScriptHandlerBoundaryInterface.class, d5.b.c(s0Var3).f10869a.addDocumentStartJavaScript("window.TelegramWebviewProxy={postEvent:function(eventType,eventData){window.TelegramWebviewProxyMessage.postMessage(JSON.stringify({eventType:eventType,eventData:eventData}));}};", (String[]) singleton.toArray(new String[0]))), 17);
                         return;
                     }
                     throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
@@ -760,16 +757,16 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         TLRPC.User user;
         boolean z10;
         String str2 = "";
-        s0 s0Var3 = this.f52814a;
+        s0 s0Var3 = this.f53343a;
         if (s0Var3 != null) {
             s0Var3.destroy();
-            removeView(this.f52814a);
+            removeView(this.f53343a);
         }
         if (s0Var != null) {
             org.telegram.messenger.g0.E2(s0Var);
         }
         try {
-            if (gz.J0 && !r()) {
+            if (bz.J0 && !r()) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -780,31 +777,31 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         }
         if (s0Var == null) {
             Context context = getContext();
-            boolean z11 = this.f52834p0;
+            boolean z11 = this.f53363p0;
             long j3 = 0;
             if (z11 && (user = this.V) != null) {
-                j3 = user.f28200id;
+                j3 = user.f28554id;
             }
             s0Var2 = new s0(context, z11, j3);
         } else {
             s0Var2 = s0Var;
         }
-        this.f52814a = s0Var2;
-        if (!this.f52834p0) {
+        this.f53343a = s0Var2;
+        if (!this.f53363p0) {
             CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.setAcceptCookie(true);
-            cookieManager.setAcceptThirdPartyCookies(this.f52814a, true);
+            cookieManager.setAcceptThirdPartyCookies(this.f53343a, true);
             CookieManager.getInstance().flush();
-            this.f52814a.f52773f = this.f52844w0;
+            this.f53343a.f53302f = this.f53373w0;
         } else {
-            s0Var2.setBackgroundColor(j(j6.f28849d6));
+            s0Var2.setBackgroundColor(j(n6.f29396d6));
         }
-        if (!np.s1(this.N).H6) {
-            this.f52814a.setLayerType(2, null);
+        if (!mp.u1(this.N).J6) {
+            this.f53343a.setLayerType(2, null);
         }
-        this.f52814a.f(this, this.d);
-        this.f52814a.setCloseListener(this.E0);
-        WebSettings settings = this.f52814a.getSettings();
+        this.f53343a.f(this, this.d);
+        this.f53343a.setCloseListener(this.E0);
+        WebSettings settings = this.f53343a.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setGeolocationEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -814,7 +811,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         settings.setAllowContentAccess(false);
         settings.setAllowFileAccessFromFileURLs(false);
         settings.setAllowUniversalAccessFromFileURLs(false);
-        if (!this.f52834p0) {
+        if (!this.f53363p0) {
             settings.setRenderPriority(WebSettings.RenderPriority.HIGH);
             settings.setCacheMode(-1);
             settings.setSaveFormData(true);
@@ -838,9 +835,9 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             sb2.append(str3);
             sb2.append("; K)");
             String replaceAll = replace.replaceAll("\\(Linux; Android.+;[^)]+\\)", sb2.toString()).replaceAll("Version/[\\d\\.]+ ", "");
-            if (this.f52834p0) {
-                PackageInfo packageInfo = org.telegram.messenger.t0.f26609b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f26609b.getPackageName(), 0);
-                int o4 = gz.o();
+            if (this.f53363p0) {
+                PackageInfo packageInfo = org.telegram.messenger.t0.f26915b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f26915b.getPackageName(), 0);
+                int o4 = bz.o();
                 if (o4 == 0) {
                     str = "LOW";
                 } else if (o4 == 1) {
@@ -883,47 +880,47 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             settings.setDatabasePath(file.getAbsolutePath());
         }
         GeolocationPermissions.getInstance().clearAll();
-        this.f52814a.setVerticalScrollBarEnabled(false);
-        if (s0Var == null && this.f52834p0) {
-            this.f52814a.setAlpha(0.0f);
+        this.f53343a.setVerticalScrollBarEnabled(false);
+        if (s0Var == null && this.f53363p0) {
+            this.f53343a.setAlpha(0.0f);
         }
-        addView(this.f52814a);
-        if (this.f52834p0) {
+        addView(this.f53343a);
+        if (this.f53363p0) {
             if (obj instanceof BotWebViewContainer$BotWebViewProxy) {
-                this.f52839s0 = (BotWebViewContainer$BotWebViewProxy) obj;
+                this.f53368s0 = (BotWebViewContainer$BotWebViewProxy) obj;
             }
-            if (this.f52839s0 == null) {
+            if (this.f53368s0 == null) {
                 ?? obj2 = new Object();
-                obj2.f52561a = this;
-                this.f52839s0 = obj2;
+                obj2.f53092a = this;
+                this.f53368s0 = obj2;
             }
-            this.f52839s0.f52561a = this;
+            this.f53368s0.f53092a = this;
             W();
         } else {
             if (obj instanceof BotWebViewContainer$WebViewProxy) {
-                this.f52842v0 = (BotWebViewContainer$WebViewProxy) obj;
+                this.f53371v0 = (BotWebViewContainer$WebViewProxy) obj;
             }
-            BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f52842v0;
+            BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy = this.f53371v0;
             if (botWebViewContainer$WebViewProxy == null) {
-                s0 s0Var4 = this.f52814a;
+                s0 s0Var4 = this.f53343a;
                 BotWebViewContainer$WebViewProxy botWebViewContainer$WebViewProxy2 = new BotWebViewContainer$WebViewProxy(s0Var4, this);
-                this.f52842v0 = botWebViewContainer$WebViewProxy2;
+                this.f53371v0 = botWebViewContainer$WebViewProxy2;
                 s0Var4.addJavascriptInterface(botWebViewContainer$WebViewProxy2, "TelegramWebviewProxy");
             } else if (s0Var == null) {
-                this.f52814a.addJavascriptInterface(botWebViewContainer$WebViewProxy, "TelegramWebviewProxy");
+                this.f53343a.addJavascriptInterface(botWebViewContainer$WebViewProxy, "TelegramWebviewProxy");
             }
-            this.f52842v0.f52562a = this;
+            this.f53371v0.f53093a = this;
         }
-        K(this.f52814a);
+        K(this.f53343a);
         R0 = false;
     }
 
-    public final void Y(int i7, org.telegram.ui.ActionBar.t1 t1Var, Runnable runnable) {
-        if (t1Var != null && !m(i7)) {
-            t1Var.setOnDismissListener(new a3(16, this, runnable));
-            this.f52820d0 = t1Var;
-            t1Var.f29639k0 = false;
-            t1Var.show();
+    public final void Y(int i7, org.telegram.ui.ActionBar.u1 u1Var, Runnable runnable) {
+        if (u1Var != null && !m(i7)) {
+            u1Var.setOnDismissListener(new di.u1(14, this, runnable));
+            this.f53349d0 = u1Var;
+            u1Var.f30051k0 = false;
+            u1Var.show();
             if (this.M0 != i7) {
                 this.M0 = i7;
                 this.N0 = 0;
@@ -936,7 +933,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void Z(String str) {
         String str2;
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(hd.M0(2131743879, "UnknownError"));
+        sb2.append(gd.M0(2131743642, "UnknownError"));
         if (str != null) {
             str2 = ": ".concat(str);
         } else {
@@ -947,15 +944,15 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public final void c() {
-        if (this.f52814a == null && !this.h) {
+        if (this.f53343a == null && !this.h) {
             try {
                 setupWebView(null);
             } catch (Throwable th2) {
                 a8.g(th2, true);
-                this.f52838s.setVisibility(8);
+                this.f53367s.setVisibility(8);
                 this.h = true;
-                this.f52823f.setVisibility(0);
-                s0 s0Var = this.f52814a;
+                this.f53352f.setVisibility(0);
+                s0 s0Var = this.f53343a;
                 if (s0Var != null) {
                     removeView(s0Var);
                 }
@@ -963,20 +960,20 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         }
     }
 
-    public final void d(i7 i7Var, ki.n1 n1Var, String str, String str2, String str3) {
-        if (n1Var != null && this.V != null) {
+    public final void d(f7 f7Var, ki.l1 l1Var, String str, String str2, String str3) {
+        if (l1Var != null && this.V != null) {
             try {
                 String string = new JSONObject(str).getString("req_id");
                 try {
-                    n1Var.m(new JSONObject());
-                    x(i7Var, str2, A(string, "req_id"));
+                    l1Var.m(new JSONObject());
+                    x(f7Var, str2, A(string, "req_id"));
                 } catch (RuntimeException e10) {
-                    x(i7Var, str3, B("req_id", string, "error", e10.getMessage()));
+                    x(f7Var, str3, B("req_id", string, "error", e10.getMessage()));
                 }
             } catch (Exception e11) {
                 a8.g(e11, true);
                 if (!TextUtils.isEmpty("")) {
-                    x(i7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
+                    x(f7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
                 }
             }
         }
@@ -984,33 +981,33 @@ public abstract class v0 extends FrameLayout implements is, z5 {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        lv0 lv0Var;
+        sv0 sv0Var;
         Uri[] uriArr;
-        if (i7 == ns.f25541n4) {
-            s0 s0Var = this.f52814a;
+        if (i7 == ks.f25171p4) {
+            s0 s0Var = this.f53343a;
             if (s0Var != null) {
-                s0Var.setBackgroundColor(j(j6.f28849d6));
+                s0Var.setBackgroundColor(j(n6.f29396d6));
             }
-            if (!this.f52837r0) {
-                int i11 = j6.Bj;
+            if (!this.f53366r0) {
+                int i11 = n6.Bj;
                 int j3 = j(i11);
-                this.f52835q0 = j3;
+                this.f53364q0 = j3;
                 PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(j3, PorterDuff.Mode.SRC_IN);
-                v3 v3Var = this.f52838s;
-                v3Var.setColorFilter(porterDuffColorFilter);
-                pz pzVar = this.f52836r;
-                if (pzVar != null) {
-                    pzVar.f26037n = Integer.valueOf(this.f52835q0);
-                    this.f52836r.f(i11, this.f52821e, 1.0f, false);
+                t3 t3Var = this.f53367s;
+                t3Var.setColorFilter(porterDuffColorFilter);
+                lz lzVar = this.f53365r;
+                if (lzVar != null) {
+                    lzVar.f25496n = Integer.valueOf(this.f53364q0);
+                    this.f53365r.f(i11, this.f53350e, 1.0f, false);
                 }
-                v3Var.invalidate();
+                t3Var.invalidate();
             }
             z();
-        } else if (i7 == ns.f25481c5) {
+        } else if (i7 == ks.f25111e5) {
             int intValue = ((Integer) objArr[0]).intValue();
             int intValue2 = ((Integer) objArr[1]).intValue();
             Intent intent = (Intent) objArr[2];
-            if (intValue == 3000 && this.f52847y != null) {
+            if (intValue == 3000 && this.f53376y != null) {
                 if (intValue2 == -1 && intent != null) {
                     if (intent.getClipData() != null) {
                         ClipData clipData = intent.getClipData();
@@ -1021,19 +1018,19 @@ public abstract class v0 extends FrameLayout implements is, z5 {
                     } else if (intent.getData() != null) {
                         uriArr = new Uri[]{intent.getData()};
                     }
-                    this.f52847y.onReceiveValue(uriArr);
-                    this.f52847y = null;
+                    this.f53376y.onReceiveValue(uriArr);
+                    this.f53376y = null;
                 }
                 uriArr = null;
-                this.f52847y.onReceiveValue(uriArr);
-                this.f52847y = null;
+                this.f53376y.onReceiveValue(uriArr);
+                this.f53376y = null;
             }
-        } else if (i7 == ns.f25486d5) {
+        } else if (i7 == ks.f25117f5) {
             int intValue3 = ((Integer) objArr[0]).intValue();
             String[] strArr = (String[]) objArr[1];
             int[] iArr = (int[]) objArr[2];
-            if (intValue3 == 4000 && (lv0Var = this.W) != null) {
-                lv0Var.run();
+            if (intValue3 == 4000 && (sv0Var = this.W) != null) {
+                sv0Var.run();
                 this.W = null;
             }
         }
@@ -1041,30 +1038,30 @@ public abstract class v0 extends FrameLayout implements is, z5 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f52838s) {
-            if (this.f52843w) {
+        if (view == this.f53367s) {
+            if (this.f53372w) {
                 canvas.save();
                 canvas.translate(0.0f, (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
             }
             boolean drawChild = super.drawChild(canvas, view, j3);
-            if (this.f52843w) {
+            if (this.f53372w) {
                 canvas.restore();
             }
-            if (!this.f52843w) {
+            if (!this.f53372w) {
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                this.f52831n.a(0.0f, canvas, rectF, this);
+                this.f53360n.a(0.0f, canvas, rectF, this);
                 invalidate();
             }
             return drawChild;
-        } else if (view == this.f52823f) {
+        } else if (view == this.f53352f) {
             canvas.save();
             canvas.translate(0.0f, (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - ((View) getParent()).getTranslationY()) / 2.0f);
             boolean drawChild2 = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild2;
         } else {
-            if (view == this.f52814a) {
+            if (view == this.f53343a) {
                 if (!org.telegram.messenger.g0.m0) {
                     if (getLayerType() == 2 && !canvas.isHardwareAccelerated()) {
                         return true;
@@ -1081,25 +1078,25 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         if (this.V == null) {
             return;
         }
-        ki.r rVar = this.f52829k0;
-        if (rVar == null) {
-            this.f52829k0 = ki.r.c(getContext(), this.N, this.V.f28200id);
+        ki.q qVar = this.f53358k0;
+        if (qVar == null) {
+            this.f53358k0 = ki.q.c(getContext(), this.N, this.V.f28554id);
         } else {
-            rVar.h();
+            qVar.h();
         }
     }
 
-    public final i7 f() {
-        s0 s0Var = this.f52814a;
-        long j3 = this.f52840t0;
-        boolean z10 = this.f52841u0;
+    public final f7 f() {
+        s0 s0Var = this.f53343a;
+        long j3 = this.f53369t0;
+        boolean z10 = this.f53370u0;
         String str = this.H0;
         ?? obj = new Object();
-        obj.f11825c = this;
+        obj.f11950c = this;
         obj.d = s0Var;
-        obj.f11823a = j3;
-        obj.f11824b = z10;
-        obj.f11826e = str;
+        obj.f11948a = j3;
+        obj.f11949b = z10;
+        obj.f11951e = str;
         return obj;
     }
 
@@ -1108,14 +1105,14 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public BotWebViewContainer$BotWebViewProxy getBotProxy() {
-        return this.f52839s0;
+        return this.f53368s0;
     }
 
     public int getMinHeight() {
-        if (getParent() instanceof x3) {
-            x3 x3Var = (x3) getParent();
-            if (x3Var.K) {
-                return (int) ((x3Var.getMeasuredHeight() - x3Var.getOffsetY()) + this.A0);
+        if (getParent() instanceof s3) {
+            s3 s3Var = (s3) getParent();
+            if (s3Var.K) {
+                return (int) ((s3Var.getMeasuredHeight() - s3Var.getOffsetY()) + this.A0);
             }
             return 0;
         }
@@ -1123,7 +1120,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public String getOriginHost() {
-        s0 s0Var = this.f52814a;
+        s0 s0Var = this.f53343a;
         if (s0Var == null) {
             return null;
         }
@@ -1131,7 +1128,7 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public BotWebViewContainer$WebViewProxy getProxy() {
-        return this.f52842v0;
+        return this.f53371v0;
     }
 
     public String getTrustedOrigin() {
@@ -1139,71 +1136,71 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public String getUrlLoaded() {
-        return this.f52816b;
+        return this.f53345b;
     }
 
     public s0 getWebView() {
-        return this.f52814a;
+        return this.f53343a;
     }
 
     public final void h() {
         g("destroyWebView preserving=" + this.C0);
-        s0 s0Var = this.f52814a;
+        s0 s0Var = this.f53343a;
         if (s0Var != null) {
             if (s0Var.getParent() != null) {
-                removeView(this.f52814a);
+                removeView(this.f53343a);
             }
             if (!this.C0) {
-                this.f52814a.destroy();
-                L(this.f52814a);
+                this.f53343a.destroy();
+                L(this.f53343a);
             }
             this.O = false;
-            if (this.f52829k0 != null) {
-                this.f52829k0 = null;
+            if (this.f53358k0 != null) {
+                this.f53358k0 = null;
             }
-            if (this.f52832n0 != null) {
-                this.f52832n0 = null;
+            if (this.f53361n0 != null) {
+                this.f53361n0 = null;
             }
-            if (this.f52833o0 != null) {
-                this.f52833o0 = null;
+            if (this.f53362o0 != null) {
+                this.f53362o0 = null;
             }
-            ki.s0 s0Var2 = this.f52830l0;
+            ki.s0 s0Var2 = this.f53359l0;
             if (s0Var2 != null) {
-                s0Var2.f18542f.remove(this.L0);
-                this.f52830l0 = null;
+                s0Var2.f18883f.remove(this.L0);
+                this.f53359l0 = null;
                 this.K0 = null;
             }
         }
     }
 
     public final void i(String str) {
-        new cc(this, this.f52821e).Q(2131624012, 36, str).j();
+        new lc(this, this.f53350e).Q(2131624012, 36, str).j();
     }
 
     public final int j(int i7) {
-        e6 e6Var = this.f52821e;
-        if (e6Var != null) {
-            return e6Var.h(i7);
+        i6 i6Var = this.f53350e;
+        if (i6Var != null) {
+            return i6Var.k(i7);
         }
-        return j6.x0(null, i7, false);
+        return n6.x0(null, i7, false);
     }
 
-    public final void l(i7 i7Var, ki.n1 n1Var, String str, String str2, String str3) {
+    public final void l(f7 f7Var, ki.l1 l1Var, String str, String str2, String str3) {
         Object obj;
         JSONObject jSONObject;
-        if (n1Var != null && this.V != null) {
+        if (l1Var != null && this.V != null) {
             try {
                 JSONObject jSONObject2 = new JSONObject(str);
                 String string = jSONObject2.getString("req_id");
                 try {
                     String optString = jSONObject2.optString("key");
                     if (optString == null) {
-                        x(i7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
+                        x(f7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
                         return;
                     }
                     try {
-                        Pair f10 = n1Var.f(optString);
-                        if (n1Var.d && (obj = f10.first) == null) {
+                        Pair f10 = l1Var.f(optString);
+                        if (l1Var.d && (obj = f10.first) == null) {
                             Object obj2 = f10.second;
                             try {
                                 jSONObject = new JSONObject();
@@ -1213,27 +1210,27 @@ public abstract class v0 extends FrameLayout implements is, z5 {
                             } catch (Exception unused) {
                                 jSONObject = null;
                             }
-                            x(i7Var, str2, jSONObject);
+                            x(f7Var, str2, jSONObject);
                             return;
                         }
-                        x(i7Var, str2, B("req_id", string, "value", f10.first));
+                        x(f7Var, str2, B("req_id", string, "value", f10.first));
                     } catch (RuntimeException e10) {
-                        x(i7Var, str3, B("req_id", string, "error", e10.getMessage()));
+                        x(f7Var, str3, B("req_id", string, "error", e10.getMessage()));
                     }
                 } catch (Exception unused2) {
-                    x(i7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
+                    x(f7Var, str3, B("req_id", string, "error", "KEY_INVALID"));
                 }
             } catch (Exception e11) {
                 a8.g(e11, true);
                 if (!TextUtils.isEmpty("")) {
-                    x(i7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
+                    x(f7Var, str3, B("req_id", "", "error", "UNKNOWN_ERROR"));
                 }
             }
         }
     }
 
     public final boolean m(int i7) {
-        if (this.f52820d0 != null || (this.O0 > 0 && System.currentTimeMillis() < this.O0)) {
+        if (this.f53349d0 != null || (this.O0 > 0 && System.currentTimeMillis() < this.O0)) {
             return true;
         }
         if (this.M0 != i7 || this.N0 <= 3) {
@@ -1248,36 +1245,36 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         boolean z12;
         boolean z13;
         invalidate();
-        if ((this.O || z11) && (z12 = this.f52834p0) && (getParent() instanceof x3)) {
-            x3 x3Var = (x3) getParent();
+        if ((this.O || z11) && (z12 = this.f53363p0) && (getParent() instanceof s3)) {
+            s3 s3Var = (s3) getParent();
             if (z10) {
-                if (x3Var.getSwipeOffsetY() == x3Var.getTopActionBarOffsetY() + (-x3Var.getOffsetY())) {
+                if (s3Var.getSwipeOffsetY() == s3Var.getTopActionBarOffsetY() + (-s3Var.getOffsetY())) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
                 this.P = z13;
             }
-            int max = Math.max(getMinHeight(), (int) (x3Var.getTopActionBarOffsetY() + ((x3Var.getMeasuredHeight() - x3Var.getOffsetY()) - x3Var.getSwipeOffsetY()) + this.A0));
-            if (z11 || max != this.f52846x0 || this.f52848y0 != z10 || this.f52849z0 != this.P) {
-                this.f52846x0 = max;
-                this.f52848y0 = z10;
-                this.f52849z0 = this.P;
-                String str = "{height:" + (max / org.telegram.messenger.g0.f23610p) + ",is_state_stable:" + z10 + ",is_expanded:" + this.P + "}";
+            int max = Math.max(getMinHeight(), (int) (s3Var.getTopActionBarOffsetY() + ((s3Var.getMeasuredHeight() - s3Var.getOffsetY()) - s3Var.getSwipeOffsetY()) + this.A0));
+            if (z11 || max != this.f53375x0 || this.f53377y0 != z10 || this.f53378z0 != this.P) {
+                this.f53375x0 = max;
+                this.f53377y0 = z10;
+                this.f53378z0 = this.P;
+                String str = "{height:" + (max / org.telegram.messenger.g0.f24120p) + ",is_state_stable:" + z10 + ",is_expanded:" + this.P + "}";
                 if (z12 && !q()) {
                     g("notifyEvent viewport_changed dropped for untrusted document");
                 } else {
-                    ns.f(this.N).d(new z(this, a8.p0.p("window.Telegram.WebView.receiveEvent('viewport_changed', ", str, ");"), 0));
+                    ks.f(this.N).d(new z(this, a8.p0.p("window.Telegram.WebView.receiveEvent('viewport_changed', ", str, ");"), 0));
                 }
             }
         }
     }
 
-    public final boolean o(i7 i7Var) {
+    public final boolean o(f7 f7Var) {
         boolean z10;
-        if (i7Var != null) {
-            String str = (String) i7Var.f11826e;
-            if (((v0) i7Var.f11825c) == this && ((s0) i7Var.d) == this.f52814a && i7Var.f11823a == this.f52840t0 && (z10 = i7Var.f11824b) == this.f52841u0) {
+        if (f7Var != null) {
+            String str = (String) f7Var.f11951e;
+            if (((v0) f7Var.f11950c) == this && ((s0) f7Var.d) == this.f53343a && f7Var.f11948a == this.f53369t0 && (z10 = f7Var.f11949b) == this.f53370u0) {
                 if (z10) {
                     if (!TextUtils.isEmpty(str) && TextUtils.equals(str, this.H0) && TextUtils.equals(str, getOriginHost())) {
                         return true;
@@ -1295,9 +1292,9 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         g("attached");
-        ns.e().c(this, ns.f25541n4);
-        ns.e().c(this, ns.f25481c5);
-        ns.e().c(this, ns.f25486d5);
+        ks.e().c(this, ks.f25171p4);
+        ks.e().c(this, ks.f25111e5);
+        ks.e().c(this, ks.f25117f5);
         setTag(2131296351, new bi.e1(this, 11));
     }
 
@@ -1305,9 +1302,9 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         g("detached");
-        ns.e().n(this, ns.f25541n4);
-        ns.e().n(this, ns.f25481c5);
-        ns.e().n(this, ns.f25486d5);
+        ks.e().n(this, ks.f25171p4);
+        ks.e().n(this, ks.f25111e5);
+        ks.e().n(this, ks.f25117f5);
         setTag(2131296351, null);
     }
 
@@ -1318,22 +1315,22 @@ public abstract class v0 extends FrameLayout implements is, z5 {
             i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
         }
         super.onMeasure(i7, i10);
-        this.f52831n.f40798f = getMeasuredWidth();
+        this.f53360n.f41050f = getMeasuredWidth();
     }
 
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        if (!this.f52817b0) {
+        if (!this.f53346b0) {
             n(true, false);
         }
     }
 
     public final boolean q() {
-        if (this.f52814a == null) {
+        if (this.f53343a == null) {
             return false;
         }
-        if (this.f52841u0) {
+        if (this.f53370u0) {
             if (TextUtils.isEmpty(this.H0) || !TextUtils.equals(this.H0, getOriginHost())) {
                 return false;
             }
@@ -1354,18 +1351,18 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         TL_bots.BotInfo botInfo;
         TL_bots.botAppSettings botappsettings;
         TLRPC.TL_attachMenuBotIcon tL_attachMenuBotIcon;
-        TLRPC.User a22 = np.s1(i7).a2(Long.valueOf(j3));
-        TLRPC.UserFull b22 = np.s1(i7).b2(j3);
-        String n10 = q10.n(a22);
-        v3 v3Var = this.f52838s;
-        if (n10 != null && n10.equals("DurgerKingBot")) {
-            v3Var.setVisibility(0);
-            v3Var.setAlpha(1.0f);
-            v3Var.h(null, null, qz.h(2131624006, Integer.valueOf(j(j6.f28792a7))));
+        TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(j3));
+        TLRPC.UserFull d2 = mp.u1(i7).d2(j3);
+        String o4 = o10.o(c22);
+        t3 t3Var = this.f53367s;
+        if (o4 != null && o4.equals("DurgerKingBot")) {
+            t3Var.setVisibility(0);
+            t3Var.setAlpha(1.0f);
+            t3Var.h(null, null, mz.h(2131624006, Integer.valueOf(j(n6.f29339a7))));
             setupFlickerParams(false);
             return;
         }
-        ArrayList<TLRPC.TL_attachMenuBot> arrayList = si.b0(i7).f26471b.bots;
+        ArrayList<TLRPC.TL_attachMenuBot> arrayList = ri.d0(i7).f26601b.bots;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -1400,30 +1397,30 @@ public abstract class v0 extends FrameLayout implements is, z5 {
                 }
             }
             if (tL_attachMenuBotIcon == null) {
-                tL_attachMenuBotIcon = si.k0(tL_attachMenuBot);
+                tL_attachMenuBotIcon = ri.m0(tL_attachMenuBot);
             } else {
                 z10 = false;
             }
             if (tL_attachMenuBotIcon != null) {
-                v3Var.setVisibility(0);
-                v3Var.setAlpha(1.0f);
-                v3Var.j(gc.b(tL_attachMenuBotIcon.icon), null, null, tL_attachMenuBot);
+                t3Var.setVisibility(0);
+                t3Var.setAlpha(1.0f);
+                t3Var.j(fc.b(tL_attachMenuBotIcon.icon), null, null, tL_attachMenuBot);
                 setupFlickerParams(z10);
                 return;
             }
             return;
         }
-        e6 e6Var = this.f52821e;
-        if (b22 != null && (botInfo = b22.bot_info) != null && (botappsettings = botInfo.app_settings) != null && botappsettings.placeholder_svg_path != null) {
-            v3Var.setVisibility(0);
-            v3Var.setAlpha(1.0f);
-            pz j10 = qz.j(512, 512, b22.bot_info.app_settings.placeholder_svg_path);
-            this.f52836r = j10;
+        i6 i6Var = this.f53350e;
+        if (d2 != null && (botInfo = d2.bot_info) != null && (botappsettings = botInfo.app_settings) != null && botappsettings.placeholder_svg_path != null) {
+            t3Var.setVisibility(0);
+            t3Var.setAlpha(1.0f);
+            lz j10 = mz.j(512, 512, d2.bot_info.app_settings.placeholder_svg_path);
+            this.f53365r = j10;
             if (j10 != null) {
-                j10.f26037n = Integer.valueOf(this.f52835q0);
-                this.f52836r.f(j6.Bj, e6Var, 1.0f, false);
+                j10.f25496n = Integer.valueOf(this.f53364q0);
+                this.f53365r.f(n6.Bj, i6Var, 1.0f, false);
             }
-            v3Var.h(null, null, this.f52836r);
+            t3Var.h(null, null, this.f53365r);
             setupFlickerParams(true);
             return;
         }
@@ -1438,15 +1435,15 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         path.addRoundRect(rectF, 18.0f, 18.0f, direction);
         rectF.set(271.645f, 271.645f, 405.335f, 405.335f);
         path.addRoundRect(rectF, 18.0f, 18.0f, direction);
-        v3Var.setVisibility(0);
-        v3Var.setAlpha(1.0f);
-        pz j11 = qz.j(512, 512, path);
-        this.f52836r = j11;
+        t3Var.setVisibility(0);
+        t3Var.setAlpha(1.0f);
+        lz j11 = mz.j(512, 512, path);
+        this.f53365r = j11;
         if (j11 != null) {
-            j11.f26037n = Integer.valueOf(this.f52835q0);
-            this.f52836r.f(j6.Bj, e6Var, 1.0f, false);
+            j11.f25496n = Integer.valueOf(this.f53364q0);
+            this.f53365r.f(n6.Bj, i6Var, 1.0f, false);
         }
-        v3Var.h(null, null, this.f52836r);
+        t3Var.h(null, null, this.f53365r);
         setupFlickerParams(true);
     }
 
@@ -1455,30 +1452,30 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public void setDelegate(c0 c0Var) {
-        this.f52818c = c0Var;
+        this.f53347c = c0Var;
     }
 
     public void setFlickerViewColor(int i7) {
         int b10;
         if (org.telegram.messenger.g0.B(i7) > 0.7f) {
-            b10 = j6.b(0.0f, -0.15f, i7);
+            b10 = n6.b(0.0f, -0.15f, i7);
         } else {
-            b10 = j6.b(0.025f, 0.15f, i7);
+            b10 = n6.b(0.025f, 0.15f, i7);
         }
-        if (this.f52835q0 == b10) {
+        if (this.f53364q0 == b10) {
             return;
         }
-        this.f52835q0 = b10;
+        this.f53364q0 = b10;
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(b10, PorterDuff.Mode.SRC_IN);
-        v3 v3Var = this.f52838s;
-        v3Var.setColorFilter(porterDuffColorFilter);
-        pz pzVar = this.f52836r;
-        if (pzVar != null) {
-            pzVar.f26037n = Integer.valueOf(this.f52835q0);
-            this.f52836r.f(j6.Bj, this.f52821e, 1.0f, false);
+        t3 t3Var = this.f53367s;
+        t3Var.setColorFilter(porterDuffColorFilter);
+        lz lzVar = this.f53365r;
+        if (lzVar != null) {
+            lzVar.f25496n = Integer.valueOf(this.f53364q0);
+            this.f53365r.f(n6.Bj, this.f53350e, 1.0f, false);
         }
-        this.f52837r0 = true;
-        v3Var.invalidate();
+        this.f53366r0 = true;
+        t3Var.invalidate();
         invalidate();
     }
 
@@ -1496,38 +1493,38 @@ public abstract class v0 extends FrameLayout implements is, z5 {
 
     public void setOnCloseRequestedListener(Runnable runnable) {
         this.E0 = runnable;
-        s0 s0Var = this.f52814a;
+        s0 s0Var = this.f53343a;
         if (s0Var != null) {
             s0Var.setCloseListener(runnable);
         }
     }
 
-    public void setOnVerifiedAge(w10 w10Var) {
-        this.Q0 = w10Var;
+    public void setOnVerifiedAge(u10 u10Var) {
+        this.Q0 = u10Var;
     }
 
     public void setOpener(s0 s0Var) {
         s0 s0Var2;
-        this.f52844w0 = s0Var;
-        if (!this.f52834p0 && (s0Var2 = this.f52814a) != null) {
-            s0Var2.f52773f = s0Var;
+        this.f53373w0 = s0Var;
+        if (!this.f53363p0 && (s0Var2 = this.f53343a) != null) {
+            s0Var2.f53302f = s0Var;
         }
     }
 
     public void setParentActivity(Activity activity) {
-        this.f52815a0 = activity;
+        this.f53344a0 = activity;
     }
 
     public void setViewPortByMeasureSuppressed(boolean z10) {
-        this.f52817b0 = z10;
+        this.f53346b0 = z10;
     }
 
     public void setViewPortHeightOffset(float f10) {
         this.A0 = f10;
     }
 
-    public void setWasOpenedByBot(k4 k4Var) {
-        this.G0 = k4Var;
+    public void setWasOpenedByBot(f4 f4Var) {
+        this.G0 = f4Var;
     }
 
     public void setWasOpenedByLinkIntent(boolean z10) {
@@ -1535,12 +1532,12 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public void setWebViewProgressListener(q0.a aVar) {
-        this.f52845x = aVar;
+        this.f53374x = aVar;
     }
 
     public void setWebViewScrollListener(u0 u0Var) {
         this.d = u0Var;
-        s0 s0Var = this.f52814a;
+        s0 s0Var = this.f53343a;
         if (s0Var != null) {
             s0Var.f(this, u0Var);
         }
@@ -1549,43 +1546,43 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     public final void t(int i7, String str, boolean z10) {
         String str2;
         this.N = i7;
-        if (this.f52834p0) {
-            this.f52840t0++;
-            this.f52841u0 = z10;
+        if (this.f53363p0) {
+            this.f53369t0++;
+            this.f53370u0 = z10;
             if (z10) {
                 str2 = k(str);
             } else {
                 str2 = null;
             }
             this.H0 = str2;
-            if (this.f52814a != null) {
+            if (this.f53343a != null) {
                 W();
             }
         }
-        ns.f(i7).d(new z(this, str, 1));
+        ks.f(i7).d(new z(this, str, 1));
     }
 
     @Override
     public final void updateColors() {
-        v3 v3Var;
+        t3 t3Var;
         int j3;
         try {
-            if (this.f52814a != null && (j3 = j(j6.f28849d6)) != this.D0) {
+            if (this.f53343a != null && (j3 = j(n6.f29396d6)) != this.D0) {
                 this.D0 = j3;
-                this.f52814a.setBackgroundColor(j3);
+                this.f53343a.setBackgroundColor(j3);
             }
-            if (!this.f52837r0 && (v3Var = this.f52838s) != null) {
-                int i7 = this.f52835q0;
-                int i10 = j6.Bj;
+            if (!this.f53366r0 && (t3Var = this.f53367s) != null) {
+                int i7 = this.f53364q0;
+                int i10 = n6.Bj;
                 if (i7 != j(i10)) {
                     int j10 = j(i10);
-                    this.f52835q0 = j10;
-                    v3Var.setColorFilter(new PorterDuffColorFilter(j10, PorterDuff.Mode.SRC_IN));
-                    pz pzVar = this.f52836r;
-                    if (pzVar != null) {
-                        pzVar.f26037n = Integer.valueOf(this.f52835q0);
+                    this.f53364q0 = j10;
+                    t3Var.setColorFilter(new PorterDuffColorFilter(j10, PorterDuff.Mode.SRC_IN));
+                    lz lzVar = this.f53365r;
+                    if (lzVar != null) {
+                        lzVar.f25496n = Integer.valueOf(this.f53364q0);
                     }
-                    v3Var.invalidate();
+                    t3Var.invalidate();
                 }
             }
         } catch (Exception e10) {
@@ -1593,23 +1590,23 @@ public abstract class v0 extends FrameLayout implements is, z5 {
         }
     }
 
-    public final void v(i7 i7Var) {
+    public final void v(f7 f7Var) {
         if (this.V != null) {
             e();
-            ki.r rVar = this.f52829k0;
-            if (rVar == null) {
+            ki.q qVar = this.f53358k0;
+            if (qVar == null) {
                 return;
             }
             try {
-                x(i7Var, "biometry_info_received", rVar.f());
+                x(f7Var, "biometry_info_received", qVar.f());
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
         }
     }
 
-    public final void x(i7 i7Var, String str, JSONObject jSONObject) {
-        if (!o(i7Var)) {
+    public final void x(f7 f7Var, String str, JSONObject jSONObject) {
+        if (!o(f7Var)) {
             g("notifyEvent " + str + " dropped after document change");
             return;
         }
@@ -1617,19 +1614,19 @@ public abstract class v0 extends FrameLayout implements is, z5 {
     }
 
     public final void y(String str, JSONObject jSONObject) {
-        if (this.f52834p0 && !q()) {
+        if (this.f53363p0 && !q()) {
             g("notifyEvent " + str + " dropped for untrusted document");
             return;
         }
         g("notifyEvent " + str);
-        ns.f(this.N).d(new z(this, "window.Telegram.WebView.receiveEvent('" + str + "', " + jSONObject + ");", 0));
+        ks.f(this.N).d(new z(this, "window.Telegram.WebView.receiveEvent('" + str + "', " + jSONObject + ");", 0));
     }
 
     public final void z() {
         JSONObject jSONObject;
         JSONObject u10;
         try {
-            u10 = x2.u(this.f52821e, true);
+            u10 = t2.u(this.f53350e, true);
         } catch (Exception e10) {
             a8.g(e10, true);
         }

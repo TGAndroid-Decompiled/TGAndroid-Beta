@@ -5,19 +5,19 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.util.Log;
 public final class k0 extends BroadcastReceiver {
-    public l0 f961a;
-    public final l0 f962b;
+    public l0 f960a;
+    public final l0 f961b;
 
     public k0(l0 l0Var, l0 l0Var2) {
-        this.f962b = l0Var;
-        this.f961a = l0Var2;
+        this.f961b = l0Var;
+        this.f960a = l0Var2;
     }
 
     public final void a() {
         if (Log.isLoggable("FirebaseMessaging", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3))) {
             Log.d("FirebaseMessaging", "Connectivity change received registered");
         }
-        this.f962b.f966a.registerReceiver(this, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+        this.f961b.f965a.registerReceiver(this, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
     }
 
     @Override

@@ -1,39 +1,39 @@
 package ei;
 
-import a8.ja;
+import a8.la;
 import d4.f;
 import i2.q;
 import i2.r;
 import java.nio.ByteBuffer;
 public final class a {
-    public boolean f10645a;
+    public boolean f10965a;
 
     public a(r rVar, q qVar) {
         boolean z10;
         boolean z11;
         int i7;
-        int i10 = qVar.f15662a;
-        ByteBuffer byteBuffer = qVar.f15663b;
+        int i10 = qVar.f15980a;
+        ByteBuffer byteBuffer = qVar.f15981b;
         if (i10 != 6 && i10 != 3) {
             z10 = false;
         } else {
             z10 = true;
         }
-        ja.f(z10);
+        la.f(z10);
         int min = Math.min(4, byteBuffer.remaining());
         byte[] bArr = new byte[min];
         byteBuffer.asReadOnlyBuffer().get(bArr);
         f fVar = new f(bArr, min);
-        if (!rVar.f15664a) {
+        if (!rVar.f15982a) {
             if (fVar.i()) {
-                this.f10645a = false;
+                this.f10965a = false;
                 return;
             }
             int j3 = fVar.j(2);
             boolean i11 = fVar.i();
-            if (!rVar.f15665b) {
+            if (!rVar.f15983b) {
                 if (!i11) {
-                    this.f10645a = true;
+                    this.f10965a = true;
                     return;
                 }
                 if (j3 != 3 && j3 != 0) {
@@ -44,17 +44,17 @@ public final class a {
                 fVar.K();
                 if (rVar.d) {
                     if (fVar.i()) {
-                        if (rVar.f15667e) {
+                        if (rVar.f15985e) {
                             fVar.K();
                         } else {
                             throw new Exception();
                         }
                     }
-                    if (!rVar.f15666c) {
+                    if (!rVar.f15984c) {
                         if (j3 != 3) {
                             fVar.K();
                         }
-                        fVar.L(rVar.f15668f);
+                        fVar.L(rVar.f15986f);
                         if (j3 != 2 && j3 != 0 && !z11) {
                             fVar.L(3);
                         }
@@ -63,7 +63,7 @@ public final class a {
                         } else {
                             i7 = 255;
                         }
-                        this.f10645a = i7 != 0;
+                        this.f10965a = i7 != 0;
                         return;
                     }
                     throw new Exception();
@@ -76,9 +76,9 @@ public final class a {
     }
 
     public void a(boolean z10) {
-        if (this.f10645a == z10) {
+        if (this.f10965a == z10) {
             return;
         }
-        this.f10645a = z10;
+        this.f10965a = z10;
     }
 }

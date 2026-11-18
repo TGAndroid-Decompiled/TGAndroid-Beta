@@ -1,22 +1,33 @@
 package org.telegram.ui.Components;
-public final class ow extends c8.ma {
-    public final ly f38091a;
 
-    public ow(ly lyVar) {
-        this.f38091a = lyVar;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ow extends AnimatorListenerAdapter {
+    public final int f38179a;
+    public final boolean f38180b;
+    public final ry f38181c;
+
+    public ow(ry ryVar, boolean z10, int i7) {
+        this.f38179a = i7;
+        this.f38181c = ryVar;
+        this.f38180b = z10;
     }
 
     @Override
-    public final void a() {
-        ly lyVar = this.f38091a;
-        lyVar.f36950g0 = false;
-        lyVar.Q.B1();
-    }
-
-    @Override
-    public final void b() {
-        ly lyVar = this.f38091a;
-        lyVar.Q.B1();
-        lyVar.f36950g0 = true;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f38179a) {
+            case 0:
+                if (!this.f38180b) {
+                    this.f38181c.f39410y.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f38180b) {
+                    this.f38181c.E.setVisibility(4);
+                    return;
+                }
+                return;
+        }
     }
 }

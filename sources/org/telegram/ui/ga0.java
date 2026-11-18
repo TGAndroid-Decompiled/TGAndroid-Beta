@@ -4,15 +4,15 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.tgnet.TLRPC;
 public final class ga0 extends org.telegram.ui.ActionBar.j {
-    public final pa0 f47383a;
+    public final pa0 f48010a;
 
     public ga0(pa0 pa0Var) {
-        this.f47383a = pa0Var;
+        this.f48010a = pa0Var;
     }
 
     @Override
     public final void b(int i7) {
-        pa0 pa0Var = this.f47383a;
+        pa0 pa0Var = this.f48010a;
         if (i7 == -1) {
             pa0Var.finishFragment();
             return;
@@ -20,7 +20,7 @@ public final class ga0 extends org.telegram.ui.ActionBar.j {
         int i10 = 1;
         if (i7 == 1) {
             try {
-                TLRPC.GeoPoint geoPoint = pa0Var.E0.f23819k.media.geo;
+                TLRPC.GeoPoint geoPoint = pa0Var.J0.f23968k.media.geo;
                 double d = geoPoint.lat;
                 double d2 = geoPoint._long;
                 pa0Var.getParentActivity().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d2 + "?q=" + d + "," + d2)));
@@ -33,7 +33,7 @@ public final class ga0 extends org.telegram.ui.ActionBar.j {
             pa0Var.B0(null);
         } else if ((i7 == 2 || i7 == 3 || i7 == 4) && pa0Var.F != null) {
             pa0Var.D0();
-            org.telegram.messenger.ea eaVar = pa0Var.F;
+            org.telegram.messenger.da daVar = pa0Var.F;
             if (i7 != 3) {
                 if (i7 == 4) {
                     i10 = 2;
@@ -41,7 +41,7 @@ public final class ga0 extends org.telegram.ui.ActionBar.j {
                     i10 = 0;
                 }
             }
-            eaVar.j(i10);
+            daVar.j(i10);
         }
     }
 }

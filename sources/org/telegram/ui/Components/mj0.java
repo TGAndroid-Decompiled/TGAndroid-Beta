@@ -1,133 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewConfiguration;
-public final class mj0 extends f10 {
-    public View f37308a;
-    public final nj0 f37309b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class mj0 extends v4.o0 implements eh.a {
+    public final org.telegram.messenger.y10 f37520a;
+    public final ck0 f37521b;
+    public final int f37522c;
+    public final boolean d;
 
-    public mj0(nj0 nj0Var) {
-        this.f37309b = nj0Var;
+    public mj0(ck0 ck0Var, org.telegram.messenger.y10 y10Var, int i7, boolean z10) {
+        this.f37521b = ck0Var;
+        this.f37520a = y10Var;
+        this.f37522c = i7;
+        this.d = z10;
     }
 
     @Override
-    public final boolean a() {
-        if (((uj0) this.f37309b.f37613b).X0 != null) {
-            return true;
-        }
-        return false;
+    public final void c(dh.a aVar, RectF rectF) {
+        aVar.f8372a = true;
     }
 
-    public final void b(View view, MotionEvent motionEvent) {
-        uj0 uj0Var = (uj0) this.f37309b.f37613b;
-        if (view != null) {
-            if (uj0Var.U0 != null || uj0Var.V0 != null) {
-                float x10 = motionEvent.getX();
-                float y10 = motionEvent.getY();
-                uj0Var.j1(view, x10, y10, true);
-                int i7 = uj0Var.N1;
-                if (uj0Var.Q1 && i7 != -1) {
-                    try {
-                        view.playSoundEffect(0);
-                    } catch (Exception unused) {
-                    }
-                    view.sendAccessibilityEvent(1);
-                    gj0 gj0Var = uj0Var.U0;
-                    if (gj0Var != null) {
-                        gj0Var.b(i7, view);
+    @Override
+    public final void d(Canvas canvas, RectF rectF) {
+        canvas.save();
+        canvas.clipRect(rectF);
+        this.f37521b.P0(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.c1 c1Var) {
+        int b10;
+        boolean z10;
+        int L;
+        if (((Boolean) this.f37520a.a(view)).booleanValue()) {
+            int i7 = this.f37522c;
+            rect.right = i7;
+            rect.left = i7;
+            v4.f1 T = recyclerView.T(view);
+            v4.i0 adapter = recyclerView.getAdapter();
+            if (T != null && adapter != null && (b10 = T.b()) != -1) {
+                boolean z11 = false;
+                if (b10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (b10 == adapter.b() - 1) {
+                    z11 = true;
+                }
+                if (z10) {
+                    if (this.d) {
+                        L = i7;
                     } else {
-                        hj0 hj0Var = uj0Var.V0;
-                        if (hj0Var != null) {
-                            hj0Var.f(x10 - view.getX(), y10 - view.getY(), i7, view);
-                        }
+                        L = org.telegram.messenger.g0.L(4.0f);
                     }
+                    rect.top = L;
                 }
-                lj0 lj0Var = new lj0(this, view, i7, x10, y10);
-                uj0Var.R1 = lj0Var;
-                org.telegram.messenger.g0.i3(lj0Var, ViewConfiguration.getPressedStateDuration());
-                kj0 kj0Var = uj0Var.f40049d1;
-                if (kj0Var != null) {
-                    org.telegram.messenger.g0.r(kj0Var);
-                    uj0Var.f40049d1 = null;
-                    uj0Var.M1 = null;
-                    uj0Var.O1 = false;
-                    uj0Var.m1(view, motionEvent);
+                if (z11) {
+                    rect.bottom = i7;
                 }
             }
         }
     }
 
     @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        hj0 hj0Var;
-        uj0 uj0Var = (uj0) this.f37309b.f37613b;
-        View view = this.f37308a;
-        if (view != null && (hj0Var = uj0Var.V0) != null && hj0Var.c1(view)) {
-            uj0Var.V0.r0(this.f37308a, motionEvent.getX(), motionEvent.getY());
-            this.f37308a = null;
-            return true;
+    public final void f(Canvas canvas, RecyclerView recyclerView) {
+        if (recyclerView instanceof ck0) {
+            ((ck0) recyclerView).P0(canvas);
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        int i7;
-        uj0 uj0Var = (uj0) this.f37309b.f37613b;
-        View view = uj0Var.M1;
-        if (view != null && (i7 = uj0Var.N1) != -1) {
-            ij0 ij0Var = uj0Var.W0;
-            if (ij0Var != null || uj0Var.X0 != null) {
-                if (ij0Var != null) {
-                    if (ij0Var.b(i7, view)) {
-                        try {
-                            view.performHapticFeedback(0);
-                        } catch (Exception unused) {
-                        }
-                        view.sendAccessibilityEvent(2);
-                    }
-                } else if (uj0Var.X0.mo0f(motionEvent.getX() - uj0Var.M1.getX(), motionEvent.getY() - uj0Var.M1.getY(), i7, view)) {
-                    try {
-                        view.performHapticFeedback(0);
-                    } catch (Exception unused2) {
-                    }
-                    view.sendAccessibilityEvent(2);
-                    uj0Var.Y0 = true;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        hj0 hj0Var;
-        View view = this.f37308a;
-        if (view != null && (hj0Var = ((uj0) this.f37309b.f37613b).V0) != null && hj0Var.c1(view)) {
-            b(this.f37308a, motionEvent);
-            this.f37308a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        uj0 uj0Var = (uj0) this.f37309b.f37613b;
-        View view = uj0Var.M1;
-        if (view != null) {
-            hj0 hj0Var = uj0Var.V0;
-            if (hj0Var != null && hj0Var.c1(view)) {
-                this.f37308a = uj0Var.M1;
-                return false;
-            }
-            b(uj0Var.M1, motionEvent);
-        }
-        return false;
     }
 }

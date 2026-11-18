@@ -1,145 +1,35 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.Components.ra0;
+import j$.util.concurrent.ConcurrentHashMap;
 public final class ub implements Runnable {
-    public Thread f26798a;
-    public final Object f26799b = new Object();
-    public final tb f26800c;
-    public boolean d;
-    public final fc f26801e;
+    public final int f27142a;
+    public final vb f27143b;
+    public final long f27144c;
+    public final long d;
 
-    public ub(fc fcVar, tb tbVar) {
-        this.f26801e = fcVar;
-        this.f26800c = tbVar;
-    }
-
-    public static Bitmap a(Bitmap bitmap, TLRPC.WallPaper wallPaper) {
-        int o4;
-        int i7;
-        if (wallPaper.pattern && wallPaper.settings != null) {
-            Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
-            TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
-            boolean z10 = true;
-            if (wallPaperSettings.second_background_color == 0) {
-                i7 = g0.V0(wallPaperSettings.background_color, false);
-                canvas.drawColor(i0.a.o(wallPaper.settings.background_color, 255));
-            } else if (wallPaperSettings.third_background_color == 0) {
-                int o10 = i0.a.o(wallPaperSettings.background_color, 255);
-                int o11 = i0.a.o(wallPaper.settings.second_background_color, 255);
-                int w02 = g0.w0(o10, o11);
-                GradientDrawable gradientDrawable = new GradientDrawable(org.telegram.ui.Components.h9.d(wallPaper.settings.rotation), new int[]{o10, o11});
-                gradientDrawable.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                gradientDrawable.draw(canvas);
-                i7 = w02;
-            } else {
-                int o12 = i0.a.o(wallPaperSettings.background_color, 255);
-                int o13 = i0.a.o(wallPaper.settings.second_background_color, 255);
-                int o14 = i0.a.o(wallPaper.settings.third_background_color, 255);
-                int i10 = wallPaper.settings.fourth_background_color;
-                if (i10 == 0) {
-                    o4 = 0;
-                } else {
-                    o4 = i0.a.o(i10, 255);
-                }
-                int g10 = ra0.g(o12, o13, o14, o4);
-                ra0 ra0Var = new ra0();
-                ra0Var.n(o12, o13, o14, o4);
-                ra0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                ra0Var.s(wallPaper.settings.intensity, bitmap);
-                ra0Var.draw(canvas);
-                z10 = false;
-                i7 = g10;
-            }
-            if (z10) {
-                Paint paint = new Paint(2);
-                paint.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
-                paint.setAlpha((int) ((wallPaper.settings.intensity / 100.0f) * 255.0f));
-                canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
-            }
-            return createBitmap;
-        }
-        TLRPC.WallPaperSettings wallPaperSettings2 = wallPaper.settings;
-        if (wallPaperSettings2 != null && wallPaperSettings2.blur) {
-            return Utilities.e(bitmap);
-        }
-        return bitmap;
-    }
-
-    public final void b(ch0 ch0Var, int i7, int i10, boolean z10, boolean z11) {
-        Bitmap createBitmap;
-        Canvas canvas;
-        int i11;
-        BitmapDrawable bitmapDrawable;
-        if (z10 && z11) {
-            float f10 = i7 * 1.2f;
-            float f11 = i10 * 1.2f;
-            createBitmap = Bitmap.createBitmap((int) f10, (int) f11, Bitmap.Config.ARGB_8888);
-            canvas = new Canvas(createBitmap);
-            canvas.scale(2.0f, 2.0f, f10 / 2.0f, f11 / 2.0f);
-        } else {
-            createBitmap = Bitmap.createBitmap(i7, i10, Bitmap.Config.ARGB_8888);
-            canvas = new Canvas(createBitmap);
-        }
-        ch0Var.b();
-        Bitmap createBitmap2 = Bitmap.createBitmap(ch0Var.f33574b, ch0Var.f33576c, Bitmap.Config.ARGB_8888);
-        if (z10) {
-            i11 = ch0Var.f33579e[0] - 1;
-        } else {
-            i11 = 0;
-        }
-        ch0Var.D0 = i11;
-        ch0Var.a(createBitmap2);
-        ch0Var.c();
-        canvas.save();
-        if (!z10 || !z11) {
-            canvas.scale(createBitmap2.getWidth() / i7, createBitmap2.getHeight() / i10, i7 / 2.0f, i10 / 2.0f);
-        }
-        Paint paint = new Paint(1);
-        paint.setFilterBitmap(true);
-        if (z10 && z11) {
-            canvas.drawBitmap(createBitmap2, (createBitmap.getWidth() - createBitmap2.getWidth()) / 2.0f, (createBitmap.getHeight() - createBitmap2.getHeight()) / 2.0f, paint);
-            bitmapDrawable = new BitmapDrawable(createBitmap);
-        } else {
-            canvas.drawBitmap(createBitmap2, 0.0f, 0.0f, paint);
-            bitmapDrawable = new BitmapDrawable(createBitmap);
-        }
-        ch0Var.C(false);
-        createBitmap2.recycle();
-        c(bitmapDrawable);
-    }
-
-    public final void c(BitmapDrawable bitmapDrawable) {
-        g0.h3(new x4(19, this, bitmapDrawable));
-    }
-
-    public final void d() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ub.d():void");
+    public ub(vb vbVar, long j3, long j10, int i7) {
+        this.f27142a = i7;
+        this.f27143b = vbVar;
+        this.f27144c = j3;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        try {
-            d();
-            synchronized (this.f26799b) {
-                this.f26798a = null;
-            }
-            Thread.interrupted();
-        } catch (Throwable th2) {
-            synchronized (this.f26799b) {
-                this.f26798a = null;
-                Thread.interrupted();
-                throw th2;
-            }
+        switch (this.f27142a) {
+            case 0:
+                vb vbVar = this.f27143b;
+                ConcurrentHashMap concurrentHashMap = vbVar.f27347i.f23697u;
+                String str = vbVar.f27341a;
+                long j3 = this.f27144c;
+                long j10 = this.d;
+                concurrentHashMap.put(str, new long[]{j3, j10});
+                g0.g3(new ub(vbVar, j3, j10, 1));
+                return;
+            default:
+                vb vbVar2 = this.f27143b;
+                ks.f(vbVar2.h).k(141, vbVar2.f27341a, Long.valueOf(this.f27144c), Long.valueOf(this.d));
+                return;
         }
     }
 }

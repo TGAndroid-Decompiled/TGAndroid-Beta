@@ -1,111 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.FrameLayout;
-public final class un0 extends FrameLayout {
-    public final int f40133a;
-    public final po0 f40134b;
+import android.os.Build;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.WindowInsets;
+public final class un0 implements ri.m, r0.m, org.telegram.ui.ActionBar.f1, ri.n {
+    public final int f40382a;
+    public final yo0 f40383b;
 
-    public un0(po0 po0Var, Context context, int i7) {
-        super(context);
-        this.f40133a = i7;
-        this.f40134b = po0Var;
+    public un0(yo0 yo0Var, int i7) {
+        this.f40382a = i7;
+        this.f40383b = yo0Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f40133a) {
-            case 0:
-                po0 po0Var = this.f40134b;
-                po0Var.S2.setBounds(0, (int) po0Var.f38359q2, getMeasuredWidth(), getMeasuredHeight());
-                po0Var.S2.draw(canvas);
-                canvas.save();
-                canvas.clipRect(0.0f, po0Var.f38359q2, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public r0.l1 P0(View view, r0.l1 l1Var) {
+        WindowInsets g10 = l1Var.g();
+        yo0 yo0Var = this.f40383b;
+        yo0Var.t0(g10);
+        i0.b f10 = l1Var.f56258a.f(519);
+        if (!yo0Var.C2.equals(f10)) {
+            yo0Var.C2 = f10;
+            yo0Var.f30195c.requestLayout();
         }
+        return r0.l1.f56257b;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f40133a) {
-            case 0:
-                po0 po0Var = this.f40134b;
-                un0 un0Var = po0Var.n1;
-                float f10 = po0Var.f38361r2;
-                if (f10 != 0.0f && f10 != un0Var.getTop() + po0Var.f38361r2) {
-                    ValueAnimator valueAnimator = po0Var.f38363s2;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    float top = po0Var.f38361r2 - (un0Var.getTop() + po0Var.f38359q2);
-                    po0Var.f38359q2 = top;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    po0Var.f38363s2 = ofFloat;
-                    ofFloat.addUpdateListener(new f60(this, 16));
-                    po0Var.f38363s2.setInterpolator(er.f34419f);
-                    po0Var.f38363s2.setDuration(200L);
-                    po0Var.f38363s2.start();
-                    po0Var.f38361r2 = 0.0f;
-                }
-                po0Var.O1[1].setTranslationY((-(un0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))) + po0Var.f38359q2 + po0Var.f38357p2 + ((1.0f - getAlpha()) * (un0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))));
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public int e() {
+        yo0 yo0Var = this.f40383b;
+        yo0Var.getClass();
+        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, yo0Var.J0);
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f40133a) {
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(org.telegram.messenger.hd.G(this.f40134b.Q1.m(), "AccDescrShareInChats", new Object[0]));
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setAlpha(float f10) {
-        switch (this.f40133a) {
-            case 0:
-                super.setAlpha(f10);
-                invalidate();
-                return;
-            default:
-                super.setAlpha(f10);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i7) {
-        switch (this.f40133a) {
-            case 0:
-                super.setVisibility(i7);
-                if (i7 != 0) {
-                    this.f40134b.O1[1].setTranslationY(0.0f);
+    public void j(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.h1 h1Var;
+        org.telegram.ui.ActionBar.h1 h1Var2;
+        switch (this.f40382a) {
+            case 2:
+                yo0 yo0Var = this.f40383b;
+                yo0Var.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (h1Var = yo0Var.F2) != null && h1Var.isShowing()) {
+                    yo0Var.F2.d(true);
                     return;
                 }
                 return;
             default:
-                super.setVisibility(i7);
+                yo0 yo0Var2 = this.f40383b;
+                yo0Var2.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (h1Var2 = yo0Var2.F2) != null && h1Var2.isShowing()) {
+                    yo0Var2.F2.d(true);
+                    return;
+                }
                 return;
+        }
+    }
+
+    @Override
+    public void l(int i7) {
+        yo0 yo0Var = this.f40383b;
+        dh.g gVar = yo0Var.K2;
+        if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
+            if (c8.dd.a(i7, 4)) {
+                gVar.h(yo0Var.Y0.e());
+            }
+            gVar.e(yo0Var.P2, yo0Var.f30192b.getWidth(), yo0Var.f30192b.getHeight());
         }
     }
 }

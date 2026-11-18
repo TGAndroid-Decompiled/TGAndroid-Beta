@@ -1,13 +1,11 @@
 package q7;
-
-import org.telegram.messenger.ou;
 public final class k1 implements j1 {
-    public static final ou f55446a;
+    public static final d9.o f56020a;
 
     static {
-        int i7 = o.f55458c;
-        Object[] objArr = y.f55485r;
+        int i7 = o.f56032c;
+        Object[] objArr = y.f56059r;
         new b0("FIDO");
-        f55446a = new ou(Boolean.FALSE, 17);
+        f56020a = new d9.o(Boolean.FALSE);
     }
 }

@@ -1,94 +1,70 @@
 package ci;
 
-import android.net.Uri;
-import android.text.TextUtils;
-import android.view.View;
-import j$.util.Objects;
-import java.util.Locale;
-import org.telegram.messenger.a20;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.hd;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Cells.d2;
-import org.telegram.ui.Cells.x3;
-import org.telegram.ui.Cells.x6;
-import org.telegram.ui.Cells.y8;
-import org.telegram.ui.Components.er;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Wallet.y5;
-import org.telegram.ui.Wallet.z9;
-import org.telegram.ui.d00;
-public final class x implements a20 {
-    public final int f5553a;
+import android.content.Context;
+import android.graphics.Bitmap;
+import c8.ma;
+import com.google.android.gms.internal.vision.u2;
+import com.google.android.gms.internal.vision.x1;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraView;
+public final class x implements Runnable {
+    public final int f5834a;
+    public final b0 f5835b;
 
-    public x(int i7) {
-        this.f5553a = i7;
+    public x(b0 b0Var, int i7) {
+        this.f5834a = i7;
+        this.f5835b = b0Var;
     }
 
     @Override
-    public final Object a(Object obj) {
-        boolean z10 = true;
-        switch (this.f5553a) {
+    public final void run() {
+        switch (this.f5834a) {
             case 0:
-                String str = (String) obj;
-                if (TextUtils.isEmpty(str) || (!str.startsWith("tg:") && !vf.c.g(Uri.parse(str), false, null))) {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
+                b0 b0Var = this.f5835b;
+                b0Var.g();
+                b0Var.f5550a.c(b0Var);
+                return;
             case 1:
-                String str2 = (String) obj;
-                er erVar = a0.A0;
-                if (TextUtils.isEmpty(str2) || (!str2.startsWith("tg:") && !vf.c.g(Uri.parse(str2), false, null))) {
-                    z10 = false;
+                b0 b0Var2 = this.f5835b;
+                u8.n nVar = b0Var2.f5564j0;
+                if (nVar != null) {
+                    nVar.X0();
+                    b0Var2.f5564j0 = null;
                 }
-                return Boolean.valueOf(z10);
+                Bitmap bitmap = b0Var2.f5566l0;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    b0Var2.f5566l0 = null;
+                }
+                b0Var2.f5561g0.quitSafely();
+                return;
             case 2:
-                return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
-            case 3:
-                gj gjVar = (gj) obj;
-                if (gjVar == null || gjVar.R0() == null) {
-                    z10 = false;
+                b0 b0Var3 = this.f5835b;
+                try {
+                    Context context = org.telegram.messenger.t0.f26915b;
+                    ?? obj = new Object();
+                    obj.f7332a = 256;
+                    b0Var3.f5564j0 = new u8.n(new u2(context, (x1) obj));
+                } catch (Throwable th2) {
+                    a8.g(th2, true);
                 }
-                return Boolean.valueOf(z10);
-            case 4:
-                gj gjVar2 = (gj) obj;
-                if (gjVar2 == null || gjVar2.M0() == null) {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            case 5:
-                return hd.G(((Integer) obj).intValue(), "Hours", new Object[0]);
-            case 6:
-                return hd.G(((Integer) obj).intValue(), "Minutes", new Object[0]);
-            case 7:
-                View view = (View) obj;
-                if ((view instanceof y8) || (view instanceof x6) || (view instanceof d00) || (view instanceof x3) || (view instanceof d2) || Objects.equals(view.getTag(), -33024)) {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
-            case 8:
-                return Boolean.valueOf(p41.K(((Integer) obj).intValue()));
-            case 9:
-                TL_wallet.exportSecretPhrase exportsecretphrase = new TL_wallet.exportSecretPhrase();
-                exportsecretphrase.password = (TLRPC.InputCheckPasswordSRP) obj;
-                return exportsecretphrase;
-            case 10:
-                TL_wallet.replaceWallet replacewallet = new TL_wallet.replaceWallet();
-                replacewallet.wallet = new TL_wallet.inputWalletNew();
-                replacewallet.password = (TLRPC.InputCheckPasswordSRP) obj;
-                return replacewallet;
-            case 11:
-                TL_wallet.disableBackup disablebackup = new TL_wallet.disableBackup();
-                disablebackup.password = (TLRPC.InputCheckPasswordSRP) obj;
-                return disablebackup;
-            case 12:
-                return Boolean.valueOf(y5.C0(y5.c1((String) obj)));
+                b0Var3.f5565k0 = new d6.i(20);
+                return;
             default:
-                if (z9.l0((String) obj) == null) {
-                    z10 = false;
+                b0 b0Var4 = this.f5835b;
+                if (!b0Var4.W && !b0Var4.V && b0Var4.f5552b == null && CameraView.isCameraAllowed()) {
+                    CameraController.getInstance().initCamera(null);
+                    CameraView cameraView = new CameraView(b0Var4.getContext(), false);
+                    cameraView.setUseMaxPreview(true);
+                    cameraView.setOptimizeForBarcode(true);
+                    cameraView.setAlpha(0.0f);
+                    cameraView.setDelegate(new ab.g(10, b0Var4, cameraView));
+                    b0Var4.f5552b = cameraView;
+                    b0Var4.addView(cameraView, 0, ma.c(-1.0f, -1));
+                    return;
                 }
-                return Boolean.valueOf(z10);
+                return;
         }
     }
 }

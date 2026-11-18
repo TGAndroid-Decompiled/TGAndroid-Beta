@@ -7,36 +7,36 @@ import android.os.PowerManager;
 import android.util.Log;
 import java.io.IOException;
 public final class l0 implements Runnable {
-    public static final Object f964f = new Object();
+    public static final Object f963f = new Object();
     public static Boolean h;
-    public static Boolean f965n;
-    public final Context f966a;
-    public final v f967b;
-    public final PowerManager.WakeLock f968c;
+    public static Boolean f964n;
+    public final Context f965a;
+    public final v f966b;
+    public final PowerManager.WakeLock f967c;
     public final j0 d;
-    public final long f969e;
+    public final long f968e;
 
     public l0(j0 j0Var, Context context, v vVar, long j3) {
         this.d = j0Var;
-        this.f966a = context;
-        this.f969e = j3;
-        this.f967b = vVar;
-        this.f968c = ((PowerManager) context.getSystemService("power")).newWakeLock(1, "wake:com.google.firebase.messaging");
+        this.f965a = context;
+        this.f968e = j3;
+        this.f966b = vVar;
+        this.f967c = ((PowerManager) context.getSystemService("power")).newWakeLock(1, "wake:com.google.firebase.messaging");
     }
 
     public static boolean a(Context context) {
         boolean booleanValue;
         boolean booleanValue2;
-        synchronized (f964f) {
+        synchronized (f963f) {
             try {
-                Boolean bool = f965n;
+                Boolean bool = f964n;
                 if (bool == null) {
                     booleanValue = b(context, "android.permission.ACCESS_NETWORK_STATE", bool);
                 } else {
                     booleanValue = bool.booleanValue();
                 }
                 Boolean valueOf = Boolean.valueOf(booleanValue);
-                f965n = valueOf;
+                f964n = valueOf;
                 booleanValue2 = valueOf.booleanValue();
             } catch (Throwable th2) {
                 throw th2;
@@ -64,7 +64,7 @@ public final class l0 implements Runnable {
     public static boolean c(Context context) {
         boolean booleanValue;
         boolean booleanValue2;
-        synchronized (f964f) {
+        synchronized (f963f) {
             try {
                 Boolean bool = h;
                 if (bool == null) {
@@ -86,7 +86,7 @@ public final class l0 implements Runnable {
         NetworkInfo networkInfo;
         boolean z10;
         try {
-            ConnectivityManager connectivityManager = (ConnectivityManager) this.f966a.getSystemService("connectivity");
+            ConnectivityManager connectivityManager = (ConnectivityManager) this.f965a.getSystemService("connectivity");
             if (connectivityManager != null) {
                 networkInfo = connectivityManager.getActiveNetworkInfo();
             } else {
@@ -107,17 +107,17 @@ public final class l0 implements Runnable {
     @Override
     public final void run() {
         j0 j0Var = this.d;
-        Context context = this.f966a;
+        Context context = this.f965a;
         boolean c10 = c(context);
-        PowerManager.WakeLock wakeLock = this.f968c;
+        PowerManager.WakeLock wakeLock = this.f967c;
         if (c10) {
-            wakeLock.acquire(f.f922a);
+            wakeLock.acquire(f.f921a);
         }
         try {
             try {
                 try {
                     j0Var.c(true);
-                    if (!this.f967b.e()) {
+                    if (!this.f966b.e()) {
                         j0Var.c(false);
                         if (c(context)) {
                             try {
@@ -139,7 +139,7 @@ public final class l0 implements Runnable {
                         if (j0Var.d()) {
                             j0Var.c(false);
                         } else {
-                            j0Var.e(this.f969e);
+                            j0Var.e(this.f968e);
                         }
                         if (c(context)) {
                             wakeLock.release();

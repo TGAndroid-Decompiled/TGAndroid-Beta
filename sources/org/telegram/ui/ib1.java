@@ -1,194 +1,98 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class ib1 extends org.telegram.ui.Components.aj0 {
-    public final Context f48009c;
-    public final jg.z1 f48011f;
-    public Runnable h;
-    public boolean f48012n;
-    public final int f48014s;
-    public final UsersSelectActivity f48015w;
-    public ArrayList d = new ArrayList();
-    public ArrayList f48010e = new ArrayList();
-    public final ArrayList f48013r = new ArrayList();
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class ib1 extends LinearLayout implements org.telegram.ui.ActionBar.c6 {
+    public final org.telegram.ui.ActionBar.i6 f48692a;
+    public final ImageView f48693b;
+    public final LinearLayout f48694c;
+    public final TextView d;
+    public final TextView f48695e;
+    public final ImageView f48696f;
+    public boolean h;
+    public boolean f48697n;
+    public int f48698r;
 
-    public ib1(UsersSelectActivity usersSelectActivity, Context context) {
-        boolean z10;
-        boolean z11;
-        this.f48015w = usersSelectActivity;
-        this.f48009c = context;
-        if (usersSelectActivity.G) {
-            this.f48014s = 0;
-        } else {
-            int i7 = usersSelectActivity.f43458y;
-            if (i7 == 2) {
-                this.f48014s = (!usersSelectActivity.J ? 1 : 0) + 5;
-            } else if (i7 == 0) {
-                if (usersSelectActivity.K) {
-                    this.f48014s = 7;
-                } else {
-                    this.f48014s = 5;
-                }
-            } else {
-                this.f48014s = 0;
-            }
-        }
-        int i10 = usersSelectActivity.f43458y;
-        if (i10 == 2 && !usersSelectActivity.I) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (i10 != 2) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        ArrayList arrayList = usersSelectActivity.getMessagesController().f25443y;
-        int size = arrayList.size();
-        int i11 = 0;
-        boolean z12 = false;
-        while (i11 < size) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList.get(i11);
-            if (!org.telegram.messenger.m5.C(dialog.f28055id)) {
-                if (org.telegram.messenger.m5.E(dialog.f28055id)) {
-                    TLRPC.User a22 = usersSelectActivity.getMessagesController().a2(Long.valueOf(dialog.f28055id));
-                    if (a22 != null && ((usersSelectActivity.H || !org.telegram.messenger.q10.B(a22)) && (!a22.bot || z10))) {
-                        this.f48013r.add(a22);
-                        if (org.telegram.messenger.q10.B(a22)) {
-                            z12 = true;
-                        }
-                    }
-                } else {
-                    TLRPC.Chat M0 = usersSelectActivity.getMessagesController().M0(Long.valueOf(-dialog.f28055id));
-                    if (z11 && M0 != null) {
-                        this.f48013r.add(M0);
-                    }
-                }
-            }
-            i11++;
-            z12 = z12;
-        }
-        if (!z12 && usersSelectActivity.H) {
-            this.f48013r.add(0, usersSelectActivity.getMessagesController().a2(Long.valueOf(usersSelectActivity.getUserConfig().f24959n)));
-        }
-        jg.z1 z1Var = new jg.z1(false);
-        this.f48011f = z1Var;
-        z1Var.f17357p = false;
-        z1Var.f17344a = new ni0(this, 23);
+    public ib1(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context);
+        setOrientation(0);
+        this.f48692a = i6Var;
+        ImageView imageView = new ImageView(context);
+        this.f48693b = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        addView(imageView, c8.ma.t(40, 40, 19, 12, 0, 12, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f48694c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f));
+        addView(linearLayout, c8.ma.q(0, -2, 1.0f, 23, 0, 0, 32, 0));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView f10 = org.telegram.messenger.n10.f(linearLayout, textView, c8.ma.t(-1, -2, 7, 0, 0, 0, 0), context);
+        this.f48695e = f10;
+        f10.setTextSize(1, 13.0f);
+        linearLayout.addView(f10, c8.ma.s(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f48696f = imageView2;
+        imageView2.setScaleType(scaleType);
+        addView(imageView2, c8.ma.t(40, 40, 21, 12, 0, 12, 0));
     }
 
     @Override
-    public final void A(v4.e1 e1Var) {
-        View view = e1Var.f58535a;
-        if (view instanceof org.telegram.ui.Cells.h4) {
-            ((org.telegram.ui.Cells.h4) view).f30385a.getImageReceiver().c();
-        }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        if (e1Var.f58539f == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final String F(int i7) {
-        return null;
-    }
-
-    @Override
-    public final void G(org.telegram.ui.Components.uj0 uj0Var, float f10, int[] iArr) {
-        iArr[0] = (int) (b() * f10);
-        iArr[1] = 0;
-    }
-
-    public final void L(String str) {
-        boolean z10;
-        boolean z11;
-        if (this.h != null) {
-            Utilities.f22418g.a(this.h);
-            this.h = null;
-        }
-        UsersSelectActivity usersSelectActivity = this.f48015w;
-        int i7 = usersSelectActivity.f43458y;
-        if (i7 == 2 && !usersSelectActivity.I) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (i7 != 2) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (str == null) {
-            this.d.clear();
-            this.f48010e.clear();
-            this.f48011f.f(null, null);
-            this.f48011f.g(null, true, false, false, false, 0L, false, 0, 0);
-            f();
-            return;
-        }
-        org.telegram.messenger.p5 p5Var = Utilities.f22418g;
-        hb1 hb1Var = new hb1(this, str, z11, z10, 0);
-        this.h = hb1Var;
-        p5Var.d(hb1Var, 300L);
-    }
-
-    @Override
-    public final int b() {
-        if (this.f48012n) {
-            int size = this.d.size();
-            jg.z1 z1Var = this.f48011f;
-            return z1Var.f17347e.size() + z1Var.d.size() + size;
-        }
-        UsersSelectActivity usersSelectActivity = this.f48015w;
-        int i7 = 0;
-        if (!usersSelectActivity.G) {
-            int i10 = usersSelectActivity.f43458y;
-            if (i10 == 2) {
-                i7 = (!usersSelectActivity.J ? 1 : 0) + 3;
-            } else if (i10 == 0) {
-                i7 = usersSelectActivity.K ? 7 : 5;
-            }
-        }
-        return this.f48013r.size() + i7;
-    }
-
-    @Override
-    public final int d(int i7) {
+    public final void updateColors() {
+        int i7;
         int i10;
-        if (!this.f48012n) {
-            UsersSelectActivity usersSelectActivity = this.f48015w;
-            if (!usersSelectActivity.G ? !((i10 = usersSelectActivity.f43458y) != 2 ? i10 != 0 || (!usersSelectActivity.K ? !(i7 == 0 || i7 == 4) : !(i7 == 0 || i7 == 6)) : i7 != 0 && i7 != (!usersSelectActivity.J ? 1 : 0) + 4) : i7 == 0) {
-                return 2;
-            }
-        }
-        return 1;
-    }
-
-    @Override
-    public final void t(v4.e1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ib1.t(v4.e1, int):void");
-    }
-
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        View h4Var;
-        Context context = this.f48009c;
-        if (i7 != 1) {
-            h4Var = new org.telegram.ui.Cells.x3(context, null);
+        int i11;
+        if (this.f48697n) {
+            i7 = org.telegram.ui.ActionBar.n6.f29637q7;
+        } else if (this.h) {
+            i7 = org.telegram.ui.ActionBar.n6.f29578n6;
         } else {
-            h4Var = new org.telegram.ui.Cells.h4(context, 1, 0, true);
+            i7 = org.telegram.ui.ActionBar.n6.G6;
         }
-        return new v4.e1(h4Var);
+        org.telegram.ui.ActionBar.i6 i6Var = this.f48692a;
+        int w02 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
+        int i12 = this.f48698r;
+        ImageView imageView = this.f48696f;
+        ImageView imageView2 = this.f48693b;
+        if (w02 != i12 || imageView2.getColorFilter() == null || imageView.getColorFilter() == null) {
+            this.f48698r = w02;
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            imageView2.setColorFilter(new PorterDuffColorFilter(w02, mode));
+            imageView.setColorFilter(new PorterDuffColorFilter(w02, mode));
+        }
+        if (this.f48697n) {
+            i10 = org.telegram.ui.ActionBar.n6.f29617p7;
+        } else if (this.h) {
+            i10 = org.telegram.ui.ActionBar.n6.f29578n6;
+        } else {
+            i10 = org.telegram.ui.ActionBar.n6.G6;
+        }
+        this.d.setTextColor(org.telegram.ui.ActionBar.n6.w0(i10, i6Var));
+        if (this.f48697n) {
+            i11 = org.telegram.ui.ActionBar.n6.f29617p7;
+        } else if (this.h) {
+            i11 = org.telegram.ui.ActionBar.n6.f29578n6;
+        } else {
+            i11 = org.telegram.ui.ActionBar.n6.f29788y6;
+        }
+        this.f48695e.setTextColor(org.telegram.ui.ActionBar.n6.w0(i11, i6Var));
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

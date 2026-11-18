@@ -1,49 +1,57 @@
 package org.telegram.ui.Components;
+public final class az implements Runnable {
+    public final int f33492a;
+    public final boolean f33493b;
+    public final boolean f33494c;
+    public final boolean d;
+    public final Object f33495e;
 
-import android.graphics.RectF;
-import android.view.View;
-public final class az implements hj0, ij0 {
-    public final iz f33111a;
-
-    public az(iz izVar) {
-        this.f33111a = izVar;
+    public az(Object obj, boolean z10, boolean z11, boolean z12, int i7) {
+        this.f33492a = i7;
+        this.f33495e = obj;
+        this.f33493b = z10;
+        this.f33494c = z11;
+        this.d = z12;
     }
 
     @Override
-    public boolean b(int r23, android.view.View r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.az.b(int, android.view.View):boolean");
-    }
-
-    @Override
-    public boolean c1(View view) {
-        return false;
-    }
-
-    @Override
-    public void f(float f10, float f11, int i7, View view) {
-        iz izVar = this.f33111a;
-        ez ezVar = izVar.K;
-        if (!((org.telegram.ui.pw) ezVar).f50376b.f53668l2) {
-            gz gzVar = (gz) view;
-            if (izVar.f35785n) {
-                if (i7 != 0) {
-                    int L = org.telegram.messenger.g0.L(6.0f);
-                    RectF rectF = gzVar.f35112f;
-                    float f12 = L;
-                    if (rectF.left - f12 < f10 && rectF.right + f12 > f10) {
-                        org.telegram.ui.pw pwVar = (org.telegram.ui.pw) izVar.K;
-                        pwVar.d((org.telegram.messenger.so) pwVar.f50376b.getMessagesController().T0().get(gzVar.f35105b.f34752a));
-                    }
+    public final void run() {
+        org.telegram.utils.twidget.d1 d1Var;
+        a81 a81Var;
+        switch (this.f33492a) {
+            case 0:
+                cz czVar = (cz) this.f33495e;
+                boolean z10 = this.f33493b;
+                boolean z11 = this.f33494c;
+                boolean z12 = this.d;
+                if (z10) {
+                    fz fzVar = czVar.K;
+                    fzVar.f35189a = true;
+                    fzVar.f35192b = true;
                 }
-            } else if (i7 == izVar.L && ezVar != null) {
-                ((org.telegram.ui.pw) ezVar).f50376b.J4(true, false);
-            } else {
-                izVar.f(gzVar.f35105b, i7);
-            }
+                if (z11) {
+                    czVar.f34218y = true;
+                }
+                long currentTimeMillis = System.currentTimeMillis();
+                if (z12 || Math.abs(czVar.f34206b0 - currentTimeMillis) > 30) {
+                    czVar.f34206b0 = currentTimeMillis;
+                    czVar.f34211e0.run();
+                    return;
+                }
+                return;
+            case 1:
+                ((org.telegram.ui.de0) this.f33495e).O1(this.f33493b, this.f33494c, this.d);
+                return;
+            default:
+                org.telegram.utils.twidget.p1 p1Var = (org.telegram.utils.twidget.p1) this.f33495e;
+                boolean z13 = this.f33493b;
+                boolean z14 = this.f33494c;
+                boolean z15 = this.d;
+                if (!p1Var.A && (d1Var = p1Var.R) != null && (a81Var = d1Var.h) != null && a81Var.f33285w && !a81Var.f33286x) {
+                    a81Var.l(z13, z14, z15);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public void r0(View view, float f10, float f11) {
     }
 }

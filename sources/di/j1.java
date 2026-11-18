@@ -1,68 +1,76 @@
 package di;
 
-import org.telegram.messenger.m10;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class j1 implements Runnable {
-    public final int f8844a = 0;
-    public final c6 f8845b;
-    public final TLRPC.TL_error f8846c;
-    public final TwoStepVerificationActivity d;
-    public final TLObject f8847e;
-    public final boolean f8848f;
+import android.view.View;
+public final class j1 implements View.OnClickListener {
+    public final int f9066a;
+    public final f6 f9067b;
+    public final int f9068c;
 
-    public j1(c6 c6Var, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, TLRPC.TL_error tL_error) {
-        this.f8845b = c6Var;
-        this.f8847e = tLObject;
-        this.d = twoStepVerificationActivity;
-        this.f8848f = z10;
-        this.f8846c = tL_error;
+    public j1(f6 f6Var, int i7, int i10) {
+        this.f9066a = i10;
+        this.f9067b = f6Var;
+        this.f9068c = i7;
     }
 
     @Override
-    public final void run() {
-        TwoStepVerificationActivity twoStepVerificationActivity;
-        switch (this.f8844a) {
+    public final void onClick(View view) {
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        switch (this.f9066a) {
             case 0:
-                TLObject tLObject = this.f8847e;
-                boolean z10 = tLObject instanceof TL_account.tmpPassword;
-                c6 c6Var = this.f8845b;
-                TwoStepVerificationActivity twoStepVerificationActivity2 = this.d;
-                boolean z11 = this.f8848f;
-                if (z10) {
-                    TL_account.tmpPassword tmppassword = (TL_account.tmpPassword) tLObject;
-                    m10.i(c6Var.f29679a).f24970y = tmppassword;
-                    m10.i(c6Var.f29679a).v(false);
-                    c6Var.J1(tmppassword.tmp_password, twoStepVerificationActivity2, z11, null);
-                    return;
+                f6 f6Var = this.f9067b;
+                int i13 = this.f9068c;
+                f6Var.Q2 = i13;
+                h4 h4Var = f6Var.V1;
+                int currentPosition = h4Var.getCurrentPosition();
+                if (i13 > f6Var.I1()) {
+                    i7 = 1;
+                } else {
+                    i7 = -1;
                 }
-                c6Var.Q1(this.f8846c, twoStepVerificationActivity2, z11);
+                h4Var.A(currentPosition + i7);
+                return;
+            case 1:
+                f6 f6Var2 = this.f9067b;
+                int i14 = this.f9068c;
+                f6Var2.Q2 = i14;
+                h4 h4Var2 = f6Var2.V1;
+                int currentPosition2 = h4Var2.getCurrentPosition();
+                if (i14 > f6Var2.I1()) {
+                    i10 = 1;
+                } else {
+                    i10 = -1;
+                }
+                h4Var2.A(currentPosition2 + i10);
+                return;
+            case 2:
+                f6 f6Var3 = this.f9067b;
+                int i15 = this.f9068c;
+                f6Var3.Q2 = i15;
+                h4 h4Var3 = f6Var3.V1;
+                int currentPosition3 = h4Var3.getCurrentPosition();
+                if (i15 > f6Var3.I1()) {
+                    i11 = 1;
+                } else {
+                    i11 = -1;
+                }
+                h4Var3.A(currentPosition3 + i11);
                 return;
             default:
-                if (this.f8846c == null && (twoStepVerificationActivity = this.d) != null) {
-                    TL_account.Password password = (TL_account.Password) this.f8847e;
-                    twoStepVerificationActivity.J = password;
-                    TwoStepVerificationActivity.r0(password);
-                    TLRPC.TL_inputCheckPasswordSRP q02 = twoStepVerificationActivity.q0();
-                    TL_account.getTmpPassword gettmppassword = new TL_account.getTmpPassword();
-                    gettmppassword.password = q02;
-                    gettmppassword.period = 600;
-                    c6 c6Var2 = this.f8845b;
-                    ConnectionsManager.getInstance(c6Var2.f29679a).sendRequest(gettmppassword, new j3(c6Var2, twoStepVerificationActivity, this.f8848f, 0));
-                    return;
+                f6 f6Var4 = this.f9067b;
+                int i16 = this.f9068c;
+                f6Var4.Q2 = i16;
+                h4 h4Var4 = f6Var4.V1;
+                int currentPosition4 = h4Var4.getCurrentPosition();
+                if (i16 > f6Var4.I1()) {
+                    i12 = 1;
+                } else {
+                    i12 = -1;
                 }
+                h4Var4.A(currentPosition4 + i12);
                 return;
         }
-    }
-
-    public j1(c6 c6Var, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, TLObject tLObject, boolean z10) {
-        this.f8845b = c6Var;
-        this.f8846c = tL_error;
-        this.d = twoStepVerificationActivity;
-        this.f8847e = tLObject;
-        this.f8848f = z10;
     }
 }

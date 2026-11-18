@@ -1,96 +1,54 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLRPC;
-public final class b91 implements org.telegram.ui.Components.ho {
-    public final TLRPC.TL_forumTopic f45651a;
-    public final u91 f45652b;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class b91 extends v4.c0 {
+    public boolean I;
+    public final y91 J;
 
-    public b91(u91 u91Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f45652b = u91Var;
-        this.f45651a = tL_forumTopic;
+    public b91(y91 y91Var) {
+        this.J = y91Var;
     }
 
     @Override
-    public final void F() {
-        this.f45652b.finishPreviewFragment();
-        org.telegram.messenger.g0.i3(new fy0(16, this, this.f45651a), 500L);
-    }
-
-    @Override
-    public final void J() {
-        int i7;
-        u91 u91Var = this.f45652b;
-        i7 = ((org.telegram.ui.ActionBar.e2) u91Var).currentAccount;
-        SharedPreferences sharedPreferences = org.telegram.messenger.np.s1(i7).f25273e7;
-        StringBuilder sb2 = new StringBuilder("sound_enabled_");
-        long j3 = u91Var.f51835a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f45651a;
-        sb2.append(org.telegram.messenger.at.v(-j3, tL_forumTopic.f28103id, false));
-        boolean z10 = sharedPreferences.getBoolean(sb2.toString(), true);
-        boolean z11 = !z10 ? 1 : 0;
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + org.telegram.messenger.at.v(-j3, tL_forumTopic.f28103id, false), z11).apply();
-        u91Var.finishPreviewFragment();
-        if (org.telegram.ui.Components.cc.a(u91Var)) {
-            org.telegram.ui.Components.cc.S(z10 ? 1 : 0, u91Var, u91Var.getResourceProvider()).j();
+    public final void b0(v4.x0 x0Var, v4.c1 c1Var) {
+        boolean z10 = org.telegram.messenger.s2.f26723a;
+        try {
+            super.b0(x0Var, c1Var);
+        } catch (IndexOutOfBoundsException e10) {
+            org.telegram.messenger.a8.g(e10, true);
+            org.telegram.messenger.g0.g3(new ru0(this, 21));
         }
     }
 
     @Override
-    public final void R(int i7) {
-        u91 u91Var = this.f45652b;
-        long j3 = u91Var.f51835a;
-        u91Var.finishPreviewFragment();
-        TLRPC.TL_forumTopic tL_forumTopic = this.f45651a;
-        if (i7 == 0) {
-            if (u91Var.getMessagesController().r2(-j3, tL_forumTopic.f28103id, null)) {
-                u91Var.getNotificationsController().G(-j3, tL_forumTopic.f28103id, false);
-            }
-            if (org.telegram.ui.Components.cc.a(u91Var)) {
-                org.telegram.ui.Components.cc.z(u91Var, 4, i7, u91Var.getResourceProvider()).j();
-                return;
-            }
+    public final void b1(View view, View view2, int i7, int i10) {
+        this.I = true;
+        super.b1(view, view2, i7, i10);
+        this.I = false;
+    }
+
+    @Override
+    public final void h1(int i7, int i10) {
+        if (this.I) {
+            i10 -= this.J.O.getPaddingTop();
+        }
+        super.h1(i7, i10);
+    }
+
+    @Override
+    public final int o0(int r19, v4.x0 r20, v4.c1 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b91.o0(int, v4.x0, v4.c1):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
+        if (this.J.f54158y > 0 && i7 == 1) {
+            super.v0(recyclerView, c1Var, i7);
             return;
         }
-        u91Var.getNotificationsController().H(-j3, i7, tL_forumTopic.f28103id);
-        if (org.telegram.ui.Components.cc.a(u91Var)) {
-            org.telegram.ui.Components.cc.z(u91Var, 5, i7, u91Var.getResourceProvider()).j();
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        this.f45652b.finishPreviewFragment();
-    }
-
-    @Override
-    public final void u() {
-        int i7;
-        int i10;
-        u91 u91Var = this.f45652b;
-        u91Var.finishPreviewFragment();
-        org.telegram.messenger.np messagesController = u91Var.getMessagesController();
-        long j3 = u91Var.f51835a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f45651a;
-        boolean r22 = messagesController.r2(-j3, tL_forumTopic.f28103id, null);
-        u91Var.getNotificationsController().G(-j3, tL_forumTopic.f28103id, !r22);
-        if (org.telegram.ui.Components.cc.a(u91Var)) {
-            if (!r22) {
-                i7 = 3;
-            } else {
-                i7 = 4;
-            }
-            if (!r22) {
-                i10 = Integer.MAX_VALUE;
-            } else {
-                i10 = 0;
-            }
-            org.telegram.ui.Components.cc.z(u91Var, i7, i10, u91Var.getResourceProvider()).j();
-        }
-    }
-
-    @Override
-    public final void t() {
+        pi.l lVar = new pi.l(recyclerView.getContext(), 0);
+        lVar.f59066a = i7;
+        w0(lVar);
     }
 }

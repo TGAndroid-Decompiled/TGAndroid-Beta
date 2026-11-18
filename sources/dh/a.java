@@ -1,12 +1,12 @@
 package dh;
 
-import org.telegram.messenger.si;
+import org.telegram.messenger.ri;
 public final class a {
-    public boolean f8090a;
-    public long f8091b;
+    public boolean f8372a;
+    public long f8373b;
 
     public void a(long j3) {
-        this.f8091b = si.p(this.f8091b, j3);
+        this.f8373b = ri.r(this.f8373b, j3);
     }
 
     public void b(boolean z10) {

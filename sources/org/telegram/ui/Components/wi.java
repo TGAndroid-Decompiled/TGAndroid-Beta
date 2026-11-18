@@ -1,22 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-public final class wi extends v4.c0 {
-    public final gi.g f41355r;
+import java.io.Serializable;
+public final class wi implements org.telegram.messenger.v10, org.telegram.messenger.w10 {
+    public final cj f41719a;
 
-    public wi(gi.g gVar, Context context) {
-        super(context);
-        this.f41355r = gVar;
+    @Override
+    public Boolean a(l41 l41Var, View view, Integer num, Float f10, Float f11) {
+        this.f41719a.R(l41Var, view);
+        return Boolean.TRUE;
     }
 
     @Override
-    public final int k(int i7, View view) {
-        return org.telegram.messenger.k5.B(7.0f, ((yi) this.f41355r.R).f42003n.getPaddingTop(), super.k(i7, view));
-    }
-
-    @Override
-    public final int m(int i7) {
-        return super.m(i7) * 2;
+    public void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        this.f41719a.R((l41) obj, (View) obj2);
     }
 }

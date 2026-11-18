@@ -1,45 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PrivacyControlActivity;
-public final class c1 implements Runnable {
-    public final int f33458a;
-    public final ArrayList f33459b;
+import android.content.DialogInterface;
+public final class c1 implements DialogInterface.OnShowListener {
+    public final int f33837a;
+    public final a5 f33838b;
 
-    public c1(int i7, ArrayList arrayList) {
-        this.f33458a = i7;
-        this.f33459b = arrayList;
+    public c1(int i7, a5 a5Var) {
+        this.f33837a = i7;
+        this.f33838b = a5Var;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.e2 Q;
-        switch (this.f33458a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f33837a) {
             case 0:
-                if (this.f33459b != null && (Q = LaunchActivity.Q()) != 0) {
-                    ?? obj = new Object();
-                    obj.f28476a = true;
-                    Q.showAsSheet(new PrivacyControlActivity(11, false), obj);
-                    return;
-                }
+                a5 a5Var = this.f33838b;
+                a5Var.requestFocus();
+                org.telegram.messenger.g0.I3(a5Var);
+                return;
+            case 1:
+                a5 a5Var2 = this.f33838b;
+                a5Var2.requestFocus();
+                org.telegram.messenger.g0.I3(a5Var2);
                 return;
             default:
-                int i7 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f33459b;
-                    if (i7 < arrayList.size()) {
-                        ((View) arrayList.get(i7)).setVisibility(8);
-                        if (arrayList.get(i7) instanceof org.telegram.ui.Cells.q1) {
-                            ((org.telegram.ui.Cells.q1) arrayList.get(i7)).k3(false, false);
-                            ((org.telegram.ui.Cells.q1) arrayList.get(i7)).m3(false, false, false);
-                        }
-                        i7++;
-                    } else {
-                        return;
-                    }
-                }
+                org.telegram.messenger.g0.g3(new lg(this.f33838b, 2));
+                return;
         }
     }
 }

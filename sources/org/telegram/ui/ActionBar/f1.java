@@ -1,4 +1,6 @@
 package org.telegram.ui.ActionBar;
+
+import android.view.KeyEvent;
 public interface f1 {
-    void a();
+    void j(KeyEvent keyEvent);
 }

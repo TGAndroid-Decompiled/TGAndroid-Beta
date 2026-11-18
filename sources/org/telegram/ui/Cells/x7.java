@@ -1,36 +1,146 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.AccelerateInterpolator;
+import android.widget.FrameLayout;
 import org.telegram.messenger.ImageReceiver;
-public final class x7 extends ImageReceiver {
-    public final org.telegram.ui.ActionBar.e6 K1;
-    public final y7 L1;
+import org.telegram.messenger.bj;
+import org.telegram.messenger.gd;
+import org.telegram.tgnet.TLRPC;
+public final class x7 extends FrameLayout {
+    public org.telegram.ui.Components.q9 f32428a;
+    public TLRPC.Document f32429b;
+    public Object f32430c;
+    public long d;
+    public boolean f32431e;
+    public float f32432f;
+    public boolean h;
+    public ug.c1 f32433n;
+    public boolean f32434r;
+    public boolean f32435s;
+    public org.telegram.ui.ActionBar.i6 f32436w;
 
-    public x7(y7 y7Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(null);
-        this.L1 = y7Var;
-        this.K1 = e6Var;
+    static {
+        new AccelerateInterpolator(0.5f);
     }
 
     @Override
-    public final boolean x0(Drawable drawable, String str, int i7, boolean z10, int i10) {
-        y7 y7Var = this.L1;
-        ImageView imageView = y7Var.K;
-        if ((drawable instanceof BitmapDrawable) && y7Var.L == 0) {
-            int J0 = org.telegram.messenger.g0.J0(((BitmapDrawable) drawable).getBitmap());
-            y7Var.L = J0;
-            if (J0 != -1 && J0 != 0) {
-                imageView.setBackground(org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(12.0f), y7Var.L));
-            } else {
-                int i11 = org.telegram.ui.ActionBar.j6.f29088q5;
-                org.telegram.ui.ActionBar.e6 e6Var = this.K1;
-                y7Var.L = org.telegram.ui.ActionBar.j6.w0(i11, e6Var);
-                org.telegram.ui.ActionBar.q6.B(imageView, org.telegram.ui.ActionBar.j6.d0(org.telegram.messenger.g0.L(12.0f), y7Var.L), org.telegram.ui.ActionBar.q6.M(i11), e6Var);
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        boolean z10;
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        org.telegram.ui.Components.q9 q9Var = this.f32428a;
+        if (view == q9Var && (((z10 = this.f32431e) && this.f32432f != 0.8f) || (!z10 && this.f32432f != 1.0f))) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j10 = currentTimeMillis - this.d;
+            this.d = currentTimeMillis;
+            if (this.f32431e) {
+                float f10 = this.f32432f;
+                if (f10 != 0.8f) {
+                    float f11 = f10 - (((float) j10) / 400.0f);
+                    this.f32432f = f11;
+                    if (f11 < 0.8f) {
+                        this.f32432f = 0.8f;
+                    }
+                    q9Var.setScaleX(this.f32432f);
+                    q9Var.setScaleY(this.f32432f);
+                    q9Var.invalidate();
+                    invalidate();
+                }
             }
+            float f12 = (((float) j10) / 400.0f) + this.f32432f;
+            this.f32432f = f12;
+            if (f12 > 1.0f) {
+                this.f32432f = 1.0f;
+            }
+            q9Var.setScaleX(this.f32432f);
+            q9Var.setScaleY(this.f32432f);
+            q9Var.invalidate();
             invalidate();
         }
-        return super.x0(drawable, str, i7, z10, i10);
+        return drawChild;
+    }
+
+    public Object getParentObject() {
+        return this.f32430c;
+    }
+
+    public bj getSendAnimationData() {
+        org.telegram.ui.Components.q9 q9Var = this.f32428a;
+        ImageReceiver imageReceiver = q9Var.getImageReceiver();
+        if (!imageReceiver.L()) {
+            return null;
+        }
+        ?? obj = new Object();
+        int[] iArr = new int[2];
+        q9Var.getLocationInWindow(iArr);
+        obj.f23082a = imageReceiver.r() + iArr[0];
+        obj.f23083b = imageReceiver.s() + iArr[1];
+        obj.f23084c = imageReceiver.N0;
+        return obj;
+    }
+
+    public TLRPC.Document getSticker() {
+        return this.f32429b;
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f32429b == null) {
+            return;
+        }
+        String str = null;
+        for (int i7 = 0; i7 < this.f32429b.attributes.size(); i7++) {
+            TLRPC.DocumentAttribute documentAttribute = this.f32429b.attributes.get(i7);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                String str2 = documentAttribute.alt;
+                if (str2 != null && str2.length() > 0) {
+                    str = documentAttribute.alt;
+                } else {
+                    str = null;
+                }
+            }
+        }
+        if (str != null) {
+            StringBuilder n10 = p5.c.n(str, " ");
+            n10.append(gd.M0(2131753934, null));
+            accessibilityNodeInfo.setText(n10.toString());
+        } else {
+            accessibilityNodeInfo.setText(gd.M0(2131753934, null));
+        }
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + org.telegram.messenger.g0.L(76.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(78.0f), 1073741824));
+    }
+
+    public void setClearsInputField(boolean z10) {
+        this.h = z10;
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        boolean z11;
+        org.telegram.ui.Components.q9 q9Var = this.f32428a;
+        if (q9Var.getImageReceiver().f22638f1 != 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z11 != z10) {
+            q9Var.getImageReceiver().f22638f1 = z10 ? 1 : 0;
+            q9Var.invalidate();
+        }
+        super.setPressed(z10);
+    }
+
+    public void setScaled(boolean z10) {
+        this.f32431e = z10;
+        this.d = System.currentTimeMillis();
+        invalidate();
     }
 }

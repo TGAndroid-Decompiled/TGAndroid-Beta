@@ -1,33 +1,45 @@
 package hi;
+public final class u4 implements tg.l1 {
+    public final int f15535a;
+    public final Object f15536b;
+    public final float f15537c;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.ViewGroup;
-public final class u4 extends tg.y0 {
-    public final Path f15183o3;
-    public final u9 f15184p3;
-
-    public u4(u9 u9Var, Context context) {
-        super(context);
-        this.f15184p3 = u9Var;
-        this.f15183o3 = new Path();
+    public u4(Object obj, float f10, int i7) {
+        this.f15535a = i7;
+        this.f15536b = obj;
+        this.f15537c = f10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        ViewGroup barView;
-        u9 u9Var = this.f15184p3;
-        barView = u9Var.getBarView();
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(org.telegram.messenger.g0.W1(u9Var.n1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.g0.W1(u9Var.n1, barView.getTop() - getTop(), 0), org.telegram.messenger.g0.W1(u9Var.n1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.g0.W1(u9Var.n1, barView.getBottom() - getTop(), getHeight()));
-        Path path = this.f15183o3;
-        path.rewind();
-        path.addRoundRect(rectF, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f), Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        super.draw(canvas);
-        canvas.restore();
+    public float get() {
+        float baseFontSize;
+        float f10;
+        switch (this.f15535a) {
+            case 0:
+                baseFontSize = ((tg.m2) this.f15536b).getBaseFontSize();
+                f10 = this.f15537c;
+                break;
+            default:
+                baseFontSize = ((tg.m2) this.f15536b).getBaseFontSize();
+                f10 = this.f15537c;
+                break;
+        }
+        return baseFontSize / f10;
+    }
+
+    @Override
+    public void y1(float f10) {
+        switch (this.f15535a) {
+            case 0:
+                tg.m2 m2Var = (tg.m2) this.f15536b;
+                m2Var.A0 = true;
+                m2Var.setBaseFontSize((int) (this.f15537c * f10));
+                return;
+            default:
+                tg.m2 m2Var2 = (tg.m2) this.f15536b;
+                m2Var2.A0 = true;
+                m2Var2.setBaseFontSize((int) (this.f15537c * f10));
+                return;
+        }
     }
 }

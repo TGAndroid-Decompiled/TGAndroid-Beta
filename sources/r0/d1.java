@@ -4,18 +4,18 @@ import android.view.DisplayCutout;
 import android.view.WindowInsets;
 import j$.util.Objects;
 public class d1 extends c1 {
-    public d1(k1 k1Var, WindowInsets windowInsets) {
-        super(k1Var, windowInsets);
+    public d1(l1 l1Var, WindowInsets windowInsets) {
+        super(l1Var, windowInsets);
     }
 
     @Override
-    public k1 a() {
-        return k1.h(null, this.f55649c.consumeDisplayCutout());
+    public l1 a() {
+        return l1.h(null, this.f56223c.consumeDisplayCutout());
     }
 
     @Override
     public h e() {
-        DisplayCutout displayCutout = this.f55649c.getDisplayCutout();
+        DisplayCutout displayCutout = this.f56223c.getDisplayCutout();
         if (displayCutout == null) {
             return null;
         }
@@ -31,7 +31,7 @@ public class d1 extends c1 {
             return false;
         }
         d1 d1Var = (d1) obj;
-        if (Objects.equals(this.f55649c, d1Var.f55649c) && Objects.equals(this.f55652g, d1Var.f55652g) && b1.B(this.h, d1Var.h)) {
+        if (Objects.equals(this.f56223c, d1Var.f56223c) && Objects.equals(this.f56226g, d1Var.f56226g) && b1.B(this.h, d1Var.h)) {
             return true;
         }
         return false;
@@ -39,6 +39,6 @@ public class d1 extends c1 {
 
     @Override
     public int hashCode() {
-        return this.f55649c.hashCode();
+        return this.f56223c.hashCode();
     }
 }

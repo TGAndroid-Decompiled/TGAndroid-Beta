@@ -1,17 +1,19 @@
 package c8;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import java.nio.ByteBuffer;
 public abstract class da {
-    public static StaticLayout f4257a;
-
-    public static oi.y a(int i7, int i10, int i11, int i12) {
-        Rect rect = new Rect(i7, i10, i11, i12);
-        if (f4257a == null) {
-            f4257a = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+    public e2.q0 a(o3.a aVar) {
+        boolean z10;
+        ByteBuffer byteBuffer = aVar.f18127c;
+        byteBuffer.getClass();
+        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return new oi.y(f4257a, rect);
+        a8.la.f(z10);
+        return b(aVar, byteBuffer);
     }
+
+    public abstract e2.q0 b(o3.a aVar, ByteBuffer byteBuffer);
 }

@@ -1,47 +1,23 @@
 package org.telegram.ui.Components;
-public final class s0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f39117a;
-    public final Runnable f39118b;
+public final class s0 implements Runnable {
+    public final int f39433a;
+    public final org.telegram.ui.ActionBar.w2 f39434b;
 
-    public s0(int i7, Runnable runnable) {
-        this.f39117a = i7;
-        this.f39118b = runnable;
+    public s0(org.telegram.ui.ActionBar.w2 w2Var, int i7) {
+        this.f39433a = i7;
+        this.f39434b = w2Var;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f39117a) {
+    public final void run() {
+        switch (this.f39433a) {
             case 0:
-                Runnable runnable = this.f39118b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                Runnable runnable2 = this.f39118b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-            case 2:
-                this.f39118b.run();
-                return;
-            case 3:
-                this.f39118b.run();
-                return;
-            case 4:
-                this.f39118b.run();
-                t1Var.dismiss();
+                this.f39434b.invalidateSelf();
                 return;
             default:
-                t1Var.dismiss();
-                Runnable runnable3 = this.f39118b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
-                }
+                org.telegram.ui.ActionBar.w2 w2Var = this.f39434b;
+                ((c6) w2Var.d).e(true, 0.0f);
+                w2Var.invalidateSelf();
                 return;
         }
     }

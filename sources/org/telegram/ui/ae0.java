@@ -1,49 +1,91 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.RadialProgressView;
-public final class ae0 implements Runnable {
-    public final int f45035a;
-    public final f f45036b;
-    public final pd0 f45037c;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class ae0 extends AnimatedPhoneNumberEditText {
+    public final int f45580b2;
+    public final ce0 f45581c2;
 
-    public ae0(int i7, f fVar, pd0 pd0Var) {
-        this.f45035a = i7;
-        this.f45036b = fVar;
-        this.f45037c = pd0Var;
+    public ae0(ce0 ce0Var, Context context, int i7) {
+        super(context);
+        this.f45580b2 = i7;
+        this.f45581c2 = ce0Var;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f45035a;
-        pd0 pd0Var = this.f45037c;
-        f fVar = this.f45036b;
-        switch (i7) {
+    public final void onFocusChanged(boolean z10, int i7, Rect rect) {
+        int i10 = this.f45580b2;
+        float f10 = 1.0f;
+        ce0 ce0Var = this.f45581c2;
+        switch (i10) {
             case 0:
-                int i10 = pd0.G;
-                pd0Var.a();
-                org.telegram.messenger.g0.i3(new ae0(1, fVar, pd0Var), 150L);
+                super.onFocusChanged(z10, i7, rect);
+                org.telegram.ui.Components.xb0 xb0Var = ce0Var.f46509f;
+                if (!z10 && !ce0Var.f46502b.isFocused()) {
+                    f10 = 0.0f;
+                }
+                xb0Var.b(f10, f10, true);
+                if (z10) {
+                    ce0Var.f46512h0.f46937c.setEditText(this);
+                    return;
+                }
                 return;
             default:
-                be0 be0Var = (be0) fVar.f46930b;
-                be0Var.h(null);
-                RadialProgressView radialProgressView = be0Var.f45693h0.O.d;
-                RadialProgressView radialProgressView2 = pd0Var.h.d;
-                radialProgressView.getClass();
-                radialProgressView.f32678a = radialProgressView2.f32678a;
-                radialProgressView.f32679b = radialProgressView2.f32679b;
-                radialProgressView.I = radialProgressView2.I;
-                radialProgressView.J = radialProgressView2.J;
-                radialProgressView.K = radialProgressView2.K;
-                radialProgressView.f32680c = radialProgressView2.f32680c;
-                radialProgressView.f32683n = radialProgressView2.f32683n;
-                radialProgressView.f32681e = radialProgressView2.f32681e;
-                radialProgressView.E = radialProgressView2.E;
-                radialProgressView.G = radialProgressView2.G;
-                radialProgressView.H = radialProgressView2.H;
-                radialProgressView.d = radialProgressView2.d;
-                radialProgressView.F = radialProgressView2.F;
-                radialProgressView.b(85L);
-                return;
+                super.onFocusChanged(z10, i7, rect);
+                de0 de0Var = ce0Var.f46512h0;
+                org.telegram.ui.Components.xb0 xb0Var2 = ce0Var.f46509f;
+                if (!z10 && !ce0Var.f46500a.isFocused()) {
+                    f10 = 0.0f;
+                }
+                xb0Var2.b(f10, f10, true);
+                if (z10) {
+                    de0Var.f46937c.setEditText(this);
+                    de0Var.f46937c.setDispatchBackWhenEmpty(true);
+                    if (ce0Var.F == 2) {
+                        ce0.n(ce0Var, org.telegram.messenger.gd.M0(2131742601, null));
+                        return;
+                    }
+                    return;
+                } else if (ce0Var.F == 2) {
+                    ce0.n(ce0Var, null);
+                    return;
+                } else {
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int i7, KeyEvent keyEvent) {
+        switch (this.f45580b2) {
+            case 1:
+                ce0 ce0Var = this.f45581c2;
+                ae0 ae0Var = ce0Var.f46500a;
+                if (i7 == 67 && ce0Var.f46502b.length() == 0) {
+                    ae0Var.requestFocus();
+                    ae0Var.setSelection(ae0Var.length());
+                    ae0Var.dispatchKeyEvent(keyEvent);
+                }
+                return super.onKeyDown(i7, keyEvent);
+            default:
+                return super.onKeyDown(i7, keyEvent);
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f45580b2) {
+            case 1:
+                if (motionEvent.getAction() == 0 && !de0.b1(this.f45581c2.f46512h0, this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 }

@@ -1,112 +1,252 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.Iterator;
-import org.telegram.tgnet.TLRPC;
-public final class hh0 implements sw, org.telegram.ui.ActionBar.q1, ex0 {
-    public final NotificationsCustomSettingsActivity f47702a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class hh0 extends FrameLayout {
+    public final int f48401a;
 
-    public hh0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
-        this.f47702a = notificationsCustomSettingsActivity;
+    public hh0(Context context, int i7) {
+        super(context);
+        this.f48401a = i7;
     }
 
     @Override
-    public boolean H() {
-        return false;
-    }
-
-    @Override
-    public boolean P(yw ywVar) {
-        return false;
-    }
-
-    @Override
-    public void d(qh0 qh0Var) {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f47702a;
-        notificationsCustomSettingsActivity.f42680x.add(0, qh0Var);
-        notificationsCustomSettingsActivity.q0(true);
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f47702a;
-        SharedPreferences.Editor edit = notificationsCustomSettingsActivity.getNotificationsSettings().edit();
-        int size = notificationsCustomSettingsActivity.f42680x.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            qh0 qh0Var = (qh0) notificationsCustomSettingsActivity.f42680x.get(i10);
-            if (notificationsCustomSettingsActivity.f42678s == 3) {
-                edit.remove("stories_" + qh0Var.d);
-            } else {
-                edit.remove("notify2_" + qh0Var.d).remove("custom_" + qh0Var.d);
-            }
-            notificationsCustomSettingsActivity.getMessagesStorage().E1(qh0Var.d, 0L);
-            TLRPC.Dialog dialog = (TLRPC.Dialog) notificationsCustomSettingsActivity.getMessagesController().R.f(qh0Var.d);
-            if (dialog != null) {
-                dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
-            }
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f48401a) {
+            case 1:
+                super.dispatchDraw(canvas);
+                return;
+            case 14:
+                org.telegram.ui.ActionBar.n6.f29485i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.n6.f29485i3.getIntrinsicHeight());
+                org.telegram.ui.ActionBar.n6.f29485i3.draw(canvas);
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        edit.commit();
-        int size2 = notificationsCustomSettingsActivity.f42680x.size();
-        for (int i11 = 0; i11 < size2; i11++) {
-            notificationsCustomSettingsActivity.getNotificationsController().c0(((qh0) notificationsCustomSettingsActivity.f42680x.get(i11)).d, 0, false);
-        }
-        notificationsCustomSettingsActivity.f42680x.clear();
-        notificationsCustomSettingsActivity.f42681y.clear();
-        notificationsCustomSettingsActivity.q0(true);
-        notificationsCustomSettingsActivity.getNotificationCenter().k(org.telegram.messenger.ns.f25493f0, new Object[0]);
     }
 
     @Override
-    public boolean y(yw ywVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, u91 u91Var) {
-        int i11 = 0;
-        long j3 = ((org.telegram.messenger.ur) arrayList.get(0)).f26861a;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f47702a;
-        if (notificationsCustomSettingsActivity.f42678s == 3) {
-            ArrayList arrayList2 = notificationsCustomSettingsActivity.f42679w;
-            if (arrayList2 != null) {
-                Iterator it = arrayList2.iterator();
-                while (it.hasNext()) {
-                    if (((qh0) it.next()).d == j3) {
-                        it.remove();
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f48401a) {
+            case 16:
+                return false;
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        switch (this.f48401a) {
+            case 16:
+                return false;
+            case 18:
+                return super.drawChild(canvas, view, j3);
+            case 22:
+                return false;
+            default:
+                return super.drawChild(canvas, view, j3);
+        }
+    }
+
+    @Override
+    public boolean hasOverlappingRendering() {
+        switch (this.f48401a) {
+            case 17:
+                return false;
+            default:
+                return super.hasOverlappingRendering();
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f48401a) {
+            case 3:
+                int intrinsicHeight = org.telegram.ui.ActionBar.n6.f29485i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.n6.f29485i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                org.telegram.ui.ActionBar.n6.f29485i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.n6.f29502j2);
+                return;
+            case 13:
+                super.onDraw(canvas);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.n6.f29519k0);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        switch (this.f48401a) {
+            case 10:
+                int childCount = getChildCount();
+                int i13 = 0;
+                int i14 = 0;
+                for (int i15 = 0; i15 < childCount; i15++) {
+                    if (getChildAt(i15).getMeasuredWidth() + i13 > getMeasuredWidth()) {
+                        i14 += getChildAt(i15).getMeasuredHeight();
+                        i13 = 0;
                     }
+                    getChildAt(i15).layout(i13, i14, getChildAt(i15).getMeasuredWidth() + i13, getChildAt(i15).getMeasuredHeight() + i14);
+                    i13 += getChildAt(i15).getMeasuredWidth();
                 }
-            }
-            ArrayList arrayList3 = notificationsCustomSettingsActivity.f42680x;
-            if (arrayList3 != null) {
-                Iterator it2 = arrayList3.iterator();
-                while (it2.hasNext()) {
-                    if (((qh0) it2.next()).d == j3) {
-                        it2.remove();
-                    }
-                }
-            }
-            ?? obj = new Object();
-            obj.d = j3;
-            obj.f50616e = true;
-            Boolean bool = notificationsCustomSettingsActivity.f42676n;
-            if (bool != null && bool.booleanValue()) {
-                i11 = Integer.MAX_VALUE;
-            }
-            obj.f50615c = i11;
-            if (notificationsCustomSettingsActivity.f42680x == null) {
-                notificationsCustomSettingsActivity.f42680x = new ArrayList();
-            }
-            notificationsCustomSettingsActivity.f42680x.add(obj);
-            notificationsCustomSettingsActivity.q0(true);
-            return true;
+                return;
+            default:
+                super.onLayout(z10, i7, i10, i11, i12);
+                return;
         }
-        Bundle bundle = new Bundle();
-        bundle.putLong("dialog_id", j3);
-        bundle.putBoolean("exception", true);
-        fx0 fx0Var = new fx0(bundle, notificationsCustomSettingsActivity.getResourceProvider());
-        fx0Var.f47218s = new hh0(notificationsCustomSettingsActivity);
-        notificationsCustomSettingsActivity.presentFragment(fx0Var, true);
-        return true;
     }
 
     @Override
-    public void b0() {
+    public void onMeasure(int i7, int i10) {
+        int i11;
+        switch (this.f48401a) {
+            case 2:
+                super.onMeasure(i7, i10);
+                setPivotY(getMeasuredHeight());
+                return;
+            case 7:
+                super.onMeasure(i7, org.telegram.messenger.n10.C(36.0f, View.MeasureSpec.getSize(i10), 1073741824));
+                return;
+            case 8:
+                super.onMeasure(i7, i10);
+                return;
+            case 10:
+                int size = View.MeasureSpec.getSize(i7);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i10);
+                int childCount = getChildCount();
+                int i12 = 0;
+                if (childCount > 0) {
+                    i11 = getChildAt(0).getMeasuredHeight();
+                } else {
+                    i11 = 0;
+                }
+                int i13 = 0;
+                int i14 = 0;
+                for (int i15 = 0; i15 < childCount; i15++) {
+                    if (getChildAt(i15).getMeasuredWidth() + i13 > size) {
+                        i14 += getChildAt(i15).getMeasuredHeight();
+                        i13 = 0;
+                    }
+                    i13 += getChildAt(i15).getMeasuredWidth();
+                }
+                int measuredWidth = getMeasuredWidth();
+                if (getChildCount() != 0) {
+                    i12 = org.telegram.messenger.g0.L(16.0f) + i11 + i14;
+                }
+                setMeasuredDimension(measuredWidth, i12);
+                return;
+            case 11:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(60.0f), 1073741824));
+                return;
+            case 12:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(60.0f), 1073741824));
+                return;
+            case 16:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(500.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(500.0f), 1073741824));
+                return;
+            case 20:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(86.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f48401a) {
+            case 16:
+                return false;
+            case 19:
+                return false;
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public hh0(org.telegram.ui.Components.x20 x20Var, Context context, int i7, String str, CharSequence charSequence) {
+        super(context);
+        this.f48401a = 6;
+        boolean z10 = org.telegram.messenger.gd.f24216a0;
+        ImageView imageView = new ImageView(getContext());
+        Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
+        int i10 = org.telegram.ui.ActionBar.n6.G6;
+        org.telegram.ui.ActionBar.u6.x(this, mutate, i10, x20Var.J0, PorterDuff.Mode.MULTIPLY);
+        imageView.setImageDrawable(mutate);
+        addView(imageView, c8.ma.d(24, 24.0f, z10 ? 5 : 3, z10 ? 0.0f : 27.0f, 6.0f, z10 ? 27.0f : 0.0f, 0.0f));
+        TextView textView = new TextView(getContext());
+        textView.setText(str);
+        org.telegram.messenger.f3.l(textView, i10, x20Var.J0, 1, 14.0f);
+        addView(textView, c8.ma.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
+        org.telegram.ui.Components.k80 k80Var = new org.telegram.ui.Components.k80(getContext(), null);
+        k80Var.setText(charSequence);
+        k80Var.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.u6.U(k80Var, org.telegram.ui.ActionBar.n6.Gj, x20Var.J0);
+        org.telegram.ui.ActionBar.u6.G(k80Var, org.telegram.ui.ActionBar.n6.Xc, x20Var.J0);
+        k80Var.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        k80Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
+        addView(k80Var, c8.ma.d(-2, -2.0f, z10 ? 5 : 3, (z10 ? 27 : 68) - 4, 18.0f, (z10 ? 68 : 27) - 4, 0.0f));
+    }
+
+    public hh0(uy0 uy0Var, Context context, int i7, String str, CharSequence charSequence) {
+        super(context);
+        this.f48401a = 5;
+        boolean z10 = org.telegram.messenger.gd.f24216a0;
+        ImageView imageView = new ImageView(getContext());
+        Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
+        int i10 = org.telegram.ui.ActionBar.n6.G6;
+        org.telegram.ui.ActionBar.u6.x(this, mutate, i10, uy0Var.J0, PorterDuff.Mode.MULTIPLY);
+        imageView.setImageDrawable(mutate);
+        addView(imageView, c8.ma.d(24, 24.0f, z10 ? 5 : 3, z10 ? 0.0f : 27.0f, 6.0f, z10 ? 27.0f : 0.0f, 0.0f));
+        TextView textView = new TextView(getContext());
+        textView.setText(str);
+        org.telegram.messenger.f3.l(textView, i10, uy0Var.J0, 1, 14.0f);
+        addView(textView, c8.ma.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
+        org.telegram.ui.Components.k80 k80Var = new org.telegram.ui.Components.k80(getContext(), null);
+        k80Var.setText(charSequence);
+        k80Var.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.u6.U(k80Var, org.telegram.ui.ActionBar.n6.Gj, uy0Var.J0);
+        org.telegram.ui.ActionBar.u6.G(k80Var, org.telegram.ui.ActionBar.n6.Xc, uy0Var.J0);
+        k80Var.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        addView(k80Var, c8.ma.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 18.0f, z10 ? 68.0f : 27.0f, 0.0f));
+    }
+
+    public hh0(int i7, Context context, String str) {
+        super(context);
+        this.f48401a = 0;
+        setPadding(0, org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f));
+        ImageView e10 = org.telegram.messenger.n10.e(context, i7);
+        e10.setScaleType(ImageView.ScaleType.CENTER);
+        int i10 = org.telegram.ui.ActionBar.n6.f29504j5;
+        org.telegram.ui.ActionBar.u6.s(e10, i10, null, PorterDuff.Mode.MULTIPLY);
+        boolean z10 = org.telegram.messenger.gd.f24216a0;
+        addView(e10, c8.ma.d(24, 24.0f, (z10 ? 5 : 3) | 16, z10 ? 0.0f : 22.0f, 0.0f, z10 ? 22.0f : 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        org.telegram.ui.ActionBar.u6.U(textView, i10, null);
+        textView.setTextSize(1, 14.0f);
+        textView.setGravity(org.telegram.messenger.gd.f24216a0 ? 5 : 3);
+        textView.setText(str);
+        boolean z11 = org.telegram.messenger.gd.f24216a0;
+        addView(textView, c8.ma.d(-1, -2.0f, 23, z11 ? 0.0f : 61.0f, 0.0f, z11 ? 61.0f : 0.0f, 0.0f));
+    }
+
+    public hh0(Context context) {
+        super(context);
+        this.f48401a = 4;
+        setPadding(org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f));
     }
 }

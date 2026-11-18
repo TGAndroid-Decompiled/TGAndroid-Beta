@@ -12,17 +12,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
-    public static final int[] f17410f = new int[2];
+    public static final int[] f17796f = new int[2];
     public static final RectF h = new RectF();
-    public static final float[] f17411n = new float[2];
-    public final View f17412a;
-    public ViewTreeObserver f17413b;
-    public boolean f17414c;
+    public static final float[] f17797n = new float[2];
+    public final View f17798a;
+    public ViewTreeObserver f17799b;
+    public boolean f17800c;
     public final WeakHashMap d = new WeakHashMap();
-    public final RectF f17415e = new RectF();
+    public final RectF f17801e = new RectF();
 
     public k(View view) {
-        this.f17412a = view;
+        this.f17798a = view;
         view.addOnAttachStateChangeListener(this);
         a();
     }
@@ -66,7 +66,7 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
                         f10 = x10 - view2.getScrollX();
                     }
                 }
-                float[] fArr = f17411n;
+                float[] fArr = f17797n;
                 fArr[0] = f10;
                 fArr[1] = f13;
                 f11 -= fArr[0];
@@ -80,12 +80,12 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
 
     public final void a() {
         ViewTreeObserver viewTreeObserver;
-        View view = this.f17412a;
+        View view = this.f17798a;
         if (view.isAttachedToWindow() && (viewTreeObserver = view.getViewTreeObserver()) != null && viewTreeObserver.isAlive()) {
-            this.f17413b = viewTreeObserver;
-            if (!this.f17414c) {
+            this.f17799b = viewTreeObserver;
+            if (!this.f17800c) {
                 viewTreeObserver.addOnPreDrawListener(this);
-                this.f17414c = true;
+                this.f17800c = true;
             }
         }
     }
@@ -100,10 +100,10 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
             weakHashMap.put(view, list);
         }
         list.add(jVar);
-        RectF rectF = this.f17415e;
+        RectF rectF = this.f17801e;
         c(view, viewGroup, rectF);
-        jVar.f17408c.set(rectF);
-        if (!this.f17414c) {
+        jVar.f17794c.set(rectF);
+        if (!this.f17800c) {
             a();
         }
         if (z10) {
@@ -113,14 +113,14 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
 
     @Override
     public final boolean onPreDraw() {
-        ViewTreeObserver viewTreeObserver = this.f17412a.getViewTreeObserver();
-        ViewTreeObserver viewTreeObserver2 = this.f17413b;
+        ViewTreeObserver viewTreeObserver = this.f17798a.getViewTreeObserver();
+        ViewTreeObserver viewTreeObserver2 = this.f17799b;
         if (viewTreeObserver != viewTreeObserver2) {
-            if (this.f17414c && viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                this.f17413b.removeOnPreDrawListener(this);
+            if (this.f17800c && viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
+                this.f17799b.removeOnPreDrawListener(this);
             }
-            this.f17414c = false;
-            this.f17413b = null;
+            this.f17800c = false;
+            this.f17799b = null;
             a();
         }
         WeakHashMap weakHashMap = this.d;
@@ -131,11 +131,11 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
                 if (view != null && list != null) {
                     for (j jVar : list) {
                         boolean z10 = jVar.d;
-                        RectF rectF = jVar.f17408c;
-                        ViewGroup viewGroup = jVar.f17406a;
-                        RectF rectF2 = this.f17415e;
+                        RectF rectF = jVar.f17794c;
+                        ViewGroup viewGroup = jVar.f17792a;
+                        RectF rectF2 = this.f17801e;
                         if (z10) {
-                            int[] iArr = f17410f;
+                            int[] iArr = f17796f;
                             view.getLocationOnScreen(iArr);
                             int i7 = iArr[0];
                             rectF2.set(i7, iArr[1], view.getWidth() + i7, view.getHeight() + iArr[1]);
@@ -143,11 +143,11 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
                             rectF2.offset(-iArr[0], -iArr[1]);
                         } else if (!c(view, viewGroup, rectF2)) {
                         }
-                        if (!jVar.f17409e || !rectF2.equals(rectF)) {
+                        if (!jVar.f17795e || !rectF2.equals(rectF)) {
                             rectF.set(rectF2);
-                            jVar.f17409e = true;
+                            jVar.f17795e = true;
                             try {
-                                jVar.f17407b.j(new RectF(rectF2), view);
+                                jVar.f17793b.d(view, new RectF(rectF2));
                             } catch (Throwable unused) {
                             }
                         }
@@ -166,12 +166,12 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
     @Override
     public final void onViewDetachedFromWindow(View view) {
         ViewTreeObserver viewTreeObserver;
-        if (view == this.f17412a) {
-            if (this.f17414c && (viewTreeObserver = this.f17413b) != null && viewTreeObserver.isAlive()) {
-                this.f17413b.removeOnPreDrawListener(this);
+        if (view == this.f17798a) {
+            if (this.f17800c && (viewTreeObserver = this.f17799b) != null && viewTreeObserver.isAlive()) {
+                this.f17799b.removeOnPreDrawListener(this);
             }
-            this.f17414c = false;
-            this.f17413b = null;
+            this.f17800c = false;
+            this.f17799b = null;
         }
     }
 }

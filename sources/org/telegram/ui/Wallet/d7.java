@@ -1,31 +1,33 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.s10;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class d7 implements Runnable {
-    public final int f43752a;
-    public final WalletEngine2 f43753b;
-    public final s10 f43754c;
-    public final TL_wallet.walletTransaction d;
-    public final String f43755e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.si;
+public final class d7 extends AnimatorListenerAdapter {
+    public final si f44047a;
+    public final m7 f44048b;
+    public final e7 f44049c;
 
-    public d7(WalletEngine2 walletEngine2, s10 s10Var, TL_wallet.walletTransaction wallettransaction, String str, int i7) {
-        this.f43752a = i7;
-        this.f43753b = walletEngine2;
-        this.f43754c = s10Var;
-        this.d = wallettransaction;
-        this.f43755e = str;
+    public d7(e7 e7Var, si siVar, m7 m7Var) {
+        this.f44049c = e7Var;
+        this.f44047a = siVar;
+        this.f44048b = m7Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43752a) {
-            case 0:
-                this.f43753b.lambda$previewTonConnect$1(this.f43754c, this.d, this.f43755e);
-                return;
-            default:
-                this.f43753b.lambda$emulateRotateKey$29(this.f43754c, this.d, this.f43755e);
-                return;
+    public final void onAnimationCancel(Animator animator) {
+        this.f44049c.a(false);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        this.f44049c.a(true);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        if (this.f44047a != null) {
+            org.telegram.messenger.g0.v1(this.f44048b);
         }
     }
 }

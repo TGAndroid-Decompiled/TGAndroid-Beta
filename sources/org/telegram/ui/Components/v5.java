@@ -1,48 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class v5 implements te.f, we.a {
-    public final View f40266a;
-    public boolean f40267b;
-    public boolean f40268c;
-    public int d;
-    public int f40269e;
+import android.text.Layout;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+public final class v5 {
+    public Layout f40496a;
+    public final ArrayList f40497b = new ArrayList();
 
-    public v5(View view) {
-        this.f40266a = view;
+    public v5(WeakReference weakReference, Layout layout) {
+        this.f40496a = layout;
     }
 
-    @Override
     public final void a() {
-        if (!this.f40267b) {
-            this.f40266a.setVisibility(8);
-        }
-        this.f40268c = false;
-    }
-
-    @Override
-    public final int b(boolean z10) {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof v5) {
-            return this.f40266a.equals(((v5) obj).f40266a);
-        }
-        return false;
-    }
-
-    @Override
-    public final int getHeight() {
-        return this.f40266a.getMeasuredHeight();
-    }
-
-    @Override
-    public final int getWidth() {
-        return this.f40266a.getMeasuredWidth();
-    }
-
-    public final int hashCode() {
-        return this.f40266a.hashCode();
+        this.f40497b.size();
     }
 }

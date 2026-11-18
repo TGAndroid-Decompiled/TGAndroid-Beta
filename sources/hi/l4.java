@@ -1,33 +1,32 @@
 package hi;
 
-import android.view.KeyEvent;
-import org.telegram.messenger.v10;
-import org.telegram.tgnet.TLRPC;
-public final class l4 implements org.telegram.ui.ActionBar.e1, v10 {
-    public final m5 f14583a;
+import android.widget.FrameLayout;
+import android.widget.PopupWindow;
+public final class l4 implements PopupWindow.OnDismissListener {
+    public final int f14894a;
+    public final FrameLayout f14895b;
 
-    public l4(m5 m5Var) {
-        this.f14583a = m5Var;
+    public l4(int i7, FrameLayout frameLayout) {
+        this.f14894a = i7;
+        this.f14895b = frameLayout;
     }
 
     @Override
-    public void j(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.g1 g1Var;
-        m5 m5Var = this.f14583a;
-        m5Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = m5Var.f14687r1) != null && g1Var.isShowing()) {
-            m5Var.f14687r1.d(true);
+    public final void onDismiss() {
+        switch (this.f14894a) {
+            case 0:
+                ((l5) this.f14895b).f14928s1.d();
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.o0 o0Var = ((org.telegram.ui.ActionBar.r0) this.f14895b).R;
+                if (o0Var != null) {
+                    o0Var.j();
+                    return;
+                }
+                return;
+            default:
+                ((tg.g0) this.f14895b).C1.d();
+                return;
         }
-    }
-
-    @Override
-    public void l(Object obj, TLRPC.Document document, Boolean bool) {
-        m5 m5Var = this.f14583a;
-        m5Var.V1 = true;
-        d5 k02 = m5Var.k0(obj, document);
-        if (bool.booleanValue()) {
-            k02.setScale(1.5f);
-        }
-        m5Var.b0(k02);
     }
 }

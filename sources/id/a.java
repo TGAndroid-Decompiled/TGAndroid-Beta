@@ -1,12 +1,12 @@
 package id;
 
-import c8.n0;
+import c8.p0;
 import rd.p;
 public abstract class a implements f {
-    public final g f15909a;
+    public final g f16225a;
 
     public a(g gVar) {
-        this.f15909a = gVar;
+        this.f16225a = gVar;
     }
 
     @Override
@@ -16,21 +16,21 @@ public abstract class a implements f {
 
     @Override
     public f get(g gVar) {
-        return n0.a(this, gVar);
+        return p0.a(this, gVar);
     }
 
     @Override
     public final g getKey() {
-        return this.f15909a;
+        return this.f16225a;
     }
 
     @Override
     public h minusKey(g gVar) {
-        return n0.b(this, gVar);
+        return p0.b(this, gVar);
     }
 
     @Override
     public final h plus(h hVar) {
-        return n0.c(this, hVar);
+        return p0.c(this, hVar);
     }
 }

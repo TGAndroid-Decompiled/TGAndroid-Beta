@@ -1,5 +1,5 @@
 package s0;
 
-import c8.cc;
-public abstract class f extends cc {
+import c8.fc;
+public abstract class f extends fc {
 }

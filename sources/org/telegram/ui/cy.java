@@ -1,32 +1,61 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class cy implements TextView.OnEditorActionListener {
-    public final int f46240a;
-    public final AlertDialog$Builder f46241b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+public final class cy extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public Paint f46789a;
+    public float[] f46790b;
+    public Path f46791c;
+    public float d;
 
-    public cy(AlertDialog$Builder alertDialog$Builder, int i7) {
-        this.f46240a = i7;
-        this.f46241b = alertDialog$Builder;
+    public final void a(float f10, float f11) {
+        float[] fArr = this.f46790b;
+        fArr[7] = f10;
+        fArr[6] = f10;
+        fArr[1] = f10;
+        fArr[0] = f10;
+        fArr[5] = f11;
+        fArr[4] = f11;
+        fArr[3] = f11;
+        fArr[2] = f11;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        switch (this.f46240a) {
-            case 0:
-                org.telegram.messenger.g0.v1(textView);
-                this.f46241b.f28392a.d(-1).callOnClick();
-                return false;
-            case 1:
-                org.telegram.messenger.g0.v1(textView);
-                this.f46241b.f28392a.d(-1).callOnClick();
-                return false;
-            default:
-                org.telegram.messenger.g0.v1(textView);
-                this.f46241b.f28392a.d(-1).callOnClick();
-                return false;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float measuredWidth = getMeasuredWidth() / 2.0f;
+        Path path = this.f46791c;
+        path.rewind();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(0.0f, 0.0f, measuredWidth - org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), getMeasuredHeight());
+        a(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)));
+        float[] fArr = this.f46790b;
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF, fArr, direction);
+        Paint paint = this.f46789a;
+        canvas.drawPath(path, paint);
+        path.rewind();
+        rectF.set(measuredWidth + org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        a(org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)), org.telegram.messenger.g0.L(8.0f));
+        path.addRoundRect(rectF, fArr, direction);
+        canvas.drawPath(path, paint);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.f46789a.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Fi, false));
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

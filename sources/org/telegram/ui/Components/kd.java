@@ -1,32 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import org.telegram.tgnet.tl.TL_iv;
-public final class kd implements org.telegram.messenger.z10 {
-    public final int f36375a;
-    public final ChatActivityEnterView f36376b;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.StickersActivity;
+import org.telegram.ui.ThemeActivity;
+public final class kd implements Runnable {
+    public final int f36739a;
+    public final org.telegram.ui.ActionBar.h2 f36740b;
 
-    public kd(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f36375a = i7;
-        this.f36376b = chatActivityEnterView;
+    public kd(int i7, org.telegram.ui.ActionBar.h2 h2Var) {
+        this.f36739a = i7;
+        this.f36740b = h2Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f36375a;
-        ChatActivityEnterView chatActivityEnterView = this.f36376b;
+    public final void run() {
+        int i7 = this.f36739a;
+        org.telegram.ui.ActionBar.h2 h2Var = this.f36740b;
         switch (i7) {
             case 0:
-                chatActivityEnterView.h1((TL_iv.RichMessage) obj);
-                return;
+                int i10 = ChatActivityEnterView.f32538n7;
+                if (h2Var != null) {
+                    new ug.z0(h2Var, 11, false).show();
+                    return;
+                } else if (h2Var.getContext() instanceof LaunchActivity) {
+                    ((LaunchActivity) h2Var.getContext()).t0(new PremiumPreviewFragment(0, null));
+                    return;
+                } else {
+                    return;
+                }
             case 1:
-                CharSequence charSequence = (CharSequence) obj;
-                chatActivityEnterView.F0.setText(charSequence);
-                chatActivityEnterView.F0.setSelection(charSequence.length(), charSequence.length());
+                h2Var.presentFragment(new StickersActivity(0, null));
                 return;
             default:
-                int i10 = ChatActivityEnterView.N6;
-                chatActivityEnterView.k0((Canvas) obj, false);
+                ThemeActivity themeActivity = new ThemeActivity(0);
+                themeActivity.V0 = true;
+                h2Var.presentFragment(themeActivity);
                 return;
         }
     }

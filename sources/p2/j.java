@@ -2,29 +2,29 @@ package p2;
 
 import a8.p0;
 public final class j {
-    public final long f54550a;
-    public final long f54551b;
-    public final String f54552c;
+    public final long f55119a;
+    public final long f55120b;
+    public final String f55121c;
     public int d;
 
     public j(long j3, String str, long j10) {
-        this.f54552c = str == null ? "" : str;
-        this.f54550a = j3;
-        this.f54551b = j10;
+        this.f55121c = str == null ? "" : str;
+        this.f55119a = j3;
+        this.f55120b = j10;
     }
 
     public final j a(j jVar, String str) {
         j jVar2;
-        String f10 = h2.e.f(str, this.f54552c);
+        String f10 = h2.e.f(str, this.f55121c);
         if (jVar != null) {
-            long j3 = jVar.f54551b;
-            if (f10.equals(h2.e.f(str, jVar.f54552c))) {
-                long j10 = this.f54551b;
+            long j3 = jVar.f55120b;
+            if (f10.equals(h2.e.f(str, jVar.f55121c))) {
+                long j10 = this.f55120b;
                 long j11 = -1;
                 if (j10 != -1) {
-                    long j12 = this.f54550a;
+                    long j12 = this.f55119a;
                     jVar2 = null;
-                    if (j12 + j10 == jVar.f54550a) {
+                    if (j12 + j10 == jVar.f55119a) {
                         if (j3 != -1) {
                             j11 = j10 + j3;
                         }
@@ -34,8 +34,8 @@ public final class j {
                     jVar2 = null;
                 }
                 if (j3 != -1) {
-                    long j13 = jVar.f54550a;
-                    if (j13 + j3 == this.f54550a) {
+                    long j13 = jVar.f55119a;
+                    if (j13 + j3 == this.f55119a) {
                         if (j10 != -1) {
                             j11 = j3 + j10;
                         }
@@ -55,7 +55,7 @@ public final class j {
         }
         if (obj != null && j.class == obj.getClass()) {
             j jVar = (j) obj;
-            if (this.f54550a == jVar.f54550a && this.f54551b == jVar.f54551b && this.f54552c.equals(jVar.f54552c)) {
+            if (this.f55119a == jVar.f55119a && this.f55120b == jVar.f55120b && this.f55121c.equals(jVar.f55121c)) {
                 return true;
             }
         }
@@ -64,17 +64,17 @@ public final class j {
 
     public final int hashCode() {
         if (this.d == 0) {
-            this.d = this.f54552c.hashCode() + ((((527 + ((int) this.f54550a)) * 31) + ((int) this.f54551b)) * 31);
+            this.d = this.f55121c.hashCode() + ((((527 + ((int) this.f55119a)) * 31) + ((int) this.f55120b)) * 31);
         }
         return this.d;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("RangedUri(referenceUri=");
-        sb2.append(this.f54552c);
+        sb2.append(this.f55121c);
         sb2.append(", start=");
-        sb2.append(this.f54550a);
+        sb2.append(this.f55119a);
         sb2.append(", length=");
-        return p0.r(sb2, this.f54551b, ")");
+        return p0.r(sb2, this.f55120b, ")");
     }
 }

@@ -1,41 +1,28 @@
 package c8;
-
-import android.os.Build;
-import android.os.Trace;
-import android.util.Log;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 public abstract class he {
-    public static long f4535a;
-    public static Method f4536b;
-
-    public static void a(String str) {
-        if (str.length() > 127) {
-            str = str.substring(0, 127);
-        }
-        Trace.beginSection(str);
+    public static final long a(long j3) {
+        long j10 = (j3 << 1) + 1;
+        int i7 = yd.a.d;
+        int i10 = yd.b.f61174a;
+        return j10;
     }
 
-    public static boolean b() {
-        if (Build.VERSION.SDK_INT >= 29) {
-            return z4.a.a();
+    public static final long b(long j3) {
+        long j10 = j3 << 1;
+        int i7 = yd.a.d;
+        int i10 = yd.b.f61174a;
+        return j10;
+    }
+
+    public static final long c(int i7, yd.c unit) {
+        kotlin.jvm.internal.j.e(unit, "unit");
+        if (unit.compareTo(yd.c.d) <= 0) {
+            return b(ie.a(i7, unit, yd.c.f61175b));
         }
-        try {
-            if (f4536b == null) {
-                f4535a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
-                f4536b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
-            }
-            return ((Boolean) f4536b.invoke(null, Long.valueOf(f4535a))).booleanValue();
-        } catch (Exception e10) {
-            if (e10 instanceof InvocationTargetException) {
-                Throwable cause = e10.getCause();
-                if (cause instanceof RuntimeException) {
-                    throw ((RuntimeException) cause);
-                }
-                throw new RuntimeException(cause);
-            }
-            Log.v("Trace", "Unable to call isTagEnabled via reflection", e10);
-            return false;
-        }
+        return d(i7, unit);
+    }
+
+    public static final long d(long r5, yd.c r7) {
+        throw new UnsupportedOperationException("Method not decompiled: c8.he.d(long, yd.c):long");
     }
 }

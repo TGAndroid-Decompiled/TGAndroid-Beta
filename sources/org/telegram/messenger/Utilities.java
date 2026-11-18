@@ -17,42 +17,42 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Utilities {
-    public static final Pattern f22413a = Pattern.compile("[\\-0-9]+");
-    public static final SecureRandom f22414b;
-    public static final g5.a f22415c;
-    public static volatile p5 d;
-    public static volatile p5 f22416e;
-    public static volatile p5 f22417f;
-    public static volatile p5 f22418g;
-    public static volatile p5 h;
-    public static volatile p5 f22419i;
-    public static volatile p5 f22420j;
-    public static volatile q5 f22421k;
-    public static final char[] f22422l;
+    public static final Pattern f22779a = Pattern.compile("[\\-0-9]+");
+    public static final SecureRandom f22780b;
+    public static final g5.a f22781c;
+    public static volatile q5 d;
+    public static volatile q5 f22782e;
+    public static volatile q5 f22783f;
+    public static volatile q5 f22784g;
+    public static volatile q5 h;
+    public static volatile q5 f22785i;
+    public static volatile q5 f22786j;
+    public static volatile r5 f22787k;
+    public static final char[] f22788l;
 
     static {
         SecureRandom secureRandom = new SecureRandom();
-        f22414b = secureRandom;
+        f22780b = secureRandom;
         long nextLong = secureRandom.nextLong();
         ?? random = new Random(0L);
-        long a10 = a8.ga.a(nextLong);
-        random.f12867a = a10;
-        long a11 = a8.ga.a(a10);
-        random.f12868b = a11;
-        if (random.f12867a == 0 && a11 == 0) {
-            long a12 = a8.ga.a(3735928559L);
-            random.f12867a = a12;
-            random.f12868b = a8.ga.a(a12);
+        long a10 = a8.ia.a(nextLong);
+        random.f13184a = a10;
+        long a11 = a8.ia.a(a10);
+        random.f13185b = a11;
+        if (random.f13184a == 0 && a11 == 0) {
+            long a12 = a8.ia.a(3735928559L);
+            random.f13184a = a12;
+            random.f13185b = a8.ia.a(a12);
         }
-        f22415c = random;
-        d = new p5("stageQueue");
-        f22416e = new p5("globalQueue");
-        f22417f = new p5("cacheClearQueue");
-        f22418g = new p5("searchQueue");
-        h = new p5("phoneBookQueue");
-        f22419i = new p5("themeQueue");
-        f22420j = new p5("externalNetworkQueue");
-        f22422l = "0123456789ABCDEF".toCharArray();
+        f22781c = random;
+        d = new q5("stageQueue");
+        f22782e = new q5("globalQueue");
+        f22783f = new q5("cacheClearQueue");
+        f22784g = new q5("searchQueue");
+        h = new q5("phoneBookQueue");
+        f22785i = new q5("themeQueue");
+        f22786j = new q5("externalNetworkQueue");
+        f22788l = "0123456789ABCDEF".toCharArray();
         try {
             FileInputStream fileInputStream = new FileInputStream(new File("/dev/urandom"));
             byte[] bArr = new byte[1024];
@@ -70,7 +70,7 @@ public class Utilities {
             return 0L;
         }
         try {
-            Matcher matcher = f22413a.matcher(str);
+            Matcher matcher = f22779a.matcher(str);
             if (matcher.find()) {
                 j3 = Long.parseLong(matcher.group(0));
             }
@@ -79,14 +79,14 @@ public class Utilities {
         return Long.valueOf(j3);
     }
 
-    public static void B(Runnable runnable, z10... z10VarArr) {
-        if (z10VarArr.length == 0) {
+    public static void B(Runnable runnable, x10... x10VarArr) {
+        if (x10VarArr.length == 0) {
             runnable.run();
             return;
         }
-        sz szVar = new sz(new int[]{0}, z10VarArr, runnable, 2);
-        for (z10 z10Var : z10VarArr) {
-            z10Var.a(szVar);
+        oz ozVar = new oz(new int[]{0}, x10VarArr, runnable, 2);
+        for (x10 x10Var : x10VarArr) {
+            x10Var.a(ozVar);
         }
     }
 
@@ -224,7 +224,7 @@ public class Utilities {
         for (int i7 = 0; i7 < bArr.length; i7++) {
             byte b10 = bArr[i7];
             int i10 = i7 * 2;
-            char[] cArr2 = f22422l;
+            char[] cArr2 = f22788l;
             cArr[i10] = cArr2[(b10 & 255) >>> 4];
             cArr[i10 + 1] = cArr2[b10 & 15];
         }
@@ -385,9 +385,9 @@ public class Utilities {
         return (float) Math.sqrt((f15 * f15) + (f14 * f14));
     }
 
-    public static void u(int i7, z10... z10VarArr) {
-        if (z10VarArr.length > i7) {
-            z10VarArr[i7].a(new x0(i7, z10VarArr, 14));
+    public static void u(int i7, x10... x10VarArr) {
+        if (x10VarArr.length > i7) {
+            x10VarArr[i7].a(new x0(i7, x10VarArr, 14));
         }
     }
 

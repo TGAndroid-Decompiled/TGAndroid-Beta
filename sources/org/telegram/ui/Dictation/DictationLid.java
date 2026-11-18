@@ -19,24 +19,24 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.np;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLRPC;
 public abstract class DictationLid {
-    public static volatile long f42587c;
+    public static volatile long f43032c;
     public static volatile String[] d;
-    public static boolean f42588e;
-    public static volatile boolean f42589f;
-    public static volatile boolean f42590g;
-    public static final ExecutorService f42585a = Executors.newSingleThreadExecutor(new y0(0));
-    public static final ExecutorService f42586b = Executors.newSingleThreadExecutor();
+    public static boolean f43033e;
+    public static volatile boolean f43034f;
+    public static volatile boolean f43035g;
+    public static final ExecutorService f43030a = Executors.newSingleThreadExecutor(new y0(0));
+    public static final ExecutorService f43031b = Executors.newSingleThreadExecutor();
     public static final Object h = new Object();
-    public static final String[][] f42591i = {new String[]{"ru", "uk", "be", "pl", "cs", "sk", "bg", "sr", "hr", "bs", "sl", "mk"}, new String[]{"sv", "no", "nb", "nn", "da"}, new String[]{"es", "pt", "ca", "gl", "it"}, new String[]{"nl", "de", "af"}, new String[]{"ms", "id"}, new String[]{"hi", "ur"}};
-    public static final int[] f42592j = {1000, 2000, 5000, 10000, 20000};
+    public static final String[][] f43036i = {new String[]{"ru", "uk", "be", "pl", "cs", "sk", "bg", "sr", "hr", "bs", "sl", "mk"}, new String[]{"sv", "no", "nb", "nn", "da"}, new String[]{"es", "pt", "ca", "gl", "it"}, new String[]{"nl", "de", "af"}, new String[]{"ms", "id"}, new String[]{"hi", "ur"}};
+    public static final int[] f43037j = {1000, 2000, 5000, 10000, 20000};
 
     public static float[] a(byte[] bArr, int[] iArr) {
         byte[] m10 = m(bArr);
         iArr[0] = m10.length / 32;
-        long j3 = f42587c;
+        long j3 = f43032c;
         if (iArr[0] >= 500 && j3 != 0) {
             float[] fArr = new float[d.length];
             if (nativePredict(j3, m10, 0, m10.length, false, fArr)) {
@@ -48,15 +48,15 @@ public abstract class DictationLid {
     }
 
     public static void b() {
-        long j3 = f42587c;
-        f42587c = 0L;
+        long j3 = f43032c;
+        f43032c = 0L;
         if (j3 != 0) {
             nativeFree(j3);
         }
     }
 
     public static void c(byte[] bArr, int i7, c1 c1Var) {
-        long j3 = f42587c;
+        long j3 = f43032c;
         if (j3 == 0) {
             return;
         }
@@ -64,11 +64,11 @@ public abstract class DictationLid {
         byte[] m10 = m(bArr);
         int length = m10.length / 32;
         if (length < i7) {
-            g0.h3(new w0(c1Var, length, 0));
+            g0.g3(new w0(c1Var, length, 0));
             return;
         }
         float[] fArr = new float[d.length];
-        g0.h3(new x0(c1Var, nativePredict(j3, m10, 0, m10.length, false, fArr), fArr, SystemClock.elapsedRealtime() - elapsedRealtime, length));
+        g0.g3(new x0(c1Var, nativePredict(j3, m10, 0, m10.length, false, fArr), fArr, SystemClock.elapsedRealtime() - elapsedRealtime, length));
     }
 
     public static void d(Context context) {
@@ -76,7 +76,7 @@ public abstract class DictationLid {
         long j3;
         Context applicationContext = context.getApplicationContext();
         File file = new File(applicationContext.getFilesDir(), "tinylid.bin");
-        if (System.currentTimeMillis() - np.e1().getLong("tinylid_checked", 0L) > 86400000) {
+        if (System.currentTimeMillis() - mp.g1().getLong("tinylid_checked", 0L) > 86400000) {
             z10 = true;
         } else {
             z10 = false;
@@ -85,10 +85,10 @@ public abstract class DictationLid {
             k(applicationContext);
         }
         if (file.exists() || j1.b()) {
-            if ((file.exists() && !z10) || f42589f) {
+            if ((file.exists() && !z10) || f43034f) {
                 return;
             }
-            f42589f = true;
+            f43034f = true;
             File file2 = new File(applicationContext.getFilesDir(), "tinylid.bin");
             if (!file2.exists()) {
                 TLRPC.TL_transcriptionModel f10 = j1.f(j1.a(), "tinylid");
@@ -98,16 +98,16 @@ public abstract class DictationLid {
                     j3 = 0;
                 }
                 DictationAsr.h.putIfAbsent("tinylid.bin", new long[]{0, Math.max(j3, 4400000L)});
-                DictationAsr.o();
+                DictationAsr.n();
             }
-            f42586b.execute(new v0(file2, 0));
+            f43031b.execute(new v0(file2, 0));
         }
     }
 
     public static boolean e(ArrayList arrayList) {
         String[][] strArr;
         if (arrayList != null) {
-            for (String[] strArr2 : f42591i) {
+            for (String[] strArr2 : f43036i) {
                 int size = arrayList.size();
                 int i7 = 0;
                 int i10 = 0;
@@ -137,7 +137,7 @@ public abstract class DictationLid {
     }
 
     public static boolean f() {
-        if (f42587c != 0) {
+        if (f43032c != 0) {
             return true;
         }
         return false;
@@ -161,9 +161,9 @@ public abstract class DictationLid {
             if (nativeLoad == 0) {
                 Log.e("Dictation", "tinylid: model rejected (" + file.length() + " bytes)");
             } else {
-                long j3 = f42587c;
+                long j3 = f43032c;
                 d = nativeLanguages(nativeLoad);
-                f42587c = nativeLoad;
+                f43032c = nativeLoad;
                 if (j3 != 0) {
                     nativeFree(j3);
                 }
@@ -174,7 +174,7 @@ public abstract class DictationLid {
             try {
                 Log.e("Dictation", "tinylid: load failed", th2);
             } finally {
-                f42590g = false;
+                f43035g = false;
                 h();
             }
         }
@@ -204,27 +204,27 @@ public abstract class DictationLid {
     }
 
     public static void j(byte[] bArr, int i7, c1 c1Var) {
-        if (f42587c == 0) {
+        if (f43032c == 0) {
             return;
         }
-        f42585a.execute(new a1(bArr, i7, c1Var, 0));
+        f43030a.execute(new a1(bArr, i7, c1Var, 0));
     }
 
     public static void k(Context context) {
-        if (!f42588e) {
+        if (!f43033e) {
             File file = new File(context.getApplicationContext().getFilesDir(), "tinylid.bin");
             if (!file.exists()) {
                 return;
             }
-            f42588e = true;
-            f42590g = true;
-            f42585a.execute(new v0(file, 1));
+            f43033e = true;
+            f43035g = true;
+            f43030a.execute(new v0(file, 1));
         }
     }
 
     public static void l(String str) {
-        if (str != null && !str.equals(np.e1().getString("tinylid_lang", null))) {
-            np.e1().edit().putString("tinylid_lang", str).apply();
+        if (str != null && !str.equals(mp.g1().getString("tinylid_lang", null))) {
+            mp.g1().edit().putString("tinylid_lang", str).apply();
         }
     }
 

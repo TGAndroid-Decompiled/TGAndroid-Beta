@@ -1,12 +1,20 @@
 package zi;
-public final class c0 extends b3.h {
-    public final int f61474e;
-    public final int f61475f;
-    public final int f61476g;
-    public final int h;
-    public final int f61477i;
 
-    public c0(boolean r8, boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: zi.c0.<init>(boolean, boolean):void");
+import java.nio.ByteBuffer;
+public final class c0 {
+    public final int f62044a;
+    public final int f62045b;
+    public final int f62046c;
+    public final int d;
+    public final int f62047e;
+    public final ByteBuffer f62048f;
+
+    public c0(int i7, int i10, int i11, int i12, int i13, ByteBuffer byteBuffer) {
+        this.f62044a = i7;
+        this.f62045b = i10;
+        this.f62046c = i11;
+        this.d = i12;
+        this.f62047e = i13;
+        this.f62048f = byteBuffer;
     }
 }

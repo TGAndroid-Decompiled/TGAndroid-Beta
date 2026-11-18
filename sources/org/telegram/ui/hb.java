@@ -3,23 +3,23 @@ package org.telegram.ui;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class hb implements ViewTreeObserver.OnPreDrawListener {
-    public final View f47647a;
-    public final v4.e1 f47648b;
-    public final ib f47649c;
+    public final View f48319a;
+    public final v4.f1 f48320b;
+    public final ib f48321c;
 
-    public hb(ib ibVar, View view, v4.e1 e1Var) {
-        this.f47649c = ibVar;
-        this.f47647a = view;
-        this.f47648b = e1Var;
+    public hb(ib ibVar, View view, v4.f1 f1Var) {
+        this.f48321c = ibVar;
+        this.f48319a = view;
+        this.f48320b = f1Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         int i7;
-        View view = this.f47647a;
+        View view = this.f48319a;
         view.getViewTreeObserver().removeOnPreDrawListener(this);
-        lb lbVar = this.f47649c.f48003n;
-        int measuredHeight = lbVar.f48954w.getMeasuredHeight();
+        lb lbVar = this.f48321c.f48686n;
+        int measuredHeight = lbVar.f49555w.getMeasuredHeight();
         int top = view.getTop();
         view.getBottom();
         if (top >= 0) {
@@ -32,12 +32,12 @@ public final class hb implements ViewTreeObserver.OnPreDrawListener {
         if (measuredHeight2 > measuredHeight) {
             measuredHeight2 = i10 + measuredHeight;
         }
-        View view2 = this.f47648b.f58535a;
+        View view2 = this.f48320b.f59122a;
         if (view2 instanceof org.telegram.ui.Cells.q1) {
-            ((org.telegram.ui.Cells.q1) view).B3(i10, measuredHeight2 - i10, (lbVar.Y.getHeightWithKeyboard() - org.telegram.messenger.g0.L(48.0f)) - lbVar.f48954w.getTop(), 0.0f, (view.getY() + lb.L0(lbVar).getMeasuredHeight()) - lbVar.Y.getBackgroundTranslationY(), lbVar.Y.getMeasuredWidth(), lbVar.Y.getBackgroundSizeY(), 0, 0, 0);
+            ((org.telegram.ui.Cells.q1) view).C3(i10, measuredHeight2 - i10, (lbVar.Y.getHeightWithKeyboard() - org.telegram.messenger.g0.L(48.0f)) - lbVar.f49555w.getTop(), 0.0f, (view.getY() + lb.L0(lbVar).getMeasuredHeight()) - lbVar.Y.getBackgroundTranslationY(), lbVar.Y.getMeasuredWidth(), lbVar.Y.getBackgroundSizeY(), 0, 0, 0);
             return true;
-        } else if ((view2 instanceof org.telegram.ui.Cells.t0) && lb.M0(lbVar) != null && lbVar.Y != null) {
-            ((org.telegram.ui.Cells.t0) view).j0((view.getY() + lb.N0(lbVar).getMeasuredHeight()) - lbVar.Y.getBackgroundTranslationY(), lbVar.Y.getBackgroundSizeY());
+        } else if ((view2 instanceof org.telegram.ui.Cells.u0) && lb.M0(lbVar) != null && lbVar.Y != null) {
+            ((org.telegram.ui.Cells.u0) view).l0((view.getY() + lb.N0(lbVar).getMeasuredHeight()) - lbVar.Y.getBackgroundTranslationY(), lbVar.Y.getBackgroundSizeY());
             return true;
         } else {
             return true;

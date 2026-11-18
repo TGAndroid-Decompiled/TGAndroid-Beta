@@ -8,21 +8,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class c {
-    public static final c f18905b = new c(new HashMap());
-    public final Map f18906a;
+    public static final c f19272b = new c(new HashMap());
+    public final Map f19273a;
 
     public c(HashMap hashMap) {
-        this.f18906a = DesugarCollections.unmodifiableMap(hashMap);
+        this.f19273a = DesugarCollections.unmodifiableMap(hashMap);
     }
 
-    public static gc.b a(MediaFormat mediaFormat, Set set) {
-        gc.b bVar = new gc.b(13);
-        HashMap hashMap = (HashMap) bVar.f13134b;
+    public static b9.g0 a(MediaFormat mediaFormat, Set set) {
+        b9.g0 g0Var = new b9.g0(1);
         Iterator it = set.iterator();
         while (it.hasNext()) {
             String str = (String) it.next();
             if (mediaFormat.containsKey(str)) {
                 int valueTypeForKey = mediaFormat.getValueTypeForKey(str);
+                HashMap hashMap = g0Var.f3004a;
                 if (valueTypeForKey != 1) {
                     if (valueTypeForKey != 2) {
                         if (valueTypeForKey != 3) {
@@ -52,7 +52,7 @@ public final class c {
                 }
             }
         }
-        return bVar;
+        return g0Var;
     }
 
     public final boolean equals(Object obj) {
@@ -62,10 +62,10 @@ public final class c {
         if (!(obj instanceof c)) {
             return false;
         }
-        return this.f18906a.equals(((c) obj).f18906a);
+        return this.f19273a.equals(((c) obj).f19273a);
     }
 
     public final int hashCode() {
-        return this.f18906a.hashCode();
+        return this.f19273a.hashCode();
     }
 }

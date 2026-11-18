@@ -24,22 +24,26 @@ import androidx.emoji2.text.w;
 import androidx.fragment.app.j0;
 import androidx.fragment.app.s;
 import androidx.fragment.app.v;
-import bi.m1;
+import bi.m2;
+import ca.i;
 import ci.a0;
-import ci.z;
+import ci.b0;
 import com.google.android.gms.cast.CastDevice;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.q;
 import com.google.android.gms.internal.cast.a1;
 import com.google.android.gms.internal.cast.a2;
+import com.google.android.gms.internal.cast.t;
 import com.google.android.gms.internal.clearcut.g;
 import com.google.android.gms.internal.play_billing.a4;
+import com.google.android.gms.internal.play_billing.b4;
 import com.google.android.gms.internal.play_billing.f3;
 import com.google.android.gms.internal.play_billing.g3;
 import com.google.android.gms.internal.play_billing.i3;
 import com.google.android.gms.internal.play_billing.l3;
 import com.google.android.gms.internal.play_billing.o3;
 import com.google.android.gms.internal.play_billing.p3;
+import com.google.android.gms.internal.play_billing.t3;
 import com.google.android.gms.internal.play_billing.u;
 import com.google.android.gms.internal.play_billing.v3;
 import com.google.android.gms.internal.play_billing.w3;
@@ -50,13 +54,12 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import d1.f;
 import d3.h0;
 import e2.x1;
-import ed.i;
-import f5.k;
+import f5.y;
 import f6.e0;
-import fi.b4;
-import fi.h9;
-import fi.i9;
-import fi.t3;
+import fi.e9;
+import fi.f9;
+import fi.r3;
+import fi.z3;
 import g6.h;
 import gb.d0;
 import gb.i1;
@@ -79,29 +82,29 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import kotlin.jvm.internal.j;
-import o5.t;
+import oi.y3;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.messenger.t0;
-import org.telegram.messenger.z10;
+import org.telegram.messenger.x10;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.lc;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ld0;
-import s4.y;
-public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b, j2.g, n, ja.a {
+import org.telegram.ui.md0;
+import s4.z;
+public class b implements h, ce.c, a0, OnCompleteListener, g, lf.b, y, q, ib.b, j2.g, n, ja.a {
     public static volatile b d;
-    public final int f59106a;
-    public Object f59107b;
-    public Object f59108c;
+    public final int f59671a;
+    public Object f59672b;
+    public Object f59673c;
 
     public b(int i7, Object obj, Object obj2) {
-        this.f59106a = i7;
-        this.f59107b = obj;
-        this.f59108c = obj2;
+        this.f59671a = i7;
+        this.f59672b = obj;
+        this.f59673c = obj2;
     }
 
-    public static b I() {
+    public static b J() {
         b bVar;
         b bVar2 = d;
         if (bVar2 == null) {
@@ -121,26 +124,26 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         return bVar2;
     }
 
-    public static void o(b bVar, boolean z10, boolean z11) {
+    public static void p(b bVar, boolean z10, boolean z11) {
         synchronized (bVar) {
             boolean z12 = false;
             if (z10) {
-                if (((PowerManager.WakeLock) bVar.f59108c) == null) {
-                    if (((Context) bVar.f59107b).checkSelfPermission("android.permission.WAKE_LOCK") != 0) {
+                if (((PowerManager.WakeLock) bVar.f59673c) == null) {
+                    if (((Context) bVar.f59672b).checkSelfPermission("android.permission.WAKE_LOCK") != 0) {
                         h2.a.l("WakeLockManager", "WAKE_LOCK permission not granted, can't acquire wake lock for playback");
                         return;
                     }
-                    PowerManager powerManager = (PowerManager) ((Context) bVar.f59107b).getSystemService("power");
+                    PowerManager powerManager = (PowerManager) ((Context) bVar.f59672b).getSystemService("power");
                     if (powerManager == null) {
                         h2.a.l("WakeLockManager", "PowerManager is null, therefore not creating the WakeLock.");
                         return;
                     }
                     PowerManager.WakeLock newWakeLock = powerManager.newWakeLock(1, "ExoPlayer:WakeLockManager");
-                    bVar.f59108c = newWakeLock;
+                    bVar.f59673c = newWakeLock;
                     newWakeLock.setReferenceCounted(false);
                 }
             }
-            PowerManager.WakeLock wakeLock = (PowerManager.WakeLock) bVar.f59108c;
+            PowerManager.WakeLock wakeLock = (PowerManager.WakeLock) bVar.f59673c;
             if (wakeLock == null) {
                 return;
             }
@@ -176,31 +179,11 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void A(s f10, boolean z10) {
         j.e(f10, "f");
-        j0 j0Var = (j0) this.f59107b;
-        v vVar = j0Var.f2373w.f2470b;
-        s sVar = j0Var.f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.A(f10, true);
+            sVar.p().f2357o.A(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
-        if (it.hasNext()) {
-            if (it.next() == null) {
-                if (z10) {
-                    throw null;
-                }
-                throw null;
-            }
-            throw new ClassCastException();
-        }
-    }
-
-    public void B(s f10, boolean z10) {
-        j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
-        if (sVar != null) {
-            sVar.p().f2366o.B(f10, true);
-        }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -214,11 +197,13 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void C(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        j0 j0Var = (j0) this.f59672b;
+        v vVar = j0Var.f2364w.f2461b;
+        s sVar = j0Var.f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.C(f10, true);
+            sVar.p().f2357o.C(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -230,13 +215,13 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         }
     }
 
-    public void D(s f10, Bundle bundle, boolean z10) {
+    public void D(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.D(f10, bundle, true);
+            sVar.p().f2357o.D(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -250,11 +235,11 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void E(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.E(f10, true);
+            sVar.p().f2357o.E(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -266,13 +251,13 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         }
     }
 
-    public void F(s f10, boolean z10) {
+    public void F(s f10, Bundle bundle, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.F(f10, true);
+            sVar.p().f2357o.F(f10, bundle, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -284,18 +269,31 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         }
     }
 
-    @Override
-    public java.lang.Object G(ce.d r6, kd.c r7) {
-        throw new UnsupportedOperationException("Method not decompiled: wf.b.G(ce.d, kd.c):java.lang.Object");
+    public void G(s f10, boolean z10) {
+        j.e(f10, "f");
+        s sVar = ((j0) this.f59672b).f2366y;
+        if (sVar != null) {
+            sVar.p().f2357o.G(f10, true);
+        }
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
+        if (it.hasNext()) {
+            if (it.next() == null) {
+                if (z10) {
+                    throw null;
+                }
+                throw null;
+            }
+            throw new ClassCastException();
+        }
     }
 
     public void H(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.H(f10, true);
+            sVar.p().f2357o.H(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -307,8 +305,26 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         }
     }
 
-    public m J() {
-        MediaController.TransportControls transportControls = ((android.support.v4.media.session.h) this.f59107b).f1727a.getTransportControls();
+    public void I(s f10, boolean z10) {
+        j.e(f10, "f");
+        s sVar = ((j0) this.f59672b).f2366y;
+        if (sVar != null) {
+            sVar.p().f2357o.I(f10, true);
+        }
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
+        if (it.hasNext()) {
+            if (it.next() == null) {
+                if (z10) {
+                    throw null;
+                }
+                throw null;
+            }
+            throw new ClassCastException();
+        }
+    }
+
+    public m K() {
+        MediaController.TransportControls transportControls = ((android.support.v4.media.session.h) this.f59672b).f1718a.getTransportControls();
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 29) {
             return new l(transportControls);
@@ -319,18 +335,18 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         return new l(transportControls);
     }
 
-    public boolean K(CharSequence charSequence, int i7, int i10, p pVar) {
+    public boolean L(CharSequence charSequence, int i7, int i10, p pVar) {
         int i11;
-        if (pVar.f2274c == 0) {
-            androidx.emoji2.text.h hVar = (androidx.emoji2.text.h) this.f59108c;
+        if (pVar.f2265c == 0) {
+            androidx.emoji2.text.h hVar = (androidx.emoji2.text.h) this.f59673c;
             s1.a b10 = pVar.b();
             int a10 = b10.a(8);
             if (a10 != 0) {
-                ((ByteBuffer) b10.d).getShort(a10 + b10.f55717a);
+                ((ByteBuffer) b10.d).getShort(a10 + b10.f56292a);
             }
             androidx.emoji2.text.d dVar = (androidx.emoji2.text.d) hVar;
             dVar.getClass();
-            ThreadLocal threadLocal = androidx.emoji2.text.d.f2247b;
+            ThreadLocal threadLocal = androidx.emoji2.text.d.f2238b;
             if (threadLocal.get() == null) {
                 threadLocal.set(new StringBuilder());
             }
@@ -340,68 +356,68 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
                 sb2.append(charSequence.charAt(i7));
                 i7++;
             }
-            TextPaint textPaint = dVar.f2248a;
+            TextPaint textPaint = dVar.f2239a;
             String sb3 = sb2.toString();
-            int i12 = i0.d.f15577a;
+            int i12 = i0.c.f15895a;
             if (textPaint.hasGlyph(sb3)) {
                 i11 = 2;
             } else {
                 i11 = 1;
             }
-            pVar.f2274c = i11;
+            pVar.f2265c = i11;
         }
-        if (pVar.f2274c != 2) {
+        if (pVar.f2265c != 2) {
             return false;
         }
         return true;
     }
 
-    public boolean L() {
-        if (((a) ((ld0) this.f59107b).d) != null) {
+    public boolean M() {
+        if (((a) ((md0) this.f59672b).d) != null) {
             return true;
         }
         return false;
     }
 
-    public void M(boolean z10, boolean z11, float f10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f59107b;
-        t3 t3Var = (t3) this.f59108c;
-        i9 i9Var = t3Var.f12354e;
-        i9.B1 = f10;
-        h9 h9Var = i9Var.A0;
-        if (h9Var != null) {
-            h9Var.setSpeed(f10);
+    public void N(boolean z10, boolean z11, float f10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f59672b;
+        r3 r3Var = (r3) this.f59673c;
+        f9 f9Var = r3Var.f12495e;
+        f9.B1 = f10;
+        e9 e9Var = f9Var.A0;
+        if (e9Var != null) {
+            e9Var.setSpeed(f10);
         }
-        b4.Y(t3Var.f12360x, z10);
+        z3.Y(r3Var.f12501x, z10);
         if (z11 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
         }
     }
 
-    public void N(androidx.mediarouter.app.q qVar) {
+    public void O(androidx.mediarouter.app.q qVar) {
         if (qVar != null) {
-            if (!((Set) this.f59108c).add(qVar)) {
+            if (!((Set) this.f59673c).add(qVar)) {
                 Log.w("MediaControllerCompat", "the callback has already been registered");
                 return;
             }
             Handler handler = new Handler();
             qVar.f(handler);
-            android.support.v4.media.session.h hVar = (android.support.v4.media.session.h) this.f59107b;
-            hVar.f1727a.registerCallback(qVar.f2749a, handler);
-            synchronized (hVar.f1728b) {
-                if (hVar.f1730e.a() != null) {
+            android.support.v4.media.session.h hVar = (android.support.v4.media.session.h) this.f59672b;
+            hVar.f1718a.registerCallback(qVar.f2740a, handler);
+            synchronized (hVar.f1719b) {
+                if (hVar.f1721e.a() != null) {
                     android.support.v4.media.session.g gVar = new android.support.v4.media.session.g(qVar);
                     hVar.d.put(qVar, gVar);
-                    qVar.f2751c = gVar;
+                    qVar.f2742c = gVar;
                     try {
-                        hVar.f1730e.a().p(gVar);
+                        hVar.f1721e.a().p(gVar);
                         qVar.e(13, null, null);
                     } catch (RemoteException e10) {
                         Log.e("MediaControllerCompat", "Dead object in registerCallback.", e10);
                     }
                 } else {
-                    qVar.f2751c = null;
-                    hVar.f1729c.add(qVar);
+                    qVar.f2742c = null;
+                    hVar.f1720c.add(qVar);
                 }
             }
             return;
@@ -409,28 +425,28 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         throw new IllegalArgumentException("callback must not be null");
     }
 
-    public void O(Object obj) {
-        Handler handler = (Handler) this.f59107b;
+    public void P(Object obj) {
+        Handler handler = (Handler) this.f59672b;
         if (handler != null) {
-            handler.post(new m1(this, obj, SystemClock.elapsedRealtime(), 1));
+            handler.post(new m2(this, obj, SystemClock.elapsedRealtime(), 1));
         }
     }
 
-    public void P(k kVar) {
+    public void Q(y3 y3Var) {
         d dVar;
-        k kVar2;
+        y3 y3Var2;
         Log.d("CAST_CONTROLLER", "set current media");
-        ld0 ld0Var = (ld0) this.f59107b;
-        k kVar3 = (k) ld0Var.f48973c;
+        md0 md0Var = (md0) this.f59672b;
+        y3 y3Var3 = (y3) md0Var.f49839c;
         if (f.u()) {
-            if (kVar3 != null || kVar != null) {
-                if (kVar3 != null) {
-                    ArrayList arrayList = kVar3.f10991a;
-                    if (kVar != null && arrayList.size() == kVar.f10991a.size()) {
+            if (y3Var3 != null || y3Var != null) {
+                if (y3Var3 != null) {
+                    ArrayList arrayList = y3Var3.f22506a;
+                    if (y3Var != null && arrayList.size() == y3Var.f22506a.size()) {
                         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                            e h = kVar3.h(i7);
-                            e h7 = kVar.h(i7);
-                            if ((h == null && h7 == null) || (h != null && h7 != null && Objects.equals(h.f59120a, h7.f59120a) && Objects.equals(h.f59121b, h7.f59121b) && Objects.equals(h.f59122c, h7.f59122c) && Objects.equals(h.d, h7.d) && h.f59123e == h7.f59123e && h.f59124f == h7.f59124f)) {
+                            e j3 = y3Var3.j(i7);
+                            e j10 = y3Var.j(i7);
+                            if ((j3 == null && j10 == null) || (j3 != null && j10 != null && Objects.equals(j3.f59685a, j10.f59685a) && Objects.equals(j3.f59686b, j10.f59686b) && Objects.equals(j3.f59687c, j10.f59687c) && Objects.equals(j3.d, j10.d) && j3.f59688e == j10.f59688e && j3.f59689f == j10.f59689f)) {
                             }
                         }
                         return;
@@ -440,32 +456,32 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
                 return;
             }
         }
-        if (((a) ld0Var.d) != null && kVar != null) {
-            ld0Var.j(kVar);
+        if (((a) md0Var.d) != null && y3Var != null) {
+            md0Var.j(y3Var);
         }
-        if (((a) ld0Var.d) != null && (kVar2 = (k) ld0Var.f48973c) != null) {
-            ld0Var.F(kVar2);
+        if (((a) md0Var.d) != null && (y3Var2 = (y3) md0Var.f49839c) != null) {
+            md0Var.F(y3Var2);
         }
-        if (kVar != null && kVar.f10991a.size() > 0 && !kVar.h(0).f59120a.startsWith("audio/") && (dVar = (d) ld0Var.f48972b) != null) {
+        if (y3Var != null && y3Var.f22506a.size() > 0 && !y3Var.j(0).f59685a.startsWith("audio/") && (dVar = (d) md0Var.f49838b) != null) {
             dVar.l(null, null);
         }
-        a aVar = (a) ld0Var.d;
-        if (aVar != null && kVar != null) {
-            aVar.d = kVar;
-            aVar.f59105g = 0;
+        a aVar = (a) md0Var.d;
+        if (aVar != null && y3Var != null) {
+            aVar.d = y3Var;
+            aVar.f59670g = 0;
             aVar.h = 0;
             aVar.p();
         }
-        ld0Var.f48973c = kVar;
+        md0Var.f49839c = y3Var;
     }
 
     public void R(f5.m mVar) {
-        this.f59107b = mVar;
+        this.f59672b = mVar;
         if (mVar.a() != null) {
             mVar.a().getClass();
             String str = mVar.a().d;
             if (str != null) {
-                this.f59108c = str;
+                this.f59673c = str;
             }
         }
     }
@@ -473,17 +489,17 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
     public void S(g6.c cVar) {
         String str;
         String M0;
-        ld0 ld0Var = (ld0) this.f59107b;
+        md0 md0Var = (md0) this.f59672b;
         if (cVar != null) {
-            q6.m.d("Must be called from the main thread.");
-            h6.h hVar = cVar.f12900j;
+            q6.m.e("Must be called from the main thread.");
+            h6.h hVar = cVar.f13217j;
             String a10 = cVar.a();
             if (!TextUtils.isEmpty(a10) && hVar != null) {
-                a aVar = (a) ld0Var.d;
-                if (aVar == null || !TextUtils.equals(aVar.f59102c.a(), a10)) {
-                    ld0Var.I(new a(cVar, (g6.g) this.f59108c, hVar));
-                    q6.m.d("Must be called from the main thread.");
-                    CastDevice castDevice = cVar.f12901k;
+                a aVar = (a) md0Var.d;
+                if (aVar == null || !TextUtils.equals(aVar.f59667c.a(), a10)) {
+                    md0Var.I(new a(cVar, (g6.g) this.f59673c, hVar));
+                    q6.m.e("Must be called from the main thread.");
+                    CastDevice castDevice = cVar.f13218k;
                     if (castDevice != null) {
                         str = castDevice.d;
                     } else {
@@ -491,14 +507,14 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
                     }
                     PhotoViewer p12 = PhotoViewer.p1();
                     d.i();
-                    if (p12.F != null && p12.f42763f0 != null && p12.P1()) {
-                        cc ccVar = new cc(p12.f42763f0, new fi.b());
+                    if (p12.F != null && p12.f43208f0 != null && p12.P1()) {
+                        lc lcVar = new lc(p12.f43208f0, new fi.b());
                         if (!TextUtils.isEmpty(str)) {
-                            M0 = hd.a0(null, null, 2131752102, str);
+                            M0 = gd.a0(null, null, 2131752091, str);
                         } else {
-                            M0 = hd.M0(2131752103, null);
+                            M0 = gd.M0(2131752092, null);
                         }
-                        ccVar.Q(2131624029, 36, M0).j();
+                        lcVar.Q(2131624029, 36, M0).j();
                     }
                 }
             }
@@ -507,12 +523,12 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void T(androidx.mediarouter.app.q qVar) {
         if (qVar != null) {
-            if (!((Set) this.f59108c).remove(qVar)) {
+            if (!((Set) this.f59673c).remove(qVar)) {
                 Log.w("MediaControllerCompat", "the callback has never been registered");
                 return;
             }
             try {
-                ((android.support.v4.media.session.h) this.f59107b).b(qVar);
+                ((android.support.v4.media.session.h) this.f59672b).b(qVar);
                 return;
             } finally {
                 qVar.f(null);
@@ -524,27 +540,27 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
     public void U(ArrayList arrayList) {
         r rVar;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            if (((i2.q) arrayList.get(i7)).f15662a == 1) {
+            if (((i2.q) arrayList.get(i7)).f15980a == 1) {
                 try {
                     rVar = new r((i2.q) arrayList.get(i7));
                 } catch (i2.p unused) {
                     rVar = null;
                 }
-                this.f59108c = rVar;
+                this.f59673c = rVar;
             }
         }
     }
 
     public void V(x1 x1Var) {
-        Handler handler = (Handler) this.f59107b;
+        Handler handler = (Handler) this.f59672b;
         if (handler != null) {
-            handler.post(new c1.c(22, this, x1Var));
+            handler.post(new c1.c(21, this, x1Var));
         }
     }
 
     public void W(g3 g3Var) {
         try {
-            d0(g3Var, (p3) this.f59107b);
+            d0(g3Var, (p3) this.f59672b);
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -552,15 +568,15 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void X(g3 g3Var, int i7, long j3) {
         try {
-            o3 o3Var = (o3) ((p3) this.f59107b).g();
+            o3 o3Var = (o3) ((p3) this.f59672b).g();
             o3Var.c();
-            p3.p((p3) o3Var.f6859b, i7);
+            p3.p((p3) o3Var.f7142b, i7);
             p3 p3Var = (p3) o3Var.a();
-            this.f59107b = p3Var;
+            this.f59672b = p3Var;
             if (j3 != 0) {
                 o3 o3Var2 = (o3) p3Var.g();
                 o3Var2.c();
-                p3.r((p3) o3Var2.f6859b, j3);
+                p3.r((p3) o3Var2.f7142b, j3);
                 p3Var = (p3) o3Var2.a();
             }
             d0(g3Var, p3Var);
@@ -573,18 +589,18 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         p3 p3Var;
         try {
             f3 f3Var = (f3) g3Var.g();
-            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
+            t3 t3Var = (t3) g3Var.o().g();
             t3Var.c();
-            v3.n((v3) t3Var.f6859b, z10);
+            v3.n((v3) t3Var.f7142b, z10);
             f3Var.c();
-            g3.r((g3) f3Var.f6859b, (v3) t3Var.a());
+            g3.r((g3) f3Var.f7142b, (v3) t3Var.a());
             g3 g3Var2 = (g3) f3Var.a();
             if (j3 == 0) {
-                p3Var = (p3) this.f59107b;
+                p3Var = (p3) this.f59672b;
             } else {
-                o3 o3Var = (o3) ((p3) this.f59107b).g();
+                o3 o3Var = (o3) ((p3) this.f59672b).g();
                 o3Var.c();
-                p3.r((p3) o3Var.f6859b, j3);
+                p3.r((p3) o3Var.f7142b, j3);
                 p3Var = (p3) o3Var.a();
             }
             d0(g3Var2, p3Var);
@@ -596,23 +612,23 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
     public void Z(g3 g3Var, int i7, long j3, boolean z10) {
         p3 p3Var;
         try {
-            o3 o3Var = (o3) ((p3) this.f59107b).g();
+            o3 o3Var = (o3) ((p3) this.f59672b).g();
             o3Var.c();
-            p3.p((p3) o3Var.f6859b, i7);
-            this.f59107b = (p3) o3Var.a();
+            p3.p((p3) o3Var.f7142b, i7);
+            this.f59672b = (p3) o3Var.a();
             f3 f3Var = (f3) g3Var.g();
-            com.google.android.gms.internal.play_billing.t3 t3Var = (com.google.android.gms.internal.play_billing.t3) g3Var.o().g();
+            t3 t3Var = (t3) g3Var.o().g();
             t3Var.c();
-            v3.n((v3) t3Var.f6859b, z10);
+            v3.n((v3) t3Var.f7142b, z10);
             f3Var.c();
-            g3.r((g3) f3Var.f6859b, (v3) t3Var.a());
+            g3.r((g3) f3Var.f7142b, (v3) t3Var.a());
             g3 g3Var2 = (g3) f3Var.a();
             if (j3 == 0) {
-                p3Var = (p3) this.f59107b;
+                p3Var = (p3) this.f59672b;
             } else {
-                o3 o3Var2 = (o3) ((p3) this.f59107b).g();
+                o3 o3Var2 = (o3) ((p3) this.f59672b).g();
                 o3Var2.c();
-                p3.r((p3) o3Var2.f6859b, j3);
+                p3.r((p3) o3Var2.f7142b, j3);
                 p3Var = (p3) o3Var2.a();
             }
             d0(g3Var2, p3Var);
@@ -622,10 +638,100 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
     }
 
     @Override
-    public lf.a a(b bVar) {
+    public void a(g6.f fVar, boolean z10) {
+        Log.d("CAST_SESSION", "onSessionResumed " + ((g6.c) fVar).a() + " " + z10);
+    }
+
+    public void a0(l3 l3Var) {
+        try {
+            w3 t6 = x3.t();
+            t6.d((p3) this.f59672b);
+            t6.c();
+            x3.p((x3) t6.f7142b, l3Var);
+            ((i) this.f59673c).m((x3) t6.a());
+        } catch (Throwable th2) {
+            u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        boolean z10;
+        e0 e0Var = (e0) this.f59672b;
+        String str = (String) this.f59673c;
+        x xVar = (x) obj;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
+        if (e0Var.G == 2) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        q6.m.j("Not connected to device", z10);
+        j6.f fVar = (j6.f) xVar.n();
+        Parcel p12 = fVar.p1();
+        p12.writeString(str);
+        fVar.u1(p12, 5);
+        synchronized (e0Var.f11392t) {
+            try {
+                if (e0Var.f11389q != null) {
+                    taskCompletionSource.setException(q6.m.m(new Status(2001, null, null, null)));
+                } else {
+                    e0Var.f11389q = taskCompletionSource;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    @Override
+    public void b(g6.f fVar, int i7) {
+        Log.d("CAST_SESSION", "onSessionStartSuspended " + ((g6.c) fVar).a() + " " + i7);
+    }
+
+    public void b0(a4 a4Var) {
+        try {
+            w3 t6 = x3.t();
+            t6.d((p3) this.f59672b);
+            t6.c();
+            x3.r((x3) t6.f7142b, a4Var);
+            ((i) this.f59673c).m((x3) t6.a());
+        } catch (Throwable th2) {
+            u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public void c(b0 b0Var) {
+        g0.E2(b0Var);
+        ((Runnable) this.f59673c).run();
+    }
+
+    public void c0(b4 b4Var) {
+        if (b4Var == null) {
+            return;
+        }
+        try {
+            w3 t6 = x3.t();
+            t6.d((p3) this.f59672b);
+            t6.c();
+            x3.s((x3) t6.f7142b, b4Var);
+            ((i) this.f59673c).m((x3) t6.a());
+        } catch (Throwable th2) {
+            u.i("BillingLogger", "Unable to log.", th2);
+        }
+    }
+
+    @Override
+    public j2.h createDataSource() {
+        return new j2.n((Context) this.f59672b, ((o) this.f59673c).createDataSource());
+    }
+
+    @Override
+    public lf.a d(b bVar) {
         int i7;
-        List list = (List) this.f59108c;
-        List list2 = (List) bVar.f59107b;
+        List list = (List) this.f59673c;
+        List list2 = (List) bVar.f59672b;
         if (list2 != null) {
             i7 = list2.size();
         } else {
@@ -637,96 +743,7 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
             arrayList.addAll(list2);
             list = arrayList;
         }
-        return new i(bVar, (List) this.f59107b, list);
-    }
-
-    public void a0(l3 l3Var) {
-        try {
-            w3 t6 = x3.t();
-            t6.d((p3) this.f59107b);
-            t6.c();
-            x3.p((x3) t6.f6859b, l3Var);
-            ((ca.i) this.f59108c).m((x3) t6.a());
-        } catch (Throwable th2) {
-            u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public void accept(Object obj, Object obj2) {
-        boolean z10;
-        e0 e0Var = (e0) this.f59107b;
-        String str = (String) this.f59108c;
-        x xVar = (x) obj;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        if (e0Var.G == 2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        q6.m.i("Not connected to device", z10);
-        j6.f fVar = (j6.f) xVar.n();
-        Parcel p12 = fVar.p1();
-        p12.writeString(str);
-        fVar.u1(p12, 5);
-        synchronized (e0Var.f11072t) {
-            try {
-                if (e0Var.f11069q != null) {
-                    taskCompletionSource.setException(q6.m.l(new Status(2001, null, null, null)));
-                } else {
-                    e0Var.f11069q = taskCompletionSource;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    @Override
-    public void b(g6.f fVar, boolean z10) {
-        Log.d("CAST_SESSION", "onSessionResumed " + ((g6.c) fVar).a() + " " + z10);
-    }
-
-    public void b0(a4 a4Var) {
-        try {
-            w3 t6 = x3.t();
-            t6.d((p3) this.f59107b);
-            t6.c();
-            x3.r((x3) t6.f6859b, a4Var);
-            ((ca.i) this.f59108c).m((x3) t6.a());
-        } catch (Throwable th2) {
-            u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public void c(g6.f fVar, int i7) {
-        Log.d("CAST_SESSION", "onSessionStartSuspended " + ((g6.c) fVar).a() + " " + i7);
-    }
-
-    public void c0(com.google.android.gms.internal.play_billing.b4 b4Var) {
-        if (b4Var == null) {
-            return;
-        }
-        try {
-            w3 t6 = x3.t();
-            t6.d((p3) this.f59107b);
-            t6.c();
-            x3.s((x3) t6.f6859b, b4Var);
-            ((ca.i) this.f59108c).m((x3) t6.a());
-        } catch (Throwable th2) {
-            u.i("BillingLogger", "Unable to log.", th2);
-        }
-    }
-
-    @Override
-    public j2.h createDataSource() {
-        return new j2.n((Context) this.f59107b, ((o) this.f59108c).createDataSource());
-    }
-
-    @Override
-    public void d(g6.f fVar, int i7) {
-        Log.d("CAST_SESSION", "onSessionStartFailed " + ((g6.c) fVar).a() + " " + i7);
+        return new ed.i(bVar, (List) this.f59672b, list);
     }
 
     public void d0(g3 g3Var, p3 p3Var) {
@@ -737,8 +754,8 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
             w3 t6 = x3.t();
             t6.d(p3Var);
             t6.c();
-            x3.n((x3) t6.f6859b, g3Var);
-            ((ca.i) this.f59108c).m((x3) t6.a());
+            x3.n((x3) t6.f7142b, g3Var);
+            ((i) this.f59673c).m((x3) t6.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -746,7 +763,7 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     @Override
     public void e(g6.f fVar, int i7) {
-        Log.d("CAST_SESSION", "onSessionResumeFailed " + ((g6.c) fVar).a() + " " + i7);
+        Log.d("CAST_SESSION", "onSessionStartFailed " + ((g6.c) fVar).a() + " " + i7);
     }
 
     public void e0(i3 i3Var, p3 p3Var) {
@@ -754,62 +771,61 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
             w3 t6 = x3.t();
             t6.d(p3Var);
             t6.c();
-            x3.o((x3) t6.f6859b, i3Var);
-            ((ca.i) this.f59108c).m((x3) t6.a());
+            x3.o((x3) t6.f7142b, i3Var);
+            ((i) this.f59673c).m((x3) t6.a());
         } catch (Throwable th2) {
             u.i("BillingLogger", "Unable to log.", th2);
         }
     }
 
     @Override
-    public void f(g6.f fVar, String str) {
+    public void f(g6.f fVar, int i7) {
+        Log.d("CAST_SESSION", "onSessionResumeFailed " + ((g6.c) fVar).a() + " " + i7);
+    }
+
+    @Override
+    public void g(String str, long j3, long j10, long j11) {
+        n nVar = (n) this.f59672b;
+        if (nVar != null) {
+            nVar.g(str, j3, j10, j11);
+        }
+    }
+
+    @Override
+    public Object mo24get() {
+        switch (this.f59671a) {
+            case 22:
+                return new d0((Context) ((d9.o) this.f59672b).f7925a, (i1) ((ib.c) this.f59673c).mo24get());
+            default:
+                return new jb.l((jb.q) ((ib.c) this.f59672b).mo24get(), (jb.q) ((ib.c) this.f59673c).mo24get());
+        }
+    }
+
+    @Override
+    public void h(g6.f fVar, String str) {
         g6.c cVar = (g6.c) fVar;
         Log.d("CAST_SESSION", "onSessionStarted " + cVar.a() + " " + str);
         S(cVar);
     }
 
     @Override
-    public void g(a0 a0Var) {
-        g0.E2(a0Var);
-        ((Runnable) this.f59108c).run();
+    public void i(String str) {
+        ((x10) this.f59672b).a(str);
     }
 
     @Override
-    public Object mo24get() {
-        switch (this.f59106a) {
-            case 22:
-                return new d0((Context) ((d9.o) this.f59107b).f7643b, (i1) ((ib.c) this.f59108c).mo24get());
-            default:
-                return new jb.l((jb.q) ((ib.c) this.f59107b).mo24get(), (jb.q) ((ib.c) this.f59108c).mo24get());
-        }
-    }
-
-    @Override
-    public void h(String str, long j3, long j10, long j11) {
-        n nVar = (n) this.f59107b;
+    public void j(String str, long j3, int i7, Object obj, long j10, long j11) {
+        ((j6.m) this.f59673c).f17256g = null;
+        n nVar = (n) this.f59672b;
         if (nVar != null) {
-            nVar.h(str, j3, j10, j11);
+            nVar.j(str, j3, i7, obj, j10, j11);
         }
     }
 
     @Override
-    public void i(g6.f fVar, int i7) {
+    public void k(g6.f fVar, int i7) {
         Log.d("CAST_SESSION", "onSessionEnded " + ((g6.c) fVar).a() + " " + i7);
-        ((ld0) this.f59107b).I(null);
-    }
-
-    @Override
-    public void j(String str) {
-        ((z10) this.f59107b).a(str);
-    }
-
-    @Override
-    public void k(String str, long j3, int i7, Object obj, long j10, long j11) {
-        ((j6.m) this.f59108c).f16871g = null;
-        n nVar = (n) this.f59107b;
-        if (nVar != null) {
-            nVar.k(str, j3, i7, obj, j10, j11);
-        }
+        ((md0) this.f59672b).I(null);
     }
 
     @Override
@@ -830,16 +846,36 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
     }
 
     @Override
+    public StackTraceElement[] o(StackTraceElement[] stackTraceElementArr) {
+        if (stackTraceElementArr.length <= 1024) {
+            return stackTraceElementArr;
+        }
+        ja.a[] aVarArr = (ja.a[]) this.f59672b;
+        StackTraceElement[] stackTraceElementArr2 = stackTraceElementArr;
+        for (int i7 = 0; i7 < 1; i7++) {
+            ja.a aVar = aVarArr[i7];
+            if (stackTraceElementArr2.length <= 1024) {
+                break;
+            }
+            stackTraceElementArr2 = aVar.o(stackTraceElementArr);
+        }
+        if (stackTraceElementArr2.length > 1024) {
+            return ((w7.s) this.f59673c).o(stackTraceElementArr2);
+        }
+        return stackTraceElementArr2;
+    }
+
+    @Override
     public void onComplete(Task task) {
         boolean z10;
         boolean z11;
         g6.b bVar;
         boolean z12;
         String str;
-        com.google.android.gms.internal.cast.p pVar = (com.google.android.gms.internal.cast.p) this.f59107b;
-        g6.b bVar2 = (g6.b) this.f59108c;
-        s4.x xVar = pVar.f6331c;
-        j6.b bVar3 = com.google.android.gms.internal.cast.p.f6330j;
+        com.google.android.gms.internal.cast.p pVar = (com.google.android.gms.internal.cast.p) this.f59672b;
+        g6.b bVar2 = (g6.b) this.f59673c;
+        s4.x xVar = pVar.f6614c;
+        j6.b bVar3 = com.google.android.gms.internal.cast.p.f6613j;
         if (task.isSuccessful()) {
             Bundle bundle = (Bundle) task.getResult();
             if (bundle != null && bundle.containsKey("com.google.android.gms.cast.FLAG_OUTPUT_SWITCHER_ENABLED")) {
@@ -855,34 +891,34 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
             bVar3.b("The module-to-client output switcher flag %s", str);
             if (z12) {
                 z10 = bundle.getBoolean("com.google.android.gms.cast.FLAG_OUTPUT_SWITCHER_ENABLED");
-                Log.i(bVar3.f16859a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z10), Boolean.valueOf(bVar2.f12892y)));
-                if (!z10 && bVar2.f12892y) {
+                Log.i(bVar3.f17244a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z10), Boolean.valueOf(bVar2.f13209y)));
+                if (!z10 && bVar2.f13209y) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 if (xVar == null && (bVar = pVar.d) != null) {
-                    boolean z13 = bVar.f12890w;
-                    boolean z14 = bVar.f12889s;
-                    y yVar = new y();
+                    boolean z13 = bVar.f13207w;
+                    boolean z14 = bVar.f13206s;
+                    s4.y yVar = new s4.y();
                     int i7 = Build.VERSION.SDK_INT;
                     if (i7 >= 30) {
-                        yVar.f56492b = z11;
+                        yVar.f57066b = z11;
                     }
                     if (i7 >= 30) {
                         yVar.d = z13;
                     }
                     if (i7 >= 30) {
-                        yVar.f56493c = z14;
+                        yVar.f57067c = z14;
                     }
-                    s4.x.i(new s4.z(yVar));
-                    Log.i(bVar3.f16859a, bVar3.d("media transfer = %b, session transfer = %b, transfer to local = %b, in-app output switcher = %b", Boolean.valueOf(pVar.f6334i), Boolean.valueOf(z11), Boolean.valueOf(z13), Boolean.valueOf(z14)));
+                    s4.x.i(new z(yVar));
+                    Log.i(bVar3.f17244a, bVar3.d("media transfer = %b, session transfer = %b, transfer to local = %b, in-app output switcher = %b", Boolean.valueOf(pVar.f6617i), Boolean.valueOf(z11), Boolean.valueOf(z13), Boolean.valueOf(z14)));
                     if (z13) {
-                        com.google.android.gms.internal.cast.s sVar = pVar.f6333f;
-                        q6.m.g(sVar);
+                        com.google.android.gms.internal.cast.s sVar = pVar.f6616f;
+                        q6.m.h(sVar);
                         com.google.android.gms.internal.cast.o oVar = new com.google.android.gms.internal.cast.o(sVar);
                         s4.x.b();
-                        s4.x.c().f56357f = oVar;
+                        s4.x.c().f56931f = oVar;
                         a2.a(a1.CAST_TRANSFER_TO_LOCAL_ENABLED);
                         return;
                     }
@@ -891,7 +927,7 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
             }
         }
         z10 = true;
-        Log.i(bVar3.f16859a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z10), Boolean.valueOf(bVar2.f12892y)));
+        Log.i(bVar3.f17244a, bVar3.d("Set up output switcher flags: %b (from module), %b (from CastOptions)", Boolean.valueOf(z10), Boolean.valueOf(bVar2.f13209y)));
         if (!z10) {
         }
         z11 = false;
@@ -899,37 +935,17 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         }
     }
 
-    public f5.d p() {
-        if (((f5.m) this.f59107b) != null) {
+    public f5.d q() {
+        if (((f5.m) this.f59672b) != null) {
             return new f5.d(this);
         }
         throw new NullPointerException("ProductDetails is required for constructing ProductDetailsParams.");
     }
 
-    @Override
-    public StackTraceElement[] q(StackTraceElement[] stackTraceElementArr) {
-        if (stackTraceElementArr.length <= 1024) {
-            return stackTraceElementArr;
-        }
-        ja.a[] aVarArr = (ja.a[]) this.f59107b;
-        StackTraceElement[] stackTraceElementArr2 = stackTraceElementArr;
-        for (int i7 = 0; i7 < 1; i7++) {
-            ja.a aVar = aVarArr[i7];
-            if (stackTraceElementArr2.length <= 1024) {
-                break;
-            }
-            stackTraceElementArr2 = aVar.q(stackTraceElementArr);
-        }
-        if (stackTraceElementArr2.length > 1024) {
-            return ((w7.s) this.f59108c).q(stackTraceElementArr2);
-        }
-        return stackTraceElementArr2;
-    }
-
     public void r() {
-        String str = (String) this.f59107b;
+        String str = (String) this.f59672b;
         try {
-            ga.d dVar = (ga.d) this.f59108c;
+            ga.d dVar = (ga.d) this.f59673c;
             dVar.getClass();
             new File((File) dVar.d, str).createNewFile();
         } catch (IOException e10) {
@@ -940,20 +956,20 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
     public void t(l2.d dVar) {
         synchronized (dVar) {
         }
-        Handler handler = (Handler) this.f59107b;
+        Handler handler = (Handler) this.f59672b;
         if (handler != null) {
             handler.post(new d3.g0(this, dVar, 1));
         }
     }
 
     public String toString() {
-        switch (this.f59106a) {
+        switch (this.f59671a) {
             case 6:
                 try {
-                    if (((cc.b) this.f59108c) == null) {
-                        this.f59108c = ((cc.g) this.f59107b).a();
+                    if (((cc.b) this.f59673c) == null) {
+                        this.f59673c = ((cc.g) this.f59672b).a();
                     }
-                    return ((cc.b) this.f59108c).toString();
+                    return ((cc.b) this.f59673c).toString();
                 } catch (bc.e unused) {
                     return "";
                 }
@@ -964,11 +980,11 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void u(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.u(f10, true);
+            sVar.p().f2357o.u(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -980,33 +996,20 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         }
     }
 
-    public void v(s f10, boolean z10) {
-        j.e(f10, "f");
-        j0 j0Var = (j0) this.f59107b;
-        v vVar = j0Var.f2373w.f2470b;
-        s sVar = j0Var.f2375y;
-        if (sVar != null) {
-            sVar.p().f2366o.v(f10, true);
-        }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
-        if (it.hasNext()) {
-            if (it.next() == null) {
-                if (z10) {
-                    throw null;
-                }
-                throw null;
-            }
-            throw new ClassCastException();
-        }
+    @Override
+    public java.lang.Object v(ce.d r6, kd.c r7) {
+        throw new UnsupportedOperationException("Method not decompiled: wf.b.v(ce.d, kd.c):java.lang.Object");
     }
 
     public void w(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        j0 j0Var = (j0) this.f59672b;
+        v vVar = j0Var.f2364w.f2461b;
+        s sVar = j0Var.f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.w(f10, true);
+            sVar.p().f2357o.w(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -1020,11 +1023,11 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void x(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.x(f10, true);
+            sVar.p().f2357o.x(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -1038,11 +1041,11 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void y(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.y(f10, true);
+            sVar.p().f2357o.y(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -1056,11 +1059,11 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
 
     public void z(s f10, boolean z10) {
         j.e(f10, "f");
-        s sVar = ((j0) this.f59107b).f2375y;
+        s sVar = ((j0) this.f59672b).f2366y;
         if (sVar != null) {
-            sVar.p().f2366o.z(f10, true);
+            sVar.p().f2357o.z(f10, true);
         }
-        Iterator it = ((CopyOnWriteArrayList) this.f59108c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) this.f59673c).iterator();
         if (it.hasNext()) {
             if (it.next() == null) {
                 if (z10) {
@@ -1076,27 +1079,27 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
     public Object zzp() {
         boolean z10;
         Map map;
-        com.google.android.gms.internal.clearcut.d dVar = (com.google.android.gms.internal.clearcut.d) this.f59107b;
-        com.google.android.gms.internal.clearcut.b bVar = (com.google.android.gms.internal.clearcut.b) this.f59108c;
+        com.google.android.gms.internal.clearcut.d dVar = (com.google.android.gms.internal.clearcut.d) this.f59672b;
+        com.google.android.gms.internal.clearcut.b bVar = (com.google.android.gms.internal.clearcut.b) this.f59673c;
         bVar.getClass();
         if (com.google.android.gms.internal.clearcut.d.e()) {
-            z10 = ((Boolean) com.google.android.gms.internal.clearcut.d.c(new d6.i("gms:phenotype:phenotype_flag:debug_disable_caching", 10))).booleanValue();
+            z10 = ((Boolean) com.google.android.gms.internal.clearcut.d.c(new aa.b0("gms:phenotype:phenotype_flag:debug_disable_caching"))).booleanValue();
         } else {
             z10 = false;
         }
         if (z10) {
             map = bVar.b();
         } else {
-            map = bVar.f6509e;
+            map = bVar.f6792e;
         }
         if (map == null) {
             synchronized (bVar.d) {
                 try {
-                    Map map2 = bVar.f6509e;
+                    Map map2 = bVar.f6792e;
                     map = map2;
                     if (map2 == null) {
                         HashMap b10 = bVar.b();
-                        bVar.f6509e = b10;
+                        bVar.f6792e = b10;
                         map = b10;
                     }
                 } finally {
@@ -1106,79 +1109,79 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
         if (map == null) {
             map = Collections.EMPTY_MAP;
         }
-        return (String) map.get(dVar.f6528b);
+        return (String) map.get(dVar.f6811b);
     }
 
     public b(int i7, boolean z10) {
-        this.f59106a = i7;
+        this.f59671a = i7;
     }
 
     public b(Object obj, int i7) {
-        this.f59106a = i7;
-        this.f59107b = obj;
+        this.f59671a = i7;
+        this.f59672b = obj;
     }
 
     public b(Object obj, Object obj2, boolean z10, int i7) {
-        this.f59106a = i7;
-        this.f59108c = obj;
-        this.f59107b = obj2;
+        this.f59671a = i7;
+        this.f59673c = obj;
+        this.f59672b = obj2;
     }
 
     public b(Context context, p3 p3Var) {
-        this.f59106a = 18;
-        ca.i iVar = new ca.i(2);
+        this.f59671a = 18;
+        i iVar = new i(2);
         try {
-            t.b(context);
-            iVar.f4844c = t.a().c(m5.a.f20466e).a("PLAY_BILLING_LIBRARY", new l5.c("proto"), new nb.a(9));
+            o5.s.b(context);
+            iVar.f5126c = o5.s.a().c(m5.a.f20830e).a("PLAY_BILLING_LIBRARY", new l5.c("proto"), new nb.a(9));
         } catch (Throwable unused) {
-            iVar.f4843b = true;
+            iVar.f5125b = true;
         }
-        this.f59108c = iVar;
-        this.f59107b = p3Var;
+        this.f59673c = iVar;
+        this.f59672b = p3Var;
     }
 
     public b(p6.a aVar) {
-        this.f59106a = 25;
-        this.f59107b = aVar == null ? null : aVar.f54898b;
+        this.f59671a = 25;
+        this.f59672b = aVar == null ? null : aVar.f55474b;
     }
 
     public b(j0 j0Var) {
-        this.f59106a = 5;
-        this.f59107b = j0Var;
-        this.f59108c = new CopyOnWriteArrayList();
+        this.f59671a = 5;
+        this.f59672b = j0Var;
+        this.f59673c = new CopyOnWriteArrayList();
     }
 
     public b(ja.a[] aVarArr) {
-        this.f59106a = 28;
-        this.f59107b = aVarArr;
-        this.f59108c = new w7.s(11);
+        this.f59671a = 28;
+        this.f59672b = aVarArr;
+        this.f59673c = new w7.s(11);
     }
 
     public b(int i7) {
-        this.f59106a = i7;
+        this.f59671a = i7;
         switch (i7) {
             case 13:
-                this.f59107b = ByteBuffer.allocateDirect(500);
+                this.f59672b = ByteBuffer.allocateDirect(500);
                 return;
             default:
-                g6.a c10 = g6.a.c(t0.f26609b);
-                ug.x xVar = new ug.x(14);
+                g6.a c10 = g6.a.c(t0.f26915b);
+                ug.x xVar = new ug.x(15);
                 c10.getClass();
-                q6.m.d("Must be called from the main thread.");
-                g6.g gVar = c10.f12874c;
+                q6.m.e("Must be called from the main thread.");
+                g6.g gVar = c10.f13191c;
                 gVar.getClass();
                 try {
-                    g6.y yVar = gVar.f12909a;
+                    g6.y yVar = gVar.f13226a;
                     g6.j jVar = new g6.j(xVar);
                     Parcel p12 = yVar.p1();
-                    com.google.android.gms.internal.cast.t.d(p12, jVar);
+                    t.d(p12, jVar);
                     yVar.t1(p12, 4);
                 } catch (RemoteException e10) {
-                    g6.g.f12908c.a(e10, "Unable to call %s on %s.", "addCastStateListener", g6.y.class.getSimpleName());
+                    g6.g.f13225c.a(e10, "Unable to call %s on %s.", "addCastStateListener", g6.y.class.getSimpleName());
                 }
-                this.f59107b = new ld0(23, false);
+                this.f59672b = new md0(23, false);
                 g6.g b10 = c10.b();
-                this.f59108c = b10;
+                this.f59673c = b10;
                 b10.a(this);
                 S(b10.c());
                 return;
@@ -1186,38 +1189,38 @@ public class b implements h, ce.c, z, OnCompleteListener, g, lf.b, f5.z, q, ib.b
     }
 
     public b(Context context) {
-        this.f59106a = 26;
+        this.f59671a = 26;
         o oVar = new o();
-        this.f59107b = context.getApplicationContext();
-        this.f59108c = oVar;
+        this.f59672b = context.getApplicationContext();
+        this.f59673c = oVar;
     }
 
     public b(c0 c0Var, pb.b bVar, androidx.emoji2.text.d dVar) {
-        this.f59106a = 4;
-        this.f59107b = c0Var;
-        this.f59108c = dVar;
+        this.f59671a = 4;
+        this.f59672b = c0Var;
+        this.f59673c = dVar;
     }
 
     public b(Handler handler, h0 h0Var) {
-        this.f59106a = 14;
+        this.f59671a = 14;
         if (h0Var != null) {
             handler.getClass();
         } else {
             handler = null;
         }
-        this.f59107b = handler;
-        this.f59108c = h0Var;
+        this.f59672b = handler;
+        this.f59673c = h0Var;
     }
 
     public b(Context context, MediaSessionCompat$Token mediaSessionCompat$Token) {
-        this.f59106a = 3;
+        this.f59671a = 3;
         if (mediaSessionCompat$Token != null) {
-            this.f59108c = DesugarCollections.synchronizedSet(new HashSet());
+            this.f59673c = DesugarCollections.synchronizedSet(new HashSet());
             if (Build.VERSION.SDK_INT >= 29) {
-                this.f59107b = new android.support.v4.media.session.h(context, mediaSessionCompat$Token);
+                this.f59672b = new android.support.v4.media.session.h(context, mediaSessionCompat$Token);
                 return;
             } else {
-                this.f59107b = new android.support.v4.media.session.h(context, mediaSessionCompat$Token);
+                this.f59672b = new android.support.v4.media.session.h(context, mediaSessionCompat$Token);
                 return;
             }
         }

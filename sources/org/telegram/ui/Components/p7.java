@@ -1,45 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
 import android.content.Context;
-import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class p7 extends FrameLayout {
-    public final i9[] f38228a;
-    public int f38229b;
-    public AnimatorSet f38230c;
-    public long d;
-    public final y7 f38231e;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class p7 extends ph0 {
+    public final g8 E;
+    public float f38298r;
+    public float f38299s;
+    public boolean f38300w;
+    public final j6.o f38301x;
+    public final float f38302y;
 
-    public p7(y7 y7Var, Context context) {
+    public p7(g8 g8Var, Context context, float f10) {
         super(context);
-        this.f38231e = y7Var;
-        this.f38228a = new i9[2];
-        for (int i7 = 0; i7 < 2; i7++) {
-            this.f38228a[i7] = new i9(context);
-            this.f38228a[i7].getImageReceiver().f22276h1 = new ai.s1(this, i7, 8);
-            this.f38228a[i7].setRoundRadius(org.telegram.messenger.g0.L(4.0f));
-            if (i7 == 1) {
-                this.f38228a[i7].setVisibility(8);
-            }
-            addView(this.f38228a[i7], c8.ja.c(-1.0f, -1));
-        }
+        this.E = g8Var;
+        this.f38302y = f10;
+        this.f38301x = new j6.o(this, 27);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        y7 y7Var = this.f38231e;
-        if (action == 0) {
-            if (this.f38228a[this.f38229b].getImageReceiver().I()) {
-                y7Var.W0(true, true);
-                this.d = SystemClock.elapsedRealtime();
-                return true;
-            }
-        } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
-            y7Var.W0(false, true);
-        }
-        return true;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.addAction(16);
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

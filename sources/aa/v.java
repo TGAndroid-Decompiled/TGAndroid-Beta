@@ -4,16 +4,16 @@ import android.util.Log;
 import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class v implements Thread.UncaughtExceptionHandler {
-    public final ob.c f872a;
-    public final ia.c f873b;
-    public final Thread.UncaughtExceptionHandler f874c;
+    public final ob.c f871a;
+    public final ia.c f872b;
+    public final Thread.UncaughtExceptionHandler f873c;
     public final x9.a d;
-    public final AtomicBoolean f875e = new AtomicBoolean(false);
+    public final AtomicBoolean f874e = new AtomicBoolean(false);
 
     public v(ob.c cVar, ia.c cVar2, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, x9.a aVar) {
-        this.f872a = cVar;
-        this.f873b = cVar2;
-        this.f874c = uncaughtExceptionHandler;
+        this.f871a = cVar;
+        this.f872b = cVar2;
+        this.f873c = uncaughtExceptionHandler;
         this.d = aVar;
     }
 
@@ -36,13 +36,13 @@ public final class v implements Thread.UncaughtExceptionHandler {
 
     @Override
     public final void uncaughtException(Thread thread, Throwable th2) {
-        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = this.f874c;
-        AtomicBoolean atomicBoolean = this.f875e;
+        Thread.UncaughtExceptionHandler uncaughtExceptionHandler = this.f873c;
+        AtomicBoolean atomicBoolean = this.f874e;
         atomicBoolean.set(true);
         try {
             try {
                 if (a(thread, th2)) {
-                    this.f872a.l(this.f873b, thread, th2);
+                    this.f871a.L(this.f872b, thread, th2);
                 } else if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "Uncaught exception will not be recorded by Crashlytics.", null);
                 }
@@ -59,7 +59,7 @@ public final class v implements Thread.UncaughtExceptionHandler {
                 }
                 atomicBoolean.set(false);
             } catch (Exception e10) {
-                x9.b bVar = x9.b.f59856a;
+                x9.b bVar = x9.b.f60426a;
                 if (bVar.a(6)) {
                     Log.e("FirebaseCrashlytics", "An error occurred in the uncaught exception handler", e10);
                 }

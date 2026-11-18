@@ -1,8 +1,13 @@
 package org.telegram.ui;
-public final class dk {
-    public final an f46387a;
+public final class dk extends rn {
+    public boolean U0;
 
-    public dk(an anVar) {
-        this.f46387a = anVar;
+    @Override
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.U0) {
+            n0();
+            this.U0 = true;
+        }
     }
 }

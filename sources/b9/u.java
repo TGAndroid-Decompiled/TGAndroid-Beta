@@ -2,24 +2,24 @@ package b9;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import com.google.android.gms.wearable.ConnectionConfiguration;
 public final class u extends r6.a {
     public static final Parcelable.Creator<u> CREATOR = new c(18);
-    public final int f3067a;
-    public final ConnectionConfiguration f3068b;
+    public final int f3061a;
+    public final ConnectionConfiguration f3062b;
 
     public u(int i7, ConnectionConfiguration connectionConfiguration) {
-        this.f3067a = i7;
-        this.f3068b = connectionConfiguration;
+        this.f3061a = i7;
+        this.f3062b = connectionConfiguration;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.q(parcel, 2, 4);
-        parcel.writeInt(this.f3067a);
-        yb.k(parcel, 3, this.f3068b, i7);
-        yb.s(parcel, r10);
+        int r10 = bc.r(parcel, 20293);
+        bc.q(parcel, 2, 4);
+        parcel.writeInt(this.f3061a);
+        bc.k(parcel, 3, this.f3062b, i7);
+        bc.s(parcel, r10);
     }
 }

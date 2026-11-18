@@ -9,55 +9,55 @@ import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.p20;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.x20;
 public final class a implements Runnable {
-    public final int f1112a;
-    public final Context f1113b;
+    public final int f1111a;
+    public final Context f1112b;
 
     public a(Context context, int i7) {
-        this.f1112a = i7;
-        this.f1113b = context;
+        this.f1111a = i7;
+        this.f1112b = context;
     }
 
     @Override
     public final void run() {
         Handler handler;
-        int i7 = this.f1112a;
-        Context context = this.f1113b;
+        int i7 = this.f1111a;
+        Context context = this.f1112b;
         switch (i7) {
             case 0:
                 d.a(context);
                 return;
             case 1:
-                new p20(context).show();
+                new x20(context).show();
                 return;
             case 2:
-                new p20(context).show();
+                new x20(context).show();
                 return;
             case 3:
-                vf.c.t(context, hd.M0(2131744966, null));
+                vf.c.t(context, gd.M0(2131744731, null));
                 return;
             case 4:
-                vf.c.t(context, hd.M0(2131744966, null));
+                vf.c.t(context, gd.M0(2131744731, null));
                 return;
             case 5:
-                vf.c.t(context, hd.M0(2131747734, null));
+                vf.c.t(context, gd.M0(2131747541, null));
                 return;
             case 6:
-                vf.c.t(context, hd.M0(2131745019, null));
+                vf.c.t(context, gd.M0(2131744784, null));
                 return;
             case 7:
-                vf.c.t(context, hd.M0(2131744966, null));
+                vf.c.t(context, gd.M0(2131744731, null));
                 return;
             case 8:
-                vf.c.t(context, hd.M0(2131745044, null));
+                vf.c.t(context, gd.M0(2131744809, null));
                 return;
             case 9:
-                new p20(context).show();
+                new x20(context).show();
                 return;
             case 10:
-                vf.c.t(context, hd.M0(2131752506, null));
+                vf.c.t(context, gd.M0(2131752495, null));
                 return;
             case 11:
                 if (Build.VERSION.SDK_INT >= 28) {
@@ -71,13 +71,13 @@ public final class a implements Runnable {
                 new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new a(context, 13));
                 return;
             default:
-                u4.d.s(context, new d3.b(3), u4.d.f57833a, false);
+                u4.d.s(context, new d3.b(3), u4.d.f58400a, false);
                 return;
         }
     }
 
     public a(ProfileInstallerInitializer profileInstallerInitializer, Context context) {
-        this.f1112a = 11;
-        this.f1113b = context;
+        this.f1111a = 11;
+        this.f1112b = context;
     }
 }

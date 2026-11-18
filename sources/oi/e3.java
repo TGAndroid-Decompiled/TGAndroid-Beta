@@ -1,104 +1,75 @@
 package oi;
 
-import java.util.ArrayList;
-import org.telegram.ui.Cells.h9;
-public final class e3 extends h9 {
-    public final o3 F0;
-    public final q3 G0;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class e3 implements w4 {
+    public final r f22038a;
+    public final a f22039b;
+    public final s3 f22040c;
 
-    public e3(q3 q3Var, o3 o3Var) {
-        this.G0 = q3Var;
-        this.F0 = o3Var;
+    public e3(a aVar, r rVar, s3 s3Var) {
+        this.f22040c = s3Var;
+        this.f22038a = rVar;
+        this.f22039b = aVar;
     }
 
     @Override
-    public final boolean C() {
-        q3 q3Var = this.G0;
-        CharSequence r10 = q3Var.f21943v3.r();
-        if (r10 != null && r10.length() != 0) {
-            q3Var.f5(r10);
-            return true;
+    public final void a() {
+        r rVar = this.f22038a;
+        rVar.f22261a = 3;
+        s3 s3Var = this.f22040c;
+        s3Var.f22328h4.remove(rVar);
+        int indexOf = s3Var.f22345t3.indexOf(this.f22039b);
+        if (indexOf >= 0) {
+            s3Var.f22345t3.remove(indexOf);
+            s3Var.f34607g3.O(true);
         }
-        return true;
+        s3Var.f22337p3.onContentChanged();
     }
 
     @Override
-    public final void D() {
-        q3 q3Var = this.G0;
-        CharSequence r10 = q3Var.f21943v3.r();
-        if (r10 != null && r10.length() > 0) {
-            q3Var.f5(r10);
+    public final void f(TLRPC.Document document) {
+        r rVar = this.f22038a;
+        rVar.h = document;
+        rVar.f22267i = document;
+        rVar.f22261a = 2;
+        TL_iv.PageBlock pageBlock = this.f22039b.f21910b;
+        if (pageBlock instanceof TL_iv.pageBlockAudio) {
+            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f28411id;
         }
-        q3Var.H2();
+        s3 s3Var = this.f22040c;
+        s3Var.f22328h4.remove(rVar);
+        s3Var.f34607g3.O(false);
+        s3Var.f22337p3.onContentChanged();
     }
 
     @Override
-    public final void F() {
-        super.F();
-        this.F0.v();
-    }
-
-    @Override
-    public final void H() {
-        this.G0.f4();
-    }
-
-    @Override
-    public final boolean J() {
-        if (a0()) {
-            return true;
+    public final void g(float f10) {
+        this.f22038a.f22265f = f10;
+        a aVar = this.f22039b;
+        s3 s3Var = this.f22040c;
+        View C1 = s3Var.C1(aVar);
+        if (C1 instanceof w) {
+            ((w) C1).n(false);
+            C1.invalidate();
         }
-        return this.G0.V4();
+        s3Var.f22337p3.onContentChanged();
     }
 
     @Override
-    public final void K(float f10, float f11) {
-        q3 q3Var = this.G0;
-        q3Var.A3 = true;
-        q3Var.B3 = f10;
-        q3Var.C3 = f11;
+    public final void c(TLRPC.Photo photo) {
     }
 
     @Override
-    public final boolean j() {
-        boolean z10;
-        int size;
-        String str;
-        int length;
-        q3 q3Var = this.G0;
-        e3 e3Var = q3Var.f21943v3;
-        ArrayList arrayList = q3Var.f21939t3;
-        if (!arrayList.isEmpty() && e3Var.x() && e3Var.f30411p0 == 0 && e3Var.f30412q0 == 0 && e3Var.f30413r0 <= 0 && e3Var.f30414s0 == (size = arrayList.size() - 1)) {
-            a aVar = (a) arrayList.get(size);
-            if (y5.p(aVar.f21544b)) {
-                str = a6.l(y5.j(aVar.f21544b));
-            } else {
-                str = "";
-            }
-            int i7 = !str.isEmpty();
-            if (e3Var.f30415t0 == i7) {
-                if (i7 == 1) {
-                    length = str.length();
-                } else {
-                    length = y5.z(aVar.f21544b).length();
-                }
-                if (e3Var.f30416u0 >= length) {
-                    z10 = true;
-                    return !z10;
-                }
-            }
-        }
-        z10 = false;
-        return !z10;
+    public final void d(TLRPC.Document document) {
     }
 
     @Override
-    public final int o() {
-        return this.G0.getPaddingBottom();
+    public final void e(TLRPC.Document document) {
     }
 
     @Override
-    public final int p() {
-        return this.G0.getPaddingTop();
+    public final void b(int i7, int i10) {
     }
 }

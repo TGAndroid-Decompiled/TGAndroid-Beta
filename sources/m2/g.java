@@ -1,126 +1,379 @@
 package m2;
 
-import d3.p;
+import a8.xa;
+import android.content.Context;
+import android.media.metrics.LogSessionId;
+import android.media.metrics.MediaMetricsManager;
+import android.media.metrics.PlaybackMetrics;
+import android.media.metrics.PlaybackSession;
+import android.media.metrics.TrackChangeEvent;
+import android.os.SystemClock;
+import android.util.Pair;
 import e2.i1;
 import e2.k1;
 import e2.l1;
+import e2.t;
+import e2.u;
+import e2.v0;
+import e2.x1;
+import h2.l0;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Random;
-import x2.f0;
-public final class g {
-    public static final p h = new p(4);
-    public static final Random f20137i = new Random();
-    public h d;
-    public String f20142f;
-    public final k1 f20138a = new k1();
-    public final i1 f20139b = new i1();
-    public final HashMap f20140c = new HashMap();
-    public l1 f20141e = l1.f10190a;
-    public long f20143g = -1;
+import java.util.concurrent.Executor;
+import kg.h0;
+import x2.c0;
+import x2.g0;
+public final class g implements b {
+    public v0 F;
+    public xa G;
+    public xa H;
+    public xa I;
+    public u J;
+    public u K;
+    public u L;
+    public boolean M;
+    public int N;
+    public boolean O;
+    public int P;
+    public int Q;
+    public int R;
+    public boolean S;
+    public final Context f20508a;
+    public final f f20510c;
+    public final PlaybackSession d;
+    public String f20515s;
+    public PlaybackMetrics.Builder f20516w;
+    public int f20517x;
+    public final Executor f20509b = h2.a.e();
+    public final k1 f20512f = new k1();
+    public final i1 h = new i1();
+    public final HashMap f20514r = new HashMap();
+    public final HashMap f20513n = new HashMap();
+    public final long f20511e = SystemClock.elapsedRealtime();
+    public int f20518y = 0;
+    public int E = 0;
 
-    public final void a(f fVar) {
-        long j3 = fVar.f20133c;
-        if (j3 != -1 && fVar.f20134e) {
-            this.f20143g = j3;
+    public g(Context context, PlaybackSession playbackSession) {
+        this.f20508a = context.getApplicationContext();
+        this.d = playbackSession;
+        f fVar = new f();
+        this.f20510c = fVar;
+        fVar.d = this;
+    }
+
+    public static g i(Context context) {
+        MediaMetricsManager mediaMetricsManager = (MediaMetricsManager) context.getSystemService("media_metrics");
+        if (mediaMetricsManager == null) {
+            return null;
         }
-        this.f20142f = null;
+        return new g(context, mediaMetricsManager.createPlaybackSession());
     }
 
-    public final synchronized void b(a aVar) {
-        h hVar;
-        try {
-            String str = this.f20142f;
-            if (str != null) {
-                f fVar = (f) this.f20140c.get(str);
-                fVar.getClass();
-                a(fVar);
+    @Override
+    public final void A(e2.c1 r23, ji.j r24) {
+        throw new UnsupportedOperationException("Method not decompiled: m2.g.A(e2.c1, ji.j):void");
+    }
+
+    @Override
+    public final void C(a aVar, int i7) {
+        if (i7 == 1) {
+            this.M = true;
+        }
+        this.f20517x = i7;
+    }
+
+    @Override
+    public final void G(v0 v0Var) {
+        this.F = v0Var;
+    }
+
+    @Override
+    public final void b(c0 c0Var) {
+        this.N = c0Var.f60043a;
+    }
+
+    @Override
+    public final void c(a aVar, int i7, long j3) {
+        long longValue;
+        g0 g0Var = aVar.d;
+        if (g0Var != null) {
+            String d = this.f20510c.d(aVar.f20480b, g0Var);
+            HashMap hashMap = this.f20514r;
+            Long l10 = (Long) hashMap.get(d);
+            HashMap hashMap2 = this.f20513n;
+            Long l11 = (Long) hashMap2.get(d);
+            long j10 = 0;
+            if (l10 == null) {
+                longValue = 0;
+            } else {
+                longValue = l10.longValue();
             }
-            Iterator it = this.f20140c.values().iterator();
-            while (it.hasNext()) {
-                f fVar2 = (f) it.next();
-                it.remove();
-                if (fVar2.f20134e && (hVar = this.d) != null) {
-                    hVar.m(aVar, fVar2.f20131a);
-                }
+            hashMap.put(d, Long.valueOf(longValue + j3));
+            if (l11 != null) {
+                j10 = l11.longValue();
             }
-        } catch (Throwable th2) {
-            throw th2;
+            hashMap2.put(d, Long.valueOf(j10 + i7));
         }
     }
 
-    public final m2.f c(int r19, x2.f0 r20) {
-        throw new UnsupportedOperationException("Method not decompiled: m2.g.c(int, x2.f0):m2.f");
-    }
-
-    public final synchronized String d(l1 l1Var, f0 f0Var) {
-        return c(l1Var.g(f0Var.f59523a, this.f20139b).f10118c, f0Var).f20131a;
-    }
-
-    public final void e(a aVar) {
-        f0 f0Var;
-        l1 l1Var = aVar.f20113b;
-        int i7 = aVar.f20114c;
-        f0 f0Var2 = aVar.d;
-        boolean p10 = l1Var.p();
-        HashMap hashMap = this.f20140c;
-        if (p10) {
-            String str = this.f20142f;
-            if (str != null) {
-                f fVar = (f) hashMap.get(str);
-                fVar.getClass();
-                a(fVar);
-                return;
+    public final boolean h(xa xaVar) {
+        String str;
+        if (xaVar != null) {
+            String str2 = (String) xaVar.d;
+            f fVar = this.f20510c;
+            synchronized (fVar) {
+                str = fVar.f20506f;
             }
+            if (str2.equals(str)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void j() {
+        long longValue;
+        long longValue2;
+        int i7;
+        PlaybackMetrics.Builder builder = this.f20516w;
+        if (builder != null && this.S) {
+            builder.setAudioUnderrunCount(this.R);
+            this.f20516w.setVideoFramesDropped(this.P);
+            this.f20516w.setVideoFramesPlayed(this.Q);
+            Long l10 = (Long) this.f20513n.get(this.f20515s);
+            PlaybackMetrics.Builder builder2 = this.f20516w;
+            if (l10 == null) {
+                longValue = 0;
+            } else {
+                longValue = l10.longValue();
+            }
+            builder2.setNetworkTransferDurationMillis(longValue);
+            Long l11 = (Long) this.f20514r.get(this.f20515s);
+            PlaybackMetrics.Builder builder3 = this.f20516w;
+            if (l11 == null) {
+                longValue2 = 0;
+            } else {
+                longValue2 = l11.longValue();
+            }
+            builder3.setNetworkBytesRead(longValue2);
+            PlaybackMetrics.Builder builder4 = this.f20516w;
+            if (l11 != null && l11.longValue() > 0) {
+                i7 = 1;
+            } else {
+                i7 = 0;
+            }
+            builder4.setStreamSource(i7);
+            this.f20509b.execute(new h0(21, this, this.f20516w.build()));
+        }
+        this.f20516w = null;
+        this.f20515s = null;
+        this.R = 0;
+        this.P = 0;
+        this.Q = 0;
+        this.J = null;
+        this.K = null;
+        this.L = null;
+        this.S = false;
+    }
+
+    public final LogSessionId k() {
+        return this.d.getSessionId();
+    }
+
+    public final void l(l1 l1Var, g0 g0Var) {
+        int b10;
+        PlaybackMetrics.Builder builder = this.f20516w;
+        if (g0Var == null || (b10 = l1Var.b(g0Var.f60087a)) == -1) {
             return;
         }
-        f fVar2 = (f) hashMap.get(this.f20142f);
-        this.f20142f = c(i7, f0Var2).f20131a;
-        f(aVar);
-        if (f0Var2 != null) {
-            long j3 = f0Var2.d;
-            if (f0Var2.b()) {
-                if (fVar2 == null || fVar2.f20133c != j3 || (f0Var = fVar2.d) == null || f0Var.f59524b != f0Var2.f59524b || f0Var.f59525c != f0Var2.f59525c) {
-                    c(i7, new f0(f0Var2.f59523a, j3));
-                    this.d.getClass();
+        i1 i1Var = this.h;
+        int i7 = 0;
+        l1Var.f(b10, i1Var, false);
+        int i10 = i1Var.f10436c;
+        k1 k1Var = this.f20512f;
+        l1Var.n(i10, k1Var);
+        e2.g0 g0Var2 = k1Var.f10480c.f10504b;
+        int i11 = 2;
+        if (g0Var2 != null) {
+            int K = l0.K(g0Var2.f10413a, g0Var2.f10414b);
+            if (K != 0) {
+                if (K != 1) {
+                    if (K != 2) {
+                        i7 = 1;
+                    } else {
+                        i7 = 4;
+                    }
+                } else {
+                    i7 = 5;
                 }
-            }
-        }
-    }
-
-    public final synchronized void f(m2.a r10) {
-        throw new UnsupportedOperationException("Method not decompiled: m2.g.f(m2.a):void");
-    }
-
-    public final synchronized void g(a aVar, int i7) {
-        boolean z10;
-        try {
-            this.d.getClass();
-            if (i7 == 0) {
-                z10 = true;
             } else {
-                z10 = false;
+                i7 = 3;
             }
-            Iterator it = this.f20140c.values().iterator();
-            while (it.hasNext()) {
-                f fVar = (f) it.next();
-                if (fVar.a(aVar)) {
-                    it.remove();
-                    boolean equals = fVar.f20131a.equals(this.f20142f);
-                    if (equals) {
-                        a(fVar);
-                    }
-                    if (fVar.f20134e) {
-                        if (z10 && equals) {
-                            boolean z11 = fVar.f20135f;
-                        }
-                        this.d.m(aVar, fVar.f20131a);
+        }
+        builder.setStreamType(i7);
+        if (k1Var.f10488m != -9223372036854775807L && !k1Var.f10486k && !k1Var.f10484i && !k1Var.a()) {
+            builder.setMediaDurationMillis(l0.h0(k1Var.f10488m));
+        }
+        if (!k1Var.a()) {
+            i11 = 1;
+        }
+        builder.setPlaybackType(i11);
+        this.S = true;
+    }
+
+    public final void m(a aVar, String str) {
+        g0 g0Var = aVar.d;
+        if (g0Var != null && g0Var.b()) {
+            return;
+        }
+        j();
+        this.f20515s = str;
+        this.f20516w = new PlaybackMetrics.Builder().setPlayerName("AndroidXMedia3").setPlayerVersion("1.10.1");
+        l(aVar.f20480b, g0Var);
+    }
+
+    public final void n(a aVar, String str) {
+        g0 g0Var = aVar.d;
+        if ((g0Var == null || !g0Var.b()) && str.equals(this.f20515s)) {
+            j();
+        }
+        this.f20513n.remove(str);
+        this.f20514r.remove(str);
+    }
+
+    public final void o(int i7, long j3, u uVar, int i10) {
+        int i11;
+        String str;
+        TrackChangeEvent.Builder timeSinceCreatedMillis = new TrackChangeEvent.Builder(i7).setTimeSinceCreatedMillis(j3 - this.f20511e);
+        if (uVar != null) {
+            timeSinceCreatedMillis.setTrackState(1);
+            if (i10 != 1) {
+                i11 = 3;
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        i11 = 1;
+                    } else {
+                        i11 = 4;
                     }
                 }
+            } else {
+                i11 = 2;
             }
-            e(aVar);
-        } catch (Throwable th2) {
-            throw th2;
+            timeSinceCreatedMillis.setTrackChangeReason(i11);
+            String str2 = uVar.f10768r;
+            if (str2 != null) {
+                timeSinceCreatedMillis.setContainerMimeType(str2);
+            }
+            String str3 = uVar.f10769s;
+            if (str3 != null) {
+                timeSinceCreatedMillis.setSampleMimeType(str3);
+            }
+            String str4 = uVar.f10761k;
+            if (str4 != null) {
+                timeSinceCreatedMillis.setCodecName(str4);
+            }
+            int i12 = uVar.f10760j;
+            if (i12 != -1) {
+                timeSinceCreatedMillis.setBitrate(i12);
+            }
+            int i13 = uVar.f10775z;
+            if (i13 != -1) {
+                timeSinceCreatedMillis.setWidth(i13);
+            }
+            int i14 = uVar.A;
+            if (i14 != -1) {
+                timeSinceCreatedMillis.setHeight(i14);
+            }
+            int i15 = uVar.K;
+            if (i15 != -1) {
+                timeSinceCreatedMillis.setChannelCount(i15);
+            }
+            int i16 = uVar.L;
+            if (i16 != -1) {
+                timeSinceCreatedMillis.setAudioSampleRate(i16);
+            }
+            String str5 = uVar.d;
+            if (str5 != null) {
+                String str6 = l0.f13786a;
+                String[] split = str5.split("-", -1);
+                String str7 = split[0];
+                if (split.length >= 2) {
+                    str = split[1];
+                } else {
+                    str = null;
+                }
+                Pair create = Pair.create(str7, str);
+                timeSinceCreatedMillis.setLanguage((String) create.first);
+                Object obj = create.second;
+                if (obj != null) {
+                    timeSinceCreatedMillis.setLanguageRegion((String) obj);
+                }
+            }
+            float f10 = uVar.D;
+            if (f10 != -1.0f) {
+                timeSinceCreatedMillis.setVideoFrameRate(f10);
+            }
+        } else {
+            timeSinceCreatedMillis.setTrackState(0);
         }
+        this.S = true;
+        this.f20509b.execute(new h0(18, this, timeSinceCreatedMillis.build()));
+    }
+
+    @Override
+    public final void r(a aVar, c0 c0Var) {
+        g0 g0Var = aVar.d;
+        if (g0Var != null) {
+            u uVar = c0Var.f60045c;
+            uVar.getClass();
+            int i7 = c0Var.d;
+            l1 l1Var = aVar.f20480b;
+            g0Var.getClass();
+            xa xaVar = new xa(uVar, i7, this.f20510c.d(l1Var, g0Var));
+            int i10 = c0Var.f60044b;
+            if (i10 != 0) {
+                if (i10 != 1) {
+                    if (i10 != 2) {
+                        if (i10 != 3) {
+                            return;
+                        }
+                        this.I = xaVar;
+                        return;
+                    }
+                } else {
+                    this.H = xaVar;
+                    return;
+                }
+            }
+            this.G = xaVar;
+        }
+    }
+
+    @Override
+    public final void w(x1 x1Var) {
+        xa xaVar = this.G;
+        if (xaVar != null) {
+            u uVar = (u) xaVar.f714c;
+            if (uVar.A == -1) {
+                t a10 = uVar.a();
+                a10.f10723y = x1Var.f10803a;
+                a10.f10724z = x1Var.f10804b;
+                this.G = new xa(new u(a10), xaVar.f713b, (String) xaVar.d);
+            }
+        }
+    }
+
+    @Override
+    public final void z(l2.d dVar) {
+        this.P += dVar.f19282g;
+        this.Q += dVar.f19280e;
+    }
+
+    @Override
+    public final void onRenderedFirstFrame(a aVar) {
+    }
+
+    @Override
+    public final void onSeekStarted(a aVar) {
     }
 }

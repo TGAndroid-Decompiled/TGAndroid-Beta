@@ -8,10 +8,10 @@ import android.graphics.RectF;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.ou;
-import org.telegram.ui.Components.u5;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.hn;
 public final class m1 extends View {
-    public final u5 E;
+    public final c6 E;
     public sg.u0 F;
     public float G;
     public float H;
@@ -19,35 +19,35 @@ public final class m1 extends View {
     public Runnable J;
     public boolean K;
     public l1 L;
-    public final Paint f57446a;
-    public final Paint f57447b;
-    public final Path f57448c;
-    public final ou d;
-    public final RectF f57449e;
-    public boolean f57450f;
+    public final Paint f58016a;
+    public final Paint f58017b;
+    public final Path f58018c;
+    public final hn d;
+    public final RectF f58019e;
+    public boolean f58020f;
     public boolean h;
-    public float f57451n;
-    public float f57452r;
-    public long f57453s;
-    public boolean f57454w;
-    public final u5 f57455x;
-    public final u5 f57456y;
+    public float f58021n;
+    public float f58022r;
+    public long f58023s;
+    public boolean f58024w;
+    public final c6 f58025x;
+    public final c6 f58026y;
 
     public m1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f57446a = paint;
+        this.f58016a = paint;
         Paint paint2 = new Paint(1);
-        this.f57447b = paint2;
-        this.f57448c = new Path();
-        this.f57449e = new RectF();
-        this.f57454w = true;
-        this.f57455x = new u5(this);
-        this.f57456y = new u5(this);
-        this.E = new u5(this);
+        this.f58017b = paint2;
+        this.f58018c = new Path();
+        this.f58019e = new RectF();
+        this.f58024w = true;
+        this.f58025x = new c6(this);
+        this.f58026y = new c6(this);
+        this.E = new c6(this);
         this.I = new sg.h1(1.0f, 0.016773745f, -1);
         this.K = true;
-        this.d = new ou(context, new k1(this));
+        this.d = new hn(context, new k1(this));
         paint2.setColor(-1);
         paint2.setShadowLayer(org.telegram.messenger.g0.L(4.0f), 0.0f, org.telegram.messenger.g0.L(2.0f), 1342177280);
         paint.setColor(1090519039);
@@ -58,9 +58,9 @@ public final class m1 extends View {
         if (z10) {
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set((f10 - f12) - org.telegram.messenger.g0.L(6.0f), (f11 - f12) - org.telegram.messenger.g0.L(6.0f), f10 + f12 + org.telegram.messenger.g0.L(6.0f), f11 + f12 + org.telegram.messenger.g0.L(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f57452r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f58022r * 255.0f), 31);
         }
-        canvas.drawCircle(f10, f11, f12, this.f57447b);
+        canvas.drawCircle(f10, f11, f12, this.f58017b);
         if (z10) {
             canvas.restore();
         }
@@ -81,22 +81,22 @@ public final class m1 extends View {
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
         int height = (int) (getHeight() * 0.3f);
-        this.f57449e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
+        this.f58019e.set(0.0f, (getHeight() - height) / 2.0f, org.telegram.messenger.g0.L(32.0f), (getHeight() + height) / 2.0f);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f25806b).onTouchEvent(motionEvent);
+        boolean onTouchEvent = ((GestureDetector) this.d.f35933b).onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f57450f = false;
+        this.f58020f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f10) {
-        this.I.f56646c = f10;
+        this.I.f57220c = f10;
         invalidate();
     }
 
@@ -119,7 +119,7 @@ public final class m1 extends View {
     }
 
     public void setShowPreview(boolean z10) {
-        this.f57454w = z10;
+        this.f58024w = z10;
         invalidate();
     }
 

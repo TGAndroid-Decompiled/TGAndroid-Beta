@@ -1,35 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class h4 extends ib0 {
-    public final int[] f35161z0;
-
-    public h4(Context context, org.telegram.ui.ActionBar.e6 e6Var, int[] iArr) {
-        super(context, e6Var);
-        this.f35161z0 = iArr;
-    }
-
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+public final class h4 extends a5 {
     @Override
-    public final CharSequence d(int i7) {
-        int i10 = this.f35161z0[i7];
-        if (i10 == 0) {
-            return org.telegram.messenger.hd.M0(2131748307, null);
-        }
-        if (i10 < 60) {
-            return org.telegram.messenger.hd.G(i10, "Minutes", new Object[0]);
-        }
-        if (i10 < 1440) {
-            return org.telegram.messenger.hd.G(i10 / 60, "Hours", new Object[0]);
-        }
-        if (i10 < 10080) {
-            return org.telegram.messenger.hd.G(i10 / 1440, "Days", new Object[0]);
-        }
-        if (i10 < 44640) {
-            return org.telegram.messenger.hd.G(i10 / 10080, "Weeks", new Object[0]);
-        }
-        if (i10 < 525600) {
-            return org.telegram.messenger.hd.G(i10 / 44640, "Months", new Object[0]);
-        }
-        return org.telegram.messenger.hd.G(i10 / 525600, "Years", new Object[0]);
+    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        editorInfo.imeOptions &= -1073741825;
+        return onCreateInputConnection;
     }
 }

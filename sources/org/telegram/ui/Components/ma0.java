@@ -1,86 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class ma0 implements View.OnClickListener {
-    public final int f37179a = 1;
-    public final boolean f37180b;
-    public final Object f37181c;
-    public final Object d;
+import android.content.Context;
+public final class ma0 extends org.telegram.ui.Cells.q1 {
+    public final org.telegram.ui.y7 f37427zd;
 
-    public ma0(ff ffVar, boolean z10, Runnable runnable) {
-        this.d = ffVar;
-        this.f37180b = z10;
-        this.f37181c = runnable;
+    public ma0(org.telegram.ui.y7 y7Var, Context context, int i7, h6.m mVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i7, false, mVar, i6Var);
+        this.f37427zd = y7Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        String str;
-        switch (this.f37179a) {
-            case 0:
-                org.telegram.ui.p6 p6Var = (org.telegram.ui.p6) this.d;
-                Runnable runnable = (Runnable) this.f37181c;
-                org.telegram.ui.ActionBar.e2 Q = LaunchActivity.Q();
-                if (Q != null) {
-                    if (this.f37180b) {
-                        str = "lastseen";
-                    } else {
-                        str = "readtime";
-                    }
-                    Q.presentFragment(new PremiumPreviewFragment(0, str));
-                    p6Var.dismiss();
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                ff ffVar = (ff) this.d;
-                Runnable runnable2 = (Runnable) this.f37181c;
-                if (this.f37180b) {
-                    ((ys0) ffVar.f34590b).J.p();
-                }
-                runnable2.run();
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) this.f37181c;
-                org.telegram.ui.ns nsVar = ((org.telegram.ui.js) this.d).f48406a;
-                if (nsVar.f49666w != null && nsVar.f49656l != null) {
-                    int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
-                    if (intValue == 0) {
-                        nsVar.f49656l.B(nsVar.W);
-                    } else if (intValue == 1) {
-                        nsVar.f49656l.t(nsVar.W);
-                    } else if (intValue == 2) {
-                        nsVar.f49656l.t(null);
-                    } else if (intValue == 3) {
-                        nsVar.f49656l.H(nsVar.W);
-                    } else if (intValue == 4) {
-                        nsVar.f49656l.p(nsVar.W);
-                    } else if (intValue == 5) {
-                        org.telegram.messenger.si.b0(nsVar.f49662r).d(2, nsVar.f49645b0, nsVar.W, (int) (System.currentTimeMillis() / 1000), this.f37180b);
-                    }
-                    nsVar.o();
-                    return;
-                }
-                return;
-        }
+    public final void invalidate() {
+        super.invalidate();
+        ((oa0) this.f37427zd.d).f38047f.invalidate();
     }
 
-    public ma0(org.telegram.ui.js jsVar, ArrayList arrayList, boolean z10) {
-        this.d = jsVar;
-        this.f37181c = arrayList;
-        this.f37180b = z10;
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        oa0.b((oa0) this.f37427zd.d, this);
     }
 
-    public ma0(boolean z10, org.telegram.ui.p6 p6Var, Runnable runnable) {
-        this.f37180b = z10;
-        this.d = p6Var;
-        this.f37181c = runnable;
+    @Override
+    public final void y3(org.telegram.messenger.fj fjVar, org.telegram.messenger.aj ajVar, boolean z10, boolean z11, boolean z12, boolean z13) {
+        super.y3(fjVar, ajVar, z10, z11, z12, z13);
+        oa0.b((oa0) this.f37427zd.d, this);
+    }
+
+    @Override
+    public final void invalidate(int i7, int i10, int i11, int i12) {
+        super.invalidate(i7, i10, i11, i12);
+        ((oa0) this.f37427zd.d).f38047f.invalidate();
     }
 }

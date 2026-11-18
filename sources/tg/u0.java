@@ -7,48 +7,49 @@ import android.util.SparseIntArray;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import c8.ja;
-import di.k4;
-import hi.c5;
+import bi.s2;
+import c8.ma;
+import di.n4;
+import hi.b5;
 import hi.d7;
-import hi.g7;
-import hi.w5;
+import hi.t6;
+import hi.v5;
 import java.util.ArrayList;
-import org.telegram.messenger.bj;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.gz;
-import org.telegram.messenger.np;
+import org.telegram.messenger.aj;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.r4;
-import org.telegram.ui.Components.pi0;
-import org.telegram.ui.Components.u9;
-import org.telegram.ui.Components.w90;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.v4;
+import org.telegram.ui.Components.ca;
+import org.telegram.ui.Components.ga0;
+import org.telegram.ui.Components.yi0;
 public abstract class u0 extends j {
     public int A0;
     public boolean B0;
     public boolean C0;
     public final SparseIntArray D0;
     public final t0 E0;
-    public r4 F0;
-    public r4 G0;
-    public r4 H0;
-    public r4 I0;
-    public r4 J0;
-    public r4 K0;
-    public r4 L0;
-    public r4 M0;
-    public final k4 f57572r0;
-    public final p0 f57573s0;
-    public final ArrayList f57574t0;
-    public final bj f57575u0;
-    public boolean f57576v0;
-    public boolean f57577w0;
-    public TextureView f57578x0;
-    public boolean f57579y0;
-    public int f57580z0;
+    public v4 F0;
+    public v4 G0;
+    public v4 H0;
+    public v4 I0;
+    public v4 J0;
+    public v4 K0;
+    public v4 L0;
+    public v4 M0;
+    public final n4 f58139r0;
+    public final p0 f58140s0;
+    public final ArrayList f58141t0;
+    public final aj f58142u0;
+    public boolean f58143v0;
+    public boolean f58144w0;
+    public TextureView f58145x0;
+    public boolean f58146y0;
+    public int f58147z0;
 
-    public u0(Context context, PointF pointF, ArrayList arrayList, u9 u9Var, boolean z10, w5 w5Var) {
+    public u0(Context context, PointF pointF, ArrayList arrayList, ca caVar, boolean z10, v5 v5Var) {
         super(context, pointF);
         org.telegram.ui.web.b bVar;
         TLRPC.Message message;
@@ -56,19 +57,19 @@ public abstract class u0 extends j {
         Boolean D;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        this.f57574t0 = new ArrayList();
-        this.f57580z0 = 1;
+        this.f58141t0 = new ArrayList();
+        this.f58147z0 = 1;
         this.A0 = 1;
         this.B0 = true;
-        this.C0 = j6.I.q();
+        this.C0 = n6.I.q();
         this.D0 = new SparseIntArray();
-        c5 c5Var = (c5) this;
-        this.E0 = new t0(c5Var);
+        b5 b5Var = (b5) this;
+        this.E0 = new t0(b5Var);
         setRotation(0.0f);
         setScale(1.0f);
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            gj gjVar = (gj) arrayList.get(i7);
-            TLRPC.Message message2 = gjVar.f23819k;
+            fj fjVar = (fj) arrayList.get(i7);
+            TLRPC.Message message2 = fjVar.f23968k;
             int i10 = message2.date;
             if (message2 instanceof TLRPC.TL_message) {
                 tL_messageService = new TLRPC.TL_message();
@@ -76,7 +77,7 @@ public abstract class u0 extends j {
                 tL_messageService = new TLRPC.TL_messageService();
             } else {
                 message = message2;
-                D = d7.D(gjVar);
+                D = d7.D(fjVar);
                 if (D != null && D.booleanValue() && (messageFwdHeader = message.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
                     message.from_id = peer;
                     message.peer_id = peer;
@@ -84,12 +85,12 @@ public abstract class u0 extends j {
                     message.fwd_from = null;
                 }
                 message.voiceTranscriptionOpen = false;
-                int i11 = gjVar.K1;
-                gj gjVar2 = new gj(i11, message, gjVar.C, np.s1(i11).d, np.s1(gjVar.K1).f25237b, null, null, true, true, 0L, true, z10, false, 0);
-                gjVar2.L5();
-                this.f57574t0.add(gjVar2);
+                int i11 = fjVar.K1;
+                fj fjVar2 = new fj(i11, message, fjVar.C, mp.u1(i11).d, mp.u1(fjVar.K1).f25605b, null, null, true, true, 0L, true, z10, false, 0);
+                fjVar2.L5();
+                this.f58141t0.add(fjVar2);
             }
-            tL_messageService.f28072id = message2.f28072id;
+            tL_messageService.f28426id = message2.f28426id;
             tL_messageService.from_id = message2.from_id;
             tL_messageService.peer_id = message2.peer_id;
             tL_messageService.date = message2.date;
@@ -159,7 +160,7 @@ public abstract class u0 extends j {
             tL_messageService.translatedText = message2.translatedText;
             tL_messageService.replyStory = message2.replyStory;
             message = tL_messageService;
-            D = d7.D(gjVar);
+            D = d7.D(fjVar);
             if (D != null) {
                 message.from_id = peer;
                 message.peer_id = peer;
@@ -167,48 +168,48 @@ public abstract class u0 extends j {
                 message.fwd_from = null;
             }
             message.voiceTranscriptionOpen = false;
-            int i112 = gjVar.K1;
-            gj gjVar22 = new gj(i112, message, gjVar.C, np.s1(i112).d, np.s1(gjVar.K1).f25237b, null, null, true, true, 0L, true, z10, false, 0);
-            gjVar22.L5();
-            this.f57574t0.add(gjVar22);
+            int i112 = fjVar.K1;
+            fj fjVar22 = new fj(i112, message, fjVar.C, mp.u1(i112).d, mp.u1(fjVar.K1).f25605b, null, null, true, true, 0L, true, z10, false, 0);
+            fjVar22.L5();
+            this.f58141t0.add(fjVar22);
         }
-        this.f57575u0 = null;
-        if (this.f57574t0.size() > 1) {
-            bj bjVar = new bj();
-            this.f57575u0 = bjVar;
-            bjVar.d.addAll(this.f57574t0);
-            bjVar.f22707a = ((gj) this.f57574t0.get(0)).c1();
-            bjVar.a();
+        this.f58142u0 = null;
+        if (this.f58141t0.size() > 1) {
+            aj ajVar = new aj();
+            this.f58142u0 = ajVar;
+            ajVar.d.addAll(this.f58141t0);
+            ajVar.f22898a = ((fj) this.f58141t0.get(0)).c1();
+            ajVar.a();
         }
-        k4 k4Var = new k4(c5Var, context);
-        this.f57572r0 = k4Var;
-        addView(k4Var, ja.c(-1.0f, -1));
-        p0 p0Var = new p0(c5Var, context, this.E0);
-        this.f57573s0 = p0Var;
-        p0Var.setAdapter(new s0(c5Var, context, u9Var, w5Var, z10));
-        w90 w90Var = new w90(c5Var, 2);
-        w90Var.O = new bi.y1(c5Var, 18);
-        p0Var.setLayoutManager(w90Var);
+        n4 n4Var = new n4(b5Var, context);
+        this.f58139r0 = n4Var;
+        addView(n4Var, ma.c(-1.0f, -1));
+        p0 p0Var = new p0(b5Var, context, this.E0);
+        this.f58140s0 = p0Var;
+        p0Var.setAdapter(new s0(b5Var, context, caVar, v5Var, z10));
+        ga0 ga0Var = new ga0(b5Var, 2);
+        ga0Var.O = new s2(b5Var, 18);
+        p0Var.setLayoutManager(ga0Var);
         p0Var.i(new fi.k(16));
-        k4Var.addView(p0Var, ja.c(-1.0f, -1));
-        if (w5Var != null && w5Var.f15295g) {
-            g7 g7Var = new g7(c5Var, 27);
-            org.telegram.ui.web.b bVar2 = new org.telegram.ui.web.b(c5Var, 1);
-            w5Var.f15291b = g7Var;
-            w5Var.f15292c = bVar2;
-            TextureView textureView = w5Var.f15290a;
+        n4Var.addView(p0Var, ma.c(-1.0f, -1));
+        if (v5Var != null && v5Var.f15579g) {
+            t6 t6Var = new t6(b5Var, 28);
+            org.telegram.ui.web.b bVar2 = new org.telegram.ui.web.b(b5Var, 1);
+            v5Var.f15575b = t6Var;
+            v5Var.f15576c = bVar2;
+            TextureView textureView = v5Var.f15574a;
             if (textureView != null) {
-                g7Var.a(textureView);
+                t6Var.a(textureView);
             }
-            if (w5Var.d && (bVar = w5Var.f15292c) != null) {
-                bVar.a(Integer.valueOf(w5Var.f15293e), Integer.valueOf(w5Var.f15294f));
+            if (v5Var.d && (bVar = v5Var.f15576c) != null) {
+                bVar.a(Integer.valueOf(v5Var.f15577e), Integer.valueOf(v5Var.f15578f));
             }
         }
         k();
     }
 
     public org.telegram.ui.Cells.q1 getCell() {
-        p0 p0Var = this.f57573s0;
+        p0 p0Var = this.f58140s0;
         if (p0Var != null) {
             for (int i7 = 0; i7 < p0Var.getChildCount(); i7++) {
                 if (p0Var.getChildAt(i7) instanceof org.telegram.ui.Cells.q1) {
@@ -231,13 +232,13 @@ public abstract class u0 extends j {
     }
 
     @Override
-    public pi0 getSelectionBounds() {
+    public yi0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
         }
         float scaleX = viewGroup.getScaleX();
-        return new pi0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - org.telegram.messenger.g0.L(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - org.telegram.messenger.g0.L(35.5f), (getScale() * getMeasuredWidth() * scaleX) + org.telegram.messenger.g0.L(71.0f), (getScale() * getMeasuredHeight() * scaleX) + org.telegram.messenger.g0.L(71.0f));
+        return new yi0(((getPositionX() * scaleX) - (((getScale() * getMeasuredWidth()) / 2.0f) * scaleX)) - org.telegram.messenger.g0.L(35.5f), ((getPositionY() * scaleX) - (((getScale() * getMeasuredHeight()) / 2.0f) * scaleX)) - org.telegram.messenger.g0.L(35.5f), (getScale() * getMeasuredWidth() * scaleX) + org.telegram.messenger.g0.L(71.0f), (getScale() * getMeasuredHeight() * scaleX) + org.telegram.messenger.g0.L(71.0f));
     }
 
     @Override
@@ -245,7 +246,7 @@ public abstract class u0 extends j {
         setX(getPositionX() - (getMeasuredWidth() / 2.0f));
         setY(getPositionY() - (getMeasuredHeight() / 2.0f));
         m();
-        if (this.f57577w0) {
+        if (this.f58144w0) {
             s();
         }
     }
@@ -266,26 +267,26 @@ public abstract class u0 extends j {
         float f14 = 2.1474836E9f;
         float f15 = -2.1474836E9f;
         while (true) {
-            p0 p0Var = this.f57573s0;
+            p0 p0Var = this.f58140s0;
             if (i7 < p0Var.getChildCount()) {
                 View childAt = p0Var.getChildAt(i7);
                 boolean z10 = childAt instanceof org.telegram.ui.Cells.q1;
-                k4 k4Var = this.f57572r0;
+                n4 n4Var = this.f58139r0;
                 if (z10) {
                     org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) childAt;
                     if (q1Var.getMessageObject() != null && q1Var.getMessageObject().h4() && q1Var.getPhotoImage() != null) {
-                        f10 = q1Var.getX() + k4Var.getX() + q1Var.getPhotoImage().L0;
-                        f11 = q1Var.getPhotoImage().y() + q1Var.getX() + k4Var.getX();
-                        L = q1Var.getY() + k4Var.getY() + q1Var.getPhotoImage().M0;
-                        y10 = q1Var.getPhotoImage().A() + q1Var.getY() + k4Var.getY();
+                        f10 = q1Var.getX() + n4Var.getX() + q1Var.getPhotoImage().L0;
+                        f11 = q1Var.getPhotoImage().y() + q1Var.getX() + n4Var.getX();
+                        L = q1Var.getY() + n4Var.getY() + q1Var.getPhotoImage().M0;
+                        y10 = q1Var.getPhotoImage().A() + q1Var.getY() + n4Var.getY();
                     } else {
-                        float x10 = childAt.getX() + k4Var.getX() + q1Var.getBackgroundDrawableLeft() + org.telegram.messenger.g0.L(1.0f);
-                        if (this.f57575u0 == null) {
+                        float x10 = childAt.getX() + n4Var.getX() + q1Var.getBackgroundDrawableLeft() + org.telegram.messenger.g0.L(1.0f);
+                        if (this.f58142u0 == null) {
                             x10 += org.telegram.messenger.g0.L(8.0f);
                         }
-                        float x11 = ((childAt.getX() + k4Var.getX()) + q1Var.getBackgroundDrawableRight()) - org.telegram.messenger.g0.L(1.66f);
-                        float y11 = childAt.getY() + k4Var.getY() + q1Var.getBackgroundDrawableTop();
-                        y10 = ((childAt.getY() + k4Var.getY()) + q1Var.getBackgroundDrawableBottom()) - org.telegram.messenger.g0.L(1.0f);
+                        float x11 = ((childAt.getX() + n4Var.getX()) + q1Var.getBackgroundDrawableRight()) - org.telegram.messenger.g0.L(1.66f);
+                        float y11 = childAt.getY() + n4Var.getY() + q1Var.getBackgroundDrawableTop();
+                        y10 = ((childAt.getY() + n4Var.getY()) + q1Var.getBackgroundDrawableBottom()) - org.telegram.messenger.g0.L(1.0f);
                         f10 = x10;
                         f11 = x11;
                         L = org.telegram.messenger.g0.L(2.0f) + y11;
@@ -294,13 +295,13 @@ public abstract class u0 extends j {
                     f15 = Math.max(Math.max(f15, f10), f11);
                     f14 = Math.min(Math.min(f14, L), y10);
                     f13 = Math.max(Math.max(f13, L), y10);
-                } else if (childAt instanceof org.telegram.ui.Cells.t0) {
-                    org.telegram.ui.Cells.t0 t0Var = (org.telegram.ui.Cells.t0) childAt;
-                    if (t0Var.U()) {
-                        float x12 = t0Var.getX() + k4Var.getX() + t0Var.getBoundsLeft();
-                        float x13 = t0Var.getX() + k4Var.getX() + t0Var.getBoundsRight();
-                        float y12 = t0Var.getY() + k4Var.getY();
-                        float y13 = t0Var.getY() + k4Var.getY() + t0Var.getMeasuredHeight();
+                } else if (childAt instanceof org.telegram.ui.Cells.u0) {
+                    org.telegram.ui.Cells.u0 u0Var = (org.telegram.ui.Cells.u0) childAt;
+                    if (u0Var.U()) {
+                        float x12 = u0Var.getX() + n4Var.getX() + u0Var.getBoundsLeft();
+                        float x13 = u0Var.getX() + n4Var.getX() + u0Var.getBoundsRight();
+                        float y12 = u0Var.getY() + n4Var.getY();
+                        float y13 = u0Var.getY() + n4Var.getY() + u0Var.getMeasuredHeight();
                         f12 = Math.min(Math.min(f12, x12), x13);
                         f15 = Math.max(Math.max(f15, x12), x13);
                         f14 = Math.min(Math.min(f14, y12), y13);
@@ -310,13 +311,13 @@ public abstract class u0 extends j {
                 i7++;
             } else {
                 rectF.set(f12, f14, f15, f13);
-                return org.telegram.messenger.g0.L(gz.Y0);
+                return org.telegram.messenger.g0.L(bz.Y0);
             }
         }
     }
 
     public final void s() {
-        p0 p0Var = this.f57573s0;
+        p0 p0Var = this.f58140s0;
         p0Var.invalidate();
         for (int i7 = 0; i7 < p0Var.getChildCount(); i7++) {
             p0Var.getChildAt(i7).invalidate();

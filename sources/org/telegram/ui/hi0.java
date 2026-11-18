@@ -1,22 +1,37 @@
 package org.telegram.ui;
-public final class hi0 implements Runnable {
-    public final int f47706a;
-    public final dr f47707b;
 
-    public hi0(dr drVar, int i7) {
-        this.f47706a = i7;
-        this.f47707b = drVar;
+import android.os.Build;
+import java.util.ArrayList;
+public final class hi0 {
+    public final LaunchActivity f48405a;
+    public final ArrayList f48406b = new ArrayList();
+    public int f48407c = Integer.MIN_VALUE;
+
+    public hi0(LaunchActivity launchActivity) {
+        this.f48405a = launchActivity;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f47706a) {
-            case 0:
-                this.f47707b.D(1.0f);
+    public final void a() {
+        boolean isEmpty = this.f48406b.isEmpty();
+        LaunchActivity launchActivity = this.f48405a;
+        try {
+            if (!isEmpty && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (Build.VERSION.SDK_INT < 24 || !launchActivity.isInMultiWindowMode())) {
+                if (this.f48407c == Integer.MIN_VALUE) {
+                    this.f48407c = launchActivity.getRequestedOrientation();
+                }
+                if (launchActivity.getRequestedOrientation() != 1) {
+                    launchActivity.setRequestedOrientation(1);
+                    return;
+                }
                 return;
-            default:
-                this.f47707b.D(1.0f);
-                return;
+            }
+            int i7 = this.f48407c;
+            if (i7 != Integer.MIN_VALUE) {
+                launchActivity.setRequestedOrientation(i7);
+                this.f48407c = Integer.MIN_VALUE;
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 }

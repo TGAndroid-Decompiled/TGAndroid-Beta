@@ -1,17 +1,35 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class c0 implements View.OnTouchListener {
-    public final int f45857a;
-    public final Object f45858b;
+public final class c0 implements Runnable {
+    public final int f46325a = 0;
+    public final z2 f46326b;
+    public final View f46327c;
 
-    public c0(Object obj, int i7) {
-        this.f45857a = i7;
-        this.f45858b = obj;
+    public c0(View view, z2 z2Var) {
+        this.f46327c = view;
+        this.f46326b = z2Var;
     }
 
     @Override
-    public final boolean onTouch(android.view.View r18, android.view.MotionEvent r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c0.onTouch(android.view.View, android.view.MotionEvent):boolean");
+    public final void run() {
+        switch (this.f46325a) {
+            case 0:
+                z2 z2Var = this.f46326b;
+                View view = this.f46327c;
+                view.post(new c0(z2Var, view));
+                return;
+            default:
+                z2 z2Var2 = this.f46326b;
+                z2Var2.J.clear();
+                z2Var2.L.set(null);
+                this.f46327c.invalidate();
+                return;
+        }
+    }
+
+    public c0(z2 z2Var, View view) {
+        this.f46326b = z2Var;
+        this.f46327c = view;
     }
 }

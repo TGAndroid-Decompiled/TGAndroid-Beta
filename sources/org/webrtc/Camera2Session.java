@@ -11,7 +11,7 @@ import android.hardware.camera2.CaptureRequest;
 import android.os.Handler;
 import android.util.Range;
 import android.view.Surface;
-import fi.e1;
+import fi.c1;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -266,7 +266,7 @@ public class Camera2Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (e1.X != null) {
+        if (c1.X != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();

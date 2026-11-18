@@ -1,38 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.HashMap;
+import java.util.List;
 public final class qw implements Runnable {
-    public final int f26143a;
-    public final ez f26144b;
-    public final TLRPC.Message f26145c;
-    public final boolean d;
+    public final int f26471a;
+    public final zy f26472b;
+    public final String f26473c;
+    public final List d;
 
-    public qw(ez ezVar, TLRPC.Message message, boolean z10, int i7) {
-        this.f26143a = i7;
-        this.f26144b = ezVar;
-        this.f26145c = message;
-        this.d = z10;
+    public qw(zy zyVar, String str, List list, int i7) {
+        this.f26471a = i7;
+        this.f26472b = zyVar;
+        this.f26473c = str;
+        this.d = list;
     }
 
     @Override
     public final void run() {
-        switch (this.f26143a) {
+        switch (this.f26471a) {
             case 0:
-                ez ezVar = this.f26144b;
-                ezVar.getClass();
-                TLRPC.Message message = this.f26145c;
-                ezVar.d0(message.f28072id);
-                ezVar.i0(message.f28072id, this.d);
-                return;
-            case 1:
-                ez ezVar2 = this.f26144b;
-                ezVar2.getClass();
-                TLRPC.Message message2 = this.f26145c;
-                ezVar2.d0(message2.f28072id);
-                ezVar2.i0(message2.f28072id, this.d);
+                HashMap hashMap = this.f26472b.f28393r;
+                String str = this.f26473c;
+                hashMap.remove(str);
+                this.d.remove(str);
                 return;
             default:
-                this.f26144b.g0(this.f26145c, this.d);
+                HashMap hashMap2 = this.f26472b.f28393r;
+                String str2 = this.f26473c;
+                hashMap2.remove(str2);
+                this.d.remove(str2);
                 return;
         }
     }

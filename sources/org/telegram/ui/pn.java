@@ -1,29 +1,50 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class pn extends org.telegram.ui.Cells.l8 {
-    public pn(Context context) {
-        super(context);
+import org.telegram.tgnet.TLRPC;
+public final class pn extends oq0 {
+    public final rn f50948a;
+
+    public pn(rn rnVar) {
+        this.f50948a = rnVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        int i7;
-        if (org.telegram.messenger.hd.f24104a0) {
-            L = 0.0f;
-        } else {
-            L = org.telegram.messenger.g0.L(20.0f);
+    public final org.telegram.ui.wq0 E(org.telegram.messenger.fj r8, org.telegram.tgnet.TLRPC.FileLocation r9, int r10, boolean r11, boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pn.E(org.telegram.messenger.fj, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.wq0");
+    }
+
+    @Override
+    public final void G() {
+        this.f50948a.f51682e.getImageReceiver().O0(true, true);
+    }
+
+    @Override
+    public final boolean N() {
+        rn rnVar = this.f50948a;
+        long j3 = rnVar.C0;
+        if (j3 == 0) {
+            return true;
         }
-        float f10 = L;
-        float measuredHeight = getMeasuredHeight() - 1;
-        int measuredWidth = getMeasuredWidth();
-        if (org.telegram.messenger.hd.f24104a0) {
-            i7 = org.telegram.messenger.g0.L(20.0f);
-        } else {
-            i7 = 0;
-        }
-        canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f28972k0);
+        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+        tL_photos_updateProfilePhoto.bot = rnVar.getMessagesController().q1(j3);
+        tL_photos_updateProfilePhoto.flags |= 2;
+        tL_photos_updateProfilePhoto.f28539id = new TLRPC.TL_inputPhotoEmpty();
+        rnVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new l(this, 2));
+        return false;
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z10) {
+        this.f50948a.f51699s.p(str, str2, z10);
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 }

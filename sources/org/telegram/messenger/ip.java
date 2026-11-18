@@ -1,6 +1,9 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class ip {
-    public TLRPC.TL_channels_sendAsPeers f24427a;
+    public ArrayList f24700a;
+    public Integer f24701b;
+    public long f24702c;
+    public boolean d;
 }

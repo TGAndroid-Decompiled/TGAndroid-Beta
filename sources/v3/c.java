@@ -1,20 +1,20 @@
 package v3;
 
-import c8.ba;
+import c8.da;
 import e2.p0;
 import e2.q0;
 import h2.k0;
 import h2.x;
-import j$.util.DesugarCollections;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.telegram.ui.Components.hn;
 import w7.s;
-public final class c extends ba {
-    public final x f58467a = new x();
-    public final d4.f f58468b = new d4.f();
-    public k0 f58469c;
+public final class c extends da {
+    public final x f59034a = new x();
+    public final d4.f f59035b = new d4.f();
+    public k0 f59036c;
 
     @Override
     public final q0 b(o3.a aVar, ByteBuffer byteBuffer) {
@@ -29,17 +29,17 @@ public final class c extends ba {
         boolean z16;
         long j10;
         long j11;
-        k0 k0Var = this.f58469c;
-        if (k0Var == null || aVar.f21314r != k0Var.e()) {
-            k0 k0Var2 = new k0(aVar.f17733e);
-            this.f58469c = k0Var2;
-            k0Var2.a(aVar.f17733e - aVar.f21314r);
+        k0 k0Var = this.f59036c;
+        if (k0Var == null || aVar.f21681r != k0Var.e()) {
+            k0 k0Var2 = new k0(aVar.f18128e);
+            this.f59036c = k0Var2;
+            k0Var2.a(aVar.f18128e - aVar.f21681r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        x xVar = this.f58467a;
+        x xVar = this.f59034a;
         xVar.L(limit, array);
-        d4.f fVar = this.f58468b;
+        d4.f fVar = this.f59035b;
         fVar.H(limit, array);
         fVar.L(39);
         long j12 = (fVar.j(1) << 32) | fVar.j(32);
@@ -54,12 +54,12 @@ public final class c extends ba {
                         if (j14 != 6) {
                             obj = null;
                         } else {
-                            k0 k0Var3 = this.f58469c;
+                            k0 k0Var3 = this.f59036c;
                             long d = a.d(j12, xVar);
                             obj = new a(d, 1, k0Var3.b(d));
                         }
                     } else {
-                        k0 k0Var4 = this.f58469c;
+                        k0 k0Var4 = this.f59036c;
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
                             z13 = true;
@@ -161,9 +161,7 @@ public final class c extends ba {
                             xVar.A();
                             xVar.A();
                         }
-                        ?? obj2 = new Object();
-                        obj2.f57880a = DesugarCollections.unmodifiableList(arrayList3);
-                        arrayList2.add(obj2);
+                        arrayList2.add(new hn(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }

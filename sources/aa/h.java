@@ -6,11 +6,11 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
 public final class h implements FilenameFilter {
-    public final int f811a;
+    public final int f810a;
 
     @Override
     public final boolean accept(File file, String str) {
-        switch (this.f811a) {
+        switch (this.f810a) {
             case 0:
                 return str.startsWith("aqs.");
             case 1:

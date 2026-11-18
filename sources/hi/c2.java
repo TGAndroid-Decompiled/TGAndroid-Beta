@@ -1,56 +1,53 @@
 package hi;
 
-import android.content.Context;
-import org.telegram.messenger.qc;
-import org.telegram.ui.Components.av0;
-import org.telegram.ui.Components.wu0;
-public final class c2 extends av0 {
-    public final boolean H3;
-    public final d2 I3;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.dq;
+import org.telegram.ui.Components.ey;
+import org.telegram.ui.Components.rl0;
+import org.telegram.ui.j01;
+public final class c2 extends dq {
+    public final int h;
+    public final Object f14307i;
 
-    public c2(d2 d2Var, Context context, int i7, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(i7, context, e6Var);
-        this.I3 = d2Var;
-        this.H3 = z10;
+    public c2(int i7, FrameLayout frameLayout) {
+        this.h = i7;
+        this.f14307i = frameLayout;
     }
 
     @Override
-    public final boolean D1() {
-        return qc.e(8200);
-    }
-
-    @Override
-    public final wu0[] E1(wu0[] wu0VarArr) {
-        if (wu0VarArr != null && this.H3) {
-            int i7 = 0;
-            while (true) {
-                if (i7 < wu0VarArr.length) {
-                    wu0 wu0Var = wu0VarArr[i7];
-                    if (wu0Var != null && wu0Var.f41463b) {
-                        break;
-                    }
-                    i7++;
-                } else {
-                    i7 = -1;
-                    break;
-                }
-            }
-            if (i7 >= 0) {
-                int length = wu0VarArr.length;
-                wu0[] wu0VarArr2 = new wu0[length];
-                wu0VarArr2[0] = wu0VarArr[i7];
-                for (int i10 = 1; i10 < length; i10++) {
-                    wu0VarArr2[i10] = wu0VarArr[i10 <= i7 ? i10 - 1 : i10];
-                }
-                return wu0VarArr2;
-            }
+    public final int a() {
+        switch (this.h) {
+            case 0:
+                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Bf, (org.telegram.ui.ActionBar.i6) this.f14307i);
+            case 1:
+                return ((org.telegram.ui.ActionBar.r0) this.f14307i).f29920c.f30299b.f29098s0;
+            case 2:
+                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Bf, ((ey) this.f14307i).H.f39335a2);
+            case 3:
+                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Q5, ((rl0) this.f14307i).f39175e);
+            default:
+                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Bf, ((j01) this.f14307i).G.f51418a1);
         }
-        return wu0VarArr;
     }
 
-    @Override
-    public final void H1(int i7) {
-        super.H1(i7);
-        this.I3.d(false);
+    public c2(ey eyVar) {
+        super(1.25f);
+        this.h = 2;
+        this.f14307i = eyVar;
+        this.f34485f = org.telegram.messenger.g0.L(7.0f);
+    }
+
+    public c2(org.telegram.ui.ActionBar.i6 i6Var) {
+        super(1.25f);
+        this.h = 0;
+        this.f14307i = i6Var;
+        this.f34485f = org.telegram.messenger.g0.L(7.0f);
+    }
+
+    public c2(j01 j01Var) {
+        super(1.25f);
+        this.h = 4;
+        this.f14307i = j01Var;
+        this.f34485f = org.telegram.messenger.g0.L(7.0f);
     }
 }

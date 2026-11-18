@@ -2,13 +2,13 @@ package e2;
 
 import java.io.IOException;
 public class t0 extends IOException {
-    public final boolean f10407a;
-    public final int f10408b;
+    public final boolean f10725a;
+    public final int f10726b;
 
     public t0(String str, Throwable th2, boolean z10, int i7) {
         super(str, th2);
-        this.f10407a = z10;
-        this.f10408b = i7;
+        this.f10725a = z10;
+        this.f10726b = i7;
     }
 
     public static t0 a(RuntimeException runtimeException, String str) {
@@ -35,8 +35,8 @@ public class t0 extends IOException {
         }
         sb2.append(str);
         sb2.append("{contentIsMalformed=");
-        sb2.append(this.f10407a);
+        sb2.append(this.f10725a);
         sb2.append(", dataType=");
-        return a8.p0.n(this.f10408b, "}", sb2);
+        return a8.p0.n(this.f10726b, "}", sb2);
     }
 }

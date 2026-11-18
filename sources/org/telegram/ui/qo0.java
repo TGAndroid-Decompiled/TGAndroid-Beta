@@ -1,18 +1,21 @@
 package org.telegram.ui;
-public final class qo0 implements Runnable {
-    public final PhotoViewer f50702a;
 
-    public qo0(PhotoViewer photoViewer) {
-        this.f50702a = photoViewer;
+import android.app.Activity;
+import org.telegram.tgnet.TLObject;
+public final class qo0 extends org.telegram.ui.Components.iw0 {
+    public final ro0 f51299s2;
+
+    public qo0(ro0 ro0Var, Activity activity, org.telegram.messenger.fj fjVar, TLObject tLObject, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(activity, fjVar, tLObject, i6Var);
+        this.f51299s2 = ro0Var;
     }
 
     @Override
-    public final void run() {
-        PhotoViewer photoViewer = this.f50702a;
-        org.telegram.messenger.gj gjVar = photoViewer.T4;
-        if (gjVar == null) {
-            return;
+    public final void dismiss() {
+        super.dismiss();
+        PhotoViewer photoViewer = this.f51299s2.f51721b;
+        if (photoViewer.U3 == this) {
+            photoViewer.U3 = null;
         }
-        org.telegram.messenger.w7.G(gjVar.K1).b0(photoViewer.T4.F0(), true, false);
     }
 }

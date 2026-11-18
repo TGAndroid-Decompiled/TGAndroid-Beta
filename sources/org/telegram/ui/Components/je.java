@@ -1,54 +1,51 @@
 package org.telegram.ui.Components;
+public final class je implements z4, wi0 {
+    public final int f36420a;
+    public final ChatActivityEnterView f36421b;
 
-import android.content.Context;
-import android.widget.ImageView;
-public final class je extends ImageView {
-    public float f35958a;
-    public final ChatActivityEnterView f35959b;
-
-    public je(ChatActivityEnterView chatActivityEnterView, Context context) {
-        super(context);
-        this.f35959b = chatActivityEnterView;
+    public je(ChatActivityEnterView chatActivityEnterView, int i7) {
+        this.f36420a = i7;
+        this.f36421b = chatActivityEnterView;
     }
 
     @Override
-    public final float getTranslationX() {
-        return this.f35958a;
+    public void O(int i7, int i10, boolean z10) {
+        switch (this.f36420a) {
+            case 0:
+                this.f36421b.s1(z10, i7, i10, 0L, true);
+                return;
+            case 1:
+            default:
+                boolean s12 = this.f36421b.s1(z10, i7, i10, 0L, true);
+                ChatActivityEnterView chatActivityEnterView = this.f36421b;
+                org.telegram.ui.eg0 eg0Var = chatActivityEnterView.M0;
+                if (eg0Var != null) {
+                    eg0Var.h(!s12);
+                    chatActivityEnterView.M0 = null;
+                    return;
+                }
+                return;
+            case 2:
+                this.f36421b.s1(z10, i7, 0, 0L, true);
+                return;
+        }
     }
 
-    @Override
-    public final void setTranslationX(float f10) {
-        float f11;
-        float alpha;
-        this.f35958a = f10;
-        float f12 = -44.0f;
-        float L = org.telegram.messenger.g0.L(-44.0f) + this.f35958a;
-        ChatActivityEnterView chatActivityEnterView = this.f35959b;
-        float f13 = L + chatActivityEnterView.E + chatActivityEnterView.f32323y;
-        zd zdVar = chatActivityEnterView.f32283s2;
-        float f14 = 0.0f;
-        if (zdVar != null && zdVar.getVisibility() == 0) {
-            f11 = -44.0f;
-        } else {
-            f11 = 0.0f;
+    public void a(boolean z10) {
+        ChatActivityEnterView chatActivityEnterView = this.f36421b;
+        td tdVar = chatActivityEnterView.V1;
+        pg pgVar = chatActivityEnterView.C2;
+        if (pgVar != null) {
+            pgVar.invalidate();
         }
-        float L2 = org.telegram.messenger.g0.L(f11);
-        zd zdVar2 = chatActivityEnterView.f32283s2;
-        if (zdVar2 == null) {
-            alpha = 0.0f;
-        } else {
-            alpha = zdVar2.getAlpha();
+        if (!z10) {
+            yh.a aVar = chatActivityEnterView.R1;
+            if (aVar != null) {
+                xi0 xi0Var = chatActivityEnterView.f32607i1;
+                aVar.c(Math.round(Math.max(1.0f, (xi0Var.f42088w - xi0Var.f42083s) * xi0Var.f42081r)));
+            }
+            org.telegram.messenger.g0.r(tdVar);
+            org.telegram.messenger.g0.h3(tdVar, 300L);
         }
-        float f15 = (L2 * alpha) + f13;
-        zd zdVar3 = chatActivityEnterView.f32194f2;
-        if (zdVar3 == null || zdVar3.getVisibility() != 0) {
-            f12 = 0.0f;
-        }
-        float L3 = org.telegram.messenger.g0.L(f12);
-        zd zdVar4 = chatActivityEnterView.f32194f2;
-        if (zdVar4 != null) {
-            f14 = zdVar4.getAlpha();
-        }
-        super.setTranslationX((L3 * f14) + f15);
     }
 }

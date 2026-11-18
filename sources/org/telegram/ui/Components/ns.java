@@ -1,71 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-public final class ns implements Runnable {
-    public final int f37679a;
-    public final os f37680b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class ns extends AnimatorListenerAdapter {
+    public final int f37847a = 1;
+    public final v4.f1 f37848b;
+    public final View f37849c;
+    public final ViewPropertyAnimator d;
+    public final rs f37850e;
 
-    public ns(os osVar, int i7) {
-        this.f37679a = i7;
-        this.f37680b = osVar;
+    public ns(rs rsVar, v4.f1 f1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
+        this.f37850e = rsVar;
+        this.f37848b = f1Var;
+        this.d = viewPropertyAnimator;
+        this.f37849c = view;
     }
 
     @Override
-    public final void run() {
-        int i7;
-        Bitmap bitmap;
-        switch (this.f37679a) {
-            case 0:
-                os osVar = this.f37680b;
-                try {
-                    i7 = osVar.f38061x + 0;
-                    bitmap = osVar.f38053b;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    osVar.F = true;
-                }
-                if (bitmap != null) {
-                    if (bitmap.getWidth() == osVar.f38062y) {
-                        if (osVar.f38053b.getHeight() != i7) {
-                        }
-                        osVar.f38053b.eraseColor(0);
-                        osVar.f38054c.save();
-                        osVar.f38054c.translate(0.0f, 0);
-                        osVar.c(osVar.f38054c);
-                        osVar.f38054c.restore();
-                        osVar.f38053b.prepareToDraw();
-                        org.telegram.messenger.g0.h3(osVar.I);
-                        return;
-                    }
-                }
-                Bitmap bitmap2 = osVar.f38053b;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
-                }
-                osVar.f38053b = Bitmap.createBitmap(osVar.f38062y, i7, Bitmap.Config.ARGB_8888);
-                osVar.f38054c = new Canvas(osVar.f38053b);
-                osVar.f38053b.eraseColor(0);
-                osVar.f38054c.save();
-                osVar.f38054c.translate(0.0f, 0);
-                osVar.c(osVar.f38054c);
-                osVar.f38054c.restore();
-                osVar.f38053b.prepareToDraw();
-                org.telegram.messenger.g0.h3(osVar.I);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f37847a) {
+            case 1:
+                this.f37849c.setAlpha(1.0f);
                 return;
             default:
-                os osVar2 = this.f37680b;
-                osVar2.f38056f = false;
-                osVar2.g();
-                if (!osVar2.f38052a) {
-                    osVar2.j();
-                    return;
-                } else if (osVar2.f38060w == osVar2.K) {
-                    osVar2.H = true;
-                    return;
-                } else {
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37847a) {
+            case 0:
+                this.d.setListener(null);
+                this.f37849c.setAlpha(1.0f);
+                rs rsVar = this.f37850e;
+                v4.f1 f1Var = this.f37848b;
+                rsVar.d(f1Var);
+                rsVar.f39289x.remove(f1Var);
+                rsVar.A();
+                return;
+            default:
+                this.d.setListener(null);
+                rs rsVar2 = this.f37850e;
+                v4.f1 f1Var2 = this.f37848b;
+                rsVar2.u(f1Var2);
+                rsVar2.v.remove(f1Var2);
+                rsVar2.A();
+                View view = f1Var2.f59122a;
+                if (view instanceof org.telegram.ui.Cells.t2) {
+                    ((org.telegram.ui.Cells.t2) view).setMoving(false);
                     return;
                 }
+                return;
         }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f37847a) {
+            case 0:
+                this.f37850e.y();
+                return;
+            default:
+                this.f37850e.getClass();
+                return;
+        }
+    }
+
+    public ns(rs rsVar, v4.f1 f1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
+        this.f37850e = rsVar;
+        this.f37848b = f1Var;
+        this.f37849c = view;
+        this.d = viewPropertyAnimator;
     }
 }

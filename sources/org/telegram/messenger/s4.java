@@ -1,30 +1,90 @@
 package org.telegram.messenger;
 
-import java.text.Collator;
-import java.util.Comparator;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class s4 implements Comparator {
-    public final int f26406a;
-    public final Collator f26407b;
-    public final Object f26408c;
+public final class s4 implements RequestDelegate {
+    public final int f26735a;
+    public final i5 f26736b;
 
-    public s4(Object obj, Collator collator, int i7) {
-        this.f26406a = i7;
-        this.f26408c = obj;
-        this.f26407b = collator;
+    public s4(i5 i5Var, int i7) {
+        this.f26735a = i7;
+        this.f26736b = i5Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f26406a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f26735a) {
             case 0:
-                g5 g5Var = (g5) this.f26408c;
-                TLRPC.User a22 = g5Var.getMessagesController().a2(Long.valueOf(((TLRPC.TL_contact) obj).user_id));
-                TLRPC.User a23 = g5Var.getMessagesController().a2(Long.valueOf(((TLRPC.TL_contact) obj2).user_id));
-                return this.f26407b.compare(q10.j(a22, true), q10.j(a23, true));
+                if (tLObject != null) {
+                    TLRPC.TL_help_inviteText tL_help_inviteText = (TLRPC.TL_help_inviteText) tLObject;
+                    if (tL_help_inviteText.message.length() != 0) {
+                        g0.g3(new w3(1, this.f26736b, tL_help_inviteText));
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                final i5 i5Var = this.f26736b;
+                g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                i5 i5Var2 = i5Var;
+                                if (tL_error == null) {
+                                    i5Var2.Y = (TLRPC.GlobalPrivacySettings) tLObject;
+                                    i5Var2.G = 2;
+                                } else {
+                                    i5Var2.G = 0;
+                                }
+                                i5Var2.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                            default:
+                                i5 i5Var3 = i5Var;
+                                if (tL_error == null) {
+                                    i5Var3.I = ((TLRPC.TL_accountDaysTTL) tLObject).days;
+                                    i5Var3.H = 2;
+                                } else {
+                                    i5Var3.H = 0;
+                                }
+                                i5Var3.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
             default:
-                a0.h hVar = (a0.h) this.f26408c;
-                return this.f26407b.compare(q10.j((TLRPC.User) hVar.f(((TLRPC.TL_contact) obj).user_id), true), q10.j((TLRPC.User) hVar.f(((TLRPC.TL_contact) obj2).user_id), true));
+                final i5 i5Var2 = this.f26736b;
+                g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                i5 i5Var22 = i5Var2;
+                                if (tL_error == null) {
+                                    i5Var22.Y = (TLRPC.GlobalPrivacySettings) tLObject;
+                                    i5Var22.G = 2;
+                                } else {
+                                    i5Var22.G = 0;
+                                }
+                                i5Var22.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                            default:
+                                i5 i5Var3 = i5Var2;
+                                if (tL_error == null) {
+                                    i5Var3.I = ((TLRPC.TL_accountDaysTTL) tLObject).days;
+                                    i5Var3.H = 2;
+                                } else {
+                                    i5Var3.H = 0;
+                                }
+                                i5Var3.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
     }
 }

@@ -4,14 +4,14 @@ import android.media.LoudnessCodecController$OnLoudnessCodecUpdateListener;
 import android.media.MediaCodec;
 import android.os.Bundle;
 public final class h implements LoudnessCodecController$OnLoudnessCodecUpdateListener {
-    public final j f57763a;
+    public final j f58330a;
 
     public h(j jVar) {
-        this.f57763a = jVar;
+        this.f58330a = jVar;
     }
 
     public final Bundle onLoudnessCodecUpdate(MediaCodec mediaCodec, Bundle bundle) {
-        this.f57763a.f57767b.getClass();
+        this.f58330a.f58334b.getClass();
         return bundle;
     }
 }

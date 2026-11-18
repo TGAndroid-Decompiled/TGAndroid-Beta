@@ -10,54 +10,54 @@ import android.widget.FrameLayout;
 import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Components.mi0;
-public final class a0 extends FrameLayout implements z5 {
-    public final Drawable f4996a;
-    public final Rect f4997b;
-    public final Paint f4998c;
+import org.telegram.ui.ActionBar.c6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.vi0;
+public final class a0 extends FrameLayout implements c6 {
+    public final Drawable f5282a;
+    public final Rect f5283b;
+    public final Paint f5284c;
     public final int[] d;
-    public final HashMap f4999e;
-    public float f5000f;
+    public final HashMap f5285e;
+    public float f5286f;
     public float h;
-    public float f5001n;
-    public float f5002r;
-    public float f5003s;
-    public final Path f5004w;
-    public final b0 f5005x;
+    public float f5287n;
+    public float f5288r;
+    public float f5289s;
+    public final Path f5290w;
+    public final b0 f5291x;
 
     public a0(b0 b0Var, Context context) {
         super(context);
-        this.f5005x = b0Var;
+        this.f5291x = b0Var;
         Rect rect = new Rect();
-        this.f4997b = rect;
+        this.f5283b = rect;
         Paint paint = new Paint(1);
-        this.f4998c = paint;
+        this.f5284c = paint;
         this.d = new int[4];
-        this.f4999e = new HashMap();
-        this.f5000f = 0.0f;
+        this.f5285e = new HashMap();
+        this.f5286f = 0.0f;
         this.h = 0.0f;
-        this.f5001n = 1.0f;
-        this.f5002r = 0.0f;
-        this.f5003s = 0.0f;
-        this.f5004w = new Path();
-        Drawable mutate = context.getDrawable(2131232674).mutate();
-        this.f4996a = mutate;
+        this.f5287n = 1.0f;
+        this.f5288r = 0.0f;
+        this.f5289s = 0.0f;
+        this.f5290w = new Path();
+        Drawable mutate = context.getDrawable(2131232675).mutate();
+        this.f5282a = mutate;
         int L = org.telegram.messenger.g0.L(7.0f);
         rect.bottom = L;
         rect.right = L;
         rect.top = L;
         rect.left = L;
-        int i7 = j6.Ke;
-        e6 e6Var = b0Var.f5027s;
-        q6.x(this, mutate, i7, e6Var, PorterDuff.Mode.MULTIPLY);
-        if (b0Var.f5032y == 2) {
+        int i7 = n6.Ke;
+        i6 i6Var = b0Var.f5313s;
+        u6.x(this, mutate, i7, i6Var, PorterDuff.Mode.MULTIPLY);
+        if (b0Var.f5318y == 2) {
             paint.setColor(i0.a.f(0.13f, -16777216, -1));
         } else {
-            paint.setColor(j6.w0(j6.G8, e6Var));
+            paint.setColor(n6.w0(n6.G8, i6Var));
         }
     }
 
@@ -69,12 +69,12 @@ public final class a0 extends FrameLayout implements z5 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        b0 b0Var = this.f5005x;
-        mi0 mi0Var = b0Var.f5022n;
-        if (b0Var.f5032y != 1 && (mi0Var == null || mi0Var.getDelegate() == null || !mi0Var.getDelegate().L())) {
+        b0 b0Var = this.f5291x;
+        vi0 vi0Var = b0Var.f5308n;
+        if (b0Var.f5318y != 1 && (vi0Var == null || vi0Var.getDelegate() == null || !vi0Var.getDelegate().E())) {
             return;
         }
-        b0Var.f5021m.f49381g0.invalidate();
+        b0Var.f5307m.f51434g0.invalidate();
     }
 
     @Override
@@ -86,9 +86,9 @@ public final class a0 extends FrameLayout implements z5 {
     public final void updateColors() {
         Paint paint;
         try {
-            b0 b0Var = this.f5005x;
-            if (b0Var.f5032y != 2 && (paint = this.f4998c) != null) {
-                paint.setColor(j6.w0(j6.G8, b0Var.f5027s));
+            b0 b0Var = this.f5291x;
+            if (b0Var.f5318y != 2 && (paint = this.f5284c) != null) {
+                paint.setColor(n6.w0(n6.G8, b0Var.f5313s));
                 invalidate();
             }
         } catch (Exception e10) {

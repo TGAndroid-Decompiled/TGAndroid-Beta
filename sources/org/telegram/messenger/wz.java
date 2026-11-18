@@ -1,28 +1,25 @@
 package org.telegram.messenger;
-public class wz {
-    public final String f27439c;
-    public int d;
-    public final xz f27440e;
-    public long f27438b = -1;
-    public final long f27437a = System.currentTimeMillis();
 
-    public wz(xz xzVar, String str) {
-        this.f27440e = xzVar;
-        this.f27439c = str;
-        xzVar.f27630a++;
+import java.util.ArrayList;
+public final class wz implements Runnable {
+    public final int f27796a;
+    public final e00 f27797b;
+    public final long f27798c;
+    public final ArrayList d;
+    public final boolean f27799e;
+    public final long f27800f;
+
+    public wz(e00 e00Var, long j3, ArrayList arrayList, boolean z10, long j10, int i7) {
+        this.f27796a = i7;
+        this.f27797b = e00Var;
+        this.f27798c = j3;
+        this.d = arrayList;
+        this.f27799e = z10;
+        this.f27800f = j10;
     }
 
-    public String toString() {
-        String r10;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f27439c);
-        sb2.append(": ");
-        if (this.f27438b < 0) {
-            r10 = "not done";
-        } else {
-            r10 = a8.p0.r(new StringBuilder(), this.f27438b - this.f27437a, "ms");
-        }
-        sb2.append(r10);
-        return sb2.toString();
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wz.run():void");
     }
 }

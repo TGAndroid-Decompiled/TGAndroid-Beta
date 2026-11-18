@@ -1,58 +1,36 @@
 package org.telegram.messenger;
+public final class wb implements Runnable {
+    public final int f27665a;
+    public final zb f27666b;
 
-import android.os.AsyncTask;
-import android.os.SystemClock;
-import java.io.File;
-import java.io.RandomAccessFile;
-public final class wb extends AsyncTask {
-    public final String f27321a;
-    public final File f27322b;
-    public final String f27323c;
-    public int d;
-    public RandomAccessFile f27324e = null;
-    public boolean f27325f = true;
-    public long f27326g;
-    public final int h;
-    public final fc f27327i;
-
-    public wb(fc fcVar, String str, File file, String str2, int i7) {
-        this.f27327i = fcVar;
-        this.f27321a = str;
-        this.f27322b = file;
-        this.f27323c = str2;
-        this.h = i7;
+    public wb(zb zbVar, int i7) {
+        this.f27665a = i7;
+        this.f27666b = zbVar;
     }
 
-    public final void a(long j3, long j10) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (j3 != j10) {
-            long j11 = this.f27326g;
-            if (j11 != 0 && j11 >= elapsedRealtime - 100) {
+    @Override
+    public final void run() {
+        int i7 = this.f27665a;
+        zb zbVar = this.f27666b;
+        switch (i7) {
+            case 0:
+                ec ecVar = zbVar.h;
+                ThreadLocal threadLocal = ec.I;
+                ecVar.V(true);
                 return;
-            }
+            case 1:
+                zbVar.h.f23697u.remove(zbVar.f28278a.f26767e);
+                g0.g3(new wb(zbVar, 3));
+                return;
+            case 2:
+                ec ecVar2 = zbVar.h;
+                ThreadLocal threadLocal2 = ec.I;
+                ecVar2.V(true);
+                return;
+            default:
+                sb sbVar = zbVar.f28278a;
+                ks.f(sbVar.f26776o).k(143, sbVar.f26767e, 1);
+                return;
         }
-        this.f27326g = elapsedRealtime;
-        Utilities.d.c(new vb(this, j3, j10, 0));
-    }
-
-    @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.wb.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onCancelled() {
-        this.f27327i.U(this, 2);
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        int i7;
-        if (((Boolean) obj).booleanValue()) {
-            i7 = 2;
-        } else {
-            i7 = 1;
-        }
-        this.f27327i.U(this, i7);
     }
 }

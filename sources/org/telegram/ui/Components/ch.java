@@ -1,68 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.widget.LinearLayout;
-import org.telegram.messenger.Utilities;
-public final class ch implements r1.d {
-    public final int f33568a = 1;
-    public final boolean f33569b;
-    public final float f33570c;
-    public final float d;
-    public final KeyEvent.Callback f33571e;
+import android.animation.ValueAnimator;
+public final class ch implements ValueAnimator.AnimatorUpdateListener {
+    public final int f33994a;
+    public final si f33995b;
 
-    public ch(ki kiVar, float f10, float f11, boolean z10) {
-        this.f33571e = kiVar;
-        this.f33570c = f10;
-        this.d = f11;
-        this.f33569b = z10;
+    public ch(si siVar, int i7) {
+        this.f33994a = i7;
+        this.f33995b = siVar;
     }
 
     @Override
-    public final void a(r1.g gVar, float f10, float f11) {
-        switch (this.f33568a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f33994a) {
             case 0:
-                ki kiVar = (ki) this.f33571e;
-                LinearLayout linearLayout = kiVar.j3;
-                LinearLayout linearLayout2 = kiVar.f36456l3;
-                float f12 = f10 / 500.0f;
-                vh vhVar = kiVar.Z1;
-                ci ciVar = kiVar.f36497w2;
-                Float valueOf = Float.valueOf(f12);
-                vhVar.getClass();
-                vhVar.a(ciVar, valueOf);
-                kiVar.V2.setAlpha(org.telegram.messenger.g0.T1(this.f33570c, this.d, f12));
-                kiVar.M1(kiVar.f36497w2, 0);
-                kiVar.M1(kiVar.f36501x2, 0);
-                if (!(kiVar.f36501x2 instanceof im) || this.f33569b) {
-                    f12 = 1.0f - f12;
-                }
-                float i7 = Utilities.i(f12, 1.0f, 0.0f);
-                linearLayout2.setAlpha(i7);
-                float f13 = 1.0f - i7;
-                linearLayout.setAlpha(f13);
-                linearLayout.setTranslationX(i7 * (-org.telegram.messenger.g0.L(16.0f)));
-                linearLayout2.setTranslationX(f13 * org.telegram.messenger.g0.L(16.0f));
+                this.f33995b.R1();
                 return;
-            default:
-                gn0 gn0Var = (gn0) this.f33571e;
-                boolean z10 = this.f33569b;
-                if (z10) {
-                    if (f10 > this.f33570c / 2.0f || !gn0Var.f35035s) {
-                        return;
-                    }
-                } else if (f10 < this.d / 2.0f || !gn0Var.f35034r) {
+            case 1:
+                this.f33995b.B2.invalidate();
+                return;
+            case 2:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                si siVar = this.f33995b;
+                siVar.D0 = floatValue;
+                org.telegram.ui.ActionBar.n2 n2Var = siVar.f30195c;
+                if (n2Var != null) {
+                    n2Var.invalidate();
                     return;
                 }
-                gn0Var.f35035s = !z10;
-                gn0Var.f35034r = z10;
+                return;
+            case 3:
+                si siVar2 = this.f33995b;
+                siVar2.getClass();
+                siVar2.A1(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 4:
+                si siVar3 = this.f33995b;
+                ki kiVar = siVar3.f39732w2;
+                xk xkVar = siVar3.f39712r2;
+                if (kiVar == xkVar && xkVar != null) {
+                    xkVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                this.f33995b.R1();
                 return;
         }
-    }
-
-    public ch(gn0 gn0Var, boolean z10, float f10, float f11) {
-        this.f33571e = gn0Var;
-        this.f33569b = z10;
-        this.f33570c = f10;
-        this.d = f11;
     }
 }

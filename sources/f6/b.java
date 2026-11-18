@@ -2,7 +2,7 @@ package f6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 import org.json.JSONArray;
@@ -10,36 +10,36 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class b extends r6.a {
     public static final Parcelable.Creator<b> CREATOR = new v(4);
-    public final long f11037a;
-    public final String f11038b;
-    public final long f11039c;
+    public final long f11357a;
+    public final String f11358b;
+    public final long f11359c;
     public final boolean d;
-    public final String[] f11040e;
-    public final boolean f11041f;
+    public final String[] f11360e;
+    public final boolean f11361f;
     public final boolean h;
 
     public b(long j3, String str, long j10, boolean z10, String[] strArr, boolean z11, boolean z12) {
-        this.f11037a = j3;
-        this.f11038b = str;
-        this.f11039c = j10;
+        this.f11357a = j3;
+        this.f11358b = str;
+        this.f11359c = j10;
         this.d = z10;
-        this.f11040e = strArr;
-        this.f11041f = z11;
+        this.f11360e = strArr;
+        this.f11361f = z11;
         this.h = z12;
     }
 
     public final JSONObject b() {
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("id", this.f11038b);
-            long j3 = this.f11037a;
-            Pattern pattern = j6.a.f16857a;
+            jSONObject.put("id", this.f11358b);
+            long j3 = this.f11357a;
+            Pattern pattern = j6.a.f17242a;
             jSONObject.put("position", j3 / 1000.0d);
             jSONObject.put("isWatched", this.d);
-            jSONObject.put("isEmbedded", this.f11041f);
-            jSONObject.put("duration", this.f11039c / 1000.0d);
+            jSONObject.put("isEmbedded", this.f11361f);
+            jSONObject.put("duration", this.f11359c / 1000.0d);
             jSONObject.put("expanded", this.h);
-            String[] strArr = this.f11040e;
+            String[] strArr = this.f11360e;
             if (strArr != null) {
                 JSONArray jSONArray = new JSONArray();
                 for (String str : strArr) {
@@ -60,31 +60,31 @@ public final class b extends r6.a {
             return false;
         }
         b bVar = (b) obj;
-        if (j6.a.d(this.f11038b, bVar.f11038b) && this.f11037a == bVar.f11037a && this.f11039c == bVar.f11039c && this.d == bVar.d && Arrays.equals(this.f11040e, bVar.f11040e) && this.f11041f == bVar.f11041f && this.h == bVar.h) {
+        if (j6.a.d(this.f11358b, bVar.f11358b) && this.f11357a == bVar.f11357a && this.f11359c == bVar.f11359c && this.d == bVar.d && Arrays.equals(this.f11360e, bVar.f11360e) && this.f11361f == bVar.f11361f && this.h == bVar.h) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f11038b.hashCode();
+        return this.f11358b.hashCode();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.q(parcel, 2, 8);
-        parcel.writeLong(this.f11037a);
-        yb.l(parcel, 3, this.f11038b);
-        yb.q(parcel, 4, 8);
-        parcel.writeLong(this.f11039c);
-        yb.q(parcel, 5, 4);
+        int r10 = bc.r(parcel, 20293);
+        bc.q(parcel, 2, 8);
+        parcel.writeLong(this.f11357a);
+        bc.l(parcel, 3, this.f11358b);
+        bc.q(parcel, 4, 8);
+        parcel.writeLong(this.f11359c);
+        bc.q(parcel, 5, 4);
         parcel.writeInt(this.d ? 1 : 0);
-        yb.m(parcel, 6, this.f11040e);
-        yb.q(parcel, 7, 4);
-        parcel.writeInt(this.f11041f ? 1 : 0);
-        yb.q(parcel, 8, 4);
+        bc.m(parcel, 6, this.f11360e);
+        bc.q(parcel, 7, 4);
+        parcel.writeInt(this.f11361f ? 1 : 0);
+        bc.q(parcel, 8, 4);
         parcel.writeInt(this.h ? 1 : 0);
-        yb.s(parcel, r10);
+        bc.s(parcel, r10);
     }
 }

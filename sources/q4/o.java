@@ -6,15 +6,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class o implements Parcelable {
     public static final Parcelable.Creator<o> CREATOR = new m6.e(26);
-    public final h f55245a;
-    public final long f55246b;
-    public MediaSession.QueueItem f55247c;
+    public final h f55819a;
+    public final long f55820b;
+    public MediaSession.QueueItem f55821c;
 
     public o(h hVar, long j3) {
         if (j3 != -1) {
-            this.f55245a = hVar;
-            this.f55246b = j3;
-            this.f55247c = null;
+            this.f55819a = hVar;
+            this.f55820b = j3;
+            this.f55821c = null;
             return;
         }
         throw new IllegalArgumentException("Id cannot be QueueItem.UNKNOWN_ID");
@@ -27,19 +27,19 @@ public final class o implements Parcelable {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("MediaSession.QueueItem { Description=");
-        sb2.append(this.f55245a);
+        sb2.append(this.f55819a);
         sb2.append(", Id=");
-        return p0.r(sb2, this.f55246b, " }");
+        return p0.r(sb2, this.f55820b, " }");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        this.f55245a.writeToParcel(parcel, i7);
-        parcel.writeLong(this.f55246b);
+        this.f55819a.writeToParcel(parcel, i7);
+        parcel.writeLong(this.f55820b);
     }
 
     public o(Parcel parcel) {
-        this.f55245a = h.CREATOR.createFromParcel(parcel);
-        this.f55246b = parcel.readLong();
+        this.f55819a = h.CREATOR.createFromParcel(parcel);
+        this.f55820b = parcel.readLong();
     }
 }

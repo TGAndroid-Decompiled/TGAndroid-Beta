@@ -5,31 +5,31 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.hc;
-import org.telegram.messenger.qc;
-import org.telegram.ui.Components.os;
-public final class m1 extends os {
+import org.telegram.messenger.gc;
+import org.telegram.messenger.pc;
+import org.telegram.ui.Components.vs;
+public final class m1 extends vs {
     public int N;
     public int O;
     public ArrayList P;
     public final ArrayList Q = new ArrayList();
-    public final boolean R = qc.e(8200);
+    public final boolean R = pc.e(8200);
     public final o1 S;
 
     public m1(o1 o1Var) {
         this.S = o1Var;
     }
 
-    public static void m(Canvas canvas, org.telegram.ui.Components.g5 g5Var, n1 n1Var, float f10) {
-        if (g5Var != null) {
-            g5Var.setAlpha((int) (f10 * 255.0f));
-            g5Var.draw(canvas);
-        } else if (n1Var.f14734f != null) {
+    public static void m(Canvas canvas, org.telegram.ui.Components.o5 o5Var, n1 n1Var, float f10) {
+        if (o5Var != null) {
+            o5Var.setAlpha((int) (f10 * 255.0f));
+            o5Var.draw(canvas);
+        } else if (n1Var.f15093f != null) {
             canvas.save();
-            ImageReceiver imageReceiver = n1Var.f14734f;
-            canvas.clipRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), n1Var.f14734f.A());
-            n1Var.f14734f.setAlpha(f10);
-            n1Var.f14734f.h(canvas, null);
+            ImageReceiver imageReceiver = n1Var.f15093f;
+            canvas.clipRect(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), n1Var.f15093f.A());
+            n1Var.f15093f.setAlpha(f10);
+            n1Var.f15093f.h(canvas, null);
             canvas.restore();
         }
     }
@@ -71,11 +71,11 @@ public final class m1 extends os {
             if (i7 < arrayList.size()) {
                 n1 n1Var = (n1) arrayList.get(i7);
                 n1Var.getClass();
-                org.telegram.ui.Components.g5 g5Var = n1Var.d;
-                if (g5Var != null) {
-                    g5Var.setColorFilter(this.S.f14801p3);
+                org.telegram.ui.Components.o5 o5Var = n1Var.d;
+                if (o5Var != null) {
+                    o5Var.setColorFilter(this.S.f15139p3);
                 }
-                n1Var.f14736r.h(canvas, n1Var.f14735n[this.L]);
+                n1Var.f15095r.h(canvas, n1Var.f15094n[this.L]);
                 i7++;
             } else {
                 return;
@@ -85,7 +85,7 @@ public final class m1 extends os {
 
     @Override
     public final void d(Canvas canvas, float f10) {
-        org.telegram.ui.Components.g5 g5Var;
+        org.telegram.ui.Components.o5 o5Var;
         if (this.P != null) {
             canvas.save();
             canvas.translate(-this.O, 0.0f);
@@ -96,25 +96,25 @@ public final class m1 extends os {
                 float alpha = n1Var.getAlpha() * f10;
                 Rect rect = org.telegram.messenger.g0.Q;
                 rect.set(n1Var.getPaddingLeft() + ((int) n1Var.getX()), n1Var.getPaddingTop(), (n1Var.getWidth() + ((int) n1Var.getX())) - n1Var.getPaddingRight(), n1Var.getHeight() - n1Var.getPaddingBottom());
-                org.telegram.ui.Components.g5 g5Var2 = n1Var.d;
-                if (g5Var2 != null) {
-                    g5Var2.setBounds(rect);
+                org.telegram.ui.Components.o5 o5Var2 = n1Var.d;
+                if (o5Var2 != null) {
+                    o5Var2.setBounds(rect);
                 }
-                ImageReceiver imageReceiver = n1Var.f14734f;
+                ImageReceiver imageReceiver = n1Var.f15093f;
                 if (imageReceiver != null) {
                     imageReceiver.z0(rect);
                 }
-                PorterDuffColorFilter porterDuffColorFilter = this.S.f14801p3;
-                if (porterDuffColorFilter != null && (g5Var = n1Var.d) != null) {
-                    g5Var.setColorFilter(porterDuffColorFilter);
+                PorterDuffColorFilter porterDuffColorFilter = this.S.f15139p3;
+                if (porterDuffColorFilter != null && (o5Var = n1Var.d) != null) {
+                    o5Var.setColorFilter(porterDuffColorFilter);
                 }
                 if (scale != 1.0f) {
                     canvas.save();
                     canvas.scale(scale, scale, rect.centerX(), rect.centerY());
-                    m(canvas, g5Var2, n1Var, alpha);
+                    m(canvas, o5Var2, n1Var, alpha);
                     canvas.restore();
                 } else {
-                    m(canvas, g5Var2, n1Var, alpha);
+                    m(canvas, o5Var2, n1Var, alpha);
                 }
             }
             canvas.restore();
@@ -127,9 +127,9 @@ public final class m1 extends os {
         while (true) {
             ArrayList arrayList = this.Q;
             if (i7 < arrayList.size()) {
-                hc hcVar = ((n1) arrayList.get(i7)).f14735n[this.L];
-                if (hcVar != null) {
-                    hcVar.a();
+                gc gcVar = ((n1) arrayList.get(i7)).f15094n[this.L];
+                if (gcVar != null) {
+                    gcVar.a();
                 }
                 i7++;
             } else {

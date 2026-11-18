@@ -1,6 +1,10 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public abstract class rj0 {
-    public static final ArrayList f38988a = new ArrayList();
+import android.view.View;
+public interface rj0 {
+    boolean mo23f(float f10, float f11, int i7, View view);
+
+    void j();
+
+    void r(float f10);
 }

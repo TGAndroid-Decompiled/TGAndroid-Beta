@@ -1,152 +1,22 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
+import java.util.Comparator;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class t40 implements Runnable {
-    public final int f51353a;
-    public final u40 f51354b;
-    public final String f51355c;
-
-    public t40(u40 u40Var, String str, int i7) {
-        this.f51353a = i7;
-        this.f51354b = u40Var;
-        this.f51355c = str;
+public final class t40 implements Comparator {
+    public static String a(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) tLObject;
+            return org.telegram.messenger.i5.m(0, user.first_name, user.last_name);
+        } else if (tLObject instanceof TLRPC.Chat) {
+            return ((TLRPC.Chat) tLObject).title;
+        } else {
+            return "";
+        }
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        int i7;
-        String str;
-        String K;
-        ArrayList arrayList;
-        boolean z11;
-        char c10;
-        Object obj;
-        switch (this.f51353a) {
-            case 0:
-                u40 u40Var = this.f51354b;
-                String str2 = this.f51355c;
-                u40Var.getClass();
-                org.telegram.messenger.g0.h3(new t40(u40Var, str2, 1));
-                return;
-            case 1:
-                u40 u40Var2 = this.f51354b;
-                String str3 = this.f51355c;
-                jg.z1 z1Var = u40Var2.f51736f;
-                w40 w40Var = u40Var2.J;
-                if (!w40Var.P && !w40Var.Q) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                z1Var.g(str3, true, z10, true, false, 0L, false, 0, 0);
-                org.telegram.messenger.p5 p5Var = Utilities.f22418g;
-                t40 t40Var = new t40(u40Var2, str3, 2);
-                u40Var2.h = t40Var;
-                p5Var.c(t40Var);
-                return;
-            default:
-                u40 u40Var3 = this.f51354b;
-                String str4 = this.f51355c;
-                ArrayList arrayList2 = u40Var3.f51738r;
-                String lowerCase = str4.trim().toLowerCase();
-                if (lowerCase.isEmpty()) {
-                    org.telegram.messenger.g0.h3(new tp(u40Var3, new ArrayList(), new ArrayList(), 10));
-                    return;
-                }
-                boolean z12 = true;
-                ?? r62 = 0;
-                String S0 = org.telegram.messenger.hd.E0().S0(lowerCase, true, false);
-                S0 = (lowerCase.equals(S0) || S0.isEmpty()) ? null : null;
-                if (S0 != null) {
-                    i7 = 1;
-                } else {
-                    i7 = 0;
-                }
-                int i10 = i7 + 1;
-                String[] strArr = new String[i10];
-                strArr[0] = lowerCase;
-                if (S0 != null) {
-                    strArr[1] = S0;
-                }
-                ArrayList arrayList3 = new ArrayList();
-                ArrayList arrayList4 = new ArrayList();
-                int i11 = 0;
-                while (i11 < arrayList2.size()) {
-                    TLObject tLObject = (TLObject) arrayList2.get(i11);
-                    boolean z13 = tLObject instanceof TLRPC.User;
-                    if (z13) {
-                        TLRPC.User user = (TLRPC.User) tLObject;
-                        str = org.telegram.messenger.g5.m(r62, user.first_name, user.last_name).toLowerCase();
-                        K = org.telegram.messenger.q10.n(user);
-                    } else {
-                        if (tLObject instanceof TLRPC.Chat) {
-                            TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                            str = chat.title;
-                            K = org.telegram.messenger.t3.K(chat, r62);
-                        }
-                        arrayList = arrayList2;
-                        z11 = z12;
-                        i11++;
-                        z12 = z11;
-                        arrayList2 = arrayList;
-                        r62 = 0;
-                    }
-                    String S02 = org.telegram.messenger.hd.E0().S0(str, z12, r62);
-                    if (str.equals(S02)) {
-                        S02 = null;
-                    }
-                    char c11 = r62;
-                    for (int i12 = r62; i12 < i10; i12++) {
-                        String str5 = strArr[i12];
-                        if (!str.startsWith(str5) && !i5.c.A(" ", str5, str) && (S02 == null || (!S02.startsWith(str5) && !i5.c.A(" ", str5, S02)))) {
-                            if (K != null && K.startsWith(str5)) {
-                                c11 = 2;
-                            }
-                            c10 = c11;
-                        } else {
-                            c10 = 1;
-                        }
-                        if (c10 != 0) {
-                            arrayList = arrayList2;
-                            z11 = true;
-                            if (c10 == 1) {
-                                if (z13) {
-                                    TLRPC.User user2 = (TLRPC.User) tLObject;
-                                    arrayList4.add(org.telegram.messenger.g0.r0(user2.first_name, user2.last_name, str5));
-                                } else if (tLObject instanceof TLRPC.Chat) {
-                                    obj = null;
-                                    arrayList4.add(org.telegram.messenger.g0.r0(((TLRPC.Chat) tLObject).title, null, str5));
-                                }
-                                obj = null;
-                            } else {
-                                obj = null;
-                                arrayList4.add(org.telegram.messenger.g0.r0(r.b.k("@", K), null, "@" + str5));
-                            }
-                            arrayList3.add(tLObject);
-                            i11++;
-                            z12 = z11;
-                            arrayList2 = arrayList;
-                            r62 = 0;
-                        } else {
-                            char c12 = c10;
-                            z12 = true;
-                            arrayList2 = arrayList2;
-                            c11 = c12;
-                        }
-                    }
-                    arrayList = arrayList2;
-                    z11 = z12;
-                    i11++;
-                    z12 = z11;
-                    arrayList2 = arrayList;
-                    r62 = 0;
-                }
-                org.telegram.messenger.g0.h3(new tp(u40Var3, arrayList3, arrayList4, 10));
-                return;
-        }
+    public final int compare(Object obj, Object obj2) {
+        return a((TLObject) obj).compareTo(a((TLObject) obj2));
     }
 }

@@ -1,14 +1,22 @@
 package c8;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 public abstract class b0 {
-    public static void a(int i7, int i10, int i11) {
-        if (i7 >= 0 && i10 <= i11) {
-            if (i7 <= i10) {
-                return;
+    public static SharedPreferences f4491a;
+
+    public static SharedPreferences a(Context context) {
+        SharedPreferences sharedPreferences;
+        synchronized (SharedPreferences.class) {
+            try {
+                if (f4491a == null) {
+                    f4491a = (SharedPreferences) dc.a(new a2.b(context, 4));
+                }
+                sharedPreferences = f4491a;
+            } catch (Throwable th2) {
+                throw th2;
             }
-            throw new IllegalArgumentException(a8.p0.m(i7, i10, "fromIndex: ", " > toIndex: "));
         }
-        StringBuilder n10 = i5.c.n("fromIndex: ", i7, ", toIndex: ", i10, ", size: ");
-        n10.append(i11);
-        throw new IndexOutOfBoundsException(n10.toString());
+        return sharedPreferences;
     }
 }

@@ -3,17 +3,17 @@ package ji;
 import ai.c2;
 import ai.n0;
 import ai.t;
-import org.telegram.messenger.z10;
+import org.telegram.messenger.x10;
 import org.telegram.ui.Dictation.DictationAsr;
-public final class g implements z10 {
-    public final int f17547a;
-    public final m f17548b;
-    public final String[] f17549c;
+public final class g implements x10 {
+    public final int f17940a;
+    public final m f17941b;
+    public final String[] f17942c;
 
     public g(m mVar, String[] strArr, int i7) {
-        this.f17547a = i7;
-        this.f17548b = mVar;
-        this.f17549c = strArr;
+        this.f17940a = i7;
+        this.f17941b = mVar;
+        this.f17942c = strArr;
     }
 
     @Override
@@ -23,15 +23,15 @@ public final class g implements z10 {
         p pVar;
         c2 c2Var2;
         Integer num = (Integer) obj;
-        switch (this.f17547a) {
+        switch (this.f17940a) {
             case 0:
-                m mVar = this.f17548b;
+                m mVar = this.f17941b;
                 mVar.getClass();
                 if (num.intValue() == 0) {
                     DictationAsr.T(true);
                     return;
                 }
-                String str = this.f17549c[num.intValue() - 1];
+                String str = this.f17942c[num.intValue() - 1];
                 t H = DictationAsr.H(str);
                 if (H != null && !DictationAsr.w(H)) {
                     z10 = true;
@@ -39,39 +39,39 @@ public final class g implements z10 {
                     z10 = false;
                 }
                 DictationAsr.S(str);
-                DictationAsr.s(H);
-                if (z10 && mVar.f17573c == 2 && (pVar = mVar.h) != null) {
-                    mVar.f17586n = "";
-                    if (pVar.N1) {
-                        pVar.f17645v1 = null;
+                DictationAsr.r(H);
+                if (z10 && mVar.f17966c == 2 && (pVar = mVar.h) != null) {
+                    mVar.f17979n = "";
+                    if (pVar.P1) {
+                        pVar.f18046x1 = null;
                     }
-                    pVar.f17618i0 = "";
-                    pVar.f17648w1 = -1;
-                    pVar.f17620j0 = null;
-                    pVar.m0.clear();
-                    pVar.S0 = true;
-                    pVar.B0 = 0.0f;
-                    pVar.A0 = 0.0f;
-                    pVar.C0 = 0.0f;
+                    pVar.f18017k0 = "";
+                    pVar.f18049y1 = -1;
+                    pVar.f18019l0 = null;
+                    pVar.f18023o0.clear();
+                    pVar.U0 = true;
                     pVar.D0 = 0.0f;
-                    pVar.F0 = -1.0f;
-                    pVar.E0 = -1.0f;
+                    pVar.C0 = 0.0f;
+                    pVar.E0 = 0.0f;
+                    pVar.F0 = 0.0f;
                     pVar.H0 = -1.0f;
-                    pVar.J0 = false;
-                    pVar.Q0 = 0L;
-                    pVar.R0 = 0.0f;
-                    pVar.f17653y0 = true;
-                    pVar.X0 = true;
+                    pVar.G0 = -1.0f;
+                    pVar.J0 = -1.0f;
+                    pVar.L0 = false;
+                    pVar.S0 = 0L;
+                    pVar.T0 = 0.0f;
+                    pVar.A0 = true;
+                    pVar.Z0 = true;
                     pVar.invalidate();
                 }
                 p pVar2 = mVar.h;
                 if (pVar2 != null) {
-                    pVar2.setLanguage(n0.l(str));
+                    pVar2.setLanguage(n0.p(str));
                 }
-                if (mVar.f17573c == 2 && (c2Var = mVar.f17578f) != null) {
+                if (mVar.f17966c == 2 && (c2Var = mVar.f17971f) != null) {
                     c2Var.p(str);
                 }
-                mVar.t();
+                mVar.u();
                 return;
             default:
                 boolean z11 = true;
@@ -79,26 +79,26 @@ public final class g implements z10 {
                     DictationAsr.T(true);
                     return;
                 }
-                String str2 = this.f17549c[num.intValue() - 1];
+                String str2 = this.f17942c[num.intValue() - 1];
                 t H2 = DictationAsr.H(str2);
                 z11 = (H2 == null || DictationAsr.w(H2)) ? false : false;
                 DictationAsr.S(str2);
-                DictationAsr.s(H2);
-                m mVar2 = this.f17548b;
-                if (z11 && mVar2.f17573c == 2 && mVar2.X == null && mVar2.f17577e0 == null) {
+                DictationAsr.r(H2);
+                m mVar2 = this.f17941b;
+                if (z11 && mVar2.f17966c == 2 && mVar2.X == null && mVar2.f17970e0 == null) {
                     mVar2.M.clear();
-                    mVar2.n();
+                    mVar2.p();
                 }
-                String l10 = n0.l(str2);
-                mVar2.f17585l0 = l10;
+                String p10 = n0.p(str2);
+                mVar2.f17978l0 = p10;
                 e eVar = mVar2.K;
                 if (eVar != null) {
-                    eVar.setLanguage(l10);
+                    eVar.setLanguage(p10);
                 }
-                if (mVar2.f17573c == 2 && (c2Var2 = mVar2.f17578f) != null) {
+                if (mVar2.f17966c == 2 && (c2Var2 = mVar2.f17971f) != null) {
                     c2Var2.p(str2);
                 }
-                mVar2.t();
+                mVar2.u();
                 return;
         }
     }

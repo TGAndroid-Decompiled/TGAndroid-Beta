@@ -1,30 +1,30 @@
 package f3;
 public interface p extends e2.n {
-    void c(int i7, int i10, byte[] bArr);
+    void b(int i7, int i10, byte[] bArr);
 
-    boolean d(byte[] bArr, int i7, int i10, boolean z10);
+    boolean c(byte[] bArr, int i7, int i10, boolean z10);
 
-    int e(int i7, int i10, byte[] bArr);
+    int d(int i7, int i10, byte[] bArr);
 
-    boolean g(int i7, boolean z10);
+    boolean f(int i7, boolean z10);
+
+    boolean g(byte[] bArr, int i7, int i10, boolean z10);
 
     long getLength();
 
     long getPosition();
 
-    boolean h(byte[] bArr, int i7, int i10, boolean z10);
-
-    long j();
-
-    void k(int i7);
-
-    void l();
+    long l();
 
     void m(int i7);
 
-    boolean n(int i7, boolean z10);
+    void n();
+
+    void r(int i7);
 
     void readFully(byte[] bArr, int i7, int i10);
 
     int skip(int i7);
+
+    boolean x(int i7, boolean z10);
 }

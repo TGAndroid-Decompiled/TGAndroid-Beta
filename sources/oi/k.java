@@ -1,8 +1,8 @@
 package oi;
 public final class k {
-    public final o f21766a;
+    public final o f22129a;
 
     public k(o oVar) {
-        this.f21766a = oVar;
+        this.f22129a = oVar;
     }
 }

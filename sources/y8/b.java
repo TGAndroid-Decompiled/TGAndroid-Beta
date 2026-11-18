@@ -2,26 +2,26 @@ package y8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import com.google.android.gms.identity.intents.model.UserAddress;
 public final class b extends r6.a {
     public static final Parcelable.Creator<b> CREATOR = new u8.o(28);
-    public String f60476a;
-    public String f60477b;
-    public String f60478c;
+    public String f61041a;
+    public String f61042b;
+    public String f61043c;
     public int d;
-    public UserAddress f60479e;
+    public UserAddress f61044e;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.l(parcel, 1, this.f60476a);
-        yb.l(parcel, 2, this.f60477b);
-        yb.l(parcel, 3, this.f60478c);
+        int r10 = bc.r(parcel, 20293);
+        bc.l(parcel, 1, this.f61041a);
+        bc.l(parcel, 2, this.f61042b);
+        bc.l(parcel, 3, this.f61043c);
         int i10 = this.d;
-        yb.q(parcel, 4, 4);
+        bc.q(parcel, 4, 4);
         parcel.writeInt(i10);
-        yb.k(parcel, 5, this.f60479e, i7);
-        yb.s(parcel, r10);
+        bc.k(parcel, 5, this.f61044e, i7);
+        bc.s(parcel, r10);
     }
 }

@@ -7,24 +7,25 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-import org.telegram.messenger.y5;
+import org.telegram.messenger.a6;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
 import org.telegram.messenger.z5;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Dictation.DictationAsr;
 public abstract class j1 {
-    public static ArrayList f1260a;
-    public static long f1261b;
-    public static CountDownLatch f1262c;
+    public static ArrayList f1249a;
+    public static long f1250b;
+    public static CountDownLatch f1251c;
     public static long d;
 
     public static synchronized ArrayList a() {
         synchronized (j1.class) {
             try {
-                if (f1260a == null) {
-                    String string = np.e1().getString("speech_models", null);
+                if (f1249a == null) {
+                    String string = mp.g1().getString("speech_models", null);
                     if (string == null) {
                         return null;
                     }
@@ -35,9 +36,9 @@ public abstract class j1 {
                         arrayList.add(TLRPC.TL_transcriptionModel.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                     }
                     serializedData.cleanup();
-                    f1260a = arrayList;
+                    f1249a = arrayList;
                 }
-                return f1260a;
+                return f1249a;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -45,8 +46,8 @@ public abstract class j1 {
     }
 
     public static boolean b() {
-        y5 n10;
-        z5 q10 = z5.q(m10.l());
+        z5 n10;
+        a6 q10 = a6.q(j10.l());
         int e10 = org.telegram.messenger.t0.e();
         if (e10 == 1) {
             n10 = q10.p();
@@ -55,20 +56,20 @@ public abstract class j1 {
         } else {
             n10 = q10.n();
         }
-        if (n10 != null && n10.f27665g) {
+        if (n10 != null && n10.f28270g) {
             return true;
         }
         return false;
     }
 
-    public static int c(org.telegram.tgnet.TLRPC.TL_transcriptionModel r23, java.io.File r24, ai.i1 r25) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.j1.c(org.telegram.tgnet.TLRPC$TL_transcriptionModel, java.io.File, ai.i1):int");
+    public static int c(org.telegram.tgnet.TLRPC.TL_transcriptionModel r23, java.io.File r24, boolean r25, ai.i1 r26) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.j1.c(org.telegram.tgnet.TLRPC$TL_transcriptionModel, java.io.File, boolean, ai.i1):int");
     }
 
     public static boolean d() {
         long j3;
         ArrayList a10 = a();
-        long currentTimeMillis = System.currentTimeMillis() - np.e1().getLong("speech_models_checked", 0L);
+        long currentTimeMillis = System.currentTimeMillis() - mp.g1().getLong("speech_models_checked", 0L);
         if (a10 != null) {
             if (a10.isEmpty()) {
                 j3 = 3600000;
@@ -76,8 +77,11 @@ public abstract class j1 {
                 j3 = 86400000;
             }
             if (currentTimeMillis <= j3) {
-                if ((!a10.isEmpty() || f1261b != 0) && a8.p0.s(new StringBuilder(), org.telegram.messenger.r2.f26208c, "/1").equals(np.e1().getString("speech_models_build", null))) {
-                    return false;
+                if (!a10.isEmpty() || f1250b != 0) {
+                    if ((org.telegram.messenger.s2.f26725c + "/" + DictationAsr.X()).equals(mp.g1().getString("speech_models_build", null))) {
+                        return false;
+                    }
+                    return true;
                 }
                 return true;
             }
@@ -88,24 +92,24 @@ public abstract class j1 {
 
     public static synchronized CountDownLatch e() {
         synchronized (j1.class) {
-            CountDownLatch countDownLatch = f1262c;
+            CountDownLatch countDownLatch = f1251c;
             if (countDownLatch != null) {
                 return countDownLatch;
             }
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j3 = f1261b;
+            long j3 = f1250b;
             if (j3 != 0 && elapsedRealtime - j3 < 60000) {
                 return null;
             }
-            int l10 = m10.l();
-            if (!m10.r(l10)) {
+            int l10 = j10.l();
+            if (!j10.r(l10)) {
                 return null;
             }
-            f1261b = elapsedRealtime;
+            f1250b = elapsedRealtime;
             CountDownLatch countDownLatch2 = new CountDownLatch(1);
-            f1262c = countDownLatch2;
+            f1251c = countDownLatch2;
             TLRPC.TL_messages_getTranscriptionModels tL_messages_getTranscriptionModels = new TLRPC.TL_messages_getTranscriptionModels();
-            tL_messages_getTranscriptionModels.version = 1;
+            tL_messages_getTranscriptionModels.version = DictationAsr.X();
             ConnectionsManager.getInstance(l10).sendRequest(tL_messages_getTranscriptionModels, new e1(countDownLatch2, 0));
             return countDownLatch2;
         }
@@ -133,11 +137,54 @@ public abstract class j1 {
     }
 
     public static void g(File file) {
-        SharedPreferences.Editor edit = np.e1().edit();
+        SharedPreferences.Editor edit = mp.g1().edit();
         edit.remove("speech_doc_" + file.getName()).apply();
     }
 
-    public static void h(ArrayList arrayList) {
+    public static boolean h() {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j3 = d;
+        if (j3 == 0 || elapsedRealtime - j3 > 60000) {
+            d = elapsedRealtime;
+            if (d()) {
+                e();
+            }
+        }
+        ArrayList a10 = a();
+        if (a10 != null) {
+            int size = a10.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = a10.get(i7);
+                i7++;
+                TLRPC.TL_transcriptionModel tL_transcriptionModel = (TLRPC.TL_transcriptionModel) obj;
+                if (!tL_transcriptionModel.languages.isEmpty() && !tL_transcriptionModel.languages.contains("tinylid") && !tL_transcriptionModel.languages.contains("silero-vad")) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static boolean i(TLRPC.TL_transcriptionModel tL_transcriptionModel, File file) {
+        if (tL_transcriptionModel != null && file.exists()) {
+            SharedPreferences g12 = mp.g1();
+            if (g12.getLong("speech_doc_" + file.getName(), 0L) != tL_transcriptionModel.document.f28411id) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public static void j() {
+        CountDownLatch e10 = e();
+        if (e10 != null) {
+            new Thread(new f1(e10, 0), "DictationModels").start();
+        }
+    }
+
+    public static void k(ArrayList arrayList) {
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(arrayList.size());
         int size = arrayList.size();
@@ -147,8 +194,8 @@ public abstract class j1 {
             i7++;
             ((TLRPC.TL_transcriptionModel) obj).serializeToStream(serializedData);
         }
-        SharedPreferences.Editor putLong = np.e1().edit().putString("speech_models", Base64.encodeToString(serializedData.toByteArray(), 2)).putLong("speech_models_checked", System.currentTimeMillis());
-        putLong.putString("speech_models_build", org.telegram.messenger.r2.f26208c + "/1").apply();
+        SharedPreferences.Editor putLong = mp.g1().edit().putString("speech_models", Base64.encodeToString(serializedData.toByteArray(), 2)).putLong("speech_models_checked", System.currentTimeMillis());
+        putLong.putString("speech_models_build", org.telegram.messenger.s2.f26725c + "/" + DictationAsr.X()).apply();
         serializedData.cleanup();
     }
 }

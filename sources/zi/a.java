@@ -1,73 +1,73 @@
 package zi;
 
 import android.os.Handler;
-import org.telegram.ui.nb1;
+import org.telegram.ui.jw0;
 public final class a implements Runnable {
-    public final int f61465a;
-    public final l f61466b;
+    public final int f62031a;
+    public final k f62032b;
 
-    public a(l lVar, int i7) {
-        this.f61465a = i7;
-        this.f61466b = lVar;
+    public a(k kVar, int i7) {
+        this.f62031a = i7;
+        this.f62032b = kVar;
     }
 
     @Override
     public final void run() {
-        u uVar;
-        o oVar;
+        t tVar;
+        n nVar;
         boolean z10;
-        switch (this.f61465a) {
+        switch (this.f62031a) {
             case 0:
-                this.f61466b.t();
+                this.f62032b.t();
                 return;
             case 1:
-                l lVar = this.f61466b;
-                int y10 = lVar.y();
-                if (y10 != lVar.B0 && (uVar = lVar.v) != null) {
-                    lVar.B0 = y10;
-                    uVar.f61725s0 = y10;
-                    Handler handler = uVar.f61728u;
-                    if (uVar.f61723r0 && handler != null) {
-                        handler.post(new nb1(uVar, y10, 14));
+                k kVar = this.f62032b;
+                int y10 = kVar.y();
+                if (y10 != kVar.B0 && (tVar = kVar.v) != null) {
+                    kVar.B0 = y10;
+                    tVar.f62289s0 = y10;
+                    Handler handler = tVar.f62292u;
+                    if (tVar.f62287r0 && handler != null) {
+                        handler.post(new jw0(tVar, y10, 17));
                     }
-                    p pVar = lVar.f61579j;
-                    pVar.b("display rotation applied: degrees=" + y10);
+                    o oVar = kVar.f62142j;
+                    oVar.b("display rotation applied: degrees=" + y10);
                     return;
                 }
                 return;
             case 2:
-                this.f61466b.a0();
+                this.f62032b.a0();
                 return;
             case 3:
-                l lVar2 = this.f61466b;
-                Handler handler2 = lVar2.f61589n;
+                k kVar2 = this.f62032b;
+                Handler handler2 = kVar2.f62152n;
                 if (handler2 != null) {
-                    handler2.post(new a(lVar2, 4));
+                    handler2.post(new a(kVar2, 4));
                     return;
                 }
                 return;
             case 4:
-                l lVar3 = this.f61466b;
-                if (lVar3.U && lVar3.f61617z != null && (oVar = lVar3.f61611w) != null) {
-                    synchronized (oVar) {
-                        z10 = oVar.E;
+                k kVar3 = this.f62032b;
+                if (kVar3.U && kVar3.f62180z != null && (nVar = kVar3.f62174w) != null) {
+                    synchronized (nVar) {
+                        z10 = nVar.E;
                     }
                     if (!z10) {
                         try {
-                            o oVar2 = lVar3.f61611w;
-                            lVar3.f61613x = oVar2;
-                            Handler handler3 = lVar3.f61589n;
+                            n nVar2 = kVar3.f62174w;
+                            kVar3.f62176x = nVar2;
+                            Handler handler3 = kVar3.f62152n;
                             if (handler3 != null) {
-                                handler3.removeCallbacks(lVar3.f61584k1);
-                                handler3.postDelayed(lVar3.f61584k1, 3000L);
+                                handler3.removeCallbacks(kVar3.f62147k1);
+                                handler3.postDelayed(kVar3.f62147k1, 3000L);
                             }
-                            oVar2.t(new d(lVar3, oVar2, 0), new d(lVar3, oVar2, 1));
-                            p pVar2 = lVar3.f61579j;
-                            pVar2.b("first camera frame received; audio startup requested: segmentElapsedMs=" + l.z(lVar3.C0));
+                            nVar2.t(new d(kVar3, nVar2, 0), new d(kVar3, nVar2, 1));
+                            o oVar2 = kVar3.f62142j;
+                            oVar2.b("first camera frame received; audio startup requested: segmentElapsedMs=" + k.z(kVar3.C0));
                             return;
                         } catch (RuntimeException e10) {
-                            lVar3.j();
-                            lVar3.M(e10);
+                            kVar3.j();
+                            kVar3.M(e10);
                             return;
                         }
                     }
@@ -75,48 +75,56 @@ public final class a implements Runnable {
                 }
                 return;
             case 5:
-                l lVar4 = this.f61466b;
-                o oVar3 = lVar4.f61613x;
-                if (lVar4.U && !lVar4.Y && oVar3 != null && lVar4.f61611w == oVar3) {
-                    lVar4.f61613x = null;
-                    lVar4.M(new IllegalStateException("Timed out waiting for synchronized audio and video start"));
+                k kVar4 = this.f62032b;
+                n nVar3 = kVar4.f62176x;
+                if (kVar4.U && !kVar4.Y && nVar3 != null && kVar4.f62174w == nVar3) {
+                    kVar4.f62176x = null;
+                    kVar4.M(new IllegalStateException("Timed out waiting for synchronized audio and video start"));
                     return;
                 }
                 return;
             case 6:
-                this.f61466b.f();
+                k kVar5 = this.f62032b;
+                if (kVar5.f62146k0 && kVar5.M > 0.0f) {
+                    if (kVar5.U && !kVar5.V && kVar5.f62180z != null && kVar5.f62149l0) {
+                        kVar5.x("zoom requested", null, 5);
+                        return;
+                    }
+                    return;
+                }
+                kVar5.f();
                 return;
             case 7:
-                l lVar5 = this.f61466b;
-                lVar5.U = false;
-                lVar5.j();
-                o oVar4 = lVar5.f61611w;
-                if (oVar4 != null) {
-                    long p10 = oVar4.p();
-                    u uVar2 = lVar5.v;
-                    if (uVar2 != null && p10 != Long.MAX_VALUE) {
-                        uVar2.f61720q = Math.max(0L, p10) * 1000;
-                        Handler handler4 = uVar2.f61728u;
+                k kVar6 = this.f62032b;
+                kVar6.U = false;
+                kVar6.j();
+                n nVar4 = kVar6.f62174w;
+                if (nVar4 != null) {
+                    long p10 = nVar4.p();
+                    t tVar2 = kVar6.v;
+                    if (tVar2 != null && p10 != Long.MAX_VALUE) {
+                        tVar2.f62284q = Math.max(0L, p10) * 1000;
+                        Handler handler4 = tVar2.f62292u;
                         if (handler4 != null) {
-                            handler4.removeCallbacks(uVar2.f61736y0);
+                            handler4.removeCallbacks(tVar2.f62300y0);
                         }
                     }
                 }
-                lVar5.n();
-                o oVar5 = lVar5.f61611w;
-                if (oVar5 != null) {
-                    oVar5.u();
-                    lVar5.f61611w = null;
+                kVar6.n();
+                n nVar5 = kVar6.f62174w;
+                if (nVar5 != null) {
+                    nVar5.u();
+                    kVar6.f62174w = null;
                 }
-                lVar5.Y = false;
-                v0 v0Var = (v0) lVar5.f61582k.f57880a;
-                v0Var.f61752i.post(new j0(v0Var, 3));
+                kVar6.Y = false;
+                u0 u0Var = (u0) kVar6.f62145k.f62182a;
+                u0Var.f62316i.post(new i0(u0Var, 3));
                 return;
             case 8:
-                this.f61466b.G();
+                this.f62032b.G();
                 return;
             default:
-                this.f61466b.a0();
+                this.f62032b.a0();
                 return;
         }
     }

@@ -3,21 +3,21 @@ package g;
 import java.lang.ref.WeakReference;
 import java.util.ArrayDeque;
 public abstract class g {
-    public static final int f12672a;
-    public static final a0.g f12673b;
-    public static final Object f12674c;
+    public static final int f12989a;
+    public static final a0.g f12990b;
+    public static final Object f12991c;
 
     static {
         new ArrayDeque();
-        f12672a = -100;
-        f12673b = new a0.g(0);
-        f12674c = new Object();
+        f12989a = -100;
+        f12990b = new a0.g(0);
+        f12991c = new Object();
     }
 
-    public static void b(s sVar) {
-        synchronized (f12674c) {
+    public static void c(s sVar) {
+        synchronized (f12991c) {
             try {
-                a0.g gVar = f12673b;
+                a0.g gVar = f12990b;
                 gVar.getClass();
                 a0.b bVar = new a0.b(gVar);
                 while (bVar.hasNext()) {
@@ -34,5 +34,5 @@ public abstract class g {
 
     public abstract void a();
 
-    public abstract boolean c(int i7);
+    public abstract boolean d(int i7);
 }

@@ -1,159 +1,192 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.util.SparseArray;
-public final class ae implements r4, ni0 {
-    public final int f32969a;
-    public final ChatActivityEnterView f32970b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ae extends AnimatorListenerAdapter {
+    public final int f33335a;
+    public final ChatActivityEnterView f33336b;
 
     public ae(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f32969a = i7;
-        this.f32970b = chatActivityEnterView;
+        this.f33335a = i7;
+        this.f33336b = chatActivityEnterView;
     }
 
     @Override
-    public void L(int i7, int i10, boolean z10) {
-        switch (this.f32969a) {
-            case 0:
-                this.f32970b.k1(z10, i7, i10, 0L, true);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f33335a) {
+            case 4:
+                ChatActivityEnterView chatActivityEnterView = this.f33336b;
+                if (animator.equals(chatActivityEnterView.f32594g3)) {
+                    chatActivityEnterView.f32594g3 = null;
+                    return;
+                }
+                return;
+            case 5:
+                ChatActivityEnterView chatActivityEnterView2 = this.f33336b;
+                if (animator.equals(chatActivityEnterView2.f32586f3)) {
+                    chatActivityEnterView2.f32586f3 = null;
+                    return;
+                }
+                return;
+            case 6:
+                ChatActivityEnterView chatActivityEnterView3 = this.f33336b;
+                if (animator.equals(chatActivityEnterView3.f32594g3)) {
+                    chatActivityEnterView3.f32594g3 = null;
+                    return;
+                }
+                return;
+            case 7:
+                ChatActivityEnterView chatActivityEnterView4 = this.f33336b;
+                if (animator.equals(chatActivityEnterView4.f32586f3)) {
+                    chatActivityEnterView4.f32586f3 = null;
+                    return;
+                }
+                return;
+            case 8:
+                ChatActivityEnterView chatActivityEnterView5 = this.f33336b;
+                if (animator.equals(chatActivityEnterView5.f32594g3)) {
+                    chatActivityEnterView5.f32594g3 = null;
+                    return;
+                }
+                return;
+            case 9:
+                ChatActivityEnterView chatActivityEnterView6 = this.f33336b;
+                if (animator.equals(chatActivityEnterView6.f32586f3)) {
+                    chatActivityEnterView6.f32586f3 = null;
+                    return;
+                }
                 return;
             default:
-                this.f32970b.k1(z10, i7, 0, 0L, true);
+                super.onAnimationCancel(animator);
                 return;
         }
     }
 
-    public void a(Canvas canvas) {
-        org.telegram.ui.aj ajVar;
-        ChatActivityEnterView chatActivityEnterView = this.f32970b;
-        Drawable backgroundImage = chatActivityEnterView.U1.getBackgroundImage();
-        if (backgroundImage != null) {
-            backgroundImage.draw(canvas);
-        }
-        org.telegram.ui.an anVar = chatActivityEnterView.f32319x3;
-        if (anVar != null) {
-            ajVar = anVar.A0;
-        } else {
-            ajVar = null;
-        }
-        if (ajVar != null && ajVar.getWidth() > 0) {
-            canvas.save();
-            canvas.translate(ajVar.getX(), ajVar.getY());
-            ajVar.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    public void b() {
-        boolean z10;
-        Editable text;
-        ChatActivityEnterView chatActivityEnterView = this.f32970b;
-        ai.n0 n0Var = chatActivityEnterView.f32221j1;
-        boolean z11 = false;
-        if (n0Var != null && n0Var.f1386r != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        xe xeVar = chatActivityEnterView.F0;
-        if (xeVar == null) {
-            text = null;
-        } else {
-            text = xeVar.getText();
-        }
-        xe xeVar2 = chatActivityEnterView.F0;
-        if (xeVar2 != null && xeVar2.getLineCount() > 2 && text != null && !TextUtils.isEmpty(text.toString().trim())) {
-            z11 = true;
-        }
-        chatActivityEnterView.N1(z11);
-        chatActivityEnterView.f32190e6 = z10;
-        org.telegram.ui.an anVar = chatActivityEnterView.f32319x3;
-        if (anVar != null) {
-            anVar.dd();
-            rw0 rw0Var = anVar.f45354s1;
-            if (rw0Var != null) {
-                rw0Var.e();
-            }
-        }
-    }
-
-    public void c(boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f32970b;
-        uc ucVar = chatActivityEnterView.P1;
-        gg ggVar = chatActivityEnterView.f32310w2;
-        if (ggVar != null) {
-            ggVar.invalidate();
-        }
-        if (!z10) {
-            yh.a aVar = chatActivityEnterView.L1;
-            if (aVar != null) {
-                oi0 oi0Var = chatActivityEnterView.f32214i1;
-                aVar.c(Math.round(Math.max(1.0f, (oi0Var.f37994w - oi0Var.f37989s) * oi0Var.f37987r)));
-            }
-            org.telegram.messenger.g0.r(ucVar);
-            org.telegram.messenger.g0.i3(ucVar, 300L);
-        }
-    }
-
-    public void d(float f10, int i7) {
-        ChatActivityEnterView chatActivityEnterView = this.f32970b;
-        wd wdVar = chatActivityEnterView.R0;
-        SparseArray sparseArray = chatActivityEnterView.f32301v1;
-        int i10 = org.telegram.ui.ActionBar.j6.Nl;
-        int i11 = ChatActivityEnterView.N6;
-        int u02 = chatActivityEnterView.u0(i10);
-        if (f10 <= 0.004f) {
-            if (chatActivityEnterView.f32294u1 != 0) {
-                chatActivityEnterView.f32294u1 = 0;
-                wdVar.setColorFilter(new PorterDuffColorFilter(u02, PorterDuff.Mode.SRC_IN));
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f33335a) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = this.f33336b;
+                chatActivityEnterView.f32659p4 = null;
+                chatActivityEnterView.V0.setLayerType(0, null);
                 return;
-            }
-            return;
+            case 1:
+                ChatActivityEnterView chatActivityEnterView2 = this.f33336b;
+                chatActivityEnterView2.f32659p4 = null;
+                chatActivityEnterView2.V0.setLayerType(0, null);
+                chatActivityEnterView2.f32732z4.e();
+                return;
+            case 2:
+                this.f33336b.f32558c0.setVisibility(8);
+                return;
+            case 3:
+                ChatActivityEnterView chatActivityEnterView3 = this.f33336b;
+                de deVar = chatActivityEnterView3.f32584f1;
+                if (deVar != null) {
+                    deVar.setVisibility(8);
+                }
+                chatActivityEnterView3.n1();
+                gf gfVar = chatActivityEnterView3.F0;
+                if (gfVar != null) {
+                    gfVar.requestFocus();
+                }
+                chatActivityEnterView3.S0();
+                return;
+            case 4:
+                ChatActivityEnterView chatActivityEnterView4 = this.f33336b;
+                if (animator.equals(chatActivityEnterView4.f32594g3)) {
+                    chatActivityEnterView4.d2.setVisibility(8);
+                    chatActivityEnterView4.f32594g3 = null;
+                    return;
+                }
+                return;
+            case 5:
+                ChatActivityEnterView chatActivityEnterView5 = this.f33336b;
+                if (animator.equals(chatActivityEnterView5.f32586f3)) {
+                    chatActivityEnterView5.getSendButtonInternal().setVisibility(8);
+                    chatActivityEnterView5.Q0.setVisibility(8);
+                    chatActivityEnterView5.f32541a1.setVisibility(8);
+                    ie ieVar = chatActivityEnterView5.T0;
+                    if (ieVar != null) {
+                        ieVar.setVisibility(8);
+                    }
+                    chatActivityEnterView5.f32586f3 = null;
+                    chatActivityEnterView5.j3 = 0;
+                    return;
+                }
+                return;
+            case 6:
+                ChatActivityEnterView chatActivityEnterView6 = this.f33336b;
+                if (animator.equals(chatActivityEnterView6.f32594g3)) {
+                    chatActivityEnterView6.f32594g3 = null;
+                    return;
+                }
+                return;
+            case 7:
+                ChatActivityEnterView chatActivityEnterView7 = this.f33336b;
+                if (animator.equals(chatActivityEnterView7.f32586f3)) {
+                    chatActivityEnterView7.getSendButtonInternal().setVisibility(8);
+                    chatActivityEnterView7.Q0.setVisibility(8);
+                    chatActivityEnterView7.setSlowModeButtonVisible(false);
+                    chatActivityEnterView7.f32541a1.setVisibility(8);
+                    chatActivityEnterView7.T0.setVisibility(0);
+                    chatActivityEnterView7.f32586f3 = null;
+                    chatActivityEnterView7.j3 = 0;
+                    return;
+                }
+                return;
+            case 8:
+                ChatActivityEnterView chatActivityEnterView8 = this.f33336b;
+                if (animator.equals(chatActivityEnterView8.f32594g3)) {
+                    chatActivityEnterView8.f32594g3 = null;
+                    return;
+                }
+                return;
+            case 9:
+                ChatActivityEnterView chatActivityEnterView9 = this.f33336b;
+                if (animator.equals(chatActivityEnterView9.f32586f3)) {
+                    chatActivityEnterView9.setSlowModeButtonVisible(false);
+                    chatActivityEnterView9.f32586f3 = null;
+                    chatActivityEnterView9.j3 = 0;
+                    oe oeVar = chatActivityEnterView9.f32541a1;
+                    if (oeVar != null) {
+                        oeVar.setVisibility(0);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 10:
+                pe peVar = this.f33336b.f32559c1;
+                if (peVar != null) {
+                    peVar.setScaleX(1.0f);
+                    peVar.setScaleY(1.0f);
+                    return;
+                }
+                return;
+            case 11:
+                super.onAnimationEnd(animator);
+                ChatActivityEnterView chatActivityEnterView10 = this.f33336b;
+                pe peVar2 = chatActivityEnterView10.f32559c1;
+                if (peVar2 != null) {
+                    peVar2.setAlpha(1.0f);
+                }
+                oe oeVar2 = chatActivityEnterView10.f32541a1;
+                if (oeVar2 != null) {
+                    oeVar2.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView11 = this.f33336b;
+                chatActivityEnterView11.W0 = null;
+                kg kgVar = chatActivityEnterView11.N3;
+                if (kgVar != null) {
+                    kgVar.x(0.0f);
+                }
+                chatActivityEnterView11.requestLayout();
+                chatActivityEnterView11.f32732z4.e();
+                return;
         }
-        int f11 = i0.a.f(Math.min(1.0f, f10), u02, i7 | (-16777216)) & (-117901064);
-        if (f11 == chatActivityEnterView.f32294u1) {
-            return;
-        }
-        chatActivityEnterView.f32294u1 = f11;
-        ColorFilter colorFilter = (ColorFilter) sparseArray.get(f11);
-        if (colorFilter == null) {
-            colorFilter = new PorterDuffColorFilter(f11, PorterDuff.Mode.SRC_IN);
-            if (sparseArray.size() > 512) {
-                sparseArray.clear();
-            }
-            sparseArray.put(f11, colorFilter);
-        }
-        wdVar.setColorFilter(colorFilter);
-    }
-
-    public void e(float f10) {
-        boolean z10;
-        ChatActivityEnterView chatActivityEnterView = this.f32970b;
-        chatActivityEnterView.f32274r1 = f10;
-        if (f10 >= 1.0f || f10 <= 0.0f) {
-            Editable text = chatActivityEnterView.F0.getText();
-            if (chatActivityEnterView.F0.getLineCount() > 2 && text != null && !TextUtils.isEmpty(text.toString().trim())) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            chatActivityEnterView.H1(z10);
-        }
-        chatActivityEnterView.Z1();
-        org.telegram.ui.z51 z51Var = chatActivityEnterView.X1;
-        if (z51Var != null) {
-            z51Var.invalidate();
-        }
-        zd zdVar = chatActivityEnterView.Z1;
-        if (zdVar != null) {
-            zdVar.invalidate();
-        }
-        chatActivityEnterView.f32215i2.setAlpha((1.0f - f10) * chatActivityEnterView.f32282s1);
     }
 }

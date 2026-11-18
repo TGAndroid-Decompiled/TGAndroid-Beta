@@ -1,42 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-public final class oc0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f37924a;
-    public final Activity f37925b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class oc0 extends Drawable implements Drawable.Callback {
+    public final fh.g f38062a;
+    public final RectF f38063b = new RectF();
+    public int f38064c = 255;
 
-    public oc0(Activity activity, int i7) {
-        this.f37924a = i7;
-        this.f37925b = activity;
+    public oc0(fh.g gVar) {
+        this.f38062a = gVar;
+        gVar.setCallback(this);
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f37924a) {
-            case 0:
-                Activity activity = this.f37925b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
-                    activity.startActivity(intent);
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
-            default:
-                Activity activity2 = this.f37925b;
-                try {
-                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26609b.getPackageName()));
-                    activity2.startActivity(intent2);
-                    return;
-                } catch (Exception e11) {
-                    org.telegram.messenger.a8.g(e11, true);
-                    return;
-                }
-        }
+    public final void draw(Canvas canvas) {
+        this.f38062a.draw(canvas);
+        Rect bounds = getBounds();
+        RectF rectF = this.f38063b;
+        rectF.set(bounds);
+        float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
+        float f10 = this.f38064c / 255.0f;
+        ci.u.c(canvas, rectF, min, f10);
+        ci.u.a(min, f10, 0, canvas, rectF);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.f38062a.setBounds(rect);
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        scheduleSelf(runnable, j3);
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f38064c = i7;
+        this.f38062a.setAlpha(i7);
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f38062a.getClass();
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
     }
 }

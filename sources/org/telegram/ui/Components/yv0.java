@@ -1,10 +1,12 @@
 package org.telegram.ui.Components;
+public final class yv0 extends org.telegram.ui.oq0 {
+    @Override
+    public final boolean Q() {
+        return true;
+    }
 
-import org.telegram.tgnet.TLRPC;
-public interface yv0 {
-    boolean b();
-
-    boolean c();
-
-    void d(TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, boolean z11, int i7, int i10);
+    @Override
+    public final boolean z() {
+        return false;
+    }
 }

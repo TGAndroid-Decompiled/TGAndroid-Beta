@@ -5,39 +5,39 @@ import android.util.Log;
 import android.view.View;
 import com.google.android.gms.internal.vision.u2;
 import java.util.ArrayList;
-import org.telegram.messenger.ou;
+import org.telegram.ui.Components.hn;
 public final class c {
-    public int f13215a;
-    public boolean f13216b;
-    public int f13217c;
+    public int f13530a;
+    public boolean f13531b;
+    public int f13532c;
     public final Object d;
 
     public c(Context context) {
-        this.f13215a = 0;
-        this.f13216b = true;
-        this.f13217c = 0;
+        this.f13530a = 0;
+        this.f13531b = true;
+        this.f13532c = 0;
         this.d = context;
     }
 
     public w8.b a() {
         boolean z10;
         ?? obj = new Object();
-        int i7 = this.f13217c;
-        obj.f59847a = i7;
-        int i10 = this.f13215a;
-        obj.f59848b = i10;
+        int i7 = this.f13532c;
+        obj.f60417a = i7;
+        int i10 = this.f13530a;
+        obj.f60418b = i10;
         boolean z11 = false;
-        obj.f59849c = 0;
+        obj.f60419c = 0;
         obj.d = false;
-        obj.f59850e = this.f13216b;
-        obj.f59851f = -1.0f;
+        obj.f60420e = this.f13531b;
+        obj.f60421f = -1.0f;
         if (i7 != 2 && i10 == 2) {
             Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
             z10 = false;
         } else {
             z10 = true;
         }
-        if (obj.f59848b == 2 && obj.f59849c == 1) {
+        if (obj.f60418b == 2 && obj.f60419c == 1) {
             Log.e("FaceDetector", "Classification is not supported with contour.");
         } else {
             z11 = z10;
@@ -55,7 +55,7 @@ public final class c {
             sb2.append(i7);
             throw new IllegalArgumentException(sb2.toString());
         }
-        this.f13215a = i7;
+        this.f13530a = i7;
     }
 
     public void c(int i7) {
@@ -65,17 +65,17 @@ public final class c {
             sb2.append(i7);
             throw new IllegalArgumentException(sb2.toString());
         }
-        this.f13217c = i7;
+        this.f13532c = i7;
     }
 
     public c(mf.a... aVarArr) {
-        this.f13215a = -1;
-        this.f13217c = -1;
-        this.f13216b = false;
+        this.f13530a = -1;
+        this.f13532c = -1;
+        this.f13531b = false;
         this.d = aVarArr;
     }
 
     public c(View view, ArrayList arrayList, xh.j jVar) {
-        this.d = new ou(view.getContext(), new xh.i(this, view, arrayList, jVar));
+        this.d = new hn(view.getContext(), new xh.i(this, view, arrayList, jVar));
     }
 }

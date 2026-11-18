@@ -1,51 +1,51 @@
 package kf;
 
-import c8.d1;
+import c8.f1;
 import com.google.android.gms.internal.vision.e2;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 public abstract class p {
-    public final int f17839a;
-    public Object f17840b;
-    public Object f17841c;
+    public final int f18234a;
+    public Object f18235b;
+    public Object f18236c;
     public Object d;
-    public Object f17842e;
-    public Object f17843f;
+    public Object f18237e;
+    public Object f18238f;
 
     public p() {
-        this.f17839a = 0;
-        this.f17840b = null;
-        this.f17841c = null;
+        this.f18234a = 0;
+        this.f18235b = null;
+        this.f18236c = null;
         this.d = null;
-        this.f17842e = null;
-        this.f17843f = null;
+        this.f18237e = null;
+        this.f18238f = null;
     }
 
-    public abstract void a(d1 d1Var);
+    public abstract void a(f1 f1Var);
 
     public void b(p pVar) {
         pVar.g();
         pVar.e(this);
         p pVar2 = (p) this.d;
         if (pVar2 != null) {
-            pVar2.f17843f = pVar;
-            pVar.f17842e = pVar2;
+            pVar2.f18238f = pVar;
+            pVar.f18237e = pVar2;
             this.d = pVar;
             return;
         }
-        this.f17841c = pVar;
+        this.f18236c = pVar;
         this.d = pVar;
     }
 
     public sf.b c() {
         uf.a aVar;
-        ab.d dVar = (ab.d) this.f17840b;
-        DataInputStream dataInputStream = (DataInputStream) this.f17842e;
-        sf.b bVar = (sf.b) this.f17843f;
+        ab.d dVar = (ab.d) this.f18235b;
+        DataInputStream dataInputStream = (DataInputStream) this.f18237e;
+        sf.b bVar = (sf.b) this.f18238f;
         if (bVar != null) {
             while (bVar.i() > 0) {
-                if (((uf.a) ((ab.d) bVar.f17840b)).skip(bVar.i()) == 0) {
+                if (((uf.a) ((ab.d) bVar.f18235b)).skip(bVar.i()) == 0) {
                     throw new EOFException("Cannot skip atom");
                 }
             }
@@ -60,7 +60,7 @@ public abstract class p {
             aVar = new uf.a(dVar, 8L, readInt - 8);
         }
         sf.b bVar2 = new sf.b(aVar, this, str, 0);
-        this.f17843f = bVar2;
+        this.f18238f = bVar2;
         return bVar2;
     }
 
@@ -74,7 +74,7 @@ public abstract class p {
     }
 
     public void e(p pVar) {
-        this.f17840b = pVar;
+        this.f18235b = pVar;
     }
 
     public String f() {
@@ -82,31 +82,31 @@ public abstract class p {
     }
 
     public void g() {
-        p pVar = (p) this.f17842e;
+        p pVar = (p) this.f18237e;
         if (pVar != null) {
-            pVar.f17843f = (p) this.f17843f;
+            pVar.f18238f = (p) this.f18238f;
         } else {
-            p pVar2 = (p) this.f17840b;
+            p pVar2 = (p) this.f18235b;
             if (pVar2 != null) {
-                pVar2.f17841c = (p) this.f17843f;
+                pVar2.f18236c = (p) this.f18238f;
             }
         }
-        p pVar3 = (p) this.f17843f;
+        p pVar3 = (p) this.f18238f;
         if (pVar3 != null) {
-            pVar3.f17842e = pVar;
+            pVar3.f18237e = pVar;
         } else {
-            p pVar4 = (p) this.f17840b;
+            p pVar4 = (p) this.f18235b;
             if (pVar4 != null) {
                 pVar4.d = pVar;
             }
         }
-        this.f17840b = null;
-        this.f17843f = null;
-        this.f17842e = null;
+        this.f18235b = null;
+        this.f18238f = null;
+        this.f18237e = null;
     }
 
     public String toString() {
-        switch (this.f17839a) {
+        switch (this.f18234a) {
             case 0:
                 return getClass().getSimpleName() + "{" + f() + "}";
             default:
@@ -115,10 +115,10 @@ public abstract class p {
     }
 
     public p(ab.d dVar, p pVar, String str) {
-        this.f17839a = 1;
-        this.f17840b = dVar;
-        this.f17841c = pVar;
+        this.f18234a = 1;
+        this.f18235b = dVar;
+        this.f18236c = pVar;
         this.d = str;
-        this.f17842e = new DataInputStream(dVar);
+        this.f18237e = new DataInputStream(dVar);
     }
 }

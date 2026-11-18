@@ -3,28 +3,28 @@ package f7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Base64;
-import c8.yb;
+import c8.bc;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class v0 extends r6.a {
     public static final Parcelable.Creator<v0> CREATOR = new t0(3);
-    public final boolean f11265a;
-    public final q7.s0 f11266b;
+    public final boolean f11585a;
+    public final q7.s0 f11586b;
 
     public v0(boolean z10, q7.s0 s0Var) {
-        this.f11265a = z10;
-        this.f11266b = s0Var;
+        this.f11585a = z10;
+        this.f11586b = s0Var;
     }
 
     public final JSONObject b() {
         byte[] p10;
         try {
             JSONObject jSONObject = new JSONObject();
-            if (this.f11265a) {
+            if (this.f11585a) {
                 jSONObject.put("enabled", true);
             }
-            q7.s0 s0Var = this.f11266b;
+            q7.s0 s0Var = this.f11586b;
             if (s0Var == null) {
                 p10 = null;
             } else {
@@ -49,14 +49,14 @@ public final class v0 extends r6.a {
             return false;
         }
         v0 v0Var = (v0) obj;
-        if (this.f11265a != v0Var.f11265a || !q6.m.k(this.f11266b, v0Var.f11266b)) {
+        if (this.f11585a != v0Var.f11585a || !q6.m.l(this.f11586b, v0Var.f11586b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f11265a), this.f11266b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f11585a), this.f11586b});
     }
 
     public final String toString() {
@@ -66,16 +66,16 @@ public final class v0 extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         byte[] p10;
-        int r10 = yb.r(parcel, 20293);
-        yb.q(parcel, 1, 4);
-        parcel.writeInt(this.f11265a ? 1 : 0);
-        q7.s0 s0Var = this.f11266b;
+        int r10 = bc.r(parcel, 20293);
+        bc.q(parcel, 1, 4);
+        parcel.writeInt(this.f11585a ? 1 : 0);
+        q7.s0 s0Var = this.f11586b;
         if (s0Var == null) {
             p10 = null;
         } else {
             p10 = s0Var.p();
         }
-        yb.c(parcel, 2, p10);
-        yb.s(parcel, r10);
+        bc.c(parcel, 2, p10);
+        bc.s(parcel, r10);
     }
 }

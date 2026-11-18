@@ -1,61 +1,50 @@
 package di;
 
-import android.text.TextUtils;
-import org.telegram.messenger.z10;
+import android.os.Bundle;
 import org.telegram.ui.LaunchActivity;
-public final class g3 implements z10 {
-    public final int f8609a;
-    public final c6 f8610b;
-    public final vf.b f8611c;
-    public final wg.c1 d;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.bn;
+public final class g3 implements Runnable {
+    public final int f8858a;
+    public final long f8859b;
 
-    public g3(c6 c6Var, vf.b bVar, wg.c1 c1Var, int i7) {
-        this.f8609a = i7;
-        this.f8610b = c6Var;
-        this.f8611c = bVar;
-        this.d = c1Var;
+    public g3(long j3, int i7) {
+        this.f8858a = i7;
+        this.f8859b = j3;
     }
 
     @Override
-    public final void a(Object obj) {
-        org.telegram.ui.Components.cc k10;
-        org.telegram.ui.Components.cc k11;
-        String str = (String) obj;
-        switch (this.f8609a) {
+    public final void run() {
+        switch (this.f8858a) {
             case 0:
-                this.f8611c.b();
-                c6 c6Var = this.f8610b;
-                wg.c1 c1Var = this.d;
-                if (str != null) {
-                    if (c1Var != null) {
-                        k10 = new org.telegram.ui.Components.cc(c1Var.f29685c, c6Var.J0);
-                    } else {
-                        k10 = c6Var.k();
-                    }
-                    k10.e0(str, false);
+                org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
+                if (T != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("user_id", this.f8859b);
+                    bundle.putBoolean("my_profile", true);
+                    bundle.putBoolean("open_gifts", true);
+                    T.presentFragment(new ProfileActivity(bundle, null));
                     return;
                 }
-                if (c1Var != null) {
-                    c1Var.dismiss();
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.h2 T2 = LaunchActivity.T();
+                if (T2 != null) {
+                    T2.presentFragment(bn.ua(this.f8859b));
+                    return;
                 }
-                c6Var.dismiss();
-                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
-                if (T instanceof org.telegram.ui.Wallet.y5) {
-                    ((org.telegram.ui.Wallet.y5) T).P0();
+                return;
+            case 2:
+                org.telegram.ui.ActionBar.h2 T3 = LaunchActivity.T();
+                if (T3 != null) {
+                    T3.presentFragment(bn.ua(this.f8859b));
                     return;
                 }
                 return;
             default:
-                this.f8611c.c(false);
-                if (!TextUtils.isEmpty(str)) {
-                    c6 c6Var2 = this.f8610b;
-                    wg.c1 c1Var2 = this.d;
-                    if (c1Var2 != null) {
-                        k11 = new org.telegram.ui.Components.cc(c1Var2.f29685c, c6Var2.J0);
-                    } else {
-                        k11 = c6Var2.k();
-                    }
-                    k11.e0(str, false);
+                org.telegram.ui.ActionBar.h2 T4 = LaunchActivity.T();
+                if (T4 != null) {
+                    T4.presentFragment(bn.ua(this.f8859b));
                     return;
                 }
                 return;

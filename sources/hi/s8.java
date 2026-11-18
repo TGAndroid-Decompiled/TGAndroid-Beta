@@ -1,11 +1,11 @@
 package hi;
 public final class s8 implements Runnable {
-    public final int f15031a;
-    public final sa f15032b;
+    public final int f15389a;
+    public final ta f15390b;
 
-    public s8(sa saVar, int i7) {
-        this.f15031a = i7;
-        this.f15032b = saVar;
+    public s8(ta taVar, int i7) {
+        this.f15389a = i7;
+        this.f15390b = taVar;
     }
 
     @Override

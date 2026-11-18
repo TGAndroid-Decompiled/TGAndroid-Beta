@@ -1,14 +1,14 @@
 package yg;
 
-import c8.ja;
-import fi.w3;
+import c8.ma;
+import fi.u3;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.Components.i9;
-import org.telegram.ui.Components.t8;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.b9;
+import org.telegram.ui.Components.q9;
 public final class e extends d {
     @Override
     public final void d() {
@@ -19,13 +19,13 @@ public final class e extends d {
         float f12;
         float f13;
         int i11 = 3;
-        if (hd.f24104a0) {
+        if (gd.f24216a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        this.f60645c.setLayoutParams(ja.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        boolean z10 = hd.f24104a0;
+        this.f61212c.setLayoutParams(ma.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        boolean z10 = gd.f24216a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -42,8 +42,8 @@ public final class e extends d {
         } else {
             f11 = 20.0f;
         }
-        this.d.setLayoutParams(ja.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z11 = hd.f24104a0;
+        this.d.setLayoutParams(ma.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
+        boolean z11 = gd.f24216a0;
         if (z11) {
             i11 = 5;
         }
@@ -58,35 +58,35 @@ public final class e extends d {
         } else {
             f13 = 20.0f;
         }
-        this.f60646e.setLayoutParams(ja.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        this.f61213e.setLayoutParams(ma.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        q6.X(this.f60646e, j6.f29107r5, this.f60643a);
+        u6.X(this.f61213e, n6.f29654r5, this.f61210a);
         boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        w3 w3Var = this.d;
-        t8 t8Var = this.f60644b;
+        u3 u3Var = this.d;
+        b9 b9Var = this.f61211b;
         if (z10) {
             TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
-            t8Var.g(26);
-            w3Var.k(hd.H(',', "BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
-            setSubtitle(hd.G(tL_prepaidStarsGiveaway.quantity, "AmongWinners", new Object[0]));
+            b9Var.g(26);
+            u3Var.k(gd.H(',', "BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
+            setSubtitle(gd.G(tL_prepaidStarsGiveaway.quantity, "AmongWinners", new Object[0]));
         } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            w3Var.k(hd.M0(2131753328, null));
-            t8Var.g(16);
+            u3Var.k(gd.M0(2131753326, null));
+            b9Var.g(16);
             TL_stories.TL_prepaidGiveaway tL_prepaidGiveaway = (TL_stories.TL_prepaidGiveaway) prepaidGiveaway;
             int i7 = tL_prepaidGiveaway.months;
             if (i7 == 12) {
-                t8Var.i(-31392, -2796986);
+                b9Var.i(-31392, -2796986);
             } else if (i7 == 6) {
-                t8Var.i(-10703110, -12481584);
+                b9Var.i(-10703110, -12481584);
             } else {
-                t8Var.i(-6631068, -11945404);
+                b9Var.i(-6631068, -11945404);
             }
-            setSubtitle(hd.G(prepaidGiveaway.quantity, "BoostingPreparedGiveawaySubscriptionsPlural", hd.G(tL_prepaidGiveaway.months, "Months", new Object[0])));
+            setSubtitle(gd.G(prepaidGiveaway.quantity, "BoostingPreparedGiveawaySubscriptionsPlural", gd.G(tL_prepaidGiveaway.months, "Months", new Object[0])));
         }
-        i9 i9Var = this.f60645c;
-        i9Var.setImageDrawable(t8Var);
-        i9Var.setRoundRadius(g0.L(20.0f));
+        q9 q9Var = this.f61212c;
+        q9Var.setImageDrawable(b9Var);
+        q9Var.setRoundRadius(g0.L(20.0f));
     }
 }

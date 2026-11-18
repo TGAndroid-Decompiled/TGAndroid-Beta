@@ -1,45 +1,30 @@
 package bg;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import org.telegram.messenger.gj;
+import org.telegram.messenger.f3;
+import org.telegram.messenger.fj;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
-public final class u extends t {
-    public final void b(int i7, AbstractMap abstractMap, AbstractMap abstractMap2, int i10) {
-        ArrayList arrayList = this.f3332a;
-        int size = arrayList.size();
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            TLRPC.TL_message b10 = w.b((TL_ephemeral.EphemeralMessage) obj);
-            int i12 = i7;
-            AbstractMap abstractMap3 = abstractMap;
-            AbstractMap abstractMap4 = abstractMap2;
-            gj gjVar = new gj(i12, (TLRPC.Message) b10, abstractMap3, abstractMap4, true, true);
-            long B0 = gj.B0(b10);
-            if (i10 != 0) {
-                b10.edit_date = i10;
-                b10.flags |= 32768;
-            }
-            a0.h hVar = this.f3333b;
-            TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) hVar.f(B0);
-            if (tL_messages_messages == null) {
-                tL_messages_messages = new TLRPC.TL_messages_messages();
-                hVar.k(tL_messages_messages, B0);
-            }
-            tL_messages_messages.messages.add(b10);
-            a0.h hVar2 = this.f3334c;
-            ArrayList arrayList2 = (ArrayList) hVar2.f(B0);
-            if (arrayList2 == null) {
-                arrayList2 = new ArrayList();
-                hVar2.k(arrayList2, B0);
-            }
-            arrayList2.add(gjVar);
-            i7 = i12;
-            abstractMap = abstractMap3;
-            abstractMap2 = abstractMap4;
+public class u {
+    public final ArrayList f3339a = new ArrayList();
+    public final a0.h f3340b = new a0.h();
+    public final a0.h f3341c = new a0.h();
+
+    public static void a(u uVar, TL_ephemeral.EphemeralMessage ephemeralMessage, TLRPC.TL_message tL_message, fj fjVar) {
+        a0.h hVar = uVar.f3341c;
+        long B0 = fj.B0(tL_message);
+        uVar.f3339a.add(ephemeralMessage);
+        a0.h hVar2 = uVar.f3340b;
+        TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) hVar2.f(B0);
+        if (tL_messages_messages == null) {
+            tL_messages_messages = new TLRPC.TL_messages_messages();
+            hVar2.k(tL_messages_messages, B0);
         }
+        tL_messages_messages.messages.add(tL_message);
+        ArrayList arrayList = (ArrayList) hVar.f(B0);
+        if (arrayList == null) {
+            arrayList = f3.h(hVar, B0);
+        }
+        arrayList.add(fjVar);
     }
 }

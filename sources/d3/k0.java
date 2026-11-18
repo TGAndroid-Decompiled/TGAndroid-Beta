@@ -11,11 +11,11 @@ public interface k0 {
 
     void d(float f10);
 
-    void e(cb.c cVar);
+    void e();
 
-    void f();
+    void f(Surface surface, h2.y yVar);
 
-    void g(Surface surface, h2.y yVar);
+    void g(d6.i iVar);
 
     void h();
 

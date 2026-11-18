@@ -4,33 +4,33 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
-import org.telegram.messenger.hd;
-public final class w4 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f31876a;
-    public final FrameLayout f31877b;
-    public int f31878c;
+import org.telegram.messenger.gd;
+public final class w4 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public final org.telegram.ui.ActionBar.i6 f32256a;
+    public final FrameLayout f32257b;
+    public int f32258c;
     public boolean d;
 
-    public w4(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public w4(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
         super(context);
-        this.f31876a = e6Var;
+        this.f32256a = i6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f31877b = frameLayout;
-        frameLayout.setBackground(org.telegram.ui.ActionBar.y5.e(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Fi, e6Var), 8.0f));
-        addView(frameLayout, c8.ja.d(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        j5Var.setPadding(org.telegram.messenger.g0.L(34.0f), 0, org.telegram.messenger.g0.L(34.0f), 0);
-        j5Var.setGravity(17);
-        j5Var.setDrawablePadding(org.telegram.messenger.g0.L(8.0f));
-        org.telegram.ui.ActionBar.q6.X(j5Var, org.telegram.ui.ActionBar.j6.Ji, e6Var);
-        j5Var.setTextSize(14);
-        j5Var.l(hd.M0(2131751436, null), false);
-        j5Var.setLeftDrawable(2131231104);
-        j5Var.setTypeface(org.telegram.messenger.g0.o());
-        frameLayout.addView(j5Var, c8.ja.c(-1.0f, -1));
-        frameLayout.setOutlineProvider(bg.t0.f3336b);
+        this.f32257b = frameLayout;
+        frameLayout.setBackground(org.telegram.ui.ActionBar.b6.e(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, i6Var), 8.0f));
+        addView(frameLayout, c8.ma.d(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
+        org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(context);
+        n5Var.setPadding(org.telegram.messenger.g0.L(34.0f), 0, org.telegram.messenger.g0.L(34.0f), 0);
+        n5Var.setGravity(17);
+        n5Var.setDrawablePadding(org.telegram.messenger.g0.L(8.0f));
+        org.telegram.ui.ActionBar.u6.X(n5Var, org.telegram.ui.ActionBar.n6.Ji, i6Var);
+        n5Var.setTextSize(14);
+        n5Var.l(gd.M0(2131751425, null), false);
+        n5Var.setLeftDrawable(2131231104);
+        n5Var.setTypeface(org.telegram.messenger.g0.o());
+        frameLayout.addView(n5Var, c8.ma.c(-1.0f, -1));
+        frameLayout.setOutlineProvider(bg.u0.f3343b);
         frameLayout.setClipToOutline(true);
-        c8.na.b(frameLayout, 0.02f, 1.2f);
+        c8.ra.b(frameLayout, 0.02f, 1.2f);
     }
 
     @Override
@@ -39,23 +39,23 @@ public final class w4 extends FrameLayout implements org.telegram.ui.ActionBar.z
     }
 
     public void setOnButtonClick(View.OnClickListener onClickListener) {
-        this.f31877b.setOnClickListener(onClickListener);
+        this.f32257b.setOnClickListener(onClickListener);
     }
 
     @Override
     public final void updateColors() {
         try {
-            int w02 = org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.Fi, this.f31876a);
-            FrameLayout frameLayout = this.f31877b;
+            int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, this.f32256a);
+            FrameLayout frameLayout = this.f32257b;
             if (frameLayout != null) {
-                if (w02 == this.f31878c) {
-                    if (this.d != org.telegram.ui.ActionBar.j6.I.q()) {
+                if (w02 == this.f32258c) {
+                    if (this.d != org.telegram.ui.ActionBar.n6.I.q()) {
                     }
                 }
-                this.d = org.telegram.ui.ActionBar.j6.I.q();
-                this.f31878c = w02;
-                org.telegram.ui.ActionBar.j6.H1(frameLayout.getBackground(), w02, false);
-                org.telegram.ui.ActionBar.j6.H1(frameLayout.getBackground(), org.telegram.ui.ActionBar.y5.b(w02), true);
+                this.d = org.telegram.ui.ActionBar.n6.I.q();
+                this.f32258c = w02;
+                org.telegram.ui.ActionBar.n6.H1(frameLayout.getBackground(), w02, false);
+                org.telegram.ui.ActionBar.n6.H1(frameLayout.getBackground(), org.telegram.ui.ActionBar.b6.b(w02), true);
                 frameLayout.invalidate();
             }
             invalidate();

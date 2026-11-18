@@ -6,16 +6,16 @@ import android.os.Build;
 import android.support.v4.media.session.MediaSessionCompat$Token;
 import e0.y;
 public final class c extends y {
-    public int[] f4083e;
-    public MediaSessionCompat$Token f4084f;
+    public int[] f4364e;
+    public MediaSessionCompat$Token f4365f;
 
     @Override
     public final void b(k kVar) {
         Notification.Builder builder = (Notification.Builder) kVar.d;
         if (Build.VERSION.SDK_INT >= 34) {
-            a.d(builder, a.b(b.a(a.a(), null, 0, null, Boolean.FALSE), this.f4083e, this.f4084f));
+            a.d(builder, a.b(b.a(a.a(), null, 0, null, Boolean.FALSE), this.f4364e, this.f4365f));
         } else {
-            a.d(builder, a.b(a.a(), this.f4083e, this.f4084f));
+            a.d(builder, a.b(a.a(), this.f4364e, this.f4365f));
         }
     }
 }

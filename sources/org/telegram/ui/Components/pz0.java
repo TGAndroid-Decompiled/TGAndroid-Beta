@@ -2,24 +2,32 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.ThemeEditorView;
 public final class pz0 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f38450a;
+    public final int f38650a;
+    public final ThemeEditorView f38651b;
 
-    public pz0(ThemeEditorView.EditorAlert editorAlert) {
-        this.f38450a = editorAlert;
+    public pz0(ThemeEditorView themeEditorView, int i7) {
+        this.f38650a = i7;
+        this.f38651b = themeEditorView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f38450a;
-        if (editorAlert.n1.getAdapter() == editorAlert.f32767t1) {
-            vz0 vz0Var = editorAlert.f32764q1.f41808b;
-            vz0Var.requestFocus();
-            org.telegram.messenger.g0.J3(vz0Var);
+        switch (this.f38650a) {
+            case 0:
+                ThemeEditorView themeEditorView = this.f38651b;
+                nz0 nz0Var = themeEditorView.f33147c;
+                if (nz0Var != null) {
+                    nz0Var.setBackground(null);
+                    themeEditorView.f33152j.removeView(themeEditorView.f33147c);
+                    return;
+                }
+                return;
+            default:
+                ThemeEditorView themeEditorView2 = this.f38651b;
+                org.telegram.ui.ActionBar.n6.x1(themeEditorView2.f33157o, true, false, false);
+                themeEditorView2.b();
+                return;
         }
-        editorAlert.f32761m1.setVisibility(8);
-        editorAlert.f32769v1.setVisibility(8);
-        editorAlert.C1 = false;
     }
 }

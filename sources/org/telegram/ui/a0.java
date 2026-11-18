@@ -2,65 +2,47 @@ package org.telegram.ui;
 
 import org.telegram.ui.web.HttpGetFileTask;
 public final class a0 implements Runnable {
-    public final int f44891a;
-    public final float f44892b;
-    public final Object f44893c;
+    public final int f45398a;
+    public final float f45399b;
+    public final Object f45400c;
 
     public a0(Object obj, float f10, int i7) {
-        this.f44891a = i7;
-        this.f44893c = obj;
-        this.f44892b = f10;
+        this.f45398a = i7;
+        this.f45400c = obj;
+        this.f45399b = f10;
     }
 
     @Override
     public final void run() {
-        switch (this.f44891a) {
+        switch (this.f45398a) {
             case 0:
-                ((g4) this.f44893c).f47314i0.N.c(true, this.f44892b);
+                ((g4) this.f45400c).f47923i0.N.c(true, this.f45399b);
                 return;
             case 1:
-                org.telegram.ui.Components.qa qaVar = (org.telegram.ui.Components.qa) this.f44893c;
-                if (qaVar.f38590a.getTranslationX() == this.f44892b) {
-                    qaVar.E.b();
+                org.telegram.ui.Components.za zaVar = (org.telegram.ui.Components.za) this.f45400c;
+                if (zaVar.f42830a.getTranslationX() == this.f45399b) {
+                    zaVar.E.b();
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Components.voip.a1 a1Var = (org.telegram.ui.Components.voip.a1) this.f44893c;
-                float f10 = this.f44892b;
-                yb1 yb1Var = a1Var.f40491c;
-                if (f10 > 0.0f) {
-                    int i7 = yb1Var.f40550x;
+                org.telegram.ui.Components.voip.z0 z0Var = (org.telegram.ui.Components.voip.z0) this.f45400c;
+                bc1 bc1Var = z0Var.f41372c;
+                if (this.f45399b > 0.0f) {
+                    int i7 = bc1Var.f40797x;
                     if (i7 < 2) {
-                        yb1Var.c(i7 + 1, true);
+                        bc1Var.c(i7 + 1, true);
                     }
                 } else {
-                    int i10 = yb1Var.f40550x;
+                    int i10 = bc1Var.f40797x;
                     if (i10 > 0) {
-                        yb1Var.c(i10 - 1, true);
+                        bc1Var.c(i10 - 1, true);
                     }
                 }
-                a1Var.f40490b = false;
-                return;
-            case 3:
-                HttpGetFileTask.b((HttpGetFileTask) this.f44893c, this.f44892b);
+                z0Var.f41371b = false;
                 return;
             default:
-                org.telegram.utils.twidget.l1 l1Var = (org.telegram.utils.twidget.l1) this.f44893c;
-                float f11 = this.f44892b;
-                if (!l1Var.f54318w) {
-                    l1Var.f54299a.removeCallbacks(l1Var.Q);
-                    int i11 = (f11 > 0.0f ? 1 : (f11 == 0.0f ? 0 : -1));
-                    if (i11 > 0) {
-                        l1Var.f54299a.postDelayed(l1Var.Q, (long) Math.ceil(f11));
-                        return;
-                    } else if (i11 == 0) {
-                        l1Var.d();
-                        return;
-                    } else {
-                        return;
-                    }
-                }
+                HttpGetFileTask.b((HttpGetFileTask) this.f45400c, this.f45399b);
                 return;
         }
     }

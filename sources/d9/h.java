@@ -1,43 +1,43 @@
 package d9;
 
-import a8.q9;
+import a8.r9;
 public final class h extends i {
-    public final transient int f7627c;
+    public final transient int f7910c;
     public final transient int d;
-    public final i f7628e;
+    public final i f7911e;
 
     public h(i iVar, int i7, int i10) {
-        this.f7628e = iVar;
-        this.f7627c = i7;
+        this.f7911e = iVar;
+        this.f7910c = i7;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i7) {
-        q9.a(i7, this.d);
-        return this.f7628e.get(i7 + this.f7627c);
+        r9.a(i7, this.d);
+        return this.f7911e.get(i7 + this.f7910c);
     }
 
     @Override
     public final int i() {
-        return this.f7628e.j() + this.f7627c + this.d;
+        return this.f7911e.j() + this.f7910c + this.d;
     }
 
     @Override
     public final int j() {
-        return this.f7628e.j() + this.f7627c;
+        return this.f7911e.j() + this.f7910c;
     }
 
     @Override
     public final Object[] k() {
-        return this.f7628e.k();
+        return this.f7911e.k();
     }
 
     @Override
     public final i subList(int i7, int i10) {
-        q9.b(i7, i10, this.d);
-        int i11 = this.f7627c;
-        return this.f7628e.subList(i7 + i11, i10 + i11);
+        r9.b(i7, i10, this.d);
+        int i11 = this.f7910c;
+        return this.f7911e.subList(i7 + i11, i10 + i11);
     }
 
     @Override

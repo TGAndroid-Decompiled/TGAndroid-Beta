@@ -1,22 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-public final class n90 extends p5 {
-    public final o90 f37506a;
+public final class n90 extends g.p {
+    public final t90 f37756c;
 
-    public n90(o90 o90Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
-        super(document, fontMetricsInt);
-        this.f37506a = o90Var;
+    public n90(t90 t90Var) {
+        this.f37756c = t90Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        o90 o90Var = this.f37506a;
-        int i14 = o90Var.E;
-        int i15 = i13 + i11;
-        int i16 = this.measuredSize;
-        o90Var.f37885c.set((int) f10, i5.c.e(i15, i16, 2, i14), (int) (f10 + i16), ((i15 + i16) / 2) + i14);
+    public final int i(int i7) {
+        t90 t90Var = this.f37756c;
+        jg.h1 h1Var = t90Var.f39949f;
+        if (i7 != 0) {
+            int i10 = i7 - 1;
+            Object J = h1Var.J(i10);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
+            }
+            if (J instanceof TLRPC.Document) {
+                return 20;
+            }
+            if (h1Var.I() != null || h1Var.V != null) {
+                i7 = i10;
+            }
+            m90 m90Var = t90Var.d;
+            m90Var.B1();
+            return m90Var.R.get(i7);
+        }
+        return 100;
     }
 }

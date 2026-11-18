@@ -16,14 +16,14 @@ import java.util.concurrent.Callable;
 import org.telegram.ui.Dictation.DictationLid;
 import org.webrtc.audio.WebRtcAudioRecord;
 public final class i implements Callable {
-    public final int f939a;
-    public final Object f940b;
-    public final Object f941c;
+    public final int f938a;
+    public final Object f939b;
+    public final Object f940c;
 
     public i(int i7, Object obj, Object obj2) {
-        this.f939a = i7;
-        this.f940b = obj;
-        this.f941c = obj2;
+        this.f938a = i7;
+        this.f939b = obj;
+        this.f940c = obj2;
     }
 
     @Override
@@ -34,31 +34,31 @@ public final class i implements Callable {
         int i7;
         ComponentName startService;
         String lambda$scheduleLogRecordingConfigurationsTask$0;
-        switch (this.f939a) {
+        switch (this.f938a) {
             case 0:
-                Context context = (Context) this.f940b;
-                Intent intent = (Intent) this.f941c;
-                c0 q10 = c0.q();
-                q10.getClass();
+                Context context = (Context) this.f939b;
+                Intent intent = (Intent) this.f940c;
+                c0 s5 = c0.s();
+                s5.getClass();
                 if (Log.isLoggable("FirebaseMessaging", 3)) {
                     Log.d("FirebaseMessaging", "Starting service");
                 }
-                ((ArrayDeque) q10.f911e).offer(intent);
+                ((ArrayDeque) s5.f910e).offer(intent);
                 Intent intent2 = new Intent("com.google.firebase.MESSAGING_EVENT");
                 intent2.setPackage(context.getPackageName());
-                synchronized (q10) {
+                synchronized (s5) {
                     try {
-                        str = (String) q10.f909b;
+                        str = (String) s5.f908b;
                         if (str == null) {
                             ResolveInfo resolveService = context.getPackageManager().resolveService(intent2, 0);
                             if (resolveService != null && (serviceInfo = resolveService.serviceInfo) != null) {
                                 if (context.getPackageName().equals(serviceInfo.packageName) && (str2 = serviceInfo.name) != null) {
                                     if (str2.startsWith(".")) {
-                                        q10.f909b = context.getPackageName() + serviceInfo.name;
+                                        s5.f908b = context.getPackageName() + serviceInfo.name;
                                     } else {
-                                        q10.f909b = serviceInfo.name;
+                                        s5.f908b = serviceInfo.name;
                                     }
-                                    str = (String) q10.f909b;
+                                    str = (String) s5.f908b;
                                 }
                                 Log.e("FirebaseMessaging", "Error resolving target intent service, skipping classname enforcement. Resolved service was: " + serviceInfo.packageName + "/" + serviceInfo.name);
                                 str = null;
@@ -76,7 +76,7 @@ public final class i implements Callable {
                     intent2.setClassName(context.getPackageName(), str);
                 }
                 try {
-                    if (q10.w(context)) {
+                    if (s5.y(context)) {
                         startService = m0.d(context, intent2);
                     } else {
                         startService = context.startService(intent2);
@@ -97,21 +97,21 @@ public final class i implements Callable {
                 }
                 return Integer.valueOf(i7);
             case 1:
-                return DictationLid.a((byte[]) this.f940b, (int[]) this.f941c);
+                return DictationLid.a((byte[]) this.f939b, (int[]) this.f940c);
             case 2:
-                j2.i iVar = (j2.i) this.f940b;
-                byte[] bArr = (byte[]) this.f941c;
+                j2.i iVar = (j2.i) this.f939b;
+                byte[] bArr = (byte[]) this.f940c;
                 boolean z10 = iVar.d;
-                Bitmap b10 = bg.n0.b(bArr.length, iVar.f16790c, bArr);
+                Bitmap b10 = bg.o0.b(bArr.length, iVar.f17175c, bArr);
                 if (z10) {
-                    return bg.n0.e(b10);
+                    return bg.o0.e(b10);
                 }
                 return b10;
             case 3:
-                j2.i iVar2 = (j2.i) this.f940b;
-                Uri uri = (Uri) this.f941c;
-                j2.h createDataSource = iVar2.f16789b.createDataSource();
-                int i10 = iVar2.f16790c;
+                j2.i iVar2 = (j2.i) this.f939b;
+                Uri uri = (Uri) this.f940c;
+                j2.h createDataSource = iVar2.f17174b.createDataSource();
+                int i10 = iVar2.f17175c;
                 boolean z11 = iVar2.d;
                 try {
                     j2.m mVar = new j2.m(uri, 1, null, Collections.EMPTY_MAP, 0L, -1L, null, 0);
@@ -130,9 +130,9 @@ public final class i implements Callable {
                         }
                     }
                     byte[] copyOf = Arrays.copyOf(bArr2, i12);
-                    Bitmap b11 = bg.n0.b(copyOf.length, i10, copyOf);
+                    Bitmap b11 = bg.o0.b(copyOf.length, i10, copyOf);
                     if (z11) {
-                        b11 = bg.n0.e(b11);
+                        b11 = bg.o0.e(b11);
                     }
                     nVar.close();
                     return b11;
@@ -141,7 +141,7 @@ public final class i implements Callable {
                     throw th2;
                 }
             default:
-                lambda$scheduleLogRecordingConfigurationsTask$0 = ((WebRtcAudioRecord) this.f940b).lambda$scheduleLogRecordingConfigurationsTask$0((AudioRecord) this.f941c);
+                lambda$scheduleLogRecordingConfigurationsTask$0 = ((WebRtcAudioRecord) this.f939b).lambda$scheduleLogRecordingConfigurationsTask$0((AudioRecord) this.f940c);
                 return lambda$scheduleLogRecordingConfigurationsTask$0;
         }
     }

@@ -1,22 +1,22 @@
 package zi;
 public final class c {
-    public final int f61472a;
-    public final u7.i f61473b;
+    public final int f62042a;
+    public final k0 f62043b;
 
-    public c(u7.i iVar, int i7) {
-        this.f61472a = i7;
-        this.f61473b = iVar;
+    public c(k0 k0Var, int i7) {
+        this.f62042a = i7;
+        this.f62043b = k0Var;
     }
 
     public void a(Exception exc) {
-        switch (this.f61472a) {
+        switch (this.f62042a) {
             case 0:
-                u7.i iVar = this.f61473b;
-                ((v0) iVar.f57880a).f61752i.post(new k0(iVar, exc, 1));
+                k0 k0Var = this.f62043b;
+                ((u0) k0Var.f62182a).f62316i.post(new j0(k0Var, exc, 1));
                 return;
             default:
-                u7.i iVar2 = this.f61473b;
-                ((v0) iVar2.f57880a).f61752i.post(new k0(iVar2, exc, 0));
+                k0 k0Var2 = this.f62043b;
+                ((u0) k0Var2.f62182a).f62316i.post(new j0(k0Var2, exc, 0));
                 return;
         }
     }

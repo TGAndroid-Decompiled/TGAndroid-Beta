@@ -3,7 +3,7 @@ public final class u5 implements na.d {
     public static final u5 f655a = new Object();
 
     static {
-        r.b.u(p0.w(n0.class, new j0(1)));
+        p5.c.u(p0.w(n0.class, new j0(1)));
     }
 
     @Override

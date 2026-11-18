@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
+public final class r31 implements zt0 {
+    public int f38999a;
+    public boolean f39000b;
+    public final s31 f39001c;
 
-import org.telegram.tgnet.TLRPC;
-public final class r31 implements yv0 {
-    public final x31 f38834a;
-
-    public r31(x31 x31Var) {
-        this.f38834a = x31Var;
+    public r31(s31 s31Var) {
+        this.f39001c = s31Var;
     }
 
     @Override
-    public final boolean b() {
-        return this.f38834a.f41548b.a();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f38834a.f41548b.c();
-    }
-
-    @Override
-    public final void d(TLRPC.Document document, String str, Object obj, org.telegram.messenger.cj cjVar, boolean z10, boolean z11, int i7, int i10) {
-        this.f38834a.f41548b.f(document, obj, z11, i7);
+    public final void L(int i7, boolean z10) {
+        if (this.f38999a != i7 || this.f39000b != z10) {
+            this.f38999a = i7;
+            this.f39000b = z10;
+            if (i7 > org.telegram.messenger.g0.L(20.0f)) {
+                s31 s31Var = this.f39001c;
+                if (!s31Var.f39473h0) {
+                    s31Var.f39479o0.f30223r0 = false;
+                    s31Var.f39473h0 = true;
+                }
+            }
+        }
     }
 }

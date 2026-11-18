@@ -1,33 +1,24 @@
 package di;
 
-import java.util.function.ToDoubleFunction;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.z51;
-public final class x0 implements ToDoubleFunction {
-    public final int f9701a;
+import android.os.Build;
+import c8.dd;
+public final class x0 implements ri.m, ri.n {
+    public final h1 f9985a;
 
-    public x0(int i7) {
-        this.f9701a = i7;
+    @Override
+    public int e() {
+        return this.f9985a.e1();
     }
 
     @Override
-    public final double applyAsDouble(Object obj) {
-        switch (this.f9701a) {
-            case 0:
-                return i1.e1((TL_stars.starGiftAttributeBackdrop) obj);
-            case 1:
-                return i1.e1((TL_stars.starGiftAttributePattern) obj);
-            case 2:
-                return i1.e1((TL_stars.starGiftAttributeModel) obj);
-            case 3:
-                return ((z51) obj).f42255a;
-            case 4:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            case 5:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            default:
-                return ((TLRPC.TL_topPeer) obj).rating;
+    public void l(int i7) {
+        h1 h1Var = this.f9985a;
+        dh.g gVar = h1Var.f8909n2;
+        if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
+            if (dd.a(i7, 4)) {
+                gVar.h(h1Var.Y0.e());
+            }
+            gVar.e(h1Var.f8914s2, h1Var.f30192b.getWidth(), h1Var.f30192b.getHeight());
         }
     }
 }

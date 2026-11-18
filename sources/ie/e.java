@@ -1,6 +1,6 @@
 package ie;
 
-import aa.b0;
+import ee.t;
 public abstract class e {
-    public static final b0 f15919a = new b0("NO_OWNER", 1);
+    public static final t f16235a = new t("NO_OWNER", 0);
 }

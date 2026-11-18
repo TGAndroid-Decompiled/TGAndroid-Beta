@@ -9,68 +9,68 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.ImageReceiver;
 public final class f8 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.j5 f47032a;
-    public int f47033b;
-    public int f47034c;
+    public final org.telegram.ui.ActionBar.n5 f47598a;
+    public int f47599b;
+    public int f47600c;
     public int d;
-    public int f47035e;
-    public int f47036f;
+    public int f47601e;
+    public int f47602f;
     public int h;
-    public SparseArray f47037n;
-    public SparseArray f47038r;
-    public final org.telegram.messenger.ou f47039s;
-    public final SparseArray f47040w;
-    public final SparseArray f47041x;
-    public final i8 f47042y;
+    public SparseArray f47603n;
+    public SparseArray f47604r;
+    public final org.telegram.ui.Components.hn f47605s;
+    public final SparseArray f47606w;
+    public final SparseArray f47607x;
+    public final i8 f47608y;
 
     public f8(i8 i8Var, Context context) {
         super(context);
-        this.f47042y = i8Var;
-        this.f47037n = new SparseArray();
-        this.f47038r = new SparseArray();
-        this.f47040w = new SparseArray();
-        this.f47041x = new SparseArray();
+        this.f47608y = i8Var;
+        this.f47603n = new SparseArray();
+        this.f47604r = new SparseArray();
+        this.f47606w = new SparseArray();
+        this.f47607x = new SparseArray();
         setWillNotDraw(false);
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f47032a = j5Var;
-        if (i8Var.f47938f0 == 0 && i8Var.f47936e0) {
-            j5Var.setOnLongClickListener(new t(this, 1));
-            j5Var.setOnClickListener(new a8(this, 0));
+        org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(context);
+        this.f47598a = n5Var;
+        if (i8Var.f48615f0 == 0 && i8Var.f48613e0) {
+            n5Var.setOnLongClickListener(new t(this, 1));
+            n5Var.setOnClickListener(new a8(this, 0));
         }
-        int i7 = org.telegram.ui.ActionBar.j6.f28941i6;
-        org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.j6.h0(org.telegram.ui.ActionBar.j6.x0(null, i7, false), 2, -1);
-        org.telegram.ui.ActionBar.m6 M = org.telegram.ui.ActionBar.q6.M(i7);
-        j5Var.setBackground(h02);
-        org.telegram.ui.ActionBar.q6.j(j5Var, h02, null, M, null);
-        j5Var.setTextSize(15);
-        j5Var.setTypeface(org.telegram.messenger.g0.o());
-        j5Var.setGravity(17);
-        org.telegram.ui.ActionBar.q6.X(j5Var, org.telegram.ui.ActionBar.j6.G6, null);
-        addView(j5Var, c8.ja.d(-1, 28.0f, 0, 0.0f, 12.0f, 0.0f, 4.0f));
-        org.telegram.messenger.ou ouVar = new org.telegram.messenger.ou(context, new d8(this, context));
-        this.f47039s = ouVar;
-        ((GestureDetector) ouVar.f25806b).setIsLongpressEnabled(i8Var.f47938f0 == 0);
+        int i7 = org.telegram.ui.ActionBar.n6.f29488i6;
+        org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.x0(null, i7, false), 2, -1);
+        org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
+        n5Var.setBackground(h02);
+        org.telegram.ui.ActionBar.u6.j(n5Var, h02, null, M, null);
+        n5Var.setTextSize(15);
+        n5Var.setTypeface(org.telegram.messenger.g0.o());
+        n5Var.setGravity(17);
+        org.telegram.ui.ActionBar.u6.X(n5Var, org.telegram.ui.ActionBar.n6.G6, null);
+        addView(n5Var, c8.ma.d(-1, 28.0f, 0, 0.0f, 12.0f, 0.0f, 4.0f));
+        org.telegram.ui.Components.hn hnVar = new org.telegram.ui.Components.hn(context, new d8(this, context));
+        this.f47605s = hnVar;
+        ((GestureDetector) hnVar.f35933b).setIsLongpressEnabled(i8Var.f48615f0 == 0);
     }
 
     public static void a(f8 f8Var, int i7, int i10) {
         float f10;
-        if (f8Var.f47037n != null) {
+        if (f8Var.f47603n != null) {
             for (int i11 = 0; i11 < f8Var.d; i11++) {
-                g8 g8Var = (g8) f8Var.f47037n.get(i11, null);
+                g8 g8Var = (g8) f8Var.f47603n.get(i11, null);
                 if (g8Var != null) {
-                    g8Var.f47371m = g8Var.f47370l;
+                    g8Var.f47999m = g8Var.f47998l;
                     int i12 = g8Var.h;
                     if (i12 >= i7 && i12 <= i10) {
                         f10 = 1.0f;
                     } else {
                         f10 = 0.0f;
                     }
-                    g8Var.f47372n = f10;
-                    g8Var.f47368j = g8Var.f47367i;
+                    g8Var.f48000n = f10;
+                    g8Var.f47996j = g8Var.f47995i;
                     if (i12 != i7 && i12 != i10) {
-                        g8Var.f47369k = 0.0f;
+                        g8Var.f47997k = 0.0f;
                     } else {
-                        g8Var.f47369k = 1.0f;
+                        g8Var.f47997k = 1.0f;
                     }
                 }
             }
@@ -78,14 +78,14 @@ public final class f8 extends FrameLayout {
     }
 
     public static void b(f8 f8Var, float f10) {
-        if (f8Var.f47037n != null) {
+        if (f8Var.f47603n != null) {
             for (int i7 = 0; i7 < f8Var.d; i7++) {
-                g8 g8Var = (g8) f8Var.f47037n.get(i7, null);
+                g8 g8Var = (g8) f8Var.f47603n.get(i7, null);
                 if (g8Var != null) {
-                    float f11 = g8Var.f47371m;
-                    g8Var.f47370l = com.google.android.gms.internal.vision.e2.z(g8Var.f47372n, f11, f10, f11);
-                    float f12 = g8Var.f47368j;
-                    g8Var.f47367i = com.google.android.gms.internal.vision.e2.z(g8Var.f47369k, f12, f10, f12);
+                    float f11 = g8Var.f47999m;
+                    g8Var.f47998l = com.google.android.gms.internal.vision.e2.z(g8Var.f48000n, f11, f10, f11);
+                    float f12 = g8Var.f47996j;
+                    g8Var.f47995i = com.google.android.gms.internal.vision.e2.z(g8Var.f47997k, f12, f10, f12);
                 }
             }
         }
@@ -98,19 +98,19 @@ public final class f8 extends FrameLayout {
         final float f12;
         float f13;
         final float f14;
-        SparseArray sparseArray = this.f47040w;
+        SparseArray sparseArray = this.f47606w;
         ValueAnimator valueAnimator = (ValueAnimator) sparseArray.get(i7);
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         float measuredWidth = getMeasuredWidth() / 7.0f;
-        SparseArray sparseArray2 = this.f47041x;
+        SparseArray sparseArray2 = this.f47607x;
         h8 h8Var = (h8) sparseArray2.get(i7);
         float f15 = 0.0f;
         if (h8Var != null) {
-            float f16 = h8Var.f47629a;
-            f11 = h8Var.f47630b;
-            f12 = h8Var.f47631c;
+            float f16 = h8Var.f48276a;
+            f11 = h8Var.f48277b;
+            f12 = h8Var.f48278c;
             f10 = f16;
         } else {
             f10 = (measuredWidth / 2.0f) + (i10 * measuredWidth);
@@ -131,12 +131,12 @@ public final class f8 extends FrameLayout {
             f15 = 1.0f;
         }
         final ?? obj = new Object();
-        obj.f47629a = f10;
-        obj.f47630b = f11;
+        obj.f48276a = f10;
+        obj.f48277b = f11;
         sparseArray2.put(i7, obj);
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
-            duration.setInterpolator(org.telegram.ui.Components.qs.f38757e);
+            duration.setInterpolator(org.telegram.ui.Components.xs.f42178e);
             final float f17 = f11;
             final float f18 = f15;
             final float f19 = f10;
@@ -151,13 +151,13 @@ public final class f8 extends FrameLayout {
                     float f22 = f19;
                     float z12 = com.google.android.gms.internal.vision.e2.z(f21, f22, floatValue, f22);
                     h8 h8Var2 = obj;
-                    h8Var2.f47629a = z12;
+                    h8Var2.f48276a = z12;
                     float f23 = f14;
                     float f24 = f17;
-                    h8Var2.f47630b = com.google.android.gms.internal.vision.e2.z(f23, f24, floatValue, f24);
+                    h8Var2.f48277b = com.google.android.gms.internal.vision.e2.z(f23, f24, floatValue, f24);
                     float f25 = f18;
                     float f26 = f12;
-                    h8Var2.f47631c = com.google.android.gms.internal.vision.e2.z(f25, f26, floatValue, f26);
+                    h8Var2.f48278c = com.google.android.gms.internal.vision.e2.z(f25, f26, floatValue, f26);
                     f8Var.invalidate();
                 }
             });
@@ -166,18 +166,18 @@ public final class f8 extends FrameLayout {
             sparseArray.put(i7, duration);
             return;
         }
-        obj.f47629a = f13;
-        obj.f47630b = f14;
-        obj.f47631c = f15;
+        obj.f48276a = f13;
+        obj.f48277b = f14;
+        obj.f48278c = f15;
         invalidate();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f47038r != null) {
-            for (int i7 = 0; i7 < this.f47038r.size(); i7++) {
-                ((ImageReceiver) this.f47038r.valueAt(i7)).P();
+        if (this.f47604r != null) {
+            for (int i7 = 0; i7 < this.f47604r.size(); i7++) {
+                ((ImageReceiver) this.f47604r.valueAt(i7)).P();
             }
         }
     }
@@ -185,9 +185,9 @@ public final class f8 extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f47038r != null) {
-            for (int i7 = 0; i7 < this.f47038r.size(); i7++) {
-                ((ImageReceiver) this.f47038r.valueAt(i7)).R();
+        if (this.f47604r != null) {
+            for (int i7 = 0; i7 < this.f47604r.size(); i7++) {
+                ((ImageReceiver) this.f47604r.valueAt(i7)).R();
             }
         }
     }
@@ -199,11 +199,11 @@ public final class f8 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L((this.f47036f * 52) + 44), 1073741824));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L((this.f47602f * 52) + 44), 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return ((GestureDetector) this.f47039s.f25806b).onTouchEvent(motionEvent);
+        return ((GestureDetector) this.f47605s.f35933b).onTouchEvent(motionEvent);
     }
 }

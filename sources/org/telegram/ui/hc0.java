@@ -1,19 +1,19 @@
 package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class hc0 implements org.telegram.ui.ActionBar.q1 {
-    public final int f47660a;
-    public final oc0 f47661b;
+public final class hc0 implements org.telegram.ui.ActionBar.r1 {
+    public final int f48329a;
+    public final oc0 f48330b;
 
     public hc0(oc0 oc0Var, int i7) {
-        this.f47660a = i7;
-        this.f47661b = oc0Var;
+        this.f48329a = i7;
+        this.f48330b = oc0Var;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        int i10 = this.f47660a;
-        oc0 oc0Var = this.f47661b;
+    public final void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        int i10 = this.f48329a;
+        oc0 oc0Var = this.f48330b;
         switch (i10) {
             case 0:
                 oc0Var.c(true);
@@ -21,22 +21,22 @@ public final class hc0 implements org.telegram.ui.ActionBar.q1 {
                 oc0Var.n();
                 return;
             case 1:
-                oc0Var.Q.f46099s0.popup = false;
+                oc0Var.Q.f46958s0.popup = false;
                 oc0Var.h(null);
                 return;
             case 2:
-                ce0 ce0Var = oc0Var.Q;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ce0Var.getParentActivity());
-                String M0 = org.telegram.messenger.hd.M0(2131744198, "TermsOfService");
-                org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder.f28392a;
-                t1Var2.S = M0;
-                t1Var2.U = org.telegram.messenger.hd.M0(2131743977, "TosDecline");
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131745320, "SignUp"), new hc0(oc0Var, 3));
-                alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131751604, "Decline"), new hc0(oc0Var, 4));
-                ce0Var.showDialog(t1Var2);
+                de0 de0Var = oc0Var.Q;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(de0Var.getParentActivity());
+                String M0 = org.telegram.messenger.gd.M0(2131743963, "TermsOfService");
+                org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f28746a;
+                u1Var2.S = M0;
+                u1Var2.U = org.telegram.messenger.gd.M0(2131743740, "TosDecline");
+                alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131745125, "SignUp"), new hc0(oc0Var, 3));
+                alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131751593, "Decline"), new hc0(oc0Var, 4));
+                de0Var.showDialog(u1Var2);
                 return;
             case 3:
-                oc0Var.Q.f46099s0.popup = false;
+                oc0Var.Q.f46958s0.popup = false;
                 oc0Var.h(null);
                 return;
             default:

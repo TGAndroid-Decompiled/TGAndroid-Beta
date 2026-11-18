@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
-public final class qj0 {
-    public float f38661a;
-    public float f38662b;
-    public float f38663c;
+
+import android.view.View;
+public interface qj0 {
+    boolean c(int i7, View view);
 }

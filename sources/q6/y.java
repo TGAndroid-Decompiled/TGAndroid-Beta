@@ -2,21 +2,21 @@ package q6;
 
 import android.os.Bundle;
 public abstract class y {
-    public Boolean f55401a;
-    public boolean f55402b;
-    public final d f55403c;
+    public Boolean f55975a;
+    public boolean f55976b;
+    public final d f55977c;
     public final int d;
-    public final Bundle f55404e;
-    public final d f55405f;
+    public final Bundle f55978e;
+    public final d f55979f;
 
     public y(d dVar, int i7, Bundle bundle) {
-        this.f55405f = dVar;
+        this.f55979f = dVar;
         Boolean bool = Boolean.TRUE;
-        this.f55403c = dVar;
-        this.f55401a = bool;
-        this.f55402b = false;
+        this.f55977c = dVar;
+        this.f55975a = bool;
+        this.f55976b = false;
         this.d = i7;
-        this.f55404e = bundle;
+        this.f55978e = bundle;
     }
 
     public abstract boolean a();
@@ -25,15 +25,15 @@ public abstract class y {
 
     public final void c() {
         d();
-        d dVar = this.f55403c;
-        synchronized (dVar.f55300q) {
-            dVar.f55300q.remove(this);
+        d dVar = this.f55977c;
+        synchronized (dVar.f55874q) {
+            dVar.f55874q.remove(this);
         }
     }
 
     public final void d() {
         synchronized (this) {
-            this.f55401a = null;
+            this.f55975a = null;
         }
     }
 }

@@ -3,15 +3,15 @@ package y8;
 import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 public final class h extends r6.a {
     public static final Parcelable.Creator<h> CREATOR = new v(6);
-    public PendingIntent f60505a;
+    public PendingIntent f61070a;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.k(parcel, 1, this.f60505a, i7);
-        yb.s(parcel, r10);
+        int r10 = bc.r(parcel, 20293);
+        bc.k(parcel, 1, this.f61070a, i7);
+        bc.s(parcel, r10);
     }
 }

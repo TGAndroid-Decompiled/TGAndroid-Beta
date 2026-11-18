@@ -1,112 +1,240 @@
 package di;
 
 import java.util.ArrayList;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
+import org.telegram.messenger.ks;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pv0;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.c40;
-import org.telegram.ui.cf0;
-import org.telegram.ui.kl0;
-import org.telegram.ui.lw;
-import org.telegram.ui.qe0;
-import org.telegram.ui.wn;
-import org.telegram.ui.xd;
+import org.telegram.tgnet.tl.TL_stars;
 public final class k8 implements RequestDelegate {
-    public final int f8921a;
-    public final boolean f8922b;
-    public final Object f8923c;
-    public final Object d;
+    public final int f9194a;
+    public final m8 f9195b;
 
-    public k8(Object obj, Object obj2, boolean z10, int i7) {
-        this.f8921a = i7;
-        this.f8923c = obj;
-        this.d = obj2;
-        this.f8922b = z10;
+    public k8(m8 m8Var, int i7) {
+        this.f9194a = i7;
+        this.f9195b = m8Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        TLRPC.TL_chatInviteExported tL_chatInviteExported;
-        switch (this.f8921a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f9194a) {
             case 0:
-                org.telegram.messenger.g0.h3(new aa.c0((l8) this.f8923c, (int[]) this.d, tLObject, this.f8922b, 1));
+                final m8 m8Var = this.f9195b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        TLObject tLObject2 = tLObject;
+                        m8 m8Var2 = m8Var;
+                        switch (i7) {
+                            case 0:
+                                long j3 = m8Var2.f9323b;
+                                int i10 = m8Var2.f9322a;
+                                ArrayList arrayList = m8Var2.f9325e;
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
+                                    arrayList.clear();
+                                    arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
+                                    m8Var2.j();
+                                    int size = arrayList.size();
+                                    int i11 = 0;
+                                    while (i11 < size) {
+                                        Object obj = arrayList.get(i11);
+                                        i11++;
+                                        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
+                                        if (m8Var2.e(tL_starGiftCollection.collection_id) == null) {
+                                            o8 o8Var = new o8(i10, j3, false);
+                                            int i12 = tL_starGiftCollection.collection_id;
+                                            o8Var.f9463c = true;
+                                            o8Var.d = i12;
+                                            m8Var2.h.put(Integer.valueOf(i12), o8Var);
+                                        }
+                                    }
+                                    m8Var2.d = true;
+                                    m8Var2.f9324c = false;
+                                    ks.f(i10).k(233, Long.valueOf(j3), m8Var2);
+                                    return;
+                                } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
+                                    m8Var2.j();
+                                    m8Var2.d = true;
+                                    m8Var2.f9324c = false;
+                                    ks.f(i10).k(233, Long.valueOf(j3), m8Var2);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 1:
+                                m8Var2.getClass();
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollection) {
+                                    TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
+                                    int f10 = m8Var2.f(tL_starGiftCollection2.collection_id);
+                                    if (f10 >= 0) {
+                                        m8Var2.f9325e.set(f10, tL_starGiftCollection2);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                m8Var2.getClass();
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollection) {
+                                    TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
+                                    int f11 = m8Var2.f(tL_starGiftCollection3.collection_id);
+                                    if (f11 >= 0) {
+                                        m8Var2.f9325e.set(f11, tL_starGiftCollection3);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new aa.c0((hi.r1) this.f8923c, tLObject, (String) this.d, this.f8922b, 3));
-                return;
-            case 2:
-                jg.z1 z1Var = (jg.z1) this.f8923c;
-                String str = (String) this.d;
-                a0.h hVar = z1Var.h;
-                ArrayList arrayList = z1Var.f17349g;
-                int i7 = z1Var.f17354m;
-                if (tL_error == null) {
-                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
-                    z1Var.f17355n = str.toLowerCase();
-                    np.s1(i7).Y3(tL_channels_channelParticipants.users, false);
-                    np.s1(i7).S3(tL_channels_channelParticipants.chats, false);
-                    arrayList.clear();
-                    hVar.b();
-                    arrayList.addAll(tL_channels_channelParticipants.participants);
-                    long e10 = m10.i(i7).e();
-                    int size = tL_channels_channelParticipants.participants.size();
-                    for (int i10 = 0; i10 < size; i10++) {
-                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i10);
-                        long B1 = gj.B1(channelParticipant.peer);
-                        if (!this.f8922b && B1 == e10) {
-                            arrayList.remove(channelParticipant);
-                        } else {
-                            hVar.k(channelParticipant, B1);
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.messenger.g0.h3(new ai.j((xd) this.f8923c, tL_error, tLObject, (TwoStepVerificationActivity) this.d, this.f8922b, 6));
-                return;
-            case 4:
-                org.telegram.messenger.g0.h3(new wn((pv0) this.f8923c, tLObject, this.f8922b, (org.telegram.ui.ActionBar.t1) this.d));
-                return;
-            case 5:
-                org.telegram.messenger.g0.h3(new ai.j((lw) this.f8923c, tL_error, tLObject, (String) this.d, this.f8922b));
-                return;
-            case 6:
-                org.telegram.messenger.g0.h3(new wn((Object) ((c40) this.f8923c), tLObject, (Object) ((TLRPC.ChatFull) this.d), this.f8922b, 8));
-                return;
-            case 7:
-                cf0 cf0Var = (cf0) this.f8923c;
-                TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.d;
-                if (tL_error == null) {
-                    TLRPC.TL_messages_exportedChatInvites tL_messages_exportedChatInvites = (TLRPC.TL_messages_exportedChatInvites) tLObject;
-                    if (tL_messages_exportedChatInvites.invites.size() > 0 && tL_chatInviteExported2 != null) {
-                        for (int i11 = 0; i11 < tL_messages_exportedChatInvites.invites.size(); i11++) {
-                            if (((TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(i11)).link.equals(tL_chatInviteExported2.link)) {
-                                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.remove(i11);
-                                org.telegram.messenger.g0.h3(new qe0(cf0Var, tL_chatInviteExported, tL_error, tLObject, this.f8922b, 0));
+                final m8 m8Var2 = this.f9195b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        TLObject tLObject2 = tLObject;
+                        m8 m8Var22 = m8Var2;
+                        switch (i7) {
+                            case 0:
+                                long j3 = m8Var22.f9323b;
+                                int i10 = m8Var22.f9322a;
+                                ArrayList arrayList = m8Var22.f9325e;
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
+                                    arrayList.clear();
+                                    arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
+                                    m8Var22.j();
+                                    int size = arrayList.size();
+                                    int i11 = 0;
+                                    while (i11 < size) {
+                                        Object obj = arrayList.get(i11);
+                                        i11++;
+                                        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
+                                        if (m8Var22.e(tL_starGiftCollection.collection_id) == null) {
+                                            o8 o8Var = new o8(i10, j3, false);
+                                            int i12 = tL_starGiftCollection.collection_id;
+                                            o8Var.f9463c = true;
+                                            o8Var.d = i12;
+                                            m8Var22.h.put(Integer.valueOf(i12), o8Var);
+                                        }
+                                    }
+                                    m8Var22.d = true;
+                                    m8Var22.f9324c = false;
+                                    ks.f(i10).k(233, Long.valueOf(j3), m8Var22);
+                                    return;
+                                } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
+                                    m8Var22.j();
+                                    m8Var22.d = true;
+                                    m8Var22.f9324c = false;
+                                    ks.f(i10).k(233, Long.valueOf(j3), m8Var22);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 1:
+                                m8Var22.getClass();
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollection) {
+                                    TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
+                                    int f10 = m8Var22.f(tL_starGiftCollection2.collection_id);
+                                    if (f10 >= 0) {
+                                        m8Var22.f9325e.set(f10, tL_starGiftCollection2);
+                                        return;
+                                    }
+                                    return;
+                                }
                                 return;
-                            }
+                            default:
+                                m8Var22.getClass();
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollection) {
+                                    TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
+                                    int f11 = m8Var22.f(tL_starGiftCollection3.collection_id);
+                                    if (f11 >= 0) {
+                                        m8Var22.f9325e.set(f11, tL_starGiftCollection3);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
                         }
                     }
-                }
-                tL_chatInviteExported = null;
-                org.telegram.messenger.g0.h3(new qe0(cf0Var, tL_chatInviteExported, tL_error, tLObject, this.f8922b, 0));
+                });
                 return;
             default:
-                org.telegram.messenger.g0.h3(new ai.j((Object) ((kl0) this.f8923c), (TLObject) tL_error, this.f8922b, tLObject, (String) this.d, 14));
+                final m8 m8Var3 = this.f9195b;
+                m8Var3.getClass();
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        TLObject tLObject2 = tLObject;
+                        m8 m8Var22 = m8Var3;
+                        switch (i7) {
+                            case 0:
+                                long j3 = m8Var22.f9323b;
+                                int i10 = m8Var22.f9322a;
+                                ArrayList arrayList = m8Var22.f9325e;
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
+                                    arrayList.clear();
+                                    arrayList.addAll(((TL_stars.TL_starGiftCollections) tLObject2).collections);
+                                    m8Var22.j();
+                                    int size = arrayList.size();
+                                    int i11 = 0;
+                                    while (i11 < size) {
+                                        Object obj = arrayList.get(i11);
+                                        i11++;
+                                        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
+                                        if (m8Var22.e(tL_starGiftCollection.collection_id) == null) {
+                                            o8 o8Var = new o8(i10, j3, false);
+                                            int i12 = tL_starGiftCollection.collection_id;
+                                            o8Var.f9463c = true;
+                                            o8Var.d = i12;
+                                            m8Var22.h.put(Integer.valueOf(i12), o8Var);
+                                        }
+                                    }
+                                    m8Var22.d = true;
+                                    m8Var22.f9324c = false;
+                                    ks.f(i10).k(233, Long.valueOf(j3), m8Var22);
+                                    return;
+                                } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
+                                    m8Var22.j();
+                                    m8Var22.d = true;
+                                    m8Var22.f9324c = false;
+                                    ks.f(i10).k(233, Long.valueOf(j3), m8Var22);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            case 1:
+                                m8Var22.getClass();
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollection) {
+                                    TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) tLObject2;
+                                    int f10 = m8Var22.f(tL_starGiftCollection2.collection_id);
+                                    if (f10 >= 0) {
+                                        m8Var22.f9325e.set(f10, tL_starGiftCollection2);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                m8Var22.getClass();
+                                if (tLObject2 instanceof TL_stars.TL_starGiftCollection) {
+                                    TL_stars.TL_starGiftCollection tL_starGiftCollection3 = (TL_stars.TL_starGiftCollection) tLObject2;
+                                    int f11 = m8Var22.f(tL_starGiftCollection3.collection_id);
+                                    if (f11 >= 0) {
+                                        m8Var22.f9325e.set(f11, tL_starGiftCollection3);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
         }
-    }
-
-    public k8(Object obj, boolean z10, Object obj2, int i7) {
-        this.f8921a = i7;
-        this.f8923c = obj;
-        this.f8922b = z10;
-        this.d = obj2;
     }
 }

@@ -1,27 +1,16 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.z10;
-public final class c7 implements Runnable {
-    public final int f43643a;
-    public final z10 f43644b;
+import android.content.Context;
+public final class c7 extends vg.r {
+    public final e7 E;
 
-    public c7(z10 z10Var, int i7) {
-        this.f43643a = i7;
-        this.f43644b = z10Var;
+    public c7(e7 e7Var, Context context, a7 a7Var) {
+        super(context, a7Var, 2);
+        this.E = e7Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43643a) {
-            case 0:
-                this.f43644b.a("Wallet engine is closed");
-                return;
-            case 1:
-                this.f43644b.a(null);
-                return;
-            default:
-                this.f43644b.a(null);
-                return;
-        }
+    public final void a() {
+        this.E.f44130s = true;
     }
 }

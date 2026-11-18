@@ -1,46 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-public final class xm implements tj {
-    public final org.telegram.messenger.z10 f41717a;
-    public final fi.p2 f41718b;
-    public final org.telegram.ui.ActionBar.e2 f41719c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class xm extends AnimatorListenerAdapter {
+    public final int f42145a;
+    public final rn f42146b;
 
-    public xm(fi.p2 p2Var, org.telegram.messenger.z10 z10Var, org.telegram.ui.ActionBar.e2 e2Var) {
-        this.f41717a = z10Var;
-        this.f41718b = p2Var;
-        this.f41719c = e2Var;
+    public xm(rn rnVar, int i7) {
+        this.f42145a = i7;
+        this.f42146b = rnVar;
     }
 
     @Override
-    public final void A() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f41719c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f42145a) {
+            case 0:
+                this.f42146b.F.setTranslationY(0.0f);
+                return;
+            case 1:
+                this.f42146b.F.setTranslationY(0.0f);
+                return;
+            default:
+                rn rnVar = this.f42146b;
+                rnVar.f39220g1 = false;
+                rnVar.F.setTranslationY(0.0f);
+                rnVar.f0();
+                return;
         }
-    }
-
-    @Override
-    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
-        if (!arrayList.isEmpty()) {
-            this.f41717a.a(new th.c((String) arrayList.get(0)));
-        }
-        this.f41718b.a(true);
-    }
-
-    @Override
-    public final void p(ArrayList arrayList, boolean z10, int i7, long j3) {
-        if (!arrayList.isEmpty()) {
-            this.f41717a.a(new th.d((org.telegram.messenger.dz) arrayList.get(0)));
-        }
-        this.f41718b.a(true);
-    }
-
-    @Override
-    public final void T() {
     }
 }

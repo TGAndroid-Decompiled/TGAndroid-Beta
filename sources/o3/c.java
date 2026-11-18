@@ -1,14 +1,14 @@
 package o3;
 
-import c8.j1;
+import c8.l1;
 import e2.n0;
 import e2.p0;
 import e2.u;
 public final class c implements p0 {
-    public final long f21319a;
+    public final long f21686a;
 
     public c(long j3) {
-        this.f21319a = j3;
+        this.f21686a = j3;
     }
 
     @Override
@@ -25,18 +25,18 @@ public final class c implements p0 {
         if (this == obj) {
             return true;
         }
-        if (obj != null && c.class == obj.getClass() && this.f21319a == ((c) obj).f21319a) {
+        if (obj != null && c.class == obj.getClass() && this.f21686a == ((c) obj).f21686a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return j1.b(this.f21319a) + 527;
+        return l1.b(this.f21686a) + 527;
     }
 
     public final String toString() {
-        return "ThumbnailMetadata: presentationTimeUs=" + this.f21319a;
+        return "ThumbnailMetadata: presentationTimeUs=" + this.f21686a;
     }
 
     @Override

@@ -3,21 +3,21 @@ package rc;
 import java.util.LinkedHashMap;
 import java.util.Map;
 public class w {
-    public final String f55988a;
-    public final LinkedHashMap f55989b;
+    public final String f56562a;
+    public final LinkedHashMap f56563b;
 
     public w(String str) {
         if (d.b(str)) {
-            this.f55988a = str;
-            this.f55989b = new LinkedHashMap();
+            this.f56562a = str;
+            this.f56563b = new LinkedHashMap();
             return;
         }
         throw new IllegalArgumentException("'name' is not a valid token.");
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder(this.f55988a);
-        for (Map.Entry entry : this.f55989b.entrySet()) {
+        StringBuilder sb2 = new StringBuilder(this.f56562a);
+        for (Map.Entry entry : this.f56563b.entrySet()) {
             sb2.append("; ");
             sb2.append((String) entry.getKey());
             String str = (String) entry.getValue();

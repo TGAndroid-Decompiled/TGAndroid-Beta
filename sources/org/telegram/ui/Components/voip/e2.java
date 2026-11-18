@@ -1,91 +1,33 @@
 package org.telegram.ui.Components.voip;
 
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.transition.TransitionSet;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import c8.ja;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.k5;
-import org.telegram.ui.Components.ou0;
-public final class e2 extends LinearLayout {
-    public HashMap f40585a;
-    public ArrayList f40586b;
-    public ArrayList f40587c;
-    public TransitionSet d;
-    public boolean f40588e;
-    public boolean f40589f;
-    public Runnable h;
-    public m1 f40590n;
-    public TextPaint f40591r;
+import android.animation.ValueAnimator;
+import android.view.WindowManager;
+public final class e2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40854a;
+    public final h2 f40855b;
 
-    public final void a(int i7, String str, String str2) {
-        HashMap hashMap = this.f40585a;
-        if (hashMap.get(str2) != null) {
-            return;
-        }
-        d2 d2Var = new d2(getContext(), this.f40590n, i7);
-        d2Var.f40552a = str2;
-        int L = org.telegram.messenger.g0.f23611q.x - org.telegram.messenger.g0.L(120.0f);
-        TextView textView = d2Var.f40554c;
-        StaticLayout c10 = ou0.c(str, textView.getPaint(), L, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, L, 10, true);
-        if (c10 != null) {
-            L = 0;
-            for (int i10 = 0; i10 < c10.getLineCount(); i10++) {
-                L = (int) Math.max(L, Math.ceil(c10.getLineWidth(i10)));
-            }
-        }
-        textView.setMaxWidth(L);
-        textView.setText(str);
-        d2Var.f40553b.setImageResource(i7);
-        hashMap.put(str2, d2Var);
-        if (this.f40588e) {
-            this.f40586b.add(d2Var);
-            return;
-        }
-        this.f40589f = true;
-        addView(d2Var, ja.t(-2, -2, 1, 4, 0, 0, 4));
+    public e2(h2 h2Var, int i7) {
+        this.f40854a = i7;
+        this.f40855b = h2Var;
     }
 
-    public final CharSequence b(String str) {
-        if (str == null) {
-            return "";
-        }
-        return TextUtils.ellipsize(str, this.f40591r, org.telegram.messenger.g0.L(300.0f), TextUtils.TruncateAt.END);
-    }
-
-    public final void c(String str) {
-        d2 d2Var = (d2) this.f40585a.remove(str);
-        this.f40590n.f40788m.remove(d2Var);
-        if (d2Var != null) {
-            if (this.f40588e) {
-                if (!this.f40586b.remove(d2Var)) {
-                    this.f40587c.add(d2Var);
-                    return;
-                }
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40854a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h2 h2Var = this.f40855b;
+                WindowManager.LayoutParams layoutParams = h2Var.d;
+                layoutParams.x = (int) floatValue;
+                org.telegram.messenger.g0.R3(h2Var.f40904c, h2Var.f40902a, layoutParams);
                 return;
-            }
-            this.f40589f = true;
-            removeView(d2Var);
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h2 h2Var2 = this.f40855b;
+                WindowManager.LayoutParams layoutParams2 = h2Var2.d;
+                layoutParams2.y = (int) floatValue2;
+                org.telegram.messenger.g0.R3(h2Var2.f40904c, h2Var2.f40902a, layoutParams2);
+                return;
         }
-    }
-
-    public int getChildsHight() {
-        int i7;
-        int childCount = getChildCount();
-        if (childCount > 0) {
-            i7 = org.telegram.messenger.g0.L(16.0f);
-        } else {
-            i7 = 0;
-        }
-        return k5.D(32.0f, childCount, i7);
-    }
-
-    public void setOnViewsUpdated(Runnable runnable) {
-        this.h = runnable;
     }
 }

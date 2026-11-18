@@ -1,25 +1,30 @@
 package org.telegram.ui;
-public final class oj implements Runnable {
-    public final an f49967a;
 
-    public oj(an anVar) {
-        this.f49967a = anVar;
+import android.content.Context;
+public final class oj extends org.telegram.ui.Components.to {
+    public final bn f50620f;
+
+    public oj(bn bnVar, Context context) {
+        super(context);
+        this.f50620f = bnVar;
     }
 
     @Override
-    public final void run() {
-        String G;
-        an anVar = this.f49967a;
-        org.telegram.messenger.gj gjVar = anVar.f45381u5;
-        if (gjVar != null && anVar.f45261k9 != null) {
-            int max = Math.max(0, gjVar.f23819k.ttl_period - (anVar.getConnectionsManager().getCurrentTime() - anVar.f45381u5.f23819k.date));
-            if (max < 86400) {
-                G = org.telegram.messenger.g0.g0(max, false, true);
-            } else {
-                G = org.telegram.messenger.hd.G(Math.round(max / 86400.0f), "Days", new Object[0]);
-            }
-            anVar.f45261k9.setSubtext(org.telegram.messenger.hd.a0(null, null, 2131753853, G));
-            org.telegram.messenger.g0.i3(anVar.f45273l9, 1000L);
+    public final void a(boolean z10) {
+        bn bnVar = this.f50620f;
+        bnVar.I7();
+        bnVar.G7();
+        bnVar.J7();
+        bnVar.K7();
+        ik ikVar = bnVar.Bb;
+        if (ikVar != null) {
+            ikVar.setTranslationY(bnVar.T9 + getCurrentHeight());
         }
+        if (z10) {
+            bnVar.f45942aa = true;
+            bnVar.Rc();
+            return;
+        }
+        bnVar.M9();
     }
 }

@@ -1,19 +1,23 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class sy implements RequestDelegate {
-    public final TLRPC.TL_messages_initHistoryImport f26601a;
-    public final vy f26602b;
+public final class sy {
+    public String f26902a;
+    public String f26903b;
+    public boolean f26904c;
+    public String d;
+    public boolean f26905e;
+    public TLRPC.TL_inputStickerSetItem f26906f;
+    public e20 f26907g;
 
-    public sy(vy vyVar, TLRPC.TL_messages_initHistoryImport tL_messages_initHistoryImport) {
-        this.f26602b = vyVar;
-        this.f26601a = tL_messages_initHistoryImport;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        g0.h3(new bm(this, tLObject, this.f26601a, tL_error, 25));
+    public final void a(int i7, TLRPC.InputFile inputFile, Runnable runnable) {
+        TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
+        tL_messages_uploadMedia.peer = new TLRPC.TL_inputPeerSelf();
+        TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
+        tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
+        tL_inputMediaUploadedDocument.file = inputFile;
+        tL_inputMediaUploadedDocument.mime_type = this.d;
+        ConnectionsManager.getInstance(i7).sendRequest(tL_messages_uploadMedia, new ry(this, runnable), 2);
     }
 }

@@ -3,56 +3,56 @@ package di;
 import android.content.DialogInterface;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.ix;
-import org.telegram.ui.Components.lx;
-import org.telegram.ui.c40;
-import org.telegram.ui.lm;
+import org.telegram.ui.Components.nx;
+import org.telegram.ui.Components.qx;
+import org.telegram.ui.a81;
+import org.telegram.ui.f40;
+import org.telegram.ui.mm;
 import org.telegram.ui.pa0;
-import org.telegram.ui.qn;
-import org.telegram.ui.w71;
+import org.telegram.ui.rn;
 public final class z implements DialogInterface.OnCancelListener {
-    public final int f9812a;
-    public final int f9813b;
-    public final Object f9814c;
+    public final int f10102a;
+    public final int f10103b;
+    public final Object f10104c;
 
     public z(Object obj, int i7, int i10) {
-        this.f9812a = i10;
-        this.f9814c = obj;
-        this.f9813b = i7;
+        this.f10102a = i10;
+        this.f10104c = obj;
+        this.f10103b = i7;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f9812a) {
+        switch (this.f10102a) {
             case 0:
-                ConnectionsManager.getInstance(((e0) this.f9814c).f8430a).cancelRequest(this.f9813b, true);
+                ConnectionsManager.getInstance(((e0) this.f10104c).f8685a).cancelRequest(this.f10103b, true);
                 return;
             case 1:
-                ConnectionsManager.getInstance(((org.telegram.ui.la) this.f9814c).currentAccount).cancelRequest(this.f9813b, true);
+                ConnectionsManager.getInstance(((org.telegram.ui.la) this.f10104c).currentAccount).cancelRequest(this.f10103b, true);
                 return;
             case 2:
-                ((lm) this.f9814c).f49001a.getConnectionsManager().cancelRequest(this.f9813b, true);
+                ((mm) this.f10104c).f49922a.getConnectionsManager().cancelRequest(this.f10103b, true);
                 return;
             case 3:
-                qn qnVar = (qn) this.f9814c;
-                qnVar.O0 = false;
-                qnVar.f50662b = null;
-                qnVar.getConnectionsManager().cancelRequest(this.f9813b, true);
+                rn rnVar = (rn) this.f10104c;
+                rnVar.O0 = false;
+                rnVar.f51677b = null;
+                rnVar.getConnectionsManager().cancelRequest(this.f10103b, true);
                 return;
             case 4:
-                ((ChatActivityEnterView) this.f9814c).f32319x3.getConnectionsManager().cancelRequest(this.f9813b, true);
+                ((ChatActivityEnterView) this.f10104c).D3.getConnectionsManager().cancelRequest(this.f10103b, true);
                 return;
             case 5:
-                ConnectionsManager.getInstance(((lx) ((ix) this.f9814c).f35746c.f2790b).G.f36941d1).cancelRequest(this.f9813b, true);
+                ConnectionsManager.getInstance(((qx) ((nx) this.f10104c).f37869c.f2781b).G.f39345d1).cancelRequest(this.f10103b, true);
                 return;
             case 6:
-                ConnectionsManager.getInstance(((c40) this.f9814c).f45940o1.f22782a).cancelRequest(this.f9813b, true);
+                ConnectionsManager.getInstance(((f40) this.f10104c).f47498o1.f23221a).cancelRequest(this.f10103b, true);
                 return;
             case 7:
-                ((pa0) this.f9814c).getConnectionsManager().cancelRequest(this.f9813b, true);
+                ((pa0) this.f10104c).getConnectionsManager().cancelRequest(this.f10103b, true);
                 return;
             default:
-                ConnectionsManager.getInstance(((w71) this.f9814c).currentAccount).cancelRequest(this.f9813b, true);
+                ConnectionsManager.getInstance(((a81) this.f10104c).currentAccount).cancelRequest(this.f10103b, true);
                 return;
         }
     }

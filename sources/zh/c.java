@@ -1,4 +1,4 @@
 package zh;
 public interface c {
-    void e(boolean z10, boolean z11);
+    void g(boolean z10, boolean z11);
 }

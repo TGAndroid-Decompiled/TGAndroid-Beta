@@ -1,37 +1,37 @@
 package p4;
 
 import java.util.List;
-public final class n0 implements y0, z0, h2.j {
-    public final c1 f54805a;
-    public final int f54806b;
-    public final int f54807c;
+public final class n0 implements a1, b1, h2.j {
+    public final e1 f55349a;
+    public final int f55350b;
+    public final int f55351c;
 
-    public n0(c1 c1Var, int i7, int i10) {
-        this.f54805a = c1Var;
-        this.f54806b = i7;
-        this.f54807c = i10;
+    public n0(e1 e1Var, int i7, int i10) {
+        this.f55349a = e1Var;
+        this.f55350b = i7;
+        this.f55351c = i10;
     }
 
     @Override
-    public void a(g1 g1Var, v vVar, List list) {
-        c1 c1Var = this.f54805a;
-        g1Var.s0(list, c1Var.m1(vVar, g1Var, this.f54806b), c1Var.m1(vVar, g1Var, this.f54807c));
+    public void a(i1 i1Var, v vVar, List list) {
+        e1 e1Var = this.f55349a;
+        i1Var.s0(list, e1Var.m1(vVar, i1Var, this.f55350b), e1Var.m1(vVar, i1Var, this.f55351c));
     }
 
     @Override
     public void accept(Object obj) {
-        g1 g1Var = (g1) obj;
-        c1 c1Var = this.f54805a;
-        ((d0) c1Var.f54600a.get()).getClass();
-        b1 b1Var = c1Var.f54605i;
-        if (b1Var != null) {
-            b1Var.setFixedSize(this.f54806b, this.f54807c);
+        i1 i1Var = (i1) obj;
+        e1 e1Var = this.f55349a;
+        ((d0) e1Var.f55209a.get()).getClass();
+        d1 d1Var = e1Var.f55214i;
+        if (d1Var != null) {
+            d1Var.setFixedSize(this.f55350b, this.f55351c);
         }
     }
 
     @Override
-    public void c(g1 g1Var, v vVar) {
-        c1 c1Var = this.f54805a;
-        g1Var.R(c1Var.m1(vVar, g1Var, this.f54806b), c1Var.m1(vVar, g1Var, this.f54807c));
+    public void c(i1 i1Var, v vVar) {
+        e1 e1Var = this.f55349a;
+        i1Var.R(e1Var.m1(vVar, i1Var, this.f55350b), e1Var.m1(vVar, i1Var, this.f55351c));
     }
 }

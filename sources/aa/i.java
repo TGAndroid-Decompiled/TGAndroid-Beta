@@ -4,13 +4,13 @@ import android.util.Log;
 import java.io.IOException;
 public final class i {
     public static final h d = new h(0);
-    public static final a3.c f812e = new a3.c(8);
-    public final ga.d f813a;
-    public String f814b = null;
-    public String f815c = null;
+    public static final a3.c f811e = new a3.c(8);
+    public final ga.d f812a;
+    public String f813b = null;
+    public String f814c = null;
 
     public i(ga.d dVar) {
-        this.f813a = dVar;
+        this.f812a = dVar;
     }
 
     public static void a(ga.d dVar, String str, String str2) {

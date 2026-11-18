@@ -1,22 +1,27 @@
 package oi;
-public final class z3 implements org.telegram.ui.ActionBar.q1 {
-    public final int f22193a;
-    public final n3 f22194b;
 
-    public z3(n3 n3Var, int i7) {
-        this.f22193a = i7;
-        this.f22194b = n3Var;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class z3 {
+    public String f22552a;
+    public boolean f22553b;
+    public String f22554c;
+    public HashMap d;
+    public final ArrayList f22555e = new ArrayList();
+
+    public final String a(String str) {
+        HashMap hashMap = this.d;
+        if (hashMap == null) {
+            return null;
+        }
+        return (String) hashMap.get(str);
     }
 
-    @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f22193a) {
-            case 0:
-                this.f22194b.b();
-                return;
-            default:
-                this.f22194b.b();
-                return;
+    public final boolean b(String str) {
+        HashMap hashMap = this.d;
+        if (hashMap != null && hashMap.containsKey(str)) {
+            return true;
         }
+        return false;
     }
 }

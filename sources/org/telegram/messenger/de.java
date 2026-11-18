@@ -1,85 +1,94 @@
 package org.telegram.messenger;
 
-import android.widget.TextView;
-import java.io.File;
-import org.json.JSONObject;
+import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.ExternalActionActivity;
-public final class de implements Runnable {
-    public final int f23075a;
-    public final int f23076b;
-    public final Object f23077c;
-    public final Object d;
-    public final Object f23078e;
-    public final Object f23079f;
-    public final Object h;
-    public final Object f23080n;
-    public final Object f23081r;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.Components.gt0;
+import org.telegram.ui.Components.lp0;
+public final class de implements RequestDelegate {
+    public final int f23513a;
+    public final int f23514b;
+    public final int f23515c;
+    public final fs d;
 
-    public de(int i7, File file, String str, org.telegram.ui.ActionBar.t1 t1Var, boolean[] zArr, String str2, z10 z10Var, boolean[] zArr2) {
-        this.f23075a = 0;
-        this.f23076b = i7;
-        this.f23077c = file;
-        this.d = str;
-        this.f23079f = t1Var;
-        this.h = zArr;
-        this.f23078e = str2;
-        this.f23081r = z10Var;
-        this.f23080n = zArr2;
+    public de(fs fsVar, int i7, int i10, int i11) {
+        this.f23513a = i11;
+        this.d = fsVar;
+        this.f23514b = i7;
+        this.f23515c = i10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.de.run():void");
-    }
-
-    public de(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7, Object obj6, Object obj7, int i10) {
-        this.f23075a = i10;
-        this.f23077c = obj;
-        this.d = obj2;
-        this.f23078e = obj3;
-        this.f23079f = obj4;
-        this.h = obj5;
-        this.f23076b = i7;
-        this.f23080n = obj6;
-        this.f23081r = obj7;
-    }
-
-    public de(ExternalActionActivity externalActionActivity, org.telegram.ui.ActionBar.t1 t1Var, TLObject tLObject, int i7, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
-        this.f23075a = 2;
-        this.f23077c = externalActionActivity;
-        this.f23079f = t1Var;
-        this.h = tLObject;
-        this.f23076b = i7;
-        this.f23080n = authorizationform;
-        this.f23081r = getauthorizationform;
-        this.d = str;
-        this.f23078e = str2;
-    }
-
-    public de(org.telegram.ui.Wallet.i0 i0Var, String str, byte[] bArr, JSONObject jSONObject, String str2, int i7, org.telegram.ui.Wallet.r2 r2Var, org.telegram.ui.Wallet.l0 l0Var) {
-        this.f23075a = 4;
-        this.f23077c = i0Var;
-        this.d = str;
-        this.f23079f = bArr;
-        this.h = jSONObject;
-        this.f23078e = str2;
-        this.f23076b = i7;
-        this.f23080n = r2Var;
-        this.f23081r = l0Var;
-    }
-
-    public de(Runnable[] runnableArr, TextView[] textViewArr, int i7, org.telegram.ui.ActionBar.e6 e6Var, TL_wallet.walletTransaction wallettransaction, String[] strArr, boolean[] zArr, byte[] bArr) {
-        this.f23075a = 5;
-        this.f23077c = runnableArr;
-        this.d = textViewArr;
-        this.f23076b = i7;
-        this.f23078e = e6Var;
-        this.f23079f = wallettransaction;
-        this.f23080n = strArr;
-        this.h = zArr;
-        this.f23081r = bArr;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i7 = this.f23513a;
+        fs fsVar = this.d;
+        switch (i7) {
+            case 0:
+                String[] strArr = MediaController.W1;
+                g0.g3(new jg.o1(this.f23514b, this.f23515c, 7, (MediaController) fsVar, tLObject, tL_error));
+                return;
+            case 1:
+                mp mpVar = (mp) fsVar;
+                LongSparseIntArray longSparseIntArray = mpVar.Z0;
+                int i10 = 0;
+                if (tL_error == null) {
+                    TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
+                    if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
+                        g0.g3(new l2.x(mpVar, updates_difference, this.f23514b, this.f23515c, 4));
+                        return;
+                    }
+                    if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
+                        TLRPC.TL_updates_state tL_updates_state = updates_difference.intermediate_state;
+                        mpVar.a1(tL_updates_state.pts, tL_updates_state.date, tL_updates_state.qts, true);
+                    }
+                    a0.h hVar = new a0.h();
+                    a0.h hVar2 = new a0.h();
+                    for (int i11 = 0; i11 < updates_difference.users.size(); i11++) {
+                        TLRPC.User user = updates_difference.users.get(i11);
+                        hVar.k(user, user.f28554id);
+                    }
+                    for (int i12 = 0; i12 < updates_difference.chats.size(); i12++) {
+                        TLRPC.Chat chat = updates_difference.chats.get(i12);
+                        hVar2.k(chat, chat.f28405id);
+                    }
+                    ArrayList arrayList = new ArrayList();
+                    if (!updates_difference.other_updates.isEmpty()) {
+                        while (i10 < updates_difference.other_updates.size()) {
+                            TLRPC.Update update = updates_difference.other_updates.get(i10);
+                            if (update instanceof TL_update.TL_updateMessageID) {
+                                arrayList.add((TL_update.TL_updateMessageID) update);
+                                updates_difference.other_updates.remove(i10);
+                            } else {
+                                if (mp.a2(update) == 2) {
+                                    long X1 = mp.X1(update);
+                                    int i13 = longSparseIntArray.get(X1);
+                                    if (i13 == 0 && (i13 = mpVar.getMessagesStorage().N(X1)) != 0) {
+                                        longSparseIntArray.put(X1, i13);
+                                    }
+                                    if (i13 != 0 && mp.Y1(update) <= i13) {
+                                        updates_difference.other_updates.remove(i10);
+                                    }
+                                }
+                                i10++;
+                            }
+                            i10--;
+                            i10++;
+                        }
+                    }
+                    g0.g3(new fi(11, mpVar, updates_difference));
+                    mpVar.getMessagesStorage().f27054a.c(new fn(mpVar, updates_difference, arrayList, hVar, hVar2, 8));
+                    return;
+                }
+                mpVar.f25672i2 = false;
+                mpVar.getConnectionsManager().setIsUpdating(false);
+                a8.b("received: isUpdating = false");
+                return;
+            default:
+                g0.g3(new lp0((gt0) fsVar, tL_error, this.f23514b, this.f23515c, tLObject, 0));
+                return;
+        }
     }
 }

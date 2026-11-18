@@ -1,45 +1,25 @@
 package org.telegram.ui;
 
+import android.graphics.Bitmap;
 import java.util.ArrayList;
-public final class wk extends mq0 {
-    public final ArrayList f52925a;
-    public final boolean[] f52926b;
-    public final an f52927c;
+public final class wk extends oq0 {
+    public final Bitmap f53447a;
+    public final ArrayList f53448b;
+    public final bn f53449c;
 
-    public wk(an anVar, ArrayList arrayList, boolean[] zArr) {
-        this.f52927c = anVar;
-        this.f52925a = arrayList;
-        this.f52926b = zArr;
+    public wk(bn bnVar, Bitmap bitmap, ArrayList arrayList) {
+        this.f53449c = bnVar;
+        this.f53447a = bitmap;
+        this.f53448b = arrayList;
     }
 
     @Override
-    public final boolean T() {
-        return false;
+    public final org.telegram.messenger.hc j(int i7) {
+        return new org.telegram.messenger.hc(this.f53447a, null, 0);
     }
 
     @Override
-    public final org.telegram.messenger.ic j(int i7) {
-        return null;
-    }
-
-    @Override
-    public final void o(int i7, org.telegram.messenger.g20 g20Var, boolean z10, int i10, int i11, boolean z11) {
-        ArrayList arrayList = this.f52925a;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f52926b[size]) {
-                arrayList.remove(size);
-            }
-        }
-        this.f52927c.Kb(i10, arrayList, z10, z11);
-    }
-
-    @Override
-    public final boolean x(int i7) {
-        return this.f52926b[i7];
-    }
-
-    @Override
-    public final int k(int i7, org.telegram.messenger.g20 g20Var) {
-        return i7;
+    public final void o(int i7, org.telegram.messenger.e20 e20Var, boolean z10, int i10, int i11, boolean z11) {
+        this.f53449c.u((org.telegram.messenger.ef) this.f53448b.get(0), e20Var, z10, i10, 0, z11, 0L);
     }
 }

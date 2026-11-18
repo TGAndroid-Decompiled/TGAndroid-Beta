@@ -1,109 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import org.json.JSONArray;
-import org.json.JSONTokener;
-public final class f21 extends Thread {
-    public final String f34488a;
-    public final String f34489b;
-    public final String f34490c;
-    public final org.telegram.messenger.s10 d;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.text.TextPaint;
+public final class f21 extends Drawable {
+    public final mh0 f34914a;
+    public int f34915b;
+    public final TextPaint f34916c;
 
-    public f21(String str, String str2, String str3, org.telegram.messenger.s10 s10Var) {
-        this.f34488a = str;
-        this.f34489b = str2;
-        this.f34490c = str3;
-        this.d = s10Var;
+    public f21(TextPaint textPaint) {
+        a5.b bVar = new a5.b(this, 8);
+        this.f34916c = textPaint;
+        float textSize = textPaint.getTextSize() * 0.89f;
+        mh0 mh0Var = new mh0(2131624001, (int) textSize, (int) (textSize * 1.25f));
+        this.f34914a = mh0Var;
+        mh0Var.setCallback(bVar);
+        mh0Var.K(1);
+        mh0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+        mh0Var.J(true);
+        mh0Var.start();
     }
 
     @Override
-    public final void run() {
-        HttpURLConnection httpURLConnection;
-        Integer num;
-        String str;
-        org.telegram.messenger.s10 s10Var = this.d;
-        String str2 = this.f34490c;
-        boolean z10 = false;
-        String str3 = null;
-        try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f34488a) + "&tl=" + Uri.encode(this.f34489b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
-            try {
-                httpURLConnection.setRequestMethod("GET");
-                httpURLConnection.setRequestProperty("User-Agent", p21.S1[(int) Math.round(Math.random() * 5)]);
-                httpURLConnection.setRequestProperty("Content-Type", "application/json");
-                StringBuilder sb2 = new StringBuilder();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), g9.j.f12938a));
-                while (true) {
-                    int read = bufferedReader.read();
-                    if (read == -1) {
-                        break;
-                    }
-                    sb2.append((char) read);
-                }
-                bufferedReader.close();
-                JSONArray jSONArray = new JSONArray(new JSONTokener(sb2.toString()));
-                JSONArray jSONArray2 = jSONArray.getJSONArray(0);
-                try {
-                    str = jSONArray.getString(2);
-                } catch (Exception unused) {
-                    str = null;
-                }
-                if (str != null && str.contains("-")) {
-                    str.substring(0, str.indexOf("-"));
-                }
-                String str4 = "";
-                for (int i7 = 0; i7 < jSONArray2.length(); i7++) {
-                    String string = jSONArray2.getJSONArray(i7).getString(0);
-                    if (string != null && !string.equals("null")) {
-                        str4 = str4 + string;
-                    }
-                }
-                if (str2.length() > 0 && str2.charAt(0) == '\n') {
-                    str4 = "\n" + str4;
-                }
-                org.telegram.messenger.g0.h3(new e21(str4, 0, s10Var));
-            } catch (Exception e10) {
-                e = e10;
-                try {
-                    StringBuilder sb3 = new StringBuilder();
-                    sb3.append("failed to translate a text ");
-                    if (httpURLConnection != null) {
-                        num = Integer.valueOf(httpURLConnection.getResponseCode());
-                    } else {
-                        num = null;
-                    }
-                    sb3.append(num);
-                    sb3.append(" ");
-                    if (httpURLConnection != null) {
-                        str3 = httpURLConnection.getResponseMessage();
-                    }
-                    sb3.append(str3);
-                    Log.e("translate", sb3.toString());
-                } catch (IOException e11) {
-                    e11.printStackTrace();
-                }
-                e.printStackTrace();
-                if (httpURLConnection != null) {
-                    try {
-                        if (httpURLConnection.getResponseCode() == 429) {
-                            z10 = true;
-                        }
-                    } catch (Exception unused2) {
-                        org.telegram.messenger.g0.h3(new ro0(s10Var, 23));
-                        return;
-                    }
-                }
-                org.telegram.messenger.g0.h3(new fp0(5, s10Var, z10));
-            }
-        } catch (Exception e12) {
-            e = e12;
-            httpURLConnection = null;
+    public final void draw(Canvas canvas) {
+        int color = this.f34916c.getColor();
+        int i7 = this.f34915b;
+        mh0 mh0Var = this.f34914a;
+        if (color != i7) {
+            mh0Var.f37480a0 = true;
+            mh0Var.Q(color, "Comp 1");
+            mh0Var.o();
+            mh0Var.J(true);
+            mh0Var.V(0L);
+            this.f34915b = color;
         }
+        mh0Var.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

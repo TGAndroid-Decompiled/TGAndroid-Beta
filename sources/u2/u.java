@@ -6,7 +6,7 @@ public interface u {
 
     int P1();
 
-    MediaCodecInfo e(int i7);
+    MediaCodecInfo f(int i7);
 
     boolean u2();
 

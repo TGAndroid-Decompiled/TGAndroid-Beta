@@ -7,35 +7,35 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.xr;
-import org.telegram.messenger.z10;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.t2;
+import org.telegram.messenger.vr;
+import org.telegram.messenger.x10;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.w2;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.gf;
-public final class h implements z10 {
-    public final int f17550a;
-    public final m f17551b;
+import org.telegram.ui.Components.o5;
+import org.telegram.ui.Components.pf;
+public final class h implements x10 {
+    public final int f17943a;
+    public final m f17944b;
 
     public h(m mVar, int i7) {
-        this.f17550a = i7;
-        this.f17551b = mVar;
+        this.f17943a = i7;
+        this.f17944b = mVar;
     }
 
     @Override
     public final void a(Object obj) {
         p pVar;
         String str;
-        int u02;
-        switch (this.f17550a) {
+        int C0;
+        switch (this.f17943a) {
             case 0:
-                m mVar = this.f17551b;
+                m mVar = this.f17944b;
                 String str2 = (String) obj;
-                if (mVar.f17573c == 3 && (pVar = mVar.h) != null) {
+                if (mVar.f17966c == 3 && (pVar = mVar.h) != null) {
                     pVar.setBusy(false);
                     if (str2 != null && !str2.trim().isEmpty()) {
-                        mVar.f17586n = str2;
+                        mVar.f17979n = str2;
                         mVar.h.r(str2);
                         return;
                     }
@@ -43,72 +43,67 @@ public final class h implements z10 {
                 }
                 return;
             default:
-                m mVar2 = this.f17551b;
-                if (!mVar2.f17586n.trim().isEmpty()) {
-                    gf gfVar = mVar2.f17571b;
-                    String trim = mVar2.f17586n.trim();
+                m mVar2 = this.f17944b;
+                if (!mVar2.f17979n.trim().isEmpty()) {
+                    pf pfVar = mVar2.f17964b;
+                    String trim = mVar2.f17979n.trim();
                     if (!trim.isEmpty() && mVar2.h != null) {
-                        g0.r(mVar2.f17584k0);
-                        g0.r(mVar2.f17583j0);
+                        g0.r(mVar2.f17977k0);
+                        g0.r(mVar2.f17976j0);
                         Drawable drawable = null;
-                        if (xr.f27577k == mVar2) {
-                            xr.f27577k = null;
+                        if (vr.f27593k == mVar2) {
+                            vr.f27593k = null;
                         }
-                        c2 c2Var = mVar2.f17578f;
+                        c2 c2Var = mVar2.f17971f;
                         if (c2Var != null) {
                             c2Var.c();
-                            mVar2.f17578f = null;
+                            mVar2.f17971f = null;
                         }
                         z zVar = mVar2.d;
                         if (zVar != null) {
                             zVar.d();
                             mVar2.d = null;
                         }
-                        mVar2.f17576e = null;
-                        mVar2.f17573c = 3;
+                        mVar2.f17969e = null;
+                        mVar2.f17966c = 3;
                         Log.d("VoiceLive", "review: voice paused, restyling " + trim.length() + " chars");
                         mVar2.h.setListening(false);
-                        gfVar.e();
+                        pfVar.e();
                         if (mVar2.H == null) {
                             mVar2.H = trim;
                         }
                         p pVar2 = mVar2.h;
-                        boolean z10 = obj instanceof ai.h;
+                        boolean z10 = obj instanceof ai.g;
                         if (z10) {
-                            str = ((ai.h) obj).f1216a;
+                            str = ((ai.g) obj).a();
                         } else {
                             str = null;
                         }
                         pVar2.setStyleLabel(str);
                         p pVar3 = mVar2.h;
-                        ChatActivityEnterView chatActivityEnterView = gfVar.f34928a;
+                        ChatActivityEnterView chatActivityEnterView = pfVar.f38384a;
                         if (z10) {
-                            ai.h hVar = (ai.h) obj;
-                            long j3 = hVar.f1218c;
+                            ai.g gVar = (ai.g) obj;
+                            long j3 = gVar.f1200b;
                             if (j3 != 0) {
-                                drawable = g5.m(chatActivityEnterView.R, j3, null, 2);
-                            } else if (hVar.f1219e) {
-                                drawable = new t2(chatActivityEnterView.getContext());
-                                if (j6.I.q()) {
-                                    u02 = -1;
+                                drawable = o5.m(chatActivityEnterView.R, j3, null, 2);
+                            } else if (gVar.d) {
+                                drawable = new w2(chatActivityEnterView.getContext());
+                                if (n6.I.q()) {
+                                    C0 = -1;
                                 } else {
-                                    int i7 = j6.G6;
-                                    int i10 = ChatActivityEnterView.N6;
-                                    u02 = chatActivityEnterView.u0(i7);
+                                    int i7 = n6.G6;
+                                    int i10 = ChatActivityEnterView.f32538n7;
+                                    C0 = chatActivityEnterView.C0(i7);
                                 }
-                                drawable.setColorFilter(new PorterDuffColorFilter(u02, PorterDuff.Mode.SRC_IN));
-                            } else {
-                                String str3 = hVar.f1217b;
-                                if (str3 != null) {
-                                    drawable = org.telegram.messenger.j6.f(str3);
-                                }
+                                drawable.setColorFilter(new PorterDuffColorFilter(C0, PorterDuff.Mode.SRC_IN));
                             }
                         }
                         pVar3.setStyleIcon(drawable);
                         mVar2.h.setReview(true);
                         mVar2.h.setBusy(true);
-                        gfVar.f(obj, mVar2.H, new h(mVar2, 0));
-                        g0.i3(mVar2.I, 400L);
+                        pfVar.f(obj, mVar2.H, new h(mVar2, 0));
+                        g0.h3(mVar2.I, 400L);
                         return;
                     }
                     return;

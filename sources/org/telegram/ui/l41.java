@@ -1,35 +1,46 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.view.View;
 public final class l41 {
-    public boolean f48826a;
-    public String f48827b;
-    public long f48828c;
-    public mg.b d;
-    public mg.b f48829e;
-    public String f48830f;
-    public String f48831g;
-    public boolean h;
-    public final int f48832i;
-    public final String f48833j;
-    public boolean f48834k;
-    public boolean f48835l;
-    public boolean f48836m;
-    public boolean f48837n;
-    public boolean f48838o;
+    public final org.telegram.ui.Components.vz f49427a;
+    public ng.f f49428b;
+    public final int f49429c;
+    public final m41 d;
 
-    public l41(String str, int i7) {
-        this.f48833j = str;
-        this.f48832i = i7;
-    }
-
-    public final void a(int i7, int i10, int i11, org.telegram.messenger.r10 r10Var) {
-        if (!this.f48834k) {
-            this.f48834k = true;
-            TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-            tL_loadAsyncGraph.token = this.f48830f;
-            ConnectionsManager.getInstance(i7).bindRequestToGuid(ConnectionsManager.getInstance(i7).sendRequest(tL_loadAsyncGraph, new a31(2, this, r10Var), null, null, 0, i11, 1, true), i10);
-        }
+    public l41(m41 m41Var, int i7) {
+        this.d = m41Var;
+        this.f49429c = i7;
+        ?? view = new View(m41Var.getContext());
+        view.f41500c = true;
+        TextPaint textPaint = new TextPaint(1);
+        view.f41501e = textPaint;
+        view.f41502f = new Paint(1);
+        Paint paint = new Paint(1);
+        view.h = paint;
+        Paint paint2 = new Paint(1);
+        view.f41503n = paint2;
+        view.f41507x = org.telegram.messenger.g0.L(35.0f);
+        view.f41508y = org.telegram.messenger.g0.L(22.0f);
+        view.E = org.telegram.messenger.g0.L(8.0f);
+        view.F = org.telegram.messenger.g0.L(3.5f);
+        view.G = new RectF();
+        view.H = 0.0f;
+        textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
+        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.5f));
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint2.setStyle(style);
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        this.f49427a = view;
+        view.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
+        m41Var.h.addView(view);
+        m41Var.f49752n.add(this);
     }
 }

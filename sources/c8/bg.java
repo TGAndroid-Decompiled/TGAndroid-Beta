@@ -7,7 +7,7 @@ public final class bg extends a8.a {
         gg createFromParcel;
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken(this.f307c);
-        int i7 = t.f4672a;
+        int i7 = t.f4959a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         yfVar.writeToParcel(obtain, 0);

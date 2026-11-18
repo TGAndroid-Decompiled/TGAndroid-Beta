@@ -1,19 +1,19 @@
 package fi;
 
-import org.telegram.messenger.vr;
-public final class i6 implements Runnable {
-    public final int f11820a;
-    public final k6 f11821b;
-    public final vr f11822c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class i6 {
+    public int f12112a;
+    public String f12113b;
+    public TLRPC.Photo f12114c;
+    public TLRPC.Document d;
 
-    public i6(k6 k6Var, vr vrVar, int i7) {
-        this.f11820a = i7;
-        this.f11821b = k6Var;
-        this.f11822c = vrVar;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: fi.i6.run():void");
+    public static i6 a(TL_stories.TL_storyAlbum tL_storyAlbum) {
+        ?? obj = new Object();
+        obj.f12112a = tL_storyAlbum.album_id;
+        obj.f12113b = tL_storyAlbum.title;
+        obj.f12114c = tL_storyAlbum.icon_photo;
+        obj.d = tL_storyAlbum.icon_video;
+        return obj;
     }
 }

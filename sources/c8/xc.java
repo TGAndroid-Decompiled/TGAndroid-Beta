@@ -1,18 +1,10 @@
 package c8;
 public abstract class xc {
-    public static int a(int i7) {
-        if (i7 != 0) {
-            if (i7 != 90) {
-                if (i7 != 180) {
-                    if (i7 == 270) {
-                        return 3;
-                    }
-                    throw new IllegalArgumentException(i5.c.i(i7, "Invalid rotation: "));
-                }
-                return 2;
-            }
-            return 1;
+    public static ud.e a(int i7, int i10) {
+        if (i10 <= Integer.MIN_VALUE) {
+            ud.e eVar = ud.e.d;
+            return ud.e.d;
         }
-        return 0;
+        return new ud.d(i7, i10 - 1, 1);
     }
 }

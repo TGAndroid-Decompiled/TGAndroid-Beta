@@ -1,203 +1,68 @@
 package c8;
 
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.List;
+import android.os.Build;
+import android.util.SparseArray;
+import android.view.KeyEvent;
+import android.view.View;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
 public abstract class yb {
-    public static void a(Parcel parcel, int i7, Boolean bool) {
-        if (bool == null) {
-            return;
-        }
-        q(parcel, i7, 4);
-        parcel.writeInt(bool.booleanValue() ? 1 : 0);
-    }
+    public static boolean f5086a = false;
+    public static Method f5087b = null;
+    public static boolean f5088c = false;
+    public static Field d;
 
-    public static void b(Parcel parcel, int i7, Bundle bundle) {
-        if (bundle == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeBundle(bundle);
-        s(parcel, r10);
-    }
-
-    public static void c(Parcel parcel, int i7, byte[] bArr) {
-        if (bArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeByteArray(bArr);
-        s(parcel, r10);
-    }
-
-    public static void d(Parcel parcel, int i7, byte[][] bArr) {
-        if (bArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeInt(bArr.length);
-        for (byte[] bArr2 : bArr) {
-            parcel.writeByteArray(bArr2);
-        }
-        s(parcel, r10);
-    }
-
-    public static void e(Parcel parcel, int i7, Float f10) {
-        if (f10 == null) {
-            return;
-        }
-        q(parcel, i7, 4);
-        parcel.writeFloat(f10.floatValue());
-    }
-
-    public static void f(Parcel parcel, int i7, IBinder iBinder) {
-        if (iBinder == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeStrongBinder(iBinder);
-        s(parcel, r10);
-    }
-
-    public static void g(Parcel parcel, int i7, int[] iArr) {
-        if (iArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeIntArray(iArr);
-        s(parcel, r10);
-    }
-
-    public static void h(Parcel parcel, int i7, List list) {
-        if (list == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        int size = list.size();
-        parcel.writeInt(size);
-        for (int i10 = 0; i10 < size; i10++) {
-            parcel.writeInt(((Integer) list.get(i10)).intValue());
-        }
-        s(parcel, r10);
-    }
-
-    public static void i(Parcel parcel, int i7, Integer num) {
-        if (num == null) {
-            return;
-        }
-        q(parcel, i7, 4);
-        parcel.writeInt(num.intValue());
-    }
-
-    public static void j(Parcel parcel, int i7, long[] jArr) {
-        if (jArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeLongArray(jArr);
-        s(parcel, r10);
-    }
-
-    public static void k(Parcel parcel, int i7, Parcelable parcelable, int i10) {
-        if (parcelable == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcelable.writeToParcel(parcel, i10);
-        s(parcel, r10);
-    }
-
-    public static void l(Parcel parcel, int i7, String str) {
-        if (str == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeString(str);
-        s(parcel, r10);
-    }
-
-    public static void m(Parcel parcel, int i7, String[] strArr) {
-        if (strArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeStringArray(strArr);
-        s(parcel, r10);
-    }
-
-    public static void n(Parcel parcel, int i7, List list) {
-        if (list == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeStringList(list);
-        s(parcel, r10);
-    }
-
-    public static void o(Parcel parcel, int i7, Parcelable[] parcelableArr, int i10) {
-        if (parcelableArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeInt(parcelableArr.length);
-        for (Parcelable parcelable : parcelableArr) {
-            if (parcelable == null) {
-                parcel.writeInt(0);
-            } else {
-                int dataPosition = parcel.dataPosition();
-                parcel.writeInt(1);
-                int dataPosition2 = parcel.dataPosition();
-                parcelable.writeToParcel(parcel, i10);
-                int dataPosition3 = parcel.dataPosition();
-                parcel.setDataPosition(dataPosition);
-                parcel.writeInt(dataPosition3 - dataPosition2);
-                parcel.setDataPosition(dataPosition3);
+    public static boolean a(View view, KeyEvent keyEvent) {
+        ArrayList arrayList;
+        int size;
+        int indexOfKey;
+        WeakHashMap weakHashMap = r0.i0.f56244a;
+        if (Build.VERSION.SDK_INT < 28) {
+            ArrayList arrayList2 = r0.h0.d;
+            r0.h0 h0Var = (r0.h0) view.getTag(2131296694);
+            WeakReference weakReference = null;
+            r0.h0 h0Var2 = h0Var;
+            if (h0Var == null) {
+                ?? obj = new Object();
+                obj.f56240a = null;
+                obj.f56241b = null;
+                obj.f56242c = null;
+                view.setTag(2131296694, obj);
+                h0Var2 = obj;
             }
-        }
-        s(parcel, r10);
-    }
-
-    public static void p(Parcel parcel, int i7, List list) {
-        if (list == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        int size = list.size();
-        parcel.writeInt(size);
-        for (int i10 = 0; i10 < size; i10++) {
-            Parcelable parcelable = (Parcelable) list.get(i10);
-            if (parcelable == null) {
-                parcel.writeInt(0);
-            } else {
-                int dataPosition = parcel.dataPosition();
-                parcel.writeInt(1);
-                int dataPosition2 = parcel.dataPosition();
-                parcelable.writeToParcel(parcel, 0);
-                int dataPosition3 = parcel.dataPosition();
-                parcel.setDataPosition(dataPosition);
-                parcel.writeInt(dataPosition3 - dataPosition2);
-                parcel.setDataPosition(dataPosition3);
+            WeakReference weakReference2 = h0Var2.f56242c;
+            if (weakReference2 == null || weakReference2.get() != keyEvent) {
+                h0Var2.f56242c = new WeakReference(keyEvent);
+                if (h0Var2.f56241b == null) {
+                    h0Var2.f56241b = new SparseArray();
+                }
+                SparseArray sparseArray = h0Var2.f56241b;
+                if (keyEvent.getAction() == 1 && (indexOfKey = sparseArray.indexOfKey(keyEvent.getKeyCode())) >= 0) {
+                    weakReference = (WeakReference) sparseArray.valueAt(indexOfKey);
+                    sparseArray.removeAt(indexOfKey);
+                }
+                if (weakReference == null) {
+                    weakReference = (WeakReference) sparseArray.get(keyEvent.getKeyCode());
+                }
+                if (weakReference != null) {
+                    View view2 = (View) weakReference.get();
+                    if (view2 == null || !view2.isAttachedToWindow() || (arrayList = (ArrayList) view2.getTag(2131296695)) == null || (size = arrayList.size() - 1) < 0) {
+                        return true;
+                    }
+                    arrayList.get(size).getClass();
+                    throw new ClassCastException();
+                }
+                return false;
             }
+            return false;
         }
-        s(parcel, r10);
+        return false;
     }
 
-    public static void q(Parcel parcel, int i7, int i10) {
-        parcel.writeInt(i7 | (i10 << 16));
-    }
-
-    public static int r(Parcel parcel, int i7) {
-        parcel.writeInt(i7 | (-65536));
-        parcel.writeInt(0);
-        return parcel.dataPosition();
-    }
-
-    public static void s(Parcel parcel, int i7) {
-        int dataPosition = parcel.dataPosition();
-        parcel.setDataPosition(i7 - 4);
-        parcel.writeInt(dataPosition - i7);
-        parcel.setDataPosition(dataPosition);
+    public static boolean b(r0.i r7, android.view.View r8, android.view.Window.Callback r9, android.view.KeyEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: c8.yb.b(r0.i, android.view.View, android.view.Window$Callback, android.view.KeyEvent):boolean");
     }
 }

@@ -1,37 +1,27 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_update;
 public final class gw implements Runnable {
-    public final int f23920a;
-    public final ez f23921b;
-    public final TL_update.TL_updateNewChannelMessage f23922c;
+    public final int f24312a;
+    public final CharSequence f24313b;
+    public final c f24314c;
     public final long d;
+    public final long f24315e;
+    public final boolean f24316f;
+    public final int h;
+    public final int f24317n;
 
-    public gw(ez ezVar, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, long j3, int i7) {
-        this.f23920a = i7;
-        this.f23921b = ezVar;
-        this.f23922c = tL_updateNewChannelMessage;
+    public gw(CharSequence charSequence, c cVar, long j3, long j10, boolean z10, int i7, int i10, int i11) {
+        this.f24312a = i11;
+        this.f24313b = charSequence;
+        this.f24314c = cVar;
         this.d = j3;
+        this.f24315e = j10;
+        this.f24316f = z10;
+        this.h = i7;
+        this.f24317n = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f23920a) {
-            case 0:
-                ez ezVar = this.f23921b;
-                ezVar.getClass();
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(Integer.valueOf(this.f23922c.message.f28072id));
-                ezVar.getMessagesStorage().c2(-this.d, arrayList, true, -1, 0, false, null);
-                return;
-            default:
-                ez ezVar2 = this.f23921b;
-                ezVar2.getClass();
-                ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(Integer.valueOf(this.f23922c.message.f28072id));
-                ezVar2.getMessagesStorage().c2(-this.d, arrayList2, true, -1, 0, false, null);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gw.run():void");
     }
 }

@@ -1,123 +1,55 @@
 package c8;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.net.Uri;
-import android.os.ParcelFileDescriptor;
-import android.os.Process;
-import android.os.StrictMode;
-import android.util.Log;
-import java.io.Closeable;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
+import android.graphics.Path;
 public abstract class l0 {
-    public static void a(Closeable closeable) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (IOException unused) {
-            }
-        }
-    }
-
-    public static boolean b(File file, Resources resources, int i7) {
-        InputStream inputStream;
-        try {
-            inputStream = resources.openRawResource(i7);
-            try {
-                boolean c10 = c(file, inputStream);
-                a(inputStream);
-                return c10;
-            } catch (Throwable th2) {
-                th = th2;
-                a(inputStream);
-                throw th;
-            }
-        } catch (Throwable th3) {
-            th = th3;
-            inputStream = null;
-        }
-    }
-
-    public static boolean c(File file, InputStream inputStream) {
-        FileOutputStream fileOutputStream;
-        StrictMode.ThreadPolicy allowThreadDiskWrites = StrictMode.allowThreadDiskWrites();
-        FileOutputStream fileOutputStream2 = null;
-        try {
-            try {
-                fileOutputStream = new FileOutputStream(file, false);
-            } catch (IOException e10) {
-                e = e10;
-            }
-        } catch (Throwable th2) {
-            th = th2;
-        }
-        try {
-            byte[] bArr = new byte[1024];
-            while (true) {
-                int read = inputStream.read(bArr);
-                if (read != -1) {
-                    fileOutputStream.write(bArr, 0, read);
-                } else {
-                    a(fileOutputStream);
-                    StrictMode.setThreadPolicy(allowThreadDiskWrites);
-                    return true;
-                }
-            }
-        } catch (IOException e11) {
-            e = e11;
-            fileOutputStream2 = fileOutputStream;
-            Log.e("TypefaceCompatUtil", "Error copying resource contents to temp file: " + e.getMessage());
-            a(fileOutputStream2);
-            StrictMode.setThreadPolicy(allowThreadDiskWrites);
+    public static boolean a(i0.d[] dVarArr, i0.d[] dVarArr2) {
+        if (dVarArr == null || dVarArr2 == null || dVarArr.length != dVarArr2.length) {
             return false;
-        } catch (Throwable th3) {
-            th = th3;
-            fileOutputStream2 = fileOutputStream;
-            a(fileOutputStream2);
-            StrictMode.setThreadPolicy(allowThreadDiskWrites);
-            throw th;
         }
-    }
-
-    public static File d(Context context) {
-        File cacheDir = context.getCacheDir();
-        if (cacheDir == null) {
-            return null;
-        }
-        String str = ".font" + Process.myPid() + "-" + Process.myTid() + "-";
-        for (int i7 = 0; i7 < 100; i7++) {
-            File file = new File(cacheDir, str + i7);
-            if (file.createNewFile()) {
-                return file;
+        for (int i7 = 0; i7 < dVarArr.length; i7++) {
+            i0.d dVar = dVarArr[i7];
+            char c10 = dVar.f15896a;
+            i0.d dVar2 = dVarArr2[i7];
+            if (c10 != dVar2.f15896a || dVar.f15897b.length != dVar2.f15897b.length) {
+                return false;
             }
         }
-        return null;
+        return true;
     }
 
-    public static MappedByteBuffer e(Context context, Uri uri) {
-        ParcelFileDescriptor openFileDescriptor;
+    public static float[] b(int i7, float[] fArr) {
+        if (i7 >= 0) {
+            int length = fArr.length;
+            if (length >= 0) {
+                int min = Math.min(i7, length);
+                float[] fArr2 = new float[i7];
+                System.arraycopy(fArr, 0, fArr2, 0, min);
+                return fArr2;
+            }
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public static i0.d[] c(java.lang.String r17) {
+        throw new UnsupportedOperationException("Method not decompiled: c8.l0.c(java.lang.String):i0.d[]");
+    }
+
+    public static Path d(String str) {
+        Path path = new Path();
         try {
-            openFileDescriptor = context.getContentResolver().openFileDescriptor(uri, "r", null);
-        } catch (IOException unused) {
+            i0.d.b(c(str), path);
+            return path;
+        } catch (RuntimeException e10) {
+            throw new RuntimeException("Error in parsing ".concat(str), e10);
         }
-        if (openFileDescriptor == null) {
-            if (openFileDescriptor != null) {
-                openFileDescriptor.close();
-                return null;
-            }
-            return null;
+    }
+
+    public static i0.d[] e(i0.d[] dVarArr) {
+        i0.d[] dVarArr2 = new i0.d[dVarArr.length];
+        for (int i7 = 0; i7 < dVarArr.length; i7++) {
+            dVarArr2[i7] = new i0.d(dVarArr[i7]);
         }
-        FileInputStream fileInputStream = new FileInputStream(openFileDescriptor.getFileDescriptor());
-        FileChannel channel = fileInputStream.getChannel();
-        MappedByteBuffer map = channel.map(FileChannel.MapMode.READ_ONLY, 0L, channel.size());
-        fileInputStream.close();
-        openFileDescriptor.close();
-        return map;
+        return dVarArr2;
     }
 }

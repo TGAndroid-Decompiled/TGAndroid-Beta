@@ -2,21 +2,21 @@ package wa;
 
 import a8.p0;
 public final class a {
-    public String f59074a;
-    public int f59075b;
-    public String f59076c;
+    public String f59639a;
+    public int f59640b;
+    public String f59641c;
     public String d;
-    public long f59077e;
-    public long f59078f;
-    public String f59079g;
+    public long f59642e;
+    public long f59643f;
+    public String f59644g;
     public byte h;
 
     public final b a() {
-        if (this.h == 3 && this.f59075b != 0) {
-            return new b(this.f59074a, this.f59075b, this.f59076c, this.d, this.f59077e, this.f59078f, this.f59079g);
+        if (this.h == 3 && this.f59640b != 0) {
+            return new b(this.f59639a, this.f59640b, this.f59641c, this.d, this.f59642e, this.f59643f, this.f59644g);
         }
         StringBuilder sb2 = new StringBuilder();
-        if (this.f59075b == 0) {
+        if (this.f59640b == 0) {
             sb2.append(" registrationStatus");
         }
         if ((this.h & 1) == 0) {

@@ -7,22 +7,22 @@ import java.nio.MappedByteBuffer;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 public final class m6 {
-    public final MappedByteBuffer f24978a;
-    public final int f24979b;
-    public final int f24980c;
+    public final MappedByteBuffer f25524a;
+    public final int f25525b;
+    public final int f25526c;
     public final Inflater d = new Inflater(true);
-    public final BitmapFactory.Options f24981e = new BitmapFactory.Options();
-    public byte[] f24982f = new byte[4096];
-    public final byte[] f24983g = new byte[4608];
+    public final BitmapFactory.Options f25527e = new BitmapFactory.Options();
+    public byte[] f25528f = new byte[4096];
+    public final byte[] f25529g = new byte[4608];
     public final byte[] h = new byte[4096];
-    public final int[] f24984i = new int[4096];
-    public final int[] f24985j = new int[4096];
-    public final int[] f24986k = new int[256];
-    public final byte[] f24987l = new byte[1024];
-    public final int[] f24988m = new int[8];
-    public final long[] f24989n = new long[8];
-    public final byte[][] f24990o = new byte[8];
-    public long f24991p;
+    public final int[] f25530i = new int[4096];
+    public final int[] f25531j = new int[4096];
+    public final int[] f25532k = new int[256];
+    public final byte[] f25533l = new byte[1024];
+    public final int[] f25534m = new int[8];
+    public final long[] f25535n = new long[8];
+    public final byte[][] f25536o = new byte[8];
+    public long f25537p;
 
     public m6() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.m6.<init>():void");
@@ -52,7 +52,7 @@ public final class m6 {
     }
 
     public final Bitmap b(int i7, int i10) {
-        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(this.f24982f, i7, i10, this.f24981e);
+        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(this.f25528f, i7, i10, this.f25527e);
         if (decodeByteArray != null) {
             if (decodeByteArray.getWidth() == 64 && decodeByteArray.getHeight() == 64) {
                 return decodeByteArray;
@@ -77,7 +77,7 @@ public final class m6 {
         int p11;
         int i11;
         int f10 = f(i7);
-        MappedByteBuffer mappedByteBuffer = this.f24978a;
+        MappedByteBuffer mappedByteBuffer = this.f25524a;
         int i12 = mappedByteBuffer.getInt(f10 + 4);
         int o4 = o(f10 + 8);
         int p12 = p(f10 + 16);
@@ -106,8 +106,8 @@ public final class m6 {
                     i(j3, i11);
                 }
                 int p14 = p(f10 + 19) & 1;
-                byte[] bArr2 = this.f24983g;
-                byte[] bArr3 = this.f24987l;
+                byte[] bArr2 = this.f25529g;
+                byte[] bArr3 = this.f25533l;
                 if (p14 != 0) {
                     int i16 = 0;
                     while (i16 < i15) {
@@ -143,7 +143,7 @@ public final class m6 {
                 int i23 = 0;
                 int i24 = 0;
                 while (true) {
-                    iArr2 = this.f24986k;
+                    iArr2 = this.f25532k;
                     if (i23 >= o10) {
                         break;
                     }
@@ -180,7 +180,7 @@ public final class m6 {
             }
         }
         l(i12, o4);
-        BitmapFactory.Options options = this.f24981e;
+        BitmapFactory.Options options = this.f25527e;
         options.inPremultiplied = false;
         Bitmap bitmap2 = null;
         try {
@@ -217,7 +217,7 @@ public final class m6 {
         k(i7 - 8, 1278758998);
         k(i7 - 4, i10);
         if (i12 != 0) {
-            this.f24982f[i7 + i10] = 0;
+            this.f25528f[i7 + i10] = 0;
         }
         return b(i11, i10 + 20 + i12);
     }
@@ -243,7 +243,7 @@ public final class m6 {
         Bitmap b10;
         if (i7 >= 0 && i7 <= 15 && i10 >= 0 && i10 < 4096) {
             try {
-                i11 = g((i7 * 4096) + i10, 0, this.f24980c);
+                i11 = g((i7 * 4096) + i10, 0, this.f25526c);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -255,9 +255,9 @@ public final class m6 {
         }
         int o4 = o(f(i11) + 2);
         if (o4 == 65535) {
-            int[] iArr = this.f24984i;
+            int[] iArr = this.f25530i;
             int f10 = f(i11);
-            int i12 = this.f24978a.getInt(f10 + 4);
+            int i12 = this.f25524a.getInt(f10 + 4);
             int o10 = o(f10 + 8);
             int p10 = p(f10 + 16);
             if (p10 != 2 && p10 != 3) {
@@ -273,24 +273,24 @@ public final class m6 {
             }
             return b10;
         }
-        d(this.f24985j, i11);
-        d(this.f24984i, g(o4, this.f24980c, this.f24979b));
+        d(this.f25531j, i11);
+        d(this.f25530i, g(o4, this.f25526c, this.f25525b));
         for (int i13 = 0; i13 < 4096; i13++) {
-            int[] iArr2 = this.f24985j;
+            int[] iArr2 = this.f25531j;
             int i14 = iArr2[i13];
-            iArr2[i13] = (i14 & 16777215) | (((((i14 >>> 24) * (this.f24984i[i13] & 255)) + 127) / 255) << 24);
+            iArr2[i13] = (i14 & 16777215) | (((((i14 >>> 24) * (this.f25530i[i13] & 255)) + 127) / 255) << 24);
         }
-        return Bitmap.createBitmap(this.f24985j, 64, 64, Bitmap.Config.ARGB_8888);
+        return Bitmap.createBitmap(this.f25531j, 64, 64, Bitmap.Config.ARGB_8888);
     }
 
     public final void i(int i7, int i10) {
         Inflater inflater = this.d;
         inflater.reset();
-        inflater.setInput(this.f24982f, 20, i7);
+        inflater.setInput(this.f25528f, 20, i7);
         int i11 = 0;
         while (i11 < i10) {
             try {
-                int inflate = inflater.inflate(this.f24983g, i11, i10 - i11);
+                int inflate = inflater.inflate(this.f25529g, i11, i10 - i11);
                 if (inflate != 0) {
                     i11 += inflate;
                 } else {
@@ -315,7 +315,7 @@ public final class m6 {
         if ((p(i11) & 128) != 0) {
             int i12 = i7 + 8;
             if (o(i12) >= 3) {
-                int o4 = o(this.f24978a.getInt(i7 + 4));
+                int o4 = o(this.f25524a.getInt(i7 + 4));
                 if (o4 != 0 && (i10 = o4 + 2) <= o(i12)) {
                     return i10;
                 }
@@ -331,7 +331,7 @@ public final class m6 {
     }
 
     public final void k(int i7, int i10) {
-        byte[] bArr = this.f24982f;
+        byte[] bArr = this.f25528f;
         bArr[i7] = (byte) i10;
         bArr[i7 + 1] = (byte) (i10 >>> 8);
         bArr[i7 + 2] = (byte) (i10 >>> 16);
@@ -339,31 +339,31 @@ public final class m6 {
     }
 
     public final void l(int i7, int i10) {
-        byte[] bArr = this.f24982f;
+        byte[] bArr = this.f25528f;
         int i11 = i10 + 21;
         if (bArr.length < i11) {
             int length = bArr.length;
             while (length < i11) {
                 length <<= 1;
             }
-            this.f24982f = new byte[length];
+            this.f25528f = new byte[length];
         }
-        MappedByteBuffer mappedByteBuffer = this.f24978a;
+        MappedByteBuffer mappedByteBuffer = this.f25524a;
         mappedByteBuffer.position(i7);
-        mappedByteBuffer.get(this.f24982f, 20, i10);
+        mappedByteBuffer.get(this.f25528f, 20, i10);
     }
 
     public final byte[] m(int i7) {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            byte[][] bArr = this.f24990o;
-            long[] jArr = this.f24989n;
-            int[] iArr = this.f24988m;
+            byte[][] bArr = this.f25536o;
+            long[] jArr = this.f25535n;
+            int[] iArr = this.f25534m;
             if (i10 < 8) {
                 if (iArr[i10] == i7) {
-                    long j3 = this.f24991p + 1;
-                    this.f24991p = j3;
+                    long j3 = this.f25537p + 1;
+                    this.f25537p = j3;
                     jArr[i10] = j3;
                     return bArr[i10];
                 }
@@ -378,8 +378,8 @@ public final class m6 {
                 iArr[i11] = -1;
                 c(i7, bArr[i11]);
                 iArr[i11] = i7;
-                long j10 = this.f24991p + 1;
-                this.f24991p = j10;
+                long j10 = this.f25537p + 1;
+                this.f25537p = j10;
                 jArr[i11] = j10;
                 return bArr[i11];
             }
@@ -387,15 +387,15 @@ public final class m6 {
     }
 
     public final int o(int i7) {
-        return this.f24978a.getShort(i7) & 65535;
+        return this.f25524a.getShort(i7) & 65535;
     }
 
     public final int p(int i7) {
-        return this.f24978a.get(i7) & 255;
+        return this.f25524a.get(i7) & 255;
     }
 
     public final void q(int i7, int i10) {
-        if (i7 < this.f24979b && i7 != i10) {
+        if (i7 < this.f25525b && i7 != i10) {
             int f10 = f(i7);
             if (p(f10 + 16) <= 1 && p(f10 + 17) == 0 && o(f10 + 10) == 65535 && o(f10 + 12) == 65535) {
                 return;

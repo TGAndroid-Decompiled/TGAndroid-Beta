@@ -1,40 +1,73 @@
 package org.telegram.ui.Components;
-public final class og {
-    public static final og d;
-    public static final og f37939e;
-    public static final og[] f37940f;
-    public final ng f37941a;
-    public final ng f37942b;
-    public final int f37943c;
 
-    static {
-        ng ngVar = ng.f37569a;
-        ng ngVar2 = ng.f37570b;
-        og ogVar = new og("VOICE_TO_VIDEO", 0, ngVar, ngVar2, 2131624331);
-        d = ogVar;
-        ng ngVar3 = ng.f37571c;
-        ng ngVar4 = ng.d;
-        og ogVar2 = new og("STICKER_TO_KEYBOARD", 1, ngVar3, ngVar4, 2131624230);
-        ng ngVar5 = ng.f37572e;
-        og ogVar3 = new og("SMILE_TO_KEYBOARD", 2, ngVar5, ngVar4, 2131624197);
-        og ogVar4 = new og("VIDEO_TO_VOICE", 3, ngVar2, ngVar, 2131624331);
-        f37939e = ogVar4;
-        og ogVar5 = new og("KEYBOARD_TO_STICKER", 4, ngVar4, ngVar3, 2131624076);
-        ng ngVar6 = ng.f37573f;
-        f37940f = new og[]{ogVar, ogVar2, ogVar3, ogVar4, ogVar5, new og("KEYBOARD_TO_GIF", 5, ngVar4, ngVar6, 2131624074), new og("KEYBOARD_TO_SMILE", 6, ngVar4, ngVar5, 2131624075), new og("GIF_TO_KEYBOARD", 7, ngVar6, ngVar4, 2131624032), new og("GIF_TO_SMILE", 8, ngVar6, ngVar5, 2131624033), new og("SMILE_TO_GIF", 9, ngVar5, ngVar6, 2131624196), new og("SMILE_TO_STICKER", 10, ngVar5, ngVar3, 2131624198), new og("STICKER_TO_SMILE", 11, ngVar3, ngVar5, 2131624231)};
+import android.graphics.Rect;
+import android.graphics.RectF;
+import java.util.ArrayList;
+public final class og extends k1.b {
+    public final pg f38099o;
+
+    public og(pg pgVar, pg pgVar2) {
+        super(pgVar2);
+        this.f38099o = pgVar;
     }
 
-    public og(String str, int i7, ng ngVar, ng ngVar2, int i10) {
-        this.f37941a = ngVar;
-        this.f37942b = ngVar2;
-        this.f37943c = i10;
+    @Override
+    public final int g(float f10, float f11) {
+        pg pgVar = this.f38099o;
+        ChatActivityEnterView chatActivityEnterView = pgVar.Q0;
+        if (chatActivityEnterView.f32596g5 && chatActivityEnterView.B2 != null && chatActivityEnterView.G4.contains(f10, f11)) {
+            return 2;
+        }
+        if (chatActivityEnterView.Q && chatActivityEnterView.B2 != null && chatActivityEnterView.f32554b5 > 0.1f && pgVar.K.contains(f10, f11)) {
+            return 4;
+        }
+        return -1;
     }
 
-    public static og valueOf(String str) {
-        return (og) Enum.valueOf(og.class, str);
+    @Override
+    public final void h(ArrayList arrayList) {
+        ChatActivityEnterView chatActivityEnterView = this.f38099o.Q0;
+        if (chatActivityEnterView.f32596g5) {
+            arrayList.add(2);
+        }
+        if (chatActivityEnterView.Q && chatActivityEnterView.B2 != null && chatActivityEnterView.f32554b5 > 0.1f) {
+            arrayList.add(4);
+        }
     }
 
-    public static og[] values() {
-        return (og[]) f37940f.clone();
+    @Override
+    public final boolean k(int i7, int i10) {
+        return true;
+    }
+
+    @Override
+    public final void l(int i7, s0.c cVar) {
+        int i10;
+        int i11;
+        pg pgVar = this.f38099o;
+        ChatActivityEnterView chatActivityEnterView = pgVar.Q0;
+        if (i7 == 2) {
+            Rect rect = chatActivityEnterView.I4;
+            RectF rectF = chatActivityEnterView.G4;
+            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            cVar.h(chatActivityEnterView.I4);
+            if (chatActivityEnterView.f32570d5 > 0.5f) {
+                i11 = 2131754927;
+            } else {
+                i11 = 2131754930;
+            }
+            cVar.o(org.telegram.messenger.gd.M0(i11, null));
+        } else if (i7 == 4) {
+            Rect rect2 = chatActivityEnterView.I4;
+            RectF rectF2 = pgVar.K;
+            rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
+            cVar.h(chatActivityEnterView.I4);
+            if (chatActivityEnterView.P) {
+                i10 = 2131754934;
+            } else {
+                i10 = 2131754935;
+            }
+            cVar.o(org.telegram.messenger.gd.M0(i10, null));
+        }
     }
 }

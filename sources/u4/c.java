@@ -1,6 +1,6 @@
 package u4;
 public interface c {
-    void I(int i7, Object obj);
+    void A();
 
-    void y();
+    void C(int i7, Object obj);
 }

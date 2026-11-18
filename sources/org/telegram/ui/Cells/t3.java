@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 
 import android.text.TextPaint;
-import org.telegram.ui.Components.b00;
-public final class t3 extends b00 {
+import org.telegram.ui.Components.i00;
+public final class t3 extends i00 {
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         super.updateDrawState(textPaint);

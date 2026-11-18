@@ -1,152 +1,56 @@
 package fi;
 
-import android.app.Activity;
-import android.content.Context;
-import java.util.WeakHashMap;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.an;
-import org.telegram.ui.ol;
-import org.telegram.ui.qj;
-public final class p2 extends ki {
-    public final int J4;
-    public final Object K4;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.zy;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.ak;
+public final class p2 implements ak {
+    public final z3 f12373a;
 
-    public p2(org.telegram.ui.ActionBar.e2 e2Var, Activity activity, org.telegram.ui.ActionBar.e2 e2Var2, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
-        super(activity, e2Var2, false, false, true, e6Var);
-        this.J4 = i7;
-        this.K4 = e2Var;
+    public p2(z3 z3Var) {
+        this.f12373a = z3Var;
     }
 
     @Override
-    public void L() {
-        int i7;
-        int i10 = this.J4;
-        Object obj = this.K4;
-        switch (i10) {
-            case 1:
-                kg.n nVar = (kg.n) obj;
-                p2 p2Var = nVar.M;
-                if (p2Var != null && p2Var.isShowing()) {
-                    org.telegram.messenger.g0.a3(nVar.getParentActivity(), kg.n.h0(nVar));
-                }
-                super.L();
+    public final void A() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
+            intent.setType("*/*");
+            org.telegram.ui.ActionBar.h2 h2Var = this.f12373a.f12875t0.f11969f;
+            if (h2Var.getParentActivity() == null) {
                 return;
-            case 2:
-                an anVar = (an) obj;
-                p2 p2Var2 = anVar.Y1;
-                if (p2Var2 != null && (p2Var2.isShowing() || this.f36481s2)) {
-                    Activity parentActivity = anVar.getParentActivity();
-                    i7 = ((org.telegram.ui.ActionBar.e2) anVar).classGuid;
-                    org.telegram.messenger.g0.a3(parentActivity, i7);
-                }
-                super.L();
-                anVar.wa(false, true);
-                ol olVar = anVar.f45277m1;
-                if (olVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f55671a;
-                    r0.y.c(olVar);
-                    return;
-                }
-                return;
-            case 3:
-                super.L();
-                Runnable runnable = (Runnable) obj;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                super.L();
-                return;
+            }
+            h2Var.getParentActivity().startActivityForResult(intent, 21);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 
     @Override
-    public void n0() {
-        int i7;
-        qj qjVar;
-        int i10 = this.J4;
-        Object obj = this.K4;
-        switch (i10) {
-            case 0:
-                b4 b4Var = (b4) obj;
-                p2 p2Var = b4Var.f11520s2;
-                if (p2Var != null) {
-                    p2Var.A0(false);
-                }
-                k2 k2Var = b4Var.L1;
-                if (k2Var != null && k2Var.getEditField() != null) {
-                    b4Var.L1.getEditField().requestFocus();
-                    return;
-                }
-                return;
-            case 1:
-                kg.n nVar = (kg.n) obj;
-                p2 p2Var2 = nVar.M;
-                if (p2Var2 != null) {
-                    p2Var2.A0(false);
-                }
-                p2 p2Var3 = nVar.M;
-                if (p2Var3 != null && p2Var3.isShowing()) {
-                    org.telegram.messenger.g0.a3(nVar.getParentActivity(), kg.n.i0(nVar));
-                    return;
-                }
-                return;
-            case 2:
-                an anVar = (an) obj;
-                boolean z10 = this.f36481s2;
-                boolean O = this.f36497w2.O();
-                if (!O) {
-                    anVar.S3 = false;
-                    qj qjVar2 = anVar.f45117a0;
-                    if (qjVar2 != null) {
-                        if (!z10) {
-                            qjVar2.S();
-                        }
-                        if (anVar.f45117a0.getEditField() != null) {
-                            anVar.f45117a0.getEditField().clearFocus();
-                        }
-                    }
-                }
-                if (!z10) {
-                    p2 p2Var4 = anVar.Y1;
-                    if (p2Var4 != null) {
-                        p2Var4.A0(false);
-                    }
-                    if (O && (qjVar = anVar.f45117a0) != null && qjVar.getEditField() != null) {
-                        anVar.f45117a0.getEditField().requestFocus();
-                    }
-                    p2 p2Var5 = anVar.Y1;
-                    if (p2Var5 != null && p2Var5.isShowing()) {
-                        Activity parentActivity = anVar.getParentActivity();
-                        i7 = ((org.telegram.ui.ActionBar.e2) anVar).classGuid;
-                        org.telegram.messenger.g0.a3(parentActivity, i7);
-                    }
-                    anVar.wa(false, false);
-                    ol olVar = anVar.f45277m1;
-                    if (olVar != null) {
-                        WeakHashMap weakHashMap = r0.i0.f55671a;
-                        r0.y.c(olVar);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i7, long j3, boolean z11, long j10) {
+        org.telegram.messenger.c accountInstance;
+        boolean z12;
+        z3 z3Var = this.f12373a;
+        TL_stories.StoryItem storyItem = z3Var.f12896y1.f12723a;
+        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            accountInstance = z3Var.getAccountInstance();
+            zy.V(i7, z3Var.l1, 0L, j10, 0L, str, null, arrayList, arrayList, null, null, null, null, accountInstance, null, null, null, null, null, storyItem, null, null, null, z10, false);
+            if (j10 <= 0) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            z3Var.i0(z12);
         }
     }
 
-    public p2(Context context, org.telegram.ui.ActionBar.e2 e2Var, org.telegram.ui.ActionBar.e6 e6Var, Runnable runnable) {
-        super(context, e2Var, false, false, true, e6Var);
-        this.J4 = 3;
-        this.K4 = runnable;
+    @Override
+    public final void T() {
     }
 
-    public p2(b4 b4Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, false, false, true, e6Var);
-        this.J4 = 0;
-        this.K4 = b4Var;
+    @Override
+    public final void p(ArrayList arrayList, boolean z10, int i7, long j3) {
     }
 }

@@ -1,80 +1,34 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class t31 implements Runnable {
-    public final int f51345a;
-    public final z41 f51346b;
-    public final ArrayList f51347c;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class t31 implements TextWatcher {
+    public boolean f52147a;
+    public final int f52148b;
+    public final EditTextBoldCursor f52149c;
+    public final org.telegram.ui.Components.xb0 d;
+    public final int[] f52150e;
+    public final TextView f52151f;
 
-    public t31(z41 z41Var, ArrayList arrayList, int i7) {
-        this.f51345a = i7;
-        this.f51346b = z41Var;
-        this.f51347c = arrayList;
+    public t31(int i7, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.xb0 xb0Var, int[] iArr, TextView textView) {
+        this.f52148b = i7;
+        this.f52149c = editTextBoldCursor;
+        this.d = xb0Var;
+        this.f52150e = iArr;
+        this.f52151f = textView;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f51345a) {
-            case 0:
-                z41 z41Var = this.f51346b;
-                fi.k6 k6Var = z41Var.D0;
-                k6Var.getClass();
-                ArrayList arrayList = this.f51347c;
-                int size = arrayList.size();
-                int i7 = 0;
-                while (true) {
-                    if (i7 < size) {
-                        Object obj = arrayList.get(i7);
-                        i7++;
-                        if (!k6Var.f11945j.containsKey((Integer) obj)) {
-                            z10 = true;
-                        }
-                    } else {
-                        z10 = false;
-                    }
-                }
-                if (!k6Var.q(0, arrayList, z10)) {
-                    z41Var.m0();
-                    z41Var.r0();
-                    return;
-                }
-                return;
-            default:
-                z41 z41Var2 = this.f51346b;
-                ArrayList arrayList2 = z41Var2.f53837w0;
-                ArrayList arrayList3 = z41Var2.f53835v0;
-                int i10 = 0;
-                z41Var2.A0 = false;
-                ArrayList arrayList4 = this.f51347c;
-                if (!arrayList4.isEmpty()) {
-                    int size2 = arrayList4.size();
-                    for (int i11 = 0; i11 < size2; i11++) {
-                        org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) arrayList4.get(i11);
-                        int i12 = z41Var2.f53833t0.get(gjVar.e1(), -1);
-                        if (i12 >= 0 && ((w41) arrayList3.get(i12)).b() == gjVar.e1()) {
-                            ((w41) arrayList3.get(i12)).f52434b = gjVar;
-                        }
-                    }
-                    arrayList2.clear();
-                    int size3 = arrayList3.size();
-                    while (true) {
-                        if (i10 < size3) {
-                            w41 w41Var = (w41) arrayList3.get(i10);
-                            if (w41Var.f52434b == null) {
-                                z41Var2.f53832s0 = w41Var.b();
-                            } else {
-                                arrayList2.add(w41Var);
-                                i10++;
-                            }
-                        }
-                    }
-                    z41Var2.r0();
-                    z41Var2.T.setItemAnimator(null);
-                    z41Var2.C0.f();
-                    return;
-                }
-                return;
-        }
+    public final void afterTextChanged(android.text.Editable r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.t31.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

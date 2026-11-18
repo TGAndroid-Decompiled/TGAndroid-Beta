@@ -23,24 +23,24 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
+import org.telegram.messenger.f3;
+import org.telegram.messenger.fj;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.k5;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Cells.n8;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Cells.o8;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.fb;
+import org.telegram.ui.Components.ob;
 import tg.z1;
-import ug.p1;
-import ug.t1;
+import ug.z;
+import wg.r;
 public final class h extends Drawable implements Animator.AnimatorListener {
-    public static final RectF f59345c0 = new RectF();
-    public static final Rect f59346d0 = new Rect();
-    public static final int[] f59347e0 = new int[2];
-    public static final n8 f59348f0 = new n8("openFactor", 11);
-    public static final n8 f59349g0 = new n8("openFactor", 12);
+    public static final RectF f59909c0 = new RectF();
+    public static final Rect f59910d0 = new Rect();
+    public static final int[] f59911e0 = new int[2];
+    public static final o8 f59912f0 = new o8("openFactor", 11);
+    public static final o8 f59913g0 = new o8("openFactor", 12);
     public final q1 E;
-    public final gj F;
+    public final fj F;
     public float G;
     public Bitmap J;
     public BitmapShader K;
@@ -50,22 +50,22 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     public boolean U;
     public int V;
     public int W;
-    public fb X;
+    public ob X;
     public float Y;
     public float Z;
-    public final i f59350a;
-    public final t1 f59352b;
-    public final LinearGradient f59356f;
-    public final d[] f59361x;
-    public final Drawable f59362y;
-    public final Paint f59354c = new Paint(1);
+    public final i f59914a;
+    public final r f59916b;
+    public final LinearGradient f59920f;
+    public final d[] f59925x;
+    public final Drawable f59926y;
+    public final Paint f59918c = new Paint(1);
     public final Matrix d = new Matrix();
-    public final Path f59355e = new Path();
+    public final Path f59919e = new Path();
     public final RectF h = new RectF();
-    public final RectF f59357n = new RectF();
-    public final RectF f59358r = new RectF();
-    public final RectF f59359s = new RectF();
-    public final RectF f59360w = new RectF();
+    public final RectF f59921n = new RectF();
+    public final RectF f59922r = new RectF();
+    public final RectF f59923s = new RectF();
+    public final RectF f59924w = new RectF();
     public float H = 0.0f;
     public float I = 0.0f;
     public final Matrix L = new Matrix();
@@ -74,39 +74,39 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     public boolean P = false;
     public boolean R = true;
     public int S = -1;
-    public final ObjectAnimator f59351a0 = ObjectAnimator.ofFloat(this, f59348f0, 1.0f).setDuration(560L);
-    public final ObjectAnimator f59353b0 = ObjectAnimator.ofFloat(this, f59349g0, 1.0f).setDuration(240L);
+    public final ObjectAnimator f59915a0 = ObjectAnimator.ofFloat(this, f59912f0, 1.0f).setDuration(560L);
+    public final ObjectAnimator f59917b0 = ObjectAnimator.ofFloat(this, f59913g0, 1.0f).setDuration(240L);
 
-    public h(i iVar, q1 q1Var, ArrayList arrayList, t1 t1Var) {
-        this.f59352b = t1Var;
-        this.f59350a = iVar;
+    public h(i iVar, q1 q1Var, ArrayList arrayList, r rVar) {
+        this.f59916b = rVar;
+        this.f59914a = iVar;
         this.E = q1Var;
         this.F = q1Var.getMessageObject();
-        this.f59361x = new d[Math.min(5, arrayList.size())];
+        this.f59925x = new d[Math.min(5, arrayList.size())];
         int i7 = 0;
         while (true) {
-            d[] dVarArr = this.f59361x;
+            d[] dVarArr = this.f59925x;
             if (i7 < dVarArr.length) {
                 dVarArr[i7] = new d(this, ((Long) arrayList.get(i7)).longValue());
                 i7++;
             } else {
-                this.f59354c.setStyle(Paint.Style.FILL);
-                Drawable mutate = iVar.getContext().getDrawable(2131232674).mutate();
-                this.f59362y = mutate;
+                this.f59918c.setStyle(Paint.Style.FILL);
+                Drawable mutate = iVar.getContext().getDrawable(2131232675).mutate();
+                this.f59926y = mutate;
                 q1Var.setHideSideButtonByQuickShare(true);
                 iVar.performHapticFeedback(3, 1);
-                int w02 = j6.w0(j6.G8, this.E.getResourcesProvider());
-                mutate.setColorFilter(new PorterDuffColorFilter(j6.x0(null, j6.Ke, false), PorterDuff.Mode.MULTIPLY));
+                int w02 = n6.w0(n6.G8, this.E.getResourcesProvider());
+                mutate.setColorFilter(new PorterDuffColorFilter(n6.x0(null, n6.Ke, false), PorterDuff.Mode.MULTIPLY));
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, g0.L(100.0f), new int[]{w02, 16777215 & w02}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                this.f59356f = linearGradient;
-                this.f59354c.setShader(linearGradient);
-                ObjectAnimator objectAnimator = this.f59351a0;
-                LinearInterpolator linearInterpolator = f.f59326b;
+                this.f59920f = linearGradient;
+                this.f59918c.setShader(linearGradient);
+                ObjectAnimator objectAnimator = this.f59915a0;
+                LinearInterpolator linearInterpolator = f.f59890b;
                 objectAnimator.setInterpolator(linearInterpolator);
-                this.f59351a0.addListener(this);
-                this.f59353b0.setInterpolator(linearInterpolator);
-                this.f59353b0.addListener(this);
-                g0.l2(new p1(this, 4), 15.0f);
+                this.f59915a0.addListener(this);
+                this.f59917b0.setInterpolator(linearInterpolator);
+                this.f59917b0.addListener(this);
+                g0.l2(new z(this, 5), 15.0f);
                 return;
             }
         }
@@ -178,13 +178,13 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     }
 
     public final void c() {
-        this.f59353b0.start();
+        this.f59917b0.start();
         this.P = true;
         if (this.N && !this.U) {
-            b bVar = new b(new z1(this, 13));
+            b bVar = new b(new z1(this, 14));
             this.Q = bVar;
-            RectF rectF = this.f59358r;
-            int i7 = g.f59343a;
+            RectF rectF = this.f59922r;
+            int i7 = g.f59907a;
             bVar.a((int) rectF.width(), (int) (rectF.height() + g0.L(30.0f)), 4.0f, g0.L(10));
         }
         invalidateSelf();
@@ -203,20 +203,20 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                 bitmap4.recycle();
             }
             b bVar = this.Q;
-            if (bVar != null && (bitmap3 = bVar.f59301c) != null) {
+            if (bVar != null && (bitmap3 = bVar.f59865c) != null) {
                 bitmap3.recycle();
-                bVar.f59301c = null;
+                bVar.f59865c = null;
             }
-            for (d dVar : this.f59361x) {
-                b bVar2 = dVar.f59312f;
-                if (bVar2 != null && (bitmap2 = bVar2.f59301c) != null) {
+            for (d dVar : this.f59925x) {
+                b bVar2 = dVar.f59876f;
+                if (bVar2 != null && (bitmap2 = bVar2.f59865c) != null) {
                     bitmap2.recycle();
-                    bVar2.f59301c = null;
+                    bVar2.f59865c = null;
                 }
-                b bVar3 = dVar.f59311e;
-                if (bVar3 != null && (bitmap = bVar3.f59301c) != null) {
+                b bVar3 = dVar.f59875e;
+                if (bVar3 != null && (bitmap = bVar3.f59865c) != null) {
                     bitmap.recycle();
-                    bVar3.f59301c = null;
+                    bVar3.f59865c = null;
                 }
             }
         }
@@ -243,13 +243,13 @@ public final class h extends Drawable implements Animator.AnimatorListener {
         double d;
         h hVar = this;
         boolean z12 = hVar.T;
-        i iVar2 = hVar.f59350a;
+        i iVar2 = hVar.f59914a;
         float f15 = 0.0f;
         int i14 = 0;
         q1 q1Var = hVar.E;
         int i15 = 1;
         if (!z12) {
-            int[] iArr = f59347e0;
+            int[] iArr = f59911e0;
             q1Var.getLocationInWindow(iArr);
             int i16 = iArr[0];
             int i17 = iArr[1];
@@ -275,29 +275,29 @@ public final class h extends Drawable implements Animator.AnimatorListener {
             } else {
                 hVar.G = g0.L(48.0f);
             }
-            hVar.f59351a0.start();
+            hVar.f59915a0.start();
             hVar.T = true;
         }
         b bVar = hVar.Q;
-        d[] dVarArr = hVar.f59361x;
+        d[] dVarArr = hVar.f59925x;
         int i20 = 2;
-        RectF rectF2 = hVar.f59358r;
+        RectF rectF2 = hVar.f59922r;
         if (bVar != null && !z10) {
             bVar.setBounds((int) rectF2.left, (int) (rectF2.top - g0.L(30.0f)), (int) rectF2.right, (int) rectF2.bottom);
-            hVar.Q.f59305i = (int) ((1.0f - f.f59327c.getInterpolation(hVar.I)) * 255.0f);
+            hVar.Q.f59869i = (int) ((1.0f - f.f59891c.getInterpolation(hVar.I)) * 255.0f);
             hVar.Q.draw(canvas);
             if (hVar.S != -1) {
-                float interpolation = 1.0f - f.f59328e.getInterpolation(hVar.I);
+                float interpolation = 1.0f - f.f59892e.getInterpolation(hVar.I);
                 float interpolation2 = f.d.getInterpolation(hVar.I);
                 float centerX = rectF2.centerX();
-                int i21 = g.f59343a;
+                int i21 = g.f59907a;
                 float L3 = centerX + (g0.L(i21 + 11) * (hVar.S - 2));
                 float centerY = rectF2.centerY();
                 float f20 = hVar.Y;
                 float f21 = hVar.Z;
                 float f22 = (L3 + f20) / 2.0f;
-                fb fbVar = hVar.X;
-                if (fbVar != null && fbVar.top) {
+                ob obVar = hVar.X;
+                if (obVar != null && obVar.top) {
                     min = Math.max(centerY, f21) + g0.L(15);
                 } else {
                     min = Math.min(centerY, f21) - g0.L(15);
@@ -327,10 +327,10 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                 float f24 = i21;
                 float g12 = g((g0.L(f24) / 2.0f) + g0.L(2.0f), g0.L(12.0f), interpolation2);
                 final d dVar = dVarArr[hVar.S];
-                if (dVar.f59311e == null) {
+                if (dVar.f59875e == null) {
                     b bVar2 = new b(new a() {
                         @Override
-                        public final void k(Canvas canvas2, int i22) {
+                        public final void m(Canvas canvas2, int i22) {
                             float f25;
                             float f26;
                             switch (r2) {
@@ -338,18 +338,18 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                     d dVar2 = dVar;
                                     dVar2.getClass();
                                     canvas2.save();
-                                    canvas2.translate(-dVar2.f59314i, -dVar2.f59315j);
-                                    float f27 = dVar2.f59314i;
-                                    float f28 = dVar2.f59315j;
+                                    canvas2.translate(-dVar2.f59878i, -dVar2.f59879j);
+                                    float f27 = dVar2.f59878i;
+                                    float f28 = dVar2.f59879j;
                                     float f29 = i22 / 255.0f;
                                     RectF rectF3 = g0.P;
                                     float L4 = g0.L(21.0f) / 2.0f;
-                                    int i23 = g.f59343a;
+                                    int i23 = g.f59907a;
                                     float f30 = 8;
                                     rectF3.set(f27, f28, dVar2.h.getWidth() + f27 + (g0.L(f30) * 2), g0.L(21.0f) + f28);
-                                    q1 q1Var2 = dVar2.f59309b;
+                                    q1 q1Var2 = dVar2.f59873b;
                                     boolean h22 = q1Var2.h2();
-                                    Paint paint = dVar2.f59313g;
+                                    Paint paint = dVar2.f59877g;
                                     if (paint != null) {
                                         int alpha = paint.getAlpha();
                                         paint.setAlpha((int) (255.0f * f29));
@@ -357,7 +357,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                         paint.setAlpha(alpha);
                                         f25 = 21.0f;
                                     } else {
-                                        Point point = g0.f23611q;
+                                        Point point = g0.f24121q;
                                         f25 = 21.0f;
                                         q1Var2.y(0.0f, 0.0f, point.x, point.y);
                                         Paint a22 = q1Var2.a2("paintChatActionBackground");
@@ -372,10 +372,10 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                         a22.setAlpha(alpha2);
                                     }
                                     if (h22 || paint != null) {
-                                        int alpha3 = j6.f28919h2.getAlpha();
-                                        j6.f28919h2.setAlpha((int) (alpha3 * f29));
-                                        canvas2.drawRoundRect(rectF3, L4, L4, j6.f28919h2);
-                                        j6.f28919h2.setAlpha(alpha3);
+                                        int alpha3 = n6.f29466h2.getAlpha();
+                                        n6.f29466h2.setAlpha((int) (alpha3 * f29));
+                                        canvas2.drawRoundRect(rectF3, L4, L4, n6.f29466h2);
+                                        n6.f29466h2.setAlpha(alpha3);
                                     }
                                     canvas2.save();
                                     canvas2.translate(f27 + g0.L(f30), ((g0.L(f25) - dVar2.h.getHeight()) / 2.0f) + f28);
@@ -389,22 +389,22 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                 default:
                                     d dVar3 = dVar;
                                     dVar3.getClass();
-                                    int i24 = g.f59343a;
+                                    int i24 = g.f59907a;
                                     float L5 = g0.L(21);
                                     dVar3.a(L5, L5, L5, i22 / 255.0f, canvas2);
                                     return;
                             }
                         }
                     });
-                    dVar.f59311e = bVar2;
+                    dVar.f59875e = bVar2;
                     bVar2.a(g0.L(f24), g0.L(f24), 4.0f, g0.L(10));
                 }
                 canvas.save();
                 canvas.translate(g10 - g12, f23 - g12);
                 float f25 = 21;
                 canvas.scale(g12 / g0.L(f25), g12 / g0.L(f25));
-                b bVar3 = dVar.f59311e;
-                bVar3.f59305i = (int) (interpolation * 255.0f);
+                b bVar3 = dVar.f59875e;
+                bVar3.f59869i = (int) (interpolation * 255.0f);
                 bVar3.draw(canvas);
                 canvas.restore();
                 return;
@@ -417,35 +417,35 @@ public final class h extends Drawable implements Animator.AnimatorListener {
             f10 = i7 / 255.0f;
         }
         float f26 = f10;
-        float g13 = g(0.3f, 0.075f, f.f59333k.getInterpolation(hVar.H));
+        float g13 = g(0.3f, 0.075f, f.f59897k.getInterpolation(hVar.H));
         Matrix matrix = hVar.d;
         matrix.reset();
         matrix.setScale(g13, g13);
         matrix.postTranslate(0.0f, rectF2.bottom);
-        hVar.f59356f.setLocalMatrix(matrix);
-        Paint paint = hVar.f59354c;
-        paint.setAlpha((int) (f.f59332j.getInterpolation(hVar.H) * 255.0f * f26));
-        RectF rectF3 = f59345c0;
+        hVar.f59920f.setLocalMatrix(matrix);
+        Paint paint = hVar.f59918c;
+        paint.setAlpha((int) (f.f59896j.getInterpolation(hVar.H) * 255.0f * f26));
+        RectF rectF3 = f59909c0;
         rectF3.set(rectF2);
         rectF3.inset(-g0.L(8.0f), -g0.L(8.0f));
-        Rect rect = f59346d0;
+        Rect rect = f59910d0;
         rectF3.round(rect);
-        Drawable drawable = hVar.f59362y;
+        Drawable drawable = hVar.f59926y;
         drawable.setAlpha((int) (f26 * 255.0f));
         drawable.setBounds(rect);
         drawable.draw(canvas);
         boolean z13 = hVar.N;
-        RectF rectF4 = hVar.f59357n;
+        RectF rectF4 = hVar.f59921n;
         if (!z13) {
             canvas.save();
             canvas.translate(rectF4.left, rectF4.top);
-            canvas.rotate((f.f59329f.getInterpolation(hVar.H) - f.f59330g.getInterpolation(hVar.H)) * (-40.0f), g0.L(16.0f), g0.L(16.0f));
+            canvas.rotate((f.f59893f.getInterpolation(hVar.H) - f.f59894g.getInterpolation(hVar.H)) * (-40.0f), g0.L(16.0f), g0.L(16.0f));
             canvas.translate(-q1Var.getSideButtonStartX(), -q1Var.getSideButtonStartY());
             q1Var.v1(canvas, true);
             canvas.restore();
         }
         if (hVar.R && !hVar.N) {
-            canvas.drawPath(hVar.f59355e, paint);
+            canvas.drawPath(hVar.f59919e, paint);
         } else {
             float min2 = Math.min(rectF2.width(), rectF2.height()) / 2.0f;
             float min3 = Math.min(rectF4.width(), rectF4.height()) / 2.0f;
@@ -454,11 +454,11 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                 canvas.drawRoundRect(rectF4, min3, min3, paint);
             }
         }
-        float interpolation3 = f.f59342t.getInterpolation(hVar.H) * g0.L(2.0f);
-        float f27 = g.f59343a + 2;
-        float interpolation4 = ((f.f59339q.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
-        float interpolation5 = ((f.f59340r.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
-        float interpolation6 = ((f.f59341s.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
+        float interpolation3 = f.f59906t.getInterpolation(hVar.H) * g0.L(2.0f);
+        float f27 = g.f59907a + 2;
+        float interpolation4 = ((f.f59903q.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
+        float interpolation5 = ((f.f59904r.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
+        float interpolation6 = ((f.f59905s.getInterpolation(hVar.H) * g0.L(f27)) / 2.0f) - interpolation3;
         int i22 = 0;
         while (i22 < i20) {
             int i23 = i14;
@@ -479,7 +479,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                         f11 = interpolation5;
                     }
                     f12 = f15;
-                    float L4 = (g0.L(g.f59343a + 11) * length) + rectF2.centerX();
+                    float L4 = (g0.L(g.f59907a + 11) * length) + rectF2.centerX();
                     float centerY2 = rectF2.centerY();
                     i10 = i22;
                     final d dVar2 = dVarArr[i23];
@@ -499,31 +499,31 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                         f13 = centerY2;
                         i11 = i23;
                         f14 = L4;
-                        dVar2.a(f14, f13, f11 + (g0.L(2.0f) * dVar2.f59320o), f26, canvas);
+                        dVar2.a(f14, f13, f11 + (g0.L(2.0f) * dVar2.f59884o), f26, canvas);
                     } else {
                         f13 = centerY2;
                         i11 = i23;
                         f14 = L4;
                     }
-                    float f31 = dVar2.f59320o;
+                    float f31 = dVar2.f59884o;
                     if (f31 > f12 && dVar2.h != null) {
                         float f32 = (f31 * 0.15f) + 0.85f;
                         canvas.save();
                         canvas.scale(f32, f32, f14, f13);
-                        float f33 = dVar2.f59320o * f26;
+                        float f33 = dVar2.f59884o * f26;
                         i12 = i11;
                         float f34 = f13;
                         i13 = 2;
-                        float D = k5.D(8, 2, dVar2.h.getWidth());
-                        dVar2.f59314i = d.b(d.b(f14, D, f29, f30), D, L5, measuredWidth) - (D / 2.0f);
-                        dVar2.f59315j = f34 - g0.L(58.0f);
-                        if (dVar2.f59312f == null) {
-                            h hVar2 = dVar2.f59308a;
+                        float D = f3.D(8, 2, dVar2.h.getWidth());
+                        dVar2.f59878i = d.b(d.b(f14, D, f29, f30), D, L5, measuredWidth) - (D / 2.0f);
+                        dVar2.f59879j = f34 - g0.L(58.0f);
+                        if (dVar2.f59876f == null) {
+                            h hVar2 = dVar2.f59872a;
                             if (!hVar2.U) {
-                                dVar2.f59313g = hVar2.M;
+                                dVar2.f59877g = hVar2.M;
                                 b bVar4 = new b(new a() {
                                     @Override
-                                    public final void k(Canvas canvas2, int i222) {
+                                    public final void m(Canvas canvas2, int i222) {
                                         float f252;
                                         float f262;
                                         switch (r2) {
@@ -531,18 +531,18 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                                 d dVar22 = dVar2;
                                                 dVar22.getClass();
                                                 canvas2.save();
-                                                canvas2.translate(-dVar22.f59314i, -dVar22.f59315j);
-                                                float f272 = dVar22.f59314i;
-                                                float f282 = dVar22.f59315j;
+                                                canvas2.translate(-dVar22.f59878i, -dVar22.f59879j);
+                                                float f272 = dVar22.f59878i;
+                                                float f282 = dVar22.f59879j;
                                                 float f292 = i222 / 255.0f;
                                                 RectF rectF32 = g0.P;
                                                 float L42 = g0.L(21.0f) / 2.0f;
-                                                int i232 = g.f59343a;
+                                                int i232 = g.f59907a;
                                                 float f302 = 8;
                                                 rectF32.set(f272, f282, dVar22.h.getWidth() + f272 + (g0.L(f302) * 2), g0.L(21.0f) + f282);
-                                                q1 q1Var2 = dVar22.f59309b;
+                                                q1 q1Var2 = dVar22.f59873b;
                                                 boolean h22 = q1Var2.h2();
-                                                Paint paint2 = dVar22.f59313g;
+                                                Paint paint2 = dVar22.f59877g;
                                                 if (paint2 != null) {
                                                     int alpha = paint2.getAlpha();
                                                     paint2.setAlpha((int) (255.0f * f292));
@@ -550,7 +550,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                                     paint2.setAlpha(alpha);
                                                     f252 = 21.0f;
                                                 } else {
-                                                    Point point = g0.f23611q;
+                                                    Point point = g0.f24121q;
                                                     f252 = 21.0f;
                                                     q1Var2.y(0.0f, 0.0f, point.x, point.y);
                                                     Paint a22 = q1Var2.a2("paintChatActionBackground");
@@ -565,10 +565,10 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                                     a22.setAlpha(alpha2);
                                                 }
                                                 if (h22 || paint2 != null) {
-                                                    int alpha3 = j6.f28919h2.getAlpha();
-                                                    j6.f28919h2.setAlpha((int) (alpha3 * f292));
-                                                    canvas2.drawRoundRect(rectF32, L42, L42, j6.f28919h2);
-                                                    j6.f28919h2.setAlpha(alpha3);
+                                                    int alpha3 = n6.f29466h2.getAlpha();
+                                                    n6.f29466h2.setAlpha((int) (alpha3 * f292));
+                                                    canvas2.drawRoundRect(rectF32, L42, L42, n6.f29466h2);
+                                                    n6.f29466h2.setAlpha(alpha3);
                                                 }
                                                 canvas2.save();
                                                 canvas2.translate(f272 + g0.L(f302), ((g0.L(f252) - dVar22.h.getHeight()) / 2.0f) + f282);
@@ -582,24 +582,24 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                             default:
                                                 d dVar3 = dVar2;
                                                 dVar3.getClass();
-                                                int i24 = g.f59343a;
+                                                int i24 = g.f59907a;
                                                 float L52 = g0.L(21);
                                                 dVar3.a(L52, L52, L52, i222 / 255.0f, canvas2);
                                                 return;
                                         }
                                     }
                                 });
-                                dVar2.f59312f = bVar4;
+                                dVar2.f59876f = bVar4;
                                 bVar4.a((int) D, g0.L(21.0f), 3.0f, g0.L(4));
                             }
                         }
-                        b bVar5 = dVar2.f59312f;
+                        b bVar5 = dVar2.f59876f;
                         if (bVar5 != null) {
-                            float f35 = dVar2.f59314i;
-                            float f36 = dVar2.f59315j;
+                            float f35 = dVar2.f59878i;
+                            float f36 = dVar2.f59879j;
                             bVar5.setBounds((int) f35, (int) f36, (int) (f35 + D), (int) (f36 + g0.L(21.0f)));
-                            b bVar6 = dVar2.f59312f;
-                            bVar6.f59305i = (int) (f33 * 255.0f);
+                            b bVar6 = dVar2.f59876f;
+                            bVar6.f59869i = (int) (f33 * 255.0f);
                             bVar6.draw(canvas);
                         }
                         canvas.restore();
@@ -629,29 +629,29 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     }
 
     public final int h() {
-        return g0.L(((g.f59343a + 11) * this.f59361x.length) + 7);
+        return g0.L(((g.f59907a + 11) * this.f59925x.length) + 7);
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ObjectAnimator objectAnimator = this.f59351a0;
-        t1 t1Var = this.f59352b;
+        ObjectAnimator objectAnimator = this.f59915a0;
+        r rVar = this.f59916b;
         if (animator == objectAnimator) {
             this.E.setHideSideButtonByQuickShare(false);
             this.N = true;
             invalidateSelf();
             if (this.O) {
-                t1Var.run();
+                rVar.run();
             }
-        } else if (animator == this.f59353b0) {
+        } else if (animator == this.f59917b0) {
             this.O = true;
             invalidateSelf();
-            fb fbVar = this.X;
-            if (fbVar != null) {
-                fbVar.f34555a.setVisibility(0);
+            ob obVar = this.X;
+            if (obVar != null) {
+                obVar.f38054a.setVisibility(0);
             }
             if (this.N) {
-                t1Var.run();
+                rVar.run();
             }
         }
     }

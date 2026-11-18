@@ -1,17 +1,17 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class qd extends org.telegram.ui.Components.wj0 {
-    public final td f50582d0;
+public final class qd extends org.telegram.ui.Components.ek0 {
+    public final td f51241d0;
 
-    public qd(td tdVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, xd xdVar) {
-        super(context, e6Var, xdVar);
-        this.f50582d0 = tdVar;
+    public qd(td tdVar, Context context, org.telegram.ui.ActionBar.i6 i6Var, xd xdVar) {
+        super(context, i6Var, xdVar);
+        this.f51241d0 = tdVar;
     }
 
     @Override
     public final boolean canScrollHorizontally(int i7) {
-        if (this.f50582d0.f51564x.R0 && super.canScrollHorizontally(i7)) {
+        if (this.f51241d0.f52267x.R0 && super.canScrollHorizontally(i7)) {
             return true;
         }
         return false;

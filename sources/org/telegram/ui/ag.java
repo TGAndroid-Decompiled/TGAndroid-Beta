@@ -1,41 +1,111 @@
 package org.telegram.ui;
-public final class ag implements org.telegram.messenger.pr {
-    public final int f45042a;
-    public final an f45043b;
 
-    public ag(an anVar, int i7) {
-        this.f45042a = i7;
-        this.f45043b = anVar;
+import android.os.Bundle;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class ag implements or0, ww {
+    public final boolean f45587a;
+    public final int f45588b;
+    public final Object f45589c;
+    public final Object d;
+
+    public ag(bn bnVar, boolean z10, org.telegram.messenger.fj fjVar, int i7) {
+        this.f45589c = bnVar;
+        this.f45587a = z10;
+        this.d = fjVar;
+        this.f45588b = i7;
     }
 
     @Override
-    public final void a(int i7) {
-        switch (this.f45042a) {
-            case 0:
-                an anVar = this.f45043b;
-                if (anVar.getParentActivity() != null && anVar.fragmentView != null && i7 > 0) {
-                    org.telegram.ui.Components.cc.a0(anVar).m(org.telegram.ui.Components.bc.f33241r, i7, 0, 0, anVar.Aa).j();
-                    return;
+    public boolean G() {
+        return false;
+    }
+
+    @Override
+    public boolean P(cx cxVar) {
+        return false;
+    }
+
+    @Override
+    public void a(TLRPC.MessageMedia messageMedia) {
+        int i7;
+        bn bnVar = (bn) this.f45589c;
+        org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) this.d;
+        if (this.f45587a) {
+            TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
+            tL_messages_appendTodoList.peer = bnVar.getMessagesController().l1(org.telegram.messenger.fj.B0(fjVar.f23968k));
+            tL_messages_appendTodoList.msg_id = fjVar.e1();
+            if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
+                TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
+                int i10 = 0;
+                int i11 = 0;
+                while (true) {
+                    i7 = this.f45588b;
+                    if (i10 >= i7) {
+                        break;
+                    }
+                    i11 = Math.max(i11, tL_messageMediaToDo.todo.list.get(i10).f28552id);
+                    i10++;
                 }
-                return;
-            case 1:
-                an anVar2 = this.f45043b;
-                if (i7 == 0) {
-                    anVar2.D6 = false;
-                    anVar2.ka();
-                    return;
+                while (i7 < tL_messageMediaToDo.todo.list.size()) {
+                    TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i7);
+                    if (todoItem.f28552id <= i11) {
+                        todoItem.f28552id = i11 + 1;
+                    }
+                    tL_messages_appendTodoList.list.add(todoItem);
+                    i11 = Math.max(i11, todoItem.f28552id);
+                    i7++;
                 }
-                anVar2.l(i7, 0, false, 0, true, 0);
-                return;
-            default:
-                an anVar3 = this.f45043b;
-                if (i7 == 0) {
-                    anVar3.zd(true);
-                    return;
-                } else {
-                    anVar3.finishFragment();
-                    return;
+                TLRPC.MessageMedia messageMedia2 = fjVar.f23968k.media;
+                if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {
+                    tL_messageMediaToDo.completions = ((TLRPC.TL_messageMediaToDo) messageMedia2).completions;
                 }
+            }
+            fjVar.f23968k.media = messageMedia;
+            bnVar.getConnectionsManager().sendRequest(tL_messages_appendTodoList, null);
+            return;
         }
+        if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
+            TLRPC.MessageMedia messageMedia3 = fjVar.f23968k.media;
+            if (messageMedia3 instanceof TLRPC.TL_messageMediaToDo) {
+                ((TLRPC.TL_messageMediaToDo) messageMedia).completions = ((TLRPC.TL_messageMediaToDo) messageMedia3).completions;
+            }
+        }
+        fjVar.f23968k.media = messageMedia;
+        bnVar.getSendMessagesHelper().t(fjVar, null, null, null, null, null, null, null, false, false, null);
+    }
+
+    @Override
+    public boolean y(cx cxVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i7, int i10, y91 y91Var) {
+        LaunchActivity launchActivity = (LaunchActivity) this.f45589c;
+        String str = (String) this.d;
+        String str2 = LaunchActivity.C1;
+        long j3 = ((org.telegram.messenger.sr) arrayList.get(0)).f26847a;
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("scrollToTopOnResume", true);
+        bundle.putBoolean("hasUrl", this.f45587a);
+        if (org.telegram.messenger.n5.C(j3)) {
+            bundle.putInt("enc_id", (int) (4294967295L & j3));
+        } else if (org.telegram.messenger.n5.E(j3)) {
+            bundle.putLong("user_id", j3);
+        } else {
+            bundle.putLong("chat_id", -j3);
+        }
+        int i11 = this.f45588b;
+        if (!org.telegram.messenger.mp.u1(i11).E(bundle, cxVar, null, null)) {
+            return true;
+        }
+        org.telegram.messenger.ks.f(i11).k(org.telegram.messenger.ks.f25192t, new Object[0]);
+        org.telegram.messenger.ri.d0(i11).V1(j3, 0, str, null, null, null, null, 0L, false, false, null);
+        ((ActionBarLayout) launchActivity.M()).V(new bn(bundle), true, false);
+        return true;
+    }
+
+    public ag(LaunchActivity launchActivity, boolean z10, int i7, String str) {
+        this.f45589c = launchActivity;
+        this.f45587a = z10;
+        this.f45588b = i7;
+        this.d = str;
     }
 }

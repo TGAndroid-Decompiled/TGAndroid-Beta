@@ -6,54 +6,54 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.telegram.messenger.u10;
-import org.telegram.messenger.z10;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.vx0;
-public final class r implements z10 {
-    public final int f12242a = 1;
-    public final int f12243b;
-    public final Object f12244c;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.x10;
+import org.telegram.ui.Components.cy0;
+import org.telegram.ui.Components.lq;
+public final class r implements x10 {
+    public final int f12476a = 1;
+    public final int f12477b;
+    public final Object f12478c;
     public final View d;
-    public final Object f12245e;
-    public final Object f12246f;
-    public final Object f12247g;
+    public final Object f12479e;
+    public final Object f12480f;
+    public final Object f12481g;
     public final ViewGroup h;
-    public final Object f12248i;
-    public final Object f12249j;
-    public final Object f12250k;
-    public final Object f12251l;
+    public final Object f12482i;
+    public final Object f12483j;
+    public final Object f12484k;
+    public final Object f12485l;
 
-    public r(LinearLayout linearLayout, org.telegram.ui.Wallet.b5 b5Var, org.telegram.ui.ActionBar.e6 e6Var, int i7, TextView textView, org.telegram.ui.Wallet.x2[] x2VarArr, vx0 vx0Var, u10 u10Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
-        this.f12244c = linearLayout;
-        this.d = b5Var;
-        this.f12245e = e6Var;
-        this.f12243b = i7;
-        this.f12246f = textView;
-        this.f12247g = x2VarArr;
-        this.h = vx0Var;
-        this.f12248i = u10Var;
-        this.f12249j = context;
-        this.f12250k = textViewArr;
-        this.f12251l = spannableStringArr;
+    public r(LinearLayout linearLayout, org.telegram.ui.Wallet.q5 q5Var, org.telegram.ui.ActionBar.i6 i6Var, int i7, TextView textView, org.telegram.ui.Wallet.e3[] e3VarArr, cy0 cy0Var, s10 s10Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
+        this.f12478c = linearLayout;
+        this.d = q5Var;
+        this.f12479e = i6Var;
+        this.f12477b = i7;
+        this.f12480f = textView;
+        this.f12481g = e3VarArr;
+        this.h = cy0Var;
+        this.f12482i = s10Var;
+        this.f12483j = context;
+        this.f12484k = textViewArr;
+        this.f12485l = spannableStringArr;
     }
 
     @Override
-    public final void a(java.lang.Object r32) {
+    public final void a(java.lang.Object r34) {
         throw new UnsupportedOperationException("Method not decompiled: fi.r.a(java.lang.Object):void");
     }
 
-    public r(long[] jArr, hi.d dVar, eq[] eqVarArr, s0 s0Var, n0 n0Var, int i7, bi.g2 g2Var, bi.g2 g2Var2, bi.g2 g2Var3, s sVar, boolean[] zArr) {
-        this.f12244c = jArr;
+    public r(long[] jArr, hi.d dVar, lq[] lqVarArr, r0 r0Var, m0 m0Var, int i7, bi.a3 a3Var, bi.a3 a3Var2, bi.a3 a3Var3, s sVar, boolean[] zArr) {
+        this.f12478c = jArr;
         this.d = dVar;
-        this.f12245e = eqVarArr;
-        this.f12246f = s0Var;
-        this.f12247g = n0Var;
-        this.f12243b = i7;
-        this.h = g2Var;
-        this.f12248i = g2Var2;
-        this.f12249j = g2Var3;
-        this.f12250k = sVar;
-        this.f12251l = zArr;
+        this.f12479e = lqVarArr;
+        this.f12480f = r0Var;
+        this.f12481g = m0Var;
+        this.f12477b = i7;
+        this.h = a3Var;
+        this.f12482i = a3Var2;
+        this.f12483j = a3Var3;
+        this.f12484k = sVar;
+        this.f12485l = zArr;
     }
 }

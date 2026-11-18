@@ -1,57 +1,101 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class qn implements Runnable {
-    public final int f26111a;
-    public final np f26112b;
-    public final TLRPC.Dialog f26113c;
+    public final int f26429a;
+    public final mp f26430b;
 
-    public qn(np npVar, TLRPC.Dialog dialog, int i7) {
-        this.f26111a = i7;
-        this.f26112b = npVar;
-        this.f26113c = dialog;
+    public qn(mp mpVar, int i7) {
+        this.f26429a = i7;
+        this.f26430b = mpVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f26111a) {
+        int i7 = this.f26429a;
+        mp mpVar = this.f26430b;
+        switch (i7) {
             case 0:
-                boolean z10 = r2.f26206a;
-                TLRPC.Dialog dialog = this.f26113c;
-                if (z10) {
-                    a8.b("checkLastDialogMessage for " + dialog.f28055id + " has not message");
-                }
-                np npVar = this.f26112b;
-                if (npVar.getMediaDataController().R(dialog.f28055id, 0L) == null) {
-                    TLRPC.Dialog dialog2 = (TLRPC.Dialog) npVar.R.f(dialog.f28055id);
-                    if (dialog2 == null) {
-                        if (r2.f26206a) {
-                            a8.b("checkLastDialogMessage for " + dialog.f28055id + " current dialog not found");
-                        }
-                        vr messagesStorage = npVar.getMessagesStorage();
-                        messagesStorage.f27219a.c(new dr(messagesStorage, dialog.f28055id, new qn(npVar, dialog, 2), 1));
-                        return;
-                    }
-                    if (r2.f26206a) {
-                        StringBuilder sb2 = new StringBuilder("checkLastDialogMessage for ");
-                        sb2.append(dialog.f28055id);
-                        sb2.append(" current dialog top message ");
-                        i5.c.r(dialog2.top_message, sb2);
-                    }
-                    if (dialog2.top_message == 0) {
-                        npVar.X(3, dialog.f28055id, false);
-                        return;
-                    }
+                mpVar.getNotificationCenter().k(2, 8192);
+                return;
+            case 1:
+                mpVar.f25664h2 = false;
+                return;
+            case 2:
+                mpVar.getNotificationCenter().k(2, 8192);
+                return;
+            case 3:
+                mpVar.getNotificationCenter().k(2, 4);
+                return;
+            case 4:
+                mpVar.S1.clear();
+                mpVar.T1.b();
+                mpVar.U1.clear();
+                mpVar.V1.clear();
+                mpVar.f25645f1.clear();
+                mpVar.f25654g1.clear();
+                mpVar.f25663h1.clear();
+                mpVar.f25617c1.b();
+                mpVar.f25626d1.b();
+                mpVar.f25671i1 = 0L;
+                mpVar.f25679j1 = 0L;
+                mpVar.f25687k1 = 0L;
+                mpVar.f25782v0.clear();
+                mpVar.f25792w0.clear();
+                mpVar.f25672i2 = false;
+                mpVar.f25730p2 = null;
+                mpVar.f25739q2 = null;
+                return;
+            case 5:
+                a8.b("cleanup: isUpdating = false");
+                mpVar.getConnectionsManager().setIsUpdating(false);
+                mpVar.X0.b();
+                mpVar.Y0.clear();
+                mpVar.f25597a1.b();
+                mpVar.Z0.clear();
+                mpVar.A0.clear();
+                mpVar.B0.b();
+                mpVar.C0.clear();
+                mpVar.D0.b();
+                return;
+            case 6:
+                mpVar.getNotificationCenter().k(188, new Object[0]);
+                mpVar.getNotificationCenter().k(184, new Object[0]);
+                mpVar.getNotificationCenter().k(3, new Object[0]);
+                return;
+            case 7:
+                mpVar.r4();
+                return;
+            case 8:
+                mpVar.getNotificationCenter().k(2, 4);
+                return;
+            case 9:
+                mpVar.f25704m2 = false;
+                return;
+            case 10:
+                x10 x10Var = mpVar.N7;
+                if (x10Var != null) {
+                    x10Var.a(Boolean.TRUE);
+                    mpVar.N7 = null;
                     return;
                 }
                 return;
-            case 1:
-                this.f26112b.f25267e1.e(this.f26113c.f28055id);
+            case 11:
+                mpVar.getNotificationCenter().k(184, new Object[0]);
+                return;
+            case 12:
+                x10 x10Var2 = mpVar.N7;
+                if (x10Var2 != null) {
+                    x10Var2.a(Boolean.TRUE);
+                    mpVar.N7 = null;
+                    return;
+                }
                 return;
             default:
-                np npVar2 = this.f26112b;
-                npVar2.getClass();
-                npVar2.X(3, this.f26113c.f28055id, false);
+                x10 x10Var3 = mpVar.N7;
+                if (x10Var3 != null) {
+                    x10Var3.a(Boolean.FALSE);
+                    mpVar.N7 = null;
+                    return;
+                }
                 return;
         }
     }

@@ -1,11 +1,11 @@
 package kf;
 
-import c8.d1;
+import c8.f1;
 public final class i extends a {
-    public int f17832g;
+    public int f18227g;
 
     @Override
-    public final void a(d1 d1Var) {
-        d1Var.g(this);
+    public final void a(f1 f1Var) {
+        f1Var.g(this);
     }
 }

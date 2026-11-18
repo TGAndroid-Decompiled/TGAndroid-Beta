@@ -7,35 +7,35 @@ import h2.l0;
 import h2.x;
 import h9.g0;
 import h9.i0;
-import h9.s1;
+import h9.t1;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.zip.Inflater;
 public final class b implements m {
-    public static final c4.a f17774e;
-    public final x f17775a = new x();
-    public final x f17776b = new x();
-    public final a f17777c;
+    public static final c4.a f18169e;
+    public final x f18170a = new x();
+    public final x f18171b = new x();
+    public final a f18172c;
     public Inflater d;
 
     static {
-        g0 g0Var = i0.f13686b;
-        f17774e = new c4.a(-9223372036854775807L, -9223372036854775807L, s1.f13749e);
+        g0 g0Var = i0.f14006b;
+        f18169e = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14074e);
     }
 
     public b(List list) {
         String[] split;
         int i7;
         a aVar = new a();
-        this.f17777c = aVar;
+        this.f18172c = aVar;
         String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
-        String str = l0.f13471a;
+        String str = l0.f13786a;
         for (String str2 : trim.split("\\r?\\n", -1)) {
             if (str2.startsWith("palette: ")) {
                 String[] split2 = str2.substring(9).split(",", -1);
-                aVar.f17769f = new int[split2.length];
+                aVar.f18164f = new int[split2.length];
                 for (int i10 = 0; i10 < split2.length; i10++) {
-                    int[] iArr = aVar.f17769f;
+                    int[] iArr = aVar.f18164f;
                     try {
                         i7 = Integer.parseInt(split2[i10].trim(), 16);
                     } catch (RuntimeException e10) {
@@ -50,7 +50,7 @@ public final class b implements m {
                     h2.a.l("VobsubParser", "Ignoring malformed IDX size line: '" + str2 + "'");
                 } else {
                     try {
-                        aVar.f17770g = Integer.parseInt(split3[0]);
+                        aVar.f18165g = Integer.parseInt(split3[0]);
                         aVar.h = Integer.parseInt(split3[1]);
                         aVar.d = true;
                     } catch (RuntimeException e11) {
@@ -62,18 +62,18 @@ public final class b implements m {
     }
 
     @Override
-    public final void K(byte[] r27, int r28, int r29, c4.l r30, h2.j r31) {
-        throw new UnsupportedOperationException("Method not decompiled: k4.b.K(byte[], int, int, c4.l, h2.j):void");
-    }
-
-    @Override
-    public final int Q() {
-        return 2;
-    }
-
-    @Override
-    public final d x(int i7, int i10, byte[] bArr) {
+    public final d q(int i7, int i10, byte[] bArr) {
         return p0.a(this, bArr, i10);
+    }
+
+    @Override
+    public final void v(byte[] r27, int r28, int r29, c4.l r30, h2.j r31) {
+        throw new UnsupportedOperationException("Method not decompiled: k4.b.v(byte[], int, int, c4.l, h2.j):void");
+    }
+
+    @Override
+    public final int y() {
+        return 2;
     }
 
     @Override

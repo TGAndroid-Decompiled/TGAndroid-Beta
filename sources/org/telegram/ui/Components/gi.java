@@ -1,18 +1,17 @@
 package org.telegram.ui.Components;
+public final class gi implements zt0 {
+    public final si f35504a;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class gi extends v00 {
-    public final ki K;
-
-    public gi(Context context, org.telegram.ui.ActionBar.e6 e6Var, ki kiVar) {
-        super(context, e6Var);
-        this.K = kiVar;
+    public gi(si siVar) {
+        this.f35504a = siVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.K.h1(this.f40202r, true);
-        return super.onInterceptTouchEvent(motionEvent);
+    public final void L(int i7, boolean z10) {
+        si siVar = this.f35504a;
+        ki kiVar = siVar.f39732w2;
+        if (kiVar == siVar.f39690l2) {
+            kiVar.invalidate();
+        }
     }
 }

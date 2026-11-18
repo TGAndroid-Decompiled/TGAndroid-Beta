@@ -1,107 +1,128 @@
 package org.telegram.ui.Components;
 
-import java.util.List;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class p0 implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.q1 {
-    public final int f38131a;
-    public final Object f38132b;
-    public final Object f38133c;
-    public final Object d;
-    public final Object f38134e;
-    public final Object f38135f;
-    public final Object h;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RadialGradient;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
+import android.os.SystemClock;
+import android.view.View;
+import java.util.Random;
+public final class p0 {
+    public float[] D;
+    public float[] E;
+    public float[] F;
+    public int G;
+    public long I;
+    public final View f38199a;
+    public boolean f38200b;
+    public boolean f38201c;
+    public boolean d;
+    public final c6 f38202e;
+    public final c6 f38203f;
+    public long f38204g;
+    public LinearGradient f38214r;
+    public SweepGradient f38215s;
+    public int f38217u;
+    public final Paint h = new Paint(1);
+    public final Path f38205i = new Path();
+    public final Paint f38206j = new Paint(1);
+    public final Paint f38207k = new Paint(1);
+    public final Paint f38208l = new Paint(1);
+    public final Paint f38209m = new Paint(1);
+    public final Paint f38210n = new Paint(1);
+    public final Path f38211o = new Path();
+    public final RectF f38212p = new RectF();
+    public final Matrix f38213q = new Matrix();
+    public float f38216t = -1.0f;
+    public final float[] v = new float[3];
+    public final float[] f38218w = new float[3];
+    public final float[] f38219x = new float[3];
+    public final float[] f38220y = new float[3];
+    public final long[] f38221z = new long[3];
+    public final int[] A = new int[3];
+    public final boolean[] B = new boolean[3];
+    public final Random C = new Random(5905022);
+    public float H = -1.0f;
+    public float J = Float.NaN;
+    public float K = Float.NaN;
+    public final float[] L = new float[5];
+    public final float[] M = new float[5];
+    public final float[] N = new float[5];
+    public final float[] O = new float[5];
+    public final float[] P = new float[5];
 
-    public p0(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
-        this.f38131a = i7;
-        this.f38132b = obj;
-        this.f38133c = obj2;
-        this.d = obj3;
-        this.f38134e = obj4;
-        this.f38135f = obj5;
-        this.h = obj6;
-    }
-
-    @Override
-    public void a(f5.f fVar, List list) {
-        switch (this.f38131a) {
-            case 2:
-                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f38132b;
-                org.telegram.messenger.z10 z10Var = (org.telegram.messenger.z10) this.f38135f;
-                org.telegram.ui.ActionBar.e2 e2Var = (org.telegram.ui.ActionBar.e2) this.h;
-                f5.i a10 = ((f5.m) list.get(0)).a();
-                tL_inputStorePaymentPremiumGiftCode.currency = a10.f10984c;
-                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(((TLRPC.TL_premiumGiftCodeOption) this.f38133c).currency)) * (a10.f10983b / Math.pow(10.0d, 6.0d)));
-                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
-                tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
-                ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore, new di.u6((org.telegram.messenger.z10) this.f38134e, list, fVar, z10Var, e2Var, tL_inputStorePaymentPremiumGiftCode, 4));
-                return;
-            default:
-                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f38132b;
-                wg.t tVar = (wg.t) this.f38135f;
-                org.telegram.ui.ActionBar.e2 e2Var2 = (org.telegram.ui.ActionBar.e2) this.h;
-                f5.i a11 = ((f5.m) list.get(0)).a();
-                tL_inputStorePaymentPremiumGiveaway.currency = a11.f10984c;
-                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, org.telegram.messenger.r1.i().h(((TLRPC.TL_premiumGiftCodeOption) this.f38133c).currency)) * (a11.f10983b / Math.pow(10.0d, 6.0d)));
-                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore2 = new TLRPC.TL_payments_canPurchaseStore();
-                tL_payments_canPurchaseStore2.purpose = tL_inputStorePaymentPremiumGiveaway;
-                ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore2, new di.u6((wg.t) this.f38134e, list, fVar, tVar, e2Var2, tL_inputStorePaymentPremiumGiveaway, 3));
-                return;
+    public p0(re reVar) {
+        this.f38199a = reVar;
+        Random random = new Random(31249L);
+        float[] fArr = {-1.0f, 1.0f, -0.6f, 0.7f, -0.85f};
+        for (int i7 = 0; i7 < 5; i7++) {
+            this.L[i7] = random.nextFloat() * 2.0f;
+            this.M[i7] = org.telegram.ui.Cells.c0.h(random, 0.55f, 0.75f);
+            this.N[i7] = fArr[i7] * org.telegram.messenger.g0.L(random.nextInt(5) + 9);
+            this.O[i7] = org.telegram.messenger.g0.L((random.nextFloat() * 1.4f) + 1.6f);
+            this.P[i7] = org.telegram.messenger.g0.L(random.nextInt(6) + 6);
         }
+        this.f38202e = new c6(reVar, 0L, 420L, lr.h);
+        this.f38203f = new c6(reVar, 0L, 360L, lr.f37209g);
+        this.f38205i.moveTo(0.0f, -1.0f);
+        this.f38205i.quadTo(0.2f, -0.2f, 1.0f, 0.0f);
+        this.f38205i.quadTo(0.2f, 0.2f, 0.0f, 1.0f);
+        this.f38205i.quadTo(-0.2f, 0.2f, -1.0f, 0.0f);
+        this.f38205i.quadTo(-0.2f, -0.2f, 0.0f, -1.0f);
+        this.f38205i.close();
+        Paint paint = this.f38207k;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        Paint paint2 = this.f38207k;
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint2.setStrokeCap(cap);
+        this.f38209m.setStyle(style);
+        this.f38209m.setStrokeCap(cap);
     }
 
-    @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f38131a) {
-            case 0:
-                TLRPC.User user = (TLRPC.User) this.f38132b;
-                org.telegram.messenger.c cVar = (org.telegram.messenger.c) this.f38133c;
-                org.telegram.ui.an anVar = (org.telegram.ui.an) this.d;
-                TLRPC.Chat chat = (TLRPC.Chat) this.f38134e;
-                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) this.f38135f;
-                org.telegram.ui.Cells.c2[] c2VarArr = (org.telegram.ui.Cells.c2[]) this.h;
-                if (user != null) {
-                    org.telegram.messenger.vr a02 = org.telegram.messenger.vr.a0(cVar.f22782a);
-                    a02.f27219a.c(new org.telegram.messenger.pp(3, anVar.a(), user.f28200id, a02));
-                } else {
-                    org.telegram.messenger.vr a03 = org.telegram.messenger.vr.a0(cVar.f22782a);
-                    a03.f27219a.c(new org.telegram.messenger.pp(3, anVar.a(), -chat.f28051id, a03));
-                }
-                TLRPC.TL_contacts_blockFromReplies tL_contacts_blockFromReplies = new TLRPC.TL_contacts_blockFromReplies();
-                tL_contacts_blockFromReplies.msg_id = gjVar.e1();
-                tL_contacts_blockFromReplies.delete_message = true;
-                tL_contacts_blockFromReplies.delete_history = true;
-                if (c2VarArr[0].b()) {
-                    tL_contacts_blockFromReplies.report_spam = true;
-                    if (anVar.getParentActivity() != null) {
-                        anVar.h8();
-                        UndoView undoView = anVar.N3;
-                        if (undoView != null) {
-                            undoView.j(74, 0L, null);
-                        }
-                    }
-                }
-                ConnectionsManager.getInstance(cVar.f22782a).sendRequest(tL_contacts_blockFromReplies, new v1(cVar, 0));
-                return;
-            default:
-                org.telegram.ui.nj0 nj0Var = (org.telegram.ui.nj0) this.f38132b;
-                org.telegram.ui.ek0 ek0Var = nj0Var.f49571a;
-                ek0Var.Z[0].setText((String) this.f38133c);
-                ek0Var.Z[1].setText((String) this.d);
-                ek0Var.Z[2].setText((String) this.f38134e);
-                ek0Var.R1(true, true);
-                nj0Var.c((org.telegram.ui.ef0) this.f38135f, (k8.a) this.h);
-                return;
+    public final void a(float f10, int i7) {
+        if (this.f38216t == f10 && this.f38217u == i7) {
+            return;
         }
+        this.f38216t = f10;
+        this.f38217u = i7;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, f10 * 2.2f, 0.0f, new int[]{16777215, 16777215, 956301311, 16777215, 16777215}, new float[]{0.0f, 0.3f, 0.5f, 0.7f, 1.0f}, Shader.TileMode.REPEAT);
+        this.f38214r = linearGradient;
+        this.f38206j.setShader(linearGradient);
+        SweepGradient sweepGradient = new SweepGradient(0.0f, 0.0f, new int[]{9497855, 9497855, -1935871745, -421988097, -1}, new float[]{0.0f, 0.55f, 0.8f, 0.95f, 1.0f});
+        this.f38215s = sweepGradient;
+        this.f38207k.setShader(sweepGradient);
+        int f11 = i0.a.f(0.55f, i7, -6297345) & 16777215;
+        this.f38210n.setShader(new RadialGradient(0.0f, 0.0f, f10 + org.telegram.messenger.g0.L(4.0f), new int[]{f11, Integer.MIN_VALUE | f11, f11}, new float[]{(f10 - org.telegram.messenger.g0.L(1.0f)) / (org.telegram.messenger.g0.L(4.0f) + f10), (org.telegram.messenger.g0.L(0.5f) + f10) / (f10 + org.telegram.messenger.g0.L(4.0f)), 1.0f}, Shader.TileMode.CLAMP));
     }
 
-    public p0(TLRPC.User user, org.telegram.messenger.c cVar, org.telegram.ui.an anVar, TLRPC.Chat chat, org.telegram.messenger.gj gjVar, org.telegram.ui.Cells.c2[] c2VarArr, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f38131a = 0;
-        this.f38132b = user;
-        this.f38133c = cVar;
-        this.d = anVar;
-        this.f38134e = chat;
-        this.f38135f = gjVar;
-        this.h = c2VarArr;
+    public final void b(android.graphics.Canvas r56, android.graphics.RectF r57, int r58, int r59) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p0.b(android.graphics.Canvas, android.graphics.RectF, int, int):void");
+    }
+
+    public final void c(boolean z10) {
+        long j3;
+        if (this.f38201c == z10) {
+            return;
+        }
+        this.f38201c = z10;
+        if (z10) {
+            this.f38204g = SystemClock.uptimeMillis();
+        }
+        if (z10) {
+            j3 = 300;
+        } else {
+            j3 = 560;
+        }
+        this.f38203f.f33895g = j3;
+        this.f38199a.invalidate();
+    }
+
+    public final float d() {
+        return ((float) (SystemClock.uptimeMillis() - this.f38204g)) / 1000.0f;
     }
 }

@@ -1,227 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import android.view.View;
-import android.webkit.WebView;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.PhotoViewer;
-public abstract class ae0 extends FrameLayout {
-    public TLRPC.WebPage E;
-    public float F;
-    public boolean G;
-    public boolean H;
-    public int I;
-    public int J;
-    public float K;
-    public boolean L;
-    public wa0 M;
-    public int f32971a;
-    public PhotoViewer f32972b;
-    public LinearLayout f32973c;
-    public TextView d;
-    public TextView f32974e;
-    public xt f32975f;
-    public bi.o2 h;
-    public RadialProgressView f32976n;
-    public View f32977r;
-    public String f32978s;
-    public ArrayList f32979w;
-    public String f32980x;
-    public boolean f32981y;
+import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+public final class ae0 implements TextureView.SurfaceTextureListener {
+    public final boolean f33337a;
+    public final ca f33338b;
+    public final de0 f33339c;
 
-    public static void a(org.telegram.ui.bq0 bq0Var, String str) {
-        String str2;
-        double ceil;
-        int videoDuration = bq0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = bq0Var.f32979w;
-        arrayList.clear();
-        if (videoDuration > 15) {
-            String[] split = str.split("\\|");
-            String s5 = a8.p0.s(new StringBuilder(), split[0].split("\\$")[0], "2/");
-            String str3 = split[0].split("\\$N")[1];
-            if (split.length == 3) {
-                str2 = split[2].split("M#")[1];
-            } else if (split.length == 2) {
-                str2 = split[1].split("t#")[1];
-            } else {
-                str2 = split[3].split("M#")[1];
-            }
-            if (videoDuration <= 100) {
-                ceil = Math.ceil(videoDuration / 25.0f);
-            } else if (videoDuration <= 250) {
-                ceil = Math.ceil((videoDuration / 2.0f) / 25.0f);
-            } else if (videoDuration <= 500) {
-                ceil = Math.ceil((videoDuration / 4.0f) / 25.0f);
-            } else if (videoDuration <= 1000) {
-                ceil = Math.ceil((videoDuration / 5.0f) / 25.0f);
-            } else {
-                ceil = Math.ceil((videoDuration / 10.0f) / 25.0f);
-            }
-            int i7 = (int) ceil;
-            for (int i10 = 0; i10 < i7; i10++) {
-                Locale locale = Locale.ROOT;
-                arrayList.add(s5 + "M" + i10 + str3 + "&sigh=" + str2);
-            }
-        }
-    }
-
-    public final void b(boolean z10) {
-        wa0 wa0Var = this.M;
-        if (!z10 && this.H) {
-            org.telegram.messenger.g0.i3(wa0Var, 500L);
-        } else if (z10 && !this.H) {
-            org.telegram.messenger.g0.r(wa0Var);
-        }
-    }
-
-    public final java.lang.String c(int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ae0.c(int):java.lang.String");
-    }
-
-    public final boolean d() {
-        return this.f32981y;
+    public ae0(de0 de0Var, boolean z10, ca caVar) {
+        this.f33339c = de0Var;
+        this.f33337a = z10;
+        this.f33338b = caVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.L) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public final boolean e() {
-        if (this.f32976n.getVisibility() != 0) {
-            wi.n c10 = l2.i.d().c();
-            if (c10 != null) {
-                c10.b();
-                org.telegram.messenger.g0.i3(new wd0(this, 0), 300L);
-                return true;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
+        de0 de0Var = this.f33339c;
+        TextureView textureView = de0Var.f34398j0;
+        if (de0Var.m0 == null && surfaceTexture != null) {
+            cz czVar = new cz(surfaceTexture, de0Var.D0, de0Var.I0, de0Var.f34416x0, this.f33337a, this.f33338b, i7, i10);
+            de0Var.m0 = czVar;
+            if (!this.f33337a) {
+                czVar.h(de0Var.K0, de0Var.L0);
+                cz czVar2 = de0Var.m0;
+                Matrix transform = textureView.getTransform(null);
+                int width = textureView.getWidth();
+                int height = textureView.getHeight();
+                ha haVar = czVar2.J;
+                if (haVar != null) {
+                    Matrix matrix = haVar.v;
+                    transform.invert(matrix);
+                    float f10 = width;
+                    float f11 = height;
+                    matrix.preScale(f10, f11);
+                    matrix.postScale(1.0f / f10, 1.0f / f11);
+                    haVar.c(matrix);
+                    czVar2.c(false, false, false);
+                }
             }
-            this.h.setVisibility(0);
-            PhotoViewer photoViewer = this.f32972b;
-            if (photoViewer.E != null && photoViewer.f42772g0 != null) {
-                photoViewer.T0();
-                photoViewer.P8.g(photoViewer.E, null, true);
-                return true;
-            }
+            de0Var.m0.d(de0Var);
+            cz czVar3 = de0Var.m0;
+            czVar3.getClass();
+            czVar3.postRunnable(new yy(czVar3, i7, i10, 1));
+            de0Var.m0.c(true, true, false);
         }
-        return false;
-    }
-
-    public final void f() {
-        if (this.H && this.f32981y) {
-            h("pauseVideo();");
-            this.H = false;
-            b(true);
-        }
-    }
-
-    public final void g() {
-        if (!this.H && this.f32981y) {
-            h("playVideo();");
-            this.H = true;
-            b(false);
-        }
-    }
-
-    public float getBufferedPosition() {
-        return this.K;
-    }
-
-    public int getCurrentPosition() {
-        return this.J;
-    }
-
-    public int getEmbedHeight() {
-        TLRPC.WebPage webPage = this.E;
-        if (webPage != null) {
-            return webPage.embed_height;
-        }
-        return 0;
-    }
-
-    public int getEmbedWidth() {
-        TLRPC.WebPage webPage = this.E;
-        if (webPage != null) {
-            return webPage.embed_width;
-        }
-        return 0;
-    }
-
-    public int getVideoDuration() {
-        return this.I;
-    }
-
-    public WebView getWebView() {
-        return this.f32975f;
-    }
-
-    public final void h(String str) {
-        this.f32975f.evaluateJavascript(str, null);
-    }
-
-    public final void i(long j3) {
-        boolean z10 = this.H;
-        this.J = (int) j3;
-        if (z10) {
-            f();
-        }
-        if (z10) {
-            org.telegram.messenger.g0.i3(new di.x2(this, j3, 23), 100L);
-            return;
-        }
-        h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        xt xtVar = this.f32975f;
-        if (xtVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.E;
-            int i11 = webPage.embed_width;
-            int i12 = 100;
-            if (i11 == 0) {
-                i11 = 100;
-            }
-            int i13 = webPage.embed_height;
-            if (i13 != 0) {
-                i12 = i13;
-            }
-            int size = View.MeasureSpec.getSize(i7);
-            int size2 = View.MeasureSpec.getSize(i10);
-            float f10 = i11;
-            float f11 = i12;
-            float min = Math.min(size / f10, size2 / f11);
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) xtVar.getLayoutParams();
-            int i14 = (int) (f10 * min);
-            layoutParams.width = i14;
-            int i15 = (int) (f11 * min);
-            layoutParams.height = i15;
-            layoutParams.topMargin = (size2 - i15) / 2;
-            layoutParams.leftMargin = (size - i14) / 2;
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        de0 de0Var = this.f33339c;
+        cz czVar = de0Var.m0;
+        if (czVar != null) {
+            czVar.postRunnable(new zy(czVar, 0));
+            de0Var.m0 = null;
+            return true;
         }
-        super.onMeasure(i7, i10);
+        return true;
     }
 
-    public void setPlaybackSpeed(float f10) {
-        this.F = f10;
-        if (this.f32976n.getVisibility() != 0) {
-            if (this.f32981y) {
-                h("setPlaybackSpeed(" + f10 + ");");
-                return;
-            }
-            return;
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
+        de0 de0Var = this.f33339c;
+        cz czVar = de0Var.m0;
+        if (czVar != null) {
+            czVar.postRunnable(new yy(czVar, i7, i10, 1));
+            de0Var.m0.c(false, true, false);
+            de0Var.m0.postRunnable(new gb0(this, 5));
         }
-        this.G = true;
     }
 
-    public void setTouchDisabled(boolean z10) {
-        this.L = z10;
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

@@ -3,11 +3,11 @@ package wi;
 import android.app.Activity;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
-import ug.t1;
+import wg.r;
 public final class o extends TextureView implements TextureView.SurfaceTextureListener {
-    public SurfaceTexture f59428a;
-    public TextureView.SurfaceTextureListener f59429b;
-    public Runnable f59430c;
+    public SurfaceTexture f59992a;
+    public TextureView.SurfaceTextureListener f59993b;
+    public Runnable f59994c;
     public long d;
 
     public o(Activity activity) {
@@ -18,9 +18,9 @@ public final class o extends TextureView implements TextureView.SurfaceTextureLi
 
     @Override
     public final void onAttachedToWindow() {
-        if (this.f59428a != null) {
+        if (this.f59992a != null) {
             SurfaceTexture surfaceTexture = getSurfaceTexture();
-            SurfaceTexture surfaceTexture2 = this.f59428a;
+            SurfaceTexture surfaceTexture2 = this.f59992a;
             if (surfaceTexture != surfaceTexture2) {
                 setSurfaceTexture(surfaceTexture2);
             }
@@ -30,8 +30,8 @@ public final class o extends TextureView implements TextureView.SurfaceTextureLi
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        this.f59428a = surfaceTexture;
-        TextureView.SurfaceTextureListener surfaceTextureListener = this.f59429b;
+        this.f59992a = surfaceTexture;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.f59993b;
         if (surfaceTextureListener != null) {
             surfaceTextureListener.onSurfaceTextureAvailable(surfaceTexture, i7, i10);
         }
@@ -39,11 +39,11 @@ public final class o extends TextureView implements TextureView.SurfaceTextureLi
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        if (surfaceTexture == this.f59428a) {
-            post(new t1(15, this, surfaceTexture));
+        if (surfaceTexture == this.f59992a) {
+            post(new r(7, this, surfaceTexture));
             return false;
         }
-        TextureView.SurfaceTextureListener surfaceTextureListener = this.f59429b;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.f59993b;
         if (surfaceTextureListener != null && !surfaceTextureListener.onSurfaceTextureDestroyed(surfaceTexture)) {
             return false;
         }
@@ -52,7 +52,7 @@ public final class o extends TextureView implements TextureView.SurfaceTextureLi
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        TextureView.SurfaceTextureListener surfaceTextureListener = this.f59429b;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.f59993b;
         if (surfaceTextureListener != null) {
             surfaceTextureListener.onSurfaceTextureSizeChanged(surfaceTexture, i7, i10);
         }
@@ -60,14 +60,14 @@ public final class o extends TextureView implements TextureView.SurfaceTextureLi
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        TextureView.SurfaceTextureListener surfaceTextureListener = this.f59429b;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.f59993b;
         if (surfaceTextureListener != null) {
             surfaceTextureListener.onSurfaceTextureUpdated(surfaceTexture);
         }
-        if (this.f59430c != null) {
+        if (this.f59994c != null) {
             if (this.d == 0 || surfaceTexture.getTimestamp() != this.d) {
-                Runnable runnable = this.f59430c;
-                this.f59430c = null;
+                Runnable runnable = this.f59994c;
+                this.f59994c = null;
                 runnable.run();
             }
         }
@@ -75,8 +75,8 @@ public final class o extends TextureView implements TextureView.SurfaceTextureLi
 
     public void setFirstFrameCallback(Runnable runnable) {
         long j3;
-        this.f59430c = runnable;
-        SurfaceTexture surfaceTexture = this.f59428a;
+        this.f59994c = runnable;
+        SurfaceTexture surfaceTexture = this.f59992a;
         if (surfaceTexture != null) {
             j3 = surfaceTexture.getTimestamp();
         } else {
@@ -87,6 +87,6 @@ public final class o extends TextureView implements TextureView.SurfaceTextureLi
 
     @Override
     public void setSurfaceTextureListener(TextureView.SurfaceTextureListener surfaceTextureListener) {
-        this.f59429b = surfaceTextureListener;
+        this.f59993b = surfaceTextureListener;
     }
 }

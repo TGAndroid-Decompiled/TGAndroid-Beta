@@ -11,42 +11,42 @@ import rd.l;
 import sa.h;
 import w0.i;
 public final class b implements l {
-    public final int f4071a;
-    public final Object f4072b;
+    public final int f4352a;
+    public final Object f4353b;
 
     public b(ie.d dVar, ie.c cVar) {
-        this.f4071a = 5;
-        this.f4072b = dVar;
+        this.f4352a = 5;
+        this.f4353b = dVar;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f4071a) {
+        switch (this.f4352a) {
             case 0:
-                f fVar = (f) this.f4072b;
+                f fVar = (f) this.f4353b;
                 i e10 = (i) obj;
                 j.e(e10, "e");
                 fVar.g().execute(new a(fVar, e10, 2));
-                return k.f13173a;
+                return k.f13488a;
             case 1:
-                d1.e eVar = (d1.e) this.f4072b;
+                d1.e eVar = (d1.e) this.f4353b;
                 w0.d e11 = (w0.d) obj;
                 j.e(e11, "e");
-                Executor executor = eVar.f7332g;
+                Executor executor = eVar.f7615g;
                 if (executor != null) {
                     executor.execute(new d1.a(eVar, e11, 0));
-                    return k.f13173a;
+                    return k.f13488a;
                 }
                 j.h("executor");
                 throw null;
             case 2:
-                e1.d dVar = (e1.d) this.f4072b;
+                e1.d dVar = (e1.d) this.f4353b;
                 w0.d e12 = (w0.d) obj;
                 j.e(e12, "e");
-                Executor executor2 = dVar.f9976g;
+                Executor executor2 = dVar.f10294g;
                 if (executor2 != null) {
                     executor2.execute(new e1.c(dVar, e12, 0));
-                    return k.f13173a;
+                    return k.f13488a;
                 }
                 j.h("executor");
                 throw null;
@@ -54,22 +54,22 @@ public final class b implements l {
                 m1.b ex = (m1.b) obj;
                 j.e(ex, "ex");
                 Log.w("FirebaseSessions", "CorruptionException in session data DataStore", ex);
-                return new j0(((k0) this.f4072b).f13065a.a(null), null, null);
+                return new j0(((k0) this.f4353b).f13382a.a(null), null, null);
             case 4:
-                if (obj == ((hd.c) this.f4072b)) {
+                if (obj == ((hd.c) this.f4353b)) {
                     return "(this Collection)";
                 }
                 return String.valueOf(obj);
             case 5:
                 Throwable th2 = (Throwable) obj;
-                ((ie.d) this.f4072b).f(null);
-                return k.f13173a;
+                ((ie.d) this.f4353b).f(null);
+                return k.f13488a;
             case 6:
-                m mVar = (m) this.f4072b;
+                m mVar = (m) this.f4353b;
                 int intValue = ((Integer) obj).intValue();
-                return mVar.f21448e[intValue] + ": " + mVar.i(intValue).a();
+                return mVar.f21814e[intValue] + ": " + mVar.i(intValue).a();
             default:
-                String str = (String) this.f4072b;
+                String str = (String) this.f4353b;
                 q1.b bVar = (q1.b) obj;
                 bVar.d(h.d, str);
                 h.f(bVar, str);
@@ -78,12 +78,12 @@ public final class b implements l {
     }
 
     public b(Object obj, int i7) {
-        this.f4071a = i7;
-        this.f4072b = obj;
+        this.f4352a = i7;
+        this.f4353b = obj;
     }
 
     public b(h hVar, String str) {
-        this.f4071a = 7;
-        this.f4072b = str;
+        this.f4352a = 7;
+        this.f4353b = str;
     }
 }

@@ -1,44 +1,24 @@
 package org.telegram.messenger;
-public final class j00 implements Runnable {
-    public final int f24499a;
-    public final c10 f24500b;
-    public final String f24501c;
-    public final gj d;
-    public final long f24502e;
-    public final int f24503f;
+public final class j00 implements nc, mc {
+    public final z00 f24768a;
+    public final fj f24769b;
+    public final long f24770c;
+    public final int d;
 
-    public j00(c10 c10Var, String str, gj gjVar, long j3, int i7, int i10) {
-        this.f24499a = i10;
-        this.f24500b = c10Var;
-        this.f24501c = str;
-        this.d = gjVar;
-        this.f24502e = j3;
-        this.f24503f = i7;
+    public j00(z00 z00Var, fj fjVar, long j3, int i7) {
+        this.f24768a = z00Var;
+        this.f24769b = fjVar;
+        this.f24770c = j3;
+        this.d = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24499a) {
-            case 0:
-                c10 c10Var = this.f24500b;
-                gj gjVar = this.d;
-                long j3 = this.f24502e;
-                int i7 = this.f24503f;
-                b6.d(this.f24501c, new m00(c10Var, gjVar, j3, i7), new m00(c10Var, gjVar, j3, i7), false);
-                return;
-            default:
-                c10 c10Var2 = this.f24500b;
-                c10Var2.getClass();
-                String str = this.f24501c;
-                if (str == null) {
-                    str = "und";
-                }
-                gj gjVar2 = this.d;
-                gjVar2.f23819k.originalLanguage = str;
-                c10Var2.getMessagesStorage().X1(this.f24502e, gjVar2.f23819k);
-                c10Var2.f22794w.remove(Integer.valueOf(this.f24503f));
-                c10Var2.f(gjVar2);
-                return;
-        }
+    public void a(String str) {
+        g0.g3(new g00(this.f24768a, str, this.f24769b, this.f24770c, this.d, 1));
+    }
+
+    @Override
+    public void q(Exception exc) {
+        g0.g3(new ek(this.d, 12, this.f24770c, this.f24768a, this.f24769b));
     }
 }

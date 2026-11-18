@@ -1,34 +1,49 @@
 package org.telegram.ui;
-public final class us0 implements Runnable {
-    public final int f52018a;
-    public final PrivacyControlActivity f52019b;
 
-    public us0(PrivacyControlActivity privacyControlActivity, int i7) {
-        this.f52018a = i7;
-        this.f52019b = privacyControlActivity;
+import android.content.Context;
+import android.view.ViewGroup;
+public final class us0 extends org.telegram.ui.Components.bk0 {
+    public final Context f52619c;
+    public final vs0 d;
+
+    public us0(vs0 vs0Var, Context context) {
+        this.d = vs0Var;
+        this.f52619c = context;
     }
 
     @Override
-    public final void run() {
-        switch (this.f52018a) {
-            case 0:
-                PrivacyControlActivity privacyControlActivity = this.f52019b;
-                privacyControlActivity.getClass();
-                privacyControlActivity.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            case 1:
-                PrivacyControlActivity.Z(this.f52019b);
-                return;
-            case 2:
-                PrivacyControlActivity privacyControlActivity2 = this.f52019b;
-                privacyControlActivity2.getClass();
-                privacyControlActivity2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            default:
-                PrivacyControlActivity privacyControlActivity3 = this.f52019b;
-                privacyControlActivity3.getClass();
-                privacyControlActivity3.presentFragment(new PremiumPreviewFragment(0, "settings"));
-                return;
+    public final boolean D(v4.f1 f1Var) {
+        return !((xs0) this.d.f52855n.d.get(f1Var.b())).f53926a.current;
+    }
+
+    @Override
+    public final int b() {
+        return this.d.f52855n.d.size();
+    }
+
+    @Override
+    public final void t(v4.f1 f1Var, int i7) {
+        boolean z10;
+        ug.o1 o1Var = (ug.o1) f1Var.f59122a;
+        PremiumPreviewFragment premiumPreviewFragment = this.d.f52855n;
+        xs0 xs0Var = (xs0) premiumPreviewFragment.d.get(i7);
+        boolean z11 = true;
+        if (i7 != b() - 1) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        o1Var.a(xs0Var, z10);
+        if (premiumPreviewFragment.f43427e != i7) {
+            z11 = false;
+        }
+        o1Var.c(z11, false);
+    }
+
+    @Override
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        ts0 ts0Var = new ts0(this, this.f52619c);
+        ts0Var.setCirclePaintProvider(new aj0(10, this, ts0Var));
+        return new v4.f1(ts0Var);
     }
 }

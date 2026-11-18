@@ -1,64 +1,79 @@
 package org.telegram.ui.Components;
+public final class w6 implements org.telegram.ui.ActionBar.v6 {
+    public final int f41570a;
+    public final Object f41571b;
 
-import android.net.Uri;
-import android.widget.FrameLayout;
-import java.io.File;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class w6 implements org.telegram.messenger.z10 {
-    public final int f41293a;
-    public final y7 f41294b;
-
-    public w6(y7 y7Var, int i7) {
-        this.f41293a = i7;
-        this.f41294b = y7Var;
+    public w6(Object obj, int i7) {
+        this.f41570a = i7;
+        this.f41571b = obj;
     }
 
     @Override
-    public final void a(Object obj) {
-        TLRPC.Document F0;
-        switch (this.f41293a) {
+    public final void a(float f10) {
+        int i7 = this.f41570a;
+    }
+
+    @Override
+    public final void b() {
+        switch (this.f41570a) {
             case 0:
-                org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) obj;
-                if (gjVar != null) {
-                    y7 y7Var = this.f41294b;
-                    if (y7Var.f41905q2 != null && (F0 = gjVar.F0()) != null) {
-                        if (F0.f28057id != 0) {
-                            TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
-                            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f28079id = tL_inputDocument;
-                            tL_inputDocument.f28063id = F0.f28057id;
-                            tL_inputDocument.access_hash = F0.access_hash;
-                            tL_inputDocument.file_reference = F0.file_reference;
-                            org.telegram.messenger.hp hpVar = y7Var.f41905q2;
-                            if (hpVar != null) {
-                                hpVar.f24205c.add(0, hpVar.d(F0));
-                                hpVar.e();
-                            }
-                            y7Var.f41907r2.clear();
-                            y7Var.f41907r2.addAll(y7Var.f41905q2.f24205c);
-                            y7Var.f41912u1.f();
-                            ConnectionsManager.getInstance(y7Var.f29679a).sendRequest(tL_account_saveMusic, null);
-                            return;
-                        }
-                        org.telegram.ui.ActionBar.t1 t1Var = new org.telegram.ui.ActionBar.t1(3, y7Var.getContext(), null);
-                        t1Var.r(180L);
-                        File file = new File(gjVar.f23819k.attachPath);
-                        if (file.exists()) {
-                            org.telegram.messenger.w7.G(y7Var.f29679a).f0(file.getAbsolutePath(), new bi.j(y7Var, t1Var, F0, 8));
-                            return;
-                        }
-                        return;
-                    }
+                ((g8) this.f41571b).L0();
+                return;
+            case 1:
+                ((kl) this.f41571b).b0();
+                return;
+            case 2:
+                kq kqVar = (kq) this.f41571b;
+                org.telegram.ui.ActionBar.r0 r0Var = kqVar.J;
+                r0Var.setIconColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G6, kqVar.f36853e0));
+                org.telegram.ui.ActionBar.n6.C1(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.I5, kqVar.f36853e0), r0Var.getBackground());
+                r0Var.P(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.E8, kqVar.f36853e0), false);
+                r0Var.P(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.F8, kqVar.f36853e0), true);
+                r0Var.I(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G8, kqVar.f36853e0));
+                return;
+            case 3:
+                ((df0) this.f41571b).N0();
+                return;
+            case 4:
+                om0 om0Var = ((rm0) this.f41571b).A0;
+                if (om0Var != null) {
+                    om0Var.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29790y8, false));
                     return;
                 }
                 return;
+            case 5:
+                ((Runnable) this.f41571b).run();
+                return;
+            case 6:
+                ((iw0) this.f41571b).Y0(false);
+                return;
             default:
-                Uri uri = (Uri) obj;
-                y7 y7Var2 = this.f41294b;
-                org.telegram.ui.ActionBar.e6 e6Var = y7Var2.J0;
-                new cc((FrameLayout) y7Var2.f29682b, e6Var).o(bc.G, e6Var).j();
+                ((h41) this.f41571b).d();
                 return;
         }
+    }
+
+    private final void c(float f10) {
+    }
+
+    private final void d(float f10) {
+    }
+
+    private final void e(float f10) {
+    }
+
+    private final void f(float f10) {
+    }
+
+    private final void g(float f10) {
+    }
+
+    private final void h(float f10) {
+    }
+
+    private final void i(float f10) {
+    }
+
+    private final void j(float f10) {
     }
 }

@@ -1,32 +1,32 @@
 package u3;
 
-import a8.ja;
+import a8.la;
 import e2.n0;
 import e2.p0;
 import e2.u;
 import java.util.ArrayList;
 public final class b implements p0 {
-    public final ArrayList f57823a;
+    public final ArrayList f58390a;
 
     public b(ArrayList arrayList) {
-        this.f57823a = arrayList;
+        this.f58390a = arrayList;
         boolean z10 = false;
         if (!arrayList.isEmpty()) {
-            long j3 = ((a) arrayList.get(0)).f57821b;
+            long j3 = ((a) arrayList.get(0)).f58388b;
             int i7 = 1;
             while (true) {
                 if (i7 >= arrayList.size()) {
                     break;
-                } else if (((a) arrayList.get(i7)).f57820a < j3) {
+                } else if (((a) arrayList.get(i7)).f58387a < j3) {
                     z10 = true;
                     break;
                 } else {
-                    j3 = ((a) arrayList.get(i7)).f57821b;
+                    j3 = ((a) arrayList.get(i7)).f58388b;
                     i7++;
                 }
             }
         }
-        ja.f(!z10);
+        la.f(!z10);
     }
 
     @Override
@@ -44,17 +44,17 @@ public final class b implements p0 {
             return true;
         }
         if (obj != null && b.class == obj.getClass()) {
-            return this.f57823a.equals(((b) obj).f57823a);
+            return this.f58390a.equals(((b) obj).f58390a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f57823a.hashCode();
+        return this.f58390a.hashCode();
     }
 
     public final String toString() {
-        return "SlowMotion: segments=" + this.f57823a;
+        return "SlowMotion: segments=" + this.f58390a;
     }
 
     @Override

@@ -1,41 +1,37 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class gr extends ImageView {
-    public final int f35043a = 0;
-    public Object f35044b;
-    public final ViewGroup f35045c;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+public final class gr extends k41 {
+    public static final int f35552b = 0;
 
-    public gr(ir irVar, Context context, org.telegram.messenger.ou ouVar) {
-        super(context);
-        this.f35045c = irVar;
-        this.f35044b = ouVar;
+    static {
+        k41.h(new k41());
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f35043a) {
-            case 0:
-                ir irVar = (ir) this.f35045c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (irVar.f35693n || irVar.f35692f)) {
-                    irVar.f35693n = false;
-                    irVar.f35692f = false;
-                    removeCallbacks(irVar.f35694r);
-                    removeCallbacks(irVar.h);
-                }
-                super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((org.telegram.messenger.ou) this.f35044b).f25806b).onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
+    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+        org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) view;
+        x8Var.c(l41Var.f37018m, l41Var.f37020o, !l41Var.f37015j);
+        xh.l lVar = x8Var.f32437a;
+        if (l41Var.f37018m instanceof SpannableStringBuilder) {
+            lVar.setTextSize(1, 13.0f);
+            lVar.setTranslationY(org.telegram.messenger.g0.L(2.0f));
+            lVar.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
         }
     }
 
-    public gr(mi0 mi0Var, Context context) {
-        super(context);
-        this.f35045c = mi0Var;
+    @Override
+    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        org.telegram.ui.Cells.x8 x8Var = new org.telegram.ui.Cells.x8(context, i6Var, true);
+        org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29396d6, x8Var, i6Var);
+        Drawable mutate = context.getDrawable(2131232105).mutate();
+        org.telegram.ui.ActionBar.u6.x(x8Var, mutate, org.telegram.ui.ActionBar.n6.L6, i6Var, PorterDuff.Mode.MULTIPLY);
+        x8Var.setImage(mutate);
+        x8Var.setImageClickListener(new ah.h(this, context, x8Var, 28));
+        return x8Var;
     }
 }

@@ -1,64 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-public final class bw extends c5.l {
-    public final ly f33397x0;
+import androidx.recyclerview.widget.RecyclerView;
+public final class bw extends v4.t {
+    public final ry Q;
 
-    public bw(ly lyVar, Context context) {
-        super(context);
-        this.f33397x0 = lyVar;
+    public bw(ry ryVar) {
+        super(5);
+        this.Q = ryVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f33397x0.f36946f) {
-            return false;
+    public final int o0(int i7, v4.x0 x0Var, v4.c1 c1Var) {
+        int o02 = super.o0(i7, x0Var, c1Var);
+        ry ryVar = this.Q;
+        if (o02 != 0 && ryVar.E0.getScrollState() == 1) {
+            ryVar.Y1 = false;
+            ryVar.Z();
         }
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        if (ryVar.U0 == null) {
+            jg.d1 d1Var = new jg.d1(ryVar, ryVar.f39345d1, ryVar.f39397u1.a(), ryVar.f39397u1.f(), 1);
+            ryVar.U0 = d1Var;
+            d1Var.a();
         }
+        ryVar.U0.b();
+        return o02;
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
         try {
-            return super.onInterceptTouchEvent(motionEvent);
-        } catch (IllegalArgumentException unused) {
-            return false;
+            pi.l lVar = new pi.l(recyclerView.getContext(), 2);
+            lVar.f59066a = i7;
+            w0(lVar);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
-    }
-
-    @Override
-    public final void x(int i7, boolean z10) {
-        boolean z11;
-        ly lyVar = this.f33397x0;
-        qw qwVar = lyVar.J;
-        if (i7 == 1) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        ly.a(lyVar, z11);
-        if (i7 == getCurrentItem()) {
-            if (i7 == 0) {
-                lyVar.R0[1] = 0;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(qwVar, ViewGroup.TRANSLATION_Y, 0.0f);
-                ofFloat.setDuration(150L);
-                ofFloat.setInterpolator(er.h);
-                ofFloat.start();
-                lyVar.H(1, 0);
-                if (qwVar != null) {
-                    qwVar.j(0, true);
-                    return;
-                }
-                return;
-            } else if (i7 == 1) {
-                lyVar.f36956i0.y0(0);
-                return;
-            } else {
-                lyVar.E0.y0(1);
-                return;
-            }
-        }
-        super.x(i7, z10);
     }
 }

@@ -1,76 +1,75 @@
 package x2;
 
-import android.util.Pair;
-import java.util.HashMap;
-public final class w extends s1 {
-    public final int f59700l;
-    public final HashMap f59701m;
-    public final HashMap f59702n;
+import a8.la;
+public final class w extends l2.a {
+    public final e2.l1 h;
+    public final int f60247i;
+    public final int f60248j;
+    public final int f60249k;
 
-    public w(a aVar) {
-        super(new a0(aVar, false));
-        this.f59700l = Integer.MAX_VALUE;
-        this.f59701m = new HashMap();
-        this.f59702n = new HashMap();
-    }
-
-    @Override
-    public final void A(e2.l1 l1Var) {
-        e2.l1 uVar;
-        int i7 = this.f59700l;
-        if (i7 != Integer.MAX_VALUE) {
-            uVar = new v(l1Var, i7);
-        } else {
-            uVar = new u(l1Var, 0);
-        }
-        n(uVar);
-    }
-
-    @Override
-    public final d0 c(f0 f0Var, h6.m mVar, long j3) {
-        int i7 = this.f59700l;
-        a aVar = this.f59663k;
-        if (i7 == Integer.MAX_VALUE) {
-            return aVar.c(f0Var, mVar, j3);
-        }
-        Object obj = f0Var.f59523a;
-        int i10 = l2.a.f18879g;
-        f0 a10 = f0Var.a(((Pair) obj).second);
-        this.f59701m.put(a10, f0Var);
-        d0 c10 = aVar.c(a10, mVar, j3);
-        this.f59702n.put(c10, a10);
-        return c10;
-    }
-
-    @Override
-    public final e2.l1 h() {
-        a0 a0Var = (a0) this.f59663k;
-        int i7 = this.f59700l;
-        if (i7 != Integer.MAX_VALUE) {
-            return new v(a0Var.f59468o, i7);
-        }
-        return new u(a0Var.f59468o, 0);
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final void o(d0 d0Var) {
-        this.f59663k.o(d0Var);
-        f0 f0Var = (f0) this.f59702n.remove(d0Var);
-        if (f0Var != null) {
-            this.f59701m.remove(f0Var);
+    public w(e2.l1 l1Var, int i7) {
+        super(new h1(i7));
+        boolean z10;
+        this.h = l1Var;
+        int h = l1Var.h();
+        this.f60247i = h;
+        this.f60248j = l1Var.o();
+        this.f60249k = i7;
+        if (h > 0) {
+            if (i7 <= Integer.MAX_VALUE / h) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            la.o("LoopingMediaSource contains too many periods", z10);
         }
     }
 
     @Override
-    public final f0 z(f0 f0Var) {
-        if (this.f59700l != Integer.MAX_VALUE) {
-            return (f0) this.f59701m.get(f0Var);
+    public final int h() {
+        return this.f60247i * this.f60249k;
+    }
+
+    @Override
+    public final int o() {
+        return this.f60248j * this.f60249k;
+    }
+
+    @Override
+    public final int q(Object obj) {
+        if (!(obj instanceof Integer)) {
+            return -1;
         }
-        return f0Var;
+        return ((Integer) obj).intValue();
+    }
+
+    @Override
+    public final int r(int i7) {
+        return i7 / this.f60247i;
+    }
+
+    @Override
+    public final int s(int i7) {
+        return i7 / this.f60248j;
+    }
+
+    @Override
+    public final Object t(int i7) {
+        return Integer.valueOf(i7);
+    }
+
+    @Override
+    public final int u(int i7) {
+        return i7 * this.f60247i;
+    }
+
+    @Override
+    public final int v(int i7) {
+        return i7 * this.f60248j;
+    }
+
+    @Override
+    public final e2.l1 x(int i7) {
+        return this.h;
     }
 }

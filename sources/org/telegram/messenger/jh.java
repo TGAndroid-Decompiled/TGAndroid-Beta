@@ -1,17 +1,46 @@
 package org.telegram.messenger;
-public final class jh implements Runnable {
-    public final int f24558a;
-    public final si f24559b;
-    public final String f24560c;
 
-    public jh(si siVar, String str, int i7) {
-        this.f24558a = i7;
-        this.f24559b = siVar;
-        this.f24560c = str;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class jh implements Runnable {
+    public final int f24856a;
+    public final ri f24857b;
+    public final ArrayList f24858c;
+
+    public jh(ri riVar, ArrayList arrayList, int i7) {
+        this.f24856a = i7;
+        this.f24857b = riVar;
+        this.f24858c = arrayList;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.jh.run():void");
+        int i7 = this.f24856a;
+        ArrayList arrayList = this.f24858c;
+        ri riVar = this.f24857b;
+        switch (i7) {
+            case 0:
+                riVar.getNotificationCenter().k(56, Long.valueOf(fj.B0(((fj) arrayList.get(0)).f23968k)), null, Boolean.TRUE, arrayList, null, 0, -1, Boolean.FALSE);
+                return;
+            default:
+                try {
+                    ArrayList arrayList2 = new ArrayList();
+                    ArrayList arrayList3 = new ArrayList();
+                    a0.h hVar = new a0.h();
+                    a0.h hVar2 = new a0.h();
+                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                        try {
+                            tr.d((TLRPC.Message) arrayList.get(i10), hVar, hVar2);
+                        } catch (Exception e10) {
+                            riVar.getMessagesStorage().o(e10, true);
+                        }
+                    }
+                    riVar.getMessagesStorage().K0(hVar, hVar2, arrayList2, arrayList3, 0);
+                    return;
+                } catch (Exception e11) {
+                    a8.g(e11, true);
+                    return;
+                }
+        }
     }
 }

@@ -1,17 +1,17 @@
 package c5;
 
 import android.view.animation.Interpolator;
-import org.telegram.messenger.i20;
+import org.telegram.messenger.n10;
 public final class c implements Interpolator {
-    public final int f4133a;
+    public final int f4414a;
 
     public c(int i7) {
-        this.f4133a = i7;
+        this.f4414a = i7;
     }
 
     @Override
     public final float getInterpolation(float f10) {
-        switch (this.f4133a) {
+        switch (this.f4414a) {
             case 0:
             case 4:
             default:
@@ -25,7 +25,7 @@ public final class c implements Interpolator {
                 }
                 float f12 = f10 - 0.33f;
                 if (f12 < 0.33f) {
-                    return i20.v(f12, 0.34f, 0.15f, 0.1f);
+                    return n10.w(f12, 0.34f, 0.15f, 0.1f);
                 }
                 return (((f12 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
             case 3:

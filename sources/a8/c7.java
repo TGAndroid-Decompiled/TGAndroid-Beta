@@ -39,7 +39,7 @@ public abstract class c7 {
 
     public static Drawable d(Context context, int i7) {
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes(new int[]{i7});
-        Drawable b10 = b5.a.b(context, obtainStyledAttributes.getResourceId(0, 0));
+        Drawable b10 = c8.z.b(context, obtainStyledAttributes.getResourceId(0, 0));
         if (h(context)) {
             b10.setTint(context.getColor(2131099765));
         }

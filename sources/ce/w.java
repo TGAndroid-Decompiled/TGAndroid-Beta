@@ -1,10 +1,9 @@
 package ce;
 
-import aa.b0;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class w extends de.b implements u, c, de.e {
-    public static final AtomicReferenceFieldUpdater f4982e = AtomicReferenceFieldUpdater.newUpdater(w.class, Object.class, "_state$volatile");
+    public static final AtomicReferenceFieldUpdater f5268e = AtomicReferenceFieldUpdater.newUpdater(w.class, Object.class, "_state$volatile");
     private volatile Object _state$volatile;
     public int d;
 
@@ -13,13 +12,8 @@ public final class w extends de.b implements u, c, de.e {
     }
 
     @Override
-    public final java.lang.Object G(ce.d r18, kd.c r19) {
-        throw new UnsupportedOperationException("Method not decompiled: ce.w.G(ce.d, kd.c):java.lang.Object");
-    }
-
-    @Override
-    public final c Q(id.h hVar, int i7, be.a aVar) {
-        if ((((i7 >= 0 && i7 < 2) || i7 == -2) && aVar == be.a.f3141b) || ((i7 == 0 || i7 == -3) && aVar == be.a.f3140a)) {
+    public final c B(id.h hVar, int i7, be.a aVar) {
+        if ((((i7 >= 0 && i7 < 2) || i7 == -2) && aVar == be.a.f3135b) || ((i7 == 0 || i7 == -3) && aVar == be.a.f3134a)) {
             return this;
         }
         return new b(this, hVar, i7, aVar, 1);
@@ -28,18 +22,18 @@ public final class w extends de.b implements u, c, de.e {
     @Override
     public final Object a(Object obj, id.c cVar) {
         if (obj == null) {
-            obj = de.g.f8069a;
+            obj = de.g.f8351a;
         }
         c(null, obj);
-        return gd.k.f13173a;
+        return gd.k.f13488a;
     }
 
     public final boolean c(Object obj, Object obj2) {
         int i7;
         y[] yVarArr;
-        b0 b0Var;
+        ee.t tVar;
         synchronized (this) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f4982e;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f5268e;
             Object obj3 = atomicReferenceFieldUpdater.get(this);
             if (obj != null && !kotlin.jvm.internal.j.a(obj3, obj)) {
                 return false;
@@ -52,29 +46,29 @@ public final class w extends de.b implements u, c, de.e {
             if ((i10 & 1) == 0) {
                 int i11 = i10 + 1;
                 this.d = i11;
-                y[] yVarArr2 = this.f8059a;
+                y[] yVarArr2 = this.f8341a;
                 while (true) {
                     if (yVarArr2 != null) {
                         for (y yVar : yVarArr2) {
                             if (yVar != null) {
-                                AtomicReference atomicReference = yVar.f4985a;
+                                AtomicReference atomicReference = yVar.f5271a;
                                 while (true) {
                                     Object obj4 = atomicReference.get();
-                                    if (obj4 != null && obj4 != (b0Var = x.f4984b)) {
-                                        b0 b0Var2 = x.f4983a;
-                                        if (obj4 == b0Var2) {
-                                            while (!atomicReference.compareAndSet(obj4, b0Var)) {
+                                    if (obj4 != null && obj4 != (tVar = x.f5270b)) {
+                                        ee.t tVar2 = x.f5269a;
+                                        if (obj4 == tVar2) {
+                                            while (!atomicReference.compareAndSet(obj4, tVar)) {
                                                 if (atomicReference.get() != obj4) {
                                                     break;
                                                 }
                                             }
                                         } else {
-                                            while (!atomicReference.compareAndSet(obj4, b0Var2)) {
+                                            while (!atomicReference.compareAndSet(obj4, tVar2)) {
                                                 if (atomicReference.get() != obj4) {
                                                     break;
                                                 }
                                             }
-                                            ((zd.m) obj4).resumeWith(gd.k.f13173a);
+                                            ((zd.m) obj4).resumeWith(gd.k.f13488a);
                                             break;
                                         }
                                     }
@@ -88,7 +82,7 @@ public final class w extends de.b implements u, c, de.e {
                             this.d = i11 + 1;
                             return true;
                         }
-                        yVarArr = this.f8059a;
+                        yVarArr = this.f8341a;
                     }
                     yVarArr2 = yVarArr;
                     i11 = i7;
@@ -98,5 +92,10 @@ public final class w extends de.b implements u, c, de.e {
                 return true;
             }
         }
+    }
+
+    @Override
+    public final java.lang.Object v(ce.d r18, kd.c r19) {
+        throw new UnsupportedOperationException("Method not decompiled: ce.w.v(ce.d, kd.c):java.lang.Object");
     }
 }

@@ -2,35 +2,35 @@ package z3;
 
 import e2.u;
 public final class q {
-    public final int f60877a;
-    public final int f60878b;
-    public final long f60879c;
+    public final int f61441a;
+    public final int f61442b;
+    public final long f61443c;
     public final long d;
-    public final long f60880e;
-    public final long f60881f;
-    public final u f60882g;
+    public final long f61444e;
+    public final long f61445f;
+    public final u f61446g;
     public final int h;
-    public final long[] f60883i;
-    public final long[] f60884j;
-    public final int f60885k;
-    public final r[] f60886l;
+    public final long[] f61447i;
+    public final long[] f61448j;
+    public final int f61449k;
+    public final r[] f61450l;
 
     public q(int i7, int i10, long j3, long j10, long j11, long j12, u uVar, int i11, r[] rVarArr, int i12, long[] jArr, long[] jArr2) {
-        this.f60877a = i7;
-        this.f60878b = i10;
-        this.f60879c = j3;
+        this.f61441a = i7;
+        this.f61442b = i10;
+        this.f61443c = j3;
         this.d = j10;
-        this.f60880e = j11;
-        this.f60881f = j12;
-        this.f60882g = uVar;
+        this.f61444e = j11;
+        this.f61445f = j12;
+        this.f61446g = uVar;
         this.h = i11;
-        this.f60886l = rVarArr;
-        this.f60885k = i12;
-        this.f60883i = jArr;
-        this.f60884j = jArr2;
+        this.f61450l = rVarArr;
+        this.f61449k = i12;
+        this.f61447i = jArr;
+        this.f61448j = jArr2;
     }
 
     public final q a(u uVar) {
-        return new q(this.f60877a, this.f60878b, this.f60879c, this.d, this.f60880e, this.f60881f, uVar, this.h, this.f60886l, this.f60885k, this.f60883i, this.f60884j);
+        return new q(this.f61441a, this.f61442b, this.f61443c, this.d, this.f61444e, this.f61445f, uVar, this.h, this.f61450l, this.f61449k, this.f61447i, this.f61448j);
     }
 }

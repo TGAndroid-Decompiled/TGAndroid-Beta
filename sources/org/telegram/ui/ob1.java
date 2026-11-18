@@ -1,39 +1,14 @@
 package org.telegram.ui;
+public final class ob1 {
+    public final org.telegram.ui.ActionBar.h2 f50559a;
+    public boolean f50560b;
+    public boolean f50561c;
+    public boolean d;
+    public boolean f50562e;
+    public float f50563f;
+    public float f50564g;
 
-import android.view.View;
-import org.telegram.messenger.voip.VoIPService;
-public final class ob1 implements View.OnClickListener {
-    public final int f49892a;
-    public final ec1 f49893b;
-    public final VoIPService f49894c;
-
-    public ob1(ec1 ec1Var, VoIPService voIPService, int i7) {
-        this.f49892a = i7;
-        this.f49893b = ec1Var;
-        this.f49894c = voIPService;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f49892a) {
-            case 0:
-                ec1 ec1Var = this.f49893b;
-                org.telegram.messenger.g0.h3(new qb1(ec1Var, 8));
-                int i7 = ec1Var.M;
-                if (i7 > 0) {
-                    this.f49894c.sendCallRating(i7);
-                    return;
-                }
-                return;
-            default:
-                ec1 ec1Var2 = this.f49893b;
-                org.telegram.messenger.g0.h3(new qb1(ec1Var2, 10));
-                int i10 = ec1Var2.M;
-                if (i10 > 0) {
-                    this.f49894c.sendCallRating(i10);
-                    return;
-                }
-                return;
-        }
+    public ob1(org.telegram.ui.ActionBar.h2 h2Var) {
+        this.f50559a = h2Var;
     }
 }

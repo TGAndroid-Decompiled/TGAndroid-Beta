@@ -3,39 +3,39 @@ package jg;
 import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.g5;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.np;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.i5;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.jw;
-import org.telegram.ui.yw;
-public final class s implements f0, ij0 {
-    public final h0 f17264a;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.qj0;
+import org.telegram.ui.cx;
+import org.telegram.ui.mw;
+public final class s implements f0, qj0 {
+    public final h0 f17650a;
 
     public s(h0 h0Var) {
-        this.f17264a = h0Var;
+        this.f17650a = h0Var;
     }
 
     @Override
     public void a(a0.h hVar, ArrayList arrayList) {
-        h0 h0Var = this.f17264a;
-        int i7 = h0Var.f17107t0;
-        h0Var.f17108u0 = arrayList;
-        h0Var.f17115y0 = hVar;
-        for (int i10 = 0; i10 < h0Var.f17108u0.size(); i10++) {
-            g0 g0Var = (g0) h0Var.f17108u0.get(i10);
-            TLObject tLObject = g0Var.f17077a;
+        h0 h0Var = this.f17650a;
+        int i7 = h0Var.f17493t0;
+        h0Var.f17494u0 = arrayList;
+        h0Var.f17501y0 = hVar;
+        for (int i10 = 0; i10 < h0Var.f17494u0.size(); i10++) {
+            g0 g0Var = (g0) h0Var.f17494u0.get(i10);
+            TLObject tLObject = g0Var.f17463a;
             if (tLObject instanceof TLRPC.User) {
-                np.s1(i7).X3((TLRPC.User) g0Var.f17077a, true, false);
+                mp.u1(i7).e4((TLRPC.User) g0Var.f17463a, true, false);
             } else if (tLObject instanceof TLRPC.Chat) {
-                np.s1(i7).Q3((TLRPC.Chat) g0Var.f17077a, true);
+                mp.u1(i7).X3((TLRPC.Chat) g0Var.f17463a, true);
             } else if (tLObject instanceof TLRPC.EncryptedChat) {
-                np.s1(i7).U3((TLRPC.EncryptedChat) g0Var.f17077a, true);
+                mp.u1(i7).b4((TLRPC.EncryptedChat) g0Var.f17463a, true);
             }
         }
         h0Var.G(null);
@@ -43,25 +43,25 @@ public final class s implements f0, ij0 {
     }
 
     @Override
-    public boolean b(int i7, View view) {
-        TLRPC.User a22;
-        jw jwVar = this.f17264a.V;
-        if (jwVar != null) {
+    public boolean c(int i7, View view) {
+        TLRPC.User c22;
+        mw mwVar = this.f17650a.V;
+        if (mwVar != null) {
             Long l10 = (Long) view.getTag();
             long longValue = l10.longValue();
-            yw ywVar = jwVar.f48422a;
-            if (ywVar.getParentActivity() != null && (a22 = ywVar.getMessagesController().a2(l10)) != null) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ywVar.getParentActivity());
-                String M0 = hd.M0(2131752234, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                t1Var.S = M0;
-                t1Var.U = org.telegram.messenger.g0.X2(hd.a0("ChatHintsDeleteAlert", null, 2131752235, g5.m(0, a22.first_name, a22.last_name)));
-                alertDialog$Builder.k(hd.M0(2131744855, null), new ai.d0(jwVar, longValue, 9));
-                alertDialog$Builder.h(hd.M0(2131752589, null), null);
-                ywVar.showDialog(t1Var);
-                TextView textView = (TextView) t1Var.d(-1);
+            cx cxVar = mwVar.f49979a;
+            if (cxVar.getParentActivity() != null && (c22 = cxVar.getMessagesController().c2(l10)) != null) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cxVar.getParentActivity());
+                String M0 = gd.M0(2131752223, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                u1Var.S = M0;
+                u1Var.U = org.telegram.messenger.g0.W2(gd.a0("ChatHintsDeleteAlert", null, 2131752224, i5.m(0, c22.first_name, c22.last_name)));
+                alertDialog$Builder.k(gd.M0(2131744620, null), new ai.d0(mwVar, longValue, 9));
+                alertDialog$Builder.h(gd.M0(2131752578, null), null);
+                cxVar.showDialog(u1Var);
+                TextView textView = (TextView) u1Var.d(-1);
                 if (textView != null) {
-                    q6.U(textView, j6.f29090q7, ywVar.getResourceProvider());
+                    u6.U(textView, n6.f29637q7, cxVar.getResourceProvider());
                 }
             }
         }

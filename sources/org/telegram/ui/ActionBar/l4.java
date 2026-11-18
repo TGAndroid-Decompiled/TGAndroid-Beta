@@ -1,16 +1,8 @@
 package org.telegram.ui.ActionBar;
 public interface l4 {
-    void a(float f10);
+    void a(int i7, int i10, int i11);
 
-    void b(ActionBarLayout actionBarLayout, boolean z10);
+    void b(int i7, int i10, int i11);
 
-    void e(int[] iArr);
-
-    boolean h(e2 e2Var, ActionBarLayout actionBarLayout);
-
-    boolean j();
-
-    boolean k(ActionBarLayout actionBarLayout);
-
-    boolean l(ActionBarLayout actionBarLayout, m4 m4Var);
+    int c(int i7, int i10);
 }

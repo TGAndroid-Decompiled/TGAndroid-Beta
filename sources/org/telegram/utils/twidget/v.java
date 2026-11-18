@@ -1,46 +1,33 @@
 package org.telegram.utils.twidget;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class v extends LinkedHashMap {
-    public final int f54417a;
+import android.content.Context;
+import android.net.Uri;
+import java.io.Serializable;
+public final class v implements x, org.telegram.ui.ActionBar.r1 {
+    public final int f54964a;
+    public final Serializable f54965b;
+    public final Object f54966c;
 
-    public v(float f10, int i7, int i10, boolean z10) {
-        super(i7, f10, z10);
-        this.f54417a = i10;
-    }
-
-    public static Matcher b(String str, Pattern pattern, v vVar) {
-        Matcher matcher = (Matcher) vVar.get(pattern);
-        if (matcher == null) {
-            Matcher matcher2 = pattern.matcher(str);
-            vVar.put(pattern, matcher2);
-            return matcher2;
-        }
-        matcher.reset(str);
-        return matcher;
+    public v(int i7, Serializable serializable, Object obj) {
+        this.f54964a = i7;
+        this.f54966c = obj;
+        this.f54965b = serializable;
     }
 
     @Override
-    public final boolean removeEldestEntry(Map.Entry entry) {
-        switch (this.f54417a) {
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        vf.c.q((Context) this.f54966c, Uri.parse((String) this.f54965b), true, false);
+    }
+
+    @Override
+    public void mo26run() {
+        switch (this.f54964a) {
             case 0:
-                if (size() > 8192) {
-                    return true;
-                }
-                return false;
-            case 1:
-                if (size() > 4) {
-                    return true;
-                }
-                return false;
+                ((y) this.f54966c).a((byte[]) this.f54965b);
+                return;
             default:
-                if (size() > 32) {
-                    return true;
-                }
-                return false;
+                ((WidgetEngineBackend) this.f54966c).lambda$send$11((byte[]) this.f54965b);
+                return;
         }
     }
 }

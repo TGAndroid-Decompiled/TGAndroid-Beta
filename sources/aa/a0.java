@@ -24,7 +24,7 @@ public final class a0 {
                 this.f776c = str;
                 this.d = dVar;
                 this.f777e = wVar;
-                this.f774a = new b0(0);
+                this.f774a = new Object();
                 return;
             }
             throw new IllegalArgumentException("appIdentifier must not be null");
@@ -50,18 +50,18 @@ public final class a0 {
     public final synchronized c c() {
         String str;
         c cVar = this.f778f;
-        if (cVar != null && (cVar.f785b != null || !this.f777e.a())) {
+        if (cVar != null && (cVar.f784b != null || !this.f777e.a())) {
             return this.f778f;
         }
-        x9.b bVar = x9.b.f59856a;
+        x9.b bVar = x9.b.f60426a;
         bVar.c("Determining Crashlytics installation ID...");
         SharedPreferences sharedPreferences = this.f775b.getSharedPreferences("com.google.firebase.crashlytics", 0);
         String string = sharedPreferences.getString("firebase.installation.id", null);
         bVar.c("Cached Firebase Installation ID: " + string);
         if (this.f777e.a()) {
             z b10 = b(false);
-            bVar.c("Fetched Firebase Installation ID: " + b10.f886a);
-            if (b10.f886a == null) {
+            bVar.c("Fetched Firebase Installation ID: " + b10.f885a);
+            if (b10.f885a == null) {
                 if (string == null) {
                     str = "SYN_" + UUID.randomUUID().toString();
                 } else {
@@ -69,10 +69,10 @@ public final class a0 {
                 }
                 b10 = new z(str, null);
             }
-            if (Objects.equals(b10.f886a, string)) {
-                this.f778f = new c(sharedPreferences.getString("crashlytics.installation.id", null), b10.f886a, b10.f887b);
+            if (Objects.equals(b10.f885a, string)) {
+                this.f778f = new c(sharedPreferences.getString("crashlytics.installation.id", null), b10.f885a, b10.f886b);
             } else {
-                this.f778f = new c(a(b10.f886a, sharedPreferences), b10.f886a, b10.f887b);
+                this.f778f = new c(a(b10.f885a, sharedPreferences), b10.f885a, b10.f886b);
             }
         } else if (string != null && string.startsWith("SYN_")) {
             this.f778f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null, null);
@@ -89,17 +89,17 @@ public final class a0 {
         Context context = this.f775b;
         synchronized (b0Var) {
             try {
-                if (b0Var.f783b == null) {
+                if (b0Var.f782a == null) {
                     String installerPackageName = context.getPackageManager().getInstallerPackageName(context.getPackageName());
                     if (installerPackageName == null) {
                         installerPackageName = "";
                     }
-                    b0Var.f783b = installerPackageName;
+                    b0Var.f782a = installerPackageName;
                 }
-                if ("".equals(b0Var.f783b)) {
+                if ("".equals(b0Var.f782a)) {
                     str = null;
                 } else {
-                    str = b0Var.f783b;
+                    str = b0Var.f782a;
                 }
             } finally {
             }

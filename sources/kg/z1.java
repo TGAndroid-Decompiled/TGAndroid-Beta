@@ -2,46 +2,45 @@ package kg;
 
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import bi.v2;
 import com.google.android.gms.internal.vision.e2;
 import j$.time.Instant;
 import j$.time.ZoneId;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.np;
-import org.telegram.messenger.ns;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public final class z1 {
-    public static volatile z1[] f18155e = new z1[4];
-    public static final Object[] f18156f = new Object[4];
-    public final int f18157a;
-    public boolean f18158b;
-    public boolean f18159c;
+    public static volatile z1[] f18551e = new z1[4];
+    public static final Object[] f18552f = new Object[4];
+    public final int f18553a;
+    public boolean f18554b;
+    public boolean f18555c;
     public final ArrayList d = new ArrayList();
 
     static {
         for (int i7 = 0; i7 < 4; i7++) {
-            f18156f[i7] = new Object();
+            f18552f[i7] = new Object();
         }
     }
 
     public z1(int i7) {
-        this.f18157a = i7;
+        this.f18553a = i7;
     }
 
     public static z1 b(int i7) {
         z1 z1Var;
-        z1 z1Var2 = f18155e[i7];
+        z1 z1Var2 = f18551e[i7];
         if (z1Var2 == null) {
-            synchronized (f18156f[i7]) {
+            synchronized (f18552f[i7]) {
                 try {
-                    z1Var = f18155e[i7];
+                    z1Var = f18551e[i7];
                     if (z1Var == null) {
-                        z1[] z1VarArr = f18155e;
+                        z1[] z1VarArr = f18551e;
                         z1 z1Var3 = new z1(i7);
                         z1VarArr[i7] = z1Var3;
                         z1Var = z1Var3;
@@ -90,7 +89,7 @@ public final class z1 {
         }
         m10.append(str2);
         m10.append(i10);
-        StringBuilder m11 = e2.m(r.b.v(m10.toString(), ":"));
+        StringBuilder m11 = e2.m(p5.c.v(m10.toString(), ":"));
         if (i11 < 10) {
             str3 = "0";
         }
@@ -111,7 +110,7 @@ public final class z1 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i7);
-            if (TextUtils.equals(tL_timezone.f28191id, str)) {
+            if (TextUtils.equals(tL_timezone.f28545id, str)) {
                 return tL_timezone;
             }
             i7++;
@@ -134,7 +133,7 @@ public final class z1 {
             return "";
         }
         if (z10) {
-            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, hd.E0().f24132y);
+            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, gd.E0().f24244y);
             str2 = "GMT";
             if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
                 str2 = "GMT".concat(displayName);
@@ -152,10 +151,10 @@ public final class z1 {
     }
 
     public final void g() {
-        if (!this.f18158b && !this.f18159c) {
-            this.f18158b = true;
-            int i7 = this.f18157a;
-            SharedPreferences sharedPreferences = np.s1(i7).f25283f7;
+        if (!this.f18554b && !this.f18555c) {
+            this.f18554b = true;
+            int i7 = this.f18553a;
+            SharedPreferences sharedPreferences = mp.u1(i7).h7;
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = sharedPreferences.getString("timezones", null);
             int i10 = 0;
@@ -168,13 +167,13 @@ public final class z1 {
             if (help_timezoneslist != null) {
                 arrayList.addAll(help_timezoneslist.timezones);
             }
-            ns.f(i7).k(ns.f25564r3, new Object[0]);
+            ks.f(i7).k(ks.f25196t3, new Object[0]);
             TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
             if (help_timezoneslist != null) {
                 i10 = help_timezoneslist.hash;
             }
             tL_help_getTimezonesList.hash = i10;
-            ConnectionsManager.getInstance(i7).sendRequest(tL_help_getTimezonesList, new v2(21, this, sharedPreferences));
+            ConnectionsManager.getInstance(i7).sendRequest(tL_help_getTimezonesList, new bi.k1(22, this, sharedPreferences));
         }
     }
 }

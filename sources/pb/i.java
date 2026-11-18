@@ -12,26 +12,26 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 public abstract class i {
-    public final ab.q f54951a;
-    public final AtomicInteger f54952b = new AtomicInteger(0);
-    public final AtomicBoolean f54953c = new AtomicBoolean(false);
+    public final ab.q f55527a;
+    public final AtomicInteger f55528b = new AtomicInteger(0);
+    public final AtomicBoolean f55529c = new AtomicBoolean(false);
 
     public i() {
         ?? obj = new Object();
-        obj.f989b = new Object();
-        obj.f990c = new ArrayDeque();
+        obj.f988b = new Object();
+        obj.f989c = new ArrayDeque();
         obj.d = new AtomicReference();
-        this.f54951a = obj;
+        this.f55527a = obj;
     }
 
     public final Task a(final Executor executor, final Callable callable, final CancellationToken cancellationToken) {
         boolean z10;
-        if (this.f54952b.get() > 0) {
+        if (this.f55528b.get() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        q6.m.j(z10);
+        q6.m.k(z10);
         if (cancellationToken.isCancellationRequested()) {
             return Tasks.forCanceled();
         }
@@ -52,13 +52,13 @@ public abstract class i {
                 }
             }
         };
-        this.f54951a.E(new Runnable() {
+        this.f55527a.E(new Runnable() {
             @Override
             public final void run() {
                 Callable callable2 = callable;
                 TaskCompletionSource taskCompletionSource2 = taskCompletionSource;
                 i iVar = i.this;
-                AtomicBoolean atomicBoolean = iVar.f54953c;
+                AtomicBoolean atomicBoolean = iVar.f55529c;
                 CancellationToken cancellationToken2 = cancellationToken;
                 boolean isCancellationRequested = cancellationToken2.isCancellationRequested();
                 CancellationTokenSource cancellationTokenSource2 = cancellationTokenSource;
@@ -103,14 +103,14 @@ public abstract class i {
 
     public final void d(Executor executor) {
         boolean z10;
-        if (this.f54952b.get() > 0) {
+        if (this.f55528b.get() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        q6.m.j(z10);
+        q6.m.k(z10);
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        this.f54951a.E(new l(2, this, taskCompletionSource), executor);
+        this.f55527a.E(new l(2, this, taskCompletionSource), executor);
         taskCompletionSource.getTask();
     }
 }

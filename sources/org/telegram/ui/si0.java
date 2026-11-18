@@ -1,101 +1,118 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class si0 implements View.OnClickListener {
-    public final int f51225a;
-    public final ek0 f51226b;
+import java.util.HashSet;
+public final class si0 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public boolean f52000a;
+    public int f52001b;
+    public final int f52002c;
+    public final org.telegram.ui.ActionBar.i6 d;
+    public final FrameLayout f52003e;
+    public final org.telegram.ui.Components.q9 f52004f;
+    public final TextView h;
+    public final TextView f52005n;
+    public final ImageView f52006r;
+    public boolean f52007s;
+    public String f52008w;
 
-    public si0(ek0 ek0Var, int i7) {
-        this.f51225a = i7;
-        this.f51226b = ek0Var;
+    public si0(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context);
+        this.f52002c = i7;
+        this.d = i6Var;
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f52003e = frameLayout;
+        addView(frameLayout, c8.ma.d(36, 36.0f, 19, 18.5f, 0.0f, 0.0f, 0.0f));
+        org.telegram.ui.Components.q9 q9Var = new org.telegram.ui.Components.q9(context);
+        this.f52004f = q9Var;
+        q9Var.setImageResource(2131232034);
+        a();
+        frameLayout.addView(q9Var, c8.ma.e(36, 36, 17));
+        TextView b10 = c8.va.b(context, 15.0f, org.telegram.ui.ActionBar.n6.G6, true, null);
+        this.h = b10;
+        b10.setSingleLine();
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        b10.setEllipsize(truncateAt);
+        addView(b10, c8.ma.d(-1, -2.0f, 55, 72.0f, 8.0f, 46.0f, 0.0f));
+        int i10 = org.telegram.ui.ActionBar.n6.f29788y6;
+        TextView b11 = c8.va.b(context, 13.0f, i10, false, null);
+        this.f52005n = b11;
+        b11.setSingleLine();
+        b11.setEllipsize(truncateAt);
+        addView(b11, c8.ma.d(-1, -2.0f, 55, 72.0f, 31.0f, 46.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.f52006r = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(2131231244);
+        org.telegram.ui.ActionBar.u6.s(imageView, i10, null, PorterDuff.Mode.SRC_IN);
+        int i11 = org.telegram.ui.ActionBar.n6.f29488i6;
+        org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i11, i6Var), 1, -1);
+        org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i11);
+        imageView.setBackground(h02);
+        org.telegram.ui.ActionBar.u6.j(imageView, h02, null, M, i6Var);
+        addView(imageView, c8.ma.d(32, 32.0f, 21, 0.0f, 0.0f, 13.0f, 0.0f));
+    }
+
+    public final void a() {
+        this.f52001b = org.telegram.ui.ActionBar.n6.r1(0.3f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G6, this.d));
+        this.f52000a = true;
+        this.f52004f.setColorFilter(new PorterDuffColorFilter(this.f52001b, PorterDuff.Mode.SRC_IN));
     }
 
     @Override
-    public final void onClick(View view) {
-        int i7 = this.f51225a;
-        ek0 ek0Var = this.f51226b;
-        switch (i7) {
-            case 0:
-                ek0Var.T0 = 2;
-                ek0Var.H1();
-                return;
-            case 1:
-                ek0Var.h1();
-                return;
-            case 2:
-                ek0Var.T0 = 3;
-                ek0Var.H1();
-                return;
-            case 3:
-                ek0Var.T0 = 1;
-                ek0Var.H1();
-                return;
-            case 4:
-                ek0Var.T0 = 4;
-                ek0Var.H1();
-                return;
-            case 5:
-                if (ek0Var.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                    ek0Var.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
-                    return;
-                }
-                t9 t9Var = new t9(0);
-                t9Var.N = new ej0(ek0Var);
-                ek0Var.presentFragment(t9Var);
-                return;
-            case 6:
-                ek0Var.f46806f = true;
-                ek0Var.M.callOnClick();
-                ek0Var.f46806f = false;
-                return;
-            case 7:
-                ek0Var.T0 = 0;
-                ek0Var.H1();
-                return;
-            case 8:
-                ek0Var.T0 = 4;
-                ek0Var.H1();
-                return;
-            case 9:
-                ek0Var.h1();
-                return;
-            case 10:
-                ek0.g0(ek0Var);
-                return;
-            case 11:
-                ek0.h0(ek0Var);
-                return;
-            case 12:
-                ek0Var.G1();
-                return;
-            case 13:
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ek0Var.getParentActivity());
-                String M0 = org.telegram.messenger.hd.M0(2131744232, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                t1Var.S = M0;
-                t1Var.U = org.telegram.messenger.hd.M0(2131744233, null);
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131751598, null), new ui0(ek0Var, 5));
-                alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
-                ek0Var.showDialog(t1Var);
-                TextView textView = (TextView) t1Var.d(-1);
-                if (textView != null) {
-                    org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.f29090q7, null);
-                    return;
-                }
-                return;
-            case 14:
-                ek0Var.G1();
-                return;
-            case 15:
-                ek0.a0(ek0Var);
-                return;
-            default:
-                ek0Var.f46806f = true;
-                ek0Var.M.callOnClick();
-                ek0Var.f46806f = false;
-                return;
+    public final void onDraw(Canvas canvas) {
+        float f10;
+        super.onDraw(canvas);
+        if (this.f52007s) {
+            Paint W0 = org.telegram.ui.ActionBar.n6.W0("paintDivider", this.d);
+            if (W0 == null) {
+                W0 = org.telegram.ui.ActionBar.n6.f29519k0;
+            }
+            Paint paint = W0;
+            float f11 = 72.0f;
+            if (org.telegram.messenger.gd.f24216a0) {
+                f10 = 0.0f;
+            } else {
+                f10 = 72.0f;
+            }
+            float L = org.telegram.messenger.g0.L(f10);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int width = getWidth();
+            if (!org.telegram.messenger.gd.f24216a0) {
+                f11 = 0.0f;
+            }
+            canvas.drawRect(L, measuredHeight, width - org.telegram.messenger.g0.L(f11), getMeasuredHeight(), paint);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(56.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        org.telegram.ui.Components.q9 q9Var;
+        int r12;
+        try {
+            if (this.f52000a && (q9Var = this.f52004f) != null && (r12 = org.telegram.ui.ActionBar.n6.r1(0.3f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G6, this.d))) != this.f52001b) {
+                this.f52001b = r12;
+                q9Var.setColorFilter(new PorterDuffColorFilter(r12, PorterDuff.Mode.SRC_IN));
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

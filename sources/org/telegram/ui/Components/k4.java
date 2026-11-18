@@ -1,23 +1,29 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.Vibrator;
-import android.text.Spanned;
-public final class k4 extends xp {
-    public final Context f36265b;
+public final class k4 extends sb0 {
+    public final int[] f36674z0;
 
-    public k4(Context context) {
-        super(255);
-        this.f36265b = context;
+    public k4(Context context, org.telegram.ui.ActionBar.i6 i6Var, int[] iArr) {
+        super(context, i6Var);
+        this.f36674z0 = iArr;
     }
 
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
-        Vibrator vibrator;
-        CharSequence filter = super.filter(charSequence, i7, i10, spanned, i11, i12);
-        if (filter != null && charSequence != null && filter.length() != charSequence.length() && (vibrator = (Vibrator) this.f36265b.getSystemService("vibrator")) != null) {
-            vibrator.vibrate(200L);
+    public final CharSequence d(int i7) {
+        int i10 = this.f36674z0[i7];
+        if (i10 == 0) {
+            return org.telegram.messenger.gd.M0(2131753847, null);
         }
-        return filter;
+        if (i10 < 10080) {
+            return org.telegram.messenger.gd.G(i10 / 1440, "Days", new Object[0]);
+        }
+        if (i10 < 44640) {
+            return org.telegram.messenger.gd.G(i10 / 1440, "Weeks", new Object[0]);
+        }
+        if (i10 < 525600) {
+            return org.telegram.messenger.gd.G(i10 / 10080, "Months", new Object[0]);
+        }
+        return org.telegram.messenger.gd.G(((i10 * 5) / 31) * 1440, "Years", new Object[0]);
     }
 }

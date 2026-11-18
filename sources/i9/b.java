@@ -1,22 +1,22 @@
 package i9;
 
-import a8.ja;
+import a8.la;
 public final class b extends d {
-    public final char[] f15861e;
+    public final char[] f16179e;
 
     public b(a aVar) {
         super(aVar, (Character) null);
         boolean z10;
-        this.f15861e = new char[512];
-        char[] cArr = aVar.f15856b;
+        this.f16179e = new char[512];
+        char[] cArr = aVar.f16174b;
         if (cArr.length == 16) {
             z10 = true;
         } else {
             z10 = false;
         }
-        ja.f(z10);
+        la.f(z10);
         for (int i7 = 0; i7 < 256; i7++) {
-            char[] cArr2 = this.f15861e;
+            char[] cArr2 = this.f16179e;
             cArr2[i7] = cArr[i7 >>> 4];
             cArr2[i7 | 256] = cArr[i7 & 15];
         }
@@ -24,10 +24,10 @@ public final class b extends d {
 
     @Override
     public final void b(StringBuilder sb2, byte[] bArr, int i7) {
-        ja.n(0, i7, bArr.length);
+        la.n(0, i7, bArr.length);
         for (int i10 = 0; i10 < i7; i10++) {
             int i11 = bArr[i10] & 255;
-            char[] cArr = this.f15861e;
+            char[] cArr = this.f16179e;
             sb2.append(cArr[i11]);
             sb2.append(cArr[i11 | 256]);
         }

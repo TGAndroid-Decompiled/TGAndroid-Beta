@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.RandomAccessFile;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.dw;
+import org.telegram.messenger.zv;
 public class EncryptedFileInputStream extends FileInputStream {
     private static final int MODE_CBC = 1;
     private static final int MODE_CTR = 0;
@@ -24,8 +24,8 @@ public class EncryptedFileInputStream extends FileInputStream {
         randomAccessFile.close();
     }
 
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i7, int i10, dw dwVar) {
-        Utilities.b(bArr, dwVar.f23170a, dwVar.f23171b, i7, i10, 0, 0);
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i7, int i10, zv zvVar) {
+        Utilities.b(bArr, zvVar.f28368a, zvVar.f28369b, i7, i10, 0, 0);
     }
 
     @Override
@@ -69,14 +69,14 @@ public class EncryptedFileInputStream extends FileInputStream {
         Utilities.aesCtrDecryptionByteArray(bArr, bArr2, bArr3, i7, i10, 0);
     }
 
-    public EncryptedFileInputStream(File file, dw dwVar) {
+    public EncryptedFileInputStream(File file, zv zvVar) {
         super(file);
         byte[] bArr = new byte[32];
         this.key = bArr;
         this.iv = new byte[16];
         this.currentMode = 1;
-        System.arraycopy(dwVar.f23170a, 0, bArr, 0, bArr.length);
-        byte[] bArr2 = dwVar.f23171b;
+        System.arraycopy(zvVar.f28368a, 0, bArr, 0, bArr.length);
+        byte[] bArr2 = zvVar.f28369b;
         byte[] bArr3 = this.iv;
         System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
     }

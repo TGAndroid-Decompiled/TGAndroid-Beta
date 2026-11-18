@@ -1,6 +1,10 @@
 package org.telegram.ui.Components;
+public interface bg0 {
+    void a();
 
-import android.view.View;
-public abstract class bg0 extends View {
-    public static final org.telegram.messenger.q5 f33279a = new org.telegram.messenger.q5("profileBlurQueue", true);
+    void b(boolean z10);
+
+    void c();
+
+    void d();
 }

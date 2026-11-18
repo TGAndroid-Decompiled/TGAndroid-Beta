@@ -1,7 +1,23 @@
 package org.telegram.ui.Components;
-public final class m3 extends ib0 {
+
+import android.app.Activity;
+import android.widget.FrameLayout;
+public final class m3 extends FrameLayout {
+    public final org.telegram.ui.Cells.c2[] f37342a;
+
+    public m3(Activity activity, org.telegram.ui.Cells.c2[] c2VarArr) {
+        super(activity);
+        this.f37342a = c2VarArr;
+    }
+
     @Override
-    public final CharSequence d(int i7) {
-        return org.telegram.messenger.hd.G(i7, "Hours", new Object[0]);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        org.telegram.ui.Cells.c2[] c2VarArr = this.f37342a;
+        if (c2VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, org.telegram.messenger.g0.L(7.0f) + c2VarArr[0].getMeasuredHeight() + measuredHeight);
+        }
     }
 }

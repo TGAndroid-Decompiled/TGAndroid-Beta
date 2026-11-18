@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.LayoutTransition;
-import android.view.View;
-import android.view.ViewGroup;
-public final class gk implements LayoutTransition.TransitionListener {
-    public fk f47457a;
-    public int f47458b;
-    public final org.telegram.ui.ActionBar.y f47459c;
-    public final an d;
+import android.graphics.RectF;
+import android.view.ViewTreeObserver;
+public final class gk implements ViewTreeObserver.OnPreDrawListener {
+    public final int f48122a;
+    public final Object f48123b;
 
-    public gk(an anVar, org.telegram.ui.ActionBar.y yVar) {
-        this.d = anVar;
-        this.f47459c = yVar;
+    public gk(Object obj, int i7) {
+        this.f48122a = i7;
+        this.f48123b = obj;
     }
 
     @Override
-    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i7) {
-        int i10 = this.f47458b - 1;
-        this.f47458b = i10;
-        if (i10 == 0 && this.f47457a != null) {
-            this.f47459c.getViewTreeObserver().removeOnPreDrawListener(this.f47457a);
-            this.f47457a = null;
+    public final boolean onPreDraw() {
+        org.telegram.ui.ActionBar.k kVar;
+        int i7 = this.f48122a;
+        Object obj = this.f48123b;
+        switch (i7) {
+            case 0:
+                kVar = ((org.telegram.ui.ActionBar.h2) ((hk) obj).d).actionBar;
+                kVar.invalidate();
+                return true;
+            case 1:
+                ProfileActivity profileActivity = (ProfileActivity) obj;
+                RectF rectF = ProfileActivity.Z6;
+                profileActivity.C5();
+                profileActivity.D5();
+                return true;
+            default:
+                ((c51) obj).t0();
+                return true;
         }
-    }
-
-    @Override
-    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i7) {
-        if (this.f47458b == 0 && this.f47457a == null) {
-            this.f47457a = new fk(this, 0);
-            this.f47459c.getViewTreeObserver().addOnPreDrawListener(this.f47457a);
-        }
-        this.f47458b++;
     }
 }

@@ -2,129 +2,44 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
-import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import android.widget.TextView;
-public final class st extends xh.l {
-    public final n2.o0 V;
-    public a80 W;
-    public boolean f39404a0;
-    public boolean f39405b0;
-    public boolean f39406c0;
+public final class st extends ry {
+    public int W2;
+    public boolean X2;
+    public boolean Y2;
+    public final wt Z2;
 
-    public st(Context context) {
-        super(context, null, true);
-        this.V = new n2.o0(this);
+    public st(wt wtVar, org.telegram.ui.ActionBar.h2 h2Var, boolean z10, Context context, boolean z11, boolean z12, org.telegram.ui.ActionBar.i6 i6Var, boolean z13) {
+        super(h2Var, z10, false, false, context, z11, null, null, z12, i6Var, false, z13);
+        this.Z2 = wtVar;
     }
 
     @Override
-    public final ClickableSpan a(int i7, int i10) {
-        Layout layout = getLayout();
-        if (layout == null) {
-            return null;
+    public final void dispatchDraw(Canvas canvas) {
+        wt wtVar = this.Z2;
+        int i7 = wtVar.M;
+        if (i7 == 2 || i7 == 3) {
+            wtVar.g(canvas, this);
         }
-        int paddingLeft = i7 - getPaddingLeft();
-        int paddingTop = i10 - getPaddingTop();
-        int lineForVertical = layout.getLineForVertical(paddingTop);
-        float f10 = paddingLeft;
-        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f10);
-        float lineLeft = getLayout().getLineLeft(lineForVertical);
-        if (lineLeft <= f10 && layout.getLineWidth(lineForVertical) + lineLeft >= f10 && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
-            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-            if (clickableSpanArr.length != 0 && !org.telegram.messenger.g0.C1()) {
-                return clickableSpanArr[0];
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int i13;
+        super.onLayout(z10, i7, i10, i11, i12);
+        wt wtVar = this.Z2;
+        if (wtVar.b()) {
+            int i14 = i12 - i10;
+            if (!this.X2 && wtVar.f41796y) {
+                this.Y2 = true;
             }
+            if (this.Y2 && (i13 = this.W2) > 0 && i14 > 0 && i14 != i13) {
+                setTranslationY(i14 - i13);
+                org.telegram.messenger.n10.o(animate().translationY(0.0f), org.telegram.ui.ActionBar.j1.f29019w, 250L);
+                this.Y2 = false;
+            }
+            this.X2 = wtVar.f41796y;
+            this.W2 = i14;
         }
-        return null;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float paddingLeft;
-        canvas.save();
-        if (!this.f39404a0) {
-            float f10 = 0.0f;
-            if (this.f39405b0) {
-                paddingLeft = 0.0f;
-            } else {
-                paddingLeft = getPaddingLeft();
-            }
-            if (!this.f39406c0) {
-                f10 = getPaddingTop();
-            }
-            canvas.translate(paddingLeft, f10);
-        }
-        if (this.V.h(canvas)) {
-            invalidate();
-        }
-        canvas.restore();
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        CharacterStyle characterStyle;
-        n2.o0 o0Var = this.V;
-        if (o0Var != null) {
-            Layout layout = getLayout();
-            ClickableSpan a10 = a((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (a10 != null && motionEvent.getAction() == 0) {
-                a80 a80Var = new a80(a10, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.W = a80Var;
-                o0Var.b(a80Var, null);
-                SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.W.f32922i);
-                int spanEnd = spannableString.getSpanEnd(this.W.f32922i);
-                u70 b10 = this.W.b();
-                b10.d(layout, spanStart, getPaddingTop());
-                layout.getSelectionPath(spanStart, spanEnd, b10);
-                org.telegram.messenger.g0.i3(new fo(this, a80Var, a10), ViewConfiguration.getLongPressTimeout());
-                return true;
-            }
-            if (motionEvent.getAction() == 1) {
-                o0Var.f(true);
-                a80 a80Var2 = this.W;
-                if (a80Var2 != null && (characterStyle = a80Var2.f32922i) == a10) {
-                    if (characterStyle != null) {
-                        ((ClickableSpan) characterStyle).onClick(this);
-                    }
-                    this.W = null;
-                    return true;
-                }
-                this.W = null;
-            }
-            if (motionEvent.getAction() == 3) {
-                o0Var.f(true);
-                this.W = null;
-            }
-        }
-        if (this.W != null || super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void setDisablePaddingsOffset(boolean z10) {
-        this.f39404a0 = z10;
-    }
-
-    @Override
-    public void setDisablePaddingsOffsetX(boolean z10) {
-        this.f39405b0 = z10;
-    }
-
-    @Override
-    public void setDisablePaddingsOffsetY(boolean z10) {
-        this.f39406c0 = z10;
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
     }
 }

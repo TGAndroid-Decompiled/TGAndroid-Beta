@@ -1,22 +1,22 @@
 package ug;
 
 import android.view.View;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.qj0;
 import org.telegram.ui.PremiumPreviewFragment;
-public final class w implements org.telegram.ui.ActionBar.q1, ij0 {
-    public final int f58350a;
-    public final j0 f58351b;
+public final class w implements org.telegram.ui.ActionBar.r1, qj0 {
+    public final int f58928a;
+    public final l0 f58929b;
 
-    public w(j0 j0Var, int i7) {
-        this.f58350a = i7;
-        this.f58351b = j0Var;
+    public w(l0 l0Var, int i7) {
+        this.f58928a = i7;
+        this.f58929b = l0Var;
     }
 
     @Override
-    public boolean b(int i7, View view) {
-        j0 j0Var = this.f58351b;
-        j0Var.f35931o1.getOnItemClickListener().b(i7, view);
-        if (j0Var.d2 != 19) {
+    public boolean c(int i7, View view) {
+        l0 l0Var = this.f58929b;
+        l0Var.f39534o1.getOnItemClickListener().c(i7, view);
+        if (l0Var.d2 != 19) {
             try {
                 view.performHapticFeedback(0);
             } catch (Exception unused) {
@@ -26,17 +26,17 @@ public final class w implements org.telegram.ui.ActionBar.q1, ij0 {
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f58350a) {
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f58928a) {
             case 0:
-                j0 j0Var = this.f58351b;
-                j0Var.G2.presentFragment(new PremiumPreviewFragment(0, null));
-                j0Var.dismiss();
-                t1Var.dismiss();
+                l0 l0Var = this.f58929b;
+                l0Var.G2.presentFragment(new PremiumPreviewFragment(0, null));
+                l0Var.dismiss();
+                u1Var.dismiss();
                 return;
             default:
-                t1Var.dismiss();
-                this.f58351b.i1();
+                u1Var.dismiss();
+                this.f58929b.j1();
                 return;
         }
     }

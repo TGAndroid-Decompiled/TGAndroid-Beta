@@ -1,68 +1,26 @@
 package org.telegram.ui.Components;
-
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
 public final class op0 implements Runnable {
-    public final int f38035a;
-    public final org.telegram.ui.ActionBar.t1[] f38036b;
-    public final int f38037c;
-    public final int d;
+    public final int f38149a;
+    public final bs0 f38150b;
+    public final int f38151c;
 
-    public op0(org.telegram.ui.ActionBar.t1[] t1VarArr, int i7, int i10, int i11) {
-        this.f38035a = i11;
-        this.f38036b = t1VarArr;
-        this.f38037c = i7;
-        this.d = i10;
+    public op0(bs0 bs0Var, int i7, int i10) {
+        this.f38149a = i10;
+        this.f38150b = bs0Var;
+        this.f38151c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f38035a) {
+        switch (this.f38149a) {
             case 0:
-                org.telegram.ui.ActionBar.t1[] t1VarArr = this.f38036b;
-                org.telegram.ui.ActionBar.t1 t1Var = t1VarArr[0];
-                if (t1Var != null) {
-                    final int i7 = this.f38037c;
-                    final int i10 = this.d;
-                    t1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i7).cancelRequest(i10, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i7).cancelRequest(i10, true);
-                                    return;
-                            }
-                        }
-                    });
-                    t1VarArr[0].show();
-                    return;
-                }
+                this.f38150b.h.scrollBy(0, this.f38151c);
+                return;
+            case 1:
+                this.f38150b.h.scrollBy(0, this.f38151c);
                 return;
             default:
-                org.telegram.ui.ActionBar.t1[] t1VarArr2 = this.f38036b;
-                org.telegram.ui.ActionBar.t1 t1Var2 = t1VarArr2[0];
-                if (t1Var2 != null) {
-                    final int i11 = this.f38037c;
-                    final int i12 = this.d;
-                    t1Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i11).cancelRequest(i12, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i11).cancelRequest(i12, true);
-                                    return;
-                            }
-                        }
-                    });
-                    t1VarArr2[0].show();
-                    return;
-                }
+                this.f38150b.h.scrollBy(0, this.f38151c);
                 return;
         }
     }

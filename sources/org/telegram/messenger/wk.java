@@ -1,16 +1,211 @@
 package org.telegram.messenger;
 
-import java.util.function.IntFunction;
-public final class wk implements IntFunction {
-    public final int f27358a;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wk implements RequestDelegate {
+    public final int f27706a;
+    public final mp f27707b;
+    public final int f27708c;
+    public final int d;
+    public final int f27709e;
+    public final int f27710f;
+    public final int f27711g;
+    public final long h;
+    public final long f27712i;
+    public final int f27713j;
+    public final int f27714k;
+    public final int f27715l;
+    public final int f27716m;
+    public final int f27717n;
+    public final long f27718o;
+    public final int f27719p;
+    public final boolean f27720q;
+    public final int f27721r;
+    public final boolean f27722s;
+    public final boolean f27723t;
+    public final TLObject f27724u;
+
+    public wk(mp mpVar, int i7, int i10, int i11, int i12, int i13, long j3, long j10, int i14, int i15, int i16, int i17, int i18, long j11, int i19, boolean z10, int i20, boolean z11, boolean z12, TLRPC.TL_messages_getReplies tL_messages_getReplies) {
+        this.f27706a = 1;
+        this.f27707b = mpVar;
+        this.f27708c = i7;
+        this.d = i10;
+        this.f27709e = i11;
+        this.f27710f = i12;
+        this.f27711g = i13;
+        this.h = j3;
+        this.f27712i = j10;
+        this.f27713j = i14;
+        this.f27714k = i15;
+        this.f27715l = i16;
+        this.f27716m = i17;
+        this.f27717n = i18;
+        this.f27718o = j11;
+        this.f27719p = i19;
+        this.f27720q = z10;
+        this.f27721r = i20;
+        this.f27722s = z11;
+        this.f27723t = z12;
+        this.f27724u = tL_messages_getReplies;
+    }
 
     @Override
-    public final Object apply(int i7) {
-        switch (this.f27358a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        switch (this.f27706a) {
             case 0:
-                return new int[i7];
+                TLRPC.TL_messages_getSavedHistory tL_messages_getSavedHistory = (TLRPC.TL_messages_getSavedHistory) this.f27724u;
+                mp mpVar = this.f27707b;
+                int i13 = this.f27710f;
+                if (tLObject != null) {
+                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                    ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
+                    long j3 = this.h;
+                    mpVar.m4(arrayList, j3);
+                    int size = messages_messages.messages.size();
+                    int i14 = this.f27708c;
+                    if (size > i14) {
+                        messages_messages.messages.remove(0);
+                    }
+                    int i15 = this.f27709e;
+                    if (i15 != 0 && !messages_messages.messages.isEmpty()) {
+                        i7 = ((TLRPC.Message) i5.c.h(1, messages_messages.messages)).f28426id;
+                        int size2 = messages_messages.messages.size() - 1;
+                        while (true) {
+                            if (size2 >= 0) {
+                                TLRPC.Message message = messages_messages.messages.get(size2);
+                                if (message.date > i15) {
+                                    i7 = message.f28426id;
+                                } else {
+                                    size2--;
+                                }
+                            }
+                        }
+                    } else {
+                        i7 = this.d;
+                    }
+                    mpVar.R3(messages_messages, messages_messages.messages.size(), j3, this.f27712i, i14, i7, i15, false, i13, this.f27711g, this.f27713j, this.f27714k, this.f27715l, this.f27716m, false, this.f27717n, this.f27718o, this.f27719p, this.f27720q, this.f27721r, this.f27722s, this.f27723t, null);
+                    return;
+                }
+                g0.g3(new dg(mpVar, i13, (TLObject) tL_messages_getSavedHistory, tL_error, 9));
+                return;
+            case 1:
+                TLRPC.TL_messages_getReplies tL_messages_getReplies = (TLRPC.TL_messages_getReplies) this.f27724u;
+                mp mpVar2 = this.f27707b;
+                int i16 = this.f27713j;
+                if (tLObject != null) {
+                    TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
+                    int size3 = messages_messages2.messages.size();
+                    int i17 = this.f27708c;
+                    if (size3 > i17) {
+                        messages_messages2.messages.remove(0);
+                    }
+                    boolean isEmpty = messages_messages2.messages.isEmpty();
+                    int i18 = this.d;
+                    int i19 = this.f27709e;
+                    int i20 = this.f27711g;
+                    if (!isEmpty) {
+                        if (i19 != 0) {
+                            i18 = ((TLRPC.Message) i5.c.h(1, messages_messages2.messages)).f28426id;
+                            int size4 = messages_messages2.messages.size() - 1;
+                            while (true) {
+                                if (size4 >= 0) {
+                                    TLRPC.Message message2 = messages_messages2.messages.get(size4);
+                                    if (message2.date > i19) {
+                                        i18 = message2.f28426id;
+                                    } else {
+                                        size4--;
+                                    }
+                                }
+                            }
+                        } else {
+                            int i21 = this.f27710f;
+                            if (i21 != 0 && i20 == 2 && i18 > 0) {
+                                for (int size5 = messages_messages2.messages.size() - 1; size5 >= 0; size5--) {
+                                    TLRPC.Message message3 = messages_messages2.messages.get(size5);
+                                    int i22 = message3.f28426id;
+                                    if (i22 > i21 && !message3.out) {
+                                        i11 = i18;
+                                        i10 = i22;
+                                        mpVar2.R3(messages_messages2, messages_messages2.messages.size(), this.h, this.f27712i, i17, i11, i19, false, i16, i10, this.f27714k, this.f27715l, this.f27716m, i20, false, this.f27717n, this.f27718o, this.f27719p, this.f27720q, this.f27721r, this.f27722s, this.f27723t, null);
+                                        return;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    i10 = 0;
+                    i11 = i18;
+                    mpVar2.R3(messages_messages2, messages_messages2.messages.size(), this.h, this.f27712i, i17, i11, i19, false, i16, i10, this.f27714k, this.f27715l, this.f27716m, i20, false, this.f27717n, this.f27718o, this.f27719p, this.f27720q, this.f27721r, this.f27722s, this.f27723t, null);
+                    return;
+                }
+                g0.g3(new dg(mpVar2, i16, (TLObject) tL_messages_getReplies, tL_error, 12));
+                return;
             default:
-                return String.valueOf(i7);
+                TLRPC.TL_messages_getHistory tL_messages_getHistory = (TLRPC.TL_messages_getHistory) this.f27724u;
+                mp mpVar3 = this.f27707b;
+                int i23 = this.f27710f;
+                if (tLObject != null) {
+                    TLRPC.messages_Messages messages_messages3 = (TLRPC.messages_Messages) tLObject;
+                    ArrayList<TLRPC.Message> arrayList2 = messages_messages3.messages;
+                    long j10 = this.h;
+                    mpVar3.m4(arrayList2, j10);
+                    int size6 = messages_messages3.messages.size();
+                    int i24 = this.f27708c;
+                    if (size6 > i24) {
+                        messages_messages3.messages.remove(0);
+                    }
+                    int i25 = this.f27709e;
+                    if (i25 != 0 && !messages_messages3.messages.isEmpty()) {
+                        i12 = ((TLRPC.Message) i5.c.h(1, messages_messages3.messages)).f28426id;
+                        int size7 = messages_messages3.messages.size() - 1;
+                        while (true) {
+                            if (size7 >= 0) {
+                                TLRPC.Message message4 = messages_messages3.messages.get(size7);
+                                if (message4.date > i25) {
+                                    i12 = message4.f28426id;
+                                } else {
+                                    size7--;
+                                }
+                            }
+                        }
+                    } else {
+                        i12 = this.d;
+                    }
+                    mpVar3.R3(messages_messages3, messages_messages3.messages.size(), j10, this.f27712i, i24, i12, i25, false, i23, this.f27711g, this.f27713j, this.f27714k, this.f27715l, this.f27716m, false, this.f27717n, this.f27718o, this.f27719p, this.f27720q, this.f27721r, this.f27722s, this.f27723t, null);
+                    return;
+                }
+                g0.g3(new dg(mpVar3, i23, (TLObject) tL_messages_getHistory, tL_error, 8));
+                return;
         }
+    }
+
+    public wk(mp mpVar, long j3, int i7, int i10, int i11, long j10, int i12, int i13, int i14, int i15, int i16, int i17, int i18, long j11, int i19, boolean z10, int i20, boolean z11, boolean z12, TLObject tLObject, int i21) {
+        this.f27706a = i21;
+        this.f27707b = mpVar;
+        this.h = j3;
+        this.f27708c = i7;
+        this.d = i10;
+        this.f27709e = i11;
+        this.f27712i = j10;
+        this.f27710f = i12;
+        this.f27711g = i13;
+        this.f27713j = i14;
+        this.f27714k = i15;
+        this.f27715l = i16;
+        this.f27716m = i17;
+        this.f27717n = i18;
+        this.f27718o = j11;
+        this.f27719p = i19;
+        this.f27720q = z10;
+        this.f27721r = i20;
+        this.f27722s = z11;
+        this.f27723t = z12;
+        this.f27724u = tLObject;
     }
 }

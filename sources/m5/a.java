@@ -1,34 +1,34 @@
 package m5;
 
-import c8.o9;
+import c8.q9;
 import j$.util.DesugarCollections;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
-import o5.l;
-public final class a implements l {
-    public static final String f20465c;
+import o5.k;
+public final class a implements k {
+    public static final String f20829c;
     public static final Set d;
-    public static final a f20466e;
-    public static final a f20467f;
-    public final String f20468a;
-    public final String f20469b;
+    public static final a f20830e;
+    public static final a f20831f;
+    public final String f20832a;
+    public final String f20833b;
 
     static {
-        String a10 = o9.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-        f20465c = a10;
-        String a11 = o9.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
-        String a12 = o9.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
+        String a10 = q9.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
+        f20829c = a10;
+        String a11 = q9.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
+        String a12 = q9.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
         d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new l5.c("proto"), new l5.c("json"))));
-        f20466e = new a(a10, null);
-        f20467f = new a(a11, a12);
+        f20830e = new a(a10, null);
+        f20831f = new a(a11, a12);
     }
 
     public a(String str, String str2) {
-        this.f20468a = str;
-        this.f20469b = str2;
+        this.f20832a = str;
+        this.f20833b = str2;
     }
 
     public static a a(byte[] bArr) {

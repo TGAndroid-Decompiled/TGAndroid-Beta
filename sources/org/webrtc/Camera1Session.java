@@ -4,7 +4,7 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.SystemClock;
-import fi.e1;
+import fi.c1;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -159,7 +159,7 @@ public class Camera1Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (e1.X != null) {
+        if (c1.X != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();

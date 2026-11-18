@@ -1,51 +1,39 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class o80 implements org.telegram.messenger.bp {
-    public final g50 f49862a;
-    public final boolean[] f49863b;
-    public final Bundle f49864c;
-    public final TLRPC.ChatInvite d;
-    public final LaunchActivity f49865e;
+public final class o80 implements Runnable {
+    public final int f50529a;
+    public final p80 f50530b;
+    public final org.telegram.messenger.c f50531c;
+    public final long d;
+    public final org.telegram.ui.ActionBar.h2 f50532e;
 
-    public o80(LaunchActivity launchActivity, g50 g50Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
-        this.f49865e = launchActivity;
-        this.f49862a = g50Var;
-        this.f49863b = zArr;
-        this.f49864c = bundle;
-        this.d = chatInvite;
+    public o80(p80 p80Var, org.telegram.messenger.c cVar, long j3, org.telegram.ui.ActionBar.h2 h2Var, int i7) {
+        this.f50529a = i7;
+        this.f50530b = p80Var;
+        this.f50531c = cVar;
+        this.d = j3;
+        this.f50532e = h2Var;
     }
 
     @Override
-    public final void a() {
-        LaunchActivity launchActivity = this.f49865e;
-        if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.t4.r0((org.telegram.ui.ActionBar.e2) i5.c.h(1, launchActivity.f42630e0), null, org.telegram.messenger.hd.M0(2131749075, null), null);
+    public final void run() {
+        switch (this.f50529a) {
+            case 0:
+                org.telegram.messenger.g0.g3(new o80(this.f50530b, this.f50531c, this.d, this.f50532e, 1));
+                return;
+            default:
+                org.telegram.messenger.c cVar = this.f50531c;
+                int i7 = cVar.f23221a;
+                org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(i7);
+                long j3 = this.d;
+                long j10 = -j3;
+                boolean z10 = false;
+                org.telegram.messenger.t3 i12 = u12.i1(j10, false, null);
+                TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(j10));
+                org.telegram.messenger.mp.u1(i7).l1(j3);
+                org.telegram.ui.Components.voip.b2.l(O0, null, false, Boolean.valueOf((i12 == null || !i12.f26937b.rtmp_stream) ? true : true), this.f50530b.h, this.f50532e, cVar);
+                return;
         }
-        try {
-            this.f49862a.run();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
-    }
-
-    @Override
-    public final void f(boolean z10) {
-        try {
-            this.f49862a.run();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
-        if (this.f49863b[0]) {
-            return;
-        }
-        an anVar = new an(this.f49864c);
-        TLRPC.ChatInvite chatInvite = this.d;
-        if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
-            anVar.f45138b6 = chatInvite;
-        }
-        ((ActionBarLayout) this.f49865e.M()).S(anVar);
     }
 }

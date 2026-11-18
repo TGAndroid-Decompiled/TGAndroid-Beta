@@ -1,81 +1,28 @@
 package org.telegram.ui;
 
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class kn implements org.telegram.ui.ActionBar.q1, org.telegram.messenger.qr, ma0, org.telegram.messenger.nr {
-    public final int f48719a;
-    public final qn f48720b;
+public final class kn implements RequestDelegate {
+    public final int f49315a;
+    public final rn f49316b;
 
-    public kn(qn qnVar, int i7) {
-        this.f48719a = i7;
-        this.f48720b = qnVar;
+    public kn(rn rnVar, int i7) {
+        this.f49315a = i7;
+        this.f49316b = rnVar;
     }
 
     @Override
-    public void d(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
-        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-        tL_channelLocation.address = messageMedia.address;
-        tL_channelLocation.geo_point = messageMedia.geo;
-        qn qnVar = this.f48720b;
-        TLRPC.ChatFull chatFull = qnVar.f50694y0;
-        chatFull.location = tL_channelLocation;
-        chatFull.flags |= 32768;
-        qnVar.u0(false, true);
-        qnVar.getMessagesController().V2(0, qnVar.f50690w0, true);
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f48719a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f49315a) {
             case 0:
-                this.f48720b.o0();
+                org.telegram.messenger.g0.g3(new o1(this.f49316b, tL_error, tLObject, 27));
                 return;
             case 1:
-                this.f48720b.finishFragment();
-                return;
-            case 2:
-                this.f48720b.o0();
+                org.telegram.messenger.g0.g3(new mn(this.f49316b, 1));
                 return;
             default:
-                this.f48720b.finishFragment();
-                return;
-        }
-    }
-
-    @Override
-    public void j(boolean z10) {
-        boolean Q1 = org.telegram.messenger.g0.Q1();
-        int i7 = org.telegram.messenger.ns.f25573t;
-        qn qnVar = this.f48720b;
-        if (Q1) {
-            qnVar.getNotificationCenter().k(i7, Long.valueOf(-qnVar.f50690w0));
-        } else {
-            qnVar.getNotificationCenter().k(i7, new Object[0]);
-        }
-        qnVar.finishFragment();
-        qnVar.getNotificationCenter().k(org.telegram.messenger.ns.K2, Long.valueOf(-qnVar.f50692x0.f28051id), null, qnVar.f50692x0, Boolean.valueOf(z10));
-    }
-
-    @Override
-    public void run(long j3) {
-        switch (this.f48719a) {
-            case 4:
-                this.f48720b.y0(Long.valueOf(j3));
-                return;
-            default:
-                int i7 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-                qn qnVar = this.f48720b;
-                if (i7 == 0) {
-                    qnVar.O0 = false;
-                    return;
-                }
-                qnVar.f50690w0 = j3;
-                qnVar.f50692x0 = qnVar.getMessagesController().M0(Long.valueOf(j3));
-                qnVar.O0 = false;
-                TLRPC.ChatFull chatFull = qnVar.f50694y0;
-                if (chatFull != null) {
-                    chatFull.hidden_prehistory = true;
-                }
-                qnVar.o0();
+                org.telegram.messenger.g0.g3(new mn(this.f49316b, 4));
                 return;
         }
     }

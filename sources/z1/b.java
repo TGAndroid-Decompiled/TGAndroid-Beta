@@ -6,9 +6,9 @@ import ca.i;
 import d6.d;
 import w7.s;
 public class b extends p0 {
-    public static final s f60778f = new s(29);
+    public static final s f61342f = new s(29);
     public final m d = new m();
-    public boolean f60779e = false;
+    public boolean f61343e = false;
 
     @Override
     public final void b() {
@@ -16,24 +16,24 @@ public class b extends p0 {
         int i7 = mVar.f34c;
         for (int i10 = 0; i10 < i7; i10++) {
             a aVar = (a) mVar.f33b[i10];
-            d dVar = aVar.f60775l;
+            d dVar = aVar.f61339l;
             dVar.a();
-            dVar.f7586c = true;
-            i iVar = aVar.f60777n;
+            dVar.f7869c = true;
+            i iVar = aVar.f61341n;
             if (iVar != null) {
                 aVar.i(iVar);
             }
-            a aVar2 = dVar.f7584a;
+            a aVar2 = dVar.f7867a;
             if (aVar2 != null) {
                 if (aVar2 == aVar) {
-                    dVar.f7584a = null;
+                    dVar.f7867a = null;
                     if (iVar != null) {
-                        boolean z10 = iVar.f4843b;
+                        boolean z10 = iVar.f5125b;
                     }
                     dVar.d = true;
-                    dVar.f7585b = false;
-                    dVar.f7586c = false;
-                    dVar.f7587e = false;
+                    dVar.f7868b = false;
+                    dVar.f7869c = false;
+                    dVar.f7870e = false;
                 } else {
                     throw new IllegalArgumentException("Attempting to unregister the wrong listener");
                 }

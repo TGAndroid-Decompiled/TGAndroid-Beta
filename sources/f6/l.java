@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import c8.yb;
+import c8.bc;
 import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,56 +17,56 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class l extends r6.a {
-    public static final android.support.v4.media.session.a0 f11099e;
-    public final List f11100a;
-    public final Bundle f11101b;
-    public int f11102c;
+    public static final android.support.v4.media.session.a0 f11419e;
+    public final List f11420a;
+    public final Bundle f11421b;
+    public int f11422c;
     public static final String[] d = {"none", "String", "int", "double", "ISO-8601 date String", "Time in milliseconds as long"};
     public static final Parcelable.Creator<l> CREATOR = new v(11);
 
     static {
         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(24);
-        a0Var.y(4, "com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime");
-        a0Var.y(4, "com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate");
-        a0Var.y(4, "com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.TITLE", "title");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.SUBTITLE", "subtitle");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.ARTIST", "artist");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.COMPOSER", "composer");
-        a0Var.y(2, "com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber");
-        a0Var.y(2, "com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber");
-        a0Var.y(2, "com.google.android.gms.cast.metadata.SEASON_NUMBER", "season");
-        a0Var.y(2, "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.STUDIO", "studio");
-        a0Var.y(2, "com.google.android.gms.cast.metadata.WIDTH", "width");
-        a0Var.y(2, "com.google.android.gms.cast.metadata.HEIGHT", "height");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.LOCATION_NAME", "location");
-        a0Var.y(3, "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude");
-        a0Var.y(3, "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude");
-        a0Var.y(5, "com.google.android.gms.cast.metadata.SECTION_DURATION", "sectionDuration");
-        a0Var.y(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "sectionStartTimeInMedia");
-        a0Var.y(5, "com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "sectionStartAbsoluteTime");
-        a0Var.y(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "sectionStartTimeInContainer");
-        a0Var.y(2, "com.google.android.gms.cast.metadata.QUEUE_ITEM_ID", "queueItemId");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.BOOK_TITLE", "bookTitle");
-        a0Var.y(2, "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "chapterNumber");
-        a0Var.y(1, "com.google.android.gms.cast.metadata.CHAPTER_TITLE", "chapterTitle");
-        f11099e = a0Var;
+        a0Var.z(4, "com.google.android.gms.cast.metadata.CREATION_DATE", "creationDateTime");
+        a0Var.z(4, "com.google.android.gms.cast.metadata.RELEASE_DATE", "releaseDate");
+        a0Var.z(4, "com.google.android.gms.cast.metadata.BROADCAST_DATE", "originalAirdate");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.TITLE", "title");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.SUBTITLE", "subtitle");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.ARTIST", "artist");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.ALBUM_ARTIST", "albumArtist");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.ALBUM_TITLE", "albumName");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.COMPOSER", "composer");
+        a0Var.z(2, "com.google.android.gms.cast.metadata.DISC_NUMBER", "discNumber");
+        a0Var.z(2, "com.google.android.gms.cast.metadata.TRACK_NUMBER", "trackNumber");
+        a0Var.z(2, "com.google.android.gms.cast.metadata.SEASON_NUMBER", "season");
+        a0Var.z(2, "com.google.android.gms.cast.metadata.EPISODE_NUMBER", "episode");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.SERIES_TITLE", "seriesTitle");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.STUDIO", "studio");
+        a0Var.z(2, "com.google.android.gms.cast.metadata.WIDTH", "width");
+        a0Var.z(2, "com.google.android.gms.cast.metadata.HEIGHT", "height");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.LOCATION_NAME", "location");
+        a0Var.z(3, "com.google.android.gms.cast.metadata.LOCATION_LATITUDE", "latitude");
+        a0Var.z(3, "com.google.android.gms.cast.metadata.LOCATION_LONGITUDE", "longitude");
+        a0Var.z(5, "com.google.android.gms.cast.metadata.SECTION_DURATION", "sectionDuration");
+        a0Var.z(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_MEDIA", "sectionStartTimeInMedia");
+        a0Var.z(5, "com.google.android.gms.cast.metadata.SECTION_START_ABSOLUTE_TIME", "sectionStartAbsoluteTime");
+        a0Var.z(5, "com.google.android.gms.cast.metadata.SECTION_START_TIME_IN_CONTAINER", "sectionStartTimeInContainer");
+        a0Var.z(2, "com.google.android.gms.cast.metadata.QUEUE_ITEM_ID", "queueItemId");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.BOOK_TITLE", "bookTitle");
+        a0Var.z(2, "com.google.android.gms.cast.metadata.CHAPTER_NUMBER", "chapterNumber");
+        a0Var.z(1, "com.google.android.gms.cast.metadata.CHAPTER_TITLE", "chapterTitle");
+        f11419e = a0Var;
     }
 
     public l(ArrayList arrayList, Bundle bundle, int i7) {
-        this.f11100a = arrayList;
-        this.f11101b = bundle;
-        this.f11102c = i7;
+        this.f11420a = arrayList;
+        this.f11421b = bundle;
+        this.f11422c = i7;
     }
 
     public static void c(int i7, String str) {
         int i10;
         if (!TextUtils.isEmpty(str)) {
-            Integer num = (Integer) ((HashMap) f11099e.d).get(str);
+            Integer num = (Integer) ((HashMap) f11419e.d).get(str);
             if (num != null) {
                 i10 = num.intValue();
             } else {
@@ -104,7 +104,7 @@ public final class l extends r6.a {
 
     public final void b(String str, String str2) {
         c(1, str);
-        this.f11101b.putString(str, str2);
+        this.f11421b.putString(str, str2);
     }
 
     public final JSONObject d() {
@@ -112,10 +112,10 @@ public final class l extends r6.a {
         int i7;
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("metadataType", this.f11102c);
+            jSONObject.put("metadataType", this.f11422c);
         } catch (JSONException unused) {
         }
-        JSONArray b10 = k6.a.b(this.f11100a);
+        JSONArray b10 = k6.a.b(this.f11420a);
         if (b10.length() != 0) {
             try {
                 jSONObject.put("images", b10);
@@ -123,7 +123,7 @@ public final class l extends r6.a {
             }
         }
         ArrayList arrayList = new ArrayList();
-        int i10 = this.f11102c;
+        int i10 = this.f11422c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -152,7 +152,7 @@ public final class l extends r6.a {
             int size = arrayList.size();
             int i11 = 0;
             while (true) {
-                bundle = this.f11101b;
+                bundle = this.f11421b;
                 if (i11 >= size) {
                     break;
                 }
@@ -160,8 +160,8 @@ public final class l extends r6.a {
                 i11++;
                 String str = (String) obj;
                 if (str != null && bundle.containsKey(str)) {
-                    android.support.v4.media.session.a0 a0Var = f11099e;
-                    String str2 = (String) ((HashMap) a0Var.f1713b).get(str);
+                    android.support.v4.media.session.a0 a0Var = f11419e;
+                    String str2 = (String) ((HashMap) a0Var.f1704b).get(str);
                     if (str2 != null) {
                         Integer num = (Integer) ((HashMap) a0Var.d).get(str);
                         if (num != null) {
@@ -175,7 +175,7 @@ public final class l extends r6.a {
                                     if (i7 != 4) {
                                         if (i7 == 5) {
                                             long j3 = bundle.getLong(str);
-                                            Pattern pattern = j6.a.f16857a;
+                                            Pattern pattern = j6.a.f17242a;
                                             jSONObject.put(str2, j3 / 1000.0d);
                                         }
                                     }
@@ -210,14 +210,14 @@ public final class l extends r6.a {
     public final void e(JSONObject jSONObject) {
         HashSet hashSet;
         int i7;
-        Bundle bundle = this.f11101b;
+        Bundle bundle = this.f11421b;
         bundle.clear();
-        List list = this.f11100a;
+        List list = this.f11420a;
         list.clear();
         int i10 = 0;
-        this.f11102c = 0;
+        this.f11422c = 0;
         try {
-            this.f11102c = jSONObject.getInt("metadataType");
+            this.f11422c = jSONObject.getInt("metadataType");
         } catch (JSONException unused) {
         }
         JSONArray optJSONArray = jSONObject.optJSONArray("images");
@@ -225,7 +225,7 @@ public final class l extends r6.a {
             k6.a.c(list, optJSONArray);
         }
         ArrayList arrayList = new ArrayList();
-        int i11 = this.f11102c;
+        int i11 = this.f11422c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -256,8 +256,8 @@ public final class l extends r6.a {
             while (keys.hasNext()) {
                 String next = keys.next();
                 if (next != null && !"metadataType".equals(next)) {
-                    android.support.v4.media.session.a0 a0Var = f11099e;
-                    String str = (String) ((HashMap) a0Var.f1714c).get(next);
+                    android.support.v4.media.session.a0 a0Var = f11419e;
+                    String str = (String) ((HashMap) a0Var.f1705c).get(next);
                     if (str != null) {
                         if (hashSet2.contains(str)) {
                             try {
@@ -275,7 +275,7 @@ public final class l extends r6.a {
                                                 if (i7 != 4) {
                                                     if (i7 == 5) {
                                                         long optLong = jSONObject.optLong(next);
-                                                        Pattern pattern = j6.a.f16857a;
+                                                        Pattern pattern = j6.a.f17242a;
                                                         hashSet = hashSet2;
                                                         try {
                                                             bundle.putLong(str, optLong * 1000);
@@ -338,7 +338,7 @@ public final class l extends r6.a {
         if (this != obj) {
             if (obj instanceof l) {
                 l lVar = (l) obj;
-                if (f(this.f11101b, lVar.f11101b) && this.f11100a.equals(lVar.f11100a)) {
+                if (f(this.f11421b, lVar.f11421b) && this.f11420a.equals(lVar.f11420a)) {
                     return true;
                 }
                 return false;
@@ -351,7 +351,7 @@ public final class l extends r6.a {
     public final int hashCode() {
         int i7;
         int i10 = 17;
-        Bundle bundle = this.f11101b;
+        Bundle bundle = this.f11421b;
         if (bundle != null) {
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
@@ -364,18 +364,18 @@ public final class l extends r6.a {
                 i10 = i11 + i7;
             }
         }
-        return this.f11100a.hashCode() + (i10 * 31);
+        return this.f11420a.hashCode() + (i10 * 31);
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.p(parcel, 2, this.f11100a);
-        yb.b(parcel, 3, this.f11101b);
-        int i10 = this.f11102c;
-        yb.q(parcel, 4, 4);
+        int r10 = bc.r(parcel, 20293);
+        bc.p(parcel, 2, this.f11420a);
+        bc.b(parcel, 3, this.f11421b);
+        int i10 = this.f11422c;
+        bc.q(parcel, 4, 4);
         parcel.writeInt(i10);
-        yb.s(parcel, r10);
+        bc.s(parcel, r10);
     }
 
     public l(int i7) {

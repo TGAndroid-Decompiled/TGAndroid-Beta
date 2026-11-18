@@ -1,40 +1,38 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class a5 implements Runnable {
-    public final int f32850a;
-    public final c5 f32851b;
-    public final ArrayList f32852c;
-    public final HashSet d;
+public class a5 extends EditTextBoldCursor implements org.telegram.ui.ActionBar.c6 {
+    public boolean M1;
+    public int N1;
+    public org.telegram.ui.ActionBar.i6 O1;
+    public int P1;
 
-    public a5(c5 c5Var, ArrayList arrayList, HashSet hashSet, int i7) {
-        this.f32850a = i7;
-        this.f32851b = c5Var;
-        this.f32852c = arrayList;
-        this.d = hashSet;
+    public final void A(int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.M1 = true;
+        this.N1 = i7;
+        this.O1 = i6Var;
+        int w02 = org.telegram.ui.ActionBar.n6.w0(i7, i6Var);
+        this.P1 = w02;
+        setCursorColor(w02);
     }
 
     @Override
-    public final void run() {
-        switch (this.f32850a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new a5(this.f32851b, this.f32852c, this.d, 1));
-                return;
-            default:
-                c5 c5Var = this.f32851b;
-                c5Var.d(this.f32852c);
-                HashSet hashSet = this.d;
-                if (!hashSet.isEmpty()) {
-                    ArrayList<Long> arrayList = new ArrayList<>(hashSet);
-                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
-                    tL_messages_getCustomEmojiDocuments.document_id = arrayList;
-                    ConnectionsManager.getInstance(c5Var.f33508e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.v7(11, c5Var, arrayList));
-                    return;
-                }
-                return;
+    public final void addColorKeys(HashSet hashSet) {
+        if (this.M1) {
+            hashSet.add(Integer.valueOf(this.N1));
+        }
+    }
+
+    @Override
+    public final void updateColors() {
+        int w02;
+        try {
+            if (this.M1 && (w02 = org.telegram.ui.ActionBar.n6.w0(this.N1, this.O1)) != this.P1) {
+                this.P1 = w02;
+                setCursorColor(w02);
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 }

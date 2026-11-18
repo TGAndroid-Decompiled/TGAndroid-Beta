@@ -1,9 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.widget.TextView;
-public final class j4 extends z70 {
+public final class j4 extends sb0 {
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+    public final CharSequence d(int i7) {
+        return org.telegram.messenger.gd.G(i7, "Minutes", new Object[0]);
     }
 }

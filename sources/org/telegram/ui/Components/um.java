@@ -1,26 +1,27 @@
 package org.telegram.ui.Components;
-public final class um implements org.telegram.messenger.z10 {
-    public final int f40107a;
-    public final org.telegram.messenger.z10 f40108b;
 
-    public um(org.telegram.messenger.z10 z10Var, int i7) {
-        this.f40107a = i7;
-        this.f40108b = z10Var;
+import android.animation.ValueAnimator;
+public final class um implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40377a;
+    public final rn f40378b;
+
+    public um(rn rnVar, int i7) {
+        this.f40377a = i7;
+        this.f40378b = rnVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f40107a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40377a) {
             case 0:
-                this.f40108b.a(new th.e((String) obj));
+                rn rnVar = this.f40378b;
+                rnVar.getClass();
+                rnVar.F.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                int[] iArr = (int[]) obj;
-                boolean z10 = false;
-                if (iArr.length >= 1 && iArr[0] == 0) {
-                    z10 = true;
-                }
-                this.f40108b.a(Boolean.valueOf(z10));
+                rn rnVar2 = this.f40378b;
+                rnVar2.getClass();
+                rnVar2.F.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

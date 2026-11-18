@@ -2,33 +2,33 @@ package hi;
 
 import android.os.SystemClock;
 import android.util.Pair;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.z10;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.x10;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.av0;
-public final class d8 implements z10 {
-    public final int f14176a;
-    public final long f14177b;
-    public final Object f14178c;
+import org.telegram.ui.Components.iv0;
+public final class d8 implements x10 {
+    public final int f14441a;
+    public final long f14442b;
+    public final Object f14443c;
 
     public d8(Object obj, long j3, int i7) {
-        this.f14176a = i7;
-        this.f14178c = obj;
-        this.f14177b = j3;
+        this.f14441a = i7;
+        this.f14443c = obj;
+        this.f14442b = j3;
     }
 
     @Override
     public final void a(Object obj) {
         long j3;
-        switch (this.f14176a) {
+        switch (this.f14441a) {
             case 0:
-                l8 l8Var = (l8) this.f14178c;
+                l8 l8Var = (l8) this.f14443c;
                 TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) obj;
-                org.telegram.ui.ActionBar.t1 t1Var = l8Var.H;
-                if (t1Var != null) {
-                    t1Var.c(350L);
+                org.telegram.ui.ActionBar.u1 u1Var = l8Var.H;
+                if (u1Var != null) {
+                    u1Var.c(350L);
                     l8Var.H = null;
                 }
                 if (tL_channels_channelParticipants != null && !tL_channels_channelParticipants.participants.isEmpty()) {
@@ -38,7 +38,7 @@ public final class d8 implements z10 {
                         TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
                         TLRPC.Peer peer = channelParticipant.peer;
                         if (peer != null) {
-                            j3 = org.telegram.messenger.m5.o(peer);
+                            j3 = org.telegram.messenger.n5.o(peer);
                             if (j3 < 0) {
                             }
                         } else {
@@ -47,26 +47,26 @@ public final class d8 implements z10 {
                         tL_chatParticipant.user_id = j3;
                         tL_chatParticipants.participants.add(tL_chatParticipant);
                     }
-                    l8Var.e(this.f14177b, tL_chatParticipants);
+                    l8Var.e(this.f14442b, tL_chatParticipants);
                     return;
                 }
                 return;
             case 1:
-                org.telegram.messenger.g0.i3(new h4(25, (ji.m) this.f14178c, (String) obj), Math.max(0L, (this.f14177b + 1200) - SystemClock.uptimeMillis()));
+                org.telegram.messenger.g0.h3(new r1(28, (ji.m) this.f14443c, (String) obj), Math.max(0L, (this.f14442b + 1200) - SystemClock.uptimeMillis()));
                 return;
             case 2:
-                ResultCallback resultCallback = (ResultCallback) this.f14178c;
+                ResultCallback resultCallback = (ResultCallback) this.f14443c;
                 gg.a aVar = (gg.a) obj;
                 if (resultCallback != null) {
-                    resultCallback.onComplete(new Pair(Long.valueOf(this.f14177b), aVar));
+                    resultCallback.onComplete(new Pair(Long.valueOf(this.f14442b), aVar));
                     return;
                 }
                 return;
             default:
-                av0 av0Var = (av0) this.f14178c;
+                iv0 iv0Var = (iv0) this.f14443c;
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
                 if (tL_messages_emojiGroups != null) {
-                    ns.f(m10.f24940t0).d(new bi.m1(av0Var, tL_messages_emojiGroups, this.f14177b, 26));
+                    ks.f(j10.f24773t0).d(new bi.m2(iv0Var, tL_messages_emojiGroups, this.f14442b, 26));
                     return;
                 }
                 return;

@@ -1,90 +1,35 @@
 package org.telegram.ui;
+public final class lk implements Runnable {
+    public final int f49627a;
+    public final mk f49628b;
 
-import android.content.Context;
-import android.os.Bundle;
-import org.telegram.tgnet.TLRPC;
-public final class lk extends org.telegram.ui.Components.ka0 {
-    public final an I;
-
-    public lk(an anVar, Context context, an anVar2, dh.c cVar, org.telegram.messenger.kj kjVar, TLRPC.User user, TLRPC.Chat chat, int i7, org.telegram.ui.Components.ga0 ga0Var, int i10, boolean z10) {
-        super(context, anVar2, cVar, kjVar, user, chat, i7, ga0Var, i10, z10);
-        this.I = anVar;
+    public lk(mk mkVar, int i7) {
+        this.f49627a = i7;
+        this.f49628b = mkVar;
     }
 
     @Override
-    public final void b() {
-        org.telegram.messenger.gj gjVar;
-        qm qmVar;
-        an anVar = this.I;
-        qm qmVar2 = anVar.C5;
-        if (qmVar2 != null && (gjVar = qmVar2.f50647a) != null && ((qmVar = anVar.f45408w5.d) == null || qmVar.f50647a == null || gjVar.e1() == anVar.f45408w5.d.f50647a.e1())) {
-            return;
-        }
-        anVar.C5 = anVar.f45408w5.d;
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        int i7;
-        boolean z11;
-        boolean z12;
-        org.telegram.messenger.ij ijVar;
-        int i10 = 0;
-        a(false);
-        an anVar = this.I;
-        org.telegram.messenger.kj kjVar = anVar.f45408w5;
-        if (kjVar != null) {
-            if (!z10) {
-                anVar.D5 = true;
-            }
-            org.telegram.messenger.ij ijVar2 = kjVar.f24707b;
-            if (ijVar2 != null) {
-                int size = ijVar2.f24403e.size();
-                i7 = 0;
-                z11 = false;
-                for (int i11 = 0; i11 < size; i11++) {
-                    org.telegram.messenger.gj gjVar = (org.telegram.messenger.gj) anVar.f45408w5.f24707b.f24403e.get(i11);
-                    if (gjVar.D4()) {
-                        i7 = 3;
-                    } else if (gjVar.T3()) {
-                        if (i7 != 2) {
-                            if (gjVar.Z3()) {
-                                i7 = 2;
-                            } else {
-                                i7 = 1;
-                            }
-                        }
-                    } else if (gjVar.z3()) {
-                        z11 = true;
-                    }
-                    anVar.f45293n6[0].put(gjVar.e1(), gjVar);
+    public final void run() {
+        switch (this.f49627a) {
+            case 0:
+                rj rjVar = this.f49628b.I.f45932a0;
+                if (rjVar != null) {
+                    rjVar.e1();
+                    return;
                 }
-            } else {
-                i7 = 0;
-                z11 = false;
-            }
-            Bundle j3 = org.telegram.ui.Cells.y0.j(3, "onlySelect", "dialogsType", true);
-            j3.putBoolean("quote", !z10);
-            if (!z10 && (ijVar = anVar.f45408w5.f24706a) != null && !ijVar.f24403e.isEmpty() && anVar.f45408w5.d == null) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            j3.putBoolean("reply_to", z12);
-            if (z12) {
-                anVar.gb(j3, (org.telegram.messenger.gj) anVar.f45408w5.f24706a.f24403e.get(0));
-            }
-            j3.putInt("hasPoll", i7);
-            j3.putBoolean("hasInvoice", z11);
-            org.telegram.messenger.ij ijVar3 = anVar.f45408w5.f24707b;
-            if (ijVar3 != null) {
-                i10 = ijVar3.f24403e.size();
-            }
-            j3.putInt("messagesCount", i10);
-            j3.putBoolean("canSelectTopics", true);
-            yw ywVar = new yw(j3);
-            ywVar.E2 = anVar;
-            anVar.presentFragment(ywVar);
+                return;
+            default:
+                rj rjVar2 = this.f49628b.I.f45932a0;
+                if (rjVar2 != null) {
+                    rjVar2.U0 = false;
+                    org.telegram.ui.Components.cg cgVar = rjVar2.V0;
+                    if (cgVar != null) {
+                        cgVar.u(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

@@ -4,21 +4,22 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Choreographer;
+import b7.h;
 import kotlin.jvm.internal.j;
 public abstract class f {
     private static volatile Choreographer choreographer;
 
     static {
-        Object b10;
+        Object a10;
         try {
-            b10 = new e(a(Looper.getMainLooper()), false);
+            a10 = new e(a(Looper.getMainLooper()), false);
         } catch (Throwable th2) {
-            b10 = af.b.b(th2);
+            a10 = h.a(th2);
         }
-        if (b10 instanceof gd.f) {
-            b10 = null;
+        if (a10 instanceof gd.f) {
+            a10 = null;
         }
-        e eVar = (e) b10;
+        e eVar = (e) a10;
     }
 
     public static final Handler a(Looper looper) {

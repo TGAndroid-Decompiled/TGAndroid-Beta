@@ -1,14 +1,14 @@
 package n2;
 public final class m {
-    public int f20808a;
-    public int f20809b;
-    public int f20810c;
+    public int f21172a;
+    public int f21173b;
+    public int f21174c;
     public boolean d;
-    public boolean f20811e;
-    public int f20812f;
-    public e2.e f20813g;
+    public boolean f21175e;
+    public int f21176f;
+    public e2.e f21177g;
     public int h;
-    public int f20814i;
-    public boolean f20815j;
-    public boolean f20816k;
+    public int f21178i;
+    public boolean f21179j;
+    public boolean f21180k;
 }

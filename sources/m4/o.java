@@ -1,19 +1,19 @@
 package m4;
 public final class o {
-    public boolean f20316a;
-    public boolean f20317b;
-    public i2.n f20318c;
+    public boolean f20680a;
+    public boolean f20681b;
+    public i2.n f20682c;
     public int d;
-    public int f20319e;
-    public int f20320f;
-    public int f20321g;
+    public int f20683e;
+    public int f20684f;
+    public int f20685g;
     public boolean h;
-    public boolean f20322i;
-    public boolean f20323j;
-    public boolean f20324k;
-    public int f20325l;
-    public int f20326m;
-    public int f20327n;
-    public int f20328o;
-    public int f20329p;
+    public boolean f20686i;
+    public boolean f20687j;
+    public boolean f20688k;
+    public int f20689l;
+    public int f20690m;
+    public int f20691n;
+    public int f20692o;
+    public int f20693p;
 }

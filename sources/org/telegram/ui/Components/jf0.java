@@ -1,59 +1,22 @@
 package org.telegram.ui.Components;
+public final class jf0 implements Runnable {
+    public final int f36428a;
+    public final mf0 f36429b;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.os.Build;
-public final class jf0 implements ui.a, si.a {
-    public final dh.c f35962a;
-
-    public jf0(dh.c cVar) {
-        this.f35962a = cVar;
+    public jf0(mf0 mf0Var, int i7) {
+        this.f36428a = i7;
+        this.f36429b = mf0Var;
     }
 
     @Override
-    public final int a() {
-        return ((si.a) b()).a();
-    }
-
-    public final ui.a b() {
-        ri.r f10 = ri.q.f();
-        boolean z10 = f10.f56143a;
-        dh.c cVar = this.f35962a;
-        if (!z10) {
-            return cVar.f8094c;
+    public final void run() {
+        switch (this.f36428a) {
+            case 0:
+                this.f36429b.a(true);
+                return;
+            default:
+                this.f36429b.d();
+                return;
         }
-        if (f10.f56144b && Build.VERSION.SDK_INT >= 33) {
-            return cVar.f8092a;
-        }
-        return cVar.f8093b;
-    }
-
-    @Override
-    public final void b0(float f10, float f11, float f12, float f13, Canvas canvas) {
-        b().b0(f10, f11, f12, f13, canvas);
-    }
-
-    @Override
-    public final void d(float f10, float f11, int i7, Canvas canvas, RectF rectF) {
-        ((si.a) b()).d(f10, f11, i7, canvas, rectF);
-    }
-
-    @Override
-    public final int e() {
-        return ((si.a) b()).e();
-    }
-
-    @Override
-    public final int f() {
-        return ((si.a) b()).f();
-    }
-
-    @Override
-    public final boolean g() {
-        ui.a b10 = b();
-        if ((b10 instanceof si.a) && ((si.a) b10).g()) {
-            return true;
-        }
-        return false;
     }
 }

@@ -1,88 +1,61 @@
 package fi;
 
-import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.ez;
-import org.telegram.messenger.ff;
-import org.telegram.messenger.g20;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.e40;
-public final class x2 implements e40 {
-    public final b4 f12492a;
+import org.telegram.ui.Components.ui0;
+public final class x2 implements ui0 {
+    public final z3 f12722a;
 
-    public x2(b4 b4Var) {
-        this.f12492a = b4Var;
+    public x2(z3 z3Var) {
+        this.f12722a = z3Var;
     }
 
     @Override
-    public final long a() {
-        return this.f12492a.l1;
-    }
-
-    @Override
-    public final boolean c() {
+    public final boolean E() {
         return false;
     }
 
     @Override
-    public final int getClassGuid() {
-        return this.f12492a.f11488j2;
-    }
-
-    @Override
-    public final View getFragmentView() {
-        return this.f12492a;
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f12492a.getContext());
-    }
-
-    @Override
-    public final void u(ff ffVar, g20 g20Var, boolean z10, int i7, int i10, boolean z11, long j3) {
-        org.telegram.messenger.c accountInstance;
-        org.telegram.messenger.c accountInstance2;
-        boolean z12;
-        org.telegram.messenger.c accountInstance3;
-        org.telegram.messenger.c accountInstance4;
-        b4 b4Var = this.f12492a;
-        TL_stories.StoryItem storyItem = b4Var.f11543y1.f12579a;
-        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            storyItem.dialogId = b4Var.l1;
-            if (ffVar.f27710b) {
-                if (g20Var != null) {
-                    accountInstance4 = b4Var.getAccountInstance();
-                    String str = ffVar.I;
-                    long j10 = b4Var.l1;
-                    ArrayList arrayList = ffVar.f27720n;
-                    ez.b0(ffVar.f27729x, i7, i10, j10, 0L, j3, 0L, ffVar.f27709a, str, null, arrayList, accountInstance4, null, null, null, null, null, g20Var, null, storyItem, null, z10, false, ffVar.M);
-                } else {
-                    accountInstance3 = b4Var.getAccountInstance();
-                    String str2 = ffVar.I;
-                    long j11 = b4Var.l1;
-                    ArrayList arrayList2 = ffVar.f27720n;
-                    ez.b0(ffVar.f27729x, i7, i10, j11, 0L, j3, 0L, ffVar.f27709a, str2, null, arrayList2, accountInstance3, null, null, null, null, null, null, null, storyItem, null, z10, false, ffVar.M);
-                }
-            } else if (ffVar.h != null) {
-                accountInstance2 = b4Var.getAccountInstance();
-                ez.Z(accountInstance2, ffVar.h, ffVar.f27711c, null, b4Var.l1, null, null, null, ffVar.f27720n, ffVar.f27724r, null, ffVar.f27729x, null, g20Var, z10, i7, false, ffVar.f27709a, null, 0L, j3, 0L, null);
-            } else if (ffVar.I != null) {
-                accountInstance = b4Var.getAccountInstance();
-                ez.Z(accountInstance, ffVar.I, ffVar.f27711c, null, b4Var.l1, null, null, null, ffVar.f27720n, ffVar.f27724r, null, ffVar.f27729x, null, g20Var, z10, i7, false, ffVar.f27709a, null, 0L, j3, 0L, null);
-            }
-            if (j3 <= 0) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            b4Var.i0(z12);
+    public final void g(View view, ch.p0 p0Var, boolean z10, boolean z11) {
+        z3 z3Var = this.f12722a;
+        if (!z10) {
+            z3Var.l0(new aa.c0(this, view, p0Var, z10, z11));
+        } else {
+            org.telegram.ui.Components.b5.X(z3Var.f12850m2, 1, z3Var.l1, new w2(this, z10, p0Var, view));
         }
     }
 
     @Override
-    public final boolean z() {
-        return false;
+    public final boolean o() {
+        return true;
+    }
+
+    @Override
+    public final boolean q() {
+        return this.f12722a.L0();
+    }
+
+    @Override
+    public final void x(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
+        z3 z3Var = this.f12722a;
+        Paint paint = z3Var.X1;
+        a8.b8 b8Var = z3Var.f12900z1;
+        float f13 = -f11;
+        float f14 = -f12;
+        b8Var.k(f13, f14, z3Var.getMeasuredWidth() + f13, z3Var.getMeasuredHeight() + f14);
+        if (f10 > 0.0f) {
+            canvas.drawRoundRect(rectF, f10, f10, (Paint) b8Var.f341a);
+            canvas.drawRoundRect(rectF, f10, f10, paint);
+            return;
+        }
+        canvas.drawRect(rectF, (Paint) b8Var.f341a);
+        canvas.drawRect(rectF, paint);
+    }
+
+    @Override
+    public final void z() {
+        ((w8) this.f12722a.A1).b(false);
     }
 }

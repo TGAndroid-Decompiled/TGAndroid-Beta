@@ -1,32 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import org.telegram.messenger.MediaController;
-public final class s6 implements org.telegram.messenger.s10 {
-    public final int f39182a;
-    public final y7 f39183b;
+import android.view.View;
+public final class s6 implements View.OnClickListener {
+    public final int f39501a;
+    public final Runnable f39502b;
 
-    public s6(y7 y7Var, int i7) {
-        this.f39182a = i7;
-        this.f39183b = y7Var;
+    public s6(int i7, Runnable runnable) {
+        this.f39501a = i7;
+        this.f39502b = runnable;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f39182a) {
+    public final void onClick(View view) {
+        switch (this.f39501a) {
             case 0:
-                y7 y7Var = this.f39183b;
-                y7Var.S1 = !((Boolean) obj2).booleanValue();
-                MediaController B = MediaController.B();
-                org.telegram.ui.ActionBar.v0 v0Var = y7Var.R1;
-                float floatValue = ((Float) obj).floatValue();
-                v0Var.getClass();
-                B.m0(true, (floatValue * 2.8f) + 0.2f);
+                this.f39502b.run();
+                return;
+            case 1:
+                Runnable runnable = this.f39502b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                Bitmap bitmap = (Bitmap) obj2;
-                this.f39183b.f41888c2.setBackground(new BitmapDrawable((Bitmap) obj));
+                this.f39502b.run();
                 return;
         }
     }

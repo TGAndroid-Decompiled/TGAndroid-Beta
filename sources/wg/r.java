@@ -1,124 +1,40 @@
 package wg;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.ns;
-import ug.g1;
+import java.io.File;
 public final class r implements Runnable {
-    public final int f59231a;
-    public final y f59232b;
+    public final int f59813a;
+    public final Object f59814b;
+    public final Object f59815c;
 
-    public r(y yVar, int i7) {
-        this.f59231a = i7;
-        this.f59232b = yVar;
+    public r(int i7, Object obj, Object obj2) {
+        this.f59813a = i7;
+        this.f59814b = obj;
+        this.f59815c = obj2;
+    }
+
+    private final void a() {
+        yi.j jVar = (yi.j) this.f59814b;
+        File file = (File) this.f59815c;
+        synchronized (jVar.f61326m) {
+            for (int i7 = 0; i7 < jVar.f61326m.size(); i7++) {
+                try {
+                    File file2 = (File) jVar.f61326m.get(i7);
+                    if (file != null && file.equals(file2)) {
+                    }
+                    if (file2.exists() && !file2.delete()) {
+                        yi.b bVar = jVar.h;
+                        bVar.b("temporary file deletion failed: " + file2.getName());
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            jVar.f61326m.clear();
+        }
     }
 
     @Override
     public final void run() {
-        int i7 = this.f59231a;
-        final y yVar = this.f59232b;
-        switch (i7) {
-            case 0:
-                org.telegram.messenger.g0.v1(yVar.f35931o1);
-                return;
-            case 1:
-                ns.f(m10.f24940t0).k(191, yVar.X1, Boolean.TRUE);
-                return;
-            case 2:
-                ns.f(m10.f24940t0).k(191, yVar.X1, Boolean.FALSE);
-                return;
-            case 3:
-                g1 g1Var = new g1(yVar.f35935s1, yVar.f29679a, null, yVar.J0);
-                g1Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public final void onDismiss(DialogInterface dialogInterface) {
-                        switch (r2) {
-                            case 0:
-                                yg.r rVar = yVar.f59275c2.f59906r;
-                                if (rVar != null) {
-                                    rVar.setPaused(false);
-                                    return;
-                                }
-                                return;
-                            default:
-                                yg.r rVar2 = yVar.f59275c2.f59906r;
-                                if (rVar2 != null) {
-                                    rVar2.setPaused(false);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                g1Var.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public final void onShow(DialogInterface dialogInterface) {
-                        switch (r2) {
-                            case 0:
-                                yg.r rVar = yVar.f59275c2.f59906r;
-                                if (rVar != null) {
-                                    rVar.setPaused(true);
-                                    return;
-                                }
-                                return;
-                            default:
-                                yg.r rVar2 = yVar.f59275c2.f59906r;
-                                if (rVar2 != null) {
-                                    rVar2.setPaused(true);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                g1Var.show();
-                return;
-            default:
-                g1 g1Var2 = new g1(yVar.f35935s1, yVar.f29679a, null, yVar.J0);
-                g1Var2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public final void onDismiss(DialogInterface dialogInterface) {
-                        switch (r2) {
-                            case 0:
-                                yg.r rVar = yVar.f59275c2.f59906r;
-                                if (rVar != null) {
-                                    rVar.setPaused(false);
-                                    return;
-                                }
-                                return;
-                            default:
-                                yg.r rVar2 = yVar.f59275c2.f59906r;
-                                if (rVar2 != null) {
-                                    rVar2.setPaused(false);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                g1Var2.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public final void onShow(DialogInterface dialogInterface) {
-                        switch (r2) {
-                            case 0:
-                                yg.r rVar = yVar.f59275c2.f59906r;
-                                if (rVar != null) {
-                                    rVar.setPaused(true);
-                                    return;
-                                }
-                                return;
-                            default:
-                                yg.r rVar2 = yVar.f59275c2.f59906r;
-                                if (rVar2 != null) {
-                                    rVar2.setPaused(true);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                g1Var2.show();
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: wg.r.run():void");
     }
 }

@@ -1,44 +1,29 @@
 package di;
 
-import android.app.Activity;
-import org.telegram.messenger.z10;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
+import org.telegram.messenger.q10;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.z41;
 import org.telegram.ui.TwoStepVerificationActivity;
-public final class i implements RequestDelegate {
-    public final int f8754a = 0;
-    public final boolean f8755b;
-    public final long f8756c;
-    public final Object d;
-    public final Object f8757e;
-    public final Object f8758f;
+public final class i implements q10 {
+    public final int f8995a;
+    public final t f8996b;
 
-    public i(t tVar, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j3) {
-        this.d = tVar;
-        this.f8757e = twoStepVerificationActivity;
-        this.f8758f = activity;
-        this.f8755b = z10;
-        this.f8756c = j3;
+    public i(t tVar, int i7) {
+        this.f8995a = i7;
+        this.f8996b = tVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f8754a) {
+    public final void a(Object obj, Object obj2) {
+        switch (this.f8995a) {
             case 0:
-                org.telegram.messenger.g0.h3(new j((t) this.d, tL_error, (TwoStepVerificationActivity) this.f8757e, (Activity) this.f8758f, this.f8755b, this.f8756c, tLObject));
+                this.f8996b.v0(false, 0L, (TLRPC.InputCheckPasswordSRP) obj, (TwoStepVerificationActivity) obj2);
                 return;
             default:
-                org.telegram.messenger.g0.h3(new l((fi.s6) this.d, tL_error, this.f8755b, this.f8756c, (z10) this.f8757e, (org.telegram.ui.ActionBar.e6) this.f8758f));
+                z41 z41Var = (z41) obj2;
+                t.d0(this.f8996b, (ArrayList) obj);
                 return;
         }
-    }
-
-    public i(fi.s6 s6Var, boolean z10, long j3, z10 z10Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.d = s6Var;
-        this.f8755b = z10;
-        this.f8756c = j3;
-        this.f8757e = z10Var;
-        this.f8758f = e6Var;
     }
 }

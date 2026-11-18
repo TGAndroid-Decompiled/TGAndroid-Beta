@@ -3,18 +3,18 @@ package h9;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
-public final class x extends q1 implements Serializable {
-    public final Comparator[] f13769a;
+public final class x extends r1 implements Serializable {
+    public final Comparator[] f14089a;
 
     public x(n nVar, n nVar2) {
-        this.f13769a = new Comparator[]{nVar, nVar2};
+        this.f14089a = new Comparator[]{nVar, nVar2};
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int i7 = 0;
         while (true) {
-            Comparator[] comparatorArr = this.f13769a;
+            Comparator[] comparatorArr = this.f14089a;
             if (i7 >= comparatorArr.length) {
                 return 0;
             }
@@ -32,16 +32,16 @@ public final class x extends q1 implements Serializable {
             return true;
         }
         if (obj instanceof x) {
-            return Arrays.equals(this.f13769a, ((x) obj).f13769a);
+            return Arrays.equals(this.f14089a, ((x) obj).f14089a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f13769a);
+        return Arrays.hashCode(this.f14089a);
     }
 
     public final String toString() {
-        return a8.p0.s(new StringBuilder("Ordering.compound("), Arrays.toString(this.f13769a), ")");
+        return a8.p0.s(new StringBuilder("Ordering.compound("), Arrays.toString(this.f14089a), ")");
     }
 }

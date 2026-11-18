@@ -11,10 +11,10 @@ import java.util.MissingFormatArgumentException;
 import org.json.JSONArray;
 import org.json.JSONException;
 public final class w {
-    public final Bundle f1005a;
+    public final Bundle f1004a;
 
     public w(Bundle bundle) {
-        this.f1005a = new Bundle(bundle);
+        this.f1004a = new Bundle(bundle);
     }
 
     public static boolean f(Bundle bundle) {
@@ -103,7 +103,7 @@ public final class w {
 
     public String e(String str) {
         String replace;
-        Bundle bundle = this.f1005a;
+        Bundle bundle = this.f1004a;
         if (!bundle.containsKey(str) && str.startsWith("gcm.n.")) {
             if (!str.startsWith("gcm.n.")) {
                 replace = str;
@@ -118,7 +118,7 @@ public final class w {
     }
 
     public Bundle g() {
-        Bundle bundle = this.f1005a;
+        Bundle bundle = this.f1004a;
         Bundle bundle2 = new Bundle(bundle);
         for (String str : bundle.keySet()) {
             if (!str.startsWith("google.c.a.") && !str.equals("from")) {
@@ -133,7 +133,7 @@ public final class w {
         if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 2) {
             throw new IllegalArgumentException(a8.p0.p("The ", str, " key cannot be used to put a Bitmap"));
         }
-        this.f1005a.putParcelable(str, bitmap);
+        this.f1004a.putParcelable(str, bitmap);
     }
 
     public void i(long j3) {
@@ -141,7 +141,7 @@ public final class w {
         if (fVar.containsKey("android.media.metadata.DURATION") && ((Integer) fVar.get("android.media.metadata.DURATION")).intValue() != 0) {
             throw new IllegalArgumentException("The android.media.metadata.DURATION key cannot be used to put a long");
         }
-        this.f1005a.putLong("android.media.metadata.DURATION", j3);
+        this.f1004a.putLong("android.media.metadata.DURATION", j3);
     }
 
     public void j(String str, String str2) {
@@ -149,16 +149,16 @@ public final class w {
         if (fVar.containsKey(str) && ((Integer) fVar.get(str)).intValue() != 1) {
             throw new IllegalArgumentException(a8.p0.p("The ", str, " key cannot be used to put a String"));
         }
-        this.f1005a.putCharSequence(str, str2);
+        this.f1004a.putCharSequence(str, str2);
     }
 
     public w() {
-        this.f1005a = new Bundle();
+        this.f1004a = new Bundle();
     }
 
     public w(MediaMetadataCompat mediaMetadataCompat) {
-        Bundle bundle = new Bundle(mediaMetadataCompat.f1678a);
-        this.f1005a = bundle;
+        Bundle bundle = new Bundle(mediaMetadataCompat.f1669a);
+        this.f1004a = bundle;
         android.support.v4.media.session.a0.g(bundle);
     }
 }

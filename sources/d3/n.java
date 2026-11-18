@@ -5,15 +5,15 @@ import android.graphics.SurfaceTexture;
 import android.view.Surface;
 public final class n extends Surface {
     public static int d;
-    public static boolean f7452e;
-    public final boolean f7453a;
-    public final m f7454b;
-    public boolean f7455c;
+    public static boolean f7735e;
+    public final boolean f7736a;
+    public final m f7737b;
+    public boolean f7738c;
 
     public n(m mVar, SurfaceTexture surfaceTexture, boolean z10) {
         super(surfaceTexture);
-        this.f7454b = mVar;
-        this.f7453a = z10;
+        this.f7737b = mVar;
+        this.f7736a = z10;
     }
 
     public static int a(android.content.Context r5) {
@@ -25,9 +25,9 @@ public final class n extends Surface {
         synchronized (n.class) {
             try {
                 z10 = true;
-                if (!f7452e) {
+                if (!f7735e) {
                     d = a(context);
-                    f7452e = true;
+                    f7735e = true;
                 }
                 if (d == 0) {
                     z10 = false;
@@ -42,13 +42,13 @@ public final class n extends Surface {
     @Override
     public final void release() {
         super.release();
-        synchronized (this.f7454b) {
+        synchronized (this.f7737b) {
             try {
-                if (!this.f7455c) {
-                    m mVar = this.f7454b;
-                    mVar.f7449b.getClass();
-                    mVar.f7449b.sendEmptyMessage(2);
-                    this.f7455c = true;
+                if (!this.f7738c) {
+                    m mVar = this.f7737b;
+                    mVar.f7732b.getClass();
+                    mVar.f7732b.sendEmptyMessage(2);
+                    this.f7738c = true;
                 }
             } catch (Throwable th2) {
                 throw th2;

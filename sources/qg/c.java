@@ -15,91 +15,160 @@ import android.util.SparseArray;
 import bi.i;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.fj;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.m5;
-import org.telegram.messenger.np;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.i5;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.n5;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.sr;
 import org.telegram.messenger.t0;
-import org.telegram.messenger.t3;
-import org.telegram.messenger.ur;
+import org.telegram.messenger.v3;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.e2;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.fq;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.i9;
-import org.telegram.ui.Components.j70;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.t8;
-import org.telegram.ui.an;
-import org.telegram.ui.u91;
-import q2.d;
+import org.telegram.ui.ActionBar.h2;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.b9;
+import org.telegram.ui.Components.lq;
+import org.telegram.ui.Components.mq;
+import org.telegram.ui.Components.o5;
+import org.telegram.ui.Components.q9;
+import org.telegram.ui.Components.u70;
+import org.telegram.ui.Components.x5;
+import org.telegram.ui.bn;
+import org.telegram.ui.web.z0;
+import org.telegram.ui.y91;
 public abstract class c {
-    public static final int f55570a = 0;
+    public static final int f56144a = 0;
 
     static {
         new SparseArray();
     }
 
-    public static void a(an anVar, ur urVar) {
+    public static void a(bn bnVar, sr srVar) {
         TLRPC.TL_forumTopic f10;
-        if (urVar.f26862b != 0 && (f10 = anVar.getMessagesController().f25386r7.f(-urVar.f26861a, urVar.f26862b)) != null) {
-            if (urVar.f26861a > 0) {
-                if (q10.u(anVar.getMessagesController().a2(Long.valueOf(urVar.f26861a)))) {
+        if (srVar.f26848b != 0 && (f10 = bnVar.getMessagesController().f25771t7.f(-srVar.f26847a, srVar.f26848b)) != null) {
+            if (srVar.f26847a > 0) {
+                if (o10.v(bnVar.getMessagesController().c2(Long.valueOf(srVar.f26847a)))) {
                     ArrayList arrayList = new ArrayList();
-                    arrayList.add(new gj(anVar.getCurrentAccount(), f10.topicStartMessage, false, false));
-                    anVar.Vb(arrayList, null, f10.f28103id, f10.read_inbox_max_id, f10.read_outbox_max_id, f10);
-                    anVar.getMessagesController().K4(-urVar.f26861a, urVar.f26862b);
+                    arrayList.add(new fj(bnVar.getCurrentAccount(), f10.topicStartMessage, false, false));
+                    bnVar.Vb(arrayList, null, f10.f28457id, f10.read_inbox_max_id, f10.read_outbox_max_id, f10);
+                    bnVar.getMessagesController().V4(-srVar.f26847a, srVar.f26848b);
                     return;
                 }
                 return;
             }
-            TLRPC.Chat M0 = anVar.getMessagesController().M0(Long.valueOf(-urVar.f26861a));
-            if (M0 == null) {
+            TLRPC.Chat O0 = bnVar.getMessagesController().O0(Long.valueOf(-srVar.f26847a));
+            if (O0 == null) {
                 return;
             }
-            if (t3.p0(M0)) {
-                if (t3.A(m10.f24940t0, M0, 24)) {
+            if (v3.p0(O0)) {
+                if (v3.A(j10.f24773t0, O0, 24)) {
                     int i7 = f10.read_inbox_max_id;
                     int i10 = f10.read_outbox_max_id;
-                    anVar.f45445z4 = i7;
-                    anVar.A4 = i10;
-                    anVar.B4 = Math.max(1, i7);
-                    anVar.f45357s4 = m5.o(f10.from_id);
-                    anVar.hd();
-                    anVar.zd(false);
-                    anVar.Pc(false);
+                    bnVar.A4 = i7;
+                    bnVar.B4 = i10;
+                    bnVar.C4 = Math.max(1, i7);
+                    bnVar.f46173s4 = n5.o(f10.from_id);
+                    bnVar.hd();
+                    bnVar.zd(false);
+                    bnVar.Pc(false);
                 }
             } else {
                 ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(new gj(anVar.getCurrentAccount(), f10.topicStartMessage, false, false));
-                anVar.Vb(arrayList2, M0, f10.f28103id, f10.read_inbox_max_id, f10.read_outbox_max_id, f10);
+                arrayList2.add(new fj(bnVar.getCurrentAccount(), f10.topicStartMessage, false, false));
+                bnVar.Vb(arrayList2, O0, f10.f28457id, f10.read_inbox_max_id, f10.read_outbox_max_id, f10);
             }
-            anVar.getMessagesController().K4(-urVar.f26861a, urVar.f26862b);
+            bnVar.getMessagesController().V4(-srVar.f26847a, srVar.f26848b);
         }
     }
 
-    public static void b(gj gjVar) {
+    public static void b(fj fjVar) {
         TLRPC.TL_forumTopic f10;
-        TLRPC.Message message = gjVar.f23819k;
-        int i7 = gjVar.K1;
-        if (gj.B0(message) <= 0 && (f10 = np.s1(i7).f25386r7.f(-gj.B0(gjVar.f23819k), gj.b2(i7, gjVar.f23819k, true, false))) != null) {
-            Drawable drawable = gjVar.f23813i2[0];
+        TLRPC.Message message = fjVar.f23968k;
+        int i7 = fjVar.K1;
+        if (fj.B0(message) <= 0 && (f10 = mp.u1(i7).f25771t7.f(-fj.B0(fjVar.f23968k), fj.b2(i7, fjVar.f23968k, true, false))) != null) {
+            Drawable drawable = fjVar.f23962i2[0];
             if (drawable instanceof a) {
                 ((a) drawable).b(f10.icon_color);
             }
         }
     }
 
-    public static b c(Context context, float f10, int i7, boolean z10) {
+    public static SpannableStringBuilder c(TLRPC.TL_forumTopic tL_forumTopic, fj fjVar) {
+        TLRPC.Chat O0;
+        TLRPC.User user;
+        String str;
+        int i7;
+        int i10;
+        if (tL_forumTopic != null) {
+            TLRPC.Message message = fjVar.f23968k;
+            int i11 = fjVar.K1;
+            TLRPC.MessageAction messageAction = message.action;
+            if (messageAction instanceof TLRPC.TL_messageActionTopicCreate) {
+                return g0.K2(gd.M0(2131743764, null), k(tL_forumTopic, null, null), "%s");
+            }
+            if (messageAction instanceof TLRPC.TL_messageActionTopicEdit) {
+                TLRPC.TL_messageActionTopicEdit tL_messageActionTopicEdit = (TLRPC.TL_messageActionTopicEdit) messageAction;
+                long Z0 = fjVar.Z0();
+                if (n5.E(Z0)) {
+                    user = mp.u1(i11).c2(Long.valueOf(Z0));
+                    O0 = null;
+                } else {
+                    O0 = mp.u1(i11).O0(Long.valueOf(-Z0));
+                    user = null;
+                }
+                if (user != null) {
+                    str = i5.m(0, user.first_name, user.last_name);
+                } else if (O0 != null) {
+                    str = O0.title;
+                } else {
+                    str = null;
+                }
+                int i12 = tL_messageActionTopicEdit.flags;
+                if ((i12 & 8) != 0) {
+                    if (tL_messageActionTopicEdit.hidden) {
+                        i10 = 2131743782;
+                    } else {
+                        i10 = 2131743768;
+                    }
+                    return g0.K2(gd.M0(i10, null), str, "%s");
+                } else if ((i12 & 4) != 0) {
+                    if (tL_messageActionTopicEdit.closed) {
+                        i7 = 2131743765;
+                    } else {
+                        i7 = 2131743760;
+                    }
+                    return g0.K2(g0.K2(gd.M0(i7, null), k(tL_forumTopic, null, null), "%2$s"), str, "%1$s");
+                } else {
+                    int i13 = i12 & 1;
+                    if (i13 != 0 && (i12 & 2) != 0) {
+                        TLRPC.TL_forumTopic tL_forumTopic2 = new TLRPC.TL_forumTopic();
+                        tL_forumTopic2.icon_emoji_id = tL_messageActionTopicEdit.icon_emoji_id;
+                        tL_forumTopic2.title = tL_messageActionTopicEdit.title;
+                        return g0.K2(g0.K2(gd.M0(2131743761, null), k(tL_forumTopic2, null, null), "%2$s"), str, "%1$s");
+                    } else if (i13 != 0) {
+                        return g0.K2(g0.K2(gd.M0(2131743762, null), tL_messageActionTopicEdit.title, "%2$s"), str, "%1$s");
+                    } else {
+                        if ((i12 & 2) != 0) {
+                            TLRPC.TL_forumTopic tL_forumTopic3 = new TLRPC.TL_forumTopic();
+                            tL_forumTopic3.icon_emoji_id = tL_messageActionTopicEdit.icon_emoji_id;
+                            tL_forumTopic3.title = "";
+                            return g0.K2(g0.K2(gd.M0(2131743763, null), k(tL_forumTopic3, null, null), "%2$s"), str, "%1$s");
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static b d(Context context, float f10, int i7, boolean z10) {
         int i10;
         if (context == null) {
             return null;
@@ -107,44 +176,44 @@ public abstract class c {
         ?? drawable = new Drawable();
         Resources resources = context.getResources();
         if (z10) {
-            i10 = 2131232146;
+            i10 = 2131232147;
         } else {
-            i10 = 2131232145;
+            i10 = 2131232146;
         }
-        drawable.f55567a = resources.getDrawable(i10).mutate();
-        drawable.f55568b = f10;
+        drawable.f56141a = resources.getDrawable(i10).mutate();
+        drawable.f56142b = f10;
         drawable.a(i7);
         return drawable;
     }
 
-    public static fq d(int i7, String str) {
+    public static mq e(int i7, String str) {
         String str2;
         a aVar = new a(i7);
-        j70 j70Var = new j70(1, null);
+        u70 u70Var = new u70(1, null);
         String trim = str.trim();
         if (trim.length() >= 1) {
             str2 = trim.substring(0, 1).toUpperCase();
         } else {
             str2 = "";
         }
-        j70Var.a(str2);
-        fq fqVar = new fq(aVar, j70Var, 0, 0);
-        fqVar.f34682x = true;
-        return fqVar;
+        u70Var.a(str2);
+        mq mqVar = new mq(aVar, u70Var, 0, 0);
+        mqVar.f37616x = true;
+        return mqVar;
     }
 
-    public static fq e(TLRPC.TL_forumTopic tL_forumTopic) {
+    public static mq f(TLRPC.TL_forumTopic tL_forumTopic) {
         if (tL_forumTopic == null) {
             return null;
         }
-        return d(tL_forumTopic.icon_color, tL_forumTopic.title);
+        return e(tL_forumTopic.icon_color, tL_forumTopic.title);
     }
 
-    public static void f(ArrayList arrayList, long j3) {
+    public static void g(ArrayList arrayList, long j3) {
         if (arrayList != null) {
             int i7 = 0;
             while (i7 < arrayList.size()) {
-                if (j3 != gj.b2(((gj) arrayList.get(i7)).K1, ((gj) arrayList.get(i7)).f23819k, true, false)) {
+                if (j3 != fj.b2(((fj) arrayList.get(i7)).K1, ((fj) arrayList.get(i7)).f23968k, true, false)) {
                     arrayList.remove(i7);
                     i7--;
                 }
@@ -153,22 +222,22 @@ public abstract class c {
         }
     }
 
-    public static an g(e2 e2Var, long j3, TLRPC.TL_forumTopic tL_forumTopic, int i7, Bundle bundle) {
+    public static bn h(h2 h2Var, long j3, TLRPC.TL_forumTopic tL_forumTopic, int i7, Bundle bundle) {
         TLRPC.TL_forumTopic tL_forumTopic2;
         TLRPC.TL_forumTopic f10;
-        if (e2Var != null && tL_forumTopic != null) {
-            TLRPC.Chat M0 = e2Var.getMessagesController().M0(Long.valueOf(j3));
+        if (h2Var != null && tL_forumTopic != null) {
+            TLRPC.Chat O0 = h2Var.getMessagesController().O0(Long.valueOf(j3));
             bundle.putLong("chat_id", j3);
             if (i7 != 0) {
                 bundle.putInt("message_id", i7);
             } else if (tL_forumTopic.read_inbox_max_id == 0) {
-                bundle.putInt("message_id", tL_forumTopic.f28103id);
+                bundle.putInt("message_id", tL_forumTopic.f28457id);
             }
             bundle.putInt("unread_count", tL_forumTopic.unread_count);
             bundle.putBoolean("historyPreloaded", false);
-            an anVar = new an(bundle);
+            bn bnVar = new bn(bundle);
             TLRPC.Message message = tL_forumTopic.topicStartMessage;
-            if (message == null && (f10 = e2Var.getMessagesController().f25386r7.f(j3, tL_forumTopic.f28103id)) != null) {
+            if (message == null && (f10 = h2Var.getMessagesController().f25771t7.f(j3, tL_forumTopic.f28457id)) != null) {
                 message = f10.topicStartMessage;
                 tL_forumTopic2 = f10;
             } else {
@@ -176,38 +245,38 @@ public abstract class c {
             }
             if (message != null) {
                 ArrayList arrayList = new ArrayList();
-                arrayList.add(new gj(e2Var.getCurrentAccount(), message, false, false));
-                anVar.Vb(arrayList, M0, tL_forumTopic2.f28103id, tL_forumTopic2.read_inbox_max_id, tL_forumTopic2.read_outbox_max_id, tL_forumTopic2);
+                arrayList.add(new fj(h2Var.getCurrentAccount(), message, false, false));
+                bnVar.Vb(arrayList, O0, tL_forumTopic2.f28457id, tL_forumTopic2.read_inbox_max_id, tL_forumTopic2.read_outbox_max_id, tL_forumTopic2);
                 if (i7 != 0) {
-                    anVar.f45154c8 = i7;
+                    bnVar.f45982d8 = i7;
                 }
-                return anVar;
+                return bnVar;
             }
             return null;
         }
         return null;
     }
 
-    public static String h(int i7, long j3) {
-        return i(i7, np.s1(i7).M0(Long.valueOf(-j3)), true);
+    public static String i(int i7, long j3) {
+        return j(i7, mp.u1(i7).O0(Long.valueOf(-j3)), true);
     }
 
-    public static String i(int i7, TLRPC.Chat chat, boolean z10) {
-        if (t3.p0(chat)) {
-            TLRPC.Chat M0 = np.s1(i7).M0(Long.valueOf(chat.linked_monoforum_id));
-            if (M0 != null) {
-                String str = M0.title;
+    public static String j(int i7, TLRPC.Chat chat, boolean z10) {
+        if (v3.p0(chat)) {
+            TLRPC.Chat O0 = mp.u1(i7).O0(Long.valueOf(chat.linked_monoforum_id));
+            if (O0 != null) {
+                String str = O0.title;
                 if (z10) {
                     return str;
                 }
-                return hd.a0(null, null, 2131748346, str);
+                return gd.a0(null, null, 2131748154, str);
             }
         } else if (chat != null && chat.linked_monoforum_id != 0) {
             String str2 = chat.title;
             if (z10) {
                 return str2;
             }
-            return hd.a0(null, null, 2131748346, str2);
+            return gd.a0(null, null, 2131748154, str2);
         }
         if (chat == null) {
             return null;
@@ -215,7 +284,7 @@ public abstract class c {
         return chat.title;
     }
 
-    public static CharSequence j(TLRPC.ForumTopic forumTopic, Paint paint, Drawable[] drawableArr) {
+    public static CharSequence k(TLRPC.ForumTopic forumTopic, Paint paint, Drawable[] drawableArr) {
         int color;
         int textSize;
         int textSize2;
@@ -223,15 +292,15 @@ public abstract class c {
         if (forumTopic instanceof TLRPC.TL_forumTopic) {
             TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) forumTopic;
             Paint.FontMetricsInt fontMetricsInt = null;
-            if (tL_forumTopic.f28103id == 1) {
+            if (tL_forumTopic.f28457id == 1) {
                 try {
-                    Context context = t0.f26609b;
+                    Context context = t0.f26915b;
                     if (paint == null) {
-                        color = j6.x0(null, j6.f29115rd, false);
+                        color = n6.x0(null, n6.f29662rd, false);
                     } else {
                         color = paint.getColor();
                     }
-                    b c10 = c(context, 1.0f, color, false);
+                    b d = d(context, 1.0f, color, false);
                     if (paint == null) {
                         textSize = g0.L(14.0f);
                     } else {
@@ -242,12 +311,12 @@ public abstract class c {
                     } else {
                         textSize2 = (int) paint.getTextSize();
                     }
-                    c10.setBounds(0, 0, textSize, textSize2);
+                    d.setBounds(0, 0, textSize, textSize2);
                     spannableStringBuilder.append((CharSequence) " ");
                     if (drawableArr != null) {
-                        drawableArr[0] = c10;
+                        drawableArr[0] = d;
                     }
-                    spannableStringBuilder.setSpan(new ImageSpan(c10, 2), 0, 1, 33);
+                    spannableStringBuilder.setSpan(new ImageSpan(d, 2), 0, 1, 33);
                 } catch (Exception unused) {
                 }
             } else if (tL_forumTopic.icon_emoji_id != 0) {
@@ -256,27 +325,27 @@ public abstract class c {
                 if (paint != null) {
                     fontMetricsInt = paint.getFontMetricsInt();
                 }
-                p5 p5Var = new p5(j3, 0.95f, fontMetricsInt);
-                spannableStringBuilder.setSpan(p5Var, 0, 1, 33);
-                p5Var.top = true;
-                p5Var.cacheType = 13;
+                x5 x5Var = new x5(j3, 0.95f, fontMetricsInt);
+                spannableStringBuilder.setSpan(x5Var, 0, 1, 33);
+                x5Var.top = true;
+                x5Var.cacheType = 13;
             } else {
                 spannableStringBuilder.append((CharSequence) " ");
-                fq e10 = e(tL_forumTopic);
+                mq f10 = f(tL_forumTopic);
                 if (drawableArr != null) {
-                    drawableArr[0] = e10.f34673a;
+                    drawableArr[0] = f10.f37607a;
                 }
-                e10.setBounds(0, 0, (int) (e10.getIntrinsicWidth() * 0.65f), (int) (e10.getIntrinsicHeight() * 0.65f));
-                Drawable drawable = e10.f34674b;
-                if (drawable instanceof j70) {
-                    ((j70) drawable).f35897i = 0.7f;
+                f10.setBounds(0, 0, (int) (f10.getIntrinsicWidth() * 0.65f), (int) (f10.getIntrinsicHeight() * 0.65f));
+                Drawable drawable = f10.f37608b;
+                if (drawable instanceof u70) {
+                    ((u70) drawable).f40247i = 0.7f;
                 }
                 if (paint != null) {
-                    eq eqVar = new eq(0, e10);
-                    eqVar.c((int) (Math.abs(paint.getFontMetrics().ascent) + Math.abs(paint.getFontMetrics().descent)));
-                    spannableStringBuilder.setSpan(eqVar, 0, 1, 33);
+                    lq lqVar = new lq(0, f10);
+                    lqVar.c((int) (Math.abs(paint.getFontMetrics().ascent) + Math.abs(paint.getFontMetrics().descent)));
+                    spannableStringBuilder.setSpan(lqVar, 0, 1, 33);
                 } else {
-                    spannableStringBuilder.setSpan(new ImageSpan(e10), 0, 1, 33);
+                    spannableStringBuilder.setSpan(new ImageSpan(f10), 0, 1, 33);
                 }
             }
             if (!TextUtils.isEmpty(tL_forumTopic.title)) {
@@ -288,14 +357,14 @@ public abstract class c {
         return "DELETED";
     }
 
-    public static boolean k(gj gjVar) {
-        if (gjVar != null && (gjVar.f23819k.action instanceof TLRPC.TL_messageActionTopicCreate)) {
+    public static boolean l(fj fjVar) {
+        if (fjVar != null && (fjVar.f23968k.action instanceof TLRPC.TL_messageActionTopicCreate)) {
             return true;
         }
         return false;
     }
 
-    public static ArrayList l(ArrayList arrayList) {
+    public static ArrayList m(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         int size = arrayList.size();
         int i7 = 0;
@@ -305,9 +374,9 @@ public abstract class c {
             TLRPC.savedDialog saveddialog = (TLRPC.savedDialog) obj;
             if (saveddialog instanceof TLRPC.TL_monoForumDialog) {
                 TLRPC.TL_monoForumDialog tL_monoForumDialog = (TLRPC.TL_monoForumDialog) saveddialog;
-                long o4 = m5.o(tL_monoForumDialog.peer);
+                long o4 = n5.o(tL_monoForumDialog.peer);
                 TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
-                tL_forumTopic.f28103id = (int) ((o4 >>> 32) ^ o4);
+                tL_forumTopic.f28457id = (int) ((o4 >>> 32) ^ o4);
                 tL_forumTopic.title = Long.toString(o4);
                 tL_forumTopic.top_message = tL_monoForumDialog.top_message;
                 tL_forumTopic.read_inbox_max_id = tL_monoForumDialog.read_inbox_max_id;
@@ -324,105 +393,105 @@ public abstract class c {
         return arrayList2;
     }
 
-    public static void m(e2 e2Var, long j3, TLRPC.TL_forumTopic tL_forumTopic, int i7) {
-        an g10 = g(e2Var, j3, tL_forumTopic, i7, new Bundle());
-        if (g10 != null) {
-            e2Var.presentFragment(g10);
+    public static void n(h2 h2Var, long j3, TLRPC.TL_forumTopic tL_forumTopic, int i7) {
+        bn h = h(h2Var, j3, tL_forumTopic, i7, new Bundle());
+        if (h != null) {
+            h2Var.presentFragment(h);
         }
     }
 
-    public static void n(int i7, TLRPC.Chat chat, t8 t8Var, ImageReceiver imageReceiver) {
+    public static void o(int i7, TLRPC.Chat chat, b9 b9Var, ImageReceiver imageReceiver) {
         TLRPC.Chat chat2;
-        if (t3.p0(chat)) {
-            chat2 = np.s1(i7).M0(Long.valueOf(chat.linked_monoforum_id));
+        if (v3.p0(chat)) {
+            chat2 = mp.u1(i7).O0(Long.valueOf(chat.linked_monoforum_id));
         } else {
             chat2 = null;
         }
         if (chat2 != null) {
             chat = chat2;
         }
-        t8Var.q(chat);
-        imageReceiver.i0(chat2, t8Var, null);
+        b9Var.q(chat);
+        imageReceiver.i0(chat2, b9Var, null);
     }
 
-    public static void o(int i7, TLRPC.Chat chat, t8 t8Var, i9 i9Var) {
+    public static void p(int i7, TLRPC.Chat chat, b9 b9Var, q9 q9Var) {
         TLObject tLObject;
-        if (t3.p0(chat)) {
-            tLObject = np.s1(i7).M0(Long.valueOf(chat.linked_monoforum_id));
+        if (v3.p0(chat)) {
+            tLObject = mp.u1(i7).O0(Long.valueOf(chat.linked_monoforum_id));
         } else {
             tLObject = null;
         }
         if (tLObject != null) {
             chat = tLObject;
         }
-        t8Var.q(chat);
-        i9Var.f(tLObject, t8Var);
+        b9Var.q(chat);
+        q9Var.f(tLObject, b9Var);
     }
 
-    public static void p(i9 i9Var, TLRPC.TL_forumTopic tL_forumTopic, boolean z10, boolean z11, e6 e6Var) {
+    public static void q(q9 q9Var, TLRPC.TL_forumTopic tL_forumTopic, boolean z10, boolean z11, i6 i6Var) {
         int i7;
         ColorFilter o02;
-        if (tL_forumTopic != null && i9Var != null) {
-            if (tL_forumTopic.f28103id == 1) {
-                i9Var.setAnimatedEmojiDrawable(null);
-                Context context = i9Var.getContext();
-                int i10 = j6.f29186v8;
-                b c10 = c(context, 0.75f, j6.w0(i10, e6Var), z11);
-                i9Var.setImageDrawable(c10);
-                if (c10 != null) {
-                    q6.x(i9Var, c10, i10, e6Var, PorterDuff.Mode.MULTIPLY);
+        if (tL_forumTopic != null && q9Var != null) {
+            if (tL_forumTopic.f28457id == 1) {
+                q9Var.setAnimatedEmojiDrawable(null);
+                Context context = q9Var.getContext();
+                int i10 = n6.f29733v8;
+                b d = d(context, 0.75f, n6.w0(i10, i6Var), z11);
+                q9Var.setImageDrawable(d);
+                if (d != null) {
+                    u6.x(q9Var, d, i10, i6Var, PorterDuff.Mode.MULTIPLY);
                 }
             } else if (tL_forumTopic.icon_emoji_id != 0) {
-                i9Var.setImageDrawable(null);
-                g5 g5Var = i9Var.f35502e;
-                if (g5Var == null || tL_forumTopic.icon_emoji_id != g5Var.h()) {
+                q9Var.setImageDrawable(null);
+                o5 o5Var = q9Var.f38745e;
+                if (o5Var == null || tL_forumTopic.icon_emoji_id != o5Var.h()) {
                     if (z11) {
                         i7 = 11;
                     } else {
                         i7 = 10;
                     }
-                    g5 g5Var2 = new g5(i7, m10.f24940t0, tL_forumTopic.icon_emoji_id);
+                    o5 o5Var2 = new o5(i7, j10.f24773t0, tL_forumTopic.icon_emoji_id);
                     if (z10) {
-                        o02 = new PorterDuffColorFilter(j6.x0(null, j6.A8, false), PorterDuff.Mode.SRC_IN);
+                        o02 = new PorterDuffColorFilter(n6.x0(null, n6.A8, false), PorterDuff.Mode.SRC_IN);
                     } else {
-                        o02 = j6.o0(e6Var);
+                        o02 = n6.o0(i6Var);
                     }
-                    g5Var2.setColorFilter(o02);
-                    i9Var.setAnimatedEmojiDrawable(g5Var2);
+                    o5Var2.setColorFilter(o02);
+                    q9Var.setAnimatedEmojiDrawable(o5Var2);
                 }
             } else {
-                i9Var.setAnimatedEmojiDrawable(null);
-                i9Var.setImageDrawable(e(tL_forumTopic));
+                q9Var.setAnimatedEmojiDrawable(null);
+                q9Var.setImageDrawable(f(tL_forumTopic));
             }
         }
     }
 
-    public static void q(long j3, ActionBarLayout actionBarLayout) {
-        e2 lastFragment = actionBarLayout.getLastFragment();
-        if (lastFragment instanceof an) {
-            an anVar = (an) lastFragment;
-            if ((-anVar.a()) == j3 && anVar.getMessagesController().M0(Long.valueOf(j3)).forum && anVar.getParentLayout() != null) {
-                if (((ActionBarLayout) anVar.getParentLayout()).i()) {
-                    g0.i3(new i(anVar, 1), 500L);
+    public static void r(long j3, ActionBarLayout actionBarLayout) {
+        h2 lastFragment = actionBarLayout.getLastFragment();
+        if (lastFragment instanceof bn) {
+            bn bnVar = (bn) lastFragment;
+            if ((-bnVar.a()) == j3 && bnVar.getMessagesController().O0(Long.valueOf(j3)).forum && bnVar.getParentLayout() != null) {
+                if (((ActionBarLayout) bnVar.getParentLayout()).i()) {
+                    g0.h3(new i(bnVar, 1), 500L);
                 } else {
-                    u91.M0(anVar);
+                    y91.M0(bnVar);
                 }
             }
         }
-        if (lastFragment instanceof u91) {
-            u91 u91Var = (u91) lastFragment;
-            long j10 = u91Var.f51835a;
-            if ((-(-j10)) == j3 && !u91Var.getMessagesController().M0(Long.valueOf(j3)).forum) {
-                if (u91Var.getParentLayout() != null && ((ActionBarLayout) u91Var.getParentLayout()).i()) {
-                    g0.i3(new d(u91Var, 2), 500L);
+        if (lastFragment instanceof y91) {
+            y91 y91Var = (y91) lastFragment;
+            long j10 = y91Var.f54109a;
+            if ((-(-j10)) == j3 && !y91Var.getMessagesController().O0(Long.valueOf(j3)).forum) {
+                if (y91Var.getParentLayout() != null && ((ActionBarLayout) y91Var.getParentLayout()).i()) {
+                    g0.h3(new z0(y91Var, 5), 500L);
                     return;
                 }
-                u91Var.I = true;
+                y91Var.I = true;
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", j10);
-                an anVar2 = new an(bundle);
-                anVar2.Fa = true;
-                u91Var.presentFragment(anVar2);
+                bn bnVar2 = new bn(bundle);
+                bnVar2.Ga = true;
+                y91Var.presentFragment(bnVar2);
             }
         }
     }

@@ -3,27 +3,27 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.accessibility.AccessibilityNodeInfo;
-import c8.i9;
+import c8.l9;
 public final class v0 extends w0 {
-    public final u0 f29751h0;
-    public String f29752i0;
+    public final u0 f30091h0;
+    public String f30092i0;
 
-    public v0(Context context, e6 e6Var) {
-        super(context, e6Var);
-        this.f29752i0 = null;
+    public v0(Context context, i6 i6Var) {
+        super(context, i6Var);
+        this.f30092i0 = null;
         setFocusable(true);
         setFocusableInTouchMode(true);
         setImportantForAccessibility(1);
         u0 u0Var = new u0(this, 0);
-        this.f29751h0 = u0Var;
+        this.f30091h0 = u0Var;
         setAccessibilityDelegate(u0Var);
     }
 
     @Override
     public final int c(float f10) {
-        int i7 = j6.jk;
-        e6 e6Var = this.f29792y;
-        return i0.a.f(i9.a((((f10 * 2.8f) + 0.2f) - 1.0f) / 1.0f, 0.0f, 1.0f), j6.w0(i7, e6Var), j6.w0(j6.kk, e6Var));
+        int i7 = n6.jk;
+        i6 i6Var = this.f30142y;
+        return i0.a.f(l9.a((((f10 * 2.8f) + 0.2f) - 1.0f) / 1.0f, 0.0f, 1.0f), n6.w0(i7, i6Var), n6.w0(n6.kk, i6Var));
     }
 
     public final void e(boolean z10, float f10) {
@@ -37,19 +37,19 @@ public final class v0 extends w0 {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f29751h0.e(this, accessibilityNodeInfo);
+        this.f30091h0.e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final boolean performAccessibilityAction(int i7, Bundle bundle) {
-        if (!super.performAccessibilityAction(i7, bundle) && !this.f29751h0.g(this, i7, bundle)) {
+        if (!super.performAccessibilityAction(i7, bundle) && !this.f30091h0.g(this, i7, bundle)) {
             return false;
         }
         return true;
     }
 
     public void setLabel(String str) {
-        this.f29752i0 = str;
+        this.f30092i0 = str;
     }
 
     @Override

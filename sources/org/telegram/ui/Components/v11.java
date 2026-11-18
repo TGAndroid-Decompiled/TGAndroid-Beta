@@ -1,34 +1,25 @@
 package org.telegram.ui.Components;
+public final class v11 {
+    public static final v11 f40475a;
+    public static final v11 f40476b;
+    public static final v11 f40477c;
+    public static final v11[] d;
 
-import java.io.File;
-public final class v11 implements org.telegram.messenger.is {
-    public final String f40233a;
-    public final org.telegram.messenger.ns f40234b;
-    public final org.telegram.messenger.gj f40235c;
-
-    public v11(String str, org.telegram.messenger.ns nsVar, org.telegram.messenger.gj gjVar) {
-        this.f40233a = str;
-        this.f40234b = nsVar;
-        this.f40235c = gjVar;
+    static {
+        ?? r02 = new Enum("TOP", 0);
+        f40475a = r02;
+        ?? r12 = new Enum("LEFT", 1);
+        f40476b = r12;
+        ?? r32 = new Enum("BOTTOM", 2);
+        f40477c = r32;
+        d = new v11[]{r02, r12, r32};
     }
 
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (!this.f40233a.equals(objArr[0])) {
-            return;
-        }
-        org.telegram.messenger.ns nsVar = this.f40234b;
-        int i11 = org.telegram.messenger.ns.Y1;
-        nsVar.n(this, i11);
-        nsVar.n(this, org.telegram.messenger.ns.Z1);
-        org.telegram.messenger.gj gjVar = this.f40235c;
-        if (i7 == i11 && objArr.length > 1) {
-            Object obj = objArr[1];
-            if (obj instanceof File) {
-                x11.w(gjVar, ((File) obj).getAbsolutePath());
-                return;
-            }
-        }
-        x11.m(gjVar);
+    public static v11 valueOf(String str) {
+        return (v11) Enum.valueOf(v11.class, str);
+    }
+
+    public static v11[] values() {
+        return (v11[]) d.clone();
     }
 }

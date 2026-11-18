@@ -2,7 +2,7 @@ package gc;
 
 import cc.j;
 public abstract class a {
-    public static final char[] f13132a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
+    public static final char[] f13449a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
 
     public static void a(cc.c cVar, StringBuilder sb2, int i7, boolean z10) {
         while (i7 > 1) {
@@ -43,7 +43,7 @@ public abstract class a {
 
     public static void c(cc.c cVar, StringBuilder sb2, int i7) {
         int i10;
-        if (j.f4904c != null) {
+        if (j.f5190c != null) {
             if (i7 * 13 <= cVar.d()) {
                 byte[] bArr = new byte[i7 * 2];
                 int i11 = 0;
@@ -61,7 +61,7 @@ public abstract class a {
                     i11 += 2;
                     i7--;
                 }
-                sb2.append(new String(bArr, j.f4904c));
+                sb2.append(new String(bArr, j.f5190c));
                 return;
             }
             throw bc.c.a();
@@ -71,7 +71,7 @@ public abstract class a {
 
     public static void d(cc.c cVar, StringBuilder sb2, int i7) {
         int i10;
-        if (j.f4903b != null) {
+        if (j.f5189b != null) {
             if (i7 * 13 <= cVar.d()) {
                 byte[] bArr = new byte[i7 * 2];
                 int i11 = 0;
@@ -89,7 +89,7 @@ public abstract class a {
                     i11 += 2;
                     i7--;
                 }
-                sb2.append(new String(bArr, j.f4903b));
+                sb2.append(new String(bArr, j.f5189b));
                 return;
             }
             throw bc.c.a();
@@ -138,7 +138,7 @@ public abstract class a {
     }
 
     public static char f(int i7) {
-        char[] cArr = f13132a;
+        char[] cArr = f13449a;
         if (i7 < cArr.length) {
             return cArr[i7];
         }

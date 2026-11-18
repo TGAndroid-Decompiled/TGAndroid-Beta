@@ -5,17 +5,17 @@ import java.io.File;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class u7 {
-    public final Object f26792a;
-    public final TLRPC.Document f26793b;
-    public final String f26794c;
+    public final Object f27131a;
+    public final TLRPC.Document f27132b;
+    public final String f27133c;
     public final int d;
-    public final w7 f26795e;
+    public final w7 f27134e;
 
     public u7(w7 w7Var, Object obj, TLRPC.Document document, String str, int i7) {
-        this.f26795e = w7Var;
-        this.f26792a = obj;
-        this.f26793b = document;
-        this.f26794c = str;
+        this.f27134e = w7Var;
+        this.f27131a = obj;
+        this.f27132b = document;
+        this.f27133c = str;
         this.d = i7;
     }
 
@@ -25,36 +25,36 @@ public final class u7 {
 
     public final void b(i7 i7Var, int i7) {
         int i10;
-        Object obj = this.f26792a;
-        w7 w7Var = this.f26795e;
-        ConcurrentHashMap concurrentHashMap = w7Var.f27315x;
-        String str = this.f26794c;
+        Object obj = this.f27131a;
+        w7 w7Var = this.f27134e;
+        ConcurrentHashMap concurrentHashMap = w7Var.f27658x;
+        String str = this.f27133c;
         concurrentHashMap.remove(str);
-        w7.K.d(new mg(w7Var, i7Var.f24307e1, i7Var, 23), 0L);
-        pb pbVar = w7Var.F;
-        if (pbVar != null) {
-            pbVar.f25921b.f23481u.remove(str);
+        w7.K.d(new yf(w7Var, i7Var.f24602e1, i7Var, 23), 0L);
+        ob obVar = w7Var.F;
+        if (obVar != null) {
+            obVar.f26051b.f23697u.remove(str);
             i10 = i7;
-            g0.h3(new l2.x(pbVar, str, i10, pbVar.f25920a, 1));
+            g0.g3(new l2.x(obVar, str, i10, obVar.f26050a, 1));
         } else {
             i10 = i7;
         }
-        if (this.f26793b != null && (obj instanceof gj) && i10 == 0) {
-            z5 downloadController = w7Var.getDownloadController();
-            gj gjVar = (gj) obj;
+        if (this.f27132b != null && (obj instanceof fj) && i10 == 0) {
+            a6 downloadController = w7Var.getDownloadController();
+            fj fjVar = (fj) obj;
             downloadController.getClass();
-            g0.h3(new l7(downloadController, gjVar, i10, 2));
-            downloadController.getMessagesStorage().f27219a.c(new v5(downloadController, gjVar, 2));
+            g0.g3(new l7(downloadController, fjVar, i10, 2));
+            downloadController.getMessagesStorage().f27054a.c(new w5(downloadController, fjVar, 2));
         } else if (i10 == -1) {
             LaunchActivity.D(2);
         }
     }
 
     public final void c(i7 i7Var, File file) {
-        Object obj = this.f26792a;
-        w7 w7Var = this.f26795e;
-        if (!i7Var.f24348y && i7Var.f24350z) {
-            w7.K.d(new mg(w7Var, i7Var.f24307e1, i7Var, 23), 0L);
+        Object obj = this.f27131a;
+        w7 w7Var = this.f27134e;
+        if (!i7Var.f24643y && i7Var.f24645z) {
+            w7.K.d(new yf(w7Var, i7Var.f24602e1, i7Var, 23), 0L);
             return;
         }
         e8 E = w7.E(obj);
@@ -62,30 +62,30 @@ public final class u7 {
             f8 f8Var = w7Var.getFileLoader().d;
             f8Var.getClass();
             if (file != null) {
-                f8Var.h(new mg(f8Var, file, E, 24));
+                f8Var.h(new yf(f8Var, file, E, 24));
             }
         }
-        if (obj instanceof gj) {
-            gj gjVar = (gj) obj;
-            if (this.f26793b != null && gjVar.P) {
-                z5 downloadController = w7Var.getDownloadController();
+        if (obj instanceof fj) {
+            fj fjVar = (fj) obj;
+            if (this.f27132b != null && fjVar.P) {
+                a6 downloadController = w7Var.getDownloadController();
                 downloadController.getClass();
-                if (gjVar.F0() != null) {
-                    g0.h3(new u5(downloadController, gjVar.F0(), gjVar, 0));
+                if (fjVar.F0() != null) {
+                    g0.g3(new v5(downloadController, fjVar.F0(), fjVar, 0));
                 }
             }
         }
-        if (!i7Var.f24348y) {
-            w7Var.f27315x.remove(this.f26794c);
-            pb pbVar = w7Var.F;
-            if (pbVar != null) {
-                String str = this.f26794c;
-                Object obj2 = this.f26792a;
+        if (!i7Var.f24643y) {
+            w7Var.f27658x.remove(this.f27133c);
+            ob obVar = w7Var.F;
+            if (obVar != null) {
+                String str = this.f27133c;
+                Object obj2 = this.f27131a;
                 int i7 = this.d;
-                pbVar.f25921b.f23481u.remove(str);
-                g0.h3(new oi.e0(pbVar, file, str, pbVar.f25920a, obj2, i7));
+                obVar.f26051b.f23697u.remove(str);
+                g0.g3(new bi.p3(obVar, file, str, obVar.f26050a, obj2, i7));
             }
         }
-        w7.K.d(new mg(w7Var, i7Var.f24307e1, i7Var, 23), 0L);
+        w7.K.d(new yf(w7Var, i7Var.f24602e1, i7Var, 23), 0L);
     }
 }

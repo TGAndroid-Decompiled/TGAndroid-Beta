@@ -1,87 +1,97 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class fo extends org.telegram.ui.Components.tj0 {
-    public final go f47163c;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class fo extends org.telegram.ui.Components.t70 {
+    public final Context f47770x;
+    public final jo f47771y;
 
-    public fo(go goVar) {
-        this.f47163c = goVar;
+    public fo(jo joVar, Context context, TLRPC.Chat chat, Context context2) {
+        super(context, chat);
+        this.f47771y = joVar;
+        this.f47770x = context2;
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        if (e1Var.f58539f == 1) {
+    public final boolean a(final boolean z10, org.telegram.ui.Components.r70 r70Var) {
+        TLRPC.ChatFull chatFull;
+        int i7;
+        String str;
+        org.telegram.ui.ActionBar.i6 i6Var;
+        jo joVar = this.f47771y;
+        if (!joVar.W || (chatFull = joVar.Z) == null || (i7 = chatFull.invitesCount) == 0) {
             return true;
         }
+        if (joVar.f49021b0) {
+            if (z10) {
+                str = "ApproveNewMembersEnableForLinksChannel";
+            } else {
+                str = "ApproveNewMembersDisableForLinksChannel";
+            }
+        } else if (z10) {
+            str = "ApproveNewMembersEnableForLinks";
+        } else {
+            str = "ApproveNewMembersDisableForLinks";
+        }
+        Context context = this.f47770x;
+        i6Var = ((org.telegram.ui.ActionBar.h2) joVar).resourceProvider;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
+        String M0 = org.telegram.messenger.gd.M0(2131754202, null);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        u1Var.S = M0;
+        u1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.G(i7, str, new Object[0]));
+        alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131754204, null), new org.telegram.ui.ActionBar.r1(this) {
+            public final fo f47319b;
+
+            {
+                this.f47319b = this;
+            }
+
+            @Override
+            public final void h(org.telegram.ui.ActionBar.u1 u1Var2, int i10) {
+                switch (r3) {
+                    case 0:
+                        boolean z11 = z10;
+                        fo foVar = this.f47319b;
+                        foVar.setJoinRequest(z11);
+                        foVar.f47771y.X = true;
+                        return;
+                    default:
+                        boolean z12 = z10;
+                        fo foVar2 = this.f47319b;
+                        foVar2.setJoinRequest(z12);
+                        foVar2.f47771y.X = false;
+                        return;
+                }
+            }
+        });
+        alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131754203, null), new org.telegram.ui.ActionBar.r1(this) {
+            public final fo f47319b;
+
+            {
+                this.f47319b = this;
+            }
+
+            @Override
+            public final void h(org.telegram.ui.ActionBar.u1 u1Var2, int i10) {
+                switch (r3) {
+                    case 0:
+                        boolean z11 = z10;
+                        fo foVar = this.f47319b;
+                        foVar.setJoinRequest(z11);
+                        foVar.f47771y.X = true;
+                        return;
+                    default:
+                        boolean z12 = z10;
+                        fo foVar2 = this.f47319b;
+                        foVar2.setJoinRequest(z12);
+                        foVar2.f47771y.X = false;
+                        return;
+                }
+            }
+        });
+        joVar.showDialog(u1Var);
         return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.f47163c.f47487i3.O.size() + 2;
-    }
-
-    @Override
-    public final int d(int i7) {
-        if (i7 == 0) {
-            return 0;
-        }
-        if (i7 <= this.f47163c.f47487i3.O.size()) {
-            return 1;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        go goVar = this.f47163c;
-        ho hoVar = goVar.f47487i3;
-        int i10 = e1Var.f58539f;
-        View view = e1Var.f58535a;
-        if (i10 != 0) {
-            boolean z10 = true;
-            if (i10 != 1) {
-                if (i10 == 2) {
-                    ((org.telegram.ui.Cells.y8) view).setText(org.telegram.messenger.hd.M0(2131743643, null));
-                    return;
-                }
-                return;
-            }
-            TLRPC.TL_username tL_username = (TLRPC.TL_username) hoVar.O.get(i7 - 1);
-            ia iaVar = (ia) view;
-            if (iaVar.I) {
-                hoVar.P = null;
-            }
-            if (i7 >= hoVar.O.size()) {
-                z10 = false;
-            }
-            iaVar.a(tL_username, z10, false, 0L);
-            if (tL_username != null && tL_username.editable) {
-                hoVar.P = iaVar;
-                return;
-            }
-            return;
-        }
-        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
-        org.telegram.ui.ActionBar.q6.h(org.telegram.ui.ActionBar.j6.f28849d6, n4Var, goVar.f40069o2);
-        n4Var.setText(org.telegram.messenger.hd.M0(2131743644, null));
-    }
-
-    @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        go goVar = this.f47163c;
-        org.telegram.ui.ActionBar.e6 e6Var = goVar.f40069o2;
-        if (i7 != 0) {
-            if (i7 != 1) {
-                if (i7 != 2) {
-                    return null;
-                }
-                return new v4.e1(new org.telegram.ui.Cells.y8(12, goVar.getContext(), e6Var));
-            }
-            return new v4.e1(new da(this, goVar.getContext(), e6Var));
-        }
-        return new v4.e1(new org.telegram.ui.Cells.n4(goVar.getContext(), e6Var));
     }
 }

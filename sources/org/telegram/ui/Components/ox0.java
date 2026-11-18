@@ -1,15 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.tl.TL_iv;
-public interface ox0 {
-    hx0 c(TL_iv.pageTableCell pagetablecell, int i7);
+import android.graphics.Canvas;
+import android.view.View;
+public interface ox0 extends org.telegram.ui.Cells.t9 {
+    int b();
 
-    void g(hx0 hx0Var, int i7);
+    void d(Canvas canvas, View view);
 
-    Paint getHeaderPaint();
+    void f(View view);
 
-    Paint getLinePaint();
+    void g(int i7);
 
-    Paint getStripPaint();
+    void h(int i7);
+
+    void i(View view);
+
+    void j(int i7);
 }

@@ -1,58 +1,33 @@
 package org.telegram.ui.Components;
+public final class j11 implements Runnable {
+    public final int f36296a;
+    public final z11 f36297b;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class j11 extends a41 {
-    public static final int f35821b = 0;
-
-    static {
-        a41.h(new a41());
+    public j11(z11 z11Var, int i7) {
+        this.f36296a = i7;
+        this.f36297b = z11Var;
     }
 
     @Override
-    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
-        boolean z11;
-        int i7;
-        k11 k11Var = (k11) view;
-        boolean z12 = false;
-        if (b41Var.f33190r) {
-            k11Var.f();
-        } else {
-            Object obj = b41Var.G;
-            if (obj == null) {
-                if (b41Var.d == -2) {
-                    k11Var.c();
-                } else {
-                    if ((b41Var.f33196y & 1) != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    k11Var.d(z11, b41Var.f33189q, b41Var.f33178e);
+    public final void run() {
+        switch (this.f36296a) {
+            case 0:
+                z11 z11Var = this.f36297b;
+                if (z11Var.l()) {
+                    z11Var.m();
+                    return;
                 }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!b41Var.I) {
-                    k11Var.g(b41Var.f33195x, (TLRPC.TL_forumTopic) obj, b41Var.f33178e);
-                } else {
-                    k11Var.b(b41Var.f33195x, (TLRPC.TL_forumTopic) obj, b41Var.f33178e);
-                }
-            }
+                return;
+            default:
+                z11 z11Var2 = this.f36297b;
+                o11 o11Var = z11Var2.K;
+                o11Var.z1(true);
+                m11 m11Var = z11Var2.f42750y;
+                m11Var.z1(true);
+                z11Var2.N.a(true, true);
+                org.telegram.messenger.g0.Z3(m11Var);
+                org.telegram.messenger.g0.Z3(o11Var);
+                return;
         }
-        if (c8.zc.a(b41Var.f33196y, 8)) {
-            i7 = org.telegram.messenger.g0.L(10.0f);
-        } else {
-            i7 = 0;
-        }
-        k11Var.M = i7;
-        if (u41Var != null && u41Var.f39895k3 && k11Var.f36233s) {
-            z12 = true;
-        }
-        k11Var.setReorder(z12);
-    }
-
-    @Override
-    public final View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new k11(i7, context, e6Var);
     }
 }

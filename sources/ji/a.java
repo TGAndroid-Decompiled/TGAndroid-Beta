@@ -1,35 +1,34 @@
 package ji;
 
 import android.text.SpannableStringBuilder;
+import org.telegram.messenger.f3;
+import org.telegram.messenger.fj;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.k5;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-import org.telegram.messenger.q10;
-import org.telegram.messenger.si;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.ri;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.bf;
-import org.telegram.ui.Components.dg;
-import org.telegram.ui.Components.e0;
-import org.telegram.ui.Components.gf;
-import org.telegram.ui.Components.he;
-import org.telegram.ui.Components.m60;
-import org.telegram.ui.Components.wc;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.an;
-import org.telegram.ui.bg0;
-import org.telegram.ui.zg;
+import org.telegram.ui.Components.gd;
+import org.telegram.ui.Components.hd;
+import org.telegram.ui.Components.lf;
+import org.telegram.ui.Components.lg;
+import org.telegram.ui.Components.n0;
+import org.telegram.ui.Components.pf;
+import org.telegram.ui.Components.re;
+import org.telegram.ui.Components.y60;
+import org.telegram.ui.bn;
+import org.telegram.ui.ci;
+import org.telegram.ui.eg0;
 public final class a implements Runnable {
-    public final int f17421a;
-    public final e f17422b;
+    public final int f17807a;
+    public final e f17808b;
 
     public a(e eVar, int i7) {
-        this.f17421a = i7;
-        this.f17422b = eVar;
+        this.f17807a = i7;
+        this.f17808b = eVar;
     }
 
     @Override
@@ -37,42 +36,42 @@ public final class a implements Runnable {
         e eVar;
         androidx.activity.n nVar;
         int i7;
-        int i10 = this.f17421a;
-        e eVar2 = this.f17422b;
+        int i10 = this.f17807a;
+        e eVar2 = this.f17808b;
         switch (i10) {
             case 0:
-                if (!eVar2.R && eVar2.W <= 0.0f && (eVar = ((m) eVar2.f17453a.d).K) != null) {
+                if (!eVar2.R && eVar2.W <= 0.0f && (eVar = ((m) eVar2.f17838a.d).K) != null) {
                     g0.E2(eVar);
                     return;
                 }
                 return;
             default:
-                if (eVar2.f17477f0 == 0) {
-                    eVar2.f17477f0 = -1;
+                if (eVar2.f17862f0 == 0) {
+                    eVar2.f17862f0 = -1;
                     eVar2.invalidate();
                     try {
                         eVar2.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    m mVar = (m) eVar2.f17453a.d;
-                    String trim = mVar.f17586n.trim();
-                    if (!trim.isEmpty() && mVar.f17573c == 4) {
-                        gf gfVar = mVar.f17571b;
+                    m mVar = (m) eVar2.f17838a.d;
+                    String trim = mVar.f17979n.trim();
+                    if (!trim.isEmpty() && mVar.f17966c == 4) {
+                        pf pfVar = mVar.f17964b;
                         f fVar = new f(mVar, 0);
                         e eVar3 = mVar.K;
-                        ChatActivityEnterView chatActivityEnterView = gfVar.f34928a;
-                        e6 e6Var = chatActivityEnterView.E4;
-                        an anVar = chatActivityEnterView.f32319x3;
-                        he heVar = chatActivityEnterView.K0;
-                        if (heVar != null && heVar.getWidth() > 0) {
-                            bg0 bg0Var = chatActivityEnterView.M0;
-                            if (bg0Var != null) {
-                                bg0Var.h(false);
+                        ChatActivityEnterView chatActivityEnterView = pfVar.f38384a;
+                        i6 i6Var = chatActivityEnterView.K4;
+                        bn bnVar = chatActivityEnterView.D3;
+                        re reVar = chatActivityEnterView.K0;
+                        if (reVar != null && reVar.getWidth() > 0) {
+                            eg0 eg0Var = chatActivityEnterView.M0;
+                            if (eg0Var != null) {
+                                eg0Var.h(false);
                             }
-                            g0.r(chatActivityEnterView.X5);
-                            bf bfVar = new bf(chatActivityEnterView, chatActivityEnterView.getContext(), e6Var, eVar3);
-                            chatActivityEnterView.M0 = bfVar;
-                            bfVar.setOnDismissListener(new wc(chatActivityEnterView, 0));
+                            g0.r(chatActivityEnterView.f32571d6);
+                            lf lfVar = new lf(chatActivityEnterView, chatActivityEnterView.getContext(), i6Var, eVar3);
+                            chatActivityEnterView.M0 = lfVar;
+                            lfVar.setOnDismissListener(new gd(chatActivityEnterView, 0));
                             if (eVar3 != null) {
                                 nVar = new androidx.activity.n(eVar3);
                             } else {
@@ -81,68 +80,68 @@ public final class a implements Runnable {
                             boolean z10 = true;
                             boolean[] zArr = new boolean[1];
                             if (nVar != null) {
-                                bg0 bg0Var2 = chatActivityEnterView.M0;
+                                eg0 eg0Var2 = chatActivityEnterView.M0;
                                 ?? obj = new Object();
-                                obj.f990c = zArr;
+                                obj.f989c = zArr;
                                 obj.d = nVar;
-                                obj.f989b = new float[4];
-                                bg0Var2.m0 = obj;
-                                bg0Var2.f45724n0 = nVar;
+                                obj.f988b = new float[4];
+                                eg0Var2.m0 = obj;
+                                eg0Var2.f47241n0 = nVar;
                             }
                             TLRPC.TL_message tL_message = new TLRPC.TL_message();
                             tL_message.out = true;
-                            tL_message.peer_id = np.s1(chatActivityEnterView.R).z1(chatActivityEnterView.f32327y3);
-                            tL_message.from_id = np.s1(chatActivityEnterView.R).z1(m10.i(chatActivityEnterView.R).e());
+                            tL_message.peer_id = mp.u1(chatActivityEnterView.R).B1(chatActivityEnterView.E3);
+                            tL_message.from_id = mp.u1(chatActivityEnterView.R).B1(j10.i(chatActivityEnterView.R).e());
                             CharSequence[] charSequenceArr = {new SpannableStringBuilder(trim)};
-                            gj.d(charSequenceArr[0], true);
-                            tL_message.entities.addAll(si.b0(chatActivityEnterView.R).W(charSequenceArr, true, true));
+                            fj.d(charSequenceArr[0], true);
+                            tL_message.entities.addAll(ri.d0(chatActivityEnterView.R).Y(charSequenceArr, true, true));
                             tL_message.message = charSequenceArr[0].toString();
-                            gj gjVar = chatActivityEnterView.B3;
-                            if (gjVar != null && !gjVar.f23838p) {
+                            fj fjVar = chatActivityEnterView.H3;
+                            if (fjVar != null && !fjVar.f23987p) {
                                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
-                                gj gjVar2 = chatActivityEnterView.C3;
-                                if (gjVar2 != null) {
+                                fj fjVar2 = chatActivityEnterView.I3;
+                                if (fjVar2 != null) {
                                     tL_messageReplyHeader.flags = 2 | tL_messageReplyHeader.flags;
-                                    tL_messageReplyHeader.reply_to_top_id = gjVar2.e1();
+                                    tL_messageReplyHeader.reply_to_top_id = fjVar2.e1();
                                 }
                                 tL_messageReplyHeader.flags |= 16;
-                                tL_messageReplyHeader.reply_to_msg_id = chatActivityEnterView.B3.e1();
+                                tL_messageReplyHeader.reply_to_msg_id = chatActivityEnterView.H3.e1();
                                 tL_message.reply_to = tL_messageReplyHeader;
                             }
-                            gj gjVar3 = new gj(chatActivityEnterView.R, tL_message, false, false);
-                            gj gjVar4 = chatActivityEnterView.B3;
-                            if (gjVar4 != null && !gjVar4.f23838p) {
-                                gjVar3.C = gjVar4;
+                            fj fjVar3 = new fj(chatActivityEnterView.R, tL_message, false, false);
+                            fj fjVar4 = chatActivityEnterView.H3;
+                            if (fjVar4 != null && !fjVar4.f23987p) {
+                                fjVar3.C = fjVar4;
                             }
-                            gjVar3.B0 = true;
-                            gjVar3.W2 = Boolean.TRUE;
-                            gjVar3.D = 0;
-                            gjVar3.n0(null);
-                            gjVar3.f23867w1 = true;
-                            chatActivityEnterView.M0.r(k5.j(gjVar3));
-                            yc ycVar = new yc(chatActivityEnterView, zArr, fVar, trim);
-                            chatActivityEnterView.M0.s(heVar, true, new e0(ycVar, 6));
-                            if (chatActivityEnterView.f32327y3 >= 0) {
-                                chatActivityEnterView.M0.c(anVar);
-                                chatActivityEnterView.M0.p(chatActivityEnterView.f32251n6);
+                            fjVar3.B0 = true;
+                            fjVar3.W2 = Boolean.TRUE;
+                            fjVar3.D = 0;
+                            fjVar3.n0(null);
+                            fjVar3.f24016w1 = true;
+                            chatActivityEnterView.M0.r(f3.i(fjVar3));
+                            hd hdVar = new hd(chatActivityEnterView, zArr, fVar, trim);
+                            chatActivityEnterView.M0.s(reVar, true, new n0(hdVar, 6));
+                            if (chatActivityEnterView.E3 >= 0) {
+                                chatActivityEnterView.M0.c(bnVar);
+                                chatActivityEnterView.M0.p(chatActivityEnterView.N6);
                             }
-                            m60 F = m60.F(chatActivityEnterView, e6Var, heVar);
-                            if (anVar == null || !q10.B(anVar.j())) {
+                            y60 G = y60.G(chatActivityEnterView, i6Var, reVar);
+                            if (bnVar == null || !o10.C(bnVar.j())) {
                                 z10 = false;
                             }
-                            if (anVar != null && anVar.S6()) {
+                            if (bnVar != null && bnVar.S6()) {
                                 if (z10) {
-                                    i7 = 2131745514;
+                                    i7 = 2131745319;
                                 } else {
-                                    i7 = 2131745859;
+                                    i7 = 2131745664;
                                 }
-                                F.c(2131232078, hd.M0(i7, null), new zg(26, chatActivityEnterView, ycVar), false);
+                                G.c(2131232079, org.telegram.messenger.gd.M0(i7, null), new ci(22, chatActivityEnterView, hdVar), false);
                             }
                             if (!z10 && (chatActivityEnterView.H0 <= 0 || chatActivityEnterView.c())) {
-                                F.c(2131231508, hd.M0(2131745583, null), new dg(ycVar, 18), false);
+                                G.c(2131231509, org.telegram.messenger.gd.M0(2131745388, null), new lg(hdVar, 18), false);
                             }
-                            F.Y();
-                            chatActivityEnterView.M0.q(F);
+                            G.Z();
+                            chatActivityEnterView.M0.q(G);
                             chatActivityEnterView.M0.show();
                             return;
                         }

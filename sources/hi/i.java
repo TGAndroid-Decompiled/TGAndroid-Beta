@@ -7,31 +7,31 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.KeyEvent;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.j90;
-import org.telegram.ui.Components.ki;
-public final class i extends j90 {
+import org.telegram.ui.Components.si;
+import org.telegram.ui.Components.t90;
+public final class i extends t90 {
     public final int W;
-    public final KeyEvent.Callback f14393a0;
+    public final KeyEvent.Callback f14742a0;
 
-    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.e2 e2Var, org.telegram.ui.ActionBar.e6 e6Var, int i7) {
-        super(context, j3, 0L, e2Var, e6Var);
+    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.h2 h2Var, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
+        super(context, j3, 0L, h2Var, i6Var);
         this.W = i7;
-        this.f14393a0 = callback;
+        this.f14742a0 = callback;
     }
 
     @Override
     public void f(Canvas canvas, Rect rect, float f10) {
         switch (this.W) {
             case 0:
-                m mVar = (m) this.f14393a0;
-                Paint paint = mVar.f14621e;
-                RectF rectF = mVar.f14649z0;
+                n nVar = (n) this.f14742a0;
+                Paint paint = nVar.f15049e;
+                RectF rectF = nVar.f15077z0;
                 rectF.set(rect);
-                if (mVar.g()) {
-                    mVar.h(mVar.U, canvas, mVar.f14649z0, f10, false, -mVar.N.getX(), -mVar.N.getY(), false);
+                if (nVar.g()) {
+                    nVar.h(nVar.U, canvas, nVar.f15077z0, f10, false, -nVar.N.getX(), -nVar.N.getY(), false);
                     return;
                 }
-                Paint c10 = mVar.U.c(1.0f);
+                Paint c10 = nVar.U.c(1.0f);
                 if (c10 == null) {
                     paint.setAlpha(128);
                     canvas.drawRoundRect(rectF, f10, f10, paint);
@@ -61,7 +61,7 @@ public final class i extends j90 {
     public void i() {
         switch (this.W) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ki) this.f14393a0).f36435e2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((si) this.f14742a0).f39670e2;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.Y();
                     return;
@@ -76,7 +76,7 @@ public final class i extends j90 {
     public void n(boolean z10) {
         switch (this.W) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ki) this.f14393a0).f36435e2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((si) this.f14742a0).f39670e2;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.Y();
                     return;

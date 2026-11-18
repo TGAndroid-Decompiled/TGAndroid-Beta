@@ -3,36 +3,36 @@ package u7;
 import android.location.Location;
 import android.os.IInterface;
 import android.os.Parcel;
-import c8.yb;
+import c8.bc;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import org.telegram.messenger.y9;
+import org.telegram.messenger.x9;
 import q6.h0;
 public final class a implements Continuation, com.google.android.gms.common.api.internal.q, com.google.android.gms.common.api.internal.n {
-    public static final a f57866a = new Object();
-    public static final a f57867b = new Object();
-    public static final a f57868c = new Object();
+    public static final a f58433a = new Object();
+    public static final a f58434b = new Object();
+    public static final a f58435c = new Object();
 
-    public void a(l lVar, com.google.android.gms.common.api.internal.m mVar, boolean z10, TaskCompletionSource taskCompletionSource) {
+    public void a(k kVar, com.google.android.gms.common.api.internal.m mVar, boolean z10, TaskCompletionSource taskCompletionSource) {
         n6.c[] cVarArr;
         IInterface aVar;
         IInterface aVar2;
-        synchronized (lVar.G) {
+        synchronized (kVar.G) {
             try {
-                j jVar = (j) lVar.G.remove(mVar);
-                if (jVar == null) {
+                i iVar = (i) kVar.G.remove(mVar);
+                if (iVar == null) {
                     taskCompletionSource.setResult(Boolean.FALSE);
                     return;
                 }
                 n6.c cVar = null;
-                jVar.f57882b.i().f6055b = null;
+                iVar.f58447b.i().f6338b = null;
                 if (z10) {
-                    h0 h0Var = lVar.B;
+                    h0 h0Var = kVar.B;
                     if (h0Var == null) {
                         cVarArr = null;
                     } else {
-                        cVarArr = h0Var.f55334b;
+                        cVarArr = h0Var.f55908b;
                     }
                     if (cVarArr != null) {
                         int length = cVarArr.length;
@@ -42,52 +42,52 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                                 break;
                             }
                             n6.c cVar2 = cVarArr[i7];
-                            if ("location_updates_with_callback".equals(cVar2.f21064a)) {
+                            if ("location_updates_with_callback".equals(cVar2.f21428a)) {
                                 cVar = cVar2;
                                 break;
                             }
                             i7++;
                         }
                         if (cVar != null && cVar.b() >= 1) {
-                            y yVar = (y) lVar.n();
+                            x xVar = (x) kVar.n();
                             e eVar = new e(Boolean.TRUE, taskCompletionSource);
-                            Parcel p12 = yVar.p1();
-                            int i10 = d.f57871a;
+                            Parcel p12 = xVar.p1();
+                            int i10 = d.f58438a;
                             p12.writeInt(1);
-                            int r10 = yb.r(p12, 20293);
-                            yb.q(p12, 1, 4);
+                            int r10 = bc.r(p12, 20293);
+                            bc.q(p12, 1, 4);
                             p12.writeInt(2);
-                            yb.f(p12, 3, jVar);
-                            yb.s(p12, r10);
+                            bc.f(p12, 3, iVar);
+                            bc.s(p12, r10);
                             d.c(p12, eVar);
-                            yVar.t1(p12, 89);
+                            xVar.t1(p12, 89);
                         }
                     }
-                    y yVar2 = (y) lVar.n();
+                    x xVar2 = (x) kVar.n();
                     g gVar = new g(taskCompletionSource);
-                    int i11 = j.f57881c;
-                    IInterface queryLocalInterface = jVar.queryLocalInterface("com.google.android.gms.location.ILocationCallback");
+                    int i11 = i.f58446c;
+                    IInterface queryLocalInterface = iVar.queryLocalInterface("com.google.android.gms.location.ILocationCallback");
                     if (queryLocalInterface instanceof j8.j) {
                         aVar = (j8.j) queryLocalInterface;
                     } else {
-                        aVar = new a8.a(jVar, "com.google.android.gms.location.ILocationCallback", 10);
+                        aVar = new a8.a(iVar, "com.google.android.gms.location.ILocationCallback", 10);
                     }
                     IInterface queryLocalInterface2 = gVar.queryLocalInterface("com.google.android.gms.location.internal.IFusedLocationProviderCallback");
-                    if (queryLocalInterface2 instanceof x) {
-                        aVar2 = (x) queryLocalInterface2;
+                    if (queryLocalInterface2 instanceof w) {
+                        aVar2 = (w) queryLocalInterface2;
                     } else {
                         aVar2 = new a8.a(gVar, "com.google.android.gms.location.internal.IFusedLocationProviderCallback", 10);
                     }
-                    Parcel p13 = yVar2.p1();
-                    int i12 = d.f57871a;
+                    Parcel p13 = xVar2.p1();
+                    int i12 = d.f58438a;
                     p13.writeInt(1);
-                    int r11 = yb.r(p13, 20293);
-                    yb.q(p13, 1, 4);
+                    int r11 = bc.r(p13, 20293);
+                    bc.q(p13, 1, 4);
                     p13.writeInt(2);
-                    yb.f(p13, 5, aVar.asBinder());
-                    yb.f(p13, 6, aVar2.asBinder());
-                    yb.s(p13, r11);
-                    yVar2.t1(p13, 59);
+                    bc.f(p13, 5, aVar.asBinder());
+                    bc.f(p13, 6, aVar2.asBinder());
+                    bc.s(p13, r11);
+                    xVar2.t1(p13, 59);
                 } else {
                     taskCompletionSource.setResult(Boolean.TRUE);
                 }
@@ -100,15 +100,15 @@ public final class a implements Continuation, com.google.android.gms.common.api.
     @Override
     public void accept(Object obj, Object obj2) {
         n6.c[] cVarArr;
-        l lVar = (l) obj;
+        k kVar = (k) obj;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
         j8.a aVar = new j8.a(Long.MAX_VALUE, 0, false, null, null);
-        h0 h0Var = lVar.B;
+        h0 h0Var = kVar.B;
         n6.c cVar = null;
         if (h0Var == null) {
             cVarArr = null;
         } else {
-            cVarArr = h0Var.f55334b;
+            cVarArr = h0Var.f55908b;
         }
         if (cVarArr != null) {
             int length = cVarArr.length;
@@ -118,30 +118,30 @@ public final class a implements Continuation, com.google.android.gms.common.api.
                     break;
                 }
                 n6.c cVar2 = cVarArr[i7];
-                if ("get_last_location_with_request".equals(cVar2.f21064a)) {
+                if ("get_last_location_with_request".equals(cVar2.f21428a)) {
                     cVar = cVar2;
                     break;
                 }
                 i7++;
             }
             if (cVar != null && cVar.b() >= 1) {
-                y yVar = (y) lVar.n();
+                x xVar = (x) kVar.n();
                 f fVar = new f(0, taskCompletionSource);
-                Parcel p12 = yVar.p1();
-                int i10 = d.f57871a;
+                Parcel p12 = xVar.p1();
+                int i10 = d.f58438a;
                 p12.writeInt(1);
                 aVar.writeToParcel(p12, 0);
                 d.c(p12, fVar);
-                yVar.t1(p12, 82);
+                xVar.t1(p12, 82);
                 return;
             }
         }
-        y yVar2 = (y) lVar.n();
-        Parcel p13 = yVar2.p1();
+        x xVar2 = (x) kVar.n();
+        Parcel p13 = xVar2.p1();
         Parcel obtain = Parcel.obtain();
         try {
             try {
-                yVar2.f306b.transact(7, p13, obtain, 0);
+                xVar2.f306b.transact(7, p13, obtain, 0);
                 obtain.readException();
                 p13.recycle();
                 obtain.recycle();
@@ -157,8 +157,8 @@ public final class a implements Continuation, com.google.android.gms.common.api.
     }
 
     @Override
-    public void g(Object obj) {
-        ((y9) obj).getClass();
+    public void q(Object obj) {
+        ((x9) obj).getClass();
     }
 
     @Override

@@ -10,31 +10,31 @@ import f3.q;
 import f3.s;
 import f3.t;
 import h9.g0;
-import h9.s1;
+import h9.t1;
 import java.util.List;
 public final class a implements o {
-    public final int f20931a = 0;
-    public final Object f20932b;
+    public final int f21295a = 0;
+    public final Object f21296b;
 
     public a(int i7) {
         if ((i7 & 1) != 0) {
-            this.f20932b = new d0(65496, 2, "image/jpeg");
+            this.f21296b = new d0(65496, 2, "image/jpeg");
         } else {
-            this.f20932b = new b();
+            this.f21296b = new b();
         }
     }
 
     @Override
     public final o a() {
-        int i7 = this.f20931a;
+        int i7 = this.f21295a;
         return this;
     }
 
     @Override
     public final boolean b(p pVar) {
-        switch (this.f20931a) {
+        switch (this.f21295a) {
             case 0:
-                return ((o) this.f20932b).b(pVar);
+                return ((o) this.f21296b).b(pVar);
             default:
                 return true;
         }
@@ -42,28 +42,28 @@ public final class a implements o {
 
     @Override
     public final void c(q qVar) {
-        switch (this.f20931a) {
+        switch (this.f21295a) {
             case 0:
-                ((o) this.f20932b).c(qVar);
+                ((o) this.f21296b).c(qVar);
                 return;
             default:
                 i0 d2 = qVar.d2(0, 3);
-                qVar.f(new t(-9223372036854775807L));
+                qVar.j(new t(-9223372036854775807L));
                 qVar.d1();
-                u uVar = (u) this.f20932b;
+                u uVar = (u) this.f21296b;
                 e2.t a10 = uVar.a();
-                a10.f10399r = s0.n("text/x-unknown");
-                a10.f10391j = uVar.f10451s;
-                r.b.s(a10, d2);
+                a10.f10717r = s0.n("text/x-unknown");
+                a10.f10709j = uVar.f10769s;
+                p5.c.r(a10, d2);
                 return;
         }
     }
 
     @Override
     public final void d(long j3, long j10) {
-        switch (this.f20931a) {
+        switch (this.f21295a) {
             case 0:
-                ((o) this.f20932b).d(j3, j10);
+                ((o) this.f21296b).d(j3, j10);
                 return;
             default:
                 return;
@@ -72,19 +72,19 @@ public final class a implements o {
 
     @Override
     public final List e() {
-        switch (this.f20931a) {
+        switch (this.f21295a) {
             case 0:
             default:
-                g0 g0Var = h9.i0.f13686b;
-                return s1.f13749e;
+                g0 g0Var = h9.i0.f14006b;
+                return t1.f14074e;
         }
     }
 
     @Override
     public final int f(p pVar, s sVar) {
-        switch (this.f20931a) {
+        switch (this.f21295a) {
             case 0:
-                return ((o) this.f20932b).f(pVar, sVar);
+                return ((o) this.f21296b).f(pVar, sVar);
             default:
                 if (pVar.skip(Integer.MAX_VALUE) == -1) {
                     return -1;
@@ -95,9 +95,9 @@ public final class a implements o {
 
     @Override
     public final void release() {
-        switch (this.f20931a) {
+        switch (this.f21295a) {
             case 0:
-                ((o) this.f20932b).release();
+                ((o) this.f21296b).release();
                 return;
             default:
                 return;
@@ -105,7 +105,7 @@ public final class a implements o {
     }
 
     public a(u uVar) {
-        this.f20932b = uVar;
+        this.f21296b = uVar;
     }
 
     private final void g() {

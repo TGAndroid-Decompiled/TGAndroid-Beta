@@ -1,31 +1,31 @@
 package org.telegram.ui.web;
 
 import android.os.Bundle;
-import org.telegram.messenger.hd;
-import org.telegram.messenger.q10;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.o10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.an;
-import org.telegram.ui.n31;
-public final class a0 extends an {
-    public boolean f52568ud;
-    public final TLRPC.User f52569vd;
-    public final long f52570wd;
-    public final v0 f52571xd;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.bn;
+import org.telegram.ui.qx0;
+public final class a0 extends bn {
+    public boolean f53099vd;
+    public final TLRPC.User f53100wd;
+    public final long f53101xd;
+    public final v0 f53102yd;
 
     public a0(v0 v0Var, Bundle bundle, TLRPC.User user, long j3) {
         super(bundle);
-        this.f52571xd = v0Var;
-        this.f52569vd = user;
-        this.f52570wd = j3;
+        this.f53102yd = v0Var;
+        this.f53100wd = user;
+        this.f53101xd = j3;
     }
 
     @Override
     public final void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
-        if (!this.f52568ud) {
-            this.f52568ud = true;
-            cc.a0(this).I(2131623990, hd.a0(null, null, 2131751739, q10.p(this.f52569vd)), org.telegram.messenger.g0.U2(hd.a0(null, null, 2131751740, q10.p(this.f52571xd.V)), new n31(this, this.f52570wd, 1))).j();
+        if (!this.f53099vd) {
+            this.f53099vd = true;
+            lc.b0(this).I(2131623990, gd.a0(null, null, 2131751728, o10.q(this.f53100wd)), org.telegram.messenger.g0.T2(gd.a0(null, null, 2131751729, o10.q(this.f53102yd.V)), new qx0(this, this.f53101xd, 2))).j();
         }
     }
 }

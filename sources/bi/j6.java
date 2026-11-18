@@ -1,21 +1,26 @@
 package bi;
 
-import org.telegram.tgnet.RequestDelegate;
-public final class j6 implements RequestDelegate {
-    public final int f3637a;
-    public final Object f3638b;
-    public final Object f3639c;
-    public final Object d;
+import android.content.Context;
+import org.telegram.ui.Components.lc;
+public final class j6 extends di.f6 {
+    public final int A3;
+    public final k6 B3;
 
-    public j6(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3637a = i7;
-        this.f3638b = obj;
-        this.f3639c = obj2;
-        this.d = obj3;
+    public j6(k6 k6Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.i6 i6Var, int i10) {
+        super(context, i7, j3, i6Var, null);
+        this.A3 = i10;
+        this.B3 = k6Var;
     }
 
     @Override
-    public final void run(org.telegram.tgnet.TLObject r11, org.telegram.tgnet.TLRPC.TL_error r12) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.j6.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final lc k() {
+        switch (this.A3) {
+            case 0:
+                return lc.b0(this.B3.f3813a.f4003a);
+            case 1:
+                return lc.b0(this.B3.f3813a.f4003a);
+            default:
+                return lc.b0(this.B3.f3813a.f4003a);
+        }
     }
 }

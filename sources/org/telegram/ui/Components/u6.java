@@ -1,69 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import org.telegram.messenger.MediaController;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class u6 implements Runnable {
-    public final int f39933a;
-    public final y7 f39934b;
-    public final org.telegram.messenger.gj f39935c;
+public final class u6 extends View {
+    public final ImageReceiver f40217a;
+    public final Drawable f40218b;
+    public final Paint f40219c;
+    public final Paint d;
 
-    public u6(y7 y7Var, org.telegram.messenger.gj gjVar, int i7) {
-        this.f39933a = i7;
-        this.f39934b = y7Var;
-        this.f39935c = gjVar;
+    public u6(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f40219c = paint;
+        this.d = new Paint(1);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f40217a = imageReceiver;
+        imageReceiver.setAlpha(0.0f);
+        imageReceiver.f22642h1 = new b0(this, 11);
+        this.f40218b = context.getDrawable(2131231495).mutate().getConstantState().newDrawable();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f39933a;
-        org.telegram.messenger.gj gjVar = this.f39935c;
-        y7 y7Var = this.f39934b;
-        switch (i7) {
-            case 0:
-                org.telegram.messenger.hp hpVar = y7Var.f41905q2;
-                if (hpVar != null) {
-                    TLRPC.Document a10 = hpVar.a();
-                    hpVar.f24205c.remove(gjVar);
-                    if (hpVar.a() != a10) {
-                        hpVar.e();
-                    }
-                    if (y7Var.f41905q2.f24205c.isEmpty()) {
-                        MediaController.B().o();
-                        y7Var.dismiss();
-                        return;
-                    }
-                    org.telegram.messenger.ns.f(y7Var.f29679a).k(244, y7Var.f41905q2);
-                    return;
-                }
-                return;
-            default:
-                LaunchActivity launchActivity = y7Var.A2;
-                int i10 = org.telegram.messenger.m10.f24940t0;
-                int i11 = y7Var.f29679a;
-                if (i10 != i11) {
-                    launchActivity.O0(i11);
-                }
-                Bundle bundle = new Bundle();
-                long B0 = org.telegram.messenger.gj.B0(gjVar.f23819k);
-                if (org.telegram.messenger.m5.C(B0)) {
-                    bundle.putInt("enc_id", (int) (B0 & 4294967295L));
-                } else if (org.telegram.messenger.m5.E(B0)) {
-                    bundle.putLong("user_id", B0);
-                } else {
-                    TLRPC.Chat M0 = org.telegram.messenger.np.s1(y7Var.f29679a).M0(Long.valueOf(-B0));
-                    if (M0 != null && M0.migrated_to != null) {
-                        bundle.putLong("migrated_to", B0);
-                        B0 = -M0.migrated_to.channel_id;
-                    }
-                    bundle.putLong("chat_id", -B0);
-                }
-                bundle.putInt("message_id", gjVar.e1());
-                org.telegram.messenger.ns.f(y7Var.f29679a).k(4, new Object[0]);
-                launchActivity.u0(new org.telegram.ui.an(bundle), false, false);
-                y7Var.dismiss();
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f40217a.P();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f40217a.R();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(10.0f) + getHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), this.d);
+        ImageReceiver imageReceiver = this.f40217a;
+        imageReceiver.y0((getWidth() / 2.0f) - org.telegram.messenger.g0.L(66.0f), (getHeight() / 2.0f) - (org.telegram.messenger.g0.L(42.0f) / 2.0f), org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(42.0f));
+        imageReceiver.h(canvas, null);
+        Paint paint = this.f40219c;
+        canvas.drawLine((getWidth() / 2.0f) - org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - org.telegram.messenger.g0.L(8.0f), getWidth() / 2.0f, org.telegram.messenger.g0.L(8.0f) + (getHeight() / 2.0f), paint);
+        int L = org.telegram.messenger.g0.L(24.0f) + (getWidth() / 2);
+        int height = (getHeight() / 2) - (org.telegram.messenger.g0.L(42.0f) / 2);
+        int L2 = org.telegram.messenger.g0.L(66.0f) + (getWidth() / 2);
+        int L3 = (org.telegram.messenger.g0.L(42.0f) / 2) + (getHeight() / 2);
+        Drawable drawable = this.f40218b;
+        drawable.setBounds(L, height, L2, L3);
+        drawable.draw(canvas);
+    }
+
+    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        TLRPC.TL_attachMenuBotIcon m0 = org.telegram.messenger.ri.m0(tL_attachMenuBot);
+        if (m0 != null) {
+            this.f40217a.q0(org.telegram.messenger.fc.b(m0.icon), "42_42", org.telegram.messenger.u5.f(m0.icon, org.telegram.ui.ActionBar.n6.f29635q5, 1.0f, null), "svg", tL_attachMenuBot, 0);
         }
+    }
+
+    @Override
+    public void setBackgroundColor(int i7) {
+        this.d.setColor(i7);
+    }
+
+    public void setColor(int i7) {
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.f40218b.setColorFilter(i7, mode);
+        this.f40219c.setColor(i7);
+        this.f40217a.f22656p1 = new PorterDuffColorFilter(i7, mode);
     }
 }

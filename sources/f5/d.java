@@ -1,10 +1,10 @@
 package f5;
 public final class d {
-    public final m f10971a;
-    public final String f10972b;
+    public final m f11279a;
+    public final String f11280b;
 
     public d(wf.b bVar) {
-        this.f10971a = (m) bVar.f59107b;
-        this.f10972b = (String) bVar.f59108c;
+        this.f11279a = (m) bVar.f59672b;
+        this.f11280b = (String) bVar.f59673c;
     }
 }

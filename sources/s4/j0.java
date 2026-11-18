@@ -10,7 +10,7 @@ import android.view.Display;
 import com.google.android.gms.internal.vision.h3;
 import java.util.ArrayList;
 import java.util.Locale;
-import org.telegram.messenger.ou;
+import org.telegram.ui.Components.hn;
 public class j0 extends k0 implements b0 {
     public static final ArrayList J;
     public static final ArrayList K;
@@ -19,11 +19,11 @@ public class j0 extends k0 implements b0 {
     public boolean G;
     public final ArrayList H;
     public final ArrayList I;
-    public final e f56400r;
-    public final MediaRouter f56401s;
-    public final a0 f56402w;
-    public final MediaRouter.VolumeCallback f56403x;
-    public final MediaRouter.RouteCategory f56404y;
+    public final e f56974r;
+    public final MediaRouter f56975s;
+    public final a0 f56976w;
+    public final MediaRouter.VolumeCallback f56977x;
+    public final MediaRouter.RouteCategory f56978y;
 
     static {
         IntentFilter intentFilter = new IntentFilter();
@@ -39,15 +39,15 @@ public class j0 extends k0 implements b0 {
     }
 
     public j0(Context context, e eVar) {
-        super(context, new ou(new ComponentName("android", k0.class.getName()), 22));
+        super(context, new hn(new ComponentName("android", k0.class.getName()), 15));
         this.H = new ArrayList();
         this.I = new ArrayList();
-        this.f56400r = eVar;
+        this.f56974r = eVar;
         MediaRouter mediaRouter = (MediaRouter) context.getSystemService("media_router");
-        this.f56401s = mediaRouter;
-        this.f56402w = new a0(this);
-        this.f56403x = d0.a(this);
-        this.f56404y = mediaRouter.createRouteCategory((CharSequence) context.getResources().getString(2131689667), false);
+        this.f56975s = mediaRouter;
+        this.f56976w = new a0(this);
+        this.f56977x = d0.a(this);
+        this.f56978y = mediaRouter.createRouteCategory((CharSequence) context.getResources().getString(2131689667), false);
         B();
     }
 
@@ -61,8 +61,8 @@ public class j0 extends k0 implements b0 {
 
     public void A() {
         boolean z10 = this.G;
-        a0 a0Var = this.f56402w;
-        MediaRouter mediaRouter = this.f56401s;
+        a0 a0Var = this.f56976w;
+        MediaRouter mediaRouter = this.f56975s;
         if (z10) {
             mediaRouter.removeCallback(a0Var);
         }
@@ -72,7 +72,7 @@ public class j0 extends k0 implements b0 {
 
     public final void B() {
         A();
-        MediaRouter mediaRouter = this.f56401s;
+        MediaRouter mediaRouter = this.f56975s;
         int routeCount = mediaRouter.getRouteCount();
         ArrayList arrayList = new ArrayList(routeCount);
         boolean z10 = false;
@@ -93,27 +93,27 @@ public class j0 extends k0 implements b0 {
 
     public void C(i0 i0Var) {
         int i7;
-        MediaRouter.UserRouteInfo userRouteInfo = i0Var.f56398b;
-        v vVar = i0Var.f56397a;
+        MediaRouter.UserRouteInfo userRouteInfo = i0Var.f56972b;
+        v vVar = i0Var.f56971a;
         userRouteInfo.setName(vVar.d);
-        userRouteInfo.setPlaybackType(vVar.f56477l);
-        userRouteInfo.setPlaybackStream(vVar.f56478m);
-        userRouteInfo.setVolume(vVar.f56481p);
-        userRouteInfo.setVolumeMax(vVar.f56482q);
+        userRouteInfo.setPlaybackType(vVar.f57051l);
+        userRouteInfo.setPlaybackStream(vVar.f57052m);
+        userRouteInfo.setVolume(vVar.f57055p);
+        userRouteInfo.setVolumeMax(vVar.f57056q);
         if (vVar.e() && !x.g()) {
             i7 = 0;
         } else {
-            i7 = vVar.f56480o;
+            i7 = vVar.f57054o;
         }
         userRouteInfo.setVolumeHandling(i7);
-        userRouteInfo.setDescription(vVar.f56471e);
+        userRouteInfo.setDescription(vVar.f57045e);
     }
 
     @Override
     public final void a(MediaRouter.RouteInfo routeInfo, int i7) {
         i0 s5 = s(routeInfo);
         if (s5 != null) {
-            s5.f56397a.j(i7);
+            s5.f56971a.j(i7);
         }
     }
 
@@ -121,7 +121,7 @@ public class j0 extends k0 implements b0 {
     public final void b(MediaRouter.RouteInfo routeInfo, int i7) {
         i0 s5 = s(routeInfo);
         if (s5 != null) {
-            s5.f56397a.k(i7);
+            s5.f56971a.k(i7);
         }
     }
 
@@ -129,7 +129,7 @@ public class j0 extends k0 implements b0 {
     public final q d(String str) {
         int p10 = p(str);
         if (p10 >= 0) {
-            return new g0(((h0) this.H.get(p10)).f56392a);
+            return new g0(((h0) this.H.get(p10)).f56966a);
         }
         return null;
     }
@@ -140,7 +140,7 @@ public class j0 extends k0 implements b0 {
         int i7 = 0;
         if (nVar != null) {
             nVar.a();
-            ArrayList c10 = nVar.f56424b.c();
+            ArrayList c10 = nVar.f56998b.c();
             int size = c10.size();
             int i10 = 0;
             while (i7 < size) {
@@ -176,7 +176,7 @@ public class j0 extends k0 implements b0 {
         }
         MediaRouter.RouteInfo r10 = r();
         String str3 = "";
-        Context context = this.f6926a;
+        Context context = this.f7209a;
         if (r10 == routeInfo) {
             format = "DEFAULT_ROUTE";
         } else {
@@ -208,7 +208,7 @@ public class j0 extends k0 implements b0 {
         }
         l lVar = new l(format, str3);
         u(h0Var, lVar);
-        h0Var.f56394c = lVar.b();
+        h0Var.f56968c = lVar.b();
         this.H.add(h0Var);
         return true;
     }
@@ -217,7 +217,7 @@ public class j0 extends k0 implements b0 {
         ArrayList arrayList = this.H;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
-            if (((h0) arrayList.get(i7)).f56392a == routeInfo) {
+            if (((h0) arrayList.get(i7)).f56966a == routeInfo) {
                 return i7;
             }
         }
@@ -228,7 +228,7 @@ public class j0 extends k0 implements b0 {
         ArrayList arrayList = this.H;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
-            if (((h0) arrayList.get(i7)).f56393b.equals(str)) {
+            if (((h0) arrayList.get(i7)).f56967b.equals(str)) {
                 return i7;
             }
         }
@@ -239,7 +239,7 @@ public class j0 extends k0 implements b0 {
         ArrayList arrayList = this.I;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
-            if (((i0) arrayList.get(i7)).f56397a == vVar) {
+            if (((i0) arrayList.get(i7)).f56971a == vVar) {
                 return i7;
             }
         }
@@ -247,16 +247,16 @@ public class j0 extends k0 implements b0 {
     }
 
     public MediaRouter.RouteInfo r() {
-        return this.f56401s.getDefaultRoute();
+        return this.f56975s.getDefaultRoute();
     }
 
     public boolean t(h0 h0Var) {
-        return h0Var.f56392a.isConnecting();
+        return h0Var.f56966a.isConnecting();
     }
 
     public void u(h0 h0Var, l lVar) {
         boolean z10;
-        MediaRouter.RouteInfo routeInfo = h0Var.f56392a;
+        MediaRouter.RouteInfo routeInfo = h0Var.f56966a;
         int supportedTypes = routeInfo.getSupportedTypes();
         if ((supportedTypes & 1) != 0) {
             lVar.a(J);
@@ -265,8 +265,8 @@ public class j0 extends k0 implements b0 {
             lVar.a(K);
         }
         int playbackType = routeInfo.getPlaybackType();
-        Bundle bundle = lVar.f56410a;
-        Bundle bundle2 = lVar.f56410a;
+        Bundle bundle = lVar.f56984a;
+        Bundle bundle2 = lVar.f56984a;
         bundle.putInt("playbackType", playbackType);
         bundle2.putInt("playbackStream", routeInfo.getPlaybackStream());
         bundle2.putInt("volume", routeInfo.getVolume());
@@ -296,19 +296,19 @@ public class j0 extends k0 implements b0 {
 
     public final void v(v vVar) {
         h3 c10 = vVar.c();
-        MediaRouter mediaRouter = this.f56401s;
+        MediaRouter mediaRouter = this.f56975s;
         if (c10 != this) {
-            MediaRouter.UserRouteInfo createUserRoute = mediaRouter.createUserRoute(this.f56404y);
+            MediaRouter.UserRouteInfo createUserRoute = mediaRouter.createUserRoute(this.f56978y);
             i0 i0Var = new i0(vVar, createUserRoute);
             createUserRoute.setTag(i0Var);
-            createUserRoute.setVolumeCallback(this.f56403x);
+            createUserRoute.setVolumeCallback(this.f56977x);
             C(i0Var);
             this.I.add(i0Var);
             mediaRouter.addUserRoute(createUserRoute);
             return;
         }
         int o4 = o(mediaRouter.getSelectedRoute(8388611));
-        if (o4 >= 0 && ((h0) this.H.get(o4)).f56393b.equals(vVar.f56469b)) {
+        if (o4 >= 0 && ((h0) this.H.get(o4)).f56967b.equals(vVar.f57043b)) {
             vVar.l();
         }
     }
@@ -316,11 +316,11 @@ public class j0 extends k0 implements b0 {
     public final void w(v vVar) {
         int q10;
         if (vVar.c() != this && (q10 = q(vVar)) >= 0) {
-            MediaRouter.UserRouteInfo userRouteInfo = ((i0) this.I.remove(q10)).f56398b;
+            MediaRouter.UserRouteInfo userRouteInfo = ((i0) this.I.remove(q10)).f56972b;
             userRouteInfo.setTag(null);
             userRouteInfo.setVolumeCallback(null);
             try {
-                this.f56401s.removeUserRoute(userRouteInfo);
+                this.f56975s.removeUserRoute(userRouteInfo);
             } catch (IllegalArgumentException e10) {
                 Log.w("AxSysMediaRouteProvider", "Failed to remove user route", e10);
             }
@@ -332,14 +332,14 @@ public class j0 extends k0 implements b0 {
             if (vVar.c() != this) {
                 int q10 = q(vVar);
                 if (q10 >= 0) {
-                    z(((i0) this.I.get(q10)).f56398b);
+                    z(((i0) this.I.get(q10)).f56972b);
                     return;
                 }
                 return;
             }
-            int p10 = p(vVar.f56469b);
+            int p10 = p(vVar.f57043b);
             if (p10 >= 0) {
-                z(((h0) this.H.get(p10)).f56392a);
+                z(((h0) this.H.get(p10)).f56966a);
             }
         }
     }
@@ -349,7 +349,7 @@ public class j0 extends k0 implements b0 {
         ArrayList arrayList2 = this.H;
         int size = arrayList2.size();
         for (int i7 = 0; i7 < size; i7++) {
-            m mVar = ((h0) arrayList2.get(i7)).f56394c;
+            m mVar = ((h0) arrayList2.get(i7)).f56968c;
             if (mVar != null) {
                 if (!arrayList.contains(mVar)) {
                     arrayList.add(mVar);
@@ -364,6 +364,6 @@ public class j0 extends k0 implements b0 {
     }
 
     public void z(MediaRouter.RouteInfo routeInfo) {
-        this.f56401s.selectRoute(8388611, routeInfo);
+        this.f56975s.selectRoute(8388611, routeInfo);
     }
 }

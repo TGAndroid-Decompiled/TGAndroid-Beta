@@ -34,7 +34,9 @@ import com.google.android.gms.tasks.Tasks;
 import gb.h1;
 import gb.i1;
 import gb.u0;
-import h9.s1;
+import h9.g1;
+import h9.t1;
+import hi.u5;
 import j$.util.DesugarCollections;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
@@ -56,24 +58,24 @@ import java.util.concurrent.atomic.AtomicReference;
 import l.a0;
 import org.json.JSONObject;
 import r0.i0;
-import r0.k1;
 import r0.l0;
+import r0.l1;
 import s4.t0;
 public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListener, ib.b, g9.k, i6.a, j6.n {
-    public final int f55251a;
-    public Object f55252b;
-    public Object f55253c;
+    public final int f55825a;
+    public Object f55826b;
+    public Object f55827c;
 
     public q(int i7, Object obj, Object obj2) {
-        this.f55251a = i7;
-        this.f55253c = obj;
-        this.f55252b = obj2;
+        this.f55825a = i7;
+        this.f55827c = obj;
+        this.f55826b = obj2;
     }
 
-    public static String g(q qVar) {
-        Collection<String> collection = (Collection) qVar.f55253c;
+    public static String h(q qVar) {
+        Collection<String> collection = (Collection) qVar.f55827c;
         StringBuilder sb2 = new StringBuilder("com.google.android.gms.cast.CATEGORY_CAST");
-        String str = (String) qVar.f55252b;
+        String str = (String) qVar.f55826b;
         if (str != null) {
             String upperCase = str.toUpperCase(Locale.ROOT);
             if (upperCase.matches("[A-F0-9]+")) {
@@ -95,7 +97,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                     if (!z10) {
                         sb2.append(",");
                     }
-                    if (!j6.a.f16857a.matcher(str2).matches()) {
+                    if (!j6.a.f17242a.matcher(str2).matches()) {
                         StringBuilder sb3 = new StringBuilder(str2.length());
                         for (int i7 = 0; i7 < str2.length(); i7++) {
                             char charAt = str2.charAt(i7);
@@ -125,25 +127,20 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     }
 
     @Override
-    public java.lang.Object G(ce.d r7, kd.c r8) {
-        throw new UnsupportedOperationException("Method not decompiled: q4.q.G(ce.d, kd.c):java.lang.Object");
-    }
-
-    @Override
-    public k1 M0(View view, k1 k1Var) {
-        c5.l lVar = (c5.l) this.f55253c;
-        k1 g10 = i0.g(view, k1Var);
-        if (g10.f55682a.n()) {
+    public l1 P0(View view, l1 l1Var) {
+        c5.l lVar = (c5.l) this.f55827c;
+        l1 g10 = i0.g(view, l1Var);
+        if (g10.f56258a.n()) {
             return g10;
         }
-        Rect rect = (Rect) this.f55252b;
+        Rect rect = (Rect) this.f55826b;
         rect.left = g10.b();
         rect.top = g10.d();
         rect.right = g10.c();
         rect.bottom = g10.a();
         int childCount = lVar.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
-            k1 b10 = i0.b(lVar.getChildAt(i7), g10);
+            l1 b10 = i0.b(lVar.getChildAt(i7), g10);
             rect.left = Math.min(b10.b(), rect.left);
             rect.top = Math.min(b10.d(), rect.top);
             rect.right = Math.min(b10.c(), rect.right);
@@ -154,12 +151,12 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     public f3.o a(Object... objArr) {
         Constructor b10;
-        synchronized (((AtomicBoolean) this.f55253c)) {
-            if (!((AtomicBoolean) this.f55253c).get()) {
+        synchronized (((AtomicBoolean) this.f55827c)) {
+            if (!((AtomicBoolean) this.f55827c).get()) {
                 try {
-                    b10 = ((di.o) this.f55252b).b();
+                    b10 = ((ci.v) this.f55826b).b();
                 } catch (ClassNotFoundException unused) {
-                    ((AtomicBoolean) this.f55253c).set(true);
+                    ((AtomicBoolean) this.f55827c).set(true);
                 } catch (Exception e10) {
                     throw new RuntimeException("Error instantiating extension", e10);
                 }
@@ -178,26 +175,26 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public Object apply(Object obj) {
-        return ((g9.k) ((ob.c) this.f55252b).f21417b).apply(obj);
+        return ((g9.k) ((g1) this.f55826b).f14001b).apply(obj);
     }
 
     public synchronized Map b() {
         try {
-            if (((Map) this.f55253c) == null) {
-                this.f55253c = DesugarCollections.unmodifiableMap(new HashMap((HashMap) this.f55252b));
+            if (((Map) this.f55827c) == null) {
+                this.f55827c = DesugarCollections.unmodifiableMap(new HashMap((HashMap) this.f55826b));
             }
         } catch (Throwable th2) {
             throw th2;
         }
-        return (Map) this.f55253c;
+        return (Map) this.f55827c;
     }
 
     public void c(k.a aVar) {
-        c0 c0Var = (c0) this.f55252b;
-        ((ActionMode.Callback) c0Var.f909b).onDestroyActionMode(c0Var.m(aVar));
-        g.s sVar = (g.s) this.f55253c;
+        c0 c0Var = (c0) this.f55826b;
+        ((ActionMode.Callback) c0Var.f908b).onDestroyActionMode(c0Var.m(aVar));
+        g.s sVar = (g.s) this.f55827c;
         if (sVar.F != null) {
-            sVar.f12712f.getDecorView().removeCallbacks(sVar.G);
+            sVar.f13029f.getDecorView().removeCallbacks(sVar.G);
         }
         if (sVar.E != null) {
             l0 l0Var = sVar.H;
@@ -209,97 +206,97 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             sVar.H = a10;
             a10.d(new g.j(this, 2));
         }
-        sVar.f12729y = null;
+        sVar.f13046y = null;
         ViewGroup viewGroup = sVar.K;
-        WeakHashMap weakHashMap = i0.f55671a;
+        WeakHashMap weakHashMap = i0.f56244a;
         r0.y.c(viewGroup);
         sVar.y();
     }
 
     public boolean d(k.a aVar, Menu menu) {
-        ViewGroup viewGroup = ((g.s) this.f55253c).K;
-        WeakHashMap weakHashMap = i0.f55671a;
+        ViewGroup viewGroup = ((g.s) this.f55827c).K;
+        WeakHashMap weakHashMap = i0.f56244a;
         r0.y.c(viewGroup);
-        c0 c0Var = (c0) this.f55252b;
-        ActionMode.Callback callback = (ActionMode.Callback) c0Var.f909b;
+        c0 c0Var = (c0) this.f55826b;
+        ActionMode.Callback callback = (ActionMode.Callback) c0Var.f908b;
         k.e m10 = c0Var.m(aVar);
-        a0.l lVar = (a0.l) c0Var.f911e;
+        a0.l lVar = (a0.l) c0Var.f910e;
         Menu menu2 = (Menu) lVar.get(menu);
         if (menu2 == null) {
-            menu2 = new a0((Context) c0Var.f910c, (l.k) menu);
+            menu2 = new a0((Context) c0Var.f909c, (l.k) menu);
             lVar.put(menu, menu2);
         }
         return callback.onPrepareActionMode(m10, menu2);
     }
 
     public void e(android.support.v4.media.session.s sVar, Handler handler) {
-        l lVar = (l) this.f55252b;
+        l lVar = (l) this.f55826b;
         synchronized (lVar.d) {
-            lVar.f55243l = sVar;
-            lVar.f55234a.setCallback((android.support.v4.media.session.r) sVar.f1739e, handler);
+            lVar.f55817l = sVar;
+            lVar.f55808a.setCallback((android.support.v4.media.session.r) sVar.f1730e, handler);
             sVar.d0(lVar, handler);
         }
     }
 
     public void f(w wVar) {
-        l lVar = (l) this.f55252b;
-        lVar.f55239g = wVar;
+        l lVar = (l) this.f55826b;
+        lVar.f55813g = wVar;
         synchronized (lVar.d) {
-            for (int beginBroadcast = lVar.f55238f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+            for (int beginBroadcast = lVar.f55812f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                 try {
-                    ((b) lVar.f55238f.getBroadcastItem(beginBroadcast)).T0(wVar);
+                    ((b) lVar.f55812f.getBroadcastItem(beginBroadcast)).T0(wVar);
                 } catch (RemoteException | SecurityException e10) {
                     h2.a.d("MediaSessionCompat", "Dead object in setPlaybackState.", e10);
                 }
             }
-            lVar.f55238f.finishBroadcast();
+            lVar.f55812f.finishBroadcast();
         }
-        MediaSession mediaSession = lVar.f55234a;
-        if (wVar.f55273x == null) {
+        MediaSession mediaSession = lVar.f55808a;
+        if (wVar.f55847x == null) {
             PlaybackState.Builder builder = new PlaybackState.Builder();
-            builder.setState(wVar.f55264a, wVar.f55265b, wVar.d, wVar.f55269n);
-            builder.setBufferedPosition(wVar.f55266c);
-            builder.setActions(wVar.f55267e);
+            builder.setState(wVar.f55838a, wVar.f55839b, wVar.d, wVar.f55843n);
+            builder.setBufferedPosition(wVar.f55840c);
+            builder.setActions(wVar.f55841e);
             builder.setErrorMessage(wVar.h);
-            for (v vVar : wVar.f55270r) {
+            for (v vVar : wVar.f55844r) {
                 vVar.getClass();
-                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(vVar.f55261a, vVar.f55262b, vVar.f55263c);
+                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(vVar.f55835a, vVar.f55836b, vVar.f55837c);
                 builder2.setExtras(vVar.d);
                 PlaybackState.CustomAction build = builder2.build();
                 if (build != null) {
                     builder.addCustomAction(build);
                 }
             }
-            builder.setActiveQueueItemId(wVar.f55271s);
-            builder.setExtras(wVar.f55272w);
-            wVar.f55273x = builder.build();
+            builder.setActiveQueueItemId(wVar.f55845s);
+            builder.setExtras(wVar.f55846w);
+            wVar.f55847x = builder.build();
         }
-        mediaSession.setPlaybackState(wVar.f55273x);
+        mediaSession.setPlaybackState(wVar.f55847x);
+    }
+
+    @Override
+    public void g(String str, long j3, long j10, long j11) {
+        j6.n nVar = (j6.n) this.f55826b;
+        if (nVar != null) {
+            nVar.g(str, j3, j10, j11);
+        }
     }
 
     @Override
     public Object mo24get() {
-        return new u0((h1) ((ib.c) this.f55252b).mo24get(), (i1) ((ib.c) this.f55253c).mo24get());
+        return new u0((h1) ((ib.c) this.f55826b).mo24get(), (i1) ((ib.c) this.f55827c).mo24get());
     }
 
     @Override
-    public void h(String str, long j3, long j10, long j11) {
-        j6.n nVar = (j6.n) this.f55252b;
-        if (nVar != null) {
-            nVar.h(str, j3, j10, j11);
-        }
-    }
-
-    @Override
-    public void k(String str, long j3, int i7, Object obj, long j10, long j11) {
+    public void j(String str, long j3, int i7, Object obj, long j10, long j11) {
         int i10;
-        j6.m mVar = (j6.m) this.f55253c;
-        if (((j6.n) this.f55252b) != null) {
+        j6.m mVar = (j6.m) this.f55827c;
+        if (((j6.n) this.f55826b) != null) {
             if (i7 == 2001) {
-                Object[] objArr = {Integer.valueOf(mVar.f16872i)};
-                j6.b bVar = mVar.f16894a;
-                Log.w(bVar.f16859a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
-                Iterator it = ((h6.h) mVar.h.f13134b).f13613i.iterator();
+                Object[] objArr = {Integer.valueOf(mVar.f17257i)};
+                j6.b bVar = mVar.f17279a;
+                Log.w(bVar.f17244a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
+                Iterator it = ((h6.h) mVar.h.f7881b).f13928i.iterator();
                 while (it.hasNext()) {
                     ((h6.g) it.next()).o();
                 }
@@ -307,67 +304,67 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             } else {
                 i10 = i7;
             }
-            ((j6.n) this.f55252b).k(str, j3, i10, obj, j10, j11);
+            ((j6.n) this.f55826b).j(str, j3, i10, obj, j10, j11);
         }
     }
 
     @Override
     public void onComplete(Task task) {
-        d9.c cVar = (d9.c) this.f55252b;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f55253c;
-        synchronized (cVar.f7614f) {
-            cVar.f7613e.remove(taskCompletionSource);
+        d9.c cVar = (d9.c) this.f55826b;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f55827c;
+        synchronized (cVar.f7897f) {
+            cVar.f7896e.remove(taskCompletionSource);
         }
     }
 
     @Override
     public Task then(Object obj) {
         FileWriter fileWriter;
-        switch (this.f55251a) {
+        switch (this.f55825a) {
             case 3:
                 Boolean bool = (Boolean) obj;
-                aa.p pVar = (aa.p) this.f55253c;
+                aa.p pVar = (aa.p) this.f55827c;
                 if (!bool.booleanValue()) {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Deleting cached crash reports...", null);
                     }
-                    for (File file : ga.d.i(((File) pVar.f836g.d).listFiles(aa.p.f829r))) {
+                    for (File file : ga.d.i(((File) pVar.f835g.d).listFiles(aa.p.f828r))) {
                         file.delete();
                     }
-                    ga.d dVar = pVar.f841m.f801b.f12959b;
-                    ga.b.b(ga.d.i(((File) dVar.f12966f).listFiles()));
+                    ga.d dVar = pVar.f840m.f800b.f13276b;
+                    ga.b.b(ga.d.i(((File) dVar.f13283f).listFiles()));
                     ga.b.b(ga.d.i(((File) dVar.h).listFiles()));
-                    ga.b.b(ga.d.i(((File) dVar.f12967n).listFiles()));
-                    pVar.f845q.trySetResult(null);
+                    ga.b.b(ga.d.i(((File) dVar.f13284n).listFiles()));
+                    pVar.f844q.trySetResult(null);
                     return Tasks.forResult(null);
                 }
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "Sending cached crash reports...", null);
                 }
                 boolean booleanValue = bool.booleanValue();
-                aa.w wVar = pVar.f832b;
+                aa.w wVar = pVar.f831b;
                 if (booleanValue) {
                     wVar.h.trySetResult(null);
-                    return ((Task) this.f55252b).onSuccessTask(pVar.f834e.f3093a, new d6.i(this, 1));
+                    return ((Task) this.f55826b).onSuccessTask(pVar.f833e.f3087a, new d6.i(this, 1));
                 }
                 wVar.getClass();
                 throw new IllegalStateException("An invalid data collection token was used.");
             default:
                 Void r10 = (Void) obj;
-                ia.c cVar = (ia.c) this.f55253c;
-                JSONObject jSONObject = (JSONObject) ((ba.e) this.f55252b).f3095c.f3090a.submit(new aa.s(this, 3)).get();
+                ia.c cVar = (ia.c) this.f55827c;
+                JSONObject jSONObject = (JSONObject) ((ba.e) this.f55826b).f3089c.f3084a.submit(new aa.s(this, 2)).get();
                 FileWriter fileWriter2 = null;
                 if (jSONObject != null) {
-                    ia.b S = ((ia.d) cVar.f15875c).S(jSONObject);
-                    hi.l0 l0Var = (hi.l0) cVar.f15876e;
-                    long j3 = S.f15870c;
-                    l0Var.getClass();
+                    ia.b s5 = ((u5) cVar.f16193c).s(jSONObject);
+                    g1 g1Var = (g1) cVar.f16194e;
+                    long j3 = s5.f16188c;
+                    g1Var.getClass();
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Writing settings to cache file...", null);
                     }
                     try {
                         jSONObject.put("expires_at", j3);
-                        fileWriter = new FileWriter((File) l0Var.f14544b);
+                        fileWriter = new FileWriter((File) g1Var.f14001b);
                         try {
                             try {
                                 fileWriter.write(jSONObject.toString());
@@ -383,11 +380,11 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                             Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
                             aa.g.b(fileWriter, "Failed to close settings writer.");
                             ia.c.d("Loaded settings: ", jSONObject);
-                            SharedPreferences.Editor edit = ((Context) cVar.f15873a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
-                            edit.putString("existing_instance_identifier", (String) ((ia.f) cVar.f15874b).f15887f);
+                            SharedPreferences.Editor edit = ((Context) cVar.f16191a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                            edit.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16192b).f16203f);
                             edit.apply();
-                            ((AtomicReference) cVar.h).set(S);
-                            ((TaskCompletionSource) ((AtomicReference) cVar.f15879i).get()).trySetResult(S);
+                            ((AtomicReference) cVar.h).set(s5);
+                            ((TaskCompletionSource) ((AtomicReference) cVar.f16197i).get()).trySetResult(s5);
                             return Tasks.forResult(null);
                         }
                     } catch (Exception e11) {
@@ -400,104 +397,109 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                     }
                     aa.g.b(fileWriter, "Failed to close settings writer.");
                     ia.c.d("Loaded settings: ", jSONObject);
-                    SharedPreferences.Editor edit2 = ((Context) cVar.f15873a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
-                    edit2.putString("existing_instance_identifier", (String) ((ia.f) cVar.f15874b).f15887f);
+                    SharedPreferences.Editor edit2 = ((Context) cVar.f16191a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                    edit2.putString("existing_instance_identifier", (String) ((ia.e) cVar.f16192b).f16203f);
                     edit2.apply();
-                    ((AtomicReference) cVar.h).set(S);
-                    ((TaskCompletionSource) ((AtomicReference) cVar.f15879i).get()).trySetResult(S);
+                    ((AtomicReference) cVar.h).set(s5);
+                    ((TaskCompletionSource) ((AtomicReference) cVar.f16197i).get()).trySetResult(s5);
                 }
                 return Tasks.forResult(null);
         }
     }
 
     @Override
-    public void x(Bitmap bitmap) {
-        wf.b bVar = (wf.b) this.f55252b;
-        bVar.f59108c = bitmap;
-        i6.f fVar = (i6.f) this.f55253c;
-        fVar.f15823l = bVar;
+    public java.lang.Object v(ce.d r7, kd.c r8) {
+        throw new UnsupportedOperationException("Method not decompiled: q4.q.v(ce.d, kd.c):java.lang.Object");
+    }
+
+    @Override
+    public void v0(Bitmap bitmap) {
+        wf.b bVar = (wf.b) this.f55826b;
+        bVar.f59673c = bitmap;
+        i6.f fVar = (i6.f) this.f55827c;
+        fVar.f16141l = bVar;
         fVar.b();
     }
 
     public q(int i7, boolean z10) {
-        this.f55251a = i7;
+        this.f55825a = i7;
     }
 
     public q(Context context) {
-        this.f55251a = 14;
-        this.f55252b = context;
+        this.f55825a = 14;
+        this.f55826b = context;
     }
 
     public q(Object obj, Object obj2, boolean z10, int i7) {
-        this.f55251a = i7;
-        this.f55252b = obj;
-        this.f55253c = obj2;
+        this.f55825a = i7;
+        this.f55826b = obj;
+        this.f55827c = obj2;
     }
 
     public q(int i7) {
-        this.f55251a = i7;
+        this.f55825a = i7;
         switch (i7) {
             case 15:
-                this.f55252b = new ConcurrentHashMap(16, 0.75f, 10);
-                this.f55253c = new ReferenceQueue();
+                this.f55826b = new ConcurrentHashMap(16, 0.75f, 10);
+                this.f55827c = new ReferenceQueue();
                 return;
             case 28:
-                this.f55252b = new HashMap();
+                this.f55826b = new HashMap();
                 return;
             default:
-                this.f55252b = new AtomicInteger();
-                this.f55253c = new AtomicInteger();
+                this.f55826b = new AtomicInteger();
+                this.f55827c = new AtomicInteger();
                 return;
         }
     }
 
     public q(Animation animation) {
-        this.f55251a = 6;
-        this.f55252b = animation;
-        this.f55253c = null;
+        this.f55825a = 6;
+        this.f55826b = animation;
+        this.f55827c = null;
     }
 
     public q(Animator animator) {
-        this.f55251a = 6;
-        this.f55252b = null;
+        this.f55825a = 6;
+        this.f55826b = null;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f55253c = animatorSet;
+        this.f55827c = animatorSet;
         animatorSet.play(animator);
     }
 
     public q(ArrayList arrayList, ArrayList arrayList2) {
-        this.f55251a = 23;
+        this.f55825a = 23;
         int size = arrayList.size();
-        this.f55252b = new int[size];
-        this.f55253c = new float[size];
+        this.f55826b = new int[size];
+        this.f55827c = new float[size];
         for (int i7 = 0; i7 < size; i7++) {
-            ((int[]) this.f55252b)[i7] = ((Integer) arrayList.get(i7)).intValue();
-            ((float[]) this.f55253c)[i7] = ((Float) arrayList2.get(i7)).floatValue();
+            ((int[]) this.f55826b)[i7] = ((Integer) arrayList.get(i7)).intValue();
+            ((float[]) this.f55827c)[i7] = ((Float) arrayList2.get(i7)).floatValue();
         }
     }
 
     public q(int i7, int i10) {
-        this.f55251a = 23;
-        this.f55252b = new int[]{i7, i10};
-        this.f55253c = new float[]{0.0f, 1.0f};
+        this.f55825a = 23;
+        this.f55826b = new int[]{i7, i10};
+        this.f55827c = new float[]{0.0f, 1.0f};
     }
 
     public q(int i7, int i10, int i11) {
-        this.f55251a = 23;
-        this.f55252b = new int[]{i7, i10, i11};
-        this.f55253c = new float[]{0.0f, 0.5f, 1.0f};
+        this.f55825a = 23;
+        this.f55826b = new int[]{i7, i10, i11};
+        this.f55827c = new float[]{0.0f, 0.5f, 1.0f};
     }
 
     public q(d3.e eVar) {
-        this.f55251a = 16;
-        this.f55253c = eVar;
+        this.f55825a = 16;
+        this.f55827c = eVar;
     }
 
     public q(Context context, String str, ComponentName componentName, PendingIntent pendingIntent, Bundle bundle) {
-        this.f55251a = 0;
+        this.f55825a = 0;
         if (!TextUtils.isEmpty(str)) {
             if (componentName == null) {
-                int i7 = t0.f56463b;
+                int i7 = t0.f57037b;
                 Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
                 intent.setPackage(context.getPackageName());
                 List<ResolveInfo> queryBroadcastReceivers = context.getPackageManager().queryBroadcastReceivers(intent, 0);
@@ -521,44 +523,44 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             }
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 29) {
-                this.f55252b = new l(context, str, bundle);
+                this.f55826b = new l(context, str, bundle);
             } else if (i10 >= 28) {
-                this.f55252b = new l(context, str, bundle);
+                this.f55826b = new l(context, str, bundle);
             } else {
-                this.f55252b = new l(context, str, bundle);
+                this.f55826b = new l(context, str, bundle);
             }
             Looper myLooper = Looper.myLooper();
             e(new android.support.v4.media.session.s(1), new Handler(myLooper == null ? Looper.getMainLooper() : myLooper));
-            ((l) this.f55252b).f55234a.setMediaButtonReceiver(pendingIntent);
-            p pVar = ((l) this.f55252b).f55236c;
+            ((l) this.f55826b).f55808a.setMediaButtonReceiver(pendingIntent);
+            p pVar = ((l) this.f55826b).f55810c;
             ?? obj = new Object();
             DesugarCollections.synchronizedSet(new HashSet());
             if (Build.VERSION.SDK_INT >= 29) {
-                obj.f55260a = new f(context, pVar);
+                obj.f55834a = new f(context, pVar);
             } else {
-                obj.f55260a = new f(context, pVar);
+                obj.f55834a = new f(context, pVar);
             }
-            this.f55253c = obj;
+            this.f55827c = obj;
             return;
         }
         throw new IllegalArgumentException("tag must not be null or empty");
     }
 
-    public q(s1 s1Var, int[] iArr) {
-        this.f55251a = 25;
-        this.f55252b = h9.i0.q(s1Var);
-        this.f55253c = iArr;
+    public q(t1 t1Var, int[] iArr) {
+        this.f55825a = 25;
+        this.f55826b = h9.i0.q(t1Var);
+        this.f55827c = iArr;
     }
 
     public q(c5.l lVar) {
-        this.f55251a = 8;
-        this.f55253c = lVar;
-        this.f55252b = new Rect();
+        this.f55825a = 8;
+        this.f55827c = lVar;
+        this.f55826b = new Rect();
     }
 
-    public q(di.o oVar) {
-        this.f55251a = 18;
-        this.f55252b = oVar;
-        this.f55253c = new AtomicBoolean(false);
+    public q(ci.v vVar) {
+        this.f55825a = 18;
+        this.f55826b = vVar;
+        this.f55827c = new AtomicBoolean(false);
     }
 }

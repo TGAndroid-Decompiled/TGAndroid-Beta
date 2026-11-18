@@ -1,8 +1,8 @@
 package li;
 public interface j0 {
-    void I();
+    void A(long j3);
+
+    void F();
 
     void close();
-
-    void y(long j3);
 }

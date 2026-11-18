@@ -1,8 +1,8 @@
 package oi;
 public final class l3 {
-    public final q3 f21798a;
+    public final s3 f22158a;
 
-    public l3(q3 q3Var) {
-        this.f21798a = q3Var;
+    public l3(s3 s3Var) {
+        this.f22158a = s3Var;
     }
 }

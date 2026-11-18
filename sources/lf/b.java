@@ -1,4 +1,4 @@
 package lf;
 public interface b {
-    a a(wf.b bVar);
+    a d(wf.b bVar);
 }

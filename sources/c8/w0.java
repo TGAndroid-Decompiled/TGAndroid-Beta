@@ -1,24 +1,16 @@
 package c8;
-
-import com.google.android.gms.tasks.Task;
-import java.util.concurrent.CancellationException;
 public abstract class w0 {
-    public static final Object a(Task task, gb.w wVar) {
-        if (task.isComplete()) {
-            Exception exception = task.getException();
-            if (exception == null) {
-                if (!task.isCanceled()) {
-                    return task.getResult();
-                }
-                throw new CancellationException("Task " + task + " was cancelled normally.");
-            }
-            throw exception;
+    public static void a(long j3, String str) {
+        if (j3 >= 0) {
+            return;
         }
-        zd.m mVar = new zd.m(1, v0.b(wVar));
-        mVar.s();
-        task.addOnCompleteListener(je.a.f17007a, new hi.l0(mVar, 4));
-        Object r10 = mVar.r();
-        jd.a aVar = jd.a.f16999a;
-        return r10;
+        throw new IllegalArgumentException(str + " (" + j3 + ") must be >= 0");
+    }
+
+    public static void b(boolean z10) {
+        if (z10) {
+            return;
+        }
+        throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
     }
 }

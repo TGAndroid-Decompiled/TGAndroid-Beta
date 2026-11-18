@@ -1,99 +1,47 @@
 package org.telegram.ui.Components;
+public final class tx0 {
+    public static final tx0 f40130e = new tx0(false, new qx0(Integer.MIN_VALUE, -2147483647), wx0.T, 0.0f);
+    public final boolean f40131a;
+    public final qx0 f40132b;
+    public final ix0 f40133c;
+    public final float d;
 
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class tx0 extends FrameLayout {
-    public final vx0 f39829a;
-    public boolean f39830b;
-    public boolean f39831c;
-    public boolean d;
-
-    public tx0(vx0 vx0Var, View view, boolean z10) {
-        super(vx0Var.getContext());
-        this.f39829a = vx0Var;
-        setWillNotDraw(false);
-        if (!z10) {
-            setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
-        }
-        addView(view, c8.ja.c(-1.0f, -1));
+    public tx0(boolean z10, qx0 qx0Var, ix0 ix0Var, float f10) {
+        this.f40131a = z10;
+        this.f40132b = qx0Var;
+        this.f40133c = ix0Var;
+        this.d = f10;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        boolean z10 = this.f39831c;
-        vx0 vx0Var = this.f39829a;
-        if (z10 || this.d) {
-            canvas2 = canvas;
-            float L = org.telegram.messenger.g0.L(10.0f);
-            float[] fArr = vx0Var.f41179c;
-            boolean z11 = this.f39831c;
-            if (z11) {
-                f10 = L;
-            } else {
-                f10 = 0.0f;
-            }
-            fArr[1] = f10;
-            fArr[0] = f10;
-            if (z11) {
-                f11 = L;
-            } else {
-                f11 = 0.0f;
-            }
-            fArr[3] = f11;
-            fArr[2] = f11;
-            boolean z12 = this.d;
-            if (z12) {
-                f12 = L;
-            } else {
-                f12 = 0.0f;
-            }
-            fArr[5] = f12;
-            fArr[4] = f12;
-            if (!z12) {
-                L = 0.0f;
-            }
-            fArr[7] = L;
-            fArr[6] = L;
-            vx0Var.f41178b.rewind();
-            RectF rectF = org.telegram.messenger.g0.P;
-            float f14 = vx0Var.h;
-            float width = getWidth() - vx0Var.h;
-            float height = getHeight();
-            float f15 = vx0Var.h;
-            if (this.d) {
-                f13 = -1.0f;
-            } else {
-                f13 = 1.0f;
-            }
-            rectF.set(f14, f14, width, (f15 * f13) + height);
-            vx0Var.f41178b.addRoundRect(rectF, vx0Var.f41179c, Path.Direction.CW);
-            if (this.f39830b) {
-                canvas2.drawPath(vx0Var.f41178b, vx0Var.d);
-            }
-            canvas2.drawPath(vx0Var.f41178b, vx0Var.f41180e);
-        } else {
-            if (this.f39830b) {
-                float f16 = vx0Var.h;
-                canvas2 = canvas;
-                canvas2.drawRect(f16, f16, getWidth() + vx0Var.h, getHeight() + vx0Var.h, vx0Var.d);
-            } else {
-                canvas2 = canvas;
-            }
-            float f17 = vx0Var.h;
-            canvas2.drawRect(f17, f17, getWidth() - vx0Var.h, getHeight() + vx0Var.h, vx0Var.f41180e);
+    public static ix0 a(tx0 tx0Var, boolean z10) {
+        ix0 ix0Var = tx0Var.f40133c;
+        if (ix0Var != wx0.T) {
+            return ix0Var;
         }
-        super.onDraw(canvas2);
+        if (tx0Var.d == 0.0f) {
+            if (z10) {
+                return wx0.U;
+            }
+            return wx0.V;
+        }
+        return wx0.W;
     }
 
-    public void setFilled(boolean z10) {
-        this.f39830b = z10;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || tx0.class != obj.getClass()) {
+            return false;
+        }
+        tx0 tx0Var = (tx0) obj;
+        if (this.f40133c.equals(tx0Var.f40133c) && this.f40132b.equals(tx0Var.f40132b)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f40133c.hashCode() + (this.f40132b.hashCode() * 31);
     }
 }

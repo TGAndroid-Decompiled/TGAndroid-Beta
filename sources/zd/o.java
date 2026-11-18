@@ -2,17 +2,17 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class o extends e1 {
-    public final int f61310e;
-    public final m f61311f;
+    public final int f61874e;
+    public final m f61875f;
 
     public o(m mVar, int i7) {
-        this.f61310e = i7;
-        this.f61311f = mVar;
+        this.f61874e = i7;
+        this.f61875f = mVar;
     }
 
     @Override
     public final boolean i() {
-        switch (this.f61310e) {
+        switch (this.f61874e) {
             case 0:
                 return true;
             default:
@@ -22,20 +22,20 @@ public final class o extends e1 {
 
     @Override
     public final void j(Throwable th2) {
-        switch (this.f61310e) {
+        switch (this.f61874e) {
             case 0:
                 n1 h = h();
-                m mVar = this.f61311f;
+                m mVar = this.f61875f;
                 Throwable q10 = mVar.q(h);
                 if (mVar.x()) {
                     ee.f fVar = (ee.f) mVar.d;
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.f.f10610n;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.f.f10928n;
                     while (true) {
                         Object obj = atomicReferenceFieldUpdater.get(fVar);
-                        aa.b0 b0Var = ee.a.f10601c;
-                        if (kotlin.jvm.internal.j.a(obj, b0Var)) {
-                            while (!atomicReferenceFieldUpdater.compareAndSet(fVar, b0Var, q10)) {
-                                if (atomicReferenceFieldUpdater.get(fVar) != b0Var) {
+                        ee.t tVar = ee.a.f10919c;
+                        if (kotlin.jvm.internal.j.a(obj, tVar)) {
+                            while (!atomicReferenceFieldUpdater.compareAndSet(fVar, tVar, q10)) {
+                                if (atomicReferenceFieldUpdater.get(fVar) != tVar) {
                                     break;
                                 }
                             }
@@ -58,7 +58,7 @@ public final class o extends e1 {
                 }
                 return;
             default:
-                this.f61311f.resumeWith(gd.k.f13173a);
+                this.f61875f.resumeWith(gd.k.f13488a);
                 return;
         }
     }

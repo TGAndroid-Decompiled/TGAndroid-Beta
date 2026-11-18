@@ -1,170 +1,67 @@
 package bg;
 
-import a8.b8;
-import android.app.Notification;
-import android.content.ComponentName;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Matrix;
-import android.graphics.RenderEffect;
-import android.media.AudioDescriptor;
-import android.media.MediaDrm;
-import android.media.MediaFormat;
-import android.media.metrics.LogSessionId;
-import android.media.session.MediaSession;
-import android.os.Build;
-import h9.s1;
-import j$.util.Comparator$CC;
-import j$.util.Comparator$EL;
-import java.io.ByteArrayInputStream;
-import java.util.List;
-import java.util.TreeSet;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.ec;
+import org.telegram.messenger.fc;
+import org.telegram.messenger.w7;
+import org.telegram.tgnet.TLRPC;
 public abstract class n0 {
-    public static RenderEffect f3314a;
-
-    public static RenderEffect a() {
-        ColorMatrix colorMatrix = new ColorMatrix();
-        colorMatrix.setSaturation(1.125f);
-        return RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
-    }
-
-    public static Bitmap b(int i7, int i10, byte[] bArr) {
-        BitmapFactory.Options options;
-        int i11 = 0;
-        if (i10 != -1) {
-            options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeByteArray(bArr, 0, i7, options);
-            options.inJustDecodeBounds = false;
-            options.inSampleSize = 1;
-            for (int max = Math.max(options.outWidth, options.outHeight); max > i10; max /= 2) {
-                options.inSampleSize *= 2;
-            }
-        } else {
-            options = null;
+    public static void a(TLRPC.Photo photo, TLRPC.User user, boolean z10) {
+        ArrayList<TLRPC.PhotoSize> arrayList = photo.sizes;
+        boolean z11 = false;
+        TLRPC.PhotoSize w10 = w7.w(arrayList, 100, false, null, false);
+        TLRPC.PhotoSize w11 = w7.w(arrayList, 1000, false, null, false);
+        user.flags |= 32;
+        TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
+        user.photo = tL_userProfilePhoto;
+        tL_userProfilePhoto.personal = z10;
+        tL_userProfilePhoto.photo_id = photo.f28429id;
+        ArrayList<TLRPC.VideoSize> arrayList2 = photo.video_sizes;
+        if (arrayList2 != null && arrayList2.size() > 0) {
+            z11 = true;
         }
-        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr, 0, i7, options);
-        if (options != null) {
-            options.inSampleSize = 1;
+        tL_userProfilePhoto.has_video = z11;
+        if (w10 != null) {
+            user.photo.photo_small = w10.location;
         }
-        if (decodeByteArray != null) {
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bArr);
-            try {
-                u1.g gVar = new u1.g(byteArrayInputStream);
-                byteArrayInputStream.close();
-                switch (gVar.c()) {
-                    case 3:
-                    case 4:
-                        i11 = 180;
-                        break;
-                    case 5:
-                    case 8:
-                        i11 = 270;
-                        break;
-                    case 6:
-                    case 7:
-                        i11 = 90;
-                        break;
-                }
-                if (i11 != 0) {
-                    Matrix matrix = new Matrix();
-                    matrix.postRotate(i11);
-                    return Bitmap.createBitmap(decodeByteArray, 0, 0, decodeByteArray.getWidth(), decodeByteArray.getHeight(), matrix, false);
-                }
-                return decodeByteArray;
-            } catch (Throwable th2) {
-                try {
-                    byteArrayInputStream.close();
-                } catch (Throwable th3) {
-                    th2.addSuppressed(th3);
-                }
-                throw th2;
-            }
-        }
-        throw e2.t0.a(new IllegalStateException(), "Could not decode image data");
-    }
-
-    public static h9.i0 c(List list) {
-        if (Build.VERSION.SDK_INT >= 31 && list != null) {
-            TreeSet treeSet = new TreeSet(Comparator$EL.reversed(Comparator$CC.comparing(new aa.l(2))));
-            for (Object obj : list) {
-                AudioDescriptor a10 = m2.c.a(obj);
-                if (a10.getStandard() == 1) {
-                    byte[] descriptor = a10.getDescriptor();
-                    if (descriptor.length != 3) {
-                        h2.a.l("AudioDescriptorUtil", "Invalid SAD length: " + descriptor.length);
-                    } else {
-                        byte b10 = descriptor[0];
-                        int i7 = (b10 & 7) + 1;
-                        if (((b10 >> 3) & 15) == 1) {
-                            treeSet.add(Integer.valueOf(h2.l0.t(i7)));
-                        }
-                    }
-                }
-            }
-            return h9.i0.q(treeSet);
-        }
-        h9.g0 g0Var = h9.i0.f13686b;
-        return s1.f13749e;
-    }
-
-    public static RenderEffect d() {
-        if (f3314a == null) {
-            ColorMatrix colorMatrix = new ColorMatrix();
-            colorMatrix.setSaturation(3.0f);
-            f3314a = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
-        }
-        return f3314a;
-    }
-
-    public static Bitmap e(Bitmap bitmap) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return bitmap.asShared();
-        }
-        return bitmap;
-    }
-
-    public static boolean f(MediaDrm mediaDrm, String str, int i7) {
-        return mediaDrm.requiresSecureDecoder(str, i7);
-    }
-
-    public static void g(Notification.Action.Builder builder) {
-        builder.setAuthenticationRequired(false);
-    }
-
-    public static void h(MediaDrm mediaDrm, byte[] bArr, m2.j jVar) {
-        LogSessionId logSessionId;
-        LogSessionId a10 = jVar.a();
-        logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
-        if (!a10.equals(logSessionId)) {
-            MediaDrm.PlaybackComponent playbackComponent = mediaDrm.getPlaybackComponent(bArr);
-            playbackComponent.getClass();
-            playbackComponent.setLogSessionId(a10);
+        if (w11 != null) {
+            user.photo.photo_big = w11.location;
         }
     }
 
-    public static void i(b8 b8Var, m2.j jVar) {
-        LogSessionId logSessionId;
-        LogSessionId a10 = jVar.a();
-        logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
-        if (!a10.equals(logSessionId)) {
-            ((MediaFormat) b8Var.f342b).setString("log-session-id", a10.getStringId());
+    public static void b(int i7, TLRPC.Photo photo, TLRPC.Photo photo2) {
+        TLRPC.PhotoSize w10 = w7.w(photo.sizes, 100, false, null, false);
+        TLRPC.PhotoSize w11 = w7.w(photo.sizes, 1000, false, null, false);
+        TLRPC.PhotoSize w12 = w7.w(photo2.sizes, 100, false, null, false);
+        TLRPC.PhotoSize w13 = w7.w(photo2.sizes, 1000, false, null, false);
+        if (w12 != null && w10 != null) {
+            w7.G(i7);
+            File J = w7.J(w12, null, true, true);
+            w7.G(i7);
+            w7.J(w10, null, true, true).renameTo(J);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(w10.location.volume_id);
+            sb2.append("_");
+            String n10 = a8.p0.n(w10.location.local_id, "@50_50", sb2);
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append(w12.location.volume_id);
+            sb3.append("_");
+            ec.D().S(n10, a8.p0.n(w12.location.local_id, "@50_50", sb3), fc.i(w10, photo));
         }
-    }
-
-    public static void j(q4.q qVar, ComponentName componentName) {
-        try {
-            MediaSession mediaSession = ((q4.l) qVar.f55252b).f55234a;
-            mediaSession.getClass();
-            mediaSession.setMediaButtonBroadcastReceiver(componentName);
-        } catch (IllegalArgumentException e10) {
-            if (Build.MANUFACTURER.equals("motorola")) {
-                h2.a.d("MediaSessionLegacyStub", "caught IllegalArgumentException on a motorola device when attempting to set the media button broadcast receiver. See https://github.com/androidx/media/issues/1730 for details.", e10);
-                return;
-            }
-            throw e10;
+        if (w13 != null && w11 != null) {
+            w7.G(i7);
+            File J2 = w7.J(w13, null, true, true);
+            w7.G(i7);
+            w7.J(w11, null, true, true).renameTo(J2);
+            StringBuilder sb4 = new StringBuilder();
+            sb4.append(w11.location.volume_id);
+            sb4.append("_");
+            String n11 = a8.p0.n(w11.location.local_id, "@150_150", sb4);
+            StringBuilder sb5 = new StringBuilder();
+            sb5.append(w13.location.volume_id);
+            sb5.append("_");
+            ec.D().S(n11, a8.p0.n(w13.location.local_id, "@150_150", sb5), fc.i(w11, photo));
         }
     }
 }

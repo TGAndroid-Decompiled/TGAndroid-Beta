@@ -1,63 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public class f5 extends Drawable {
-    public final Drawable f34519a;
-    public final int f34520b;
-    public final int f34521c;
-    public int d = 255;
+import android.animation.TimeInterpolator;
+import android.os.SystemClock;
+import android.view.View;
+public final class f5 {
+    public final View f34938a;
+    public final Runnable f34939b;
+    public int f34940c;
+    public int d;
+    public boolean f34941e;
+    public final long f34942f;
+    public final TimeInterpolator f34943g;
+    public boolean h;
+    public long f34944i;
+    public int f34945j;
 
-    public f5(int i7, int i10, Drawable drawable) {
-        this.f34519a = drawable;
-        this.f34520b = i7;
-        this.f34521c = i10;
+    public f5(View view) {
+        this.f34942f = 200L;
+        this.f34943g = lr.f37208f;
+        this.f34938a = view;
+        this.f34941e = true;
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        Drawable drawable = this.f34519a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            drawable.setAlpha(this.d);
-            drawable.draw(canvas);
+    public final int a(int i7, boolean z10) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j3 = this.f34942f;
+        if (!z10 && j3 > 0 && !this.f34941e) {
+            if (this.d != i7) {
+                this.h = true;
+                this.d = i7;
+                this.f34945j = this.f34940c;
+                this.f34944i = elapsedRealtime;
+            }
+        } else {
+            this.d = i7;
+            this.f34940c = i7;
+            this.h = false;
+            this.f34941e = false;
         }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f34521c;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f34520b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        Drawable drawable = this.f34519a;
-        if (drawable != null) {
-            return drawable.getOpacity();
+        if (this.h) {
+            float a10 = c8.l9.a(((float) (elapsedRealtime - this.f34944i)) / ((float) j3), 0.0f, 1.0f);
+            if (elapsedRealtime - this.f34944i >= 0) {
+                TimeInterpolator timeInterpolator = this.f34943g;
+                if (timeInterpolator == null) {
+                    this.f34940c = i0.a.f(a10, this.f34945j, this.d);
+                } else {
+                    this.f34940c = i0.a.f(timeInterpolator.getInterpolation(a10), this.f34945j, this.d);
+                }
+            }
+            if (a10 >= 1.0f) {
+                this.h = false;
+            } else {
+                View view = this.f34938a;
+                if (view != null) {
+                    view.invalidate();
+                }
+                Runnable runnable = this.f34939b;
+                if (runnable != null) {
+                    runnable.run();
+                }
+            }
         }
-        return -2;
+        return this.f34940c;
     }
 
-    @Override
-    public final void setAlpha(int i7) {
-        this.d = i7;
-        Drawable drawable = this.f34519a;
-        if (drawable != null) {
-            drawable.setAlpha(i7);
-        }
+    public f5(View view, long j3, TimeInterpolator timeInterpolator) {
+        this.f34942f = 200L;
+        lr lrVar = lr.f37208f;
+        this.f34938a = view;
+        this.f34942f = j3;
+        this.f34943g = timeInterpolator;
+        this.f34941e = true;
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f34519a;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
+    public f5(View view, long j3, TimeInterpolator timeInterpolator, int i7) {
+        this.f34942f = 200L;
+        lr lrVar = lr.f37208f;
+        this.f34938a = view;
+        this.f34942f = j3;
+        this.f34943g = timeInterpolator;
+        this.f34941e = true;
+    }
+
+    public f5(Runnable runnable, long j3, TimeInterpolator timeInterpolator) {
+        this.f34942f = 200L;
+        lr lrVar = lr.f37208f;
+        this.f34939b = runnable;
+        this.f34942f = j3;
+        this.f34943g = timeInterpolator;
+        this.f34941e = true;
     }
 }

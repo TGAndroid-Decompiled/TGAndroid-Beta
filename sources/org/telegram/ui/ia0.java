@@ -2,33 +2,33 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class ia0 implements org.telegram.ui.Components.nr0 {
-    public final pa0 f47998a;
+public final class ia0 implements org.telegram.ui.Components.vr0 {
+    public final pa0 f48679a;
 
     public ia0(pa0 pa0Var) {
-        this.f47998a = pa0Var;
+        this.f48679a = pa0Var;
     }
 
     @Override
     public final void W() {
         int m0;
         boolean z10;
-        pa0 pa0Var = this.f47998a;
-        ja0 ja0Var = pa0Var.M0;
+        pa0 pa0Var = this.f48679a;
+        ja0 ja0Var = pa0Var.R0;
         if (ja0Var == null) {
             m0 = 0;
         } else {
             m0 = ja0Var.m0(8);
         }
-        pa0Var.N0.setText(org.telegram.messenger.hd.G(m0, "LocationStories", new Object[0]));
+        pa0Var.S0.setText(org.telegram.messenger.gd.G(m0, "LocationStories", new Object[0]));
         ha0 ha0Var = pa0Var.Q;
         if (m0 > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (ha0Var.f17256a0 != z10) {
-            ha0Var.f17256a0 = z10;
+        if (ha0Var.f17642a0 != z10) {
+            ha0Var.f17642a0 = z10;
             ha0Var.f();
             pa0Var.R.w0(0, org.telegram.messenger.g0.L(200.0f), null);
         }
@@ -40,8 +40,8 @@ public final class ia0 implements org.telegram.ui.Components.nr0 {
     }
 
     @Override
-    public final org.telegram.ui.Components.uj0 f() {
-        return this.f47998a.R;
+    public final org.telegram.ui.Components.ck0 f() {
+        return this.f48679a.R;
     }
 
     @Override

@@ -1,22 +1,22 @@
 package r2;
 
-import a8.ha;
 import a8.ja;
+import a8.la;
 import android.net.Uri;
-import c8.q0;
+import c8.s0;
 import e2.u;
 import h2.k0;
 import h2.x;
 import h9.g0;
 import h9.i0;
-import h9.s1;
+import h9.t1;
 import java.io.EOFException;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import m4.d0;
 public final class i extends y2.l {
-    public static final AtomicInteger f55794d0 = new AtomicInteger();
+    public static final AtomicInteger f56369d0 = new AtomicInteger();
     public final boolean E;
     public final int F;
     public final j2.h G;
@@ -33,20 +33,20 @@ public final class i extends y2.l {
     public final boolean R;
     public final boolean S;
     public b T;
-    public q U;
+    public p U;
     public int V;
     public boolean W;
     public volatile boolean X;
     public boolean Y;
     public i0 Z;
-    public boolean f55795a0;
-    public long f55796b0;
-    public boolean f55797c0;
-    public final int f55798w;
-    public final int f55799x;
-    public final Uri f55800y;
+    public boolean f56370a0;
+    public long f56371b0;
+    public boolean f56372c0;
+    public final int f56373w;
+    public final int f56374x;
+    public final Uri f56375y;
 
-    public i(c cVar, j2.h hVar, j2.m mVar, u uVar, boolean z10, j2.h hVar2, j2.m mVar2, boolean z11, Uri uri, List list, int i7, Object obj, long j3, long j10, long j11, int i10, boolean z12, int i11, boolean z13, boolean z14, k0 k0Var, e2.r rVar, b bVar, t3.h hVar3, x xVar, boolean z15, boolean z16, m2.j jVar) {
+    public i(c cVar, j2.h hVar, j2.m mVar, u uVar, boolean z10, j2.h hVar2, j2.m mVar2, boolean z11, Uri uri, List list, int i7, Object obj, long j3, long j10, long j11, int i10, boolean z12, int i11, boolean z13, boolean z14, k0 k0Var, e2.r rVar, b bVar, t3.h hVar3, x xVar, boolean z15, boolean z16, m2.i iVar) {
         super(hVar, mVar, uVar, i7, obj, j3, j10, j11);
         long j12;
         boolean z17;
@@ -57,8 +57,8 @@ public final class i extends y2.l {
         } else {
             j12 = -9223372036854775807L;
         }
-        this.f55796b0 = j12;
-        this.f55799x = i11;
+        this.f56371b0 = j12;
+        this.f56374x = i11;
         this.H = mVar2;
         this.G = hVar2;
         if (mVar2 != null) {
@@ -68,7 +68,7 @@ public final class i extends y2.l {
         }
         this.W = z17;
         this.S = z11;
-        this.f55800y = uri;
+        this.f56375y = uri;
         this.J = z14;
         this.L = k0Var;
         this.K = z13;
@@ -78,16 +78,16 @@ public final class i extends y2.l {
         this.I = bVar;
         this.P = hVar3;
         this.Q = xVar;
-        this.f55797c0 = z15;
+        this.f56372c0 = z15;
         this.E = z16;
-        g0 g0Var = i0.f13686b;
-        this.Z = s1.f13749e;
-        this.f55798w = f55794d0.getAndIncrement();
+        g0 g0Var = i0.f14006b;
+        this.Z = t1.f14074e;
+        this.f56373w = f56369d0.getAndIncrement();
     }
 
     public static byte[] e(String str) {
         int i7;
-        if (ha.c(str).startsWith("0x")) {
+        if (ja.c(str).startsWith("0x")) {
             str = str.substring(2);
         }
         byte[] byteArray = new BigInteger(str, 16).toByteArray();
@@ -102,7 +102,7 @@ public final class i extends y2.l {
     }
 
     @Override
-    public final void D() {
+    public final void A() {
         this.X = true;
     }
 
@@ -111,7 +111,7 @@ public final class i extends y2.l {
         b bVar;
         this.U.getClass();
         if (this.T == null && (bVar = this.I) != null) {
-            f3.o a10 = bVar.f55762a.a();
+            f3.o a10 = bVar.f56337a.a();
             if ((a10 instanceof d0) || (a10 instanceof z3.h)) {
                 this.T = this.I;
                 this.W = false;
@@ -128,7 +128,7 @@ public final class i extends y2.l {
         }
         if (!this.X) {
             if (!this.K) {
-                d(this.f60121r, this.f60116b, this.R);
+                d(this.f60686r, this.f60681b, this.R);
             }
             this.Y = !this.X;
         }
@@ -159,7 +159,7 @@ public final class i extends y2.l {
         try {
             f3.l h = h(hVar, b10);
             if (z11) {
-                h.g(this.V, false);
+                h.f(this.V, false);
             }
             do {
                 try {
@@ -167,26 +167,26 @@ public final class i extends y2.l {
                         break;
                     }
                 } catch (EOFException e10) {
-                    if ((this.d.f10439f & 16384) != 0) {
-                        this.T.f55762a.d(0L, 0L);
+                    if ((this.d.f10757f & 16384) != 0) {
+                        this.T.f56337a.d(0L, 0L);
                         j3 = h.d;
                     } else {
                         throw e10;
                     }
                 }
-            } while (this.T.f55762a.f(h, b.f55761f) == 0);
+            } while (this.T.f56337a.f(h, b.f56336f) == 0);
             j3 = h.d;
-            this.V = (int) (j3 - mVar.f16806e);
+            this.V = (int) (j3 - mVar.f17191e);
         } catch (Exception unused) {
         } catch (Throwable th2) {
-            q0.a(hVar);
+            s0.a(hVar);
             throw th2;
         }
-        q0.a(hVar);
+        s0.a(hVar);
     }
 
     public final int f(int i7) {
-        ja.p(!this.f55797c0);
+        la.p(!this.f56372c0);
         if (i7 >= this.Z.size()) {
             return 0;
         }
@@ -194,7 +194,7 @@ public final class i extends y2.l {
     }
 
     public final boolean g() {
-        if (this.f55796b0 != -9223372036854775807L) {
+        if (this.f56371b0 != -9223372036854775807L) {
             return true;
         }
         return false;

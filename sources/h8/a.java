@@ -13,20 +13,20 @@ import com.google.android.gms.wallet.MaskedWallet;
 import q6.m;
 import y8.s;
 public final class a extends Binder implements j, IInterface {
-    public final int f13636a;
-    public final TaskCompletionSource f13637b;
+    public final int f13951a;
+    public final TaskCompletionSource f13952b;
 
     public a(int i7, TaskCompletionSource taskCompletionSource) {
-        this.f13636a = i7;
+        this.f13951a = i7;
         attachInterface(this, "com.google.android.gms.wallet.internal.IWalletServiceCallbacks");
-        this.f13637b = taskCompletionSource;
+        this.f13952b = taskCompletionSource;
     }
 
     @Override
-    public void Q(int i7, boolean z10) {
-        switch (this.f13636a) {
+    public void P(int i7, boolean z10) {
+        switch (this.f13951a) {
             case 1:
-                l8.a(new Status(i7, null, null, null), Boolean.valueOf(z10), this.f13637b);
+                l8.a(new Status(i7, null, null, null), Boolean.valueOf(z10), this.f13952b);
                 return;
             default:
                 return;
@@ -34,17 +34,17 @@ public final class a extends Binder implements j, IInterface {
     }
 
     @Override
-    public void e0(Status status, y8.i iVar) {
-        switch (this.f13636a) {
+    public void d0(Status status, y8.i iVar) {
+        switch (this.f13951a) {
             case 0:
-                int i7 = y8.a.f60475c;
+                int i7 = y8.a.f61040c;
                 boolean b10 = status.b();
-                TaskCompletionSource taskCompletionSource = this.f13637b;
+                TaskCompletionSource taskCompletionSource = this.f13952b;
                 if (b10) {
                     taskCompletionSource.setResult(iVar);
                     return;
                 } else {
-                    taskCompletionSource.setException(m.l(status));
+                    taskCompletionSource.setException(m.m(status));
                     return;
                 }
             default:
@@ -75,12 +75,12 @@ public final class a extends Binder implements j, IInterface {
                 return true;
             case 3:
                 int readInt = parcel.readInt();
-                int i11 = c.f13638a;
+                int i11 = c.f13953a;
                 if (parcel.readInt() != 0) {
                     z10 = true;
                 }
                 Bundle bundle3 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                Q(readInt, z10);
+                P(readInt, z10);
                 return true;
             case 4:
                 parcel.readInt();
@@ -91,7 +91,7 @@ public final class a extends Binder implements j, IInterface {
                 return false;
             case 6:
                 parcel.readInt();
-                int i12 = c.f13638a;
+                int i12 = c.f13953a;
                 parcel.readInt();
                 Bundle bundle5 = (Bundle) c.a(parcel, Bundle.CREATOR);
                 return true;
@@ -110,7 +110,7 @@ public final class a extends Binder implements j, IInterface {
                     z10 = true;
                 }
                 Bundle bundle8 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                y0(status3, z10);
+                x0(status3, z10);
                 return true;
             case 10:
                 Status status4 = (Status) c.a(parcel, Status.CREATOR);
@@ -132,7 +132,7 @@ public final class a extends Binder implements j, IInterface {
                 return true;
             case 14:
                 Bundle bundle13 = (Bundle) c.a(parcel, Bundle.CREATOR);
-                e0((Status) c.a(parcel, Status.CREATOR), (y8.i) c.a(parcel, y8.i.CREATOR));
+                d0((Status) c.a(parcel, Status.CREATOR), (y8.i) c.a(parcel, y8.i.CREATOR));
                 return true;
             case 15:
                 Status status8 = (Status) c.a(parcel, Status.CREATOR);
@@ -162,10 +162,10 @@ public final class a extends Binder implements j, IInterface {
     }
 
     @Override
-    public void y0(Status status, boolean z10) {
-        switch (this.f13636a) {
+    public void x0(Status status, boolean z10) {
+        switch (this.f13951a) {
             case 1:
-                l8.a(status, Boolean.valueOf(z10), this.f13637b);
+                l8.a(status, Boolean.valueOf(z10), this.f13952b);
                 return;
             default:
                 return;

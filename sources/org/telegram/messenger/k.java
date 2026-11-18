@@ -5,21 +5,21 @@ import android.graphics.Bitmap;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 public final class k implements Runnable {
-    public final int f24621a;
-    public final ArrayList f24622b;
+    public final int f24959a;
+    public final ArrayList f24960b;
 
     public k(int i7, ArrayList arrayList) {
-        this.f24621a = i7;
-        this.f24622b = arrayList;
+        this.f24959a = i7;
+        this.f24960b = arrayList;
     }
 
     @Override
     public final void run() {
-        q5 q5Var;
+        r5 r5Var;
         int i7 = 0;
-        switch (this.f24621a) {
+        switch (this.f24959a) {
             case 0:
-                ArrayList arrayList = this.f24622b;
+                ArrayList arrayList = this.f24960b;
                 while (i7 < arrayList.size()) {
                     Bitmap bitmap = (Bitmap) ((WeakReference) arrayList.get(i7)).get();
                     ((WeakReference) arrayList.get(i7)).clear();
@@ -34,55 +34,55 @@ public final class k implements Runnable {
                 }
                 return;
             case 1:
-                Utilities.f22416e.c(new k(0, this.f24622b));
+                Utilities.f22782e.c(new k(0, this.f24960b));
                 return;
             case 2:
-                ArrayList arrayList2 = this.f24622b;
-                r5 r5Var = r5.f26242k;
-                r5Var.getClass();
+                ArrayList arrayList2 = this.f24960b;
+                s5 s5Var = s5.f26738k;
+                s5Var.getClass();
                 for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                     Runnable runnable = (Runnable) arrayList2.get(i10);
                     if (runnable != null) {
-                        if (!r5Var.f26247c.isEmpty() && (r5Var.f26250g / 2 <= r5Var.f26247c.size() || (r5Var.f26245a.isEmpty() && r5Var.f26248e >= r5Var.d))) {
-                            q5Var = (q5) r5Var.f26247c.remove(0);
-                        } else if (r5Var.f26245a.isEmpty()) {
-                            q5Var = new q5("DispatchQueuePoolThreadSafety_" + r5Var.f26249f + "_" + Utilities.f22414b.nextInt(), true);
-                            q5Var.setPriority(10);
-                            r5Var.f26248e = r5Var.f26248e + 1;
+                        if (!s5Var.f26743c.isEmpty() && (s5Var.f26746g / 2 <= s5Var.f26743c.size() || (s5Var.f26741a.isEmpty() && s5Var.f26744e >= s5Var.d))) {
+                            r5Var = (r5) s5Var.f26743c.remove(0);
+                        } else if (s5Var.f26741a.isEmpty()) {
+                            r5Var = new r5("DispatchQueuePoolThreadSafety_" + s5Var.f26745f + "_" + Utilities.f22780b.nextInt(), true);
+                            r5Var.setPriority(10);
+                            s5Var.f26744e = s5Var.f26744e + 1;
                         } else {
-                            q5Var = (q5) r5Var.f26245a.remove(0);
+                            r5Var = (r5) s5Var.f26741a.remove(0);
                         }
-                        if (!r5Var.h) {
-                            Utilities.f22416e.d(r5Var.f26251i, 30000L);
-                            r5Var.h = true;
+                        if (!s5Var.h) {
+                            Utilities.f22782e.d(s5Var.f26747i, 30000L);
+                            s5Var.h = true;
                         }
-                        r5Var.f26250g++;
-                        r5Var.f26247c.add(q5Var);
-                        r5Var.f26246b.put(q5Var.index, r5Var.f26246b.get(q5Var.index, 0) + 1);
-                        if (ch.f0.f5068b) {
-                            q5Var.setPriority(1);
-                        } else if (q5Var.getPriority() != 10) {
-                            q5Var.setPriority(10);
+                        s5Var.f26746g++;
+                        s5Var.f26743c.add(r5Var);
+                        s5Var.f26742b.put(r5Var.index, s5Var.f26742b.get(r5Var.index, 0) + 1);
+                        if (ch.f0.f5354b) {
+                            r5Var.setPriority(1);
+                        } else if (r5Var.getPriority() != 10) {
+                            r5Var.setPriority(10);
                         }
-                        q5Var.postRunnable(new mg(r5Var, runnable, q5Var, 17));
+                        r5Var.postRunnable(new yf(s5Var, runnable, r5Var, 17));
                     }
                 }
                 arrayList2.clear();
-                g0.h3(new k(3, arrayList2));
+                g0.g3(new k(3, arrayList2));
                 return;
             case 3:
-                r5.f26243l.add(this.f24622b);
+                s5.f26739l.add(this.f24960b);
                 return;
             case 4:
-                ArrayList arrayList3 = this.f24622b;
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(t0.f26609b);
+                ArrayList arrayList3 = this.f24960b;
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(t0.f26915b);
                 while (i7 < arrayList3.size()) {
                     appWidgetManager.notifyAppWidgetViewDataChanged(((Integer) arrayList3.get(i7)).intValue(), 2131296476);
                     i7++;
                 }
                 return;
             default:
-                ns.e().k(255, this.f24622b);
+                ks.e().k(257, this.f24960b);
                 return;
         }
     }

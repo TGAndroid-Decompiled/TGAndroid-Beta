@@ -1,32 +1,32 @@
 package g4;
 
-import a8.ja;
+import a8.la;
 import android.graphics.Color;
-import c8.g1;
+import c8.k1;
 import com.google.android.gms.internal.vision.e2;
 public final class d {
-    public final String f12859a;
-    public final int f12860b;
-    public final Integer f12861c;
+    public final String f13176a;
+    public final int f13177b;
+    public final Integer f13178c;
     public final Integer d;
-    public final float f12862e;
-    public final boolean f12863f;
-    public final boolean f12864g;
+    public final float f13179e;
+    public final boolean f13180f;
+    public final boolean f13181g;
     public final boolean h;
-    public final boolean f12865i;
-    public final int f12866j;
+    public final boolean f13182i;
+    public final int f13183j;
 
     public d(String str, int i7, Integer num, Integer num2, float f10, boolean z10, boolean z11, boolean z12, boolean z13, int i10) {
-        this.f12859a = str;
-        this.f12860b = i7;
-        this.f12861c = num;
+        this.f13176a = str;
+        this.f13177b = i7;
+        this.f13178c = num;
         this.d = num2;
-        this.f12862e = f10;
-        this.f12863f = z10;
-        this.f12864g = z11;
+        this.f13179e = f10;
+        this.f13180f = z10;
+        this.f13181g = z11;
         this.h = z12;
-        this.f12865i = z13;
-        this.f12866j = i10;
+        this.f13182i = z13;
+        this.f13183j = i10;
     }
 
     public static int a(String str) {
@@ -85,10 +85,10 @@ public final class d {
             } else {
                 z10 = false;
             }
-            ja.f(z10);
-            int b10 = g1.b(((parseLong >> 24) & 255) ^ 255);
-            int b11 = g1.b((parseLong >> 16) & 255);
-            return Integer.valueOf(Color.argb(b10, g1.b(parseLong & 255), g1.b((parseLong >> 8) & 255), b11));
+            la.f(z10);
+            int b10 = k1.b(((parseLong >> 24) & 255) ^ 255);
+            int b11 = k1.b((parseLong >> 16) & 255);
+            return Integer.valueOf(Color.argb(b10, k1.b(parseLong & 255), k1.b((parseLong >> 8) & 255), b11));
         } catch (IllegalArgumentException e10) {
             h2.a.m("SsaStyle", "Failed to parse color expression: '" + str + "'", e10);
             return null;

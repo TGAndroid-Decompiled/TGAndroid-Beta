@@ -1,9 +1,9 @@
 package org.telegram.tgnet;
 
-import kg.j1;
+import oi.a2;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.ns;
+import org.telegram.messenger.ks;
 public class TLParseException extends RuntimeException {
     private TLParseException(String str) {
         super(str);
@@ -23,7 +23,7 @@ public class TLParseException extends RuntimeException {
         }
         a8.g(tLParseException, z11);
         if (i7 != -847714938 && i7 != -779361553 && i7 != -212046591) {
-            g0.h3(new j1(tLParseException, 27));
+            g0.g3(new a2(tLParseException, 1));
         }
         if (!z10) {
             return;
@@ -32,6 +32,6 @@ public class TLParseException extends RuntimeException {
     }
 
     public static void lambda$doThrowOrLog$0(TLParseException tLParseException) {
-        ns.e().k(ns.M5, tLParseException);
+        ks.e().k(ks.O5, tLParseException);
     }
 }

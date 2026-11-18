@@ -1,37 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class a70 implements DialogInterface.OnDismissListener {
-    public final int f32909a;
-    public final Object f32910b;
-    public final boolean f32911c;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class a70 extends LinearLayout {
+    public boolean f33256a;
+    public final g70 f33257b;
 
-    public a70(int i7, Object obj, boolean z10) {
-        this.f32909a = i7;
-        this.f32910b = obj;
-        this.f32911c = z10;
+    public a70(g70 g70Var, Context context) {
+        super(context);
+        this.f33257b = g70Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f32909a) {
-            case 0:
-                e70 e70Var = (e70) this.f32910b;
-                e70.J0(e70Var.getContext(), e70Var.f34230o1, e70Var.f34235t1, this.f32911c);
-                return;
-            case 1:
-                e70 e70Var2 = (e70) this.f32910b;
-                e70.J0(e70Var2.getContext(), e70Var2.f34230o1, e70Var2.f34235t1, this.f32911c);
-                return;
-            default:
-                hi.sa saVar = (hi.sa) this.f32910b;
-                saVar.A2 = false;
-                saVar.Y0.x(7, true);
-                if (this.f32911c) {
-                    saVar.p(true);
-                    return;
+    public final void onMeasure(int i7, int i10) {
+        int size;
+        g70 g70Var = this.f33257b;
+        ArrayList arrayList = g70Var.f35368t1;
+        if (g70Var.f35371w1 == 0) {
+            int size2 = View.MeasureSpec.getSize(i7);
+            int L = org.telegram.messenger.g0.L(95.0f) * arrayList.size();
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) g70Var.f35365q1.getLayoutParams();
+            if (L > size2) {
+                layoutParams.width = -1;
+                layoutParams.gravity = 51;
+                if (!this.f33256a) {
+                    TLRPC.Peer peer = g70Var.f35372x1;
+                    if (peer != null) {
+                        arrayList.remove(peer);
+                        arrayList.add(0, g70Var.f35372x1);
+                    }
+                    this.f33256a = true;
                 }
-                return;
+            } else {
+                layoutParams.width = -2;
+                layoutParams.gravity = 49;
+                if (!this.f33256a) {
+                    if (g70Var.f35372x1 != null) {
+                        if (arrayList.size() % 2 == 0) {
+                            size = Math.max(0, (arrayList.size() / 2) - 1);
+                        } else {
+                            size = arrayList.size() / 2;
+                        }
+                        arrayList.remove(g70Var.f35372x1);
+                        arrayList.add(size, g70Var.f35372x1);
+                    }
+                    this.f33256a = true;
+                }
+            }
         }
+        super.onMeasure(i7, i10);
     }
 }

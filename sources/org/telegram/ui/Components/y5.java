@@ -1,110 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import java.util.ArrayList;
-import java.util.Locale;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 public final class y5 {
-    public static final org.telegram.ui.Cells.n8 h = new org.telegram.ui.Cells.n8("progress", 3);
-    public final TextPaint f41871c;
-    public ObjectAnimator d;
-    public final org.telegram.ui.Cells.q1 f41874g;
-    public final ArrayList f41869a = new ArrayList();
-    public final ArrayList f41870b = new ArrayList();
-    public float f41872e = 0.0f;
-    public int f41873f = 1;
+    public final BitmapShader[] f42329a = new BitmapShader[3];
+    public final Bitmap f42330b;
+    public final int f42331c;
+    public final int d;
+    public int f42332e;
+    public boolean f42333f;
 
-    public y5(org.telegram.ui.Cells.q1 q1Var, TextPaint textPaint) {
-        this.f41871c = textPaint;
-        this.f41874g = q1Var;
-    }
-
-    public final int a() {
-        ArrayList arrayList = this.f41869a;
-        int size = arrayList.size();
-        float f10 = 0.0f;
-        for (int i7 = 0; i7 < size; i7++) {
-            f10 += ((StaticLayout) arrayList.get(i7)).getLineWidth(0);
-        }
-        return (int) Math.ceil(f10);
-    }
-
-    public final void b(int i7, boolean z10) {
-        boolean z11;
-        float f10;
-        String str;
-        TextPaint textPaint;
-        float f11;
-        ArrayList arrayList;
-        int i10 = this.f41873f;
-        ArrayList arrayList2 = this.f41869a;
-        if (i10 == i7 && !arrayList2.isEmpty()) {
-            return;
-        }
-        ObjectAnimator objectAnimator = this.d;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
-            this.d = null;
-        }
-        ArrayList arrayList3 = this.f41870b;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList2);
-        arrayList2.clear();
-        Locale locale = Locale.US;
-        int i11 = this.f41873f;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(i11);
-        String sb3 = sb2.toString();
-        StringBuilder sb4 = new StringBuilder();
-        sb4.append(i7);
-        String sb5 = sb4.toString();
-        if (i7 > this.f41873f) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f41873f = i7;
-        float f12 = 0.0f;
-        this.f41872e = 0.0f;
-        int i12 = 0;
-        while (i12 < sb5.length()) {
-            int i13 = i12 + 1;
-            String substring = sb5.substring(i12, i13);
-            if (!arrayList3.isEmpty() && i12 < sb3.length()) {
-                str = sb3.substring(i12, i13);
-            } else {
-                str = null;
-            }
-            if (str != null && str.equals(substring)) {
-                arrayList2.add((StaticLayout) arrayList3.get(i12));
-                arrayList3.set(i12, null);
-                f11 = f12;
-                arrayList = arrayList3;
-            } else {
-                f11 = f12;
-                arrayList = arrayList3;
-                arrayList2.add(new StaticLayout(substring, this.f41871c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
-            }
-            f12 = f11;
-            i12 = i13;
-            arrayList3 = arrayList;
-        }
-        float f13 = f12;
-        ArrayList arrayList4 = arrayList3;
-        if (z10 && !arrayList4.isEmpty()) {
-            if (z11) {
-                f10 = -1.0f;
-            } else {
-                f10 = 1.0f;
-            }
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, h, f10, f13);
-            this.d = ofFloat;
-            ofFloat.setDuration(150L);
-            this.d.addListener(new x5(this, 0));
-            this.d.start();
-        }
-        this.f41874g.invalidate();
+    public y5(Bitmap bitmap) {
+        this.f42330b = bitmap;
+        this.f42331c = bitmap.getWidth();
+        this.d = bitmap.getHeight();
     }
 }

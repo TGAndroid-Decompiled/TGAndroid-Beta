@@ -1,14 +1,14 @@
 package l2;
 
-import a8.ja;
+import a8.la;
 import android.text.TextUtils;
 import com.google.android.gms.internal.vision.e2;
 public final class e {
-    public final String f18925a;
-    public final e2.u f18926b;
-    public final e2.u f18927c;
+    public final String f19292a;
+    public final e2.u f19293b;
+    public final e2.u f19294c;
     public final int d;
-    public final int f18928e;
+    public final int f19295e;
 
     public e(String str, e2.u uVar, e2.u uVar2, int i7, int i10) {
         boolean z10;
@@ -17,15 +17,15 @@ public final class e {
         } else {
             z10 = true;
         }
-        ja.f(z10);
-        ja.f(true ^ TextUtils.isEmpty(str));
-        this.f18925a = str;
+        la.f(z10);
+        la.f(true ^ TextUtils.isEmpty(str));
+        this.f19292a = str;
         uVar.getClass();
-        this.f18926b = uVar;
+        this.f19293b = uVar;
         uVar2.getClass();
-        this.f18927c = uVar2;
+        this.f19294c = uVar2;
         this.d = i7;
-        this.f18928e = i10;
+        this.f19295e = i10;
     }
 
     public final boolean equals(Object obj) {
@@ -34,7 +34,7 @@ public final class e {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (this.d == eVar.d && this.f18928e == eVar.f18928e && this.f18925a.equals(eVar.f18925a) && this.f18926b.equals(eVar.f18926b) && this.f18927c.equals(eVar.f18927c)) {
+            if (this.d == eVar.d && this.f19295e == eVar.f19295e && this.f19292a.equals(eVar.f19292a) && this.f19293b.equals(eVar.f19293b) && this.f19294c.equals(eVar.f19294c)) {
                 return true;
             }
         }
@@ -42,7 +42,7 @@ public final class e {
     }
 
     public final int hashCode() {
-        int h = e2.h((((527 + this.d) * 31) + this.f18928e) * 31, 31, this.f18925a);
-        return this.f18927c.hashCode() + ((this.f18926b.hashCode() + h) * 31);
+        int h = e2.h((((527 + this.d) * 31) + this.f19295e) * 31, 31, this.f19292a);
+        return this.f19294c.hashCode() + ((this.f19293b.hashCode() + h) * 31);
     }
 }

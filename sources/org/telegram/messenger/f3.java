@@ -1,30 +1,159 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stories;
-public final class f3 {
-    public final np f23438a;
-    public final ConnectionsManager f23439b;
-
-    public f3(int i7) {
-        this.f23438a = np.s1(i7);
-        this.f23439b = ConnectionsManager.getInstance(i7);
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.SpannableStringBuilder;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public abstract class f3 {
+    public static float A(float f10, float f11, float f12, float f13) {
+        return (f10 - f11) * f12 * f13;
     }
 
-    public final void a(long j3, z10 z10Var) {
-        TL_stories.TL_premium_getBoostsStatus tL_premium_getBoostsStatus = new TL_stories.TL_premium_getBoostsStatus();
-        tL_premium_getBoostsStatus.peer = this.f23438a.j1(j3);
-        this.f23439b.sendRequest(tL_premium_getBoostsStatus, new c3(z10Var, 0));
+    public static int B(float f10, int i7, int i10) {
+        return i10 - (i7 - g0.L(f10));
     }
 
-    public final void b(long j3, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, z10 z10Var) {
-        e3 e3Var = new e3();
-        np npVar = this.f23438a;
-        npVar.z1(j3);
-        e3Var.f23261j = j3;
-        e3Var.f23262k = npVar.M0(Long.valueOf(-j3));
-        d3 d3Var = new d3(e3Var, tL_premium_boostsStatus, z10Var, 0);
-        g1 g1Var = new g1(1, e3Var, z10Var);
-        ConnectionsManager.getInstance(m10.f24940t0).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new bi.j6(g1Var, np.s1(m10.f24940t0), d3Var, 25));
+    public static int C(float f10, int i7, int i10) {
+        return g0.L(f10) + i7 + i10;
+    }
+
+    public static int D(float f10, int i7, int i10) {
+        return (g0.L(f10) * i7) + i10;
+    }
+
+    public static float a(float f10, float f11, float f12, float f13) {
+        return ((f10 + f11) / f12) + f13;
+    }
+
+    public static int b(float f10, int i7, int i10) {
+        return Math.max(i10, g0.L(f10) + i7);
+    }
+
+    public static int c(String str, String str2, SharedPreferences sharedPreferences, int i7) {
+        return sharedPreferences.getInt(str + str2, i7);
+    }
+
+    public static SharedPreferences.Editor d(SharedPreferences.Editor editor, String str, String str2, String str3, String str4) {
+        return editor.remove(str).remove(str2).remove(str3).remove(str4);
+    }
+
+    public static SharedPreferences e(StringBuilder sb2, int i7, Context context, int i10) {
+        sb2.append(i7);
+        return context.getSharedPreferences(sb2.toString(), i10);
+    }
+
+    public static LinearLayout f(Activity activity, int i7) {
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(i7);
+        return linearLayout;
+    }
+
+    public static LinearLayout g(Context context, int i7) {
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(i7);
+        return linearLayout;
+    }
+
+    public static ArrayList h(a0.h hVar, long j3) {
+        ArrayList arrayList = new ArrayList();
+        hVar.k(arrayList, j3);
+        return arrayList;
+    }
+
+    public static ArrayList i(fj fjVar) {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(fjVar);
+        return arrayList;
+    }
+
+    public static org.telegram.ui.ActionBar.x2 j(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
+        org.telegram.ui.ActionBar.x2 x2Var = new org.telegram.ui.ActionBar.x2(i7, context, i6Var, z10);
+        x2Var.O();
+        return x2Var;
+    }
+
+    public static void k(TextView textView, int i7, String str, int i10) {
+        textView.setGravity(i7);
+        textView.setText(gd.M0(i10, str));
+    }
+
+    public static void l(TextView textView, int i7, org.telegram.ui.ActionBar.i6 i6Var, int i10, float f10) {
+        org.telegram.ui.ActionBar.u6.U(textView, i7, i6Var);
+        textView.setTextSize(i10, f10);
+        textView.setTypeface(g0.o());
+    }
+
+    public static void m(String str, int i7, AlertDialog$Builder alertDialog$Builder, org.telegram.ui.ActionBar.r1 r1Var) {
+        alertDialog$Builder.k(gd.M0(i7, str), r1Var);
+        alertDialog$Builder.p();
+    }
+
+    public static void n(String str, int i7, org.telegram.ui.Components.lc lcVar, int i10, int i11) {
+        lcVar.Q(i10, i11, gd.M0(i7, str)).j();
+    }
+
+    public static void o(String str, int i7, org.telegram.ui.Components.lc lcVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        lcVar.t(gd.M0(i7, str), i6Var).j();
+    }
+
+    public static void p(String str, String str2, int i7, Object[] objArr, SpannableStringBuilder spannableStringBuilder) {
+        spannableStringBuilder.append((CharSequence) g0.W2(gd.a0(str, str2, i7, objArr)));
+    }
+
+    public static void q(String str, String str2, int i7, Object[] objArr, TextView textView) {
+        textView.setText(g0.W2(gd.a0(str, str2, i7, objArr)));
+    }
+
+    public static void r(StringBuilder sb2, char c10, char c11, int i7) {
+        sb2.append(c10);
+        sb2.append(c11);
+        sb2.append(gd.M0(i7, null));
+    }
+
+    public static void s(SQLiteDatabase sQLiteDatabase, String str) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+    }
+
+    public static void t(SQLiteDatabase sQLiteDatabase, String str, String str2) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+        sQLiteDatabase.executeFast(str2).stepThis().dispose();
+    }
+
+    public static void u(SQLiteDatabase sQLiteDatabase, String str, String str2, String str3) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+        sQLiteDatabase.executeFast(str2).stepThis().dispose();
+        sQLiteDatabase.executeFast(str3).stepThis().dispose();
+    }
+
+    public static void v(SQLiteDatabase sQLiteDatabase, String str, String str2, String str3, String str4) {
+        sQLiteDatabase.executeFast(str).stepThis().dispose();
+        sQLiteDatabase.executeFast(str2).stepThis().dispose();
+        sQLiteDatabase.executeFast(str3).stepThis().dispose();
+        sQLiteDatabase.executeFast(str4).stepThis().dispose();
+    }
+
+    public static boolean w(String str, long j3, SharedPreferences sharedPreferences, boolean z10) {
+        return sharedPreferences.getBoolean(str + j3, z10);
+    }
+
+    public static boolean x(TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument) {
+        if (tL_inputMediaUploadedDocument != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public static float y(float f10, float f11, float f12, float f13) {
+        return f13 - ((f10 - f11) / f12);
+    }
+
+    public static int z(float f10, int i7, int i10) {
+        return (i7 - g0.L(f10)) - i10;
     }
 }

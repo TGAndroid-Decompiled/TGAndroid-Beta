@@ -102,11 +102,11 @@ public final class sa implements Runnable {
                         ?? obj5 = new Object();
                         obj5.f343c = y7.TYPE_THIN;
                         android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(2, false);
-                        a0Var.f1714c = Integer.valueOf(size2 & Integer.MAX_VALUE);
-                        a0Var.f1713b = (e1) next;
+                        a0Var.f1705c = Integer.valueOf(size2 & Integer.MAX_VALUE);
+                        a0Var.f1704b = (e1) next;
                         a0Var.d = l7Var;
                         obj5.f345f = new f1(a0Var);
-                        pb.n.f54964a.execute(new qa(uaVar, new xa((b8) obj5, 0), a8Var, uaVar.b(), 0));
+                        pb.n.f55540a.execute(new qa(uaVar, new xa((b8) obj5, 0), a8Var, uaVar.b(), 0));
                     }
                     hashMap.remove(a8Var);
                     return;
@@ -115,51 +115,51 @@ public final class sa implements Runnable {
             case 1:
                 org.telegram.messenger.g0.r(this);
                 ai.n0 n0Var = (ai.n0) this.f641b;
-                if (n0Var.f1386r == 1 && n0Var.f1388s != null) {
-                    Editable text = n0Var.f1373f.f32970b.F0.getText();
+                if (n0Var.f1377r == 1 && n0Var.f1379s != null) {
+                    Editable text = n0Var.f1364f.f38784a.F0.getText();
                     if (text != null && text.toString().trim().length() > 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     long uptimeMillis = SystemClock.uptimeMillis();
-                    if (n0Var.f1388s.getRightMode() == 2) {
+                    if (n0Var.f1379s.getRightMode() == 2) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    long j11 = n0Var.f1385q0;
+                    long j11 = n0Var.f1378r0;
                     if (uptimeMillis - j11 >= 300) {
                         if (!z11) {
-                            if (z10 && uptimeMillis - n0Var.U > 1200 && uptimeMillis - n0Var.f1384p0 > 1200) {
-                                n0Var.f1388s.setRightMode(2);
-                                n0Var.f1385q0 = uptimeMillis;
+                            if (z10 && uptimeMillis - n0Var.U > 1200 && uptimeMillis - n0Var.f1376q0 > 1200) {
+                                n0Var.f1379s.setRightMode(2);
+                                n0Var.f1378r0 = uptimeMillis;
                             }
                         } else if (!z10 || n0Var.U > j11) {
-                            n0Var.f1388s.setRightMode(0);
-                            n0Var.f1385q0 = uptimeMillis;
+                            n0Var.f1379s.setRightMode(0);
+                            n0Var.f1378r0 = uptimeMillis;
                         }
                     }
-                    org.telegram.messenger.g0.i3(this, 50L);
+                    org.telegram.messenger.g0.h3(this, 50L);
                     return;
                 }
                 return;
             case 2:
                 ai.q0 q0Var = (ai.q0) this.f641b;
-                q0Var.f1461j1 = false;
+                q0Var.f1452j1 = false;
                 if (q0Var.isAttachedToWindow() && q0Var.getVisibility() == 0) {
                     q0Var.invalidate();
-                    q0Var.f1461j1 = true;
+                    q0Var.f1452j1 = true;
                     q0Var.postOnAnimation(this);
                     return;
                 }
                 return;
             case 3:
                 ai.h2 h2Var = (ai.h2) this.f641b;
-                TextView textView = h2Var.f1229a;
+                TextView textView = h2Var.f1222a;
                 Editable editableText = textView.getEditableText();
                 if (editableText == null) {
-                    h2Var.f1234g = false;
+                    h2Var.f1227g = false;
                     return;
                 }
                 long uptimeMillis2 = SystemClock.uptimeMillis();
@@ -173,7 +173,7 @@ public final class sa implements Runnable {
                     int spanEnd = editableText.getSpanEnd(f2Var);
                     if (spanStart >= 0 && spanEnd > spanStart) {
                         j3 = uptimeMillis2;
-                        if (j3 < (Math.max(0, f2Var.f1206c - 1) * 22) + f2Var.f1204a + 320) {
+                        if (j3 < (Math.max(0, f2Var.f1198c - 1) * 22) + f2Var.f1196a + 320) {
                             editableText.setSpan(f2Var, spanStart, spanEnd, 33);
                             z14 = true;
                             i14++;
@@ -200,25 +200,25 @@ public final class sa implements Runnable {
                         i7 = length2;
                         i10 = i15;
                         editableText.removeSpan(e2Var);
-                    } else if (p0.C((float) (j12 - e2Var.f1190a), 750.0f, 1.0f, 0.0f) >= 1.0f) {
+                    } else if (p0.C((float) (j12 - e2Var.f1187a), 750.0f, 1.0f, 0.0f) >= 1.0f) {
                         editableText.removeSpan(e2Var);
                         e2VarArr = e2VarArr2;
                         i7 = length2;
                         i10 = i15;
                     } else {
-                        long j13 = e2Var.f1191b;
+                        long j13 = e2Var.f1188b;
                         if (j13 <= 0) {
-                            j13 = e2Var.f1190a;
+                            j13 = e2Var.f1187a;
                         }
                         if (j12 >= j13 - 16) {
-                            if (!e2Var.f1193e) {
-                                e2Var.f1193e = true;
+                            if (!e2Var.f1190e) {
+                                e2Var.f1190e = true;
                                 ai.a0 a0Var2 = h2Var.h;
                                 if (a0Var2 != null) {
-                                    ai.n0 n0Var2 = a0Var2.f1115b;
-                                    float[] fArr = n0Var2.C0;
-                                    org.telegram.ui.Components.u5 u5Var = n0Var2.Y;
-                                    if (u5Var == null || u5Var.f39900c < 0.2f || !n0Var2.m(fArr) || (layout = n0Var2.f1373f.f32970b.F0.getLayout()) == null || spanEnd2 > layout.getText().length()) {
+                                    ai.n0 n0Var2 = a0Var2.f1114b;
+                                    float[] fArr = n0Var2.D0;
+                                    org.telegram.ui.Components.c6 c6Var = n0Var2.Y;
+                                    if (c6Var == null || c6Var.f33892c < 0.2f || !n0Var2.q(fArr) || (layout = n0Var2.f1364f.f38784a.F0.getLayout()) == null || spanEnd2 > layout.getText().length()) {
                                         e2VarArr = e2VarArr2;
                                         i7 = length2;
                                     } else {
@@ -230,14 +230,14 @@ public final class sa implements Runnable {
                                             lineRight = layout.getLineRight(lineForOffset);
                                         }
                                         e2VarArr = e2VarArr2;
-                                        ai.s0 s0Var = n0Var2.f1395x;
+                                        ai.s0 s0Var = n0Var2.f1386x;
                                         float f10 = primaryHorizontal + fArr[0];
                                         i7 = length2;
                                         float lineTop = layout.getLineTop(lineForOffset) + fArr[1];
                                         float max = Math.max(primaryHorizontal, lineRight) + fArr[0];
                                         float lineBottom = layout.getLineBottom(lineForOffset) + fArr[1];
                                         int i16 = ((int) (n0Var2.Q * 2.5f)) + 2;
-                                        Random random = s0Var.f1519t;
+                                        Random random = s0Var.f1510t;
                                         float f11 = 0.5f;
                                         if (random.nextFloat() < 0.5f) {
                                             i11 = 1;
@@ -250,10 +250,10 @@ public final class sa implements Runnable {
                                             float nextFloat = random.nextFloat();
                                             float f12 = f11;
                                             ai.s0 s0Var2 = s0Var;
-                                            float z16 = com.google.android.gms.internal.vision.e2.z(lineBottom, lineTop, org.telegram.ui.Cells.y0.g(random, 0.85f, 0.15f), lineTop);
+                                            float z16 = com.google.android.gms.internal.vision.e2.z(lineBottom, lineTop, org.telegram.ui.Cells.c0.h(random, 0.85f, 0.15f), lineTop);
                                             float L = org.telegram.messenger.g0.L((random.nextFloat() * 7.0f) + 3.0f);
                                             double nextFloat2 = ((random.nextFloat() - f12) * 2.2f) - 1.5707963267948966d;
-                                            s0Var2.i((Math.max(1.0f, max - f10) * nextFloat) + f10, z16, ((float) Math.cos(nextFloat2)) * L, ((float) Math.sin(nextFloat2)) * L, org.telegram.ui.Cells.y0.g(random, 0.55f, 0.45f), org.telegram.ui.Cells.y0.g(random, f12, 0.55f));
+                                            s0Var2.j((Math.max(1.0f, max - f10) * nextFloat) + f10, z16, ((float) Math.cos(nextFloat2)) * L, ((float) Math.sin(nextFloat2)) * L, org.telegram.ui.Cells.c0.h(random, 0.55f, 0.45f), org.telegram.ui.Cells.c0.h(random, f12, 0.55f));
                                             i18++;
                                             f11 = f12;
                                             s0Var = s0Var2;
@@ -281,11 +281,11 @@ public final class sa implements Runnable {
                     length2 = i7;
                 }
                 for (ai.d2 d2Var : (ai.d2[]) editableText.getSpans(0, editableText.length(), ai.d2.class)) {
-                    if (d2Var.f1180a != 0) {
+                    if (d2Var.f1178a != 0) {
                         int spanStart3 = editableText.getSpanStart(d2Var);
                         int spanEnd3 = editableText.getSpanEnd(d2Var);
                         if (spanStart3 >= 0 && spanEnd3 > spanStart3) {
-                            long j14 = d2Var.f1180a;
+                            long j14 = d2Var.f1178a;
                             if (j14 == 0 || j12 < j14 + 300) {
                                 editableText.setSpan(d2Var, spanStart3, spanEnd3, 33);
                                 z15 = true;
@@ -294,10 +294,10 @@ public final class sa implements Runnable {
                         editableText.removeSpan(d2Var);
                     }
                 }
-                ai.g2 g2Var = h2Var.f1236j;
-                if (g2Var != null && h2Var.f1239m > 0.0f && editableText.getSpanStart(g2Var) >= 0) {
+                ai.g2 g2Var = h2Var.f1229j;
+                if (g2Var != null && h2Var.f1232m > 0.0f && editableText.getSpanStart(g2Var) >= 0) {
                     z12 = false;
-                    editableText.setSpan(h2Var.f1236j, 0, editableText.length(), 18);
+                    editableText.setSpan(h2Var.f1229j, 0, editableText.length(), 18);
                     z13 = true;
                 } else {
                     z12 = false;
@@ -307,7 +307,7 @@ public final class sa implements Runnable {
                     textView.postOnAnimation(this);
                     return;
                 } else {
-                    h2Var.f1234g = z12;
+                    h2Var.f1227g = z12;
                     return;
                 }
             case 4:
@@ -337,7 +337,7 @@ public final class sa implements Runnable {
                 return;
             case 6:
                 androidx.fragment.app.p pVar = (androidx.fragment.app.p) this.f641b;
-                pVar.f2410o0.onDismiss(pVar.f2418w0);
+                pVar.f2401o0.onDismiss(pVar.f2409w0);
                 return;
             case 7:
                 androidx.fragment.app.s sVar = (androidx.fragment.app.s) this.f641b;
@@ -350,9 +350,9 @@ public final class sa implements Runnable {
                 ((androidx.fragment.app.j0) this.f641b).A(true);
                 return;
             case 9:
-                synchronized (((androidx.lifecycle.z) this.f641b).f2563a) {
-                    obj = ((androidx.lifecycle.z) this.f641b).f2567f;
-                    ((androidx.lifecycle.z) this.f641b).f2567f = androidx.lifecycle.z.f2562k;
+                synchronized (((androidx.lifecycle.z) this.f641b).f2554a) {
+                    obj = ((androidx.lifecycle.z) this.f641b).f2558f;
+                    ((androidx.lifecycle.z) this.f641b).f2558f = androidx.lifecycle.z.f2553k;
                 }
                 ((androidx.lifecycle.z) this.f641b).j(obj);
                 return;
@@ -363,37 +363,37 @@ public final class sa implements Runnable {
                 tVar.V.getViewTreeObserver().addOnGlobalLayoutListener(new androidx.mediarouter.app.i(tVar, 0));
                 return;
             case 11:
-                androidx.mediarouter.app.t tVar2 = ((androidx.mediarouter.app.r) this.f641b).f2754b;
-                if (tVar2.f2760d0 != null) {
-                    tVar2.f2760d0 = null;
-                    if (tVar2.f2778t0) {
-                        tVar2.q(tVar2.f2779u0);
+                androidx.mediarouter.app.t tVar2 = ((androidx.mediarouter.app.r) this.f641b).f2745b;
+                if (tVar2.f2751d0 != null) {
+                    tVar2.f2751d0 = null;
+                    if (tVar2.f2769t0) {
+                        tVar2.q(tVar2.f2770u0);
                         return;
                     }
                     return;
                 }
                 return;
             case 12:
-                ((b3.m) this.f641b).d();
+                ((b3.n) this.f641b).d();
                 return;
             case 13:
-                for (Thread thread : bg.i.f3254w.keySet()) {
+                for (Thread thread : bg.i.f3244w.keySet()) {
                     if (!thread.isAlive()) {
-                        bg.i.f3254w.remove(thread);
+                        bg.i.f3244w.remove(thread);
                     }
                 }
-                if (!bg.i.f3254w.isEmpty()) {
-                    org.telegram.messenger.g0.i3(((bg.i) this.f641b).f3271p, 5000L);
+                if (!bg.i.f3244w.isEmpty()) {
+                    org.telegram.messenger.g0.h3(((bg.i) this.f641b).f3261p, 5000L);
                     return;
                 } else {
-                    bg.i.f3255x = false;
+                    bg.i.f3245x = false;
                     return;
                 }
             case 14:
-                bg.b0 b0Var = (bg.b0) this.f641b;
-                if (b0Var.G.get()) {
-                    b0Var.invalidate();
-                    b0Var.I.postDelayed(this, 300L);
+                bg.c0 c0Var = (bg.c0) this.f641b;
+                if (c0Var.G.get()) {
+                    c0Var.invalidate();
+                    c0Var.I.postDelayed(this, 300L);
                     return;
                 }
                 return;
@@ -405,21 +405,21 @@ public final class sa implements Runnable {
             case 16:
                 uf ufVar = (uf) this.f641b;
                 c8.fb fbVar = c8.fb.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
-                HashMap hashMap2 = ufVar.f4726j;
+                HashMap hashMap2 = ufVar.f5012j;
                 jg jgVar = (jg) hashMap2.get(fbVar);
                 if (jgVar != null) {
                     jg jgVar2 = jgVar;
-                    cd cdVar = jgVar2.f4552a;
+                    cd cdVar = jgVar2.f4833a;
                     if (cdVar == null) {
                         jg jgVar3 = jgVar2;
-                        cd cdVar2 = new cd(jgVar3, jgVar3.f4567c);
-                        jgVar2.f4552a = cdVar2;
+                        cd cdVar2 = new cd(jgVar3, jgVar3.f4852c);
+                        jgVar2.f4833a = cdVar2;
                         cdVar = cdVar2;
                     }
                     Iterator it2 = cdVar.iterator();
                     while (it2.hasNext()) {
                         Object next2 = it2.next();
-                        Object obj6 = (Collection) jgVar.f4567c.get(next2);
+                        Object obj6 = (Collection) jgVar.f4852c.get(next2);
                         if (obj6 == null) {
                             obj6 = new ArrayList(i12);
                         }
@@ -452,13 +452,13 @@ public final class sa implements Runnable {
                         ga.d dVar = new ga.d(1);
                         dVar.d = c8.db.TYPE_THIN;
                         android.support.v4.media.session.a0 a0Var3 = new android.support.v4.media.session.a0(15, false);
-                        a0Var3.f1714c = Integer.valueOf(size4 & Integer.MAX_VALUE);
-                        a0Var3.f1713b = (c8.h1) next2;
+                        a0Var3.f1705c = Integer.valueOf(size4 & Integer.MAX_VALUE);
+                        a0Var3.f1704b = (c8.h1) next2;
                         a0Var3.d = laVar;
-                        dVar.f12967n = new c8.i1(a0Var3);
+                        dVar.f13284n = new c8.i1(a0Var3);
                         uf ufVar2 = ufVar;
                         c8.fb fbVar2 = fbVar;
-                        pb.n.f54964a.execute(new qa(ufVar2, new xa(dVar, 0), fbVar2, ufVar.c(), 1));
+                        pb.n.f55540a.execute(new qa(ufVar2, new xa(dVar, 0), fbVar2, ufVar.c(), 1));
                         fbVar = fbVar2;
                         ufVar = ufVar2;
                         jgVar = jgVar4;
@@ -470,9 +470,9 @@ public final class sa implements Runnable {
                 }
                 return;
             case 17:
-                ci.a0 a0Var4 = (ci.a0) this.f641b;
-                CameraView cameraView = a0Var4.f5260b;
-                if (a0Var4.f5271i0 && cameraView != null) {
+                ci.b0 b0Var = (ci.b0) this.f641b;
+                CameraView cameraView = b0Var.f5552b;
+                if (b0Var.f5563i0 && cameraView != null) {
                     TextureView textureView = cameraView.getTextureView();
                     int width = textureView.getWidth();
                     int height = textureView.getHeight();
@@ -484,35 +484,35 @@ public final class sa implements Runnable {
                             width = Math.max(1, (int) (f13 * min));
                             height = Math.max(1, (int) (f14 * min));
                         }
-                        Bitmap bitmap = ((ci.a0) this.f641b).f5274l0;
-                        if (bitmap == null || bitmap.getWidth() != width || ((ci.a0) this.f641b).f5274l0.getHeight() != height) {
-                            ((ci.a0) this.f641b).f5274l0 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                        Bitmap bitmap = ((ci.b0) this.f641b).f5566l0;
+                        if (bitmap == null || bitmap.getWidth() != width || ((ci.b0) this.f641b).f5566l0.getHeight() != height) {
+                            ((ci.b0) this.f641b).f5566l0 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                         }
                         try {
-                            textureView.getBitmap(((ci.a0) this.f641b).f5274l0);
-                            ci.a0 a0Var5 = (ci.a0) this.f641b;
-                            q4.q f15 = ci.a0.f(a0Var5.f5274l0, a0Var5.f5272j0, a0Var5.f5273k0, a0Var5.P);
+                            textureView.getBitmap(((ci.b0) this.f641b).f5566l0);
+                            ci.b0 b0Var2 = (ci.b0) this.f641b;
+                            q4.q f15 = ci.b0.f(b0Var2.f5566l0, b0Var2.f5564j0, b0Var2.f5565k0, b0Var2.P);
                             if (f15 != null) {
-                                org.telegram.messenger.g0.h3(new c1.c(12, this, f15));
+                                org.telegram.messenger.g0.g3(new c1.c(11, this, f15));
                                 return;
                             }
                         } catch (Throwable th2) {
                             org.telegram.messenger.a8.g(th2, true);
                         }
                     }
-                    if (((ci.a0) this.f641b).f5271i0) {
-                        ((ci.a0) this.f641b).f5270h0.postDelayed(this, 150L);
+                    if (((ci.b0) this.f641b).f5563i0) {
+                        ((ci.b0) this.f641b).f5562h0.postDelayed(this, 150L);
                         return;
                     }
                     return;
                 }
                 return;
             case 18:
-                com.google.android.gms.common.api.internal.c0 c0Var = (com.google.android.gms.common.api.internal.c0) this.f641b;
-                n6.e eVar = c0Var.d;
-                Context context = c0Var.f5957c;
+                com.google.android.gms.common.api.internal.c0 c0Var2 = (com.google.android.gms.common.api.internal.c0) this.f641b;
+                n6.e eVar = c0Var2.d;
+                Context context = c0Var2.f6240c;
                 eVar.getClass();
-                if (!n6.g.f21072a.getAndSet(true)) {
+                if (!n6.g.f21436a.getAndSet(true)) {
                     try {
                         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
                         if (notificationManager != null) {
@@ -530,35 +530,35 @@ public final class sa implements Runnable {
                 ((com.google.android.gms.common.api.internal.l0) this.f641b).a();
                 return;
             case 20:
-                com.google.android.gms.common.api.internal.l0 l0Var = (com.google.android.gms.common.api.internal.l0) ((d6.i) this.f641b).f7598b;
-                ((q6.d) l0Var.f6036b).j(l0Var.f6036b.getClass().getName().concat(" disconnecting because it was signed out."));
+                com.google.android.gms.common.api.internal.l0 l0Var = (com.google.android.gms.common.api.internal.l0) ((ob.c) this.f641b).f21783b;
+                ((q6.d) l0Var.f6319b).j(l0Var.f6319b.getClass().getName().concat(" disconnecting because it was signed out."));
                 return;
             case 21:
-                ((com.google.android.gms.common.api.internal.x0) this.f641b).f6098j.b(new n6.a(4, null, null));
+                ((com.google.android.gms.common.api.internal.x0) this.f641b).f6381j.b(new n6.a(4, null, null));
                 return;
             case 22:
                 com.google.android.gms.common.api.internal.h1 h1Var = (com.google.android.gms.common.api.internal.h1) this.f641b;
-                h1Var.f6012o.lock();
+                h1Var.f6295o.lock();
                 try {
                     h1Var.j();
                     return;
                 } finally {
-                    h1Var.f6012o.unlock();
+                    h1Var.f6295o.unlock();
                 }
             case 23:
                 f5.t tVar3 = (f5.t) this.f641b;
-                f5.b bVar3 = tVar3.d;
+                f5.b bVar3 = tVar3.f11323e;
                 bVar3.k(0);
-                f5.f fVar4 = f5.a0.f10933i;
-                bVar3.j(24, fVar4);
+                f5.f fVar4 = f5.z.f11335i;
+                bVar3.j(24, tVar3.d, fVar4);
                 tVar3.c(fVar4);
                 return;
             case 24:
-                fi.b4 b4Var = (fi.b4) this.f641b;
-                if (b4Var.f11527u1 && b4Var.L0) {
-                    fi.i9 i9Var = ((fi.z8) b4Var.A1).d;
-                    i9Var.l1 = false;
-                    i9Var.V();
+                fi.z3 z3Var = (fi.z3) this.f641b;
+                if (z3Var.f12880u1 && z3Var.L0) {
+                    fi.f9 f9Var = ((fi.w8) z3Var.A1).d;
+                    f9Var.l1 = false;
+                    f9Var.V();
                     return;
                 }
                 return;
@@ -566,14 +566,14 @@ public final class sa implements Runnable {
                 ((fi.w) this.f641b).M0 = false;
                 return;
             case 26:
-                fi.r7 r7Var = (fi.r7) this.f641b;
-                r7Var.f12284b = false;
-                r7Var.invalidate();
+                fi.o7 o7Var = (fi.o7) this.f641b;
+                o7Var.f12343b = false;
+                o7Var.invalidate();
                 return;
             case 27:
-                tg.j jVar = ((hi.u9) this.f641b).f14690t0;
-                if (jVar instanceof tg.n2) {
-                    ((tg.n2) jVar).getEditText();
+                tg.j jVar = ((hi.v9) this.f641b).f14929t0;
+                if (jVar instanceof tg.m2) {
+                    ((tg.m2) jVar).getEditText();
                     return;
                 }
                 return;

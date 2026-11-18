@@ -1,4 +1,4 @@
 package h2;
 public interface p {
-    void e(Object obj, e2.s sVar);
+    void g(Object obj, e2.s sVar);
 }

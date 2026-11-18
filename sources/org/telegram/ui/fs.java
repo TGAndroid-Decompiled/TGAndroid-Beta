@@ -4,55 +4,55 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class fs implements View.OnClickListener {
-    public final ArrayList f47173a;
-    public final boolean f47174b;
-    public final js f47175c;
+    public final ArrayList f47809a;
+    public final boolean f47810b;
+    public final js f47811c;
 
     public fs(js jsVar, ArrayList arrayList, boolean z10) {
-        this.f47175c = jsVar;
-        this.f47173a = arrayList;
-        this.f47174b = z10;
+        this.f47811c = jsVar;
+        this.f47809a = arrayList;
+        this.f47810b = z10;
     }
 
     @Override
     public final void onClick(View view) {
-        ns nsVar = this.f47175c.f48406a;
-        if (nsVar.f49666w != null) {
+        ns nsVar = this.f47811c.f49073a;
+        if (nsVar.f50313w != null) {
             int intValue = ((Integer) view.getTag()).intValue();
-            ArrayList arrayList = this.f47173a;
+            ArrayList arrayList = this.f47809a;
             if (((Integer) arrayList.get(intValue)).intValue() != 0 && ((Integer) arrayList.get(intValue)).intValue() != 6) {
                 if (((Integer) arrayList.get(intValue)).intValue() == 1) {
-                    ls lsVar = nsVar.f49656l;
+                    ls lsVar = nsVar.f50303l;
                     if (lsVar != null) {
-                        lsVar.M(nsVar.f49643a0, nsVar.f49653i);
+                        lsVar.M(nsVar.f50290a0, nsVar.f50300i);
                     }
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 2) {
-                    org.telegram.messenger.si.b0(nsVar.f49662r).d(2, nsVar.f49645b0, nsVar.W, (int) (System.currentTimeMillis() / 1000), this.f47174b);
+                    org.telegram.messenger.ri.d0(nsVar.f50309r).d(2, nsVar.f50292b0, nsVar.W, (int) (System.currentTimeMillis() / 1000), this.f47810b);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 3) {
                     TLRPC.Document document = nsVar.W;
-                    Object obj = nsVar.f49645b0;
+                    Object obj = nsVar.f50292b0;
                     String str = nsVar.Y;
-                    ls lsVar2 = nsVar.f49656l;
+                    ls lsVar2 = nsVar.f50303l;
                     if (lsVar2 == null) {
                         return;
                     }
-                    org.telegram.ui.Components.t4.I(nsVar.f49666w, lsVar2.a(), new a1.d(lsVar2, document, str, obj, 13));
+                    org.telegram.ui.Components.b5.I(nsVar.f50313w, lsVar2.a(), new a1.d(lsVar2, document, str, obj, 13));
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 4) {
-                    org.telegram.messenger.si.b0(nsVar.f49662r).d(0, nsVar.f49645b0, nsVar.W, (int) (System.currentTimeMillis() / 1000), true);
+                    org.telegram.messenger.ri.d0(nsVar.f50309r).d(0, nsVar.f50292b0, nsVar.W, (int) (System.currentTimeMillis() / 1000), true);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 5) {
-                    nsVar.f49656l.i(nsVar.X);
+                    nsVar.f50303l.i(nsVar.X);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 7) {
-                    nsVar.f49656l.n(nsVar.W);
+                    nsVar.f50303l.n(nsVar.W);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 8) {
-                    nsVar.f49656l.F(nsVar.W);
+                    nsVar.f50303l.F(nsVar.W);
                 }
             } else {
-                ls lsVar3 = nsVar.f49656l;
+                ls lsVar3 = nsVar.f50303l;
                 if (lsVar3 != null) {
                     TLRPC.Document document2 = nsVar.W;
                     String str2 = nsVar.Y;
                     boolean z10 = true;
-                    Object obj2 = nsVar.f49645b0;
+                    Object obj2 = nsVar.f50292b0;
                     if (((Integer) arrayList.get(intValue)).intValue() != 0) {
                         z10 = false;
                     }

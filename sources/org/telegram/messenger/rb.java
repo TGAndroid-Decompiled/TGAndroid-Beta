@@ -1,22 +1,41 @@
 package org.telegram.messenger;
-public final class rb implements Runnable {
-    public final int f26273a;
-    public final sb f26274b;
 
-    public rb(sb sbVar, int i7) {
-        this.f26273a = i7;
-        this.f26274b = sbVar;
+import android.net.Uri;
+import android.os.AsyncTask;
+import java.net.HttpURLConnection;
+public final class rb extends AsyncTask {
+    public final sb f26565a;
+    public boolean f26566b = true;
+    public HttpURLConnection f26567c;
+    public final boolean d;
+    public final ec f26568e;
+
+    public rb(ec ecVar, sb sbVar) {
+        this.f26568e = ecVar;
+        this.f26565a = sbVar;
+        this.d = Uri.parse(sbVar.f26770i.f23872g).getQueryParameter("s") != null;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26273a) {
-            case 0:
-                this.f26274b.f26437e.T(true);
-                return;
-            default:
-                this.f26274b.f26437e.T(true);
-                return;
+    public final java.lang.Object doInBackground(java.lang.Object[] r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.rb.doInBackground(java.lang.Object[]):java.lang.Object");
+    }
+
+    @Override
+    public final void onCancelled() {
+        this.f26568e.f23695s.c(new qb(this, 0));
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        String str = (String) obj;
+        ec ecVar = this.f26568e;
+        q5 q5Var = ecVar.f23695s;
+        if (str != null) {
+            q5Var.c(new z4(18, this, str));
+        } else if (this.f26566b) {
+            q5Var.c(new gb(ecVar, this.f26565a.f26767e, 0));
         }
+        q5Var.c(new qb(this, 1));
     }
 }

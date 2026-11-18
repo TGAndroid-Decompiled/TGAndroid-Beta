@@ -1,9 +1,9 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.messenger.np;
+import org.telegram.messenger.mp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.yw;
-public final class m2 extends fi.h7 {
+import org.telegram.ui.cx;
+public final class m2 extends fi.e7 {
     public final t2 S;
 
     public m2(t2 t2Var) {
@@ -23,19 +23,19 @@ public final class m2 extends fi.h7 {
     public final boolean d(long j3) {
         t2 t2Var = this.S;
         int i7 = t2Var.G0;
-        yw ywVar = t2Var.E4;
-        if (ywVar != null && !t2Var.P0) {
+        cx cxVar = t2Var.E4;
+        if (cxVar != null && !t2Var.P0) {
             if (j3 > 0) {
-                TLRPC.User a22 = np.s1(i7).a2(Long.valueOf(j3));
-                if (a22 != null && a22.linked_community_id != 0) {
-                    ywVar.showDialog(new li.d0(ywVar, a22.linked_community_id));
+                TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(j3));
+                if (c22 != null && c22.linked_community_id != 0) {
+                    cxVar.showDialog(new li.d0(cxVar, c22.linked_community_id));
                     return true;
                 }
                 return false;
             }
-            TLRPC.Chat M0 = np.s1(i7).M0(Long.valueOf(-j3));
-            if (M0 != null && M0.linked_community_id != 0) {
-                ywVar.showDialog(new li.d0(ywVar, M0.linked_community_id));
+            TLRPC.Chat O0 = mp.u1(i7).O0(Long.valueOf(-j3));
+            if (O0 != null && O0.linked_community_id != 0) {
+                cxVar.showDialog(new li.d0(cxVar, O0.linked_community_id));
                 return true;
             }
             return false;
@@ -46,7 +46,7 @@ public final class m2 extends fi.h7 {
     @Override
     public final void e() {
         t2 t2Var = this.S;
-        p2 p2Var = t2Var.f31561e0;
+        p2 p2Var = t2Var.f31863e0;
         if (p2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class m2 extends fi.h7 {
     @Override
     public final void f(long j3) {
         t2 t2Var = this.S;
-        p2 p2Var = t2Var.f31561e0;
+        p2 p2Var = t2Var.f31863e0;
         if (p2Var == null) {
             return;
         }

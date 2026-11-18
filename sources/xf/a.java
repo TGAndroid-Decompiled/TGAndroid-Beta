@@ -1,10 +1,10 @@
 package xf;
 
-import fi.w2;
+import fi.u2;
 public final class a {
-    public final w2 f59890a;
+    public final u2 f60459a;
 
-    public a(w2 w2Var) {
-        this.f59890a = w2Var;
+    public a(u2 u2Var) {
+        this.f60459a = u2Var;
     }
 }

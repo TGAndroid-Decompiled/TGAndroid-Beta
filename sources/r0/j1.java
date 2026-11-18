@@ -14,11 +14,7 @@ public abstract class j1 {
                                 if (i11 != 16) {
                                     if (i11 != 32) {
                                         if (i11 != 64) {
-                                            if (i11 != 128) {
-                                                if (i11 == 512) {
-                                                    statusBars = WindowInsets.Type.systemOverlays();
-                                                }
-                                            } else {
+                                            if (i11 == 128) {
                                                 statusBars = WindowInsets.Type.displayCutout();
                                             }
                                         } else {

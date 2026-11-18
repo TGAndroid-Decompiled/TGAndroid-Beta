@@ -4,43 +4,43 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.SparseArray;
 public final class o3 {
-    public TextPaint f49765a;
-    public final SparseArray f49766b = new SparseArray();
-    public final SparseArray f49767c = new SparseArray();
+    public TextPaint f50414a;
+    public final SparseArray f50415b = new SparseArray();
+    public final SparseArray f50416c = new SparseArray();
     public final SparseArray d = new SparseArray();
-    public final SparseArray f49768e = new SparseArray();
-    public final SparseArray f49769f = new SparseArray();
-    public final SparseArray f49770g = new SparseArray();
+    public final SparseArray f50417e = new SparseArray();
+    public final SparseArray f50418f = new SparseArray();
+    public final SparseArray f50419g = new SparseArray();
     public final SparseArray h = new SparseArray();
-    public final SparseArray f49771i = new SparseArray();
-    public final SparseArray f49772j = new SparseArray();
-    public final SparseArray f49773k = new SparseArray();
-    public final SparseArray f49774l = new SparseArray();
-    public final SparseArray f49775m = new SparseArray();
-    public final SparseArray f49776n = new SparseArray();
-    public final SparseArray f49777o = new SparseArray();
-    public final SparseArray f49778p = new SparseArray();
-    public final SparseArray f49779q = new SparseArray();
-    public final SparseArray f49780r = new SparseArray();
-    public final SparseArray f49781s = new SparseArray();
-    public final SparseArray f49782t = new SparseArray();
-    public final SparseArray f49783u = new SparseArray();
+    public final SparseArray f50420i = new SparseArray();
+    public final SparseArray f50421j = new SparseArray();
+    public final SparseArray f50422k = new SparseArray();
+    public final SparseArray f50423l = new SparseArray();
+    public final SparseArray f50424m = new SparseArray();
+    public final SparseArray f50425n = new SparseArray();
+    public final SparseArray f50426o = new SparseArray();
+    public final SparseArray f50427p = new SparseArray();
+    public final SparseArray f50428q = new SparseArray();
+    public final SparseArray f50429r = new SparseArray();
+    public final SparseArray f50430s = new SparseArray();
+    public final SparseArray f50431t = new SparseArray();
+    public final SparseArray f50432u = new SparseArray();
     public final SparseArray v = new SparseArray();
-    public final SparseArray f49784w = new SparseArray();
-    public final SparseArray f49785x = new SparseArray();
-    public final SparseArray f49786y = new SparseArray();
-    public final SparseArray f49787z = new SparseArray();
+    public final SparseArray f50433w = new SparseArray();
+    public final SparseArray f50434x = new SparseArray();
+    public final SparseArray f50435y = new SparseArray();
+    public final SparseArray f50436z = new SparseArray();
     public final SparseArray A = new SparseArray();
 
-    public static void a(n50 n50Var, SparseArray sparseArray) {
+    public static void a(p50 p50Var, SparseArray sparseArray) {
         for (int i7 = 0; i7 < sparseArray.size(); i7++) {
             int keyAt = sparseArray.keyAt(i7);
             TextPaint textPaint = (TextPaint) sparseArray.valueAt(i7);
             if (textPaint != null) {
                 if ((keyAt & 8) == 0 && (keyAt & 512) == 0) {
-                    textPaint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.G6, false));
+                    textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.G6, false));
                 } else {
-                    textPaint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.J6, false));
+                    textPaint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.J6, false));
                 }
             }
         }

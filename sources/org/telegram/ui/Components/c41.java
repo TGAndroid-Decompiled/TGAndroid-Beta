@@ -1,45 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-public final class c41 extends f41 {
-    public static boolean h = true;
-    public final int f33503e;
-    public final wy0 f33504f;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class c41 implements gw0 {
+    public final TLRPC.InputStickerSet f33887a;
+    public final h41 f33888b;
 
-    public c41(String str, int i7, wy0 wy0Var) {
-        super(str, (wy0) null);
-        this.f33503e = i7;
-        this.f33504f = wy0Var;
+    public c41(h41 h41Var, TLRPC.InputStickerSet inputStickerSet) {
+        this.f33888b = h41Var;
+        this.f33887a = inputStickerSet;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i7;
-        int i10;
-        super.updateDrawState(textPaint);
-        int i11 = this.f33503e;
-        if (i11 == 2) {
-            textPaint.setColor(-1);
-        } else if (i11 == 1) {
-            if (h) {
-                i10 = org.telegram.ui.ActionBar.j6.Yc;
-            } else {
-                i10 = org.telegram.ui.ActionBar.j6.Wc;
+    public final void a() {
+        h41 h41Var = this.f33888b;
+        v4.i0 adapter = h41Var.f35719n.getAdapter();
+        g41 g41Var = h41Var.f35721s;
+        TLRPC.InputStickerSet inputStickerSet = this.f33887a;
+        int i7 = 0;
+        if (adapter == g41Var) {
+            while (i7 < g41Var.f35328e.size()) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) g41Var.f35328e.get(i7);
+                if (stickerSetCovered.set.f28432id == inputStickerSet.f28425id) {
+                    g41Var.F(stickerSetCovered, null);
+                    return;
+                }
+                i7++;
             }
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.x0(null, i10, false));
-        } else {
-            if (h) {
-                i7 = org.telegram.ui.ActionBar.j6.Xc;
-            } else {
-                i7 = org.telegram.ui.ActionBar.j6.Vc;
-            }
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.x0(null, i7, false));
+            return;
         }
-        wy0 wy0Var = this.f33504f;
-        if (wy0Var != null) {
-            wy0Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
+        jg.c2 c2Var = h41Var.f35722w;
+        ArrayList arrayList = c2Var.F;
+        while (i7 < arrayList.size()) {
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i7);
+            if (stickerSetCovered2.set.f28432id == inputStickerSet.f28425id) {
+                c2Var.F(stickerSetCovered2, null);
+                return;
+            }
+            i7++;
         }
     }
 }

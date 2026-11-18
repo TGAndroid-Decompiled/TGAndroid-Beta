@@ -1,33 +1,45 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class ro implements Runnable {
-    public final int f50981a;
-    public final so f50982b;
-    public final String f50983c;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class ro extends org.telegram.ui.Components.t70 {
+    public final TLRPC.Chat f51718x;
+    public final so f51719y;
 
-    public ro(so soVar, String str, int i7) {
-        this.f50981a = i7;
-        this.f50982b = soVar;
-        this.f50983c = str;
+    public ro(so soVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.f51719y = soVar;
+        this.f51718x = chat2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f50981a) {
-            case 0:
-                so soVar = this.f50982b;
-                String str = this.f50983c;
-                soVar.getClass();
-                org.telegram.messenger.g0.h3(new ro(soVar, str, 1));
-                return;
-            default:
-                so soVar2 = this.f50982b;
-                String str2 = this.f50983c;
-                soVar2.f51253f = null;
-                Utilities.f22418g.c(new o1(soVar2, str2, new ArrayList(soVar2.h.f51626w), 28));
-                return;
+    public final boolean a(boolean z10, org.telegram.ui.Components.r70 r70Var) {
+        vo voVar = this.f51719y.d;
+        if (voVar.Q) {
+            return false;
+        }
+        voVar.Q = true;
+        e(new ci(11, this, r70Var), new yn(this, this.f51718x, z10, r70Var, 2));
+        return true;
+    }
+
+    @Override
+    public final boolean b(boolean z10, org.telegram.ui.Components.s70 s70Var) {
+        vo voVar = this.f51719y.d;
+        if (voVar.P) {
+            return false;
+        }
+        voVar.P = true;
+        e(new ci(11, this, s70Var), new yn(this, this.f51718x, z10, s70Var, 1));
+        return true;
+    }
+
+    public final void e(ci ciVar, Runnable runnable) {
+        vo voVar = this.f51719y.d;
+        if (!org.telegram.messenger.v3.T(voVar.f52827f)) {
+            voVar.getMessagesController().T(voVar.getParentActivity(), this.f51718x.f28405id, voVar, new oi.e0(22, this, runnable), ciVar);
+        } else {
+            runnable.run();
         }
     }
 }

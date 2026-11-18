@@ -1,524 +1,315 @@
 package ob;
 
 import a0.h;
-import aa.p;
+import a8.la;
+import a8.m8;
+import aa.f0;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.ResultReceiver;
 import android.util.Log;
 import android.util.SparseIntArray;
-import android.webkit.WebView;
-import androidx.fragment.app.f0;
-import androidx.fragment.app.j0;
+import android.view.TextureView;
+import android.view.View;
+import android.widget.FrameLayout;
 import androidx.fragment.app.s;
 import androidx.lifecycle.a0;
+import bi.i3;
+import c4.d;
+import c8.c0;
+import ca.r;
+import ch.p0;
+import ci.b0;
+import ci.j0;
+import ci.z0;
 import com.android.billingclient.api.ProxyBillingActivityV2;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.h1;
+import com.google.android.gms.cast.MediaInfo;
+import com.google.android.gms.common.api.e;
+import com.google.android.gms.common.api.internal.g0;
+import com.google.android.gms.common.api.internal.i0;
 import com.google.android.gms.common.api.internal.q;
-import com.google.android.gms.common.api.internal.q0;
-import com.google.android.gms.internal.cast.t;
 import com.google.android.gms.internal.play_billing.u;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import d9.o;
-import di.lb;
-import e5.n;
-import f5.g;
-import f6.d0;
-import f6.e0;
-import fi.b4;
-import g6.j;
+import d8.f;
+import di.f6;
+import f6.o;
+import fi.w8;
+import fi.z3;
 import g9.k;
-import gb.d1;
-import gb.l;
-import gb.w0;
-import h9.g1;
-import j6.f;
-import j6.x;
+import gb.k0;
+import gb.u0;
+import gf.p;
+import h2.x;
+import h9.e1;
+import h9.h1;
+import hi.v9;
 import java.io.File;
 import java.io.IOException;
-import java.nio.BufferOverflowException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.ReadOnlyBufferException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.Lock;
-import m.i1;
-import org.chromium.support_lib_boundary.StaticsBoundaryInterface;
-import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
-import org.chromium.support_lib_boundary.WebViewProviderFactoryBoundaryInterface;
-import org.telegram.ui.Components.fo0;
-import org.telegram.ui.Components.ft0;
-import org.telegram.ui.l11;
-import org.telegram.ui.o00;
-public final class c implements a0, androidx.activity.result.b, l11, q0, ft0, n, q, fo0, i1, OnCompleteListener, ib.b, j6.n, g1 {
-    public final int f21416a;
-    public Object f21417b;
+import kd.j;
+import og.n;
+import org.json.JSONObject;
+import org.telegram.messenger.fj;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.oo0;
+import org.telegram.ui.Components.ui0;
+import org.telegram.ui.dr0;
+import sg.t0;
+public final class c implements a0, androidx.activity.result.b, ce.c, ui0, ci.a0, g0, d, q, oo0, dr0, OnSuccessListener, ib.b, k, n, t0 {
+    public final int f21782a;
+    public Object f21783b;
 
     public c(Object obj, int i7) {
-        this.f21416a = i7;
-        this.f21417b = obj;
+        this.f21782a = i7;
+        this.f21783b = obj;
     }
 
-    public static int m(CharSequence charSequence) {
-        int length = charSequence.length();
-        int i7 = 0;
-        int i10 = 0;
-        while (i10 < length && charSequence.charAt(i10) < 128) {
-            i10++;
-        }
-        int i11 = length;
-        while (true) {
-            if (i10 >= length) {
-                break;
+    @Override
+    public void A(java.lang.Object r12) {
+        throw new UnsupportedOperationException("Method not decompiled: ob.c.A(java.lang.Object):void");
+    }
+
+    public o C() {
+        o oVar = (o) this.f21783b;
+        if (oVar.f11435a != null) {
+            if (!Double.isNaN(oVar.d) && oVar.d < 0.0d) {
+                throw new IllegalArgumentException("startTime cannot be negative or NaN.");
             }
-            char charAt = charSequence.charAt(i10);
-            if (charAt < 2048) {
-                i11 += (127 - charAt) >>> 31;
-                i10++;
+            if (!Double.isNaN(oVar.f11438e)) {
+                if (!Double.isNaN(oVar.f11439f) && oVar.f11439f >= 0.0d) {
+                    return oVar;
+                }
+                throw new IllegalArgumentException("preloadTime cannot be negative or Nan.");
+            }
+            throw new IllegalArgumentException("playbackDuration cannot be NaN.");
+        }
+        throw new IllegalArgumentException("media cannot be null.");
+    }
+
+    @Override
+    public void D0() {
+        gc k10 = ((f6) this.f21783b).k().k(false);
+        k10.f35471t = true;
+        k10.j();
+    }
+
+    @Override
+    public boolean E() {
+        return false;
+    }
+
+    public int F(int[] iArr, int i7) {
+        int[] iArr2;
+        int[] iArr3;
+        int i10;
+        int i11;
+        int i12;
+        ec.a aVar = (ec.a) this.f21783b;
+        if (iArr.length != 0) {
+            int length = iArr.length;
+            if (length > 1 && iArr[0] == 0) {
+                int i13 = 1;
+                while (i13 < length && iArr[i13] == 0) {
+                    i13++;
+                }
+                if (i13 == length) {
+                    iArr2 = new int[]{0};
+                } else {
+                    int i14 = length - i13;
+                    int[] iArr4 = new int[i14];
+                    System.arraycopy(iArr, i13, iArr4, 0, i14);
+                    iArr2 = iArr4;
+                }
             } else {
-                int length2 = charSequence.length();
-                while (i10 < length2) {
-                    char charAt2 = charSequence.charAt(i10);
-                    if (charAt2 < 2048) {
-                        i7 += (127 - charAt2) >>> 31;
+                iArr2 = iArr;
+            }
+            int[] iArr5 = new int[i7];
+            boolean z10 = true;
+            for (int i15 = 0; i15 < i7; i15++) {
+                int i16 = aVar.f10881a[aVar.f10886g + i15];
+                if (i16 == 0) {
+                    i12 = iArr2[iArr2.length - 1];
+                } else {
+                    if (i16 == 1) {
+                        i11 = 0;
+                        for (int i17 : iArr2) {
+                            ec.a aVar2 = ec.a.h;
+                            i11 ^= i17;
+                        }
                     } else {
-                        i7 += 2;
-                        if (55296 <= charAt2 && charAt2 <= 57343) {
-                            if (Character.codePointAt(charSequence, i10) >= 65536) {
-                                i10++;
+                        i11 = iArr2[0];
+                        int length2 = iArr2.length;
+                        for (int i18 = 1; i18 < length2; i18++) {
+                            i11 = aVar.c(i16, i11) ^ iArr2[i18];
+                        }
+                    }
+                    i12 = i11;
+                }
+                iArr5[(i7 - 1) - i15] = i12;
+                if (i12 != 0) {
+                    z10 = false;
+                }
+            }
+            if (z10) {
+                return 0;
+            }
+            ec.b bVar = new ec.b(aVar, iArr5);
+            ec.b a10 = aVar.a(i7, 1);
+            ec.b bVar2 = aVar.f10883c;
+            if (a10.d() >= bVar.d()) {
+                a10 = bVar;
+                bVar = a10;
+            }
+            ec.b bVar3 = aVar.d;
+            ec.b bVar4 = a10;
+            ec.b bVar5 = bVar;
+            ec.b bVar6 = bVar4;
+            ec.b bVar7 = bVar2;
+            while (bVar6.d() * 2 >= i7) {
+                if (!bVar6.e()) {
+                    int b10 = aVar.b(bVar6.c(bVar6.d()));
+                    ec.b bVar8 = bVar2;
+                    while (bVar5.d() >= bVar6.d() && !bVar5.e()) {
+                        int d = bVar5.d() - bVar6.d();
+                        int c10 = aVar.c(bVar5.c(bVar5.d()), b10);
+                        bVar8 = bVar8.a(aVar.a(d, c10));
+                        bVar5 = bVar5.a(bVar6.h(d, c10));
+                    }
+                    ec.b a11 = bVar8.g(bVar3).a(bVar7);
+                    if (bVar5.d() < bVar6.d()) {
+                        ec.b bVar9 = bVar5;
+                        bVar5 = bVar6;
+                        bVar6 = bVar9;
+                        bVar7 = bVar3;
+                        bVar3 = a11;
+                    } else {
+                        throw new IllegalStateException("Division algorithm failed to reduce polynomial? r: " + bVar5 + ", rLast: " + bVar6);
+                    }
+                } else {
+                    throw new Exception("r_{i-1} was zero");
+                }
+            }
+            int c11 = bVar3.c(0);
+            if (c11 != 0) {
+                int b11 = aVar.b(c11);
+                ec.b[] bVarArr = {bVar3.f(b11), bVar6.f(b11)};
+                ec.b bVar10 = bVarArr[0];
+                ec.b bVar11 = bVarArr[1];
+                int d2 = bVar10.d();
+                if (d2 == 1) {
+                    iArr3 = new int[]{bVar10.c(1)};
+                } else {
+                    int[] iArr6 = new int[d2];
+                    int i19 = 0;
+                    for (int i20 = 1; i20 < aVar.f10884e && i19 < d2; i20++) {
+                        if (bVar10.b(i20) == 0) {
+                            iArr6[i19] = aVar.b(i20);
+                            i19++;
+                        }
+                    }
+                    if (i19 == d2) {
+                        iArr3 = iArr6;
+                    } else {
+                        throw new Exception("Error locator degree does not match number of roots");
+                    }
+                }
+                int length3 = iArr3.length;
+                int[] iArr7 = new int[length3];
+                for (int i21 = 0; i21 < length3; i21++) {
+                    int b12 = aVar.b(iArr3[i21]);
+                    int i22 = 1;
+                    for (int i23 = 0; i23 < length3; i23++) {
+                        if (i21 != i23) {
+                            int c12 = aVar.c(iArr3[i23], b12);
+                            if ((c12 & 1) == 0) {
+                                i10 = c12 | 1;
                             } else {
-                                StringBuilder sb2 = new StringBuilder(39);
-                                sb2.append("Unpaired surrogate at index ");
-                                sb2.append(i10);
-                                throw new IllegalArgumentException(sb2.toString());
+                                i10 = c12 & (-2);
                             }
+                            i22 = aVar.c(i22, i10);
                         }
                     }
-                    i10++;
+                    int c13 = aVar.c(bVar11.b(b12), aVar.b(i22));
+                    iArr7[i21] = c13;
+                    if (aVar.f10886g != 0) {
+                        iArr7[i21] = aVar.c(c13, b12);
+                    }
                 }
-                i11 += i7;
-            }
-        }
-        if (i11 >= length) {
-            return i11;
-        }
-        StringBuilder sb3 = new StringBuilder(54);
-        sb3.append("UTF-8 length does not fit in int: ");
-        sb3.append(i11 + 4294967296L);
-        throw new IllegalArgumentException(sb3.toString());
-    }
-
-    public static int s(int i7, String str) {
-        int x10 = x(i7);
-        int m10 = m(str);
-        return y(m10) + m10 + x10;
-    }
-
-    public static void u(CharSequence charSequence, ByteBuffer byteBuffer) {
-        int i7;
-        char charAt;
-        if (!byteBuffer.isReadOnly()) {
-            char c10 = 57343;
-            int i10 = 0;
-            if (byteBuffer.hasArray()) {
-                try {
-                    byte[] array = byteBuffer.array();
-                    int arrayOffset = byteBuffer.arrayOffset() + byteBuffer.position();
-                    int remaining = byteBuffer.remaining();
-                    int length = charSequence.length();
-                    int i11 = remaining + arrayOffset;
-                    while (i10 < length) {
-                        int i12 = i10 + arrayOffset;
-                        if (i12 >= i11 || (charAt = charSequence.charAt(i10)) >= 128) {
-                            break;
+                for (int i24 = 0; i24 < iArr3.length; i24++) {
+                    int length4 = iArr.length - 1;
+                    int i25 = iArr3[i24];
+                    if (i25 != 0) {
+                        int i26 = length4 - aVar.f10882b[i25];
+                        if (i26 >= 0) {
+                            iArr[i26] = iArr[i26] ^ iArr7[i24];
+                        } else {
+                            throw new Exception("Bad error location");
                         }
-                        array[i12] = (byte) charAt;
-                        i10++;
-                    }
-                    if (i10 == length) {
-                        i7 = arrayOffset + length;
                     } else {
-                        i7 = arrayOffset + i10;
-                        while (i10 < length) {
-                            char charAt2 = charSequence.charAt(i10);
-                            if (charAt2 < 128 && i7 < i11) {
-                                array[i7] = (byte) charAt2;
-                                i7++;
-                            } else if (charAt2 < 2048 && i7 <= i11 - 2) {
-                                int i13 = i7 + 1;
-                                array[i7] = (byte) ((charAt2 >>> 6) | 960);
-                                i7 += 2;
-                                array[i13] = (byte) ((charAt2 & '?') | 128);
-                            } else if ((charAt2 < 55296 || c10 < charAt2) && i7 <= i11 - 3) {
-                                array[i7] = (byte) ((charAt2 >>> '\f') | 480);
-                                int i14 = i7 + 2;
-                                array[i7 + 1] = (byte) (((charAt2 >>> 6) & 63) | 128);
-                                i7 += 3;
-                                array[i14] = (byte) ((charAt2 & '?') | 128);
-                            } else if (i7 <= i11 - 4) {
-                                int i15 = i10 + 1;
-                                if (i15 != charSequence.length()) {
-                                    char charAt3 = charSequence.charAt(i15);
-                                    if (Character.isSurrogatePair(charAt2, charAt3)) {
-                                        int codePoint = Character.toCodePoint(charAt2, charAt3);
-                                        array[i7] = (byte) ((codePoint >>> 18) | 240);
-                                        array[i7 + 1] = (byte) (((codePoint >>> 12) & 63) | 128);
-                                        int i16 = i7 + 3;
-                                        array[i7 + 2] = (byte) (((codePoint >>> 6) & 63) | 128);
-                                        i7 += 4;
-                                        array[i16] = (byte) ((codePoint & 63) | 128);
-                                        i10 = i15;
-                                    } else {
-                                        i10 = i15;
-                                    }
-                                }
-                                StringBuilder sb2 = new StringBuilder(39);
-                                sb2.append("Unpaired surrogate at index ");
-                                sb2.append(i10 - 1);
-                                throw new IllegalArgumentException(sb2.toString());
-                            } else {
-                                StringBuilder sb3 = new StringBuilder(37);
-                                sb3.append("Failed writing ");
-                                sb3.append(charAt2);
-                                sb3.append(" at index ");
-                                sb3.append(i7);
-                                throw new ArrayIndexOutOfBoundsException(sb3.toString());
-                            }
-                            i10++;
-                            c10 = 57343;
-                        }
-                    }
-                    byteBuffer.position(i7 - byteBuffer.arrayOffset());
-                    return;
-                } catch (ArrayIndexOutOfBoundsException e10) {
-                    BufferOverflowException bufferOverflowException = new BufferOverflowException();
-                    bufferOverflowException.initCause(e10);
-                    throw bufferOverflowException;
-                }
-            }
-            int length2 = charSequence.length();
-            while (i10 < length2) {
-                char charAt4 = charSequence.charAt(i10);
-                char c11 = charAt4;
-                if (charAt4 >= 128) {
-                    if (charAt4 < 2048) {
-                        byteBuffer.put((byte) ((charAt4 >>> 6) | 960));
-                        c11 = (charAt4 & '?') | 128;
-                    } else {
-                        if (charAt4 >= 55296 && 57343 >= charAt4) {
-                            int i17 = i10 + 1;
-                            if (i17 != charSequence.length()) {
-                                char charAt5 = charSequence.charAt(i17);
-                                if (Character.isSurrogatePair(charAt4, charAt5)) {
-                                    int codePoint2 = Character.toCodePoint(charAt4, charAt5);
-                                    byteBuffer.put((byte) ((codePoint2 >>> 18) | 240));
-                                    byteBuffer.put((byte) (((codePoint2 >>> 12) & 63) | 128));
-                                    byteBuffer.put((byte) (((codePoint2 >>> 6) & 63) | 128));
-                                    byteBuffer.put((byte) ((codePoint2 & 63) | 128));
-                                    i10 = i17;
-                                } else {
-                                    i10 = i17;
-                                }
-                            }
-                            StringBuilder sb4 = new StringBuilder(39);
-                            sb4.append("Unpaired surrogate at index ");
-                            sb4.append(i10 - 1);
-                            throw new IllegalArgumentException(sb4.toString());
-                        }
-                        byteBuffer.put((byte) ((charAt4 >>> '\f') | 480));
-                        byteBuffer.put((byte) (((charAt4 >>> 6) & 63) | 128));
-                        byteBuffer.put((byte) ((charAt4 & '?') | 128));
-                        i10++;
+                        throw new IllegalArgumentException();
                     }
                 }
-                byteBuffer.put((byte) c11);
-                i10++;
+                return iArr3.length;
             }
-            return;
+            throw new Exception("sigmaTilde(0) was zero");
         }
-        throw new ReadOnlyBufferException();
-    }
-
-    public static int w(long j3) {
-        if (((-128) & j3) == 0) {
-            return 1;
-        }
-        if (((-16384) & j3) == 0) {
-            return 2;
-        }
-        if (((-2097152) & j3) == 0) {
-            return 3;
-        }
-        if (((-268435456) & j3) == 0) {
-            return 4;
-        }
-        if (((-34359738368L) & j3) == 0) {
-            return 5;
-        }
-        if (((-4398046511104L) & j3) == 0) {
-            return 6;
-        }
-        if (((-562949953421312L) & j3) == 0) {
-            return 7;
-        }
-        if (((-72057594037927936L) & j3) == 0) {
-            return 8;
-        }
-        if ((j3 & Long.MIN_VALUE) == 0) {
-            return 9;
-        }
-        return 10;
-    }
-
-    public static int x(int i7) {
-        return y(i7 << 3);
-    }
-
-    public static int y(int i7) {
-        if ((i7 & (-128)) == 0) {
-            return 1;
-        }
-        if ((i7 & (-16384)) == 0) {
-            return 2;
-        }
-        if (((-2097152) & i7) == 0) {
-            return 3;
-        }
-        if ((i7 & (-268435456)) == 0) {
-            return 4;
-        }
-        return 5;
+        throw new IllegalArgumentException();
     }
 
     @Override
-    public void F(boolean z10) {
-        lb lbVar = (lb) this.f21417b;
-        te.a aVar = lbVar.Z;
-        if (aVar != null) {
-            aVar.a(z10, true);
-        }
-        o00 o00Var = lbVar.f50080s;
-        if (o00Var != null) {
-            o00Var.invalidate();
-        }
+    public void G0(fj fjVar) {
+        ((w8) ((z3) this.f21783b).A1).f(true);
     }
 
     @Override
-    public float U0() {
-        return i5.c.d(9.66f, ri.a.d(((lb) this.f21417b).f9017c0), 0);
+    public void H(fj fjVar) {
+        ((w8) ((z3) this.f21783b).A1).f(false);
     }
 
-    @Override
-    public Object a(Object obj, Object obj2) {
-        return ((k) this.f21417b).apply(obj2);
+    public synchronized void I() {
+        ((SharedPreferences) this.f21783b).edit().clear().commit();
     }
 
-    @Override
-    public void accept(Object obj, Object obj2) {
-        x xVar = (x) obj;
-        f fVar = (f) xVar.n();
-        d0 d0Var = ((e0) this.f21417b).f11064l;
-        Parcel p12 = fVar.p1();
-        t.d(p12, d0Var);
-        fVar.u1(p12, 18);
-        f fVar2 = (f) xVar.n();
-        fVar2.u1(fVar2.p1(), 17);
-        ((TaskCompletionSource) obj2).setResult(null);
+    public SparseIntArray J(long j3) {
+        return (SparseIntArray) ((h) this.f21783b).f(j3);
     }
 
-    @Override
-    public String[] b() {
-        return ((WebViewProviderFactoryBoundaryInterface) this.f21417b).getSupportedFeatures();
-    }
-
-    @Override
-    public int b1() {
-        return ((lb) this.f21417b).f9018d0;
-    }
-
-    public void c(StringBuilder sb2, Iterator it) {
-        g gVar = (g) this.f21417b;
-        if (it.hasNext()) {
-            Map.Entry entry = (Map.Entry) it.next();
-            sb2.append(g.f(entry.getKey()));
-            sb2.append("=");
-            sb2.append(g.f(entry.getValue()));
-            while (it.hasNext()) {
-                sb2.append((CharSequence) gVar.f10981a);
-                Map.Entry entry2 = (Map.Entry) it.next();
-                sb2.append(g.f(entry2.getKey()));
-                sb2.append("=");
-                sb2.append(g.f(entry2.getValue()));
+    public StringBuilder K() {
+        mf.a aVar = (mf.a) this.f21783b;
+        if (aVar instanceof p) {
+            StringBuilder sb2 = ((p) aVar).f13606b.f13591b;
+            if (sb2.length() != 0) {
+                return sb2;
             }
+            return null;
         }
+        return null;
     }
 
-    @Override
-    public WebViewProviderBoundaryInterface createWebView(WebView webView) {
-        return (WebViewProviderBoundaryInterface) af.b.a(WebViewProviderBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f21417b).createWebView(webView));
-    }
-
-    public synchronized void d() {
-        ((SharedPreferences) this.f21417b).edit().clear().commit();
-    }
-
-    public SparseIntArray e(long j3) {
-        return (SparseIntArray) ((h) this.f21417b).f(j3);
-    }
-
-    @Override
-    public void f(Object obj) {
-        Bundle extras;
-        switch (this.f21416a) {
-            case 6:
-                androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
-                j0 j0Var = (j0) this.f21417b;
-                f0 f0Var = (f0) j0Var.F.pollLast();
-                if (f0Var == null) {
-                    Log.w("FragmentManager", "No Activities were started for result for " + this);
-                    return;
-                }
-                String str = f0Var.f2342a;
-                int i7 = f0Var.f2343b;
-                s o4 = j0Var.f2356c.o(str);
-                if (o4 == null) {
-                    Log.w("FragmentManager", "Activity result delivered for unknown Fragment " + str);
-                    return;
-                }
-                o4.x(i7, aVar.f1808a, aVar.f1809b);
-                return;
-            default:
-                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f21417b;
-                androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
-                proxyBillingActivityV2.getClass();
-                Intent intent = aVar2.f1809b;
-                int i10 = u.e("ProxyBillingActivityV2", intent).f10978a;
-                ResultReceiver resultReceiver = proxyBillingActivityV2.O;
-                if (resultReceiver != null) {
-                    if (intent == null) {
-                        extras = null;
-                    } else {
-                        extras = intent.getExtras();
-                    }
-                    resultReceiver.send(i10, extras);
-                }
-                int i11 = aVar2.f1808a;
-                if (i11 != -1 || i10 != 0) {
-                    u.h("ProxyBillingActivityV2", "External offer dialog finished with resultCode: " + i11 + " and billing's responseCode: " + i10);
-                }
-                proxyBillingActivityV2.finish();
-                return;
-        }
-    }
-
-    @Override
-    public void g(n6.a aVar) {
-        h1 h1Var = (h1) this.f21417b;
-        h1Var.f6012o.lock();
-        try {
-            h1Var.f6009l = aVar;
-            h1Var.j();
-        } finally {
-            h1Var.f6012o.unlock();
-        }
-    }
-
-    @Override
-    public Object mo24get() {
-        switch (this.f21416a) {
-            case 26:
-                return new l((ua.b) ((o) this.f21417b).f7643b);
-            default:
-                return new w0((d1) ((ib.c) this.f21417b).mo24get());
-        }
-    }
-
-    @Override
-    public StaticsBoundaryInterface getStatics() {
-        return (StaticsBoundaryInterface) af.b.a(StaticsBoundaryInterface.class, ((WebViewProviderFactoryBoundaryInterface) this.f21417b).getStatics());
-    }
-
-    @Override
-    public void h(String str, long j3, long j10, long j11) {
-        h6.o oVar = (h6.o) this.f21417b;
-        try {
-            oVar.a(new h6.n(new Status(2103, null, null, null), 1));
-        } catch (IllegalStateException e10) {
-            j6.b bVar = h6.h.f13606k;
-            Log.e(bVar.f16859a, bVar.d("Result already set when calling onRequestReplaced", new Object[0]), e10);
-        }
-        Iterator it = oVar.f13630q.f13613i.iterator();
-        while (it.hasNext()) {
-            ((h6.g) it.next()).h(str, j3, 2103, j10, j11);
-        }
-    }
-
-    @Override
-    public void i(int i7) {
-        n6.a aVar;
-        h1 h1Var = (h1) this.f21417b;
-        Lock lock = h1Var.f6012o;
-        Lock lock2 = h1Var.f6012o;
-        lock.lock();
-        try {
-            if (!h1Var.f6011n && (aVar = h1Var.f6010m) != null && aVar.c()) {
-                h1Var.f6011n = true;
-                h1Var.f6004e.onConnectionSuspended(i7);
-                return;
-            }
-            h1Var.f6011n = false;
-            h1Var.f6002b.i(i7);
-            h1Var.f6010m = null;
-            h1Var.f6009l = null;
-        } finally {
-            lock2.unlock();
-        }
-    }
-
-    @Override
-    public void j(Bundle bundle) {
-        h1 h1Var = (h1) this.f21417b;
-        h1Var.f6012o.lock();
-        try {
-            Bundle bundle2 = h1Var.f6008k;
-            if (bundle2 == null) {
-                h1Var.f6008k = bundle;
-            } else if (bundle != null) {
-                bundle2.putAll(bundle);
-            }
-            h1Var.f6009l = n6.a.f21056f;
-            h1Var.j();
-        } finally {
-            h1Var.f6012o.unlock();
-        }
-    }
-
-    @Override
-    public void k(java.lang.String r14, long r15, int r17, java.lang.Object r18, long r19, long r21) {
-        throw new UnsupportedOperationException("Method not decompiled: ob.c.k(java.lang.String, long, int, java.lang.Object, long, long):void");
-    }
-
-    public void l(ia.c cVar, Thread thread, Throwable th2) {
-        p pVar = (p) this.f21417b;
+    public void L(ia.c cVar, Thread thread, Throwable th2) {
+        aa.p pVar = (aa.p) this.f21783b;
         synchronized (pVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                 Log.d("FirebaseCrashlytics", str, null);
             }
-            c8.a0.a();
+            c0.a();
             try {
-                aa.f0.a(pVar.f834e.f3093a.b(new aa.n(pVar, System.currentTimeMillis(), th2, thread, cVar)));
+                f0.a(pVar.f833e.f3087a.b(new aa.n(pVar, System.currentTimeMillis(), th2, thread, cVar)));
             } catch (TimeoutException unused) {
                 Log.e("FirebaseCrashlytics", "Cannot send reports. Timed out while fetching settings.", null);
             } catch (Exception e10) {
@@ -527,130 +318,307 @@ public final class c implements a0, androidx.activity.result.b, l11, q0, ft0, n,
         }
     }
 
-    public void n(int i7, String str) {
-        ByteBuffer byteBuffer = (ByteBuffer) this.f21417b;
-        t(i7, 2);
+    public e2.q0 M(f3.p r12, t3.g r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: ob.c.M(f3.p, t3.g, int):e2.q0");
+    }
+
+    @Override
+    public void a() {
+        i0 i0Var = (i0) this.f21783b;
+        Lock lock = i0Var.f6297a;
+        lock.lock();
         try {
-            int y10 = y(str.length());
-            if (y10 == y(str.length() * 3)) {
-                int position = byteBuffer.position();
-                if (byteBuffer.remaining() >= y10) {
-                    byteBuffer.position(position + y10);
-                    u(str, byteBuffer);
-                    int position2 = byteBuffer.position();
-                    byteBuffer.position(position);
-                    r((position2 - position) - y10);
-                    byteBuffer.position(position2);
+            i0Var.f6306m = new com.google.android.gms.common.api.internal.c0(i0Var, i0Var.f6303j, i0Var.f6304k, i0Var.d, i0Var.f6305l, lock, i0Var.f6299c);
+            i0Var.f6306m.u();
+            i0Var.f6298b.signalAll();
+        } finally {
+            i0Var.f6297a.unlock();
+        }
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        d8.d dVar = new d8.d(1, (TaskCompletionSource) obj2);
+        Parcel obtain = Parcel.obtain();
+        obtain.writeInterfaceToken("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
+        int i7 = d8.a.f7884a;
+        obtain.writeStrongBinder(dVar);
+        obtain.writeInt(1);
+        ((o8.c) this.f21783b).writeToParcel(obtain, 0);
+        ((d8.c) ((f) obj).n()).h1(obtain, 1);
+    }
+
+    @Override
+    public Object apply(Object obj) {
+        Map.Entry entry = (Map.Entry) obj;
+        h1 h1Var = (h1) this.f21783b;
+        h1Var.getClass();
+        entry.getClass();
+        return new e1(entry, h1Var);
+    }
+
+    @Override
+    public com.google.android.gms.common.api.internal.d b(com.google.android.gms.common.api.internal.d dVar) {
+        throw new IllegalStateException("GoogleApiClient is not connected yet.");
+    }
+
+    @Override
+    public void c(b0 b0Var) {
+        j0 j0Var = (j0) this.f21783b;
+        FrameLayout frameLayout = j0Var.f5682f;
+        if (frameLayout != null) {
+            frameLayout.removeView(b0Var);
+        }
+        if (j0Var.G == b0Var) {
+            j0Var.G = null;
+        }
+        z0 z0Var = j0Var.d;
+        if (z0Var != null) {
+            z0Var.setScanHidden(false);
+        }
+    }
+
+    @Override
+    public int d(long j3) {
+        if (j3 < 0) {
+            return 0;
+        }
+        return -1;
+    }
+
+    @Override
+    public void e0() {
+        v9 v9Var = (v9) this.f21783b;
+        v9Var.f14918n0.f57271a.u();
+        v9Var.N0.setViewHidden(false);
+    }
+
+    @Override
+    public void f(Object obj) {
+        Bundle extras;
+        switch (this.f21782a) {
+            case 6:
+                androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
+                androidx.fragment.app.j0 j0Var = (androidx.fragment.app.j0) this.f21783b;
+                androidx.fragment.app.f0 f0Var = (androidx.fragment.app.f0) j0Var.F.pollLast();
+                if (f0Var == null) {
+                    Log.w("FragmentManager", "No Activities were started for result for " + this);
                     return;
                 }
-                throw new androidx.datastore.preferences.protobuf.l(position + y10, byteBuffer.limit());
-            }
-            r(m(str));
-            u(str, byteBuffer);
-        } catch (BufferOverflowException e10) {
-            androidx.datastore.preferences.protobuf.l lVar = new androidx.datastore.preferences.protobuf.l(byteBuffer.position(), byteBuffer.limit());
-            lVar.initCause(e10);
-            throw lVar;
+                String str = f0Var.f2333a;
+                int i7 = f0Var.f2334b;
+                s o4 = j0Var.f2347c.o(str);
+                if (o4 == null) {
+                    Log.w("FragmentManager", "Activity result delivered for unknown Fragment " + str);
+                    return;
+                }
+                o4.x(i7, aVar.f1799a, aVar.f1800b);
+                return;
+            default:
+                ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f21783b;
+                androidx.activity.result.a aVar2 = (androidx.activity.result.a) obj;
+                proxyBillingActivityV2.getClass();
+                Intent intent = aVar2.f1800b;
+                int i10 = u.e("ProxyBillingActivityV2", intent).f11286a;
+                ResultReceiver resultReceiver = proxyBillingActivityV2.N;
+                if (resultReceiver != null) {
+                    if (intent == null) {
+                        extras = null;
+                    } else {
+                        extras = intent.getExtras();
+                    }
+                    resultReceiver.send(i10, extras);
+                }
+                int i11 = aVar2.f1799a;
+                if (i11 != -1 || i10 != 0) {
+                    u.h("ProxyBillingActivityV2", "Alternative billing only dialog finished with resultCode " + i11 + " and billing's responseCode: " + i10);
+                }
+                proxyBillingActivityV2.finish();
+                return;
         }
     }
 
     @Override
-    public void o(java.lang.Object r12) {
-        throw new UnsupportedOperationException("Method not decompiled: ob.c.o(java.lang.Object):void");
+    public TextureView f0() {
+        return null;
     }
 
     @Override
-    public void onComplete(Task task) {
-        g6.c.h((g6.c) ((j) this.f21417b).f12913c, "launchApplication", task);
+    public void g(View view, p0 p0Var, boolean z10, boolean z11) {
+        ch.s sVar = (ch.s) this.f21783b;
+        sVar.f5509a.Eb(null, sVar.f5512e, sVar.f5510b, view, 0.0f, 0.0f, p0Var, false, z10, z11, false);
+        org.telegram.messenger.g0.g3(new r(this, 2));
     }
 
-    public void p(int i7, byte[] bArr) {
-        t(i7, 2);
-        r(bArr.length);
-        int length = bArr.length;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f21417b;
-        if (byteBuffer.remaining() >= length) {
-            byteBuffer.put(bArr, 0, length);
+    @Override
+    public Object mo24get() {
+        return new k0((u0) ((ib.c) this.f21783b).mo24get());
+    }
+
+    @Override
+    public long h(int i7) {
+        boolean z10;
+        if (i7 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        la.f(z10);
+        return 0L;
+    }
+
+    @Override
+    public void i(String str) {
+        j0 j0Var = (j0) this.f21783b;
+        if (j0Var.getParentActivity() != null) {
+            vf.c.t(j0Var.getParentActivity(), str);
+        }
+    }
+
+    @Override
+    public void k() {
+        i3 i3Var = ((v9) this.f21783b).f14941z0;
+        if (i3Var != null) {
+            i3Var.invalidate();
+        }
+    }
+
+    @Override
+    public List m(long j3) {
+        if (j3 >= 0) {
+            return (List) this.f21783b;
+        }
+        return Collections.EMPTY_LIST;
+    }
+
+    @Override
+    public void n() {
+        v9 v9Var = (v9) this.f21783b;
+        if (v9Var.M0) {
+            v9Var.M0 = false;
             return;
         }
-        throw new androidx.datastore.preferences.protobuf.l(byteBuffer.position(), byteBuffer.limit());
-    }
-
-    public void q(int i7) {
-        byte b10 = (byte) i7;
-        ByteBuffer byteBuffer = (ByteBuffer) this.f21417b;
-        if (byteBuffer.hasRemaining()) {
-            byteBuffer.put(b10);
-            return;
-        }
-        throw new androidx.datastore.preferences.protobuf.l(byteBuffer.position(), byteBuffer.limit());
-    }
-
-    public void r(int i7) {
-        while ((i7 & (-128)) != 0) {
-            q((i7 & 127) | 128);
-            i7 >>>= 7;
-        }
-        q(i7);
-    }
-
-    public void t(int i7, int i10) {
-        r((i7 << 3) | i10);
-    }
-
-    public void v(long j3) {
-        while (((-128) & j3) != 0) {
-            q((((int) j3) & 127) | 128);
-            j3 >>>= 7;
-        }
-        q((int) j3);
+        v9Var.U0.b(1);
+        v9Var.w((sg.h) sg.h.f57214a.get(0));
     }
 
     @Override
-    public void x0() {
-        b4.h0((b4) this.f21417b);
+    public void n0() {
+        v9 v9Var = (v9) this.f21783b;
+        if (v9Var.f14929t0 != null) {
+            v9Var.A0(null, true);
+        }
+        v9Var.N0.setViewHidden(true);
     }
 
-    public c(byte[] bArr, int i7) {
-        this.f21416a = 13;
-        ByteBuffer wrap = ByteBuffer.wrap(bArr, 0, i7);
-        this.f21417b = wrap;
-        wrap.order(ByteOrder.LITTLE_ENDIAN);
+    @Override
+    public boolean o() {
+        return true;
+    }
+
+    @Override
+    public void onSuccess(Object obj) {
+        ((g6.a) this.f21783b).getClass();
+        m8.a("com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES", (Bundle) obj);
+    }
+
+    @Override
+    public int p() {
+        return 1;
+    }
+
+    @Override
+    public boolean q() {
+        return false;
+    }
+
+    @Override
+    public void r() {
+        ((hi.k0) this.f21783b).d.invalidate();
+    }
+
+    @Override
+    public boolean t() {
+        return true;
+    }
+
+    @Override
+    public void u() {
+        i0 i0Var = (i0) this.f21783b;
+        for (com.google.android.gms.common.api.c cVar : i0Var.f6301f.values()) {
+            cVar.a();
+        }
+        i0Var.f6308o.G = Collections.EMPTY_SET;
+    }
+
+    @Override
+    public java.lang.Object v(ce.d r7, kd.c r8) {
+        throw new UnsupportedOperationException("Method not decompiled: ob.c.v(ce.d, kd.c):java.lang.Object");
+    }
+
+    @Override
+    public boolean y() {
+        boolean z10;
+        v9 v9Var = (v9) this.f21783b;
+        if (v9Var.f14929t0 == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (!z10) {
+            v9Var.A0(null, true);
+        }
+        return z10;
+    }
+
+    public c(MediaInfo mediaInfo) {
+        this.f21782a = 21;
+        o oVar = new o(mediaInfo, 0, true, Double.NaN, Double.POSITIVE_INFINITY, 0.0d, null, null);
+        if (mediaInfo != null) {
+            this.f21783b = oVar;
+            return;
+        }
+        throw new IllegalArgumentException("media cannot be null.");
     }
 
     public c(Set set) {
-        this.f21416a = 0;
-        this.f21417b = new HashMap();
+        this.f21782a = 0;
+        this.f21783b = new HashMap();
         Iterator it = set.iterator();
         while (it.hasNext()) {
             b bVar = (b) it.next();
             bVar.getClass();
-            ((HashMap) this.f21417b).put(a.class, bVar.f21415a);
+            ((HashMap) this.f21783b).put(a.class, bVar.f21781a);
         }
     }
 
+    public c(JSONObject jSONObject) {
+        this.f21782a = 21;
+        this.f21783b = new o(jSONObject);
+    }
+
     public c(int i7) {
-        this.f21416a = i7;
+        this.f21782a = i7;
         switch (i7) {
             case 8:
-                this.f21417b = new h();
+                this.f21783b = new h();
                 return;
-            case 9:
-                this.f21417b = new q4.q[cg.b.values().length];
+            case 17:
                 return;
-            case 18:
+            case 19:
+                this.f21783b = new x(10);
                 return;
             default:
-                this.f21417b = new LinkedHashMap(0, 0.75f, true);
+                this.f21783b = new LinkedHashMap(0, 0.75f, true);
                 return;
         }
     }
 
     public c(Context context) {
         boolean isEmpty;
-        this.f21416a = 2;
+        this.f21782a = 2;
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.android.gms.appid", 0);
-        this.f21417b = sharedPreferences;
+        this.f21783b = sharedPreferences;
         File file = new File(context.getNoBackupFilesDir(), "com.google.android.gms.appid-no-backup");
         if (file.exists()) {
             return;
@@ -664,7 +632,7 @@ public final class c implements a0, androidx.activity.result.b, l11, q0, ft0, n,
                     return;
                 }
                 Log.i("FirebaseMessaging", "App restored, clearing state");
-                d();
+                I();
             }
         } catch (IOException e10) {
             if (Log.isLoggable("FirebaseMessaging", 3)) {
@@ -674,6 +642,47 @@ public final class c implements a0, androidx.activity.result.b, l11, q0, ft0, n,
     }
 
     @Override
-    public void W() {
+    public void G() {
+    }
+
+    @Override
+    public void Q() {
+    }
+
+    @Override
+    public void j() {
+    }
+
+    @Override
+    public void z() {
+    }
+
+    @Override
+    public void D(boolean z10) {
+    }
+
+    @Override
+    public void e(Bundle bundle) {
+    }
+
+    @Override
+    public void s(int i7) {
+    }
+
+    @Override
+    public void w(boolean z10) {
+    }
+
+    public c(rd.p pVar) {
+        this.f21782a = 9;
+        this.f21783b = (j) pVar;
+    }
+
+    @Override
+    public void l(n6.a aVar, e eVar, boolean z10) {
+    }
+
+    @Override
+    public void x(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z10) {
     }
 }

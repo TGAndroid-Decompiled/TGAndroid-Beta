@@ -1,15 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class u4 extends MetricAffectingSpan {
-    public String f39890a;
-
+public final class u4 extends sb0 {
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
+    public final CharSequence d(int i7) {
+        return org.telegram.messenger.gd.G(i7, "Minutes", new Object[0]);
     }
 }

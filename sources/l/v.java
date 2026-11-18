@@ -11,51 +11,51 @@ import android.widget.PopupWindow;
 import java.util.WeakHashMap;
 import r0.i0;
 public class v {
-    public final Context f18870a;
-    public final k f18871b;
-    public final boolean f18872c;
+    public final Context f19237a;
+    public final k f19238b;
+    public final boolean f19239c;
     public final int d;
-    public View f18873e;
-    public boolean f18875g;
+    public View f19240e;
+    public boolean f19242g;
     public w h;
-    public s f18876i;
-    public PopupWindow.OnDismissListener f18877j;
-    public int f18874f = 8388611;
-    public final t f18878k = new t(this);
+    public s f19243i;
+    public PopupWindow.OnDismissListener f19244j;
+    public int f19241f = 8388611;
+    public final t f19245k = new t(this);
 
     public v(Context context, k kVar, View view, boolean z10, int i7, int i10) {
-        this.f18870a = context;
-        this.f18871b = kVar;
-        this.f18873e = view;
-        this.f18872c = z10;
+        this.f19237a = context;
+        this.f19238b = kVar;
+        this.f19240e = view;
+        this.f19239c = z10;
         this.d = i7;
     }
 
     public final s a() {
         s c0Var;
-        if (this.f18876i == null) {
-            Context context = this.f18870a;
+        if (this.f19243i == null) {
+            Context context = this.f19237a;
             Display defaultDisplay = ((WindowManager) context.getSystemService("window")).getDefaultDisplay();
             Point point = new Point();
             u.a(defaultDisplay, point);
             if (Math.min(point.x, point.y) >= context.getResources().getDimensionPixelSize(2131165206)) {
-                c0Var = new e(context, this.f18873e, this.d, this.f18872c);
+                c0Var = new e(context, this.f19240e, this.d, this.f19239c);
             } else {
-                c0Var = new c0(this.f18870a, this.f18871b, this.f18873e, this.d, this.f18872c);
+                c0Var = new c0(this.f19237a, this.f19238b, this.f19240e, this.d, this.f19239c);
             }
-            c0Var.l(this.f18871b);
-            c0Var.r(this.f18878k);
-            c0Var.n(this.f18873e);
+            c0Var.l(this.f19238b);
+            c0Var.r(this.f19245k);
+            c0Var.n(this.f19240e);
             c0Var.h(this.h);
-            c0Var.o(this.f18875g);
-            c0Var.p(this.f18874f);
-            this.f18876i = c0Var;
+            c0Var.o(this.f19242g);
+            c0Var.p(this.f19241f);
+            this.f19243i = c0Var;
         }
-        return this.f18876i;
+        return this.f19243i;
     }
 
     public final boolean b() {
-        s sVar = this.f18876i;
+        s sVar = this.f19243i;
         if (sVar != null && sVar.a()) {
             return true;
         }
@@ -63,8 +63,8 @@ public class v {
     }
 
     public void c() {
-        this.f18876i = null;
-        PopupWindow.OnDismissListener onDismissListener = this.f18877j;
+        this.f19243i = null;
+        PopupWindow.OnDismissListener onDismissListener = this.f19244j;
         if (onDismissListener != null) {
             onDismissListener.onDismiss();
         }
@@ -74,16 +74,16 @@ public class v {
         s a10 = a();
         a10.s(z11);
         if (z10) {
-            int i11 = this.f18874f;
-            View view = this.f18873e;
-            WeakHashMap weakHashMap = i0.f55671a;
+            int i11 = this.f19241f;
+            View view = this.f19240e;
+            WeakHashMap weakHashMap = i0.f56244a;
             if ((Gravity.getAbsoluteGravity(i11, view.getLayoutDirection()) & 7) == 5) {
-                i7 -= this.f18873e.getWidth();
+                i7 -= this.f19240e.getWidth();
             }
             a10.q(i7);
             a10.t(i10);
-            int i12 = (int) ((this.f18870a.getResources().getDisplayMetrics().density * 48.0f) / 2.0f);
-            a10.f18868a = new Rect(i7 - i12, i10 - i12, i7 + i12, i10 + i12);
+            int i12 = (int) ((this.f19237a.getResources().getDisplayMetrics().density * 48.0f) / 2.0f);
+            a10.f19235a = new Rect(i7 - i12, i10 - i12, i7 + i12, i10 + i12);
         }
         a10.g();
     }

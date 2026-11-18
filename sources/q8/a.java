@@ -3,13 +3,13 @@ package q8;
 import java.util.Arrays;
 import q6.m;
 public final class a implements com.google.android.gms.common.api.b {
-    public static final a f55494a = new Object();
+    public static final a f56068a = new Object();
 
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
-        if ((obj instanceof a) && m.k(null, null) && m.k(null, null) && m.k(null, null) && m.k(null, null) && m.k(null, null)) {
+        if ((obj instanceof a) && m.l(null, null) && m.l(null, null) && m.l(null, null) && m.l(null, null) && m.l(null, null)) {
             return true;
         }
         return false;

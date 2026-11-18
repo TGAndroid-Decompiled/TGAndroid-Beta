@@ -1,113 +1,118 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.os.Handler;
-import android.os.Looper;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
-import android.view.WindowManager;
-import java.util.WeakHashMap;
-import org.telegram.ui.Components.i40;
-public final class i6 implements SensorEventListener {
-    public static i6 H;
-    public float E;
-    public float F;
-    public final SensorManager f43976a;
-    public final Sensor f43977b;
-    public final WindowManager f43978c;
-    public boolean f43982r;
-    public boolean f43983s;
-    public float f43984w;
-    public float f43985x;
-    public final Handler d = new Handler(Looper.getMainLooper());
-    public final WeakHashMap f43979e = new WeakHashMap();
-    public final float[] f43980f = new float[9];
-    public final float[] h = new float[9];
-    public final float[] f43981n = new float[3];
-    public int f43986y = -1;
-    public final i40 G = new i40(this, 1);
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.lr;
+public final class i6 extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+    public final org.telegram.ui.ActionBar.i6 f44358a;
+    public final org.telegram.ui.Components.j0 f44359b;
+    public final TextView[] f44360c;
+    public int d;
+    public boolean f44361e;
+    public final org.telegram.ui.Components.c6 f44362f;
+    public final Paint h;
 
-    public i6(Context context) {
-        Sensor defaultSensor;
-        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.f43976a = sensorManager;
-        this.f43978c = (WindowManager) context.getSystemService("window");
-        if (sensorManager == null) {
-            defaultSensor = null;
-        } else {
-            defaultSensor = sensorManager.getDefaultSensor(15);
+    public i6(Context context, CharSequence[] charSequenceArr, k kVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context);
+        int i7;
+        this.d = 0;
+        this.f44361e = false;
+        this.h = new Paint(1);
+        this.f44358a = i6Var;
+        org.telegram.ui.Components.j0 j0Var = new org.telegram.ui.Components.j0(this, context, i6Var);
+        this.f44359b = j0Var;
+        this.f44362f = new org.telegram.ui.Components.c6(new h6(this, 0), 420L, lr.h);
+        j0Var.setOrientation(0);
+        j0Var.setPadding(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f));
+        this.f44360c = new TextView[charSequenceArr.length];
+        for (int i10 = 0; i10 < charSequenceArr.length; i10++) {
+            TextView textView = new TextView(context);
+            textView.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f));
+            textView.setTypeface(org.telegram.messenger.g0.o());
+            textView.setTextSize(1, 14.0f);
+            textView.setText(charSequenceArr[i10]);
+            textView.setOnClickListener(new bi.f5(this, kVar, i10, 22));
+            c8.ra.a(textView);
+            org.telegram.ui.Components.j0 j0Var2 = this.f44359b;
+            if (i10 == 0) {
+                i7 = 0;
+            } else {
+                i7 = 3;
+            }
+            j0Var2.addView(textView, c8.ma.q(-2, -2, 0.0f, 19, i7, 0, 0, 0));
+            this.f44360c[i10] = textView;
         }
-        if (defaultSensor == null && sensorManager != null) {
-            defaultSensor = sensorManager.getDefaultSensor(11);
-        }
-        this.f43977b = defaultSensor;
+        addView(this.f44359b, c8.ma.e(-2, -2, 17));
+        updateColors();
     }
 
     public final void a() {
-        if (this.f43982r) {
-            this.f43976a.unregisterListener(this);
+        int i7 = 0;
+        float e10 = this.f44362f.e(false, this.d);
+        while (true) {
+            TextView[] textViewArr = this.f44360c;
+            if (i7 < textViewArr.length) {
+                float l10 = Utilities.l(1.0f - Math.abs(e10 - i7));
+                TextView textView = textViewArr[i7];
+                int i10 = org.telegram.ui.ActionBar.n6.f29807z6;
+                org.telegram.ui.ActionBar.i6 i6Var = this.f44358a;
+                textView.setTextColor(i0.a.f(l10, org.telegram.ui.ActionBar.n6.w0(i10, i6Var), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, i6Var)));
+                i7++;
+            } else {
+                this.f44359b.invalidate();
+                return;
+            }
         }
-        this.f43983s = false;
-        this.f43982r = false;
-        this.d.removeCallbacks(this.G);
-        this.F = 0.0f;
-        this.E = 0.0f;
     }
 
     @Override
-    public final void onSensorChanged(SensorEvent sensorEvent) {
-        int i7;
-        float[] fArr = sensorEvent.values;
-        float[] fArr2 = this.f43980f;
-        SensorManager.getRotationMatrixFromVector(fArr2, fArr);
-        int rotation = this.f43978c.getDefaultDisplay().getRotation();
-        if (this.f43986y != rotation) {
-            this.f43983s = false;
-            this.f43986y = rotation;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29807z6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.Fi));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29396d6));
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        org.telegram.ui.Components.j0 j0Var;
+        if (this.f44361e && view == (j0Var = this.f44359b)) {
+            float N = org.telegram.messenger.g0.N(1.67f);
+            float N2 = org.telegram.messenger.g0.N(0.67f);
+            Paint paint = this.h;
+            paint.setShadowLayer(N, 0.0f, N2, 520093696);
+            paint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f44358a));
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(j0Var.getX(), j0Var.getY(), j0Var.getX() + j0Var.getWidth(), j0Var.getY() + j0Var.getHeight());
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), paint);
         }
-        int i10 = this.f43986y;
-        int i11 = 129;
-        if (i10 == 1) {
-            i7 = 129;
-            i11 = 2;
+        return super.drawChild(canvas, view, j3);
+    }
+
+    public void setSelected(int i7) {
+        if (this.d == i7) {
+            return;
+        }
+        this.d = i7;
+        a();
+    }
+
+    @Override
+    public final void updateColors() {
+        ShapeDrawable d02;
+        a();
+        if (this.f44361e) {
+            d02 = null;
         } else {
-            i7 = 130;
-            if (i10 != 2) {
-                if (i10 == 3) {
-                    i11 = 130;
-                    i7 = 1;
-                } else {
-                    i7 = 2;
-                    i11 = 1;
-                }
-            }
+            d02 = org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29396d6, this.f44358a));
         }
-        float[] fArr3 = this.h;
-        SensorManager.remapCoordinateSystem(fArr2, i11, i7, fArr3);
-        float[] fArr4 = this.f43981n;
-        SensorManager.getOrientation(fArr3, fArr4);
-        if (!Float.isNaN(fArr4[1]) && !Float.isNaN(fArr4[2])) {
-            if (!this.f43983s) {
-                this.f43984w = fArr4[1];
-                this.f43985x = fArr4[2];
-                this.f43983s = true;
-            }
-            float C = a8.p0.C((float) Math.IEEEremainder(fArr4[2] - this.f43985x, 6.283185307179586d), 0.45f, 1.0f, -1.0f);
-            float C2 = a8.p0.C((float) Math.IEEEremainder(fArr4[1] - this.f43984w, 6.283185307179586d), 0.45f, 1.0f, -1.0f);
-            float f10 = this.E;
-            this.E = com.google.android.gms.internal.vision.e2.z(C, f10, 0.12f, f10);
-            float f11 = this.F;
-            this.F = com.google.android.gms.internal.vision.e2.z(C2, f11, 0.12f, f11);
-            for (View view : this.f43979e.keySet()) {
-                view.invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i7) {
+        this.f44359b.setBackground(d02);
     }
 }

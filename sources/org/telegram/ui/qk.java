@@ -1,127 +1,146 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import java.io.Serializable;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class qk implements Runnable {
-    public final int f50625a = 1;
-    public final int f50626b;
-    public final int f50627c;
-    public final boolean d;
-    public final Object f50628e;
-    public final Object f50629f;
-    public final Serializable h;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.ImageReceiver;
+public final class qk extends org.telegram.ui.Components.q9 {
+    public final int H = 0;
+    public Object I;
+    public Object J;
+    public Object K;
 
-    public qk(h2.c cVar, Bitmap bitmap, int i7, int i10, String str, boolean z10) {
-        this.f50628e = cVar;
-        this.f50629f = bitmap;
-        this.f50626b = i7;
-        this.f50627c = i10;
-        this.h = str;
-        this.d = z10;
+    public qk(Context context) {
+        super(context);
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.xb xbVar;
-        int i7;
-        int i10;
-        int i11;
-        Rect rect;
-        int i12 = this.f50625a;
-        Serializable serializable = this.h;
-        int i13 = this.f50627c;
-        int i14 = this.f50626b;
-        Object obj = this.f50629f;
-        Object obj2 = this.f50628e;
-        switch (i12) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                ArrayList arrayList2 = (ArrayList) serializable;
-                an anVar = ((rk) obj2).f50964b;
-                if (this.d) {
-                    i7 = ((org.telegram.ui.ActionBar.e2) anVar).currentAccount;
-                    org.telegram.messenger.np.s1(i7).f25273e7.edit().remove("pin_" + anVar.f45258k6).commit();
-                    anVar.gd(0, true);
-                    xbVar = null;
-                } else {
-                    xbVar = null;
-                    anVar.getNotificationCenter().k(56, Long.valueOf(anVar.f45258k6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(anVar.f45192f5));
-                }
-                if (i13 == anVar.R3) {
-                    anVar.P3 = xbVar;
+    public void draw(Canvas canvas) {
+        switch (this.H) {
+            case 1:
+                xh.f fVar = (xh.f) this.J;
+                Path path = (Path) this.I;
+                super.draw(canvas);
+                if (((org.telegram.ui.Components.qo) this.K).h) {
+                    path.rewind();
+                    RectF rectF = org.telegram.messenger.g0.P;
+                    ImageReceiver imageReceiver = this.f38742a;
+                    rectF.set(imageReceiver.L0, imageReceiver.M0, imageReceiver.y(), this.f38742a.A());
+                    path.addRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), Path.Direction.CW);
+                    canvas.save();
+                    canvas.clipPath(path);
+                    fVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
+                    ImageReceiver imageReceiver2 = this.f38742a;
+                    fVar.setBounds((int) imageReceiver2.L0, (int) imageReceiver2.M0, (int) imageReceiver2.y(), (int) this.f38742a.A());
+                    fVar.draw(canvas);
+                    invalidate();
+                    canvas.restore();
                     return;
                 }
                 return;
             default:
-                h2.c cVar = (h2.c) obj2;
-                Bitmap bitmap = (Bitmap) obj;
-                String str = (String) serializable;
-                Paint paint = (Paint) cVar.d;
-                int i15 = cVar.f13417a;
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    float width = bitmap.getWidth() / bitmap.getHeight();
-                    int round = (int) Math.round(Math.sqrt(width * 324.0f));
-                    int round2 = (int) Math.round(Math.sqrt(324.0f / width));
-                    if (i14 != 90 && i14 != 270) {
-                        i11 = round2;
-                        i10 = round;
-                    } else {
-                        i10 = round2;
-                        i11 = round;
-                    }
-                    int i16 = i15 * 2;
-                    Bitmap createBitmap = Bitmap.createBitmap(i16 + i10, i16 + i11, Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
-                    Rect rect2 = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-                    int i17 = i15 + round;
-                    int i18 = i15 + round2;
-                    Rect rect3 = new Rect(i15, i15, i17, i18);
-                    float f10 = i15;
-                    canvas.translate((i10 / 2.0f) + f10, (i11 / 2.0f) + f10);
-                    if (i13 == 1) {
-                        canvas.scale(-1.0f, 1.0f);
-                        rect = rect2;
-                    } else {
-                        rect = rect2;
-                        if (i13 == 2) {
-                            canvas.scale(1.0f, -1.0f);
-                        }
-                    }
-                    canvas.rotate(i14);
-                    float f11 = -i15;
-                    org.telegram.messenger.i20.j(round2, 2.0f, f11, f11 - (round / 2.0f), canvas);
-                    try {
-                        canvas.drawBitmap(bitmap, rect, rect3, (Paint) null);
-                    } catch (Exception unused) {
-                    }
-                    Utilities.stackBlurBitmap(createBitmap, 6);
-                    if (i15 > 0) {
-                        float f12 = i17;
-                        canvas.drawRect(0.0f, 0.0f, f12, f10, paint);
-                        float f13 = i18;
-                        canvas.drawRect(0.0f, f10, f10, f13, paint);
-                        float f14 = i17 + i15;
-                        canvas.drawRect(f12, f10, f14, f13, paint);
-                        canvas.drawRect(0.0f, f13, f14, i18 + i15, paint);
-                    }
-                    org.telegram.messenger.g0.h3(new ai.j(cVar, str, createBitmap, this.d, bitmap));
+                super.draw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.H) {
+            case 0:
+                float[] fArr = (float[]) this.K;
+                xh.f fVar = (xh.f) this.J;
+                Path path = (Path) this.I;
+                super.onDraw(canvas);
+                if (this.f38748r) {
+                    canvas.save();
+                    RectF rectF = org.telegram.messenger.g0.P;
+                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                    int[] iArr = this.f38742a.X0;
+                    float f10 = iArr[0];
+                    fArr[1] = f10;
+                    fArr[0] = f10;
+                    float f11 = iArr[1];
+                    fArr[3] = f11;
+                    fArr[2] = f11;
+                    float f12 = iArr[2];
+                    fArr[5] = f12;
+                    fArr[4] = f12;
+                    float f13 = iArr[3];
+                    fArr[7] = f13;
+                    fArr[6] = f13;
+                    path.rewind();
+                    path.addRoundRect(rectF, fArr, Path.Direction.CW);
+                    canvas.clipPath(path);
+                    fVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
+                    fVar.setBounds(0, 0, getWidth(), getHeight());
+                    fVar.draw(canvas);
+                    canvas.restore();
+                    invalidate();
+                    return;
+                }
+                return;
+            case 1:
+            default:
+                super.onDraw(canvas);
+                return;
+            case 2:
+                org.telegram.ui.Components.voip.n nVar = (org.telegram.ui.Components.voip.n) this.J;
+                super.onDraw(canvas);
+                org.telegram.ui.Components.z40 z40Var = (org.telegram.ui.Components.z40) this.K;
+                if (z40Var.f42802x0) {
+                    int i7 = z40Var.X0;
+                    nVar.f41050f = i7;
+                    RectF rectF2 = org.telegram.messenger.g0.P;
+                    float f14 = i7;
+                    rectF2.set(0.0f, 0.0f, f14, f14);
+                    float width = rectF2.width() / 2.0f;
+                    canvas.drawRoundRect(rectF2, width, width, (Paint) this.I);
+                    rectF2.inset(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f));
+                    nVar.a(width, canvas, rectF2, null);
+                    invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                org.telegram.ui.Components.voip.n nVar2 = (org.telegram.ui.Components.voip.n) this.J;
+                super.onDraw(canvas);
+                if (((org.telegram.ui.Components.y40) this.K).f42309n0) {
+                    float min = Math.min(getWidth(), getHeight()) * 0.5f;
+                    RectF rectF3 = org.telegram.messenger.g0.P;
+                    rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
+                    canvas.drawRoundRect(rectF3, min, min, (Paint) this.I);
+                    rectF3.inset(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f));
+                    nVar2.f41050f = getWidth();
+                    nVar2.a(min, canvas, rectF3, null);
+                    invalidate();
                     return;
                 }
                 return;
         }
     }
 
-    public qk(rk rkVar, boolean z10, ArrayList arrayList, ArrayList arrayList2, int i7, int i10) {
-        this.f50628e = rkVar;
-        this.d = z10;
-        this.f50629f = arrayList;
-        this.h = arrayList2;
-        this.f50626b = i7;
-        this.f50627c = i10;
+    public qk(org.telegram.ui.Components.qo qoVar, Context context, xh.f fVar) {
+        super(context);
+        this.K = qoVar;
+        this.J = fVar;
+        this.I = new Path();
+    }
+
+    public qk(org.telegram.ui.Components.y40 y40Var, Context context, Paint paint) {
+        super(context);
+        this.K = y40Var;
+        this.I = paint;
+        this.J = new org.telegram.ui.Components.voip.n();
+    }
+
+    public qk(org.telegram.ui.Components.z40 z40Var, Context context, Paint paint) {
+        super(context);
+        this.K = z40Var;
+        this.I = paint;
+        this.J = new org.telegram.ui.Components.voip.n();
     }
 }

@@ -2,26 +2,25 @@ package j8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import com.google.android.gms.internal.vision.e2;
 import java.util.Arrays;
 import q6.m;
-import u7.k;
-import u7.o;
+import u7.n;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new j7.b(21);
-    public final long f16933a;
-    public final int f16934b;
-    public final boolean f16935c;
+    public final long f17318a;
+    public final int f17319b;
+    public final boolean f17320c;
     public final String d;
-    public final k f16936e;
+    public final u7.j f17321e;
 
-    public a(long j3, int i7, boolean z10, String str, k kVar) {
-        this.f16933a = j3;
-        this.f16934b = i7;
-        this.f16935c = z10;
+    public a(long j3, int i7, boolean z10, String str, u7.j jVar) {
+        this.f17318a = j3;
+        this.f17319b = i7;
+        this.f17320c = z10;
         this.d = str;
-        this.f16936e = kVar;
+        this.f17321e = jVar;
     }
 
     public final boolean equals(Object obj) {
@@ -29,25 +28,25 @@ public final class a extends r6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f16933a != aVar.f16933a || this.f16934b != aVar.f16934b || this.f16935c != aVar.f16935c || !m.k(this.d, aVar.d) || !m.k(this.f16936e, aVar.f16936e)) {
+        if (this.f17318a != aVar.f17318a || this.f17319b != aVar.f17319b || this.f17320c != aVar.f17320c || !m.l(this.d, aVar.d) || !m.l(this.f17321e, aVar.f17321e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f16933a), Integer.valueOf(this.f16934b), Boolean.valueOf(this.f16935c)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f17318a), Integer.valueOf(this.f17319b), Boolean.valueOf(this.f17320c)});
     }
 
     public final String toString() {
         String str;
         StringBuilder m10 = e2.m("LastLocationRequest[");
-        long j3 = this.f16933a;
+        long j3 = this.f17318a;
         if (j3 != Long.MAX_VALUE) {
             m10.append("maxAge=");
-            o.a(j3, m10);
+            n.a(j3, m10);
         }
-        int i7 = this.f16934b;
+        int i7 = this.f17319b;
         if (i7 != 0) {
             m10.append(", ");
             if (i7 != 0) {
@@ -65,7 +64,7 @@ public final class a extends r6.a {
             }
             m10.append(str);
         }
-        if (this.f16935c) {
+        if (this.f17320c) {
             m10.append(", bypass");
         }
         String str2 = this.d;
@@ -73,10 +72,10 @@ public final class a extends r6.a {
             m10.append(", moduleId=");
             m10.append(str2);
         }
-        k kVar = this.f16936e;
-        if (kVar != null) {
+        u7.j jVar = this.f17321e;
+        if (jVar != null) {
             m10.append(", impersonation=");
-            m10.append(kVar);
+            m10.append(jVar);
         }
         m10.append(']');
         return m10.toString();
@@ -84,15 +83,15 @@ public final class a extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.q(parcel, 1, 8);
-        parcel.writeLong(this.f16933a);
-        yb.q(parcel, 2, 4);
-        parcel.writeInt(this.f16934b);
-        yb.q(parcel, 3, 4);
-        parcel.writeInt(this.f16935c ? 1 : 0);
-        yb.l(parcel, 4, this.d);
-        yb.k(parcel, 5, this.f16936e, i7);
-        yb.s(parcel, r10);
+        int r10 = bc.r(parcel, 20293);
+        bc.q(parcel, 1, 8);
+        parcel.writeLong(this.f17318a);
+        bc.q(parcel, 2, 4);
+        parcel.writeInt(this.f17319b);
+        bc.q(parcel, 3, 4);
+        parcel.writeInt(this.f17320c ? 1 : 0);
+        bc.l(parcel, 4, this.d);
+        bc.k(parcel, 5, this.f17321e, i7);
+        bc.s(parcel, r10);
     }
 }

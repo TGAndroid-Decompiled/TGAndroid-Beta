@@ -1,52 +1,51 @@
 package org.telegram.ui;
+public final class je implements Runnable {
+    public final int f48958a;
+    public final bn f48959b;
+    public final org.telegram.ui.Components.wk0 f48960c;
+    public final String d;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-public final class je implements org.telegram.messenger.s10 {
-    public final int f48297a;
-    public final an f48298b;
-
-    public je(an anVar, int i7) {
-        this.f48297a = i7;
-        this.f48298b = anVar;
+    public je(bn bnVar, org.telegram.ui.Components.wk0 wk0Var, String str, int i7) {
+        this.f48958a = i7;
+        this.f48959b = bnVar;
+        this.f48960c = wk0Var;
+        this.d = str;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f48297a) {
+    public final void run() {
+        org.telegram.ui.Components.lc b02;
+        int i7;
+        int i10 = this.f48958a;
+        String str = this.d;
+        org.telegram.ui.Components.wk0 wk0Var = this.f48960c;
+        bn bnVar = this.f48959b;
+        switch (i10) {
             case 0:
-                an.l1(this.f48298b, (Integer) obj, (Boolean) obj2);
-                return;
+                wk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                b02 = org.telegram.ui.Components.lc.b0(bnVar);
+                i7 = 2131746140;
+                break;
             case 1:
-                an.x1(this.f48298b, (Long) obj, (Boolean) obj2);
-                return;
+                wk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                b02 = org.telegram.ui.Components.lc.b0(bnVar);
+                i7 = 2131742963;
+                break;
             case 2:
-                Bitmap bitmap = (Bitmap) obj;
-                an anVar = this.f48298b;
-                ui.b bVar = anVar.O8;
-                bVar.a((Bitmap) obj2);
-                ih.d.c(bVar, anVar.fragmentView);
-                anVar.P8.d();
-                return;
+                wk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                b02 = org.telegram.ui.Components.lc.b0(bnVar);
+                i7 = 2131752542;
+                break;
             default:
-                an anVar2 = this.f48298b;
-                anVar2.Q8 = (Bitmap) obj;
-                Paint paint = new Paint(1);
-                anVar2.S8 = paint;
-                Bitmap bitmap2 = anVar2.Q8;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                anVar2.R8 = bitmapShader;
-                paint.setShader(bitmapShader);
-                anVar2.T8 = new Matrix();
-                ui.b bVar2 = anVar2.O8;
-                bVar2.a((Bitmap) obj2);
-                ih.d.c(bVar2, anVar2.fragmentView);
-                anVar2.P8.d();
-                return;
+                wk0Var.dismiss();
+                org.telegram.messenger.g0.g("@" + str);
+                b02 = org.telegram.ui.Components.lc.b0(bnVar);
+                i7 = 2131743428;
+                break;
         }
+        org.telegram.messenger.n10.t(null, i7, b02);
     }
 }

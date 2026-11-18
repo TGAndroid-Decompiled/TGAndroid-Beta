@@ -1,24 +1,24 @@
 package org.telegram.messenger;
-public final class m00 implements oc, nc {
-    public final c10 f24933a;
-    public final gj f24934b;
-    public final long f24935c;
-    public final int d;
 
-    public m00(c10 c10Var, gj gjVar, long j3, int i7) {
-        this.f24933a = c10Var;
-        this.f24934b = gjVar;
-        this.f24935c = j3;
-        this.d = i7;
+import org.telegram.tgnet.tl.TL_stories;
+public final class m00 implements nc, mc {
+    public final z00 f25508a;
+    public final TL_stories.StoryItem f25509b;
+    public final x00 f25510c;
+
+    public m00(z00 z00Var, TL_stories.StoryItem storyItem, x00 x00Var) {
+        this.f25508a = z00Var;
+        this.f25509b = storyItem;
+        this.f25510c = x00Var;
     }
 
     @Override
     public void a(String str) {
-        g0.h3(new j00(this.f24933a, str, this.f24934b, this.f24935c, this.d, 1));
+        g0.g3(new tl(this.f25508a, this.f25509b, str, this.f25510c, 28));
     }
 
     @Override
-    public void r(Exception exc) {
-        g0.h3(new fk(this.d, 12, this.f24935c, this.f24933a, this.f24934b));
+    public void q(Exception exc) {
+        g0.g3(new oz(this.f25508a, this.f25509b, this.f25510c, 1));
     }
 }

@@ -1,43 +1,402 @@
 package ki;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import c8.ja;
-import c8.sa;
-import java.util.Date;
-import org.telegram.messenger.hd;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.Components.RadioButton;
-public final class l1 extends FrameLayout {
-    public final String f18423a;
-    public final RadioButton f18424b;
-    public final boolean f18425c;
+import android.security.keystore.KeyGenParameterSpec;
+import android.text.TextUtils;
+import android.util.Pair;
+import j$.util.Collection;
+import j$.util.stream.Collectors;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.security.KeyStore;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.GCMParameterSpec;
+import org.json.JSONObject;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.n5;
+public final class l1 {
+    public final int f18762a;
+    public final long f18763b;
+    public final long f18764c;
+    public final boolean d;
+    public String f18765e;
 
-    public l1(m1 m1Var, boolean z10, Context context) {
-        super(context);
-        this.f18423a = m1Var.f18447a;
-        RadioButton radioButton = new RadioButton(context);
-        this.f18424b = radioButton;
-        radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
-        q6.O(radioButton, j6.D5, j6.E5, null);
-        addView(radioButton, ja.d(22, 22.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
-        TextView b10 = sa.b(context, 16.0f, j6.G6, true, null);
-        b10.setText(m1Var.f18449c);
-        addView(b10, ja.t(-1, -2, 7, 62, 9, 8, 0));
-        TextView b11 = sa.b(context, 14.0f, j6.f29241y6, false, null);
-        b11.setText(hd.a0(null, null, 2131752993, hd.a0(null, null, 2131742783, hd.T(m1Var.d / 1000), hd.E0().p0().format(new Date(m1Var.d / 1000)))));
-        addView(b11, ja.t(-1, -2, 7, 62, 32, 8, 0));
-        this.f18425c = z10;
-        setWillNotDraw(!z10);
+    public l1(int i7, long j3, long j10, boolean z10) {
+        this.f18762a = i7;
+        this.f18763b = j10;
+        this.f18764c = j3;
+        this.d = z10;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f18425c) {
-            canvas.drawLine(org.telegram.messenger.g0.L(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, j6.f28972k0);
+    public static File b() {
+        try {
+            File filesDir = org.telegram.messenger.t0.f26915b.getFilesDir();
+            if (filesDir != null) {
+                File file = new File(filesDir, "apps_storage/");
+                file.mkdirs();
+                if (filesDir.exists() || filesDir.mkdirs()) {
+                    if (filesDir.canWrite()) {
+                        return file;
+                    }
+                }
+            }
+        } catch (Exception unused) {
         }
+        return new File("");
+    }
+
+    public static SecretKey g() {
+        KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
+        keyStore.load(null);
+        if (!keyStore.containsAlias("MiniAppsKey")) {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
+            keyGenerator.init(new KeyGenParameterSpec.Builder("MiniAppsKey", 3).setBlockModes("GCM").setEncryptionPaddings("NoPadding").setUserAuthenticationRequired(false).build());
+            keyGenerator.generateKey();
+        }
+        return (SecretKey) keyStore.getKey("MiniAppsKey", null);
+    }
+
+    public static HashMap i() {
+        HashMap hashMap = new HashMap();
+        try {
+            File file = new File(b(), "secure_config.json");
+            FileInputStream fileInputStream = new FileInputStream(file);
+            try {
+                byte[] bArr = new byte[(int) file.length()];
+                fileInputStream.read(bArr);
+                fileInputStream.close();
+                JSONObject jSONObject = new JSONObject(new String(bArr));
+                Iterator<String> keys = jSONObject.keys();
+                while (keys.hasNext()) {
+                    String next = keys.next();
+                    JSONObject jSONObject2 = jSONObject.getJSONObject(next);
+                    ?? obj = new Object();
+                    obj.f18751a = next;
+                    obj.f18752b = jSONObject2.getLong("user_id");
+                    obj.f18753c = jSONObject2.getString("user_name");
+                    obj.d = jSONObject2.getLong("created_at");
+                    obj.f18754e = jSONObject2.getLong("edited_at");
+                    hashMap.put(next, obj);
+                }
+                return hashMap;
+            } catch (OutOfMemoryError e10) {
+                a8.g(e10, true);
+                throw new RuntimeException("QUOTA_EXCEEDED");
+            }
+        } catch (Exception e11) {
+            a8.g(e11, true);
+            return hashMap;
+        }
+    }
+
+    public static void k(HashMap hashMap) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            for (Map.Entry entry : hashMap.entrySet()) {
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("user_id", ((k1) entry.getValue()).f18752b);
+                jSONObject2.put("user_name", ((k1) entry.getValue()).f18753c);
+                jSONObject2.put("created_at", ((k1) entry.getValue()).d);
+                jSONObject2.put("edited_at", ((k1) entry.getValue()).f18754e);
+                jSONObject.put((String) entry.getKey(), jSONObject2);
+            }
+            File file = new File(b(), "secure_config.json");
+            byte[] bytes = jSONObject.toString().getBytes();
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(bytes);
+            fileOutputStream.close();
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+    }
+
+    public final byte[] a(File file) {
+        byte[] bArr;
+        FileInputStream fileInputStream = new FileInputStream(file);
+        int length = (int) file.length();
+        boolean z10 = this.d;
+        if (z10) {
+            int read = fileInputStream.read();
+            bArr = new byte[read];
+            length = (length - 1) - read;
+            fileInputStream.read(bArr);
+        } else {
+            bArr = null;
+        }
+        try {
+            byte[] bArr2 = new byte[length];
+            fileInputStream.read(bArr2);
+            fileInputStream.close();
+            if (z10) {
+                try {
+                    Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+                    cipher.init(2, g(), new GCMParameterSpec(128, bArr));
+                    return cipher.doFinal(bArr2);
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    l(file, "{}".getBytes());
+                    throw new RuntimeException("UNKNOWN_ERROR");
+                }
+            }
+            return bArr2;
+        } catch (OutOfMemoryError e11) {
+            a8.g(e11, true);
+            throw new RuntimeException("QUOTA_EXCEEDED");
+        }
+    }
+
+    public final File c() {
+        long j3;
+        if (this.d && TextUtils.isEmpty(this.f18765e)) {
+            HashMap i7 = i();
+            Iterator it = i7.entrySet().iterator();
+            while (true) {
+                boolean hasNext = it.hasNext();
+                j3 = this.f18764c;
+                if (!hasNext) {
+                    break;
+                }
+                Map.Entry entry = (Map.Entry) it.next();
+                if (((k1) entry.getValue()).f18752b == j3) {
+                    this.f18765e = (String) entry.getKey();
+                    break;
+                }
+            }
+            if (TextUtils.isEmpty(this.f18765e)) {
+                String uuid = UUID.randomUUID().toString();
+                this.f18765e = uuid;
+                ?? obj = new Object();
+                obj.f18751a = uuid;
+                obj.f18752b = j3;
+                obj.f18753c = n5.m(j10.i(this.f18762a).f());
+                long currentTimeMillis = System.currentTimeMillis();
+                obj.f18754e = currentTimeMillis;
+                obj.d = currentTimeMillis;
+                i7.put(this.f18765e, obj);
+                k(i7);
+            }
+        }
+        return d(this.f18765e);
+    }
+
+    public final File d(String str) {
+        String str2;
+        File b10 = b();
+        StringBuilder sb2 = new StringBuilder();
+        long j3 = this.f18764c;
+        boolean z10 = this.d;
+        Object obj = str;
+        if (!z10) {
+            obj = Long.valueOf(j3);
+        }
+        sb2.append(obj);
+        sb2.append("_");
+        long j10 = this.f18763b;
+        sb2.append(j10);
+        String str3 = "";
+        if (!z10) {
+            str2 = "";
+        } else {
+            str2 = "_s";
+        }
+        sb2.append(str2);
+        File file = new File(b10, sb2.toString());
+        File b11 = b();
+        StringBuilder sb3 = new StringBuilder();
+        sb3.append(j10);
+        if (z10) {
+            str3 = "_s";
+        }
+        sb3.append(str3);
+        File file2 = new File(b11, sb3.toString());
+        if (!file.exists() && file2.exists()) {
+            file2.renameTo(file);
+            return file;
+        }
+        if (z10) {
+            File b12 = b();
+            File file3 = new File(b12, j3 + "_" + j10 + "_s");
+            if (!file.exists() && file3.exists()) {
+                file3.renameTo(file);
+            }
+        }
+        return file;
+    }
+
+    public final JSONObject e(File file) {
+        if (file.exists() && file.length() <= 5242880) {
+            try {
+                return new JSONObject(new String(a(file)));
+            } catch (Exception e10) {
+                a8.g(e10, true);
+                return new JSONObject();
+            }
+        }
+        return new JSONObject();
+    }
+
+    public final Pair f(String str) {
+        JSONObject e10 = e(c());
+        String optString = e10.optString(str);
+        boolean z10 = false;
+        if (this.d && optString == null && !e10.keys().hasNext()) {
+            HashSet hashSet = new HashSet();
+            for (int i7 = 0; i7 < 4; i7++) {
+                j10 i10 = j10.i(i7);
+                if (i10.p()) {
+                    hashSet.add(Long.valueOf(i10.e()));
+                }
+            }
+            Iterator it = ((Set) Collection.EL.stream(i().values()).filter(new i1(hashSet, 0)).collect(Collectors.toSet())).iterator();
+            while (true) {
+                if (!it.hasNext()) {
+                    break;
+                }
+                try {
+                    File d = d(((k1) it.next()).f18751a);
+                    if (d.exists() && e(d).has(str)) {
+                        z10 = true;
+                        break;
+                    }
+                } catch (Exception e11) {
+                    a8.g(e11, true);
+                }
+            }
+        }
+        return new Pair(optString, Boolean.valueOf(z10));
+    }
+
+    public final ArrayList h(String str) {
+        if (!e(c()).keys().hasNext()) {
+            ArrayList arrayList = new ArrayList();
+            HashSet hashSet = new HashSet();
+            for (int i7 = 0; i7 < 4; i7++) {
+                j10 i10 = j10.i(i7);
+                if (i10.p()) {
+                    hashSet.add(Long.valueOf(i10.e()));
+                }
+            }
+            for (k1 k1Var : (Set) Collection.EL.stream(i().values()).filter(new i1(hashSet, 1)).collect(Collectors.toSet())) {
+                try {
+                    File d = d(k1Var.f18751a);
+                    if (d.exists() && e(d).has(str)) {
+                        arrayList.add(k1Var);
+                    }
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                }
+            }
+            return arrayList;
+        }
+        throw new RuntimeException("STORAGE_NOT_EMPTY");
+    }
+
+    public final void j(String str) {
+        if (!e(c()).keys().hasNext()) {
+            HashSet hashSet = new HashSet();
+            for (int i7 = 0; i7 < 4; i7++) {
+                j10 i10 = j10.i(i7);
+                if (i10.p()) {
+                    hashSet.add(Long.valueOf(i10.e()));
+                }
+            }
+            HashMap i11 = i();
+            k1 k1Var = (k1) i11.get(str);
+            if (k1Var != null) {
+                k1Var.f18752b = this.f18764c;
+                k1Var.f18753c = n5.m(j10.i(this.f18762a).f());
+                k1Var.f18754e = System.currentTimeMillis();
+                k(i11);
+                this.f18765e = k1Var.f18751a;
+                return;
+            }
+            throw new RuntimeException("STORAGE_NOT_FOUND");
+        }
+        throw new RuntimeException("STORAGE_NOT_EMPTY");
+    }
+
+    public final void l(File file, byte[] bArr) {
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        if (this.d) {
+            try {
+                Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+                cipher.init(1, g());
+                byte[] iv = cipher.getIV();
+                fileOutputStream.write(iv.length);
+                fileOutputStream.write(iv);
+                bArr = cipher.doFinal(bArr);
+            } catch (Exception e10) {
+                a8.g(e10, true);
+                throw new RuntimeException("UNKNOWN_ERROR");
+            }
+        }
+        fileOutputStream.write(bArr);
+        fileOutputStream.close();
+    }
+
+    public final void m(JSONObject jSONObject) {
+        try {
+            byte[] bytes = jSONObject.toString().getBytes();
+            if (bytes.length <= 5242880) {
+                try {
+                    l(c(), bytes);
+                    return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    throw new RuntimeException("UNKNOWN_ERROR");
+                }
+            }
+            throw new RuntimeException("QUOTA_EXCEEDED");
+        } catch (Exception e11) {
+            a8.g(e11, true);
+            throw new RuntimeException("UNKNOWN_ERROR");
+        } catch (OutOfMemoryError e12) {
+            a8.g(e12, true);
+            throw new RuntimeException("QUOTA_EXCEEDED");
+        }
+    }
+
+    public final void n(String str, String str2) {
+        if (str2.length() + str.length() <= 5242880) {
+            JSONObject e10 = e(c());
+            try {
+                e10.put(str, str2);
+                int length = e10.length();
+                boolean z10 = this.d;
+                if (length > 10 && z10) {
+                    throw new RuntimeException("QUOTA_EXCEEDED");
+                }
+                m(e10);
+                if (z10) {
+                    try {
+                        HashMap i7 = i();
+                        k1 k1Var = (k1) i7.get(this.f18765e);
+                        if (k1Var != null) {
+                            k1Var.f18754e = System.currentTimeMillis();
+                            k(i7);
+                            return;
+                        }
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+                return;
+            } catch (Exception e11) {
+                a8.g(e11, true);
+                throw new RuntimeException("UNKNOWN_ERROR");
+            }
+        }
+        throw new RuntimeException("QUOTA_EXCEEDED");
     }
 }

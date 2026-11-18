@@ -1,84 +1,88 @@
 package di;
 
-import android.os.Bundle;
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.cz;
-import org.telegram.messenger.ez;
-import org.telegram.messenger.np;
-import org.telegram.messenger.vr;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.es0;
-import org.telegram.ui.qq;
+import android.content.Context;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.tr;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.Components.y60;
+import org.telegram.ui.bn;
 public final class i9 implements Runnable {
-    public final int f8810a;
-    public final int f8811b;
-    public final long f8812c;
+    public final int f9035a = 0;
+    public final int f9036b;
+    public final long f9037c;
+    public final long d;
+    public final Object f9038e;
+    public final Object f9039f;
+    public final Object h;
 
-    public i9(int i7, long j3, int i10) {
-        this.f8810a = i10;
-        this.f8811b = i7;
-        this.f8812c = j3;
+    public i9(int i7, Context context, long j3, long j10, org.telegram.ui.ActionBar.x2[] x2VarArr, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.f9036b = i7;
+        this.f9038e = context;
+        this.f9037c = j3;
+        this.d = j10;
+        this.f9039f = x2VarArr;
+        this.h = i6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f8810a) {
-            case 0:
-                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
-                if (T != null) {
-                    long j3 = this.f8812c;
-                    if (j3 >= 0) {
-                        T.presentFragment(new PrivacyControlActivity(10, false));
-                        return;
-                    }
-                    int i7 = this.f8811b;
-                    long j10 = -j3;
-                    if (org.telegram.messenger.t3.V(np.s1(i7).M0(Long.valueOf(j10)))) {
-                        T.presentFragment(new es0(j10));
-                        return;
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", j10);
-                    bundle.putInt("type", 3);
-                    qq qqVar = new qq(bundle);
-                    qqVar.C0(np.s1(i7).N0(j10));
-                    T.presentFragment(qqVar);
-                    return;
-                }
-                return;
-            case 1:
-                int i10 = this.f8811b;
-                long j11 = this.f8812c;
-                try {
-                    SQLitePreparedStatement executeFast = vr.a0(i10).f27221b.executeFast("REPLACE INTO search_recent VALUES(?, ?)");
-                    executeFast.requery();
-                    executeFast.bindLong(1, j11);
-                    executeFast.bindInteger(2, (int) (System.currentTimeMillis() / 1000));
-                    executeFast.step();
-                    executeFast.dispose();
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
-            case 2:
-                ez.C(this.f8811b).r0(cz.b("/privacy", this.f8812c, null, null, null, false, null, null, null, true, 0, 0, null, false));
-                return;
-            default:
-                org.telegram.ui.ActionBar.e2 T2 = LaunchActivity.T();
-                if (T2 != null) {
-                    T2.presentFragment(an.ta(this.f8811b, this.f8812c));
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: di.i9.run():void");
     }
 
-    public i9(long j3, int i7, int i10) {
-        this.f8810a = i10;
-        this.f8812c = j3;
-        this.f8811b = i7;
+    public i9(fi.t0 t0Var, int i7, TLRPC.TL_error tL_error, long j3, long j10, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.f9038e = t0Var;
+        this.f9036b = i7;
+        this.f9039f = tL_error;
+        this.f9037c = j3;
+        this.d = j10;
+        this.h = tL_textWithEntities;
+    }
+
+    public i9(ri riVar, long j3, long j10, TL_bots.BotInfo botInfo, x10 x10Var, int i7) {
+        this.f9038e = riVar;
+        this.f9037c = j3;
+        this.d = j10;
+        this.f9039f = botInfo;
+        this.h = x10Var;
+        this.f9036b = i7;
+    }
+
+    public i9(mp mpVar, long j3, long j10, TLRPC.InputPeer inputPeer, int i7, int[] iArr) {
+        this.f9038e = mpVar;
+        this.f9037c = j3;
+        this.d = j10;
+        this.f9039f = inputPeer;
+        this.f9036b = i7;
+        this.h = iArr;
+    }
+
+    public i9(tr trVar, int i7, long j3, String str, long j10, String str2) {
+        this.f9038e = trVar;
+        this.f9036b = i7;
+        this.f9037c = j3;
+        this.f9039f = str;
+        this.d = j10;
+        this.h = str2;
+    }
+
+    public i9(tr trVar, long j3, String str, long j10, int i7, bi.y4 y4Var) {
+        this.f9038e = trVar;
+        this.f9037c = j3;
+        this.f9039f = str;
+        this.d = j10;
+        this.f9036b = i7;
+        this.h = y4Var;
+    }
+
+    public i9(y60 y60Var, int i7, long j3, long j10, bn bnVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.f9038e = y60Var;
+        this.f9036b = i7;
+        this.f9037c = j3;
+        this.d = j10;
+        this.f9039f = bnVar;
+        this.h = i6Var;
     }
 }

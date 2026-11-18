@@ -1,79 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.style.ReplacementSpan;
-public final class hp extends ReplacementSpan {
-    public final int f35305a;
-    public final Object f35306b;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class hp implements ResultCallback {
+    public final org.telegram.messenger.f4 f35945a;
+    public final lp f35946b;
 
-    public hp(Object obj, int i7) {
-        this.f35305a = i7;
-        this.f35306b = obj;
+    public hp(lp lpVar, org.telegram.messenger.f4 f4Var) {
+        this.f35946b = lpVar;
+        this.f35945a = f4Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        switch (this.f35305a) {
-            case 0:
-                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-                int i14 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2) + i12;
-                Drawable drawable = (Drawable) this.f35306b;
-                int i15 = (int) f10;
-                drawable.setBounds(i15, i14 - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(24.0f) + i15, org.telegram.messenger.g0.L(12.0f) + i14);
-                drawable.setAlpha(paint.getAlpha());
-                drawable.draw(canvas);
-                return;
-            case 1:
-            case 2:
-            case 3:
-            default:
-                return;
-        }
+    public final void onComplete(Object obj) {
+        List list = (List) obj;
+        ArrayList e10 = this.f35945a.e(7);
+        lp lpVar = this.f35946b;
+        org.telegram.messenger.ks.f(lpVar.f30189a).d(new mg(18, this, e10));
+        lpVar.V1 = false;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f35305a) {
-            case 0:
-                if (fontMetricsInt != null) {
-                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
-                    int i11 = fontMetricsInt2.ascent;
-                    int i12 = (fontMetricsInt2.descent + i11) / 2;
-                    int C = org.telegram.messenger.i20.C(12.0f, i12, i11);
-                    fontMetricsInt.top = C;
-                    fontMetricsInt.ascent = C;
-                    int b10 = org.telegram.messenger.k5.b(12.0f, i12, fontMetricsInt2.descent);
-                    fontMetricsInt.bottom = b10;
-                    fontMetricsInt.descent = b10;
-                }
-                return org.telegram.messenger.g0.L(32.0f);
-            case 1:
-                return ((o90) this.f35306b).f37893y;
-            case 2:
-                return (int) ((org.telegram.ui.qg0) this.f35306b).f50606j2;
-            case 3:
-                return (int) ((wg.c1) this.f35306b).f59158p2;
-            default:
-                return ((org.telegram.messenger.g6) this.f35306b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
-        }
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
     }
 
-    public hp(ch0 ch0Var) {
-        this.f35305a = 0;
-        this.f35306b = ch0Var;
-    }
-
-    private final void a(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void b(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void d(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f35946b.getContext(), tL_error.text, 0).show();
     }
 }

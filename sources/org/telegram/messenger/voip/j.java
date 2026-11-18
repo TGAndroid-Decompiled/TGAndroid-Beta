@@ -2,15 +2,15 @@ package org.telegram.messenger.voip;
 
 import org.telegram.messenger.voip.VideoCapturerDevice;
 public final class j implements Runnable {
-    public final int f27139a;
+    public final int f27507a;
 
     public j(int i7) {
-        this.f27139a = i7;
+        this.f27507a = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f27139a) {
+        switch (this.f27507a) {
             case 0:
                 VideoCapturerDevice.AnonymousClass1.lambda$onStop$0();
                 return;
@@ -21,7 +21,7 @@ public final class j implements Runnable {
                 VoIPPreNotificationService.d();
                 return;
             case 3:
-                VoIPService.r0();
+                VoIPService.lambda$acceptIncomingCall$100();
                 return;
             case 4:
                 VoIPService.lambda$configureDeviceForCall$110();
@@ -36,7 +36,7 @@ public final class j implements Runnable {
                 VoIPService.lambda$startGroupCall$24();
                 return;
             default:
-                VoIPService.d1();
+                VoIPService.lambda$onDestroy$97();
                 return;
         }
     }

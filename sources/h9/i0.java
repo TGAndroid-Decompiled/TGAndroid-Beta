@@ -1,7 +1,7 @@
 package h9;
 
-import a8.ia;
-import a8.ja;
+import a8.ka;
+import a8.la;
 import j$.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,13 +13,13 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List {
-    public static final g0 f13686b = new g0(s1.f13749e, 0);
+    public static final g0 f14006b = new g0(t1.f14074e, 0);
 
-    public static s1 o(int i7, Object[] objArr) {
+    public static t1 o(int i7, Object[] objArr) {
         if (i7 == 0) {
-            return s1.f13749e;
+            return t1.f14074e;
         }
-        return new s1(i7, objArr);
+        return new t1(i7, objArr);
     }
 
     public static f0 p() {
@@ -30,7 +30,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
         if (collection instanceof d0) {
             i0 f10 = ((d0) collection).f();
             if (f10.m()) {
-                Object[] array = f10.toArray(d0.f13670a);
+                Object[] array = f10.toArray(d0.f13988a);
                 return o(array.length, array);
             }
             return f10;
@@ -40,34 +40,34 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
         return o(array2.length, array2);
     }
 
-    public static s1 r(Object[] objArr) {
+    public static t1 r(Object[] objArr) {
         if (objArr.length == 0) {
-            return s1.f13749e;
+            return t1.f14074e;
         }
         Object[] objArr2 = (Object[]) objArr.clone();
         o.e(objArr2.length, objArr2);
         return o(objArr2.length, objArr2);
     }
 
-    public static s1 t(Long l10, Long l11, Long l12, Long l13, Long l14) {
+    public static t1 t(Long l10, Long l11, Long l12, Long l13, Long l14) {
         Object[] objArr = {l10, l11, l12, l13, l14};
         o.e(5, objArr);
         return o(5, objArr);
     }
 
-    public static s1 u(Object obj) {
+    public static t1 u(Object obj) {
         Object[] objArr = {obj};
         o.e(1, objArr);
         return o(1, objArr);
     }
 
-    public static s1 v(Object obj, Object obj2) {
+    public static t1 v(Object obj, Object obj2) {
         Object[] objArr = {obj, obj2};
         o.e(2, objArr);
         return o(2, objArr);
     }
 
-    public static s1 w(Comparator comparator, List list) {
+    public static t1 w(Comparator comparator, List list) {
         List list2;
         comparator.getClass();
         if (list instanceof Collection) {
@@ -114,14 +114,14 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
                         for (int i7 = 0; i7 < size; i7++) {
-                            if (ia.a(get(i7), list.get(i7))) {
+                            if (ka.a(get(i7), list.get(i7))) {
                             }
                         }
                     } else {
                         Iterator it = list.iterator();
                         for (Object obj2 : this) {
                             if (it.hasNext()) {
-                                if (!ia.a(obj2, it.next())) {
+                                if (!ka.a(obj2, it.next())) {
                                 }
                             }
                         }
@@ -186,7 +186,7 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
     }
 
     @Override
-    public final g2 n() {
+    public final h2 n() {
         return listIterator(0);
     }
 
@@ -202,9 +202,9 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
 
     @Override
     public final g0 listIterator(int i7) {
-        ja.m(i7, size());
+        la.m(i7, size());
         if (isEmpty()) {
-            return f13686b;
+            return f14006b;
         }
         return new g0(this, i7);
     }
@@ -221,13 +221,13 @@ public abstract class i0 extends d0 implements List, RandomAccess, j$.util.List 
 
     @Override
     public i0 subList(int i7, int i10) {
-        ja.n(i7, i10, size());
+        la.n(i7, i10, size());
         int i11 = i10 - i7;
         if (i11 == size()) {
             return this;
         }
         if (i11 == 0) {
-            return s1.f13749e;
+            return t1.f14074e;
         }
         return new h0(this, i7, i11);
     }

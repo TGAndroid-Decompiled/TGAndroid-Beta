@@ -1,23 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class nh0 extends uj0 {
-    public final vh0 f37606f3;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class nh0 extends ImageReceiver {
+    public final ph0 K1;
 
-    public nh0(vh0 vh0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        this.f37606f3 = vh0Var;
+    public nh0(ph0 ph0Var) {
+        super(null);
+        this.K1 = ph0Var;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        vh0 vh0Var = this.f37606f3;
-        o90 o90Var = vh0Var.K;
-        if (o90Var != null) {
-            o90Var.measure(i7, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0));
+    public final boolean x0(Drawable drawable, String str, int i7, boolean z10, int i10) {
+        if (drawable != null) {
+            this.K1.c();
         }
-        super.onMeasure(i7, i10);
-        vh0Var.j();
+        return super.x0(drawable, str, i7, z10, i10);
     }
 }

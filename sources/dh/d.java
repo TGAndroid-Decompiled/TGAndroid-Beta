@@ -18,38 +18,38 @@ import android.os.Build;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.z5;
-public final class d extends Drawable implements z5 {
+import org.telegram.ui.ActionBar.c6;
+public final class d extends Drawable implements c6 {
     public final Paint E;
     public int F;
     public boolean G;
     public int H;
-    public final Paint f8101a;
-    public final fh.g f8102b;
-    public final Matrix f8103c;
+    public final Paint f8383a;
+    public final fh.g f8384b;
+    public final Matrix f8385c;
     public LinearGradient d;
-    public final Matrix f8104e;
-    public LinearGradient f8105f;
+    public final Matrix f8386e;
+    public LinearGradient f8387f;
     public BitmapShader h;
-    public ComposeShader f8106n;
-    public final Matrix f8107r;
-    public final Paint f8108s;
-    public Bitmap f8109w;
-    public int f8110x;
-    public boolean f8111y;
+    public ComposeShader f8388n;
+    public final Matrix f8389r;
+    public final Paint f8390s;
+    public Bitmap f8391w;
+    public int f8392x;
+    public boolean f8393y;
 
     public d(fh.g gVar) {
         Paint paint = new Paint(1);
-        this.f8101a = paint;
-        this.f8103c = new Matrix();
-        this.f8104e = new Matrix();
-        this.f8107r = new Matrix();
+        this.f8383a = paint;
+        this.f8385c = new Matrix();
+        this.f8386e = new Matrix();
+        this.f8389r = new Matrix();
         Paint paint2 = new Paint(1);
-        this.f8108s = paint2;
+        this.f8390s = paint2;
         a5.b bVar = new a5.b(this, 2);
         this.E = new Paint(1);
         this.H = 255;
-        this.f8102b = gVar;
+        this.f8384b = gVar;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint2.setFilterBitmap(true);
         b(g0.L(40.0f), false);
@@ -65,16 +65,16 @@ public final class d extends Drawable implements z5 {
     }
 
     public final void b(int i7, boolean z10) {
-        if (this.f8110x == i7 && this.f8111y == z10) {
+        if (this.f8392x == i7 && this.f8393y == z10) {
             return;
         }
-        this.f8110x = i7;
-        this.f8111y = z10;
+        this.f8392x = i7;
+        this.f8393y = z10;
         LinearGradient a10 = a(-16777216, z10);
         this.d = a10;
-        this.f8101a.setShader(a10);
+        this.f8383a.setShader(a10);
         this.E.setShader(null);
-        Matrix matrix = this.f8103c;
+        Matrix matrix = this.f8385c;
         matrix.reset();
         matrix.setScale(1.0f, i7);
         if (i7 < 0) {
@@ -89,28 +89,28 @@ public final class d extends Drawable implements z5 {
         boolean z10;
         Rect bounds = getBounds();
         if (!bounds.isEmpty() && this.H != 0) {
-            fh.g gVar = this.f8102b;
-            ui.a v = fh.g.v(gVar.f11352r);
+            fh.g gVar = this.f8384b;
+            ui.a v = fh.g.v(gVar.f11672r);
             boolean z11 = this.G;
-            Matrix matrix = this.f8103c;
+            Matrix matrix = this.f8385c;
             int i10 = 0;
-            Matrix matrix2 = this.f8104e;
+            Matrix matrix2 = this.f8386e;
             if (!z11 && (v instanceof ui.c)) {
-                int i11 = ((ui.c) v).f58431b;
+                int i11 = ((ui.c) v).f58998b;
                 int i12 = this.F;
                 Paint paint = this.E;
-                if (i12 != i11 || this.f8105f == null) {
-                    LinearGradient a10 = a(i11, this.f8111y);
-                    this.f8105f = a10;
+                if (i12 != i11 || this.f8387f == null) {
+                    LinearGradient a10 = a(i11, this.f8393y);
+                    this.f8387f = a10;
                     this.F = i11;
                     paint.setShader(a10);
                 }
-                if (this.f8110x < 0) {
-                    i10 = bounds.height() + this.f8110x;
+                if (this.f8392x < 0) {
+                    i10 = bounds.height() + this.f8392x;
                 }
                 matrix2.set(matrix);
                 matrix2.postTranslate(bounds.left, bounds.top + i10);
-                this.f8105f.setLocalMatrix(matrix2);
+                this.f8387f.setLocalMatrix(matrix2);
                 paint.setAlpha(this.H);
                 canvas.drawRect(bounds, paint);
             } else if (!z11 && (v instanceof ui.b) && (i7 = Build.VERSION.SDK_INT) >= 28) {
@@ -118,17 +118,17 @@ public final class d extends Drawable implements z5 {
                 Bitmap bitmap = bVar.d;
                 if (bitmap != null) {
                     boolean z12 = true;
-                    if (this.F == -16777216 && this.f8105f != null) {
+                    if (this.F == -16777216 && this.f8387f != null) {
                         z10 = false;
                     } else {
-                        this.f8105f = a(-16777216, this.f8111y);
+                        this.f8387f = a(-16777216, this.f8393y);
                         this.F = -16777216;
                         z10 = true;
                     }
-                    if (this.h != null && this.f8109w == bitmap) {
+                    if (this.h != null && this.f8391w == bitmap) {
                         z12 = z10;
                     } else {
-                        this.f8109w = bitmap;
+                        this.f8391w = bitmap;
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
                         this.h = bitmapShader;
@@ -136,34 +136,34 @@ public final class d extends Drawable implements z5 {
                             bitmapShader.setFilterMode(2);
                         }
                     }
-                    Paint paint2 = this.f8108s;
-                    if (z12 || this.f8106n == null) {
-                        ComposeShader composeShader = new ComposeShader(this.h, this.f8105f, PorterDuff.Mode.DST_IN);
-                        this.f8106n = composeShader;
+                    Paint paint2 = this.f8390s;
+                    if (z12 || this.f8388n == null) {
+                        ComposeShader composeShader = new ComposeShader(this.h, this.f8387f, PorterDuff.Mode.DST_IN);
+                        this.f8388n = composeShader;
                         paint2.setShader(composeShader);
                     }
-                    if (this.f8110x < 0) {
-                        i10 = bounds.height() + this.f8110x;
+                    if (this.f8392x < 0) {
+                        i10 = bounds.height() + this.f8392x;
                     }
                     matrix2.set(matrix);
                     matrix2.postTranslate(bounds.left, bounds.top + i10);
-                    this.f8105f.setLocalMatrix(matrix2);
-                    Matrix matrix3 = bVar.f58425b;
-                    Matrix matrix4 = this.f8107r;
+                    this.f8387f.setLocalMatrix(matrix2);
+                    Matrix matrix3 = bVar.f58992b;
+                    Matrix matrix4 = this.f8389r;
                     matrix4.set(matrix3);
-                    matrix4.postTranslate(-gVar.d, -gVar.f56098e);
+                    matrix4.postTranslate(-gVar.d, -gVar.f56672e);
                     this.h.setLocalMatrix(matrix4);
                     paint2.setAlpha(this.H);
                     canvas.drawRect(bounds, paint2);
                 }
             } else {
                 int saveLayerAlpha = canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, this.H);
-                if (this.f8110x < 0) {
-                    i10 = bounds.height() + this.f8110x;
+                if (this.f8392x < 0) {
+                    i10 = bounds.height() + this.f8392x;
                 }
                 gVar.draw(canvas);
                 canvas.translate(bounds.left, bounds.top + i10);
-                canvas.drawRect(0.0f, -i10, bounds.width(), bounds.height() - i10, this.f8101a);
+                canvas.drawRect(0.0f, -i10, bounds.width(), bounds.height() - i10, this.f8383a);
                 canvas.restoreToCount(saveLayerAlpha);
             }
         }
@@ -182,7 +182,7 @@ public final class d extends Drawable implements z5 {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f8102b.setBounds(rect);
+        this.f8384b.setBounds(rect);
     }
 
     @Override
@@ -193,7 +193,7 @@ public final class d extends Drawable implements z5 {
     @Override
     public final void updateColors() {
         try {
-            this.f8102b.updateColors();
+            this.f8384b.updateColors();
             invalidateSelf();
         } catch (Exception e10) {
             a8.g(e10, true);

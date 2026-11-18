@@ -1,47 +1,24 @@
 package sh;
 
-import java.util.ArrayList;
-import org.telegram.messenger.z10;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class m {
-    public final int f56888a;
-    public final TLRPC.InputPeer f56889b;
-    public final int f56890c;
-    public final byte[] d;
-    public final q2.d f56891e;
-    public final z10 f56892f;
-    public String f56893g;
-    public boolean h;
-    public boolean f56894i;
-    public final ArrayList f56895j = new ArrayList();
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.wz;
+public final class m extends k41 {
+    public static final int f57463b = 0;
 
-    public m(int i7, TLRPC.InputPeer inputPeer, int i10, byte[] bArr, q2.d dVar, z10 z10Var) {
-        this.f56888a = i7;
-        this.f56889b = inputPeer;
-        this.f56890c = i10;
-        this.d = bArr;
-        this.f56891e = dVar;
-        this.f56892f = z10Var;
+    static {
+        k41.h(new k41());
     }
 
-    public final void a() {
-        int i7;
-        if (!this.h && !this.f56894i) {
-            this.f56894i = true;
-            TLRPC.TL_messages_getPollVotes tL_messages_getPollVotes = new TLRPC.TL_messages_getPollVotes();
-            String str = this.f56893g;
-            if (str != null) {
-                i7 = 10;
-            } else {
-                i7 = 15;
-            }
-            tL_messages_getPollVotes.limit = i7;
-            tL_messages_getPollVotes.peer = this.f56889b;
-            tL_messages_getPollVotes.f28150id = this.f56890c;
-            tL_messages_getPollVotes.option = this.d;
-            tL_messages_getPollVotes.offset = str;
-            ConnectionsManager.getInstance(this.f56888a).sendRequestTyped(tL_messages_getPollVotes, new d3.b(1), new h(this, 1));
-        }
+    @Override
+    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
+        wz wzVar = new wz(context, null);
+        wzVar.setViewType(16);
+        wzVar.setMinimumHeight(g0.L(48.0f));
+        return wzVar;
     }
 }

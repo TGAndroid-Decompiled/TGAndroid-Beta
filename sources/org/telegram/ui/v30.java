@@ -1,53 +1,13 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class v30 extends org.telegram.ui.Components.voip.r {
-    public final int h = 1;
-    public final org.telegram.ui.Components.tj0 f52109n;
-
-    public v30(f40 f40Var, Context context) {
-        super(context, true);
-        this.f52109n = f40Var;
-    }
-
+import android.view.View;
+public final class v30 extends org.telegram.ui.Cells.z3 {
     @Override
-    public final void onAttachedToWindow() {
-        switch (this.h) {
-            case 0:
-                super.onAttachedToWindow();
-                c40 c40Var = ((w30) this.f52109n).N;
-                if (c40Var.L1.getVisibility() == 0 && c40Var.O4) {
-                    c40.J0(c40Var, this, true);
-                    return;
-                }
-                return;
-            default:
-                super.onAttachedToWindow();
-                f40 f40Var = (f40) this.f52109n;
-                if (f40Var.f46980r && getParticipant() != null) {
-                    f40Var.E(this, true);
-                    return;
-                }
-                return;
+    public final void onMeasure(int i7, int i10) {
+        if (org.telegram.messenger.g0.Q1()) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(420.0f), View.MeasureSpec.getSize(i7)), 1073741824), i10);
+        } else {
+            super.onMeasure(i7, i10);
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        switch (this.h) {
-            case 0:
-                super.onDetachedFromWindow();
-                c40.J0(((w30) this.f52109n).N, this, false);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                ((f40) this.f52109n).E(this, false);
-                return;
-        }
-    }
-
-    public v30(w30 w30Var, Context context) {
-        super(context, false);
-        this.f52109n = w30Var;
     }
 }

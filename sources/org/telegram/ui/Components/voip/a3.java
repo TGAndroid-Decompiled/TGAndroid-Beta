@@ -1,29 +1,41 @@
 package org.telegram.ui.Components.voip;
-public final class a3 implements Runnable {
-    public final int f40500a;
-    public final f3 f40501b;
-    public final int f40502c;
 
-    public a3(f3 f3Var, int i7, int i10) {
-        this.f40500a = i10;
-        this.f40501b = f3Var;
-        this.f40502c = i7;
+import android.animation.ValueAnimator;
+public final class a3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40774a;
+    public final d3 f40775b;
+
+    public a3(d3 d3Var, int i7) {
+        this.f40774a = i7;
+        this.f40775b = d3Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40500a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40774a) {
             case 0:
-                org.telegram.messenger.g0.h3(new a3(this.f40501b, this.f40502c, 2));
+                d3 d3Var = this.f40775b;
+                d3Var.getClass();
+                d3Var.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d3Var.invalidate();
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new a3(this.f40501b, this.f40502c, 3));
+                d3 d3Var2 = this.f40775b;
+                d3Var2.getClass();
+                d3Var2.f40834x = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                d3Var2.invalidate();
                 return;
             case 2:
-                this.f40501b.c(this.f40502c);
+                d3 d3Var3 = this.f40775b;
+                d3Var3.getClass();
+                d3Var3.f40832s = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                d3Var3.invalidate();
                 return;
             default:
-                this.f40501b.a(this.f40502c);
+                d3 d3Var4 = this.f40775b;
+                d3Var4.getClass();
+                d3Var4.f40831r = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                d3Var4.invalidate();
                 return;
         }
     }

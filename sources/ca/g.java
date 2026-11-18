@@ -1,20 +1,20 @@
 package ca;
 
 import org.json.JSONObject;
-import org.telegram.ui.kl0;
+import org.telegram.ui.ml0;
 public final class g extends JSONObject {
-    public g(kl0 kl0Var, int i7) {
+    public g(ml0 ml0Var, int i7) {
         switch (i7) {
             case 4:
                 put("type", "PAYMENT_GATEWAY");
-                Object obj = kl0Var.N0;
+                Object obj = ml0Var.N0;
                 if (obj != null) {
                     put("parameters", obj);
                     return;
                 }
                 JSONObject jSONObject = new JSONObject();
                 jSONObject.put("gateway", "stripe");
-                jSONObject.put("stripe:publishableKey", kl0Var.f48696k0);
+                jSONObject.put("stripe:publishableKey", ml0Var.f49901k0);
                 jSONObject.put("stripe:version", "3.5.0");
                 put("parameters", jSONObject);
                 return;
@@ -22,7 +22,7 @@ public final class g extends JSONObject {
                 put("type", "DIRECT");
                 JSONObject jSONObject2 = new JSONObject();
                 jSONObject2.put("protocolVersion", "ECv2");
-                jSONObject2.put("publicKey", kl0Var.L0);
+                jSONObject2.put("publicKey", ml0Var.L0);
                 put("parameters", jSONObject2);
                 return;
         }

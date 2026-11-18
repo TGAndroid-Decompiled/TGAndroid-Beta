@@ -4,22 +4,22 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import m.i3;
 import m.v2;
-import v4.y0;
+import v4.z0;
 public final class j implements Parcelable.ClassLoaderCreator {
-    public final int f4146a;
+    public final int f4427a;
 
     public j(int i7) {
-        this.f4146a = i7;
+        this.f4427a = i7;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel, ClassLoader classLoader) {
-        switch (this.f4146a) {
+        switch (this.f4427a) {
             case 0:
                 return new k(parcel, classLoader);
             case 1:
                 if (parcel.readParcelable(classLoader) == null) {
-                    return j1.b.f16758b;
+                    return j1.b.f17143b;
                 }
                 throw new IllegalStateException("superState must be null");
             case 2:
@@ -27,13 +27,13 @@ public final class j implements Parcelable.ClassLoaderCreator {
             case 3:
                 return new i3(parcel, classLoader);
             default:
-                return new y0(parcel, classLoader);
+                return new z0(parcel, classLoader);
         }
     }
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f4146a) {
+        switch (this.f4427a) {
             case 0:
                 return new k[i7];
             case 1:
@@ -43,18 +43,18 @@ public final class j implements Parcelable.ClassLoaderCreator {
             case 3:
                 return new i3[i7];
             default:
-                return new y0[i7];
+                return new z0[i7];
         }
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f4146a) {
+        switch (this.f4427a) {
             case 0:
                 return new k(parcel, null);
             case 1:
                 if (parcel.readParcelable(null) == null) {
-                    return j1.b.f16758b;
+                    return j1.b.f17143b;
                 }
                 throw new IllegalStateException("superState must be null");
             case 2:
@@ -62,7 +62,7 @@ public final class j implements Parcelable.ClassLoaderCreator {
             case 3:
                 return new i3(parcel, null);
             default:
-                return new y0(parcel, null);
+                return new z0(parcel, null);
         }
     }
 }

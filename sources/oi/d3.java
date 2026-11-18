@@ -4,98 +4,78 @@ import android.view.View;
 import org.telegram.messenger.w7;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class d3 implements v4 {
-    public final r f21638a;
-    public final a f21639b;
-    public final q3 f21640c;
+public final class d3 implements w4 {
+    public final r f21989a;
+    public final a f21990b;
+    public final String f21991c;
+    public final s3 d;
 
-    public d3(a aVar, r rVar, q3 q3Var) {
-        this.f21640c = q3Var;
-        this.f21638a = rVar;
-        this.f21639b = aVar;
+    public d3(s3 s3Var, r rVar, a aVar, String str) {
+        this.d = s3Var;
+        this.f21989a = rVar;
+        this.f21990b = aVar;
+        this.f21991c = str;
     }
 
     @Override
     public final void a() {
-        r rVar = this.f21638a;
-        rVar.f21957a = 3;
-        q3 q3Var = this.f21640c;
-        q3Var.f21922h4.remove(rVar);
-        q3Var.t4(this.f21639b, rVar);
-        q3Var.f21931p3.onContentChanged();
-    }
-
-    @Override
-    public final void b(int i7, int i10) {
-        if (i7 > 0 && i10 > 0) {
-            r rVar = this.f21638a;
-            rVar.f21964j = i7;
-            rVar.f21965k = i10;
-        }
-        View C1 = this.f21640c.C1(this.f21639b);
-        if (C1 instanceof p4) {
-            C1.requestLayout();
-            C1.invalidate();
-        }
-    }
-
-    @Override
-    public final void c(TLRPC.Photo photo) {
-        int i7;
-        int i10;
-        r rVar = this.f21638a;
-        rVar.f21962g = photo;
-        rVar.f21957a = 2;
-        TLRPC.PhotoSize w10 = w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false);
-        if (w10 != null && (i7 = w10.f28076w) > 0 && (i10 = w10.h) > 0) {
-            rVar.f21964j = i7;
-            rVar.f21965k = i10;
-        }
-        a aVar = this.f21639b;
-        TL_iv.PageBlock Q3 = q3.Q3(aVar, rVar);
-        if (Q3 instanceof TL_iv.pageBlockPhoto) {
-            ((TL_iv.pageBlockPhoto) Q3).photo_id = photo.f28075id;
-        }
-        q3 q3Var = this.f21640c;
-        q3Var.f21922h4.remove(rVar);
-        q3Var.q4(aVar);
-        q3Var.f21931p3.onContentChanged();
-    }
-
-    @Override
-    public final void d(TLRPC.Document document) {
-        r rVar = this.f21638a;
-        rVar.h = document;
-        rVar.f21957a = 2;
-        a aVar = this.f21639b;
-        TL_iv.PageBlock Q3 = q3.Q3(aVar, rVar);
-        if (Q3 instanceof TL_iv.pageBlockVideo) {
-            ((TL_iv.pageBlockVideo) Q3).video_id = document.f28057id;
-        }
-        q3 q3Var = this.f21640c;
-        q3Var.f21922h4.remove(rVar);
-        q3Var.q4(aVar);
-        q3Var.f21931p3.onContentChanged();
-    }
-
-    @Override
-    public final void g(float f10) {
-        this.f21638a.f21961f = f10;
-        a aVar = this.f21639b;
-        q3 q3Var = this.f21640c;
-        View C1 = q3Var.C1(aVar);
-        if (C1 instanceof p4) {
-            C1.requestLayout();
-            C1.invalidate();
-        }
-        q3Var.f21931p3.onContentChanged();
+        r rVar = this.f21989a;
+        rVar.f22261a = 3;
+        s3 s3Var = this.d;
+        s3Var.f22328h4.remove(rVar);
+        s3Var.f22345t3.remove(this.f21990b);
+        s3Var.f34607g3.O(true);
+        s3Var.f22337p3.onContentChanged();
     }
 
     @Override
     public final void e(TLRPC.Document document) {
+        String str = this.f21991c;
+        document.localPath = str;
+        s3 s3Var = this.d;
+        w7.G(s3Var.f22334n3).e0(str, document);
+        r rVar = this.f21989a;
+        rVar.h = document;
+        rVar.f22261a = 2;
+        TL_iv.PageBlock pageBlock = this.f21990b.f21910b;
+        if (pageBlock instanceof TL_iv.pageBlockDocument) {
+            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f28411id;
+        }
+        s3Var.f22328h4.remove(rVar);
+        s3Var.f34607g3.O(false);
+        s3Var.f22337p3.onContentChanged();
+    }
+
+    @Override
+    public final void g(float f10) {
+        this.f21989a.f22265f = f10;
+        a aVar = this.f21990b;
+        s3 s3Var = this.d;
+        View C1 = s3Var.C1(aVar);
+        if (C1 instanceof v0) {
+            v0 v0Var = (v0) C1;
+            v0Var.g(v0Var.h());
+            v0Var.l();
+            v0Var.m(false);
+            v0Var.requestLayout();
+            v0Var.invalidate();
+        }
+        s3Var.f22337p3.onContentChanged();
+    }
+
+    @Override
+    public final void c(TLRPC.Photo photo) {
+    }
+
+    @Override
+    public final void d(TLRPC.Document document) {
     }
 
     @Override
     public final void f(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void b(int i7, int i10) {
     }
 }

@@ -3,61 +3,61 @@ package tg;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import hi.c5;
-import hi.w5;
+import hi.b5;
+import hi.v5;
 import java.util.ArrayList;
-import org.telegram.messenger.bj;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.yi;
-import org.telegram.ui.Components.tj0;
-import org.telegram.ui.Components.u9;
-public final class s0 extends tj0 {
-    public final Context f57551c;
-    public final u9 d;
-    public final w5 f57552e;
-    public final boolean f57553f;
-    public final c5 h;
+import org.telegram.messenger.aj;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.xi;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.ca;
+public final class s0 extends bk0 {
+    public final Context f58118c;
+    public final ca d;
+    public final v5 f58119e;
+    public final boolean f58120f;
+    public final b5 h;
 
-    public s0(c5 c5Var, Context context, u9 u9Var, w5 w5Var, boolean z10) {
-        this.h = c5Var;
-        this.f57551c = context;
-        this.d = u9Var;
-        this.f57552e = w5Var;
-        this.f57553f = z10;
+    public s0(b5 b5Var, Context context, ca caVar, v5 v5Var, boolean z10) {
+        this.h = b5Var;
+        this.f58118c = context;
+        this.d = caVar;
+        this.f58119e = v5Var;
+        this.f58120f = z10;
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
+    public final boolean D(v4.f1 f1Var) {
         return true;
     }
 
     @Override
     public final int b() {
-        return this.h.f57574t0.size();
+        return this.h.f58141t0.size();
     }
 
     @Override
     public final int d(int i7) {
-        ArrayList arrayList = this.h.f57574t0;
-        return ((gj) arrayList.get((arrayList.size() - 1) - i7)).U;
+        ArrayList arrayList = this.h.f58141t0;
+        return ((fj) arrayList.get((arrayList.size() - 1) - i7)).U;
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
+    public final void t(v4.f1 f1Var, int i7) {
         boolean z10;
         boolean z11;
-        yi d;
+        xi d;
         boolean z12;
-        c5 c5Var = this.h;
-        ArrayList arrayList = c5Var.f57574t0;
-        gj gjVar = (gj) arrayList.get((arrayList.size() - 1) - i7);
-        View view = e1Var.f58535a;
+        b5 b5Var = this.h;
+        ArrayList arrayList = b5Var.f58141t0;
+        fj fjVar = (fj) arrayList.get((arrayList.size() - 1) - i7);
+        View view = f1Var.f59122a;
         if (view instanceof org.telegram.ui.Cells.q1) {
             org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-            bj bjVar = c5Var.f57575u0;
-            if (bjVar != null && (d = bjVar.d(gjVar)) != null) {
-                if (d.f27748c != 0) {
+            aj ajVar = b5Var.f58142u0;
+            if (ajVar != null && (d = ajVar.d(fjVar)) != null) {
+                if (d.f27884c != 0) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -66,27 +66,27 @@ public final class s0 extends tj0 {
             } else {
                 z10 = false;
             }
-            bj bjVar2 = c5Var.f57575u0;
-            if (bjVar2 != null) {
+            aj ajVar2 = b5Var.f58142u0;
+            if (ajVar2 != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            q1Var.x3(gjVar, bjVar2, z11, z10, false, false);
-        } else if (view instanceof org.telegram.ui.Cells.t0) {
-            ((org.telegram.ui.Cells.t0) view).setMessageObject(gjVar);
+            q1Var.y3(fjVar, ajVar2, z11, z10, false, false);
+        } else if (view instanceof org.telegram.ui.Cells.u0) {
+            ((org.telegram.ui.Cells.u0) view).setMessageObject(fjVar);
         }
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
         t0 t0Var = this.h.E0;
-        Context context = this.f57551c;
+        Context context = this.f58118c;
         if (i7 == 1) {
-            return new v4.e1(new q0(this, context, t0Var));
+            return new v4.f1(new q0(this, context, t0Var));
         }
-        r0 r0Var = new r0(this, context, m10.f24940t0, t0Var);
-        r0Var.f30975f6 = true;
-        return new v4.e1(r0Var);
+        r0 r0Var = new r0(this, context, j10.f24773t0, t0Var);
+        r0Var.f31347f6 = true;
+        return new v4.f1(r0Var);
     }
 }

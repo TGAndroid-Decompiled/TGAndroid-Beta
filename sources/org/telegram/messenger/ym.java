@@ -1,32 +1,32 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class ym implements Runnable {
-    public final np f27790a;
-    public final TLRPC.TL_messages_dialogs f27791b;
-    public final ArrayList f27792c;
-    public final TLRPC.messages_Dialogs d;
-    public final int f27793e;
-    public final ArrayList f27794f;
-    public final ArrayList h;
-    public final ArrayList f27795n;
-    public final Runnable f27796r;
+public final class ym implements nr {
+    public final mp f28161a;
+    public final long f28162b;
+    public final int f28163c;
+    public final boolean d;
+    public final TLRPC.InputPeer f28164e;
+    public final long f28165f;
 
-    public ym(np npVar, TLRPC.TL_messages_dialogs tL_messages_dialogs, ArrayList arrayList, TLRPC.messages_Dialogs messages_dialogs, int i7, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, Runnable runnable) {
-        this.f27790a = npVar;
-        this.f27791b = tL_messages_dialogs;
-        this.f27792c = arrayList;
-        this.d = messages_dialogs;
-        this.f27793e = i7;
-        this.f27794f = arrayList2;
-        this.h = arrayList3;
-        this.f27795n = arrayList4;
-        this.f27796r = runnable;
+    public ym(mp mpVar, long j3, int i7, boolean z10, TLRPC.InputPeer inputPeer, long j10) {
+        this.f28161a = mpVar;
+        this.f28162b = j3;
+        this.f28163c = i7;
+        this.d = z10;
+        this.f28164e = inputPeer;
+        this.f28165f = j10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ym.run():void");
+    public final void a(int i7) {
+        mp mpVar = this.f28161a;
+        long e10 = mpVar.getUserConfig().e();
+        long j3 = this.f28162b;
+        if (j3 == e10) {
+            mpVar.I1().b();
+        }
+        mpVar.Y(j3, 2, this.f28163c, Math.max(0, i7), this.d, this.f28164e, this.f28165f);
+        mpVar.J(1);
     }
 }

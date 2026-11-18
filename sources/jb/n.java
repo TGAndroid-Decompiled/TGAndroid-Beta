@@ -4,23 +4,23 @@ import ce.x;
 import java.util.concurrent.atomic.AtomicReference;
 import zd.z;
 public final class n extends kd.j implements rd.p {
-    public final int f16988a;
-    public int f16989b;
-    public final p f16990c;
+    public final int f17373a;
+    public int f17374b;
+    public final p f17375c;
 
     public n(p pVar, id.c cVar, int i7) {
         super(2, cVar);
-        this.f16988a = i7;
-        this.f16990c = pVar;
+        this.f17373a = i7;
+        this.f17375c = pVar;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f16988a) {
+        switch (this.f17373a) {
             case 0:
-                return new n(this.f16990c, cVar, 0);
+                return new n(this.f17375c, cVar, 0);
             default:
-                return new n(this.f16990c, cVar, 1);
+                return new n(this.f17375c, cVar, 1);
         }
     }
 
@@ -28,37 +28,37 @@ public final class n extends kd.j implements rd.p {
     public final Object invoke(Object obj, Object obj2) {
         z zVar = (z) obj;
         id.c cVar = (id.c) obj2;
-        switch (this.f16988a) {
+        switch (this.f17373a) {
             case 0:
-                return ((n) create(zVar, cVar)).invokeSuspend(gd.k.f13173a);
+                return ((n) create(zVar, cVar)).invokeSuspend(gd.k.f13488a);
             default:
-                return ((n) create(zVar, cVar)).invokeSuspend(gd.k.f13173a);
+                return ((n) create(zVar, cVar)).invokeSuspend(gd.k.f13488a);
         }
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        switch (this.f16988a) {
+        switch (this.f17373a) {
             case 0:
-                jd.a aVar = jd.a.f16999a;
-                int i7 = this.f16989b;
+                jd.a aVar = jd.a.f17384a;
+                int i7 = this.f17374b;
                 if (i7 != 0) {
                     if (i7 == 1) {
-                        af.b.c(obj);
+                        b7.h.b(obj);
                     } else {
                         throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                     }
                 } else {
-                    af.b.c(obj);
-                    p pVar = this.f16990c;
-                    ce.c data = pVar.f16995b.getData();
-                    final AtomicReference atomicReference = pVar.f16996c;
+                    b7.h.b(obj);
+                    p pVar = this.f17375c;
+                    ce.c data = pVar.f17380b.getData();
+                    final AtomicReference atomicReference = pVar.f17381c;
                     ce.d dVar = new ce.d() {
                         @Override
                         public final Object a(Object obj2, id.c cVar) {
                             atomicReference.set((i) obj2);
-                            jd.a aVar2 = jd.a.f16999a;
-                            return gd.k.f13173a;
+                            jd.a aVar2 = jd.a.f17384a;
+                            return gd.k.f13488a;
                         }
 
                         public final boolean equals(Object obj2) {
@@ -79,25 +79,25 @@ public final class n extends kd.j implements rd.p {
                             return ((((((((((AtomicReference.class.hashCode() + (i10 * 31)) * 31) + 113762) * 31) - 869290769) * 31) + 1237) * 31) + 2) * 31) + 2;
                         }
                     };
-                    this.f16989b = 1;
-                    if (data.G(dVar, this) == aVar) {
+                    this.f17374b = 1;
+                    if (data.v(dVar, this) == aVar) {
                         return aVar;
                     }
                 }
-                return gd.k.f13173a;
+                return gd.k.f13488a;
             default:
-                jd.a aVar2 = jd.a.f16999a;
-                int i10 = this.f16989b;
+                jd.a aVar2 = jd.a.f17384a;
+                int i10 = this.f17374b;
                 if (i10 != 0) {
                     if (i10 == 1) {
-                        af.b.c(obj);
+                        b7.h.b(obj);
                         return obj;
                     }
                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                 }
-                af.b.c(obj);
-                ce.c data2 = this.f16990c.f16995b.getData();
-                this.f16989b = 1;
+                b7.h.b(obj);
+                ce.c data2 = this.f17375c.f17380b.getData();
+                this.f17374b = 1;
                 Object d = x.d(data2, this);
                 if (d == aVar2) {
                     return aVar2;

@@ -1,39 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class yu0 extends org.telegram.messenger.x2 {
-    @Override
-    public final void e(int i7, Object obj, org.telegram.messenger.s10 s10Var) {
-        org.telegram.messenger.vr.a0(i7).f27219a.c(new org.telegram.ui.f0(i7, (Integer) obj, (org.telegram.messenger.v2) s10Var, 24));
+import android.graphics.drawable.Drawable;
+public abstract class yu0 extends Drawable {
+    public final void a() {
+        bg.k d = bg.k.d();
+        d.getClass();
+        bg.k.c();
+        d.d.add(this);
     }
 
-    @Override
-    public final void f(int i7, Object obj, long j3, org.telegram.messenger.w2 w2Var) {
-        TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups;
-        Integer num = (Integer) obj;
-        if (num.intValue() == 1) {
-            TLRPC.TL_messages_getEmojiStatusGroups tL_messages_getEmojiStatusGroups = new TLRPC.TL_messages_getEmojiStatusGroups();
-            tL_messages_getEmojiStatusGroups.hash = (int) j3;
-            tL_messages_getEmojiGroups = tL_messages_getEmojiStatusGroups;
-        } else if (num.intValue() == 2) {
-            TLRPC.TL_messages_getEmojiProfilePhotoGroups tL_messages_getEmojiProfilePhotoGroups = new TLRPC.TL_messages_getEmojiProfilePhotoGroups();
-            tL_messages_getEmojiProfilePhotoGroups.hash = (int) j3;
-            tL_messages_getEmojiGroups = tL_messages_getEmojiProfilePhotoGroups;
-        } else if (num.intValue() == 3) {
-            TLRPC.TL_messages_getEmojiStickerGroups tL_messages_getEmojiStickerGroups = new TLRPC.TL_messages_getEmojiStickerGroups();
-            tL_messages_getEmojiStickerGroups.hash = (int) j3;
-            tL_messages_getEmojiGroups = tL_messages_getEmojiStickerGroups;
-        } else {
-            TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups2 = new TLRPC.TL_messages_getEmojiGroups();
-            tL_messages_getEmojiGroups2.hash = (int) j3;
-            tL_messages_getEmojiGroups = tL_messages_getEmojiGroups2;
-        }
-        ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getEmojiGroups, new xu0(w2Var, 0));
-    }
+    public abstract void b(int i7);
 
-    @Override
-    public final void g(int i7, Object obj, Object obj2) {
-        org.telegram.messenger.vr.a0(i7).f27219a.c(new org.telegram.ui.f0(i7, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 25));
-    }
+    public abstract void c(boolean z10);
+
+    public abstract void d();
+
+    public abstract void e();
 }

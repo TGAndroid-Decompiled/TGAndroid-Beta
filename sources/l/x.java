@@ -6,9 +6,9 @@ public interface x {
 
     boolean c();
 
-    void d();
+    void d(k kVar, boolean z10);
 
-    void e(k kVar, boolean z10);
+    void e();
 
     void h(w wVar);
 

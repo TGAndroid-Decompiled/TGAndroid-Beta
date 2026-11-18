@@ -1,32 +1,39 @@
 package bi;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.messenger.z10;
-public final class o1 implements z10 {
-    public final int f3746a;
-    public final Object f3747b;
-    public final Object f3748c;
-    public final Object d;
-    public final Object f3749e;
+import android.view.View;
+import android.widget.TextView;
+public final class o1 implements View.OnLayoutChangeListener {
+    public final int f3920a;
+    public final Object f3921b;
 
-    public o1(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f3746a = i7;
-        this.f3747b = obj;
-        this.f3748c = obj2;
-        this.d = obj3;
-        this.f3749e = obj4;
+    public o1(Object obj, int i7) {
+        this.f3920a = i7;
+        this.f3921b = obj;
     }
 
     @Override
-    public final void a(java.lang.Object r36) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.o1.a(java.lang.Object):void");
-    }
-
-    public o1(AtomicBoolean atomicBoolean, org.telegram.ui.ActionBar.e2 e2Var, String str, vf.b bVar) {
-        this.f3746a = 17;
-        this.f3747b = atomicBoolean;
-        this.d = e2Var;
-        this.f3749e = str;
-        this.f3748c = bVar;
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        switch (this.f3920a) {
+            case 0:
+                a2 a2Var = (a2) this.f3921b;
+                if (i12 - i10 != i16 - i14) {
+                    org.telegram.messenger.g0.g3(new j1(a2Var, 2));
+                    return;
+                }
+                return;
+            case 1:
+                ((hi.p3) this.f3921b).d();
+                return;
+            case 2:
+                ng.c cVar = (ng.c) this.f3921b;
+                TextView textView = cVar.f21480c;
+                textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
+                TextView textView2 = cVar.f21479b;
+                textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
+                return;
+            default:
+                ((zi.k) this.f3921b).a0();
+                return;
+        }
     }
 }

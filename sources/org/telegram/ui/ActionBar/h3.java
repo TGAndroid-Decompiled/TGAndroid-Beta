@@ -1,14 +1,35 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public interface h3 {
-    Context getContext();
+import android.animation.ValueAnimator;
+public final class h3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28998a;
+    public final n3 f28999b;
 
-    RectF getRect();
+    public h3(n3 n3Var, int i7) {
+        this.f28998a = i7;
+        this.f28999b = n3Var;
+    }
 
-    void setDrawingFromOverlay(boolean z10);
-
-    float z(Canvas canvas, RectF rectF, float f10, RectF rectF2, float f11);
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f28998a) {
+            case 0:
+                n3 n3Var = this.f28999b;
+                n3Var.getClass();
+                n3Var.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n3Var.invalidate();
+                return;
+            case 1:
+                n3 n3Var2 = this.f28999b;
+                n3Var2.getClass();
+                n3Var2.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            default:
+                n3 n3Var3 = this.f28999b;
+                n3Var3.getClass();
+                n3Var3.f29279e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n3Var3.invalidate();
+                return;
+        }
+    }
 }

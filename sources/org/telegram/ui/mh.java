@@ -1,46 +1,20 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class mh implements org.telegram.ui.Components.c8 {
-    public final an f49228a;
+import android.app.Activity;
+import java.util.ArrayList;
+public final class mh extends org.telegram.ui.Components.bv {
+    public final nh R1;
 
-    public mh(an anVar) {
-        this.f49228a = anVar;
-    }
-
-    @Override
-    public final void R0(int i7, int i10) {
-        int i11;
-        an anVar = this.f49228a;
-        anVar.getMessagesController().J4(i7, anVar.f45258k6);
-        if (anVar.f45347r8 != null || anVar.f45333q8 != null) {
-            anVar.h8();
-            UndoView undoView = anVar.N3;
-            if (undoView == null) {
-                return;
-            }
-            long j3 = anVar.f45258k6;
-            TLRPC.User user = anVar.f45186f;
-            TLRPC.UserFull userFull = anVar.f45347r8;
-            if (userFull != null) {
-                i11 = userFull.ttl_period;
-            } else {
-                i11 = anVar.f45333q8.ttl_period;
-            }
-            undoView.k(j3, i10, user, Integer.valueOf(i11), null, null);
-        }
+    public mh(nh nhVar, org.telegram.ui.ActionBar.h2 h2Var, Activity activity, org.telegram.ui.ActionBar.i6 i6Var, ArrayList arrayList) {
+        super(h2Var, activity, i6Var, arrayList);
+        this.R1 = nhVar;
     }
 
     @Override
     public final void dismiss() {
-        org.telegram.ui.ActionBar.g1 g1Var = this.f49228a.f45196f9;
-        if (g1Var != null) {
-            g1Var.dismiss();
-        }
-    }
-
-    @Override
-    public final void g1() {
+        super.dismiss();
+        bn bnVar = this.R1.f50204p;
+        bnVar.getClass();
+        bnVar.x8(false, true, 0.0f);
     }
 }

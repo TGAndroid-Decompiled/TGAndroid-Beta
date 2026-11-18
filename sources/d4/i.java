@@ -1,9 +1,9 @@
 package d4;
 public final class i extends c4.j {
-    public a1.c f7566c;
+    public a1.c f7849c;
 
     @Override
     public final void release() {
-        this.f7566c.c(this);
+        this.f7849c.a(this);
     }
 }

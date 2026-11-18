@@ -80,7 +80,7 @@ public class FileVideoCapturer implements VideoCapturer {
                     }
                     sb2.append((char) read);
                 } else {
-                    throw new RuntimeException(r.b.k("Found end of file before end of header for file: ", str));
+                    throw new RuntimeException(p5.c.k("Found end of file before end of header for file: ", str));
                 }
             }
         }

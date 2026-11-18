@@ -1,111 +1,69 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-public final class u21 extends a41 {
-    static {
-        a41.h(new a41());
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.view.MotionEvent;
+public final class u21 extends n6 {
+    public final Paint f40192s;
+    public final n2.o0 f40193w;
+    public final w21 f40194x;
 
-    public static b41 i(int i7, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z10, View.OnClickListener onClickListener2, n nVar) {
-        b41 K = b41.K(u21.class);
-        K.d = i7;
-        K.f33184l = charSequence;
-        K.f33185m = charSequence2;
-        K.f33186n = charSequence3;
-        K.D = onClickListener;
-        K.f33178e = z10;
-        K.E = onClickListener2;
-        K.G = nVar;
-        return K;
-    }
-
-    public static b41 j(int i7, String str, String str2, String str3, r21 r21Var) {
-        return i(i7, str, str2, str3, r21Var, false, null, null);
+    public u21(w21 w21Var, Context context) {
+        super(context, false, false, false);
+        this.f40194x = w21Var;
+        this.f40192s = new Paint(1);
+        this.f40193w = new n2.o0();
     }
 
     @Override
-    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
-        View.OnClickListener onClickListener;
-        int i7;
-        boolean z11;
-        int i10;
-        v21 v21Var = (v21) view;
-        CharSequence charSequence = b41Var.f33184l;
-        CharSequence charSequence2 = b41Var.f33185m;
-        CharSequence charSequence3 = b41Var.f33186n;
-        View.OnClickListener onClickListener2 = b41Var.D;
-        boolean z12 = b41Var.f33178e;
-        View.OnClickListener onClickListener3 = b41Var.E;
-        Object obj = b41Var.G;
-        if (obj instanceof View.OnClickListener) {
-            onClickListener = (View.OnClickListener) obj;
+    public final void onDraw(Canvas canvas) {
+        if (org.telegram.messenger.gd.f24216a0) {
+            org.telegram.messenger.g0.P.set(getWidth() - d(), (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
         } else {
-            onClickListener = null;
+            org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
         }
-        LinearLayout linearLayout = v21Var.f40245r;
-        LinearLayout linearLayout2 = v21Var.h;
-        LinearLayout linearLayout3 = v21Var.f40240b;
-        v21Var.f40241c.setText(charSequence);
-        v21Var.d.setText(charSequence2);
-        v21Var.f40242e.setText(charSequence3);
-        ImageView imageView = v21Var.f40243f;
-        int i11 = 8;
-        if (onClickListener2 != null) {
-            i7 = 0;
-        } else {
-            i7 = 8;
+        y21 y21Var = this.f40194x.f41548n;
+        int i7 = org.telegram.ui.ActionBar.n6.Gj;
+        String[] strArr = y21.S1;
+        int r12 = org.telegram.ui.ActionBar.n6.r1(0.1175f, org.telegram.ui.ActionBar.n6.w0(i7, y21Var.J0));
+        Paint paint = this.f40192s;
+        paint.setColor(r12);
+        canvas.drawRoundRect(org.telegram.messenger.g0.P, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint);
+        if (this.f40193w.h(canvas)) {
+            invalidate();
         }
-        imageView.setVisibility(i7);
-        linearLayout3.setOnClickListener(onClickListener2);
-        if (onClickListener2 != null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        linearLayout3.setClickable(z11);
-        v21Var.f40244n.a(z12, false);
-        if (onClickListener3 != null) {
-            i10 = 0;
-        } else {
-            i10 = 8;
-        }
-        linearLayout2.setVisibility(i10);
-        linearLayout2.setOnClickListener(onClickListener3);
-        if (onClickListener != null) {
-            i11 = 0;
-        }
-        linearLayout.setVisibility(i11);
-        linearLayout.setOnClickListener(new vv0(5, v21Var, onClickListener));
-        v21Var.updateColors();
+        super.onDraw(canvas);
     }
 
     @Override
-    public final boolean c(b41 b41Var, b41 b41Var2) {
-        if (TextUtils.equals(b41Var.f33184l, b41Var2.f33184l) && TextUtils.equals(b41Var.f33185m, b41Var2.f33185m) && TextUtils.equals(b41Var.f33186n, b41Var2.f33186n) && b41Var.E == b41Var2.E) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        y21 y21Var = this.f40194x.f41548n;
+        int action = motionEvent.getAction();
+        n2.o0 o0Var = this.f40193w;
+        if (action == 0) {
+            String[] strArr = y21.S1;
+            l80 l80Var = new l80(null, y21Var.J0, motionEvent.getX(), motionEvent.getY(), 0);
+            l80Var.d(org.telegram.ui.ActionBar.n6.r1(0.1175f, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Gj, y21Var.J0)));
+            f80 b10 = l80Var.b();
+            if (org.telegram.messenger.gd.f24216a0) {
+                org.telegram.messenger.g0.P.set(getWidth() - d(), (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, getWidth(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
+            } else {
+                org.telegram.messenger.g0.P.set(0.0f, (getHeight() - org.telegram.messenger.g0.L(18.0f)) / 2.0f, d(), (org.telegram.messenger.g0.L(18.0f) + getHeight()) / 2.0f);
+            }
+            b10.addRect(org.telegram.messenger.g0.P, Path.Direction.CW);
+            o0Var.b(l80Var, null);
+            invalidate();
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, uj0 uj0Var, int i7, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new v21(context, e6Var);
-    }
-
-    @Override
-    public final boolean e(b41 b41Var, b41 b41Var2) {
-        if (b41Var.d == b41Var2.d) {
-            return true;
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (motionEvent.getAction() == 1) {
+                performClick();
+            }
+            o0Var.f(true);
+            invalidate();
         }
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
+        return super.onTouchEvent(motionEvent);
     }
 }

@@ -1,413 +1,220 @@
 package org.telegram.ui.Components;
 
-import android.content.ContentValues;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Parcelable;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.core.widget.NestedScrollView;
 import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class xc0 implements DialogInterface.OnClickListener {
-    public final bd0 f41651a;
+public final class xc0 extends org.telegram.ui.ActionBar.x2 {
+    public final TextView f41976m1;
+    public final ph0 n1;
+    public final mh0 f41977o1;
+    public final e80 f41978p1;
+    public final long f41979q1;
+    public boolean f41980r1;
+    public TLRPC.TL_chatInviteExported f41981s1;
+    public int f41982t1;
+    public int f41983u1;
+    public int f41984v1;
 
-    public xc0(bd0 bd0Var) {
-        this.f41651a = bd0Var;
+    public xc0(Context context, org.telegram.ui.z40 z40Var, TLRPC.ChatFull chatFull, long j3, boolean z10) {
+        super(context, false);
+        int i7;
+        boolean z11;
+        TLRPC.TL_chatInviteExported tL_chatInviteExported;
+        this.f41979q1 = j3;
+        this.f30223r0 = true;
+        this.f30230w0 = false;
+        this.f30228v0 = false;
+        Q(org.telegram.ui.ActionBar.n6.f29396d6);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.addView(linearLayout);
+        ImageView imageView = new ImageView(context);
+        int i10 = org.telegram.ui.ActionBar.n6.f29488i6;
+        org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.n6.h0(org.telegram.ui.ActionBar.n6.w0(i10, this.J0), 1, -1);
+        org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i10);
+        org.telegram.ui.ActionBar.i6 i6Var = this.J0;
+        imageView.setBackground(h02);
+        org.telegram.ui.ActionBar.u6.j(imageView, h02, null, M, i6Var);
+        org.telegram.ui.ActionBar.u6.s(imageView, org.telegram.ui.ActionBar.n6.Aj, this.J0, PorterDuff.Mode.SRC_ATOP);
+        imageView.setImageResource(2131231309);
+        imageView.setOnClickListener(new h70(this, 4));
+        int L = org.telegram.messenger.g0.L(8.0f);
+        imageView.setPadding(L, L, L, L);
+        frameLayout.addView(imageView, c8.ma.d(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
+        e80 e80Var = new e80(context, z40Var, this, true, z10);
+        this.f41978p1 = e80Var;
+        e80Var.setPermanent(true);
+        ?? imageView2 = new ImageView(context);
+        this.n1 = imageView2;
+        mh0 mh0Var = new mh0(2131624193, org.telegram.messenger.g0.L(90.0f), org.telegram.messenger.g0.L(90.0f), false, null);
+        this.f41977o1 = mh0Var;
+        mh0Var.P(42);
+        imageView2.setAnimation(mh0Var);
+        e80Var.d(0, null, false);
+        e80Var.b(true);
+        e80Var.setDelegate(new iy(this, 9));
+        TextView textView = new TextView(context);
+        textView.setText(org.telegram.messenger.gd.M0(2131748957, null));
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setTextSize(1, 20.0f);
+        textView.setGravity(1);
+        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.G6, null);
+        TextView textView2 = new TextView(context);
+        if (z10) {
+            i7 = 2131748718;
+        } else {
+            i7 = 2131748719;
+        }
+        textView2.setText(org.telegram.messenger.gd.M0(i7, null));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(1);
+        org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.f29504j5, null);
+        textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
+        TextView textView3 = new TextView(context);
+        this.f41976m1 = textView3;
+        textView3.setText(org.telegram.messenger.gd.M0(2131748503, null));
+        textView3.setGravity(17);
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        textView3.setSingleLine(true);
+        textView3.setTypeface(org.telegram.messenger.g0.o());
+        textView3.setTextSize(1, 14.0f);
+        int i11 = org.telegram.ui.ActionBar.n6.Fi;
+        org.telegram.ui.ActionBar.u6.U(textView3, i11, null);
+        int L2 = org.telegram.messenger.g0.L(8.0f);
+        int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, i11, false), 120);
+        org.telegram.ui.Cells.y k02 = org.telegram.ui.ActionBar.n6.k0(L2, L2, L2, L2, 0, o4, o4);
+        org.telegram.ui.ActionBar.q6 g10 = org.telegram.ui.ActionBar.u6.g(i11, 120);
+        textView3.setBackground(k02);
+        org.telegram.ui.ActionBar.u6.j(textView3, k02, null, g10, null);
+        textView3.setLetterSpacing(0.025f);
+        textView3.setOnClickListener(new qt(this, chatFull, z40Var, 4));
+        linearLayout.addView((View) imageView2, c8.ma.t(90, 90, 1, 0, 33, 0, 0));
+        linearLayout.addView(textView, c8.ma.t(-1, -2, 1, 60, 10, 60, 0));
+        linearLayout.addView(textView2, c8.ma.t(-1, -2, 1, 28, 7, 28, 2));
+        linearLayout.addView(e80Var, c8.ma.o(-1, -2));
+        linearLayout.addView(textView3, c8.ma.t(-1, 48, 1, 14, -2, 14, 6));
+        NestedScrollView nestedScrollView = new NestedScrollView(context);
+        nestedScrollView.setVerticalScrollBarEnabled(false);
+        nestedScrollView.addView(frameLayout);
+        this.O = nestedScrollView;
+        TLRPC.Chat O0 = org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24773t0).O0(Long.valueOf(j3));
+        if (O0 != null && org.telegram.messenger.v3.t0(O0)) {
+            e80Var.setLink("https://t.me/" + org.telegram.messenger.v3.K(O0, false));
+            textView3.setVisibility(8);
+        } else if (chatFull != null && (tL_chatInviteExported = chatFull.exported_invite) != null) {
+            e80Var.setLink(tL_chatInviteExported.link);
+        } else {
+            z11 = false;
+            L0(false);
+            imageView2.setBackground(org.telegram.ui.ActionBar.n6.L(org.telegram.messenger.g0.L(90.0f), org.telegram.ui.ActionBar.n6.x0(null, i11, z11)));
+            int L3 = org.telegram.messenger.g0.L(8.0f);
+            int o10 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, i11, z11), 120);
+            textView3.setBackground(org.telegram.ui.ActionBar.n6.k0(L3, L3, L3, L3, 0, o10, o10));
+            int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ji, z11);
+            mh0Var.Q(x02, "Top");
+            mh0Var.Q(x02, "Bottom");
+            mh0Var.Q(x02, "Center");
+            e80Var.f();
+            int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, z11);
+            this.f41983u1 = x03;
+            v0(x03);
+            this.f41982t1 = x02;
+        }
+        z11 = false;
+        imageView2.setBackground(org.telegram.ui.ActionBar.n6.L(org.telegram.messenger.g0.L(90.0f), org.telegram.ui.ActionBar.n6.x0(null, i11, z11)));
+        int L32 = org.telegram.messenger.g0.L(8.0f);
+        int o102 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, i11, z11), 120);
+        textView3.setBackground(org.telegram.ui.ActionBar.n6.k0(L32, L32, L32, L32, 0, o102, o102));
+        int x022 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ji, z11);
+        mh0Var.Q(x022, "Top");
+        mh0Var.Q(x022, "Bottom");
+        mh0Var.Q(x022, "Center");
+        e80Var.f();
+        int x032 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, z11);
+        this.f41983u1 = x032;
+        v0(x032);
+        this.f41982t1 = x022;
     }
 
-    public static void a(String str, ContentValues contentValues) {
-        if (str.startsWith("X-")) {
-            contentValues.put("data2", (Integer) 0);
-            contentValues.put("data3", str.substring(2));
-        } else if ("PREF".equalsIgnoreCase(str)) {
-            contentValues.put("data2", (Integer) 12);
-        } else if ("HOME".equalsIgnoreCase(str)) {
-            contentValues.put("data2", (Integer) 1);
-        } else if (!"MOBILE".equalsIgnoreCase(str) && !"CELL".equalsIgnoreCase(str)) {
-            if ("OTHER".equalsIgnoreCase(str)) {
-                contentValues.put("data2", (Integer) 7);
-            } else if ("WORK".equalsIgnoreCase(str)) {
-                contentValues.put("data2", (Integer) 3);
-            } else if (!"RADIO".equalsIgnoreCase(str) && !"VOICE".equalsIgnoreCase(str)) {
-                if ("PAGER".equalsIgnoreCase(str)) {
-                    contentValues.put("data2", (Integer) 6);
-                } else if ("CALLBACK".equalsIgnoreCase(str)) {
-                    contentValues.put("data2", (Integer) 8);
-                } else if ("CAR".equalsIgnoreCase(str)) {
-                    contentValues.put("data2", (Integer) 9);
-                } else if ("ASSISTANT".equalsIgnoreCase(str)) {
-                    contentValues.put("data2", (Integer) 19);
-                } else if ("MMS".equalsIgnoreCase(str)) {
-                    contentValues.put("data2", (Integer) 20);
-                } else if (str.startsWith("FAX")) {
-                    contentValues.put("data2", (Integer) 4);
-                } else {
-                    contentValues.put("data2", (Integer) 0);
-                    contentValues.put("data3", str);
-                }
-            } else {
-                contentValues.put("data2", (Integer) 14);
+    public static void J0(xc0 xc0Var) {
+        super.dismiss();
+    }
+
+    public static void K0(xc0 xc0Var, TLRPC.ChatFull chatFull, org.telegram.ui.z40 z40Var) {
+        org.telegram.ui.ff0 ff0Var = new org.telegram.ui.ff0(chatFull.f28406id, 0, 0L);
+        ff0Var.m0(chatFull, chatFull.exported_invite);
+        z40Var.presentFragment(ff0Var);
+        super.dismiss();
+    }
+
+    @Override
+    public final void E(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.f29578n6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.n6.Ji));
+    }
+
+    public final void L0(boolean z10) {
+        if (this.f41980r1) {
+            return;
+        }
+        this.f41980r1 = true;
+        TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
+        tL_messages_exportChatInvite.legacy_revoke_permanent = true;
+        tL_messages_exportChatInvite.peer = org.telegram.messenger.mp.u1(this.f30189a).l1(-this.f41979q1);
+        ConnectionsManager.getInstance(this.f30189a).sendRequest(tL_messages_exportChatInvite, new hi.c3(6, this, z10));
+    }
+
+    @Override
+    public final ArrayList V() {
+        return new ArrayList();
+    }
+
+    @Override
+    public final void s0() {
+        super.s0();
+        try {
+            ph0 ph0Var = this.n1;
+            if (ph0Var != null) {
+                org.telegram.ui.ActionBar.n6.C1(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Fi, false), ph0Var.getBackground());
             }
-        } else {
-            contentValues.put("data2", (Integer) 2);
+            int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Fi, false), 120);
+            TextView textView = this.f41976m1;
+            if (textView != null && o4 != this.f41984v1) {
+                this.f41984v1 = o4;
+                org.telegram.ui.ActionBar.n6.H1(textView.getBackground(), o4, true);
+            }
+            int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Ji, false);
+            mh0 mh0Var = this.f41977o1;
+            if (mh0Var != null && x02 != this.f41982t1) {
+                this.f41982t1 = x02;
+                mh0Var.Q(x02, "Top");
+                mh0Var.Q(x02, "Bottom");
+                mh0Var.Q(x02, "Center");
+            }
+            int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29469h5, false);
+            if (x03 != this.f41983u1) {
+                this.f41983u1 = x03;
+                v0(x03);
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i7) {
-        Intent intent;
-        String str;
-        bd0 bd0Var;
-        String str2;
-        Intent intent2;
-        Integer num;
-        ArrayList<? extends Parcelable> arrayList;
-        Integer num2;
-        Integer num3;
-        Integer num4;
-        Integer num5;
-        String str3;
-        String str4;
-        ArrayList arrayList2;
-        Integer num6;
-        String str5;
-        Integer num7;
-        Integer num8;
-        Integer num9 = 7;
-        Integer num10 = 5;
-        Integer num11 = 4;
-        Integer num12 = 6;
-        bd0 bd0Var2 = this.f41651a;
-        ArrayList arrayList3 = bd0Var2.H1;
-        ArrayList arrayList4 = bd0Var2.G1;
-        Integer num13 = 0;
-        if (i7 == 0) {
-            intent = new Intent("android.intent.action.INSERT");
-            intent.setType("vnd.android.cursor.dir/raw_contact");
-        } else if (i7 == 1) {
-            intent = new Intent("android.intent.action.INSERT_OR_EDIT");
-            intent.setType("vnd.android.cursor.item/contact");
-        } else {
-            intent = null;
-        }
-        TLRPC.TL_userContact_old2 tL_userContact_old2 = bd0Var2.I1;
-        intent.putExtra("name", org.telegram.messenger.g5.m(0, tL_userContact_old2.first_name, tL_userContact_old2.last_name));
-        ArrayList<? extends Parcelable> arrayList5 = new ArrayList<>();
-        int i10 = 0;
-        while (true) {
-            str = "data1";
-            bd0Var = bd0Var2;
-            str2 = "mimetype";
-            if (i10 >= arrayList3.size()) {
-                break;
-            }
-            org.telegram.messenger.f0 f0Var = (org.telegram.messenger.f0) arrayList3.get(i10);
-            int i11 = i10;
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("mimetype", "vnd.android.cursor.item/phone_v2");
-            contentValues.put("data1", f0Var.c(false));
-            a(f0Var.a(false), contentValues);
-            arrayList5.add(contentValues);
-            i10 = i11 + 1;
-            bd0Var2 = bd0Var;
-            arrayList3 = arrayList3;
-        }
-        int i12 = 0;
-        boolean z10 = false;
-        while (i12 < arrayList4.size()) {
-            org.telegram.messenger.f0 f0Var2 = (org.telegram.messenger.f0) arrayList4.get(i12);
-            int i13 = i12;
-            int i14 = f0Var2.f23402c;
-            boolean z11 = z10;
-            if (i14 == 1) {
-                ContentValues contentValues2 = new ContentValues();
-                contentValues2.put(str2, "vnd.android.cursor.item/email_v2");
-                intent2 = intent;
-                contentValues2.put(str, f0Var2.c(false));
-                a(f0Var2.a(false), contentValues2);
-                arrayList5.add(contentValues2);
-                num = num9;
-                num5 = num13;
-                num3 = num10;
-                num4 = num11;
-                num2 = num12;
-                str4 = str;
-                str3 = str2;
-                arrayList2 = arrayList4;
-                arrayList = arrayList5;
-            } else {
-                intent2 = intent;
-                ArrayList arrayList6 = arrayList4;
-                ArrayList<? extends Parcelable> arrayList7 = arrayList5;
-                num = num9;
-                if (i14 == 3) {
-                    ContentValues contentValues3 = new ContentValues();
-                    contentValues3.put(str2, "vnd.android.cursor.item/website");
-                    String str6 = str2;
-                    contentValues3.put(str, f0Var2.c(false));
-                    String a10 = f0Var2.a(false);
-                    if (a10.startsWith("X-")) {
-                        contentValues3.put("data2", num13);
-                        contentValues3.put("data3", a10.substring(2));
-                    } else if ("HOMEPAGE".equalsIgnoreCase(a10)) {
-                        contentValues3.put("data2", (Integer) 1);
-                    } else if ("BLOG".equalsIgnoreCase(a10)) {
-                        contentValues3.put("data2", (Integer) 2);
-                    } else if ("PROFILE".equalsIgnoreCase(a10)) {
-                        contentValues3.put("data2", (Integer) 3);
-                    } else if ("HOME".equalsIgnoreCase(a10)) {
-                        contentValues3.put("data2", num11);
-                    } else if ("WORK".equalsIgnoreCase(a10)) {
-                        contentValues3.put("data2", num10);
-                    } else if ("FTP".equalsIgnoreCase(a10)) {
-                        contentValues3.put("data2", num12);
-                    } else {
-                        if ("OTHER".equalsIgnoreCase(a10)) {
-                            num8 = num;
-                            contentValues3.put("data2", num8);
-                        } else {
-                            num8 = num;
-                            contentValues3.put("data2", num13);
-                            contentValues3.put("data3", a10);
-                        }
-                        arrayList = arrayList7;
-                        arrayList.add(contentValues3);
-                        num = num8;
-                        num5 = num13;
-                        num4 = num11;
-                        num2 = num12;
-                        str4 = str;
-                        arrayList2 = arrayList6;
-                        str3 = str6;
-                        num3 = num10;
-                    }
-                    arrayList = arrayList7;
-                    num8 = num;
-                    arrayList.add(contentValues3);
-                    num = num8;
-                    num5 = num13;
-                    num4 = num11;
-                    num2 = num12;
-                    str4 = str;
-                    arrayList2 = arrayList6;
-                    str3 = str6;
-                    num3 = num10;
-                } else {
-                    String str7 = str2;
-                    arrayList = arrayList7;
-                    if (i14 == 4) {
-                        ContentValues contentValues4 = new ContentValues();
-                        contentValues4.put(str7, "vnd.android.cursor.item/note");
-                        contentValues4.put(str, f0Var2.c(false));
-                        arrayList.add(contentValues4);
-                        num5 = num13;
-                        num3 = num10;
-                        str3 = str7;
-                        num4 = num11;
-                        num2 = num12;
-                        str4 = str;
-                        arrayList2 = arrayList6;
-                    } else {
-                        num2 = num12;
-                        if (i14 == 5) {
-                            ContentValues contentValues5 = new ContentValues();
-                            contentValues5.put(str7, "vnd.android.cursor.item/contact_event");
-                            contentValues5.put(str, f0Var2.c(false));
-                            contentValues5.put("data2", (Integer) 3);
-                            arrayList.add(contentValues5);
-                            num5 = num13;
-                            num3 = num10;
-                            num4 = num11;
-                            str3 = str7;
-                            str4 = str;
-                            arrayList2 = arrayList6;
-                        } else {
-                            num3 = num10;
-                            num4 = num11;
-                            num5 = num13;
-                            if (i14 == 2) {
-                                ContentValues contentValues6 = new ContentValues();
-                                contentValues6.put(str7, "vnd.android.cursor.item/postal-address_v2");
-                                String[] b10 = f0Var2.b();
-                                String str8 = str;
-                                if (b10.length > 0) {
-                                    contentValues6.put("data5", b10[0]);
-                                }
-                                if (b10.length > 1) {
-                                    contentValues6.put("data6", b10[1]);
-                                }
-                                if (b10.length > 2) {
-                                    contentValues6.put("data4", b10[2]);
-                                }
-                                if (b10.length > 3) {
-                                    contentValues6.put("data7", b10[3]);
-                                }
-                                if (b10.length > 4) {
-                                    contentValues6.put("data8", b10[4]);
-                                }
-                                if (b10.length > 5) {
-                                    contentValues6.put("data9", b10[5]);
-                                }
-                                if (b10.length > 6) {
-                                    contentValues6.put("data10", b10[6]);
-                                }
-                                String a11 = f0Var2.a(false);
-                                if ("HOME".equalsIgnoreCase(a11)) {
-                                    contentValues6.put("data2", (Integer) 1);
-                                } else if ("WORK".equalsIgnoreCase(a11)) {
-                                    contentValues6.put("data2", (Integer) 2);
-                                } else if ("OTHER".equalsIgnoreCase(a11)) {
-                                    contentValues6.put("data2", (Integer) 3);
-                                }
-                                arrayList.add(contentValues6);
-                                str3 = str7;
-                                arrayList2 = arrayList6;
-                                str4 = str8;
-                            } else {
-                                String str9 = str;
-                                if (i14 == 20) {
-                                    ContentValues contentValues7 = new ContentValues();
-                                    contentValues7.put(str7, "vnd.android.cursor.item/im");
-                                    String a12 = f0Var2.a(true);
-                                    String a13 = f0Var2.a(false);
-                                    str3 = str7;
-                                    contentValues7.put(str9, f0Var2.c(false));
-                                    if ("AIM".equalsIgnoreCase(a12)) {
-                                        num7 = num5;
-                                        contentValues7.put("data5", num7);
-                                        str5 = str9;
-                                    } else {
-                                        str5 = str9;
-                                        num7 = num5;
-                                        if ("MSN".equalsIgnoreCase(a12)) {
-                                            contentValues7.put("data5", (Integer) 1);
-                                        } else if ("YAHOO".equalsIgnoreCase(a12)) {
-                                            contentValues7.put("data5", (Integer) 2);
-                                        } else if ("SKYPE".equalsIgnoreCase(a12)) {
-                                            contentValues7.put("data5", (Integer) 3);
-                                        } else if ("QQ".equalsIgnoreCase(a12)) {
-                                            contentValues7.put("data5", num4);
-                                        } else if ("GOOGLE-TALK".equalsIgnoreCase(a12)) {
-                                            contentValues7.put("data5", num3);
-                                        } else if ("ICQ".equalsIgnoreCase(a12)) {
-                                            contentValues7.put("data5", num2);
-                                        } else if ("JABBER".equalsIgnoreCase(a12)) {
-                                            contentValues7.put("data5", num);
-                                        } else if ("NETMEETING".equalsIgnoreCase(a12)) {
-                                            contentValues7.put("data5", (Integer) 8);
-                                        } else {
-                                            contentValues7.put("data5", (Integer) (-1));
-                                            contentValues7.put("data6", f0Var2.a(true));
-                                        }
-                                    }
-                                    if ("HOME".equalsIgnoreCase(a13)) {
-                                        contentValues7.put("data2", (Integer) 1);
-                                    } else if ("WORK".equalsIgnoreCase(a13)) {
-                                        contentValues7.put("data2", (Integer) 2);
-                                    } else if ("OTHER".equalsIgnoreCase(a13)) {
-                                        contentValues7.put("data2", (Integer) 3);
-                                    }
-                                    arrayList.add(contentValues7);
-                                    num5 = num7;
-                                    arrayList2 = arrayList6;
-                                    str4 = str5;
-                                } else {
-                                    str3 = str7;
-                                    Integer num14 = num5;
-                                    str4 = str9;
-                                    if (i14 != 6 || z11) {
-                                        num5 = num14;
-                                        arrayList2 = arrayList6;
-                                    } else {
-                                        ContentValues contentValues8 = new ContentValues();
-                                        String str10 = str3;
-                                        contentValues8.put(str10, "vnd.android.cursor.item/organization");
-                                        int i15 = i13;
-                                        while (i15 < arrayList6.size()) {
-                                            ArrayList arrayList8 = arrayList6;
-                                            org.telegram.messenger.f0 f0Var3 = (org.telegram.messenger.f0) arrayList8.get(i15);
-                                            int i16 = i15;
-                                            String str11 = str10;
-                                            if (f0Var3.f23402c == 6) {
-                                                String a14 = f0Var3.a(true);
-                                                if ("ORG".equalsIgnoreCase(a14)) {
-                                                    String[] b11 = f0Var3.b();
-                                                    if (b11.length != 0) {
-                                                        num6 = num14;
-                                                        if (b11.length >= 1) {
-                                                            contentValues8.put(str4, b11[0]);
-                                                        }
-                                                        if (b11.length >= 2) {
-                                                            contentValues8.put("data5", b11[1]);
-                                                        }
-                                                    }
-                                                } else {
-                                                    num6 = num14;
-                                                    if ("TITLE".equalsIgnoreCase(a14)) {
-                                                        contentValues8.put("data4", f0Var3.c(false));
-                                                    } else if ("ROLE".equalsIgnoreCase(a14)) {
-                                                        contentValues8.put("data4", f0Var3.c(false));
-                                                    }
-                                                }
-                                                String a15 = f0Var3.a(true);
-                                                if ("WORK".equalsIgnoreCase(a15)) {
-                                                    contentValues8.put("data2", (Integer) 1);
-                                                } else if ("OTHER".equalsIgnoreCase(a15)) {
-                                                    contentValues8.put("data2", (Integer) 2);
-                                                }
-                                                i15 = i16 + 1;
-                                                arrayList6 = arrayList8;
-                                                num14 = num6;
-                                                str10 = str11;
-                                            }
-                                            num6 = num14;
-                                            i15 = i16 + 1;
-                                            arrayList6 = arrayList8;
-                                            num14 = num6;
-                                            str10 = str11;
-                                        }
-                                        str3 = str10;
-                                        num5 = num14;
-                                        arrayList2 = arrayList6;
-                                        arrayList.add(contentValues8);
-                                        z10 = true;
-                                        i12 = i13 + 1;
-                                        arrayList4 = arrayList2;
-                                        arrayList5 = arrayList;
-                                        intent = intent2;
-                                        num12 = num2;
-                                        num10 = num3;
-                                        num11 = num4;
-                                        num13 = num5;
-                                        str2 = str3;
-                                        str = str4;
-                                        num9 = num;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            z10 = z11;
-            i12 = i13 + 1;
-            arrayList4 = arrayList2;
-            arrayList5 = arrayList;
-            intent = intent2;
-            num12 = num2;
-            num10 = num3;
-            num11 = num4;
-            num13 = num5;
-            str2 = str3;
-            str = str4;
-            num9 = num;
-        }
-        Intent intent3 = intent;
-        intent3.putExtra("finishActivityOnSaveCompleted", true);
-        intent3.putParcelableArrayListExtra("data", arrayList5);
-        try {
-            bd0Var.f33259t1.getParentActivity().startActivity(intent3);
-            bd0Var.dismiss();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
+    public final void show() {
+        super.show();
+        org.telegram.messenger.g0.h3(new gb0(this, 4), 50L);
     }
 }

@@ -2,29 +2,21 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class n0 implements View.OnClickListener {
-    public final int f37418a;
-    public final org.telegram.ui.Cells.c2[] f37419b;
+    public final int f37681a;
+    public final Object f37682b;
 
-    public n0(org.telegram.ui.Cells.c2[] c2VarArr, int i7) {
-        this.f37418a = i7;
-        this.f37419b = c2VarArr;
+    public n0(Object obj, int i7) {
+        this.f37681a = i7;
+        this.f37682b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f37418a) {
-            case 0:
-                Integer num = (Integer) view.getTag();
-                int intValue = num.intValue();
-                org.telegram.ui.Cells.c2[] c2VarArr = this.f37419b;
-                c2VarArr[intValue].c(!c2VarArr[num.intValue()].b(), true);
-                return;
-            default:
-                Integer num2 = (Integer) view.getTag();
-                int intValue2 = num2.intValue();
-                org.telegram.ui.Cells.c2[] c2VarArr2 = this.f37419b;
-                c2VarArr2[intValue2].c(!c2VarArr2[num2.intValue()].b(), true);
-                return;
-        }
+    public final void onClick(android.view.View r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n0.onClick(android.view.View):void");
+    }
+
+    public n0(y60 y60Var, ai.o oVar) {
+        this.f37681a = 28;
+        this.f37682b = y60Var;
     }
 }

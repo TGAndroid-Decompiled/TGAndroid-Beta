@@ -1,65 +1,23 @@
 package kg;
 
-import java.util.Calendar;
-import java.util.Locale;
-import org.telegram.messenger.hd;
-public final class b1 {
-    public int f17875a;
-    public int f17876b;
+import android.text.InputFilter;
+import android.text.Spanned;
+public final class b1 implements InputFilter {
+    public final int f18259a;
 
-    public b1(int i7, int i10) {
-        this.f17875a = i7;
-        this.f17876b = i10;
-    }
-
-    public static String a(int i7) {
-        String str;
-        String str2;
-        int i10 = i7 % 60;
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(0, 0, 0, ((i7 - i10) / 60) % 24, i10);
-        hd E0 = hd.E0();
-        if (E0.f24113c == null) {
-            synchronized (E0) {
-                try {
-                    if (E0.f24113c == null) {
-                        Locale locale = E0.f24132y;
-                        if (locale == null) {
-                            locale = Locale.getDefault();
-                        }
-                        String language = locale.getLanguage();
-                        if (language == null) {
-                            language = "en";
-                        }
-                        String lowerCase = language.toLowerCase();
-                        if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
-                            locale = Locale.US;
-                        }
-                        boolean z10 = hd.f24106c0;
-                        if (z10) {
-                            str = "HH:mm";
-                        } else {
-                            str = "h:mm a";
-                        }
-                        if (z10) {
-                            str2 = "HH:mm";
-                        } else {
-                            str2 = "h:mm a";
-                        }
-                        E0.f24113c = hd.k(locale, str, str2);
+    @Override
+    public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
+        switch (this.f18259a) {
+            case 0:
+                if (charSequence != null) {
+                    String charSequence2 = charSequence.toString();
+                    if (charSequence2.contains("\n")) {
+                        return charSequence2.replaceAll("\n", "");
                     }
-                } finally {
                 }
-            }
+                return null;
+            default:
+                return String.valueOf(charSequence).replaceAll("[^\\d_\\p{L}\\x{200c}\\x{00b7}\\x{0d80}-\\x{0dff}]", "");
         }
-        String format = E0.f24113c.format(calendar.getTime());
-        if (i7 > 1440) {
-            return hd.a0(null, null, 2131752748, format);
-        }
-        return format;
-    }
-
-    public final String toString() {
-        return a(this.f17875a) + " - " + a(this.f17876b);
     }
 }

@@ -1,119 +1,123 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class vh extends j6 {
-    public final int f40414b;
-    public final ki f40415c;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.TextUtils;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MotionEvent;
+public final class vh extends wt {
+    public boolean W;
+    public int f40627a0;
+    public int f40628b0;
+    public ValueAnimator f40629c0;
+    public final si f40630d0;
 
-    public vh(ki kiVar, int i7) {
-        super("translation", 0);
-        this.f40414b = i7;
-        switch (i7) {
-            case 1:
-                this.f40415c = kiVar;
-                super("openProgress", 0);
-                return;
-            default:
-                this.f40415c = kiVar;
-                return;
+    public vh(si siVar, Context context, fi fiVar, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, fiVar, null, 1, true, i6Var);
+        this.f40630d0 = siVar;
+    }
+
+    @Override
+    public final void c(float f10) {
+        si siVar = this.f40630d0;
+        siVar.f39672e4 = f10;
+        sh shVar = siVar.B2;
+        shVar.setTranslationY(f10);
+        shVar.invalidate();
+        siVar.V0();
+        siVar.N1(siVar.f39732w2, 0);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.W) {
+            mt editText = this.f40630d0.C2.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f40628b0 - editText.getScrollY()) + (this.f40627a0 - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new ch.w(14, this, editText));
+            ValueAnimator valueAnimator = this.f40629c0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f40629c0 = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(lr.f37208f);
+            ofFloat.start();
+            this.W = false;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void e() {
+        super/*org.telegram.ui.ActionBar.x2*/.dismiss();
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        ry emojiView = getEmojiView();
+        if (emojiView != null) {
+            emojiView.f39407x0 = false;
+            emojiView.f39413y2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(org.telegram.messenger.g0.f24116n);
         }
     }
 
     @Override
-    public final void c(Object obj, float f10) {
-        int i7;
-        float f11;
-        switch (this.f40414b) {
-            case 0:
-                ci ciVar = (ci) obj;
-                ki kiVar = this.f40415c;
-                kiVar.Y1 = f10;
-                ci ciVar2 = kiVar.f36501x2;
-                if (ciVar2 != null) {
-                    if (!(ciVar2 instanceof im) && !(kiVar.f36497w2 instanceof im)) {
-                        ciVar2.setAlpha(f10);
-                        kiVar.f36501x2.v(f10);
-                        ci ciVar3 = kiVar.f36501x2;
-                        jn jnVar = kiVar.f36444h2;
-                        int i10 = 0;
-                        if (ciVar3 == jnVar || kiVar.f36497w2 == jnVar) {
-                            if (ciVar3 == jnVar) {
-                                i7 = 1;
-                            } else {
-                                i7 = 0;
-                            }
-                            kiVar.P1(i7);
-                        }
-                        ci ciVar4 = kiVar.f36501x2;
-                        jn jnVar2 = kiVar.f36447i2;
-                        if (ciVar4 == jnVar2 || kiVar.f36497w2 == jnVar2) {
-                            if (ciVar4 == jnVar2) {
-                                i10 = 1;
-                            }
-                            kiVar.P1(i10);
-                        }
-                        kiVar.f36501x2.setTranslationY(org.telegram.messenger.g0.L(78.0f) * f10);
-                        kiVar.f36497w2.v(1.0f - Math.min(1.0f, f10 / 0.7f));
-                        kiVar.f36497w2.m(kiVar.f36451j4);
-                    } else {
-                        int max = Math.max(ciVar2.getWidth(), kiVar.f36497w2.getWidth());
-                        if (kiVar.f36501x2 instanceof im) {
-                            kiVar.f36497w2.setTranslationX((-max) * f10);
-                            kiVar.f36501x2.setTranslationX((1.0f - f10) * max);
-                        } else {
-                            kiVar.f36497w2.setTranslationX(max * f10);
-                            kiVar.f36501x2.setTranslationX((1.0f - f10) * (-max));
-                        }
-                    }
-                    if (kiVar.f36478r3 != null) {
-                        kiVar.P1(1);
-                    }
-                    kiVar.f29682b.invalidate();
-                    return;
-                }
-                return;
-            default:
-                ki kiVar2 = (ki) obj;
-                lh lhVar = this.f40415c.f36498w3;
-                int childCount = lhVar.getChildCount();
-                for (int i11 = 0; i11 < childCount; i11++) {
-                    float f12 = (3 - i11) * 32.0f;
-                    View childAt = lhVar.getChildAt(i11);
-                    if (f10 > f12) {
-                        float f13 = f10 - f12;
-                        if (f13 <= 200.0f) {
-                            float f14 = f13 / 200.0f;
-                            f11 = er.f34420g.getInterpolation(f14) * 1.1f;
-                            childAt.setAlpha(er.f34422j.getInterpolation(f14));
-                        } else {
-                            childAt.setAlpha(1.0f);
-                            float f15 = f13 - 200.0f;
-                            if (f15 <= 100.0f) {
-                                f11 = 1.1f - (er.f34421i.getInterpolation(f15 / 100.0f) * 0.1f);
-                            } else {
-                                f11 = 1.0f;
-                            }
-                        }
-                    } else {
-                        f11 = 0.0f;
-                    }
-                    if (childAt instanceof fi) {
-                        ((fi) childAt).f34616a.setAttachScale(f11);
-                    }
-                }
-                return;
+    public final void i(ActionMode actionMode, Menu menu) {
+        org.telegram.ui.ActionBar.h2 h2Var = this.f40630d0.f39659a2;
+        if (h2Var instanceof org.telegram.ui.bn) {
+            org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) h2Var).h, true, true, true, true);
         }
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f40414b) {
-            case 0:
-                ci ciVar = (ci) obj;
-                return Float.valueOf(this.f40415c.Y1);
-            default:
-                ki kiVar = (ki) obj;
-                return Float.valueOf(0.0f);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        si siVar = this.f40630d0;
+        vh vhVar = siVar.C2;
+        if (!siVar.f39717s3) {
+            if (motionEvent.getX() > vhVar.getEditText().getLeft() && motionEvent.getX() < vhVar.getEditText().getRight() && motionEvent.getY() > vhVar.getEditText().getTop() && motionEvent.getY() < vhVar.getEditText().getBottom()) {
+                siVar.i1(vhVar.getEditText(), true);
+            } else {
+                siVar.i1(vhVar.getEditText(), false);
+            }
         }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        this.f40630d0.K1();
+    }
+
+    @Override
+    public final void q(int i7, int i10) {
+        si siVar = this.f40630d0;
+        sh shVar = siVar.B2;
+        boolean z10 = false;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.W = true;
+            this.f40627a0 = getEditText().getMeasuredHeight();
+            this.f40628b0 = getEditText().getScrollY();
+            invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.W = false;
+        }
+        if (!siVar.X1) {
+            if (i10 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
+                z10 = true;
+            }
+            siVar.C1(z10);
+        }
+        siVar.U3 = shVar.getTop() + siVar.T3;
+        shVar.invalidate();
+        siVar.K1();
     }
 }

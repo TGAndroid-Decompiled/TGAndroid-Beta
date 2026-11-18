@@ -1,11 +1,11 @@
 package tg;
 
 import android.view.ViewGroup;
-import org.telegram.messenger.hd;
-import org.telegram.ui.Components.tj0;
-public final class i1 extends tj0 {
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.bk0;
+public final class i1 extends bk0 {
     @Override
-    public final boolean D(v4.e1 e1Var) {
+    public final boolean D(v4.f1 f1Var) {
         return true;
     }
 
@@ -15,22 +15,22 @@ public final class i1 extends tj0 {
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
-        d1 d1Var = (d1) e1Var.f58535a;
+    public final void t(v4.f1 f1Var, int i7) {
+        d1 d1Var = (d1) f1Var.f59122a;
         sg.a0 a0Var = (sg.a0) sg.a0.c().get(i7);
         d1Var.getClass();
         d1Var.setTypeface(a0Var.d());
-        String str = a0Var.f56582c;
+        String str = a0Var.f57156c;
         if (str == null) {
-            str = hd.N0(a0Var.f56581b);
+            str = gd.N0(a0Var.f57155b);
         }
         d1Var.setText(str);
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
         d1 d1Var = new d1(viewGroup.getContext());
-        d1Var.setLayoutParams(new v4.p0(-1, -2));
-        return new v4.e1(d1Var);
+        d1Var.setLayoutParams(new v4.q0(-1, -2));
+        return new v4.f1(d1Var);
     }
 }

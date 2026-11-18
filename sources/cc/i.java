@@ -2,26 +2,26 @@ package cc;
 
 import com.google.android.gms.internal.vision.e2;
 public final class i {
-    public final float f4895a;
-    public final float f4896b;
-    public final float f4897c;
+    public final float f5181a;
+    public final float f5182b;
+    public final float f5183c;
     public final float d;
-    public final float f4898e;
-    public final float f4899f;
-    public final float f4900g;
+    public final float f5184e;
+    public final float f5185f;
+    public final float f5186g;
     public final float h;
-    public final float f4901i;
+    public final float f5187i;
 
     public i(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17, float f18) {
-        this.f4895a = f10;
-        this.f4896b = f13;
-        this.f4897c = f16;
+        this.f5181a = f10;
+        this.f5182b = f13;
+        this.f5183c = f16;
         this.d = f11;
-        this.f4898e = f14;
-        this.f4899f = f17;
-        this.f4900g = f12;
+        this.f5184e = f14;
+        this.f5185f = f17;
+        this.f5186g = f12;
         this.h = f15;
-        this.f4901i = f18;
+        this.f5187i = f18;
     }
 
     public static i a(float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {

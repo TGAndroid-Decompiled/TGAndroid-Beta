@@ -1,27 +1,73 @@
 package di;
 
-import org.telegram.messenger.z10;
+import android.content.Context;
+import android.text.TextUtils;
+import j$.util.Objects;
+import org.telegram.messenger.x10;
 import org.telegram.tgnet.tl.TL_stars;
-public final class y1 implements z10 {
-    public final int f9750a;
-    public final z10 f9751b;
+public final class y1 implements x10 {
+    public final int f10057a;
+    public final f6 f10058b;
+    public final bi.b5[] f10059c;
+    public final TL_stars.TL_starGiftUnique d;
 
-    public y1(z10 z10Var, int i7) {
-        this.f9750a = i7;
-        this.f9751b = z10Var;
+    public y1(f6 f6Var, bi.b5[] b5VarArr, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i7) {
+        this.f10057a = i7;
+        this.f10058b = f6Var;
+        this.f10059c = b5VarArr;
+        this.d = tL_starGiftUnique;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f9750a) {
+        Boolean bool;
+        Long l10 = (Long) obj;
+        switch (this.f10057a) {
             case 0:
-                this.f9751b.a((TL_stars.StarGift) obj);
+                this.f10059c[0].dismiss();
+                f6 f6Var = this.f10058b;
+                Context context = f6Var.getContext();
+                int i7 = f6Var.f30189a;
+                long longValue = l10.longValue();
+                org.telegram.ui.ActionBar.i6 i6Var = f6Var.J0;
+                hi.d dVar = f6Var.f8782g2;
+                Objects.requireNonNull(dVar);
+                ai.g0 g0Var = new ai.g0(dVar, 3);
+                org.telegram.ui.Components.lc k10 = f6Var.k();
+                k1 k1Var = new k1(f6Var, 13);
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = this.d;
+                if (tL_starGiftUnique != null && !TextUtils.isEmpty(tL_starGiftUnique.slug)) {
+                    TL_stars.updateStarGiftOnchainPrice updatestargiftonchainprice = new TL_stars.updateStarGiftOnchainPrice();
+                    updatestargiftonchainprice.slug = tL_starGiftUnique.slug;
+                    updatestargiftonchainprice.amount = longValue;
+                    String h = bi.v4.h(tL_starGiftUnique);
+                    if (tL_starGiftUnique.onchain_sale) {
+                        bool = Boolean.valueOf(tL_starGiftUnique.fixed_sale);
+                    } else {
+                        bool = null;
+                    }
+                    bi.v4.o(context, i7, updatestargiftonchainprice, bool, i6Var, g0Var, k10, new bi.c4(longValue, tL_starGiftUnique, context, i7, i6Var, h, k1Var));
+                    return;
+                }
                 return;
             default:
-                Boolean bool = (Boolean) obj;
-                z10 z10Var = this.f9751b;
-                if (z10Var != null) {
-                    z10Var.a(bool);
+                this.f10059c[0].dismiss();
+                f6 f6Var2 = this.f10058b;
+                Context context2 = f6Var2.getContext();
+                int i10 = f6Var2.f30189a;
+                long longValue2 = l10.longValue();
+                org.telegram.ui.ActionBar.i6 i6Var2 = f6Var2.J0;
+                hi.d dVar2 = f6Var2.f8782g2;
+                Objects.requireNonNull(dVar2);
+                ai.g0 g0Var2 = new ai.g0(dVar2, 3);
+                org.telegram.ui.Components.lc k11 = f6Var2.k();
+                k1 k1Var2 = new k1(f6Var2, 11);
+                TL_stars.TL_starGiftUnique tL_starGiftUnique2 = this.d;
+                if (!TextUtils.isEmpty(tL_starGiftUnique2.slug)) {
+                    TL_stars.updateStarGiftOnchainPrice updatestargiftonchainprice2 = new TL_stars.updateStarGiftOnchainPrice();
+                    updatestargiftonchainprice2.slug = tL_starGiftUnique2.slug;
+                    updatestargiftonchainprice2.amount = longValue2;
+                    bi.v4.o(context2, i10, updatestargiftonchainprice2, Boolean.TRUE, i6Var2, g0Var2, k11, new bi.c4(tL_starGiftUnique2, longValue2, context2, i10, i6Var2, bi.v4.h(tL_starGiftUnique2), k1Var2, 2));
                     return;
                 }
                 return;

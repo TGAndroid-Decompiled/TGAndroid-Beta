@@ -1,52 +1,79 @@
 package c8;
 public abstract class a1 {
-    public static Integer a(String str) {
-        if (str != null) {
-            switch (str.hashCode()) {
-                case -1118317585:
-                    if (str.equals("REPEAT_ALL_AND_SHUFFLE")) {
-                        return 3;
-                    }
-                    return null;
-                case -962896020:
-                    if (str.equals("REPEAT_SINGLE")) {
-                        return 2;
-                    }
-                    return null;
-                case 1645938909:
-                    if (str.equals("REPEAT_ALL")) {
-                        return 1;
-                    }
-                    return null;
-                case 1645952171:
-                    if (str.equals("REPEAT_OFF")) {
-                        return 0;
-                    }
-                    return null;
+    public static boolean a(int i7, CharSequence charSequence) {
+        if (i7 < charSequence.length()) {
+            char charAt = charSequence.charAt(i7);
+            switch (charAt) {
+                case '!':
+                case '\"':
+                case '#':
+                case '$':
+                case '%':
+                case '&':
+                case '\'':
+                case '(':
+                case ')':
+                case '*':
+                case '+':
+                case ',':
+                case '-':
+                case '.':
+                case '/':
+                    return true;
                 default:
-                    return null;
+                    switch (charAt) {
+                        case ':':
+                        case ';':
+                        case '<':
+                        case '=':
+                        case '>':
+                        case '?':
+                        case '@':
+                            return true;
+                        default:
+                            switch (charAt) {
+                                case '[':
+                                case '\\':
+                                case ']':
+                                case '^':
+                                case '_':
+                                case '`':
+                                    return true;
+                                default:
+                                    switch (charAt) {
+                                        case '{':
+                                        case '|':
+                                        case '}':
+                                        case '~':
+                                            return true;
+                                        default:
+                                            return false;
+                                    }
+                            }
+                    }
             }
         }
-        return null;
+        return false;
     }
 
-    public static String b(Integer num) {
-        if (num != null) {
-            int intValue = num.intValue();
-            if (intValue != 0) {
-                if (intValue != 1) {
-                    if (intValue != 2) {
-                        if (intValue != 3) {
-                            return null;
-                        }
-                        return "REPEAT_ALL_AND_SHUFFLE";
-                    }
-                    return "REPEAT_SINGLE";
-                }
-                return "REPEAT_ALL";
+    public static int b(char c10, int i7, int i10, CharSequence charSequence) {
+        while (i7 < i10) {
+            if (charSequence.charAt(i7) != c10) {
+                return i7;
             }
-            return "REPEAT_OFF";
+            i7++;
         }
-        return null;
+        return i10;
+    }
+
+    public static int c(int i7, int i10, CharSequence charSequence) {
+        while (i7 < i10) {
+            char charAt = charSequence.charAt(i7);
+            if (charAt != '\t' && charAt != ' ') {
+                return i7;
+            }
+            i7++;
+        }
+        return i10;
     }
 }

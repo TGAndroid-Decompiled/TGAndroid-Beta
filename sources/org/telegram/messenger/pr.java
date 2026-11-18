@@ -1,4 +1,6 @@
 package org.telegram.messenger;
-public interface pr {
-    void a(int i7);
+public final class pr {
+    public int f26291a;
+    public int f26292b;
+    public int f26293c;
 }

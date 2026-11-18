@@ -1,113 +1,51 @@
 package f2;
 
-import android.app.RemoteInput;
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Icon;
-import android.hardware.display.DisplayManager;
 import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.os.Build;
-import android.os.Looper;
-import android.view.Display;
-import android.view.MenuItem;
-import di.s2;
-public abstract class h {
-    public static AudioManager f10725a;
+import android.os.Handler;
+import j$.util.Objects;
+public final class h {
+    public final int f11042a;
+    public final AudioManager.OnAudioFocusChangeListener f11043b;
+    public final Handler f11044c;
+    public final e2.e d;
+    public final boolean f11045e;
+    public final Object f11046f;
 
-    public static void a(AudioManager audioManager, g gVar) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            Object obj = gVar.f10724f;
-            obj.getClass();
-            audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
-            return;
-        }
-        audioManager.abandonAudioFocus(gVar.f10721b);
-    }
-
-    public static Icon b(Bitmap bitmap) {
-        return Icon.createWithAdaptiveBitmap(bitmap);
-    }
-
-    public static boolean c(Context context) {
-        Display display;
-        Display.HdrCapabilities hdrCapabilities;
-        DisplayManager displayManager = (DisplayManager) context.getSystemService("display");
-        if (displayManager != null) {
-            display = displayManager.getDisplay(0);
+    public h(int i7, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, e2.e eVar, boolean z10, boolean z11) {
+        this.f11042a = i7;
+        this.f11044c = handler;
+        this.d = eVar;
+        this.f11045e = z10;
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 < 26) {
+            this.f11043b = new g(onAudioFocusChangeListener, handler);
         } else {
-            display = null;
+            this.f11043b = onAudioFocusChangeListener;
         }
-        if (display == null || !display.isHdr() || (hdrCapabilities = display.getHdrCapabilities()) == null) {
+        if (i10 >= 26) {
+            this.f11046f = new AudioFocusRequest.Builder(i7).setAudioAttributes(eVar.b()).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z11).build();
+        } else {
+            this.f11046f = null;
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof h)) {
             return false;
         }
-        for (int i7 : hdrCapabilities.getSupportedHdrTypes()) {
-            if (i7 == 1) {
-                return true;
-            }
+        h hVar = (h) obj;
+        if (this.f11042a == hVar.f11042a && this.f11045e == hVar.f11045e && Objects.equals(this.f11043b, hVar.f11043b) && Objects.equals(this.f11044c, hVar.f11044c) && Objects.equals(this.d, hVar.d)) {
+            return true;
         }
         return false;
     }
 
-    public static synchronized AudioManager d(Context context) {
-        synchronized (h.class) {
-            synchronized (h.class) {
-                Context applicationContext = context.getApplicationContext();
-                if (applicationContext != null) {
-                    f10725a = null;
-                }
-                AudioManager audioManager = f10725a;
-                if (audioManager != null) {
-                    return audioManager;
-                }
-                Looper myLooper = Looper.myLooper();
-                if (myLooper != null && myLooper != Looper.getMainLooper()) {
-                    h2.i iVar = new h2.i();
-                    h2.a.e().execute(new s2(17, applicationContext, iVar));
-                    iVar.b();
-                    AudioManager audioManager2 = f10725a;
-                    audioManager2.getClass();
-                    return audioManager2;
-                }
-                AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
-                f10725a = audioManager3;
-                audioManager3.getClass();
-                return audioManager3;
-            }
-        }
-    }
-
-    public static int e(android.media.AudioManager r4, f2.g r5) {
-        throw new UnsupportedOperationException("Method not decompiled: f2.h.e(android.media.AudioManager, f2.g):int");
-    }
-
-    public static void f(RemoteInput.Builder builder, String str) {
-        builder.setAllowDataType(str, true);
-    }
-
-    public static void g(MenuItem menuItem, char c10, int i7) {
-        menuItem.setAlphabeticShortcut(c10, i7);
-    }
-
-    public static void h(MenuItem menuItem, CharSequence charSequence) {
-        menuItem.setContentDescription(charSequence);
-    }
-
-    public static void i(MenuItem menuItem, ColorStateList colorStateList) {
-        menuItem.setIconTintList(colorStateList);
-    }
-
-    public static void j(MenuItem menuItem, PorterDuff.Mode mode) {
-        menuItem.setIconTintMode(mode);
-    }
-
-    public static void k(MenuItem menuItem, char c10, int i7) {
-        menuItem.setNumericShortcut(c10, i7);
-    }
-
-    public static void l(MenuItem menuItem, CharSequence charSequence) {
-        menuItem.setTooltipText(charSequence);
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f11042a), this.f11043b, this.f11044c, this.d, Boolean.valueOf(this.f11045e));
     }
 }

@@ -1,52 +1,30 @@
 package di;
 
-import android.os.Bundle;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.an;
-public final class l3 implements Runnable {
-    public final int f8956a;
-    public final long f8957b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class l3 implements RequestDelegate {
+    public final int f9250a;
+    public final f6 f9251b;
+    public final TwoStepVerificationActivity f9252c;
+    public final boolean d;
 
-    public l3(long j3, int i7) {
-        this.f8956a = i7;
-        this.f8957b = j3;
+    public l3(f6 f6Var, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, int i7) {
+        this.f9250a = i7;
+        this.f9251b = f6Var;
+        this.f9252c = twoStepVerificationActivity;
+        this.d = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f8956a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f9250a) {
             case 0:
-                org.telegram.ui.ActionBar.e2 T = LaunchActivity.T();
-                if (T != null) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", this.f8957b);
-                    bundle.putBoolean("my_profile", true);
-                    bundle.putBoolean("open_gifts", true);
-                    T.presentFragment(new ProfileActivity(bundle, null));
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.e2 T2 = LaunchActivity.T();
-                if (T2 != null) {
-                    T2.presentFragment(an.ua(this.f8957b));
-                    return;
-                }
-                return;
-            case 2:
-                org.telegram.ui.ActionBar.e2 T3 = LaunchActivity.T();
-                if (T3 != null) {
-                    T3.presentFragment(an.ua(this.f8957b));
-                    return;
-                }
+                org.telegram.messenger.g0.g3(new q3(this.f9251b, tLObject, this.f9252c, this.d, tL_error));
                 return;
             default:
-                org.telegram.ui.ActionBar.e2 T4 = LaunchActivity.T();
-                if (T4 != null) {
-                    T4.presentFragment(an.ua(this.f8957b));
-                    return;
-                }
+                org.telegram.messenger.g0.g3(new q3(this.f9251b, tL_error, this.f9252c, tLObject, this.d));
                 return;
         }
     }

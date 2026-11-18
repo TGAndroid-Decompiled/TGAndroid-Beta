@@ -3,43 +3,43 @@ package oi;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class h implements ViewTreeObserver.OnGlobalFocusChangeListener {
-    public final int f21717a;
-    public final Object f21718b;
+    public final int f22078a;
+    public final Object f22079b;
 
     public h(Object obj, int i7) {
-        this.f21717a = i7;
-        this.f21718b = obj;
+        this.f22078a = i7;
+        this.f22079b = obj;
     }
 
     @Override
     public final void onGlobalFocusChanged(View view, View view2) {
         boolean z10;
-        switch (this.f21717a) {
+        switch (this.f22078a) {
             case 0:
-                ((o) this.f21718b).e0();
+                ((o) this.f22079b).e0();
                 return;
             case 1:
-                ((z1) this.f21718b).B0();
+                ((z1) this.f22079b).B0();
                 return;
             case 2:
-                q3 q3Var = (q3) this.f21718b;
-                if (view2 != null && q3Var.F(view2) != null) {
+                s3 s3Var = (s3) this.f22079b;
+                if (view2 != null && s3Var.F(view2) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                q3Var.f39894i3 = z10;
+                s3Var.f34609i3 = z10;
                 if (view2 instanceof e1) {
-                    q3Var.T3 = (e1) view2;
+                    s3Var.T3 = (e1) view2;
                     return;
                 }
                 return;
             default:
-                k5 k5Var = (k5) this.f21718b;
-                k5Var.z();
-                m5 m5Var = k5Var.f21778w;
-                if (m5Var != null) {
-                    m5Var.invalidate();
+                l5 l5Var = (l5) this.f22079b;
+                l5Var.z();
+                n5 n5Var = l5Var.f22168w;
+                if (n5Var != null) {
+                    n5Var.invalidate();
                     return;
                 }
                 return;

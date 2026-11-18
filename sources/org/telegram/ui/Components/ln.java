@@ -1,51 +1,39 @@
 package org.telegram.ui.Components;
 
-import java.util.concurrent.atomic.AtomicReference;
-public final class ln implements Runnable {
-    public final int f36856a;
-    public final sn f36857b;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
+public final class ln implements View.OnKeyListener {
+    public final int f37150a;
+    public final Object f37151b;
 
-    public ln(sn snVar, int i7) {
-        this.f36856a = i7;
-        this.f36857b = snVar;
+    public ln(Object obj, int i7) {
+        this.f37150a = i7;
+        this.f37151b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36856a) {
+    public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
+        switch (this.f37150a) {
             case 0:
-                sn snVar = this.f36857b;
-                AtomicReference atomicReference = snVar.f39361n;
-                org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get();
-                if (j5Var != null) {
-                    snVar.removeView(j5Var);
-                    atomicReference.set(null);
-                    return;
-                }
-                return;
-            case 1:
-                sn snVar2 = this.f36857b;
-                AtomicReference atomicReference2 = snVar2.f39373w;
-                org.telegram.ui.ActionBar.j5 j5Var2 = (org.telegram.ui.ActionBar.j5) atomicReference2.get();
-                if (j5Var2 != null) {
-                    snVar2.removeView(j5Var2);
-                    atomicReference2.set(null);
-                    if (!snVar2.f39346b) {
-                        snVar2.setClipChildren(true);
-                        return;
+                pn pnVar = (pn) this.f37151b;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
+                if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
+                    ImageView imageView = pnVar.f30387f;
+                    if (imageView != null) {
+                        imageView.callOnClick();
                     }
-                    return;
+                    return true;
                 }
-                return;
+                return false;
             default:
-                sn snVar3 = this.f36857b;
-                snVar3.f39359k0 = false;
-                snVar3.f39357i0.c(false);
-                if (snVar3.a()) {
-                    snVar3.f();
-                    return;
+                iu iuVar = (iu) this.f37151b;
+                iuVar.getClass();
+                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && iuVar.isShowing()) {
+                    iuVar.dismiss();
+                    return true;
                 }
-                return;
+                return false;
         }
     }
 }

@@ -1,29 +1,24 @@
 package org.telegram.ui;
-public final class hm extends vf.b {
-    public final org.telegram.ui.Cells.q1 d;
-    public final lm f47730e;
+public final class hm implements org.telegram.messenger.ap {
+    public final hi f48477a;
+    public final bn f48478b;
+    public final mm f48479c;
 
-    public hm(lm lmVar, org.telegram.ui.Cells.q1 q1Var) {
-        this.f47730e = lmVar;
-        this.d = q1Var;
+    public hm(mm mmVar, hi hiVar, bn bnVar) {
+        this.f48479c = mmVar;
+        this.f48477a = hiVar;
+        this.f48478b = bnVar;
     }
 
     @Override
-    public final void c(boolean z10) {
-        if (!z10) {
-            org.telegram.messenger.g0.i3(new ej(this.f47730e.f49001a, 9), 250L);
-        }
+    public final void a() {
+        this.f48477a.c(false);
+        this.f48479c.f49922a.presentFragment(this.f48478b);
     }
 
     @Override
-    public final void d() {
-        lm lmVar = this.f47730e;
-        an anVar = lmVar.f49001a;
-        org.telegram.ui.Cells.q1 q1Var = this.d;
-        anVar.Zb = q1Var.getMessageObject().e1();
-        an anVar2 = lmVar.f49001a;
-        anVar2.f45129ac = 2;
-        anVar2.f45144bc = null;
-        q1Var.invalidate();
+    public final void f(boolean z10) {
+        this.f48477a.c(false);
+        this.f48479c.f49922a.presentFragment(this.f48478b);
     }
 }

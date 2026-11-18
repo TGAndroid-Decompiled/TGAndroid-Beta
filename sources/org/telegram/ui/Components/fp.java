@@ -1,163 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public class fp extends View {
-    public final CheckBoxBase f34667a;
-    public Drawable f34668b;
-    public int f34669c;
+import org.telegram.tgnet.TLRPC;
+public final class fp implements org.telegram.ui.p71 {
+    public final lp f35147a;
 
-    public fp(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f34667a = new CheckBoxBase(i7, this, e6Var);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        this.f34667a.f(-1, z10, z11);
-    }
-
-    public final void b(int i7, int i10, int i11) {
-        this.f34667a.h(i7, i10, i11);
-    }
-
-    public CheckBoxBase getCheckBoxBase() {
-        return this.f34667a;
-    }
-
-    public boolean getDrawUnchecked() {
-        return this.f34667a.f32449z;
-    }
-
-    public float getProgress() {
-        return this.f34667a.getProgress();
+    public fp(lp lpVar) {
+        this.f35147a = lpVar;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f34667a.f32436l = true;
+    public final boolean Y0() {
+        return true;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f34667a.f32436l = false;
+    public final boolean d() {
+        return this.f35147a.H1;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f34668b != null) {
-            int measuredWidth = getMeasuredWidth() >> 1;
-            int measuredHeight = getMeasuredHeight() >> 1;
-            Drawable drawable = this.f34668b;
-            drawable.setBounds(org.telegram.ui.Cells.y0.A(2, measuredWidth, drawable), org.telegram.ui.Cells.y0.y(2, measuredHeight, this.f34668b), org.telegram.ui.Cells.y0.w(2, measuredWidth, this.f34668b), org.telegram.ui.Cells.y0.h(2, measuredHeight, this.f34668b));
-            this.f34668b.draw(canvas);
-            Paint paint = new Paint();
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeWidth(org.telegram.messenger.g0.L(1.2f));
-            paint.setColor(org.telegram.ui.ActionBar.j6.x0(null, org.telegram.ui.ActionBar.j6.U6, false));
-            canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - org.telegram.messenger.g0.L(1.5f), paint);
-            return;
-        }
-        this.f34667a.a(canvas);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Switch");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f34667a.f32441q);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        this.f34667a.e(0, 0, i11 - i7, i12 - i10);
-    }
-
-    public void setCirclePaintProvider(org.telegram.messenger.j9 j9Var) {
-        CheckBoxBase checkBoxBase = this.f34667a;
-        if (checkBoxBase.G == j9Var) {
-            return;
-        }
-        checkBoxBase.G = j9Var;
-        checkBoxBase.b();
-    }
-
-    public void setDrawBackgroundAsArc(int i7) {
-        this.f34667a.d(i7);
-    }
-
-    public void setDrawUnchecked(boolean z10) {
-        this.f34667a.k(z10);
-    }
-
-    public void setDuration(long j3) {
-        this.f34667a.H = j3;
-    }
-
-    @Override
-    public void setEnabled(boolean z10) {
-        CheckBoxBase checkBoxBase = this.f34667a;
-        if (checkBoxBase.f32435k != z10) {
-            checkBoxBase.f32435k = z10;
-            checkBoxBase.b();
-        }
-        super.setEnabled(z10);
-    }
-
-    public void setForbidden(boolean z10) {
-        CheckBoxBase checkBoxBase = this.f34667a;
-        if (checkBoxBase.f32438n == z10) {
-            return;
-        }
-        checkBoxBase.f32438n = z10;
-        checkBoxBase.b();
-    }
-
-    public void setIcon(int i7) {
-        if (i7 != this.f34669c) {
-            this.f34669c = i7;
-            if (i7 == 0) {
-                this.f34668b = null;
-                return;
+    public final void l1(boolean z10) {
+        TLRPC.WallPaper wallPaper;
+        lp lpVar = this.f35147a;
+        org.telegram.ui.bn bnVar = lpVar.f37182v1;
+        lpVar.H1 = !lpVar.H1;
+        if (lpVar.G1 != null) {
+            lpVar.J1 = true;
+            bnVar.f46226w7 = true;
+            if (lpVar.Q0()) {
+                wallPaper = null;
+            } else {
+                wallPaper = lpVar.f37179s1.f54538g;
             }
-            Drawable mutate = getContext().getDrawable(i7).mutate();
-            this.f34668b = mutate;
-            org.telegram.ui.ActionBar.q6.x(this, mutate, org.telegram.ui.ActionBar.j6.U6, null, PorterDuff.Mode.MULTIPLY);
-        }
-    }
-
-    public void setNum(int i7) {
-        String str;
-        CheckBoxBase checkBoxBase = this.f34667a;
-        if (i7 >= 0) {
-            checkBoxBase.getClass();
-            str = "" + (i7 + 1);
-        } else if (checkBoxBase.f32440p != null) {
-            str = checkBoxBase.C;
-        } else {
-            str = null;
-        }
-        String str2 = checkBoxBase.C;
-        if (str2 == null) {
-            if (str == null) {
-                return;
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            org.telegram.ui.ActionBar.t3 t3Var = lpVar.G1.f36837a;
+            if (t3Var.f29999a) {
+                lpVar.f37179s1.r(null, wallPaper2, z10, Boolean.valueOf(lpVar.H1), false);
+            } else {
+                lpVar.f37179s1.r(t3Var, wallPaper2, z10, Boolean.valueOf(lpVar.H1), false);
             }
-        } else if (str2.equals(str)) {
-            return;
+            bnVar.f46226w7 = false;
         }
-        checkBoxBase.C = str;
-        checkBoxBase.b();
-    }
-
-    public void setProgressDelegate(gp gpVar) {
-        this.f34667a.D = gpVar;
     }
 }

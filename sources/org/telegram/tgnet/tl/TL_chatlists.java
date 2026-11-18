@@ -1,7 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.fd;
+import org.telegram.messenger.ed;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
@@ -29,7 +29,7 @@ public class TL_chatlists {
             if ((this.flags & 1) > 0) {
                 this.emoticon = inputSerializedData.readString(z10);
             }
-            this.peers = Vector.deserialize(inputSerializedData, new fd(6), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new ed(7), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -66,8 +66,8 @@ public class TL_chatlists {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.filter_id = inputSerializedData.readInt32(z10);
-            this.missing_peers = Vector.deserialize(inputSerializedData, new fd(6), z10);
-            this.already_peers = Vector.deserialize(inputSerializedData, new fd(6), z10);
+            this.missing_peers = Vector.deserialize(inputSerializedData, new ed(7), z10);
+            this.already_peers = Vector.deserialize(inputSerializedData, new ed(7), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -95,7 +95,7 @@ public class TL_chatlists {
             if ((this.flags & 1) > 0) {
                 this.emoticon = inputSerializedData.readString(z10);
             }
-            this.peers = Vector.deserialize(inputSerializedData, new fd(6), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new ed(7), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -132,7 +132,7 @@ public class TL_chatlists {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.missing_peers = Vector.deserialize(inputSerializedData, new fd(6), z10);
+            this.missing_peers = Vector.deserialize(inputSerializedData, new ed(7), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -330,7 +330,7 @@ public class TL_chatlists {
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i7, z10, new fd(6));
+            return Vector.TLDeserialize(inputSerializedData, i7, z10, new ed(7));
         }
 
         @Override
@@ -435,7 +435,7 @@ public class TL_chatlists {
             this.revoked = TLObject.hasFlag(readInt32, 1);
             this.title = inputSerializedData.readString(z10);
             this.url = inputSerializedData.readString(z10);
-            this.peers = Vector.deserialize(inputSerializedData, new fd(6), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new ed(7), z10);
         }
 
         @Override

@@ -7,13 +7,13 @@ import android.os.SystemClock;
 import android.text.Spanned;
 import android.text.style.ReplacementSpan;
 public final class f2 extends ReplacementSpan {
-    public final long f1204a;
-    public final int f1205b;
-    public int f1206c;
+    public final long f1196a;
+    public final int f1197b;
+    public int f1198c;
 
     public f2(long j3, int i7) {
-        this.f1204a = j3;
-        this.f1205b = i7;
+        this.f1196a = j3;
+        this.f1197b = i7;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class f2 extends ReplacementSpan {
         int color = paint.getColor();
         float f13 = i12;
         float textSize = f13 - (paint.getTextSize() * 0.35f);
-        paint.setColor(f2Var.f1205b);
+        paint.setColor(f2Var.f1197b);
         int i15 = i7;
         while (i15 < i10) {
             int charCount = Character.charCount(Character.codePointAt(charSequence2, i15)) + i15;
@@ -35,7 +35,7 @@ public final class f2 extends ReplacementSpan {
                 charCount++;
             }
             float f14 = f13;
-            float C = a8.p0.C((float) ((uptimeMillis - f2Var.f1204a) - ((i15 - i7) * 22)), 320.0f, 1.0f, 0.0f);
+            float C = a8.p0.C((float) ((uptimeMillis - f2Var.f1196a) - ((i15 - i7) * 22)), 320.0f, 1.0f, 0.0f);
             if (C > 0.0f) {
                 float measureText = paint.measureText(charSequence2, i7, i15) + f10;
                 float measureText2 = paint.measureText(charSequence2, i15, charCount);

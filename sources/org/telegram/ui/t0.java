@@ -4,37 +4,37 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.tgnet.TLRPC;
 public final class t0 extends AnimatorListenerAdapter {
-    public final g4 f51311a;
+    public final g4 f52118a;
 
     public t0(g4 g4Var) {
-        this.f51311a = g4Var;
+        this.f52118a = g4Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        g4 g4Var = this.f51311a;
-        if (g4Var.f47312g0.f29956f) {
-            g4Var.f47326v0[0].setBackgroundDrawable(null);
-            k3[] k3VarArr = g4Var.f47326v0;
+        g4 g4Var = this.f52118a;
+        if (g4Var.f47921g0.f30333f) {
+            g4Var.f47935v0[0].setBackgroundDrawable(null);
+            k3[] k3VarArr = g4Var.f47935v0;
             k3 k3Var = k3VarArr[1];
             k3VarArr[1] = k3VarArr[0];
             k3VarArr[0] = k3Var;
-            g4Var.f47314i0.i();
-            g4Var.f47306b1.a(g4Var.f47326v0[0].getBackgroundColor(), true);
-            g4Var.f47308c1.a(g4Var.f47326v0[1].getBackgroundColor(), true);
+            g4Var.f47923i0.i();
+            g4Var.f47915b1.a(g4Var.f47935v0[0].getBackgroundColor(), true);
+            g4Var.f47917c1.a(g4Var.f47935v0[1].getBackgroundColor(), true);
             t3 t3Var = g4Var.L;
             if (t3Var != null) {
                 t3Var.z();
             }
-            Object g10 = r.b.g(1, g4Var.f47310e0);
-            g4Var.Q0.S(g4Var.f47326v0[0].f48503b);
-            org.telegram.ui.Cells.h9 h9Var = g4Var.Q0;
-            h9Var.f30421z0 = g4Var.f47326v0[0].d;
-            h9Var.f(true);
+            Object g10 = p5.c.g(1, g4Var.f47919e0);
+            g4Var.Q0.S(g4Var.f47935v0[0].f49158b);
+            org.telegram.ui.Cells.i9 i9Var = g4Var.Q0;
+            i9Var.f30838z0 = g4Var.f47935v0[0].d;
+            i9Var.f(true);
             g4Var.g0(false);
             g4Var.d0();
-            g4Var.f47326v0[1].b();
-            g4Var.f47326v0[1].setVisibility(8);
+            g4Var.f47935v0[1].b();
+            g4Var.f47935v0[1].setVisibility(8);
             if (g10 instanceof x2) {
                 ((x2) g10).a();
             }
@@ -45,8 +45,8 @@ public final class t0 extends AnimatorListenerAdapter {
             g4Var.S();
             g4Var.K();
         }
-        ArticleViewer$WindowView articleViewer$WindowView = g4Var.f47312g0;
-        articleViewer$WindowView.f29956f = false;
+        ArticleViewer$WindowView articleViewer$WindowView = g4Var.f47921g0;
+        articleViewer$WindowView.f30333f = false;
         articleViewer$WindowView.d = false;
         g4Var.V0 = false;
     }

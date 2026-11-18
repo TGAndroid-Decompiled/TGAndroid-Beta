@@ -2,22 +2,22 @@ package u7;
 
 import a8.l8;
 import com.google.android.gms.tasks.TaskCompletionSource;
-public final class h extends w {
-    public final TaskCompletionSource f57877b;
-    public final j f57878c;
+public final class h extends v {
+    public final TaskCompletionSource f58444b;
+    public final i f58445c;
 
-    public h(TaskCompletionSource taskCompletionSource, j jVar) {
-        this.f57877b = taskCompletionSource;
-        this.f57878c = jVar;
+    public h(TaskCompletionSource taskCompletionSource, i iVar) {
+        this.f58444b = taskCompletionSource;
+        this.f58445c = iVar;
     }
 
     @Override
-    public final void Q0(u uVar) {
-        l8.a(uVar.f57900a, null, this.f57877b);
+    public final void P0(t tVar) {
+        l8.a(tVar.f58465a, null, this.f58444b);
     }
 
     @Override
     public final void zze() {
-        this.f57878c.m1();
+        this.f58445c.m1();
     }
 }

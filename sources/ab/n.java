@@ -2,5 +2,5 @@ package ab;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 public final class n {
-    public final FirebaseMessaging f974a;
+    public final FirebaseMessaging f973a;
 }

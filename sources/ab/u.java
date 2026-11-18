@@ -12,17 +12,17 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.Future;
 public final class u implements Closeable {
-    public final URL f998a;
-    public volatile Future f999b;
-    public Task f1000c;
+    public final URL f997a;
+    public volatile Future f998b;
+    public Task f999c;
 
     public u(URL url) {
-        this.f998a = url;
+        this.f997a = url;
     }
 
     public final Bitmap a() {
         boolean isLoggable = Log.isLoggable("FirebaseMessaging", 4);
-        URL url = this.f998a;
+        URL url = this.f997a;
         if (isLoggable) {
             Log.i("FirebaseMessaging", "Starting download of: " + url);
         }
@@ -64,6 +64,6 @@ public final class u implements Closeable {
 
     @Override
     public final void close() {
-        this.f999b.cancel(true);
+        this.f998b.cancel(true);
     }
 }

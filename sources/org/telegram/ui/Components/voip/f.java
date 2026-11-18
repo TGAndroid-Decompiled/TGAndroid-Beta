@@ -1,12 +1,12 @@
 package org.telegram.ui.Components.voip;
 public final class f {
-    public final wi.k f40603a;
-    public final int f40604b;
-    public final int f40605c;
+    public final wi.k f40861a;
+    public final int f40862b;
+    public final int f40863c;
 
     public f(wi.k kVar, int i7, int i10) {
-        this.f40603a = kVar;
-        this.f40604b = i7;
-        this.f40605c = i10;
+        this.f40861a = kVar;
+        this.f40862b = i7;
+        this.f40863c = i10;
     }
 }

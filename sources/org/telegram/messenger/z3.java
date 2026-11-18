@@ -1,234 +1,208 @@
 package org.telegram.messenger;
 
-import android.os.SystemClock;
+import android.util.LongSparseArray;
+import com.google.android.gms.tasks.CancellationToken;
+import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.p21;
-public final class z3 implements Runnable {
-    public final int f27879a = 3;
-    public final long f27880b;
-    public final boolean f27881c;
-    public final c1 d;
-    public final Object f27882e;
-    public final Object f27883f;
-    public final Object h;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_communities;
+import org.telegram.tgnet.tl.TL_payments;
+public final class z3 implements q10 {
+    public final int f28259a;
+    public final Object f28260b;
+    public final Object f28261c;
 
-    public z3(d4 d4Var, TLObject tLObject, long j3, boolean z10, String str, Runnable runnable) {
-        this.d = d4Var;
-        this.f27882e = tLObject;
-        this.f27880b = j3;
-        this.f27881c = z10;
-        this.f27883f = str;
-        this.h = runnable;
+    public z3(int i7, Object obj, Object obj2) {
+        this.f28259a = i7;
+        this.f28260b = obj;
+        this.f28261c = obj2;
     }
 
     @Override
-    public final void run() {
-        TLRPC.ChatFull N0;
-        TLRPC.UserFull userFull;
-        char c10;
-        String str;
-        TLRPC.WallPaper wallPaper = null;
-        int i7 = 0;
-        char c11 = 1;
-        switch (this.f27879a) {
+    public final void a(Object obj, Object obj2) {
+        ArrayList<TLRPC.Chat> arrayList;
+        boolean z10;
+        switch (this.f28259a) {
             case 0:
-                d4 d4Var = (d4) this.d;
-                TLObject tLObject = (TLObject) this.f27882e;
-                long j3 = this.f27880b;
-                boolean z10 = this.f27881c;
-                String str2 = (String) this.f27883f;
-                Runnable runnable = (Runnable) this.h;
-                if (tLObject instanceof TLRPC.Updates) {
-                    TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    if (j3 >= 0) {
-                        userFull = np.s1(d4Var.currentAccount).b2(j3);
-                        N0 = null;
-                    } else {
-                        N0 = np.s1(d4Var.currentAccount).N0(-j3);
-                        userFull = null;
-                    }
-                    if (userFull != null) {
-                        wallPaper = userFull.wallpaper;
-                    } else if (N0 != null) {
-                        wallPaper = N0.wallpaper;
-                    }
-                    int i10 = 0;
-                    while (true) {
-                        if (i10 < updates.updates.size()) {
-                            if (updates.updates.get(i10) instanceof TL_update.TL_updateNewMessage) {
-                                TLRPC.MessageAction messageAction = ((TL_update.TL_updateNewMessage) updates.updates.get(i10)).message.action;
-                                c10 = c11;
-                                if (messageAction instanceof TLRPC.TL_messageActionSetChatWallPaper) {
-                                    if (z10) {
-                                        TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) messageAction;
-                                        tL_messageActionSetChatWallPaper.wallpaper.uploadingImage = str2;
-                                        if (wallPaper != null && (str = wallPaper.uploadingImage) != null && str.equals(str2)) {
-                                            tL_messageActionSetChatWallPaper.wallpaper.stripedThumb = wallPaper.stripedThumb;
-                                        }
-                                        if (userFull != null) {
-                                            TLRPC.WallPaper wallPaper2 = tL_messageActionSetChatWallPaper.wallpaper;
-                                            userFull.wallpaper = wallPaper2;
-                                            userFull.flags |= 16777216;
-                                            d4Var.r(j3, wallPaper2);
-                                            d4Var.getMessagesStorage().j2(userFull, false);
-                                            ns f10 = ns.f(d4Var.currentAccount);
-                                            Object[] objArr = new Object[2];
-                                            objArr[0] = Long.valueOf(j3);
-                                            objArr[c10] = userFull;
-                                            f10.k(67, objArr);
-                                        } else if (N0 != null) {
-                                            TLRPC.WallPaper wallPaper3 = tL_messageActionSetChatWallPaper.wallpaper;
-                                            N0.wallpaper = wallPaper3;
-                                            N0.flags2 |= 128;
-                                            d4Var.r(j3, wallPaper3);
-                                            d4Var.getMessagesStorage().N1(N0, false);
-                                            ns f11 = ns.f(d4Var.currentAccount);
-                                            Object[] objArr2 = new Object[4];
-                                            objArr2[0] = N0;
-                                            objArr2[c10] = 0;
-                                            Boolean bool = Boolean.FALSE;
-                                            objArr2[2] = bool;
-                                            objArr2[3] = bool;
-                                            f11.k(30, objArr2);
-                                        }
-                                    }
-                                }
-                            } else {
-                                c10 = c11;
-                            }
-                            i10++;
-                            c11 = c10;
+                f4 f4Var = (f4) this.f28260b;
+                org.telegram.ui.Components.ip ipVar = (org.telegram.ui.Components.ip) this.f28261c;
+                TL_account.ChatThemes chatThemes = (TL_account.ChatThemes) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error != null) {
+                    g0.g3(new w3(22, ipVar, tL_error));
+                    return;
+                }
+                ArrayList arrayList2 = new ArrayList();
+                if (chatThemes instanceof TL_account.Tl_chatThemes) {
+                    TL_account.Tl_chatThemes tl_chatThemes = (TL_account.Tl_chatThemes) chatThemes;
+                    tr messagesStorage = f4Var.getMessagesStorage();
+                    ArrayList<TLRPC.ChatTheme> arrayList3 = tl_chatThemes.themes;
+                    messagesStorage.getClass();
+                    messagesStorage.I(new rq(7, messagesStorage, arrayList3));
+                    f4Var.getMessagesStorage().m1(tl_chatThemes.users, tl_chatThemes.chats, true, true);
+                    f4Var.getMessagesController().f4(tl_chatThemes.users, false);
+                    f4Var.getMessagesController().Z3(tl_chatThemes.chats, false);
+                    ArrayList<TLRPC.ChatTheme> arrayList4 = tl_chatThemes.themes;
+                    int size = arrayList4.size();
+                    int i7 = 0;
+                    while (i7 < size) {
+                        TLRPC.ChatTheme chatTheme = arrayList4.get(i7);
+                        i7++;
+                        TLRPC.ChatTheme chatTheme2 = chatTheme;
+                        if (chatTheme2 instanceof TLRPC.TL_chatThemeUniqueGift) {
+                            arrayList2.add((TLRPC.TL_chatThemeUniqueGift) chatTheme2);
                         }
                     }
-                    np.s1(d4Var.currentAccount).N3(updates.updates, updates.users, updates.chats, false, updates.date);
-                    if (runnable != null) {
-                        runnable.run();
+                    ArrayList arrayList5 = new ArrayList(arrayList2.size());
+                    for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                        org.telegram.ui.ActionBar.t3 t3Var = new org.telegram.ui.ActionBar.t3(f4Var.currentAccount, (TLRPC.TL_chatThemeUniqueGift) arrayList2.get(i10));
+                        t3Var.p(0, null);
+                        t3Var.p(1, null);
+                        t3Var.n(0, null);
+                        t3Var.n(1, null);
+                        arrayList5.add(t3Var);
                     }
-                    ns.f(d4Var.currentAccount).k(323, new Object[0]);
+                    g0.g3(new fn(f4Var, tl_chatThemes, arrayList5, arrayList2, ipVar, 1));
                     return;
-                }
-                return;
-            case 1:
-                np npVar = (np) this.d;
-                TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers = (TLRPC.TL_channels_sendAsPeers) this.f27882e;
-                a0.h hVar = (a0.h) this.f27883f;
-                long j10 = this.f27880b;
-                ip ipVar = (ip) this.h;
-                boolean z11 = this.f27881c;
-                if (tL_channels_sendAsPeers == null) {
-                    hVar.l(j10);
-                    return;
-                }
-                SystemClock.elapsedRealtime();
-                ipVar.f24427a = tL_channels_sendAsPeers;
-                npVar.getNotificationCenter().k(16, Long.valueOf(j10), tL_channels_sendAsPeers, Boolean.valueOf(z11));
-                return;
-            case 2:
-                h00 h00Var = (h00) this.d;
-                TLObject tLObject2 = (TLObject) this.f27882e;
-                boolean z12 = this.f27881c;
-                long j11 = this.f27880b;
-                HashSet hashSet = (HashSet) this.f27883f;
-                Runnable runnable2 = (Runnable) this.h;
-                if (tLObject2 != null && z12) {
-                    a0.h hVar2 = new a0.h();
-                    TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject2;
-                    ArrayList l10 = qg.c.l(tL_messages_savedDialogs.dialogs);
-                    while (i7 < tL_messages_savedDialogs.messages.size()) {
-                        hVar2.k(tL_messages_savedDialogs.messages.get(i7), tL_messages_savedDialogs.messages.get(i7).f28072id);
-                        i7++;
-                    }
-                    g0.h3(new di(h00Var, tL_messages_savedDialogs, j11, l10, hVar2, hashSet, runnable2));
-                    return;
-                } else if (tLObject2 != null) {
-                    a0.h hVar3 = new a0.h();
-                    TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject2;
-                    while (i7 < tL_messages_forumTopics.messages.size()) {
-                        hVar3.k(tL_messages_forumTopics.messages.get(i7), tL_messages_forumTopics.messages.get(i7).f28072id);
-                        i7++;
-                    }
-                    g0.h3(new ai.e(h00Var, tLObject2, j11, tL_messages_forumTopics, hVar3, runnable2, 5));
+                } else if (chatThemes instanceof TL_account.TL_chatThemesNotModified) {
+                    g0.g3(new w3(23, f4Var, ipVar));
                     return;
                 } else {
                     return;
                 }
-            default:
-                c10 c10Var = (c10) this.d;
-                HashMap hashMap = (HashMap) this.f27882e;
-                long j12 = this.f27880b;
-                y00 y00Var = (y00) this.f27883f;
-                boolean z13 = this.f27881c;
-                HashSet hashSet2 = (HashSet) this.h;
-                synchronized (c10Var) {
-                    try {
-                        ArrayList arrayList = (ArrayList) hashMap.get(Long.valueOf(j12));
-                        if (arrayList != null) {
-                            arrayList.remove(y00Var);
-                            if (arrayList.isEmpty()) {
-                                hashMap.remove(Long.valueOf(j12));
-                            }
-                        }
-                    } finally {
-                    }
-                }
-                String str3 = c10Var.getMessagesController().W6;
-                if (!"alternative".equals(str3) && !"system".equals(str3)) {
-                    TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
-                    if (z13) {
-                        tL_messages_translateText.flags |= 2;
-                        tL_messages_translateText.text.addAll(y00Var.f27639c);
+            case 1:
+                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f28261c;
+                TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                if (!((CancellationToken) this.f28260b).isCancellationRequested()) {
+                    if (auth_authorization != null && tL_error2 == null) {
+                        taskCompletionSource.trySetResult(auth_authorization);
+                        return;
                     } else {
-                        tL_messages_translateText.flags |= 1;
-                        tL_messages_translateText.peer = c10Var.getMessagesController().j1(j12);
-                        tL_messages_translateText.f28175id = y00Var.f27638b;
+                        taskCompletionSource.trySetException(new ConnectionsManager.RequestException(tL_error2));
+                        return;
                     }
-                    tL_messages_translateText.to_lang = c10.D(y00Var.f27640e);
-                    int sendRequest = c10Var.getConnectionsManager().sendRequest(tL_messages_translateText, new y3(c10Var, y00Var, z13, j12, hashSet2, 4));
-                    synchronized (c10Var) {
-                        y00Var.h = sendRequest;
-                    }
-                    return;
-                }
-                String str4 = y00Var.f27640e;
-                while (i7 < y00Var.f27638b.size()) {
-                    String str5 = str4;
-                    p21.J0(((TLRPC.TL_textWithEntities) y00Var.f27639c.get(i7)).text, null, str5, new o00(c10Var, (w10) y00Var.d.get(i7), z13, ((Integer) y00Var.f27638b.get(i7)).intValue(), str4, j12, 0));
-                    i7++;
-                    str4 = str5;
                 }
                 return;
+            case 2:
+                final u9 u9Var = (u9) this.f28260b;
+                final q10 q10Var = (q10) this.f28261c;
+                final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState = (TL_payments.TL_StarGiftAuctionState) obj;
+                final TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                LongSparseArray longSparseArray = u9Var.f27140e;
+                if (tL_StarGiftAuctionState != null) {
+                    u9Var.getMessagesController().f4(tL_StarGiftAuctionState.users, false);
+                    u9Var.getMessagesController().Z3(tL_StarGiftAuctionState.chats, false);
+                }
+                if (tL_StarGiftAuctionState != null && !((Boolean) longSparseArray.get(tL_StarGiftAuctionState.gift.f28634id, Boolean.FALSE)).booleanValue()) {
+                    longSparseArray.put(tL_StarGiftAuctionState.gift.f28634id, Boolean.TRUE);
+                    u9Var.j(tL_StarGiftAuctionState.gift.f28634id, new x10() {
+                        @Override
+                        public final void a(Object obj3) {
+                            u9 u9Var2 = u9.this;
+                            u9Var2.getClass();
+                            TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState2 = tL_StarGiftAuctionState;
+                            u9Var2.d(tL_StarGiftAuctionState2.gift.f28634id).f26561c = (ArrayList) obj3;
+                            u9Var2.f(tL_StarGiftAuctionState2.gift.f28634id, tL_StarGiftAuctionState2);
+                            q10Var.a(tL_StarGiftAuctionState2, tL_error3);
+                        }
+                    });
+                    return;
+                }
+                if (tL_StarGiftAuctionState != null) {
+                    u9Var.f(tL_StarGiftAuctionState.gift.f28634id, tL_StarGiftAuctionState);
+                }
+                q10Var.a(tL_StarGiftAuctionState, tL_error3);
+                return;
+            case 3:
+                mp mpVar = (mp) this.f28260b;
+                li.i0 i0Var = (li.i0) this.f28261c;
+                TL_communities.PeerLinkRequests peerLinkRequests = (TL_communities.PeerLinkRequests) obj;
+                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
+                if (peerLinkRequests != null) {
+                    mpVar.Z3(peerLinkRequests.chats, false);
+                    mpVar.f4(peerLinkRequests.users, false);
+                    ArrayList<TL_communities.CommunityPeerRequest> arrayList6 = peerLinkRequests.requests;
+                    int size2 = arrayList6.size();
+                    int i11 = 0;
+                    while (i11 < size2) {
+                        TL_communities.CommunityPeerRequest communityPeerRequest = arrayList6.get(i11);
+                        i11++;
+                        long j3 = -n5.o(communityPeerRequest.peer);
+                        if (mpVar.P0(j3) == null) {
+                            mpVar.b3(0, j3, true);
+                        }
+                    }
+                    i0Var.a(peerLinkRequests, null);
+                    return;
+                }
+                i0Var.a(null, tL_error4);
+                return;
+            case 4:
+                mp mpVar2 = (mp) this.f28260b;
+                hi.t6 t6Var = (hi.t6) this.f28261c;
+                TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) obj;
+                TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
+                if (messages_chats != null) {
+                    mpVar2.Z3(messages_chats.chats, false);
+                    mpVar2.W7 = messages_chats.chats;
+                }
+                if (messages_chats != null) {
+                    arrayList = messages_chats.chats;
+                } else {
+                    arrayList = null;
+                }
+                t6Var.a(arrayList);
+                return;
+            case 5:
+                mp mpVar3 = (mp) this.f28260b;
+                org.telegram.ui.Components.rr rrVar = (org.telegram.ui.Components.rr) this.f28261c;
+                TL_communities.ParticipantJoinedChats participantJoinedChats = (TL_communities.ParticipantJoinedChats) obj;
+                TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj2;
+                if (participantJoinedChats != null) {
+                    mpVar3.Z3(participantJoinedChats.chats, false);
+                    mpVar3.f4(participantJoinedChats.users, false);
+                    ArrayList<Long> arrayList7 = participantJoinedChats.creator_chat_ids;
+                    int size3 = arrayList7.size();
+                    int i12 = 0;
+                    while (i12 < size3) {
+                        Long l10 = arrayList7.get(i12);
+                        i12++;
+                        long longValue = l10.longValue();
+                        if (mpVar3.P0(longValue) == null) {
+                            mpVar3.b3(0, longValue, true);
+                        }
+                    }
+                }
+                rrVar.a(participantJoinedChats, tL_error6);
+                return;
+            case 6:
+                q10 q10Var2 = (q10) this.f28261c;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj;
+                TLRPC.TL_error tL_error7 = (TLRPC.TL_error) obj2;
+                ((org.telegram.ui.ActionBar.u1) this.f28260b).dismiss();
+                if (tL_error7 != null) {
+                    q10Var2.a(null, tL_error7.text);
+                    return;
+                } else {
+                    q10Var2.a(passkey, null);
+                    return;
+                }
+            default:
+                c10 c10Var = (c10) this.f28261c;
+                TLRPC.TL_error tL_error8 = (TLRPC.TL_error) obj2;
+                g10 g10Var = ((f10) this.f28260b).f23823i;
+                if ((((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) && tL_error8 == null) {
+                    z10 = true;
+                } else {
+                    g10Var.getClass();
+                    z10 = false;
+                }
+                c10Var.a(Boolean.valueOf(z10));
+                g10Var.getClass();
+                return;
         }
-    }
-
-    public z3(np npVar, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, a0.h hVar, long j3, ip ipVar, boolean z10) {
-        this.d = npVar;
-        this.f27882e = tL_channels_sendAsPeers;
-        this.f27883f = hVar;
-        this.f27880b = j3;
-        this.h = ipVar;
-        this.f27881c = z10;
-    }
-
-    public z3(h00 h00Var, TLObject tLObject, boolean z10, long j3, HashSet hashSet, Runnable runnable) {
-        this.d = h00Var;
-        this.f27882e = tLObject;
-        this.f27881c = z10;
-        this.f27880b = j3;
-        this.f27883f = hashSet;
-        this.h = runnable;
-    }
-
-    public z3(c10 c10Var, HashMap hashMap, long j3, y00 y00Var, boolean z10, HashSet hashSet) {
-        this.d = c10Var;
-        this.f27882e = hashMap;
-        this.f27880b = j3;
-        this.f27883f = y00Var;
-        this.f27881c = z10;
-        this.h = hashSet;
     }
 }

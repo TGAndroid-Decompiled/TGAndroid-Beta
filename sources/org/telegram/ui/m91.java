@@ -1,25 +1,67 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class m91 extends rg.a {
-    public final TLRPC.TL_forumTopic f49187c;
+import android.view.View;
+public final class m91 extends v4.k {
+    public Runnable F;
+    public int G;
+    public final y91 H;
 
-    public m91(int i7, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i7, true);
-        this.f49187c = tL_forumTopic;
+    public m91(y91 y91Var) {
+        this.H = y91Var;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && m91.class == obj.getClass()) {
-            m91 m91Var = (m91) obj;
-            int i7 = this.f56015a;
-            if (i7 == m91Var.f56015a && i7 == 0 && this.f49187c.f28103id == m91Var.f49187c.f28103id) {
-                return true;
+    @Override
+    public final void F() {
+        if (this.G == -1) {
+            this.G = this.H.getNotificationCenter().q(null, this.G, false);
+            Runnable runnable = this.F;
+            if (runnable != null) {
+                org.telegram.messenger.g0.r(runnable);
+                this.F = null;
             }
         }
-        return false;
+    }
+
+    @Override
+    public final void N() {
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.F = null;
+        }
+        l91 l91Var = new l91(this, 0);
+        this.F = l91Var;
+        org.telegram.messenger.g0.g3(l91Var);
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.F;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+        }
+        l91 l91Var = new l91(this, 1);
+        this.F = l91Var;
+        org.telegram.messenger.g0.g3(l91Var);
+    }
+
+    @Override
+    public final void z(v4.f1 f1Var) {
+        y91 y91Var = this.H;
+        View view = y91Var.f54119d1;
+        if (view == f1Var.f59122a) {
+            view.setTranslationX(0.0f);
+            d91 d91Var = y91Var.P;
+            if (d91Var != null) {
+                d91Var.G.clear();
+            }
+            View view2 = y91Var.f54119d1;
+            if (view2 instanceof v91) {
+                v91 v91Var = (v91) view2;
+                v91Var.setTopicIcon(v91Var.f52738d5);
+            }
+            y91Var.f54119d1 = null;
+        }
     }
 }

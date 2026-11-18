@@ -10,10 +10,10 @@ import com.google.android.gms.common.api.m;
 import java.util.Set;
 import org.telegram.messenger.d1;
 public abstract class h {
-    public static final d1 f7595a = new d1("GoogleSignInCommon", new String[0]);
+    public static final d1 f7878a = new d1("GoogleSignInCommon", new String[0]);
 
     public static Intent a(Context context, GoogleSignInOptions googleSignInOptions) {
-        f7595a.a("getSignInIntent()", new Object[0]);
+        f7878a.a("getSignInIntent()", new Object[0]);
         SignInConfiguration signInConfiguration = new SignInConfiguration(context.getPackageName(), googleSignInOptions);
         Intent intent = new Intent("com.google.android.gms.auth.GOOGLE_SIGN_IN");
         intent.setPackage(context.getPackageName());
@@ -25,8 +25,8 @@ public abstract class h {
     }
 
     public static void b(Context context) {
-        i.V(context).Z();
-        Set<m> set = m.f6114a;
+        i.B(context).E();
+        Set<m> set = m.f6397a;
         synchronized (set) {
         }
         for (m mVar : set) {

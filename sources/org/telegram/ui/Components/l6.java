@@ -1,24 +1,122 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.widget.TextView;
-import org.telegram.ui.LaunchActivity;
-public final class l6 extends va {
-    public l6(LaunchActivity launchActivity, org.telegram.ui.w80 w80Var) {
-        super(launchActivity, null);
-        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
-        TextView textView = new TextView(getContext());
-        addView(qVar, c8.ja.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
-        textView.setGravity(8388611);
-        textView.setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
-        org.telegram.ui.ActionBar.q6.U(textView, org.telegram.ui.ActionBar.j6.yj, null);
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(Typeface.SANS_SERIF);
-        addView(textView, c8.ja.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(w80Var.f52497b));
-        qVar.setOuterPadding(org.telegram.messenger.g0.L(8.0f));
-        qVar.setBackgroundOuterPadding(org.telegram.messenger.g0.L(24.0f));
-        qVar.setForeground(w80Var.f52498c);
-        org.telegram.messenger.k5.q(null, null, 2131754238, new Object[]{org.telegram.messenger.hd.M0(w80Var.d, null)}, textView);
+import android.os.Build;
+import android.text.TextUtils;
+import j$.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.stream.IntStream;
+public final class l6 implements CharSequence {
+    public final CharSequence[] f37037a;
+    public final int f37038b;
+
+    public l6(CharSequence charSequence) {
+        int i7;
+        if (charSequence == null) {
+            this.f37037a = new CharSequence[0];
+            this.f37038b = 0;
+            return;
+        }
+        this.f37038b = charSequence.length();
+        int i10 = 0;
+        for (int i11 = 0; i11 < this.f37038b; i11++) {
+            if (charSequence.charAt(i11) == ' ') {
+                i10++;
+            }
+        }
+        this.f37037a = new CharSequence[i10 + 1];
+        int i12 = 0;
+        int i13 = 0;
+        int i14 = 0;
+        while (true) {
+            int i15 = this.f37038b;
+            if (i12 <= i15) {
+                if (i12 == i15 || charSequence.charAt(i12) == ' ') {
+                    CharSequence[] charSequenceArr = this.f37037a;
+                    int i16 = i13 + 1;
+                    if (i12 < this.f37038b) {
+                        i7 = 1;
+                    } else {
+                        i7 = 0;
+                    }
+                    charSequenceArr[i13] = charSequence.subSequence(i14, i7 + i12);
+                    i14 = i12 + 1;
+                    i13 = i16;
+                }
+                i12++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final char charAt(int i7) {
+        int i10 = 0;
+        while (true) {
+            CharSequence[] charSequenceArr = this.f37037a;
+            if (i10 >= charSequenceArr.length) {
+                return (char) 0;
+            }
+            if (i7 < charSequenceArr[i10].length()) {
+                return charSequenceArr[i10].charAt(i7);
+            }
+            i7 -= charSequenceArr[i10].length();
+            i10++;
+        }
+    }
+
+    @Override
+    public IntStream chars() {
+        return IntStream.Wrapper.convert(chars());
+    }
+
+    @Override
+    public java.util.stream.IntStream codePoints() {
+        return IntStream.Wrapper.convert(codePoints());
+    }
+
+    @Override
+    public final int length() {
+        return this.f37037a.length;
+    }
+
+    @Override
+    public final CharSequence subSequence(int i7, int i10) {
+        return TextUtils.concat((CharSequence[]) Arrays.copyOfRange(this.f37037a, i7, i10));
+    }
+
+    @Override
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder();
+        int i7 = 0;
+        while (true) {
+            CharSequence[] charSequenceArr = this.f37037a;
+            if (i7 < charSequenceArr.length) {
+                sb2.append(charSequenceArr[i7]);
+                i7++;
+            } else {
+                return sb2.toString();
+            }
+        }
+    }
+
+    @Override
+    public final j$.util.stream.IntStream chars() {
+        j$.util.stream.IntStream convert;
+        if (Build.VERSION.SDK_INT >= 24) {
+            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f37037a).chars());
+            return convert;
+        }
+        return null;
+    }
+
+    @Override
+    public final j$.util.stream.IntStream codePoints() {
+        j$.util.stream.IntStream convert;
+        if (Build.VERSION.SDK_INT >= 24) {
+            convert = IntStream.VivifiedWrapper.convert(TextUtils.concat(this.f37037a).codePoints());
+            return convert;
+        }
+        return null;
     }
 }

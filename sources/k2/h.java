@@ -4,14 +4,14 @@ import e2.m0;
 import e2.u;
 import java.nio.ByteBuffer;
 public class h extends a {
-    public u f17730a;
-    public final d f17731b = new d();
-    public ByteBuffer f17732c;
+    public u f18125a;
+    public final d f18126b = new d();
+    public ByteBuffer f18127c;
     public boolean d;
-    public long f17733e;
-    public ByteBuffer f17734f;
+    public long f18128e;
+    public ByteBuffer f18129f;
     public final int h;
-    public final int f17735n;
+    public final int f18130n;
 
     static {
         m0.a("media3.decoder");
@@ -19,7 +19,7 @@ public class h extends a {
 
     public h(int i7, int i10) {
         this.h = i7;
-        this.f17735n = i10;
+        this.f18130n = i10;
     }
 
     public final ByteBuffer a(int i7) {
@@ -31,7 +31,7 @@ public class h extends a {
         if (i10 == 2) {
             return ByteBuffer.allocateDirect(i7);
         }
-        ByteBuffer byteBuffer = this.f17732c;
+        ByteBuffer byteBuffer = this.f18127c;
         if (byteBuffer == null) {
             capacity = 0;
         } else {
@@ -41,17 +41,17 @@ public class h extends a {
     }
 
     public final void b(int i7) {
-        int i10 = i7 + this.f17735n;
-        ByteBuffer byteBuffer = this.f17732c;
+        int i10 = i7 + this.f18130n;
+        ByteBuffer byteBuffer = this.f18127c;
         if (byteBuffer == null) {
-            this.f17732c = a(i10);
+            this.f18127c = a(i10);
             return;
         }
         int capacity = byteBuffer.capacity();
         int position = byteBuffer.position();
         int i11 = i10 + position;
         if (capacity >= i11) {
-            this.f17732c = byteBuffer;
+            this.f18127c = byteBuffer;
             return;
         }
         ByteBuffer a10 = a(i11);
@@ -60,15 +60,15 @@ public class h extends a {
             byteBuffer.flip();
             a10.put(byteBuffer);
         }
-        this.f17732c = a10;
+        this.f18127c = a10;
     }
 
     public final void c() {
-        ByteBuffer byteBuffer = this.f17732c;
+        ByteBuffer byteBuffer = this.f18127c;
         if (byteBuffer != null) {
             byteBuffer.flip();
         }
-        ByteBuffer byteBuffer2 = this.f17734f;
+        ByteBuffer byteBuffer2 = this.f18129f;
         if (byteBuffer2 != null) {
             byteBuffer2.flip();
         }
@@ -77,11 +77,11 @@ public class h extends a {
     @Override
     public void clear() {
         super.clear();
-        ByteBuffer byteBuffer = this.f17732c;
+        ByteBuffer byteBuffer = this.f18127c;
         if (byteBuffer != null) {
             byteBuffer.clear();
         }
-        ByteBuffer byteBuffer2 = this.f17734f;
+        ByteBuffer byteBuffer2 = this.f18129f;
         if (byteBuffer2 != null) {
             byteBuffer2.clear();
         }

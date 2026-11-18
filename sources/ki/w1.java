@@ -1,26 +1,35 @@
 package ki;
 
-import android.animation.ValueAnimator;
-public final class w1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f18632a;
-    public final x2 f18633b;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.TLRPC;
+public final class w1 implements x10 {
+    public final int f19024a;
+    public final t2 f19025b;
 
-    public w1(x2 x2Var, int i7) {
-        this.f18632a = i7;
-        this.f18633b = x2Var;
+    public w1(t2 t2Var, int i7) {
+        this.f19024a = i7;
+        this.f19025b = t2Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f18632a) {
+    public final void a(Object obj) {
+        switch (this.f19024a) {
             case 0:
-                x2 x2Var = this.f18633b;
-                x2Var.getClass();
-                x2Var.S0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x2Var.l();
+                Boolean bool = (Boolean) obj;
+                l2 l2Var = this.f19025b.E;
+                if (l2Var != null) {
+                    if (bool.booleanValue()) {
+                        l2Var.Q = System.currentTimeMillis();
+                        l2Var.y("main_button_pressed", null);
+                        return;
+                    }
+                    l2Var.Q = System.currentTimeMillis();
+                    l2Var.y("secondary_button_pressed", null);
+                    return;
+                }
                 return;
             default:
-                this.f18633b.F.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                org.telegram.messenger.g0.g3(new kg.h0(7, this.f19025b, (TLRPC.UserFull) obj));
                 return;
         }
     }

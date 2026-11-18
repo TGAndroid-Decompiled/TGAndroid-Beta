@@ -2,10 +2,10 @@ package oh;
 
 import android.text.SpannableStringBuilder;
 import android.util.SparseArray;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.eq;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.lq;
 public abstract class a {
-    public static final SparseArray f21541a = new SparseArray(6);
+    public static final SparseArray f21907a = new SparseArray(6);
 
     public static SpannableStringBuilder a(int i7, CharSequence charSequence, boolean z10) {
         SpannableStringBuilder spannableStringBuilder;
@@ -19,14 +19,14 @@ public abstract class a {
         } else {
             spannableStringBuilder.insert(0, (CharSequence) "* ");
         }
-        SparseArray sparseArray = f21541a;
-        eq eqVar = (eq) sparseArray.get(i7);
-        if (eqVar == null) {
-            eqVar = new eq(i7, 0);
-            eqVar.a(j6.Zl);
-            sparseArray.put(i7, eqVar);
+        SparseArray sparseArray = f21907a;
+        lq lqVar = (lq) sparseArray.get(i7);
+        if (lqVar == null) {
+            lqVar = new lq(i7, 0);
+            lqVar.a(n6.Zl);
+            sparseArray.put(i7, lqVar);
         }
-        spannableStringBuilder.setSpan(eqVar, 0, 1, 33);
+        spannableStringBuilder.setSpan(lqVar, 0, 1, 33);
         if (z10) {
             spannableStringBuilder.append((char) 8297);
         }

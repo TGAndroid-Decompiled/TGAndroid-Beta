@@ -1,21 +1,23 @@
 package org.telegram.ui.Wallet;
-public final class f0 {
-    public String f43815a;
-    public i0 f43816b;
-    public byte[] f43817c;
-    public final l0 d;
 
-    public f0(l0 l0Var) {
-        this.d = l0Var;
+import org.telegram.messenger.x10;
+import org.telegram.ui.PasscodeActivity;
+public final class f0 extends PasscodeActivity {
+    public final boolean[] X;
+    public final x10 Y;
+
+    public f0(boolean[] zArr, x10 x10Var) {
+        super(3);
+        this.X = zArr;
+        this.Y = x10Var;
     }
 
-    public final void a() {
-        i0 i0Var = this.f43816b;
-        this.f43816b = null;
-        try {
-            this.d.U(i0Var, false, new e0(this, 0));
-        } finally {
-            i0Var.close();
+    @Override
+    public final void onFragmentDestroy() {
+        x10 x10Var;
+        super.onFragmentDestroy();
+        if (!this.X[0] && (x10Var = this.Y) != null) {
+            x10Var.a("PASSCODE_FAILED");
         }
     }
 }

@@ -22,11 +22,7 @@ public interface a1 {
 
     void P(boolean z10);
 
-    void a(int i7);
-
-    void b(x1 x1Var);
-
-    void c(boolean z10);
+    void a(x1 x1Var);
 
     void d(int i7);
 
@@ -38,19 +34,23 @@ public interface a1 {
 
     void h(boolean z10);
 
-    void i(int i7, boolean z10);
+    void i(int i7);
 
-    void j(float f10);
+    void j(boolean z10);
 
-    void l(int i7);
+    void k(int i7, boolean z10);
 
-    void m(o0 o0Var);
+    void l(float f10);
 
-    void n(e eVar);
+    void m(int i7);
 
-    void o(o0 o0Var);
+    void n(o0 o0Var);
+
+    void o(e eVar);
 
     void onRenderedFirstFrame();
+
+    void p(o0 o0Var);
 
     void q(v0 v0Var);
 

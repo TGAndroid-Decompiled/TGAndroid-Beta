@@ -1,39 +1,37 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Rect;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class wv extends v4.s {
-    public final ly Q;
+public final class wv extends v4.o0 {
+    public final ry f41799a;
 
-    public wv(ly lyVar) {
-        super(5);
-        this.Q = lyVar;
+    public wv(ry ryVar) {
+        this.f41799a = ryVar;
     }
 
     @Override
-    public final int o0(int i7, v4.w0 w0Var, v4.b1 b1Var) {
-        int o02 = super.o0(i7, w0Var, b1Var);
-        ly lyVar = this.Q;
-        if (o02 != 0 && lyVar.E0.getScrollState() == 1) {
-            lyVar.Y1 = false;
-            lyVar.Z();
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.c1 c1Var) {
+        int R = RecyclerView.R(view);
+        ry ryVar = this.f41799a;
+        v4.i0 adapter = ryVar.f39360i0.getAdapter();
+        vx vxVar = ryVar.f39376o0;
+        int i7 = 0;
+        if (adapter == vxVar && R == vxVar.J) {
+            rect.set(0, 0, 0, 0);
+            return;
         }
-        if (lyVar.U0 == null) {
-            jg.d1 d1Var = new jg.d1(lyVar, lyVar.f36941d1, lyVar.f36993u1.a(), lyVar.f36993u1.f(), 1);
-            lyVar.U0 = d1Var;
-            d1Var.a();
+        if (R == 0) {
+            vxVar.getClass();
         }
-        lyVar.U0.b();
-        return o02;
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, v4.b1 b1Var, int i7) {
-        try {
-            pi.l lVar = new pi.l(recyclerView.getContext(), 2);
-            lVar.f58480a = i7;
-            w0(lVar);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+        rect.left = 0;
+        rect.bottom = 0;
+        rect.top = org.telegram.messenger.g0.L(2.0f);
+        wx wxVar = ryVar.f39363j0;
+        vxVar.getClass();
+        if (!wxVar.E1(R)) {
+            i7 = org.telegram.messenger.g0.L(2.0f);
         }
+        rect.right = i7;
     }
 }

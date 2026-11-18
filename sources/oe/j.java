@@ -1,18 +1,18 @@
 package oe;
 public final class j implements ke.a {
-    public final ke.a f21440a;
-    public final o f21441b;
+    public final ke.a f21806a;
+    public final o f21807b;
 
     public j(ke.a serializer) {
         kotlin.jvm.internal.j.e(serializer, "serializer");
-        this.f21440a = serializer;
-        this.f21441b = new o(serializer.d());
+        this.f21806a = serializer;
+        this.f21807b = new o(serializer.d());
     }
 
     @Override
     public final void a(qe.h hVar, Object obj) {
         if (obj != null) {
-            hVar.i(this.f21440a, obj);
+            hVar.i(this.f21806a, obj);
         } else {
             hVar.f();
         }
@@ -22,27 +22,27 @@ public final class j implements ke.a {
     public final Object b(h2.c decoder) {
         kotlin.jvm.internal.j.e(decoder, "decoder");
         if (decoder.i()) {
-            return decoder.l(this.f21440a);
+            return decoder.l(this.f21806a);
         }
         return null;
     }
 
     @Override
     public final me.d d() {
-        return this.f21441b;
+        return this.f21807b;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj != null && j.class == obj.getClass() && kotlin.jvm.internal.j.a(this.f21440a, ((j) obj).f21440a)) {
+        if (obj != null && j.class == obj.getClass() && kotlin.jvm.internal.j.a(this.f21806a, ((j) obj).f21806a)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f21440a.hashCode();
+        return this.f21806a.hashCode();
     }
 }

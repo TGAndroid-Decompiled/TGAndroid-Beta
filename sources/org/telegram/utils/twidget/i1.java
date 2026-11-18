@@ -1,21 +1,25 @@
 package org.telegram.utils.twidget;
 
-import android.content.Context;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.c00;
-public final class i1 implements c00 {
-    public final Context f54256a;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+public abstract class i1 {
+    public static final ExecutorService f54787a = Executors.newFixedThreadPool(4, new ai.y0(7));
+    public static File f54788b;
 
-    public i1(Context context) {
-        this.f54256a = context;
-    }
-
-    @Override
-    public final void b() {
-        Utilities.f22416e.c(new j0(this.f54256a, 5));
-    }
-
-    @Override
-    public final void a() {
+    public static String a(InputStream inputStream) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte[] bArr = new byte[16384];
+        while (true) {
+            int read = inputStream.read(bArr);
+            if (read != -1) {
+                byteArrayOutputStream.write(bArr, 0, read);
+            } else {
+                return new String(byteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8);
+            }
+        }
     }
 }

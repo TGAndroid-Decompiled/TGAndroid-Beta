@@ -5,74 +5,85 @@ import android.content.SharedPreferences;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.np;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.pq;
-import org.telegram.messenger.vr;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.p21;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.uj0;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.rq;
+import org.telegram.messenger.tr;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.Components.b51;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.lq;
+import org.telegram.ui.Components.y21;
+import org.telegram.ui.Components.z41;
 import org.telegram.ui.Dictation.DictationAsr;
-public final class x2 extends r41 {
-    public w2 f1621e;
-    public w2[] f1622f = new w2[0];
+public final class x2 extends b51 {
+    public w2 f1612e;
+    public w2[] f1613f = new w2[0];
     public String[] h = new String[0];
-    public final t2 f1623n = new t2(this, 0);
+    public final t2 f1614n = new t2(this, 0);
 
     @Override
-    public final void Z(ArrayList arrayList, p41 p41Var) {
+    public final void Z(ArrayList arrayList, z41 z41Var) {
+        ClickableSpan[] clickableSpanArr;
         int i7 = 0;
-        if (DictationAsr.A()) {
-            b41 i10 = b41.i(2, "On-device transcription");
+        if (DictationAsr.u(this.currentAccount) && j1.h()) {
+            l41 i10 = l41.i(2, gd.M0(2131745055, null));
             i10.L(DictationAsr.z(this.currentAccount));
             arrayList.add(i10);
+            String M0 = gd.M0(2131745054, null);
             t2 t2Var = new t2(this, 1);
-            int i11 = j6.f29089q6;
-            SpannableStringBuilder S2 = org.telegram.messenger.g0.S2("**Learn more** >", i11, 0, t2Var, null);
+            String M02 = gd.M0(2131745061, null);
+            int i11 = n6.f29636q6;
+            SpannableStringBuilder R2 = org.telegram.messenger.g0.R2(M02, i11, 0, t2Var, null);
             SpannableString spannableString = new SpannableString(">");
-            eq eqVar = new eq(2131232060, 0);
-            eqVar.a(i11);
-            eqVar.c(org.telegram.messenger.g0.L(18.0f));
-            eqVar.F = org.telegram.messenger.g0.L(11.0f);
-            eqVar.f34414r = -org.telegram.messenger.g0.L(5.0f);
-            spannableString.setSpan(eqVar, 0, spannableString.length(), 33);
-            arrayList.add(b41.C(TextUtils.concat("Voice messages are transcribed on this phone. Private: nothing leaves it. ", org.telegram.messenger.g0.K2(S2, spannableString, ">"))));
+            lq lqVar = new lq(2131232061, 0);
+            lqVar.a(i11);
+            lqVar.c(org.telegram.messenger.g0.L(18.0f));
+            lqVar.F = org.telegram.messenger.g0.L(11.0f);
+            lqVar.f37198r = -org.telegram.messenger.g0.L(5.0f);
+            spannableString.setSpan(lqVar, 0, spannableString.length(), 33);
+            SpannableStringBuilder K2 = org.telegram.messenger.g0.K2(R2, spannableString, ">");
+            for (ClickableSpan clickableSpan : (ClickableSpan[]) K2.getSpans(0, K2.length(), ClickableSpan.class)) {
+                int spanStart = K2.getSpanStart(clickableSpan);
+                int spanFlags = K2.getSpanFlags(clickableSpan);
+                K2.removeSpan(clickableSpan);
+                K2.setSpan(clickableSpan, spanStart, K2.length(), spanFlags);
+            }
+            arrayList.add(l41.C(TextUtils.concat(M0, " ", K2)));
         }
-        arrayList.add(b41.u("Languages"));
-        w2 w2Var = this.f1621e;
+        i5.c.s(2131745062, null, arrayList);
+        w2 w2Var = this.f1612e;
         if (w2Var != null) {
-            arrayList.add(b41.j(1, w2Var));
+            arrayList.add(l41.j(1, w2Var));
         }
         while (true) {
-            w2[] w2VarArr = this.f1622f;
+            w2[] w2VarArr = this.f1613f;
             if (i7 < w2VarArr.length) {
                 w2 w2Var2 = w2VarArr[i7];
                 if (w2Var2 != null) {
-                    arrayList.add(b41.j(i7 + 100, w2Var2));
+                    arrayList.add(l41.j(i7 + 100, w2Var2));
                 }
                 i7++;
             } else {
-                arrayList.add(b41.C(null));
-                b41 i12 = b41.i(3, "Fallback to Google");
+                arrayList.add(l41.C(null));
+                l41 i12 = l41.i(3, gd.M0(2131745064, null));
                 i12.L(DictationAsr.x());
                 arrayList.add(i12);
-                arrayList.add(b41.C("For other languages, app can use system speech recognition. This might send your voice data to Google or other vendor servers."));
-                boolean z10 = org.telegram.messenger.r2.f26206a;
-                b41 e10 = b41.e(4, "Delete all models");
-                e10.f33190r = true;
+                arrayList.add(l41.C(gd.M0(2131745063, null)));
+                boolean z10 = org.telegram.messenger.s2.f26723a;
+                l41 e10 = l41.e(4, gd.M0(2131745073, null));
+                e10.f37024s = true;
                 arrayList.add(e10);
-                b41 e11 = b41.e(5, "Delete all local transcriptions");
-                e11.f33190r = true;
+                l41 e11 = l41.e(5, gd.M0(2131745072, null));
+                e11.f37024s = true;
                 arrayList.add(e11);
-                arrayList.add(b41.C(null));
+                arrayList.add(l41.C(null));
                 e0();
                 return;
             }
@@ -81,77 +92,74 @@ public final class x2 extends r41 {
 
     @Override
     public final CharSequence a0() {
-        return "Speech to Text";
+        return gd.M0(2131745041, null);
     }
 
     @Override
-    public final void b0(b41 b41Var, View view) {
+    public final void b0(l41 l41Var, View view) {
         String str;
         boolean z10;
-        int i7 = b41Var.d;
+        int i7 = l41Var.d;
         if (i7 != 2) {
             if (i7 != 3) {
                 if (i7 != 4) {
                     if (i7 == 5) {
                         for (int i10 = 0; i10 < 4; i10++) {
-                            if (m10.i(i10).p()) {
+                            if (j10.i(i10).p()) {
                                 if (i10 == this.currentAccount) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
-                                vr a02 = vr.a0(i10);
-                                a02.f27219a.c(new pq(0, a02, new u2(0, this, z10)));
+                                tr a02 = tr.a0(i10);
+                                a02.f27054a.c(new rq(0, a02, new u2(0, this, z10)));
                             }
                         }
                         return;
                     }
                     return;
                 }
-                DictationAsr.q();
+                DictationAsr.p();
                 e0();
                 return;
             }
-            np.e1().edit().putBoolean("asr_google", !DictationAsr.x()).apply();
+            mp.g1().edit().putBoolean("asr_google", !DictationAsr.x()).apply();
         } else {
             int i11 = this.currentAccount;
             boolean z11 = !DictationAsr.z(i11);
-            SharedPreferences.Editor edit = np.e1().edit();
-            if (m10.i(i11).q()) {
+            SharedPreferences.Editor edit = mp.g1().edit();
+            if (j10.i(i11).q()) {
                 str = "asr_local_premium";
             } else {
                 str = "asr_local_free";
             }
             edit.putBoolean(str, z11).apply();
             for (int i12 = 0; i12 < 4; i12++) {
-                if (m10.i(i12).p()) {
-                    ns.f(i12).k(ns.E1, new Object[0]);
+                if (j10.i(i12).p()) {
+                    ks.f(i12).k(ks.E1, new Object[0]);
                 }
             }
         }
-        this.f38880a.f39892g3.O(true);
+        this.f33530a.f34607g3.O(true);
     }
 
     @Override
-    public final boolean c0(b41 b41Var, View view) {
+    public final boolean c0(l41 l41Var, View view) {
         return false;
     }
 
     @Override
     public final View createView(Context context) {
         setHasOwnBackground(true);
-        w2 w2Var = new w2(context, null, "Auto-Detect", null, true);
-        this.f1621e = w2Var;
+        w2 w2Var = new w2(context, null, gd.M0(2131745074, null), null, true);
+        this.f1612e = w2Var;
         w2Var.setOnClickListener(new ah.d(this, 1));
         d0(context);
         this.fragmentView = super.createView(context);
-        this.f38880a.r1();
-        this.f38880a.setSectionsDrawBackground(true);
-        DictationAsr.f42584g.add(this.f1623n);
-        CountDownLatch e10 = j1.e();
-        if (e10 != null) {
-            new Thread(new f1(e10, 0), "DictationModels").start();
-        }
+        this.f33530a.r1();
+        this.f33530a.setSectionsDrawBackground(true);
+        DictationAsr.f43028g.add(this.f1614n);
+        j1.j();
         return this.fragmentView;
     }
 
@@ -162,7 +170,7 @@ public final class x2 extends r41 {
         String str2;
         String[] C = DictationAsr.C();
         this.h = C;
-        this.f1622f = new w2[C.length];
+        this.f1613f = new w2[C.length];
         for (int i7 = 0; i7 < C.length; i7++) {
             t H = DictationAsr.H(C[i7]);
             if (i7 != 0 && DictationAsr.H(C[i7 - 1]) == H) {
@@ -175,16 +183,16 @@ public final class x2 extends r41 {
             } else {
                 z11 = false;
             }
-            String P0 = p21.P0(C[i7]);
-            w2[] w2VarArr = this.f1622f;
+            String Q0 = y21.Q0(C[i7]);
+            w2[] w2VarArr = this.f1613f;
             String str3 = C[i7];
-            if (P0 != null) {
-                str = P0;
+            if (Q0 != null) {
+                str = Q0;
             } else {
                 str = str3;
             }
-            if (z10 && H.f1541c > 0) {
-                str2 = org.telegram.messenger.g0.i0(H.f1541c, false, false);
+            if (z10 && H.f1532c > 0) {
+                str2 = org.telegram.messenger.g0.i0(H.f1532c, false, false);
             } else {
                 str2 = null;
             }
@@ -196,11 +204,11 @@ public final class x2 extends r41 {
 
     public final void e0() {
         w2[] w2VarArr;
-        w2 w2Var = this.f1621e;
+        w2 w2Var = this.f1612e;
         if (w2Var != null) {
             w2Var.b();
         }
-        for (w2 w2Var2 : this.f1622f) {
+        for (w2 w2Var2 : this.f1613f) {
             if (w2Var2 != null) {
                 w2Var2.b();
             }
@@ -208,8 +216,8 @@ public final class x2 extends r41 {
     }
 
     @Override
-    public final uj0 getListViewForSimpleGlass() {
-        return this.f38880a;
+    public final ck0 getListViewForSimpleGlass() {
+        return this.f33530a;
     }
 
     @Override
@@ -219,7 +227,7 @@ public final class x2 extends r41 {
 
     @Override
     public final void onFragmentDestroy() {
-        DictationAsr.N(this.f1623n);
+        DictationAsr.N(this.f1614n);
         super.onFragmentDestroy();
     }
 

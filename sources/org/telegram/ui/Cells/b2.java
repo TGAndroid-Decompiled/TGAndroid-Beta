@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.widget.TextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.b00;
-import org.telegram.ui.Components.y31;
-import org.telegram.ui.Components.z70;
+import org.telegram.ui.Components.i00;
+import org.telegram.ui.Components.i41;
+import org.telegram.ui.Components.k80;
 import org.telegram.ui.ad;
-public final class b2 extends z70 {
+public final class b2 extends k80 {
     public final int M;
     public final Object N;
 
@@ -23,7 +23,7 @@ public final class b2 extends z70 {
     public int a() {
         switch (this.M) {
             case 4:
-                return ((UndoView) this.N).f32775a;
+                return ((UndoView) this.N).f33172a;
             default:
                 return super.a();
         }
@@ -33,7 +33,7 @@ public final class b2 extends z70 {
     public int c() {
         switch (this.M) {
             case 1:
-                Integer num = ((y8) this.N).d;
+                Integer num = ((z8) this.N).d;
                 if (num != null) {
                     return num.intValue();
                 }
@@ -51,10 +51,10 @@ public final class b2 extends z70 {
                 ((c2) this.N).f();
                 return;
             case 1:
-                y8 y8Var = (y8) this.N;
-                y8Var.b();
+                z8 z8Var = (z8) this.N;
+                z8Var.b();
                 super.onDraw(canvas);
-                y8Var.a();
+                z8Var.a();
                 return;
             default:
                 super.onDraw(canvas);
@@ -75,16 +75,16 @@ public final class b2 extends z70 {
                 return;
             case 2:
                 if (charSequence != 0) {
-                    charSequence = org.telegram.messenger.g0.X2(charSequence.toString());
+                    charSequence = org.telegram.messenger.g0.W2(charSequence.toString());
                     int indexOf = charSequence.toString().indexOf(10);
                     if (indexOf >= 0) {
                         charSequence.replace(indexOf, indexOf + 1, " ");
-                        charSequence.setSpan(new b00(org.telegram.ui.ActionBar.j6.f29070p7, ((org.telegram.ui.ka) this.N).f48611e.getResourceProvider()), 0, indexOf, 33);
+                        charSequence.setSpan(new i00(org.telegram.ui.ActionBar.n6.f29617p7, ((org.telegram.ui.ka) this.N).f49227e.getResourceProvider()), 0, indexOf, 33);
                     }
-                    y31[] y31VarArr = (y31[]) charSequence.getSpans(0, charSequence.length(), y31.class);
-                    for (int i7 = 0; i7 < y31VarArr.length; i7++) {
-                        charSequence.setSpan(new hi.ha(this, 2), charSequence.getSpanStart(y31VarArr[i7]), charSequence.getSpanEnd(y31VarArr[i7]), 33);
-                        charSequence.removeSpan(y31VarArr[i7]);
+                    i41[] i41VarArr = (i41[]) charSequence.getSpans(0, charSequence.length(), i41.class);
+                    for (int i7 = 0; i7 < i41VarArr.length; i7++) {
+                        charSequence.setSpan(new hi.ia(this, 2), charSequence.getSpanStart(i41VarArr[i7]), charSequence.getSpanEnd(i41VarArr[i7]), 33);
+                        charSequence.removeSpan(i41VarArr[i7]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -92,22 +92,22 @@ public final class b2 extends z70 {
             case 3:
                 ad adVar = (ad) this.N;
                 if (charSequence != 0) {
-                    charSequence = org.telegram.messenger.g0.X2(charSequence.toString());
+                    charSequence = org.telegram.messenger.g0.W2(charSequence.toString());
                     int indexOf2 = charSequence.toString().indexOf(10);
                     if (indexOf2 >= 0) {
                         charSequence.replace(indexOf2, indexOf2 + 1, " ");
-                        charSequence.setSpan(new b00(org.telegram.ui.ActionBar.j6.f29070p7, adVar.getResourceProvider()), 0, indexOf2, 33);
+                        charSequence.setSpan(new i00(org.telegram.ui.ActionBar.n6.f29617p7, adVar.getResourceProvider()), 0, indexOf2, 33);
                     }
-                    y31[] y31VarArr2 = (y31[]) charSequence.getSpans(0, charSequence.length(), y31.class);
-                    EditTextBoldCursor editTextBoldCursor = adVar.f45028y;
+                    i41[] i41VarArr2 = (i41[]) charSequence.getSpans(0, charSequence.length(), i41.class);
+                    EditTextBoldCursor editTextBoldCursor = adVar.f45571y;
                     if (editTextBoldCursor != null && editTextBoldCursor.getText() != null) {
-                        str = adVar.f45028y.getText().toString();
+                        str = adVar.f45571y.getText().toString();
                     } else {
                         str = "";
                     }
-                    for (int i10 = 0; i10 < y31VarArr2.length; i10++) {
-                        charSequence.setSpan(new h(4, (Object) this, str), charSequence.getSpanStart(y31VarArr2[i10]), charSequence.getSpanEnd(y31VarArr2[i10]), 33);
-                        charSequence.removeSpan(y31VarArr2[i10]);
+                    for (int i10 = 0; i10 < i41VarArr2.length; i10++) {
+                        charSequence.setSpan(new h(4, (Object) this, str), charSequence.getSpanStart(i41VarArr2[i10]), charSequence.getSpanEnd(i41VarArr2[i10]), 33);
+                        charSequence.removeSpan(i41VarArr2[i10]);
                     }
                 }
                 super.setText(charSequence, bufferType);
@@ -115,14 +115,14 @@ public final class b2 extends z70 {
         }
     }
 
-    public b2(y8 y8Var, Context context, n2.o0 o0Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, o0Var, e6Var);
+    public b2(z8 z8Var, Context context, n2.o0 o0Var, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, o0Var, i6Var);
         this.M = 1;
-        this.N = y8Var;
+        this.N = z8Var;
     }
 
-    public b2(UndoView undoView, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public b2(UndoView undoView, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        super(context, i6Var);
         this.M = 4;
         this.N = undoView;
     }

@@ -1,42 +1,45 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import com.google.android.gms.tasks.CancellationToken;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.jd0;
-public final class e9 implements s10 {
-    public final int f23282a = 1;
-    public final int f23283b;
-    public final Object f23284c;
-    public final Object d;
-    public final Object f23285e;
-    public final Object f23286f;
-    public final Object f23287g;
-    public final Object h;
+import org.telegram.tgnet.ConnectionsManager;
+public final class e9 implements Runnable {
+    public final int f23675a;
+    public final int f23676b;
+    public final int f23677c;
 
-    public e9(int i7, org.telegram.ui.Wallet.l0 l0Var, String str, byte[] bArr, byte[] bArr2, TL_wallet.sendTransfer sendtransfer, org.telegram.ui.Wallet.r2 r2Var) {
-        this.f23283b = i7;
-        this.f23284c = l0Var;
-        this.d = str;
-        this.f23285e = bArr;
-        this.f23286f = bArr2;
-        this.f23287g = sendtransfer;
-        this.h = r2Var;
+    public e9(int i7, int i10, int i11) {
+        this.f23675a = i11;
+        this.f23676b = i7;
+        this.f23677c = i10;
     }
 
     @Override
-    public final void a(java.lang.Object r24, java.lang.Object r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.e9.a(java.lang.Object, java.lang.Object):void");
-    }
-
-    public e9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, Runnable[] runnableArr, androidx.emoji2.text.n nVar, Context context, jd0 jd0Var, int i7) {
-        this.f23284c = cancellationToken;
-        this.d = taskCompletionSource;
-        this.f23285e = runnableArr;
-        this.f23286f = nVar;
-        this.f23287g = context;
-        this.h = jd0Var;
-        this.f23283b = i7;
+    public final void run() {
+        int i7 = this.f23675a;
+        int i10 = this.f23677c;
+        int i11 = this.f23676b;
+        switch (i7) {
+            case 0:
+                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
+                return;
+            case 1:
+                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
+                return;
+            case 2:
+                String[] strArr = MediaController.W1;
+                ks.f(i11).k(156, Integer.valueOf(i10));
+                return;
+            case 3:
+                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
+                return;
+            case 4:
+                ConnectionsManager.lambda$onConnectionStateChanged$15(i11, i10);
+                return;
+            case 5:
+                ConnectionsManager.lambda$onRequestNewServerIpAndPort$18(i11, i10);
+                return;
+            default:
+                ConnectionsManager.getInstance(i11).cancelRequest(i10, true);
+                return;
+        }
     }
 }

@@ -5,45 +5,45 @@ import android.graphics.drawable.ShapeDrawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import hi.k3;
-import org.telegram.messenger.m10;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.l2;
-import org.telegram.ui.Components.a41;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.fq;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.u41;
-import org.telegram.ui.Components.uj0;
-public final class l1 extends a41 {
-    public static final int f52704b = 0;
+import hi.l3;
+import org.telegram.messenger.j10;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.mq;
+import org.telegram.ui.Components.o5;
+import org.telegram.ui.Components.z41;
+public final class l1 extends k41 {
+    public static final int f53233b = 0;
 
     static {
-        a41.h(new a41());
+        k41.h(new k41());
     }
 
     @Override
-    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
+    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
         m1 m1Var = (m1) view;
-        CharSequence charSequence = b41Var.f33186n;
-        String str = (String) b41Var.f33184l;
-        long j3 = b41Var.B;
-        ImageView imageView = m1Var.f52716a;
-        m1Var.f52717b.setText(charSequence);
-        l2 l2Var = m1Var.f52718c;
-        l2Var.setText(str);
+        CharSequence charSequence = l41Var.f37020o;
+        String str = (String) l41Var.f37018m;
+        long j3 = l41Var.C;
+        ImageView imageView = m1Var.f53245a;
+        m1Var.f53246b.setText(charSequence);
+        o2 o2Var = m1Var.f53247c;
+        o2Var.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
-            l2Var.setTranslationY(-org.telegram.messenger.g0.L(14.0f));
-            l2Var.setScaleX(1.3f);
-            l2Var.setScaleY(1.3f);
+            o2Var.setTranslationY(-org.telegram.messenger.g0.L(14.0f));
+            o2Var.setScaleX(1.3f);
+            o2Var.setScaleY(1.3f);
         } else {
-            l2Var.setTranslationY(0.0f);
-            l2Var.setScaleX(1.0f);
-            l2Var.setScaleY(1.0f);
+            o2Var.setTranslationY(0.0f);
+            o2Var.setScaleX(1.0f);
+            o2Var.setScaleY(1.0f);
         }
-        m1Var.f52719e = str;
+        m1Var.f53248e = str;
         if (TextUtils.isEmpty(charSequence)) {
             if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
                 charSequence = str;
@@ -52,33 +52,33 @@ public final class l1 extends a41 {
             }
         }
         String charSequence2 = charSequence.toString();
-        g5 g5Var = m1Var.d;
-        if (g5Var != null) {
-            g5Var.n(imageView);
+        o5 o5Var = m1Var.d;
+        if (o5Var != null) {
+            o5Var.n(imageView);
             m1Var.d = null;
         }
         m1Var.h = null;
         if (j3 != 0) {
-            g5 m10 = g5.m(m10.f24940t0, j3, null, 1);
+            o5 m10 = o5.m(j10.f24773t0, j3, null, 1);
             m1Var.d = m10;
             m10.a(imageView);
             imageView.setImageDrawable(m1Var.d);
         } else {
-            ShapeDrawable d02 = j6.d0(org.telegram.messenger.g0.L(6.0f), j6.r1(0.1f, j6.x0(null, j6.G6, false)));
+            ShapeDrawable d02 = n6.d0(org.telegram.messenger.g0.L(6.0f), n6.r1(0.1f, n6.x0(null, n6.G6, false)));
             m1Var.h = d02;
-            fq fqVar = new fq(d02, new k3(charSequence2));
+            mq mqVar = new mq(d02, new l3(charSequence2));
             int L = org.telegram.messenger.g0.L(28.0f);
             int L2 = org.telegram.messenger.g0.L(28.0f);
-            fqVar.h = L;
-            fqVar.f34678n = L2;
-            imageView.setImageDrawable(fqVar);
+            mqVar.h = L;
+            mqVar.f37612n = L2;
+            imageView.setImageDrawable(mqVar);
         }
-        m1Var.f52720f = z10;
+        m1Var.f53249f = z10;
         m1Var.invalidate();
     }
 
     @Override
-    public final View d(Context context, uj0 uj0Var, int i7, e6 e6Var) {
+    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
         return new m1(context);
     }
 }

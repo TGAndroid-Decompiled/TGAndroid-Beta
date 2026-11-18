@@ -1,43 +1,53 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewTreeObserver;
-public final class x70 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f53118a;
-    public final Object f53119b;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class x70 implements org.telegram.messenger.x10 {
+    public final int f53680a;
+    public final LaunchActivity f53681b;
 
-    public x70(Object obj, int i7) {
-        this.f53118a = i7;
-        this.f53119b = obj;
+    public x70(LaunchActivity launchActivity, int i7) {
+        this.f53680a = i7;
+        this.f53681b = launchActivity;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        int i7 = this.f53118a;
-        Object obj = this.f53119b;
+    public final void a(Object obj) {
+        org.telegram.ui.ActionBar.h2 lastFragment;
+        int i7 = this.f53680a;
+        LaunchActivity launchActivity = this.f53681b;
         switch (i7) {
             case 0:
-                String str = LaunchActivity.C1;
-                int measuredHeight = ((View) obj).getMeasuredHeight();
-                StringBuilder m10 = i5.c.m(measuredHeight, "height = ", " displayHeight = ");
-                Point point = org.telegram.messenger.g0.f23611q;
-                i5.c.r(point.y, m10);
-                int i10 = (measuredHeight - org.telegram.messenger.g0.f23606n) - org.telegram.messenger.g0.f23605m;
-                if (i10 > org.telegram.messenger.g0.L(100.0f) && i10 < point.y && org.telegram.messenger.g0.L(100.0f) + i10 > point.y) {
-                    point.y = i10;
-                    if (org.telegram.messenger.r2.f26206a) {
-                        i5.c.r(point.y, new StringBuilder("fix display size y to "));
-                        return;
-                    }
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                if (launchActivity.f43094p0 != null && booleanValue && org.telegram.messenger.pc.c() < 100 && (lastFragment = launchActivity.f43094p0.getLastFragment()) != null && !(lastFragment instanceof y90)) {
+                    int b10 = org.telegram.messenger.pc.b();
+                    org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(lastFragment);
+                    org.telegram.ui.Components.s9 s9Var = new org.telegram.ui.Components.s9(b10 / 100.0f, lastFragment.getThemedColor(org.telegram.ui.ActionBar.n6.Y5));
+                    String M0 = org.telegram.messenger.gd.M0(2131748523, null);
+                    String a02 = org.telegram.messenger.gd.a0("LowPowerEnabledSubtitle", null, 2131748524, String.format("%d%%", Integer.valueOf(b10)));
+                    String M02 = org.telegram.messenger.gd.M0(2131751424, null);
+                    s60 s60Var = new s60(launchActivity, 11);
+                    b02.getClass();
+                    Context X = b02.X();
+                    org.telegram.ui.ActionBar.i6 i6Var = b02.f37093c;
+                    org.telegram.ui.Components.dc dcVar = new org.telegram.ui.Components.dc(X, i6Var);
+                    dcVar.f34369a.setImageDrawable(s9Var);
+                    dcVar.f34370b.setText(M0);
+                    dcVar.f34371c.setText(a02);
+                    org.telegram.ui.Components.ec ecVar = new org.telegram.ui.Components.ec(b02.X(), i6Var, true);
+                    ecVar.e(M02);
+                    ecVar.f34666b = s60Var;
+                    dcVar.setButton(ecVar);
+                    org.telegram.ui.Components.gc b11 = b02.b(dcVar, 2750);
+                    b11.f35461j = 5000;
+                    b11.j();
                     return;
                 }
                 return;
             default:
-                t71 t71Var = (t71) obj;
-                t71Var.R = SystemClock.elapsedRealtime() + 1500;
-                t71Var.m0.invalidate();
+                TLRPC.User user = (TLRPC.User) obj;
+                String str = LaunchActivity.C1;
+                org.telegram.messenger.mp.u1(launchActivity.P).E3(null, user, null, 0, null, false, false);
                 return;
         }
     }

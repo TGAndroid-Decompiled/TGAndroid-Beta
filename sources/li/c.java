@@ -1,47 +1,117 @@
 package li;
 
-import org.telegram.messenger.is;
-import org.telegram.messenger.np;
-import org.telegram.messenger.qr;
-import org.telegram.ui.ActionBar.t1;
-public final class c implements qr {
-    public final int f19531a;
-    public final t1 f19532b;
-    public final long f19533c;
-    public final boolean d;
-    public final is f19534e;
+import android.view.View;
+import org.telegram.messenger.w10;
+import org.telegram.ui.Components.l41;
+public final class c implements w10, h2.o {
+    public final int f19898a;
 
-    public c(is isVar, t1 t1Var, long j3, boolean z10, int i7) {
-        this.f19531a = i7;
-        this.f19534e = isVar;
-        this.f19532b = t1Var;
-        this.f19533c = j3;
-        this.d = z10;
+    @Override
+    public Boolean a(l41 l41Var, View view, Integer num, Float f10, Float f11) {
+        switch (this.f19898a) {
+            case 0:
+                return Boolean.FALSE;
+            default:
+                return Boolean.FALSE;
+        }
     }
 
     @Override
-    public final void run(long j3) {
-        switch (this.f19531a) {
-            case 0:
-                e eVar = (e) this.f19534e;
-                eVar.getClass();
-                this.f19532b.dismiss();
-                if (j3 != 0) {
-                    eVar.f19554b = -j3;
-                    eVar.f19555c = eVar.getMessagesController().M0(Long.valueOf(j3));
-                    eVar.b0(this.f19533c, this.d);
-                    return;
-                }
+    public void invoke(Object obj) {
+        m2.b bVar = (m2.b) obj;
+        switch (this.f19898a) {
+            case 2:
+                bVar.getClass();
+                return;
+            case 3:
+                bVar.getClass();
+                return;
+            case 4:
+                bVar.getClass();
+                return;
+            case 5:
+                bVar.getClass();
+                return;
+            case 6:
+                bVar.getClass();
+                return;
+            case 7:
+                bVar.getClass();
+                return;
+            case 8:
+                bVar.getClass();
+                return;
+            case 9:
+                bVar.getClass();
+                return;
+            case 10:
+                bVar.getClass();
+                return;
+            case 11:
+                bVar.getClass();
+                return;
+            case 12:
+                bVar.getClass();
+                return;
+            case 13:
+                bVar.getClass();
+                return;
+            case 14:
+                bVar.getClass();
+                return;
+            case 15:
+                bVar.getClass();
+                return;
+            case 16:
+                bVar.getClass();
+                return;
+            case 17:
+                bVar.getClass();
+                return;
+            case 18:
+                bVar.getClass();
+                return;
+            case 19:
+                bVar.getClass();
+                return;
+            case 20:
+                bVar.getClass();
+                return;
+            case 21:
+                bVar.getClass();
+                return;
+            case 22:
+                bVar.getClass();
+                return;
+            case 23:
+                bVar.getClass();
+                return;
+            case 24:
+                bVar.getClass();
+                return;
+            case 25:
+                bVar.getClass();
+                return;
+            case 26:
+                bVar.getClass();
+                return;
+            case 27:
+                bVar.getClass();
+                return;
+            case 28:
+                bVar.getClass();
                 return;
             default:
-                d0 d0Var = (d0) this.f19534e;
-                d0Var.getClass();
-                this.f19532b.dismiss();
-                if (j3 != 0) {
-                    d0Var.K0(np.s1(d0Var.f29679a).M0(Long.valueOf(j3)), this.f19533c, this.d);
-                    return;
-                }
+                bVar.getClass();
                 return;
         }
+    }
+
+    public c(m2.a aVar, int i7, int i10, char c10) {
+        this.f19898a = i10;
+    }
+
+    public c(m2.a aVar, String str, long j3, long j10, int i7) {
+        this.f19898a = i7;
     }
 }

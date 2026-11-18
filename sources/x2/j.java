@@ -4,153 +4,153 @@ import a8.xa;
 import j$.util.Objects;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
-import org.telegram.ui.Components.km;
-import org.telegram.ui.Wallet.k8;
-import org.telegram.ui.yl;
-public final class j implements j0, q2.l {
-    public final Object f59561a;
-    public xa f59562b;
-    public q2.k f59563c;
+import org.telegram.ui.Components.rm;
+import org.telegram.ui.wc1;
+import org.telegram.ui.zl;
+public final class j implements k0, q2.k {
+    public final Object f60111a;
+    public xa f60112b;
+    public q2.j f60113c;
     public final l d;
 
     public j(l lVar, Object obj) {
         this.d = lVar;
-        this.f59562b = lVar.b(null);
-        this.f59563c = new q2.k(lVar.d.f55187c, 0, null);
-        this.f59561a = obj;
+        this.f60112b = lVar.b(null);
+        this.f60113c = new q2.j(lVar.d.f55761c, 0, null);
+        this.f60111a = obj;
     }
 
     @Override
-    public final void A(int i7, f0 f0Var, t tVar, b0 b0Var) {
-        if (a(i7, f0Var)) {
-            xa xaVar = this.f59562b;
-            b0 b10 = b(b0Var, f0Var);
+    public final void A(int i7, g0 g0Var, u uVar, c0 c0Var) {
+        if (a(i7, g0Var)) {
+            xa xaVar = this.f60112b;
+            c0 d = d(c0Var, g0Var);
             xaVar.getClass();
-            xaVar.g(new h0(xaVar, tVar, b10, 1));
+            xaVar.i(new i0(xaVar, uVar, d, 1));
         }
     }
 
     @Override
-    public final void C(int i7, f0 f0Var, b0 b0Var) {
-        if (a(i7, f0Var)) {
-            xa xaVar = this.f59562b;
-            b0 b10 = b(b0Var, f0Var);
-            f0 f0Var2 = (f0) xaVar.f714c;
-            f0Var2.getClass();
-            xaVar.g(new km(xaVar, f0Var2, b10, 17));
+    public final void C(int i7, g0 g0Var, c0 c0Var) {
+        if (a(i7, g0Var)) {
+            xa xaVar = this.f60112b;
+            c0 d = d(c0Var, g0Var);
+            g0 g0Var2 = (g0) xaVar.f714c;
+            g0Var2.getClass();
+            xaVar.i(new rm(xaVar, g0Var2, d, 17));
         }
     }
 
     @Override
-    public final void G(int i7, f0 f0Var, t tVar, b0 b0Var) {
-        if (a(i7, f0Var)) {
-            xa xaVar = this.f59562b;
-            b0 b10 = b(b0Var, f0Var);
+    public final void G(int i7, g0 g0Var, u uVar, c0 c0Var) {
+        if (a(i7, g0Var)) {
+            xa xaVar = this.f60112b;
+            c0 d = d(c0Var, g0Var);
             xaVar.getClass();
-            xaVar.g(new h0(xaVar, tVar, b10, 0));
+            xaVar.i(new i0(xaVar, uVar, d, 0));
         }
     }
 
     @Override
-    public final void I(int i7, f0 f0Var, t tVar, b0 b0Var, int i10) {
-        if (a(i7, f0Var)) {
-            xa xaVar = this.f59562b;
-            b0 b10 = b(b0Var, f0Var);
+    public final void I(int i7, g0 g0Var, u uVar, c0 c0Var, int i10) {
+        if (a(i7, g0Var)) {
+            xa xaVar = this.f60112b;
+            c0 d = d(c0Var, g0Var);
             xaVar.getClass();
-            xaVar.g(new bg.f0(xaVar, tVar, b10, i10, 11));
+            xaVar.i(new bg.g0(xaVar, uVar, d, i10, 11));
         }
     }
 
     @Override
-    public final void K(int i7, f0 f0Var, Exception exc) {
-        if (a(i7, f0Var)) {
-            this.f59563c.d(exc);
+    public final void K(int i7, g0 g0Var, Exception exc) {
+        if (a(i7, g0Var)) {
+            this.f60113c.d(exc);
         }
     }
 
     @Override
-    public final void N(int i7, f0 f0Var, int i10) {
-        if (a(i7, f0Var)) {
-            this.f59563c.c(i10);
+    public final void N(int i7, g0 g0Var, int i10) {
+        if (a(i7, g0Var)) {
+            this.f60113c.c(i10);
         }
     }
 
-    public final boolean a(int i7, f0 f0Var) {
-        f0 f0Var2;
-        Object obj = this.f59561a;
+    public final boolean a(int i7, g0 g0Var) {
+        g0 g0Var2;
+        Object obj = this.f60111a;
         l lVar = this.d;
-        if (f0Var != null) {
-            f0Var2 = lVar.u(obj, f0Var);
-            if (f0Var2 == null) {
+        if (g0Var != null) {
+            g0Var2 = lVar.u(obj, g0Var);
+            if (g0Var2 == null) {
                 return false;
             }
         } else {
-            f0Var2 = null;
+            g0Var2 = null;
         }
         int w10 = lVar.w(i7, obj);
-        xa xaVar = this.f59562b;
-        if (xaVar.f713b != w10 || !Objects.equals((f0) xaVar.f714c, f0Var2)) {
-            this.f59562b = new xa((CopyOnWriteArrayList) lVar.f59461c.d, w10, f0Var2);
+        xa xaVar = this.f60112b;
+        if (xaVar.f713b != w10 || !Objects.equals((g0) xaVar.f714c, g0Var2)) {
+            this.f60112b = new xa((CopyOnWriteArrayList) lVar.f60025c.d, w10, g0Var2);
         }
-        q2.k kVar = this.f59563c;
-        if (kVar.f55185a != w10 || !Objects.equals(kVar.f55186b, f0Var2)) {
-            this.f59563c = new q2.k(lVar.d.f55187c, w10, f0Var2);
+        q2.j jVar = this.f60113c;
+        if (jVar.f55759a != w10 || !Objects.equals(jVar.f55760b, g0Var2)) {
+            this.f60113c = new q2.j(lVar.d.f55761c, w10, g0Var2);
             return true;
         }
         return true;
     }
 
-    public final b0 b(b0 b0Var, f0 f0Var) {
-        long j3 = b0Var.f59500f;
+    @Override
+    public final void b(int i7, g0 g0Var, c0 c0Var) {
+        if (a(i7, g0Var)) {
+            xa xaVar = this.f60112b;
+            c0 d = d(c0Var, g0Var);
+            xaVar.getClass();
+            xaVar.i(new wc1(27, xaVar, d));
+        }
+    }
+
+    @Override
+    public final void c(int i7, g0 g0Var, nb.a aVar) {
+        if (a(i7, g0Var)) {
+            this.f60113c.a(aVar);
+        }
+    }
+
+    public final c0 d(c0 c0Var, g0 g0Var) {
+        long j3 = c0Var.f60047f;
         l lVar = this.d;
-        Object obj = this.f59561a;
+        Object obj = this.f60111a;
         long v = lVar.v(obj, j3);
-        long j10 = b0Var.f59501g;
+        long j10 = c0Var.f60048g;
         long v10 = lVar.v(obj, j10);
         if (v == j3 && v10 == j10) {
-            return b0Var;
+            return c0Var;
         }
-        return new b0(b0Var.f59496a, b0Var.f59497b, b0Var.f59498c, b0Var.d, b0Var.f59499e, v, v10);
+        return new c0(c0Var.f60043a, c0Var.f60044b, c0Var.f60045c, c0Var.d, c0Var.f60046e, v, v10);
     }
 
     @Override
-    public final void k(int i7, f0 f0Var, b0 b0Var) {
-        if (a(i7, f0Var)) {
-            xa xaVar = this.f59562b;
-            b0 b10 = b(b0Var, f0Var);
+    public final void r(int i7, g0 g0Var, u uVar, c0 c0Var, IOException iOException, boolean z10) {
+        if (a(i7, g0Var)) {
+            xa xaVar = this.f60112b;
+            c0 d = d(c0Var, g0Var);
             xaVar.getClass();
-            xaVar.g(new k8(29, xaVar, b10));
+            xaVar.i(new zl(xaVar, uVar, d, iOException, z10));
         }
     }
 
     @Override
-    public final void p(int i7, f0 f0Var, nb.a aVar) {
-        if (a(i7, f0Var)) {
-            this.f59563c.a(aVar);
+    public final void w(int i7, g0 g0Var) {
+        if (a(i7, g0Var)) {
+            this.f60113c.b();
         }
     }
 
     @Override
-    public final void r(int i7, f0 f0Var, t tVar, b0 b0Var, IOException iOException, boolean z10) {
-        if (a(i7, f0Var)) {
-            xa xaVar = this.f59562b;
-            b0 b10 = b(b0Var, f0Var);
-            xaVar.getClass();
-            xaVar.g(new yl(xaVar, tVar, b10, iOException, z10));
-        }
-    }
-
-    @Override
-    public final void w(int i7, f0 f0Var) {
-        if (a(i7, f0Var)) {
-            this.f59563c.b();
-        }
-    }
-
-    @Override
-    public final void z(int i7, f0 f0Var) {
-        if (a(i7, f0Var)) {
-            this.f59563c.e();
+    public final void z(int i7, g0 g0Var) {
+        if (a(i7, g0Var)) {
+            this.f60113c.e();
         }
     }
 }

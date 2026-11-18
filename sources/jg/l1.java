@@ -3,49 +3,49 @@ package jg;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import fi.d6;
+import fi.b6;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.is;
-import org.telegram.messenger.m10;
-import org.telegram.messenger.na;
-import org.telegram.messenger.ns;
-import org.telegram.messenger.si;
-import org.telegram.messenger.t3;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.ma;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.v3;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.t2;
-import org.telegram.ui.Components.pz;
-import org.telegram.ui.Components.tj0;
-import org.telegram.ui.an;
-public final class l1 extends tj0 implements is {
-    public d6 E;
-    public final Context f17181c;
-    public final an f17183f;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.wz;
+import org.telegram.ui.bn;
+public final class l1 extends bk0 implements fs {
+    public b6 E;
+    public final Context f17567c;
+    public final bn f17569f;
     public int h;
-    public int f17184n;
-    public final e6 f17186s;
-    public final int f17187w;
-    public final boolean f17188x;
-    public String f17189y;
+    public int f17570n;
+    public final i6 f17572s;
+    public final int f17573w;
+    public final boolean f17574x;
+    public String f17575y;
     public final HashSet d = new HashSet();
-    public final ArrayList f17182e = new ArrayList();
-    public final int f17185r = m10.f24940t0;
-    public final hi.e1 F = new hi.e1(this, 22);
+    public final ArrayList f17568e = new ArrayList();
+    public final int f17571r = j10.f24773t0;
+    public final hi.k F = new hi.k(this, 26);
 
-    public l1(Context context, an anVar, e6 e6Var, int i7, boolean z10) {
-        this.f17186s = e6Var;
-        this.f17181c = context;
-        this.f17183f = anVar;
-        this.f17187w = i7;
-        this.f17188x = z10;
+    public l1(Context context, bn bnVar, i6 i6Var, int i7, boolean z10) {
+        this.f17572s = i6Var;
+        this.f17567c = context;
+        this.f17569f = bnVar;
+        this.f17573w = i7;
+        this.f17574x = z10;
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        int i7 = e1Var.f58539f;
+    public final boolean D(v4.f1 f1Var) {
+        int i7 = f1Var.f59126f;
         if (i7 != 0 && i7 != 2) {
             return false;
         }
@@ -54,7 +54,7 @@ public final class l1 extends tj0 implements is {
 
     public final Object E(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f17182e;
+            ArrayList arrayList = this.f17568e;
             if (i7 < arrayList.size()) {
                 return arrayList.get(i7);
             }
@@ -65,12 +65,12 @@ public final class l1 extends tj0 implements is {
 
     @Override
     public final int b() {
-        return this.f17182e.size() + this.f17184n;
+        return this.f17568e.size() + this.f17570n;
     }
 
     @Override
     public final int d(int i7) {
-        if (i7 < this.f17182e.size()) {
+        if (i7 < this.f17568e.size()) {
             return 0;
         }
         return 1;
@@ -78,7 +78,7 @@ public final class l1 extends tj0 implements is {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ns.f25606x5 && objArr[0] == this.E) {
+        if (i7 == ks.f25239z5 && objArr[0] == this.E) {
             f();
         }
     }
@@ -87,37 +87,37 @@ public final class l1 extends tj0 implements is {
     public final void f() {
         ArrayList arrayList;
         int b10 = b();
-        ArrayList arrayList2 = this.f17182e;
+        ArrayList arrayList2 = this.f17568e;
         arrayList2.clear();
         HashSet hashSet = this.d;
         hashSet.clear();
-        int i7 = this.f17185r;
-        int i10 = this.f17187w;
+        int i7 = this.f17571r;
+        int i10 = this.f17573w;
         if (i10 == 0) {
-            arrayList = si.b0(i7).Z0;
+            arrayList = ri.d0(i7).Z0;
         } else {
-            arrayList = na.a(i7).b(i10).f25003a;
+            arrayList = ma.a(i7).b(i10).f25341a;
         }
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            gj gjVar = (gj) arrayList.get(i12);
-            if ((!gjVar.z2() || gjVar.S2) && !hashSet.contains(Integer.valueOf(gjVar.e1()))) {
-                arrayList2.add(gjVar);
-                hashSet.add(Integer.valueOf(gjVar.e1()));
+            fj fjVar = (fj) arrayList.get(i12);
+            if ((!fjVar.z2() || fjVar.S2) && !hashSet.contains(Integer.valueOf(fjVar.e1()))) {
+                arrayList2.add(fjVar);
+                hashSet.add(Integer.valueOf(fjVar.e1()));
             }
         }
-        int i13 = this.f17184n;
+        int i13 = this.f17570n;
         this.h = arrayList2.size();
         if (i10 != 0) {
-            if (!na.a(i7).b(i10).f25014n && this.h != 0) {
-                i11 = Utilities.j(na.a(i7).b(i10).f25013m - this.h, 3, 0);
+            if (!ma.a(i7).b(i10).f25352n && this.h != 0) {
+                i11 = Utilities.j(ma.a(i7).b(i10).f25351m - this.h, 3, 0);
             }
-            this.f17184n = i11;
+            this.f17570n = i11;
         } else {
-            if (!si.b0(i7).W1() && this.h != 0) {
-                i11 = Utilities.j(si.b0(i7).j0() - this.h, 3, 0);
+            if (!ri.d0(i7).b2() && this.h != 0) {
+                i11 = Utilities.j(ri.d0(i7).l0() - this.h, 3, 0);
             }
-            this.f17184n = i11;
+            this.f17570n = i11;
         }
         int b11 = b();
         if (b10 < b11) {
@@ -131,22 +131,22 @@ public final class l1 extends tj0 implements is {
     }
 
     @Override
-    public final void t(v4.e1 e1Var, int i7) {
+    public final void t(v4.f1 f1Var, int i7) {
         boolean z10;
         int i10;
         int i11;
-        int i12 = e1Var.f58539f;
-        View view = e1Var.f58535a;
+        int i12 = f1Var.f59126f;
+        View view = f1Var.f59122a;
         if (i12 == 0) {
             t2 t2Var = (t2) view;
-            t2Var.f31637t2 = true;
-            gj gjVar = (gj) E(i7);
-            long B0 = gj.B0(gjVar.f23819k);
-            int i13 = gjVar.f23819k.date;
-            if (this.f17188x) {
-                t2Var.f31630s0 = true;
-                long P1 = gjVar.P1();
-                TLRPC.Message message = gjVar.f23819k;
+            t2Var.f31939t2 = true;
+            fj fjVar = (fj) E(i7);
+            long B0 = fj.B0(fjVar.f23968k);
+            int i13 = fjVar.f23968k.date;
+            if (this.f17574x) {
+                t2Var.f31932s0 = true;
+                long P1 = fjVar.P1();
+                TLRPC.Message message = fjVar.f23968k;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                 if (messageFwdHeader != null && ((i10 = messageFwdHeader.date) != 0 || messageFwdHeader.saved_date != 0)) {
                     if (i10 == 0) {
@@ -161,13 +161,13 @@ public final class l1 extends tj0 implements is {
                 z10 = false;
                 B0 = P1;
             } else {
-                if (gjVar.P3() || t3.o0(this.f17185r, B0)) {
-                    B0 = gjVar.Z0();
+                if (fjVar.P3() || v3.o0(this.f17571r, B0)) {
+                    B0 = fjVar.Z0();
                 }
                 z10 = true;
                 i10 = i13;
             }
-            t2Var.f0(B0, gjVar, i10, z10, false);
+            t2Var.d0(B0, fjVar, i10, z10, false);
             t2Var.setDialogCellDelegate(new i1(this));
         } else if (i12 == 2) {
             ((k1) view).a(this.E);
@@ -175,27 +175,27 @@ public final class l1 extends tj0 implements is {
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View t2Var;
-        pz pzVar;
+        wz wzVar;
         if (i7 != 0) {
-            e6 e6Var = this.f17186s;
-            Context context = this.f17181c;
+            i6 i6Var = this.f17572s;
+            Context context = this.f17567c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     t2Var = null;
                 } else {
-                    pzVar = new k1(context, e6Var);
+                    wzVar = new k1(context, i6Var);
                 }
             } else {
-                pz pzVar2 = new pz(context, e6Var);
-                pzVar2.setIsSingleCell(true);
-                pzVar2.setViewType(7);
-                pzVar = pzVar2;
+                wz wzVar2 = new wz(context, i6Var);
+                wzVar2.setIsSingleCell(true);
+                wzVar2.setViewType(7);
+                wzVar = wzVar2;
             }
-            t2Var = pzVar;
+            t2Var = wzVar;
         } else {
-            t2Var = new t2(null, this.f17181c, true, this.f17185r, this.f17186s);
+            t2Var = new t2(null, this.f17567c, true, this.f17571r, this.f17572s);
         }
         return i5.c.q(t2Var, t2Var, -1, -2);
     }

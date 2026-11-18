@@ -37,19 +37,19 @@ import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 public final class b {
-    public static final Charset f12954e = Charset.forName("UTF-8");
-    public static final int f12955f = 15;
-    public static final ea.a f12956g = new Object();
+    public static final Charset f13271e = Charset.forName("UTF-8");
+    public static final int f13272f = 15;
+    public static final ea.a f13273g = new Object();
     public static final a3.c h = new a3.c(26);
-    public static final h f12957i = new h(3);
-    public final AtomicInteger f12958a = new AtomicInteger(0);
-    public final d f12959b;
-    public final ia.c f12960c;
+    public static final h f13274i = new h(3);
+    public final AtomicInteger f13275a = new AtomicInteger(0);
+    public final d f13276b;
+    public final ia.c f13277c;
     public final j d;
 
     public b(d dVar, ia.c cVar, j jVar) {
-        this.f12959b = dVar;
-        this.f12960c = cVar;
+        this.f13276b = dVar;
+        this.f13277c = cVar;
         this.d = jVar;
     }
 
@@ -70,7 +70,7 @@ public final class b {
                 if (read > 0) {
                     byteArrayOutputStream.write(bArr, 0, read);
                 } else {
-                    String str = new String(byteArrayOutputStream.toByteArray(), f12954e);
+                    String str = new String(byteArrayOutputStream.toByteArray(), f13271e);
                     fileInputStream.close();
                     return str;
                 }
@@ -86,7 +86,7 @@ public final class b {
     }
 
     public static void g(File file, String str) {
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), f12954e);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), f13271e);
         try {
             outputStreamWriter.write(str);
             outputStreamWriter.close();
@@ -101,12 +101,12 @@ public final class b {
     }
 
     public final q2 a(String str, final t0 t0Var) {
-        String str2 = t0Var.f7909b;
+        String str2 = t0Var.f8191b;
         if (Build.VERSION.SDK_INT >= 37) {
             if (!str2.equals("crash") && !str2.equals("ndk-crash")) {
                 return t0Var;
             }
-            return (q2) Optional.of(this.f12959b.b(str, "profiling-manager-info")).filter(new m(4)).flatMap(new l(1)).map(new Function() {
+            return (q2) Optional.of(this.f13276b.b(str, "profiling-manager-info")).filter(new m(4)).flatMap(new l(1)).map(new Function() {
                 public Function andThen(Function function) {
                     return Function$CC.$default$andThen(this, function);
                 }
@@ -116,14 +116,14 @@ public final class b {
                     z1 z1Var = (z1) obj;
                     t0 t0Var2 = t0.this;
                     s0 a10 = t0Var2.a();
-                    k2 k2Var = t0Var2.f7910c;
+                    k2 k2Var = t0Var2.f8192c;
                     u0 a11 = k2Var.a();
-                    w0 w0Var = (w0) ((v0) k2Var).f7932a;
-                    List list = w0Var.f7940a;
-                    e2 e2Var = w0Var.f7941b;
-                    u1 u1Var = w0Var.f7942c;
-                    z0 z0Var = w0Var.f7943e;
-                    List list2 = w0Var.f7944f;
+                    w0 w0Var = (w0) ((v0) k2Var).f8214a;
+                    List list = w0Var.f8222a;
+                    e2 e2Var = w0Var.f8223b;
+                    u1 u1Var = w0Var.f8224c;
+                    z0 z0Var = w0Var.f8225e;
+                    List list2 = w0Var.f8226f;
                     if (list2 == null) {
                         StringBuilder sb2 = new StringBuilder();
                         if (list2 == null) {
@@ -131,8 +131,8 @@ public final class b {
                         }
                         throw new IllegalStateException(p0.q("Missing required properties:", sb2));
                     }
-                    a11.f7919a = new w0(list, e2Var, u1Var, z1Var, z0Var, list2);
-                    a10.f7899c = a11.a();
+                    a11.f8201a = new w0(list, e2Var, u1Var, z1Var, z0Var, list2);
+                    a10.f8181c = a11.a();
                     return a10.a();
                 }
 
@@ -146,41 +146,41 @@ public final class b {
 
     public final ArrayList c() {
         ArrayList arrayList = new ArrayList();
-        d dVar = this.f12959b;
+        d dVar = this.f13276b;
         arrayList.addAll(d.i(((File) dVar.h).listFiles()));
-        arrayList.addAll(d.i(((File) dVar.f12967n).listFiles()));
+        arrayList.addAll(d.i(((File) dVar.f13284n).listFiles()));
         a3.c cVar = h;
         Collections.sort(arrayList, cVar);
-        List i7 = d.i(((File) dVar.f12966f).listFiles());
+        List i7 = d.i(((File) dVar.f13283f).listFiles());
         Collections.sort(i7, cVar);
         arrayList.addAll(i7);
         return arrayList;
     }
 
     public final NavigableSet d() {
-        return new TreeSet(d.i(((File) this.f12959b.f12965e).list())).descendingSet();
+        return new TreeSet(d.i(((File) this.f13276b.f13282e).list())).descendingSet();
     }
 
     public final void e(q2 q2Var, String str, boolean z10) {
         String str2;
-        d dVar = this.f12959b;
-        int i7 = this.f12960c.b().f15868a.f2966a;
-        f12956g.getClass();
-        String o4 = ea.a.f10562a.o(q2Var);
-        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f12958a.getAndIncrement()));
+        d dVar = this.f13276b;
+        int i7 = this.f13277c.b().f16186a.f2960a;
+        f13273g.getClass();
+        String v = ea.a.f10880a.v(q2Var);
+        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f13275a.getAndIncrement()));
         if (z10) {
             str2 = "_";
         } else {
             str2 = "";
         }
         try {
-            g(dVar.b(str, p0.p("event", format, str2)), o4);
+            g(dVar.b(str, p0.p("event", format, str2)), v);
         } catch (IOException e10) {
             Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e10);
         }
         h hVar = new h(4);
         dVar.getClass();
-        File file = new File((File) dVar.f12965e, str);
+        File file = new File((File) dVar.f13282e, str);
         file.mkdirs();
         List<File> i10 = d.i(file.listFiles(hVar));
         Collections.sort(i10, new a3.c(27));

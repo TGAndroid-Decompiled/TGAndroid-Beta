@@ -11,17 +11,17 @@ import com.google.android.gms.internal.cast.y;
 import j$.util.Objects;
 import java.util.regex.Matcher;
 public final class o extends y {
-    public final c f20520a;
+    public final c f20884a;
 
     public o(c cVar, Looper looper) {
         super(looper);
-        this.f20520a = cVar;
+        this.f20884a = cVar;
         Looper.getMainLooper();
     }
 
     @Override
     public final void handleMessage(Message message) {
-        c cVar = this.f20520a;
+        c cVar = this.f20884a;
         cVar.getClass();
         if (message != null) {
             Object obj = message.obj;
@@ -31,10 +31,10 @@ public final class o extends y {
                 if (intent.hasExtra("google.messenger")) {
                     Parcelable parcelableExtra = intent.getParcelableExtra("google.messenger");
                     if (parcelableExtra instanceof g) {
-                        cVar.f20492g = (g) parcelableExtra;
+                        cVar.f20856g = (g) parcelableExtra;
                     }
                     if (parcelableExtra instanceof Messenger) {
-                        cVar.f20491f = (Messenger) parcelableExtra;
+                        cVar.f20855f = (Messenger) parcelableExtra;
                     }
                 }
                 Intent intent2 = (Intent) message.obj;
@@ -73,7 +73,7 @@ public final class o extends y {
                         Log.w("Rpc", "Unexpected structured response ".concat(stringExtra2));
                         return;
                     }
-                    a0.l lVar = cVar.f20487a;
+                    a0.l lVar = cVar.f20851a;
                     synchronized (lVar) {
                         for (int i7 = 0; i7 < lVar.f31c; i7++) {
                             try {
@@ -85,7 +85,7 @@ public final class o extends y {
                     }
                     return;
                 }
-                Matcher matcher = c.f20486j.matcher(stringExtra);
+                Matcher matcher = c.f20850j.matcher(stringExtra);
                 if (!matcher.matches()) {
                     if (Log.isLoggable("Rpc", 3)) {
                         Log.d("Rpc", "Unexpected response string: ".concat(stringExtra));

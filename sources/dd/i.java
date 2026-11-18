@@ -9,15 +9,15 @@ public final class i extends j {
     @Override
     public final j k() {
         super.b();
-        this.f8038k = new cd.c();
+        this.f8320k = new cd.c();
         return this;
     }
 
     @Override
     public final String toString() {
-        cd.c cVar = this.f8038k;
-        if (cVar != null && cVar.f4911a > 0) {
-            return "<" + i() + " " + this.f8038k.toString() + ">";
+        cd.c cVar = this.f8320k;
+        if (cVar != null && cVar.f5197a > 0) {
+            return "<" + i() + " " + this.f8320k.toString() + ">";
         }
         return "<" + i() + ">";
     }

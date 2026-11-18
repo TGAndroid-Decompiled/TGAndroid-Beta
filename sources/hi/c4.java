@@ -1,42 +1,42 @@
 package hi;
 
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.j90;
+import org.telegram.ui.Components.t90;
 public final class c4 implements r1.c {
-    public final int f13978a;
-    public final FrameLayout f13979b;
-    public final boolean f13980c;
+    public final int f14311a;
+    public final FrameLayout f14312b;
+    public final boolean f14313c;
 
     public c4(FrameLayout frameLayout, boolean z10, int i7) {
-        this.f13978a = i7;
-        this.f13979b = frameLayout;
-        this.f13980c = z10;
+        this.f14311a = i7;
+        this.f14312b = frameLayout;
+        this.f14313c = z10;
     }
 
     @Override
     public final void a(r1.g gVar, boolean z10, float f10, float f11) {
         int i7;
-        switch (this.f13978a) {
+        switch (this.f14311a) {
             case 0:
-                m5 m5Var = (m5) this.f13979b;
-                u4 u4Var = m5Var.f14668g1;
-                if (gVar == m5Var.f14678m1) {
-                    m5Var.f14678m1 = null;
-                    if (!this.f13980c) {
-                        u4Var.setVisibility(8);
-                        sg.k0.e(m5Var.f14683p1).g();
-                        u4Var.getAdapter().f();
+                l5 l5Var = (l5) this.f14312b;
+                s4 s4Var = l5Var.f14907g1;
+                if (gVar == l5Var.f14917m1) {
+                    l5Var.f14917m1 = null;
+                    if (!this.f14313c) {
+                        s4Var.setVisibility(8);
+                        sg.k0.e(l5Var.f14922p1).g();
+                        s4Var.getAdapter().f();
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                m5 m5Var2 = (m5) this.f13979b;
-                tg.j1 j1Var = m5Var2.W0;
-                if (gVar == m5Var2.f14666f1) {
-                    m5Var2.f14666f1 = null;
-                    if (!this.f13980c) {
+                l5 l5Var2 = (l5) this.f14312b;
+                tg.j1 j1Var = l5Var2.W0;
+                if (gVar == l5Var2.f14905f1) {
+                    l5Var2.f14905f1 = null;
+                    if (!this.f14313c) {
                         j1Var.setVisibility(8);
                     }
                     j1Var.setMaskProvider(null);
@@ -44,21 +44,21 @@ public final class c4 implements r1.c {
                 }
                 return;
             default:
-                j90 j90Var = (j90) this.f13979b;
+                t90 t90Var = (t90) this.f14312b;
                 if (!z10) {
-                    j90Var.L = null;
-                    boolean z11 = this.f13980c;
+                    t90Var.L = null;
+                    boolean z11 = this.f14313c;
                     if (z11) {
                         i7 = 8;
                     } else {
                         i7 = 0;
                     }
-                    j90Var.setVisibility(i7);
-                    if (j90Var.O && z11) {
-                        j90Var.O = false;
-                        j90Var.f35920b.setLayoutManager(j90Var.getNeededLayoutManager());
-                        j90Var.J = true;
-                        j90Var.o(true);
+                    t90Var.setVisibility(i7);
+                    if (t90Var.O && z11) {
+                        t90Var.O = false;
+                        t90Var.f39946b.setLayoutManager(t90Var.getNeededLayoutManager());
+                        t90Var.J = true;
+                        t90Var.o(true);
                         return;
                     }
                     return;

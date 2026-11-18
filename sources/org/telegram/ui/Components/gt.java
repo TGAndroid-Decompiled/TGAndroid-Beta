@@ -1,25 +1,24 @@
 package org.telegram.ui.Components;
-public final class gt implements Runnable {
-    public final int f35052a;
-    public final kt f35053b;
 
-    public gt(kt ktVar, int i7) {
-        this.f35052a = i7;
-        this.f35053b = ktVar;
+import android.text.Editable;
+public final class gt implements org.telegram.messenger.x10 {
+    public final mt f35560a;
+    public final int f35561b;
+    public final int f35562c;
+
+    public gt(mt mtVar, int i7, int i10) {
+        this.f35560a = mtVar;
+        this.f35561b = i7;
+        this.f35562c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35052a) {
-            case 0:
-                kt ktVar = this.f35053b;
-                ktVar.post(new gt(ktVar, 1));
-                return;
-            default:
-                kt ktVar2 = this.f35053b;
-                ktVar2.h();
-                ktVar2.d();
-                return;
-        }
+    public final void a(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        mt mtVar = this.f35560a;
+        Editable text = mtVar.getText();
+        int i7 = this.f35561b;
+        text.replace(i7, this.f35562c, charSequence);
+        mtVar.setSelection(i7, charSequence.length() + i7);
     }
 }

@@ -2,27 +2,27 @@ package oi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.a41;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.u41;
-import org.telegram.ui.Components.uj0;
-public final class k4 extends a41 {
-    public static final int f21774b = 0;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.z41;
+public final class k4 extends k41 {
+    public static final int f22138b = 0;
 
     static {
-        a41.h(new a41());
+        k41.h(new k41());
     }
 
     @Override
-    public final void b(View view, b41 b41Var, boolean z10, p41 p41Var, u41 u41Var) {
-        ((l4) view).g((a) b41Var.G, (w2) b41Var.H);
+    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+        ((l4) view).g((a) l41Var.H, (j4) l41Var.I);
     }
 
     @Override
-    public final View d(Context context, uj0 uj0Var, int i7, e6 e6Var) {
-        return new l4(context, e6Var);
+    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
+        return new l4(i7, context, i6Var);
     }
 
     @Override

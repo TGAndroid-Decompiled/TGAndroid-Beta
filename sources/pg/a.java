@@ -1,27 +1,27 @@
 package pg;
 
-import org.telegram.ui.Components.j6;
+import org.telegram.ui.Components.p6;
 public final class a {
-    public final CharSequence f55017a;
-    public final int f55018b = 2;
-    public final Runnable f55019c;
+    public final CharSequence f55593a;
+    public final int f55594b = 2;
+    public final Runnable f55595c;
     public final float d;
-    public final float f55020e;
-    public final j6 f55021f;
+    public final float f55596e;
+    public final p6 f55597f;
 
     public a(String str, Runnable runnable) {
-        this.f55017a = str;
-        this.f55019c = runnable;
+        this.f55593a = str;
+        this.f55595c = runnable;
     }
 
     public a(String str) {
-        this.f55017a = str;
+        this.f55593a = str;
     }
 
-    public a(String str, float f10, float f11, j6 j6Var) {
-        this.f55017a = str;
+    public a(String str, float f10, float f11, p6 p6Var) {
+        this.f55593a = str;
         this.d = f10;
-        this.f55020e = f11;
-        this.f55021f = j6Var;
+        this.f55596e = f11;
+        this.f55597f = p6Var;
     }
 }

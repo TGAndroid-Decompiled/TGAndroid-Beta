@@ -2,7 +2,7 @@ package y7;
 
 import java.util.Set;
 public abstract class l9 extends h9 implements Set {
-    public transient k9 f60323b;
+    public transient k9 f60888b;
 
     @Override
     public final boolean equals(Object obj) {
@@ -40,10 +40,10 @@ public abstract class l9 extends h9 implements Set {
     }
 
     public final k9 l() {
-        k9 k9Var = this.f60323b;
+        k9 k9Var = this.f60888b;
         if (k9Var == null) {
             n9 n9Var = new n9((a) this);
-            this.f60323b = n9Var;
+            this.f60888b = n9Var;
             return n9Var;
         }
         return k9Var;

@@ -1,15 +1,19 @@
 package org.telegram.ui;
-public final class wv extends e11 {
-    public final yw f53004e;
+public final class wv extends v4.c0 {
+    public final bx I;
+    public final xv J;
 
-    public wv(yw ywVar, vv vvVar) {
-        super(vvVar);
-        this.f53004e = ywVar;
+    public wv(xv xvVar, bx bxVar) {
+        this.J = xvVar;
+        this.I = bxVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f53004e.N0 = null;
+    public final int R0() {
+        bx bxVar = this.I;
+        if (bxVar.f46314s == 0 && this.J.f53949a0.n4() && bxVar.f46315w == 2) {
+            return 1;
+        }
+        return 0;
     }
 }

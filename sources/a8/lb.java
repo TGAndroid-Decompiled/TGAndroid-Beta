@@ -28,12 +28,12 @@ public class lb extends AbstractMap {
     public h9.e0 b(Map.Entry entry) {
         f fVar;
         Object key = entry.getKey();
-        h9.k1 k1Var = (h9.k1) this.f535e;
+        h9.l1 l1Var = (h9.l1) this.f535e;
         List list = (List) ((Collection) entry.getValue());
         if (list instanceof RandomAccess) {
-            fVar = new f(k1Var, key, list, (f) null);
+            fVar = new f(l1Var, key, list, (f) null);
         } else {
-            fVar = new f(k1Var, key, list, (f) null);
+            fVar = new f(l1Var, key, list, (f) null);
         }
         return new h9.e0(key, fVar);
     }
@@ -59,7 +59,7 @@ public class lb extends AbstractMap {
                 }
                 return;
             case 1:
-                c8.d dVar2 = ((jg) this.f535e).f4567c;
+                c8.d dVar2 = ((jg) this.f535e).f4852c;
                 if (this.f533b == dVar2) {
                     for (Collection collection2 : dVar2.values()) {
                         collection2.clear();
@@ -74,9 +74,9 @@ public class lb extends AbstractMap {
                 }
                 return;
             default:
-                h9.k1 k1Var = (h9.k1) this.f535e;
-                if (this.f533b == k1Var.f13694e) {
-                    k1Var.clear();
+                h9.l1 l1Var = (h9.l1) this.f535e;
+                if (this.f533b == l1Var.f14022e) {
+                    l1Var.clear();
                     return;
                 }
                 d dVar4 = new d(this, (char) 0);
@@ -232,12 +232,12 @@ public class lb extends AbstractMap {
                 if (collection3 == null) {
                     return null;
                 }
-                h9.k1 k1Var = (h9.k1) this.f535e;
+                h9.l1 l1Var = (h9.l1) this.f535e;
                 List list3 = (List) collection3;
                 if (list3 instanceof RandomAccess) {
-                    fVar3 = new f(k1Var, obj, list3, (f) null);
+                    fVar3 = new f(l1Var, obj, list3, (f) null);
                 } else {
-                    fVar3 = new f(k1Var, obj, list3, (f) null);
+                    fVar3 = new f(l1Var, obj, list3, (f) null);
                 }
                 return fVar3;
         }
@@ -269,15 +269,15 @@ public class lb extends AbstractMap {
                 return bVar;
             case 1:
                 jg jgVar = (jg) this.f535e;
-                cd cdVar = jgVar.f4552a;
+                cd cdVar = jgVar.f4833a;
                 if (cdVar == null) {
-                    cd cdVar2 = new cd(jgVar, jgVar.f4567c);
-                    jgVar.f4552a = cdVar2;
+                    cd cdVar2 = new cd(jgVar, jgVar.f4852c);
+                    jgVar.f4833a = cdVar2;
                     return cdVar2;
                 }
                 return cdVar;
             default:
-                return ((h9.k1) this.f535e).keySet();
+                return ((h9.l1) this.f535e).keySet();
         }
     }
 
@@ -309,14 +309,14 @@ public class lb extends AbstractMap {
                 collection2.clear();
                 return arrayList2;
             default:
-                h9.k1 k1Var = (h9.k1) this.f535e;
+                h9.l1 l1Var = (h9.l1) this.f535e;
                 Collection collection3 = (Collection) this.f533b.remove(obj);
                 if (collection3 == null) {
                     return null;
                 }
-                Collection h = k1Var.h();
+                Collection h = l1Var.h();
                 h.addAll(collection3);
-                k1Var.f13695f -= collection3.size();
+                l1Var.f14023f -= collection3.size();
                 collection3.clear();
                 return h;
         }

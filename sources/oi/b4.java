@@ -1,43 +1,22 @@
 package oi;
-
-import android.text.TextUtils;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.et;
-public final class b4 implements et, d4 {
-    public final int f21591a;
-    public final p3 f21592b;
+public final class b4 implements org.telegram.ui.ActionBar.r1 {
+    public final int f21953a;
+    public final p3 f21954b;
 
     public b4(p3 p3Var, int i7) {
-        this.f21591a = i7;
-        this.f21592b = p3Var;
+        this.f21953a = i7;
+        this.f21954b = p3Var;
     }
 
     @Override
-    public void a(String str) {
-        switch (this.f21591a) {
+    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f21953a) {
             case 0:
-                if (!TextUtils.isEmpty(str)) {
-                    TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = new TL_keyboard.TL_inlineButtonTypeUrl();
-                    tL_inlineButtonTypeUrl.url = str;
-                    this.f21592b.a(tL_inlineButtonTypeUrl);
-                    return;
-                }
+                this.f21954b.b();
                 return;
             default:
-                if (!TextUtils.isEmpty(str)) {
-                    TL_keyboard.TL_inlineButtonTypeCopy tL_inlineButtonTypeCopy = new TL_keyboard.TL_inlineButtonTypeCopy();
-                    tL_inlineButtonTypeCopy.copy_text = str;
-                    this.f21592b.a(tL_inlineButtonTypeCopy);
-                    return;
-                }
+                this.f21954b.b();
                 return;
         }
-    }
-
-    @Override
-    public void run(long j3) {
-        TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
-        tL_inlineButtonTypeUserProfile.user_id = j3;
-        this.f21592b.a(tL_inlineButtonTypeUserProfile);
     }
 }

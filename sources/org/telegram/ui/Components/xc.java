@@ -1,17 +1,38 @@
 package org.telegram.ui.Components;
+public final class xc implements Runnable {
+    public final int f41973a;
+    public final yc f41974b;
+    public final boolean f41975c;
 
-import android.view.View;
-public final class xc implements View.OnClickListener {
-    public final int f41649a;
-    public final ChatActivityEnterView f41650b;
-
-    public xc(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f41649a = i7;
-        this.f41650b = chatActivityEnterView;
+    public xc(yc ycVar, boolean z10, int i7) {
+        this.f41973a = i7;
+        this.f41974b = ycVar;
+        this.f41975c = z10;
     }
 
     @Override
-    public final void onClick(android.view.View r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xc.onClick(android.view.View):void");
+    public final void run() {
+        switch (this.f41973a) {
+            case 0:
+                boolean z10 = this.f41975c;
+                yc ycVar = this.f41974b;
+                if (!z10) {
+                    ycVar.Z0.setVisibility(8);
+                    return;
+                } else {
+                    ycVar.getClass();
+                    return;
+                }
+            default:
+                boolean z11 = this.f41975c;
+                yc ycVar2 = this.f41974b;
+                if (!z11) {
+                    ycVar2.V0.setVisibility(8);
+                    return;
+                } else {
+                    ycVar2.getClass();
+                    return;
+                }
+        }
     }
 }

@@ -2,18 +2,18 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.yb;
+import c8.bc;
 import java.util.Arrays;
 public final class l0 extends r6.a {
     public static final Parcelable.Creator<l0> CREATOR = new db.k(28);
-    public final int f11214a;
-    public final short f11215b;
-    public final short f11216c;
+    public final int f11534a;
+    public final short f11535b;
+    public final short f11536c;
 
     public l0(int i7, short s5, short s9) {
-        this.f11214a = i7;
-        this.f11215b = s5;
-        this.f11216c = s9;
+        this.f11534a = i7;
+        this.f11535b = s5;
+        this.f11536c = s9;
     }
 
     public final boolean equals(Object obj) {
@@ -21,25 +21,25 @@ public final class l0 extends r6.a {
             return false;
         }
         l0 l0Var = (l0) obj;
-        if (this.f11214a != l0Var.f11214a || this.f11215b != l0Var.f11215b || this.f11216c != l0Var.f11216c) {
+        if (this.f11534a != l0Var.f11534a || this.f11535b != l0Var.f11535b || this.f11536c != l0Var.f11536c) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f11214a), Short.valueOf(this.f11215b), Short.valueOf(this.f11216c)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f11534a), Short.valueOf(this.f11535b), Short.valueOf(this.f11536c)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = yb.r(parcel, 20293);
-        yb.q(parcel, 1, 4);
-        parcel.writeInt(this.f11214a);
-        yb.q(parcel, 2, 4);
-        parcel.writeInt(this.f11215b);
-        yb.q(parcel, 3, 4);
-        parcel.writeInt(this.f11216c);
-        yb.s(parcel, r10);
+        int r10 = bc.r(parcel, 20293);
+        bc.q(parcel, 1, 4);
+        parcel.writeInt(this.f11534a);
+        bc.q(parcel, 2, 4);
+        parcel.writeInt(this.f11535b);
+        bc.q(parcel, 3, 4);
+        parcel.writeInt(this.f11536c);
+        bc.s(parcel, r10);
     }
 }

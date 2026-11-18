@@ -1,17 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class er0 extends po0 {
-    public final org.telegram.ui.ActionBar.e2 V2;
+import android.view.View;
+public final class er0 implements View.OnLayoutChangeListener {
+    public final gt0 f34787a;
 
-    public er0(Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.ActionBar.e2 e2Var) {
-        super(context, null, str, false, str2, false, e6Var);
-        this.V2 = e2Var;
+    public er0(gt0 gt0Var) {
+        this.f34787a = gt0Var;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        org.telegram.messenger.g0.i3(new org.telegram.ui.f0(this.V2, hVar, i7, 20), 100L);
+    public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
+        gt0 gt0Var = this.f34787a;
+        org.telegram.ui.ActionBar.r0 r0Var = gt0Var.f35617q0;
+        if (r0Var == null) {
+            return;
+        }
+        gt0Var.f35617q0.setTranslationX(((View) r0Var.getParent()).getMeasuredWidth() - gt0Var.f35617q0.getRight());
     }
 }

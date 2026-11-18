@@ -1,34 +1,31 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
-public final class kx implements zx {
-    public final lx f36635a;
+import org.telegram.tgnet.TLRPC;
+public final class kx {
+    public final TLRPC.StickerSetCovered f36908a;
+    public final TLRPC.TL_messages_stickerSet f36909b;
+    public final TLRPC.StickerSet f36910c;
+    public final ArrayList d;
+    public final TLRPC.Document f36911e;
 
-    public kx(lx lxVar) {
-        this.f36635a = lxVar;
+    public kx(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, ArrayList arrayList) {
+        TLRPC.Document document = null;
+        this.f36908a = null;
+        this.f36909b = tL_messages_stickerSet;
+        this.f36910c = tL_messages_stickerSet.set;
+        this.d = arrayList;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            document = (TLRPC.Document) arrayList.get(0);
+        }
+        this.f36911e = document;
     }
 
-    @Override
-    public final void e() {
-        lx lxVar = this.f36635a;
-        if (lxVar.G.W.G) {
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        lxVar.G.W.e(true);
-        lx.E(lxVar, new vs(7, this, arrayList), arrayList, true);
-    }
-
-    @Override
-    public final void run() {
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f36635a.f36924w;
-        vs vsVar = new vs(6, this, str);
-        if (org.telegram.messenger.j6.d(str)) {
-            av0.G3.c(org.telegram.messenger.m10.f24940t0, str, new gh(3, linkedHashSet, vsVar));
-        } else {
-            vsVar.run();
-        }
+    public kx(TLRPC.StickerSetCovered stickerSetCovered, ArrayList arrayList) {
+        this.f36908a = stickerSetCovered;
+        this.f36909b = null;
+        this.f36910c = stickerSetCovered.set;
+        this.d = arrayList;
+        this.f36911e = arrayList.isEmpty() ? null : (TLRPC.Document) arrayList.get(0);
     }
 }

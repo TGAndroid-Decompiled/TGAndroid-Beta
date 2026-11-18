@@ -1,32 +1,28 @@
 package org.telegram.ui.Components;
-public final class sn0 extends g.p {
-    public final int f39380c;
-    public final po0 d;
 
-    public sn0(po0 po0Var, int i7) {
-        this.f39380c = i7;
-        this.d = po0Var;
+import android.view.View;
+public final class sn0 implements r1.d {
+    public final int f39793a;
+    public final int[] f39794b;
+    public final org.telegram.messenger.fs f39795c;
+    public final View d;
+
+    public sn0(org.telegram.messenger.fs fsVar, View view, int[] iArr, int i7) {
+        this.f39793a = i7;
+        this.f39795c = fsVar;
+        this.d = view;
+        this.f39794b = iArr;
     }
 
     @Override
-    public final int i(int i7) {
-        switch (this.f39380c) {
+    public final void a(r1.g gVar, float f10, float f11) {
+        switch (this.f39793a) {
             case 0:
-                if (i7 == 0) {
-                    return this.d.D1.J;
-                }
-                return 1;
-            case 1:
-                mo0 mo0Var = this.d.I1;
-                if (i7 != mo0Var.f37339x && i7 != mo0Var.f37340y && i7 != mo0Var.E && i7 != mo0Var.G && mo0Var.d(i7) != 0) {
-                    return 1;
-                }
-                return 4;
+                ((yo0) this.f39795c).R0((org.telegram.ui.Cells.d7) this.d, this.f39794b, f10 / 1000.0f);
+                return;
             default:
-                if (i7 == 0) {
-                    return this.d.E1.J;
-                }
-                return 1;
+                ((ho0) this.f39795c).d.R0(this.d, this.f39794b, f10 / 1000.0f);
+                return;
         }
     }
 }

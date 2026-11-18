@@ -1,20 +1,41 @@
 package c8;
 
-import com.google.mlkit.vision.common.internal.MobileVisionBase;
-import com.google.mlkit.vision.segmentation.subject.internal.zzd;
-import java.util.concurrent.Executor;
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 public abstract class ke {
-    public static zzd a(zb.d dVar) {
-        ac.b bVar = (ac.b) pb.g.c().a(ac.b.class);
-        uf b10 = wf.b();
-        ?? mobileVisionBase = new MobileVisionBase((ac.f) bVar.f1013a.R0(dVar), (Executor) bVar.f1014b.f54942a.get());
-        ga.d dVar2 = new ga.d(1);
-        dVar2.d = db.TYPE_THIN;
-        q4.q qVar = new q4.q(9, false);
-        qVar.f55253c = dVar.a();
-        qVar.f55252b = eb.NO_ERROR;
-        dVar2.f12965e = new ae(qVar);
-        pb.n.f54964a.execute(new a8.qa(b10, new a8.xa(dVar2, 1), fb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 1));
-        return mobileVisionBase;
+    public static long f4861a;
+    public static Method f4862b;
+
+    public static void a(String str) {
+        if (str.length() > 127) {
+            str = str.substring(0, 127);
+        }
+        Trace.beginSection(str);
+    }
+
+    public static boolean b() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return z4.a.a();
+        }
+        try {
+            if (f4862b == null) {
+                f4861a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                f4862b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
+            }
+            return ((Boolean) f4862b.invoke(null, Long.valueOf(f4861a))).booleanValue();
+        } catch (Exception e10) {
+            if (e10 instanceof InvocationTargetException) {
+                Throwable cause = e10.getCause();
+                if (cause instanceof RuntimeException) {
+                    throw ((RuntimeException) cause);
+                }
+                throw new RuntimeException(cause);
+            }
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e10);
+            return false;
+        }
     }
 }

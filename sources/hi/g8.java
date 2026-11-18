@@ -9,42 +9,42 @@ public final class g8 extends v4.k {
     @Override
     public final void M() {
         l8 l8Var = this.F;
-        q8 q8Var = l8Var.f14600a0;
+        q8 q8Var = l8Var.f14955a0;
         int i7 = q8.Y1;
-        q8Var.f29682b.invalidate();
-        l8Var.f14603e.invalidate();
+        q8Var.f30192b.invalidate();
+        l8Var.f14958e.invalidate();
     }
 
     @Override
     public final void O() {
         l8 l8Var = this.F;
-        q8 q8Var = l8Var.f14600a0;
+        q8 q8Var = l8Var.f14955a0;
         int i7 = q8.Y1;
-        q8Var.f29682b.invalidate();
-        l8Var.f14603e.invalidate();
+        q8Var.f30192b.invalidate();
+        l8Var.f14958e.invalidate();
     }
 
     @Override
-    public final void P(v4.e1 e1Var) {
+    public final void P(v4.f1 f1Var) {
         l8 l8Var = this.F;
-        q8 q8Var = l8Var.f14600a0;
+        q8 q8Var = l8Var.f14955a0;
         int i7 = q8.Y1;
-        q8Var.f29682b.invalidate();
-        l8Var.f14603e.invalidate();
-        l8Var.f14604f.invalidate();
+        q8Var.f30192b.invalidate();
+        l8Var.f14958e.invalidate();
+        l8Var.f14959f.invalidate();
     }
 
     @Override
     public final void Q() {
         l8 l8Var = this.F;
-        q8 q8Var = l8Var.f14600a0;
+        q8 q8Var = l8Var.f14955a0;
         int i7 = q8.Y1;
-        q8Var.f29682b.invalidate();
-        l8Var.f14603e.invalidate();
+        q8Var.f30192b.invalidate();
+        l8Var.f14958e.invalidate();
     }
 
     @Override
-    public final boolean t(v4.e1 e1Var) {
+    public final boolean t(v4.f1 f1Var) {
         return true;
     }
 }

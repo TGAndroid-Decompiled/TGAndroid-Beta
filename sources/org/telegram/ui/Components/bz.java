@@ -1,29 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class bz implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33433a;
-    public final gz f33434b;
+import android.graphics.SurfaceTexture;
+public final class bz implements SurfaceTexture.OnFrameAvailableListener {
+    public final int f33817a;
+    public final org.telegram.messenger.r5 f33818b;
 
-    public bz(gz gzVar, int i7) {
-        this.f33433a = i7;
-        this.f33434b = gzVar;
+    public bz(org.telegram.messenger.r5 r5Var, int i7) {
+        this.f33817a = i7;
+        this.f33818b = r5Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33433a) {
+    public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
+        switch (this.f33817a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                gz gzVar = this.f33434b;
-                gzVar.f35126y = floatValue;
-                gzVar.invalidate();
+                ((cz) this.f33818b).c(false, true, true);
                 return;
             default:
-                gz gzVar2 = this.f33434b;
-                gzVar2.getClass();
-                gzVar2.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                gzVar2.invalidate();
+                ((l40) this.f33818b).requestRender(true, false);
                 return;
         }
     }

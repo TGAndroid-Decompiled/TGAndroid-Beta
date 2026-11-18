@@ -1,43 +1,28 @@
 package org.telegram.ui.Components;
+public final class en0 implements r1.d {
+    public final int f34771a;
+    public final on0 f34772b;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class en0 extends LinearLayout {
-    public final jt0 f34375a;
-    public final TextView f34376b;
-    public final TextView f34377c;
+    public en0(on0 on0Var, int i7) {
+        this.f34771a = i7;
+        this.f34772b = on0Var;
+    }
 
-    public en0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        setLayoutParams(new v4.p0(-1, -2));
-        setOrientation(0);
-        setGravity(16);
-        int L = org.telegram.messenger.g0.L(14.0f);
-        int i7 = L / 2;
-        setPadding(L, i7, L, i7);
-        jt0 jt0Var = new jt0(context);
-        this.f34375a = jt0Var;
-        addView(jt0Var, c8.ja.c(40.0f, 40));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, c8.ja.m(1.0f, 0, -1, 12, 0, 0));
-        TextView textView = new TextView(context);
-        this.f34376b = textView;
-        int i10 = org.telegram.ui.ActionBar.j6.E8;
-        org.telegram.ui.ActionBar.q6.U(textView, i10, e6Var);
-        textView.setTextSize(1, 16.0f);
-        textView.setTag(textView);
-        textView.setMaxLines(1);
-        linearLayout.addView(textView);
-        TextView textView2 = new TextView(context);
-        this.f34377c = textView2;
-        org.telegram.ui.ActionBar.q6.V(textView2, org.telegram.ui.ActionBar.q6.g(i10, 102), e6Var);
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTag(textView2);
-        textView2.setMaxLines(1);
-        textView2.setEllipsize(TextUtils.TruncateAt.END);
-        linearLayout.addView(textView2);
+    @Override
+    public final void a(r1.g gVar, float f10, float f11) {
+        switch (this.f34771a) {
+            case 0:
+                this.f34772b.f38136o.setScaleX(1.0f / f10);
+                return;
+            case 1:
+                this.f34772b.f38136o.setScaleY(1.0f / f10);
+                return;
+            case 2:
+                this.f34772b.f38136o.setScaleX(1.0f / f10);
+                return;
+            default:
+                this.f34772b.f38136o.setScaleY(1.0f / f10);
+                return;
+        }
     }
 }

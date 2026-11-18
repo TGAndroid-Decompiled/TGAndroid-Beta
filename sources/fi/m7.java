@@ -1,38 +1,35 @@
 package fi;
 
 import android.content.Context;
-import android.view.View;
-public final class m7 extends b4 {
-    public final n7 P3;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+public final class m7 extends FrameLayout {
+    public z3 f12277a;
+    public long f12278b;
+    public ArrayList f12279c;
+    public boolean d;
+    public final w f12280e;
 
-    public m7(n7 n7Var, Context context, i9 i9Var, y3 y3Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i9Var, y3Var, e6Var);
-        this.P3 = n7Var;
+    public m7(w wVar, Context context) {
+        super(context);
+        this.f12280e = wVar;
     }
 
-    @Override
-    public final boolean I0() {
-        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.P3.f12080f.getCurrentItem()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void invalidate() {
-        if (v.f12407c) {
-            v.f12406b.add(this);
-        } else {
-            super.invalidate();
+    public final void a(boolean z10) {
+        if (this.d != z10) {
+            this.d = z10;
+            invalidate();
+            this.f12277a.setIsVisible(z10);
+            this.f12280e.A();
         }
     }
 
     @Override
-    public final void invalidate(int i7, int i10, int i11, int i12) {
-        if (v.f12407c) {
-            v.f12406b.add(this);
-        } else {
-            super.invalidate(i7, i10, i11, i12);
+    public final void dispatchDraw(Canvas canvas) {
+        if (!this.d) {
+            return;
         }
+        super.dispatchDraw(canvas);
     }
 }

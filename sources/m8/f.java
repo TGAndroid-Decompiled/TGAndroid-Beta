@@ -2,21 +2,22 @@ package m8;
 
 import android.os.Parcel;
 import android.os.RemoteException;
+import hi.u5;
 import q6.m;
 import v7.i;
 public final class f {
-    public final v7.a f20539a;
+    public final v7.a f20903a;
 
     public f(v7.a aVar) {
-        m.g(aVar);
-        this.f20539a = aVar;
+        m.h(aVar);
+        this.f20903a = aVar;
     }
 
-    public final void a(ia.d dVar) {
+    public final void a(u5 u5Var) {
         try {
-            i iVar = (i) this.f20539a;
+            i iVar = (i) this.f20903a;
             Parcel p12 = iVar.p1();
-            v7.b.c(p12, (a7.a) dVar.f15881b);
+            v7.b.c(p12, (a7.a) u5Var.f15539b);
             iVar.t1(p12, 18);
         } catch (RemoteException e10) {
             throw new RuntimeException(e10);
@@ -29,8 +30,8 @@ public final class f {
             return false;
         }
         try {
-            v7.a aVar = this.f20539a;
-            v7.a aVar2 = ((f) obj).f20539a;
+            v7.a aVar = this.f20903a;
+            v7.a aVar2 = ((f) obj).f20903a;
             i iVar = (i) aVar;
             Parcel p12 = iVar.p1();
             v7.b.c(p12, aVar2);
@@ -47,7 +48,7 @@ public final class f {
 
     public final int hashCode() {
         try {
-            i iVar = (i) this.f20539a;
+            i iVar = (i) this.f20903a;
             Parcel o12 = iVar.o1(iVar.p1(), 17);
             int readInt = o12.readInt();
             o12.recycle();

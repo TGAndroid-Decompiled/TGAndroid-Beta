@@ -1,174 +1,98 @@
 package org.telegram.messenger;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.style.CharacterStyle;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
-public class xu extends cu {
-    public final hv X;
-    public final hv[] Y;
-    public final boolean Z;
-    public int f27605a0;
-    public int f27606b0;
-    public int f27607c0;
+import android.view.View;
+import org.telegram.ui.Components.h51;
+public final class xu extends zt implements Drawable.Callback {
+    public final h51 X;
+    public final int Y;
+    public final int Z;
+    public final int f28004a0;
+    public final int f28005b0;
+    public w7.s f28006c0;
+    public Bitmap f28007d0;
 
-    public xu(iv ivVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder) {
-        super(ivVar, rect, i7);
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-        this.f27607c0 = -1;
-        Layout.Alignment alignment2 = Layout.Alignment.ALIGN_CENTER;
-        this.Z = false;
-        hv hvVar = new hv(ivVar, spannableStringBuilder, this.f22943c, alignment);
-        this.X = hvVar;
-        this.Y = r3;
-        hv[] hvVarArr = {hvVar};
+    public xu(ev evVar, Rect rect, int i7, int i10, int i11) {
+        super(evVar, rect, i7);
+        this.f28004a0 = i10;
+        this.f28005b0 = i11;
+        h51 h51Var = new h51();
+        this.X = h51Var;
+        h51Var.setCallback(this);
+        h51Var.f35744n = gd.M0(2131743594, null);
+        h51Var.f35745o = gd.M0(2131743595, null);
+        h51Var.f35746p = gd.M0(2131743589, null);
+        h51Var.f35740j = new xr(evVar, 7);
+        int i12 = this.f28353c;
+        this.Y = i12;
+        this.Z = h51Var.a(i12);
     }
 
     @Override
-    public final int H() {
-        return this.f27605a0;
+    public final int I() {
+        Rect rect = this.f28352b;
+        return rect.top + this.Z + rect.bottom;
     }
 
     @Override
-    public int I() {
-        Rect rect = this.f22942b;
-        return this.X.f24222b.getHeight() + rect.top + this.f27605a0 + this.f27606b0 + rect.bottom;
-    }
-
-    @Override
-    public final int J() {
-        Rect rect = this.f22942b;
-        return this.X.q() + rect.left + rect.right;
-    }
-
-    @Override
-    public final int K() {
-        Rect rect = this.f22942b;
-        return this.X.r() + rect.left + rect.right;
-    }
-
-    @Override
-    public final org.telegram.ui.Cells.s9[] L() {
-        return this.Y;
-    }
-
-    @Override
-    public final void T() {
-        this.X.i(this.W);
-    }
-
-    @Override
-    public final void V() {
-        this.X.f(this.W);
-    }
-
-    @Override
-    public void W(Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, this.f27605a0);
-        int i02 = i0();
-        hv hvVar = this.X;
-        if (i02 != 0) {
-            hvVar.f24223c = (this.f22942b.left + i02) - hvVar.f24225f;
-            canvas.save();
-            canvas.translate(i02, 0.0f);
-            hvVar.d(canvas, hvVar.T);
-            canvas.restore();
-        } else {
-            hvVar.d(canvas, hvVar.T);
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final void X(Canvas canvas, int i7, float f10) {
-        canvas.save();
-        canvas.translate(0.0f, this.f27605a0);
-        int i02 = i0();
-        hv hvVar = this.X;
-        if (i02 != 0) {
-            hvVar.f24223c = (this.f22942b.left + i02) - hvVar.f24225f;
-            canvas.save();
-            canvas.translate(i02, 0.0f);
-            hvVar.m(canvas, i7, f10);
-            canvas.restore();
-        } else {
-            hvVar.m(canvas, i7, f10);
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public boolean Y(MotionEvent motionEvent) {
-        int i02 = i0();
-        motionEvent.offsetLocation(-i02, -this.f27605a0);
-        boolean t6 = this.X.t(motionEvent);
-        motionEvent.offsetLocation(i02, this.f27605a0);
-        return t6;
-    }
-
-    @Override
-    public final void Z(int i7, int i10, int i11) {
-        super.Z(i7, i10 + this.f27605a0, i11);
-        int i02 = i0();
-        if (i02 != 0) {
-            int i12 = i7 + i02;
-            hv hvVar = this.X;
-            hvVar.f24223c = i12 - hvVar.f24225f;
-        }
-    }
-
-    @Override
-    public final Layout a() {
-        return this.X.f24222b;
-    }
-
-    public final int i0() {
-        int L;
-        int r10;
-        boolean z10 = this.Z;
-        Rect rect = this.f22942b;
-        hv hvVar = this.X;
-        iv ivVar = this.f22941a;
-        if (z10) {
-            L = (((ivVar.C + ivVar.T) - ivVar.S) - hvVar.r()) / 2;
-            r10 = rect.left;
-        } else if (!ivVar.I()) {
-            return 0;
-        } else {
-            L = (((ivVar.C + ivVar.T) - g0.L(14.0f)) - rect.right) - rect.left;
-            r10 = hvVar.r();
-        }
-        return L - r10;
-    }
-
-    public final void j0(int i7, int i10) {
-        this.f27605a0 = i7;
-        this.f27606b0 = i10;
-        g0();
-    }
-
-    @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        cu.l(spannableStringBuilder, this.X, this.Y);
-    }
-
-    @Override
-    public final boolean u(CharacterStyle characterStyle, int i7, tt ttVar) {
-        hv hvVar = this.X;
-        if (hvVar.o(characterStyle, ttVar)) {
-            Rect rect = this.f22942b;
-            ttVar.f26733e = (i0() + rect.left) - hvVar.f24225f;
-            ttVar.f26734f = i7 + rect.top + this.f27605a0;
-            return true;
+    public final boolean Y(MotionEvent motionEvent) {
+        View view = this.W;
+        if (view != null) {
+            return this.X.f35739i.a(view, motionEvent);
         }
         return false;
     }
 
+    public final float i0(org.telegram.ui.Cells.x1 x1Var) {
+        int i7;
+        if (x1Var != null) {
+            ev evVar = this.f28351a;
+            if (evVar.f23786s || evVar.f23788u) {
+                i7 = g0.W1(Math.max(0.0f, Math.min(1.0f, x1Var.L1)), this.Q, this.O);
+                return i7;
+            }
+        }
+        i7 = this.O;
+        return i7;
+    }
+
     @Override
-    public final boolean v() {
-        return this.Z;
+    public final void invalidateDrawable(Drawable drawable) {
+        View view = this.W;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    public final float j0(org.telegram.ui.Cells.x1 x1Var) {
+        if (x1Var != null) {
+            ev evVar = this.f28351a;
+            if (evVar.f23786s || evVar.f23788u) {
+                return g0.T1(this.P, this.N, Math.max(0.0f, Math.min(1.0f, x1Var.L1)));
+            }
+        }
+        return this.N;
+    }
+
+    @Override
+    public final void q(Canvas canvas) {
+        Rect rect = this.f28352b;
+        int i7 = rect.left;
+        int i10 = rect.top;
+        h51 h51Var = this.X;
+        h51Var.setBounds(i7, i10, this.Y + i7, this.Z + i10);
+        h51Var.draw(canvas);
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
     }
 }

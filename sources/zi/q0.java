@@ -1,11 +1,15 @@
 package zi;
-public enum q0 {
-    FPS_30(30),
-    FPS_60(60);
-    
-    public final int f61676a;
 
-    q0(int i7) {
-        this.f61676a = i7;
+import java.io.File;
+public final class q0 {
+    public final long f62243a;
+    public final File f62244b;
+    public volatile long f62245c;
+    public volatile boolean d;
+    public volatile boolean f62246e;
+
+    public q0(long j3, File file) {
+        this.f62243a = j3;
+        this.f62244b = file;
     }
 }

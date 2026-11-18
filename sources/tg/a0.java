@@ -6,20 +6,20 @@ import android.view.KeyEvent;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.cj;
+import org.telegram.messenger.bj;
 import org.telegram.messenger.g6;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.messenger.j6;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.mx;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.x31;
-public final class a0 implements mx {
-    public final g0 f57153a;
+import org.telegram.ui.Components.h41;
+import org.telegram.ui.Components.rx;
+import org.telegram.ui.Components.x5;
+public final class a0 implements rx {
+    public final g0 f57725a;
 
     public a0(g0 g0Var) {
-        this.f57153a = g0Var;
+        this.f57725a = g0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class a0 implements mx {
 
     @Override
     public final boolean k() {
-        b editText = ((n2) this.f57153a.C0).getEditText();
+        b editText = ((m2) this.f57725a.C0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -69,11 +69,11 @@ public final class a0 implements mx {
 
     @Override
     public final void l(String str) {
-        n2 n2Var;
+        m2 m2Var;
         b editText;
         g6[] g6VarArr;
-        j jVar = this.f57153a.C0;
-        if (!(jVar instanceof n2) || (editText = (n2Var = (n2) jVar).getEditText()) == null) {
+        j jVar = this.f57725a.C0;
+        if (!(jVar instanceof m2) || (editText = (m2Var = (m2) jVar).getEditText()) == null) {
             return;
         }
         int selectionEnd = editText.getSelectionEnd();
@@ -81,10 +81,10 @@ public final class a0 implements mx {
             selectionEnd = 0;
         }
         try {
-            CharSequence m10 = j6.m(str, n2Var.getFontMetricsInt(), false, null, 0);
+            CharSequence m10 = j6.m(str, m2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (g6VarArr = (g6[]) ((Spanned) m10).getSpans(0, m10.length(), g6.class)) != null) {
                 for (g6 g6Var : g6VarArr) {
-                    g6Var.f23696b = 0.85f;
+                    g6Var.f24176b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -99,14 +99,14 @@ public final class a0 implements mx {
 
     @Override
     public final void n() {
-        g0 g0Var = this.f57153a;
+        g0 g0Var = this.f57725a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.A1);
-        String M0 = hd.M0(2131752068, null);
-        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-        t1Var.S = M0;
-        t1Var.U = hd.M0(2131752069, null);
-        alertDialog$Builder.k(hd.M0(2131752099, null), new org.telegram.ui.ActionBar.z(this, 27));
-        alertDialog$Builder.h(hd.M0(2131752589, null), null);
+        String M0 = gd.M0(2131752057, null);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+        u1Var.S = M0;
+        u1Var.U = gd.M0(2131752058, null);
+        alertDialog$Builder.k(gd.M0(2131752088, null), new org.telegram.ui.ActionBar.p(this, 28));
+        alertDialog$Builder.h(gd.M0(2131752578, null), null);
         alertDialog$Builder.p();
     }
 
@@ -117,8 +117,8 @@ public final class a0 implements mx {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        p5 p5Var;
-        b editText = ((n2) this.f57153a.C0).getEditText();
+        x5 x5Var;
+        b editText = ((m2) this.f57725a.C0).getEditText();
         if (editText == null) {
             return;
         }
@@ -129,11 +129,11 @@ public final class a0 implements mx {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                p5Var = new p5(document, editText.getPaint().getFontMetricsInt());
+                x5Var = new x5(document, editText.getPaint().getFontMetricsInt());
             } else {
-                p5Var = new p5(j3, editText.getPaint().getFontMetricsInt());
+                x5Var = new x5(j3, editText.getPaint().getFontMetricsInt());
             }
-            spannableString.setSpan(p5Var, 0, spannableString.length(), 33);
+            spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
             editText.setText(editText.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
             editText.setSelection(length, length);
@@ -158,7 +158,7 @@ public final class a0 implements mx {
     }
 
     @Override
-    public final void o(x31 x31Var) {
+    public final void o(h41 h41Var) {
     }
 
     @Override
@@ -198,7 +198,7 @@ public final class a0 implements mx {
     }
 
     @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, cj cjVar, boolean z10, int i7) {
+    public final void m(View view, TLRPC.Document document, String str, Object obj, bj bjVar, boolean z10, int i7) {
     }
 
     @Override

@@ -1,50 +1,84 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.a8;
-public final class k2 extends r2 {
-    public final u2 I;
+import android.animation.ValueAnimator;
+import org.telegram.ui.Components.fj0;
+import org.telegram.ui.Components.ry;
+import org.telegram.ui.Components.wt;
+import org.telegram.ui.Components.y40;
+import org.telegram.ui.yp;
+public final class k2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f29121a;
+    public final int f29122b;
+    public final Object f29123c;
 
-    public k2(u2 u2Var, Context context) {
-        super(u2Var, context);
-        this.I = u2Var;
+    public k2(Object obj, int i7, int i10) {
+        this.f29121a = i10;
+        this.f29123c = obj;
+        this.f29122b = i7;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.I.Z(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        try {
-            return super.drawChild(canvas, view, j3);
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i7;
+        switch (this.f29121a) {
+            case 0:
+                x2 x2Var = (x2) this.f29123c;
+                x2Var.getClass();
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                x2Var.C0(this.f29122b, intValue, intValue);
+                return;
+            case 1:
+                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.f29123c;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (q1Var.getMessageObject() != null && q1Var.getMessageObject().e1() == this.f29122b) {
+                    q1Var.setSelectedBackgroundProgress(floatValue);
+                    return;
+                }
+                return;
+            case 2:
+                wt wtVar = (wt) this.f29123c;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wtVar.d.setTranslationY(floatValue2);
+                int i10 = this.f29122b;
+                float f10 = i10;
+                float f11 = 1.0f - (floatValue2 / f10);
+                wtVar.S = f11;
+                if (i10 > 0 && ((i7 = wtVar.M) == 2 || i7 == 3)) {
+                    wtVar.d.setAlpha(f11);
+                }
+                wtVar.c(floatValue2 - f10);
+                return;
+            case 3:
+                ((ry) this.f29123c).R0[this.f29122b] = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 4:
+                y40 y40Var = (y40) this.f29123c;
+                if (this.f29122b == y40Var.f42318u0) {
+                    float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    if (floatValue3 >= 0.5f) {
+                        floatValue3 -= 1.0f;
+                    }
+                    y40Var.f42322x.setRotationY(floatValue3 * 180.0f);
+                    return;
+                }
+                return;
+            case 5:
+                yp ypVar = (yp) this.f29123c;
+                ypVar.getClass();
+                fj0 fj0Var = (fj0) ypVar.d;
+                fj0Var.f35121b.put(this.f29122b, (Float) valueAnimator.getAnimatedValue());
+                fj0Var.d = true;
+                fj0Var.f35120a.invalidate();
+                return;
+            default:
+                xh.f fVar = (xh.f) this.f29123c;
+                fVar.getClass();
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fVar.f60557n = floatValue4;
+                fVar.setAlpha((int) ((1.0f - floatValue4) * this.f29122b));
+                fVar.f60559p = true;
+                fVar.invalidateSelf();
+                return;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        setTag(2131296351, new bi.t(7));
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        u2 u2Var = this.I;
-        u2Var.h = null;
-        u2Var.f29685c.requestApplyInsets();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        setTag(2131296351, null);
     }
 }

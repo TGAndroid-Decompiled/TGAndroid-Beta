@@ -1,25 +1,13 @@
 package org.telegram.ui.Components;
-public final class h31 implements rt0 {
-    public int f35158a;
-    public boolean f35159b;
-    public final i31 f35160c;
 
-    public h31(i31 i31Var) {
-        this.f35160c = i31Var;
-    }
-
+import android.graphics.Canvas;
+public final class h31 extends xh.l {
     @Override
-    public final void L(int i7, boolean z10) {
-        if (this.f35158a != i7 || this.f35159b != z10) {
-            this.f35158a = i7;
-            this.f35159b = z10;
-            if (i7 > org.telegram.messenger.g0.L(20.0f)) {
-                i31 i31Var = this.f35160c;
-                if (!i31Var.f35428h0) {
-                    i31Var.f35434o0.f29713r0 = false;
-                    i31Var.f35428h0 = true;
-                }
-            }
-        }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        nu0.a(canvas, getLayout());
+        canvas.restore();
     }
 }

@@ -3,56 +3,56 @@ package org.telegram.messenger;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class k7 implements Runnable {
-    public final w7 f24654a;
-    public final i7[] f24655b;
-    public final TLRPC.Document f24656c;
-    public final gc d;
-    public final Object f24657e;
-    public final int f24658f;
+    public final w7 f25002a;
+    public final i7[] f25003b;
+    public final TLRPC.Document f25004c;
+    public final fc d;
+    public final Object f25005e;
+    public final int f25006f;
     public final j7 h;
-    public final long f24659n;
-    public final boolean f24660r;
-    public final int f24661s;
-    public final CountDownLatch f24662w;
+    public final long f25007n;
+    public final boolean f25008r;
+    public final int f25009s;
+    public final CountDownLatch f25010w;
 
-    public k7(w7 w7Var, i7[] i7VarArr, TLRPC.Document document, gc gcVar, Object obj, int i7, j7 j7Var, long j3, boolean z10, int i10, CountDownLatch countDownLatch) {
-        this.f24654a = w7Var;
-        this.f24655b = i7VarArr;
-        this.f24656c = document;
-        this.d = gcVar;
-        this.f24657e = obj;
-        this.f24658f = i7;
+    public k7(w7 w7Var, i7[] i7VarArr, TLRPC.Document document, fc fcVar, Object obj, int i7, j7 j7Var, long j3, boolean z10, int i10, CountDownLatch countDownLatch) {
+        this.f25002a = w7Var;
+        this.f25003b = i7VarArr;
+        this.f25004c = document;
+        this.d = fcVar;
+        this.f25005e = obj;
+        this.f25006f = i7;
         this.h = j7Var;
-        this.f24659n = j3;
-        this.f24660r = z10;
-        this.f24661s = i10;
-        this.f24662w = countDownLatch;
+        this.f25007n = j3;
+        this.f25008r = z10;
+        this.f25009s = i10;
+        this.f25010w = countDownLatch;
     }
 
     @Override
     public final void run() {
         TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
         long j3;
-        w7 w7Var = this.f24654a;
+        w7 w7Var = this.f25002a;
         w7Var.getClass();
-        TLRPC.Document document = this.f24656c;
-        gc gcVar = this.d;
+        TLRPC.Document document = this.f25004c;
+        fc fcVar = this.d;
         String str = null;
-        if (document == null && gcVar != null) {
-            tL_fileLocationToBeDeprecated = gcVar.f23717f;
+        if (document == null && fcVar != null) {
+            tL_fileLocationToBeDeprecated = fcVar.f23871f;
         } else {
             tL_fileLocationToBeDeprecated = null;
         }
-        if (document == null && gcVar != null) {
+        if (document == null && fcVar != null) {
             str = "mp4";
         }
         String str2 = str;
-        if (document == null && gcVar != null) {
-            j3 = gcVar.f23728r;
+        if (document == null && fcVar != null) {
+            j3 = fcVar.f23882r;
         } else {
             j3 = 0;
         }
-        this.f24655b[0] = w7Var.Y(document, null, null, tL_fileLocationToBeDeprecated, gcVar, this.f24657e, str2, j3, this.f24658f, this.h, this.f24659n, this.f24660r, this.f24661s);
-        this.f24662w.countDown();
+        this.f25003b[0] = w7Var.Y(document, null, null, tL_fileLocationToBeDeprecated, fcVar, this.f25005e, str2, j3, this.f25006f, this.h, this.f25007n, this.f25008r, this.f25009s);
+        this.f25010w.countDown();
     }
 }

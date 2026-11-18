@@ -1,8 +1,7 @@
 package org.telegram.ui.Wallet;
-
-import org.telegram.messenger.is;
-public final class x3 implements is {
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object[] objArr) {
-    }
+public final class x3 {
+    public int f45248a;
+    public int f45249b;
+    public byte[] f45250c;
+    public int[] d;
 }

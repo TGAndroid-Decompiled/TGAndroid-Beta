@@ -1,100 +1,51 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
 import android.util.Pair;
 import java.util.HashMap;
-public abstract class x2 {
-    public final long f27456a;
-    public HashMap f27457b;
-    public HashMap f27458c;
-    public HashMap d;
+public final class x2 implements u10 {
+    public final y2 f27811a;
+    public final Pair f27812b;
+    public final Object f27813c;
+    public final int d;
+    public final Object f27814e;
 
-    public x2() {
-        this(240000);
+    public x2(y2 y2Var, Pair pair, Object obj, int i7, Object obj2) {
+        this.f27811a = y2Var;
+        this.f27812b = pair;
+        this.f27813c = obj;
+        this.d = i7;
+        this.f27814e = obj2;
     }
 
-    public final void a(Pair pair, Object obj) {
-        if (!j(pair.second)) {
-            return;
-        }
-        if (this.f27457b == null) {
-            this.f27457b = new HashMap();
-        }
-        this.f27457b.put(pair, obj);
-    }
-
-    public boolean b(Object obj) {
-        return false;
-    }
-
-    public final void c(int i7, Object obj, z10 z10Var) {
-        Object obj2;
-        Pair pair = new Pair(Integer.valueOf(i7), obj);
-        HashMap hashMap = this.f27458c;
-        if (hashMap != null && hashMap.get(pair) != null) {
-            g0.h3(new mg(this, pair, z10Var, 11));
-            return;
-        }
-        HashMap hashMap2 = this.f27457b;
-        if (hashMap2 == null) {
-            obj2 = null;
-        } else {
-            obj2 = hashMap2.get(pair);
-        }
-        if (obj2 != null && !i(pair)) {
-            z10Var.a(obj2);
-            return;
-        }
-        g0.h3(new mg(this, pair, z10Var, 11));
-        e(i7, obj, new v2(this, pair, obj, i7));
-    }
-
-    public final void d(int i7, Integer num) {
-        if (this.d != null) {
-            Pair pair = new Pair(Integer.valueOf(i7), num);
-            this.d.remove(pair);
-            if (this instanceof mo) {
-                h(pair.hashCode(), 0L);
+    @Override
+    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
+        Boolean bool = (Boolean) obj;
+        Long l10 = (Long) obj3;
+        y2 y2Var = this.f27811a;
+        y2Var.getClass();
+        boolean booleanValue = ((Boolean) obj4).booleanValue();
+        Pair pair = this.f27812b;
+        if (booleanValue) {
+            if (y2Var.d == null) {
+                y2Var.d = new HashMap();
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            y2Var.d.put(pair, Long.valueOf(currentTimeMillis));
+            if (y2Var instanceof lo) {
+                y2Var.h(pair.hashCode(), currentTimeMillis);
             }
         }
-    }
-
-    public void e(int i7, Object obj, s10 s10Var) {
-        ((v2) s10Var).a(0L, null);
-    }
-
-    public abstract void f(int i7, Object obj, long j3, w2 w2Var);
-
-    public final boolean i(Pair pair) {
-        Long l10;
-        HashMap hashMap = this.d;
-        if (hashMap != null) {
-            l10 = (Long) hashMap.get(pair);
-        } else {
-            l10 = null;
+        if (bool.booleanValue()) {
+            Object obj5 = this.f27813c;
+            y2Var.a(pair, obj5);
+            g0.g3(new aa.c0((Object) y2Var, (Object) pair, obj5, true, 8));
+            return;
         }
-        if ((this instanceof mo) && l10 == null) {
-            int hashCode = pair.hashCode();
-            SharedPreferences sharedPreferences = ((mo) this).f25084e.f25283f7;
-            l10 = Long.valueOf(sharedPreferences.getLong("effects_last_" + hashCode, 0L));
+        if (obj2 != null) {
+            l10.getClass();
+            y2Var.g(this.d, this.f27814e, obj2);
+            y2Var.a(pair, obj2);
         }
-        if (l10 != null && System.currentTimeMillis() - l10.longValue() < this.f27456a) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean j(Object obj) {
-        return true;
-    }
-
-    public x2(int i7) {
-        this.f27456a = i7;
-    }
-
-    public void h(int i7, long j3) {
-    }
-
-    public void g(int i7, Object obj, Object obj2) {
+        g0.g3(new aa.c0((Object) y2Var, (Object) pair, obj2, true, 8));
     }
 }

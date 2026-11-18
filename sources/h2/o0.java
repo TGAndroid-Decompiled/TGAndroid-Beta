@@ -15,39 +15,39 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
-import c8.xc;
-import c8.yb;
-import fi.f6;
+import c8.ad;
+import c8.bc;
+import fi.a6;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class o0 implements yb.a {
-    public final int f13490a = 1;
-    public boolean f13491b;
-    public boolean f13492c;
+    public final int f13805a = 1;
+    public boolean f13806b;
+    public boolean f13807c;
     public final Object d;
-    public final Object f13493e;
-    public Object f13494f;
+    public final Object f13808e;
+    public Object f13809f;
 
     public o0(Context context, xb.a aVar) {
         this.d = context;
-        this.f13493e = aVar;
+        this.f13808e = aVar;
     }
 
     public void a(boolean z10, boolean z11) {
-        i0 i0Var = (i0) this.f13493e;
+        i0 i0Var = (i0) this.f13808e;
         if (z10 && z11) {
             i0Var.d(new m0(this, z10, z11, 0));
             return;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean(true);
-        ((i0) this.f13494f).f13456a.postDelayed(new f6(23, this, atomicBoolean), 1000L);
+        ((i0) this.f13809f).f13771a.postDelayed(new a6(25, this, atomicBoolean), 1000L);
         i0Var.d(new n0(this, atomicBoolean, z10, z11, 0));
     }
 
     public void b(boolean z10) {
-        if (this.f13492c != z10) {
-            this.f13492c = z10;
-            if (this.f13491b) {
+        if (this.f13807c != z10) {
+            this.f13807c = z10;
+            if (this.f13806b) {
                 a(true, z10);
             }
         }
@@ -56,58 +56,58 @@ public final class o0 implements yb.a {
     @Override
     public ArrayList c(ub.a aVar) {
         a7.b bVar;
-        if (((db) this.f13494f) == null) {
+        if (((db) this.f13809f) == null) {
             zzb();
         }
-        db dbVar = (db) this.f13494f;
-        q6.m.g(dbVar);
-        if (!this.f13491b) {
+        db dbVar = (db) this.f13809f;
+        q6.m.h(dbVar);
+        if (!this.f13806b) {
             try {
                 dbVar.t1(dbVar.p1(), 1);
-                this.f13491b = true;
+                this.f13806b = true;
             } catch (RemoteException e10) {
                 throw new lb.a("Failed to init thin image labeler.", e10);
             }
         }
-        int i7 = aVar.f58000e;
-        int i10 = aVar.f57998b;
-        int i11 = aVar.f57999c;
-        int a10 = xc.a(aVar.d);
+        int i7 = aVar.f58565e;
+        int i10 = aVar.f58563b;
+        int i11 = aVar.f58564c;
+        int a10 = ad.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i12 = aVar.f58000e;
+        int i12 = aVar.f58565e;
         if (i12 != -1) {
             if (i12 != 17) {
                 if (i12 != 35) {
                     if (i12 != 842094169) {
-                        throw new lb.a(i5.c.i(aVar.f58000e, "Unsupported image format: "), 3);
+                        throw new lb.a(i5.c.i(aVar.f58565e, "Unsupported image format: "), 3);
                     }
                 } else {
                     bVar = new a7.b(null);
                 }
             }
-            q6.m.g(null);
+            q6.m.h(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f57997a;
-        q6.m.g(bitmap);
+        Bitmap bitmap = aVar.f58562a;
+        q6.m.h(bitmap);
         bVar = new a7.b(bitmap);
         try {
             Parcel p12 = dbVar.p1();
-            int i13 = a8.g0.f410a;
+            int i13 = a8.g0.f404a;
             p12.writeStrongBinder(bVar);
             p12.writeInt(1);
-            int r10 = yb.r(p12, 20293);
-            yb.q(p12, 1, 4);
+            int r10 = bc.r(p12, 20293);
+            bc.q(p12, 1, 4);
             p12.writeInt(i7);
-            yb.q(p12, 2, 4);
+            bc.q(p12, 2, 4);
             p12.writeInt(i10);
-            yb.q(p12, 3, 4);
+            bc.q(p12, 3, 4);
             p12.writeInt(i11);
-            yb.q(p12, 4, 4);
+            bc.q(p12, 4, 4);
             p12.writeInt(a10);
-            yb.q(p12, 5, 8);
+            bc.q(p12, 5, 8);
             p12.writeLong(elapsedRealtime);
-            yb.s(p12, r10);
+            bc.s(p12, r10);
             Parcel r12 = dbVar.r1(p12, 3);
             ArrayList createTypedArrayList = r12.createTypedArrayList(hb.CREATOR);
             r12.recycle();
@@ -127,9 +127,9 @@ public final class o0 implements yb.a {
     }
 
     public String toString() {
-        switch (this.f13490a) {
+        switch (this.f13805a) {
             case 1:
-                return "JsonConfiguration(encodeDefaults=false, ignoreUnknownKeys=false, isLenient=false, allowStructuredMapKeys=false, prettyPrint=false, explicitNulls=" + this.f13491b + ", prettyPrintIndent='" + ((String) this.d) + "', coerceInputValues=false, useArrayPolymorphism=false, classDiscriminator='" + ((String) this.f13493e) + "', allowSpecialFloatingPointValues=false, useAlternativeNames=" + this.f13492c + ", namingStrategy=null, decodeEnumsCaseInsensitive=false, allowTrailingComma=false, allowComments=false, classDiscriminatorMode=" + ((pe.a) this.f13494f) + ')';
+                return "JsonConfiguration(encodeDefaults=false, ignoreUnknownKeys=false, isLenient=false, allowStructuredMapKeys=false, prettyPrint=false, explicitNulls=" + this.f13806b + ", prettyPrintIndent='" + ((String) this.d) + "', coerceInputValues=false, useArrayPolymorphism=false, classDiscriminator='" + ((String) this.f13808e) + "', allowSpecialFloatingPointValues=false, useAlternativeNames=" + this.f13807c + ", namingStrategy=null, decodeEnumsCaseInsensitive=false, allowTrailingComma=false, allowComments=false, classDiscriminatorMode=" + ((pe.a) this.f13809f) + ')';
             default:
                 return super.toString();
         }
@@ -139,12 +139,12 @@ public final class o0 implements yb.a {
     public void zzb() {
         IInterface aVar;
         Context context = (Context) this.d;
-        if (((db) this.f13494f) != null) {
+        if (((db) this.f13809f) != null) {
             return;
         }
         try {
-            IBinder b10 = b7.f.c(context, b7.f.f2951b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
-            int i7 = fb.f408b;
+            IBinder b10 = b7.f.c(context, b7.f.f2945b, "com.google.android.gms.vision.ica").b("com.google.android.gms.vision.label.mlkit.ImageLabelerCreator");
+            int i7 = fb.f402b;
             if (b10 == null) {
                 aVar = null;
             } else {
@@ -155,13 +155,13 @@ public final class o0 implements yb.a {
                     aVar = new a8.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 0);
                 }
             }
-            this.f13494f = ((eb) aVar).x1(new a7.b(context), new ib(((xb.a) this.f13493e).f59093a, -1));
+            this.f13809f = ((eb) aVar).x1(new a7.b(context), new ib(((xb.a) this.f13808e).f59658a, -1));
         } catch (RemoteException e10) {
             throw new lb.a("Failed to create thin image labeler.", e10);
         } catch (b7.b unused) {
-            if (!this.f13492c) {
+            if (!this.f13807c) {
                 pb.j.b(context);
-                this.f13492c = true;
+                this.f13807c = true;
             }
             throw new lb.a("Waiting for the label optional module to be downloaded. Please wait.", 14);
         }
@@ -169,30 +169,30 @@ public final class o0 implements yb.a {
 
     @Override
     public void zzc() {
-        db dbVar = (db) this.f13494f;
+        db dbVar = (db) this.f13809f;
         if (dbVar != null) {
             try {
                 dbVar.t1(dbVar.p1(), 2);
             } catch (RemoteException unused) {
                 Log.e("DecoupledImageLabeler", "Failed to release thin image labeler.");
             }
-            this.f13494f = null;
-            this.f13491b = false;
+            this.f13809f = null;
+            this.f13806b = false;
         }
     }
 
     public o0() {
-        pe.a aVar = pe.a.f54994a;
-        this.f13491b = true;
+        pe.a aVar = pe.a.f55570a;
+        this.f13806b = true;
         this.d = "    ";
-        this.f13493e = "type";
-        this.f13492c = true;
-        this.f13494f = aVar;
+        this.f13808e = "type";
+        this.f13807c = true;
+        this.f13809f = aVar;
     }
 
     public o0(Context context, Looper looper, g0 g0Var) {
         this.d = new wf.b(context.getApplicationContext(), 24);
-        this.f13493e = g0Var.a(looper, null);
-        this.f13494f = g0Var.a(Looper.getMainLooper(), null);
+        this.f13808e = g0Var.a(looper, null);
+        this.f13809f = g0Var.a(Looper.getMainLooper(), null);
     }
 }

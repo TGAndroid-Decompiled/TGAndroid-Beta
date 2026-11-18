@@ -1,4 +1,16 @@
 package c8;
+
+import android.os.Build;
+import org.telegram.messenger.mp;
+import org.telegram.ui.Dictation.DictationAsr;
 public abstract class b1 {
-    public static l8.a f4210a;
+    public static boolean a() {
+        if (mp.g1().getBoolean("design_voice_live_transcript", true) && DictationAsr.B()) {
+            if (!DictationAsr.x() || (Build.VERSION.SDK_INT >= 33 && ai.d.h())) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 }

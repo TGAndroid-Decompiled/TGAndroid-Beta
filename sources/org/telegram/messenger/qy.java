@@ -1,150 +1,82 @@
 package org.telegram.messenger;
 
+import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.tgnet.TLObject;
+import java.util.HashSet;
+import java.util.Map;
 import org.telegram.tgnet.TLRPC;
 public final class qy {
-    public ArrayList A;
-    public ArrayList B;
-    public ArrayList C;
-    public ArrayList D;
-    public HashMap E;
-    public long F;
-    public int G;
-    public boolean H;
-    public boolean I;
-    public boolean J;
-    public Object K;
-    public final ez L;
-    public final long f26155a;
-    public ArrayList f26156b;
-    public TLObject f26157c;
-    public TLObject d;
-    public int f26158e;
-    public String f26159f;
-    public TLRPC.PhotoSize f26160g;
-    public TLObject h;
-    public TLRPC.PhotoSize f26161i;
-    public TLRPC.InputFile f26162j;
-    public boolean f26163k;
-    public String f26164l;
-    public gj f26165m;
-    public TLRPC.EncryptedChat f26166n;
-    public g20 f26167o;
-    public boolean f26168p;
-    public boolean f26169q;
-    public boolean f26170r;
-    public boolean[] f26171s;
-    public TLRPC.InputMedia f26172t;
-    public ArrayList f26173u;
-    public ArrayList v;
-    public ArrayList f26174w;
-    public ArrayList f26175x;
-    public ArrayList f26176y;
-    public ArrayList f26177z;
+    public String f26485a;
+    public TLRPC.InputPeer f26490g;
+    public long h;
+    public long f26491i;
+    public long f26492j;
+    public long f26493k;
+    public int f26494l;
+    public double f26495m;
+    public long f26496n;
+    public long f26497o;
+    public final zy f26499q;
+    public ArrayList f26486b = new ArrayList();
+    public final HashSet f26487c = new HashSet();
+    public final HashMap d = new HashMap();
+    public final HashMap f26488e = new HashMap();
+    public final ArrayList f26489f = new ArrayList();
+    public int f26498p = Integer.MAX_VALUE;
 
-    public qy(ez ezVar, long j3) {
-        this.L = ezVar;
-        this.f26155a = j3;
+    public qy(zy zyVar) {
+        this.f26499q = zyVar;
     }
 
-    public final void a(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, qy qyVar, boolean z10) {
-        ?? obj = new Object();
-        obj.f26384a = tLObject;
-        obj.f26386c = arrayList;
-        obj.f26387e = arrayList2;
-        obj.f26389g = qyVar;
-        obj.f26388f = arrayList3;
-        obj.f26390i = z10;
-        if (this.f26156b == null) {
-            this.f26156b = new ArrayList();
+    public static void a(qy qyVar) {
+        TLRPC.TL_messages_startHistoryImport tL_messages_startHistoryImport = new TLRPC.TL_messages_startHistoryImport();
+        tL_messages_startHistoryImport.peer = qyVar.f26490g;
+        tL_messages_startHistoryImport.import_id = qyVar.f26493k;
+        qyVar.f26499q.getConnectionsManager().sendRequest(tL_messages_startHistoryImport, new py(qyVar, tL_messages_startHistoryImport));
+    }
+
+    public final void b(String str, long j3, float f10) {
+        this.d.put(str, Float.valueOf(f10));
+        Long valueOf = Long.valueOf(j3);
+        HashMap hashMap = this.f26488e;
+        hashMap.put(str, valueOf);
+        this.f26491i = 0L;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            this.f26491i = ((Long) entry.getValue()).longValue() + this.f26491i;
         }
-        this.f26156b.add(obj);
-    }
-
-    public final void b(long j3) {
-        this.f26158e = 4;
-        this.F = j3;
-        this.f26175x = new ArrayList();
-        this.f26177z = new ArrayList();
-        this.A = new ArrayList();
-        this.B = new ArrayList();
-        this.f26176y = new ArrayList();
-        this.E = new HashMap();
-        this.f26173u = new ArrayList();
-        this.v = new ArrayList();
-        this.f26174w = new ArrayList();
-        this.C = new ArrayList();
-        this.D = new ArrayList();
-    }
-
-    public final void c() {
-        int i7 = this.f26158e;
-        int i10 = ns.M;
-        ez ezVar = this.L;
-        if (i7 == 4) {
-            for (int i11 = 0; i11 < this.f26175x.size(); i11++) {
-                gj gjVar = (gj) this.f26175x.get(i11);
-                ezVar.getMessagesStorage().N0(gjVar.f23848r1 ? 1 : 0, gjVar.f23819k);
-                TLRPC.Message message = gjVar.f23819k;
-                message.send_state = 2;
-                message.errorAllowedPriceStars = 0L;
-                message.errorNewPriceStars = 0L;
-                ezVar.getNotificationCenter().k(i10, Integer.valueOf(gjVar.e1()));
-                ezVar.d0(gjVar.e1());
-                ezVar.j0(gjVar.e1(), this.H);
-            }
-            ezVar.f23389a.remove("group_" + this.F);
-        } else {
-            vr messagesStorage = ezVar.getMessagesStorage();
-            gj gjVar2 = this.f26165m;
-            messagesStorage.N0(gjVar2.f23848r1 ? 1 : 0, gjVar2.f23819k);
-            TLRPC.Message message2 = this.f26165m.f23819k;
-            message2.send_state = 2;
-            message2.errorAllowedPriceStars = 0L;
-            message2.errorNewPriceStars = 0L;
-            ezVar.getNotificationCenter().k(i10, Integer.valueOf(this.f26165m.e1()));
-            ezVar.d0(this.f26165m.e1());
-            ezVar.j0(this.f26165m.e1(), this.H);
-        }
-        d();
-    }
-
-    public final void d() {
-        ArrayList arrayList = this.f26156b;
-        if (arrayList != null) {
-            int i7 = this.f26158e;
-            if (i7 == 4 || i7 == 0) {
-                int size = arrayList.size();
-                for (int i10 = 0; i10 < size; i10++) {
-                    ry ryVar = (ry) this.f26156b.get(i10);
-                    TLObject tLObject = ryVar.f26384a;
-                    boolean z10 = tLObject instanceof TLRPC.TL_messages_sendEncryptedMultiMedia;
-                    ez ezVar = this.L;
-                    if (z10) {
-                        ezVar.getSecretChatHelper().k((TLRPC.TL_messages_sendEncryptedMultiMedia) ryVar.f26384a, this);
-                    } else if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
-                        ezVar.P((TLRPC.TL_messages_sendMultiMedia) tLObject, ryVar.f26386c, ryVar.f26387e, ryVar.f26388f, ryVar.f26389g, ryVar.f26390i);
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (!str.equals(this.f26485a)) {
+            long j10 = this.f26491i;
+            long j11 = this.f26497o;
+            if (j10 != j11) {
+                long j12 = this.f26496n;
+                if (elapsedRealtime != j12) {
+                    double d = (j10 - j11) / ((elapsedRealtime - j12) / 1000.0d);
+                    double d2 = this.f26495m;
+                    if (d2 == 0.0d) {
+                        this.f26495m = d;
                     } else {
-                        boolean z11 = tLObject instanceof TLRPC.TL_messages_sendMedia;
-                        if (z11) {
-                            TLRPC.TL_messages_sendMedia tL_messages_sendMedia = (TLRPC.TL_messages_sendMedia) tLObject;
-                            if (tL_messages_sendMedia.media instanceof TLRPC.TL_inputMediaPaidMedia) {
-                                ezVar.P(tL_messages_sendMedia, ryVar.f26386c, ryVar.f26387e, ryVar.f26388f, ryVar.f26389g, ryVar.f26390i);
-                            }
-                        }
-                        if (z11) {
-                            TLRPC.TL_messages_sendMedia tL_messages_sendMedia2 = (TLRPC.TL_messages_sendMedia) tLObject;
-                            if (tL_messages_sendMedia2.media instanceof TLRPC.TL_inputMediaPoll) {
-                                ezVar.P(tL_messages_sendMedia2, ryVar.f26386c, ryVar.f26387e, ryVar.f26388f, ryVar.f26389g, ryVar.f26390i);
-                            }
-                        }
-                        ezVar.N(tLObject, ryVar.f26385b, ryVar.d, ryVar.f26389g, ryVar.h, null, ryVar.f26390i);
+                        this.f26495m = (0.99d * d2) + (d * 0.01d);
                     }
+                    this.f26498p = (int) (((this.h - j10) * 1000) / this.f26495m);
+                    this.f26497o = j10;
+                    this.f26496n = elapsedRealtime;
                 }
-                this.f26156b = null;
             }
         }
+        int i7 = (int) ((((float) this.f26491i) / ((float) this.h)) * 100.0f);
+        if (this.f26494l != i7) {
+            this.f26494l = i7;
+            this.f26499q.getNotificationCenter().k(ks.f25207v1, Long.valueOf(this.f26492j));
+        }
+    }
+
+    public final void c(int i7) {
+        zy zyVar = this.f26499q;
+        if (i7 == 100) {
+            zyVar.E.l(this.f26492j);
+        }
+        zyVar.getNotificationCenter().k(ks.f25207v1, Long.valueOf(this.f26492j));
     }
 }

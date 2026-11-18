@@ -1,25 +1,18 @@
 package org.telegram.ui.Wallet;
-public final class r6 implements r1.c {
-    public final int f44442a;
-    public final Object f44443b;
 
-    public r6(Object obj, int i7) {
-        this.f44442a = i7;
-        this.f44443b = obj;
+import android.content.Context;
+import android.view.View;
+public final class r6 extends View {
+    public boolean f44879a;
+    public final s6 f44880b;
+
+    public r6(s6 s6Var, Context context) {
+        super(context);
+        this.f44880b = s6Var;
     }
 
     @Override
-    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
-        switch (this.f44442a) {
-            case 0:
-                w6.b((w6) this.f44443b, z10, f10);
-                return;
-            default:
-                p9 p9Var = (p9) this.f44443b;
-                p9Var.f44334b0 = null;
-                p9Var.f44335c0 = 1.0f;
-                p9Var.G0();
-                return;
-        }
+    public final void onDraw(android.graphics.Canvas r40) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.r6.onDraw(android.graphics.Canvas):void");
     }
 }

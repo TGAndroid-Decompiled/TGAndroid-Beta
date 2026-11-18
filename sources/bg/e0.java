@@ -1,234 +1,85 @@
 package bg;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import di.c6;
-import hi.b7;
-import hi.d7;
-import hi.x5;
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.r3;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.q1;
-import org.telegram.ui.Cells.c2;
-import org.telegram.ui.Components.cf;
-import org.telegram.ui.Components.l30;
-import org.telegram.ui.Components.ok0;
-import org.telegram.ui.Components.r4;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.an;
-import org.telegram.ui.c40;
-import org.telegram.ui.pv0;
-import org.telegram.ui.uq0;
-import org.telegram.ui.yw;
-import ug.t1;
-import wg.c1;
-public final class e0 implements l30, q1, b7, r4, w5.b, v9.g {
-    public final int f3229a;
-    public final long f3230b;
-    public final Object f3231c;
-    public final Object d;
-    public final Object f3232e;
+import java.io.OutputStream;
+import java.util.Arrays;
+public final class e0 extends OutputStream {
+    public byte[] f3223a;
+    public int f3224b;
 
-    public e0(Object obj, long j3, Object obj2, Object obj3, int i7) {
-        this.f3229a = i7;
-        this.f3231c = obj;
-        this.f3230b = j3;
-        this.d = obj2;
-        this.f3232e = obj3;
+    public e0(int i7) {
+        this.f3223a = new byte[i7];
     }
 
-    @Override
-    public void L(int i7, int i10, boolean z10) {
-        an.A1((an) this.f3231c, (ArrayList) this.d, this.f3230b, (ok0) this.f3232e, z10, i7);
-    }
-
-    @Override
-    public void V(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        an anVar = (an) this.f3231c;
-        TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
-        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f3232e;
-        if (inputFile == null && inputFile2 == null && videoSize == null) {
-            fileLocationArr[0] = photoSize2.location;
-            fileLocationArr2[0] = photoSize.location;
-            return;
-        }
-        TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
-        if (inputFile != null) {
-            tL_photos_uploadProfilePhoto.file = inputFile;
-            tL_photos_uploadProfilePhoto.flags |= 1;
-        }
-        if (inputFile2 != null) {
-            tL_photos_uploadProfilePhoto.video = inputFile2;
-            int i7 = tL_photos_uploadProfilePhoto.flags;
-            tL_photos_uploadProfilePhoto.video_start_ts = d;
-            tL_photos_uploadProfilePhoto.flags = i7 | 6;
-        }
-        if (videoSize != null) {
-            tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
-            tL_photos_uploadProfilePhoto.flags |= 16;
-        }
-        anVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new g0(anVar, fileLocationArr, str, fileLocationArr2, this.f3230b));
-    }
-
-    @Override
-    public ScheduledFuture a(final cf cfVar) {
-        switch (this.f3229a) {
-            case 7:
-                v9.f fVar = (v9.f) this.f3231c;
-                return fVar.f58754b.schedule(new v9.d(fVar, (Runnable) this.d, cfVar, 1), this.f3230b, (TimeUnit) this.f3232e);
-            default:
-                final v9.f fVar2 = (v9.f) this.f3231c;
-                final Callable callable = (Callable) this.d;
-                return fVar2.f58754b.schedule(new Callable() {
-                    @Override
-                    public final Object call() {
-                        return f.this.f58753a.submit(new t1(2, callable, cfVar));
+    public final void a(int i7) {
+        byte[] bArr = this.f3223a;
+        if (i7 - bArr.length > 0) {
+            int length = bArr.length << 1;
+            if (length - i7 < 0) {
+                length = i7;
+            }
+            if (length - 2147483639 > 0) {
+                if (i7 >= 0) {
+                    if (i7 > 2147483639) {
+                        length = Integer.MAX_VALUE;
+                    } else {
+                        length = 2147483639;
                     }
-                }, this.f3230b, (TimeUnit) this.f3232e);
-        }
-    }
-
-    @Override
-    public Bitmap d(BitmapFactory.Options options) {
-        x5 x5Var = (x5) this.f3231c;
-        d7 d7Var = (d7) this.d;
-        long j3 = this.f3230b;
-        String str = (String) this.f3232e;
-        if (d7Var.K) {
-            String str2 = d7Var.N;
-            if (str2 != null) {
-                return BitmapFactory.decodeFile(str2, options);
-            }
-            try {
-                return MediaStore.Video.Thumbnails.getThumbnail(x5Var.getContext().getContentResolver(), j3, 1, options);
-            } catch (Throwable unused) {
-                x5Var.invalidate();
-                return null;
-            }
-        }
-        return BitmapFactory.decodeFile(str, options);
-    }
-
-    @Override
-    public boolean e() {
-        return true;
-    }
-
-    @Override
-    public Object g() {
-        ia.c cVar = (ia.c) this.f3231c;
-        Iterable iterable = (Iterable) this.d;
-        o5.i iVar = (o5.i) this.f3232e;
-        v5.g gVar = (v5.g) ((v5.d) cVar.f15875c);
-        gVar.getClass();
-        if (iterable.iterator().hasNext()) {
-            String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + v5.g.g(iterable);
-            SQLiteDatabase a10 = gVar.a();
-            a10.beginTransaction();
-            try {
-                a10.compileStatement(str).execute();
-                Cursor rawQuery = a10.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE num_attempts >= 16 GROUP BY transport_name", null);
-                while (rawQuery.moveToNext()) {
-                    gVar.e(rawQuery.getInt(0), r5.c.MAX_RETRIES_REACHED, rawQuery.getString(1));
+                } else {
+                    throw new OutOfMemoryError();
                 }
-                rawQuery.close();
-                a10.compileStatement("DELETE FROM events WHERE num_attempts >= 16").execute();
-                a10.setTransactionSuccessful();
-            } finally {
-                a10.endTransaction();
+            }
+            this.f3223a = Arrays.copyOf(bArr, length);
+        }
+    }
+
+    public final synchronized void b() {
+        this.f3224b = 0;
+    }
+
+    public final void c(int i7) {
+        a(this.f3224b + 4);
+        byte[] bArr = this.f3223a;
+        int i10 = this.f3224b;
+        bArr[i10] = (byte) (i7 >>> 24);
+        bArr[i10 + 1] = (byte) (i7 >>> 16);
+        bArr[i10 + 2] = (byte) (i7 >>> 8);
+        bArr[i10 + 3] = (byte) i7;
+        this.f3224b = i10 + 4;
+    }
+
+    public final void d(long j3) {
+        a(this.f3224b + 8);
+        byte[] bArr = this.f3223a;
+        int i7 = this.f3224b;
+        bArr[i7] = (byte) (j3 >>> 56);
+        bArr[i7 + 1] = (byte) (j3 >>> 48);
+        bArr[i7 + 2] = (byte) (j3 >>> 40);
+        bArr[i7 + 3] = (byte) (j3 >>> 32);
+        bArr[i7 + 4] = (byte) (j3 >>> 24);
+        bArr[i7 + 5] = (byte) (j3 >>> 16);
+        bArr[i7 + 6] = (byte) (j3 >>> 8);
+        bArr[i7 + 7] = (byte) j3;
+        this.f3224b = i7 + 8;
+    }
+
+    @Override
+    public final synchronized void write(int i7) {
+        a(this.f3224b + 1);
+        byte[] bArr = this.f3223a;
+        int i10 = this.f3224b;
+        bArr[i10] = (byte) i7;
+        this.f3224b = i10 + 1;
+    }
+
+    @Override
+    public final synchronized void write(byte[] bArr, int i7, int i10) {
+        if (i7 >= 0) {
+            if (i7 <= bArr.length && i10 >= 0 && (i7 + i10) - bArr.length <= 0) {
+                a(this.f3224b + i10);
+                System.arraycopy(bArr, i7, this.f3223a, this.f3224b, i10);
+                this.f3224b += i10;
             }
         }
-        gVar.c(new ai.d0(((x5.a) cVar.f15878g).s() + this.f3230b, iVar, 14));
-        return null;
-    }
-
-    @Override
-    public uq0 getCloseIntoObject() {
-        return null;
-    }
-
-    @Override
-    public String getInitialSearchString() {
-        return null;
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
-        switch (this.f3229a) {
-            case 1:
-                c6 c6Var = (c6) this.f3231c;
-                c1 c1Var = (c1) this.f3232e;
-                c6Var.getClass();
-                c6Var.r1(this.f3230b, ((TL_stars.starGiftDepositPayload[]) this.d)[0], t1Var.h(i7, true, true), c1Var);
-                return;
-            case 4:
-                r3 r3Var = (r3) this.f3231c;
-                Runnable runnable = (Runnable) this.f3232e;
-                boolean z10 = false;
-                c2 c2Var = ((c2[]) this.d)[0];
-                if (c2Var != null && c2Var.b()) {
-                    z10 = true;
-                }
-                c40.B1(r3Var, z10, this.f3230b, runnable);
-                return;
-            default:
-                TLRPC.User user = (TLRPC.User) this.f3232e;
-                ProfileActivity profileActivity = ((pv0) this.f3231c).f50374b;
-                profileActivity.N1 = true;
-                Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
-                long j3 = -this.f3230b;
-                k10.putLong("chat_id", j3);
-                if (profileActivity.getMessagesController().E(k10, (yw) this.d, null, null)) {
-                    an anVar = new an(k10);
-                    profileActivity.getNotificationCenter().n(profileActivity, 4);
-                    profileActivity.getNotificationCenter().k(4, new Object[0]);
-                    profileActivity.getMessagesController().m(j3, user, 0, null, anVar, true, null, null, null);
-                    profileActivity.presentFragment(anVar, true);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public boolean x() {
-        return false;
-    }
-
-    public e0(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f3229a = i7;
-        this.f3231c = obj;
-        this.d = obj2;
-        this.f3230b = j3;
-        this.f3232e = obj3;
-    }
-
-    public e0(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f3229a = i7;
-        this.f3231c = obj;
-        this.d = obj2;
-        this.f3232e = obj3;
-        this.f3230b = j3;
-    }
-
-    @Override
-    public void U() {
-    }
-
-    @Override
-    public void I(float f10) {
-    }
-
-    @Override
-    public void O(boolean z10, boolean z11) {
+        throw new IndexOutOfBoundsException();
     }
 }

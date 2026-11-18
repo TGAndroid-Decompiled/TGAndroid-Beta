@@ -2,49 +2,49 @@ package hi;
 
 import android.content.DialogInterface;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.xr;
-import org.telegram.ui.Components.gz0;
-import org.telegram.ui.c40;
+import org.telegram.messenger.vr;
+import org.telegram.ui.Components.nz0;
+import org.telegram.ui.f40;
 public final class f1 implements DialogInterface.OnDismissListener {
-    public final int f14261a;
+    public final int f14644a;
 
     public f1(int i7) {
-        this.f14261a = i7;
+        this.f14644a = i7;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f14261a) {
+        switch (this.f14644a) {
             case 0:
-                int i7 = i2.C1;
+                int i7 = j2.C1;
                 return;
             case 1:
-                org.telegram.ui.b.f45543a = false;
+                org.telegram.ui.b.f45710a = false;
                 return;
             case 2:
                 return;
             case 3:
-                xr.f27576j.edit().putInt("dismissed_count", xr.f27576j.getInt("dismissed_count", 0) + 1).apply();
+                vr.f27592j.edit().putInt("dismissed_count", vr.f27592j.getInt("dismissed_count", 0) + 1).apply();
                 return;
             case 4:
-                int i10 = gz0.f35127e;
+                int i10 = nz0.f37910e;
                 return;
             case 5:
-                c40 c40Var = c40.C5;
+                f40 f40Var = f40.C5;
                 return;
             case 6:
                 return;
             case 7:
-                org.telegram.utils.twidget.n0.f54344i = false;
+                org.telegram.utils.twidget.n0.f54851i = false;
                 return;
             default:
-                MediaController.f22329h2 = false;
+                MediaController.f22695h2 = false;
                 return;
         }
     }
 
     public f1(boolean[] zArr) {
-        this.f14261a = 2;
+        this.f14644a = 2;
     }
 
     private final void a(DialogInterface dialogInterface) {

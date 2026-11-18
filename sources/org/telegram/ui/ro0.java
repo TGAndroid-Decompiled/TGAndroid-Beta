@@ -1,21 +1,20 @@
 package org.telegram.ui;
-public final class ro0 implements org.telegram.ui.Components.n20 {
-    public final PhotoViewer f50984a;
+public final class ro0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.i6 f51720a;
+    public final PhotoViewer f51721b;
 
-    public ro0(PhotoViewer photoViewer) {
-        this.f50984a = photoViewer;
+    public ro0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.f51721b = photoViewer;
+        this.f51720a = i6Var;
     }
 
-    public final void a(int i7) {
-        PhotoViewer photoViewer = this.f50984a;
-        photoViewer.P4 = -1;
-        org.telegram.messenger.ic icVar = photoViewer.f42801j5;
-        if (icVar != null) {
-            icVar.a();
-            photoViewer.f42801j5 = null;
-        }
-        photoViewer.f42818l5 = true;
-        photoViewer.z2(i7);
-        photoViewer.f42818l5 = false;
+    @Override
+    public final boolean a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ro0.a():boolean");
+    }
+
+    @Override
+    public final void b(int r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ro0.b(int):void");
     }
 }

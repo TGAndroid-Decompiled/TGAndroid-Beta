@@ -1,173 +1,152 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
-import android.view.View;
+import android.graphics.ColorFilter;
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public class py extends v4.s {
-    public final SparseArray Q;
-    public int R;
-    public int S;
-    public int T;
-    public final int U;
-    public final uj0 V;
-    public boolean W;
-    public boolean X;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class py extends bk0 {
+    public final boolean f38609c;
+    public final ry d;
 
-    public py(int i7, int i10, uj0 uj0Var) {
-        super(i7);
-        this.Q = new SparseArray();
-        this.R = -1;
-        this.W = true;
-        this.X = true;
-        this.V = uj0Var;
-        this.U = i10;
+    public py(ry ryVar, boolean z10) {
+        this.d = ryVar;
+        this.f38609c = z10;
     }
 
-    public final void B1() {
-        uj0 uj0Var;
-        v4.h0 adapter;
-        int i7;
-        uj0 uj0Var2;
-        if (this.S > 0 && D1() && (adapter = (uj0Var = this.V).getAdapter()) != null) {
-            int i10 = this.J;
-            boolean z10 = true;
-            int b10 = adapter.b() - 1;
-            g.p pVar = this.O;
-            boolean z11 = true;
-            int i11 = 0;
-            int i12 = 0;
-            int i13 = 0;
-            while (true) {
-                i7 = this.U;
-                if (i11 < b10) {
-                    int i14 = pVar.i(i11);
-                    i12 += i14;
-                    if (i14 == i10 || i12 > i10) {
-                        z11 = z10;
-                        i12 = i14;
-                    }
-                    if (!z11) {
-                        uj0Var2 = uj0Var;
-                    } else {
-                        int d = adapter.d(i11);
-                        SparseArray sparseArray = this.Q;
-                        v4.e1 e1Var = (v4.e1) sparseArray.get(d, null);
-                        if (e1Var == null) {
-                            e1Var = adapter.a(uj0Var, d);
-                            View view = e1Var.f58535a;
-                            sparseArray.put(d, e1Var);
-                            if (view.getLayoutParams() == null) {
-                                view.setLayoutParams(n());
-                            }
-                        }
-                        View view2 = e1Var.f58535a;
-                        if (this.W) {
-                            adapter.t(e1Var, i11);
-                        }
-                        v4.p0 p0Var = (v4.p0) view2.getLayoutParams();
-                        uj0Var2 = uj0Var;
-                        view2.measure(v4.o0.s(d(), this.T, this.f58629k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), v4.o0.s(this.X, this.S, this.f58630l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
-                        i13 += view2.getMeasuredHeight();
-                        if (i13 >= (this.S - i7) - uj0Var2.getPaddingBottom()) {
-                            break;
-                        }
-                        z11 = false;
-                    }
-                    i11++;
-                    uj0Var = uj0Var2;
-                    z10 = true;
-                } else {
-                    uj0Var2 = uj0Var;
-                    break;
-                }
-            }
-            this.R = Math.max(0, ((this.S - i13) - i7) - uj0Var2.getPaddingBottom());
-        }
-    }
-
-    public final void C1() {
-        this.W = false;
-    }
-
-    public boolean D1() {
+    @Override
+    public final boolean D(v4.f1 f1Var) {
         return true;
     }
 
     @Override
-    public final void Q() {
-        this.Q.clear();
-        B1();
-    }
-
-    @Override
-    public final void V(RecyclerView recyclerView, int i7, int i10) {
-        super.V(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void W(RecyclerView recyclerView) {
-        this.Q.clear();
-        B1();
-        super.W(recyclerView);
-    }
-
-    @Override
-    public final void X(RecyclerView recyclerView, int i7, int i10) {
-        super.X(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void Y(RecyclerView recyclerView, int i7, int i10) {
-        super.Y(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void Z() {
-        B1();
-    }
-
-    @Override
-    public final void a0(RecyclerView recyclerView, int i7, int i10, Object obj) {
-        super.a0(recyclerView, i7, i10, obj);
-        B1();
-    }
-
-    @Override
-    public final void d0(v4.w0 w0Var, v4.b1 b1Var, int i7, int i10) {
-        int i11 = this.S;
-        this.T = View.MeasureSpec.getSize(i7);
-        int size = View.MeasureSpec.getSize(i10);
-        this.S = size;
-        if (i11 != size) {
-            B1();
+    public final int b() {
+        ArrayList arrayList;
+        boolean z10 = this.f38609c;
+        ry ryVar = this.d;
+        if (z10) {
+            arrayList = ryVar.f39377o1;
+        } else {
+            arrayList = ryVar.n1;
         }
-        super.d0(w0Var, b1Var, i7, i10);
+        return arrayList.size();
     }
 
     @Override
-    public final boolean e() {
-        return this.X;
+    public final int d(int i7) {
+        return 0;
     }
 
     @Override
-    public final void w1(int i7, View view, boolean z10) {
-        if (this.V.G(view).b() == B() - 1) {
-            ((ViewGroup.MarginLayoutParams) ((v4.p0) view.getLayoutParams())).height = Math.max(this.R, 0);
+    public final void t(v4.f1 f1Var, int i7) {
+        ArrayList arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        org.telegram.messenger.fc k10;
+        int i10;
+        String str;
+        ColorFilter colorFilter;
+        q9 q9Var = (q9) f1Var.f59122a;
+        ry ryVar = this.d;
+        boolean z10 = this.f38609c;
+        if (z10) {
+            arrayList = ryVar.f39377o1;
+        } else {
+            arrayList = ryVar.n1;
         }
-        super.w1(i7, view, z10);
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
+        q9Var.setTag(stickerSetCovered);
+        if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
+            arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+        } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
+            TLRPC.TL_messages_stickerSet o02 = org.telegram.messenger.ri.d0(ryVar.f39345d1).o0(org.telegram.messenger.ri.b0(stickerSetCovered.set), false);
+            if (o02 == null) {
+                arrayList2 = null;
+            } else {
+                arrayList2 = o02.documents;
+            }
+        } else {
+            arrayList2 = stickerSetCovered.covers;
+        }
+        TLRPC.Document document = stickerSetCovered.cover;
+        if (document == null) {
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                if (stickerSetCovered.set != null) {
+                    for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                        if (arrayList2.get(i11).f28411id == stickerSetCovered.set.thumb_document_id) {
+                            document = arrayList2.get(i11);
+                            break;
+                        }
+                    }
+                }
+                document = null;
+                if (document == null) {
+                    document = arrayList2.get(0);
+                }
+            } else {
+                document = null;
+            }
+        }
+        if (document != null) {
+            if (z10) {
+                if (org.telegram.messenger.fj.C4(document)) {
+                    colorFilter = org.telegram.ui.ActionBar.n6.o0(ryVar.f39335a2);
+                } else {
+                    colorFilter = null;
+                }
+                q9Var.setColorFilter(colorFilter);
+            }
+            TLObject w10 = org.telegram.messenger.w7.w(stickerSetCovered.set.thumbs, 90, false, null, false);
+            org.telegram.messenger.lz d = org.telegram.messenger.u5.d(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.n6.f29379c7, 0.2f, false);
+            if (d != null) {
+                d.f25488e = 512;
+                d.f25489f = 512;
+            }
+            if (w10 == null || org.telegram.messenger.fj.N4(document)) {
+                w10 = document;
+            }
+            boolean z11 = w10 instanceof TLRPC.Document;
+            if (z11) {
+                k10 = org.telegram.messenger.fc.c(org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false), document);
+            } else if (w10 instanceof TLRPC.PhotoSize) {
+                k10 = org.telegram.messenger.fc.k((TLRPC.PhotoSize) w10, document, stickerSetCovered.set.thumb_version);
+            } else {
+                return;
+            }
+            org.telegram.messenger.fc fcVar = k10;
+            if (fcVar != null) {
+                if (z10) {
+                    i10 = 16388;
+                } else {
+                    i10 = 1;
+                }
+                if (!org.telegram.messenger.pc.e(i10)) {
+                    str = "30_30_firstframe";
+                } else {
+                    str = "30_30";
+                }
+                String str2 = str;
+                if (z11 && (org.telegram.messenger.fj.K2(document, true) || org.telegram.messenger.fj.N4(document))) {
+                    if (d != null) {
+                        q9Var.p(org.telegram.messenger.fc.b(document), str2, d, stickerSetCovered);
+                    } else {
+                        q9Var.l(org.telegram.messenger.fc.b(document), str2, fcVar, null, 0, stickerSetCovered);
+                    }
+                } else if (fcVar.f23880p == 1) {
+                    q9Var.k(fcVar, str2, "tgs", d, stickerSetCovered);
+                } else {
+                    q9Var.k(fcVar, null, "webp", d, stickerSetCovered);
+                }
+            }
+        }
     }
 
-    public py(int i7, org.telegram.ui.k30 k30Var) {
-        super(i7, false);
-        this.Q = new SparseArray();
-        this.R = -1;
-        this.W = true;
-        this.X = true;
-        this.V = k30Var;
-        this.U = 0;
+    @Override
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        oy oyVar = new oy(this, this.d.getContext());
+        oyVar.u(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f));
+        oyVar.setLayerNum(1);
+        oyVar.setAspectFit(true);
+        oyVar.setLayoutParams(new v4.q0(org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(34.0f)));
+        return new v4.f1(oyVar);
     }
 }

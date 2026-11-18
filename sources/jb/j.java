@@ -1,24 +1,24 @@
 package jb;
 
-import c8.nb;
+import c8.qb;
 import java.io.FileInputStream;
 import java.io.IOException;
 import m1.g1;
 import m1.y0;
 public final class j implements y0 {
-    public static final j f16980a = new Object();
-    public static final i f16981b = new i(null, null, null, null, null);
+    public static final j f17365a = new Object();
+    public static final i f17366b = new i(null, null, null, null, null);
 
     @Override
     public final Object a() {
-        return f16981b;
+        return f17366b;
     }
 
     @Override
     public final Object b(FileInputStream fileInputStream) {
         try {
             pe.b bVar = pe.b.d;
-            String str = new String(nb.b(fileInputStream), xd.a.f59875a);
+            String str = new String(qb.b(fileInputStream), xd.a.f60444a);
             bVar.getClass();
             return (i) bVar.a(i.Companion.serializer(), str);
         } catch (Exception e10) {
@@ -28,7 +28,7 @@ public final class j implements y0 {
 
     @Override
     public final void c(Object obj, g1 g1Var) {
-        byte[] bytes = pe.b.d.b(i.Companion.serializer(), (i) obj).getBytes(xd.a.f59875a);
+        byte[] bytes = pe.b.d.b(i.Companion.serializer(), (i) obj).getBytes(xd.a.f60444a);
         kotlin.jvm.internal.j.d(bytes, "getBytes(...)");
         g1Var.write(bytes);
     }

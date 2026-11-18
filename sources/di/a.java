@@ -4,54 +4,54 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.messenger.hd;
+import org.telegram.messenger.gd;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.wr;
+import org.telegram.ui.Components.ds;
+import org.telegram.ui.Components.is;
 public final class a implements Runnable {
-    public final int f8179a;
-    public final org.telegram.ui.ActionBar.e6 f8180b;
-    public final Context f8181c;
+    public final int f8461a;
+    public final org.telegram.ui.ActionBar.i6 f8462b;
+    public final Context f8463c;
 
-    public a(int i7, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f8179a = i7;
-        this.f8181c = context;
-        this.f8180b = e6Var;
+    public a(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+        this.f8461a = i7;
+        this.f8463c = context;
+        this.f8462b = i6Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f8179a;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f8180b;
-        Context context = this.f8181c;
+        int i7 = this.f8461a;
+        org.telegram.ui.ActionBar.i6 i6Var = this.f8462b;
+        Context context = this.f8463c;
         switch (i7) {
             case 0:
-                new cb(context, e6Var).show();
+                new gb(context, i6Var).show();
                 return;
             case 1:
-                org.telegram.ui.ActionBar.t1[] t1VarArr = new org.telegram.ui.ActionBar.t1[1];
-                SpannableStringBuilder V2 = org.telegram.messenger.g0.V2(org.telegram.messenger.g0.L2(hd.M0(2131754175, null), e6Var, new wr(t1VarArr, 0)));
-                Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(V2);
+                org.telegram.ui.ActionBar.u1[] u1VarArr = new org.telegram.ui.ActionBar.u1[1];
+                SpannableStringBuilder U2 = org.telegram.messenger.g0.U2(org.telegram.messenger.g0.L2(gd.M0(2131754173, null), i6Var, new ds(u1VarArr, 0)));
+                Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(U2);
                 while (matcher.find()) {
-                    V2.setSpan(new org.telegram.messenger.v(t1VarArr, context, matcher.group(1)), matcher.start(), matcher.end(), 33);
+                    U2.setSpan(new org.telegram.messenger.v(u1VarArr, context, matcher.group(1)), matcher.start(), matcher.end(), 33);
                 }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, e6Var);
-                String M0 = hd.M0(2131754174, null);
-                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28392a;
-                t1Var.S = M0;
-                t1Var.U = V2;
-                alertDialog$Builder.k(hd.M0(2131754176, null), null);
-                t1VarArr[0] = alertDialog$Builder.p();
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
+                String M0 = gd.M0(2131754172, null);
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28746a;
+                u1Var.S = M0;
+                u1Var.U = U2;
+                alertDialog$Builder.k(gd.M0(2131754174, null), null);
+                u1VarArr[0] = alertDialog$Builder.p();
                 return;
             default:
-                org.telegram.ui.Wallet.y5.I0(context, e6Var);
+                org.telegram.ui.Wallet.n6.M0(context, i6Var);
                 return;
         }
     }
 
-    public a(bs bsVar, org.telegram.ui.ActionBar.e6 e6Var, Context context) {
-        this.f8179a = 1;
-        this.f8180b = e6Var;
-        this.f8181c = context;
+    public a(is isVar, org.telegram.ui.ActionBar.i6 i6Var, Context context) {
+        this.f8461a = 1;
+        this.f8462b = i6Var;
+        this.f8463c = context;
     }
 }

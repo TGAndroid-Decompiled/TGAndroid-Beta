@@ -1,40 +1,73 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-public final class p10 implements Runnable {
-    public final c40 f50085a;
+import android.view.MotionEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import java.util.ArrayList;
+import org.telegram.messenger.voip.VoIPService;
+public final class p10 extends org.telegram.ui.Components.ph0 {
+    public final f40 f50703r;
 
-    public p10(c40 c40Var) {
-        this.f50085a = c40Var;
+    public p10(f40 f40Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f50703r = f40Var;
     }
 
     @Override
-    public final void run() {
-        int i7;
-        c40 c40Var = this.f50085a;
-        org.telegram.ui.ActionBar.j5 j5Var = c40Var.P1;
-        j30 j30Var = c40Var.Q1;
-        if (j30Var != null && !c40Var.J) {
-            org.telegram.messenger.r3 r3Var = c40Var.V2;
-            if (r3Var != null) {
-                i7 = r3Var.f26216b.schedule_date;
-            } else {
-                i7 = c40Var.f45921j4;
-            }
-            if (i7 != 0) {
-                int currentTime = i7 - ConnectionsManager.getInstance(c40Var.f45940o1.f22782a).getCurrentTime();
-                if (currentTime >= 86400) {
-                    j30Var.l(org.telegram.messenger.hd.G(Math.round(currentTime / 86400.0f), "Days", new Object[0]), false);
-                } else {
-                    j30Var.l(org.telegram.messenger.g0.j0(Math.abs(currentTime)), false);
-                    if (currentTime < 0 && j5Var.getTag() == null) {
-                        j5Var.setTag(1);
-                        j5Var.l(org.telegram.messenger.hd.M0(2131743441, null), false);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName(Button.class.getName());
+        f40 f40Var = this.f50703r;
+        int i7 = f40Var.E3;
+        if (i7 != 0 && i7 != 1) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        accessibilityNodeInfo.setEnabled(z10);
+        if (f40Var.E3 == 1) {
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, org.telegram.messenger.gd.M0(2131743056, null)));
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        f40 f40Var = this.f50703r;
+        v00 v00Var = f40Var.f47544x4;
+        ArrayList arrayList = f40Var.Y3;
+        if (f40Var.v1()) {
+            return super.onTouchEvent(motionEvent);
+        }
+        if (motionEvent.getAction() == 0 && f40Var.E3 == 0 && f40Var.V2 != null) {
+            org.telegram.messenger.g0.h3(v00Var, 300L);
+            f40Var.Q3 = true;
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            if (f40Var.Q3) {
+                org.telegram.messenger.g0.r(v00Var);
+                f40Var.Q3 = false;
+            } else if (f40Var.R3) {
+                org.telegram.messenger.g0.r(f40Var.f47539w4);
+                f40Var.S1(0, true);
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().setMicMute(true, true, false);
+                    try {
+                        f40Var.f47536w1.performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
                     }
                 }
-                c40Var.R1.l(org.telegram.messenger.hd.W(3, i7, true), false);
-                org.telegram.messenger.g0.i3(c40Var.f45976v4, 1000L);
+                arrayList.clear();
+                arrayList.addAll(f40Var.X3);
+                for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                    ((org.telegram.ui.Components.voip.y) arrayList.get(i7)).j(true);
+                }
+                f40Var.R3 = false;
+                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                super.onTouchEvent(obtain);
+                obtain.recycle();
+                return true;
             }
         }
+        return super.onTouchEvent(motionEvent);
     }
 }

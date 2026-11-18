@@ -1,12 +1,16 @@
 package org.telegram.ui;
-public final class r7 {
-    public final String f50863a;
-    public final int f50864b;
-    public final f7 f50865c;
 
-    public r7(String str, int i7, f7 f7Var) {
-        this.f50863a = str;
-        this.f50864b = i7;
-        this.f50865c = f7Var;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class r7 extends FrameLayout {
+    public final org.telegram.ui.Components.ck0 f51519a;
+
+    public r7(Context context, org.telegram.ui.Components.ck0 ck0Var) {
+        super(context);
+        this.f51519a = ck0Var;
+        setClipChildren(false);
+        setClipToPadding(false);
+        setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        addView(ck0Var, new FrameLayout.LayoutParams(-1, -1));
     }
 }

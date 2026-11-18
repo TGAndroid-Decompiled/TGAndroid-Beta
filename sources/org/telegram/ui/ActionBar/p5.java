@@ -1,79 +1,25 @@
 package org.telegram.ui.ActionBar;
 
-import android.util.SparseIntArray;
-import org.telegram.ui.t71;
-public final class p5 extends r4 {
-    public final int U;
-    public final Object V;
+import org.telegram.tgnet.TLObject;
+public final class p5 implements Runnable {
+    public final int f29868a;
+    public final TLObject f29869b;
+    public final int f29870c;
 
-    public p5(boolean z10, SparseIntArray sparseIntArray, int i7) {
-        super(2, z10, false, null);
-        this.U = i7;
-        this.V = sparseIntArray;
+    public p5(int i7, int i10, TLObject tLObject) {
+        this.f29868a = i10;
+        this.f29869b = tLObject;
+        this.f29870c = i7;
     }
 
     @Override
-    public int g(int i7) {
-        switch (this.U) {
-            case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.V;
-                int indexOfKey = sparseIntArray.indexOfKey(i7);
-                if (indexOfKey > 0) {
-                    return sparseIntArray.valueAt(indexOfKey);
-                }
-                return j6.hm[i7];
-            case 1:
-                return ((SparseIntArray) this.V).get(i7);
-            default:
-                return super.g(i7);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.p5.run():void");
     }
 
-    @Override
-    public int i(int i7) {
-        switch (this.U) {
-            case 0:
-                return ((SparseIntArray) this.V).get(i7);
-            case 1:
-                return ((SparseIntArray) this.V).get(i7);
-            default:
-                return super.i(i7);
-        }
-    }
-
-    @Override
-    public void o(int i7, int i10, int i11) {
-        switch (this.U) {
-            case 2:
-                if (!((t71) this.V).f51430f2) {
-                    super.o(i7, i10, i11);
-                    return;
-                }
-                return;
-            default:
-                super.o(i7, i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public void p(int i7, int i10, int i11, int i12, int i13, int i14, boolean z10, boolean z11) {
-        switch (this.U) {
-            case 2:
-                if (!((t71) this.V).f51430f2) {
-                    super.p(i7, i10, i11, i12, i13, i14, z10, z11);
-                    return;
-                }
-                return;
-            default:
-                super.p(i7, i10, i11, i12, i13, i14, z10, z11);
-                return;
-        }
-    }
-
-    public p5(t71 t71Var, int i7, boolean z10) {
-        super(i7, true, z10, null);
-        this.U = 2;
-        this.V = t71Var;
+    public p5(int i7, TLObject tLObject) {
+        this.f29868a = 0;
+        this.f29870c = i7;
+        this.f29869b = tLObject;
     }
 }

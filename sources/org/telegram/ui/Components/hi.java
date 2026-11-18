@@ -1,265 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import android.text.Editable;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-public final class hi extends tj0 {
-    public int E;
-    public int F;
-    public int G;
-    public int H;
-    public int I;
-    public int J;
-    public int K;
-    public final ki L;
-    public final Context f35249c;
-    public int d;
-    public int f35250e;
-    public int f35251f;
-    public final ArrayList h = new ArrayList();
-    public int f35252n;
-    public int f35253r;
-    public int f35254s;
-    public int f35255w;
-    public int f35256x;
-    public int f35257y;
+public final class hi implements org.telegram.ui.bn0 {
+    public boolean f35882a;
+    public final HashMap f35883b;
+    public final ArrayList f35884c;
+    public final si d;
 
-    public hi(ki kiVar, Context context) {
-        this.L = kiVar;
-        this.f35249c = context;
+    public hi(si siVar, HashMap hashMap, ArrayList arrayList) {
+        this.d = siVar;
+        this.f35883b = hashMap;
+        this.f35884c = arrayList;
     }
 
     @Override
-    public final boolean D(v4.e1 e1Var) {
-        return false;
+    public final boolean e() {
+        return true;
     }
 
     @Override
-    public final int b() {
-        int i7 = this.K;
-        ki kiVar = this.L;
-        if (kiVar.F3 == null && (kiVar.f36424a2 instanceof org.telegram.ui.an) && !kiVar.C1) {
-            return org.telegram.messenger.si.b0(kiVar.H3).f26494k1.size() + i7;
-        }
-        return i7;
-    }
-
-    @Override
-    public final int d(int i7) {
-        if (i7 >= this.K) {
-            return 1;
-        }
-        if (i7 >= this.f35250e && i7 < this.f35251f) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void f() {
-        TLRPC.Chat chat;
-        int i7 = 0;
-        this.K = 0;
-        this.d = -1;
-        this.f35252n = -1;
-        this.f35254s = -1;
-        this.f35255w = -1;
-        this.f35256x = -1;
-        this.f35257y = -1;
-        this.E = -1;
-        this.F = -1;
-        this.G = -1;
-        this.I = -1;
-        this.J = -1;
-        this.H = -1;
-        this.f35250e = -1;
-        this.f35251f = -1;
-        this.f35253r = -1;
-        ki kiVar = this.L;
-        int i10 = kiVar.H3;
-        org.telegram.ui.ActionBar.e2 e2Var = kiVar.f36424a2;
-        boolean z10 = true;
-        if (kiVar.C1) {
-            this.K = 1;
-            this.d = 0;
-            int i11 = kiVar.D1;
-            if (i11 == 0 || c8.zc.a(i11, 16)) {
-                int i12 = this.K;
-                this.K = i12 + 1;
-                this.f35252n = i12;
-            }
-            int i13 = kiVar.D1;
-            if (i13 == 0 || c8.zc.a(i13, 8192)) {
-                int i14 = this.K;
-                this.K = i14 + 1;
-                this.G = i14;
-            }
-            int i15 = kiVar.D1;
-            if (i15 == 0 || c8.zc.a(i15, 16384)) {
-                int i16 = this.K;
-                this.K = i16 + 1;
-                this.H = i16;
-            }
-            int i17 = kiVar.D1;
-            if (i17 == 0 || c8.zc.a(i17, 8)) {
-                int i18 = this.K;
-                this.K = i18 + 1;
-                this.f35254s = i18;
-            }
-            int i19 = kiVar.D1;
-            if (i19 == 0 || c8.zc.a(i19, 64)) {
-                int i20 = this.K;
-                this.K = i20 + 1;
-                this.F = i20;
-            }
-            int i21 = kiVar.D1;
-            if (i21 == 0 || c8.zc.a(i21, 32768)) {
-                int i22 = this.K;
-                this.K = i22 + 1;
-                this.I = i22;
-            }
-        } else if (!(e2Var instanceof org.telegram.ui.an)) {
-            this.d = 0;
-            this.K = 2;
-            this.f35252n = 1;
-            if (kiVar.R1) {
-                this.K = 3;
-                this.f35254s = 2;
-            }
-        } else if (kiVar.F3 != null) {
-            int i23 = kiVar.E3;
-            if (i23 == -1) {
-                this.d = 0;
-                this.f35252n = 1;
-                this.K = 3;
-                this.f35254s = 2;
-            } else {
-                if (i23 == 0) {
-                    this.K = 1;
-                    this.d = 0;
-                }
-                if (i23 == 1) {
-                    int i24 = this.K;
-                    this.K = i24 + 1;
-                    this.f35252n = i24;
-                }
-                if (i23 == 2) {
-                    int i25 = this.K;
-                    this.K = i25 + 1;
-                    this.f35254s = i25;
-                }
-            }
-        } else {
-            TLRPC.User j3 = ((org.telegram.ui.an) e2Var).j();
-            if (e2Var instanceof org.telegram.ui.an) {
-                chat = ((org.telegram.ui.an) e2Var).f45172e;
-            } else {
-                chat = null;
-            }
-            if (j3 == null || ((org.telegram.ui.an) e2Var).getMessagesController().N1(j3.f28200id) <= 0) {
-                z10 = false;
-            }
-            int i26 = this.K;
-            this.d = i26;
-            this.K = i26 + 2;
-            this.f35252n = i26 + 1;
-            if (((org.telegram.messenger.h0) org.telegram.messenger.np.s1(i10).f25451y7.f25854j0.f14544b).f24009c && ((org.telegram.ui.an) e2Var).f45203g4 == 0 && ki.g1(j3)) {
-                int i27 = this.K;
-                this.K = i27 + 1;
-                this.f35253r = i27;
-            }
-            boolean z11 = kiVar.O3;
-            if (z11) {
-                int i28 = this.K;
-                this.K = i28 + 1;
-                this.F = i28;
-            }
-            if (z11) {
-                org.telegram.messenger.np.s1(i10);
-                boolean z12 = org.telegram.messenger.r2.f26206a;
-                int i29 = this.K;
-                this.K = i29 + 1;
-                this.J = i29;
-            }
-            if (kiVar.M3) {
-                int i30 = this.K;
-                this.K = i30 + 1;
-                this.f35255w = i30;
-            }
-            if (kiVar.O3) {
-                int i31 = this.K;
-                this.K = i31 + 1;
-                this.f35257y = i31;
-            }
-            int i32 = this.K;
-            int i33 = i32 + 1;
-            this.K = i33;
-            this.f35254s = i32;
-            if (kiVar.N3) {
-                this.K = i32 + 2;
-                this.f35256x = i33;
-            }
-            if ((e2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) e2Var).f45203g4 == 0 && j3 != null && !z10 && !j3.bot && !kg.v1.f(i10).f18124b.isEmpty()) {
-                int i34 = this.K;
-                this.K = i34 + 1;
-                this.E = i34;
-            }
-            if ((kiVar.J3 || kiVar.K3) && !z10 && ((chat == null || !org.telegram.messenger.t3.p0(chat)) && (e2Var instanceof org.telegram.ui.an) && !((org.telegram.ui.an) e2Var).c() && !((org.telegram.ui.an) e2Var).z())) {
-                org.telegram.ui.an anVar = (org.telegram.ui.an) e2Var;
-                if (anVar.f45203g4 != 5) {
-                    this.f35250e = this.K;
-                    ArrayList arrayList = this.h;
-                    arrayList.clear();
-                    ArrayList<TLRPC.TL_attachMenuBot> arrayList2 = org.telegram.messenger.si.b0(i10).f26471b.bots;
-                    int size = arrayList2.size();
-                    while (i7 < size) {
-                        TLRPC.TL_attachMenuBot tL_attachMenuBot = arrayList2.get(i7);
-                        i7++;
-                        TLRPC.TL_attachMenuBot tL_attachMenuBot2 = tL_attachMenuBot;
-                        if (tL_attachMenuBot2.show_in_attach_menu) {
-                            TLObject tLObject = anVar.f45172e;
-                            if (tLObject == null) {
-                                tLObject = anVar.j();
-                            }
-                            if (org.telegram.messenger.si.t(tL_attachMenuBot2, tLObject)) {
-                                arrayList.add(tL_attachMenuBot2);
-                            }
+    public final void v0(int i7, boolean z10, boolean z11) {
+        String str;
+        if (!z10) {
+            HashMap hashMap = this.f35883b;
+            if (!hashMap.isEmpty() && !this.f35882a) {
+                this.f35882a = true;
+                ArrayList arrayList = new ArrayList();
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f35884c;
+                    if (i10 < arrayList2.size()) {
+                        Object obj = hashMap.get(arrayList2.get(i10));
+                        ?? obj2 = new Object();
+                        arrayList.add(obj2);
+                        org.telegram.messenger.hf hfVar = (org.telegram.messenger.hf) obj;
+                        String str2 = hfVar.h;
+                        if (str2 != null) {
+                            obj2.f28213c = str2;
+                        } else {
+                            obj2.f28220l = hfVar;
                         }
+                        obj2.f28214e = hfVar.f27850c;
+                        obj2.f28219k = hfVar.f27864s;
+                        CharSequence charSequence = hfVar.I;
+                        if (charSequence != null) {
+                            str = charSequence.toString();
+                        } else {
+                            str = null;
+                        }
+                        obj2.d = str;
+                        obj2.f28217i = hfVar.f27859n;
+                        obj2.f28218j = hfVar.f27863r;
+                        obj2.h = hfVar.f27868x;
+                        TLRPC.BotInlineResult botInlineResult = hfVar.N;
+                        if (botInlineResult != null && hfVar.H == 1) {
+                            obj2.f28221m = botInlineResult;
+                            obj2.f28222n = hfVar.O;
+                        }
+                        System.currentTimeMillis();
+                        i10++;
+                    } else {
+                        ((org.telegram.ui.bn) this.d.f39659a2).u8(i7, arrayList, z11);
+                        return;
                     }
-                    int size2 = arrayList.size() + this.K;
-                    this.K = size2;
-                    this.f35251f = size2;
                 }
             }
         }
-        super.f();
     }
 
     @Override
-    public final void t(v4.e1 r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hi.t(v4.e1, int):void");
+    public final void A(Editable editable) {
     }
 
     @Override
-    public final v4.e1 x(ViewGroup viewGroup, int i7) {
-        View eiVar;
-        Context context = this.f35249c;
-        ki kiVar = this.L;
-        if (i7 != 0) {
-            eiVar = new di(kiVar, context);
-        } else {
-            eiVar = new ei(kiVar, context);
-        }
-        eiVar.setImportantForAccessibility(1);
-        eiVar.setFocusable(true);
-        eiVar.setLayoutParams(new v4.p0(-2, -1));
-        return new v4.e1(eiVar);
+    public final void b0() {
     }
 
     @Override
-    public final void y(v4.e1 e1Var) {
+    public final void u() {
     }
 }

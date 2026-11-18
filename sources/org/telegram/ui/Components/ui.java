@@ -1,56 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.util.SparseIntArray;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class ui extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f40030a;
-    public final TextView f40031b;
-    public final TextView f40032c;
+import org.telegram.messenger.ImageReceiver;
+public final class ui implements org.telegram.messenger.y10 {
+    public final int f40364a;
+    public final Object f40365b;
 
-    public ui(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f40030a = e6Var;
-        setPadding(0, org.telegram.messenger.g0.L(42.0f), 0, org.telegram.messenger.g0.L(42.0f));
-        setTag(-33024);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, c8.ja.r(-1, -2, 17));
-        i9 i9Var = new i9(context);
-        i9Var.setImageDrawable(new ch0(2131624320, org.telegram.messenger.g0.L(120.0f), org.telegram.messenger.g0.L(120.0f)));
-        linearLayout.addView(i9Var, c8.ja.t(120, 120, 17, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.f40031b = textView;
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setGravity(17);
-        TextView f10 = org.telegram.messenger.i20.f(linearLayout, textView, c8.ja.t(-1, -2, 17, 32, 12, 32, 8), context);
-        this.f40032c = f10;
-        f10.setTextSize(1, 14.0f);
-        f10.setGravity(17);
-        linearLayout.addView(f10, c8.ja.t(-1, -2, 17, 32, 0, 32, 0));
-        updateColors();
+    public ui(Object obj, int i7) {
+        this.f40364a = i7;
+        this.f40365b = obj;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.j6.f29241y6));
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-    }
-
-    @Override
-    public final void updateColors() {
-        int i7 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f40030a;
-        this.f40031b.setTextColor(org.telegram.ui.ActionBar.j6.w0(i7, e6Var));
-        this.f40032c.setTextColor(org.telegram.ui.ActionBar.j6.w0(org.telegram.ui.ActionBar.j6.f29241y6, e6Var));
+    public final Object a(Object obj) {
+        int i7;
+        int i10 = this.f40364a;
+        boolean z10 = true;
+        Object obj2 = this.f40365b;
+        switch (i10) {
+            case 0:
+                return Boolean.valueOf(cj.P((cj) obj2, (org.telegram.messenger.fj) obj));
+            case 1:
+                th.f fVar = (th.f) obj2;
+                View view = (View) obj;
+                ImageReceiver imageReceiver = new ImageReceiver(view);
+                int i11 = org.telegram.ui.ActionBar.n6.Gc;
+                if (org.telegram.ui.ActionBar.n6.I.q()) {
+                    i7 = 3;
+                } else {
+                    i7 = 6;
+                }
+                org.telegram.messenger.lz c10 = org.telegram.messenger.u5.c(i7 * 0.12f, i11);
+                c10.f25502t = true;
+                c10.f25495m = org.telegram.ui.ActionBar.n6.f29478hf;
+                imageReceiver.s0(org.telegram.messenger.fc.p(org.telegram.messenger.h20.b(fVar.f58223b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f24120p)))), null, null, null, new cq(c10), null, 0);
+                view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.l8(imageReceiver, 1));
+                imageReceiver.J0(org.telegram.messenger.g0.L(14.0f));
+                return new sc(4, imageReceiver, view.getContext().getResources().getDrawable(2131231647).mutate());
+            case 2:
+                int i12 = ((SparseIntArray) obj2).get(((Integer) obj).intValue(), -1);
+                if (i12 == -1) {
+                    return Boolean.TRUE;
+                }
+                if (i12 != 1) {
+                    z10 = false;
+                }
+                return Boolean.valueOf(z10);
+            default:
+                e51 e51Var = (e51) obj2;
+                View view2 = (View) obj;
+                e51Var.getClass();
+                if (view2.getParent() != e51Var) {
+                    return Boolean.FALSE;
+                }
+                return Boolean.valueOf(!z41.K(e51Var.T(view2).f59126f));
+        }
     }
 }

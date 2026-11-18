@@ -1,56 +1,63 @@
 package org.telegram.ui.Components;
-public final class aa0 extends pi.k {
-    public int W;
-    public Runnable X;
-    public final ea0 Y;
 
-    public aa0(ea0 ea0Var, di.c1 c1Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(null, c1Var, e6Var);
-        this.Y = ea0Var;
-        this.W = -1;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+public final class aa0 extends g71 {
+    public final ua0 W;
+
+    public aa0(ua0 ua0Var, Context context, qa0 qa0Var) {
+        super(context, qa0Var);
+        this.W = ua0Var;
     }
 
     @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int i7 = 0;
+        while (true) {
+            View[] viewArr = this.W.f40281f.f35378e;
+            if (i7 < viewArr.length) {
+                View view = viewArr[i7];
+                if (view != null) {
+                    oa0 oa0Var = (oa0) view;
+                    if (oa0Var.f38039a == 0) {
+                        z10 = oa0Var.f38046e.f32193i;
+                        break;
+                    }
+                }
+                i7++;
+            } else {
+                z10 = false;
+                break;
+            }
         }
-        z90 z90Var = new z90(this, 0);
-        this.X = z90Var;
-        org.telegram.messenger.g0.h3(z90Var);
-        ea0 ea0Var = this.Y;
-        if (ea0Var.W) {
-            ea0Var.W = false;
-            org.telegram.messenger.g0.h3(new z90(this, 1));
+        if (z10) {
+            return false;
+        }
+        return x(motionEvent);
+    }
+
+    @Override
+    public final void q() {
+        View view = this.f35378e[0];
+        if (view instanceof oa0) {
+            ((oa0) view).f38046e.V();
         }
     }
 
     @Override
-    public final void W() {
-        ka0 ka0Var = this.Y.f34260d0;
-        org.telegram.messenger.g0.r(ka0Var.E);
-        ka0Var.E.run();
-        if (this.W == -1) {
-            this.W = org.telegram.messenger.ns.f(ka0Var.f36344x).q(null, this.W, false);
+    public final void s(boolean z10) {
+        ua0 ua0Var = this.W;
+        ua0Var.f40280e.setSelectedTab(ua0Var.f40281f.getPositionAnimated());
+        View[] viewArr = this.f35378e;
+        View view = viewArr[0];
+        if (view instanceof oa0) {
+            ((oa0) view).f38046e.G();
         }
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-            this.X = null;
+        View view2 = viewArr[1];
+        if (view2 instanceof oa0) {
+            ((oa0) view2).f38046e.G();
         }
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-        }
-        z90 z90Var = new z90(this, 2);
-        this.X = z90Var;
-        org.telegram.messenger.g0.h3(z90Var);
     }
 }

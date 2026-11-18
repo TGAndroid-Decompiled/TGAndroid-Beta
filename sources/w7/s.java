@@ -1,7 +1,7 @@
 package w7;
 
 import a8.b8;
-import a8.ja;
+import a8.la;
 import a8.r7;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,7 @@ import android.util.Log;
 import androidx.lifecycle.p0;
 import androidx.lifecycle.s0;
 import bi.v0;
-import c8.r9;
+import c8.t9;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
@@ -34,51 +34,51 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import m9.y;
-import org.telegram.messenger.dj;
-import org.telegram.messenger.gj;
-import org.telegram.messenger.l10;
-import org.telegram.messenger.o2;
+import org.telegram.messenger.cj;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.i10;
+import org.telegram.messenger.p2;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Cells.i9;
+import org.telegram.ui.Cells.b5;
+import org.telegram.ui.Cells.c0;
+import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Cells.y0;
-import org.telegram.ui.Components.ab;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.cb;
-import org.telegram.ui.Components.cf;
-import org.telegram.ui.Components.dg;
-import org.telegram.ui.Components.ii;
-import org.telegram.ui.Components.il;
-import org.telegram.ui.Components.la;
-import org.telegram.ui.Components.na;
-import org.telegram.ui.Components.oa;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.pa;
-import org.telegram.ui.Components.vg;
-import org.telegram.ui.dr0;
-public final class s implements androidx.car.app.messaging.model.b, b7.e, com.google.android.gms.common.api.internal.r, eg.a, fg.a, ii, ja.a, SuccessContinuation, u9.d, gh.a, bb, l1, q2.r, r0.q, u2.k, y9.a, s0 {
-    public static s f59061b;
-    public static final s f59062c = new s(13);
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.jb;
+import org.telegram.ui.Components.kb;
+import org.telegram.ui.Components.lb;
+import org.telegram.ui.Components.lg;
+import org.telegram.ui.Components.pl;
+import org.telegram.ui.Components.qi;
+import org.telegram.ui.Components.ua;
+import org.telegram.ui.Components.wa;
+import org.telegram.ui.Components.x5;
+import org.telegram.ui.Components.xa;
+import org.telegram.ui.Components.ya;
+import org.telegram.ui.fr0;
+public final class s implements androidx.car.app.messaging.model.b, b7.e, com.google.android.gms.common.api.internal.r, eg.a, fg.a, qi, ja.a, SuccessContinuation, u9.d, gh.a, kb, l1, q2.q, r0.q, u2.k, y9.a, s0 {
+    public static s f59626b;
+    public static final s f59627c = new s(13);
     public static s d;
-    public final int f59063a;
+    public final int f59628a;
 
     public s(int i7) {
-        this.f59063a = i7;
+        this.f59628a = i7;
     }
 
-    public static MediaCodec b0(b8 b8Var) {
-        String str = ((u2.o) b8Var.f341a).f57770a;
+    public static MediaCodec V(b8 b8Var) {
+        String str = ((u2.o) b8Var.f341a).f58337a;
         Trace.beginSection("createCodec:" + str);
         MediaCodec createByCodecName = MediaCodec.createByCodecName(str);
         Trace.endSection();
         return createByCodecName;
     }
 
-    public static byte[] k0(i0 i0Var, long j3) {
+    public static byte[] a0(i0 i0Var, long j3) {
         ArrayList<? extends Parcelable> arrayList = new ArrayList<>(i0Var.size());
         Iterator<E> it = i0Var.iterator();
         while (it.hasNext()) {
@@ -87,8 +87,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
             Bitmap bitmap = bVar.d;
             if (bitmap != null) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                ja.p(bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream));
-                a10.putByteArray(g2.b.f12785x, byteArrayOutputStream.toByteArray());
+                la.p(bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream));
+                a10.putByteArray(g2.b.f13102x, byteArrayOutputStream.toByteArray());
             }
             arrayList.add(a10);
         }
@@ -102,7 +102,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
         return marshall;
     }
 
-    public static Calendar m0() {
+    public static Calendar b0() {
         if (d == null) {
             d = new s(27);
         }
@@ -110,26 +110,21 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
         return Calendar.getInstance();
     }
 
-    public static boolean p0(t1.b r7, android.text.Editable r8, int r9, int r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: w7.s.p0(t1.b, android.text.Editable, int, int, boolean):boolean");
+    public static boolean m0(t1.b r7, android.text.Editable r8, int r9, int r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: w7.s.m0(t1.b, android.text.Editable, int, int, boolean):boolean");
     }
 
     public static y s0(List list) {
         Iterator it = list.iterator();
         while (it.hasNext()) {
-            if (((l0) it.next()).f10186b == null) {
+            if (((l0) it.next()).f10504b == null) {
                 UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException();
                 ?? obj = new Object();
                 obj.n(unsupportedOperationException);
                 return obj;
             }
         }
-        return r9.b(list);
-    }
-
-    @Override
-    public void A(byte[] bArr, byte[] bArr2) {
-        throw new IllegalStateException();
+        return t9.b(list);
     }
 
     @Override
@@ -143,7 +138,12 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public byte[] D(byte[] bArr, byte[] bArr2) {
+    public byte[] C(byte[] bArr, byte[] bArr2) {
+        throw new IllegalStateException();
+    }
+
+    @Override
+    public void D(byte[] bArr) {
         throw new IllegalStateException();
     }
 
@@ -153,13 +153,13 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void E(byte[] bArr) {
-        throw new IllegalStateException();
+    public u2.l F(a8.b8 r6) {
+        throw new UnsupportedOperationException("Method not decompiled: w7.s.F(a8.b8):u2.l");
     }
 
     @Override
-    public u2.l F(a8.b8 r6) {
-        throw new UnsupportedOperationException("Method not decompiled: w7.s.F(a8.b8):u2.l");
+    public q2.o H(byte[] bArr, List list, int i7, HashMap hashMap) {
+        throw new IllegalStateException();
     }
 
     @Override
@@ -168,13 +168,13 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public boolean J1() {
-        return false;
+    public int J() {
+        return 1;
     }
 
     @Override
-    public q2.p L(byte[] bArr, List list, int i7, HashMap hashMap) {
-        throw new IllegalStateException();
+    public boolean J1() {
+        return false;
     }
 
     @Override
@@ -183,8 +183,10 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public int M() {
-        return 1;
+    public void M(Bundle bundle) {
+        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+            Log.d("FirebaseCrashlytics", "Skipping logging Crashlytics event to Firebase, no Firebase Analytics", null);
+        }
     }
 
     @Override
@@ -198,10 +200,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void O(Bundle bundle) {
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Skipping logging Crashlytics event to Firebase, no Firebase Analytics", null);
-        }
+    public boolean O(String str, byte[] bArr) {
+        throw new IllegalStateException();
     }
 
     @Override
@@ -224,8 +224,20 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public boolean Q(q1 q1Var, TLRPC.TodoItem todoItem, boolean z10) {
-        return false;
+    public b7.d Q(Context context, String str, b7.c cVar) {
+        b7.d dVar = new b7.d();
+        int o4 = cVar.o(context, str, true);
+        dVar.f2943b = o4;
+        if (o4 != 0) {
+            dVar.f2944c = 1;
+            return dVar;
+        }
+        int C = cVar.C(context, str);
+        dVar.f2942a = C;
+        if (C != 0) {
+            dVar.f2944c = -1;
+        }
+        return dVar;
     }
 
     @Override
@@ -234,17 +246,12 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public boolean R() {
-        return false;
-    }
-
-    @Override
     public CharacterStyle R1(q1 q1Var) {
         return null;
     }
 
     @Override
-    public boolean S(q1 q1Var) {
+    public boolean S(q1 q1Var, TLRPC.TodoItem todoItem, boolean z10) {
         return false;
     }
 
@@ -254,7 +261,12 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public boolean T1(q1 q1Var, gj gjVar) {
+    public boolean T1(q1 q1Var, fj fjVar) {
+        return false;
+    }
+
+    @Override
+    public boolean U(q1 q1Var) {
         return false;
     }
 
@@ -274,20 +286,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public b7.d W(Context context, String str, b7.c cVar) {
-        b7.d dVar = new b7.d();
-        int q10 = cVar.q(context, str, true);
-        dVar.f2949b = q10;
-        if (q10 != 0) {
-            dVar.f2950c = 1;
-            return dVar;
-        }
-        int D = cVar.D(context, str);
-        dVar.f2948a = D;
-        if (D != 0) {
-            dVar.f2950c = -1;
-        }
-        return dVar;
+    public boolean W() {
+        return false;
     }
 
     @Override
@@ -296,23 +296,13 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public int X() {
-        return 0;
-    }
-
-    @Override
-    public boolean Y(String str, byte[] bArr) {
-        throw new IllegalStateException();
-    }
-
-    @Override
     public float Y0() {
         return -1.0f;
     }
 
     @Override
-    public jh.a Z() {
-        return null;
+    public int Z() {
+        return 0;
     }
 
     @Override
@@ -326,64 +316,58 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public Map a(byte[] bArr) {
-        throw new IllegalStateException();
-    }
-
-    @Override
-    public boolean a0(q1 q1Var) {
+    public boolean b() {
         return false;
     }
 
     @Override
-    public void b(cb cbVar, na naVar, la laVar, oa oaVar) {
-        r1.g gVar = new r1.g(cbVar, cb.IN_OUT_OFFSET_Y, cbVar.getHeight());
-        gVar.f55748m.a(0.8f);
-        gVar.f55748m.b(400.0f);
-        gVar.a(new pa(laVar, 1));
-        gVar.b(new ab(oaVar, cbVar, 0));
-        gVar.h();
-        naVar.run();
-    }
-
-    @Override
-    public boolean c() {
-        return false;
-    }
-
-    @Override
-    public boolean c0(q1 q1Var, TLRPC.User user) {
-        return false;
-    }
-
-    @Override
-    public dr0 c2() {
+    public jh.a c0() {
         return null;
     }
 
     @Override
-    public p0 d(Class cls) {
-        return new z1.b();
+    public fr0 c2() {
+        return null;
     }
 
     @Override
-    public void d0(vg vgVar) {
-        vgVar.run();
+    public Map d(byte[] bArr) {
+        throw new IllegalStateException();
     }
 
     @Override
-    public p0 e(Class cls, y1.b bVar) {
-        return d(cls);
-    }
-
-    @Override
-    public boolean f0() {
+    public boolean d0(q1 q1Var) {
         return false;
     }
 
     @Override
-    public boolean f1(gj gjVar) {
-        return y0.a(gjVar);
+    public Object e(r7 r7Var) {
+        switch (this.f59628a) {
+            case 14:
+                return new ob.c(r7Var.L(ob.b.class));
+            default:
+                return new ob.b(r7Var.c(nb.a.class));
+        }
+    }
+
+    @Override
+    public boolean e0(q1 q1Var, TLRPC.User user) {
+        return false;
+    }
+
+    @Override
+    public p0 f(Class cls) {
+        return new z1.b();
+    }
+
+    @Override
+    public void f0(eh ehVar) {
+        ehVar.run();
+    }
+
+    @Override
+    public boolean f1(fj fjVar) {
+        return c0.a(fjVar);
     }
 
     @Override
@@ -392,8 +376,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public boolean g() {
-        return true;
+    public p0 g(Class cls, y1.b bVar) {
+        return f(cls);
     }
 
     @Override
@@ -402,8 +386,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public String h(q1 q1Var) {
-        return null;
+    public boolean h() {
+        return true;
     }
 
     @Override
@@ -412,37 +396,59 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public Object i(r7 r7Var) {
-        switch (this.f59063a) {
-            case 14:
-                return new ob.c(r7Var.I(ob.b.class));
-            default:
-                return new ob.b(r7Var.c(nb.a.class));
-        }
+    public String i(q1 q1Var) {
+        return null;
     }
 
     @Override
-    public int i0(q1 q1Var) {
-        return 0;
-    }
-
-    @Override
-    public Exception l(Status status) {
-        return q6.m.l(status);
-    }
-
-    @Override
-    public boolean l0() {
+    public boolean i0() {
         return false;
     }
 
     @Override
-    public q2.q n() {
+    public void j(lb lbVar, wa waVar, ua uaVar, xa xaVar) {
+        r1.g gVar = new r1.g(lbVar, lb.IN_OUT_OFFSET_Y, lbVar.getHeight());
+        gVar.f56323m.a(0.8f);
+        gVar.f56323m.b(400.0f);
+        gVar.a(new ya(uaVar, 1));
+        gVar.b(new jb(xaVar, lbVar, 0));
+        gVar.h();
+        waVar.run();
+    }
+
+    @Override
+    public Exception k(Status status) {
+        return q6.m.m(status);
+    }
+
+    @Override
+    public int k0(q1 q1Var) {
+        return 0;
+    }
+
+    @Override
+    public q2.p n() {
         throw new IllegalStateException();
     }
 
     @Override
-    public boolean o0(p5 p5Var) {
+    public boolean n0() {
+        return false;
+    }
+
+    @Override
+    public StackTraceElement[] o(StackTraceElement[] stackTraceElementArr) {
+        if (stackTraceElementArr.length <= 1024) {
+            return stackTraceElementArr;
+        }
+        StackTraceElement[] stackTraceElementArr2 = new StackTraceElement[1024];
+        System.arraycopy(stackTraceElementArr, 0, stackTraceElementArr2, 0, 512);
+        System.arraycopy(stackTraceElementArr, stackTraceElementArr.length - 512, stackTraceElementArr2, 512, 512);
+        return stackTraceElementArr2;
+    }
+
+    @Override
+    public boolean p0(x5 x5Var) {
         return false;
     }
 
@@ -452,14 +458,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public StackTraceElement[] q(StackTraceElement[] stackTraceElementArr) {
-        if (stackTraceElementArr.length <= 1024) {
-            return stackTraceElementArr;
-        }
-        StackTraceElement[] stackTraceElementArr2 = new StackTraceElement[1024];
-        System.arraycopy(stackTraceElementArr, 0, stackTraceElementArr2, 0, 512);
-        System.arraycopy(stackTraceElementArr, stackTraceElementArr.length - 512, stackTraceElementArr2, 512, 512);
-        return stackTraceElementArr2;
+    public k2.b r(byte[] bArr) {
+        throw new IllegalStateException();
     }
 
     @Override
@@ -495,8 +495,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public k2.b s(byte[] bArr) {
-        throw new IllegalStateException();
+    public byte[] t() {
+        throw new MediaDrmException("Attempting to open a session using a dummy ExoMediaDrm.");
     }
 
     @Override
@@ -515,8 +515,16 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public byte[] v() {
-        throw new MediaDrmException("Attempting to open a session using a dummy ExoMediaDrm.");
+    public void u(lb lbVar, wa waVar, lg lgVar, pl plVar) {
+        lbVar.setInOutOffset(lbVar.getMeasuredHeight());
+        plVar.accept(Float.valueOf(lbVar.getTranslationY()));
+        r1.g gVar = new r1.g((Object) lbVar, lb.IN_OUT_OFFSET_Y, 0.0f);
+        gVar.f56323m.a(0.8f);
+        gVar.f56323m.b(400.0f);
+        gVar.a(new v0(2, lbVar, lgVar));
+        gVar.b(new jb(plVar, lbVar, 1));
+        gVar.h();
+        waVar.run();
     }
 
     @Override
@@ -525,8 +533,8 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public String x(long j3) {
-        return null;
+    public void x(byte[] bArr, byte[] bArr2) {
+        throw new IllegalStateException();
     }
 
     @Override
@@ -535,21 +543,13 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void y(cb cbVar, na naVar, dg dgVar, il ilVar) {
-        cbVar.setInOutOffset(cbVar.getMeasuredHeight());
-        ilVar.accept(Float.valueOf(cbVar.getTranslationY()));
-        r1.g gVar = new r1.g((Object) cbVar, cb.IN_OUT_OFFSET_Y, 0.0f);
-        gVar.f55748m.a(0.8f);
-        gVar.f55748m.b(400.0f);
-        gVar.a(new v0(2, cbVar, dgVar));
-        gVar.b(new ab(ilVar, cbVar, 1));
-        gVar.h();
-        naVar.run();
+    public boolean y0(fj fjVar) {
+        return true;
     }
 
     @Override
-    public boolean y0(gj gjVar) {
-        return true;
+    public String z(long j3) {
+        return null;
     }
 
     @Override
@@ -558,12 +558,12 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public i9 z2() {
+    public j9 z2() {
         return null;
     }
 
     public s() {
-        this.f59063a = 12;
+        this.f59628a = 12;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }
@@ -581,15 +581,15 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
+    public void c() {
+    }
+
+    @Override
     public void i1() {
     }
 
     @Override
-    public void k() {
-    }
-
-    @Override
-    public void p() {
+    public void m() {
     }
 
     @Override
@@ -601,7 +601,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void t() {
+    public void v() {
     }
 
     @Override
@@ -613,11 +613,11 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void B(q1 q1Var) {
+    public void A(byte[] bArr) {
     }
 
     @Override
-    public void C(byte[] bArr) {
+    public void B(q1 q1Var) {
     }
 
     @Override
@@ -625,11 +625,11 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void F0(q1 q1Var) {
+    public void E(q1 q1Var) {
     }
 
     @Override
-    public void H(q1 q1Var) {
+    public void F0(q1 q1Var) {
     }
 
     @Override
@@ -637,7 +637,11 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void J(dj djVar) {
+    public void K(q1 q1Var) {
+    }
+
+    @Override
+    public void L(cj cjVar) {
     }
 
     @Override
@@ -645,27 +649,23 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void N(q1 q1Var) {
-    }
-
-    @Override
     public void N0(q1 q1Var) {
     }
 
     @Override
-    public void O1(gj gjVar) {
+    public void O1(fj fjVar) {
     }
 
     @Override
-    public void P(gj gjVar) {
+    public void P(q1 q1Var) {
+    }
+
+    @Override
+    public void R(fj fjVar) {
     }
 
     @Override
     public void R0(Object obj) {
-    }
-
-    @Override
-    public void V(q1 q1Var) {
     }
 
     @Override
@@ -677,11 +677,15 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void e0(int i7) {
+    public void Y(q1 q1Var) {
     }
 
     @Override
-    public void f(cf cfVar) {
+    public void a(b5 b5Var) {
+    }
+
+    @Override
+    public void h0(int i7) {
     }
 
     @Override
@@ -689,19 +693,19 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void j0(q1 q1Var) {
-    }
-
-    @Override
     public void j2(q1 q1Var) {
     }
 
     @Override
-    public void n0(String str) {
+    public void l0(q1 q1Var) {
     }
 
     @Override
-    public void o(q1 q1Var) {
+    public void o0(String str) {
+    }
+
+    @Override
+    public void q(q1 q1Var) {
     }
 
     @Override
@@ -709,11 +713,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void r(q1 q1Var) {
-    }
-
-    @Override
-    public void u(q1 q1Var) {
+    public void s(q1 q1Var) {
     }
 
     @Override
@@ -721,7 +721,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void z(q1 q1Var) {
+    public void y(q1 q1Var) {
     }
 
     @Override
@@ -733,11 +733,11 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void G(q1 q1Var, o2 o2Var) {
+    public void G(byte[] bArr, m2.i iVar) {
     }
 
     @Override
-    public void I(byte[] bArr, m2.j jVar) {
+    public void I(q1 q1Var, p2 p2Var) {
     }
 
     @Override
@@ -757,7 +757,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void a2(q1 q1Var, l10 l10Var) {
+    public void a2(q1 q1Var, i10 i10Var) {
     }
 
     @Override
@@ -793,7 +793,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void K(q1 q1Var, TLRPC.Document document, RectF rectF) {
+    public void N(q1 q1Var, TLRPC.Document document, RectF rectF) {
     }
 
     @Override
@@ -801,7 +801,7 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void h0(q1 q1Var, float f10, float f11) {
+    public void j0(q1 q1Var, float f10, float f11) {
     }
 
     @Override
@@ -821,15 +821,15 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void m(q1 q1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
-    }
-
-    @Override
     public void onScrollLimit(int i7, int i10, int i11, boolean z10) {
     }
 
     @Override
     public void onScrollProgress(int i7, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public void p(q1 q1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
     }
 
     @Override
@@ -841,11 +841,15 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
+    public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
+    }
+
+    @Override
     public void g2(q1 q1Var, int i7, float f10, float f11, boolean z10) {
     }
 
     @Override
-    public void j(q1 q1Var, ArrayList arrayList, int i7, int i10, int i11) {
+    public void l(q1 q1Var, ArrayList arrayList, int i7, int i10, int i11) {
     }
 
     @Override
@@ -853,18 +857,14 @@ public final class s implements androidx.car.app.messaging.model.b, b7.e, com.go
     }
 
     @Override
-    public void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
+    public void X(q1 q1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z10) {
     }
 
     @Override
-    public void U(q1 q1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z10) {
+    public void S1(fj fjVar, String str, String str2, String str3, String str4, int i7, int i10) {
     }
 
     @Override
     public void b2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10) {
-    }
-
-    @Override
-    public void S1(gj gjVar, String str, String str2, String str3, String str4, int i7, int i10) {
     }
 }

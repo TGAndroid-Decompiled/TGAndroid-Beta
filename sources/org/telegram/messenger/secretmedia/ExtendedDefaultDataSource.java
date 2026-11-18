@@ -1,6 +1,6 @@
 package org.telegram.messenger.secretmedia;
 
-import a8.ja;
+import a8.la;
 import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
@@ -190,16 +190,16 @@ public final class ExtendedDefaultDataSource implements h {
         } else {
             z10 = false;
         }
-        ja.p(z10);
-        Uri uri = mVar.f16803a;
+        la.p(z10);
+        Uri uri = mVar.f17188a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f16803a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f17188a.toString().substring(8)));
             l a10 = mVar.a();
-            a10.f16799e = uri;
+            a10.f17184e = uri;
             mVar = a10.d();
         }
         String scheme = uri.getScheme();
-        String str = l0.f13471a;
+        String str = l0.f13786a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {
