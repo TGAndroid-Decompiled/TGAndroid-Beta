@@ -19,19 +19,19 @@ public final class s8 implements j2.h, j7 {
     public final ArrayList F = new ArrayList(1);
     public int G;
     public j2.m H;
-    public i7 f26751a;
-    public Uri f26752b;
-    public long f26753c;
+    public i7 f26779a;
+    public Uri f26780b;
+    public long f26781c;
     public long d;
-    public long f26754e;
-    public boolean f26755f;
+    public long f26782e;
+    public boolean f26783f;
     public long h;
-    public CountDownLatch f26756n;
-    public RandomAccessFile f26757r;
-    public TLRPC.TL_document f26758s;
-    public Object f26759w;
-    public int f26760x;
-    public File f26761y;
+    public CountDownLatch f26784n;
+    public RandomAccessFile f26785r;
+    public TLRPC.TL_document f26786s;
+    public Object f26787w;
+    public int f26788x;
+    public File f26789y;
 
     public static Uri i(int i7, Object obj, TLRPC.Document document) {
         String r10 = w7.r(null, document);
@@ -44,7 +44,7 @@ public final class s8 implements j2.h, j7 {
             StringBuilder sb2 = new StringBuilder("?account=");
             sb2.append(i7);
             sb2.append("&id=");
-            sb2.append(document.f28409id);
+            sb2.append(document.f28437id);
             sb2.append("&hash=");
             sb2.append(document.access_hash);
             sb2.append("&dc=");
@@ -73,8 +73,8 @@ public final class s8 implements j2.h, j7 {
 
     @Override
     public final void a() {
-        CountDownLatch countDownLatch = this.f26756n;
-        this.f26756n = null;
+        CountDownLatch countDownLatch = this.f26784n;
+        this.f26784n = null;
         if (countDownLatch != null) {
             countDownLatch.countDown();
         }
@@ -92,41 +92,41 @@ public final class s8 implements j2.h, j7 {
 
     @Override
     public final void close() {
-        a8.d("FileStreamLoadOperation " + this.f26758s.f28409id + " close me=" + this);
-        i7 i7Var = this.f26751a;
+        a8.d("FileStreamLoadOperation " + this.f26786s.f28437id + " close me=" + this);
+        i7 i7Var = this.f26779a;
         if (i7Var != null) {
             Utilities.d.c(new e7(i7Var, this, 0));
         }
-        RandomAccessFile randomAccessFile = this.f26757r;
+        RandomAccessFile randomAccessFile = this.f26785r;
         if (randomAccessFile != null) {
             try {
                 randomAccessFile.close();
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
-            this.f26757r = null;
+            this.f26785r = null;
         }
-        this.f26752b = null;
-        I.remove(Long.valueOf(this.f26758s.f28409id));
-        if (this.f26755f) {
-            this.f26755f = false;
+        this.f26780b = null;
+        I.remove(Long.valueOf(this.f26786s.f28437id));
+        if (this.f26783f) {
+            this.f26783f = false;
             j2.m mVar = this.H;
-            String str = h2.l0.f13783a;
+            String str = h2.l0.f13812a;
             for (int i7 = 0; i7 < this.G; i7++) {
                 ((b3.g) ((j2.c0) this.F.get(i7))).f(mVar, this.E);
             }
             this.H = null;
         }
-        CountDownLatch countDownLatch = this.f26756n;
+        CountDownLatch countDownLatch = this.f26784n;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            this.f26756n = null;
+            this.f26784n = null;
         }
     }
 
     public final void e(int i7) {
         j2.m mVar = this.H;
-        String str = h2.l0.f13783a;
+        String str = h2.l0.f13812a;
         for (int i10 = 0; i10 < this.G; i10++) {
             boolean z10 = this.E;
             b3.g gVar = (b3.g) ((j2.c0) this.F.get(i10));
@@ -139,7 +139,7 @@ public final class s8 implements j2.h, j7 {
                         } finally {
                         }
                     }
-                    gVar.f2889i += i7;
+                    gVar.f2901i += i7;
                 }
             }
         }
@@ -152,11 +152,11 @@ public final class s8 implements j2.h, j7 {
 
     @Override
     public final Uri getUri() {
-        return this.f26752b;
+        return this.f26780b;
     }
 
     public final int h() {
-        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(J, Long.valueOf(this.f26758s.f28409id), null);
+        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(J, Long.valueOf(this.f26786s.f28437id), null);
         if (num != null) {
             return num.intValue();
         }

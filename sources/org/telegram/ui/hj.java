@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class hj extends org.telegram.ui.Components.p01 {
-    public final bn f48364e;
+public final class hj extends org.telegram.ui.Components.r01 {
+    public final bn f48407e;
 
-    public hj(bn bnVar, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(i7, context, i6Var);
-        this.f48364e = bnVar;
+    public hj(bn bnVar, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(i7, context, h6Var);
+        this.f48407e = bnVar;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            bn bnVar = this.f48364e;
-            kVar = ((org.telegram.ui.ActionBar.h2) bnVar).actionBar;
-            if (!kVar.y() && !bnVar.Y9()) {
+            bn bnVar = this.f48407e;
+            kVar = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
+            if (!kVar.x() && !bnVar.Y9()) {
                 return super.onTouchEvent(motionEvent);
             }
             return false;

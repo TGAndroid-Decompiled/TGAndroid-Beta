@@ -2,26 +2,26 @@ package org.telegram.utils.twidget;
 
 import android.content.Context;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.j00;
-public final class m1 implements j00 {
-    public final Context f54839a;
+import org.telegram.ui.Components.l00;
+public final class m1 implements l00 {
+    public final Context f54880a;
 
     public m1(Context context) {
-        this.f54839a = context;
+        this.f54880a = context;
     }
 
     @Override
     public final void a() {
-        z0 z0Var = z0.f54997z;
-        synchronized (z0Var.f54998e) {
-            z0Var.f55008p = false;
+        z0 z0Var = z0.f55038z;
+        synchronized (z0Var.f55039e) {
+            z0Var.f55049p = false;
         }
-        z0Var.f54999f.removeCallbacks(z0Var.f55016y);
-        z0Var.f54999f.postDelayed(z0Var.f55016y, 30000L);
+        z0Var.f55040f.removeCallbacks(z0Var.f55057y);
+        z0Var.f55040f.postDelayed(z0Var.f55057y, 30000L);
     }
 
     @Override
     public final void b() {
-        Utilities.f22779e.c(new j0(this.f54839a, 4));
+        Utilities.f22807e.c(new j0(this.f54880a, 4));
     }
 }

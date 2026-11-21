@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.view.ViewGroup;
-public final class s7 extends j30 {
+public final class s7 extends m30 {
     @Override
     public final void setVisibility(int i7) {
         super.setVisibility(i7);

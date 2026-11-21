@@ -14,10 +14,10 @@ import java.util.HashSet;
 import java.util.List;
 public class NotificationImageProvider extends ContentProvider implements fs {
     public static String d;
-    public static UriMatcher f22768e;
-    public final HashSet f22769a = new HashSet();
-    public final Object f22770b = new Object();
-    public final HashMap f22771c = new HashMap();
+    public static UriMatcher f22796e;
+    public final HashSet f22797a = new HashSet();
+    public final Object f22798b = new Object();
+    public final HashMap f22799c = new HashMap();
 
     @Override
     public final int delete(Uri uri, String str, String[] strArr) {
@@ -27,12 +27,12 @@ public class NotificationImageProvider extends ContentProvider implements fs {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == ks.Y1) {
-            synchronized (this.f22770b) {
+            synchronized (this.f22798b) {
                 try {
                     String str = (String) objArr[0];
-                    if (this.f22769a.remove(str)) {
-                        this.f22771c.remove(str);
-                        this.f22770b.notifyAll();
+                    if (this.f22797a.remove(str)) {
+                        this.f22799c.remove(str);
+                        this.f22798b.notifyAll();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -71,16 +71,16 @@ public class NotificationImageProvider extends ContentProvider implements fs {
     public final ParcelFileDescriptor openFile(Uri uri, String str) {
         long currentTimeMillis;
         if ("r".equals(str)) {
-            if (f22768e == null) {
+            if (f22796e == null) {
                 UriMatcher uriMatcher = new UriMatcher(-1);
-                f22768e = uriMatcher;
+                f22796e = uriMatcher;
                 if (d == null) {
                     t0.d();
                     d = "org.telegram.messenger.beta.notification_image_provider";
                 }
                 uriMatcher.addURI(d, "msg_media_raw/#/*", 1);
             }
-            if (f22768e.match(uri) == 1) {
+            if (f22796e.match(uri) == 1) {
                 List<String> pathSegments = uri.getPathSegments();
                 Integer.parseInt(pathSegments.get(1));
                 String str2 = pathSegments.get(2);
@@ -90,18 +90,18 @@ public class NotificationImageProvider extends ContentProvider implements fs {
                 t0.w();
                 if (!g0.I1(Uri.fromFile(file), 0)) {
                     if (!file.exists()) {
-                        Long l10 = (Long) this.f22771c.get(str2);
+                        Long l10 = (Long) this.f22799c.get(str2);
                         if (l10 != null) {
                             currentTimeMillis = l10.longValue();
                         } else {
                             currentTimeMillis = System.currentTimeMillis();
                         }
                         if (l10 == null) {
-                            this.f22771c.put(str2, Long.valueOf(currentTimeMillis));
+                            this.f22799c.put(str2, Long.valueOf(currentTimeMillis));
                         }
                         while (!file.exists()) {
                             if (System.currentTimeMillis() - currentTimeMillis >= 3000) {
-                                if (s2.f26721a) {
+                                if (s2.f26749a) {
                                     a8.l("Waiting for " + str2 + " to download timed out");
                                 }
                                 if (!TextUtils.isEmpty(queryParameter2)) {
@@ -113,10 +113,10 @@ public class NotificationImageProvider extends ContentProvider implements fs {
                                 }
                                 throw new FileNotFoundException("Download timed out");
                             }
-                            synchronized (this.f22770b) {
-                                this.f22769a.add(str2);
+                            synchronized (this.f22798b) {
+                                this.f22797a.add(str2);
                                 try {
-                                    this.f22770b.wait(1000L);
+                                    this.f22798b.wait(1000L);
                                 } catch (InterruptedException unused) {
                                 }
                             }

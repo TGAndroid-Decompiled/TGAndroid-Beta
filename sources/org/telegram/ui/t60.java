@@ -5,27 +5,27 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class t60 implements Runnable {
-    public final int f52188a;
-    public final LaunchActivity f52189b;
+    public final int f52238a;
+    public final LaunchActivity f52239b;
 
     public t60(LaunchActivity launchActivity, int i7) {
-        this.f52188a = i7;
-        this.f52189b = launchActivity;
+        this.f52238a = i7;
+        this.f52239b = launchActivity;
     }
 
     @Override
     public final void run() {
         WeakReference weakReference;
-        int i7 = this.f52188a;
-        org.telegram.ui.ActionBar.h2 h2Var = null;
-        LaunchActivity launchActivity = this.f52189b;
+        int i7 = this.f52238a;
+        org.telegram.ui.ActionBar.g2 g2Var = null;
+        LaunchActivity launchActivity = this.f52239b;
         switch (i7) {
             case 0:
                 String str = LaunchActivity.C1;
                 org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(launchActivity, null);
                 obVar.d(2131624009, new String[0]);
-                obVar.f38055b.setText(org.telegram.messenger.gd.M0(2131742553, null));
-                org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
+                obVar.f38164b.setText(org.telegram.messenger.gd.N0(2131742547, null));
+                org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
                 if (Q != null) {
                     org.telegram.ui.Components.gc.g(Q, obVar, 1500).j();
                     try {
@@ -44,11 +44,11 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 2:
-                if (!launchActivity.f43109w1) {
+                if (!launchActivity.f43150w1) {
                     try {
-                        org.telegram.ui.ActionBar.u1 z10 = org.telegram.ui.Components.b5.z(launchActivity);
+                        org.telegram.ui.ActionBar.t1 z10 = org.telegram.ui.Components.c5.z(launchActivity);
                         z10.setOnDismissListener(new l70(launchActivity, 0));
-                        launchActivity.f43109w1 = true;
+                        launchActivity.f43150w1 = true;
                         z10.show();
                     } catch (Throwable unused2) {
                         return;
@@ -64,25 +64,25 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 4:
-                if (!launchActivity.f43094p0.getFragmentStack().isEmpty()) {
-                    launchActivity.f43094p0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.iw0(launchActivity, launchActivity.f43087k0, launchActivity.f43083i0, launchActivity.f43085j0));
+                if (!launchActivity.f43135p0.getFragmentStack().isEmpty()) {
+                    launchActivity.f43135p0.getFragmentStack().get(0).showDialog(new org.telegram.ui.Components.kw0(launchActivity, launchActivity.f43128k0, launchActivity.f43124i0, launchActivity.f43126j0));
                     return;
                 }
                 return;
             case 5:
                 String str3 = LaunchActivity.C1;
                 launchActivity.getClass();
-                org.telegram.ui.Components.z10.f42711g0 = false;
-                org.telegram.ui.Components.z10.k(launchActivity);
+                org.telegram.ui.Components.c20.f33988g0 = false;
+                org.telegram.ui.Components.c20.k(launchActivity);
                 return;
             case 6:
                 String str4 = LaunchActivity.C1;
-                if (org.telegram.messenger.g0.f24101g != -10 && org.telegram.messenger.g0.f24099f == -10 && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (weakReference = org.telegram.messenger.g0.f24104i) != null && weakReference.get() == launchActivity) {
+                if (org.telegram.messenger.g0.f24129g != -10 && org.telegram.messenger.g0.f24127f == -10 && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (weakReference = org.telegram.messenger.g0.f24132i) != null && weakReference.get() == launchActivity) {
                     int i10 = org.telegram.messenger.g0.h;
-                    int i11 = org.telegram.messenger.g0.f24101g;
-                    org.telegram.messenger.g0.f24101g = -10;
+                    int i11 = org.telegram.messenger.g0.f24129g;
+                    org.telegram.messenger.g0.f24129g = -10;
                     org.telegram.messenger.g0.h = -10;
-                    org.telegram.messenger.g0.f24104i = null;
+                    org.telegram.messenger.g0.f24132i = null;
                     try {
                         launchActivity.setRequestedOrientation(i10);
                         launchActivity.setRequestedOrientation(i11);
@@ -94,13 +94,13 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 7:
-                launchActivity.f43105u1 = null;
+                launchActivity.f43146u1 = null;
                 return;
             case 8:
                 if (launchActivity.T0 != null) {
-                    File file = new File(org.telegram.messenger.t0.h(), a8.p0.r(new StringBuilder("remote"), launchActivity.T0.f28542id, ".attheme"));
+                    File file = new File(org.telegram.messenger.t0.h(), a8.p0.r(new StringBuilder("remote"), launchActivity.T0.f28570id, ".attheme"));
                     TLRPC.TL_theme tL_theme = launchActivity.T0;
-                    org.telegram.ui.ActionBar.m6 v = org.telegram.ui.ActionBar.n6.v(file, tL_theme.title, tL_theme, true);
+                    org.telegram.ui.ActionBar.l6 v = org.telegram.ui.ActionBar.m6.v(file, tL_theme.title, tL_theme, true);
                     if (v != null) {
                         launchActivity.t0(new x71(v, true, 0, false, false));
                     }
@@ -109,22 +109,22 @@ public final class t60 implements Runnable {
                 }
                 return;
             case 9:
-                ArrayList arrayList = launchActivity.f43075e0;
-                ArrayList arrayList2 = launchActivity.f43077f0;
+                ArrayList arrayList = launchActivity.f43116e0;
+                ArrayList arrayList2 = launchActivity.f43118f0;
                 if (org.telegram.messenger.g0.Q1()) {
                     if (!arrayList2.isEmpty()) {
-                        h2Var = (org.telegram.ui.ActionBar.h2) i5.c.h(1, arrayList2);
+                        g2Var = (org.telegram.ui.ActionBar.g2) i5.c.h(1, arrayList2);
                     }
                 } else if (!arrayList.isEmpty()) {
-                    h2Var = (org.telegram.ui.ActionBar.h2) i5.c.h(1, arrayList);
+                    g2Var = (org.telegram.ui.ActionBar.g2) i5.c.h(1, arrayList);
                 }
-                if (!(h2Var instanceof ProxyListActivity) && !(h2Var instanceof yx0)) {
+                if (!(g2Var instanceof ProxyListActivity) && !(g2Var instanceof yx0)) {
                     launchActivity.t0(new ProxyListActivity());
                     return;
                 }
                 return;
             case 10:
-                launchActivity.f43107v1 = null;
+                launchActivity.f43148v1 = null;
                 return;
             default:
                 String str5 = LaunchActivity.C1;

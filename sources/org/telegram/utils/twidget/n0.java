@@ -1,7 +1,7 @@
 package org.telegram.utils.twidget;
 
 import android.text.TextUtils;
-import bi.k2;
+import bi.o2;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -28,27 +28,27 @@ import org.telegram.messenger.tr;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.pk0;
+import org.telegram.ui.Components.rk0;
 import org.telegram.ui.Wallet.c2;
-import org.telegram.ui.dd0;
+import org.telegram.ui.cd0;
 import org.telegram.ui.qw0;
 public abstract class n0 {
-    public static boolean f54852i;
-    public static boolean f54853j;
-    public static final ConcurrentHashMap f54846a = new ConcurrentHashMap();
-    public static final ConcurrentHashMap f54847b = new ConcurrentHashMap();
-    public static final HashMap f54848c = new HashMap();
+    public static boolean f54893i;
+    public static boolean f54894j;
+    public static final ConcurrentHashMap f54887a = new ConcurrentHashMap();
+    public static final ConcurrentHashMap f54888b = new ConcurrentHashMap();
+    public static final HashMap f54889c = new HashMap();
     public static final HashMap d = new HashMap();
-    public static final dd0 f54849e = new dd0(19);
-    public static final ArrayList f54850f = new ArrayList();
-    public static final ArrayList f54851g = new ArrayList();
+    public static final cd0 f54890e = new cd0(19);
+    public static final ArrayList f54891f = new ArrayList();
+    public static final ArrayList f54892g = new ArrayList();
     public static final ArrayList h = new ArrayList();
-    public static final boolean[] f54854k = new boolean[4];
-    public static final HashMap f54855l = new HashMap();
-    public static final sa.d f54856m = new sa.d(20);
+    public static final boolean[] f54895k = new boolean[4];
+    public static final HashMap f54896l = new HashMap();
+    public static final sa.d f54897m = new sa.d(20);
 
     public static void A(k0 k0Var) {
-        d1 d1Var = k0Var.f54817t;
+        d1 d1Var = k0Var.f54858t;
         if (k0Var.J) {
             if (k0Var.B >= 2) {
                 return;
@@ -72,19 +72,19 @@ public abstract class n0 {
 
     public static void D() {
         ArrayList arrayList = new ArrayList();
-        for (k0 k0Var : f54846a.values()) {
-            if (k0Var.f54817t != null && k0Var.f54820x == 0 && !f54851g.contains(k0Var)) {
+        for (k0 k0Var : f54887a.values()) {
+            if (k0Var.f54858t != null && k0Var.f54861x == 0 && !f54892g.contains(k0Var)) {
                 arrayList.add(k0Var);
             }
         }
         Collections.sort(arrayList, new qw0(9));
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            d1 d1Var = ((k0) arrayList.get(i7)).f54817t;
+            d1 d1Var = ((k0) arrayList.get(i7)).f54858t;
             if (i7 >= 4) {
                 d1Var.m();
             }
-            if (i7 >= 12 && d1Var.f54695f == null) {
-                d1Var.f54696g = null;
+            if (i7 >= 12 && d1Var.f54736f == null) {
+                d1Var.f54737g = null;
             }
         }
     }
@@ -92,20 +92,20 @@ public abstract class n0 {
     public static void E() {
         d1 d1Var;
         HashMap hashMap = new HashMap();
-        for (k0 k0Var : f54846a.values()) {
-            if (k0Var.f54809l != 0 && !k0Var.f54808k && k0Var.f54820x != 0 && !f54853j && (d1Var = k0Var.f54817t) != null && d1Var.f54695f != null && d1Var.A) {
-                hashMap.put(k0Var.f54801b + "/" + k0Var.f54809l, k0Var);
+        for (k0 k0Var : f54887a.values()) {
+            if (k0Var.f54850l != 0 && !k0Var.f54849k && k0Var.f54861x != 0 && !f54894j && (d1Var = k0Var.f54858t) != null && d1Var.f54736f != null && d1Var.A) {
+                hashMap.put(k0Var.f54842b + "/" + k0Var.f54850l, k0Var);
             }
         }
-        HashMap hashMap2 = f54855l;
+        HashMap hashMap2 = f54896l;
         Iterator it = hashMap2.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry entry = (Map.Entry) it.next();
             if (!hashMap.containsKey(entry.getKey())) {
                 m0 m0Var = (m0) entry.getValue();
-                org.telegram.messenger.g0.r(m0Var.f54838f);
-                if (m0Var.f54837e != 0) {
-                    ConnectionsManager.getInstance(m0Var.f54834a).cancelRequest(m0Var.f54837e, true);
+                org.telegram.messenger.g0.r(m0Var.f54879f);
+                if (m0Var.f54878e != 0) {
+                    ConnectionsManager.getInstance(m0Var.f54875a).cancelRequest(m0Var.f54878e, true);
                 }
                 it.remove();
             }
@@ -113,16 +113,16 @@ public abstract class n0 {
         for (Map.Entry entry2 : hashMap.entrySet()) {
             if (!hashMap2.containsKey(entry2.getKey())) {
                 k0 k0Var2 = (k0) entry2.getValue();
-                m0 m0Var2 = new m0(k0Var2.f54801b, k0Var2.f54809l);
-                m0Var2.f54836c = k0Var2.f54814q;
+                m0 m0Var2 = new m0(k0Var2.f54842b, k0Var2.f54850l);
+                m0Var2.f54877c = k0Var2.f54855q;
                 hashMap2.put((String) entry2.getKey(), m0Var2);
-                org.telegram.messenger.g0.h3(m0Var2.f54838f, m0Var2.d * 1000);
+                org.telegram.messenger.g0.h3(m0Var2.f54879f, m0Var2.d * 1000);
             }
         }
     }
 
     public static boolean F(k0 k0Var) {
-        if (k0Var.f54806i && !k0Var.f54808k && ((org.telegram.messenger.h0) mp.u1(k0Var.f54801b).A7.f26159p0.f13998b).f24336c) {
+        if (k0Var.f54847i && !k0Var.f54849k && ((org.telegram.messenger.h0) mp.u1(k0Var.f54842b).A7.f26187p0.f14027b).f24364c) {
             return true;
         }
         return false;
@@ -130,7 +130,7 @@ public abstract class n0 {
 
     public static void a(k0 k0Var) {
         org.telegram.messenger.g0.r(k0Var.M);
-        if (!f54851g.remove(k0Var)) {
+        if (!f54892g.remove(k0Var)) {
             return;
         }
         D();
@@ -152,16 +152,16 @@ public abstract class n0 {
     }
 
     public static void c(k0 k0Var, String str, String str2) {
-        if (!TextUtils.equals(k0Var.f54812o, str) || !TextUtils.equals(k0Var.f54813p, str2)) {
-            k0Var.f54812o = str;
-            k0Var.f54813p = str2;
-            TLRPC.TL_messageMediaWidget tL_messageMediaWidget = k0Var.f54815r;
+        if (!TextUtils.equals(k0Var.f54853o, str) || !TextUtils.equals(k0Var.f54854p, str2)) {
+            k0Var.f54853o = str;
+            k0Var.f54854p = str2;
+            TLRPC.TL_messageMediaWidget tL_messageMediaWidget = k0Var.f54856r;
             if (tL_messageMediaWidget != null) {
                 tL_messageMediaWidget.chat_data = str;
                 tL_messageMediaWidget.public_data = str2;
-                tL_messageMediaWidget.public_data_hash = k0Var.f54814q;
+                tL_messageMediaWidget.public_data_hash = k0Var.f54855q;
             }
-            d1 d1Var = k0Var.f54817t;
+            d1 d1Var = k0Var.f54858t;
             if (d1Var != null) {
                 d1Var.h(g(str, str2));
             }
@@ -174,7 +174,7 @@ public abstract class n0 {
         int i11;
         int i12;
         if (n(str)) {
-            k0Var = (k0) f54846a.get(str);
+            k0Var = (k0) f54887a.get(str);
         } else {
             k0Var = null;
         }
@@ -182,22 +182,22 @@ public abstract class n0 {
         if (k0Var == null) {
             return 0;
         }
-        if (k0Var.f54804f > 0) {
+        if (k0Var.f54845f > 0) {
             return org.telegram.messenger.g0.L(Math.max(50, Math.min(600, i10)));
         }
-        if (d1Var != null && Math.abs(d1Var.f54699k - i7) <= 1) {
-            i11 = d1Var.f54697i;
+        if (d1Var != null && Math.abs(d1Var.f54740k - i7) <= 1) {
+            i11 = d1Var.f54738i;
         } else {
             i11 = 0;
         }
         if (i11 > 0) {
             return Math.min(org.telegram.messenger.g0.L(600.0f), Math.max(org.telegram.messenger.g0.L(50.0f), i11));
         }
-        l0 l0Var = (l0) f54847b.get(k0Var.a());
+        l0 l0Var = (l0) f54888b.get(k0Var.a());
         if (l0Var != null) {
             int f10 = f(i7);
             synchronized (l0Var) {
-                ArrayList arrayList = l0Var.f54829a;
+                ArrayList arrayList = l0Var.f54870a;
                 int size = arrayList.size();
                 int i14 = Integer.MAX_VALUE;
                 i12 = 0;
@@ -226,24 +226,24 @@ public abstract class n0 {
         try {
             JSONObject jSONObject = new JSONObject();
             boolean z10 = k0Var.h;
-            boolean z11 = k0Var.f54806i;
+            boolean z11 = k0Var.f54847i;
             jSONObject.put("isCopy", z10);
             jSONObject.put("canQuery", z11);
-            jSONObject.put("backgroundQuery", k0Var.f54807j);
-            jSONObject.put("preview", k0Var.f54808k);
+            jSONObject.put("backgroundQuery", k0Var.f54848j);
+            jSONObject.put("preview", k0Var.f54849k);
             jSONObject.put("wallet", F(k0Var));
-            Object obj = k0Var.f54810m;
+            Object obj = k0Var.f54851m;
             if (obj != null) {
                 jSONObject.put("chatType", obj);
             }
             if (z11) {
-                user = j10.i(k0Var.f54801b).f();
+                user = j10.i(k0Var.f54842b).f();
             } else {
                 user = null;
             }
             if (user != null) {
                 JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.put("id", user.f28552id);
+                jSONObject2.put("id", user.f28580id);
                 if (!TextUtils.isEmpty(user.first_name)) {
                     jSONObject2.put("firstName", user.first_name);
                 }
@@ -264,7 +264,7 @@ public abstract class n0 {
     }
 
     public static int f(int i7) {
-        return Math.round(i7 / org.telegram.messenger.g0.f24117p);
+        return Math.round(i7 / org.telegram.messenger.g0.f24145p);
     }
 
     public static String g(String str, String str2) {
@@ -290,14 +290,14 @@ public abstract class n0 {
         if (d1Var == null) {
             return null;
         }
-        return (k0) f54846a.get(d1Var.f54691a);
+        return (k0) f54887a.get(d1Var.f54732a);
     }
 
     public static d1 i(String str) {
         k0 k0Var;
         String str2;
         if (n(str)) {
-            k0Var = (k0) f54846a.get(str);
+            k0Var = (k0) f54887a.get(str);
         } else {
             k0Var = null;
         }
@@ -306,23 +306,23 @@ public abstract class n0 {
         }
         synchronized (k0Var) {
             try {
-                if (k0Var.f54817t == null) {
-                    if (k0Var.f54816s == null) {
-                        k0Var.f54816s = m(k0Var.f54805g);
+                if (k0Var.f54858t == null) {
+                    if (k0Var.f54857s == null) {
+                        k0Var.f54857s = m(k0Var.f54846g);
                     }
-                    if (k0Var.f54816s == null) {
+                    if (k0Var.f54857s == null) {
                         return null;
                     }
-                    d1 d1Var = new d1(org.telegram.messenger.t0.f26913b, k0Var.f54800a, k0Var.f54816s);
+                    d1 d1Var = new d1(org.telegram.messenger.t0.f26941b, k0Var.f54841a, k0Var.f54857s);
                     try {
-                        str2 = gd.E0().f24241y.toLanguageTag();
+                        str2 = gd.E0().f24269y.toLanguageTag();
                     } catch (Exception unused) {
                         str2 = null;
                     }
-                    d1Var.f54708t = str2;
-                    d1Var.f54709u = null;
-                    int i7 = k0Var.f54801b;
-                    long j3 = k0Var.f54811n;
+                    d1Var.f54749t = str2;
+                    d1Var.f54750u = null;
+                    int i7 = k0Var.f54842b;
+                    long j3 = k0Var.f54852n;
                     long j10 = 0;
                     if (j3 != 0) {
                         j10 = j3 ^ ((i7 + 1) << 56);
@@ -330,13 +330,13 @@ public abstract class n0 {
                     d1Var.B = j10;
                     String e10 = e(k0Var);
                     if (e10 != null) {
-                        d1Var.f54710w = e10;
+                        d1Var.f54751w = e10;
                     }
-                    d1Var.h(g(k0Var.f54812o, k0Var.f54813p));
-                    d1Var.f54694e = f54856m;
-                    k0Var.f54817t = d1Var;
+                    d1Var.h(g(k0Var.f54853o, k0Var.f54854p));
+                    d1Var.f54735e = f54897m;
+                    k0Var.f54858t = d1Var;
                 }
-                return k0Var.f54817t;
+                return k0Var.f54858t;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -346,13 +346,13 @@ public abstract class n0 {
     public static void j() {
         JSONObject jSONObject;
         String str;
-        org.telegram.messenger.g0.r(f54849e);
+        org.telegram.messenger.g0.r(f54890e);
         HashMap hashMap = d;
         if (hashMap.isEmpty()) {
             return;
         }
         for (k0 k0Var : hashMap.values()) {
-            JSONObject jSONObject2 = (JSONObject) f54848c.get(k0Var.a());
+            JSONObject jSONObject2 = (JSONObject) f54889c.get(k0Var.a());
             if (jSONObject2 != null) {
                 jSONObject = jSONObject2.optJSONObject("local");
             } else {
@@ -364,9 +364,9 @@ public abstract class n0 {
                 str = "";
             }
             String str2 = str;
-            tr a02 = tr.a0(k0Var.f54801b);
-            long j3 = k0Var.f54802c;
-            a02.f27052a.c(new ek(k0Var.d, 9, j3, a02, str2));
+            tr a02 = tr.a0(k0Var.f54842b);
+            long j3 = k0Var.f54843c;
+            a02.f27080a.c(new ek(k0Var.d, 9, j3, a02, str2));
         }
         hashMap.clear();
     }
@@ -375,23 +375,23 @@ public abstract class n0 {
         k0 k0Var;
         int[] iArr = null;
         if (n(str)) {
-            k0Var = (k0) f54846a.get(str);
+            k0Var = (k0) f54887a.get(str);
         } else {
             k0Var = null;
         }
         if (k0Var == null) {
             return "none";
         }
-        if (k0Var.f54804f > 0) {
-            return "anchor " + k0Var.f54804f;
-        } else if (d1Var != null && Math.abs(d1Var.f54699k - i7) <= 1 && d1Var.f54697i > 0) {
+        if (k0Var.f54845f > 0) {
+            return "anchor " + k0Var.f54845f;
+        } else if (d1Var != null && Math.abs(d1Var.f54740k - i7) <= 1 && d1Var.f54738i > 0) {
             return "frame";
         } else {
-            l0 l0Var = (l0) f54847b.get(k0Var.a());
+            l0 l0Var = (l0) f54888b.get(k0Var.a());
             if (l0Var != null) {
                 int f10 = f(i7);
                 synchronized (l0Var) {
-                    ArrayList arrayList = l0Var.f54829a;
+                    ArrayList arrayList = l0Var.f54870a;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -415,7 +415,7 @@ public abstract class n0 {
     }
 
     public static l0 l(String str) {
-        ConcurrentHashMap concurrentHashMap = f54847b;
+        ConcurrentHashMap concurrentHashMap = f54888b;
         l0 l0Var = (l0) concurrentHashMap.get(str);
         if (l0Var == null) {
             l0 l0Var2 = new l0();
@@ -456,7 +456,7 @@ public abstract class n0 {
                     }
                     byteArrayOutputStream.write(bArr2, 0, read);
                 }
-                if (s2.f26721a) {
+                if (s2.f26749a) {
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append("widget payload: ");
                     if (z10) {
@@ -512,17 +512,17 @@ public abstract class n0 {
 
     public static void p() {
         while (true) {
-            ArrayList arrayList = f54851g;
-            if (arrayList.size() < 3 && !f54853j) {
-                ArrayList arrayList2 = f54850f;
+            ArrayList arrayList = f54892g;
+            if (arrayList.size() < 3 && !f54894j) {
+                ArrayList arrayList2 = f54891f;
                 long j3 = Long.MAX_VALUE;
                 k0 k0Var = null;
                 for (int size = arrayList2.size() - 1; size >= 0; size--) {
                     k0 k0Var2 = (k0) arrayList2.get(size);
-                    if (k0Var2.f54822z) {
+                    if (k0Var2.f54863z) {
                         long j10 = 9223372036854775806L;
-                        for (k0 k0Var3 : f54846a.values()) {
-                            if (k0Var3.f54820x != 0 && k0Var3.f54801b == k0Var2.f54801b && k0Var3.f54802c == k0Var2.f54802c) {
+                        for (k0 k0Var3 : f54887a.values()) {
+                            if (k0Var3.f54861x != 0 && k0Var3.f54842b == k0Var2.f54842b && k0Var3.f54843c == k0Var2.f54843c) {
                                 j10 = Math.min(j10, Math.abs(k0Var3.d - k0Var2.d));
                             }
                         }
@@ -534,15 +534,15 @@ public abstract class n0 {
                 }
                 if (k0Var != null) {
                     arrayList2.remove(k0Var);
-                    d1 d1Var = k0Var.f54817t;
-                    if (d1Var != null && !k0Var.J && k0Var.f54820x <= 0) {
-                        String k10 = k(k0Var.f54800a, d1Var, k0Var.K);
+                    d1 d1Var = k0Var.f54858t;
+                    if (d1Var != null && !k0Var.J && k0Var.f54861x <= 0) {
+                        String k10 = k(k0Var.f54841a, d1Var, k0Var.K);
                         if (k10.equals("placeholder") || k10.startsWith("cache of width")) {
                             d1Var.l(k0Var.K);
-                            if (d1Var.f54707s == null) {
+                            if (d1Var.f54748s == null) {
                                 d1Var.j(q1.a(null, k0Var.L));
                             }
-                            if (!d1Var.f54703o) {
+                            if (!d1Var.f54744o) {
                                 arrayList.add(k0Var);
                                 A(k0Var);
                                 org.telegram.messenger.g0.h3(k0Var.M, 4000L);
@@ -558,34 +558,34 @@ public abstract class n0 {
         }
     }
 
-    public static pk0 q(ArrayList arrayList) {
+    public static rk0 q(ArrayList arrayList) {
         int size = arrayList.size();
-        pk0 pk0Var = null;
+        rk0 rk0Var = null;
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
-            pk0 pk0Var2 = (pk0) obj;
-            if (pk0Var == null || pk0Var2.f38467d0 > pk0Var.f38467d0) {
-                pk0Var = pk0Var2;
+            rk0 rk0Var2 = (rk0) obj;
+            if (rk0Var == null || rk0Var2.f39251d0 > rk0Var.f39251d0) {
+                rk0Var = rk0Var2;
             }
         }
-        return pk0Var;
+        return rk0Var;
     }
 
     public static void r(boolean z10) {
         boolean z11;
-        if (f54853j == z10) {
+        if (f54894j == z10) {
             return;
         }
-        f54853j = z10;
-        for (k0 k0Var : f54846a.values()) {
-            d1 d1Var = k0Var.f54817t;
-            if (d1Var != null && d1Var.f54704p != z10) {
-                d1Var.f54704p = z10;
-                p1 p1Var = d1Var.f54695f;
+        f54894j = z10;
+        for (k0 k0Var : f54887a.values()) {
+            d1 d1Var = k0Var.f54858t;
+            if (d1Var != null && d1Var.f54745p != z10) {
+                d1Var.f54745p = z10;
+                p1 p1Var = d1Var.f54736f;
                 if (p1Var != null) {
-                    if (d1Var.f54702n && !z10) {
+                    if (d1Var.f54743n && !z10) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -607,8 +607,8 @@ public abstract class n0 {
         if (h7 == null) {
             return;
         }
-        h7.f54820x = Math.max(0, h7.f54820x - 1);
-        h7.f54821y = System.currentTimeMillis();
+        h7.f54861x = Math.max(0, h7.f54861x - 1);
+        h7.f54862y = System.currentTimeMillis();
         D();
         j();
         E();
@@ -620,14 +620,14 @@ public abstract class n0 {
         if (h7 == null) {
             return;
         }
-        h7.f54820x++;
-        h7.f54821y = System.currentTimeMillis();
-        boolean z11 = f54853j;
-        if (d1Var.f54704p != z11) {
-            d1Var.f54704p = z11;
-            p1 p1Var = d1Var.f54695f;
+        h7.f54861x++;
+        h7.f54862y = System.currentTimeMillis();
+        boolean z11 = f54894j;
+        if (d1Var.f54745p != z11) {
+            d1Var.f54745p = z11;
+            p1 p1Var = d1Var.f54736f;
             if (p1Var != null) {
-                if (d1Var.f54702n && !z11) {
+                if (d1Var.f54743n && !z11) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -635,7 +635,7 @@ public abstract class n0 {
                 p1Var.g(z10);
             }
         }
-        if (h7.f54822z) {
+        if (h7.f54863z) {
             A(h7);
         } else {
             h7.A = true;
@@ -653,11 +653,11 @@ public abstract class n0 {
         StringBuilder m10 = i5.c.m(i7, "tg-widget:preview/", "/");
         m10.append(botInlineResult.query_id);
         m10.append("/");
-        m10.append(botInlineResult.f28401id);
+        m10.append(botInlineResult.f28429id);
         m10.append("/");
         m10.append(Arrays.hashCode(tL_botInlineMessageWidget.payload));
         String sb2 = m10.toString();
-        ConcurrentHashMap concurrentHashMap = f54846a;
+        ConcurrentHashMap concurrentHashMap = f54887a;
         if (!concurrentHashMap.containsKey(sb2)) {
             TLRPC.TL_messageMediaWidget tL_messageMediaWidget = new TLRPC.TL_messageMediaWidget();
             tL_messageMediaWidget.width = tL_botInlineMessageWidget.width;
@@ -668,7 +668,7 @@ public abstract class n0 {
             tL_messageMediaWidget.chat_data = tL_botInlineMessageWidget.chat_data;
             tL_messageMediaWidget.widget_id = tL_botInlineMessageWidget.widget_id;
             k0 k0Var = new k0(sb2, i7, 0L, 0, 0L, tL_messageMediaWidget, true);
-            k0Var.f54822z = true;
+            k0Var.f54863z = true;
             concurrentHashMap.putIfAbsent(sb2, k0Var);
         }
         return sb2;
@@ -677,9 +677,9 @@ public abstract class n0 {
     public static void w(k0 k0Var, d1 d1Var, long j3, TLRPC.WidgetQueryType widgetQueryType, byte[] bArr) {
         boolean[] zArr = new boolean[1];
         int[] iArr = new int[1];
-        k2 k2Var = new k2(zArr, ConnectionsManager.getInstance(k0Var.f54801b), iArr, d1Var, j3, 16);
-        y(k0Var, widgetQueryType, bArr, iArr, new ai.e(zArr, k2Var, d1Var, j3));
-        org.telegram.messenger.g0.h3(k2Var, 30000L);
+        o2 o2Var = new o2(zArr, ConnectionsManager.getInstance(k0Var.f54842b), iArr, d1Var, j3, 16);
+        y(k0Var, widgetQueryType, bArr, iArr, new ai.e(zArr, o2Var, d1Var, j3));
+        org.telegram.messenger.g0.h3(o2Var, 30000L);
     }
 
     public static void x(String str, Set set) {
@@ -699,8 +699,8 @@ public abstract class n0 {
         } else {
             z10 = false;
         }
-        int i7 = k0Var.f54801b;
-        boolean z11 = f54854k[i7];
+        int i7 = k0Var.f54842b;
+        boolean z11 = f54895k[i7];
         if (z11 && !z10) {
             TLRPC.TL_error tL_error = new TLRPC.TL_error();
             tL_error.code = 400;
@@ -713,7 +713,7 @@ public abstract class n0 {
         } else {
             tL_messages_getBotWidgetQueryAnswer = new TLRPC.TL_messages_getBotWidgetQueryAnswer();
         }
-        tL_messages_getBotWidgetQueryAnswer.peer = mp.u1(i7).l1(k0Var.f54802c);
+        tL_messages_getBotWidgetQueryAnswer.peer = mp.u1(i7).l1(k0Var.f54843c);
         tL_messages_getBotWidgetQueryAnswer.msg_id = k0Var.d;
         tL_messages_getBotWidgetQueryAnswer.query_type = widgetQueryType;
         tL_messages_getBotWidgetQueryAnswer.data = bArr;
@@ -723,11 +723,11 @@ public abstract class n0 {
     public static boolean z() {
         p1 p1Var;
         n1 n1Var;
-        for (k0 k0Var : f54846a.values()) {
-            d1 d1Var = k0Var.f54817t;
-            pk0 pk0Var = k0Var.f54819w;
-            if (k0Var.f54820x != 0 && d1Var != null && pk0Var != null && !k0Var.J && ((p1Var = d1Var.f54695f) == null || (n1Var = p1Var.N) == null || (!n1Var.h && !p1Var.F))) {
-                String k10 = k(k0Var.f54800a, d1Var, pk0Var.u0());
+        for (k0 k0Var : f54887a.values()) {
+            d1 d1Var = k0Var.f54858t;
+            rk0 rk0Var = k0Var.f54860w;
+            if (k0Var.f54861x != 0 && d1Var != null && rk0Var != null && !k0Var.J && ((p1Var = d1Var.f54736f) == null || (n1Var = p1Var.N) == null || (!n1Var.h && !p1Var.F))) {
+                String k10 = k(k0Var.f54841a, d1Var, rk0Var.u0());
                 if (k10.equals("placeholder") || k10.startsWith("cache of width")) {
                     return false;
                 }

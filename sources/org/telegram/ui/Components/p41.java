@@ -1,56 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
 import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class p41 extends URLSpan {
-    public final boolean f38269a;
-    public final dz0 f38270b;
-    public TLObject f38271c;
-    public String d;
+public final class p41 extends s41 {
+    public static boolean h = true;
+    public final int f38485e;
+    public final fz0 f38486f;
 
-    public p41(String str) {
-        this(str, (dz0) null);
+    public p41(String str, int i7, fz0 fz0Var) {
+        super(str, (fz0) null);
+        this.f38485e = i7;
+        this.f38486f = fz0Var;
     }
 
     @Override
-    public void onClick(View view) {
-        String url = getURL();
-        if (url.startsWith("@")) {
-            vf.c.q(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
-            return;
-        }
-        vf.c.t(view.getContext(), url);
-    }
-
-    @Override
-    public void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int i7 = textPaint.linkColor;
-        int color = textPaint.getColor();
+    public final void updateDrawState(TextPaint textPaint) {
+        int i7;
+        int i10;
         super.updateDrawState(textPaint);
-        dz0 dz0Var = this.f38270b;
-        if (dz0Var != null) {
-            dz0Var.a(textPaint);
-        }
-        if (i7 == color && !this.f38269a) {
-            z10 = true;
+        int i11 = this.f38485e;
+        if (i11 == 2) {
+            textPaint.setColor(-1);
+        } else if (i11 == 1) {
+            if (h) {
+                i10 = org.telegram.ui.ActionBar.m6.Yc;
+            } else {
+                i10 = org.telegram.ui.ActionBar.m6.Wc;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
         } else {
-            z10 = false;
+            if (h) {
+                i7 = org.telegram.ui.ActionBar.m6.Xc;
+            } else {
+                i7 = org.telegram.ui.ActionBar.m6.Vc;
+            }
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, i7, false));
         }
-        textPaint.setUnderlineText(z10);
-    }
-
-    public p41(String str, int i7) {
-        this(str, (dz0) null);
-        this.f38269a = true;
-    }
-
-    public p41(String str, dz0 dz0Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f38269a = false;
-        this.f38270b = dz0Var;
+        fz0 fz0Var = this.f38486f;
+        if (fz0Var != null) {
+            fz0Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
+        }
     }
 }

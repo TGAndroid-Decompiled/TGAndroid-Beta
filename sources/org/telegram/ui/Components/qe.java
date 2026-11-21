@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
-public final class qe extends dq {
+public final class qe extends fq {
     @Override
     public final int a() {
-        return org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29439fg, false);
+        return org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29423fg, false);
     }
 }

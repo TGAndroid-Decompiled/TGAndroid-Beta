@@ -1,22 +1,54 @@
 package org.telegram.ui.Components;
-public final class i21 implements org.telegram.messenger.nc, org.telegram.messenger.mc {
-    public final String f36031a;
-    public final String f36032b;
-    public final org.telegram.messenger.q10 f36033c;
 
-    public i21(String str, String str2, org.telegram.messenger.q10 q10Var) {
-        this.f36031a = str;
-        this.f36032b = str2;
-        this.f36033c = q10Var;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.text.TextPaint;
+public final class i21 extends Drawable {
+    public final oh0 f36135a;
+    public int f36136b;
+    public final TextPaint f36137c;
+
+    public i21(TextPaint textPaint) {
+        a5.b bVar = new a5.b(this, 8);
+        this.f36137c = textPaint;
+        float textSize = textPaint.getTextSize() * 0.89f;
+        oh0 oh0Var = new oh0(2131624001, (int) textSize, (int) (textSize * 1.25f));
+        this.f36135a = oh0Var;
+        oh0Var.setCallback(bVar);
+        oh0Var.K(1);
+        oh0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+        oh0Var.J(true);
+        oh0Var.start();
     }
 
     @Override
-    public void a(String str) {
-        y21.K0(this.f36031a, str, this.f36032b, this.f36033c);
+    public final void draw(Canvas canvas) {
+        int color = this.f36137c.getColor();
+        int i7 = this.f36136b;
+        oh0 oh0Var = this.f36135a;
+        if (color != i7) {
+            oh0Var.f38211a0 = true;
+            oh0Var.Q(color, "Comp 1");
+            oh0Var.o();
+            oh0Var.J(true);
+            oh0Var.V(0L);
+            this.f36136b = color;
+        }
+        oh0Var.draw(canvas);
     }
 
     @Override
-    public void q(Exception exc) {
-        y21.K0(this.f36031a, "en", this.f36032b, this.f36033c);
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -4,30 +4,30 @@ import fi.f7;
 import org.json.JSONObject;
 import org.telegram.messenger.x10;
 public final class p implements x10 {
-    public final int f53224a;
-    public final v0 f53225b;
-    public final f7 f53226c;
+    public final int f53267a;
+    public final v0 f53268b;
+    public final f7 f53269c;
 
     public p(v0 v0Var, f7 f7Var, int i7) {
-        this.f53224a = i7;
-        this.f53225b = v0Var;
-        this.f53226c = f7Var;
+        this.f53267a = i7;
+        this.f53268b = v0Var;
+        this.f53269c = f7Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f53224a) {
+        switch (this.f53267a) {
             case 0:
-                this.f53225b.x(this.f53226c, "location_requested", (JSONObject) obj);
+                this.f53268b.x(this.f53269c, "location_requested", (JSONObject) obj);
                 return;
             case 1:
-                this.f53225b.x(this.f53226c, "location_requested", (JSONObject) obj);
+                this.f53268b.x(this.f53269c, "location_requested", (JSONObject) obj);
                 return;
             default:
-                v0 v0Var = this.f53225b;
+                v0 v0Var = this.f53268b;
                 v0Var.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                f7 f7Var = this.f53226c;
+                f7 f7Var = this.f53269c;
                 if (booleanValue) {
                     v0Var.x(f7Var, "home_screen_added", null);
                     return;

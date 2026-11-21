@@ -8,32 +8,32 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
-public final class c6 extends View implements org.telegram.ui.ActionBar.c6 {
-    public final ImageReceiver f8605a;
-    public final ImageReceiver f8606b;
-    public final Path f8607c;
+public final class c6 extends View implements org.telegram.ui.ActionBar.b6 {
+    public final ImageReceiver f8630a;
+    public final ImageReceiver f8631b;
+    public final Path f8632c;
     public final Paint d;
 
     public c6(Context context, TLObject tLObject, TLObject tLObject2) {
         super(context);
         Path path = new Path();
-        this.f8607c = path;
+        this.f8632c = path;
         Paint paint = new Paint(1);
         this.d = paint;
-        org.telegram.ui.ActionBar.t6 t6Var = org.telegram.ui.ActionBar.u6.f30082a;
-        org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
+        org.telegram.ui.ActionBar.s6 s6Var = org.telegram.ui.ActionBar.t6.f30065a;
+        org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         b9Var.l(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f8605a = imageReceiver;
+        this.f8630a = imageReceiver;
         imageReceiver.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver.i0(tLObject, b9Var, null);
-        org.telegram.ui.Components.b9 b9Var2 = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
+        org.telegram.ui.Components.b9 b9Var2 = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.h6) null);
         b9Var2.l(tLObject2);
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.f8606b = imageReceiver2;
+        this.f8631b = imageReceiver2;
         imageReceiver2.J0(org.telegram.messenger.g0.L(30.0f));
         imageReceiver2.i0(tLObject2, b9Var2, null);
-        paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.E6, false));
+        paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.E6, false));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -47,29 +47,29 @@ public final class c6 extends View implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f8605a.P();
-        this.f8606b.P();
+        this.f8630a.P();
+        this.f8631b.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f8605a.R();
-        this.f8606b.R();
+        this.f8630a.R();
+        this.f8631b.R();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int width = (getWidth() / 2) - (org.telegram.messenger.g0.L(156.0f) / 2);
         float height = (getHeight() / 2) - org.telegram.messenger.g0.L(30.0f);
-        ImageReceiver imageReceiver = this.f8605a;
+        ImageReceiver imageReceiver = this.f8630a;
         imageReceiver.y0(width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
         imageReceiver.h(canvas, null);
         canvas.save();
         canvas.translate((getWidth() / 2.0f) - (org.telegram.messenger.g0.L(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.f8607c, this.d);
+        canvas.drawPath(this.f8632c, this.d);
         canvas.restore();
-        ImageReceiver imageReceiver2 = this.f8606b;
+        ImageReceiver imageReceiver2 = this.f8631b;
         imageReceiver2.y0(org.telegram.messenger.g0.L(96.0f) + width, height, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f));
         imageReceiver2.h(canvas, null);
     }
@@ -82,7 +82,7 @@ public final class c6 extends View implements org.telegram.ui.ActionBar.c6 {
     @Override
     public final void updateColors() {
         try {
-            this.d.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.E6, false));
+            this.d.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.E6, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

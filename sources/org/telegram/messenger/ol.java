@@ -3,33 +3,33 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ol implements Runnable {
-    public final int f26066a;
-    public final mp f26067b;
-    public final long f26068c;
+    public final int f26094a;
+    public final mp f26095b;
+    public final long f26096c;
     public final long d;
-    public final int f26069e;
-    public final ArrayList f26070f;
+    public final int f26097e;
+    public final ArrayList f26098f;
 
     public ol(mp mpVar, long j3, int i7, long j10, ArrayList arrayList, int i10) {
-        this.f26066a = i10;
-        this.f26067b = mpVar;
-        this.f26068c = j3;
-        this.f26069e = i7;
+        this.f26094a = i10;
+        this.f26095b = mpVar;
+        this.f26096c = j3;
+        this.f26097e = i7;
         this.d = j10;
-        this.f26070f = arrayList;
+        this.f26098f = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26066a;
-        ArrayList arrayList = this.f26070f;
-        mp mpVar = this.f26067b;
+        int i7 = this.f26094a;
+        ArrayList arrayList = this.f26098f;
+        mp mpVar = this.f26095b;
         switch (i7) {
             case 0:
-                long j3 = this.f26068c;
+                long j3 = this.f26096c;
                 int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 long j10 = this.d;
-                int i11 = this.f26069e;
+                int i11 = this.f26097e;
                 if (i10 == 0) {
                     TLRPC.Dialog dialog = (TLRPC.Dialog) mpVar.R.f(j10);
                     if (dialog == null) {
@@ -45,7 +45,7 @@ public final class ol implements Runnable {
                     mpVar.getNotificationCenter().k(305, Long.valueOf(j10), Long.valueOf(j3), Integer.valueOf(dialog.unread_poll_votes_count), arrayList);
                     return;
                 }
-                int B = mpVar.getMessagesController().f25769t7.B(i11, j10, j3, true);
+                int B = mpVar.getMessagesController().f25797t7.B(i11, j10, j3, true);
                 if (B >= 0) {
                     mpVar.getMessagesStorage().h2(B, j10, j3, true);
                     mpVar.getNotificationCenter().k(305, Long.valueOf(j10), Long.valueOf(j3), Integer.valueOf(B), arrayList);
@@ -53,10 +53,10 @@ public final class ol implements Runnable {
                 }
                 return;
             case 1:
-                long j11 = this.f26068c;
+                long j11 = this.f26096c;
                 int i13 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
                 long j12 = this.d;
-                int i14 = this.f26069e;
+                int i14 = this.f26097e;
                 if (i13 == 0) {
                     TLRPC.Dialog dialog2 = (TLRPC.Dialog) mpVar.R.f(j12);
                     if (dialog2 == null) {
@@ -75,7 +75,7 @@ public final class ol implements Runnable {
                     }
                     return;
                 }
-                int C = mpVar.getMessagesController().f25769t7.C(i14, j12, j11, true);
+                int C = mpVar.getMessagesController().f25797t7.C(i14, j12, j11, true);
                 if (C >= 0) {
                     mpVar.getMessagesStorage().i2(C, j12, j11, true);
                     if (mpVar.y2(j12) || mpVar.E2(j12) || j12 > 0) {
@@ -87,9 +87,9 @@ public final class ol implements Runnable {
                 return;
             case 2:
                 a0.h hVar = mpVar.R;
-                long j13 = this.f26068c;
+                long j13 = this.f26096c;
                 TLRPC.Dialog dialog3 = (TLRPC.Dialog) hVar.f(j13);
-                int i16 = this.f26069e;
+                int i16 = this.f26097e;
                 if (dialog3 == null) {
                     mpVar.getMessagesStorage().Q1(j13, i16, false, true);
                     return;
@@ -101,9 +101,9 @@ public final class ol implements Runnable {
                 mpVar.getNotificationCenter().k(304, Long.valueOf(j13), Long.valueOf(j14), Integer.valueOf(i16), arrayList);
                 return;
             case 3:
-                e00 e00Var = mpVar.getMessagesController().f25769t7;
-                int i17 = this.f26069e;
-                long j15 = this.f26068c;
+                e00 e00Var = mpVar.getMessagesController().f25797t7;
+                int i17 = this.f26097e;
+                long j15 = this.f26096c;
                 long j16 = this.d;
                 e00Var.C(i17, j15, j16, false);
                 mpVar.getMessagesStorage().i2(i17, j15, j16, false);
@@ -111,9 +111,9 @@ public final class ol implements Runnable {
                 return;
             case 4:
                 a0.h hVar2 = mpVar.R;
-                long j17 = this.f26068c;
+                long j17 = this.f26096c;
                 TLRPC.Dialog dialog4 = (TLRPC.Dialog) hVar2.f(j17);
-                int i18 = this.f26069e;
+                int i18 = this.f26097e;
                 if (dialog4 == null) {
                     mpVar.getMessagesStorage().Q1(j17, i18, false, false);
                     return;
@@ -125,18 +125,18 @@ public final class ol implements Runnable {
                 mpVar.getNotificationCenter().k(305, Long.valueOf(j17), Long.valueOf(j18), Integer.valueOf(i18), arrayList);
                 return;
             case 5:
-                e00 e00Var2 = mpVar.getMessagesController().f25769t7;
-                int i19 = this.f26069e;
-                long j19 = this.f26068c;
+                e00 e00Var2 = mpVar.getMessagesController().f25797t7;
+                int i19 = this.f26097e;
+                long j19 = this.f26096c;
                 long j20 = this.d;
                 e00Var2.B(i19, j19, j20, false);
                 mpVar.getMessagesStorage().h2(i19, j19, j20, false);
                 mpVar.getNotificationCenter().k(305, Long.valueOf(j19), Long.valueOf(j20), Integer.valueOf(i19), arrayList);
                 return;
             default:
-                e00 e00Var3 = mpVar.getMessagesController().f25769t7;
-                int i20 = this.f26069e;
-                long j21 = this.f26068c;
+                e00 e00Var3 = mpVar.getMessagesController().f25797t7;
+                int i20 = this.f26097e;
+                long j21 = this.f26096c;
                 long j22 = this.d;
                 e00Var3.C(i20, j21, j22, false);
                 mpVar.getMessagesStorage().i2(i20, j21, j22, false);
@@ -146,11 +146,11 @@ public final class ol implements Runnable {
     }
 
     public ol(mp mpVar, long j3, long j10, int i7, ArrayList arrayList, int i10) {
-        this.f26066a = i10;
-        this.f26067b = mpVar;
-        this.f26068c = j3;
+        this.f26094a = i10;
+        this.f26095b = mpVar;
+        this.f26096c = j3;
         this.d = j10;
-        this.f26069e = i7;
-        this.f26070f = arrayList;
+        this.f26097e = i7;
+        this.f26098f = arrayList;
     }
 }

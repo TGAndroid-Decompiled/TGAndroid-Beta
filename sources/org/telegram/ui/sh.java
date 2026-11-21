@@ -1,42 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.tgnet.ConnectionsManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class sh extends hf0 {
-    public final bn f51995f;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class sh implements View.OnClickListener {
+    public final mf0 f52036a;
+    public final org.telegram.ui.Components.ek0 f52037b;
+    public final LinearLayout f52038c;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
+    public final int[] f52039e;
+    public final bn f52040f;
 
-    public sh(bn bnVar, Context context, int i7, org.telegram.messenger.fj fjVar) {
-        super(context);
-        this.f51995f = bnVar;
-        this.f48343a = null;
-        if (!fjVar.h4()) {
-            fjVar.P4();
+    public sh(bn bnVar, mf0 mf0Var, org.telegram.ui.Components.ek0 ek0Var, LinearLayout linearLayout, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
+        this.f52040f = bnVar;
+        this.f52036a = mf0Var;
+        this.f52037b = ek0Var;
+        this.f52038c = linearLayout;
+        this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f52039e = iArr;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        mf0 mf0Var = this.f52036a;
+        ArrayList arrayList = mf0Var.f49867b;
+        ArrayList arrayList2 = mf0Var.f49868c;
+        bn bnVar = this.f52040f;
+        if (bnVar.f46037g9 != null && !arrayList2.isEmpty()) {
+            if (arrayList2.size() == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject != null) {
+                    Bundle bundle = new Bundle();
+                    if (tLObject instanceof TLRPC.User) {
+                        bundle.putLong("user_id", ((TLRPC.User) tLObject).f28580id);
+                    } else if (tLObject instanceof TLRPC.Chat) {
+                        bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f28431id);
+                    }
+                    bnVar.presentFragment(new ProfileActivity(bundle, null));
+                    bnVar.P7(true);
+                    return;
+                }
+                return;
+            }
+            if (org.telegram.messenger.bz.f23181c1 > 0 && bnVar.f46107m1.getKeyboardHeight() < org.telegram.messenger.g0.L(20.0f)) {
+                org.telegram.ui.Components.gc t6 = new org.telegram.ui.Components.lc(org.telegram.ui.Components.cb.a(bnVar.getParentActivity()), bnVar.Ba).t(org.telegram.messenger.g0.W2(org.telegram.messenger.gd.N0(2131748295, null)), null);
+                bnVar.C1 = t6;
+                t6.f35508j = 4000;
+                t6.j();
+                org.telegram.messenger.bz.S(org.telegram.messenger.bz.f23181c1 - 1);
+            }
+            org.telegram.ui.Components.ek0 ek0Var = this.f52037b;
+            ek0Var.requestLayout();
+            this.f52038c.requestLayout();
+            ek0Var.getAdapter().f();
+            this.d.getSwipeBack().e(this.f52039e[0]);
         }
-        org.telegram.ui.Components.wz wzVar = new org.telegram.ui.Components.wz(context, null);
-        this.f48345c = wzVar;
-        wzVar.e(org.telegram.ui.ActionBar.n6.G8, org.telegram.ui.ActionBar.n6.f29486i6, -1);
-        wzVar.setViewType(13);
-        wzVar.setIsSingleCell(false);
-        addView(wzVar, c8.ma.c(-1.0f, -2));
-        org.telegram.ui.Components.k80 k80Var = new org.telegram.ui.Components.k80(context, null);
-        this.f48344b = k80Var;
-        k80Var.setTextSize(1, 14.0f);
-        k80Var.setGravity(19);
-        org.telegram.ui.ActionBar.u6.U(k80Var, org.telegram.ui.ActionBar.n6.E8, null);
-        org.telegram.ui.ActionBar.u6.G(k80Var, org.telegram.ui.ActionBar.n6.Xc, null);
-        k80Var.setEllipsize(TextUtils.TruncateAt.END);
-        k80Var.setSingleLine();
-        k80Var.setLines(1);
-        k80Var.setMaxLines(1);
-        addView(k80Var, c8.ma.d(-1, -2.0f, 19, 12.0f, 0.0f, 12.0f, 0.0f));
-        TLRPC.TL_channels_getMessageAuthor tL_channels_getMessageAuthor = new TLRPC.TL_channels_getMessageAuthor();
-        tL_channels_getMessageAuthor.channel = org.telegram.messenger.mp.u1(i7).j1(-org.telegram.messenger.fj.B0(fjVar.f23965k));
-        tL_channels_getMessageAuthor.f28440id = fjVar.e1();
-        k80Var.setAlpha(0.0f);
-        ConnectionsManager.getInstance(i7).sendRequest(tL_channels_getMessageAuthor, new di.w1(this, i7, 9));
-        setBackground(org.telegram.ui.ActionBar.n6.a0(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.I5, false), 6, 0));
-        setEnabled(false);
     }
 }

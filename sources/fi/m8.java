@@ -18,8 +18,8 @@ public final class m8 extends h8 {
     public final l8 K;
     public final ch.g0 L;
     public final ImageReceiver M;
-    public final org.telegram.ui.Components.c6 N;
-    public final org.telegram.ui.Components.m6 O;
+    public final org.telegram.ui.Components.d6 N;
+    public final org.telegram.ui.Components.n6 O;
     public boolean P;
 
     public m8(Context context, j8 j8Var, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, nx nxVar) {
@@ -31,8 +31,8 @@ public final class m8 extends h8 {
         ch.g0 g0Var = new ch.g0(this);
         this.L = g0Var;
         this.M = new ImageReceiver(this);
-        this.N = new org.telegram.ui.Components.c6(this);
-        this.O = new org.telegram.ui.Components.m6(false, false, false);
+        this.N = new org.telegram.ui.Components.d6(this);
+        this.O = new org.telegram.ui.Components.n6(false, false, false);
         ch.p0 d = ch.p0.d(tL_mediaAreaSuggestedReaction.reaction);
         this.J = d;
         if (tL_mediaAreaSuggestedReaction.flipped) {
@@ -41,22 +41,22 @@ public final class m8 extends h8 {
         l8Var.c(getScaleX());
         g0Var.e(d);
         nxVar.getClass();
-        String str = d.f5475f;
-        str = str == null ? fj.U(org.telegram.ui.Components.o5.e(nxVar.f50326b, d.f5476g)) : str;
-        if (str != null && (arrayList = (ArrayList) nxVar.f50328e.get(str)) != null && !arrayList.isEmpty()) {
+        String str = d.f5504f;
+        str = str == null ? fj.U(org.telegram.ui.Components.p5.e(nxVar.f50333b, d.f5505g)) : str;
+        if (str != null && (arrayList = (ArrayList) nxVar.f50335e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i7 = 0; i7 < min; i7++) {
                 nxVar.l((TLRPC.Document) arrayList.get(i7));
             }
         }
-        if (this.J.f5475f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ri.d0(j10.f24770t0).f26633r.get(this.J.f5475f)) != null) {
+        if (this.J.f5504f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ri.d0(j10.f24798t0).f26661r.get(this.J.f5504f)) != null) {
             this.M.q0(fc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
-        org.telegram.ui.Components.m6 m6Var = this.O;
-        m6Var.f37377b = 17;
-        m6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
+        org.telegram.ui.Components.n6 n6Var = this.O;
+        n6Var.f37791b = 17;
+        n6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
         this.O.w(org.telegram.messenger.g0.L(18.0f));
-        this.O.N = org.telegram.messenger.g0.f24118q.x;
+        this.O.N = org.telegram.messenger.g0.f24146q.x;
         if (tL_mediaAreaSuggestedReaction.dark) {
             this.K.a();
             this.O.u(-1);
@@ -88,7 +88,7 @@ public final class m8 extends h8 {
         float e10 = this.N.e(false, f10);
         Rect rect = org.telegram.messenger.g0.Q;
         rect.set((int) centerX, (int) org.telegram.messenger.g0.T1(centerY, f11, e10), (int) centerX2, (int) org.telegram.messenger.g0.T1(centerY2, f12, e10));
-        if (l8Var.f12225a == 1) {
+        if (l8Var.f12268a == 1) {
             i7 = -1;
         } else {
             i7 = -16777216;
@@ -98,11 +98,11 @@ public final class m8 extends h8 {
         g0Var.c(rect);
         g0Var.a(canvas);
         float height2 = (l8Var.getBounds().height() * 0.839f) + l8Var.getBounds().top;
-        org.telegram.ui.Components.m6 m6Var = this.O;
-        m6Var.setBounds(l8Var.getBounds().left, (int) (height2 - org.telegram.messenger.g0.L(10.0f)), l8Var.getBounds().right, (int) (org.telegram.messenger.g0.L(10.0f) + height2));
+        org.telegram.ui.Components.n6 n6Var = this.O;
+        n6Var.setBounds(l8Var.getBounds().left, (int) (height2 - org.telegram.messenger.g0.L(10.0f)), l8Var.getBounds().right, (int) (org.telegram.messenger.g0.L(10.0f) + height2));
         canvas.save();
         canvas.scale(e10, e10, l8Var.getBounds().centerX(), height2);
-        m6Var.draw(canvas);
+        n6Var.draw(canvas);
         canvas.restore();
     }
 
@@ -110,7 +110,7 @@ public final class m8 extends h8 {
         boolean z11;
         boolean z12;
         float f10 = 0.0f;
-        org.telegram.ui.Components.c6 c6Var = this.N;
+        org.telegram.ui.Components.d6 d6Var = this.N;
         if (storyViews != null) {
             for (int i7 = 0; i7 < storyViews.reactions.size(); i7++) {
                 if (ch.s0.c(storyViews.reactions.get(i7).reaction, this.J)) {
@@ -130,7 +130,7 @@ public final class m8 extends h8 {
                         if (this.P) {
                             f10 = 1.0f;
                         }
-                        c6Var.e(true, f10);
+                        d6Var.e(true, f10);
                         return;
                     }
                     return;
@@ -143,12 +143,12 @@ public final class m8 extends h8 {
             if (this.P) {
                 f10 = 1.0f;
             }
-            c6Var.e(true, f10);
+            d6Var.e(true, f10);
         }
     }
 
-    public org.telegram.ui.Components.o5 getAnimatedEmojiDrawable() {
-        return this.L.f5359b;
+    public org.telegram.ui.Components.p5 getAnimatedEmojiDrawable() {
+        return this.L.f5388b;
     }
 
     @Override

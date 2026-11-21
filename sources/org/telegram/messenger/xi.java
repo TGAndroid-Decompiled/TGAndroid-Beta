@@ -1,35 +1,35 @@
 package org.telegram.messenger;
 public final class xi {
-    public byte f27880a;
-    public byte f27881b;
-    public byte f27882c;
+    public byte f27908a;
+    public byte f27909b;
+    public byte f27910c;
     public byte d;
-    public int f27883e;
-    public float f27884f;
-    public float f27885g;
+    public int f27911e;
+    public float f27912f;
+    public float f27913g;
     public boolean h;
-    public int f27886i;
-    public int f27887j;
-    public boolean f27888k;
-    public int f27889l;
-    public float[] f27890m;
-    public int f27891n;
-    public int f27892o;
-    public float f27893p;
-    public float f27894q;
-    public float f27895r;
-    public float f27896s;
-    public float f27897t;
-    public float f27898u;
+    public int f27914i;
+    public int f27915j;
+    public boolean f27916k;
+    public int f27917l;
+    public float[] f27918m;
+    public int f27919n;
+    public int f27920o;
+    public float f27921p;
+    public float f27922q;
+    public float f27923r;
+    public float f27924s;
+    public float f27925t;
+    public float f27926u;
 
     public final void a(float f10, int i7, int i10, int i11, int i12, int i13, int i14) {
-        this.f27880a = (byte) i7;
-        this.f27881b = (byte) i10;
-        this.f27882c = (byte) i11;
+        this.f27908a = (byte) i7;
+        this.f27909b = (byte) i10;
+        this.f27910c = (byte) i11;
         this.d = (byte) i12;
-        this.f27883e = i13;
-        this.f27886i = i13;
-        this.f27884f = f10;
-        this.f27889l = (byte) i14;
+        this.f27911e = i13;
+        this.f27914i = i13;
+        this.f27912f = f10;
+        this.f27917l = (byte) i14;
     }
 }

@@ -13,29 +13,29 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class f6 {
-    public final int f30613a;
-    public boolean f30614b;
-    public boolean f30615c;
-    public int f30616e;
-    public long f30617f;
-    public int f30618g;
+    public final int f30641a;
+    public boolean f30642b;
+    public boolean f30643c;
+    public int f30644e;
+    public long f30645f;
+    public int f30646g;
     public final ArrayList d = new ArrayList();
     public final ArrayList h = new ArrayList();
 
     public f6(int i7) {
-        this.f30613a = i7;
+        this.f30641a = i7;
     }
 
     public static void a(f6 f6Var, TLObject tLObject, tr trVar, long j3, int i7, ArrayList arrayList) {
         ArrayList arrayList2 = f6Var.d;
-        int i10 = f6Var.f30613a;
+        int i10 = f6Var.f30641a;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             mp.u1(i10).f4(messages_messages.users, false);
             mp.u1(i10).Z3(messages_messages.chats, false);
             trVar.m1(messages_messages.users, messages_messages.chats, true, true);
             trVar.h1(3, 0, 0, -j3, 0L, messages_messages, false);
-            if (i7 == f6Var.f30616e && !messages_messages.messages.isEmpty()) {
+            if (i7 == f6Var.f30644e && !messages_messages.messages.isEmpty()) {
                 arrayList2.clear();
                 Collections.sort(arrayList, Comparator$CC.comparingInt(new bg.d(16)));
                 TLRPC.Message message = (TLRPC.Message) i5.c.h(1, messages_messages.messages);
@@ -59,16 +59,16 @@ public final class f6 {
                     f6Var.c();
                 }
             }
-        } else if (i7 != f6Var.f30616e) {
+        } else if (i7 != f6Var.f30644e) {
         } else {
             f6Var.c();
         }
     }
 
     public static void b(f6 f6Var, final int i7, final ArrayList arrayList, final long j3, int i10, final tr trVar) {
-        int i11 = f6Var.f30613a;
+        int i11 = f6Var.f30641a;
         ArrayList arrayList2 = f6Var.d;
-        if (i7 != f6Var.f30616e) {
+        if (i7 != f6Var.f30644e) {
             return;
         }
         if (!arrayList.isEmpty()) {
@@ -100,21 +100,21 @@ public final class f6 {
         for (int i13 = 10; i13 >= 0; i13--) {
             int i14 = i10 - i13;
             if (i14 >= 0) {
-                tL_channels_getMessages.f28441id.add(Integer.valueOf(i14));
+                tL_channels_getMessages.f28469id.add(Integer.valueOf(i14));
             }
         }
         ConnectionsManager.getInstance(i11).sendRequest(tL_channels_getMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                org.telegram.messenger.g0.g3(new bi.l4(f6.this, tLObject, trVar, j3, i7, arrayList, 4));
+                org.telegram.messenger.g0.g3(new bi.p4(f6.this, tLObject, trVar, j3, i7, arrayList, 4));
             }
         });
     }
 
     public final void c() {
         int i7 = 0;
-        this.f30614b = false;
-        this.f30615c = true;
+        this.f30642b = false;
+        this.f30643c = true;
         ArrayList arrayList = this.h;
         int size = arrayList.size();
         while (i7 < size) {
@@ -130,26 +130,26 @@ public final class f6 {
         if (userFull != null && (userFull.flags2 & 64) != 0) {
             long j3 = userFull.personal_channel_id;
             int i7 = userFull.personal_channel_message;
-            if (this.f30615c || this.f30614b) {
-                if (this.f30617f == j3 && this.f30618g == i7) {
+            if (this.f30643c || this.f30642b) {
+                if (this.f30645f == j3 && this.f30646g == i7) {
                     return;
                 }
-                this.f30615c = false;
+                this.f30643c = false;
                 arrayList.clear();
             }
-            int i10 = this.f30616e + 1;
-            this.f30616e = i10;
-            this.f30614b = true;
-            this.f30617f = j3;
-            this.f30618g = i7;
-            int i11 = this.f30613a;
+            int i10 = this.f30644e + 1;
+            this.f30644e = i10;
+            this.f30642b = true;
+            this.f30645f = j3;
+            this.f30646g = i7;
+            int i11 = this.f30641a;
             long e10 = j10.i(i11).e();
             tr a02 = tr.a0(i11);
-            a02.f27052a.c(new bq(this, i7, a02, j3, e10, i10));
+            a02.f27080a.c(new bq(this, i7, a02, j3, e10, i10));
             return;
         }
-        this.f30616e++;
-        this.f30615c = true;
+        this.f30644e++;
+        this.f30643c = true;
         arrayList.clear();
         c();
     }

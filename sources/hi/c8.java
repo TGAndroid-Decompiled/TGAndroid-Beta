@@ -1,67 +1,74 @@
 package hi;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import android.os.SystemClock;
+import android.util.Pair;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
 import org.telegram.messenger.x10;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.lv0;
 public final class c8 implements x10 {
-    public final int f14314a;
-    public final l8 f14315b;
+    public final int f14388a;
+    public final long f14389b;
+    public final Object f14390c;
 
-    public c8(l8 l8Var, int i7) {
-        this.f14314a = i7;
-        this.f14315b = l8Var;
+    public c8(Object obj, long j3, int i7) {
+        this.f14388a = i7;
+        this.f14390c = obj;
+        this.f14389b = j3;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f14314a;
-        l8 l8Var = this.f14315b;
-        switch (i7) {
+        long j3;
+        switch (this.f14388a) {
             case 0:
-                q8 q8Var = l8Var.f14952a0;
-                q8Var.n1 = (TLRPC.InputPeer) obj;
-                HashSet hashSet = q8Var.f15288v1;
-                hashSet.clear();
-                if (q8Var.F1 && q8Var.B1) {
-                    q8Var.B1 = false;
+                k8 k8Var = (k8) this.f14390c;
+                TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) obj;
+                org.telegram.ui.ActionBar.t1 t1Var = k8Var.H;
+                if (t1Var != null) {
+                    t1Var.c(350L);
+                    k8Var.H = null;
                 }
-                x10 x10Var = q8Var.R1;
-                if (x10Var != null) {
-                    x10Var.a(q8Var.n1);
+                if (tL_channels_channelParticipants != null && !tL_channels_channelParticipants.participants.isEmpty()) {
+                    TLRPC.TL_chatParticipants tL_chatParticipants = new TLRPC.TL_chatParticipants();
+                    for (int i7 = 0; i7 < tL_channels_channelParticipants.participants.size(); i7++) {
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i7);
+                        TLRPC.TL_chatParticipant tL_chatParticipant = new TLRPC.TL_chatParticipant();
+                        TLRPC.Peer peer = channelParticipant.peer;
+                        if (peer != null) {
+                            j3 = org.telegram.messenger.n5.o(peer);
+                            if (j3 < 0) {
+                            }
+                        } else {
+                            j3 = channelParticipant.user_id;
+                        }
+                        tL_chatParticipant.user_id = j3;
+                        tL_chatParticipants.participants.add(tL_chatParticipant);
+                    }
+                    k8Var.e(this.f14389b, tL_chatParticipants);
+                    return;
                 }
-                t8 t8Var = q8Var.S1;
-                if (t8Var != null) {
-                    t8Var.a(new HashSet(hashSet));
-                }
-                l8Var.h(true);
                 return;
             case 1:
-                q8 q8Var2 = l8Var.f14952a0;
-                int i10 = q8.Y1;
-                q8Var2.O0(new o8(5, q8Var2.f30187a, (ArrayList) obj), new fi.o3(q8Var2, 1), false);
+                org.telegram.messenger.g0.h3(new ji.i(0, (ji.o) this.f14390c, (String) obj), Math.max(0L, (this.f14389b + 1200) - SystemClock.uptimeMillis()));
                 return;
             case 2:
-                q8 q8Var3 = l8Var.f14952a0;
-                HashSet hashSet2 = q8Var3.f15288v1;
-                hashSet2.add(Integer.valueOf(((fi.i6) obj).f12109a));
-                l8Var.h(true);
-                t8 t8Var2 = q8Var3.S1;
-                if (t8Var2 != null) {
-                    t8Var2.a(new HashSet(hashSet2));
+                ResultCallback resultCallback = (ResultCallback) this.f14390c;
+                gg.a aVar = (gg.a) obj;
+                if (resultCallback != null) {
+                    resultCallback.onComplete(new Pair(Long.valueOf(this.f14389b), aVar));
                     return;
                 }
                 return;
             default:
-                String str = (String) obj;
-                if (str != null) {
-                    l8Var.getClass();
-                    if (str.isEmpty()) {
-                        str = null;
-                    }
+                lv0 lv0Var = (lv0) this.f14390c;
+                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
+                if (tL_messages_emojiGroups != null) {
+                    ks.f(j10.f24798t0).d(new bi.q2(lv0Var, tL_messages_emojiGroups, this.f14389b, 26));
+                    return;
                 }
-                l8Var.J = str;
-                l8Var.h(false);
                 return;
         }
     }

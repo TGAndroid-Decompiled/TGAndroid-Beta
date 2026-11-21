@@ -1,27 +1,27 @@
 package ri;
 
-import org.telegram.ui.Components.tm0;
+import org.telegram.ui.Components.wm0;
 public final class k implements Runnable {
-    public int f56680a;
-    public int f56681b;
-    public final tm0 f56682c;
+    public int f56721a;
+    public int f56722b;
+    public final wm0 f56723c;
     public final q d;
 
-    public k(q qVar, tm0 tm0Var) {
+    public k(q qVar, wm0 wm0Var) {
         this.d = qVar;
-        this.f56682c = tm0Var;
+        this.f56723c = wm0Var;
     }
 
     @Override
     public final void run() {
-        tm0 tm0Var = this.f56682c;
-        int scrollX = tm0Var.getScrollX();
-        int scrollY = tm0Var.getScrollY();
+        wm0 wm0Var = this.f56723c;
+        int scrollX = wm0Var.getScrollX();
+        int scrollY = wm0Var.getScrollY();
         q qVar = this.d;
-        qVar.f56702k += scrollX - this.f56680a;
-        qVar.f56703l += scrollY - this.f56681b;
-        this.f56680a = scrollX;
-        this.f56681b = scrollY;
-        qVar.f56699g++;
+        qVar.f56743k += scrollX - this.f56721a;
+        qVar.f56744l += scrollY - this.f56722b;
+        this.f56721a = scrollX;
+        this.f56722b = scrollY;
+        qVar.f56740g++;
     }
 }

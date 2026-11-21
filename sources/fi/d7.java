@@ -18,7 +18,7 @@ public final class d7 extends ImageReceiver {
         Runnable runnable = this.K1[0];
         if (runnable != null) {
             org.telegram.messenger.g0.r(runnable);
-            ((a6) this.L1.d).run();
+            ((l4) this.L1.d).run();
         }
         org.telegram.messenger.g0.g3(new f2.a(this, 16));
         return x02;

@@ -1,35 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.widget.Toast;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class hp implements ResultCallback {
-    public final org.telegram.messenger.f4 f35945a;
-    public final lp f35946b;
+public final class hp implements org.telegram.ui.p71 {
+    public final np f35952a;
 
-    public hp(lp lpVar, org.telegram.messenger.f4 f4Var) {
-        this.f35946b = lpVar;
-        this.f35945a = f4Var;
+    public hp(np npVar) {
+        this.f35952a = npVar;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        List list = (List) obj;
-        ArrayList e10 = this.f35945a.e(7);
-        lp lpVar = this.f35946b;
-        org.telegram.messenger.ks.f(lpVar.f30187a).d(new mg(18, this, e10));
-        lpVar.V1 = false;
+    public final boolean Y0() {
+        return true;
     }
 
     @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.k.a(this, th2);
+    public final boolean d() {
+        return this.f35952a.H1;
     }
 
     @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f35946b.getContext(), tL_error.text, 0).show();
+    public final void l1(boolean z10) {
+        TLRPC.WallPaper wallPaper;
+        np npVar = this.f35952a;
+        org.telegram.ui.bn bnVar = npVar.f37930v1;
+        npVar.H1 = !npVar.H1;
+        if (npVar.G1 != null) {
+            npVar.J1 = true;
+            bnVar.f46240w7 = true;
+            if (npVar.Q0()) {
+                wallPaper = null;
+            } else {
+                wallPaper = npVar.f37927s1.f54586g;
+            }
+            TLRPC.WallPaper wallPaper2 = wallPaper;
+            org.telegram.ui.ActionBar.s3 s3Var = npVar.G1.f37594a;
+            if (s3Var.f29980a) {
+                npVar.f37927s1.r(null, wallPaper2, z10, Boolean.valueOf(npVar.H1), false);
+            } else {
+                npVar.f37927s1.r(s3Var, wallPaper2, z10, Boolean.valueOf(npVar.H1), false);
+            }
+            bnVar.f46240w7 = false;
+        }
     }
 }

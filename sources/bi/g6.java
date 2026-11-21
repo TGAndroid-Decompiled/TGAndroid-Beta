@@ -1,62 +1,132 @@
 package bi;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.View;
-import android.widget.ScrollView;
-public final class g6 extends ScrollView {
-    public final int f3622a;
+import hi.l9;
+import org.telegram.ui.Components.d51;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.ej;
+import org.telegram.ui.Components.gq0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.ui;
+import org.telegram.ui.Components.yi;
+public final class g6 extends h51 {
+    public final int f3681n3 = 0;
+    public final Object f3682o3;
 
-    public g6(Context context, int i7) {
-        super(context);
-        this.f3622a = i7;
+    public g6(e51 e51Var, e51 e51Var2, org.telegram.ui.Components.d dVar, d51 d51Var, d51 d51Var2) {
+        super(e51Var2, dVar, d51Var, d51Var2);
+        this.f3682o3 = e51Var;
     }
 
     @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.f3622a) {
+    public boolean E0(float f10) {
+        int i7;
+        switch (this.f3681n3) {
+            case 2:
+                ui uiVar = ((ej) this.f3682o3).f37521b;
+                int L = org.telegram.messenger.g0.L(30.0f) + uiVar.Z3[0];
+                if (!uiVar.f40378b2) {
+                    i7 = org.telegram.messenger.g0.f24140m;
+                } else {
+                    i7 = 0;
+                }
+                if (f10 < L + i7) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.E0(f10);
+        }
+    }
+
+    @Override
+    public void F1() {
+        switch (this.f3681n3) {
+            case 2:
+                ej ejVar = (ej) this.f3682o3;
+                ejVar.f37521b.N1(ejVar, 0);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void K1() {
+        switch (this.f3681n3) {
+            case 1:
+                org.telegram.messenger.g0.d0(((l9) this.f3682o3).f15694b, new ai.h0(this, 27));
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public Integer V0(int i7) {
+        switch (this.f3681n3) {
+            case 1:
+                return 0;
+            default:
+                return super.V0(i7);
+        }
+    }
+
+    @Override
+    public void l0(int i7) {
+        org.telegram.ui.web.i iVar;
+        switch (this.f3681n3) {
+            case 4:
+                if (!canScrollVertically(1) && (iVar = ((org.telegram.ui.web.k) this.f3682o3).E) != null && iVar.h) {
+                    iVar.d();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        switch (this.f3681n3) {
             case 0:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(260.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                super.onLayout(z10, i7, i10, i11, i12);
+                ((gq0) this.f3682o3).p();
                 return;
             case 1:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(260.0f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+            default:
+                super.onLayout(z10, i7, i10, i11, i12);
                 return;
             case 2:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) Math.min(View.MeasureSpec.getSize(i10), Math.min(org.telegram.messenger.g0.f24118q.y * 0.35f, org.telegram.messenger.g0.L(400.0f))), View.MeasureSpec.getMode(i10)));
+                super.onLayout(z10, i7, i10, i11, i12);
+                ej ejVar = (ej) this.f3682o3;
+                ejVar.f37521b.N1(ejVar, 0);
                 return;
             case 3:
-            default:
-                super.onMeasure(i7, i10);
-                return;
-            case 4:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(320.0f)), Integer.MIN_VALUE));
-                return;
-            case 5:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(360.0f)), Integer.MIN_VALUE));
+                super.onLayout(z10, i7, i10, i11, i12);
+                ((e51) this.f3682o3).f34685c = -1;
                 return;
         }
     }
 
-    @Override
-    public boolean onRequestFocusInDescendants(int i7, Rect rect) {
-        switch (this.f3622a) {
-            case 3:
-                return false;
-            default:
-                return super.onRequestFocusInDescendants(i7, rect);
-        }
+    public g6(l9 l9Var, Context context, int i7, hi.r3 r3Var, di.v6 v6Var, fi.b bVar) {
+        super(context, i7, 0, false, r3Var, v6Var, null, bVar, -1, 0);
+        this.f3682o3 = l9Var;
     }
 
-    @Override
-    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        switch (this.f3622a) {
-            case 3:
-                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top = org.telegram.messenger.g0.L(20.0f) + rect.top;
-                rect.bottom = org.telegram.messenger.g0.L(50.0f) + rect.bottom;
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-            default:
-                return super.requestChildRectangleOnScreen(view, rect, z10);
-        }
+    public g6(org.telegram.ui.web.k kVar, Context context, int i7, org.telegram.ui.web.b bVar, org.telegram.ui.web.a aVar, hi.c5 c5Var) {
+        super(context, i7, 0, false, bVar, aVar, null, c5Var);
+        this.f3682o3 = kVar;
+    }
+
+    public g6(ej ejVar, Context context, int i7, org.telegram.ui.Components.d dVar, yi yiVar, yi yiVar2, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, i7, 0, false, dVar, yiVar, yiVar2, h6Var);
+        this.f3682o3 = ejVar;
+    }
+
+    public g6(Context context, int i7, b bVar, e6 e6Var, e6 e6Var2, org.telegram.ui.ActionBar.h6 h6Var, gq0 gq0Var) {
+        super(context, i7, 0, false, bVar, e6Var, e6Var2, h6Var, 3, 1);
+        this.f3682o3 = gq0Var;
     }
 }

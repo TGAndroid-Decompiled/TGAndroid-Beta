@@ -1,46 +1,36 @@
 package di;
 
-import org.telegram.ui.Components.mt0;
-public final class d9 implements te.b, mt0 {
-    public final int f8663a;
-    public final pb f8664b;
+import org.telegram.messenger.gd;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.bn;
+public final class d9 implements Runnable {
+    public final int f8693a;
+    public final bn f8694b;
+    public final long f8695c;
+    public final TLRPC.Chat d;
 
-    public d9(pb pbVar, int i7) {
-        this.f8663a = i7;
-        this.f8664b = pbVar;
+    public d9(bn bnVar, long j3, TLRPC.Chat chat, int i7) {
+        this.f8693a = i7;
+        this.f8694b = bnVar;
+        this.f8695c = j3;
+        this.d = chat;
     }
 
     @Override
-    public void D(float f10, int i7) {
-        int i10 = this.f8663a;
-    }
-
-    @Override
-    public void H(int i7, float f10, float f11, te.c cVar) {
-        switch (this.f8663a) {
+    public final void run() {
+        int i7 = this.f8693a;
+        TLRPC.Chat chat = this.d;
+        long j3 = this.f8695c;
+        bn bnVar = this.f8694b;
+        switch (i7) {
             case 0:
-                this.f8664b.s1();
-                return;
-            case 1:
-                this.f8664b.s1();
+                org.telegram.ui.Components.lc.b0(bnVar).I(2131624226, gd.N0(2131744753, null), org.telegram.messenger.g0.W2(gd.G((int) j3, "StarsSubscriptionCompletedText", chat.title))).k(true);
                 return;
             default:
-                this.f8664b.X.setAlpha(f10);
+                String str = LaunchActivity.C1;
+                org.telegram.ui.Components.lc.b0(bnVar).I(2131624226, gd.N0(2131744753, null), org.telegram.messenger.g0.W2(gd.G((int) j3, "StarsSubscriptionCompletedText", chat.title))).k(true);
                 return;
         }
-    }
-
-    @Override
-    public int b() {
-        return this.f8664b.f9529b0;
-    }
-
-    private final void a(float f10, int i7) {
-    }
-
-    private final void c(float f10, int i7) {
-    }
-
-    private final void d(float f10, int i7) {
     }
 }

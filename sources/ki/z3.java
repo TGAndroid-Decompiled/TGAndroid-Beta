@@ -3,7 +3,7 @@ package ki;
 import android.app.Activity;
 import android.content.Context;
 import org.telegram.ui.LaunchActivity;
-public final class z3 extends org.telegram.ui.ActionBar.h2 {
+public final class z3 extends org.telegram.ui.ActionBar.g2 {
     @Override
     public final Context getContext() {
         return org.telegram.messenger.g0.W(LaunchActivity.H1);
@@ -16,7 +16,7 @@ public final class z3 extends org.telegram.ui.ActionBar.h2 {
 
     @Override
     public final Activity getParentActivity() {
-        Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26913b);
+        Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f26941b);
         if (W == null) {
             return LaunchActivity.H1;
         }

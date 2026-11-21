@@ -6,27 +6,27 @@ import android.os.Bundle;
 import android.os.RemoteCallbackList;
 import java.util.List;
 public class l {
-    public final MediaSession f55808a;
-    public final k f55809b;
-    public final p f55810c;
-    public final Bundle f55811e;
-    public w f55813g;
+    public final MediaSession f55849a;
+    public final k f55850b;
+    public final p f55851c;
+    public final Bundle f55852e;
+    public w f55854g;
     public List h;
-    public i f55814i;
-    public int f55815j;
-    public int f55816k;
-    public android.support.v4.media.session.s f55817l;
-    public r f55818m;
+    public i f55855i;
+    public int f55856j;
+    public int f55857k;
+    public android.support.v4.media.session.s f55858l;
+    public r f55859m;
     public final Object d = new Object();
-    public final RemoteCallbackList f55812f = new RemoteCallbackList();
+    public final RemoteCallbackList f55853f = new RemoteCallbackList();
 
     public l(Context context, String str, Bundle bundle) {
         MediaSession a10 = a(context, str, bundle);
-        this.f55808a = a10;
+        this.f55849a = a10;
         k kVar = new k(this);
-        this.f55809b = kVar;
-        this.f55810c = new p(a10.getSessionToken(), kVar);
-        this.f55811e = bundle;
+        this.f55850b = kVar;
+        this.f55851c = new p(a10.getSessionToken(), kVar);
+        this.f55852e = bundle;
         a10.setFlags(3);
     }
 
@@ -37,7 +37,7 @@ public class l {
     public final android.support.v4.media.session.s b() {
         android.support.v4.media.session.s sVar;
         synchronized (this.d) {
-            sVar = this.f55817l;
+            sVar = this.f55858l;
         }
         return sVar;
     }
@@ -45,14 +45,14 @@ public class l {
     public r c() {
         r rVar;
         synchronized (this.d) {
-            rVar = this.f55818m;
+            rVar = this.f55859m;
         }
         return rVar;
     }
 
     public void d(r rVar) {
         synchronized (this.d) {
-            this.f55818m = rVar;
+            this.f55859m = rVar;
         }
     }
 }

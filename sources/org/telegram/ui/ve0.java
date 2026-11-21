@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class ve0 implements Runnable {
-    public final gf0 f52760a;
+    public final ff0 f52803a;
 
-    public ve0(gf0 gf0Var) {
-        this.f52760a = gf0Var;
+    public ve0(ff0 ff0Var) {
+        this.f52803a = ff0Var;
     }
 
     @Override
     public final void run() {
-        gf0 gf0Var = this.f52760a;
-        if (gf0Var.f48000b == null) {
+        ff0 ff0Var = this.f52803a;
+        if (ff0Var.f47687b == null) {
             return;
         }
-        for (int i7 = 0; i7 < gf0Var.f48000b.getChildCount(); i7++) {
-            View childAt = gf0Var.f48000b.getChildAt(i7);
-            if (childAt instanceof df0) {
-                df0 df0Var = (df0) childAt;
-                if (df0Var.J) {
-                    df0Var.b(df0Var.f46892n, df0Var.f46893r);
+        for (int i7 = 0; i7 < ff0Var.f47687b.getChildCount(); i7++) {
+            View childAt = ff0Var.f47687b.getChildAt(i7);
+            if (childAt instanceof cf0) {
+                cf0 cf0Var = (cf0) childAt;
+                if (cf0Var.J) {
+                    cf0Var.b(cf0Var.f46553n, cf0Var.f46554r);
                 }
             }
         }

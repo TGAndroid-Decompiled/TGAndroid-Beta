@@ -140,22 +140,22 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public static ArrayList<byte[]> deserializeByteArray(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(inputSerializedData, 3), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 3), z10);
     }
 
     public static ArrayList<Integer> deserializeInt(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(inputSerializedData, 1), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 1), z10);
     }
 
     public static ArrayList<java.lang.Long> deserializeLong(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(inputSerializedData, 0), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 0), z10);
     }
 
     public static ArrayList<String> deserializeString(InputSerializedData inputSerializedData, boolean z10) {
         Objects.requireNonNull(inputSerializedData);
-        return deserialize(inputSerializedData, new u(inputSerializedData, 2), z10);
+        return deserialize(inputSerializedData, new v(inputSerializedData, 2), z10);
     }
 
     public static <T extends TLObject> void serialize(OutputSerializedData outputSerializedData, ArrayList<T> arrayList) {
@@ -168,22 +168,22 @@ public class Vector<T extends TLObject> extends TLObject {
 
     public static void serializeByteArray(OutputSerializedData outputSerializedData, ArrayList<byte[]> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new v(outputSerializedData, 2), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 2), arrayList);
     }
 
     public static void serializeInt(OutputSerializedData outputSerializedData, ArrayList<Integer> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new v(outputSerializedData, 1), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 1), arrayList);
     }
 
     public static void serializeLong(OutputSerializedData outputSerializedData, ArrayList<java.lang.Long> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new v(outputSerializedData, 0), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 0), arrayList);
     }
 
     public static void serializeString(OutputSerializedData outputSerializedData, ArrayList<String> arrayList) {
         Objects.requireNonNull(outputSerializedData);
-        serialize(outputSerializedData, new v(outputSerializedData, 3), arrayList);
+        serialize(outputSerializedData, new w(outputSerializedData, 3), arrayList);
     }
 
     private static boolean validateSize(int i7, int i10, int i11) {

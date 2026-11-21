@@ -1,28 +1,32 @@
 package ai;
 
-import java.util.Locale;
-public final class d1 {
-    public final String f1175a;
-    public final float f1176b;
-    public final boolean f1177c;
+import java.util.concurrent.ExecutorService;
+import org.telegram.messenger.x10;
+import org.telegram.ui.Dictation.DictationLid;
+public final class d1 implements Runnable {
+    public final int f1144a;
+    public final x10 f1145b;
+    public final int f1146c;
 
-    public d1(String str, float f10, boolean z10) {
-        this.f1175a = str;
-        this.f1176b = f10;
-        this.f1177c = z10;
+    public d1(x10 x10Var, int i7, int i10) {
+        this.f1144a = i10;
+        this.f1145b = x10Var;
+        this.f1146c = i7;
     }
 
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f1175a);
-        sb2.append(String.format(Locale.US, " %.2f", Float.valueOf(this.f1176b)));
-        if (this.f1177c) {
-            str = " sure";
-        } else {
-            str = "";
+    @Override
+    public final void run() {
+        int i7 = this.f1144a;
+        int i10 = this.f1146c;
+        x10 x10Var = this.f1145b;
+        switch (i7) {
+            case 0:
+                ExecutorService executorService = DictationLid.f43071a;
+                x10Var.a(Integer.valueOf(i10));
+                return;
+            default:
+                x10Var.a(Integer.valueOf(i10));
+                return;
         }
-        sb2.append(str);
-        return sb2.toString();
     }
 }

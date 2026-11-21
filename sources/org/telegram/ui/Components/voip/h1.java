@@ -7,32 +7,32 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.fc;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.b9;
 import org.webrtc.JavaI420Buffer;
 import org.webrtc.VideoFrame;
 public final class h1 {
-    public final ImageReceiver f40900a;
-    public VideoFrame f40901b;
+    public final ImageReceiver f41035a;
+    public VideoFrame f41036b;
 
     public h1() {
         TLRPC.Chat chat;
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f40900a = imageReceiver;
+        this.f41035a = imageReceiver;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             chat = sharedInstance.getChat();
         } else {
             chat = null;
         }
-        b9 b9Var = new b9((i6) null);
+        b9 b9Var = new b9((h6) null);
         if (chat != null) {
             sharedInstance.getAccount();
             b9Var.q(chat);
             imageReceiver.d = sharedInstance.getAccount();
         }
         imageReceiver.J0(60);
-        imageReceiver.f22639h1 = new org.telegram.ui.ActionBar.p(this, 8);
+        imageReceiver.f22667h1 = new org.telegram.tgnet.u(this, 9);
         imageReceiver.P();
         imageReceiver.q0(chat != null ? fc.a(1, chat) : null, "100_100", b9Var, null, chat, 0);
         a();
@@ -43,7 +43,7 @@ public final class h1 {
         Bitmap createBitmap = Bitmap.createBitmap(640, 360, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.drawColor(-14999773);
-        ImageReceiver imageReceiver = this.f40900a;
+        ImageReceiver imageReceiver = this.f41035a;
         imageReceiver.y0(260.0f, 120.0f, 120.0f, 120.0f);
         imageReceiver.h(canvas, null);
         int width = createBitmap.getWidth();
@@ -86,10 +86,10 @@ public final class h1 {
         }
         VideoFrame videoFrame = new VideoFrame(allocate, 0, 0L);
         createBitmap.recycle();
-        VideoFrame videoFrame2 = this.f40901b;
+        VideoFrame videoFrame2 = this.f41036b;
         if (videoFrame2 != null) {
             videoFrame2.release();
         }
-        this.f40901b = videoFrame;
+        this.f41036b = videoFrame;
     }
 }

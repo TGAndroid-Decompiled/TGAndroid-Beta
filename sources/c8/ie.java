@@ -3,6 +3,6 @@ public abstract class ie {
     public static final long a(long j3, yd.c sourceUnit, yd.c targetUnit) {
         kotlin.jvm.internal.j.e(sourceUnit, "sourceUnit");
         kotlin.jvm.internal.j.e(targetUnit, "targetUnit");
-        return targetUnit.f61181a.convert(j3, sourceUnit.f61181a);
+        return targetUnit.f61222a.convert(j3, sourceUnit.f61222a);
     }
 }

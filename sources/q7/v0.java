@@ -2,10 +2,10 @@ package q7;
 
 import java.util.Arrays;
 public final class v0 extends c1 {
-    public final boolean f56055a;
+    public final boolean f56096a;
 
     public v0(boolean z10) {
-        this.f56055a = z10;
+        this.f56096a = z10;
     }
 
     @Override
@@ -19,12 +19,12 @@ public final class v0 extends c1 {
         }
         v0 v0Var = (v0) c1Var;
         int i10 = 21;
-        if (true != this.f56055a) {
+        if (true != this.f56096a) {
             i7 = 20;
         } else {
             i7 = 21;
         }
-        if (true != v0Var.f56055a) {
+        if (true != v0Var.f56096a) {
             i10 = 20;
         }
         return i7 - i10;
@@ -34,18 +34,18 @@ public final class v0 extends c1 {
         if (this == obj) {
             return true;
         }
-        if (obj != null && v0.class == obj.getClass() && this.f56055a == ((v0) obj).f56055a) {
+        if (obj != null && v0.class == obj.getClass() && this.f56096a == ((v0) obj).f56096a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) -32)), Boolean.valueOf(this.f56055a)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) -32)), Boolean.valueOf(this.f56096a)});
     }
 
     public final String toString() {
-        return Boolean.toString(this.f56055a);
+        return Boolean.toString(this.f56096a);
     }
 
     @Override

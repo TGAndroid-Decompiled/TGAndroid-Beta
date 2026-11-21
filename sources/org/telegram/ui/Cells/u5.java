@@ -4,24 +4,24 @@ import android.animation.AnimatorSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.ui.Components.rd0;
 import org.telegram.ui.Components.sd0;
+import org.telegram.ui.Components.td0;
 public final class u5 extends FrameLayout {
-    public TextView f32024a;
-    public TextView f32025b;
-    public sd0 f32026c;
+    public TextView f32052a;
+    public TextView f32053b;
+    public td0 f32054c;
     public AnimatorSet d;
-    public j6.o f32027e;
+    public j6.o f32055e;
 
     public final void a(String str, int i7, float f10) {
-        TextView textView = this.f32024a;
-        TextView textView2 = this.f32025b;
+        TextView textView = this.f32052a;
+        TextView textView2 = this.f32053b;
         AnimatorSet animatorSet = this.d;
         if (animatorSet != null) {
             animatorSet.cancel();
             this.d = null;
         }
-        org.telegram.messenger.g0.r(this.f32027e);
+        org.telegram.messenger.g0.r(this.f32055e);
         textView2.setTag(null);
         textView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
         if (f10 > 0.0f) {
@@ -31,10 +31,10 @@ public final class u5 extends FrameLayout {
         }
         textView2.setAlpha(0.0f);
         textView.setAlpha(1.0f);
-        sd0 sd0Var = this.f32026c;
-        sd0Var.h = i7;
-        sd0Var.f39611n = 100;
-        sd0Var.a((int) f10, false);
+        td0 td0Var = this.f32054c;
+        td0Var.h = i7;
+        td0Var.f39882n = 100;
+        td0Var.a((int) f10, false);
     }
 
     @Override
@@ -42,13 +42,13 @@ public final class u5 extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(40.0f), 1073741824));
     }
 
-    public void setSeekBarDelegate(rd0 rd0Var) {
-        this.f32026c.setDelegate(new f9(this, rd0Var));
+    public void setSeekBarDelegate(sd0 sd0Var) {
+        this.f32054c.setDelegate(new f9(this, sd0Var));
     }
 
     @Override
     public void setTag(Object obj) {
         super.setTag(obj);
-        this.f32026c.setTag(obj);
+        this.f32054c.setTag(obj);
     }
 }

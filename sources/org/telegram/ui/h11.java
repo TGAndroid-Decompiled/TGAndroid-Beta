@@ -1,22 +1,25 @@
 package org.telegram.ui;
-public final class h11 implements Runnable {
-    public final int f48125a;
-    public final i11 f48126b;
 
-    public h11(i11 i11Var, int i7) {
-        this.f48125a = i7;
-        this.f48126b = i11Var;
+import android.content.Context;
+public final class h11 extends org.telegram.ui.Components.lv0 {
+    public final k01 H3;
+
+    public h11(k01 k01Var, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(i7, context, h6Var);
+        this.H3 = k01Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48125a) {
-            case 0:
-                i11.a(this.f48126b);
-                return;
-            default:
-                this.f48126b.dismiss();
-                return;
+    public final boolean D1() {
+        if (!org.telegram.messenger.pc.e(16388) && this.H3.G.f51819a0 != 4) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final void H1(int i7) {
+        super.H1(i7);
+        this.H3.d(false);
     }
 }

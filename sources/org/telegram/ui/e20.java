@@ -7,17 +7,17 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class e20 extends FrameLayout {
-    public final Rect f47038a;
-    public final RectF f47039b;
-    public final Path f47040c;
+    public final Rect f47112a;
+    public final RectF f47113b;
+    public final Path f47114c;
     public final f40 d;
 
     public e20(f40 f40Var, LaunchActivity launchActivity) {
         super(launchActivity);
         this.d = f40Var;
-        this.f47038a = new Rect();
-        this.f47039b = new RectF();
-        this.f47040c = new Path();
+        this.f47112a = new Rect();
+        this.f47113b = new RectF();
+        this.f47114c = new Path();
     }
 
     @Override
@@ -25,13 +25,13 @@ public final class e20 extends FrameLayout {
         View childAt;
         org.telegram.ui.Components.voip.y yVar;
         f40 f40Var = this.d;
-        d20 d20Var = f40Var.f47445m1;
-        if (f40Var.f47409c4 != 1.0f) {
-            if (f40Var.W4 != null && f40Var.f47402a5) {
+        d20 d20Var = f40Var.f47513m1;
+        if (f40Var.f47477c4 != 1.0f) {
+            if (f40Var.W4 != null && f40Var.f47470a5) {
                 canvas.save();
                 float measuredHeight = (f40Var.W4.getAvatarImageView().getMeasuredHeight() / 2.0f) * (getMeasuredHeight() / f40Var.W4.getAvatarImageView().getMeasuredHeight());
-                float f10 = f40Var.f47409c4;
-                int L = (int) ((org.telegram.messenger.g0.L(13.0f) * f10) + ((1.0f - f40Var.f47409c4) * measuredHeight));
+                float f10 = f40Var.f47477c4;
+                int L = (int) ((org.telegram.messenger.g0.L(13.0f) * f10) + ((1.0f - f40Var.f47477c4) * measuredHeight));
                 int i7 = (int) ((1.0f - f10) * measuredHeight);
                 f40Var.W4.getAvatarWavesDrawable().a(canvas, f40Var.W4.getAvatarImageView().getMeasuredHeight() / 2, f40Var.W4.getAvatarImageView().getMeasuredHeight() / 2, this);
                 f40Var.W4.getAvatarImageView().getImageReceiver().y0(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
@@ -42,8 +42,8 @@ public final class e20 extends FrameLayout {
             } else if (f40Var.Z4 != null && f40Var.Y4 == null && f40Var.N4) {
                 canvas.save();
                 float measuredHeight2 = (f40Var.Z4.getAvatarImageView().getMeasuredHeight() / 2.0f) * (getMeasuredHeight() / f40Var.Z4.getAvatarImageView().getMeasuredHeight());
-                float f11 = f40Var.f47409c4;
-                int L2 = (int) ((org.telegram.messenger.g0.L(13.0f) * f11) + ((1.0f - f40Var.f47409c4) * measuredHeight2));
+                float f11 = f40Var.f47477c4;
+                int L2 = (int) ((org.telegram.messenger.g0.L(13.0f) * f11) + ((1.0f - f40Var.f47477c4) * measuredHeight2));
                 int i10 = (int) ((1.0f - f11) * measuredHeight2);
                 f40Var.Z4.getAvatarImageView().getImageReceiver().y0(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 f40Var.Z4.getAvatarImageView().t(L2, L2, i10, i10);
@@ -52,26 +52,26 @@ public final class e20 extends FrameLayout {
                 canvas.restore();
             }
         }
-        d20Var.setAlpha(f40Var.f47409c4);
-        Path path = this.f47040c;
+        d20Var.setAlpha(f40Var.f47477c4);
+        Path path = this.f47114c;
         path.reset();
-        RectF rectF = this.f47039b;
+        RectF rectF = this.f47113b;
         rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
         path.addRoundRect(rectF, new float[]{org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
         canvas.save();
         canvas.clipPath(path);
-        if (d20Var.f35087j1) {
+        if (d20Var.f35894j1) {
             for (int i11 = 0; i11 < d20Var.getChildCount(); i11++) {
                 childAt = d20Var.getChildAt(i11);
-                if (childAt instanceof org.telegram.ui.Components.dg0) {
+                if (childAt instanceof org.telegram.ui.Components.fg0) {
                     break;
                 }
             }
         }
         childAt = null;
-        if (childAt != null && (yVar = f40Var.Y4) != null && yVar.f41354w && !f40Var.E4) {
+        if (childAt != null && (yVar = f40Var.Y4) != null && yVar.f41489w && !f40Var.E4) {
             canvas.save();
-            Rect rect = this.f47038a;
+            Rect rect = this.f47112a;
             rect.setEmpty();
             d20Var.getChildVisibleRect(childAt, rect, null);
             int i12 = rect.left;
@@ -91,7 +91,7 @@ public final class e20 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.d.f30190b.invalidate();
+        this.d.f30173b.invalidate();
     }
 
     @Override

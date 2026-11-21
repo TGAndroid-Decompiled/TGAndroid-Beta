@@ -8,16 +8,16 @@ import org.telegram.messenger.gd;
 import org.telegram.messenger.j10;
 import org.telegram.messenger.mp;
 import org.telegram.messenger.n10;
-import org.telegram.ui.Components.dz0;
-import org.telegram.ui.Components.k80;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.fz0;
+import org.telegram.ui.Components.m80;
+import org.telegram.ui.Components.s41;
 public abstract class y6 extends LinearLayout {
-    public TextView f32470a;
-    public k80 f32471b;
-    public TextView f32472c;
+    public TextView f32498a;
+    public m80 f32499b;
+    public TextView f32500c;
     public TextView d;
-    public int f32473e;
-    public int f32474f;
+    public int f32501e;
+    public int f32502f;
 
     @Override
     public final void onMeasure(int i7, int i10) {
@@ -25,41 +25,41 @@ public abstract class y6 extends LinearLayout {
     }
 
     public void setType(int i7) {
-        int i10 = this.f32474f;
-        TextView textView = this.f32472c;
-        k80 k80Var = this.f32471b;
-        TextView textView2 = this.f32470a;
+        int i10 = this.f32502f;
+        TextView textView = this.f32500c;
+        m80 m80Var = this.f32499b;
+        TextView textView2 = this.f32498a;
         TextView textView3 = this.d;
-        this.f32473e = i7;
+        this.f32501e = i7;
         if (i7 == 0) {
-            textView2.setText(gd.a0(null, null, 2131752145, n10.h(new StringBuilder("+"), mp.u1(i10).c2(Long.valueOf(j10.i(i10).f24789n)).phone, pf.b.c())));
-            String M0 = gd.M0(2131752144, null);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
-            int indexOf = M0.indexOf("**");
-            int lastIndexOf = M0.lastIndexOf("**");
+            textView2.setText(gd.a0(null, null, 2131752144, n10.h(new StringBuilder("+"), mp.u1(i10).c2(Long.valueOf(j10.i(i10).f24817n)).phone, pf.b.c())));
+            String N0 = gd.N0(2131752143, null);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(N0);
+            int indexOf = N0.indexOf("**");
+            int lastIndexOf = N0.lastIndexOf("**");
             if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new p41(gd.M0(2131752143, null), (dz0) null), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new s41(gd.N0(2131752142, null), (fz0) null), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
             }
-            k80Var.setText(spannableStringBuilder);
-            textView.setText(gd.M0(2131752141, null));
+            m80Var.setText(spannableStringBuilder);
+            textView.setText(gd.N0(2131752140, null));
             textView3.setVisibility(0);
-            textView3.setText(gd.M0(2131752142, null));
+            textView3.setText(gd.N0(2131752141, null));
         } else if (i7 == 1) {
-            textView2.setText(gd.M0(2131742545, null));
-            k80Var.setText(gd.M0(2131742544, null));
-            textView.setText(gd.M0(2131742542, null));
+            textView2.setText(gd.N0(2131742539, null));
+            m80Var.setText(gd.N0(2131742538, null));
+            textView.setText(gd.N0(2131742536, null));
             textView3.setVisibility(0);
-            textView3.setText(gd.M0(2131742543, null));
+            textView3.setText(gd.N0(2131742537, null));
         } else if (i7 == 2) {
-            textView2.setText(gd.M0(2131749351, null));
-            k80Var.setText(gd.M0(2131749352, null));
-            textView.setText(gd.M0(2131749353, null));
+            textView2.setText(gd.N0(2131749350, null));
+            m80Var.setText(gd.N0(2131749351, null));
+            textView.setText(gd.N0(2131749352, null));
             textView3.setVisibility(8);
         }
     }

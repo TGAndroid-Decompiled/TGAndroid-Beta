@@ -8,33 +8,33 @@ import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
-import p4.o0;
+import p4.z;
 public abstract class r extends TextureView implements TextureView.SurfaceTextureListener, Choreographer.FrameCallback {
-    public static final o[] f59541y = new o[3];
-    public final o f59542a;
-    public final Rect f59543b;
-    public final Runnable f59544c;
+    public static final o[] f59579y = new o[3];
+    public final o f59580a;
+    public final Rect f59581b;
+    public final Runnable f59582c;
     public final int d;
-    public q f59545e;
-    public boolean f59546f;
+    public q f59583e;
+    public boolean f59584f;
     public boolean h;
-    public boolean f59547n;
-    public float f59548r;
-    public float f59549s;
-    public boolean f59550w;
-    public boolean f59551x;
+    public boolean f59585n;
+    public float f59586r;
+    public float f59587s;
+    public boolean f59588w;
+    public boolean f59589x;
 
     public r(Context context, Runnable runnable, int i7) {
         super(context);
-        this.f59543b = new Rect();
+        this.f59581b = new Rect();
         this.h = true;
-        this.f59544c = runnable;
-        o[] oVarArr = f59541y;
+        this.f59582c = runnable;
+        o[] oVarArr = f59579y;
         if (oVarArr[i7] == null) {
             oVarArr[i7] = new o(context.getApplicationContext(), i7);
         }
         o oVar = oVarArr[i7];
-        this.f59542a = oVar;
+        this.f59580a = oVar;
         this.d = oVar.d;
         setOpaque(false);
         setSurfaceTextureListener(this);
@@ -46,22 +46,22 @@ public abstract class r extends TextureView implements TextureView.SurfaceTextur
     public final void doFrame(long j3) {
         boolean z10;
         p pVar;
-        if (this.f59546f && !this.h) {
-            this.f59544c.run();
-            if (this.f59545e != null) {
-                if (isShown() && getWindowVisibility() == 0 && getGlobalVisibleRect(this.f59543b)) {
+        if (this.f59584f && !this.h) {
+            this.f59582c.run();
+            if (this.f59583e != null) {
+                if (isShown() && getWindowVisibility() == 0 && getGlobalVisibleRect(this.f59581b)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                q qVar = this.f59545e;
+                q qVar = this.f59583e;
                 if (z10) {
-                    pVar = new p(this.f59548r, this.f59549s, this.f59550w, this.f59551x);
+                    pVar = new p(this.f59586r, this.f59587s, this.f59588w, this.f59589x);
                 } else {
                     pVar = null;
                 }
-                qVar.f59534e = pVar;
-                this.f59542a.c();
+                qVar.f59572e = pVar;
+                this.f59580a.c();
             }
             Choreographer.getInstance().postFrameCallback(this);
         }
@@ -70,44 +70,44 @@ public abstract class r extends TextureView implements TextureView.SurfaceTextur
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f59546f = true;
+        this.f59584f = true;
         setPaused(this.h);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f59547n = false;
-        this.f59546f = false;
+        this.f59585n = false;
+        this.f59584f = false;
         Choreographer.getInstance().removeFrameCallback(this);
         super.onDetachedFromWindow();
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        this.f59547n = false;
+        this.f59585n = false;
         int i11 = this.d;
         surfaceTexture.setDefaultBufferSize(i11, i11);
         q qVar = new q(this, new Surface(surfaceTexture), this.d);
-        this.f59545e = qVar;
-        o oVar = this.f59542a;
-        oVar.f59515f.add(qVar);
-        oVar.f59516g = (q[]) oVar.f59515f.toArray(new q[0]);
+        this.f59583e = qVar;
+        o oVar = this.f59580a;
+        oVar.f59553f.add(qVar);
+        oVar.f59554g = (q[]) oVar.f59553f.toArray(new q[0]);
         oVar.c();
         setPaused(this.h);
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.f59547n = false;
-        q qVar = this.f59545e;
-        this.f59545e = null;
+        this.f59585n = false;
+        q qVar = this.f59583e;
+        this.f59583e = null;
         if (qVar != null) {
-            o oVar = this.f59542a;
+            o oVar = this.f59580a;
             oVar.getClass();
-            qVar.f59533c = false;
-            oVar.f59515f.remove(qVar);
-            oVar.f59516g = (q[]) oVar.f59515f.toArray(new q[0]);
-            oVar.f59512b.post(new o0(26, oVar, qVar));
+            qVar.f59571c = false;
+            oVar.f59553f.remove(qVar);
+            oVar.f59554g = (q[]) oVar.f59553f.toArray(new q[0]);
+            oVar.f59550b.post(new z(28, oVar, qVar));
             return true;
         }
         return true;
@@ -123,8 +123,8 @@ public abstract class r extends TextureView implements TextureView.SurfaceTextur
         q qVar;
         int i7 = this.d;
         surfaceTexture.setDefaultBufferSize(i7, i7);
-        if (!this.f59547n && (qVar = this.f59545e) != null && qVar.d) {
-            this.f59547n = true;
+        if (!this.f59585n && (qVar = this.f59583e) != null && qVar.d) {
+            this.f59585n = true;
             if (getParent() instanceof View) {
                 ((View) getParent()).invalidate();
             }
@@ -139,14 +139,14 @@ public abstract class r extends TextureView implements TextureView.SurfaceTextur
     public void setPaused(boolean z10) {
         this.h = z10;
         Choreographer.getInstance().removeFrameCallback(this);
-        if (this.f59546f && !z10) {
+        if (this.f59584f && !z10) {
             Choreographer.getInstance().postFrameCallback(this);
             return;
         }
-        q qVar = this.f59545e;
+        q qVar = this.f59583e;
         if (qVar != null) {
-            qVar.f59534e = null;
-            this.f59542a.c();
+            qVar.f59572e = null;
+            this.f59580a.c();
         }
     }
 }

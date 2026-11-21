@@ -18,61 +18,61 @@ import java.lang.reflect.Field;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ks;
 import org.telegram.ui.Cells.t9;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.x60;
-public class x7 extends NestedScrollView implements x60 {
-    public final t9 f12735a0;
-    public final r1.g f12736b0;
-    public final w7 f12737c0;
-    public boolean f12738d0;
-    public float f12739e0;
-    public float f12740f0;
-    public float f12741g0;
-    public float f12742h0;
-    public float f12743i0;
-    public float f12744j0;
-    public float f12745k0;
-    public final OverScroller f12746l0;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.z60;
+public class x7 extends NestedScrollView implements z60 {
+    public final t9 f12775a0;
+    public final r1.g f12776b0;
+    public final w7 f12777c0;
+    public boolean f12778d0;
+    public float f12779e0;
+    public float f12780f0;
+    public float f12781g0;
+    public float f12782h0;
+    public float f12783i0;
+    public float f12784j0;
+    public float f12785k0;
+    public final OverScroller f12786l0;
     public boolean m0;
-    public int f12747n0;
-    public int f12748o0;
-    public int f12749p0;
-    public int f12750q0;
-    public int f12751r0;
-    public final FrameLayout f12752s0;
-    public boolean f12753t0;
-    public boolean f12754u0;
-    public int f12755v0;
-    public boolean f12756w0;
-    public boolean f12757x0;
+    public int f12787n0;
+    public int f12788o0;
+    public int f12789p0;
+    public int f12790q0;
+    public int f12791r0;
+    public final FrameLayout f12792s0;
+    public boolean f12793t0;
+    public boolean f12794u0;
+    public int f12795v0;
+    public boolean f12796w0;
+    public boolean f12797x0;
 
-    public x7(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+    public x7(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f12751r0 = -1;
+        this.f12791r0 = -1;
         new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, i0.a.o(-16777216, 51)});
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f12752s0 = frameLayout;
+        this.f12792s0 = frameLayout;
         setClipChildren(false);
         setOverScrollMode(2);
         ks.i(this);
         w7 w7Var = new w7(this, getContext());
-        this.f12737c0 = w7Var;
-        t9 t9Var = new t9(w7Var, i6Var);
-        this.f12735a0 = t9Var;
-        t9Var.f32250h0 = false;
+        this.f12777c0 = w7Var;
+        t9 t9Var = new t9(w7Var, h6Var);
+        this.f12775a0 = t9Var;
+        t9Var.f32278h0 = false;
         frameLayout.addView(w7Var, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
         setFadingEdgeLength(org.telegram.messenger.g0.L(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        r1.g gVar = new r1.g((Object) w7Var, (r1.e) r1.g.f56307p, 0.0f);
-        this.f12736b0 = gVar;
-        gVar.f56323m.b(100.0f);
+        r1.g gVar = new r1.g((Object) w7Var, (r1.e) r1.g.f56348p, 0.0f);
+        this.f12776b0 = gVar;
+        gVar.f56364m.b(100.0f);
         gVar.f(1.0f);
         gVar.b(new q7(0, this));
-        gVar.f56323m.a(1.0f);
+        gVar.f56364m.a(1.0f);
         try {
             NestedScrollView.class.getDeclaredMethod("a", null).setAccessible(true);
         } catch (Exception e10) {
@@ -81,9 +81,9 @@ public class x7 extends NestedScrollView implements x60 {
         try {
             Field declaredField = NestedScrollView.class.getDeclaredField("d");
             declaredField.setAccessible(true);
-            this.f12746l0 = (OverScroller) declaredField.get(this);
+            this.f12786l0 = (OverScroller) declaredField.get(this);
         } catch (Exception e11) {
-            this.f12746l0 = null;
+            this.f12786l0 = null;
             org.telegram.messenger.a8.g(e11, true);
         }
     }
@@ -91,9 +91,9 @@ public class x7 extends NestedScrollView implements x60 {
     @Override
     public final boolean A(int i7, int i10) {
         if (i10 == 0) {
-            this.f12736b0.d();
-            this.f12738d0 = true;
-            this.f12739e0 = this.f12737c0.getTranslationY();
+            this.f12776b0.d();
+            this.f12778d0 = true;
+            this.f12779e0 = this.f12777c0.getTranslationY();
         }
         return true;
     }
@@ -101,52 +101,52 @@ public class x7 extends NestedScrollView implements x60 {
     @Override
     public final void C(int i7) {
         OverScroller overScroller;
-        if (this.f12738d0 && i7 == 0) {
-            this.f12738d0 = false;
-            if (this.f12739e0 != 0.0f && (overScroller = this.f12746l0) != null && overScroller.isFinished()) {
-                K(this.f12741g0);
+        if (this.f12778d0 && i7 == 0) {
+            this.f12778d0 = false;
+            if (this.f12779e0 != 0.0f && (overScroller = this.f12786l0) != null && overScroller.isFinished()) {
+                K(this.f12781g0);
             }
         }
     }
 
     public final void D() {
-        if (!this.f12756w0) {
+        if (!this.f12796w0) {
             return;
         }
-        this.f12756w0 = false;
-        float f10 = this.f12737c0.f12709x;
+        this.f12796w0 = false;
+        float f10 = this.f12777c0.f12751x;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new p7(this, getScrollY(), f10, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(lr.f37208f);
+        ofFloat.setInterpolator(nr.f37956f);
         ofFloat.start();
     }
 
     public final void E(boolean z10) {
-        if (this.f12756w0 && !z10) {
+        if (this.f12796w0 && !z10) {
             return;
         }
-        this.f12756w0 = true;
-        float f10 = this.f12737c0.f12709x;
+        this.f12796w0 = true;
+        float f10 = this.f12777c0.f12751x;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new p7(this, getScrollY(), f10, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(lr.f37208f);
+        ofFloat.setInterpolator(nr.f37956f);
         ofFloat.start();
     }
 
     public final void J() {
         scrollTo(0, 0);
-        this.f12756w0 = false;
-        w7 w7Var = this.f12737c0;
-        w7Var.f12709x = 0.0f;
+        this.f12796w0 = false;
+        w7 w7Var = this.f12777c0;
+        w7Var.f12751x = 0.0f;
         w7Var.invalidate();
     }
 
     public final void K(float f10) {
-        r1.g gVar = this.f12736b0;
-        if (!gVar.f56317f) {
-            gVar.f56313a = f10;
+        r1.g gVar = this.f12776b0;
+        if (!gVar.f56358f) {
+            gVar.f56354a = f10;
             gVar.h();
         }
         if (getScrollY() < org.telegram.messenger.g0.L(2.0f)) {
@@ -162,7 +162,7 @@ public class x7 extends NestedScrollView implements x60 {
     public final void computeScroll() {
         OverScroller overScroller;
         super.computeScroll();
-        if (!this.f12738d0 && this.f12739e0 != 0.0f && (overScroller = this.f12746l0) != null && overScroller.isFinished()) {
+        if (!this.f12778d0 && this.f12779e0 != 0.0f && (overScroller = this.f12786l0) != null && overScroller.isFinished()) {
             K(0.0f);
         }
     }
@@ -172,34 +172,34 @@ public class x7 extends NestedScrollView implements x60 {
         float f10;
         int i12;
         iArr[1] = 0;
-        if (!this.f12738d0 || (((this.f12739e0) <= 0.0f || i10 <= 0) && (f10 >= 0.0f || i10 >= 0))) {
+        if (!this.f12778d0 || (((this.f12779e0) <= 0.0f || i10 <= 0) && (f10 >= 0.0f || i10 >= 0))) {
             return false;
         }
         float f11 = i10;
         float f12 = f10 - f11;
         if (i12 > 0) {
             if (f12 < 0.0f) {
-                this.f12739e0 = 0.0f;
+                this.f12779e0 = 0.0f;
                 iArr[1] = (int) (f11 + f12 + 0);
             } else {
-                this.f12739e0 = f12;
+                this.f12779e0 = f12;
                 iArr[1] = i10;
             }
         } else if (f12 > 0.0f) {
-            this.f12739e0 = 0.0f;
+            this.f12779e0 = 0.0f;
             iArr[1] = (int) (f11 + f12 + 0);
         } else {
-            this.f12739e0 = f12;
+            this.f12779e0 = f12;
             iArr[1] = i10;
         }
-        this.f12737c0.setTranslationY(this.f12739e0);
-        this.f12735a0.w();
+        this.f12777c0.setTranslationY(this.f12779e0);
+        this.f12775a0.w();
         return true;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f12754u0) {
+        if (this.f12794u0) {
             return;
         }
         int width = getWidth();
@@ -207,7 +207,7 @@ public class x7 extends NestedScrollView implements x60 {
         int scrollY = getScrollY();
         int save = canvas.save();
         int i7 = height + scrollY;
-        canvas.clipRect(0, scrollY, width, this.f12755v0 + i7);
+        canvas.clipRect(0, scrollY, width, this.f12795v0 + i7);
         canvas.clipRect(0, scrollY, width, i7);
         super.draw(canvas);
         canvas.restoreToCount(save);
@@ -219,20 +219,20 @@ public class x7 extends NestedScrollView implements x60 {
         float f11;
         float f12;
         if (i12 != 0) {
-            int round = Math.round((1.0f - Math.abs((-this.f12739e0) / this.f12752s0.getTop())) * i12);
+            int round = Math.round((1.0f - Math.abs((-this.f12779e0) / this.f12792s0.getTop())) * i12);
             if (round != 0) {
-                boolean z10 = this.f12738d0;
-                w7 w7Var = this.f12737c0;
+                boolean z10 = this.f12778d0;
+                w7 w7Var = this.f12777c0;
                 if (!z10) {
-                    if (!this.f12736b0.f56317f) {
-                        OverScroller overScroller = this.f12746l0;
+                    if (!this.f12776b0.f56358f) {
+                        OverScroller overScroller = this.f12786l0;
                         if (overScroller != null) {
                             f10 = overScroller.getCurrVelocity();
                         } else {
                             f10 = Float.NaN;
                         }
                         if (!Float.isNaN(f10)) {
-                            Point point = org.telegram.messenger.g0.f24118q;
+                            Point point = org.telegram.messenger.g0.f24146q;
                             if (point.x > point.y) {
                                 f12 = 3000.0f;
                             } else {
@@ -240,41 +240,41 @@ public class x7 extends NestedScrollView implements x60 {
                             }
                             float min = Math.min(f12, f10);
                             round = (int) ((round * min) / f10);
-                            f11 = min * (-this.f12740f0);
+                            f11 = min * (-this.f12780f0);
                         } else {
                             f11 = 0.0f;
                         }
                         if (round != 0) {
-                            float f13 = this.f12739e0 - round;
-                            this.f12739e0 = f13;
+                            float f13 = this.f12779e0 - round;
+                            this.f12779e0 = f13;
                             w7Var.setTranslationY(f13);
                         }
                         K(f11);
                     }
                 } else {
-                    float f14 = this.f12739e0 - round;
-                    this.f12739e0 = f14;
+                    float f14 = this.f12779e0 - round;
+                    this.f12779e0 = f14;
                     w7Var.setTranslationY(f14);
                 }
             }
         }
-        this.f12735a0.w();
+        this.f12775a0.w();
     }
 
     @Override
     public final void f(RectF rectF) {
         v7 v7Var;
-        w7 w7Var = this.f12737c0;
-        v7[] v7VarArr = w7Var.f12706r;
-        if (v7VarArr != null && (v7Var = v7VarArr[0]) != null && v7Var.f12662p != null) {
+        w7 w7Var = this.f12777c0;
+        v7[] v7VarArr = w7Var.f12748r;
+        if (v7VarArr != null && (v7Var = v7VarArr[0]) != null && v7Var.f12704p != null) {
             int i7 = w7Var.G;
-            int i10 = v7Var.f12659m;
-            int i11 = v7Var.f12658l;
+            int i10 = v7Var.f12701m;
+            int i11 = v7Var.f12700l;
             int i12 = w7Var.G;
-            v7 v7Var2 = w7Var.f12706r[0];
-            rectF.set(w7Var.F, (org.telegram.messenger.g0.W1(w7Var.f12709x, i10, i11) + i7) - w7Var.f12706r[0].f12662p.b(), getWidth() - w7Var.F, org.telegram.messenger.g0.W1(w7Var.f12709x, v7Var2.f12659m, v7Var2.f12658l) + i12);
+            v7 v7Var2 = w7Var.f12748r[0];
+            rectF.set(w7Var.F, (org.telegram.messenger.g0.W1(w7Var.f12751x, i10, i11) + i7) - w7Var.f12748r[0].f12704p.b(), getWidth() - w7Var.F, org.telegram.messenger.g0.W1(w7Var.f12751x, v7Var2.f12701m, v7Var2.f12700l) + i12);
             float x10 = w7Var.getX() - getScrollX();
-            FrameLayout frameLayout = this.f12752s0;
+            FrameLayout frameLayout = this.f12792s0;
             rectF.offset(frameLayout.getX() + x10, frameLayout.getY() + (w7Var.getY() - getScrollY()));
         }
     }
@@ -285,24 +285,24 @@ public class x7 extends NestedScrollView implements x60 {
     }
 
     public float getMaxTop() {
-        FrameLayout frameLayout = this.f12752s0;
+        FrameLayout frameLayout = this.f12792s0;
         return frameLayout.getTop() - (frameLayout.getBottom() - getMeasuredHeight());
     }
 
     public int getPendingMarginTopDiff() {
-        int i7 = this.f12751r0;
+        int i7 = this.f12791r0;
         if (i7 >= 0) {
-            return i7 - ((ViewGroup.MarginLayoutParams) this.f12752s0.getLayoutParams()).topMargin;
+            return i7 - ((ViewGroup.MarginLayoutParams) this.f12792s0.getLayoutParams()).topMargin;
         }
         return 0;
     }
 
     public float getProgressToBlackout() {
-        return Utilities.i((getScrollY() - this.f12737c0.getTranslationY()) / Math.min(this.f12750q0, org.telegram.messenger.g0.L(40.0f)), 1.0f, 0.0f);
+        return Utilities.i((getScrollY() - this.f12777c0.getTranslationY()) / Math.min(this.f12790q0, org.telegram.messenger.g0.L(40.0f)), 1.0f, 0.0f);
     }
 
     public float getTextTop() {
-        return (this.f12737c0.getTranslationY() + this.f12752s0.getTop()) - getScrollY();
+        return (this.f12777c0.getTranslationY() + this.f12792s0.getTop()) - getScrollY();
     }
 
     @Override
@@ -313,18 +313,18 @@ public class x7 extends NestedScrollView implements x60 {
     @Override
     public final void h(Canvas canvas, float f10) {
         v7 v7Var;
-        w7 w7Var = this.f12737c0;
-        v7[] v7VarArr = w7Var.f12706r;
-        v7[] v7VarArr2 = w7Var.f12706r;
-        if (v7VarArr != null && (v7Var = v7VarArr[0]) != null && v7Var.f12662p != null) {
+        w7 w7Var = this.f12777c0;
+        v7[] v7VarArr = w7Var.f12748r;
+        v7[] v7VarArr2 = w7Var.f12748r;
+        if (v7VarArr != null && (v7Var = v7VarArr[0]) != null && v7Var.f12704p != null) {
             canvas.save();
             float x10 = w7Var.getX() - getScrollX();
-            FrameLayout frameLayout = this.f12752s0;
+            FrameLayout frameLayout = this.f12792s0;
             float x11 = frameLayout.getX() + x10 + w7Var.F;
             float y10 = frameLayout.getY() + (w7Var.getY() - getScrollY()) + w7Var.G;
             v7 v7Var2 = v7VarArr2[0];
-            canvas.translate(x11, (y10 + org.telegram.messenger.g0.W1(w7Var.f12709x, v7Var2.f12659m, v7Var2.f12658l)) - v7VarArr2[0].f12662p.b());
-            s7 s7Var = v7VarArr2[0].f12662p;
+            canvas.translate(x11, (y10 + org.telegram.messenger.g0.W1(w7Var.f12751x, v7Var2.f12701m, v7Var2.f12700l)) - v7VarArr2[0].f12704p.b());
+            s7 s7Var = v7VarArr2[0].f12704p;
             int width = getWidth();
             int i7 = w7Var.F;
             s7Var.a(canvas, (width - i7) - i7);
@@ -337,8 +337,8 @@ public class x7 extends NestedScrollView implements x60 {
     @Override
     public final void i(int i7) {
         super.i(i7);
-        this.f12740f0 = Math.signum(i7);
-        this.f12741g0 = 0.0f;
+        this.f12780f0 = Math.signum(i7);
+        this.f12781g0 = 0.0f;
     }
 
     @Override
@@ -347,7 +347,7 @@ public class x7 extends NestedScrollView implements x60 {
         if (getParent() != null) {
             ((View) getParent()).invalidate();
         }
-        this.f12735a0.w();
+        this.f12775a0.w();
     }
 
     @Override
@@ -377,7 +377,7 @@ public class x7 extends NestedScrollView implements x60 {
         org.telegram.ui.Cells.c0.d(this, z10);
     }
 
-    public void F(org.telegram.ui.Components.x5 x5Var) {
+    public void F(org.telegram.ui.Components.y5 y5Var) {
     }
 
     public void I(s7 s7Var) {

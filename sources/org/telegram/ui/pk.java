@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.concurrent.atomic.AtomicReference;
-public final class pk extends org.telegram.ui.ActionBar.n5 {
+public final class pk extends org.telegram.ui.ActionBar.m5 {
     public final int N0;
     public final Object O0;
 
@@ -16,12 +16,12 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
 
     @Override
     public boolean k(CharSequence charSequence) {
-        org.telegram.ui.ActionBar.n5 n5Var;
+        org.telegram.ui.ActionBar.m5 m5Var;
         switch (this.N0) {
             case 1:
                 AtomicReference atomicReference = (AtomicReference) this.O0;
-                if (atomicReference != null && (n5Var = (org.telegram.ui.ActionBar.n5) atomicReference.get()) != null) {
-                    n5Var.k(charSequence);
+                if (atomicReference != null && (m5Var = (org.telegram.ui.ActionBar.m5) atomicReference.get()) != null) {
+                    m5Var.k(charSequence);
                 }
                 return l(charSequence, false);
             default:
@@ -34,7 +34,7 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
         switch (this.N0) {
             case 2:
                 super.onAttachedToWindow();
-                ((jm0) this.O0).f48987s.a();
+                ((jm0) this.O0).f49020s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
         switch (this.N0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((jm0) this.O0).f48987s.b();
+                ((jm0) this.O0).f49020s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.O0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f43600n != null) {
+                    if (profileActivity.h != null || profileActivity.f43641n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f43600n != null) {
+                        if (profileActivity.f43641n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f43600n);
+                            sb2.append(profileActivity.f43641n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -111,7 +111,7 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
             case 3:
                 ProfileActivity profileActivity = (ProfileActivity) this.O0;
                 profileActivity.J5 = i7;
-                super.setTextColor(i0.a.f(profileActivity.G5, i7, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.G6, profileActivity.A0)));
+                super.setTextColor(i0.a.f(profileActivity.G5, i7, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.G6, profileActivity.A0)));
                 return;
             default:
                 super.setTextColor(i7);
@@ -121,13 +121,13 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
 
     @Override
     public void setTranslationY(float f10) {
-        org.telegram.ui.ActionBar.n5 n5Var;
+        org.telegram.ui.ActionBar.m5 m5Var;
         switch (this.N0) {
             case 0:
                 super.setTranslationY(f10);
                 bn bnVar = (bn) this.O0;
                 if (this == bnVar.S2[0] && bnVar.W2[1] != null) {
-                    if (bnVar.f45957c5 && f10 < 0.0f) {
+                    if (bnVar.f45980c5 && f10 < 0.0f) {
                         bnVar.O2.setTranslationY(f10 / 2.0f);
                         return;
                     } else {
@@ -138,8 +138,8 @@ public final class pk extends org.telegram.ui.ActionBar.n5 {
                 return;
             case 1:
                 AtomicReference atomicReference = (AtomicReference) this.O0;
-                if (atomicReference != null && (n5Var = (org.telegram.ui.ActionBar.n5) atomicReference.get()) != null) {
-                    n5Var.setTranslationY(f10);
+                if (atomicReference != null && (m5Var = (org.telegram.ui.ActionBar.m5) atomicReference.get()) != null) {
+                    m5Var.setTranslationY(f10);
                 }
                 super.setTranslationY(f10);
                 return;

@@ -1,61 +1,49 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.ValueAnimator;
-public final class s2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29970a;
-    public final u2 f29971b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import org.telegram.messenger.ks;
+public final class s2 extends AnimatorListenerAdapter {
+    public final int f29978a;
+    public final t2 f29979b;
 
-    public s2(u2 u2Var, int i7) {
-        this.f29970a = i7;
-        this.f29971b = u2Var;
+    public s2(t2 t2Var, int i7) {
+        this.f29978a = i7;
+        this.f29979b = t2Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7;
-        switch (this.f29970a) {
+    public final void onAnimationEnd(Animator animator) {
+        int i7 = this.f29978a;
+        t2 t2Var = this.f29979b;
+        switch (i7) {
             case 0:
-                u2 u2Var = this.f29971b;
-                x2 x2Var = u2Var.H;
-                x2Var.f30190b.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                x2Var.h0();
-                x2Var.q0(x2Var.f30190b.getTranslationY());
-                u2Var.invalidate();
+                AnimatorSet animatorSet = t2Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    t2Var.h = null;
+                }
+                ks.e().k(99, 512);
                 return;
             case 1:
-                x2 x2Var2 = this.f29971b.H;
-                n2 n2Var = x2Var2.f30193c;
-                if (n2Var != null) {
-                    n2Var.invalidate();
-                }
-                x2Var2.h0();
+                t2Var.E = 0.0f;
+                w2 w2Var = t2Var.H;
+                w2Var.f30173b.setTranslationX(0.0f);
+                w2Var.f30176c.invalidate();
                 return;
             case 2:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u2 u2Var2 = this.f29971b;
-                u2Var2.E = floatValue;
-                x2 x2Var3 = u2Var2.H;
-                x2Var3.f30190b.setTranslationX(floatValue);
-                x2Var3.f30193c.invalidate();
-                return;
-            case 3:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u2 u2Var3 = this.f29971b;
-                u2Var3.E = floatValue2;
-                x2 x2Var4 = u2Var3.H;
-                x2Var4.f30190b.setTranslationX(floatValue2);
-                x2Var4.f30193c.invalidate();
+                w2 w2Var2 = t2Var.H;
+                w2Var2.O0 = true;
+                w2Var2.f30173b.setTranslationX(t2Var.getMeasuredWidth());
+                w2Var2.dismiss();
+                w2Var2.f30176c.invalidate();
                 return;
             default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x2 x2Var5 = this.f29971b.H;
-                w2 w2Var = x2Var5.Z;
-                if (x2Var5.f30218p0) {
-                    i7 = (int) (x2Var5.f30219q0 * floatValue3);
-                } else {
-                    i7 = 0;
-                }
-                w2Var.setAlpha(i7);
+                t2Var.H.f30173b.setTranslationY(0.0f);
+                t2Var.H.h0();
+                w2 w2Var3 = t2Var.H;
+                w2Var3.q0(w2Var3.f30173b.getTranslationY());
+                t2Var.invalidate();
                 return;
         }
     }

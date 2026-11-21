@@ -1,88 +1,115 @@
 package oi;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.z41;
-public final class u0 extends k41 {
-    public static final int f22383b = 0;
+import androidx.recyclerview.widget.RecyclerView;
+import c8.fa;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Cells.i9;
+import org.telegram.ui.Cells.j9;
+public final class u0 extends y implements org.telegram.ui.ActionBar.b6, i9 {
+    public final h6 f22450n;
+    public final Paint f22451r;
+    public final Paint f22452s;
+    public r2 f22453w;
+    public boolean f22454x;
 
-    static {
-        k41.h(new k41());
+    public u0(Context context, h6 h6Var) {
+        super(context);
+        this.f22451r = new Paint(1);
+        this.f22452s = new Paint(1);
+        this.f22450n = h6Var;
+        setWillNotDraw(false);
+        updateColors();
     }
 
     @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        fj fjVar;
-        r rVar;
-        v0 v0Var = (v0) view;
-        a aVar = (a) l41Var.H;
-        v0Var.f22439a = aVar;
-        v0Var.T = (n3) l41Var.I;
-        v0Var.N = gd.f24213a0;
-        v0Var.c(aVar);
-        v0Var.G.b();
-        TLRPC.Document h = v0Var.h();
-        if (v0Var.V != h) {
-            v0Var.V = h;
-            if (h == null) {
-                fjVar = null;
-            } else {
-                TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                tL_message.out = true;
-                tL_message.f28424id = -Long.valueOf(h.f28409id).hashCode();
-                tL_message.peer_id = new TLRPC.TL_peerUser();
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_message.from_id = tL_peerUser;
-                TLRPC.Peer peer = tL_message.peer_id;
-                int i7 = v0Var.f22397n;
-                long e10 = j10.i(i7).e();
-                peer.user_id = e10;
-                tL_peerUser.user_id = e10;
-                tL_message.date = (int) (System.currentTimeMillis() / 1000);
-                tL_message.message = "";
-                TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                tL_message.media = tL_messageMediaDocument;
-                tL_messageMediaDocument.flags |= 3;
-                tL_messageMediaDocument.document = h;
-                tL_message.flags |= 768;
-                a aVar2 = v0Var.f22439a;
-                if (aVar2 != null && (rVar = aVar2.f21911g) != null && !TextUtils.isEmpty(rVar.f22261e)) {
-                    tL_message.attachPath = v0Var.f22439a.f21911g.f22261e;
-                }
-                fjVar = new fj(i7, tL_message, false, true);
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(m6.ml));
+        hashSet.add(Integer.valueOf(m6.f29534lg));
+    }
+
+    @Override
+    public final void e(int i7) {
+        invalidate();
+    }
+
+    public final int g() {
+        int i7;
+        int measuredWidth = getMeasuredWidth();
+        if (this.f22454x) {
+            i7 = this.f22530c;
+        } else {
+            i7 = 0;
+        }
+        return measuredWidth - i7;
+    }
+
+    public a getRow() {
+        return this.f22528a;
+    }
+
+    @Override
+    public final void k(ArrayList arrayList) {
+        int i7;
+        if (this.f22454x) {
+            i7 = 0;
+        } else {
+            i7 = this.f22530c;
+        }
+        int g10 = (g() - i7) / 4;
+        arrayList.add(fa.a((i7 + g10) - org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f) + (g() - g10), org.telegram.messenger.g0.L(12.0f)));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i7;
+        Canvas canvas2;
+        j9 textSelectionHelper;
+        if (this.f22454x) {
+            i7 = 0;
+        } else {
+            i7 = this.f22530c;
+        }
+        int g10 = (g() - i7) / 4;
+        int i10 = i7 + g10;
+        int g11 = g() - g10;
+        r2 r2Var = this.f22453w;
+        if (r2Var != null && (textSelectionHelper = r2Var.f22356a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
+            ((RecyclerView) getParent()).getClass();
+            int R = RecyclerView.R(this);
+            if (R >= 0 && R >= textSelectionHelper.f30920p0 && R <= textSelectionHelper.f30923s0) {
+                canvas2 = canvas;
+                canvas2.drawRoundRect(i10 - org.telegram.messenger.g0.L(12.0f), 0.0f, org.telegram.messenger.g0.L(12.0f) + g11, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), this.f22452s);
+                float L = (org.telegram.messenger.g0.L(12.0f) - org.telegram.messenger.g0.L(1.0f)) / 2.0f;
+                RectF rectF = org.telegram.messenger.g0.P;
+                rectF.set(i10, L, g11, org.telegram.messenger.g0.L(1.0f) + L);
+                canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(0.5f), org.telegram.messenger.g0.L(0.5f), this.f22451r);
             }
-            v0Var.U = fjVar;
         }
-        v0Var.g(h);
-        v0Var.l();
-        if (v0Var.O) {
-            v0Var.m(false);
-        }
-        v0Var.requestLayout();
-        v0Var.invalidate();
+        canvas2 = canvas;
+        float L2 = (org.telegram.messenger.g0.L(12.0f) - org.telegram.messenger.g0.L(1.0f)) / 2.0f;
+        RectF rectF2 = org.telegram.messenger.g0.P;
+        rectF2.set(i10, L2, g11, org.telegram.messenger.g0.L(1.0f) + L2);
+        canvas2.drawRoundRect(rectF2, org.telegram.messenger.g0.L(0.5f), org.telegram.messenger.g0.L(0.5f), this.f22451r);
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
-        v0 v0Var = new v0(i7, context, i6Var);
-        v0Var.setBackground(new w1(n6.w0(n6.f29394d6, i6Var)));
-        v0Var.f22395a0 = true;
-        return v0Var;
+    public final void onMeasure(int i7, int i10) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(12.0f));
     }
 
     @Override
-    public final boolean f() {
-        return false;
+    public final void updateColors() {
+        int i7 = m6.ml;
+        h6 h6Var = this.f22450n;
+        this.f22451r.setColor(m6.w0(i7, h6Var));
+        this.f22452s.setColor(m6.w0(m6.f29534lg, h6Var));
     }
 }

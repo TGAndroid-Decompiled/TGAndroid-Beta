@@ -1,5 +1,5 @@
 package org.telegram.messenger;
 public final class yi {
-    public int[] f28144a;
-    public float[] f28145b;
+    public int[] f28172a;
+    public float[] f28173b;
 }

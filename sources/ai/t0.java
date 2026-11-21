@@ -1,132 +1,19 @@
 package ai;
 
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import java.util.ArrayList;
-import org.telegram.messenger.mp;
+import android.graphics.RuntimeShader;
 public abstract class t0 {
-    public static boolean d;
-    public static int f1542e;
-    public static final String[] f1539a = {"hue", "chroma", "light", "haloW", "haloS", "lift", "rimW", "rimB", "speed", "spread", "buttonLean", "iconTint"};
-    public static final float[] f1540b = {150.0f, 0.26f, 0.82f, 1.0f, 1.1f, 0.6f, 1.0f, 1.15f, 1.0f, 40.0f, 0.0f, 0.25f};
-    public static int f1541c = 1;
-    public static final float[] f1543f = new float[12];
-    public static final ArrayList f1544g = new ArrayList();
-
-    public static int a(float f10, float f11, float f12) {
-        float f13;
-        float f14 = ((f12 % 360.0f) + 360.0f) % 360.0f;
-        if (f14 >= 70.0f && f14 <= 135.0f) {
-            if (f14 < 85.0f) {
-                f13 = (f14 - 70.0f) / 15.0f;
-            } else if (f14 > 120.0f) {
-                f13 = (135.0f - f14) / 15.0f;
-            } else {
-                f13 = 1.0f;
-            }
-        } else {
-            f13 = 0.0f;
-        }
-        if (f13 <= 0.0f) {
-            return g(f10, f11, f12);
-        }
-        return g(f10 - (0.04f * f13), com.google.android.gms.internal.vision.e2.C(f13, 0.4f, 1.0f, f11), (f13 * 12.0f) + f12);
+    public static RuntimeShader a() {
+        return new RuntimeShader("uniform float2 uSize;\nuniform float2 uOrigin;\nuniform float uRadius;\nuniform float uTime;\nuniform float uIntensity;\nuniform float uSweep;\nuniform float uDark;\nuniform float uHalo;\nuniform float uDp;\nuniform float uLevel;\nuniform float uPulse;\nuniform float uPulseAng;\nuniform float3 uL0;\nuniform float3 uL1;\nuniform float3 uL2;\nuniform float3 uLHi;\nuniform float uHaloW;\nuniform float uHaloS;\nuniform float uLift;\nuniform float uRimW;\nuniform float uRimB;\nuniform float3 uRim;\nuniform float uThin;\nuniform float uNStroke;\nuniform float uNGlow;\nuniform float uNSat;\nuniform float uHue;\nfloat3 hueShift(float3 c, float h) {\n  float mx = max(c.r, max(c.g, c.b)), mn = min(c.r, min(c.g, c.b)), d = mx - mn;\n  if (d < 0.0001) return c;\n  float hh = mx == c.r ? (c.g - c.b) / d : (mx == c.g ? 2.0 + (c.b - c.r) / d : 4.0 + (c.r - c.g) / d);\n  hh = fract(hh / 6.0 + h);\n  float3 k = clamp(abs(fract(hh + float3(1.0, 2.0 / 3.0, 1.0 / 3.0)) * 6.0 - 3.0) - 1.0, 0.0, 1.0);\n  return mx * mix(float3(1.0), k, d / mx);\n}\nfloat sdRound(float2 p, float2 b, float r) {\n  float2 q = abs(p) - b + r;\n  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;\n}\nfloat hotAt(float a, float t) {\n  float h = 0.5 + 0.5 * sin(a * 2.0 + t * 1.15) * sin(a * 3.0 - t * 0.73 + 1.7);\n  h = smoothstep(0.15, 1.0, h);\n  return clamp(h * (0.75 + 0.6 * uLevel) + 0.12 * uLevel, 0.0, 1.0);\n}\nhalf4 main(float2 fc) {\n  float2 hs = uSize * 0.5;\n  float2 c = uOrigin + hs;\n  float2 p = fc - c;\n  float d = sdRound(p, hs, uRadius);\n  float t = uTime;\n  float2 uv = (fc - uOrigin) / max(uSize.y, 1.0);\n  float ang = atan(p.y / max(hs.y, 1.0), p.x / max(hs.x, 1.0));\n  float hot = 0.5 + 0.5 * sin(ang * 2.0 + t * 1.15) * sin(ang * 3.0 - t * 0.73 + 1.7);\n  hot = smoothstep(0.15, 1.0, hot);\n  hot = clamp(hot * (0.75 + 0.6 * uLevel) + 0.12 * uLevel, 0.0, 1.0);\n  float3 cA = mix(uL0, float3(0.12, 0.40, 1.0), uDark);\n  float3 cB = mix(uL1, float3(0.22, 0.86, 1.0), uDark);\n  float3 cC = mix(uL2, float3(0.43, 0.33, 1.0), uDark);\n  float tc = t * uDark;\n  float3 col = mix(cA, cB, 0.5 + 0.5 * sin(ang * 1.0 + tc * 0.9));\n  col = mix(col, cC, 0.5 + 0.5 * sin(ang * 2.0 - tc * 0.6 + uv.x * 1.3));\n  float dO = max(d, 0.0), dI = min(d, 0.0);\n  float aO = 0.0; float3 cO = col;\n  {\n    float hw = mix(uHaloW, 1.0, uDark), hsx = mix(uHaloS, 1.0, uDark);\n    float wav = 1.0 + (1.0 - uDark) * 0.40 * sin(ang * 3.0 + t * 1.3) * sin(ang * 2.0 - t * 0.8 + 1.1);\n    float halo = exp(-dO / (uHalo * mix(0.22, 0.36, uDark) * hw * wav)) * (mix(0.58, 0.22, uDark) + mix(0.42, 0.78, uDark) * hot);\n    halo *= 1.0 - smoothstep(uHalo * 0.7 * hw, uHalo * hw, dO);\n    aO = clamp(halo * mix(1.0 + 0.35 * uLevel, 0.85, uDark) * hsx, 0.0, 1.0);\n    float lift = (1.0 - uDark) * 0.5 * uLift * exp(-dO / (uHalo * 0.32 * hw)) * (1.0 - smoothstep(uHalo * 0.8 * hw, uHalo * 1.1 * hw, dO));\n    cO = (cO * aO + float3(1.0) * lift * (1.0 - aO)) / max(aO + lift * (1.0 - aO), 0.0001);\n    aO = aO + lift * (1.0 - aO);\n    float qb = dO / (0.6 * uDp);\n    float bline = (1.0 - uDark) * exp(-qb * qb) * 0.26;\n    float3 bc = mix(col, uRim, 0.5) * 0.72;\n    cO = (cO * aO + bc * bline) / max(aO + bline, 0.0001);\n    aO = min(1.0, aO + bline);\n    aO *= mix(1.0, uNGlow, uDark);\n  }\n  float aI = 0.0; float3 cI = col;\n  {\n    float mI = smoothstep(0.0, 9.0 * uDp, -dI) * uDark * 0.55;\n    if (mI > 0.0) {\n      float wy = smoothstep(-0.35 * hs.y, 0.35 * hs.y, p.y);\n      float aN = atan(-1.0, p.x / max(hs.x, 1.0)), aS = atan(1.0, p.x / max(hs.x, 1.0));\n      float hb = mix(hotAt(aN, t), hotAt(aS, t), wy);\n      float3 cN = mix(mix(cA, cB, 0.5 + 0.5 * sin(aN + tc * 0.9)), cC, 0.5 + 0.5 * sin(aN * 2.0 - tc * 0.6 + uv.x * 1.3));\n      float3 cS = mix(mix(cA, cB, 0.5 + 0.5 * sin(aS + tc * 0.9)), cC, 0.5 + 0.5 * sin(aS * 2.0 - tc * 0.6 + uv.x * 1.3));\n      hot = mix(hot, hb, mI);\n      col = mix(col, mix(cN, cS, wy), mI);\n    }\n  }\n  {\n    float rim = exp(dI / (mix(0.9 * uRimW, 1.4, uDark) * uDp)) * (mix(0.62, 0.45, uDark) + mix(0.38, 0.55, uDark) * hot) * mix(uRimB, 1.0, uDark);\n    float band = (exp(dI / (11.0 * uDp)) + exp(-(2.0 * hs.y + dI) / (11.0 * uDp))) * (0.25 + 0.75 * hot);\n    float n = sin(uv.x * 3.1 + t * 0.8 + sin(uv.y * 4.0 - t * 0.5) * 1.2) * sin(uv.y * 5.0 - t * 0.6 + sin(uv.x * 2.3 + t * 0.4) * 1.4);\n    n = 0.5 + 0.5 * n; n = n * n;\n    float inner = n * mix(0.0, 0.20, uDark) * (0.7 + 0.5 * uLevel);\n    float rim2 = exp(dI / (mix(1.8, 2.2, uDark) * uDp)) * (0.5 + 0.5 * hot);\n    float thinK = 1.0 - 0.45 * uThin * uDark;\n    aI = rim * mix(0.22, 0.95, uDark) * mix(1.0, uNStroke, uDark) + rim2 * mix(0.02, 0.0, uDark) + (band * mix(0.0, 0.42, uDark) * mix(1.0, uNGlow, uDark) + inner) * thinK;\n    cI = mix(col, mix(uLHi, float3(0.86, 0.95, 1.0), uDark), clamp(rim, 0.0, 1.0) * mix(0.12, 0.55, uDark));\n    cI = mix(cI, uRim, (1.0 - uDark) * clamp(rim * 1.2, 0.0, 1.0) * 0.85);\n    float wf = (1.0 - uDark) * 0.55 * (1.0 - clamp(rim * 1.3 + rim2 * 0.6, 0.0, 1.0));\n    cI = (cI * aI + float3(1.0) * wf) / max(aI + wf, 0.0001);\n    aI += wf;\n    float ql = (dI + 1.4 * uDp) / (0.6 * uDp);\n    float hl = (1.0 - uDark) * exp(-ql * ql) * 0.6;\n    float3 hlc = mix(uLHi, float3(1.0), 0.35);\n    cI = (cI * aI + hlc * hl) / max(aI + hl, 0.0001);\n    aI = min(1.0, aI + hl);\n  }\n  float kx = smoothstep(-0.7 * uDp, 0.7 * uDp, d);\n  float a = mix(aI, aO, kx);\n  float3 outc = (cI * aI * (1.0 - kx) + cO * aO * kx) / max(a, 0.0001);\n  if (uPulse >= 0.0) {\n    float head = uPulseAng + uPulse * 3.77;\n    float da = abs(mod(ang - head + 3.14159, 6.28318) - 3.14159);\n    float seg = exp(-da * da / 0.8) * sin(uPulse * 3.14159);\n    float edge = exp(-abs(d) / (1.6 * uDp));\n    float pa = seg * edge * 0.38;\n    outc = mix(outc, mix(uLHi, float3(0.80, 0.93, 1.0), uDark), clamp(pa / max(a + pa, 0.0001), 0.0, 1.0));\n    a += pa;\n  }\n  if (uSweep >= 0.0) {\n    float x = (fc.x - uOrigin.x) / max(uSize.x, 1.0);\n    float pos = mix(-0.35, 1.35, uSweep);\n    float k = (x - pos + (fc.y - c.y) / max(uSize.x, 1.0) * 0.9) / 0.15;\n    float core = exp(-k * k * 1.6);\n    float body = exp(-k * k * 0.22);\n    float trail = k < 0.0 ? exp(k * 0.32) * (1.0 - exp(-k * k * 0.5)) : 0.0;\n    float inside = 1.0 - smoothstep(-1.0, 1.0, d);\n    float near = exp(-max(d, 0.0) / (uHalo * 0.3));\n    float m = inside * mix(0.22, 1.0, uDark) + 0.6 * near * (1.0 - inside);\n    float3 cBand = mix(uL0, float3(0.18, 0.55, 1.0), uDark);\n    float3 cCore = mix(uLHi, float3(0.62, 0.95, 1.0), uDark);\n    float3 cTrail = mix(uL2, float3(0.42, 0.30, 0.95), uDark);\n    float aB = body * 0.30 * m, aC = core * mix(0.30, 0.34, uDark) * m, aT = trail * mix(0.20, 0.26, uDark) * m;\n    float sa = aB + aC + aT;\n    float3 sc = (cBand * aB + cCore * aC + cTrail * aT) / max(sa, 0.0001);\n    outc = mix(outc, sc, clamp(sa / max(a + sa, 0.0001), 0.0, 1.0));\n    a += sa;\n  }\n  if (uDark > 0.5 && uHue != 0.0) outc = hueShift(clamp(outc, 0.0, 1.0), uHue);\n  if (uDark > 0.5 && uNSat != 1.0) { float lu = dot(outc, float3(0.299, 0.587, 0.114)); outc = clamp(mix(float3(lu), outc, uNSat), 0.0, 1.0); }\n  a = clamp(a * uIntensity, 0.0, 1.0);\n  return half4(half3(outc * a), half(a));\n}\n");
     }
 
-    public static int b(double d2) {
-        double pow;
-        double max = Math.max(0.0d, Math.min(1.0d, d2));
-        if (max <= 0.0031308d) {
-            pow = max * 12.92d;
-        } else {
-            pow = (Math.pow(max, 0.4166666666666667d) * 1.055d) - 0.055d;
-        }
-        return (int) Math.round(pow * 255.0d);
+    public static RuntimeShader b(String str) {
+        return new RuntimeShader(str);
     }
 
-    public static float c(int i7) {
-        f();
-        return f1543f[i7];
+    public static void c() {
     }
 
-    public static float d(float f10) {
-        float f11;
-        float f12 = ((f10 % 360.0f) + 360.0f) % 360.0f;
-        if (f12 >= 145.0f && f12 <= 205.0f) {
-            if (f12 < 160.0f) {
-                f11 = (f12 - 145.0f) / 15.0f;
-            } else if (f12 > 190.0f) {
-                f11 = (205.0f - f12) / 15.0f;
-            } else {
-                f11 = 1.0f;
-            }
-        } else {
-            f11 = 0.0f;
-        }
-        return f10 - (f11 * 14.0f);
-    }
-
-    public static double e(double d2) {
-        if (d2 <= 0.04045d) {
-            return d2 / 12.92d;
-        }
-        return Math.pow((d2 + 0.055d) / 1.055d, 2.4d);
-    }
-
-    public static void f() {
-        if (!d) {
-            d = true;
-            SharedPreferences g12 = mp.g1();
-            f1542e = g12.getInt("dict_glow_day2_preset", 0);
-            g12.getBoolean("dict_glow_day2_contrast", true);
-            f1541c = g12.getInt("dict_glow_day2_rimMode", 1);
-            for (int i7 = 0; i7 < 12; i7++) {
-                f1543f[i7] = g12.getFloat("dict_glow_day2_" + f1539a[i7], f1540b[i7]);
-            }
-        }
-    }
-
-    public static int g(float f10, float f11, float f12) {
-        double radians = Math.toRadians(((f12 % 360.0f) + 360.0f) % 360.0f);
-        double d2 = f11;
-        for (int i7 = 0; i7 < 24; i7++) {
-            double cos = Math.cos(radians) * d2;
-            double sin = Math.sin(radians) * d2;
-            double d10 = f10;
-            double d11 = (0.2158037573d * sin) + (0.3963377774d * cos) + d10;
-            double d12 = (d10 - (0.1055613458d * cos)) - (0.0638541728d * sin);
-            double d13 = (d10 - (cos * 0.0894841775d)) - (sin * 1.291485548d);
-            double d14 = d11 * d11 * d11;
-            double d15 = d12 * d12 * d12;
-            double d16 = d13 * d13 * d13;
-            double d17 = (0.2309699292d * d16) + ((4.0767416621d * d14) - (3.3077115913d * d15));
-            double d18 = ((2.6097574011d * d15) + ((-1.2684380046d) * d14)) - (0.3413193965d * d16);
-            double d19 = (d16 * 1.707614701d) + ((d14 * (-0.0041960863d)) - (d15 * 0.7034186147d));
-            if (d17 >= -0.001d && d17 <= 1.001d && d18 >= -0.001d && d18 <= 1.001d && d19 >= -0.001d && d19 <= 1.001d) {
-                return Color.rgb(b(d17), b(d18), b(d19));
-            }
-            d2 *= 0.9d;
-        }
-        int b10 = b(f10 * f10 * f10);
-        return Color.rgb(b10, b10, b10);
-    }
-
-    public static float h(int i7) {
-        float[] i10 = i(i7);
-        float degrees = (float) Math.toDegrees(Math.atan2(i10[2], i10[1]));
-        if (degrees < 0.0f) {
-            return degrees + 360.0f;
-        }
-        return degrees;
-    }
-
-    public static float[] i(int i7) {
-        double e10 = e(Color.red(i7) / 255.0d);
-        double e11 = e(Color.green(i7) / 255.0d);
-        double e12 = e(Color.blue(i7) / 255.0d);
-        double cbrt = Math.cbrt((0.0514459929d * e12) + (0.5363325363d * e11) + (0.4122214708d * e10));
-        double cbrt2 = Math.cbrt((0.1073969566d * e12) + (0.6806995451d * e11) + (0.2119034982d * e10));
-        double cbrt3 = Math.cbrt((e12 * 0.6299787005d) + (e11 * 0.2817188376d) + (e10 * 0.0883024619d));
-        return new float[]{(float) (((0.793617785d * cbrt2) + (0.2104542553d * cbrt)) - (0.0040720468d * cbrt3)), (float) ((0.4505937099d * cbrt3) + ((1.9779984951d * cbrt) - (2.428592205d * cbrt2))), (float) (((cbrt2 * 0.7827717662d) + (cbrt * 0.0259040371d)) - (cbrt3 * 0.808675766d))};
+    public static RuntimeShader d() {
+        return new RuntimeShader("uniform shader content;\nuniform shader alphaMask;\nuniform shader overlay;\nuniform float4 background_color_premultiplied;\nuniform float2 shader_offset;\nhalf4 main(float2 coord) {\n    half4 source = content.eval(coord);\n    half4 background = half4(background_color_premultiplied);\n    half4 base = source + background * (1.0 - source.a);\n    float2 shaderCoord = coord + shader_offset;\n    base *= alphaMask.eval(shaderCoord).a;\n    half4 top = overlay.eval(shaderCoord);\n    return top + base * (1.0 - top.a);\n}");
     }
 }

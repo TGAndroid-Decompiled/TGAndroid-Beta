@@ -5,7 +5,7 @@ import org.telegram.messenger.mp;
 import org.telegram.messenger.n5;
 import org.telegram.messenger.v3;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pk0;
+import org.telegram.ui.Components.rk0;
 public final class k0 {
     public boolean A;
     public int B;
@@ -19,47 +19,47 @@ public final class k0 {
     public boolean J;
     public int K;
     public boolean L;
-    public final String f54800a;
-    public final int f54801b;
-    public final long f54802c;
+    public final String f54841a;
+    public final int f54842b;
+    public final long f54843c;
     public final int d;
-    public final int f54803e;
-    public final int f54804f;
-    public final byte[] f54805g;
+    public final int f54844e;
+    public final int f54845f;
+    public final byte[] f54846g;
     public final boolean h;
-    public final boolean f54806i;
-    public final boolean f54807j;
-    public final boolean f54808k;
-    public final long f54809l;
-    public final String f54810m;
-    public final long f54811n;
-    public String f54812o;
-    public String f54813p;
-    public long f54814q;
-    public TLRPC.TL_messageMediaWidget f54815r;
-    public String f54816s;
-    public d1 f54817t;
-    public pk0 f54818u;
-    public pk0 f54819w;
-    public int f54820x;
-    public long f54821y;
-    public boolean f54822z;
+    public final boolean f54847i;
+    public final boolean f54848j;
+    public final boolean f54849k;
+    public final long f54850l;
+    public final String f54851m;
+    public final long f54852n;
+    public String f54853o;
+    public String f54854p;
+    public long f54855q;
+    public TLRPC.TL_messageMediaWidget f54856r;
+    public String f54857s;
+    public d1 f54858t;
+    public rk0 f54859u;
+    public rk0 f54860w;
+    public int f54861x;
+    public long f54862y;
+    public boolean f54863z;
     public final ArrayList v = new ArrayList();
     public final j0 M = new j0(this, 0);
 
     public k0(String str, int i7, long j3, int i10, long j10, TLRPC.TL_messageMediaWidget tL_messageMediaWidget, boolean z10) {
         boolean z11;
         boolean z12;
-        this.f54800a = str;
-        this.f54801b = i7;
-        this.f54802c = j3;
+        this.f54841a = str;
+        this.f54842b = i7;
+        this.f54843c = j3;
         this.d = i10;
-        this.f54811n = j10;
+        this.f54852n = j10;
         boolean z13 = false;
-        this.f54803e = Math.max(0, tL_messageMediaWidget.width);
-        this.f54804f = Math.max(0, tL_messageMediaWidget.height);
-        this.f54805g = tL_messageMediaWidget.payload;
-        this.f54808k = z10;
+        this.f54844e = Math.max(0, tL_messageMediaWidget.width);
+        this.f54845f = Math.max(0, tL_messageMediaWidget.height);
+        this.f54846g = tL_messageMediaWidget.payload;
+        this.f54849k = z10;
         if (!z10 && tL_messageMediaWidget.is_copy) {
             z11 = true;
         } else {
@@ -71,12 +71,12 @@ public final class k0 {
         } else {
             z12 = false;
         }
-        this.f54806i = z12;
+        this.f54847i = z12;
         if (!z10 && tL_messageMediaWidget.background_query && i10 > 0) {
             z13 = true;
         }
-        this.f54807j = z13;
-        this.f54809l = tL_messageMediaWidget.widget_id;
+        this.f54848j = z13;
+        this.f54850l = tL_messageMediaWidget.widget_id;
         String str2 = null;
         if (!z10 && !z11) {
             if (n5.E(j3)) {
@@ -88,15 +88,15 @@ public final class k0 {
                 }
             }
         }
-        this.f54810m = str2;
-        this.f54815r = tL_messageMediaWidget;
-        this.f54812o = n0.C(tL_messageMediaWidget.chat_data);
-        this.f54813p = n0.C(tL_messageMediaWidget.public_data);
-        this.f54814q = tL_messageMediaWidget.public_data_hash;
+        this.f54851m = str2;
+        this.f54856r = tL_messageMediaWidget;
+        this.f54853o = n0.C(tL_messageMediaWidget.chat_data);
+        this.f54854p = n0.C(tL_messageMediaWidget.public_data);
+        this.f54855q = tL_messageMediaWidget.public_data_hash;
     }
 
     public final String a() {
-        long j3 = this.f54802c;
-        return n0.B(this.f54801b, this.d, j3);
+        long j3 = this.f54843c;
+        return n0.B(this.f54842b, this.d, j3);
     }
 }

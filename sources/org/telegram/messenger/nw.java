@@ -3,49 +3,49 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class nw implements Runnable {
-    public final int f25992a;
-    public final zy f25993b;
-    public final ArrayList f25994c;
+    public final int f26020a;
+    public final zy f26021b;
+    public final ArrayList f26022c;
     public final int d;
-    public final int f25995e;
-    public final TLRPC.Message f25996f;
+    public final int f26023e;
+    public final TLRPC.Message f26024f;
     public final int h;
-    public final TLRPC.Message f25997n;
-    public final fj f25998r;
-    public final int f25999s;
+    public final TLRPC.Message f26025n;
+    public final fj f26026r;
+    public final int f26027s;
 
     public nw(zy zyVar, ArrayList arrayList, int i7, int i10, TLRPC.Message message, int i11, TLRPC.Message message2, fj fjVar, int i12, int i13) {
-        this.f25992a = i13;
-        this.f25993b = zyVar;
-        this.f25994c = arrayList;
+        this.f26020a = i13;
+        this.f26021b = zyVar;
+        this.f26022c = arrayList;
         this.d = i7;
-        this.f25995e = i10;
-        this.f25996f = message;
+        this.f26023e = i10;
+        this.f26024f = message;
         this.h = i11;
-        this.f25997n = message2;
-        this.f25998r = fjVar;
-        this.f25999s = i12;
+        this.f26025n = message2;
+        this.f26026r = fjVar;
+        this.f26027s = i12;
     }
 
     @Override
     public final void run() {
-        switch (this.f25992a) {
+        switch (this.f26020a) {
             case 0:
-                zy zyVar = this.f25993b;
-                zyVar.getMessagesStorage().f27052a.c(new nw(zyVar, this.f25994c, this.d, this.f25995e, this.f25996f, this.h, this.f25997n, this.f25998r, this.f25999s, 1));
+                zy zyVar = this.f26021b;
+                zyVar.getMessagesStorage().f27080a.c(new nw(zyVar, this.f26022c, this.d, this.f26023e, this.f26024f, this.h, this.f26025n, this.f26026r, this.f26027s, 1));
                 return;
             default:
-                final zy zyVar2 = this.f25993b;
+                final zy zyVar2 = this.f26021b;
                 tr messagesStorage = zyVar2.getMessagesStorage();
-                ArrayList arrayList = this.f25994c;
+                ArrayList arrayList = this.f26022c;
                 final int i7 = this.d;
                 messagesStorage.j1(arrayList, true, false, false, 0, false, i7, 0L);
-                final int i10 = this.f25995e;
-                final TLRPC.Message message = this.f25996f;
+                final int i10 = this.f26023e;
+                final TLRPC.Message message = this.f26024f;
                 final int i11 = this.h;
-                final TLRPC.Message message2 = this.f25997n;
-                final fj fjVar = this.f25998r;
-                final int i12 = this.f25999s;
+                final TLRPC.Message message2 = this.f26025n;
+                final fj fjVar = this.f26026r;
+                final int i12 = this.f26027s;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -65,10 +65,10 @@ public final class nw implements Runnable {
                             z10 = false;
                         }
                         boolean z11 = true;
-                        messagesController.b0(arrayList2, null, null, j3, false, i11, false, 0L, null, 0, z10, message2.f28424id);
+                        messagesController.b0(arrayList2, null, null, j3, false, i11, false, 0L, null, 0, z10, message2.f28452id);
                         ArrayList arrayList3 = new ArrayList();
                         fj fjVar2 = fjVar;
-                        arrayList3.add(new fj(fjVar2.K1, fjVar2.f23965k, true, true));
+                        arrayList3.add(new fj(fjVar2.K1, fjVar2.f23993k, true, true));
                         zyVar3.getMessagesController().x5(i14, message3.dialog_id, arrayList3);
                         zyVar3.getMediaDataController().y0(message3.dialog_id);
                         zyVar3.d0(i13);

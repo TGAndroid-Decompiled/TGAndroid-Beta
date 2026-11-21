@@ -11,19 +11,19 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 public final class ax extends v4.w {
     public v4.f1 d;
-    public boolean f45680e;
-    public boolean f45681f;
-    public final bx f45682g;
+    public boolean f45716e;
+    public boolean f45717f;
+    public final bx f45718g;
     public final cx h;
 
     public ax(cx cxVar, bx bxVar) {
         this.h = cxVar;
-        this.f45682g = bxVar;
+        this.f45718g = bxVar;
     }
 
     @Override
     public final int b(int i7, int i10) {
-        if (this.f45681f) {
+        if (this.f45717f) {
             return 0;
         }
         return super.b(i7, i10);
@@ -37,7 +37,7 @@ public final class ax extends v4.w {
             return 200L;
         }
         if (i7 == 8 && (u2Var = (cxVar = this.h).Z0) != null) {
-            org.telegram.messenger.g0.h3(new sg(1, u2Var), this.f45682g.f46308y.f59197e);
+            org.telegram.messenger.g0.h3(new sg(1, u2Var), this.f45718g.f46331y.f59235e);
             cxVar.Z0 = null;
         }
         return super.d(recyclerView, i7, f10, f11);
@@ -68,8 +68,8 @@ public final class ax extends v4.w {
         char c10;
         int i7;
         cx cxVar = this.h;
-        ArrayList arrayList = cxVar.f46648c1;
-        View view = f1Var2.f59123a;
+        ArrayList arrayList = cxVar.f46704c1;
+        View view = f1Var2.f59161a;
         char c11 = 0;
         if (view instanceof org.telegram.ui.Cells.u2) {
             long dialogId = ((org.telegram.ui.Cells.u2) view).getDialogId();
@@ -77,14 +77,14 @@ public final class ax extends v4.w {
             if (dialog != null && cxVar.v4(dialog) && !org.telegram.messenger.n5.D(dialogId)) {
                 int b10 = f1Var.b();
                 int b11 = f1Var2.b();
-                bx bxVar = this.f45682g;
-                if (bxVar.f46298a.getItemAnimator() == null) {
-                    bxVar.f46298a.setItemAnimator(bxVar.f46308y);
+                bx bxVar = this.f45718g;
+                if (bxVar.f46321a.getItemAnimator() == null) {
+                    bxVar.f46321a.setItemAnimator(bxVar.f46331y);
                 }
                 kv kvVar = bxVar.d;
                 cx cxVar2 = kvVar.S;
                 int i10 = kvVar.G;
-                ArrayList d42 = cxVar2.d4(i10, kvVar.h, kvVar.f17579r, false);
+                ArrayList d42 = cxVar2.d4(i10, kvVar.h, kvVar.f17604r, false);
                 int H = kvVar.H(b10);
                 int H2 = kvVar.H(b11);
                 TLRPC.Dialog dialog2 = (TLRPC.Dialog) d42.get(H);
@@ -101,25 +101,25 @@ public final class ax extends v4.w {
                     } else {
                         c10 = 0;
                     }
-                    LongSparseIntArray longSparseIntArray = roVarArr[c10].f26679j;
-                    int i13 = longSparseIntArray.get(dialog2.f28407id);
-                    longSparseIntArray.put(dialog2.f28407id, longSparseIntArray.get(dialog3.f28407id));
-                    longSparseIntArray.put(dialog3.f28407id, i13);
+                    LongSparseIntArray longSparseIntArray = roVarArr[c10].f26707j;
+                    int i13 = longSparseIntArray.get(dialog2.f28435id);
+                    longSparseIntArray.put(dialog2.f28435id, longSparseIntArray.get(dialog3.f28435id));
+                    longSparseIntArray.put(dialog3.f28435id, i13);
                 }
                 Collections.swap(d42, H, H2);
                 kvVar.X(null);
-                int i14 = cxVar.f46663f0[0].f46305s;
+                int i14 = cxVar.f46719f0[0].f46328s;
                 if (i14 != 7) {
                     i7 = 8;
                     if (i14 != 8) {
-                        cxVar.f46642b1 = true;
+                        cxVar.f46698b1 = true;
                         return true;
                     }
                 } else {
                     i7 = 8;
                 }
                 org.telegram.messenger.ro[] roVarArr2 = cxVar.getMessagesController().N;
-                if (cxVar.f46663f0[0].f46305s == i7) {
+                if (cxVar.f46719f0[0].f46328s == i7) {
                     c11 = 1;
                 }
                 org.telegram.messenger.ro roVar = roVarArr2[c11];
@@ -136,13 +136,13 @@ public final class ax extends v4.w {
     @Override
     public final void p(v4.f1 f1Var, int i7) {
         if (f1Var != null) {
-            this.f45682g.f46298a.d1(false);
+            this.f45718g.f46321a.d1(false);
         }
         this.d = f1Var;
         if (f1Var != null) {
-            View view = f1Var.f59123a;
+            View view = f1Var.f59161a;
             if (view instanceof org.telegram.ui.Cells.u2) {
-                ((org.telegram.ui.Cells.u2) view).f32006x = false;
+                ((org.telegram.ui.Cells.u2) view).f32034x = false;
             }
         }
     }
@@ -152,13 +152,13 @@ public final class ax extends v4.w {
         int i7;
         cx cxVar = this.h;
         if (f1Var != null) {
-            org.telegram.ui.Cells.u2 u2Var = (org.telegram.ui.Cells.u2) f1Var.f59123a;
+            org.telegram.ui.Cells.u2 u2Var = (org.telegram.ui.Cells.u2) f1Var.f59161a;
             long dialogId = u2Var.getDialogId();
             boolean D = org.telegram.messenger.n5.D(dialogId);
             int i10 = 0;
-            bx bxVar = this.f45682g;
+            bx bxVar = this.f45718g;
             if (D) {
-                yw ywVar = bxVar.f46298a;
+                yw ywVar = bxVar.f46321a;
                 int i11 = yw.C3;
                 ywVar.C1(false, u2Var);
                 return;
@@ -168,7 +168,7 @@ public final class ax extends v4.w {
                 return;
             }
             if (!cxVar.getMessagesController().I2(dialogId, false) && cxVar.Y2 == 0) {
-                i7 = ((org.telegram.ui.ActionBar.h2) cxVar).currentAccount;
+                i7 = ((org.telegram.ui.ActionBar.g2) cxVar).currentAccount;
                 if (org.telegram.messenger.bz.m(i7) == 1) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(Long.valueOf(dialogId));
@@ -189,26 +189,26 @@ public final class ax extends v4.w {
             cxVar.Y0 = u2Var;
             l2.x xVar = new l2.x(this, dialog, bxVar.d.b(), f1Var.b(), 13);
             cxVar.U4(true, true);
-            if (Utilities.f22777b.nextInt(1000) == 1) {
+            if (Utilities.f22805b.nextInt(1000) == 1) {
                 if (cxVar.X0 == null) {
-                    yw ywVar2 = bxVar.f46298a;
+                    yw ywVar2 = bxVar.f46321a;
                     ?? obj = new Object();
-                    obj.f42858a = new Paint(1);
+                    obj.f33476a = new Paint(1);
                     Paint paint = new Paint(1);
-                    obj.f42859b = paint;
-                    obj.f42861e = 0L;
-                    obj.f42862f = new RectF();
+                    obj.f33477b = paint;
+                    obj.f33479e = 0L;
+                    obj.f33480f = new RectF();
                     paint.setStyle(Paint.Style.STROKE);
                     paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-                    obj.f42860c = ywVar2;
+                    obj.f33478c = ywVar2;
                     cxVar.X0 = obj;
                 }
-                org.telegram.ui.Components.zb0 zb0Var = cxVar.X0;
-                zb0Var.d = xVar;
-                zb0Var.h = 0.0f;
-                zb0Var.f42863g = 0.0f;
-                zb0Var.f42861e = System.currentTimeMillis();
-                zb0Var.f42860c.invalidate();
+                org.telegram.ui.Components.ac0 ac0Var = cxVar.X0;
+                ac0Var.d = xVar;
+                ac0Var.h = 0.0f;
+                ac0Var.f33481g = 0.0f;
+                ac0Var.f33479e = System.currentTimeMillis();
+                ac0Var.f33478c.invalidate();
                 return;
             }
             xVar.run();

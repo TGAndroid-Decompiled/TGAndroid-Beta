@@ -5,16 +5,16 @@ import h9.i0;
 import java.util.ArrayList;
 import java.util.List;
 public final class k extends m implements o2.i {
-    public final n f55122n;
+    public final n f55163n;
 
     public k(u uVar, i0 i0Var, n nVar, ArrayList arrayList, List list, List list2) {
         super(uVar, i0Var, nVar, arrayList, list, list2);
-        this.f55122n = nVar;
+        this.f55163n = nVar;
     }
 
     @Override
     public final long a(long j3) {
-        return this.f55122n.g(j3);
+        return this.f55163n.g(j3);
     }
 
     @Override
@@ -29,52 +29,52 @@ public final class k extends m implements o2.i {
 
     @Override
     public final long e(long j3, long j10) {
-        return this.f55122n.e(j3, j10);
+        return this.f55163n.e(j3, j10);
     }
 
     @Override
     public final long h(long j3, long j10) {
-        return this.f55122n.c(j3, j10);
+        return this.f55163n.c(j3, j10);
     }
 
     @Override
     public final long i(long j3, long j10) {
-        n nVar = this.f55122n;
-        if (nVar.f55131f != null) {
+        n nVar = this.f55163n;
+        if (nVar.f55172f != null) {
             return -9223372036854775807L;
         }
         long b10 = nVar.b(j3, j10) + nVar.c(j3, j10);
-        return (nVar.e(b10, j3) + nVar.g(b10)) - nVar.f55133i;
+        return (nVar.e(b10, j3) + nVar.g(b10)) - nVar.f55174i;
     }
 
     @Override
     public final j k(long j3) {
-        return this.f55122n.h(this, j3);
+        return this.f55163n.h(this, j3);
     }
 
     @Override
     public final long o(long j3, long j10) {
-        return this.f55122n.f(j3, j10);
+        return this.f55163n.f(j3, j10);
     }
 
     @Override
     public final boolean t() {
-        return this.f55122n.i();
+        return this.f55163n.i();
     }
 
     @Override
     public final long v() {
-        return this.f55122n.d;
+        return this.f55163n.d;
     }
 
     @Override
     public final long y(long j3) {
-        return this.f55122n.d(j3);
+        return this.f55163n.d(j3);
     }
 
     @Override
     public final long z(long j3, long j10) {
-        return this.f55122n.b(j3, j10);
+        return this.f55163n.b(j3, j10);
     }
 
     @Override

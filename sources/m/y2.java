@@ -31,24 +31,24 @@ public final class y2 extends i1.a implements View.OnClickListener {
     public int L;
     public int M;
     public int N;
-    public final int f20263n;
-    public final int f20264r;
-    public final LayoutInflater f20265s;
-    public final SearchView f20266w;
-    public final SearchableInfo f20267x;
-    public final Context f20268y;
+    public final int f20291n;
+    public final int f20292r;
+    public final LayoutInflater f20293s;
+    public final SearchView f20294w;
+    public final SearchableInfo f20295x;
+    public final Context f20296y;
 
     public y2(Context context, SearchView searchView, SearchableInfo searchableInfo, WeakHashMap weakHashMap) {
         int suggestionRowLayout = searchView.getSuggestionRowLayout();
-        this.f15911b = true;
-        this.f15912c = null;
-        this.f15910a = false;
+        this.f15936b = true;
+        this.f15937c = null;
+        this.f15935a = false;
         this.d = -1;
-        this.f15913e = new com.google.android.gms.internal.clearcut.c(this);
-        this.f15914f = new c5.i(this, 1);
-        this.f20264r = suggestionRowLayout;
-        this.f20263n = suggestionRowLayout;
-        this.f20265s = (LayoutInflater) context.getSystemService("layout_inflater");
+        this.f15938e = new com.google.android.gms.internal.clearcut.c(this);
+        this.f15939f = new c5.i(this, 1);
+        this.f20292r = suggestionRowLayout;
+        this.f20291n = suggestionRowLayout;
+        this.f20293s = (LayoutInflater) context.getSystemService("layout_inflater");
         this.G = 1;
         this.I = -1;
         this.J = -1;
@@ -56,10 +56,10 @@ public final class y2 extends i1.a implements View.OnClickListener {
         this.L = -1;
         this.M = -1;
         this.N = -1;
-        this.f20266w = searchView;
-        this.f20267x = searchableInfo;
+        this.f20294w = searchView;
+        this.f20295x = searchableInfo;
         this.F = searchView.getSuggestionCommitIconResId();
-        this.f20268y = context;
+        this.f20296y = context;
         this.E = weakHashMap;
     }
 
@@ -106,7 +106,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
             if (g12 != null) {
                 return g12;
             }
-            SearchableInfo searchableInfo = this.f20267x;
+            SearchableInfo searchableInfo = this.f20295x;
             if (searchableInfo.shouldRewriteQueryFromData() && (g11 = g(cursor, cursor.getColumnIndex("suggest_intent_data"))) != null) {
                 return g11;
             }
@@ -123,7 +123,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
         String authority = uri.getAuthority();
         if (!TextUtils.isEmpty(authority)) {
             try {
-                Resources resourcesForApplication = this.f20268y.getPackageManager().getResourcesForApplication(authority);
+                Resources resourcesForApplication = this.f20296y.getPackageManager().getResourcesForApplication(authority);
                 List<String> pathSegments = uri.getPathSegments();
                 if (pathSegments != null) {
                     int size = pathSegments.size();
@@ -175,7 +175,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
         }
         String[] strArr2 = strArr;
         fragment.appendQueryParameter("limit", String.valueOf(50));
-        return this.f20268y.getContentResolver().query(fragment.build(), null, suggestSelection, strArr2, null);
+        return this.f20296y.getContentResolver().query(fragment.build(), null, suggestSelection, strArr2, null);
     }
 
     @Override
@@ -184,9 +184,9 @@ public final class y2 extends i1.a implements View.OnClickListener {
             return super.getDropDownView(i7, view, viewGroup);
         } catch (RuntimeException e10) {
             Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e10);
-            View inflate = this.f20265s.inflate(this.f20264r, viewGroup, false);
+            View inflate = this.f20293s.inflate(this.f20292r, viewGroup, false);
             if (inflate != null) {
-                ((x2) inflate.getTag()).f20255a.setText(e10.toString());
+                ((x2) inflate.getTag()).f20283a.setText(e10.toString());
             }
             return inflate;
         }
@@ -198,10 +198,10 @@ public final class y2 extends i1.a implements View.OnClickListener {
             return super.getView(i7, view, viewGroup);
         } catch (RuntimeException e10) {
             Log.w("SuggestionsAdapter", "Search suggestions cursor threw exception.", e10);
-            View inflate = this.f20265s.inflate(this.f20263n, viewGroup, false);
+            View inflate = this.f20293s.inflate(this.f20291n, viewGroup, false);
             inflate.setTag(new x2(inflate));
-            ((ImageView) inflate.findViewById(2131296420)).setImageResource(this.F);
-            ((x2) inflate.getTag()).f20255a.setText(e10.toString());
+            ((ImageView) inflate.findViewById(2131296422)).setImageResource(this.F);
+            ((x2) inflate.getTag()).f20283a.setText(e10.toString());
             return inflate;
         }
     }
@@ -215,7 +215,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
     public final void notifyDataSetChanged() {
         Bundle bundle;
         super.notifyDataSetChanged();
-        Cursor cursor = this.f15912c;
+        Cursor cursor = this.f15937c;
         if (cursor != null) {
             bundle = cursor.getExtras();
         } else {
@@ -230,7 +230,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
     public final void notifyDataSetInvalidated() {
         Bundle bundle;
         super.notifyDataSetInvalidated();
-        Cursor cursor = this.f15912c;
+        Cursor cursor = this.f15937c;
         if (cursor != null) {
             bundle = cursor.getExtras();
         } else {
@@ -245,7 +245,7 @@ public final class y2 extends i1.a implements View.OnClickListener {
     public final void onClick(View view) {
         Object tag = view.getTag();
         if (tag instanceof CharSequence) {
-            this.f20266w.o((CharSequence) tag);
+            this.f20294w.o((CharSequence) tag);
         }
     }
 }

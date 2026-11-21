@@ -3,44 +3,44 @@ package zi;
 import android.hardware.camera2.CameraDevice;
 import android.os.HandlerThread;
 public final class j extends CameraDevice.StateCallback {
-    public final CameraDevice.StateCallback f62110a;
-    public final boolean f62111b;
-    public boolean f62112c;
+    public final CameraDevice.StateCallback f62151a;
+    public final boolean f62152b;
+    public boolean f62153c;
     public boolean d;
-    public boolean f62113e;
-    public final k f62114f;
+    public boolean f62154e;
+    public final k f62155f;
 
     public j(k kVar, CameraDevice.StateCallback stateCallback, boolean z10) {
-        this.f62114f = kVar;
-        this.f62110a = stateCallback;
-        this.f62111b = z10;
-        kVar.f62176w0++;
+        this.f62155f = kVar;
+        this.f62151a = stateCallback;
+        this.f62152b = z10;
+        kVar.f62217w0++;
     }
 
     public final void a() {
-        k kVar = this.f62114f;
-        boolean z10 = this.f62111b;
+        k kVar = this.f62155f;
+        boolean z10 = this.f62152b;
         if (z10) {
-            if (kVar.f62174v0 != this) {
+            if (kVar.f62215v0 != this) {
                 return;
             }
-        } else if (kVar.f62173u0 != this) {
+        } else if (kVar.f62214u0 != this) {
             return;
         }
         if (z10) {
-            kVar.f62174v0 = null;
+            kVar.f62215v0 = null;
         } else {
-            kVar.f62173u0 = null;
+            kVar.f62214u0 = null;
         }
     }
 
     public final boolean b() {
         j jVar;
-        if (!this.f62114f.f62171t0) {
-            if (this.f62111b) {
-                jVar = this.f62114f.f62174v0;
+        if (!this.f62155f.f62212t0) {
+            if (this.f62152b) {
+                jVar = this.f62155f.f62215v0;
             } else {
-                jVar = this.f62114f.f62173u0;
+                jVar = this.f62155f.f62214u0;
             }
             if (jVar == this) {
                 return true;
@@ -51,15 +51,15 @@ public final class j extends CameraDevice.StateCallback {
     }
 
     public final void c() {
-        if (!this.f62112c) {
-            this.f62112c = true;
-            k kVar = this.f62114f;
-            int i7 = kVar.f62176w0 - 1;
-            kVar.f62176w0 = i7;
-            HandlerThread handlerThread = kVar.f62178x0;
+        if (!this.f62153c) {
+            this.f62153c = true;
+            k kVar = this.f62155f;
+            int i7 = kVar.f62217w0 - 1;
+            kVar.f62217w0 = i7;
+            HandlerThread handlerThread = kVar.f62219x0;
             if (i7 <= 0 && handlerThread != null) {
-                kVar.f62178x0 = null;
-                kVar.f62143j.b("camera open results settled after release; quitting thread");
+                kVar.f62219x0 = null;
+                kVar.f62184j.b("camera open results settled after release; quitting thread");
                 handlerThread.quitSafely();
             }
         }
@@ -67,8 +67,8 @@ public final class j extends CameraDevice.StateCallback {
 
     @Override
     public final void onClosed(CameraDevice cameraDevice) {
-        if (this.f62113e && !this.f62114f.f62171t0) {
-            this.f62110a.onClosed(cameraDevice);
+        if (this.f62154e && !this.f62155f.f62212t0) {
+            this.f62151a.onClosed(cameraDevice);
         }
     }
 
@@ -76,10 +76,10 @@ public final class j extends CameraDevice.StateCallback {
     public final void onDisconnected(CameraDevice cameraDevice) {
         boolean b10 = b();
         c();
-        if (!this.f62114f.f62171t0 && (this.d || b10)) {
+        if (!this.f62155f.f62212t0 && (this.d || b10)) {
             a();
-            this.f62113e = true;
-            this.f62110a.onDisconnected(cameraDevice);
+            this.f62154e = true;
+            this.f62151a.onDisconnected(cameraDevice);
             return;
         }
         cameraDevice.close();
@@ -89,14 +89,14 @@ public final class j extends CameraDevice.StateCallback {
     public final void onError(CameraDevice cameraDevice, int i7) {
         boolean b10 = b();
         c();
-        if (!this.f62114f.f62171t0 && (this.d || b10)) {
+        if (!this.f62155f.f62212t0 && (this.d || b10)) {
             a();
-            this.f62113e = true;
-            this.f62110a.onError(cameraDevice, i7);
+            this.f62154e = true;
+            this.f62151a.onError(cameraDevice, i7);
             return;
         }
-        o oVar = this.f62114f.f62143j;
-        oVar.b("stale camera error ignored: id=" + cameraDevice.getId() + ", error=" + k.e(i7) + ", warm=" + this.f62111b);
+        o oVar = this.f62155f.f62184j;
+        oVar.b("stale camera error ignored: id=" + cameraDevice.getId() + ", error=" + k.e(i7) + ", warm=" + this.f62152b);
         cameraDevice.close();
     }
 
@@ -106,14 +106,14 @@ public final class j extends CameraDevice.StateCallback {
         a();
         c();
         if (!b10) {
-            o oVar = this.f62114f.f62143j;
-            oVar.b("stale camera open closed: id=" + cameraDevice.getId() + ", warm=" + this.f62111b + ", released=" + this.f62114f.f62171t0);
+            o oVar = this.f62155f.f62184j;
+            oVar.b("stale camera open closed: id=" + cameraDevice.getId() + ", warm=" + this.f62152b + ", released=" + this.f62155f.f62212t0);
             cameraDevice.close();
             return;
         }
         this.d = true;
-        this.f62113e = true;
-        this.f62114f.f62165r0.add(cameraDevice);
-        this.f62110a.onOpened(cameraDevice);
+        this.f62154e = true;
+        this.f62155f.f62206r0.add(cameraDevice);
+        this.f62151a.onOpened(cameraDevice);
     }
 }

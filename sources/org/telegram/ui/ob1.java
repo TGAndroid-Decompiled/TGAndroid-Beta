@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class ob1 {
-    public final org.telegram.ui.ActionBar.h2 f50509a;
-    public boolean f50510b;
-    public boolean f50511c;
+    public final org.telegram.ui.ActionBar.g2 f50534a;
+    public boolean f50535b;
+    public boolean f50536c;
     public boolean d;
-    public boolean f50512e;
-    public float f50513f;
-    public float f50514g;
+    public boolean f50537e;
+    public float f50538f;
+    public float f50539g;
 
-    public ob1(org.telegram.ui.ActionBar.h2 h2Var) {
-        this.f50509a = h2Var;
+    public ob1(org.telegram.ui.ActionBar.g2 g2Var) {
+        this.f50534a = g2Var;
     }
 }

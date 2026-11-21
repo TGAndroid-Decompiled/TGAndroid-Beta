@@ -1,37 +1,183 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class ec0 implements Runnable {
-    public final int f34671a;
-    public final pc0 f34672b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashMap;
+public final class ec0 extends FrameLayout {
+    public Bitmap f34732a;
+    public HashMap f34733b;
+    public boolean f34734c;
+    public BitmapDrawable d;
+    public boolean f34735e;
 
-    public ec0(pc0 pc0Var, int i7) {
-        this.f34671a = i7;
-        this.f34672b = pc0Var;
+    public ec0(Context context) {
+        super(context);
+        this.f34735e = true;
+    }
+
+    public final void a() {
+        this.f34732a = null;
+        this.d = null;
+        setBackground(null);
+        HashMap hashMap = this.f34733b;
+        if (hashMap != null) {
+            hashMap.clear();
+        }
+        removeAllViews();
+    }
+
+    public final void b(java.util.ArrayList r25, boolean r26, boolean r27, boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ec0.b(java.util.ArrayList, boolean, boolean, boolean):void");
+    }
+
+    public final void c() {
+        int childCount = getChildCount();
+        for (int i7 = 0; i7 < childCount; i7++) {
+            getChildAt(i7).setVisibility(0);
+        }
+        setBackground(this.d);
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f34671a;
-        pc0 pc0Var = this.f34672b;
-        switch (i7) {
-            case 0:
-                EditTextBoldCursor editTextBoldCursor = pc0Var.f38375r;
-                if (!pc0Var.Q && pc0Var.isAttachedToWindow() && pc0Var.f38379y.getVisibility() != 0 && editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    org.telegram.messenger.g0.I3(editTextBoldCursor);
-                    return;
-                }
-                return;
-            default:
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(pc0Var.f38363b0, 0.0f);
-                pc0Var.T = ofFloat;
-                ofFloat.addUpdateListener(new fc0(pc0Var, 1));
-                ofFloat.addListener(new q60(pc0Var, 6));
-                ofFloat.setDuration(420L);
-                ofFloat.setInterpolator(lr.h);
-                ofFloat.start();
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (!this.f34735e) {
+            return false;
         }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    public Bitmap getBitmap() {
+        return this.f34732a;
+    }
+
+    public Bitmap getThumb() {
+        float measuredWidth = getMeasuredWidth();
+        float measuredHeight = getMeasuredHeight();
+        float max = Math.max(measuredWidth / org.telegram.messenger.g0.L(120.0f), measuredHeight / org.telegram.messenger.g0.L(120.0f));
+        Bitmap createBitmap = Bitmap.createBitmap((int) (measuredWidth / max), (int) (measuredHeight / max), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        float f10 = 1.0f / max;
+        canvas.scale(f10, f10);
+        draw(canvas);
+        return createBitmap;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int i13;
+        int i14;
+        int i15;
+        int measuredHeight;
+        if (this.f34733b != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight2 = getMeasuredHeight();
+            int childCount = getChildCount();
+            for (int i16 = 0; i16 < childCount; i16++) {
+                View childAt = getChildAt(i16);
+                org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.f34733b.get(childAt);
+                if (c20Var != null) {
+                    int measuredWidth2 = childAt.getMeasuredWidth();
+                    int measuredHeight3 = childAt.getMeasuredHeight();
+                    if (childAt instanceof tg.b) {
+                        if (c20Var.A) {
+                            i13 = ((int) (((c20Var.f23261f / 2.0f) + c20Var.f23259c) * measuredWidth)) - (childAt.getMeasuredWidth() / 2);
+                            i15 = (int) (((c20Var.f23262g / 2.0f) + c20Var.d) * measuredHeight2);
+                            measuredHeight = childAt.getMeasuredHeight() / 2;
+                        } else {
+                            i13 = ((int) (measuredWidth * c20Var.f23278y)) - (childAt.getMeasuredWidth() / 2);
+                            i15 = (int) (measuredHeight2 * c20Var.f23279z);
+                            measuredHeight = childAt.getMeasuredHeight() / 2;
+                        }
+                        i14 = i15 - measuredHeight;
+                    } else {
+                        i13 = (int) (measuredWidth * c20Var.f23259c);
+                        i14 = (int) (measuredHeight2 * c20Var.d);
+                    }
+                    childAt.layout(i13, i14, measuredWidth2 + i13, measuredHeight3 + i14);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        float f10;
+        this.f34734c = true;
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
+        if (this.f34733b != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            int childCount = getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = getChildAt(i11);
+                org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.f34733b.get(childAt);
+                if (c20Var != null) {
+                    if (childAt instanceof tg.b) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(c20Var.f23271q, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+                        if (c20Var.A) {
+                            f10 = (c20Var.f23261f * getMeasuredWidth()) / c20Var.f23271q;
+                        } else {
+                            f10 = c20Var.v * ((c20Var.f23276w * measuredWidth) / c20Var.f23271q);
+                        }
+                        childAt.setScaleX(f10);
+                        childAt.setScaleY(f10);
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * c20Var.f23261f), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * c20Var.f23262g), 1073741824));
+                    }
+                }
+            }
+        }
+        this.f34734c = false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f34734c) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public void setAlpha(float f10) {
+        super.setAlpha(f10);
+        BitmapDrawable bitmapDrawable = this.d;
+        if (bitmapDrawable != null) {
+            bitmapDrawable.setAlpha((int) (255.0f * f10));
+        }
+        int childCount = getChildCount();
+        for (int i7 = 0; i7 < childCount; i7++) {
+            View childAt = getChildAt(i7);
+            if (childAt != null && childAt.getParent() == this) {
+                childAt.setAlpha(f10);
+            }
+        }
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.f34732a = bitmap;
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
+        this.d = bitmapDrawable;
+        setBackground(bitmapDrawable);
     }
 }

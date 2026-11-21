@@ -1,53 +1,91 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-public final class ae0 implements ViewSwitcher.ViewFactory {
-    public final int f45574a;
-    public final Object f45575b;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class ae0 extends AnimatedPhoneNumberEditText {
+    public final int f45613b2;
+    public final ce0 f45614c2;
 
-    public ae0(Object obj, int i7) {
-        this.f45574a = i7;
-        this.f45575b = obj;
+    public ae0(ce0 ce0Var, Context context, int i7) {
+        super(context);
+        this.f45613b2 = i7;
+        this.f45614c2 = ce0Var;
     }
 
     @Override
-    public final View makeView() {
-        int i7;
-        int i10 = this.f45574a;
-        Object obj = this.f45575b;
+    public final void onFocusChanged(boolean z10, int i7, Rect rect) {
+        int i10 = this.f45613b2;
+        float f10 = 1.0f;
+        ce0 ce0Var = this.f45614c2;
         switch (i10) {
             case 0:
-                TextView textView = new TextView((Context) obj);
-                textView.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f));
-                textView.setTextSize(1, 16.0f);
-                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.G6, null);
-                org.telegram.ui.ActionBar.u6.D(textView, org.telegram.ui.ActionBar.n6.H6, null);
-                textView.setMaxLines(1);
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                if (org.telegram.messenger.gd.f24213a0) {
-                    i7 = 5;
-                } else {
-                    i7 = 3;
+                super.onFocusChanged(z10, i7, rect);
+                org.telegram.ui.Components.yb0 yb0Var = ce0Var.f46536f;
+                if (!z10 && !ce0Var.f46529b.isFocused()) {
+                    f10 = 0.0f;
                 }
-                textView.setGravity(i7 | 1);
-                return textView;
-            case 1:
-                TextView textView2 = new TextView((Context) obj);
-                org.telegram.ui.ActionBar.u6.U(textView2, org.telegram.ui.ActionBar.n6.D6, null);
-                textView2.setGravity(1);
-                textView2.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
-                textView2.setTextSize(1, 15.0f);
-                return textView2;
+                yb0Var.b(f10, f10, true);
+                if (z10) {
+                    ce0Var.f46539h0.f46927c.setEditText(this);
+                    return;
+                }
+                return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                Drawable[] drawableArr = PhotoViewer.Z8;
-                return new lq0(photoViewer.F, photoViewer.U1, photoViewer.R, new pn0(photoViewer, 0), new vd0(photoViewer, 1));
+                super.onFocusChanged(z10, i7, rect);
+                de0 de0Var = ce0Var.f46539h0;
+                org.telegram.ui.Components.yb0 yb0Var2 = ce0Var.f46536f;
+                if (!z10 && !ce0Var.f46527a.isFocused()) {
+                    f10 = 0.0f;
+                }
+                yb0Var2.b(f10, f10, true);
+                if (z10) {
+                    de0Var.f46927c.setEditText(this);
+                    de0Var.f46927c.setDispatchBackWhenEmpty(true);
+                    if (ce0Var.F == 2) {
+                        ce0.n(ce0Var, org.telegram.messenger.gd.N0(2131742595, null));
+                        return;
+                    }
+                    return;
+                } else if (ce0Var.F == 2) {
+                    ce0.n(ce0Var, null);
+                    return;
+                } else {
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int i7, KeyEvent keyEvent) {
+        switch (this.f45613b2) {
+            case 1:
+                ce0 ce0Var = this.f45614c2;
+                ae0 ae0Var = ce0Var.f46527a;
+                if (i7 == 67 && ce0Var.f46529b.length() == 0) {
+                    ae0Var.requestFocus();
+                    ae0Var.setSelection(ae0Var.length());
+                    ae0Var.dispatchKeyEvent(keyEvent);
+                }
+                return super.onKeyDown(i7, keyEvent);
+            default:
+                return super.onKeyDown(i7, keyEvent);
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f45613b2) {
+            case 1:
+                if (motionEvent.getAction() == 0 && !de0.b1(this.f45614c2.f46539h0, this)) {
+                    clearFocus();
+                    requestFocus();
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 }

@@ -1,45 +1,71 @@
 package org.telegram.ui.ActionBar;
-public final class e5 implements te.d, m0 {
-    public final g5 f28896a;
 
-    public e5(g5 g5Var) {
-        this.f28896a = g5Var;
+import android.view.View;
+public final class e5 implements te.f, we.a {
+    public final View f28930a;
+    public boolean f28931b;
+    public float f28932c = 1.0f;
+    public float d = 1.0f;
+    public float f28933e = 1.0f;
+
+    public e5(View view) {
+        this.f28930a = view;
     }
 
     @Override
-    public boolean C() {
-        return false;
-    }
-
-    @Override
-    public boolean D(float f10) {
-        return false;
-    }
-
-    @Override
-    public void g(int i7) {
-        j jVar = this.f28896a.f28973a.W;
-        if (jVar != null) {
-            jVar.b(i7);
+    public final void a() {
+        View view = this.f28930a;
+        if (!f5.h(view)) {
+            if (view instanceof g5) {
+                ((g5) view).Y();
+            } else {
+                view.setVisibility(8);
+            }
+            c(1.0f, 1.0f);
         }
     }
 
     @Override
-    public void m1() {
-        g5 g5Var = this.f28896a;
-        g5Var.e();
-        g5Var.f28973a.invalidate();
+    public final int b(boolean z10) {
+        return 0;
+    }
+
+    public final void c(float f10, float f11) {
+        float f12 = this.f28932c;
+        if (f12 == f10 && this.d == f11) {
+            return;
+        }
+        int i7 = (f12 > 1.0f ? 1 : (f12 == 1.0f ? 0 : -1));
+        View view = this.f28930a;
+        if (i7 == 0) {
+            this.f28933e = view.getAlpha();
+        }
+        this.f28932c = f10;
+        this.d = f11;
+        view.setAlpha(this.f28933e * f10);
+        float min = Math.min(org.telegram.messenger.g0.T1(0.6f, 1.0f, f10), f11);
+        view.setScaleX(min);
+        view.setScaleY(min);
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof e5) && ((e5) obj).f28930a == this.f28930a) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public void x(boolean z10) {
+    public final int getHeight() {
+        return this.f28930a.getMeasuredHeight();
     }
 
     @Override
-    public void H() {
+    public final int getWidth() {
+        return f5.f(this.f28930a);
     }
 
-    @Override
-    public void a() {
+    public final int hashCode() {
+        return this.f28930a.hashCode();
     }
 }

@@ -4,12 +4,12 @@ import j$.util.Collection;
 import java.util.Arrays;
 public abstract class r0 extends d0 implements n1, Collection {
     public static final int d = 0;
-    public transient t1 f14054b;
-    public transient t0 f14055c;
+    public transient t1 f14083b;
+    public transient t0 f14084c;
 
     @Override
     public final boolean contains(Object obj) {
-        if (((z1) this).f14097e.b(obj) > 0) {
+        if (((z1) this).f14126e.b(obj) > 0) {
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ public abstract class r0 extends d0 implements n1, Collection {
                     r0 r0Var = (r0) n1Var;
                     if (p().size() == r0Var.p().size()) {
                         for (p1 p1Var : r0Var.p()) {
-                            if (z1Var.f14097e.b(p1Var.f14039a) != p1Var.a()) {
+                            if (z1Var.f14126e.b(p1Var.f14068a) != p1Var.a()) {
                                 return false;
                             }
                         }
@@ -42,10 +42,10 @@ public abstract class r0 extends d0 implements n1, Collection {
 
     @Override
     public final i0 f() {
-        t1 t1Var = this.f14054b;
+        t1 t1Var = this.f14083b;
         if (t1Var == null) {
             i0 f10 = super.f();
-            this.f14054b = (t1) f10;
+            this.f14083b = (t1) f10;
             return f10;
         }
         return t1Var;
@@ -61,7 +61,7 @@ public abstract class r0 extends d0 implements n1, Collection {
         h2 it = p().iterator();
         while (it.hasNext()) {
             p1 p1Var = (p1) it.next();
-            Arrays.fill(objArr, i7, p1Var.a() + i7, p1Var.f14039a);
+            Arrays.fill(objArr, i7, p1Var.a() + i7, p1Var.f14068a);
             i7 += p1Var.a();
         }
         return i7;
@@ -75,14 +75,14 @@ public abstract class r0 extends d0 implements n1, Collection {
     public abstract t0 o();
 
     public final t0 p() {
-        t0 t0Var = this.f14055c;
+        t0 t0Var = this.f14084c;
         if (t0Var == null) {
             if (isEmpty()) {
-                t0Var = a2.f13962s;
+                t0Var = a2.f13991s;
             } else {
                 t0Var = new q0(this, 0);
             }
-            this.f14055c = t0Var;
+            this.f14084c = t0Var;
         }
         return t0Var;
     }

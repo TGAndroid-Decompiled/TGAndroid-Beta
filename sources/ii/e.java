@@ -9,44 +9,44 @@ import org.telegram.messenger.q10;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h2;
+import org.telegram.ui.ActionBar.g2;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class e implements RequestDelegate {
-    public final int f16278a = 1;
-    public final long f16279b;
-    public final int f16280c;
+    public final int f16303a = 1;
+    public final long f16304b;
+    public final int f16305c;
     public final fs d;
-    public final Object f16281e;
-    public final Object f16282f;
-    public final Object f16283g;
+    public final Object f16306e;
+    public final Object f16307f;
+    public final Object f16308g;
 
     public e(mp mpVar, HashMap hashMap, String str, a0.h hVar, long j3, int i7) {
         this.d = mpVar;
-        this.f16281e = hashMap;
-        this.f16282f = str;
-        this.f16283g = hVar;
-        this.f16279b = j3;
-        this.f16280c = i7;
+        this.f16306e = hashMap;
+        this.f16307f = str;
+        this.f16308g = hVar;
+        this.f16304b = j3;
+        this.f16305c = i7;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16278a) {
+        switch (this.f16303a) {
             case 0:
-                g0.g3(new i(tL_error, tLObject, (TwoStepVerificationActivity) this.d, (h2) this.f16281e, this.f16279b, (q10) this.f16282f, (Runnable) this.f16283g, this.f16280c));
+                g0.g3(new i(tL_error, tLObject, (TwoStepVerificationActivity) this.d, (g2) this.f16306e, this.f16304b, (q10) this.f16307f, (Runnable) this.f16308g, this.f16305c));
                 return;
             default:
-                g0.g3(new nb((mp) this.d, (HashMap) this.f16281e, (String) this.f16282f, tLObject, (a0.h) this.f16283g, this.f16279b, this.f16280c));
+                g0.g3(new nb((mp) this.d, (HashMap) this.f16306e, (String) this.f16307f, tLObject, (a0.h) this.f16308g, this.f16304b, this.f16305c));
                 return;
         }
     }
 
-    public e(TwoStepVerificationActivity twoStepVerificationActivity, h2 h2Var, long j3, q10 q10Var, Runnable runnable, int i7) {
+    public e(TwoStepVerificationActivity twoStepVerificationActivity, g2 g2Var, long j3, q10 q10Var, Runnable runnable, int i7) {
         this.d = twoStepVerificationActivity;
-        this.f16281e = h2Var;
-        this.f16279b = j3;
-        this.f16282f = q10Var;
-        this.f16283g = runnable;
-        this.f16280c = i7;
+        this.f16306e = g2Var;
+        this.f16304b = j3;
+        this.f16307f = q10Var;
+        this.f16308g = runnable;
+        this.f16305c = i7;
     }
 }

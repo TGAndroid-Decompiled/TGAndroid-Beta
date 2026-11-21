@@ -5,16 +5,16 @@ import d4.f;
 import java.util.Arrays;
 public final class a {
     public boolean d;
-    public boolean f18160e;
-    public int[] f18161f;
-    public int f18162g;
+    public boolean f18191e;
+    public int[] f18192f;
+    public int f18193g;
     public int h;
-    public Rect f18163i;
-    public long f18158b = -9223372036854775807L;
-    public long f18159c = -9223372036854775807L;
-    public final int[] f18157a = new int[4];
-    public int f18164j = -1;
-    public int f18165k = -1;
+    public Rect f18194i;
+    public long f18189b = -9223372036854775807L;
+    public long f18190c = -9223372036854775807L;
+    public final int[] f18188a = new int[4];
+    public int f18195j = -1;
+    public int f18196k = -1;
 
     public static int a(int[] iArr, int i7) {
         if (i7 >= 0 && i7 < iArr.length) {
@@ -55,7 +55,7 @@ public final class a {
                 int min = Math.min(i10, width - i13);
                 if (min > 0) {
                     int i16 = i12 + min;
-                    Arrays.fill(iArr, i12, i16, this.f18157a[i7]);
+                    Arrays.fill(iArr, i12, i16, this.f18188a[i7]);
                     i13 += min;
                     i12 = i16;
                     continue;

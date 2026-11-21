@@ -21,16 +21,16 @@ import java.util.TreeMap;
 import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 public abstract class d {
-    public static final nb.a f58401a = new nb.a(26);
-    public static final byte[] f58402b = {112, 114, 111, 0};
-    public static final byte[] f58403c = {112, 114, 109, 0};
+    public static final nb.a f58442a = new nb.a(26);
+    public static final byte[] f58443b = {112, 114, 111, 0};
+    public static final byte[] f58444c = {112, 114, 109, 0};
     public static final byte[] d = {48, 49, 53, 0};
-    public static final byte[] f58404e = {48, 49, 48, 0};
-    public static final byte[] f58405f = {48, 48, 57, 0};
-    public static final byte[] f58406g = {48, 48, 53, 0};
+    public static final byte[] f58445e = {48, 49, 48, 0};
+    public static final byte[] f58446f = {48, 48, 57, 0};
+    public static final byte[] f58447g = {48, 48, 53, 0};
     public static final byte[] h = {48, 48, 49, 0};
-    public static final byte[] f58407i = {48, 48, 49, 0};
-    public static final byte[] f58408j = {48, 48, 50, 0};
+    public static final byte[] f58448i = {48, 48, 49, 0};
+    public static final byte[] f58449j = {48, 48, 50, 0};
 
     public static byte[] a(byte[] bArr) {
         Deflater deflater = new Deflater(1);
@@ -50,12 +50,12 @@ public abstract class d {
     public static byte[] b(b[] bVarArr, byte[] bArr) {
         int i7 = 0;
         for (b bVar : bVarArr) {
-            i7 += ((((bVar.f58399g * 2) + 7) & (-8)) / 8) + (bVar.f58397e * 2) + d(bArr, bVar.f58394a, bVar.f58395b).getBytes(StandardCharsets.UTF_8).length + 16 + bVar.f58398f;
+            i7 += ((((bVar.f58440g * 2) + 7) & (-8)) / 8) + (bVar.f58438e * 2) + d(bArr, bVar.f58435a, bVar.f58436b).getBytes(StandardCharsets.UTF_8).length + 16 + bVar.f58439f;
         }
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(i7);
-        if (Arrays.equals(bArr, f58405f)) {
+        if (Arrays.equals(bArr, f58446f)) {
             for (b bVar2 : bVarArr) {
-                p(byteArrayOutputStream, bVar2, d(bArr, bVar2.f58394a, bVar2.f58395b));
+                p(byteArrayOutputStream, bVar2, d(bArr, bVar2.f58435a, bVar2.f58436b));
                 r(byteArrayOutputStream, bVar2);
                 int[] iArr = bVar2.h;
                 int length = iArr.length;
@@ -71,7 +71,7 @@ public abstract class d {
             }
         } else {
             for (b bVar3 : bVarArr) {
-                p(byteArrayOutputStream, bVar3, d(bArr, bVar3.f58394a, bVar3.f58395b));
+                p(byteArrayOutputStream, bVar3, d(bArr, bVar3.f58435a, bVar3.f58436b));
             }
             for (b bVar4 : bVarArr) {
                 r(byteArrayOutputStream, bVar4);
@@ -118,7 +118,7 @@ public abstract class d {
         Object obj;
         byte[] bArr2 = h;
         boolean equals = Arrays.equals(bArr, bArr2);
-        byte[] bArr3 = f58406g;
+        byte[] bArr3 = f58447g;
         String str3 = "!";
         if (!equals && !Arrays.equals(bArr, bArr3)) {
             obj = "!";
@@ -188,7 +188,7 @@ public abstract class d {
     }
 
     public static b[] i(FileInputStream fileInputStream, byte[] bArr, byte[] bArr2, b[] bVarArr) {
-        byte[] bArr3 = f58407i;
+        byte[] bArr3 = f58448i;
         if (Arrays.equals(bArr, bArr3)) {
             if (!Arrays.equals(d, bArr2)) {
                 if (Arrays.equals(bArr, bArr3)) {
@@ -214,7 +214,7 @@ public abstract class d {
                 throw new IllegalStateException("Unsupported meta version");
             }
             throw new IllegalStateException("Requires new Baseline Profile Metadata. Please rebuild the APK with Android Gradle Plugin 7.2 Canary 7 or higher");
-        } else if (Arrays.equals(bArr, f58408j)) {
+        } else if (Arrays.equals(bArr, f58449j)) {
             int m11 = (int) m(2, fileInputStream);
             byte[] h10 = h(fileInputStream, (int) m(4, fileInputStream), (int) m(4, fileInputStream));
             if (fileInputStream.read() <= 0) {
@@ -251,9 +251,9 @@ public abstract class d {
             }
             for (int i11 = 0; i11 < i7; i11++) {
                 b bVar = bVarArr[i11];
-                if (bVar.f58395b.equals(strArr[i11])) {
+                if (bVar.f58436b.equals(strArr[i11])) {
                     int i12 = iArr[i11];
-                    bVar.f58397e = i12;
+                    bVar.f58438e = i12;
                     bVar.h = g(byteArrayInputStream, i12);
                 } else {
                     throw new IllegalStateException("Order of dexfiles in metadata did not match baseline");
@@ -290,7 +290,7 @@ public abstract class d {
                     while (true) {
                         if (i11 >= bVarArr.length) {
                             break;
-                        } else if (bVarArr[i11].f58395b.equals(str)) {
+                        } else if (bVarArr[i11].f58436b.equals(str)) {
                             bVar = bVarArr[i11];
                             break;
                         } else {
@@ -302,7 +302,7 @@ public abstract class d {
                     bVar.d = m10;
                     int[] g10 = g(byteArrayInputStream, m11);
                     if (Arrays.equals(bArr, h)) {
-                        bVar.f58397e = m11;
+                        bVar.f58438e = m11;
                         bVar.h = g10;
                     }
                 } else {
@@ -315,7 +315,7 @@ public abstract class d {
     }
 
     public static b[] l(FileInputStream fileInputStream, byte[] bArr, String str) {
-        if (Arrays.equals(bArr, f58404e)) {
+        if (Arrays.equals(bArr, f58445e)) {
             int m10 = (int) m(1, fileInputStream);
             byte[] h7 = h(fileInputStream, (int) m(4, fileInputStream), (int) m(4, fileInputStream));
             if (fileInputStream.read() <= 0) {
@@ -362,9 +362,9 @@ public abstract class d {
         while (i13 < i7) {
             b bVar = bVarArr[i13];
             int available = byteArrayInputStream.available();
-            int i14 = bVar.f58398f;
-            int i15 = bVar.f58399g;
-            TreeMap treeMap = bVar.f58400i;
+            int i14 = bVar.f58439f;
+            int i15 = bVar.f58440g;
+            TreeMap treeMap = bVar.f58441i;
             int i16 = available - i14;
             int i17 = i11;
             while (byteArrayInputStream.available() > i16) {
@@ -395,7 +395,7 @@ public abstract class d {
             int i20 = i11;
             int i21 = i13;
             if (byteArrayInputStream.available() == i16) {
-                bVar.h = g(byteArrayInputStream, bVar.f58397e);
+                bVar.h = g(byteArrayInputStream, bVar.f58438e);
                 BitSet valueOf = BitSet.valueOf(f((((i15 * 2) + 7) & (-8)) / 8, byteArrayInputStream));
                 for (int i22 = i20; i22 < i15; i22++) {
                     if (valueOf.get(i22)) {
@@ -438,10 +438,10 @@ public abstract class d {
                 int i10 = 2;
                 int i11 = 2;
                 for (b bVar : bVarArr) {
-                    t(byteArrayOutputStream2, bVar.f58396c, 4);
+                    t(byteArrayOutputStream2, bVar.f58437c, 4);
                     t(byteArrayOutputStream2, bVar.d, 4);
-                    t(byteArrayOutputStream2, bVar.f58399g, 4);
-                    String d2 = d(bArr2, bVar.f58394a, bVar.f58395b);
+                    t(byteArrayOutputStream2, bVar.f58440g, 4);
+                    String d2 = d(bArr2, bVar.f58435a, bVar.f58436b);
                     Charset charset = StandardCharsets.UTF_8;
                     int length2 = d2.getBytes(charset).length;
                     u(byteArrayOutputStream2, length2);
@@ -460,8 +460,8 @@ public abstract class d {
                         try {
                             b bVar2 = bVarArr[i12];
                             u(byteArrayOutputStream3, i12);
-                            u(byteArrayOutputStream3, bVar2.f58397e);
-                            i13 = i13 + 4 + (bVar2.f58397e * i10);
+                            u(byteArrayOutputStream3, bVar2.f58438e);
+                            i13 = i13 + 4 + (bVar2.f58438e * i10);
                             int[] iArr = bVar2.h;
                             int length3 = iArr.length;
                             int i14 = i7;
@@ -492,7 +492,7 @@ public abstract class d {
                             try {
                                 b bVar3 = bVarArr[i18];
                                 int i20 = 0;
-                                for (Map.Entry entry : bVar3.f58400i.entrySet()) {
+                                for (Map.Entry entry : bVar3.f58441i.entrySet()) {
                                     i20 |= ((Integer) entry.getValue()).intValue();
                                 }
                                 ByteArrayOutputStream byteArrayOutputStream4 = new ByteArrayOutputStream();
@@ -534,8 +534,8 @@ public abstract class d {
                             int i22 = 0;
                             while (i22 < arrayList2.size()) {
                                 j jVar4 = (j) arrayList2.get(i22);
-                                int i23 = jVar4.f58415a;
-                                byte[] bArr3 = jVar4.f58416b;
+                                int i23 = jVar4.f58456a;
+                                byte[] bArr3 = jVar4.f58457b;
                                 if (i23 != 1) {
                                     if (i23 != 2) {
                                         if (i23 != 3) {
@@ -559,7 +559,7 @@ public abstract class d {
                                 }
                                 t(byteArrayOutputStream, j3, 4);
                                 t(byteArrayOutputStream, size, 4);
-                                if (jVar4.f58417c) {
+                                if (jVar4.f58458c) {
                                     byte[] a10 = a(bArr3);
                                     arrayList = arrayList5;
                                     arrayList.add(a10);
@@ -597,7 +597,7 @@ public abstract class d {
                 throw th4;
             }
         }
-        byte[] bArr4 = f58404e;
+        byte[] bArr4 = f58445e;
         if (Arrays.equals(bArr, bArr4)) {
             byte[] b10 = b(bVarArr, bArr4);
             t(byteArrayOutputStream, bVarArr.length, 1);
@@ -607,18 +607,18 @@ public abstract class d {
             byteArrayOutputStream.write(a11);
             return true;
         }
-        byte[] bArr5 = f58406g;
+        byte[] bArr5 = f58447g;
         if (Arrays.equals(bArr, bArr5)) {
             t(byteArrayOutputStream, bVarArr.length, 1);
             for (b bVar4 : bVarArr) {
-                String d10 = d(bArr5, bVar4.f58394a, bVar4.f58395b);
+                String d10 = d(bArr5, bVar4.f58435a, bVar4.f58436b);
                 Charset charset2 = StandardCharsets.UTF_8;
                 u(byteArrayOutputStream, d10.getBytes(charset2).length);
                 u(byteArrayOutputStream, bVar4.h.length);
-                t(byteArrayOutputStream, bVar4.f58400i.size() * 4, 4);
-                t(byteArrayOutputStream, bVar4.f58396c, 4);
+                t(byteArrayOutputStream, bVar4.f58441i.size() * 4, 4);
+                t(byteArrayOutputStream, bVar4.f58437c, 4);
                 byteArrayOutputStream.write(d10.getBytes(charset2));
-                for (Integer num : bVar4.f58400i.keySet()) {
+                for (Integer num : bVar4.f58441i.keySet()) {
                     u(byteArrayOutputStream, num.intValue());
                     u(byteArrayOutputStream, 0);
                 }
@@ -628,7 +628,7 @@ public abstract class d {
             }
             return true;
         }
-        byte[] bArr6 = f58405f;
+        byte[] bArr6 = f58446f;
         if (Arrays.equals(bArr, bArr6)) {
             byte[] b11 = b(bVarArr, bArr6);
             t(byteArrayOutputStream, bVarArr.length, 1);
@@ -642,14 +642,14 @@ public abstract class d {
         if (Arrays.equals(bArr, bArr7)) {
             u(byteArrayOutputStream, bVarArr.length);
             for (b bVar5 : bVarArr) {
-                String str = bVar5.f58394a;
-                TreeMap treeMap = bVar5.f58400i;
-                String d11 = d(bArr7, str, bVar5.f58395b);
+                String str = bVar5.f58435a;
+                TreeMap treeMap = bVar5.f58441i;
+                String d11 = d(bArr7, str, bVar5.f58436b);
                 Charset charset3 = StandardCharsets.UTF_8;
                 u(byteArrayOutputStream, d11.getBytes(charset3).length);
                 u(byteArrayOutputStream, treeMap.size());
                 u(byteArrayOutputStream, bVar5.h.length);
-                t(byteArrayOutputStream, bVar5.f58396c, 4);
+                t(byteArrayOutputStream, bVar5.f58437c, 4);
                 byteArrayOutputStream.write(d11.getBytes(charset3));
                 for (Integer num2 : treeMap.keySet()) {
                     u(byteArrayOutputStream, num2.intValue());
@@ -666,16 +666,16 @@ public abstract class d {
     public static void p(ByteArrayOutputStream byteArrayOutputStream, b bVar, String str) {
         Charset charset = StandardCharsets.UTF_8;
         u(byteArrayOutputStream, str.getBytes(charset).length);
-        u(byteArrayOutputStream, bVar.f58397e);
-        t(byteArrayOutputStream, bVar.f58398f, 4);
-        t(byteArrayOutputStream, bVar.f58396c, 4);
-        t(byteArrayOutputStream, bVar.f58399g, 4);
+        u(byteArrayOutputStream, bVar.f58438e);
+        t(byteArrayOutputStream, bVar.f58439f, 4);
+        t(byteArrayOutputStream, bVar.f58437c, 4);
+        t(byteArrayOutputStream, bVar.f58440g, 4);
         byteArrayOutputStream.write(str.getBytes(charset));
     }
 
     public static void q(ByteArrayOutputStream byteArrayOutputStream, b bVar) {
-        byte[] bArr = new byte[(((bVar.f58399g * 2) + 7) & (-8)) / 8];
-        for (Map.Entry entry : bVar.f58400i.entrySet()) {
+        byte[] bArr = new byte[(((bVar.f58440g * 2) + 7) & (-8)) / 8];
+        for (Map.Entry entry : bVar.f58441i.entrySet()) {
             int intValue = ((Integer) entry.getKey()).intValue();
             int intValue2 = ((Integer) entry.getValue()).intValue();
             if ((intValue2 & 2) != 0) {
@@ -683,7 +683,7 @@ public abstract class d {
                 bArr[i7] = (byte) (bArr[i7] | (1 << (intValue % 8)));
             }
             if ((intValue2 & 4) != 0) {
-                int i10 = intValue + bVar.f58399g;
+                int i10 = intValue + bVar.f58440g;
                 int i11 = i10 / 8;
                 bArr[i11] = (byte) ((1 << (i10 % 8)) | bArr[i11]);
             }
@@ -693,7 +693,7 @@ public abstract class d {
 
     public static void r(ByteArrayOutputStream byteArrayOutputStream, b bVar) {
         int i7 = 0;
-        for (Map.Entry entry : bVar.f58400i.entrySet()) {
+        for (Map.Entry entry : bVar.f58441i.entrySet()) {
             int intValue = ((Integer) entry.getKey()).intValue();
             if ((((Integer) entry.getValue()).intValue() & 1) != 0) {
                 u(byteArrayOutputStream, intValue - i7);

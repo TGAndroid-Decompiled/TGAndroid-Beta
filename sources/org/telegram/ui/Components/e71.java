@@ -1,18 +1,13 @@
 package org.telegram.ui.Components;
+public final class e71 extends v4.k {
+    public final i71 F;
 
-import java.util.ArrayList;
-public interface e71 {
-    void a(int i7, boolean z10);
+    public e71(i71 i71Var) {
+        this.F = i71Var;
+    }
 
-    boolean b();
-
-    void c();
-
-    void g(float f10);
-
-    boolean h(int i7);
-
-    void k(ArrayList arrayList);
-
-    void o();
+    @Override
+    public final void P(v4.f1 f1Var) {
+        this.F.invalidate();
+    }
 }

@@ -16,41 +16,41 @@ import c8.ma;
 import c8.ra;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.n10;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.nr;
 public final class a extends FrameLayout {
-    public final ImageView f11707a;
-    public final org.telegram.ui.Components.m6 f11708b;
-    public final Paint f11709c;
+    public final ImageView f11736a;
+    public final org.telegram.ui.Components.n6 f11737b;
+    public final Paint f11738c;
     public final Paint d;
-    public boolean f11710e;
-    public int f11711f;
+    public boolean f11739e;
+    public int f11740f;
     public float h;
-    public ValueAnimator f11712n;
+    public ValueAnimator f11741n;
 
     public a(Context context, gh.b bVar) {
         super(context);
         Paint paint = new Paint(1);
-        this.f11709c = paint;
+        this.f11738c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.h = 1.0f;
         ra.a(this);
-        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, true, true);
-        this.f11708b = m6Var;
-        m6Var.u(-9866632);
-        m6Var.w(org.telegram.messenger.g0.L(9.0f));
-        m6Var.setCallback(this);
-        m6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
-        m6Var.K = true;
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true);
+        this.f11737b = n6Var;
+        n6Var.u(-9866632);
+        n6Var.w(org.telegram.messenger.g0.L(9.0f));
+        n6Var.setCallback(this);
+        n6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
+        n6Var.K = true;
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         FrameLayout frameLayout = new FrameLayout(context);
         dh.j jVar = new dh.j();
-        jVar.f8442a = bVar;
+        jVar.f8471a = bVar;
         jVar.a();
-        jVar.f8447g.setColor(-14670806);
+        jVar.f8476g.setColor(-14670806);
         jVar.invalidateSelf();
-        jVar.f8446f = org.telegram.messenger.g0.L(1.0f);
+        jVar.f8475f = org.telegram.messenger.g0.L(1.0f);
         frameLayout.setBackground(jVar);
         addView(frameLayout, ma.e(40, 40, 17));
         ImageView e10 = n10.e(context, 2131231779);
@@ -58,7 +58,7 @@ public final class a extends FrameLayout {
         e10.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
         frameLayout.addView(e10, ma.e(20, 20, 17));
         ImageView imageView = new ImageView(context);
-        this.f11707a = imageView;
+        this.f11736a = imageView;
         imageView.setImageResource(2131231780);
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
         frameLayout.addView(imageView, ma.e(20, 20, 17));
@@ -67,18 +67,18 @@ public final class a extends FrameLayout {
     }
 
     public final void a(boolean z10, boolean z11) {
-        if (z11 && this.f11710e == z10) {
+        if (z11 && this.f11739e == z10) {
             return;
         }
-        this.f11710e = z10;
+        this.f11739e = z10;
         float f10 = 180.0f;
-        ImageView imageView = this.f11707a;
+        ImageView imageView = this.f11736a;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
             if (z10) {
                 f10 = 0.0f;
             }
-            n10.o(animate.rotation(f10), lr.h, 420L);
+            n10.o(animate.rotation(f10), nr.h, 420L);
             return;
         }
         if (z10) {
@@ -92,9 +92,9 @@ public final class a extends FrameLayout {
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         super.dispatchDraw(canvas);
         float f10 = this.h;
-        org.telegram.ui.Components.m6 m6Var = this.f11708b;
-        float i7 = m6Var.i() * f10;
-        float max = Math.max(org.telegram.messenger.g0.L(12.0f), m6Var.c() + org.telegram.messenger.g0.L(6.0f));
+        org.telegram.ui.Components.n6 n6Var = this.f11737b;
+        float i7 = n6Var.i() * f10;
+        float max = Math.max(org.telegram.messenger.g0.L(12.0f), n6Var.c() + org.telegram.messenger.g0.L(6.0f));
         canvas.save();
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(getWidth() - max, 0.0f, getWidth(), org.telegram.messenger.g0.L(13.0f));
@@ -102,9 +102,9 @@ public final class a extends FrameLayout {
         rectF.inset(-org.telegram.messenger.g0.L(2.0f), -org.telegram.messenger.g0.L(2.0f));
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.d);
         rectF.set(getWidth() - max, 0.0f, getWidth(), org.telegram.messenger.g0.L(13.0f));
-        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f11709c);
-        canvas.translate(((max - m6Var.c()) / 2.0f) + rectF.left, org.telegram.messenger.g0.L(7.0f));
-        m6Var.draw(canvas);
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f11738c);
+        canvas.translate(((max - n6Var.c()) / 2.0f) + rectF.left, org.telegram.messenger.g0.L(7.0f));
+        n6Var.draw(canvas);
         canvas.restore();
         canvas.restore();
     }
@@ -116,28 +116,28 @@ public final class a extends FrameLayout {
         } else {
             E = gd.E(i7, ',');
         }
-        this.f11708b.t(E, true, true);
-        if (this.f11711f != i7) {
-            ValueAnimator valueAnimator = this.f11712n;
+        this.f11737b.t(E, true, true);
+        if (this.f11740f != i7) {
+            ValueAnimator valueAnimator = this.f11741n;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f11712n = null;
+                this.f11741n = null;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f11712n = ofFloat;
+            this.f11741n = ofFloat;
             ofFloat.addUpdateListener(new ah.g(this, 12));
-            this.f11712n.addListener(new ai.j0(this, 8));
-            org.telegram.ui.Cells.c0.q(2.5f, this.f11712n);
-            this.f11712n.setDuration(200L);
-            this.f11712n.start();
-            this.f11711f = i7;
+            this.f11741n.addListener(new ai.k0(this, 8));
+            org.telegram.ui.Cells.c0.q(2.5f, this.f11741n);
+            this.f11741n.setDuration(200L);
+            this.f11741n.start();
+            this.f11740f = i7;
         }
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f11708b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f11737b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

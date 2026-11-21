@@ -4,9 +4,9 @@ import a8.la;
 import j$.util.Objects;
 public class d {
     public static final b d;
-    public final a f16177a;
-    public final Character f16178b;
-    public volatile d f16179c;
+    public final a f16202a;
+    public final Character f16203b;
+    public volatile d f16204c;
 
     static {
         new c("base64()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
@@ -18,26 +18,26 @@ public class d {
 
     public d(a aVar, Character ch2) {
         boolean z10;
-        this.f16177a = aVar;
+        this.f16202a = aVar;
         if (ch2 != null) {
             char charValue = ch2.charValue();
-            byte[] bArr = aVar.f16175g;
+            byte[] bArr = aVar.f16200g;
             if (charValue < bArr.length && bArr[charValue] != -1) {
                 z10 = false;
                 la.h(z10, "Padding character %s was already in alphabet", ch2);
-                this.f16178b = ch2;
+                this.f16203b = ch2;
             }
         }
         z10 = true;
         la.h(z10, "Padding character %s was already in alphabet", ch2);
-        this.f16178b = ch2;
+        this.f16203b = ch2;
     }
 
     public final void a(StringBuilder sb2, byte[] bArr, int i7, int i10) {
         boolean z10;
         la.n(i7, i7 + i10, bArr.length);
-        a aVar = this.f16177a;
-        int i11 = aVar.f16174f;
+        a aVar = this.f16202a;
+        int i11 = aVar.f16199f;
         int i12 = aVar.d;
         int i13 = 0;
         if (i10 <= i11) {
@@ -52,12 +52,12 @@ public class d {
         }
         int i15 = ((i10 + 1) * 8) - i12;
         while (i13 < i10 * 8) {
-            sb2.append(aVar.f16171b[((int) (j3 >>> (i15 - i13))) & aVar.f16172c]);
+            sb2.append(aVar.f16196b[((int) (j3 >>> (i15 - i13))) & aVar.f16197c]);
             i13 += i12;
         }
-        Character ch2 = this.f16178b;
+        Character ch2 = this.f16203b;
         if (ch2 != null) {
-            while (i13 < aVar.f16174f * 8) {
+            while (i13 < aVar.f16199f * 8) {
                 sb2.append(ch2.charValue());
                 i13 += i12;
             }
@@ -68,16 +68,16 @@ public class d {
         int i10 = 0;
         la.n(0, i7, bArr.length);
         while (i10 < i7) {
-            a aVar = this.f16177a;
-            a(sb2, bArr, i10, Math.min(aVar.f16174f, i7 - i10));
-            i10 += aVar.f16174f;
+            a aVar = this.f16202a;
+            a(sb2, bArr, i10, Math.min(aVar.f16199f, i7 - i10));
+            i10 += aVar.f16199f;
         }
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof d) {
             d dVar = (d) obj;
-            if (this.f16177a.equals(dVar.f16177a) && Objects.equals(this.f16178b, dVar.f16178b)) {
+            if (this.f16202a.equals(dVar.f16202a) && Objects.equals(this.f16203b, dVar.f16203b)) {
                 return true;
             }
         }
@@ -85,15 +85,15 @@ public class d {
     }
 
     public final int hashCode() {
-        return this.f16177a.hashCode() ^ Objects.hashCode(this.f16178b);
+        return this.f16202a.hashCode() ^ Objects.hashCode(this.f16203b);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("BaseEncoding.");
-        a aVar = this.f16177a;
+        a aVar = this.f16202a;
         sb2.append(aVar);
         if (8 % aVar.d != 0) {
-            Character ch2 = this.f16178b;
+            Character ch2 = this.f16203b;
             if (ch2 == null) {
                 sb2.append(".omitPadding()");
             } else {

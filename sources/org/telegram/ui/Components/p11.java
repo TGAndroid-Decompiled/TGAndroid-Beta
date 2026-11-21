@@ -1,33 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class p11 extends Drawable {
-    public Paint f38245a;
-    public RectF f38246b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class p11 extends v4.u0 {
+    public final int f38449a;
+    public final b21 f38450b;
 
-    @Override
-    public final void draw(Canvas canvas) {
-        RectF rectF = this.f38246b;
-        rectF.set(getBounds());
-        rectF.inset(org.telegram.messenger.g0.L(1.0f), (rectF.height() - org.telegram.messenger.g0.L(28.0f)) / 2.0f);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), this.f38245a);
+    public p11(b21 b21Var, int i7) {
+        this.f38449a = i7;
+        this.f38450b = b21Var;
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-        this.f38245a.setAlpha(i7);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        switch (this.f38449a) {
+            case 0:
+                b21 b21Var = this.f38450b;
+                if (b21Var.l()) {
+                    b21Var.m();
+                    return;
+                }
+                return;
+            default:
+                b21 b21Var2 = this.f38450b;
+                if (b21Var2.l()) {
+                    b21Var2.m();
+                    return;
+                }
+                return;
+        }
     }
 }

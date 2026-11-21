@@ -2,12 +2,12 @@ package f3;
 
 import a8.p0;
 public final class a0 {
-    public final c0 f11096a;
-    public final c0 f11097b;
+    public final c0 f11125a;
+    public final c0 f11126b;
 
     public a0(c0 c0Var, c0 c0Var2) {
-        this.f11096a = c0Var;
-        this.f11097b = c0Var2;
+        this.f11125a = c0Var;
+        this.f11126b = c0Var2;
     }
 
     public final boolean equals(Object obj) {
@@ -16,7 +16,7 @@ public final class a0 {
         }
         if (obj != null && a0.class == obj.getClass()) {
             a0 a0Var = (a0) obj;
-            if (this.f11096a.equals(a0Var.f11096a) && this.f11097b.equals(a0Var.f11097b)) {
+            if (this.f11125a.equals(a0Var.f11125a) && this.f11126b.equals(a0Var.f11126b)) {
                 return true;
             }
         }
@@ -24,15 +24,15 @@ public final class a0 {
     }
 
     public final int hashCode() {
-        return this.f11097b.hashCode() + (this.f11096a.hashCode() * 31);
+        return this.f11126b.hashCode() + (this.f11125a.hashCode() * 31);
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("[");
-        c0 c0Var = this.f11096a;
+        c0 c0Var = this.f11125a;
         sb2.append(c0Var);
-        c0 c0Var2 = this.f11097b;
+        c0 c0Var2 = this.f11126b;
         if (c0Var.equals(c0Var2)) {
             str = "";
         } else {

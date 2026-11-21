@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class dd implements Runnable {
-    public final int f34377a;
-    public final ChatActivityEnterView f34378b;
+    public final int f34475a;
+    public final ChatActivityEnterView f34476b;
 
     public dd(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f34377a = i7;
-        this.f34378b = chatActivityEnterView;
+        this.f34475a = i7;
+        this.f34476b = chatActivityEnterView;
     }
 
     @Override

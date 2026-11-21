@@ -1,8 +1,8 @@
 package org.telegram.ui;
-public final class lc extends org.telegram.ui.Components.j01 {
+public final class lc extends org.telegram.ui.Components.l01 {
     @Override
     public final String b() {
-        return org.telegram.messenger.gd.M0(2131752329, null);
+        return org.telegram.messenger.gd.N0(2131752328, null);
     }
 
     @Override

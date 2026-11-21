@@ -1,50 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Point;
-import android.view.View;
-import android.widget.LinearLayout;
-public final class rg0 extends LinearLayout {
-    public boolean f39141a;
-    public final ug0 f39142b;
+import java.util.Locale;
+public final class rg0 implements pb0, rb0 {
+    public final int f39216a;
+    public final wg0 f39217b;
 
-    public rg0(ug0 ug0Var, Activity activity) {
-        super(activity);
-        this.f39142b = ug0Var;
-        this.f39141a = false;
+    public rg0(wg0 wg0Var, int i7) {
+        this.f39216a = i7;
+        this.f39217b = wg0Var;
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11;
-        ug0 ug0Var = this.f39142b;
-        sb0 sb0Var = ug0Var.I;
-        sb0 sb0Var2 = ug0Var.H;
-        this.f39141a = true;
-        Point point = org.telegram.messenger.g0.f24118q;
-        if (point.x > point.y) {
-            i11 = 3;
-        } else {
-            i11 = 5;
+    public String i(int i7) {
+        int i10 = this.f39216a;
+        wg0 wg0Var = this.f39217b;
+        switch (i10) {
+            case 0:
+                if (wg0Var.P) {
+                    return org.telegram.messenger.gd.a0("MilesShort", null, 2131748234, Integer.valueOf(i7));
+                }
+                return org.telegram.messenger.gd.a0("KMetersShort", null, 2131748868, Integer.valueOf(i7));
+            default:
+                if (wg0Var.P) {
+                    if (i7 == 1) {
+                        return org.telegram.messenger.gd.a0("FootsShort", null, 2131750584, 250);
+                    }
+                    if (i7 > 1) {
+                        i7--;
+                    }
+                    Locale locale = Locale.US;
+                    return i5.c.i(i7, ".");
+                } else if (i7 == 1) {
+                    return org.telegram.messenger.gd.a0("MetersShort", null, 2131748249, 50);
+                } else {
+                    if (i7 > 1) {
+                        i7--;
+                    }
+                    return org.telegram.messenger.gd.a0("MetersShort", null, 2131748249, Integer.valueOf(i7 * 100));
+                }
         }
-        sb0Var2.setItemCount(i11);
-        sb0Var.setItemCount(i11);
-        sb0Var2.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * i11;
-        sb0Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * i11;
-        this.f39141a = false;
-        int size = View.MeasureSpec.getSize(i7);
-        ug0Var.O = size;
-        if (size != 0) {
-            ug0Var.c(false);
-        }
-        super.onMeasure(i7, i10);
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f39141a) {
-            return;
+    public void n(tb0 tb0Var, int i7) {
+        wg0 wg0Var = this.f39217b;
+        try {
+            wg0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
-        super.requestLayout();
+        wg0Var.c(true);
     }
 }

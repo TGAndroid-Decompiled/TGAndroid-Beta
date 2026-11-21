@@ -1,82 +1,35 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class a21 implements org.telegram.messenger.fs {
-    public final int f45431a;
-    public final TLRPC.Chat f45432b;
-    public TLRPC.ChannelParticipantsFilter f45433c;
-    public boolean f45435f;
-    public boolean h;
-    public boolean f45437r;
-    public boolean f45438s;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList f45434e = new ArrayList();
-    public int f45436n = -1;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.view.View;
+public final class a21 extends View {
+    public final Paint f45480a;
+    public int f45481b;
+    public LinearGradient f45482c;
+    public final c21 d;
 
-    public a21(int i7, long j3, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
-        this.f45431a = i7;
-        this.f45432b = org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(j3));
-        TLRPC.ChatFull P0 = org.telegram.messenger.mp.u1(i7).P0(j3);
-        this.f45433c = channelParticipantsFilter;
-        if (P0 == null) {
-            if (!this.f45438s) {
-                this.f45438s = true;
-                org.telegram.messenger.ks.f(i7).c(this, org.telegram.messenger.ks.T);
-            }
-            org.telegram.messenger.mp.u1(i7).b3(0, j3, false);
-        }
-    }
-
-    public final void a() {
-        if (!this.f45438s) {
-            return;
-        }
-        this.f45438s = false;
-        int i7 = this.f45431a;
-        org.telegram.messenger.ks.f(i7).n(this, org.telegram.messenger.ks.T);
-        if (this.f45436n >= 0) {
-            ConnectionsManager.getInstance(i7).cancelRequest(this.f45436n, true);
-            this.f45436n = -1;
-        }
-        this.f45435f = false;
-    }
-
-    public final void b() {
-        int size;
-        if (!this.f45435f && !this.h) {
-            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f45433c;
-            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f28402q)) {
-                this.f45435f = true;
-                TLRPC.Chat chat = this.f45432b;
-                if (org.telegram.messenger.v3.T(chat)) {
-                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-                    tL_channels_getParticipants.channel = org.telegram.messenger.mp.k1(chat);
-                    tL_channels_getParticipants.filter = this.f45433c;
-                    tL_channels_getParticipants.limit = 30;
-                    if (this.f45437r) {
-                        size = 0;
-                    } else {
-                        size = this.d.size();
-                    }
-                    tL_channels_getParticipants.offset = size;
-                    ConnectionsManager.getInstance(this.f45431a).sendRequestTyped(tL_channels_getParticipants, new d3.b(1), new a5(this, 25));
-                }
-            }
-        }
+    public a21(c21 c21Var, Context context) {
+        super(context);
+        this.d = c21Var;
+        this.f45480a = new Paint(1);
+        this.f45481b = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29451h5, c21Var.J0);
+        this.f45482c = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(68.0f), new int[]{org.telegram.ui.ActionBar.m6.r1(0.0f, this.f45481b), this.f45481b}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.T) {
-            long j3 = ((TLRPC.ChatFull) objArr[0]).f28404id;
-            TLRPC.Chat chat = this.f45432b;
-            if (j3 == chat.f28403id && !org.telegram.messenger.v3.T(chat) && this.f45435f) {
-                this.f45435f = false;
-                b();
-            }
+    public final void onDraw(Canvas canvas) {
+        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29451h5, this.d.J0);
+        if (w02 != this.f45481b) {
+            this.f45481b = w02;
+            this.f45482c = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(68.0f), new int[]{org.telegram.ui.ActionBar.m6.r1(0.0f, w02), w02}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
         }
+        LinearGradient linearGradient = this.f45482c;
+        Paint paint = this.f45480a;
+        paint.setShader(linearGradient);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }
 }

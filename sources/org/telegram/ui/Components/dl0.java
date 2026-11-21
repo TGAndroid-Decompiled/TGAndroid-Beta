@@ -1,22 +1,101 @@
 package org.telegram.ui.Components;
-public final class dl0 {
-    public static final dl0 f34464a;
-    public static final dl0 f34465b;
-    public static final dl0[] f34466c;
 
-    static {
-        ?? r02 = new Enum("LINE", 0);
-        f34464a = r02;
-        ?? r12 = new Enum("TAB", 1);
-        f34465b = r12;
-        f34466c = new dl0[]{r02, r12};
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.KeyEvent;
+import android.view.View;
+public final class dl0 extends AnimatorListenerAdapter {
+    public final int f34527a;
+    public final boolean f34528b;
+    public final float f34529c;
+    public final KeyEvent.Callback d;
+
+    public dl0(KeyEvent.Callback callback, boolean z10, float f10, int i7) {
+        this.f34527a = i7;
+        this.d = callback;
+        this.f34528b = z10;
+        this.f34529c = f10;
     }
 
-    public static dl0 valueOf(String str) {
-        return (dl0) Enum.valueOf(dl0.class, str);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        switch (this.f34527a) {
+            case 0:
+                gl0 gl0Var = (gl0) this.d;
+                org.telegram.ui.d61 d61Var = gl0Var.f35593e;
+                gl0Var.f35599i0 = null;
+                boolean z10 = this.f34528b;
+                if (z10) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                gl0Var.f35600j0 = f10;
+                for (int i7 = 0; i7 < d61Var.getChildCount(); i7++) {
+                    d61Var.getChildAt(i7).invalidate();
+                }
+                d61Var.invalidate();
+                gl0Var.p();
+                if (!z10) {
+                    float childCount = gl0Var.f35602l0 * d61Var.getChildCount();
+                    float f11 = this.f34529c;
+                    float scrollX = (gl0Var.getScrollX() + f11) / (gl0Var.f35601k0 * d61Var.getChildCount());
+                    float measuredWidth = (childCount - gl0Var.getMeasuredWidth()) / childCount;
+                    if (scrollX > measuredWidth) {
+                        f11 = 0.0f;
+                        scrollX = measuredWidth;
+                    }
+                    float f12 = childCount * scrollX;
+                    if (f12 - f11 < 0.0f) {
+                        f12 = f11;
+                    }
+                    gl0Var.m0 = (gl0Var.getScrollX() + f11) - f12;
+                    int i10 = (int) (f12 - f11);
+                    gl0Var.f35604n0 = i10;
+                    if (i10 < 0) {
+                        gl0Var.f35604n0 = 0;
+                    }
+                    for (int i11 = 0; i11 < d61Var.getChildCount(); i11++) {
+                        View childAt = d61Var.getChildAt(i11);
+                        if (childAt instanceof sv0) {
+                            ((sv0) childAt).setExpanded(false);
+                        }
+                        childAt.getLayoutParams().width = org.telegram.messenger.g0.L(33.0f);
+                    }
+                    gl0Var.f35598h0 = false;
+                    gl0Var.getLayoutParams().height = org.telegram.messenger.g0.L(36.0f);
+                    d61Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                if (!this.f34528b) {
+                    super/*android.app.Dialog*/.dismiss();
+                    return;
+                }
+                return;
+        }
     }
 
-    public static dl0[] values() {
-        return (dl0[]) f34466c.clone();
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f34527a) {
+            case 1:
+                super.onAnimationStart(animator);
+                zh.j jVar = ((zh.k) this.d).E;
+                jVar.setVisibility(0);
+                if (this.f34528b) {
+                    float f10 = this.f34529c;
+                    jVar.setScaleX(f10);
+                    jVar.setScaleY(f10);
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

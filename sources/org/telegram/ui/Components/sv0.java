@@ -1,84 +1,158 @@
 package org.telegram.ui.Components;
 
-import android.text.SpannableString;
-import android.util.Pair;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class sv0 implements Runnable {
-    public final int f39850a;
-    public final Object f39851b;
-    public final Object f39852c;
-    public final Object d;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+public final class sv0 extends FrameLayout {
+    public static int H;
+    public float E;
+    public boolean F;
+    public float G;
+    public final int f39704a;
+    public float f39705b;
+    public boolean f39706c;
+    public boolean d;
+    public final q9 f39707e;
+    public final ImageView f39708f;
+    public final di.xb h;
+    public final View f39709n;
+    public boolean f39710r;
+    public final int f39711s;
+    public org.telegram.messenger.lz f39712w;
+    public boolean f39713x;
+    public ValueAnimator f39714y;
 
-    public sv0(Object obj, Object obj2, Object obj3, int i7) {
-        this.f39850a = i7;
-        this.f39851b = obj;
-        this.f39852c = obj2;
-        this.d = obj3;
-    }
-
-    private final void a() {
-        q2.j jVar = (q2.j) this.f39851b;
-        int i7 = jVar.f55759a;
-        x2.g0 g0Var = jVar.f55760b;
-        this.f39852c.K(i7, g0Var, (Exception) this.d);
-    }
-
-    private final void b() {
-        q2.j jVar = (q2.j) this.f39851b;
-        int i7 = jVar.f55759a;
-        x2.g0 g0Var = jVar.f55760b;
-        this.f39852c.c(i7, g0Var, (nb.a) this.d);
-    }
-
-    private final void c() {
-        SpannableString spannableString = (SpannableString) this.f39851b;
-        qi.j.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((ji.j) this.f39852c).f17945b);
-        ((oi.s2) this.d).run();
-    }
-
-    private final void d() {
-        SpannableString spannableString = (SpannableString) this.f39851b;
-        qi.j.a(spannableString, spannableString.length(), (com.google.android.gms.internal.play_billing.s0) ((ji.j) this.f39852c).f17945b);
-        ((di.o9) this.d).a(spannableString);
-    }
-
-    private final void f() {
-        ((wg.u0) this.f39851b).a(new Pair((HashMap) this.f39852c, (ArrayList) this.d));
-    }
-
-    private final void g() {
-        TLRPC.User c22;
-        TLObject tLObject = (TLObject) this.f39851b;
-        org.telegram.messenger.mp mpVar = (org.telegram.messenger.mp) this.f39852c;
-        wg.u0 u0Var = (wg.u0) this.d;
-        if (tLObject instanceof TLRPC.TL_channels_channelParticipants) {
-            TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
-            mpVar.f4(tL_channels_channelParticipants.users, false);
-            mpVar.Z3(tL_channels_channelParticipants.chats, false);
-            long e10 = org.telegram.messenger.j10.i(org.telegram.messenger.j10.f24770t0).e();
-            ArrayList arrayList = new ArrayList();
-            for (int i7 = 0; i7 < tL_channels_channelParticipants.participants.size(); i7++) {
-                TLRPC.Peer peer = tL_channels_channelParticipants.participants.get(i7).peer;
-                if (peer != null && org.telegram.messenger.fj.B1(peer) != e10 && (c22 = mpVar.c2(Long.valueOf(peer.user_id))) != null && !org.telegram.messenger.o10.y(c22) && !c22.bot) {
-                    arrayList.add(mpVar.o1(peer));
-                }
-            }
-            u0Var.a(arrayList);
+    public sv0(Context context, int i7) {
+        super(context);
+        this.f39704a = i7;
+        int i10 = H;
+        H = i10 + 1;
+        this.f39711s = i10;
+        if (i7 == 2) {
+            q9 q9Var = new q9(getContext());
+            this.f39707e = q9Var;
+            q9Var.setLayerNum(1);
+            q9Var.setAspectFit(false);
+            q9Var.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
+            addView(q9Var, c8.ma.e(26, 26, 17));
+            this.f39709n = q9Var;
+        } else if (i7 == 1) {
+            ImageView imageView = new ImageView(context);
+            this.f39708f = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            addView(imageView, c8.ma.e(24, 24, 17));
+            this.f39709n = imageView;
+        } else {
+            q9 q9Var2 = new q9(getContext());
+            this.f39707e = q9Var2;
+            q9Var2.setLayerNum(1);
+            q9Var2.setAspectFit(true);
+            q9Var2.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
+            addView(q9Var2, c8.ma.e(26, 26, 17));
+            this.f39709n = q9Var2;
         }
+        di.xb xbVar = new di.xb(context, 26);
+        this.h = xbVar;
+        xbVar.addOnLayoutChangeListener(new o60(this, 1));
+        xbVar.setLines(1);
+        xbVar.setEllipsize(TextUtils.TruncateAt.END);
+        xbVar.setTextSize(1, 11.0f);
+        xbVar.setGravity(1);
+        org.telegram.ui.ActionBar.t6.U(xbVar, org.telegram.ui.ActionBar.m6.G6, null);
+        addView(xbVar, c8.ma.d(-1, -2.0f, 81, 8.0f, 0.0f, 8.0f, 10.0f));
+        xbVar.setVisibility(8);
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sv0.run():void");
+    public final void a(float f10) {
+        float f11;
+        float f12;
+        int i7 = this.f39704a;
+        if (i7 == 2) {
+            return;
+        }
+        boolean z10 = this.f39710r;
+        View view = this.f39709n;
+        if (z10) {
+            if (i7 == 1) {
+                f11 = 24.0f;
+            } else {
+                f11 = 26.0f;
+            }
+            if (i7 == 1) {
+                f12 = 38.0f;
+            } else {
+                f12 = 44.0f;
+            }
+            int i10 = gl0.f35585u0;
+            float f13 = 1.0f - f10;
+            view.setTranslationY((((org.telegram.messenger.g0.L(36.0f - f11) / 2.0f) - (org.telegram.messenger.g0.L(86.0f - f12) / 2.0f)) * f13) - (org.telegram.messenger.g0.L(8.0f) * f10));
+            view.setTranslationX(((org.telegram.messenger.g0.L(33.0f - f11) / 2.0f) - (org.telegram.messenger.g0.L(64.0f - f12) / 2.0f)) * f13);
+            float max = Math.max(0.0f, (f10 - 0.5f) / 0.5f);
+            di.xb xbVar = this.h;
+            xbVar.setAlpha(max);
+            xbVar.setTranslationY((-org.telegram.messenger.g0.L(40.0f)) * f13);
+            xbVar.setTranslationX((-org.telegram.messenger.g0.L(12.0f)) * f13);
+            view.setPivotX(0.0f);
+            view.setPivotY(0.0f);
+            float f14 = ((f11 / f12) * f13) + f10;
+            view.setScaleX(f14);
+            view.setScaleY(f14);
+            return;
+        }
+        view.setTranslationX(0.0f);
+        view.setTranslationY(0.0f);
+        view.setScaleX(1.0f);
+        view.setScaleY(1.0f);
     }
 
-    public sv0(Object obj, Object obj2, String str, int i7) {
-        this.f39850a = i7;
-        this.f39851b = obj;
-        this.d = obj2;
-        this.f39852c = str;
+    public float getTextWidth() {
+        return this.G;
+    }
+
+    public void setExpanded(boolean z10) {
+        float f10;
+        float f11;
+        float f12;
+        int i7;
+        int i10 = this.f39704a;
+        if (i10 != 2) {
+            this.f39710r = z10;
+            if (i10 == 1) {
+                f10 = 24.0f;
+            } else {
+                f10 = 26.0f;
+            }
+            if (i10 == 1) {
+                f11 = 38.0f;
+            } else {
+                f11 = 44.0f;
+            }
+            View view = this.f39709n;
+            ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+            if (z10) {
+                f12 = f11;
+            } else {
+                f12 = f10;
+            }
+            layoutParams.width = org.telegram.messenger.g0.L(f12);
+            ViewGroup.LayoutParams layoutParams2 = view.getLayoutParams();
+            if (z10) {
+                f10 = f11;
+            }
+            layoutParams2.height = org.telegram.messenger.g0.L(f10);
+            if (z10) {
+                i7 = 0;
+            } else {
+                i7 = 8;
+            }
+            this.h.setVisibility(i7);
+            if (i10 != 1 && this.f39713x) {
+                this.f39707e.setRoundRadius(org.telegram.messenger.g0.L(view.getLayoutParams().width / 2.0f));
+            }
+        }
     }
 }

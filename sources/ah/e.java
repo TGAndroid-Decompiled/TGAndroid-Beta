@@ -13,39 +13,39 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.n10;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.y1;
-public class e extends FrameLayout implements c6 {
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.ActionBar.x1;
+public class e extends FrameLayout implements b6 {
     public int f1064a;
-    public final i6 f1065b;
+    public final h6 f1065b;
     public final ImageView f1066c;
     public final TextView d;
     public Runnable f1067e;
-    public final y1 f1068f;
+    public final x1 f1068f;
     public final Paint h;
 
-    public e(Context context, i6 i6Var) {
+    public e(Context context, h6 h6Var) {
         super(context);
         int i7;
         float f10;
         float f11;
         this.h = new Paint(1);
-        this.f1065b = i6Var;
+        this.f1065b = h6Var;
         TextView textView = new TextView(context);
         this.d = textView;
         n10.p(textView, 1, 20.0f);
-        if (gd.f24213a0) {
+        if (gd.f24241a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7);
-        int i10 = n6.f29502j5;
-        u6.U(textView, i10, i6Var);
-        boolean z10 = gd.f24213a0;
+        int i10 = m6.f29486j5;
+        t6.U(textView, i10, h6Var);
+        boolean z10 = gd.f24241a0;
         if (z10) {
             f10 = 16.0f;
         } else {
@@ -59,22 +59,22 @@ public class e extends FrameLayout implements c6 {
         addView(textView, ma.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
         ImageView imageView = new ImageView(context);
         this.f1066c = imageView;
-        y1 y1Var = new y1(false);
-        this.f1068f = y1Var;
-        imageView.setImageDrawable(y1Var);
-        int w02 = n6.w0(i10, i6Var);
+        x1 x1Var = new x1(false);
+        this.f1068f = x1Var;
+        imageView.setImageDrawable(x1Var);
+        int w02 = m6.w0(i10, h6Var);
         this.f1064a = w02;
-        y1Var.a(w02);
-        y1Var.b(n6.w0(i10, i6Var));
-        y1Var.f30269k = 220.0f;
-        addView(imageView, ma.d(24, 24.0f, (gd.f24213a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        x1Var.a(w02);
+        x1Var.b(m6.w0(i10, h6Var));
+        x1Var.f30252k = 220.0f;
+        addView(imageView, ma.d(24, 24.0f, (gd.f24241a0 ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new d(this, 0));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int w02 = n6.w0(n6.f29395d7, this.f1065b);
+        int w02 = m6.w0(m6.f29379d7, this.f1065b);
         Paint paint = this.h;
         paint.setColor(w02);
         canvas.drawRect(0.0f, getHeight() - g0.f1(), getWidth(), getHeight(), paint);
@@ -103,7 +103,7 @@ public class e extends FrameLayout implements c6 {
             i7 = 8;
         }
         this.f1066c.setVisibility(i7);
-        boolean z11 = gd.f24213a0;
+        boolean z11 = gd.f24241a0;
         if (!z11 && z10) {
             f10 = 53.0f;
         } else {
@@ -127,14 +127,14 @@ public class e extends FrameLayout implements c6 {
 
     @Override
     public final void updateColors() {
-        y1 y1Var = this.f1068f;
-        if (y1Var != null) {
+        x1 x1Var = this.f1068f;
+        if (x1Var != null) {
             try {
-                int w02 = n6.w0(n6.f29502j5, this.f1065b);
+                int w02 = m6.w0(m6.f29486j5, this.f1065b);
                 if (w02 != this.f1064a) {
                     this.f1064a = w02;
-                    y1Var.a(w02);
-                    y1Var.b(w02);
+                    x1Var.a(w02);
+                    x1Var.b(w02);
                     ImageView imageView = this.f1066c;
                     if (imageView != null) {
                         imageView.invalidate();

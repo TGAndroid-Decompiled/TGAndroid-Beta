@@ -2,19 +2,19 @@ package f6;
 
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class z implements com.google.android.gms.common.api.internal.q {
-    public static final z f11480b = new z(0);
-    public static final z f11481c = new z(1);
-    public final int f11482a;
+    public static final z f11509b = new z(0);
+    public static final z f11510c = new z(1);
+    public final int f11511a;
 
     public z(int i7) {
-        this.f11482a = i7;
+        this.f11511a = i7;
     }
 
     @Override
     public final void accept(Object obj, Object obj2) {
         j6.x xVar = (j6.x) obj;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        switch (this.f11482a) {
+        switch (this.f11511a) {
             case 0:
                 j6.b bVar = e0.H;
                 ((j6.f) xVar.n()).x1();

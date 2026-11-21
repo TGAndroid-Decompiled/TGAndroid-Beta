@@ -13,7 +13,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.Components.vy0;
+import org.telegram.ui.Components.xy0;
 import org.telegram.ui.wg0;
 public final class cj implements wg0 {
     public float E;
@@ -24,30 +24,30 @@ public final class cj implements wg0 {
     public boolean J;
     public boolean K;
     public String L;
-    public vy0 M;
+    public xy0 M;
     public int N;
     public boolean O;
     public int P;
     public Drawable Q;
-    public vy0 R;
+    public xy0 R;
     public int S;
     public org.telegram.ui.Cells.y T;
     public Paint U;
     public boolean V;
     public Paint W;
-    public boolean f23358a;
-    public boolean f23359b;
-    public int f23360c;
-    public StaticLayout f23361e;
-    public int f23362f;
+    public boolean f23386a;
+    public boolean f23387b;
+    public int f23388c;
+    public StaticLayout f23389e;
+    public int f23390f;
     public int h;
-    public int f23363n;
-    public int f23364r;
-    public int f23365s;
-    public int f23366w;
-    public byte f23367x;
+    public int f23391n;
+    public int f23392r;
+    public int f23393s;
+    public int f23394w;
+    public byte f23395x;
     public final AtomicReference d = new AtomicReference();
-    public final ArrayList f23368y = new ArrayList();
+    public final ArrayList f23396y = new ArrayList();
 
     public static String b(String str) {
         if (str == null) {
@@ -463,7 +463,7 @@ public final class cj implements wg0 {
 
     @Override
     public final Layout a() {
-        return this.f23361e;
+        return this.f23389e;
     }
 
     public final int c() {
@@ -479,10 +479,10 @@ public final class cj implements wg0 {
     public final float d(org.telegram.ui.Cells.y1 y1Var) {
         boolean f10;
         float f11;
-        if (y1Var.f32371f3) {
-            HashSet hashSet = y1Var.f32366e3;
+        if (y1Var.f32399f3) {
+            HashSet hashSet = y1Var.f32394e3;
             f10 = true;
-            if (hashSet != null && hashSet.contains(Integer.valueOf(this.f23360c))) {
+            if (hashSet != null && hashSet.contains(Integer.valueOf(this.f23388c))) {
                 f10 = false;
             }
         } else {
@@ -508,7 +508,7 @@ public final class cj implements wg0 {
     public final boolean f() {
         HashSet hashSet;
         fj fjVar = this.F;
-        if (fjVar != null && (hashSet = fjVar.K0) != null && hashSet.contains(Integer.valueOf(this.f23360c))) {
+        if (fjVar != null && (hashSet = fjVar.K0) != null && hashSet.contains(Integer.valueOf(this.f23388c))) {
             return false;
         }
         return true;
@@ -526,8 +526,8 @@ public final class cj implements wg0 {
 
     public final int h() {
         StaticLayout staticLayout;
-        if (this.M == null && (staticLayout = this.f23361e) != null && staticLayout.getLineCount() != 0) {
-            return Math.round(((this.f23361e.getLineBottom(0) + this.f23361e.getLineTop(0)) / 2.0f) - (g0.L(18.0f) / 2.0f));
+        if (this.M == null && (staticLayout = this.f23389e) != null && staticLayout.getLineCount() != 0) {
+            return Math.round(((this.f23389e.getLineBottom(0) + this.f23389e.getLineTop(0)) / 2.0f) - (g0.L(18.0f) / 2.0f));
         }
         return g0.L(8.0f) + (-g());
     }
@@ -536,11 +536,11 @@ public final class cj implements wg0 {
         if (!this.O) {
             return;
         }
-        int r12 = org.telegram.ui.ActionBar.n6.r1(0.1f, i7);
+        int r12 = org.telegram.ui.ActionBar.m6.r1(0.1f, i7);
         if (this.S != r12) {
             org.telegram.ui.Cells.y yVar = this.T;
             this.S = r12;
-            org.telegram.ui.ActionBar.n6.H1(yVar, r12, true);
+            org.telegram.ui.ActionBar.m6.H1(yVar, r12, true);
         }
         this.T.setBounds(g0.L(3.0f) + ((int) rectF.left), (int) (rectF.bottom - g0.L(38.0f)), (int) rectF.right, (int) rectF.bottom);
         int i11 = (int) (255.0f * f10);
@@ -550,7 +550,7 @@ public final class cj implements wg0 {
         }
         this.U.setColor(i0.a.o(i10, 38));
         canvas.drawRect(rectF.left + g0.L(10.0f), (rectF.bottom - g0.L(38.0f)) - g0.f1(), rectF.right - g0.L(6.66f), rectF.bottom - g0.L(38.0f), this.U);
-        float min = Math.min(rectF.width() - g0.L(12.0f), (this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.R.f41482c);
+        float min = Math.min(rectF.width() - g0.L(12.0f), (this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.R.f42254c);
         float centerX = rectF.centerX() - (min / 2.0f);
         float L = rectF.bottom - (g0.L(38.0f) / 2.0f);
         if (this.P != i7) {
@@ -563,16 +563,16 @@ public final class cj implements wg0 {
         drawable2.setBounds((int) centerX, (int) (L - ((drawable2.getIntrinsicHeight() * 0.8f) / 2.0f)), (int) ((this.Q.getIntrinsicWidth() * 0.8f) + centerX), (int) a8.p0.f(this.Q.getIntrinsicHeight(), 0.8f, 2.0f, L));
         this.Q.draw(canvas);
         float intrinsicWidth = (this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + centerX;
-        vy0 vy0Var = this.R;
-        vy0Var.f41493p = g0.L(12.0f) + ((int) (min - ((this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
-        vy0Var.c(intrinsicWidth, L, f10, i7, canvas);
+        xy0 xy0Var = this.R;
+        xy0Var.f42265p = g0.L(12.0f) + ((int) (min - ((this.Q.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
+        xy0Var.c(intrinsicWidth, L, f10, i7, canvas);
     }
 
     public final int j(org.telegram.ui.Cells.y1 y1Var) {
         if (!this.K) {
-            return this.f23366w;
+            return this.f23394w;
         }
-        return g0.W1(d(y1Var), this.f23366w, this.G);
+        return g0.W1(d(y1Var), this.f23394w, this.G);
     }
 
     public final boolean k(float f10, float f11, float f12) {
@@ -586,7 +586,7 @@ public final class cj implements wg0 {
     }
 
     public final boolean l() {
-        byte b10 = this.f23367x;
+        byte b10 = this.f23395x;
         if ((b10 & 1) != 0 && (b10 & 2) == 0) {
             return true;
         }
@@ -603,11 +603,11 @@ public final class cj implements wg0 {
         this.O = z11;
         int i10 = 5;
         if (z11) {
-            this.R = new vy0(gd.M0(2131751754, null).toUpperCase(), bz.W0 - 3, g0.o());
-            Drawable g10 = i5.c.g(t0.f26913b, 2131232105);
+            this.R = new xy0(gd.N0(2131751753, null).toUpperCase(), bz.W0 - 3, g0.o());
+            Drawable g10 = i5.c.g(t0.f26941b, 2131232105);
             this.Q = g10;
             g10.setColorFilter(new PorterDuffColorFilter(this.P, PorterDuff.Mode.SRC_IN));
-            this.T = org.telegram.ui.ActionBar.n6.c0(this.S, 0, 0, Math.min(5, bz.Y0), 0);
+            this.T = org.telegram.ui.ActionBar.m6.c0(this.S, 0, 0, Math.min(5, bz.Y0), 0);
             this.U = new Paint(1);
         }
         if (TextUtils.isEmpty(str)) {
@@ -618,7 +618,7 @@ public final class cj implements wg0 {
         this.L = str;
         String b10 = b(str);
         int i11 = bz.W0 - 1;
-        qi.p pVar = qi.j.f56187a;
+        qi.p pVar = qi.j.f56228a;
         if (i7 <= 120) {
             if (i7 > 50) {
                 i10 = 3;
@@ -626,29 +626,29 @@ public final class cj implements wg0 {
                 i10 = 2;
             }
         }
-        vy0 vy0Var = new vy0(b10, i11 - (i10 / 2), g0.o());
-        this.M = vy0Var;
-        this.N = g0.L(4.0f) + ((int) (vy0Var.f41480a.getTextSize() * 1.714f));
+        xy0 xy0Var = new xy0(b10, i11 - (i10 / 2), g0.o());
+        this.M = xy0Var;
+        this.N = g0.L(4.0f) + ((int) (xy0Var.f42252a.getTextSize() * 1.714f));
     }
 
     public final void n(String str, boolean z10) {
         this.V = true;
         this.O = !z10;
         if (!z10) {
-            Drawable g10 = i5.c.g(t0.f26913b, 2131232105);
+            Drawable g10 = i5.c.g(t0.f26941b, 2131232105);
             this.Q = g10;
             g10.setColorFilter(new PorterDuffColorFilter(this.P, PorterDuff.Mode.SRC_IN));
-            this.T = org.telegram.ui.ActionBar.n6.c0(this.S, 0, 0, Math.min(5, bz.Y0), 0);
+            this.T = org.telegram.ui.ActionBar.m6.c0(this.S, 0, 0, Math.min(5, bz.Y0), 0);
         }
-        vy0 vy0Var = null;
+        xy0 xy0Var = null;
         if (TextUtils.isEmpty(str)) {
             str = null;
         }
         this.L = str;
         if (str != null) {
-            vy0Var = new vy0(str, Math.max(8, bz.W0 - 4), null);
+            xy0Var = new xy0(str, Math.max(8, bz.W0 - 4), null);
         }
-        this.M = vy0Var;
+        this.M = xy0Var;
         this.N = 0;
     }
 
@@ -660,11 +660,11 @@ public final class cj implements wg0 {
         }
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size() && (cjVar = (cj) arrayList.get(i11)) != this; i11++) {
-            int i12 = cjVar.f23362f;
+            int i12 = cjVar.f23390f;
             if (cjVar.K && cjVar.f()) {
                 i7 = cjVar.G;
             } else {
-                i7 = cjVar.f23366w;
+                i7 = cjVar.f23394w;
             }
             i10 += i7 + i12 + cjVar.h;
         }
@@ -678,7 +678,7 @@ public final class cj implements wg0 {
         }
         int i7 = 0;
         for (int i10 = 0; i10 < arrayList.size() && (cjVar = (cj) arrayList.get(i10)) != this; i10++) {
-            i7 += cjVar.j(y1Var) + cjVar.f23362f + cjVar.h;
+            i7 += cjVar.j(y1Var) + cjVar.f23390f + cjVar.h;
         }
         return i7;
     }

@@ -7,7 +7,7 @@ public class NotificationBadge$HuaweiHomeBadger implements wr {
     @Override
     public final void a(int i7) {
         Bundle bundle = new Bundle();
-        bundle.putString("package", t0.f26913b.getPackageName());
+        bundle.putString("package", t0.f26941b.getPackageName());
         bundle.putString("class", zr.d.getClassName());
         bundle.putInt("badgenumber", i7);
         g0.g3(new xr(bundle, 0));

@@ -7,7 +7,7 @@ public final class za implements ta {
 
     public za(Context context, na naVar) {
         this.f752b = naVar;
-        m5.a aVar = m5.a.f20827e;
+        m5.a aVar = m5.a.f20855e;
         o5.s.b(context);
         o5.q c10 = o5.s.a().c(aVar);
         if (m5.a.d.contains(new l5.c("json"))) {
@@ -24,7 +24,7 @@ public final class za implements ta {
         if (xaVar.f713b != 0) {
             aVar = l5.a.a(xaVar.F());
         } else {
-            aVar = new l5.a(null, xaVar.F(), l5.d.f19673b, null);
+            aVar = new l5.a(null, xaVar.F(), l5.d.f19701b, null);
         }
         rVar.a(aVar, new n2.a0(8));
     }

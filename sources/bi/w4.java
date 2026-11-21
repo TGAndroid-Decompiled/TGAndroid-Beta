@@ -1,42 +1,73 @@
 package bi;
 
-import java.util.HashMap;
-import org.telegram.messenger.rq;
-import org.telegram.messenger.tr;
-import org.telegram.ui.Components.EditTextBoldCursor;
+import android.content.Context;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.ri;
+import org.telegram.messenger.sz;
+import org.telegram.messenger.tz;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.cx;
 public final class w4 implements Runnable {
-    public final int f4150a;
-    public final z4 f4151b;
+    public final int f4207a = 0;
+    public final int f4208b;
+    public final boolean f4209c;
+    public final long d;
+    public final Object f4210e;
+    public final Object f4211f;
+    public final Object h;
+    public final Object f4212n;
+    public final Object f4213r;
+    public final Object f4214s;
+    public final Object f4215w;
+    public final Object f4216x;
 
-    public w4(z4 z4Var, int i7) {
-        this.f4150a = i7;
-        this.f4151b = z4Var;
+    public w4(Context context, int i7, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10, org.telegram.ui.ActionBar.h6 h6Var, ai.x1 x1Var, lc lcVar, c1.a aVar, di.f2 f2Var) {
+        this.f4210e = context;
+        this.f4208b = i7;
+        this.f4211f = tL_starGiftUnique;
+        this.d = j3;
+        this.h = tL_textWithEntities;
+        this.f4209c = z10;
+        this.f4212n = h6Var;
+        this.f4213r = x1Var;
+        this.f4214s = lcVar;
+        this.f4215w = aVar;
+        this.f4216x = f2Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f4150a;
-        z4 z4Var = this.f4151b;
-        switch (i7) {
-            case 0:
-                EditTextBoldCursor editTextBoldCursor = z4Var.f4280s1;
-                editTextBoldCursor.requestFocus();
-                org.telegram.messenger.g0.I3(editTextBoldCursor);
-                return;
-            case 1:
-                di.k1 k1Var = z4Var.f4276o1;
-                if (k1Var != null) {
-                    k1Var.run();
-                }
-                z4Var.dismiss();
-                return;
-            default:
-                int i10 = z4Var.f30187a;
-                String str = z4Var.f4275m1.slug;
-                HashMap hashMap = e4.f3543a;
-                tr a02 = tr.a0(i10);
-                a02.f27052a.c(new rq(6, a02, str));
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: bi.w4.run():void");
+    }
+
+    public w4(ri riVar, sz szVar, a0.h hVar, AtomicInteger atomicInteger, Runnable runnable, int i7, tz tzVar, a0.h hVar2, a0.h hVar3, boolean z10, long j3) {
+        this.f4210e = riVar;
+        this.f4211f = szVar;
+        this.h = hVar;
+        this.f4212n = atomicInteger;
+        this.f4213r = runnable;
+        this.f4208b = i7;
+        this.f4214s = tzVar;
+        this.f4215w = hVar2;
+        this.f4216x = hVar3;
+        this.f4209c = z10;
+        this.d = j3;
+    }
+
+    public w4(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z10, String str2, int i7, TLRPC.Chat chat, cx cxVar, TLRPC.User user, long j3, String str3) {
+        this.f4210e = launchActivity;
+        this.f4211f = str;
+        this.h = tL_chatAdminRights;
+        this.f4209c = z10;
+        this.f4212n = str2;
+        this.f4208b = i7;
+        this.f4213r = chat;
+        this.f4214s = cxVar;
+        this.f4215w = user;
+        this.d = j3;
+        this.f4216x = str3;
     }
 }

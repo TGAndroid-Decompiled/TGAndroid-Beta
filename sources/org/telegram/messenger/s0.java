@@ -6,11 +6,11 @@ import android.net.NetworkCapabilities;
 public final class s0 extends ConnectivityManager.NetworkCallback {
     @Override
     public final void onAvailable(Network network) {
-        t0.f26918r = -1;
+        t0.f26946r = -1;
     }
 
     @Override
     public final void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
-        t0.f26918r = -1;
+        t0.f26946r = -1;
     }
 }

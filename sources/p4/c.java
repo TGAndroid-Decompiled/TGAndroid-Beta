@@ -5,21 +5,21 @@ import android.os.Bundle;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.ui.Components.of;
+import org.telegram.ui.Components.qf;
 public final class c {
-    public int f55160a;
-    public final int f55161b;
-    public final boolean f55162c;
+    public int f55201a;
+    public final int f55202b;
+    public final boolean f55203c;
     public Object d;
-    public final Cloneable f55163e;
-    public Serializable f55164f;
-    public Object f55165g;
+    public final Cloneable f55204e;
+    public Serializable f55205f;
+    public Object f55206g;
 
     public c() {
-        this.f55161b = 0;
-        this.f55163e = Bundle.EMPTY;
-        this.f55160a = -1;
-        this.f55162c = true;
+        this.f55202b = 0;
+        this.f55204e = Bundle.EMPTY;
+        this.f55201a = -1;
+        this.f55203c = true;
     }
 
     public static v4.l e(int i7, ArrayList arrayList, boolean z10) {
@@ -27,17 +27,17 @@ public final class c {
         int size = arrayList.size() - 1;
         while (size >= 0) {
             v4.l lVar = (v4.l) arrayList.get(size);
-            if (lVar.f59181a == i7 && lVar.f59183c == z10) {
+            if (lVar.f59219a == i7 && lVar.f59221c == z10) {
                 arrayList.remove(size);
                 while (size < arrayList.size()) {
                     v4.l lVar2 = (v4.l) arrayList.get(size);
-                    int i11 = lVar2.f59182b;
+                    int i11 = lVar2.f59220b;
                     if (z10) {
                         i10 = 1;
                     } else {
                         i10 = -1;
                     }
-                    lVar2.f59182b = i11 + i10;
+                    lVar2.f59220b = i11 + i10;
                     size++;
                 }
                 return lVar;
@@ -57,7 +57,7 @@ public final class c {
         } else {
             z10 = false;
         }
-        if (this.f55160a == -1) {
+        if (this.f55201a == -1) {
             z11 = true;
         } else {
             z11 = false;
@@ -66,8 +66,8 @@ public final class c {
             z12 = true;
         }
         la.o("Exactly one of sessionCommand and playerCommand should be set", z12);
-        if (((l9.a) this.f55164f) == null) {
-            int i10 = this.f55160a;
+        if (((l9.a) this.f55205f) == null) {
+            int i10 = this.f55201a;
             if (i10 != 1) {
                 if (i10 != 11 && i10 != 7) {
                     i7 = 6;
@@ -79,33 +79,33 @@ public final class c {
                 }
                 i7 = 2;
             }
-            this.f55164f = new l9.a(new int[]{i7});
+            this.f55205f = new l9.a(new int[]{i7});
         }
-        return new d((k1) this.d, this.f55160a, this.f55161b, (Bundle) this.f55163e, this.f55162c, (l9.a) this.f55164f, this.f55165g);
+        return new d((k1) this.d, this.f55201a, this.f55202b, (Bundle) this.f55204e, this.f55203c, (l9.a) this.f55205f, this.f55206g);
     }
 
     public void b(v4.e0 e0Var) {
         v4.b bVar;
         v4.o oVar;
         int i7;
-        int[] iArr = (int[]) this.f55163e;
+        int[] iArr = (int[]) this.f55204e;
         ArrayList arrayList = (ArrayList) this.d;
-        v4.o oVar2 = (v4.o) this.f55165g;
+        v4.o oVar2 = (v4.o) this.f55206g;
         if (e0Var instanceof v4.b) {
             bVar = (v4.b) e0Var;
         } else {
             bVar = new v4.b(e0Var);
         }
         ArrayList arrayList2 = new ArrayList();
-        int i10 = this.f55160a;
+        int i10 = this.f55201a;
         int size = arrayList.size() - 1;
-        int i11 = this.f55161b;
+        int i11 = this.f55202b;
         while (size >= 0) {
             v4.n nVar = (v4.n) arrayList.get(size);
-            int i12 = nVar.f59192c;
-            int i13 = nVar.f59190a + i12;
-            int i14 = nVar.f59191b + i12;
-            boolean z10 = this.f55162c;
+            int i12 = nVar.f59230c;
+            int i13 = nVar.f59228a + i12;
+            int i14 = nVar.f59229b + i12;
+            boolean z10 = this.f55203c;
             int[] iArr2 = iArr;
             if (i13 < i10) {
                 int i15 = i10 - i13;
@@ -133,10 +133,10 @@ public final class c {
                                 int i20 = i18 >> 5;
                                 i7 = i16;
                                 v4.l e10 = e(i20, arrayList2, false);
-                                bVar.F(i17, e10.f59182b - 1);
+                                bVar.F(i17, e10.f59220b - 1);
                                 if (i19 == 4) {
                                     oVar.getClass();
-                                    bVar.g1(e10.f59182b - 1, 1);
+                                    bVar.g1(e10.f59220b - 1, 1);
                                 }
                             }
                         } else {
@@ -150,7 +150,7 @@ public final class c {
                                 Object obj = arrayList2.get(i21);
                                 i21++;
                                 v4.l lVar = (v4.l) obj;
-                                lVar.f59182b--;
+                                lVar.f59220b--;
                                 z11 = true;
                             }
                         }
@@ -169,7 +169,7 @@ public final class c {
                 } else {
                     for (int i23 = i22 - 1; i23 >= 0; i23--) {
                         int i24 = i14 + i23;
-                        int i25 = ((int[]) this.f55164f)[i24];
+                        int i25 = ((int[]) this.f55205f)[i24];
                         int i26 = i25 & 31;
                         if (i26 != 0) {
                             if (i26 != 4 && i26 != 8) {
@@ -181,7 +181,7 @@ public final class c {
                                     throw new IllegalStateException(m11.toString());
                                 }
                             }
-                            bVar.F(e(i25 >> 5, arrayList2, true).f59182b, i13);
+                            bVar.F(e(i25 >> 5, arrayList2, true).f59220b, i13);
                             if (i26 == 4) {
                                 oVar3.getClass();
                                 bVar.g1(i13, 1);
@@ -194,7 +194,7 @@ public final class c {
                             while (i27 < size3) {
                                 Object obj2 = arrayList2.get(i27);
                                 i27++;
-                                ((v4.l) obj2).f59182b++;
+                                ((v4.l) obj2).f59220b++;
                                 z12 = true;
                             }
                         }
@@ -202,14 +202,14 @@ public final class c {
                 }
             }
             for (int i28 = i12 - 1; i28 >= 0; i28--) {
-                int i29 = nVar.f59190a + i28;
+                int i29 = nVar.f59228a + i28;
                 if ((iArr2[i29] & 31) == 2) {
                     oVar3.getClass();
                     bVar.g1(i29, 1);
                 }
             }
-            i10 = nVar.f59190a;
-            i11 = nVar.f59191b;
+            i10 = nVar.f59228a;
+            i11 = nVar.f59229b;
             size--;
             iArr = iArr2;
             arrayList = arrayList4;
@@ -219,15 +219,15 @@ public final class c {
     }
 
     public void c(v4.i0 i0Var) {
-        b(new of(i0Var, 23));
+        b(new qf(i0Var, 23));
     }
 
     public void d(int i7, int i10, int i11, boolean z10) {
         int i12;
         int i13;
-        int[] iArr = (int[]) this.f55163e;
-        int[] iArr2 = (int[]) this.f55164f;
-        v4.o oVar = (v4.o) this.f55165g;
+        int[] iArr = (int[]) this.f55204e;
+        int[] iArr2 = (int[]) this.f55205f;
+        v4.o oVar = (v4.o) this.f55206g;
         if (z10) {
             i10--;
             i13 = i7;
@@ -238,10 +238,10 @@ public final class c {
         }
         while (i11 >= 0) {
             v4.n nVar = (v4.n) ((ArrayList) this.d).get(i11);
-            int i14 = nVar.f59190a;
-            int i15 = nVar.f59192c;
+            int i14 = nVar.f59228a;
+            int i15 = nVar.f59230c;
             int i16 = i14 + i15;
-            int i17 = nVar.f59191b + i15;
+            int i17 = nVar.f59229b + i15;
             int i18 = 4;
             if (z10) {
                 for (int i19 = i13 - 1; i19 >= i16; i19--) {
@@ -269,41 +269,41 @@ public final class c {
                 }
                 continue;
             }
-            i13 = nVar.f59190a;
-            i10 = nVar.f59191b;
+            i13 = nVar.f59228a;
+            i10 = nVar.f59229b;
             i11--;
         }
     }
 
     public c(v4.o oVar, ArrayList arrayList, int[] iArr, int[] iArr2, boolean z10) {
         this.d = arrayList;
-        this.f55163e = iArr;
-        this.f55164f = iArr2;
+        this.f55204e = iArr;
+        this.f55205f = iArr2;
         Arrays.fill(iArr, 0);
         Arrays.fill(iArr2, 0);
-        this.f55165g = oVar;
+        this.f55206g = oVar;
         int e10 = oVar.e();
-        this.f55160a = e10;
+        this.f55201a = e10;
         int d = oVar.d();
-        this.f55161b = d;
-        this.f55162c = z10;
+        this.f55202b = d;
+        this.f55203c = z10;
         v4.n nVar = arrayList.isEmpty() ? null : (v4.n) arrayList.get(0);
-        if (nVar == null || nVar.f59190a != 0 || nVar.f59191b != 0) {
+        if (nVar == null || nVar.f59228a != 0 || nVar.f59229b != 0) {
             ?? obj = new Object();
-            obj.f59190a = 0;
-            obj.f59191b = 0;
+            obj.f59228a = 0;
+            obj.f59229b = 0;
             obj.d = false;
-            obj.f59192c = 0;
-            obj.f59193e = false;
+            obj.f59230c = 0;
+            obj.f59231e = false;
             arrayList.add(0, obj);
         }
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             v4.n nVar2 = (v4.n) arrayList.get(size);
-            int i7 = nVar2.f59190a;
-            int i10 = nVar2.f59192c;
+            int i7 = nVar2.f59228a;
+            int i10 = nVar2.f59230c;
             int i11 = i7 + i10;
-            int i12 = nVar2.f59191b + i10;
-            if (this.f55162c) {
+            int i12 = nVar2.f59229b + i10;
+            if (this.f55203c) {
                 while (e10 > i11) {
                     if (iArr[e10 - 1] == 0) {
                         d(e10, d, size, false);
@@ -317,15 +317,15 @@ public final class c {
                     d--;
                 }
             }
-            for (int i13 = 0; i13 < nVar2.f59192c; i13++) {
-                int i14 = nVar2.f59190a + i13;
-                int i15 = nVar2.f59191b + i13;
-                int i16 = ((v4.o) this.f55165g).a(i14, i15) ? 1 : 2;
+            for (int i13 = 0; i13 < nVar2.f59230c; i13++) {
+                int i14 = nVar2.f59228a + i13;
+                int i15 = nVar2.f59229b + i13;
+                int i16 = ((v4.o) this.f55206g).a(i14, i15) ? 1 : 2;
                 iArr[i14] = (i15 << 5) | i16;
                 iArr2[i15] = (i14 << 5) | i16;
             }
-            e10 = nVar2.f59190a;
-            d = nVar2.f59191b;
+            e10 = nVar2.f59228a;
+            d = nVar2.f59229b;
         }
     }
 }

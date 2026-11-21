@@ -1,19 +1,19 @@
 package org.telegram.messenger;
 public final class ur {
-    public int f27211a;
-    public String f27212b;
-    public String f27213c;
+    public int f27239a;
+    public String f27240b;
+    public String f27241c;
     public String d;
-    public String f27214e;
-    public int f27215f;
-    public int f27216g;
+    public String f27242e;
+    public int f27243f;
+    public int f27244g;
     public int h;
-    public int f27217i;
-    public int f27218j;
-    public int f27219k;
-    public String f27220l;
-    public String f27221m;
-    public int f27222n;
-    public boolean f27223o;
-    public String f27224p;
+    public int f27245i;
+    public int f27246j;
+    public int f27247k;
+    public String f27248l;
+    public String f27249m;
+    public int f27250n;
+    public boolean f27251o;
+    public String f27252p;
 }

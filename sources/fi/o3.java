@@ -1,24 +1,24 @@
 package fi;
 public final class o3 implements Runnable {
-    public final int f12322a;
-    public final hi.q8 f12323b;
+    public final int f12364a;
+    public final hi.p8 f12365b;
 
-    public o3(hi.q8 q8Var, int i7) {
-        this.f12322a = i7;
-        this.f12323b = q8Var;
+    public o3(hi.p8 p8Var, int i7) {
+        this.f12364a = i7;
+        this.f12365b = p8Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f12322a) {
+        switch (this.f12364a) {
             case 0:
-                this.f12323b.dismiss();
+                this.f12365b.dismiss();
                 return;
             case 1:
-                this.f12323b.dismiss();
+                this.f12365b.dismiss();
                 return;
             default:
-                this.f12323b.onBackPressed();
+                this.f12365b.onBackPressed();
                 return;
         }
     }

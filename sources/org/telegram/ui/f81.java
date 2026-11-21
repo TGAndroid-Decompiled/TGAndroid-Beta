@@ -7,35 +7,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public final class f81 extends FrameLayout {
-    public final int f47570a;
-    public final i81 f47571b;
+    public final int f47638a;
+    public final i81 f47639b;
 
     public f81(i81 i81Var, Context context, int i7) {
         super(context);
-        this.f47570a = i7;
-        this.f47571b = i81Var;
+        this.f47638a = i7;
+        this.f47639b = i81Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         org.telegram.ui.Cells.r1 r1Var;
-        switch (this.f47570a) {
+        switch (this.f47638a) {
             case 0:
-                i81 i81Var = this.f47571b;
-                if (i81Var.f48650y > 0.0f && i81Var.f48648w != null) {
-                    i81Var.f48649x.reset();
-                    float width = getWidth() / i81Var.f48646r.getWidth();
-                    i81Var.f48649x.postScale(width, width);
-                    i81Var.f48647s.setLocalMatrix(i81Var.f48649x);
-                    i81Var.f48648w.setAlpha((int) (i81Var.f48650y * 255.0f));
+                i81 i81Var = this.f47639b;
+                if (i81Var.f48688y > 0.0f && i81Var.f48686w != null) {
+                    i81Var.f48687x.reset();
+                    float width = getWidth() / i81Var.f48684r.getWidth();
+                    i81Var.f48687x.postScale(width, width);
+                    i81Var.f48685s.setLocalMatrix(i81Var.f48687x);
+                    i81Var.f48686w.setAlpha((int) (i81Var.f48688y * 255.0f));
                     canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), i81Var.f48648w);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), i81Var.f48686w);
                 } else {
                     canvas2 = canvas;
                 }
                 if (i81Var.O && (r1Var = i81Var.L) != null) {
-                    r1Var.f31357c6 = i81Var.P;
+                    r1Var.f31385c6 = i81Var.P;
                     r1Var.invalidate();
                     i81Var.O = false;
                 }
@@ -49,10 +49,10 @@ public final class f81 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f47570a) {
+        switch (this.f47638a) {
             case 0:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f47571b.c(true);
+                    this.f47639b.c(true);
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -63,14 +63,14 @@ public final class f81 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f47570a) {
+        switch (this.f47638a) {
             case 1:
-                i81 i81Var = this.f47571b;
+                i81 i81Var = this.f47639b;
                 if (view != i81Var.K && view != i81Var.J) {
                     return super.drawChild(canvas, view, j3);
                 }
                 canvas.save();
-                canvas.clipRect(0.0f, org.telegram.messenger.g0.T1(i81Var.M, 0.0f, i81Var.f48650y), getWidth(), org.telegram.messenger.g0.T1(i81Var.N, getHeight(), i81Var.f48650y));
+                canvas.clipRect(0.0f, org.telegram.messenger.g0.T1(i81Var.M, 0.0f, i81Var.f48688y), getWidth(), org.telegram.messenger.g0.T1(i81Var.N, getHeight(), i81Var.f48688y));
                 boolean drawChild = super.drawChild(canvas, view, j3);
                 canvas.restore();
                 return drawChild;
@@ -81,10 +81,10 @@ public final class f81 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f47570a) {
+        switch (this.f47638a) {
             case 0:
                 super.onLayout(z10, i7, i10, i11, i12);
-                this.f47571b.d();
+                this.f47639b.d();
                 return;
             default:
                 super.onLayout(z10, i7, i10, i11, i12);
@@ -94,11 +94,11 @@ public final class f81 extends FrameLayout {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f47570a) {
+        switch (this.f47638a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i7);
                 int size2 = View.MeasureSpec.getSize(i10);
-                i81 i81Var = this.f47571b;
+                i81 i81Var = this.f47639b;
                 i81Var.e();
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     View childAt = getChildAt(i11);
@@ -116,9 +116,9 @@ public final class f81 extends FrameLayout {
                             viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f11), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                         }
                     }
-                    org.telegram.ui.Components.vi0 vi0Var = i81Var.Q;
-                    if (childAt == vi0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(vi0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    org.telegram.ui.Components.xi0 xi0Var = i81Var.Q;
+                    if (childAt == xi0Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(xi0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     } else {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     }
@@ -133,11 +133,11 @@ public final class f81 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f47570a) {
+        switch (this.f47638a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                i81 i81Var = this.f47571b;
-                ih.d.c(i81Var.F, i81Var.f48636b);
+                i81 i81Var = this.f47639b;
+                ih.d.c(i81Var.F, i81Var.f48674b);
                 i81Var.G.d();
                 return;
             default:

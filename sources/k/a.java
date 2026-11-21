@@ -5,47 +5,47 @@ import android.view.View;
 import android.widget.PopupWindow;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.ActionBar.h1;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.b0;
-import org.telegram.ui.Components.ok;
+import org.telegram.ui.ActionBar.g1;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.c0;
+import org.telegram.ui.Components.qk;
 public abstract class a {
-    public boolean f18055a;
-    public Object f18056b;
+    public boolean f18086a;
+    public Object f18087b;
 
-    public a(Context context, i6 i6Var, boolean z10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232567, z10 ? 1 : 0, context, i6Var);
+    public a(Context context, h6 h6Var, boolean z10) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(2131232567, z10 ? 1 : 0, context, h6Var);
         actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new ok(this, 1));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new b0(this, 26));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new qk(this, 1));
+        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new c0(this, 26));
         actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
         l(actionBarPopupWindow$ActionBarPopupWindowLayout);
-        h1 h1Var = new h1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f18056b = h1Var;
-        h1Var.f28989b = false;
-        h1Var.setAnimationStyle(2131755193);
-        h1Var.setOutsideTouchable(true);
-        h1Var.setClippingEnabled(true);
-        h1Var.setInputMethodMode(2);
-        h1Var.setSoftInputMode(0);
-        h1Var.getContentView().setFocusableInTouchMode(true);
+        g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f18087b = g1Var;
+        g1Var.f28972b = false;
+        g1Var.setAnimationStyle(2131755193);
+        g1Var.setOutsideTouchable(true);
+        g1Var.setClippingEnabled(true);
+        g1Var.setInputMethodMode(2);
+        g1Var.setSoftInputMode(0);
+        g1Var.getContentView().setFocusableInTouchMode(true);
         if (g0.C1()) {
-            h1Var.setFocusable(true);
+            g1Var.setFocusable(true);
         }
-        h1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
+        g1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public final void onDismiss() {
                 k.a aVar = k.a.this;
                 aVar.m();
-                aVar.f18055a = false;
+                aVar.f18086a = false;
             }
         });
     }
 
     public void a() {
-        h1 h1Var = (h1) this.f18056b;
-        if (h1Var != null) {
-            h1Var.dismiss();
+        g1 g1Var = (g1) this.f18087b;
+        if (g1Var != null) {
+            g1Var.dismiss();
         }
     }
 

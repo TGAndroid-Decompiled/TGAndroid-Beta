@@ -3,11 +3,11 @@ package org.telegram.ui;
 import android.content.Context;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
-public final class bk extends org.telegram.ui.Components.cm0 {
+public final class bk extends org.telegram.ui.Components.em0 {
     public final bn J;
 
-    public bk(bn bnVar, Context context, bn bnVar2, int i7, long j3, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, bnVar2, i7, j3, i6Var);
+    public bk(bn bnVar, Context context, bn bnVar2, int i7, long j3, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, bnVar2, i7, j3, h6Var);
         this.J = bnVar;
     }
 
@@ -21,7 +21,7 @@ public final class bk extends org.telegram.ui.Components.cm0 {
             ikVar.setTranslationY(bnVar.T9 + getCurrentHeight());
         }
         if (z10) {
-            bnVar.f45933aa = true;
+            bnVar.f45956aa = true;
             bnVar.Rc();
         }
     }
@@ -42,20 +42,20 @@ public final class bk extends org.telegram.ui.Components.cm0 {
         if (p0Var == null) {
             org.telegram.messenger.ri mediaDataController = bnVar.getMediaDataController();
             mediaDataController.Z0.clear();
-            mediaDataController.f26598a1.clear();
-            mediaDataController.f26601b1.clear();
+            mediaDataController.f26626a1.clear();
+            mediaDataController.f26629b1.clear();
             bnVar.Qb(false);
             bnVar.nd(0, 0, -1);
         }
         bnVar.qd();
         bnVar.dd();
-        bnVar.I3 = bnVar.f46058k0.getSearchField().getText().toString();
+        bnVar.I3 = bnVar.f46081k0.getSearchField().getText().toString();
         org.telegram.messenger.ri mediaDataController2 = bnVar.getMediaDataController();
         String str = bnVar.I3;
-        long j3 = bnVar.f46076l6;
-        long j10 = bnVar.f45972d7;
-        i7 = ((org.telegram.ui.ActionBar.h2) bnVar).classGuid;
-        long j11 = bnVar.f46164s4;
+        long j3 = bnVar.f46099l6;
+        long j10 = bnVar.f45995d7;
+        i7 = ((org.telegram.ui.ActionBar.g2) bnVar).classGuid;
+        long j11 = bnVar.f46187s4;
         TLRPC.User user = bnVar.D3;
         TLRPC.Chat chat = bnVar.E3;
         if (TextUtils.isEmpty(bnVar.I3) && bnVar.F3 == null) {
@@ -64,7 +64,7 @@ public final class bk extends org.telegram.ui.Components.cm0 {
             z11 = true;
         }
         mediaDataController2.c2(str, j3, j10, i7, 0, j11, false, user, chat, z11, bnVar.F3);
-        org.telegram.messenger.g0.v1(bnVar.f46058k0.getSearchField());
+        org.telegram.messenger.g0.v1(bnVar.f46081k0.getSearchField());
         return true;
     }
 
@@ -73,8 +73,8 @@ public final class bk extends org.telegram.ui.Components.cm0 {
         boolean z11;
         super.h(z10);
         bn bnVar = this.J;
-        org.telegram.ui.ActionBar.r0 r0Var = bnVar.f46058k0;
-        if (r0Var != null && r0Var.w() && a() && bnVar.J3 == null) {
+        org.telegram.ui.ActionBar.q0 q0Var = bnVar.f46081k0;
+        if (q0Var != null && q0Var.w() && a() && bnVar.J3 == null) {
             z11 = true;
         } else {
             z11 = false;

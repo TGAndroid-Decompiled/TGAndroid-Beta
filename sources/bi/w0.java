@@ -1,6 +1,22 @@
 package bi;
+public final class w0 implements r1.d {
+    public final int f4198a;
+    public final b1 f4199b;
 
-import android.graphics.Canvas;
-public interface w0 {
-    void a(Canvas canvas);
+    public w0(b1 b1Var, int i7) {
+        this.f4198a = i7;
+        this.f4199b = b1Var;
+    }
+
+    @Override
+    public final void a(r1.g gVar, float f10, float f11) {
+        switch (this.f4198a) {
+            case 0:
+                this.f4199b.b(f10 / 1000.0f);
+                return;
+            default:
+                this.f4199b.b(Math.max(0.0f, f10 / 1000.0f));
+                return;
+        }
+    }
 }

@@ -5,28 +5,28 @@ import android.graphics.Color;
 import c8.k1;
 import com.google.android.gms.internal.vision.e2;
 public final class d {
-    public final String f13173a;
-    public final int f13174b;
-    public final Integer f13175c;
+    public final String f13202a;
+    public final int f13203b;
+    public final Integer f13204c;
     public final Integer d;
-    public final float f13176e;
-    public final boolean f13177f;
-    public final boolean f13178g;
+    public final float f13205e;
+    public final boolean f13206f;
+    public final boolean f13207g;
     public final boolean h;
-    public final boolean f13179i;
-    public final int f13180j;
+    public final boolean f13208i;
+    public final int f13209j;
 
     public d(String str, int i7, Integer num, Integer num2, float f10, boolean z10, boolean z11, boolean z12, boolean z13, int i10) {
-        this.f13173a = str;
-        this.f13174b = i7;
-        this.f13175c = num;
+        this.f13202a = str;
+        this.f13203b = i7;
+        this.f13204c = num;
         this.d = num2;
-        this.f13176e = f10;
-        this.f13177f = z10;
-        this.f13178g = z11;
+        this.f13205e = f10;
+        this.f13206f = z10;
+        this.f13207g = z11;
         this.h = z12;
-        this.f13179i = z13;
-        this.f13180j = i10;
+        this.f13208i = z13;
+        this.f13209j = i10;
     }
 
     public static int a(String str) {

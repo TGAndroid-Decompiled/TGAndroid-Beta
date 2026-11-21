@@ -34,9 +34,9 @@ public abstract class d extends l {
         }
         ud.d dVar = new ud.d(i7, length, 1);
         boolean z12 = other instanceof String;
-        int i10 = dVar.f58594c;
-        int i11 = dVar.f58593b;
-        int i12 = dVar.f58592a;
+        int i10 = dVar.f58635c;
+        int i11 = dVar.f58634b;
+        int i12 = dVar.f58633a;
         if (z12 && (string instanceof String)) {
             if ((i10 <= 0 || i12 > i11) && (i10 >= 0 || i11 > i12)) {
                 return -1;

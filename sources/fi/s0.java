@@ -4,16 +4,16 @@ import android.graphics.Typeface;
 import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 public final class s0 {
-    public int f12511a;
-    public long f12512b;
-    public int f12513c;
+    public int f12551a;
+    public long f12552b;
+    public int f12553c;
     public long d;
-    public int f12514e;
-    public ArrayList f12515f;
+    public int f12554e;
+    public ArrayList f12555f;
 
     public final float a() {
-        int currentTime = ConnectionsManager.getInstance(this.f12511a).getCurrentTime();
-        ArrayList arrayList = this.f12515f;
+        int currentTime = ConnectionsManager.getInstance(this.f12551a).getCurrentTime();
+        ArrayList arrayList = this.f12555f;
         int size = arrayList.size();
         int i7 = currentTime;
         int i10 = 0;
@@ -22,18 +22,18 @@ public final class s0 {
             Object obj = arrayList.get(i11);
             i11++;
             r0 r0Var = (r0) obj;
-            if (r0Var.f12488g > 0) {
+            if (r0Var.f12519g > 0) {
                 i7 = Math.min(i7, r0Var.d);
-                i10 = Math.max(i10, t.b(this.f12511a, (int) r0Var.f12488g, 0) + r0Var.d);
+                i10 = Math.max(i10, t.b(this.f12551a, (int) r0Var.f12519g, 0) + r0Var.d);
             }
         }
-        Typeface typeface = org.telegram.messenger.g0.f24090a;
+        Typeface typeface = org.telegram.messenger.g0.f24118a;
         return (currentTime - i10) / (i7 - i10);
     }
 
     public final int b() {
-        int currentTime = ConnectionsManager.getInstance(this.f12511a).getCurrentTime();
-        ArrayList arrayList = this.f12515f;
+        int currentTime = ConnectionsManager.getInstance(this.f12551a).getCurrentTime();
+        ArrayList arrayList = this.f12555f;
         int size = arrayList.size();
         int i7 = 0;
         int i10 = 0;
@@ -41,9 +41,9 @@ public final class s0 {
             Object obj = arrayList.get(i10);
             i10++;
             r0 r0Var = (r0) obj;
-            long j3 = r0Var.f12488g;
-            if (j3 > 0 && currentTime - r0Var.d <= t.b(this.f12511a, (int) j3, 0)) {
-                i7 += (int) r0Var.f12488g;
+            long j3 = r0Var.f12519g;
+            if (j3 > 0 && currentTime - r0Var.d <= t.b(this.f12551a, (int) j3, 0)) {
+                i7 += (int) r0Var.f12519g;
             }
         }
         this.d = Math.max(this.d, i7);
@@ -51,18 +51,18 @@ public final class s0 {
     }
 
     public final void c() {
-        int currentTime = ConnectionsManager.getInstance(this.f12511a).getCurrentTime();
-        ArrayList arrayList = this.f12515f;
+        int currentTime = ConnectionsManager.getInstance(this.f12551a).getCurrentTime();
+        ArrayList arrayList = this.f12555f;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             r0 r0Var = (r0) obj;
-            if (r0Var.f12488g > 0) {
+            if (r0Var.f12519g > 0) {
                 currentTime = Math.min(currentTime, r0Var.d);
             }
         }
-        this.f12513c = currentTime;
+        this.f12553c = currentTime;
     }
 }

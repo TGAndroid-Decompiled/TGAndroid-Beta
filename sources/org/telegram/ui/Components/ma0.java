@@ -1,35 +1,56 @@
 package org.telegram.ui.Components;
+public final class ma0 extends pi.k {
+    public int W;
+    public Runnable X;
+    public final qa0 Y;
 
-import android.content.Context;
-public final class ma0 extends org.telegram.ui.Cells.r1 {
-    public final org.telegram.ui.y7 f37427zd;
-
-    public ma0(org.telegram.ui.y7 y7Var, Context context, int i7, h6.m mVar, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i7, false, mVar, i6Var);
-        this.f37427zd = y7Var;
+    public ma0(qa0 qa0Var, di.b1 b1Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(null, b1Var, h6Var);
+        this.Y = qa0Var;
+        this.W = -1;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        ((oa0) this.f37427zd.d).f38047f.invalidate();
+    public final void N() {
+        super.N();
+        Runnable runnable = this.X;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+        }
+        la0 la0Var = new la0(this, 0);
+        this.X = la0Var;
+        org.telegram.messenger.g0.g3(la0Var);
+        qa0 qa0Var = this.Y;
+        if (qa0Var.W) {
+            qa0Var.W = false;
+            org.telegram.messenger.g0.g3(new la0(this, 1));
+        }
     }
 
     @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        oa0.b((oa0) this.f37427zd.d, this);
+    public final void W() {
+        wa0 wa0Var = this.Y.f38864d0;
+        org.telegram.messenger.g0.r(wa0Var.E);
+        wa0Var.E.run();
+        if (this.W == -1) {
+            this.W = org.telegram.messenger.ks.f(wa0Var.f41752x).q(null, this.W, false);
+        }
+        Runnable runnable = this.X;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.X = null;
+        }
     }
 
     @Override
-    public final void y3(org.telegram.messenger.fj fjVar, org.telegram.messenger.aj ajVar, boolean z10, boolean z11, boolean z12, boolean z13) {
-        super.y3(fjVar, ajVar, z10, z11, z12, z13);
-        oa0.b((oa0) this.f37427zd.d, this);
-    }
-
-    @Override
-    public final void invalidate(int i7, int i10, int i11, int i12) {
-        super.invalidate(i7, i10, i11, i12);
-        ((oa0) this.f37427zd.d).f38047f.invalidate();
+    public final void g() {
+        super.g();
+        Runnable runnable = this.X;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+        }
+        la0 la0Var = new la0(this, 2);
+        this.X = la0Var;
+        org.telegram.messenger.g0.g3(la0Var);
     }
 }

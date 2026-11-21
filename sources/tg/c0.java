@@ -1,29 +1,27 @@
 package tg;
 
 import android.content.Context;
-import android.graphics.Paint;
-import org.telegram.ui.Cells.c5;
+import android.graphics.Bitmap;
 import org.telegram.ui.vp0;
-public final class c0 extends d {
-    public final Paint h;
-    public long f57749n;
-    public float f57750r;
-    public float f57751s;
-    public final vp0 f57752w;
+public final class c0 extends sg.u0 {
+    public final Bitmap F;
+    public final vp0 G;
 
-    public c0(vp0 vp0Var, Context context, c5 c5Var) {
-        super(context, c5Var);
-        this.f57752w = vp0Var;
-        Paint paint = new Paint();
-        this.h = paint;
-        setWillNotDraw(false);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(-1);
+    public c0(vp0 vp0Var, Context context, sg.i0 i0Var, Bitmap bitmap, Bitmap bitmap2) {
+        super(context, i0Var, bitmap, null, null);
+        this.G = vp0Var;
+        this.F = bitmap2;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r14) {
-        throw new UnsupportedOperationException("Method not decompiled: tg.c0.onDraw(android.graphics.Canvas):void");
+    public final void g(sg.h hVar) {
+        int indexOf = sg.h.f57255a.indexOf(hVar);
+        int i7 = indexOf + 1;
+        if (i7 <= 1 || this.F != null) {
+            indexOf = i7;
+        }
+        vp0 vp0Var = this.G;
+        vp0Var.f57907d1.b(indexOf);
+        vp0Var.w(hVar);
     }
 }

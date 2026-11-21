@@ -6,26 +6,26 @@ import android.graphics.Bitmap;
 import android.widget.ImageView;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ue extends AnimatorListenerAdapter {
-    public final int f40315a;
-    public boolean f40316b;
-    public final ChatActivityEnterView f40317c;
+    public final int f40328a;
+    public boolean f40329b;
+    public final ChatActivityEnterView f40330c;
 
     public ue(ChatActivityEnterView chatActivityEnterView, boolean z10, int i7) {
-        this.f40315a = i7;
-        this.f40317c = chatActivityEnterView;
-        this.f40316b = z10;
+        this.f40328a = i7;
+        this.f40330c = chatActivityEnterView;
+        this.f40329b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f40315a) {
+        switch (this.f40328a) {
             case 1:
-                this.f40316b = true;
+                this.f40329b = true;
                 return;
             case 2:
-                ChatActivityEnterView chatActivityEnterView = this.f40317c;
-                if (animator.equals(chatActivityEnterView.f32594g3)) {
-                    chatActivityEnterView.f32594g3 = null;
+                ChatActivityEnterView chatActivityEnterView = this.f40330c;
+                if (animator.equals(chatActivityEnterView.f32637i3)) {
+                    chatActivityEnterView.f32637i3 = null;
                     return;
                 }
                 return;
@@ -38,15 +38,15 @@ public final class ue extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         se seVar;
-        int i7 = this.f40315a;
+        int i7 = this.f40328a;
         int i10 = 0;
         float f10 = 0.0f;
-        ChatActivityEnterView chatActivityEnterView = this.f40317c;
+        ChatActivityEnterView chatActivityEnterView = this.f40330c;
         switch (i7) {
             case 0:
-                if (chatActivityEnterView.f32627k7) {
-                    ImageView imageView = chatActivityEnterView.f32622k2;
-                    if (!this.f40316b) {
+                if (chatActivityEnterView.f32692p7) {
+                    ImageView imageView = chatActivityEnterView.f32664m2;
+                    if (!this.f40329b) {
                         i10 = 8;
                     }
                     imageView.setVisibility(i10);
@@ -54,58 +54,58 @@ public final class ue extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                if (!this.f40316b) {
-                    int i11 = ChatActivityEnterView.f32538n7;
+                if (!this.f40329b) {
+                    int i11 = ChatActivityEnterView.f32566s7;
                     chatActivityEnterView.u(1.0f);
                 }
                 chatActivityEnterView.R0.setRotation(0.0f);
-                chatActivityEnterView.N5 = false;
-                ug ugVar = chatActivityEnterView.Z0;
-                if (ugVar != null) {
-                    ugVar.setScaleX(1.0f);
+                chatActivityEnterView.P5 = false;
+                wg wgVar = chatActivityEnterView.Z0;
+                if (wgVar != null) {
+                    wgVar.setScaleX(1.0f);
                     chatActivityEnterView.Z0.setScaleY(1.0f);
                 }
-                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.B2;
+                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.D2;
                 if (recordCircle != null) {
                     recordCircle.P = false;
                     recordCircle.invalidate();
                 }
-                vu0 vu0Var = chatActivityEnterView.D5;
-                if (vu0Var != null) {
-                    vu0Var.a();
+                yu0 yu0Var = chatActivityEnterView.F5;
+                if (yu0Var != null) {
+                    yu0Var.a();
                 }
-                Bitmap bitmap = chatActivityEnterView.E5;
+                Bitmap bitmap = chatActivityEnterView.G5;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    chatActivityEnterView.E5 = null;
+                    chatActivityEnterView.G5 = null;
                     return;
                 }
                 return;
             case 2:
-                if (animator.equals(chatActivityEnterView.f32594g3)) {
-                    chatActivityEnterView.d2.setVisibility(8);
-                    if (this.f40316b && (seVar = chatActivityEnterView.f32715x2) != null) {
+                if (animator.equals(chatActivityEnterView.f32637i3)) {
+                    chatActivityEnterView.f32613f2.setVisibility(8);
+                    if (this.f40329b && (seVar = chatActivityEnterView.f32763z2) != null) {
                         seVar.setVisibility(8);
                     }
-                    chatActivityEnterView.f32594g3 = null;
+                    chatActivityEnterView.f32637i3 = null;
                     return;
                 }
                 return;
             case 3:
-                chatActivityEnterView.A2 = null;
-                if (!this.f40316b) {
-                    chatActivityEnterView.f32715x2.setVisibility(8);
+                chatActivityEnterView.C2 = null;
+                if (!this.f40329b) {
+                    chatActivityEnterView.f32763z2.setVisibility(8);
                     return;
                 }
                 return;
             default:
-                if (this.f40316b) {
+                if (this.f40329b) {
                     f10 = 1.0f;
                 }
-                chatActivityEnterView.f32713x0 = f10;
-                cg cgVar = chatActivityEnterView.V0;
-                if (cgVar != null) {
-                    cgVar.Z();
+                chatActivityEnterView.f32746x0 = f10;
+                fg fgVar = chatActivityEnterView.V0;
+                if (fgVar != null) {
+                    fgVar.Z();
                     return;
                 }
                 return;
@@ -113,7 +113,7 @@ public final class ue extends AnimatorListenerAdapter {
     }
 
     public ue(ChatActivityEnterView chatActivityEnterView) {
-        this.f40315a = 1;
-        this.f40317c = chatActivityEnterView;
+        this.f40328a = 1;
+        this.f40330c = chatActivityEnterView;
     }
 }

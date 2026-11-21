@@ -3,21 +3,21 @@ package ia;
 import android.util.Log;
 import com.google.android.gms.internal.vision.e2;
 import h9.g1;
-import hi.u5;
+import hi.t5;
 import java.util.concurrent.atomic.AtomicReference;
 import org.json.JSONObject;
 import p1.g;
 import w7.s;
 public final class c {
-    public Object f16188a;
-    public Object f16189b;
-    public Object f16190c;
+    public Object f16213a;
+    public Object f16214b;
+    public Object f16215c;
     public Object d;
-    public Object f16191e;
-    public Object f16192f;
-    public Object f16193g;
+    public Object f16216e;
+    public Object f16217f;
+    public Object f16218g;
     public Object h;
-    public Object f16194i;
+    public Object f16219i;
 
     public static void d(String str, JSONObject jSONObject) {
         StringBuilder m10 = e2.m(str);
@@ -32,13 +32,13 @@ public final class c {
         b bVar = null;
         try {
             if (!g.b(2, i7)) {
-                JSONObject K = ((g1) this.f16191e).K();
+                JSONObject K = ((g1) this.f16216e).K();
                 if (K != null) {
-                    b s5 = ((u5) this.f16190c).s(K);
+                    b s5 = ((t5) this.f16215c).s(K);
                     d("Loaded cached settings: ", K);
                     ((s) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!g.b(3, i7) && s5.f16185c < currentTimeMillis) {
+                    if (!g.b(3, i7) && s5.f16210c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;
@@ -70,7 +70,7 @@ public final class c {
         return (b) ((AtomicReference) this.h).get();
     }
 
-    public void c(o5.i r49, int r50) {
+    public void c(o5.i r48, int r49) {
         throw new UnsupportedOperationException("Method not decompiled: ia.c.c(o5.i, int):void");
     }
 }

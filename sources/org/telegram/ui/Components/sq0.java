@@ -1,46 +1,33 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class sq0 extends v4.u0 {
-    public final iq0 f39826a;
-    public final jq0 f39827b;
-    public final gt0 f39828c;
+import android.os.Bundle;
+import org.telegram.tgnet.TLRPC;
+public final class sq0 implements org.telegram.ui.e50 {
+    public final jt0 f39682a;
 
-    public sq0(gt0 gt0Var, iq0 iq0Var, jq0 jq0Var) {
-        this.f39828c = gt0Var;
-        this.f39826a = iq0Var;
-        this.f39827b = jq0Var;
+    public sq0(jt0 jt0Var) {
+        this.f39682a = jt0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        boolean z10;
-        if (i7 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void c(org.telegram.ui.f50 f50Var, long j3) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("chat_id", j3);
+        bundle.putBoolean("just_created_chat", true);
+        f50Var.presentFragment(new org.telegram.ui.bn(bundle), true);
+        wr0 wr0Var = this.f39682a.S;
+        org.telegram.ui.ActionBar.g2 g2Var = wr0Var.f41892r.f36689y1;
+        if (wr0Var.f41891n != 0) {
+            g2Var.getConnectionsManager().cancelRequest(wr0Var.f41891n, true);
+            wr0Var.f41891n = 0;
         }
-        this.f39828c.f35583e1 = z10;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        int i11;
-        int i12;
-        gt0 gt0Var = this.f39828c;
-        vs0[] vs0VarArr = gt0Var.f35636w1;
-        jq0 jq0Var = this.f39827b;
-        iq0 iq0Var = this.f39826a;
-        gt0Var.O(iq0Var, (ck0) recyclerView, jq0Var);
-        if (i10 != 0 && ((i12 = gt0Var.f35609n0[0].F) == 0 || i12 == 5)) {
-            vs0VarArr[0].f41412a.isEmpty();
-        }
-        if (i10 != 0 && ((i11 = iq0Var.F) == 0 || gt0.z0(i11))) {
-            gt0.s(iq0Var, vs0VarArr, true);
-        }
-        iq0Var.h.L0(true);
-        if (iq0Var.G != null) {
-            iq0Var.invalidate();
+        wr0Var.d.clear();
+        wr0Var.f41889e = false;
+        wr0Var.h = false;
+        wr0Var.E(0L);
+        TLRPC.User c22 = g2Var.getMessagesController().c2(Long.valueOf(wr0Var.F()));
+        if (c22 != null) {
+            g2Var.getMessagesController().c3(c22, g2Var.getClassGuid(), true, null);
         }
     }
 }

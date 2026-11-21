@@ -8,19 +8,19 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 import kotlin.jvm.internal.j;
-import org.telegram.ui.Components.of;
+import org.telegram.ui.Components.qf;
 public final class b {
-    public final LinkedHashMap f55703a;
-    public final of f55704b;
+    public final LinkedHashMap f55744a;
+    public final qf f55745b;
 
     public b(LinkedHashMap linkedHashMap, boolean z10) {
-        this.f55703a = linkedHashMap;
-        this.f55704b = new of(z10);
+        this.f55744a = linkedHashMap;
+        this.f55745b = new qf(z10);
     }
 
     public final Map a() {
         gd.e eVar;
-        Set<Map.Entry> entrySet = this.f55703a.entrySet();
+        Set<Map.Entry> entrySet = this.f55744a.entrySet();
         int b10 = r.b(hd.h.d(entrySet, 10));
         if (b10 < 16) {
             b10 = 16;
@@ -37,7 +37,7 @@ public final class b {
             } else {
                 eVar = new gd.e(entry.getKey(), entry.getValue());
             }
-            linkedHashMap.put(eVar.f13474a, eVar.f13475b);
+            linkedHashMap.put(eVar.f13503a, eVar.f13504b);
         }
         Map unmodifiableMap = DesugarCollections.unmodifiableMap(linkedHashMap);
         j.d(unmodifiableMap, "unmodifiableMap(map)");
@@ -45,7 +45,7 @@ public final class b {
     }
 
     public final void b() {
-        if (!((AtomicBoolean) this.f55704b.f38076b).get()) {
+        if (!((AtomicBoolean) this.f55745b.f38902b).get()) {
             return;
         }
         throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
@@ -54,7 +54,7 @@ public final class b {
     public final void c(e key) {
         j.e(key, "key");
         b();
-        this.f55703a.remove(key);
+        this.f55744a.remove(key);
     }
 
     public final void d(e key, Object obj) {
@@ -70,7 +70,7 @@ public final class b {
             return;
         }
         boolean z10 = obj instanceof Set;
-        LinkedHashMap linkedHashMap = this.f55703a;
+        LinkedHashMap linkedHashMap = this.f55744a;
         if (z10) {
             Set unmodifiableSet = DesugarCollections.unmodifiableSet(hd.f.o((Set) obj));
             j.d(unmodifiableSet, "unmodifiableSet(set.toSet())");
@@ -92,7 +92,7 @@ public final class b {
     public final int hashCode() {
         int hashCode;
         int i7 = 0;
-        for (Map.Entry entry : this.f55703a.entrySet()) {
+        for (Map.Entry entry : this.f55744a.entrySet()) {
             Object value = entry.getValue();
             if (value instanceof byte[]) {
                 hashCode = Arrays.hashCode((byte[]) value);
@@ -105,7 +105,7 @@ public final class b {
     }
 
     public final String toString() {
-        return hd.f.g(this.f55703a.entrySet(), ",\n", "{\n", "\n}", a.f55702b, 24);
+        return hd.f.g(this.f55744a.entrySet(), ",\n", "{\n", "\n}", a.f55743b, 24);
     }
 
     public b(boolean z10) {

@@ -161,7 +161,7 @@ public class oq0 implements uq0 {
 
     @Override
     public boolean u() {
-        return !(this instanceof org.telegram.ui.Components.am);
+        return !(this instanceof org.telegram.ui.Components.cm);
     }
 
     @Override
@@ -186,7 +186,7 @@ public class oq0 implements uq0 {
 
     @Override
     public boolean z() {
-        return !(this instanceof org.telegram.ui.Components.ji);
+        return !(this instanceof org.telegram.ui.Components.li);
     }
 
     @Override

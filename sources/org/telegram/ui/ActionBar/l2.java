@@ -1,35 +1,28 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.DialogInterface;
-public final class l2 implements DialogInterface.OnDismissListener {
-    public final int f29196a;
-    public final Runnable f29197b;
+import android.view.View;
+public final class l2 implements ri.n, r0.m, q1 {
+    public final w2 f29196a;
 
-    public l2(int i7, Runnable runnable) {
-        this.f29196a = i7;
-        this.f29197b = runnable;
+    public l2(w2 w2Var) {
+        this.f29196a = w2Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f29196a) {
-            case 0:
-                this.f29197b.run();
-                return;
-            case 1:
-                Runnable runnable = this.f29197b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                Runnable runnable2 = this.f29197b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-        }
+    public r0.l1 P0(View view, r0.l1 l1Var) {
+        return this.f29196a.b0(l1Var);
+    }
+
+    @Override
+    public int e() {
+        w2 w2Var = this.f29196a;
+        w2Var.getClass();
+        return m6.w0(m6.f29451h5, w2Var.J0);
+    }
+
+    @Override
+    public void h(t1 t1Var, int i7) {
+        this.f29196a.dismiss();
+        bi.e2.l1(false, null);
     }
 }

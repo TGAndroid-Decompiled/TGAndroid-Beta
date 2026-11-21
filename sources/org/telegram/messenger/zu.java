@@ -6,42 +6,42 @@ import android.graphics.Path;
 import android.graphics.Region;
 import android.view.View;
 public final class zu {
-    public float f28360a;
-    public boolean f28361b;
-    public float f28362c;
+    public float f28388a;
+    public boolean f28389b;
+    public float f28390c;
     public float d;
-    public float f28363e;
-    public ValueAnimator f28364f;
-    public final Path f28365g = new Path();
+    public float f28391e;
+    public ValueAnimator f28392f;
+    public final Path f28393g = new Path();
 
     public final void a(Canvas canvas) {
-        if (this.f28360a > 0.0f) {
-            Path path = this.f28365g;
+        if (this.f28388a > 0.0f) {
+            Path path = this.f28393g;
             path.rewind();
-            path.addCircle(this.f28362c, this.d, this.f28363e * this.f28360a, Path.Direction.CW);
+            path.addCircle(this.f28390c, this.d, this.f28391e * this.f28388a, Path.Direction.CW);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
         }
     }
 
     public final boolean b() {
-        if (this.f28361b && this.f28360a >= 1.0f) {
+        if (this.f28389b && this.f28388a >= 1.0f) {
             return true;
         }
         return false;
     }
 
     public final void c(View view, float f10, float f11, float f12, float f13) {
-        if (!this.f28361b && this.f28364f == null) {
-            this.f28362c = f10;
+        if (!this.f28389b && this.f28392f == null) {
+            this.f28390c = f10;
             this.d = f11;
-            this.f28363e = (float) Math.sqrt((f13 * f13) + (f12 * f12));
+            this.f28391e = (float) Math.sqrt((f13 * f13) + (f12 * f12));
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f28364f = ofFloat;
-            ofFloat.setDuration(Utilities.i(this.f28363e * 0.3f, 550.0f, 250.0f));
-            this.f28364f.setInterpolator(org.telegram.ui.Components.lr.f37211j);
-            this.f28364f.addUpdateListener(new q(2, this, view));
-            this.f28364f.addListener(new ah.l(12, this, view));
-            this.f28364f.start();
+            this.f28392f = ofFloat;
+            ofFloat.setDuration(Utilities.i(this.f28391e * 0.3f, 550.0f, 250.0f));
+            this.f28392f.setInterpolator(org.telegram.ui.Components.nr.f37959j);
+            this.f28392f.addUpdateListener(new q(2, this, view));
+            this.f28392f.addListener(new ah.l(12, this, view));
+            this.f28392f.start();
         }
     }
 }

@@ -5,25 +5,25 @@ import android.os.Bundle;
 import j$.util.Objects;
 public final class e1 extends d1 {
     public static final String d;
-    public static final String f10384e;
-    public final int f10385b;
-    public final float f10386c;
+    public static final String f10413e;
+    public final int f10414b;
+    public final float f10415c;
 
     static {
-        String str = h2.l0.f13783a;
+        String str = h2.l0.f13812a;
         d = Integer.toString(1, 36);
-        f10384e = Integer.toString(2, 36);
+        f10413e = Integer.toString(2, 36);
     }
 
     public e1(int i7) {
         la.e("maxStars must be a positive integer", i7 > 0);
-        this.f10385b = i7;
-        this.f10386c = -1.0f;
+        this.f10414b = i7;
+        this.f10415c = -1.0f;
     }
 
     @Override
     public final boolean b() {
-        if (this.f10386c != -1.0f) {
+        if (this.f10415c != -1.0f) {
             return true;
         }
         return false;
@@ -32,9 +32,9 @@ public final class e1 extends d1 {
     @Override
     public final Bundle c() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d1.f10365a, 2);
-        bundle.putInt(d, this.f10385b);
-        bundle.putFloat(f10384e, this.f10386c);
+        bundle.putInt(d1.f10394a, 2);
+        bundle.putInt(d, this.f10414b);
+        bundle.putFloat(f10413e, this.f10415c);
         return bundle;
     }
 
@@ -43,14 +43,14 @@ public final class e1 extends d1 {
             return false;
         }
         e1 e1Var = (e1) obj;
-        if (this.f10385b != e1Var.f10385b || this.f10386c != e1Var.f10386c) {
+        if (this.f10414b != e1Var.f10414b || this.f10415c != e1Var.f10415c) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f10385b), Float.valueOf(this.f10386c));
+        return Objects.hash(Integer.valueOf(this.f10414b), Float.valueOf(this.f10415c));
     }
 
     public e1(int i7, float f10) {
@@ -60,7 +60,7 @@ public final class e1 extends d1 {
             z10 = true;
         }
         la.e("starRating is out of range [0, maxStars]", z10);
-        this.f10385b = i7;
-        this.f10386c = f10;
+        this.f10414b = i7;
+        this.f10415c = f10;
     }
 }

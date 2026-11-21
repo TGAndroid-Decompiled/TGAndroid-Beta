@@ -2,42 +2,42 @@ package d9;
 
 import a8.r9;
 public final class h extends i {
-    public final transient int f7907c;
+    public final transient int f7936c;
     public final transient int d;
-    public final i f7908e;
+    public final i f7937e;
 
     public h(i iVar, int i7, int i10) {
-        this.f7908e = iVar;
-        this.f7907c = i7;
+        this.f7937e = iVar;
+        this.f7936c = i7;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i7) {
         r9.a(i7, this.d);
-        return this.f7908e.get(i7 + this.f7907c);
+        return this.f7937e.get(i7 + this.f7936c);
     }
 
     @Override
     public final int i() {
-        return this.f7908e.j() + this.f7907c + this.d;
+        return this.f7937e.j() + this.f7936c + this.d;
     }
 
     @Override
     public final int j() {
-        return this.f7908e.j() + this.f7907c;
+        return this.f7937e.j() + this.f7936c;
     }
 
     @Override
     public final Object[] k() {
-        return this.f7908e.k();
+        return this.f7937e.k();
     }
 
     @Override
     public final i subList(int i7, int i10) {
         r9.b(i7, i10, this.d);
-        int i11 = this.f7907c;
-        return this.f7908e.subList(i7 + i11, i10 + i11);
+        int i11 = this.f7936c;
+        return this.f7937e.subList(i7 + i11, i10 + i11);
     }
 
     @Override

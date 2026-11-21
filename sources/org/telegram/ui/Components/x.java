@@ -1,268 +1,259 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.TimeInterpolator;
+import android.animation.ValueAnimator;
 import android.view.View;
-import android.view.ViewGroup;
-public final class x extends AnimatorListenerAdapter {
-    public final int f41832a;
-    public final Object f41833b;
+import android.widget.TextView;
+import org.telegram.messenger.camera.Camera2Session;
+import org.telegram.messenger.camera.CameraSession;
+public final class x implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41938a;
+    public final Object f41939b;
 
     public x(Object obj, int i7) {
-        this.f41832a = i7;
-        this.f41833b = obj;
+        this.f41938a = i7;
+        this.f41939b = obj;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f41832a) {
-            case 14:
-                ((zl) this.f41833b).f42899a.P = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f41832a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41938a) {
             case 0:
-                y yVar = (y) this.f41833b;
-                yVar.O = null;
-                yVar.M = yVar.N;
-                yVar.requestLayout();
+                z zVar = (z) this.f41939b;
+                zVar.getClass();
+                zVar.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zVar.requestLayout();
                 return;
             case 1:
-                f6 f6Var = (f6) this.f41833b;
-                f6Var.d = null;
-                f6Var.f34951b.clear();
-                return;
-            case 2:
-                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) this.f41833b;
-                animatedPhoneNumberEditText.S1 = null;
-                animatedPhoneNumberEditText.Q1.clear();
-                return;
-            case 3:
-                super.onAnimationEnd(animator);
-                m6 m6Var = (m6) this.f41833b;
-                m6Var.b();
-                m6Var.f37390o = null;
-                m6Var.f37385j = 0.0f;
-                m6Var.f37388m = 0.0f;
-                m6Var.f37387l = 0.0f;
-                m6Var.f37386k = 0.0f;
-                m6Var.f37393r = 0.0f;
-                m6Var.f37392q = 0.0f;
-                m6Var.invalidateSelf();
-                Runnable runnable = m6Var.f37380c0;
+                n6 n6Var = (n6) this.f41939b;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n6Var.f37806q = floatValue;
+                TimeInterpolator timeInterpolator = n6Var.f37812x;
+                if (timeInterpolator != null) {
+                    floatValue = timeInterpolator.getInterpolation(floatValue);
+                }
+                n6Var.f37807r = floatValue;
+                n6Var.invalidateSelf();
+                Runnable runnable = n6Var.f37794c0;
                 if (runnable != null) {
                     runnable.run();
-                }
-                m6Var.f37395t = null;
-                CharSequence charSequence = m6Var.f37396u;
-                if (charSequence != null) {
-                    m6Var.t(charSequence, true, m6Var.v);
-                    m6Var.f37396u = null;
-                    m6Var.v = false;
                     return;
                 }
-                lg lgVar = m6Var.J;
-                if (lgVar != null) {
-                    lgVar.run();
-                    return;
-                }
+                return;
+            case 2:
+                v6 v6Var = (v6) this.f41939b;
+                v6Var.f40691a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                v6Var.invalidate();
+                return;
+            case 3:
+                f8 f8Var = (f8) this.f41939b;
+                f8Var.D1.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                f8Var.G1.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 4:
-                q9 q9Var = (q9) this.f41833b;
-                q9Var.setVisibility(8);
-                q9Var.setImageDrawable(null);
-                q9Var.setAlpha(1.0f);
+                y8 y8Var = (y8) this.f41939b;
+                y8Var.getClass();
+                y8Var.o0(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 5:
-                y8 y8Var = (y8) ((org.telegram.messenger.b9) this.f41833b).n1;
-                y8Var.f42401f = false;
-                y8Var.f42400e.setVisibility(8);
+                d9 d9Var = (d9) this.f41939b;
+                d9Var.getClass();
+                d9Var.f34432e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d9Var.d();
                 return;
             case 6:
-                d9 d9Var = (d9) this.f41833b;
-                if (d9Var.f34307f != null) {
-                    d9Var.f34306e = 1.0f;
-                    d9Var.k();
-                    if (d9Var.f34308g) {
-                        d9Var.f34308g = false;
-                        Runnable runnable2 = d9Var.f34310j;
-                        if (runnable2 != null) {
-                            runnable2.run();
-                        }
-                    }
-                    d9Var.d();
-                }
-                d9Var.f34307f = null;
+                s9 s9Var = (s9) this.f41939b;
+                s9Var.getClass();
+                s9Var.f39536g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s9Var.invalidateSelf();
                 return;
             case 7:
-                ((jf) this.f41833b).f36427f.f32558c0.setVisibility(8);
+                ga gaVar = (ga) this.f41939b;
+                gaVar.getClass();
+                gaVar.f35472f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gaVar.f35469b.invalidate();
                 return;
             case 8:
-                ((sg) this.f41833b).f39629g0 = 1.0f;
+                mc mcVar = (mc) this.f41939b;
+                mcVar.getClass();
+                mcVar.f37480j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mcVar.b();
                 return;
             case 9:
-                ((si) ((wh) this.f41833b).d).f39723u1.setVisibility(8);
+                ug ugVar = (ug) this.f41939b;
+                ugVar.getClass();
+                ugVar.f40345g0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 10:
-                ((zh) this.f41833b).d.f39727v1.setVisibility(8);
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ui uiVar = ((ai) this.f41939b).f33519e;
+                uh uhVar = uiVar.f40445v3;
+                uhVar.setAlpha(1.0f - floatValue2);
+                uiVar.C3.setAlpha(floatValue2);
+                float L = floatValue2 * org.telegram.messenger.g0.L(36.0f);
+                uiVar.D3 = L;
+                uhVar.setTranslationY(L);
                 return;
             case 11:
-                si siVar = (si) this.f41833b;
-                siVar.X2 = null;
-                if (!siVar.f39702o3) {
-                    if (siVar.V2.getTag() == null && siVar.O2 == 0 && !siVar.R2) {
-                        siVar.Y2.setVisibility(4);
-                    }
-                    siVar.f39677g3.setVisibility(4);
-                    return;
-                }
-                org.telegram.ui.ActionBar.r0 r0Var = siVar.f39666c3;
-                if (r0Var != null) {
-                    r0Var.setVisibility(4);
-                    return;
-                }
+                uh uhVar2 = (uh) this.f41939b;
+                ui uiVar2 = uhVar2.f40369b;
+                uiVar2.T3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                uiVar2.A2.invalidate();
+                uiVar2.B2.invalidate();
+                uhVar2.invalidate();
                 return;
             case 12:
-                super.onAnimationEnd(animator);
-                kk kkVar = (kk) this.f41833b;
-                kkVar.f36782s.setVisibility(8);
-                kkVar.f36780n = 0;
-                yj yjVar = kkVar.f36781r;
-                yjVar.setAlpha(1.0f);
-                yjVar.setScaleX(1.0f);
-                yjVar.setScaleY(1.0f);
-                yjVar.setTranslationX(0.0f);
-                yjVar.invalidate();
+                ((zk) this.f41939b).setFeeVisibilityProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 13:
-                jk jkVar = (jk) this.f41833b;
-                if (jkVar.Y.I.getTag() == null) {
-                    jkVar.Y.I.setVisibility(4);
-                }
-                jkVar.Y.J = null;
+                om omVar = (om) this.f41939b;
+                omVar.getClass();
+                omVar.f38301l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                omVar.O.f38638z.invalidate();
                 return;
             case 14:
-                zl zlVar = (zl) this.f41833b;
-                if (animator.equals(zlVar.f42899a.P)) {
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = zlVar.f42899a;
-                    chatAttachAlertPhotoLayout.f32773d0 = true;
-                    chatAttachAlertPhotoLayout.P = null;
-                    return;
-                }
+                vo voVar = (vo) this.f41939b;
+                voVar.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                voVar.d = floatValue3;
+                voVar.setShown(floatValue3);
+                voVar.a(false);
                 return;
             case 15:
-                om omVar = (om) this.f41833b;
-                pm pmVar = omVar.Q;
-                pmVar.K = null;
-                pmVar.L = false;
-                omVar.invalidate();
+                np npVar = (np) this.f41939b;
+                npVar.getClass();
+                npVar.f37917a2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                npVar.D1.setTranslationY((-org.telegram.messenger.g0.L(7.0f)) * npVar.f37917a2);
                 return;
             case 16:
-                mm mmVar = (mm) this.f41833b;
-                mmVar.f37562b.R = true;
-                mmVar.O.f37828z.invalidate();
+                sq sqVar = (sq) this.f41939b;
+                sqVar.getClass();
+                sqVar.f39668l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = sqVar.H;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
                 return;
             case 17:
-                lp lpVar = (lp) this.f41833b;
-                g01 g01Var = lpVar.L1;
-                if (g01Var != null) {
-                    if (g01Var.getParent() != null) {
-                        ((ViewGroup) lpVar.L1.getParent()).removeView(lpVar.L1);
-                    }
-                    lpVar.L1 = null;
-                }
-                lpVar.N1 = null;
-                super.onAnimationEnd(animator);
+                ev evVar = (ev) this.f41939b;
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                evVar.E1 = floatValue4;
+                evVar.f34996r1.setAlpha(floatValue4);
+                evVar.f35000v1.setAlpha(evVar.E1);
+                evVar.f35001w1.setAlpha(evVar.E1);
+                evVar.f30173b.invalidate();
                 return;
             case 18:
-                g01 g01Var2 = (g01) this.f41833b;
-                g01Var2.f35277c = null;
-                g01Var2.f35275a.setShader(null);
-                g01Var2.f35280n = null;
-                g01Var2.f35281r = null;
-                g01Var2.setImageDrawable(null);
-                org.telegram.messenger.g0.E2(g01Var2);
+                xu xuVar = (xu) this.f41939b;
+                xuVar.getClass();
+                xuVar.f42229e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (xuVar.getParent() instanceof View) {
+                    ((View) xuVar.getParent()).invalidate();
+                    return;
+                }
                 return;
             case 19:
-                CheckBox checkBox = (CheckBox) this.f41833b;
-                if (animator.equals(checkBox.f32820s)) {
-                    checkBox.f32820s = null;
-                }
-                if (!checkBox.f32823y) {
-                    checkBox.H = null;
-                    return;
-                }
+                av avVar = (av) this.f41939b;
+                avVar.getClass();
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                avVar.f33634w = floatValue5;
+                TextView textView = avVar.f33628c;
+                textView.setScaleX(1.0f - floatValue5);
+                textView.setScaleY(1.0f - avVar.f33634w);
+                textView.setAlpha(1.0f - avVar.f33634w);
+                TextView textView2 = avVar.d;
+                textView2.setScaleX(avVar.f33634w);
+                textView2.setScaleY(avVar.f33634w);
+                textView2.setAlpha(avVar.f33634w);
                 return;
             case 20:
-                CheckBoxBase checkBoxBase = (CheckBoxBase) this.f41833b;
-                if (animator.equals(checkBoxBase.f32837p)) {
-                    checkBoxBase.f32837p = null;
-                }
-                if (!checkBoxBase.f32838q) {
-                    checkBoxBase.C = null;
-                    return;
-                }
+                kv kvVar = (kv) this.f41939b;
+                kvVar.getClass();
+                kvVar.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kvVar.d();
                 return;
             case 21:
-                qq qqVar = (qq) this.f41833b;
-                qqVar.f38872l = 1.0f;
-                qqVar.f38875o = null;
-                qqVar.f38876p = null;
-                qqVar.f38877q = null;
-                View view = qqVar.H;
-                if (view != null) {
-                    if (qqVar.h == 0 && qqVar.G) {
-                        view.setVisibility(8);
-                    }
-                    qqVar.H.invalidate();
-                }
-                qqVar.f38865c = -1;
+                mv mvVar = (mv) this.f41939b;
+                mvVar.getClass();
+                mvVar.f37649r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mvVar.invalidate();
+                mvVar.requestLayout();
+                mvVar.c();
+                mvVar.f37650s.f36926b.invalidate();
                 return;
             case 22:
-                wt wtVar = (wt) this.f41833b;
-                wtVar.P = false;
-                wtVar.d.setTranslationY(0.0f);
-                wtVar.d.setAlpha(0.0f);
-                wtVar.c(0.0f);
-                wtVar.S = 0.0f;
-                wtVar.j();
+                cy cyVar = (cy) this.f41939b;
+                cyVar.getClass();
+                cyVar.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cyVar.invalidate();
                 return;
             case 23:
-                ((du) this.f41833b).f34508a.J1 = false;
-                return;
-            case 24:
-                super.onAnimationEnd(animator);
-                ((uu) this.f41833b).d = null;
-                return;
-            case 25:
-                ((ry) this.f41833b).f39333a0 = null;
-                return;
-            case 26:
-                super.onAnimationEnd(animator);
-                ((zx) this.f41833b).f42965n = null;
-                return;
-            case 27:
-                ((nz) this.f41833b).a();
-                return;
-            case 28:
-                c00 c00Var = (c00) this.f41833b;
-                c00Var.f33834w = 1.0f;
-                c00Var.invalidate();
-                return;
-            default:
-                y40 y40Var = (y40) this.f41833b;
-                if (animator == y40Var.f42295b0) {
-                    y40Var.d(true);
-                    y40Var.setVisibility(4);
+                gy gyVar = (gy) this.f41939b;
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gyVar.f35702x = floatValue6;
+                View view2 = gyVar.f35701w;
+                if (view2 != null) {
+                    view2.setAlpha(floatValue6);
                     return;
                 }
+                ai.l0 l0Var = gyVar.f35700s;
+                if (l0Var != null) {
+                    l0Var.invalidate();
+                    return;
+                }
+                return;
+            case 24:
+                rz.a((rz) this.f41939b, valueAnimator);
+                return;
+            case 25:
+                rz rzVar = ((kz) this.f41939b).F;
+                rzVar.G.invalidate();
+                rzVar.invalidate();
+                return;
+            case 26:
+                xz xzVar = (xz) this.f41939b;
+                xzVar.getClass();
+                xzVar.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                xzVar.invalidate();
+                return;
+            case 27:
+                c20 c20Var = (c20) this.f41939b;
+                a20 a20Var = c20Var.f33989a;
+                if (!c20Var.H) {
+                    float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    c20Var.f33995d0 = floatValue7;
+                    c20Var.W.setPinnedProgress(floatValue7);
+                    a20Var.setScaleX(1.0f - (c20Var.f33995d0 * 0.6f));
+                    a20Var.setScaleY(1.0f - (c20Var.f33995d0 * 0.6f));
+                    if (c20Var.Y) {
+                        c20Var.j();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 28:
+                c50 c50Var = (c50) this.f41939b;
+                if (c50Var.f34054s0) {
+                    Camera2Session camera2Session = c50Var.f34059w0;
+                    if (camera2Session != null) {
+                        camera2Session.setZoom(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                        return;
+                    }
+                    return;
+                }
+                CameraSession cameraSession = c50Var.f34055t0;
+                if (cameraSession != null) {
+                    cameraSession.setZoom(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                    return;
+                }
+                return;
+            default:
+                l60 l60Var = (l60) this.f41939b;
+                l60Var.getClass();
+                l60Var.f37116c2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l60Var.f30173b.invalidate();
                 return;
         }
     }

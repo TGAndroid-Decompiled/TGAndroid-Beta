@@ -3,32 +3,32 @@ package di;
 import android.content.Context;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-public final class s3 implements org.telegram.ui.ActionBar.r1 {
-    public final int f9706a;
-    public final f6 f9707b;
-    public final TL_stars.TL_starGiftUnique f9708c;
+public final class s3 implements org.telegram.ui.ActionBar.q1 {
+    public final int f9738a;
+    public final f6 f9739b;
+    public final TL_stars.TL_starGiftUnique f9740c;
 
     public s3(f6 f6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i7) {
-        this.f9706a = i7;
-        this.f9707b = f6Var;
-        this.f9708c = tL_starGiftUnique;
+        this.f9738a = i7;
+        this.f9739b = f6Var;
+        this.f9740c = tL_starGiftUnique;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f9706a) {
+    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f9738a) {
             case 0:
-                vf.b h = u1Var.h(-1, true, true);
+                vf.b h = t1Var.h(-1, true, true);
                 h.d();
                 TL_stars.updateStarGiftPrice updatestargiftprice = new TL_stars.updateStarGiftPrice();
-                f6 f6Var = this.f9707b;
+                f6 f6Var = this.f9739b;
                 updatestargiftprice.stargift = f6Var.G1();
                 updatestargiftprice.resell_amount = TL_stars.StarsAmount.ofStars(0L);
-                ConnectionsManager.getInstance(f6Var.f30187a).sendRequest(updatestargiftprice, new bi.m1(f6Var, h, this.f9708c, 3));
+                ConnectionsManager.getInstance(f6Var.f30170a).sendRequest(updatestargiftprice, new bi.q1(f6Var, h, this.f9740c, 3));
                 return;
             default:
-                Context context = this.f9707b.getContext();
-                vf.c.v(context, "https://fragment.com/gift/" + this.f9708c.slug, false);
+                Context context = this.f9739b.getContext();
+                vf.c.v(context, "https://fragment.com/gift/" + this.f9740c.slug, false);
                 return;
         }
     }

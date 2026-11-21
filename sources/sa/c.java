@@ -9,23 +9,23 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import u9.m;
 public final class c implements e, f {
-    public final m f57129a;
-    public final Context f57130b;
-    public final ua.b f57131c;
+    public final m f57170a;
+    public final Context f57171b;
+    public final ua.b f57172c;
     public final Set d;
-    public final Executor f57132e;
+    public final Executor f57173e;
 
     public c(Context context, String str, Set set, ua.b bVar, Executor executor) {
-        this.f57129a = new m(new o9.c(context, str));
+        this.f57170a = new m(new o9.c(context, str));
         this.d = set;
-        this.f57132e = executor;
-        this.f57131c = bVar;
-        this.f57130b = context;
+        this.f57173e = executor;
+        this.f57172c = bVar;
+        this.f57171b = context;
     }
 
     public final synchronized int a() {
         long currentTimeMillis = System.currentTimeMillis();
-        h hVar = (h) this.f57129a.get();
+        h hVar = (h) this.f57170a.get();
         if (hVar.g(currentTimeMillis)) {
             hVar.e();
             return 3;
@@ -36,14 +36,14 @@ public final class c implements e, f {
     public final Task b() {
         boolean z10;
         if (Build.VERSION.SDK_INT >= 24) {
-            z10 = x.g(this.f57130b);
+            z10 = x.g(this.f57171b);
         } else {
             z10 = true;
         }
         if (!z10) {
             return Tasks.forResult("");
         }
-        return Tasks.call(this.f57132e, new b(this, 0));
+        return Tasks.call(this.f57173e, new b(this, 0));
     }
 
     public final void c() {
@@ -53,7 +53,7 @@ public final class c implements e, f {
             return;
         }
         if (Build.VERSION.SDK_INT >= 24) {
-            z10 = x.g(this.f57130b);
+            z10 = x.g(this.f57171b);
         } else {
             z10 = true;
         }
@@ -61,6 +61,6 @@ public final class c implements e, f {
             Tasks.forResult(null);
             return;
         }
-        Tasks.call(this.f57132e, new b(this, 1));
+        Tasks.call(this.f57173e, new b(this, 1));
     }
 }

@@ -14,9 +14,9 @@ import org.telegram.messenger.s2;
 import org.telegram.messenger.t0;
 import org.telegram.messenger.xs;
 public class StoryUploadingService extends Service implements fs {
-    public q f43827a;
-    public String f43828b;
-    public float f43829c;
+    public q f43868a;
+    public String f43869b;
+    public float f43870c;
     public int d = -1;
 
     public StoryUploadingService() {
@@ -28,25 +28,25 @@ public class StoryUploadingService extends Service implements fs {
         String str;
         boolean z10 = false;
         if (i7 == ks.D5) {
-            String str2 = this.f43828b;
+            String str2 = this.f43869b;
             if (str2 != null && str2.equals((String) objArr[0])) {
                 float floatValue = ((Float) objArr[1]).floatValue();
-                this.f43829c = floatValue;
-                q qVar = this.f43827a;
+                this.f43870c = floatValue;
+                q qVar = this.f43868a;
                 int round = Math.round(floatValue * 100.0f);
-                if (this.f43829c <= 0.0f) {
+                if (this.f43870c <= 0.0f) {
                     z10 = true;
                 }
-                qVar.f10256n = 100;
-                qVar.f10257o = round;
-                qVar.f10258p = z10;
+                qVar.f10285n = 100;
+                qVar.f10286o = round;
+                qVar.f10287p = z10;
                 try {
-                    new i0(t0.f26913b).e(null, 33, this.f43827a.b());
+                    new i0(t0.f26941b).e(null, 33, this.f43868a.b());
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
             }
-        } else if (i7 == ks.E5 && (str = this.f43828b) != null && str.equals((String) objArr[0])) {
+        } else if (i7 == ks.E5 && (str = this.f43869b) != null && str.equals((String) objArr[0])) {
             stopSelf();
         }
     }
@@ -63,10 +63,10 @@ public class StoryUploadingService extends Service implements fs {
             stopForeground(true);
         } catch (Exception unused) {
         }
-        new i0(t0.f26913b).b(33, null);
+        new i0(t0.f26941b).b(33, null);
         ks.e().n(this, ks.E5);
         ks.f(this.d).n(this, ks.D5);
-        if (s2.f26721a) {
+        if (s2.f26749a) {
             a8.b("upload story destroy");
         }
     }
@@ -74,9 +74,9 @@ public class StoryUploadingService extends Service implements fs {
     @Override
     public final int onStartCommand(Intent intent, int i7, int i10) {
         int i11 = ks.D5;
-        this.f43828b = intent.getStringExtra("path");
+        this.f43869b = intent.getStringExtra("path");
         int i12 = this.d;
-        int intExtra = intent.getIntExtra("currentAccount", j10.f24770t0);
+        int intExtra = intent.getIntExtra("currentAccount", j10.f24798t0);
         this.d = intExtra;
         if (!j10.r(intExtra)) {
             stopSelf();
@@ -91,38 +91,38 @@ public class StoryUploadingService extends Service implements fs {
                 ks.f(i13).b(this, i11);
             }
         }
-        if (this.f43828b == null) {
+        if (this.f43869b == null) {
             stopSelf();
             return 2;
         }
-        if (s2.f26721a) {
+        if (s2.f26749a) {
             a8.b("start upload story");
         }
-        if (this.f43827a == null) {
+        if (this.f43868a == null) {
             xs.i();
-            q qVar = new q(t0.f26913b, null);
-            this.f43827a = qVar;
+            q qVar = new q(t0.f26941b, null);
+            this.f43868a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
-            q qVar2 = this.f43827a;
-            qVar2.f10266y = xs.f27956k0;
-            qVar2.g(gd.M0(2131689472, null));
-            this.f43827a.p(gd.M0(2131744216, null));
-            this.f43827a.f(gd.M0(2131744216, null));
+            q qVar2 = this.f43868a;
+            qVar2.f10295y = xs.f27984k0;
+            qVar2.g(gd.N0(2131689472, null));
+            this.f43868a.p(gd.N0(2131744210, null));
+            this.f43868a.f(gd.N0(2131744210, null));
         }
-        this.f43829c = 0.0f;
-        q qVar3 = this.f43827a;
+        this.f43870c = 0.0f;
+        q qVar3 = this.f43868a;
         int round = Math.round(0.0f);
-        qVar3.f10256n = 100;
-        qVar3.f10257o = round;
-        qVar3.f10258p = false;
+        qVar3.f10285n = 100;
+        qVar3.f10286o = round;
+        qVar3.f10287p = false;
         try {
-            startForeground(33, this.f43827a.b());
+            startForeground(33, this.f43868a.b());
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
         try {
-            new i0(t0.f26913b).e(null, 33, this.f43827a.b());
+            new i0(t0.f26941b).e(null, 33, this.f43868a.b());
         } catch (Throwable th3) {
             a8.g(th3, true);
         }

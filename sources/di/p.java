@@ -2,10 +2,10 @@ package di;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.xb0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.yb0;
 import org.telegram.ui.xd;
-public final class p extends xb0 {
+public final class p extends yb0 {
     public final int M;
     public final Object N;
 
@@ -20,29 +20,29 @@ public final class p extends xb0 {
         switch (this.M) {
             case 0:
                 t tVar = (t) this.N;
-                q qVar = tVar.f9748a0;
+                q qVar = tVar.f9767a0;
                 if (qVar != null && !qVar.isFocusable()) {
-                    tVar.f9748a0.setFocusable(true);
-                    tVar.f9748a0.setFocusableInTouchMode(true);
-                    int A1 = tVar.f9754e.A1(1);
-                    if (A1 >= 0 && A1 < tVar.f9754e.f34607g3.E.size()) {
-                        tVar.f9754e.C0();
-                        tVar.f9754e.y0(A1);
+                    tVar.f9767a0.setFocusable(true);
+                    tVar.f9767a0.setFocusableInTouchMode(true);
+                    int A1 = tVar.f9773e.A1(1);
+                    if (A1 >= 0 && A1 < tVar.f9773e.f35796g3.E.size()) {
+                        tVar.f9773e.C0();
+                        tVar.f9773e.y0(A1);
                     }
-                    tVar.f9748a0.requestFocus();
+                    tVar.f9767a0.requestFocus();
                 }
                 return super.dispatchTouchEvent(motionEvent);
             default:
                 xd xdVar = (xd) this.N;
-                e51 e51Var = xdVar.Y0;
+                h51 h51Var = xdVar.Y0;
                 q qVar2 = xdVar.P0;
                 if (qVar2 != null && !qVar2.isFocusable()) {
                     qVar2.setFocusable(true);
                     qVar2.setFocusableInTouchMode(true);
-                    int A12 = e51Var.A1(3);
-                    if (A12 >= 0 && A12 < e51Var.f34607g3.E.size()) {
-                        e51Var.C0();
-                        e51Var.y0(A12);
+                    int A12 = h51Var.A1(3);
+                    if (A12 >= 0 && A12 < h51Var.f35796g3.E.size()) {
+                        h51Var.C0();
+                        h51Var.y0(A12);
                     }
                     qVar2.requestFocus();
                 }

@@ -15,44 +15,44 @@ import java.io.File;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.i41;
-import org.telegram.ui.Components.vm0;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.ym0;
 public final class xt extends zt implements y5, fs {
     public final fj X;
     public final TLRPC.Document Y;
     public final RadialProgress2 Z;
-    public final vm0 f27985a0;
-    public final TextPaint f27986b0;
-    public StaticLayout f27987c0;
-    public StaticLayout f27988d0;
-    public String f27989e0;
-    public final int f27990f0;
-    public final int f27991g0;
-    public final int f27992h0;
-    public int f27993i0;
-    public int f27994j0;
-    public int f27995k0;
-    public int f27996l0;
+    public final ym0 f28013a0;
+    public final TextPaint f28014b0;
+    public StaticLayout f28015c0;
+    public StaticLayout f28016d0;
+    public String f28017e0;
+    public final int f28018f0;
+    public final int f28019g0;
+    public final int f28020h0;
+    public int f28021i0;
+    public int f28022j0;
+    public int f28023k0;
+    public int f28024l0;
     public boolean m0;
-    public final RectF f27997n0;
-    public int f27998o0;
-    public boolean f27999p0;
-    public boolean f28000q0;
-    public final int f28001r0;
+    public final RectF f28025n0;
+    public int f28026o0;
+    public boolean f28027p0;
+    public boolean f28028q0;
+    public final int f28029r0;
 
     public xt(ev evVar, Rect rect, int i7, TL_iv.pageBlockAudio pageblockaudio) {
         super(evVar, rect, i7);
         TLRPC.Document document;
-        this.f27986b0 = new TextPaint(1);
+        this.f28014b0 = new TextPaint(1);
         int L = g0.L(16.0f);
-        this.f27990f0 = L;
+        this.f28018f0 = L;
         int L2 = g0.L(9.0f);
-        this.f27991g0 = L2;
+        this.f28019g0 = L2;
         int L3 = g0.L(44.0f);
-        this.f27992h0 = L3;
-        this.f27996l0 = -1;
-        this.f27997n0 = new RectF();
-        fj fjVar = (fj) evVar.f23777m.get(pageblockaudio);
+        this.f28020h0 = L3;
+        this.f28024l0 = -1;
+        this.f28025n0 = new RectF();
+        fj fjVar = (fj) evVar.f23805m.get(pageblockaudio);
         this.X = fjVar;
         if (fjVar != null) {
             document = fjVar.F0();
@@ -60,14 +60,14 @@ public final class xt extends zt implements y5, fs {
             document = null;
         }
         this.Y = document;
-        this.f28001r0 = a6.q(evVar.f23767a).k();
+        this.f28029r0 = a6.q(evVar.f23795a).k();
         RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
         this.Z = radialProgress2;
         radialProgress2.setCircleRadius(g0.L(24.0f));
         radialProgress2.r(L, L2, L + L3, L3 + L2);
-        vm0 vm0Var = new vm0(null);
-        this.f27985a0 = vm0Var;
-        vm0Var.h = new j1(this, 16);
+        ym0 ym0Var = new ym0(null);
+        this.f28013a0 = ym0Var;
+        ym0Var.h = new j1(this, 16);
         k0();
         l0(false);
     }
@@ -79,7 +79,7 @@ public final class xt extends zt implements y5, fs {
 
     @Override
     public final int I() {
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         return g0.L(62.0f) + rect.top + rect.bottom;
     }
 
@@ -96,7 +96,7 @@ public final class xt extends zt implements y5, fs {
 
     @Override
     public final boolean Q() {
-        return this.f27985a0.f40710e;
+        return this.f28013a0.f42467e;
     }
 
     @Override
@@ -104,27 +104,27 @@ public final class xt extends zt implements y5, fs {
         View view = this.W;
         if (view != null) {
             this.Z.n(view);
-            this.f27985a0.f40723s = this.W;
+            this.f28013a0.f42480s = this.W;
         }
         l0(false);
-        ev evVar = this.f28349a;
-        int i7 = evVar.f23767a;
-        int i10 = evVar.f23767a;
-        ks.f(i7).c(this, ks.f25124h2);
-        ks.f(i10).c(this, ks.f25112f2);
-        ks.f(i10).c(this, ks.f25118g2);
-        ks.f(i10).c(this, ks.f25106e2);
+        ev evVar = this.f28377a;
+        int i7 = evVar.f23795a;
+        int i10 = evVar.f23795a;
+        ks.f(i7).c(this, ks.f25152h2);
+        ks.f(i10).c(this, ks.f25140f2);
+        ks.f(i10).c(this, ks.f25146g2);
+        ks.f(i10).c(this, ks.f25134e2);
     }
 
     @Override
     public final void V() {
-        ev evVar = this.f28349a;
-        a6.q(evVar.f23767a).v(this);
-        int i7 = evVar.f23767a;
-        ks.f(i7).n(this, ks.f25124h2);
-        ks.f(i7).n(this, ks.f25112f2);
-        ks.f(i7).n(this, ks.f25118g2);
-        ks.f(i7).n(this, ks.f25106e2);
+        ev evVar = this.f28377a;
+        a6.q(evVar.f23795a).v(this);
+        int i7 = evVar.f23795a;
+        ks.f(i7).n(this, ks.f25152h2);
+        ks.f(i7).n(this, ks.f25140f2);
+        ks.f(i7).n(this, ks.f25146g2);
+        ks.f(i7).n(this, ks.f25134e2);
     }
 
     @Override
@@ -141,110 +141,110 @@ public final class xt extends zt implements y5, fs {
         int i18;
         Drawable drawable;
         if (this.X != null && this.Y != null) {
-            int i19 = this.f27996l0;
-            int i20 = this.f28351c;
-            ev evVar = this.f28349a;
+            int i19 = this.f28024l0;
+            int i20 = this.f28379c;
+            ev evVar = this.f28377a;
             if (i19 != i20 + evVar.S + evVar.T || this.m0 != i0()) {
                 k0();
             }
             canvas.save();
             canvas.translate(-evVar.S, 0.0f);
             if (evVar.E()) {
-                i7 = org.telegram.ui.ActionBar.n6.Ec;
+                i7 = org.telegram.ui.ActionBar.m6.Ec;
             } else {
-                i7 = org.telegram.ui.ActionBar.n6.Ze;
+                i7 = org.telegram.ui.ActionBar.m6.Ze;
             }
             if (evVar.E()) {
-                i10 = org.telegram.ui.ActionBar.n6.Fc;
+                i10 = org.telegram.ui.ActionBar.m6.Fc;
             } else {
-                i10 = org.telegram.ui.ActionBar.n6.f29345af;
+                i10 = org.telegram.ui.ActionBar.m6.f29329af;
             }
             if (evVar.E()) {
-                i11 = org.telegram.ui.ActionBar.n6.Gb;
+                i11 = org.telegram.ui.ActionBar.m6.Gb;
             } else {
-                i11 = org.telegram.ui.ActionBar.n6.f29548ld;
+                i11 = org.telegram.ui.ActionBar.m6.f29532ld;
             }
             if (evVar.E()) {
-                i12 = org.telegram.ui.ActionBar.n6.Hb;
+                i12 = org.telegram.ui.ActionBar.m6.Hb;
             } else {
-                i12 = org.telegram.ui.ActionBar.n6.f29564md;
+                i12 = org.telegram.ui.ActionBar.m6.f29548md;
             }
             RadialProgress2 radialProgress2 = this.Z;
             radialProgress2.g(i7, i10, i11, i12);
             if (evVar.E()) {
-                i13 = org.telegram.ui.ActionBar.n6.f29716uc;
+                i13 = org.telegram.ui.ActionBar.m6.f29700uc;
             } else {
-                i13 = org.telegram.ui.ActionBar.n6.f29679se;
+                i13 = org.telegram.ui.ActionBar.m6.f29663se;
             }
-            radialProgress2.d = org.telegram.ui.ActionBar.n6.w0(i13, evVar.D);
+            radialProgress2.d = org.telegram.ui.ActionBar.m6.w0(i13, evVar.D);
             radialProgress2.draw(canvas);
             if (evVar.E()) {
-                i14 = org.telegram.ui.ActionBar.n6.f29582nc;
+                i14 = org.telegram.ui.ActionBar.m6.f29566nc;
             } else {
-                i14 = org.telegram.ui.ActionBar.n6.le;
+                i14 = org.telegram.ui.ActionBar.m6.le;
             }
-            int w02 = org.telegram.ui.ActionBar.n6.w0(i14, evVar.D);
+            int w02 = org.telegram.ui.ActionBar.m6.w0(i14, evVar.D);
             if (evVar.E()) {
-                i15 = org.telegram.ui.ActionBar.n6.f29600oc;
+                i15 = org.telegram.ui.ActionBar.m6.f29584oc;
             } else {
-                i15 = org.telegram.ui.ActionBar.n6.f29565me;
+                i15 = org.telegram.ui.ActionBar.m6.f29549me;
             }
-            int w03 = org.telegram.ui.ActionBar.n6.w0(i15, evVar.D);
+            int w03 = org.telegram.ui.ActionBar.m6.w0(i15, evVar.D);
             if (evVar.E()) {
-                i16 = org.telegram.ui.ActionBar.n6.f29640qc;
+                i16 = org.telegram.ui.ActionBar.m6.f29624qc;
             } else {
-                i16 = org.telegram.ui.ActionBar.n6.f29602oe;
+                i16 = org.telegram.ui.ActionBar.m6.f29586oe;
             }
-            int w04 = org.telegram.ui.ActionBar.n6.w0(i16, evVar.D);
+            int w04 = org.telegram.ui.ActionBar.m6.w0(i16, evVar.D);
             if (evVar.E()) {
-                i17 = org.telegram.ui.ActionBar.n6.f29640qc;
+                i17 = org.telegram.ui.ActionBar.m6.f29624qc;
             } else {
-                i17 = org.telegram.ui.ActionBar.n6.f29602oe;
+                i17 = org.telegram.ui.ActionBar.m6.f29586oe;
             }
-            int w05 = org.telegram.ui.ActionBar.n6.w0(i17, evVar.D);
+            int w05 = org.telegram.ui.ActionBar.m6.w0(i17, evVar.D);
             if (evVar.E()) {
-                i18 = org.telegram.ui.ActionBar.n6.f29620pc;
+                i18 = org.telegram.ui.ActionBar.m6.f29604pc;
             } else {
-                i18 = org.telegram.ui.ActionBar.n6.ne;
+                i18 = org.telegram.ui.ActionBar.m6.ne;
             }
-            int w06 = org.telegram.ui.ActionBar.n6.w0(i18, evVar.D);
-            vm0 vm0Var = this.f27985a0;
-            vm0Var.g(w02, w03, w04, w05, w06);
+            int w06 = org.telegram.ui.ActionBar.m6.w0(i18, evVar.D);
+            ym0 ym0Var = this.f28013a0;
+            ym0Var.g(w02, w03, w04, w05, w06);
             canvas.save();
-            canvas.translate(this.f27993i0, this.f27994j0);
-            vm0Var.b(canvas);
+            canvas.translate(this.f28021i0, this.f28022j0);
+            ym0Var.b(canvas);
             canvas.restore();
-            StaticLayout staticLayout = this.f27988d0;
-            int i21 = this.f27990f0;
+            StaticLayout staticLayout = this.f28016d0;
+            int i21 = this.f28018f0;
             if (staticLayout != null) {
                 canvas.save();
-                canvas.translate(g0.L(54.0f) + i21, g0.L(6.0f) + this.f27994j0);
-                this.f27988d0.draw(canvas);
+                canvas.translate(g0.L(54.0f) + i21, g0.L(6.0f) + this.f28022j0);
+                this.f28016d0.draw(canvas);
                 canvas.restore();
             }
-            if (this.f27987c0 != null) {
+            if (this.f28015c0 != null) {
                 canvas.save();
-                canvas.translate(g0.L(54.0f) + i21, this.f27994j0 - g0.L(16.0f));
-                this.f27987c0.draw(canvas);
+                canvas.translate(g0.L(54.0f) + i21, this.f28022j0 - g0.L(16.0f));
+                this.f28015c0.draw(canvas);
                 canvas.restore();
             }
             boolean z10 = this.m0;
-            RectF rectF = this.f27997n0;
+            RectF rectF = this.f28025n0;
             if (z10) {
                 if (evVar.E()) {
-                    org.telegram.ui.ActionBar.i6 i6Var = evVar.D;
-                    if (i6Var != null) {
-                        drawable = i6Var.getDrawable("drawableMsgOutMenu");
+                    org.telegram.ui.ActionBar.h6 h6Var = evVar.D;
+                    if (h6Var != null) {
+                        drawable = h6Var.getDrawable("drawableMsgOutMenu");
                     } else {
                         drawable = null;
                     }
                     if (drawable == null) {
-                        drawable = org.telegram.ui.ActionBar.n6.R0("drawableMsgOutMenu");
+                        drawable = org.telegram.ui.ActionBar.m6.R0("drawableMsgOutMenu");
                     }
                 } else {
-                    drawable = org.telegram.ui.ActionBar.n6.f29374c4;
+                    drawable = org.telegram.ui.ActionBar.m6.f29358c4;
                 }
-                int L = (this.f27996l0 + this.f28350b.right) - g0.L(32.0f);
+                int L = (this.f28024l0 + this.f28378b.right) - g0.L(32.0f);
                 int L2 = g0.L(7.0f);
                 drawable.setBounds(L, L2, drawable.getIntrinsicWidth() + L, drawable.getIntrinsicHeight() + L2);
                 drawable.draw(canvas);
@@ -263,19 +263,19 @@ public final class xt extends zt implements y5, fs {
         boolean z10;
         int actionMasked = motionEvent.getActionMasked();
         float x10 = motionEvent.getX();
-        ev evVar = this.f28349a;
+        ev evVar = this.f28377a;
         float f10 = x10 + evVar.S;
         float y10 = motionEvent.getY();
-        boolean contains = this.f27997n0.contains(f10, y10);
+        boolean contains = this.f28025n0.contains(f10, y10);
         if (actionMasked == 0 && contains) {
-            this.f28000q0 = true;
+            this.f28028q0 = true;
             return true;
         }
-        boolean z11 = this.f28000q0;
+        boolean z11 = this.f28028q0;
         TLRPC.Document document = this.Y;
         if (z11) {
             if (actionMasked == 2 && !contains) {
-                this.f28000q0 = false;
+                this.f28028q0 = false;
                 return true;
             } else if (actionMasked == 1 || actionMasked == 3) {
                 if (actionMasked == 1 && contains) {
@@ -283,7 +283,7 @@ public final class xt extends zt implements y5, fs {
                 } else {
                     z10 = false;
                 }
-                this.f28000q0 = false;
+                this.f28028q0 = false;
                 if (z10 && i0()) {
                     View view = this.W;
                     if (view != null) {
@@ -295,7 +295,7 @@ public final class xt extends zt implements y5, fs {
                 return true;
             }
         }
-        if (this.f27985a0.e(f10 - this.f27993i0, y10 - this.f27994j0, actionMasked)) {
+        if (this.f28013a0.e(f10 - this.f28021i0, y10 - this.f28022j0, actionMasked)) {
             if (actionMasked == 0) {
                 a0(true);
             }
@@ -308,10 +308,10 @@ public final class xt extends zt implements y5, fs {
                 return true;
             }
         } else if (actionMasked == 0) {
-            if (this.f27998o0 != -1) {
-                if (f10 >= this.f27990f0 && f10 <= g0.L(48.0f) + i7) {
-                    if (y10 >= this.f27991g0 && y10 <= g0.L(48.0f) + i10) {
-                        this.f27999p0 = true;
+            if (this.f28026o0 != -1) {
+                if (f10 >= this.f28018f0 && f10 <= g0.L(48.0f) + i7) {
+                    if (y10 >= this.f28019g0 && y10 <= g0.L(48.0f) + i10) {
+                        this.f28027p0 = true;
                         View view3 = this.W;
                         if (view3 != null) {
                             view3.invalidate();
@@ -320,21 +320,21 @@ public final class xt extends zt implements y5, fs {
                     }
                 }
             }
-            return this.f27999p0;
+            return this.f28027p0;
         } else {
             if (actionMasked == 1) {
-                if (this.f27999p0) {
-                    this.f27999p0 = false;
+                if (this.f28027p0) {
+                    this.f28027p0 = false;
                     View view4 = this.W;
                     if (view4 != null) {
                         view4.playSoundEffect(0);
                     }
-                    int i11 = evVar.f23767a;
-                    int i12 = this.f27998o0;
+                    int i11 = evVar.f23795a;
+                    int i12 = this.f28026o0;
                     RadialProgress2 radialProgress2 = this.Z;
                     if (i12 == 0) {
-                        if (MediaController.B().o0(evVar.f23776l, this.X, 0L, false, null, 0L)) {
-                            this.f27998o0 = 1;
+                        if (MediaController.B().o0(evVar.f23804l, this.X, 0L, false, null, 0L)) {
+                            this.f28026o0 = 1;
                             radialProgress2.setIcon(j0(), false, true);
                             View view5 = this.W;
                             if (view5 != null) {
@@ -343,7 +343,7 @@ public final class xt extends zt implements y5, fs {
                         }
                     } else if (i12 == 1) {
                         if (MediaController.B().R(this.X, true)) {
-                            this.f27998o0 = 0;
+                            this.f28026o0 = 0;
                             radialProgress2.setIcon(j0(), false, true);
                             View view6 = this.W;
                             if (view6 != null) {
@@ -352,8 +352,8 @@ public final class xt extends zt implements y5, fs {
                         }
                     } else if (i12 == 2) {
                         radialProgress2.p(false, 0.0f);
-                        w7.G(i11).W(document, evVar.f23768b, 1, 1);
-                        this.f27998o0 = 3;
+                        w7.G(i11).W(document, evVar.f23796b, 1, 1);
+                        this.f28026o0 = 3;
                         radialProgress2.setIcon(j0(), true, true);
                         View view7 = this.W;
                         if (view7 != null) {
@@ -361,7 +361,7 @@ public final class xt extends zt implements y5, fs {
                         }
                     } else if (i12 == 3) {
                         w7.G(i11).f(document);
-                        this.f27998o0 = 2;
+                        this.f28026o0 = 2;
                         radialProgress2.setIcon(j0(), false, true);
                         View view8 = this.W;
                         if (view8 != null) {
@@ -374,9 +374,9 @@ public final class xt extends zt implements y5, fs {
                     }
                 }
             } else if (actionMasked == 3) {
-                this.f27999p0 = false;
+                this.f28027p0 = false;
             }
-            return this.f27999p0;
+            return this.f28027p0;
         }
         return true;
     }
@@ -386,13 +386,13 @@ public final class xt extends zt implements y5, fs {
         fj fjVar;
         fj fjVar2 = this.X;
         if (fjVar2 != null) {
-            if (i7 == ks.f25124h2) {
+            if (i7 == ks.f25152h2) {
                 l0(true);
-            } else if (i7 != ks.f25112f2 && i7 != ks.f25118g2) {
-                if (i7 == ks.f25106e2 && fjVar2.e1() == ((Integer) objArr[0]).intValue() && (fjVar = MediaController.B().f22740v0) != null) {
-                    fjVar2.f23925b0 = fjVar.f23925b0;
-                    fjVar2.f23957i0 = fjVar.f23957i0;
-                    fjVar2.f23962j0 = fjVar.f23962j0;
+            } else if (i7 != ks.f25140f2 && i7 != ks.f25146g2) {
+                if (i7 == ks.f25134e2 && fjVar2.e1() == ((Integer) objArr[0]).intValue() && (fjVar = MediaController.B().f22768v0) != null) {
+                    fjVar2.f23953b0 = fjVar.f23953b0;
+                    fjVar2.f23985i0 = fjVar.f23985i0;
+                    fjVar2.f23990j0 = fjVar.f23990j0;
                     m0();
                 }
             } else {
@@ -403,7 +403,7 @@ public final class xt extends zt implements y5, fs {
 
     @Override
     public final int getObserverTag() {
-        return this.f28001r0;
+        return this.f28029r0;
     }
 
     @Override
@@ -415,7 +415,7 @@ public final class xt extends zt implements y5, fs {
             f10 = ((float) j3) / ((float) j10);
         }
         this.Z.p(true, Math.min(1.0f, f10));
-        if (this.f27998o0 != 3) {
+        if (this.f28026o0 != 3) {
             l0(true);
         }
     }
@@ -424,14 +424,14 @@ public final class xt extends zt implements y5, fs {
         ev evVar;
         org.telegram.ui.Cells.r1 r1Var;
         org.telegram.ui.Cells.m1 m1Var;
-        if (this.Y != null && (r1Var = (evVar = this.f28349a).E) != null && (m1Var = evVar.F) != null && m1Var.d0(r1Var)) {
+        if (this.Y != null && (r1Var = (evVar = this.f28377a).E) != null && (m1Var = evVar.F) != null && m1Var.d0(r1Var)) {
             return true;
         }
         return false;
     }
 
     public final int j0() {
-        int i7 = this.f27998o0;
+        int i7 = this.f28026o0;
         if (i7 == 1) {
             return 1;
         }
@@ -449,20 +449,20 @@ public final class xt extends zt implements y5, fs {
         String str;
         String str2;
         SpannableStringBuilder spannableStringBuilder;
-        ev evVar = this.f28349a;
-        this.f27996l0 = this.f28351c + evVar.S + evVar.T;
+        ev evVar = this.f28377a;
+        this.f28024l0 = this.f28379c + evVar.S + evVar.T;
         this.m0 = i0();
-        int L = g0.L(50.0f) + this.f27990f0;
-        int i7 = this.f27992h0;
+        int L = g0.L(50.0f) + this.f28018f0;
+        int i7 = this.f28020h0;
         int i10 = L + i7;
-        this.f27993i0 = i10;
-        int i11 = this.f27996l0 - i10;
+        this.f28021i0 = i10;
+        int i11 = this.f28024l0 - i10;
         if (this.m0) {
             f10 = 42.0f;
         } else {
             f10 = 18.0f;
         }
-        this.f27995k0 = i5.c.d(f10, i11, 0);
+        this.f28023k0 = i5.c.d(f10, i11, 0);
         fj fjVar = this.X;
         if (fjVar != null) {
             str = fjVar.w1(false);
@@ -475,10 +475,10 @@ public final class xt extends zt implements y5, fs {
             str2 = null;
         }
         boolean isEmpty = TextUtils.isEmpty(str2);
-        int i12 = this.f27991g0;
+        int i12 = this.f28019g0;
         if (isEmpty && TextUtils.isEmpty(str)) {
-            this.f27987c0 = null;
-            this.f27994j0 = ((i7 - g0.L(30.0f)) / 2) + i12;
+            this.f28015c0 = null;
+            this.f28022j0 = ((i7 - g0.L(30.0f)) / 2) + i12;
         } else {
             if (!TextUtils.isEmpty(str2) && !TextUtils.isEmpty(str)) {
                 spannableStringBuilder = new SpannableStringBuilder(a8.p0.E(str, " - ", str2));
@@ -488,20 +488,20 @@ public final class xt extends zt implements y5, fs {
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             if (!TextUtils.isEmpty(str)) {
-                spannableStringBuilder.setSpan(new i41(g0.o()), 0, str.length(), 18);
+                spannableStringBuilder.setSpan(new l41(g0.o()), 0, str.length(), 18);
             }
-            this.f27986b0.setTextSize(g0.L(16.0f));
-            int L2 = g0.L(50.0f) + this.f27995k0;
-            this.f27987c0 = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, org.telegram.ui.ActionBar.n6.O2, L2, TextUtils.TruncateAt.END), this.f27986b0, L2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f27994j0 = g0.L(11.0f) + ((i7 - g0.L(30.0f)) / 2) + i12;
+            this.f28014b0.setTextSize(g0.L(16.0f));
+            int L2 = g0.L(50.0f) + this.f28023k0;
+            this.f28015c0 = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, org.telegram.ui.ActionBar.m6.O2, L2, TextUtils.TruncateAt.END), this.f28014b0, L2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f28022j0 = g0.L(11.0f) + ((i7 - g0.L(30.0f)) / 2) + i12;
         }
-        this.f27985a0.i(this.f27995k0, g0.L(30.0f));
+        this.f28013a0.i(this.f28023k0, g0.L(30.0f));
     }
 
     public final void l0(boolean z10) {
         File J;
         boolean z11;
-        int i7 = this.f28349a.f23767a;
+        int i7 = this.f28377a.f23795a;
         TLRPC.Document document = this.Y;
         String r10 = w7.r(null, document);
         int i10 = 1;
@@ -526,27 +526,27 @@ public final class xt extends zt implements y5, fs {
         if (z11) {
             a6.q(i7).v(this);
             if (MediaController.B().I(fjVar) && !MediaController.B().H()) {
-                this.f27998o0 = 1;
+                this.f28026o0 = 1;
             } else {
-                this.f27998o0 = 0;
+                this.f28026o0 = 0;
             }
             radialProgress2.setIcon(j0(), false, z10);
         } else {
             a6.q(i7).a(r10, null, this);
-            if (bz.B0 && fjVar != null && fjVar.I3() && !fj.R5(fjVar.f23965k) && !n5.C(fj.B0(fjVar.f23965k))) {
+            if (bz.B0 && fjVar != null && fjVar.I3() && !fj.R5(fjVar.f23993k) && !n5.C(fj.B0(fjVar.f23993k))) {
                 if (!MediaController.B().I(fjVar) || MediaController.B().H()) {
                     i10 = 0;
                 }
-                this.f27998o0 = i10;
+                this.f28026o0 = i10;
                 radialProgress2.setIcon(j0(), false, z10);
             } else {
                 float f10 = 0.0f;
                 if (!w7.G(i7).S(r10)) {
-                    this.f27998o0 = 2;
+                    this.f28026o0 = 2;
                     radialProgress2.p(z10, 0.0f);
                     radialProgress2.setIcon(j0(), false, z10);
                 } else {
-                    this.f27998o0 = 3;
+                    this.f28026o0 = 3;
                     Float w10 = ec.D().w(r10);
                     if (w10 != null) {
                         f10 = w10.floatValue();
@@ -565,12 +565,12 @@ public final class xt extends zt implements y5, fs {
         int i10;
         TLRPC.Document document = this.Y;
         if (document != null && (fjVar = this.X) != null) {
-            vm0 vm0Var = this.f27985a0;
-            if (!vm0Var.f40710e) {
-                vm0Var.h(fjVar.f23925b0);
+            ym0 ym0Var = this.f28013a0;
+            if (!ym0Var.f42467e) {
+                ym0Var.h(fjVar.f23953b0);
             }
             if (MediaController.B().I(fjVar)) {
-                i7 = fjVar.f23957i0;
+                i7 = fjVar.f23985i0;
             } else {
                 int i11 = 0;
                 while (true) {
@@ -588,20 +588,20 @@ public final class xt extends zt implements y5, fs {
                 }
             }
             String g02 = g0.g0(i7, false, false);
-            String str = this.f27989e0;
-            TextPaint textPaint = this.f27986b0;
+            String str = this.f28017e0;
+            TextPaint textPaint = this.f28014b0;
             if (str == null || !str.equals(g02)) {
-                this.f27989e0 = g02;
+                this.f28017e0 = g02;
                 textPaint.setTextSize(g0.L(16.0f));
-                this.f27988d0 = new StaticLayout(g02, textPaint, (int) Math.ceil(textPaint.measureText(g02)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.f28016d0 = new StaticLayout(g02, textPaint, (int) Math.ceil(textPaint.measureText(g02)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
-            ev evVar = this.f28349a;
+            ev evVar = this.f28377a;
             if (evVar.E()) {
-                i10 = org.telegram.ui.ActionBar.n6.Wc;
+                i10 = org.telegram.ui.ActionBar.m6.Wc;
             } else {
-                i10 = org.telegram.ui.ActionBar.n6.Vc;
+                i10 = org.telegram.ui.ActionBar.m6.Vc;
             }
-            textPaint.setColor(org.telegram.ui.ActionBar.n6.w0(i10, evVar.D));
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.w0(i10, evVar.D));
             View view = this.W;
             if (view != null) {
                 view.invalidate();

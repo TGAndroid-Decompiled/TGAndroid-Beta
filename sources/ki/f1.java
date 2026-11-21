@@ -1,29 +1,37 @@
 package ki;
 
-import android.os.Bundle;
-import org.telegram.ui.cx;
-public final class f1 extends cx {
-    public final bi.h0 G4;
-    public final h1 H4;
+import org.telegram.messenger.fj;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class f1 extends fj {
+    public TL_iv.RichMessage f18701u3;
+    public final boolean f18702v3;
+    public final TLRPC.BotInlineResult f18703w3;
 
-    public f1(h1 h1Var, Bundle bundle, bi.h0 h0Var) {
-        super(bundle);
-        this.H4 = h1Var;
-        this.G4 = h0Var;
+    public f1(int i7, TLRPC.TL_message tL_message, boolean z10, TLRPC.BotInlineResult botInlineResult) {
+        super(i7, tL_message, true, true);
+        this.f18702v3 = z10;
+        this.f18703w3 = botInlineResult;
     }
 
     @Override
-    public final boolean U3() {
-        return true;
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        h1 h1Var = this.H4;
-        if (!h1Var.Y1) {
-            h1Var.Y1 = true;
-            this.G4.a("USER_DECLINED", null);
+    public final TL_iv.RichMessage E0() {
+        if (this.f18702v3) {
+            if (this.f18701u3 == null) {
+                this.f18701u3 = org.telegram.utils.twidget.n0.o(org.telegram.utils.twidget.n0.v(this.K1, this.f18703w3));
+            }
+            return this.f18701u3;
         }
+        return super.E0();
+    }
+
+    @Override
+    public final boolean N3() {
+        return false;
+    }
+
+    @Override
+    public final boolean P3() {
+        return false;
     }
 }

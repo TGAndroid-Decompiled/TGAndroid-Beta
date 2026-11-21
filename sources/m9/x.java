@@ -2,10 +2,10 @@ package m9;
 
 import java.util.concurrent.locks.AbstractOwnableSynchronizer;
 public final class x extends AbstractOwnableSynchronizer implements Runnable {
-    public final f0 f20960a;
+    public final f0 f20988a;
 
     public x(f0 f0Var) {
-        this.f20960a = f0Var;
+        this.f20988a = f0Var;
     }
 
     public static void a(x xVar, Thread thread) {
@@ -13,7 +13,7 @@ public final class x extends AbstractOwnableSynchronizer implements Runnable {
     }
 
     public final String toString() {
-        return this.f20960a.toString();
+        return this.f20988a.toString();
     }
 
     @Override

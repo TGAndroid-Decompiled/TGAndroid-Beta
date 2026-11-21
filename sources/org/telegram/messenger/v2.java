@@ -9,12 +9,12 @@ import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class v2 {
-    public final int f27317a;
-    public boolean f27318b = false;
-    public final int[] f27319c = {-1, -1, -1, -1};
+    public final int f27345a;
+    public boolean f27346b = false;
+    public final int[] f27347c = {-1, -1, -1, -1};
 
     public v2(int i7) {
-        this.f27317a = i7;
+        this.f27345a = i7;
     }
 
     public static long a(int i7) {
@@ -31,7 +31,7 @@ public final class v2 {
             return 172800L;
         }
         if (i7 == 5) {
-            boolean z10 = s2.f26721a;
+            boolean z10 = s2.f26749a;
             return Long.MAX_VALUE;
         }
         return Long.MAX_VALUE;
@@ -69,14 +69,14 @@ public final class v2 {
         if (i7 == 1) {
             return gd.G(1, "Months", new Object[0]);
         }
-        return gd.M0(2131753849, null);
+        return gd.N0(2131753848, null);
     }
 
     public final int c(int i7) {
-        boolean z10 = this.f27318b;
-        int[] iArr = this.f27319c;
+        boolean z10 = this.f27346b;
+        int[] iArr = this.f27347c;
         if (!z10) {
-            this.f27318b = true;
+            this.f27346b = true;
             for (int i10 = 0; i10 < 4; i10++) {
                 iArr[i10] = bz.q().getInt(i5.c.i(i10, "keep_media_type_"), b(i10));
             }
@@ -91,7 +91,7 @@ public final class v2 {
     public final ArrayList d(int i7) {
         ArrayList arrayList = new ArrayList();
         HashSet hashSet = new HashSet();
-        SharedPreferences k10 = j10.i(this.f27317a).k();
+        SharedPreferences k10 = j10.i(this.f27345a).k();
         String string = k10.getString("keep_media_exceptions_" + i7, "");
         if (TextUtils.isEmpty(string)) {
             return arrayList;
@@ -115,7 +115,7 @@ public final class v2 {
         for (int i7 = 0; i7 < 3; i7++) {
             ArrayList d = d(i7);
             for (int i10 = 0; i10 < d.size(); i10++) {
-                longSparseArray.put(((t2) d.get(i10)).f26932a, (t2) d.get(i10));
+                longSparseArray.put(((t2) d.get(i10)).f26960a, (t2) d.get(i10));
             }
         }
         return longSparseArray;
@@ -123,7 +123,7 @@ public final class v2 {
 
     public final void g(ArrayList arrayList) {
         int i7;
-        int i10 = this.f27317a;
+        int i10 = this.f27345a;
         f8 f8Var = w7.G(i10).d;
         f8Var.getClass();
         CountDownLatch countDownLatch = new CountDownLatch(1);
@@ -158,10 +158,10 @@ public final class v2 {
             for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                 u2 u2Var = (u2) arrayList2.get(i12);
                 if (i7 >= 0) {
-                    u2Var.f27116c = i7;
+                    u2Var.f27144c = i7;
                 }
                 if (t2Var != null) {
-                    u2Var.f27115b = t2Var.f26933b;
+                    u2Var.f27143b = t2Var.f26961b;
                 }
             }
         }
@@ -170,7 +170,7 @@ public final class v2 {
     public final void h(int i7, ArrayList arrayList) {
         String i10 = i5.c.i(i7, "keep_media_exceptions_");
         boolean isEmpty = arrayList.isEmpty();
-        int i11 = this.f27317a;
+        int i11 = this.f27345a;
         if (isEmpty) {
             j10.i(i11).k().edit().remove(i10).apply();
             return;
@@ -179,8 +179,8 @@ public final class v2 {
         ByteBuffer allocate = ByteBuffer.allocate((size * 12) + 4);
         allocate.putInt(size);
         for (int i12 = 0; i12 < size; i12++) {
-            allocate.putLong(((t2) arrayList.get(i12)).f26932a);
-            allocate.putInt(((t2) arrayList.get(i12)).f26933b);
+            allocate.putLong(((t2) arrayList.get(i12)).f26960a);
+            allocate.putInt(((t2) arrayList.get(i12)).f26961b);
         }
         j10.i(i11).k().edit().putString(i10, Utilities.f(allocate.array())).apply();
         allocate.clear();

@@ -4,23 +4,23 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import org.telegram.messenger.Utilities;
 public final class vb extends GestureDetector.SimpleOnGestureListener {
-    public final lb f40566a;
-    public final za f40567b;
+    public final lb f40760a;
+    public final za f40761b;
 
     public vb(za zaVar, lb lbVar) {
-        this.f40567b = zaVar;
-        this.f40566a = lbVar;
+        this.f40761b = zaVar;
+        this.f40760a = lbVar;
     }
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        za zaVar = this.f40567b;
-        if (zaVar.f42837s) {
+        za zaVar = this.f40761b;
+        if (zaVar.f42746s) {
             return false;
         }
-        lb lbVar = this.f40566a;
-        zaVar.f42838w = lb.access$1600(lbVar, true);
-        zaVar.f42839x = lb.access$1600(lbVar, false);
+        lb lbVar = this.f40760a;
+        zaVar.f42747w = lb.access$1600(lbVar, true);
+        zaVar.f42748x = lb.access$1600(lbVar, false);
         return true;
     }
 
@@ -31,89 +31,89 @@ public final class vb extends GestureDetector.SimpleOnGestureListener {
             return false;
         }
         int i7 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-        za zaVar = this.f40567b;
-        if ((i7 < 0 && zaVar.f42838w) || (f10 > 0.0f && zaVar.f42839x)) {
+        za zaVar = this.f40761b;
+        if ((i7 < 0 && zaVar.f42747w) || (f10 > 0.0f && zaVar.f42748x)) {
             z10 = true;
         }
         float signum = Math.signum(f10);
-        lb lbVar = this.f40566a;
-        r1.g gVar = new r1.g(lbVar, r1.g.f56306o, signum * lbVar.getWidth() * 2.0f);
+        lb lbVar = this.f40760a;
+        r1.g gVar = new r1.g(lbVar, r1.g.f56347o, signum * lbVar.getWidth() * 2.0f);
         if (!z10) {
             gVar.a(new r1.c(this) {
-                public final vb f39965b;
+                public final vb f39820b;
 
                 {
-                    this.f39965b = this;
+                    this.f39820b = this;
                 }
 
                 @Override
                 public final void a(r1.g gVar2, boolean z11, float f12, float f13) {
                     switch (r2) {
                         case 0:
-                            this.f39965b.f40567b.E.b();
+                            this.f39820b.f40761b.E.b();
                             return;
                         default:
-                            this.f39965b.f40567b.E.b();
+                            this.f39820b.f40761b.E.b();
                             return;
                     }
                 }
             });
-            gVar.b(new i7(lbVar, 2));
+            gVar.b(new j7(lbVar, 2));
         }
-        gVar.f56323m.a(1.0f);
-        gVar.f56323m.b(100.0f);
-        gVar.f56313a = f10;
+        gVar.f56364m.a(1.0f);
+        gVar.f56364m.b(100.0f);
+        gVar.f56354a = f10;
         gVar.h();
         if (z10) {
             r1.g gVar2 = new r1.g((Object) lbVar, (r1.e) r1.g.v, 0.0f);
             gVar2.a(new r1.c(this) {
-                public final vb f39965b;
+                public final vb f39820b;
 
                 {
-                    this.f39965b = this;
+                    this.f39820b = this;
                 }
 
                 @Override
                 public final void a(r1.g gVar22, boolean z11, float f12, float f13) {
                     switch (r2) {
                         case 0:
-                            this.f39965b.f40567b.E.b();
+                            this.f39820b.f40761b.E.b();
                             return;
                         default:
-                            this.f39965b.f40567b.E.b();
+                            this.f39820b.f40761b.E.b();
                             return;
                     }
                 }
             });
             gVar2.b(new Object());
-            gVar.f56323m.a(1.0f);
-            gVar.f56323m.b(10.0f);
-            gVar.f56313a = f10;
+            gVar.f56364m.a(1.0f);
+            gVar.f56364m.b(10.0f);
+            gVar.f56354a = f10;
             gVar2.h();
         }
-        zaVar.f42837s = true;
+        zaVar.f42746s = true;
         return true;
     }
 
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        za zaVar = this.f40567b;
+        za zaVar = this.f40761b;
         float f12 = zaVar.h + f10;
         zaVar.h = f12;
-        float f13 = zaVar.f42835n + f11;
-        zaVar.f42835n = f13;
-        if (Utilities.t(0.0f, 0.0f, f12, f13) > org.telegram.messenger.g0.f24097e) {
-            zaVar.f42836r = true;
+        float f13 = zaVar.f42744n + f11;
+        zaVar.f42744n = f13;
+        if (Utilities.t(0.0f, 0.0f, f12, f13) > org.telegram.messenger.g0.f24125e) {
+            zaVar.f42745r = true;
         }
         if (!zaVar.d) {
             return false;
         }
-        float f14 = zaVar.f42834f - f10;
-        zaVar.f42834f = f14;
-        lb lbVar = this.f40566a;
+        float f14 = zaVar.f42743f - f10;
+        zaVar.f42743f = f14;
+        lb lbVar = this.f40760a;
         lbVar.setTranslationX(f14);
-        float f15 = zaVar.f42834f;
-        if (f15 == 0.0f || ((f15 < 0.0f && zaVar.f42838w) || (f15 > 0.0f && zaVar.f42839x))) {
+        float f15 = zaVar.f42743f;
+        if (f15 == 0.0f || ((f15 < 0.0f && zaVar.f42747w) || (f15 > 0.0f && zaVar.f42748x))) {
             lbVar.setAlpha(1.0f - (Math.abs(f15) / lbVar.getWidth()));
         }
         return true;

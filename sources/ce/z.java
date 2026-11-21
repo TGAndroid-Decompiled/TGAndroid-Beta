@@ -1,13 +1,13 @@
 package ce;
 public final class z implements d {
-    public final Throwable f5269a;
+    public final Throwable f5298a;
 
     public z(Throwable th2) {
-        this.f5269a = th2;
+        this.f5298a = th2;
     }
 
     @Override
     public final Object a(Object obj, id.c cVar) {
-        throw this.f5269a;
+        throw this.f5298a;
     }
 }

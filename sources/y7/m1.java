@@ -1,6 +1,6 @@
 package y7;
 public final class m1 implements na.d {
-    public static final m1 f60891a = new Object();
+    public static final m1 f60932a = new Object();
 
     static {
         p5.c.u(p5.c.o(h.class, new e(1)));

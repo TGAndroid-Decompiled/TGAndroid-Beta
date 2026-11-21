@@ -14,42 +14,42 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.ui.kg0;
 public final class pe implements kf, m9.t, p4.u {
-    public long f26231a;
-    public Object f26232b;
-    public Object f26233c;
+    public long f26259a;
+    public Object f26260b;
+    public Object f26261c;
     public Object d;
-    public final Object f26234e;
+    public final Object f26262e;
 
-    public pe(android.content.Context r23, org.telegram.ui.Components.if0 r24, final org.telegram.ui.Components.k8 r25, boolean r26, int r27, org.telegram.ui.ActionBar.i6 r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.pe.<init>(android.content.Context, org.telegram.ui.Components.if0, org.telegram.ui.Components.k8, boolean, int, org.telegram.ui.ActionBar.i6):void");
+    public pe(android.content.Context r23, org.telegram.ui.Components.kf0 r24, final org.telegram.ui.Components.j8 r25, boolean r26, int r27, org.telegram.ui.ActionBar.h6 r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.pe.<init>(android.content.Context, org.telegram.ui.Components.kf0, org.telegram.ui.Components.j8, boolean, int, org.telegram.ui.ActionBar.h6):void");
     }
 
     @Override
     public void b(int i7, p4.n1 n1Var, boolean z10, boolean z11, int i10) {
-        p4.m0 m0Var = (p4.m0) this.f26234e;
-        m0Var.p0(m0Var.h.f55195t);
+        p4.n0 n0Var = (p4.n0) this.f26262e;
+        n0Var.p0(n0Var.h.f55245t);
     }
 
     @Override
     public void e(int i7, e2.y0 y0Var) {
         int i10;
-        p4.m0 m0Var = (p4.m0) this.f26234e;
-        p4.i1 i1Var = m0Var.h.f55195t;
+        p4.n0 n0Var = (p4.n0) this.f26262e;
+        p4.i1 i1Var = n0Var.h.f55245t;
         if (i1Var.p0(20)) {
             i10 = 4;
         } else {
             i10 = 0;
         }
-        if (m0Var.f55338t != i10) {
-            m0Var.f55338t = i10;
-            ((q4.l) m0Var.f55332n.f55826b).f55808a.setFlags(i10 | 3);
+        if (n0Var.f55388t != i10) {
+            n0Var.f55388t = i10;
+            ((q4.l) n0Var.f55382n.f55867b).f55849a.setFlags(i10 | 3);
         }
-        m0Var.p0(i1Var);
+        n0Var.p0(i1Var);
     }
 
     @Override
     public void h(Throwable th2) {
-        if (this != ((p4.m0) ((pe) this.f26234e).f26234e).f55337s) {
+        if (this != ((p4.n0) ((pe) this.f26262e).f26262e).f55387s) {
             return;
         }
         h2.a.l("MediaSessionLegacyStub", "Failed to load bitmap: " + th2.getMessage());
@@ -57,7 +57,7 @@ public final class pe implements kf, m9.t, p4.u {
 
     @Override
     public void j(int i7, p4.k1 k1Var) {
-        Bundle bundle = k1Var.f55322c;
+        Bundle bundle = k1Var.f55365c;
         Bundle bundle2 = Bundle.EMPTY;
         if (!bundle2.isEmpty()) {
             if (bundle.isEmpty()) {
@@ -68,36 +68,36 @@ public final class pe implements kf, m9.t, p4.u {
                 bundle = bundle3;
             }
         }
-        q4.q qVar = ((p4.m0) this.f26234e).f55332n;
-        String str = k1Var.f55321b;
+        q4.q qVar = ((p4.n0) this.f26262e).f55382n;
+        String str = k1Var.f55364b;
         qVar.getClass();
         if (!TextUtils.isEmpty(str)) {
-            ((q4.l) qVar.f55826b).f55808a.sendSessionEvent(str, bundle);
+            ((q4.l) qVar.f55867b).f55849a.sendSessionEvent(str, bundle);
             return;
         }
         throw new IllegalArgumentException("event cannot be null or empty");
     }
 
     public boolean k() {
-        return ((e20) this.f26232b).W;
+        return ((e20) this.f26260b).W;
     }
 
     public void l(long j3, float f10) {
-        File file = (File) this.f26233c;
-        e20 e20Var = (e20) this.f26232b;
+        File file = (File) this.f26261c;
+        e20 e20Var = (e20) this.f26260b;
         if (!e20Var.W) {
             if (j3 < 0) {
                 j3 = file.length();
             }
             long j10 = j3;
-            if (!e20Var.Y && this.f26231a == j10) {
+            if (!e20Var.Y && this.f26259a == j10) {
                 return;
             }
-            this.f26231a = j10;
-            MediaController mediaController = (MediaController) this.f26234e;
+            this.f26259a = j10;
+            MediaController mediaController = (MediaController) this.f26262e;
             jf jfVar = (jf) this.d;
             String[] strArr = MediaController.W1;
-            e20 e20Var2 = jfVar.f24848b;
+            e20 e20Var2 = jfVar.f24876b;
             boolean z10 = e20Var2.X;
             if (z10) {
                 e20Var2.X = false;
@@ -107,52 +107,52 @@ public final class pe implements kf, m9.t, p4.u {
     }
 
     public void m() {
-        ((org.telegram.ui.Components.k8) this.d).dismiss();
-        this.f26231a = System.currentTimeMillis();
+        ((org.telegram.ui.Components.j8) this.d).dismiss();
+        this.f26259a = System.currentTimeMillis();
     }
 
     public void n() {
         e2.e eVar;
-        p4.m0 m0Var = (p4.m0) this.f26234e;
-        p4.i1 i1Var = m0Var.h.f55195t;
+        p4.n0 n0Var = (p4.n0) this.f26262e;
+        p4.i1 i1Var = n0Var.h.f55245t;
         i1Var.K().getClass();
-        q4.q qVar = m0Var.f55332n;
+        q4.q qVar = n0Var.f55382n;
         if (i1Var.p0(21)) {
             eVar = i1Var.H();
         } else {
-            eVar = e2.e.f10366i;
+            eVar = e2.e.f10395i;
         }
-        ((q4.l) qVar.f55826b).f55808a.setPlaybackToLocal(eVar.b());
+        ((q4.l) qVar.f55867b).f55849a.setPlaybackToLocal(eVar.b());
     }
 
     public void o(e2.l0 l0Var) {
-        p4.m0 m0Var = (p4.m0) this.f26234e;
-        q4.q qVar = m0Var.f55332n;
+        p4.n0 n0Var = (p4.n0) this.f26262e;
+        q4.q qVar = n0Var.f55382n;
         v();
         if (l0Var == null) {
-            ((q4.l) qVar.f55826b).f55808a.setRatingType(0);
+            ((q4.l) qVar.f55867b).f55849a.setRatingType(0);
         } else {
-            ((q4.l) qVar.f55826b).f55808a.setRatingType(p4.n.e(l0Var.d.f10584i));
+            ((q4.l) qVar.f55867b).f55849a.setRatingType(p4.n.e(l0Var.d.f10613i));
         }
-        m0Var.p0(m0Var.h.f55195t);
+        n0Var.p0(n0Var.h.f55245t);
     }
 
     @Override
     public void onSuccess(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
-        p4.m0 m0Var = (p4.m0) ((pe) this.f26234e).f26234e;
-        if (this != m0Var.f55337s) {
+        p4.n0 n0Var = (p4.n0) ((pe) this.f26262e).f26262e;
+        if (this != n0Var.f55387s) {
             return;
         }
-        p4.m0.f0(m0Var.f55332n, p4.n.b((e2.o0) this.f26232b, (String) this.f26233c, (Uri) this.d, this.f26231a, bitmap));
-        p4.d0 d0Var = m0Var.h;
-        h2.l0.W(d0Var.f55190o, new p4.y(d0Var, 1));
+        p4.n0.f0(n0Var.f55382n, p4.n.b((e2.o0) this.f26260b, (String) this.f26261c, (Uri) this.d, this.f26259a, bitmap));
+        p4.e0 e0Var = n0Var.h;
+        h2.l0.W(e0Var.f55240o, new p4.y(e0Var, 1));
     }
 
     public void p(int i7, p4.i1 i1Var) {
         e2.o0 o0Var;
         int i10;
-        p4.m0 m0Var = (p4.m0) this.f26234e;
+        p4.n0 n0Var = (p4.n0) this.f26262e;
         t(i1Var.T0());
         if (i1Var.p0(18)) {
             o0Var = i1Var.k0();
@@ -171,24 +171,24 @@ public final class pe implements kf, m9.t, p4.u {
         } else {
             i10 = 0;
         }
-        if (m0Var.f55338t != i10) {
-            m0Var.f55338t = i10;
-            ((q4.l) m0Var.f55332n.f55826b).f55808a.setFlags(i10 | 3);
+        if (n0Var.f55388t != i10) {
+            n0Var.f55388t = i10;
+            ((q4.l) n0Var.f55382n.f55867b).f55849a.setFlags(i10 | 3);
         }
         o(i1Var.S0());
     }
 
     public void q(e2.o0 o0Var) {
-        p4.m0 m0Var = (p4.m0) this.f26234e;
-        q4.q qVar = m0Var.f55332n;
-        if (!TextUtils.equals(((q4.f) ((q4.u) qVar.f55827c).f55834a).f55791a.getQueueTitle(), o0Var.f10578a)) {
-            ((q4.l) qVar.f55826b).f55808a.setQueueTitle((m0Var.f55342y.a(17) && m0Var.h.f55195t.t().a(17)) ? null : null);
+        p4.n0 n0Var = (p4.n0) this.f26262e;
+        q4.q qVar = n0Var.f55382n;
+        if (!TextUtils.equals(((q4.f) ((q4.u) qVar.f55868c).f55875a).f55832a.getQueueTitle(), o0Var.f10607a)) {
+            ((q4.l) qVar.f55867b).f55849a.setQueueTitle((n0Var.f55392y.a(17) && n0Var.h.f55245t.t().a(17)) ? null : null);
         }
     }
 
     public void r(int i7) {
-        q4.q qVar = ((p4.m0) this.f26234e).f55332n;
-        int i10 = p4.n.f55348a;
+        q4.q qVar = ((p4.n0) this.f26262e).f55382n;
+        int i10 = p4.n.f55374a;
         int i11 = 0;
         if (i7 != 0) {
             if (i7 != 1) {
@@ -201,37 +201,37 @@ public final class pe implements kf, m9.t, p4.u {
                 i11 = 1;
             }
         }
-        q4.l lVar = (q4.l) qVar.f55826b;
-        if (lVar.f55815j != i11) {
-            lVar.f55815j = i11;
+        q4.l lVar = (q4.l) qVar.f55867b;
+        if (lVar.f55856j != i11) {
+            lVar.f55856j = i11;
             synchronized (lVar.d) {
-                for (int beginBroadcast = lVar.f55812f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                for (int beginBroadcast = lVar.f55853f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                     try {
-                        ((q4.b) lVar.f55812f.getBroadcastItem(beginBroadcast)).e(i11);
+                        ((q4.b) lVar.f55853f.getBroadcastItem(beginBroadcast)).e(i11);
                     } catch (RemoteException | SecurityException e10) {
                         h2.a.d("MediaSessionCompat", "Dead object in setRepeatMode.", e10);
                     }
                 }
-                lVar.f55812f.finishBroadcast();
+                lVar.f55853f.finishBroadcast();
             }
         }
     }
 
     public void s(boolean z10) {
-        q4.q qVar = ((p4.m0) this.f26234e).f55332n;
-        int i7 = p4.n.f55348a;
-        q4.l lVar = (q4.l) qVar.f55826b;
-        if (lVar.f55816k != z10) {
-            lVar.f55816k = z10 ? 1 : 0;
+        q4.q qVar = ((p4.n0) this.f26262e).f55382n;
+        int i7 = p4.n.f55374a;
+        q4.l lVar = (q4.l) qVar.f55867b;
+        if (lVar.f55857k != z10) {
+            lVar.f55857k = z10 ? 1 : 0;
             synchronized (lVar.d) {
-                for (int beginBroadcast = lVar.f55812f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                for (int beginBroadcast = lVar.f55853f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                     try {
-                        ((q4.b) lVar.f55812f.getBroadcastItem(beginBroadcast)).j(z10 ? 1 : 0);
+                        ((q4.b) lVar.f55853f.getBroadcastItem(beginBroadcast)).j(z10 ? 1 : 0);
                     } catch (RemoteException | SecurityException e10) {
                         h2.a.d("MediaSessionCompat", "Dead object in setShuffleMode.", e10);
                     }
                 }
-                lVar.f55812f.finishBroadcast();
+                lVar.f55853f.finishBroadcast();
             }
         }
     }
@@ -242,13 +242,13 @@ public final class pe implements kf, m9.t, p4.u {
     }
 
     public void u(int i7) {
-        org.telegram.ui.ActionBar.z0 z0Var = (org.telegram.ui.ActionBar.z0) this.f26233c;
-        if (System.currentTimeMillis() - this.f26231a < 200) {
+        org.telegram.ui.ActionBar.y0 y0Var = (org.telegram.ui.ActionBar.y0) this.f26261c;
+        if (System.currentTimeMillis() - this.f26259a < 200) {
             g0.g3(new org.telegram.ui.ii(this, i7, 5));
         } else if (i7 == 0) {
-            z0Var.setVisibility(8);
+            y0Var.setVisibility(8);
         } else {
-            z0Var.setVisibility(0);
+            y0Var.setVisibility(0);
         }
     }
 
@@ -259,9 +259,9 @@ public final class pe implements kf, m9.t, p4.u {
         Uri uri2;
         e2.o0 o0Var;
         Uri uri3;
-        p4.m0 m0Var = (p4.m0) this.f26234e;
-        p4.d0 d0Var = m0Var.h;
-        p4.i1 i1Var = d0Var.f55195t;
+        p4.n0 n0Var = (p4.n0) this.f26262e;
+        p4.e0 e0Var = n0Var.h;
+        p4.i1 i1Var = e0Var.f55245t;
         e2.l0 S0 = i1Var.S0();
         e2.o0 U0 = i1Var.U0();
         long j10 = -9223372036854775807L;
@@ -269,27 +269,27 @@ public final class pe implements kf, m9.t, p4.u {
             j10 = i1Var.getDuration();
         }
         if (S0 != null) {
-            str = S0.f10500a;
+            str = S0.f10529a;
         } else {
             str = "";
         }
         String str2 = str;
         Bitmap bitmap = null;
-        if (S0 != null && (uri3 = S0.f10504f.f10423a) != null) {
+        if (S0 != null && (uri3 = S0.f10533f.f10452a) != null) {
             uri = uri3;
         } else {
             uri = null;
         }
-        if (Objects.equals((e2.o0) this.f26232b, U0) && Objects.equals((String) this.f26233c, str2) && Objects.equals((Uri) this.d, uri) && this.f26231a == j10) {
+        if (Objects.equals((e2.o0) this.f26260b, U0) && Objects.equals((String) this.f26261c, str2) && Objects.equals((Uri) this.d, uri) && this.f26259a == j10) {
             return;
         }
-        this.f26233c = str2;
+        this.f26261c = str2;
         this.d = uri;
-        this.f26232b = U0;
-        this.f26231a = j10;
-        m9.y O = d0Var.f55188m.O(U0);
+        this.f26260b = U0;
+        this.f26259a = j10;
+        m9.y O = e0Var.f55238m.O(U0);
         if (O != null) {
-            m0Var.f55337s = null;
+            n0Var.f55387s = null;
             if (O.isDone()) {
                 try {
                     bitmap = (Bitmap) c8.t9.a(O);
@@ -302,48 +302,48 @@ public final class pe implements kf, m9.t, p4.u {
                 o0Var = U0;
                 pe peVar = new pe(this, o0Var, str2, uri2, j3);
                 str2 = str2;
-                m0Var.f55337s = peVar;
-                Handler handler = d0Var.f55187l;
+                n0Var.f55387s = peVar;
+                Handler handler = e0Var.f55237l;
                 Objects.requireNonNull(handler);
                 O.b(new m9.u(0, O, peVar), new l2.d0(handler, 1));
-                p4.m0.f0(m0Var.f55332n, p4.n.b(o0Var, str2, uri2, j3, bitmap));
+                p4.n0.f0(n0Var.f55382n, p4.n.b(o0Var, str2, uri2, j3, bitmap));
             }
         }
         j3 = j10;
         uri2 = uri;
         o0Var = U0;
-        p4.m0.f0(m0Var.f55332n, p4.n.b(o0Var, str2, uri2, j3, bitmap));
+        p4.n0.f0(n0Var.f55382n, p4.n.b(o0Var, str2, uri2, j3, bitmap));
     }
 
     public void w(e2.l1 l1Var) {
-        p4.m0 m0Var = (p4.m0) this.f26234e;
-        p4.d0 d0Var = m0Var.h;
-        p4.i1 i1Var = d0Var.f55195t;
-        if (m0Var.f55342y.a(17) && i1Var.t().a(17) && !l1Var.p()) {
-            int i7 = p4.n.f55348a;
+        p4.n0 n0Var = (p4.n0) this.f26262e;
+        p4.e0 e0Var = n0Var.h;
+        p4.i1 i1Var = e0Var.f55245t;
+        if (n0Var.f55392y.a(17) && i1Var.t().a(17) && !l1Var.p()) {
+            int i7 = p4.n.f55374a;
             ArrayList arrayList = new ArrayList();
             e2.k1 k1Var = new e2.k1();
             for (int i10 = 0; i10 < l1Var.o(); i10++) {
-                arrayList.add(l1Var.m(i10, k1Var, 0L).f10477c);
+                arrayList.add(l1Var.m(i10, k1Var, 0L).f10506c);
             }
             ArrayList arrayList2 = new ArrayList();
             kg0 kg0Var = new kg0(this, new AtomicInteger(0), arrayList, arrayList2, 29);
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                byte[] bArr = ((e2.l0) arrayList.get(i11)).d.f10586k;
+                byte[] bArr = ((e2.l0) arrayList.get(i11)).d.f10615k;
                 if (bArr == null) {
                     arrayList2.add(null);
                     kg0Var.run();
                 } else {
-                    m9.y t02 = d0Var.f55188m.t0(bArr);
+                    m9.y t02 = e0Var.f55238m.t0(bArr);
                     arrayList2.add(t02);
-                    Handler handler = d0Var.f55187l;
+                    Handler handler = e0Var.f55237l;
                     Objects.requireNonNull(handler);
                     t02.b(kg0Var, new l2.d0(handler, 1));
                 }
             }
             return;
         }
-        p4.m0.e0(m0Var.f55332n, null);
+        p4.n0.e0(n0Var.f55382n, null);
     }
 
     @Override
@@ -362,27 +362,27 @@ public final class pe implements kf, m9.t, p4.u {
     public void i(int i7, p4.o oVar) {
     }
 
-    public pe(p4.m0 m0Var) {
-        this.f26234e = m0Var;
-        this.f26232b = e2.o0.L;
-        this.f26233c = "";
-        this.f26231a = -9223372036854775807L;
+    public pe(p4.n0 n0Var) {
+        this.f26262e = n0Var;
+        this.f26260b = e2.o0.L;
+        this.f26261c = "";
+        this.f26259a = -9223372036854775807L;
     }
 
     public pe(pe peVar, e2.o0 o0Var, String str, Uri uri, long j3) {
-        this.f26234e = peVar;
-        this.f26232b = o0Var;
-        this.f26233c = str;
+        this.f26262e = peVar;
+        this.f26260b = o0Var;
+        this.f26261c = str;
         this.d = uri;
-        this.f26231a = j3;
+        this.f26259a = j3;
     }
 
     public pe(MediaController mediaController, e20 e20Var, File file, jf jfVar) {
-        this.f26234e = mediaController;
-        this.f26232b = e20Var;
-        this.f26233c = file;
+        this.f26262e = mediaController;
+        this.f26260b = e20Var;
+        this.f26261c = file;
         this.d = jfVar;
-        this.f26231a = 0L;
+        this.f26259a = 0L;
     }
 
     @Override

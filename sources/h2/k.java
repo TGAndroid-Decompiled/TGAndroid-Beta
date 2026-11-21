@@ -9,17 +9,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 public final class k implements Iterable {
-    public final Object f13772a = new Object();
-    public final HashMap f13773b = new HashMap();
-    public Set f13774c = Collections.EMPTY_SET;
+    public final Object f13801a = new Object();
+    public final HashMap f13802b = new HashMap();
+    public Set f13803c = Collections.EMPTY_SET;
     public List d = Collections.EMPTY_LIST;
 
     public final int f(q2.j jVar) {
         int i7;
-        synchronized (this.f13772a) {
+        synchronized (this.f13801a) {
             try {
-                if (this.f13773b.containsKey(jVar)) {
-                    i7 = ((Integer) this.f13773b.get(jVar)).intValue();
+                if (this.f13802b.containsKey(jVar)) {
+                    i7 = ((Integer) this.f13802b.get(jVar)).intValue();
                 } else {
                     i7 = 0;
                 }
@@ -31,9 +31,9 @@ public final class k implements Iterable {
     }
 
     public final void i(q2.j jVar) {
-        synchronized (this.f13772a) {
+        synchronized (this.f13801a) {
             try {
-                Integer num = (Integer) this.f13773b.get(jVar);
+                Integer num = (Integer) this.f13802b.get(jVar);
                 if (num == null) {
                     return;
                 }
@@ -41,12 +41,12 @@ public final class k implements Iterable {
                 arrayList.remove(jVar);
                 this.d = DesugarCollections.unmodifiableList(arrayList);
                 if (num.intValue() == 1) {
-                    this.f13773b.remove(jVar);
-                    HashSet hashSet = new HashSet(this.f13774c);
+                    this.f13802b.remove(jVar);
+                    HashSet hashSet = new HashSet(this.f13803c);
                     hashSet.remove(jVar);
-                    this.f13774c = DesugarCollections.unmodifiableSet(hashSet);
+                    this.f13803c = DesugarCollections.unmodifiableSet(hashSet);
                 } else {
-                    this.f13773b.put(jVar, Integer.valueOf(num.intValue() - 1));
+                    this.f13802b.put(jVar, Integer.valueOf(num.intValue() - 1));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -57,7 +57,7 @@ public final class k implements Iterable {
     @Override
     public final Iterator iterator() {
         Iterator it;
-        synchronized (this.f13772a) {
+        synchronized (this.f13801a) {
             it = this.d.iterator();
         }
         return it;

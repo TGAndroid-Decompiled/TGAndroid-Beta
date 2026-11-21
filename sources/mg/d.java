@@ -1,5 +1,5 @@
 package mg;
 public final class d extends b {
-    public long[] f20991l;
-    public k8.a f20992m;
+    public long[] f21019l;
+    public k8.a f21020m;
 }

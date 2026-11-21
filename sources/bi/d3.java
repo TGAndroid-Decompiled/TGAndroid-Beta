@@ -1,75 +1,38 @@
 package bi;
+public final class d3 implements Runnable {
+    public final int f3499a;
+    public final g3 f3500b;
+    public final boolean f3501c;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class d3 extends View {
-    public final f3 f3515a;
-    public CharSequence f3516b;
-
-    public d3(Context context) {
-        super(context);
-        f3 f3Var = new f3(this, 1.0f);
-        this.f3515a = f3Var;
-        f3Var.setCallback(this);
+    public d3(g3 g3Var, boolean z10, int i7) {
+        this.f3499a = i7;
+        this.f3500b = g3Var;
+        this.f3501c = z10;
     }
 
-    public final void a(int i7, int i10) {
-        ((Paint) this.f3515a.f220b).setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(48.0f), org.telegram.messenger.g0.L(48.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-    }
-
-    public final void b(String str, boolean z10) {
-        int i7;
-        this.f3516b = str;
-        if (z10) {
-            i7 = 10;
-        } else {
-            i7 = 11;
+    @Override
+    public final void run() {
+        switch (this.f3499a) {
+            case 0:
+                boolean z10 = this.f3501c;
+                g3 g3Var = this.f3500b;
+                if (!z10) {
+                    g3Var.H.setVisibility(8);
+                    return;
+                } else {
+                    g3Var.getClass();
+                    return;
+                }
+            default:
+                boolean z11 = this.f3501c;
+                g3 g3Var2 = this.f3500b;
+                if (!z11) {
+                    g3Var2.f3666w.setVisibility(8);
+                    return;
+                } else {
+                    g3Var2.getClass();
+                    return;
+                }
         }
-        this.f3515a.g(i7, str, z10);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int width = getWidth();
-        int height = getHeight();
-        f3 f3Var = this.f3515a;
-        f3Var.setBounds(0, 0, width, height);
-        f3Var.draw(canvas);
-    }
-
-    public CharSequence getText() {
-        return this.f3516b;
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f));
-    }
-
-    public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f3515a.e(stargiftattributebackdrop, false, false);
-        invalidate();
-    }
-
-    public void setColor(int i7) {
-        this.f3515a.f(i7);
-    }
-
-    public void setStrokeColor(int i7) {
-        this.f3515a.f3569r.setColor(i7);
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f3515a != drawable && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

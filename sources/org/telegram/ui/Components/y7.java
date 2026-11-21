@@ -1,19 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class y7 implements View.OnClickListener {
-    public final int f42384a;
-    public final Object f42385b;
-    public final Object f42386c;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class y7 extends bn0 {
+    public final f8 f42341n0;
 
-    public y7(int i7, Object obj, Object obj2) {
-        this.f42384a = i7;
-        this.f42385b = obj;
-        this.f42386c = obj2;
+    public y7(f8 f8Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var, false);
+        this.f42341n0 = f8Var;
     }
 
     @Override
-    public final void onClick(android.view.View r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y7.onClick(android.view.View):void");
+    public final boolean d(MotionEvent motionEvent) {
+        if (this.f42341n0.B2 != 0) {
+            return false;
+        }
+        return super.d(motionEvent);
     }
 }

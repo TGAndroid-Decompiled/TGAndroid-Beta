@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class o1 implements Runnable {
-    public final int f50377a;
-    public final Object f50378b;
-    public final Object f50379c;
+    public final int f50389a;
+    public final Object f50390b;
+    public final Object f50391c;
     public final Object d;
 
     public o1(Object obj, Object obj2, Object obj3, int i7) {
-        this.f50377a = i7;
+        this.f50389a = i7;
         this.d = obj;
-        this.f50378b = obj2;
-        this.f50379c = obj3;
+        this.f50390b = obj2;
+        this.f50391c = obj3;
     }
 
     @Override
@@ -17,10 +17,10 @@ public final class o1 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.o1.run():void");
     }
 
-    public o1(bn bnVar, org.telegram.ui.Components.y60 y60Var, String str) {
-        this.f50377a = 19;
+    public o1(bn bnVar, org.telegram.ui.Components.a70 a70Var, String str) {
+        this.f50389a = 19;
         this.d = bnVar;
-        this.f50379c = y60Var;
-        this.f50378b = str;
+        this.f50391c = a70Var;
+        this.f50390b = str;
     }
 }

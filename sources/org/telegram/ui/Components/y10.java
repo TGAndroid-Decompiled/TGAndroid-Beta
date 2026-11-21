@@ -1,29 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-public final class y10 extends AnimatorListenerAdapter {
-    public final View f42255a;
-    public final View f42256b;
-    public final WindowManager f42257c;
-    public final View d;
-    public final View f42258e;
-    public final z10 f42259f;
+import android.animation.ValueAnimator;
+public final class y10 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f42309a;
+    public final c20 f42310b;
 
-    public y10(z10 z10Var, x10 x10Var, bi.a3 a3Var, WindowManager windowManager, FrameLayout frameLayout, org.telegram.ui.w7 w7Var) {
-        this.f42259f = z10Var;
-        this.f42255a = x10Var;
-        this.f42256b = a3Var;
-        this.f42257c = windowManager;
-        this.d = frameLayout;
-        this.f42258e = w7Var;
+    public y10(c20 c20Var, int i7) {
+        this.f42309a = i7;
+        this.f42310b = c20Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        org.telegram.messenger.ks.f(this.f42259f.h).d(new org.telegram.ui.wn(this.f42255a, this.f42256b, this.f42257c, this.d, this.f42258e, 4));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f42309a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c20 c20Var = this.f42310b;
+                c20Var.f34001s.x = (int) floatValue;
+                c20Var.i();
+                a20 a20Var = c20Var.f33989a;
+                if (a20Var.getParent() != null) {
+                    c20Var.f33999n.updateViewLayout(a20Var, c20Var.f34001s);
+                    return;
+                }
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c20 c20Var2 = this.f42310b;
+                c20Var2.f34001s.y = (int) floatValue2;
+                a20 a20Var2 = c20Var2.f33989a;
+                if (a20Var2.getParent() != null) {
+                    c20Var2.f33999n.updateViewLayout(a20Var2, c20Var2.f34001s);
+                    return;
+                }
+                return;
+        }
     }
 }

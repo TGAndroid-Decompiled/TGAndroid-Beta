@@ -150,7 +150,7 @@ public abstract class v3 {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (chat.f28403id % 7);
+        return (int) (chat.f28431id % 7);
     }
 
     public static long G(TLRPC.Chat chat) {
@@ -228,83 +228,83 @@ public abstract class v3 {
         if (i7 == 23) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachGifRestrictedForever", null, 2131753967, new Object[0]);
+                    return gd.a0("AttachGifRestrictedForever", null, 2131753966, new Object[0]);
                 }
-                return gd.a0("AttachGifRestricted", null, 2131753968, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachGifRestricted", null, 2131753967, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749370, null);
+            return gd.N0(2131749369, null);
         } else if (i7 == 8) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachStickersRestrictedForever", null, 2131753932, new Object[0]);
+                    return gd.a0("AttachStickersRestrictedForever", null, 2131753931, new Object[0]);
                 }
-                return gd.a0("AttachStickersRestricted", null, 2131753933, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachStickersRestricted", null, 2131753932, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749364, null);
+            return gd.N0(2131749363, null);
         } else if (i7 == 16) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachPhotoRestrictedForever", null, 2131753943, new Object[0]);
+                    return gd.a0("AttachPhotoRestrictedForever", null, 2131753942, new Object[0]);
                 }
-                return gd.a0("AttachPhotoRestricted", null, 2131753944, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachPhotoRestricted", null, 2131753943, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749367, null);
+            return gd.N0(2131749366, null);
         } else if (i7 == 17) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachVideoRestrictedForever", null, 2131753928, new Object[0]);
+                    return gd.a0("AttachVideoRestrictedForever", null, 2131753927, new Object[0]);
                 }
-                return gd.a0("AttachVideoRestricted", null, 2131753929, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachVideoRestricted", null, 2131753928, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749363, null);
+            return gd.N0(2131749362, null);
         } else if (i7 == 19) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachDocumentsRestrictedForever", null, 2131753971, new Object[0]);
+                    return gd.a0("AttachDocumentsRestrictedForever", null, 2131753970, new Object[0]);
                 }
-                return gd.a0("AttachDocumentsRestricted", null, 2131753972, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachDocumentsRestricted", null, 2131753971, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749372, null);
+            return gd.N0(2131749371, null);
         } else if (i7 == 7) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachMediaRestrictedForever", null, 2131753953, new Object[0]);
+                    return gd.a0("AttachMediaRestrictedForever", null, 2131753952, new Object[0]);
                 }
-                return gd.a0("AttachMediaRestricted", null, 2131753954, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachMediaRestricted", null, 2131753953, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749368, null);
+            return gd.N0(2131749367, null);
         } else if (i7 == 18) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachAudioRestrictedForever", null, 2131753978, new Object[0]);
+                    return gd.a0("AttachAudioRestrictedForever", null, 2131753977, new Object[0]);
                 }
-                return gd.a0("AttachAudioRestricted", null, 2131753979, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachAudioRestricted", null, 2131753978, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749373, null);
+            return gd.N0(2131749372, null);
         } else if (i7 == 22) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachPlainRestrictedForever", null, 2131753941, new Object[0]);
+                    return gd.a0("AttachPlainRestrictedForever", null, 2131753940, new Object[0]);
                 }
-                return gd.a0("AttachPlainRestricted", null, 2131753942, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachPlainRestricted", null, 2131753941, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749366, null);
+            return gd.N0(2131749365, null);
         } else if (i7 == 21) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachRoundRestrictedForever", null, 2131753936, new Object[0]);
+                    return gd.a0("AttachRoundRestrictedForever", null, 2131753935, new Object[0]);
                 }
-                return gd.a0("AttachRoundRestricted", null, 2131753937, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachRoundRestricted", null, 2131753936, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749365, null);
+            return gd.N0(2131749364, null);
         } else if (i7 == 20) {
             if (chat != null && !P(i7, chat)) {
                 if (g0.D1(chat.banned_rights)) {
-                    return gd.a0("AttachVoiceRestrictedForever", null, 2131753925, new Object[0]);
+                    return gd.a0("AttachVoiceRestrictedForever", null, 2131753924, new Object[0]);
                 }
-                return gd.a0("AttachVoiceRestricted", null, 2131753926, gd.v(chat.banned_rights.until_date));
+                return gd.a0("AttachVoiceRestricted", null, 2131753925, gd.v(chat.banned_rights.until_date));
             }
-            return gd.M0(2131749362, null);
+            return gd.N0(2131749361, null);
         } else {
             return "";
         }
@@ -324,19 +324,19 @@ public abstract class v3 {
             }
             return j10;
         } else if (chat != null && (tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.anonymous) {
-            long j11 = chat.f28403id;
+            long j11 = chat.f28431id;
             if (z10) {
                 return -j11;
             }
             return j11;
         } else if (chat != null && V(chat) && !chat.signatures) {
-            long j12 = chat.f28403id;
+            long j12 = chat.f28431id;
             if (z10) {
                 return -j12;
             }
             return j12;
         } else {
-            return j10.i(j10.f24770t0).e();
+            return j10.i(j10.f24798t0).e();
         }
     }
 
@@ -454,7 +454,7 @@ public abstract class v3 {
     }
 
     public static boolean a(TLRPC.Chat chat) {
-        if (!bz.f23180n) {
+        if (!bz.f23208n) {
             if (chat == null || !chat.forum_tabs) {
                 return false;
             }
@@ -521,10 +521,10 @@ public abstract class v3 {
         TLRPC.Message message;
         TLRPC.Message message2;
         int size;
-        if (tL_forumTopic == null || tL_forumTopic.f28455id != 1) {
+        if (tL_forumTopic == null || tL_forumTopic.f28483id != 1) {
             if (!w(13, chat)) {
                 if (q0(i7, tL_forumTopic) && (message = tL_forumTopic.topMessage) != null && (message2 = tL_forumTopic.topicStartMessage) != null) {
-                    int i10 = message.f28424id - message2.f28424id;
+                    int i10 = message.f28452id - message2.f28452id;
                     ArrayList<fj> arrayList = tL_forumTopic.groupedMessages;
                     if (arrayList == null) {
                         size = 0;
@@ -541,7 +541,7 @@ public abstract class v3 {
     }
 
     public static boolean e0(int i7, TLRPC.Chat chat) {
-        if (chat != null && g0(chat.linked_community_id, i7, -chat.f28403id)) {
+        if (chat != null && g0(chat.linked_community_id, i7, -chat.f28431id)) {
             return true;
         }
         return false;
@@ -552,7 +552,7 @@ public abstract class v3 {
     }
 
     public static boolean f0(int i7, TLRPC.User user) {
-        if (user != null && g0(user.linked_community_id, i7, user.f28552id)) {
+        if (user != null && g0(user.linked_community_id, i7, user.f28580id)) {
             return true;
         }
         return false;
@@ -603,7 +603,7 @@ public abstract class v3 {
 
     public static boolean h0(TLRPC.Chat chat) {
         if (chat != null) {
-            return i0(mp.u1(j10.f24770t0).P0(chat.f28403id));
+            return i0(mp.u1(j10.f24798t0).P0(chat.f28431id));
         }
         return false;
     }
@@ -754,7 +754,7 @@ public abstract class v3 {
         if (tL_forumTopic != null) {
             if (!tL_forumTopic.my) {
                 TLRPC.Peer peer = tL_forumTopic.from_id;
-                if ((peer instanceof TLRPC.TL_peerUser) && peer.user_id == j10.i(i7).f24789n) {
+                if ((peer instanceof TLRPC.TL_peerUser) && peer.user_id == j10.i(i7).f24817n) {
                     return true;
                 }
                 return false;
@@ -790,7 +790,7 @@ public abstract class v3 {
 
     public static boolean s0(TLRPC.Chat chat) {
         TLRPC.ChatFull P0;
-        if (chat == null || (P0 = mp.u1(j10.f24770t0).P0(chat.f28403id)) == null || P0.boosts_unrestrict <= 0) {
+        if (chat == null || (P0 = mp.u1(j10.f24798t0).P0(chat.f28431id)) == null || P0.boosts_unrestrict <= 0) {
             return false;
         }
         return true;

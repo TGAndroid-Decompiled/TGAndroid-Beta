@@ -4,7 +4,7 @@ import org.telegram.tgnet.TLRPC;
 public interface s0 {
     void D(v0 v0Var);
 
-    org.telegram.ui.ActionBar.h2 G();
+    org.telegram.ui.ActionBar.g2 G();
 
     void M(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 

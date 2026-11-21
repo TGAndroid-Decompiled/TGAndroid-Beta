@@ -1,38 +1,51 @@
 package org.telegram.ui.Components;
+public final class wo implements Runnable {
+    public final int f41868a;
+    public final np f41869b;
 
-import org.telegram.tgnet.tl.TL_stories;
-public final class wo implements org.telegram.messenger.x10 {
-    public final int f41743a;
-    public final lp f41744b;
-
-    public wo(lp lpVar, int i7) {
-        this.f41743a = i7;
-        this.f41744b = lpVar;
+    public wo(np npVar, int i7) {
+        this.f41868a = i7;
+        this.f41869b = npVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f41743a) {
+    public final void run() {
+        switch (this.f41868a) {
             case 0:
-                lp lpVar = this.f41744b;
-                lpVar.Z1 = (TL_stories.TL_premium_boostsStatus) obj;
-                lpVar.Y1 = true;
-                lpVar.a1(true);
-                lpVar.X1 = false;
+                this.f41869b.f37926r1.f();
+                return;
+            case 1:
+                this.f41869b.L0(true);
+                return;
+            case 2:
+                np npVar = this.f41869b;
+                org.telegram.ui.bn bnVar = npVar.f37930v1;
+                org.telegram.ui.ActionBar.g2 g02 = org.telegram.ui.c51.g0(bnVar.getMessagesController().O0(Long.valueOf(-bnVar.a())), true);
+                ?? obj = new Object();
+                obj.f28902a = true;
+                g02.setResourceProvider(bnVar.getResourceProvider());
+                obj.f28904c = new me(4);
+                obj.d = new wo(npVar, 3);
+                obj.f28903b = new wo(npVar, 4);
+                obj.f28905e = true;
+                npVar.R1 = g02;
+                bnVar.showAsSheet(g02, obj);
+                return;
+            case 3:
+                this.f41869b.P0();
+                return;
+            case 4:
+                this.f41869b.R1 = null;
+                return;
+            case 5:
+                this.f41869b.P0();
+                return;
+            case 6:
+                this.f41869b.R1 = null;
                 return;
             default:
-                org.telegram.messenger.g3 g3Var = (org.telegram.messenger.g3) obj;
-                lp lpVar2 = this.f41744b;
-                if (lpVar2.getContext() != null) {
-                    org.telegram.ui.bn bnVar = lpVar2.f37182v1;
-                    ug.l0 l0Var = new ug.l0(22, lpVar2.f30187a, lpVar2.getContext(), bnVar, lpVar2.J0);
-                    l0Var.B1(g3Var);
-                    l0Var.A1(lpVar2.Z1, true);
-                    l0Var.C1(lpVar2.f37182v1.a());
-                    l0Var.M2 = new uo(lpVar2, 2);
-                    l0Var.show();
-                    return;
-                }
+                np npVar2 = this.f41869b;
+                npVar2.O1.c(npVar2.A1);
                 return;
         }
     }

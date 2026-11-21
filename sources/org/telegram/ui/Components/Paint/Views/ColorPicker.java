@@ -12,10 +12,10 @@ import sg.h1;
 import tg.a;
 public class ColorPicker extends FrameLayout {
     public static final int[] d = {-1431751, -2409774, -13610525, -11942419, -8337308, -205211, -223667, -16777216, -1};
-    public static final float[] f32997e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
-    public float f32998a;
-    public float f32999b;
-    public float f33000c;
+    public static final float[] f33030e = {0.0f, 0.14f, 0.24f, 0.39f, 0.49f, 0.62f, 0.73f, 0.85f, 1.0f};
+    public float f33031a;
+    public float f33032b;
+    public float f33033c;
 
     public static int a(float f10) {
         float[] fArr;
@@ -31,7 +31,7 @@ public class ColorPicker extends FrameLayout {
         }
         int i11 = 1;
         while (true) {
-            fArr = f32997e;
+            fArr = f33030e;
             if (i11 < 9) {
                 if (fArr[i11] >= f10) {
                     i7 = i11 - 1;
@@ -57,12 +57,12 @@ public class ColorPicker extends FrameLayout {
     }
 
     private void setDraggingFactor(float f10) {
-        this.f33000c = f10;
+        this.f33033c = f10;
         invalidate();
     }
 
     public float getDraggingFactor() {
-        return this.f33000c;
+        return this.f33033c;
     }
 
     public View getSettingsButton() {
@@ -70,7 +70,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public h1 getSwatch() {
-        return new h1(this.f32998a, this.f32999b, a(this.f32998a));
+        return new h1(this.f33031a, this.f33032b, a(this.f33031a));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class ColorPicker extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        new LinearGradient(g0.L(56.0f), 0.0f, (i11 - i7) - g0.L(56.0f), 0.0f, d, f32997e, tileMode);
+        new LinearGradient(g0.L(56.0f), 0.0f, (i11 - i7) - g0.L(56.0f), 0.0f, d, f33030e, tileMode);
         throw null;
     }
 
@@ -96,7 +96,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setLocation(float f10) {
-        this.f32998a = f10;
+        this.f33031a = f10;
         a(f10);
         throw null;
     }
@@ -106,8 +106,8 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setSwatch(h1 h1Var) {
-        setLocation(h1Var.f57219b);
-        setWeight(h1Var.f57220c);
+        setLocation(h1Var.f57260b);
+        setWeight(h1Var.f57261c);
     }
 
     public void setUndoEnabled(boolean z10) {
@@ -115,7 +115,7 @@ public class ColorPicker extends FrameLayout {
     }
 
     public void setWeight(float f10) {
-        this.f32999b = f10;
+        this.f33032b = f10;
         invalidate();
     }
 

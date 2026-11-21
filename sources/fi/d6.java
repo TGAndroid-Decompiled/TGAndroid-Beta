@@ -8,33 +8,33 @@ import org.telegram.messenger.tr;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stories;
 public final class d6 {
-    public final int f11850a;
-    public final long f11851b;
-    public final boolean f11852c;
+    public final int f11891a;
+    public final long f11892b;
+    public final boolean f11893c;
     public boolean d;
-    public boolean f11853e;
-    public boolean f11854f;
-    public final ArrayList f11855g = new ArrayList();
+    public boolean f11894e;
+    public boolean f11895f;
+    public final ArrayList f11896g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public boolean f11856i;
-    public final p6 f11857j;
+    public boolean f11897i;
+    public final p6 f11898j;
 
     public d6(int i7, long j3, p6 p6Var) {
         boolean z10;
-        this.f11857j = p6Var;
-        this.f11850a = i7;
-        this.f11851b = j3;
+        this.f11898j = p6Var;
+        this.f11891a = i7;
+        this.f11892b = j3;
         if (j3 == j10.i(i7).e()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f11852c = z10;
+        this.f11893c = z10;
         d();
     }
 
     public final boolean a() {
-        if ((this.f11852c || this.f11857j.i(this.f11851b)) && this.f11854f && this.h.size() < ((org.telegram.messenger.j0) mp.u1(this.f11850a).A7.f26174z.f15536b).f24764c) {
+        if ((this.f11893c || this.f11898j.i(this.f11892b)) && this.f11895f && this.h.size() < ((org.telegram.messenger.j0) mp.u1(this.f11891a).A7.f26202z.f15505b).f24792c) {
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ public final class d6 {
             ArrayList arrayList = this.h;
             if (i10 < arrayList.size()) {
                 i6 i6Var = (i6) arrayList.get(i10);
-                if (i7 == i6Var.f12109a) {
+                if (i7 == i6Var.f12141a) {
                     return i6Var;
                 }
                 i10++;
@@ -61,7 +61,7 @@ public final class d6 {
         while (true) {
             ArrayList arrayList = this.h;
             if (i10 < arrayList.size()) {
-                if (i7 == ((i6) arrayList.get(i10)).f12109a) {
+                if (i7 == ((i6) arrayList.get(i10)).f12141a) {
                     return i10;
                 }
                 i10++;
@@ -72,26 +72,26 @@ public final class d6 {
     }
 
     public final void d() {
-        if (!this.f11853e && !this.f11854f) {
-            this.f11853e = true;
+        if (!this.f11894e && !this.f11895f) {
+            this.f11894e = true;
             boolean z10 = this.d;
-            long j3 = this.f11851b;
-            int i7 = this.f11850a;
+            long j3 = this.f11892b;
+            int i7 = this.f11891a;
             if (!z10) {
                 tr a02 = tr.a0(i7);
-                a02.f27052a.c(new org.telegram.messenger.d4(a02, j3, new c6(this), 23));
+                a02.f27080a.c(new org.telegram.messenger.d4(a02, j3, new c6(this), 23));
                 return;
             }
             TL_stories.TL_getAlbums tL_getAlbums = new TL_stories.TL_getAlbums();
             tL_getAlbums.peer = mp.u1(i7).l1(j3);
-            ConnectionsManager.getInstance(i7).sendRequest(tL_getAlbums, new ai.e1(this, 8));
+            ConnectionsManager.getInstance(i7).sendRequest(tL_getAlbums, new ai.g1(this, 8));
         }
     }
 
     public final void e() {
         TL_stories.TL_reorderAlbums tL_reorderAlbums = new TL_stories.TL_reorderAlbums();
-        int i7 = this.f11850a;
-        tL_reorderAlbums.peer = mp.u1(i7).l1(this.f11851b);
+        int i7 = this.f11891a;
+        tL_reorderAlbums.peer = mp.u1(i7).l1(this.f11892b);
         tL_reorderAlbums.order = new ArrayList<>();
         ArrayList arrayList = this.h;
         int size = arrayList.size();
@@ -99,19 +99,19 @@ public final class d6 {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            tL_reorderAlbums.order.add(Integer.valueOf(((i6) obj).f12109a));
+            tL_reorderAlbums.order.add(Integer.valueOf(((i6) obj).f12141a));
         }
         ConnectionsManager.getInstance(i7).sendRequest(tL_reorderAlbums, null);
     }
 
     public final void f(boolean z10) {
-        int i7 = this.f11850a;
+        int i7 = this.f11891a;
         tr a02 = tr.a0(i7);
-        org.telegram.messenger.q5 q5Var = a02.f27052a;
-        long j3 = this.f11851b;
+        org.telegram.messenger.q5 q5Var = a02.f27080a;
+        long j3 = this.f11892b;
         q5Var.c(new org.telegram.messenger.d4(a02, j3, this.h, 26));
         if (z10) {
-            ks.f(i7).k(ks.f25147l3, Long.valueOf(j3), this);
+            ks.f(i7).k(ks.f25175l3, Long.valueOf(j3), this);
         }
     }
 }

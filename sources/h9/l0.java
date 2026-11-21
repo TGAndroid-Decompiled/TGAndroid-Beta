@@ -10,9 +10,9 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class l0 implements Map, Serializable, j$.util.Map {
-    public transient t0 f14016a;
-    public transient t0 f14017b;
-    public transient d0 f14018c;
+    public transient t0 f14045a;
+    public transient t0 f14046b;
+    public transient d0 f14047c;
 
     public static l0 b(Map map) {
         int i7;
@@ -71,10 +71,10 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Set entrySet() {
-        t0 t0Var = this.f14016a;
+        t0 t0Var = this.f14045a;
         if (t0Var == null) {
             v1 c10 = c();
-            this.f14016a = c10;
+            this.f14045a = c10;
             return c10;
         }
         return t0Var;
@@ -87,10 +87,10 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public d0 values() {
-        d0 d0Var = this.f14018c;
+        d0 d0Var = this.f14047c;
         if (d0Var == null) {
             d0 e10 = e();
-            this.f14018c = e10;
+            this.f14047c = e10;
             return e10;
         }
         return d0Var;
@@ -115,10 +115,10 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public final int hashCode() {
-        t0 t0Var = this.f14016a;
+        t0 t0Var = this.f14045a;
         if (t0Var == null) {
             t0Var = c();
-            this.f14016a = t0Var;
+            this.f14045a = t0Var;
         }
         return o.o(t0Var);
     }
@@ -133,10 +133,10 @@ public abstract class l0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Set keySet() {
-        t0 t0Var = this.f14017b;
+        t0 t0Var = this.f14046b;
         if (t0Var == null) {
             w1 d = d();
-            this.f14017b = d;
+            this.f14046b = d;
             return d;
         }
         return t0Var;

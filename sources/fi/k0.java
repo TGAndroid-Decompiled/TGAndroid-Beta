@@ -3,10 +3,10 @@ package fi;
 import android.text.TextPaint;
 import android.text.style.CharacterStyle;
 public final class k0 extends CharacterStyle {
-    public final float f12174a = 0.75f;
+    public final float f12213a = 0.75f;
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setAlpha((int) (this.f12174a * textPaint.getAlpha()));
+        textPaint.setAlpha((int) (this.f12213a * textPaint.getAlpha()));
     }
 }

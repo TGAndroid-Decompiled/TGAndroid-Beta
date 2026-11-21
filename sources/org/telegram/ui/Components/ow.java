@@ -1,33 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ow extends AnimatorListenerAdapter {
-    public final int f38179a;
-    public final boolean f38180b;
-    public final ry f38181c;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public final class ow extends h41 {
+    public final ty f38386b;
 
-    public ow(ry ryVar, boolean z10, int i7) {
-        this.f38179a = i7;
-        this.f38181c = ryVar;
-        this.f38180b = z10;
+    public ow(ty tyVar) {
+        this.f38386b = tyVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38179a) {
-            case 0:
-                if (!this.f38180b) {
-                    this.f38181c.f39410y.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!this.f38180b) {
-                    this.f38181c.E.setVisibility(4);
-                    return;
-                }
-                return;
+    public final boolean a() {
+        return this.f38386b.f40151u1.b();
+    }
+
+    @Override
+    public final String[] b() {
+        return this.f38386b.X0;
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f38386b.f40151u1.c();
+    }
+
+    @Override
+    public final boolean d(a41 a41Var, MotionEvent motionEvent) {
+        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
+        ty tyVar = this.f38386b;
+        tyVar.getMeasuredHeight();
+        return p10.q(motionEvent, a41Var, tyVar.f40113h2, tyVar.f40089a2);
+    }
+
+    @Override
+    public final boolean e(a41 a41Var, o oVar, MotionEvent motionEvent) {
+        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
+        ty tyVar = this.f38386b;
+        tyVar.getMeasuredHeight();
+        return p10.r(motionEvent, a41Var, oVar, tyVar.f40113h2, tyVar.f40089a2);
+    }
+
+    @Override
+    public final void f(TLRPC.Document document, Object obj, boolean z10, int i7) {
+        this.f38386b.f40151u1.m(null, document, null, obj, null, z10, i7);
+    }
+
+    @Override
+    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
+        ty tyVar = this.f38386b;
+        tyVar.f40151u1.r(stickerSetCovered);
+        if (z10) {
+            tyVar.Y(true);
         }
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+        this.f38386b.f40151u1.h(stickerSetCovered);
+    }
+
+    @Override
+    public final void i(String[] strArr) {
+        this.f38386b.X0 = strArr;
     }
 }

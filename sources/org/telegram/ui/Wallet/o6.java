@@ -10,48 +10,48 @@ import android.os.Build;
 import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 public final class o6 extends ReplacementSpan {
-    public static Typeface f44707x;
-    public final String f44708a;
-    public final String f44709b;
-    public final String f44710c;
+    public static Typeface f44747x;
+    public final String f44748a;
+    public final String f44749b;
+    public final String f44750c;
     public final String d;
-    public final org.telegram.ui.ActionBar.i6 f44711e;
-    public final TextPaint f44712f;
+    public final org.telegram.ui.ActionBar.h6 f44751e;
+    public final TextPaint f44752f;
     public final Paint h;
-    public final RectF f44713n;
-    public LinearGradient f44714r;
-    public float f44715s;
-    public int f44716w;
+    public final RectF f44753n;
+    public LinearGradient f44754r;
+    public float f44755s;
+    public int f44756w;
 
-    public o6(String str, String str2, String str3, String str4, org.telegram.ui.ActionBar.i6 i6Var) {
+    public o6(String str, String str2, String str3, String str4, org.telegram.ui.ActionBar.h6 h6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f44712f = textPaint;
+        this.f44752f = textPaint;
         this.h = new Paint(1);
-        this.f44713n = new RectF();
-        this.f44708a = str;
-        this.f44709b = str2;
-        this.f44710c = str3;
+        this.f44753n = new RectF();
+        this.f44748a = str;
+        this.f44749b = str2;
+        this.f44750c = str3;
         this.d = str4;
-        this.f44711e = i6Var;
-        if (f44707x == null) {
+        this.f44751e = h6Var;
+        if (f44747x == null) {
             if (Build.VERSION.SDK_INT >= 26) {
-                f44707x = new Typeface.Builder(org.telegram.messenger.t0.f26913b.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
+                f44747x = new Typeface.Builder(org.telegram.messenger.t0.f26941b.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
             } else {
-                f44707x = org.telegram.messenger.g0.o1("fonts/rmono.ttf");
+                f44747x = org.telegram.messenger.g0.o1("fonts/rmono.ttf");
             }
         }
-        textPaint.setTypeface(f44707x);
+        textPaint.setTypeface(f44747x);
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
         float f11;
         float f12;
-        TextPaint textPaint = this.f44712f;
+        TextPaint textPaint = this.f44752f;
         textPaint.setTextSize(paint.getTextSize() * 0.95f);
         int color = paint.getColor();
         textPaint.setColor(color);
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, this.f44711e);
+        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29321a7, this.f44751e);
         Paint paint2 = this.h;
         paint2.setColor(w02);
         Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();
@@ -59,37 +59,37 @@ public final class o6 extends ReplacementSpan {
         float f14 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2.0f) + f13;
         float L = org.telegram.messenger.g0.L(6.0f);
         float L2 = org.telegram.messenger.g0.L(5.0f);
-        String str = this.f44708a;
+        String str = this.f44748a;
         float L3 = org.telegram.messenger.g0.L(21.0f) / 2.0f;
         float f15 = f14 - L3;
         float f16 = 2.0f * L2;
         float f17 = f14 + L3;
-        RectF rectF = this.f44713n;
+        RectF rectF = this.f44753n;
         rectF.set(f10, f15, textPaint.measureText(str) + f10 + f16, f17);
         canvas.drawRoundRect(rectF, L, L, paint2);
         canvas.drawText(str, f10 + L2, f13, textPaint);
         float L4 = org.telegram.messenger.g0.L(3.0f) + rectF.right;
-        String str2 = this.f44709b;
+        String str2 = this.f44749b;
         float measureText = (textPaint.measureText(" ") * 0.3f) + textPaint.measureText(str2);
-        String str3 = this.f44710c;
+        String str3 = this.f44750c;
         float measureText2 = textPaint.measureText(str3) + measureText;
         rectF.set(L4, f15, L4 + measureText2 + f16, f17);
         canvas.drawRoundRect(rectF, L, L, paint2);
         float f18 = L4 + L2;
-        if (this.f44714r != null && this.f44715s == f18 && this.f44716w == color) {
+        if (this.f44754r != null && this.f44755s == f18 && this.f44756w == color) {
             f11 = f16;
             f12 = f18;
         } else {
             float max = Math.max(0.0f, Math.min(0.4f, textPaint.measureText("0") / measureText2));
             f11 = f16;
             float min = Math.min(0.49f, ((0.5f - max) * 0.75f) + max);
-            int r12 = org.telegram.ui.ActionBar.n6.r1(0.0f, color);
+            int r12 = org.telegram.ui.ActionBar.m6.r1(0.0f, color);
             f12 = f18;
-            this.f44714r = new LinearGradient(f18, 0.0f, f18 + measureText2, 0.0f, new int[]{color, color, r12, r12, color, color}, new float[]{0.0f, max, min, 1.0f - min, 1.0f - max, 1.0f}, Shader.TileMode.CLAMP);
-            this.f44715s = f12;
-            this.f44716w = color;
+            this.f44754r = new LinearGradient(f18, 0.0f, f18 + measureText2, 0.0f, new int[]{color, color, r12, r12, color, color}, new float[]{0.0f, max, min, 1.0f - min, 1.0f - max, 1.0f}, Shader.TileMode.CLAMP);
+            this.f44755s = f12;
+            this.f44756w = color;
         }
-        textPaint.setShader(this.f44714r);
+        textPaint.setShader(this.f44754r);
         canvas.drawText(str2, f12, f13, textPaint);
         canvas.drawText(str3, (f12 + measureText2) - textPaint.measureText(str3), f13, textPaint);
         textPaint.setShader(null);
@@ -102,7 +102,7 @@ public final class o6 extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        TextPaint textPaint = this.f44712f;
+        TextPaint textPaint = this.f44752f;
         textPaint.setTextSize(paint.getTextSize() * 0.95f);
         if (fontMetricsInt != null) {
             Paint.FontMetricsInt fontMetricsInt2 = textPaint.getFontMetricsInt();
@@ -116,7 +116,7 @@ public final class o6 extends ReplacementSpan {
             fontMetricsInt.leading = 0;
         }
         float L = org.telegram.messenger.g0.L(5.0f) * 2.0f;
-        float measureText = textPaint.measureText(this.f44710c) + (textPaint.measureText(" ") * 0.3f) + textPaint.measureText(this.f44709b);
-        return (int) Math.ceil((org.telegram.messenger.g0.L(3.0f) * 2.0f) + textPaint.measureText(this.d) + measureText + textPaint.measureText(this.f44708a) + L + L + L);
+        float measureText = textPaint.measureText(this.f44750c) + (textPaint.measureText(" ") * 0.3f) + textPaint.measureText(this.f44749b);
+        return (int) Math.ceil((org.telegram.messenger.g0.L(3.0f) * 2.0f) + textPaint.measureText(this.d) + measureText + textPaint.measureText(this.f44748a) + L + L + L);
     }
 }

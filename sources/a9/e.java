@@ -97,11 +97,11 @@ public final class e {
             case 4:
                 f6.e eVar = (f6.e) obj;
                 m.i(eVar, "Setting the API options is required.");
-                return new x(context, looper, commonSettings, eVar.f11378a, 0, eVar.f11380c, eVar.d, kVar, lVar);
+                return new x(context, looper, commonSettings, eVar.f11407a, 0, eVar.f11409c, eVar.d, kVar, lVar);
             case 5:
                 f6.e eVar2 = (f6.e) obj;
                 m.i(eVar2, "Setting the API options is required.");
-                return new w(context, looper, commonSettings, eVar2.f11378a, 0, eVar2.f11379b, eVar2.f11380c, kVar, lVar);
+                return new w(context, looper, commonSettings, eVar2.f11407a, 0, eVar2.f11408b, eVar2.f11409c, kVar, lVar);
             case 6:
                 com.google.android.gms.common.api.a aVar7 = (com.google.android.gms.common.api.a) obj;
                 return new q6.h(context, looper, 161, commonSettings, kVar, lVar, 0);
@@ -116,7 +116,7 @@ public final class e {
             case 13:
                 q8.a aVar10 = (q8.a) obj;
                 commonSettings.getClass();
-                Integer num = (Integer) commonSettings.f20163g;
+                Integer num = (Integer) commonSettings.f20191g;
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("com.google.android.gms.signin.internal.clientRequestedAccount", null);
                 if (num != null) {
@@ -139,7 +139,7 @@ public final class e {
                 if (oVar == null) {
                     oVar = new o(new b7.l());
                 }
-                return new h8.b(context, looper, commonSettings, kVar, lVar, oVar.f61095a);
+                return new h8.b(context, looper, commonSettings, kVar, lVar, oVar.f61136a);
             case 21:
                 return new l7.g(context, looper, commonSettings, (z5.b) obj, kVar, lVar);
             case 22:

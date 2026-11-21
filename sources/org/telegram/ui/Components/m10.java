@@ -1,6 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.view.GestureDetector;
-public abstract class m10 extends GestureDetector.SimpleOnGestureListener {
-    public abstract boolean a();
+import android.view.MotionEvent;
+public interface m10 {
+    void a1();
+
+    boolean onDown(MotionEvent motionEvent);
+
+    boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11);
+
+    void onLongPress(MotionEvent motionEvent);
+
+    boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11);
+
+    boolean onSingleTapUp(MotionEvent motionEvent);
 }

@@ -40,10 +40,10 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 import java.util.concurrent.atomic.AtomicReference;
 import m.o3;
 import org.telegram.messenger.hf;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.kp0;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.u30;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.mp0;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.x30;
 import org.telegram.ui.Wallet.h1;
 import org.telegram.ui.Wallet.i1;
 import org.telegram.ui.b5;
@@ -70,8 +70,8 @@ public final class q implements f3.q, bn0 {
     }
 
     public static void a(ic.d[][][] dVarArr, int i7, ic.d dVar) {
-        ic.d[] dVarArr2 = dVarArr[i7 + dVar.d][dVar.f16215c];
-        gc.d dVar2 = dVar.f16213a;
+        ic.d[] dVarArr2 = dVarArr[i7 + dVar.d][dVar.f16240c];
+        gc.d dVar2 = dVar.f16238a;
         int ordinal = dVar2.ordinal();
         char c10 = 2;
         if (ordinal != 1) {
@@ -90,7 +90,7 @@ public final class q implements f3.q, bn0 {
             }
         }
         ic.d dVar3 = dVarArr2[c10];
-        if (dVar3 != null && dVar3.f16217f <= dVar.f16217f) {
+        if (dVar3 != null && dVar3.f16242f <= dVar.f16242f) {
             return;
         }
         dVarArr2[c10] = dVar;
@@ -108,7 +108,7 @@ public final class q implements f3.q, bn0 {
                     return false;
                 }
             } else {
-                int[] iArr = ic.b.f16208a;
+                int[] iArr = ic.b.f16233a;
                 if (c10 < '`') {
                     i7 = iArr[c10];
                 } else {
@@ -125,7 +125,7 @@ public final class q implements f3.q, bn0 {
     }
 
     public static boolean h(w4 w4Var) {
-        if (w4Var.f52914a == null && w4Var.f52915b == null) {
+        if (w4Var.f52960a == null && w4Var.f52961b == null) {
             return false;
         }
         return true;
@@ -164,7 +164,7 @@ public final class q implements f3.q, bn0 {
                         return true;
                     }
                 }
-                ((ba.e) ((o3) this.d).f20159b).f3089b.a(rVar);
+                ((ba.e) ((o3) this.d).f20187b).f3101b.a(rVar);
                 return true;
             } catch (Throwable th2) {
                 throw th2;
@@ -175,12 +175,12 @@ public final class q implements f3.q, bn0 {
     public void C(boolean z10) {
         if (!((boolean[]) this.f989c)[0]) {
             ji.e eVar = (ji.e) ((androidx.activity.n) this.d).d;
-            eVar.f17891n3 = z10;
+            eVar.f17922p3 = z10;
             eVar.invalidate();
         }
     }
 
-    public void D(ViewGroup viewGroup, i6 i6Var, w4 w4Var, u4 u4Var) {
+    public void D(ViewGroup viewGroup, h6 h6Var, w4 w4Var, u4 u4Var) {
         Objects.requireNonNull(viewGroup);
         Context context = viewGroup.getContext();
         if (((ViewGroup) this.f988b) != viewGroup) {
@@ -190,10 +190,10 @@ public final class q implements f3.q, bn0 {
             }
             this.f988b = viewGroup;
             this.f989c = (WindowManager) context.getSystemService(WindowManager.class);
-            r4 r4Var = new r4(this, context, i6Var, u4Var);
+            r4 r4Var = new r4(this, context, h6Var, u4Var);
             this.d = r4Var;
             w0 w0Var = new w0(this, 3);
-            WeakHashMap weakHashMap = r0.i0.f56244a;
+            WeakHashMap weakHashMap = r0.i0.f56285a;
             r0.a0.i(r4Var, w0Var);
         }
         ((r4) this.d).a(w4Var);
@@ -244,7 +244,7 @@ public final class q implements f3.q, bn0 {
                     return;
                 }
                 pb.t tVar = (pb.t) ((ArrayDeque) this.f989c).remove();
-                H(tVar.f55555b, tVar.f55554a);
+                H(tVar.f55596b, tVar.f55595a);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -284,9 +284,9 @@ public final class q implements f3.q, bn0 {
             try {
                 try {
                     rc.u uVar = (rc.u) this.f988b;
-                    i1 i1Var = h1Var.f44288c;
-                    int i10 = h1Var.f44286a;
-                    org.telegram.messenger.g0.g3(new kp0(i1Var, uVar, i10, "websocket error: " + i1.a(vVar), 19));
+                    i1 i1Var = h1Var.f44328c;
+                    int i10 = h1Var.f44326a;
+                    org.telegram.messenger.g0.g3(new mp0(i1Var, uVar, i10, "websocket error: " + i1.a(vVar), 19));
                 } catch (Throwable unused) {
                 }
             } catch (Throwable unused2) {
@@ -301,7 +301,7 @@ public final class q implements f3.q, bn0 {
         ((f3.q) this.f988b).d1();
         if (this.f987a) {
             for (int i7 = 0; i7 < sparseArray.size(); i7++) {
-                ((c4.o) sparseArray.valueAt(i7)).f4405i = true;
+                ((c4.o) sparseArray.valueAt(i7)).f4434i = true;
             }
         }
     }
@@ -327,7 +327,7 @@ public final class q implements f3.q, bn0 {
 
     @Override
     public boolean e() {
-        return ((u30) this.d).f40196b.e();
+        return ((x30) this.d).f41967b.e();
     }
 
     public void f() {
@@ -373,7 +373,7 @@ public final class q implements f3.q, bn0 {
         ofInt.addUpdateListener(new ch.w(15, this, tVar));
         ofInt.setDuration(i12);
         ofInt.setStartDelay(i11);
-        ofInt.setInterpolator(lr.f37208f);
+        ofInt.setInterpolator(nr.f37956f);
         return ofInt;
     }
 
@@ -382,8 +382,8 @@ public final class q implements f3.q, bn0 {
         String str = (String) this.f988b;
         int length = str.length();
         cc.f fVar = (cc.f) this.f989c;
-        CharsetEncoder[] charsetEncoderArr = fVar.f5172a;
-        CharsetEncoder[] charsetEncoderArr2 = fVar.f5172a;
+        CharsetEncoder[] charsetEncoderArr = fVar.f5201a;
+        CharsetEncoder[] charsetEncoderArr2 = fVar.f5201a;
         ic.d[][][] dVarArr = (ic.d[][][]) Array.newInstance(ic.d.class, length + 1, charsetEncoderArr.length, 4);
         b(eVar, dVarArr, 0, null);
         for (int i10 = 1; i10 <= length; i10++) {
@@ -402,7 +402,7 @@ public final class q implements f3.q, bn0 {
         for (int i16 = 0; i16 < charsetEncoderArr2.length; i16++) {
             for (int i17 = 0; i17 < 4; i17++) {
                 ic.d dVar2 = dVarArr[length][i16][i17];
-                if (dVar2 != null && (i7 = dVar2.f16217f) < i14) {
+                if (dVar2 != null && (i7 = dVar2.f16242f) < i14) {
                     i13 = i16;
                     i15 = i17;
                     i14 = i7;
@@ -417,13 +417,13 @@ public final class q implements f3.q, bn0 {
 
     public q2.v m(UUID uuid, q2.o oVar) {
         String str;
-        String str2 = oVar.f55765b;
+        String str2 = oVar.f55806b;
         if (this.f987a || TextUtils.isEmpty(str2)) {
             str2 = (String) this.f989c;
         }
         if (!TextUtils.isEmpty(str2)) {
             HashMap hashMap = new HashMap();
-            UUID uuid2 = e2.l.f10493f;
+            UUID uuid2 = e2.l.f10522f;
             if (uuid2.equals(uuid)) {
                 str = "text/xml";
             } else if (e2.l.d.equals(uuid)) {
@@ -438,7 +438,7 @@ public final class q implements f3.q, bn0 {
             synchronized (((HashMap) this.d)) {
                 hashMap.putAll((HashMap) this.d);
             }
-            return vb.a(((j2.o) this.f988b).createDataSource(), str2, oVar.f55764a, hashMap);
+            return vb.a(((j2.o) this.f988b).createDataSource(), str2, oVar.f55805a, hashMap);
         }
         Map map = Collections.EMPTY_MAP;
         Uri uri = Uri.EMPTY;
@@ -449,7 +449,7 @@ public final class q implements f3.q, bn0 {
     public q2.v n(q2.p pVar) {
         boolean z10;
         Charset charset = StandardCharsets.UTF_8;
-        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f55766a, "\"}".getBytes(charset)};
+        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f55807a, "\"}".getBytes(charset)};
         long j3 = 0;
         for (int i7 = 0; i7 < 3; i7++) {
             j3 += bArr[i7].length;
@@ -469,8 +469,8 @@ public final class q implements f3.q, bn0 {
             i11 += bArr3.length;
         }
         j2.h createDataSource = ((j2.o) this.f988b).createDataSource();
-        String str = pVar.f55767b;
-        String aVar = k9.a.f18188i.toString();
+        String str = pVar.f55808b;
+        String aVar = k9.a.f18219i.toString();
         String valueOf = String.valueOf(i10);
         h9.o.f("Content-Type", aVar);
         h9.o.f("Content-Length", valueOf);
@@ -525,7 +525,7 @@ public final class q implements f3.q, bn0 {
             if (bool != null) {
                 h = bool.booleanValue();
             } else {
-                h = ((FirebaseMessaging) this.d).f7559a.h();
+                h = ((FirebaseMessaging) this.d).f7588a.h();
             }
         } catch (Throwable th2) {
             throw th2;
@@ -536,9 +536,9 @@ public final class q implements f3.q, bn0 {
     public Boolean t() {
         ApplicationInfo applicationInfo;
         Bundle bundle;
-        o9.g gVar = ((FirebaseMessaging) this.d).f7559a;
+        o9.g gVar = ((FirebaseMessaging) this.d).f7588a;
         gVar.a();
-        Context context = gVar.f21760a;
+        Context context = gVar.f21785a;
         SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.firebase.messaging", 0);
         if (sharedPreferences.contains("auto_init")) {
             return Boolean.valueOf(sharedPreferences.getBoolean("auto_init", false));
@@ -568,7 +568,7 @@ public final class q implements f3.q, bn0 {
         for (int i13 = 5; i13 >= 0; i13--) {
             i12 = i(8, i13, i12);
         }
-        int i14 = ((cc.b) this.f988b).f5156b;
+        int i14 = ((cc.b) this.f988b).f5185b;
         int i15 = i14 - 7;
         for (int i16 = i14 - 1; i16 >= i15; i16--) {
             i7 = i(8, i16, i7);
@@ -591,9 +591,9 @@ public final class q implements f3.q, bn0 {
     public void v0(int i7, boolean z10, boolean z11) {
         String str;
         ArrayList arrayList = (ArrayList) this.f989c;
-        u30 u30Var = (u30) this.d;
+        x30 x30Var = (x30) this.d;
         HashMap hashMap = (HashMap) this.f988b;
-        if (!hashMap.isEmpty() && u30Var.f40196b != null && !this.f987a && !z10) {
+        if (!hashMap.isEmpty() && x30Var.f41967b != null && !this.f987a && !z10) {
             this.f987a = true;
             ArrayList arrayList2 = new ArrayList();
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -604,12 +604,12 @@ public final class q implements f3.q, bn0 {
                     hf hfVar = (hf) obj;
                     String str2 = hfVar.h;
                     if (str2 != null) {
-                        obj2.f28211c = str2;
+                        obj2.f28239c = str2;
                     } else {
-                        obj2.f28218l = hfVar;
+                        obj2.f28246l = hfVar;
                     }
-                    obj2.f28217k = hfVar.f27862s;
-                    obj2.f28212e = hfVar.f27848c;
+                    obj2.f28245k = hfVar.f27890s;
+                    obj2.f28240e = hfVar.f27876c;
                     CharSequence charSequence = hfVar.I;
                     if (charSequence != null) {
                         str = charSequence.toString();
@@ -617,12 +617,12 @@ public final class q implements f3.q, bn0 {
                         str = null;
                     }
                     obj2.d = str;
-                    obj2.f28215i = hfVar.f27857n;
-                    obj2.f28216j = hfVar.f27861r;
-                    obj2.h = hfVar.f27866x;
+                    obj2.f28243i = hfVar.f27885n;
+                    obj2.f28244j = hfVar.f27889r;
+                    obj2.h = hfVar.f27894x;
                 }
             }
-            u30.a(u30Var, false, arrayList2);
+            x30.a(x30Var, false, arrayList2);
         }
     }
 
@@ -631,7 +631,7 @@ public final class q implements f3.q, bn0 {
         if (eVar != null) {
             return eVar;
         }
-        int i7 = ((cc.b) this.f988b).f5156b;
+        int i7 = ((cc.b) this.f988b).f5185b;
         int i10 = (i7 - 17) / 4;
         if (i10 <= 6) {
             return gc.e.c(i10);
@@ -645,7 +645,7 @@ public final class q implements f3.q, bn0 {
             }
         }
         gc.e b10 = gc.e.b(i13);
-        if (b10 != null && (b10.f13468a * 4) + 17 == i7) {
+        if (b10 != null && (b10.f13497a * 4) + 17 == i7) {
             this.f989c = b10;
             return b10;
         }
@@ -655,7 +655,7 @@ public final class q implements f3.q, bn0 {
             }
         }
         gc.e b11 = gc.e.b(i12);
-        if (b11 != null && (b11.f13468a * 4) + 17 == i7) {
+        if (b11 != null && (b11.f13497a * 4) + 17 == i7) {
             this.f989c = b11;
             return b11;
         }
@@ -664,9 +664,9 @@ public final class q implements f3.q, bn0 {
 
     public void x() {
         if (((gc.c) this.d) != null) {
-            int i7 = p1.g.d(8)[((gc.c) this.d).f13454b];
+            int i7 = p1.g.d(8)[((gc.c) this.d).f13483b];
             cc.b bVar = (cc.b) this.f988b;
-            int i10 = bVar.f5156b;
+            int i10 = bVar.f5185b;
             for (int i11 = 0; i11 < i10; i11++) {
                 for (int i12 = 0; i12 < i10; i12++) {
                     if (e2.b(i7, i11, i12)) {

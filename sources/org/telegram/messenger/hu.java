@@ -14,7 +14,7 @@ public final class hu extends zt {
 
     @Override
     public final int I() {
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         return g0.L(12.0f) + rect.top + rect.bottom;
     }
 
@@ -26,22 +26,22 @@ public final class hu extends zt {
     @Override
     public final void W(Canvas canvas) {
         int i7;
-        ev evVar = this.f28349a;
+        ev evVar = this.f28377a;
         int i10 = evVar.C;
         int i11 = evVar.S;
         int i12 = i10 + i11 + evVar.T;
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         int i13 = rect.left;
         int i14 = (i12 - i13) - rect.right;
         int i15 = i14 / 2;
         float f10 = (((i14 - i15) / 2.0f) - i11) + i13;
         float L = (g0.L(12.0f) - g0.L(1.0f)) / 2.0f;
         if (evVar.E()) {
-            i7 = org.telegram.ui.ActionBar.n6.nl;
+            i7 = org.telegram.ui.ActionBar.m6.nl;
         } else {
-            i7 = org.telegram.ui.ActionBar.n6.ml;
+            i7 = org.telegram.ui.ActionBar.m6.ml;
         }
-        int w02 = org.telegram.ui.ActionBar.n6.w0(i7, evVar.D);
+        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, evVar.D);
         Paint paint = this.X;
         paint.setColor(w02);
         RectF rectF = g0.P;

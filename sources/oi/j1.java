@@ -1,69 +1,33 @@
 package oi;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_iv;
-public final class j1 implements Runnable {
-    public final int f22115a;
-    public final z1 f22116b;
-    public final a f22117c;
+import android.animation.ValueAnimator;
+public final class j1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f22192a;
+    public final b2 f22193b;
 
-    public j1(z1 z1Var, a aVar, int i7) {
-        this.f22115a = i7;
-        this.f22116b = z1Var;
-        this.f22117c = aVar;
+    public j1(b2 b2Var, int i7) {
+        this.f22192a = i7;
+        this.f22193b = b2Var;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f22115a;
-        a aVar = this.f22117c;
-        z1 z1Var = this.f22116b;
-        switch (i7) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f22192a) {
             case 0:
-                s3 s3Var = z1Var.Q;
-                ArrayList arrayList = s3.A4;
-                TL_iv.pageBlockPullquote pageblockpullquote = new TL_iv.pageBlockPullquote();
-                pageblockpullquote.caption = new TL_iv.textEmpty();
-                s3Var.X4(this.f22117c, pageblockpullquote, 0, 0, false, false);
-                return;
-            case 1:
-                z1Var.Q.Y4(aVar, new TL_iv.pageBlockPreformatted());
-                return;
-            case 2:
-                z1Var.Q.Y4(aVar, new TL_iv.pageBlockFooter());
-                return;
-            case 3:
-                z1Var.Q.Y4(aVar, new TL_iv.pageBlockParagraph());
-                return;
-            case 4:
-                s3 s3Var2 = z1Var.Q;
-                ArrayList arrayList2 = s3.A4;
-                TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
-                pageblockblockquote.caption = new TL_iv.textEmpty();
-                s3Var2.X4(this.f22117c, pageblockblockquote, 0, 0, false, false);
-                return;
-            case 5:
-                z1Var.Q.Z4(aVar, 0);
-                return;
-            case 6:
-                z1Var.Q.Z4(aVar, 1);
-                return;
-            case 7:
-                z1Var.Q.Z4(aVar, 2);
-                return;
-            case 8:
-                z1Var.Q.Z4(aVar, 3);
+                b2 b2Var = this.f22193b;
+                b2Var.getClass();
+                b2Var.R0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b2Var.k0();
                 return;
             default:
-                View C1 = z1Var.Q.C1(aVar);
-                if (C1 instanceof l4) {
-                    ((l4) C1).g(aVar, z1Var.Q.getMapDelegate());
-                    return;
-                } else {
-                    z1Var.Q.f34607g3.O(false);
-                    return;
-                }
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b2 b2Var2 = this.f22193b;
+                b2Var2.J = floatValue;
+                b2Var2.A0();
+                b2Var2.Q.setTranslationX(org.telegram.messenger.g0.W1(b2Var2.J, b2Var2.H[0] - b2Var2.I[0], 0));
+                b2Var2.Q.setTranslationY(org.telegram.messenger.g0.W1(b2Var2.J, b2Var2.H[1] - b2Var2.I[1], 0));
+                b2Var2.P.invalidate();
+                return;
         }
     }
 }

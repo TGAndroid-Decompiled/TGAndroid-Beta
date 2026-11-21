@@ -4,23 +4,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class d3 implements RequestDelegate {
-    public final int f23481a;
-    public final x10 f23482b;
+    public final int f23509a;
+    public final x10 f23510b;
 
     public d3(x10 x10Var, int i7) {
-        this.f23481a = i7;
-        this.f23482b = x10Var;
+        this.f23509a = i7;
+        this.f23510b = x10Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.ChannelParticipant channelParticipant;
-        switch (this.f23481a) {
+        switch (this.f23509a) {
             case 0:
-                g0.g3(new yf(tLObject, this.f23482b, tL_error));
+                g0.g3(new yf(tLObject, this.f23510b, tL_error));
                 return;
             default:
-                x10 x10Var = this.f23482b;
+                x10 x10Var = this.f23510b;
                 if (x10Var != null) {
                     if (tLObject instanceof TLRPC.TL_channels_channelParticipant) {
                         channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;

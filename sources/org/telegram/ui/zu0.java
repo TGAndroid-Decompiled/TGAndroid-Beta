@@ -12,8 +12,8 @@ public final class zu0 extends wv0 {
     public final void dispatchDraw(Canvas canvas) {
         fi.s2 s2Var;
         super.dispatchDraw(canvas);
-        org.telegram.ui.Components.o5 o5Var = this.f38745e;
-        if (o5Var != null && (s2Var = o5Var.f37976k) != null) {
+        org.telegram.ui.Components.p5 p5Var = this.f38845e;
+        if (p5Var != null && (s2Var = p5Var.f38501k) != null) {
             s2Var.P0(false);
         }
     }
@@ -22,9 +22,9 @@ public final class zu0 extends wv0 {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (getImageReceiver().L()) {
-            accessibilityNodeInfo.setText(org.telegram.messenger.gd.M0(2131754798, null));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, org.telegram.messenger.gd.M0(2131747624, null)));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, org.telegram.messenger.gd.M0(2131754818, null)));
+            accessibilityNodeInfo.setText(org.telegram.messenger.gd.N0(2131754797, null));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, org.telegram.messenger.gd.N0(2131747623, null)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, org.telegram.messenger.gd.N0(2131754817, null)));
             return;
         }
         accessibilityNodeInfo.setVisibleToUser(false);

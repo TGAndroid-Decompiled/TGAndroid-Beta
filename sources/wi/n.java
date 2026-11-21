@@ -24,57 +24,56 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.t0;
 import org.telegram.messenger.x10;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.y;
-import org.telegram.ui.Components.cn0;
-import org.telegram.ui.Components.h60;
-import org.telegram.ui.Components.hn;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.of;
-import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.a61;
+import org.telegram.ui.Components.fn0;
+import org.telegram.ui.Components.h10;
+import org.telegram.ui.Components.jn;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.qf;
 import org.telegram.ui.LaunchActivity;
 import v4.f0;
-import wg.r;
 public final class n {
-    public final l f59987a;
-    public final l2.i f59988b;
-    public int f59989c = 0;
+    public final l f60028a;
+    public final l2.i f60029b;
+    public int f60030c = 0;
     public int d = 0;
-    public h f59990e;
-    public boolean f59991f;
-    public boolean f59992g;
+    public h f60031e;
+    public boolean f60032f;
+    public boolean f60033g;
 
     public n(l2.i iVar, l lVar) {
-        this.f59988b = iVar;
-        this.f59987a = lVar;
+        this.f60029b = iVar;
+        this.f60028a = lVar;
     }
 
     public final void a(x10 x10Var) {
         h hVar;
-        if (this.f59989c == 1 && (hVar = this.f59990e) != null) {
-            this.f59990e = null;
-            this.f59989c = 0;
+        if (this.f60030c == 1 && (hVar = this.f60031e) != null) {
+            this.f60031e = null;
+            this.f60030c = 0;
             hVar.K = true;
             hVar.d();
-            g0.h3(new r(6, hVar, x10Var), 100L);
-            this.f59988b.f();
+            g0.h3(new wg.q(8, hVar, x10Var), 100L);
+            this.f60029b.f();
         }
     }
 
     public final void b() {
         boolean z10;
-        int i7 = this.f59989c;
+        int i7 = this.f60030c;
         if (i7 == 3) {
             return;
         }
-        this.f59989c = 3;
-        h hVar = this.f59990e;
-        l2.i iVar = this.f59988b;
-        l lVar = this.f59987a;
+        this.f60030c = 3;
+        h hVar = this.f60031e;
+        l2.i iVar = this.f60029b;
+        l lVar = this.f60028a;
         if (hVar != null) {
-            this.f59990e = null;
+            this.f60031e = null;
             if (i7 == 1) {
                 z10 = true;
             } else {
@@ -90,12 +89,12 @@ public final class n {
                     gVar.d();
                     hVar.E.d();
                 }
-                if (z10 && hVar.f59951g) {
+                if (z10 && hVar.f59992g) {
                     AnimatorSet animatorSet = new AnimatorSet();
                     animatorSet.setDuration(250L);
-                    animatorSet.setInterpolator(lr.f37208f);
+                    animatorSet.setInterpolator(nr.f37956f);
                     animatorSet.playTogether(ObjectAnimator.ofFloat(hVar.h, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_Y, 0.1f));
-                    animatorSet.addListener(new h60(23, hVar, pVar));
+                    animatorSet.addListener(new h10(24, hVar, pVar));
                     animatorSet.start();
                 } else {
                     hVar.f(pVar);
@@ -109,23 +108,23 @@ public final class n {
     }
 
     public final void c() {
-        h hVar = this.f59990e;
+        h hVar = this.f60031e;
         if (hVar != null) {
             hVar.k();
         }
-        this.f59988b.f();
+        this.f60029b.f();
     }
 
     public final boolean d() {
-        if (this.f59989c != 3) {
+        if (this.f60030c != 3) {
             return true;
         }
         return false;
     }
 
     public final boolean e() {
-        if (this.f59990e != null) {
-            int i7 = this.f59989c;
+        if (this.f60031e != null) {
+            int i7 = this.f60030c;
             if (i7 == 1 || (i7 == 2 && this.d == 1)) {
                 return true;
             }
@@ -135,7 +134,7 @@ public final class n {
     }
 
     public final void f() {
-        int i7 = this.f59989c;
+        int i7 = this.f60030c;
         if (i7 == 3) {
             return;
         }
@@ -143,8 +142,8 @@ public final class n {
             b();
             return;
         }
-        this.f59989c = 3;
-        this.f59988b.i(this, 0);
+        this.f60030c = 3;
+        this.f60029b.i(this, 0);
     }
 
     public final o g(Activity activity, Bitmap bitmap, boolean z10) {
@@ -153,9 +152,9 @@ public final class n {
         int i7;
         int i10;
         int i11;
-        if (this.f59989c == 0) {
-            l2.i iVar = this.f59988b;
-            ArrayList arrayList = (ArrayList) iVar.f19406c;
+        if (this.f60030c == 0) {
+            l2.i iVar = this.f60029b;
+            ArrayList arrayList = (ArrayList) iVar.f19434c;
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 n nVar = (n) arrayList.get(size);
                 if (nVar != this && nVar.e()) {
@@ -163,17 +162,17 @@ public final class n {
                 }
             }
             final h hVar = new h(this, activity);
-            this.f59990e = hVar;
+            this.f60031e = hVar;
             RectF rectF = new RectF();
-            l lVar = hVar.f59947b;
+            l lVar = hVar.f59988b;
             h.j(rectF, lVar.J(), lVar.a0());
-            hVar.f59968z = ((SharedPreferences) hn.m().f35933b).getFloat("scale_factor", 1.0f);
-            Point point = g0.f24118q;
+            hVar.f60009z = ((SharedPreferences) jn.m().f36572b).getFloat("scale_factor", 1.0f);
+            Point point = g0.f24146q;
             hVar.A = (Math.min(point.x, point.y) - (h.m() * 2.0f)) / hVar.h();
-            hVar.f59966x = (int) rectF.width();
-            hVar.f59967y = (int) rectF.height();
+            hVar.f60007x = (int) rectF.width();
+            hVar.f60008y = (int) rectF.height();
             hVar.B = rectF.left;
-            hVar.C = rectF.top - g0.f24112m;
+            hVar.C = rectF.top - g0.f24140m;
             int J = lVar.J();
             int a02 = lVar.a0();
             if (J > 0 && a02 > 0) {
@@ -186,65 +185,65 @@ public final class n {
             } else {
                 f11 = 0.45f;
             }
-            x51 x51Var = hVar.F;
-            x51Var.f41922q = f11;
-            x51Var.a();
+            a61 a61Var = hVar.F;
+            a61Var.f33348q = f11;
+            a61Var.a();
             r1.g gVar = new r1.g(hVar, h.Q);
             r1.h hVar2 = new r1.h();
             hVar2.a(0.75f);
             hVar2.b(650.0f);
-            gVar.f56323m = hVar2;
+            gVar.f56364m = hVar2;
             gVar.a(new c(hVar, 0));
             hVar.D = gVar;
             r1.g gVar2 = new r1.g(hVar, h.R);
             r1.h hVar3 = new r1.h();
             hVar3.a(0.75f);
             hVar3.b(650.0f);
-            gVar2.f56323m = hVar3;
+            gVar2.f56364m = hVar3;
             gVar2.a(new c(hVar, 1));
             hVar.E = gVar2;
-            Activity activity2 = hVar.f59948c;
+            Activity activity2 = hVar.f59989c;
             int scaledTouchSlop = ViewConfiguration.get(activity2).getScaledTouchSlop();
             ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(activity2, new og.b(hVar, 1));
-            hVar.f59959p = scaleGestureDetector;
+            hVar.f60000p = scaleGestureDetector;
             scaleGestureDetector.setQuickScaleEnabled(false);
-            hVar.f59959p.setStylusScaleEnabled(false);
-            hVar.f59960q = new of(activity2, new g(hVar, scaledTouchSlop));
-            hVar.f59952i = new d(hVar, activity2, 1);
+            hVar.f60000p.setStylusScaleEnabled(false);
+            hVar.f60001q = new qf(activity2, new g(hVar, scaledTouchSlop));
+            hVar.f59993i = new d(hVar, activity2, 1);
             org.telegram.ui.e eVar = new org.telegram.ui.e(3, activity2, hVar);
             hVar.h = eVar;
-            eVar.addView(hVar.f59952i, ma.c(-1.0f, -1));
-            d dVar = hVar.f59952i;
-            q0 q0Var = u0.f3343a;
+            eVar.addView(hVar.f59993i, ma.c(-1.0f, -1));
+            d dVar = hVar.f59993i;
+            q0 q0Var = u0.f3355a;
             dVar.setOutlineProvider(new s0(0, g0.L(10.0f)));
-            hVar.f59952i.setClipToOutline(true);
-            u6.h(n6.Xg, hVar.f59952i, null);
+            hVar.f59993i.setClipToOutline(true);
+            t6.h(m6.Xg, hVar.f59993i, null);
             ImageView imageView = new ImageView(activity2);
-            hVar.f59955l = imageView;
+            hVar.f59996l = imageView;
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            hVar.f59955l.setVisibility(8);
-            hVar.f59952i.addView(hVar.f59955l, ma.c(-1.0f, -1));
-            x51Var.f41919n = new f0(hVar);
-            hVar.f59956m = new d(hVar, activity2, 0);
-            d dVar2 = hVar.f59956m;
+            hVar.f59996l.setVisibility(8);
+            hVar.f59993i.addView(hVar.f59996l, ma.c(-1.0f, -1));
+            a61Var.f33345n = new f0(hVar);
+            hVar.f59997m = new d(hVar, activity2, 0);
+            d dVar2 = hVar.f59997m;
             Objects.requireNonNull(dVar2);
-            hVar.G = new cn0(new v4.p(dVar2, 9), true);
-            hVar.f59956m.setWillNotDraw(false);
-            hVar.f59956m.setAlpha(0.0f);
+            hVar.G = new fn0(new v4.p(dVar2, 9), true);
+            hVar.f59997m.setWillNotDraw(false);
+            hVar.f59997m.setAlpha(0.0f);
             View view = new View(activity2);
             view.setBackgroundColor(1275068416);
-            hVar.f59956m.addView(view, ma.c(-1.0f, -1));
+            hVar.f59997m.addView(view, ma.c(-1.0f, -1));
             int L = g0.L(8.0f);
             ImageView imageView2 = new ImageView(activity2);
             imageView2.setImageResource(2131232549);
-            int i12 = n6.Yg;
+            int i12 = m6.Yg;
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            u6.s(imageView2, i12, null, mode);
-            int i13 = n6.f29486i6;
-            y h02 = n6.h0(n6.x0(null, i13, false), 1, -1);
-            q6 M = u6.M(i13);
+            t6.s(imageView2, i12, null, mode);
+            int i13 = m6.f29470i6;
+            y h02 = m6.h0(m6.x0(null, i13, false), 1, -1);
+            p6 M = t6.M(i13);
             imageView2.setBackground(h02);
-            u6.j(imageView2, h02, null, M, null);
+            t6.j(imageView2, h02, null, M, null);
             imageView2.setPadding(L, L, L, L);
             imageView2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -252,23 +251,23 @@ public final class n {
                     LaunchActivity launchActivity;
                     switch (r2) {
                         case 0:
-                            hVar.f59946a.b();
+                            hVar.f59987a.b();
                             return;
                         case 1:
-                            n nVar2 = hVar.f59946a;
-                            if (nVar2.f59989c == 1) {
-                                l2.i iVar2 = nVar2.f59988b;
+                            n nVar2 = hVar.f59987a;
+                            if (nVar2.f60030c == 1) {
+                                l2.i iVar2 = nVar2.f60029b;
                                 v4.p pVar = new v4.p(nVar2, 13);
-                                if (iVar2.f19405b && (launchActivity = (LaunchActivity) iVar2.f19408f) != null && !g0.H1(launchActivity)) {
+                                if (iVar2.f19433b && (launchActivity = (LaunchActivity) iVar2.f19436f) != null && !g0.H1(launchActivity)) {
                                     pVar.run();
                                     return;
                                 }
                                 ((ArrayList) iVar2.d).add(pVar);
-                                if (((LaunchActivity) iVar2.f19408f) != null && !iVar2.f19404a) {
+                                if (((LaunchActivity) iVar2.f19436f) != null && !iVar2.f19432a) {
                                     try {
-                                        Intent intent = new Intent(t0.f26913b, ((LaunchActivity) iVar2.f19408f).getClass());
+                                        Intent intent = new Intent(t0.f26941b, ((LaunchActivity) iVar2.f19436f).getClass());
                                         intent.addFlags(268435456);
-                                        t0.f26913b.startActivity(intent);
+                                        t0.f26941b.startActivity(intent);
                                         return;
                                     } catch (Exception e10) {
                                         a8.g(e10, true);
@@ -280,7 +279,7 @@ public final class n {
                             return;
                         default:
                             h hVar4 = hVar;
-                            l lVar2 = hVar4.f59947b;
+                            l lVar2 = hVar4.f59988b;
                             if (lVar2.h()) {
                                 lVar2.b();
                             } else {
@@ -291,19 +290,19 @@ public final class n {
                                 lVar2.f();
                             }
                             hVar4.k();
-                            hVar4.f59946a.f59988b.f();
+                            hVar4.f59987a.f60029b.f();
                             return;
                     }
                 }
             });
-            hVar.f59956m.addView(imageView2, ma.d(38, 38.0f, 5, 0.0f, 4.0f, 4.0f, 0.0f));
+            hVar.f59997m.addView(imageView2, ma.d(38, 38.0f, 5, 0.0f, 4.0f, 4.0f, 0.0f));
             ImageView imageView3 = new ImageView(activity2);
             imageView3.setImageResource(2131232550);
-            u6.s(imageView3, i12, null, mode);
-            y h03 = n6.h0(n6.x0(null, i13, false), 1, -1);
-            q6 M2 = u6.M(i13);
+            t6.s(imageView3, i12, null, mode);
+            y h03 = m6.h0(m6.x0(null, i13, false), 1, -1);
+            p6 M2 = t6.M(i13);
             imageView3.setBackground(h03);
-            u6.j(imageView3, h03, null, M2, null);
+            t6.j(imageView3, h03, null, M2, null);
             imageView3.setPadding(L, L, L, L);
             imageView3.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -311,23 +310,23 @@ public final class n {
                     LaunchActivity launchActivity;
                     switch (r2) {
                         case 0:
-                            hVar.f59946a.b();
+                            hVar.f59987a.b();
                             return;
                         case 1:
-                            n nVar2 = hVar.f59946a;
-                            if (nVar2.f59989c == 1) {
-                                l2.i iVar2 = nVar2.f59988b;
+                            n nVar2 = hVar.f59987a;
+                            if (nVar2.f60030c == 1) {
+                                l2.i iVar2 = nVar2.f60029b;
                                 v4.p pVar = new v4.p(nVar2, 13);
-                                if (iVar2.f19405b && (launchActivity = (LaunchActivity) iVar2.f19408f) != null && !g0.H1(launchActivity)) {
+                                if (iVar2.f19433b && (launchActivity = (LaunchActivity) iVar2.f19436f) != null && !g0.H1(launchActivity)) {
                                     pVar.run();
                                     return;
                                 }
                                 ((ArrayList) iVar2.d).add(pVar);
-                                if (((LaunchActivity) iVar2.f19408f) != null && !iVar2.f19404a) {
+                                if (((LaunchActivity) iVar2.f19436f) != null && !iVar2.f19432a) {
                                     try {
-                                        Intent intent = new Intent(t0.f26913b, ((LaunchActivity) iVar2.f19408f).getClass());
+                                        Intent intent = new Intent(t0.f26941b, ((LaunchActivity) iVar2.f19436f).getClass());
                                         intent.addFlags(268435456);
-                                        t0.f26913b.startActivity(intent);
+                                        t0.f26941b.startActivity(intent);
                                         return;
                                     } catch (Exception e10) {
                                         a8.g(e10, true);
@@ -339,7 +338,7 @@ public final class n {
                             return;
                         default:
                             h hVar4 = hVar;
-                            l lVar2 = hVar4.f59947b;
+                            l lVar2 = hVar4.f59988b;
                             if (lVar2.h()) {
                                 lVar2.b();
                             } else {
@@ -350,39 +349,39 @@ public final class n {
                                 lVar2.f();
                             }
                             hVar4.k();
-                            hVar4.f59946a.f59988b.f();
+                            hVar4.f59987a.f60029b.f();
                             return;
                     }
                 }
             });
-            hVar.f59956m.addView(imageView3, ma.d(38, 38.0f, 5, 0.0f, 4.0f, 48.0f, 0.0f));
+            hVar.f59997m.addView(imageView3, ma.d(38, 38.0f, 5, 0.0f, 4.0f, 48.0f, 0.0f));
             ImageView imageView4 = new ImageView(activity2);
-            hVar.f59957n = imageView4;
-            u6.s(imageView4, i12, null, mode);
-            u6.Q(hVar.f59957n, n6.h0(n6.x0(null, i13, false), 1, -1), null, u6.M(i13), null);
-            hVar.f59957n.setOnClickListener(new View.OnClickListener() {
+            hVar.f59998n = imageView4;
+            t6.s(imageView4, i12, null, mode);
+            t6.Q(hVar.f59998n, m6.h0(m6.x0(null, i13, false), 1, -1), null, t6.M(i13), null);
+            hVar.f59998n.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
                     LaunchActivity launchActivity;
                     switch (r2) {
                         case 0:
-                            hVar.f59946a.b();
+                            hVar.f59987a.b();
                             return;
                         case 1:
-                            n nVar2 = hVar.f59946a;
-                            if (nVar2.f59989c == 1) {
-                                l2.i iVar2 = nVar2.f59988b;
+                            n nVar2 = hVar.f59987a;
+                            if (nVar2.f60030c == 1) {
+                                l2.i iVar2 = nVar2.f60029b;
                                 v4.p pVar = new v4.p(nVar2, 13);
-                                if (iVar2.f19405b && (launchActivity = (LaunchActivity) iVar2.f19408f) != null && !g0.H1(launchActivity)) {
+                                if (iVar2.f19433b && (launchActivity = (LaunchActivity) iVar2.f19436f) != null && !g0.H1(launchActivity)) {
                                     pVar.run();
                                     return;
                                 }
                                 ((ArrayList) iVar2.d).add(pVar);
-                                if (((LaunchActivity) iVar2.f19408f) != null && !iVar2.f19404a) {
+                                if (((LaunchActivity) iVar2.f19436f) != null && !iVar2.f19432a) {
                                     try {
-                                        Intent intent = new Intent(t0.f26913b, ((LaunchActivity) iVar2.f19408f).getClass());
+                                        Intent intent = new Intent(t0.f26941b, ((LaunchActivity) iVar2.f19436f).getClass());
                                         intent.addFlags(268435456);
-                                        t0.f26913b.startActivity(intent);
+                                        t0.f26941b.startActivity(intent);
                                         return;
                                     } catch (Exception e10) {
                                         a8.g(e10, true);
@@ -394,7 +393,7 @@ public final class n {
                             return;
                         default:
                             h hVar4 = hVar;
-                            l lVar2 = hVar4.f59947b;
+                            l lVar2 = hVar4.f59988b;
                             if (lVar2.h()) {
                                 lVar2.b();
                             } else {
@@ -405,43 +404,43 @@ public final class n {
                                 lVar2.f();
                             }
                             hVar4.k();
-                            hVar4.f59946a.f59988b.f();
+                            hVar4.f59987a.f60029b.f();
                             return;
                     }
                 }
             });
-            ImageView imageView5 = hVar.f59957n;
+            ImageView imageView5 = hVar.f59998n;
             if (lVar.o0()) {
                 i7 = 0;
             } else {
                 i7 = 8;
             }
             imageView5.setVisibility(i7);
-            hVar.f59956m.addView(hVar.f59957n, ma.e(38, 38, 17));
+            hVar.f59997m.addView(hVar.f59998n, ma.e(38, 38, 17));
             u2 u2Var = new u2(hVar, activity2);
-            hVar.f59958o = u2Var;
+            hVar.f59999o = u2Var;
             if (lVar.o0()) {
                 i10 = 0;
             } else {
                 i10 = 8;
             }
             u2Var.setVisibility(i10);
-            hVar.f59956m.addView(hVar.f59958o, ma.c(-1.0f, -1));
-            hVar.f59952i.addView(hVar.f59956m, ma.c(-1.0f, -1));
+            hVar.f59997m.addView(hVar.f59999o, ma.c(-1.0f, -1));
+            hVar.f59993i.addView(hVar.f59997m, ma.c(-1.0f, -1));
             View E = lVar.E();
-            hVar.f59954k = E;
+            hVar.f59995k = E;
             if (E != null) {
                 g0.E2(E);
-                hVar.f59952i.addView(hVar.f59954k, 0, ma.c(-1.0f, -1));
+                hVar.f59993i.addView(hVar.f59995k, 0, ma.c(-1.0f, -1));
             } else {
                 o oVar = new o(activity2);
-                hVar.f59953j = oVar;
-                hVar.f59952i.addView(oVar, 0, ma.c(-1.0f, -1));
+                hVar.f59994j = oVar;
+                hVar.f59993i.addView(oVar, 0, ma.c(-1.0f, -1));
             }
-            if (bitmap != null && hVar.f59953j != null) {
-                hVar.f59955l.setImageBitmap(bitmap);
-                hVar.f59955l.setVisibility(0);
-                hVar.f59953j.setFirstFrameCallback(new b(hVar, 2));
+            if (bitmap != null && hVar.f59994j != null) {
+                hVar.f59996l.setImageBitmap(bitmap);
+                hVar.f59996l.setVisibility(0);
+                hVar.f59994j.setFirstFrameCallback(new b(hVar, 2));
             }
             hVar.a();
             if (z10) {
@@ -450,7 +449,7 @@ public final class n {
                 hVar.h.setScaleY(0.1f);
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.setDuration(250L);
-                animatorSet.setInterpolator(lr.f37208f);
+                animatorSet.setInterpolator(nr.f37956f);
                 i11 = 1;
                 animatorSet.playTogether(ObjectAnimator.ofFloat(hVar.h, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(hVar.h, View.SCALE_Y, 1.0f));
                 animatorSet.start();
@@ -458,11 +457,11 @@ public final class n {
                 i11 = 1;
             }
             hVar.k();
-            o oVar2 = hVar.f59953j;
-            this.f59989c = i11;
+            o oVar2 = hVar.f59994j;
+            this.f60030c = i11;
             iVar.f();
             return oVar2;
         }
-        throw new IllegalStateException("startFloating in state " + this.f59989c);
+        throw new IllegalStateException("startFloating in state " + this.f60030c);
     }
 }

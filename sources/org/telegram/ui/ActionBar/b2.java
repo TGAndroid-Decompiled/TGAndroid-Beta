@@ -1,99 +1,124 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.ui.Components.fb;
-import org.telegram.ui.Components.gc;
-public final class b2 implements fb {
-    public final int f28799a;
-    public final h2 f28800b;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.ui.LaunchActivity;
+public final class b2 extends w2 {
+    public final e2 f28801m1;
+    public final r4[] n1;
+    public final g2 f28802o1;
+    public final w2[] f28803p1;
 
-    public b2(int i7, h2 h2Var) {
-        this.f28799a = i7;
-        this.f28800b = h2Var;
-    }
-
-    @Override
-    public final boolean a() {
-        switch (this.f28799a) {
-            case 0:
-                return true;
-            default:
-                return true;
+    public b2(Activity activity, h6 h6Var, e2 e2Var, r4[] r4VarArr, g2 g2Var, w2[] w2VarArr) {
+        super(1, (Context) activity, h6Var, true);
+        boolean z10;
+        this.f28801m1 = e2Var;
+        this.n1 = r4VarArr;
+        this.f28802o1 = g2Var;
+        this.f28803p1 = w2VarArr;
+        if (e2Var != null && e2Var.f28905e) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        this.f30212x = z10;
+        this.f30198n = !z10;
+        r4VarArr[0].setFragmentStack(new ArrayList());
+        ((ActionBarLayout) r4VarArr[0]).c(-1, g2Var);
+        ((ActionBarLayout) r4VarArr[0]).f0();
+        ViewGroup view = r4VarArr[0].getView();
+        int i7 = this.f30208u0;
+        view.setPadding(i7, 0, i7, 0);
+        this.f30173b = r4VarArr[0].getView();
+        this.f30211w0 = false;
+        setOnDismissListener(new y1(1, g2Var, e2Var));
     }
 
     @Override
-    public final void b(gc gcVar) {
-        int i7 = this.f28799a;
+    public final boolean G() {
+        return false;
     }
 
     @Override
-    public final void c(float f10) {
-        int i7 = this.f28799a;
-    }
-
-    @Override
-    public final void d(gc gcVar) {
-        int i7 = this.f28799a;
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f28799a) {
-            case 0:
-                return true;
-            default:
-                return true;
+    public final boolean J(MotionEvent motionEvent) {
+        r4[] r4VarArr;
+        r4 r4Var;
+        e2 e2Var = this.f28801m1;
+        if (e2Var == null || !e2Var.f28902a || (r4Var = (r4VarArr = this.n1)[0]) == null || r4Var.getFragmentStack().size() > 1 || (r4VarArr[0].getFragmentStack().size() == 1 && !((g2) r4VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public final int f(int i7) {
-        switch (this.f28799a) {
-            case 0:
-                if (this.f28800b.isSupportEdgeToEdge()) {
-                    return org.telegram.messenger.g0.f24113n;
+    public final void dismiss() {
+        e2 e2Var;
+        Runnable runnable;
+        if (!this.J && (e2Var = this.f28801m1) != null && (runnable = e2Var.d) != null) {
+            runnable.run();
+        }
+        super.dismiss();
+        ArrayList arrayList = LaunchActivity.H1.Q;
+        r4[] r4VarArr = this.n1;
+        arrayList.remove(r4VarArr[0]);
+        r4VarArr[0] = null;
+    }
+
+    @Override
+    public final void onBackPressed() {
+        r4[] r4VarArr = this.n1;
+        r4 r4Var = r4VarArr[0];
+        if (r4Var != null && r4Var.getFragmentStack().size() > 1) {
+            ((ActionBarLayout) r4VarArr[0]).I();
+            return;
+        }
+        r4 r4Var2 = r4VarArr[0];
+        if (r4Var2 != null && !r4Var2.getFragmentStack().isEmpty() && ((g2) r4VarArr[0].getFragmentStack().get(0)).closeOpenMenuOverlay(true)) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        r4 r4Var = this.n1[0];
+        w2[] w2VarArr = this.f28803p1;
+        r4Var.setWindow(w2VarArr[0].getWindow());
+        e2 e2Var = this.f28801m1;
+        if (e2Var != null && e2Var.f28905e) {
+            org.telegram.messenger.g0.m3(w2VarArr[0], true);
+        } else {
+            Q(m6.f29469i5);
+        }
+        g2 g2Var = this.f28802o1;
+        org.telegram.messenger.g0.p3(this, g2Var.isLightStatusBar());
+        g2Var.onBottomSheetCreated();
+    }
+
+    @Override
+    public final void p0() {
+        r4 r4Var = this.n1[0];
+        if (r4Var != null) {
+            for (g2 g2Var : r4Var.getFragmentStack()) {
+                if (g2Var.getFragmentView() != null) {
+                    g2Var.getFragmentView().requestLayout();
                 }
-                return 0;
-            default:
-                return this.f28800b.getBottomInset();
+            }
         }
     }
 
     @Override
-    public final boolean g(int i7) {
-        switch (this.f28799a) {
-            case 0:
-                return false;
-            default:
-                return false;
+    public final void v() {
+        Runnable runnable;
+        this.f28802o1.onTransitionAnimationEnd(true, false);
+        e2 e2Var = this.f28801m1;
+        if (e2Var != null && (runnable = e2Var.f28904c) != null) {
+            runnable.run();
         }
-    }
-
-    @Override
-    public final int h(int i7) {
-        switch (this.f28799a) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    private final void i(float f10) {
-    }
-
-    private final void j(float f10) {
-    }
-
-    private final void k(gc gcVar) {
-    }
-
-    private final void l(gc gcVar) {
-    }
-
-    private final void m(gc gcVar) {
-    }
-
-    private final void n(gc gcVar) {
     }
 }

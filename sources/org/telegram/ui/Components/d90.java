@@ -1,238 +1,509 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-public final class d90 extends Drawable {
-    public iy A;
-    public org.telegram.ui.ActionBar.v4 B;
-    public LinearGradient C;
-    public Matrix D;
-    public boolean E;
-    public final TextPaint f34326a;
-    public final Paint f34327b;
-    public final Paint f34328c;
-    public final Paint d;
-    public final Paint f34329e;
-    public final RectF f34330f;
-    public PorterDuffColorFilter f34331g;
-    public float h;
-    public final DecelerateInterpolator f34332i;
-    public boolean f34333j;
-    public float f34334k;
-    public int f34335l;
-    public String f34336m;
-    public int f34337n;
-    public float f34338o;
-    public int f34339p;
-    public int f34340q;
-    public float f34341r;
-    public float f34342s;
-    public long f34343t;
-    public boolean f34344u;
-    public float v;
-    public float f34345w;
-    public float f34346x;
-    public float f34347y;
-    public float f34348z;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
+import j$.util.DesugarCollections;
+import java.io.File;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public abstract class d90 {
+    public static final Pattern f34452a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f34453b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f34454c = Pattern.compile("^(\\d+)[.)]\\s");
 
-    public d90() {
-        TextPaint textPaint = new TextPaint(1);
-        this.f34326a = textPaint;
-        Paint paint = new Paint(1);
-        this.f34327b = paint;
-        this.f34328c = new Paint(1);
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        Paint paint3 = new Paint(1);
-        this.f34329e = paint3;
-        this.f34330f = new RectF();
-        this.h = 1.0f;
-        this.f34332i = new DecelerateInterpolator();
-        this.f34334k = 400.0f;
-        this.f34335l = -1;
-        this.f34338o = 1.0f;
-        this.f34341r = 1.0f;
-        paint.setColor(-1);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
-        paint.setStyle(Paint.Style.STROKE);
-        paint3.setColor(-1);
-        textPaint.setTypeface(org.telegram.messenger.g0.o());
-        textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
-        textPaint.setColor(-1);
-        paint2.setColor(-1);
+    public static TL_iv.RichText a(kf.p pVar, TL_iv.PageBlock pageBlock) {
+        a90 a90Var = new a90(pageBlock);
+        pVar.a(a90Var);
+        return k(l(a90.x(a90Var.f33430c)));
     }
 
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.v4 v4Var = this.B;
-        if (v4Var != null && v4Var.l() && !this.E) {
-            Rect bounds = getBounds();
-            org.telegram.ui.ActionBar.v4 v4Var2 = this.B;
-            Shader shader = v4Var2.f30095a;
-            Matrix matrix = v4Var2.f30103k;
-            matrix.reset();
-            this.B.a();
-            if (z10) {
-                matrix.postTranslate(-bounds.centerX(), (-this.B.f30110r) + bounds.top);
-            } else {
-                matrix.postTranslate(0.0f, -this.B.f30110r);
+    public static List b(TL_iv.RichText richText) {
+        int i7;
+        if (richText == null) {
+            return Collections.singletonList(n(""));
+        }
+        if (o(richText) <= 8192) {
+            return Collections.singletonList(richText);
+        }
+        String p10 = p(richText);
+        ArrayList arrayList = new ArrayList();
+        int i10 = 0;
+        while (i10 < p10.length()) {
+            if (p10.length() - i10 <= 8192) {
+                arrayList.add(n(p10.substring(i10)));
+                return arrayList;
             }
-            shader.setLocalMatrix(matrix);
+            int i11 = i10 + 8192;
+            int i12 = i10 + 8191;
+            int lastIndexOf = p10.lastIndexOf(10, i12);
+            if (lastIndexOf <= i10) {
+                lastIndexOf = p10.lastIndexOf(32, i12);
+            }
+            if (lastIndexOf <= i10) {
+                i7 = 0;
+            } else {
+                i7 = 1;
+                i11 = lastIndexOf;
+            }
+            arrayList.add(n(p10.substring(i10, i11)));
+            i10 = i11 + i7;
+        }
+        return arrayList;
+    }
+
+    public static TL_iv.textMath c(String str) {
+        String trim;
+        TL_iv.textMath textmath = new TL_iv.textMath();
+        if (str == null) {
+            trim = "";
+        } else {
+            trim = str.trim();
+        }
+        textmath.source = trim;
+        textmath.tried = true;
+        oi.p a10 = oi.p.a(trim, org.telegram.messenger.g0.L(20.0f), true);
+        if (a10 != null) {
+            textmath.f28658w = a10.f22301b;
+            textmath.h = a10.f22302c;
+            textmath.depth = a10.d;
+            textmath.bitmap = a10.f22300a;
+        }
+        return textmath;
+    }
+
+    public static java.lang.String d(java.lang.String r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d90.d(java.lang.String):java.lang.String");
+    }
+
+    public static TL_iv.RichText e(TL_iv.RichText richText) {
+        if (richText == null) {
+            return null;
+        }
+        if (o(richText) <= 8192) {
+            return richText;
+        }
+        String p10 = p(richText);
+        return n(p10.substring(0, Math.min(p10.length(), 8192)));
+    }
+
+    public static void f(ArrayList arrayList, List list) {
+        List unmodifiableList;
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            ad.a aVar = (ad.a) it.next();
+            arrayList.add(aVar);
+            ArrayList arrayList2 = aVar.f1031f;
+            if (arrayList2 == null) {
+                unmodifiableList = Collections.EMPTY_LIST;
+            } else {
+                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
+            }
+            f(arrayList, unmodifiableList);
         }
     }
 
-    public final float b() {
-        if (this.f34344u) {
-            return this.f34341r;
-        }
-        return 1.0f;
+    public static org.telegram.tgnet.TLRPC.TL_webPage g(org.telegram.messenger.fj r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d90.g(org.telegram.messenger.fj):org.telegram.tgnet.TLRPC$TL_webPage");
     }
 
-    public final void c(int i7) {
-        int i10 = (-16777216) | i7;
-        this.f34327b.setColor(i10);
-        this.d.setColor(i10);
-        this.f34329e.setColor(i10);
-        this.f34326a.setColor(i10);
-        this.f34331g = new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY);
+    public static int h(int i7, CharSequence charSequence) {
+        char charAt;
+        if (i7 >= charSequence.length() || (charAt = charSequence.charAt(i7)) == '\n' || charAt == ' ') {
+            return 0;
+        }
+        if (charAt != '+' && charAt != '-') {
+            return 3;
+        }
+        int i10 = i7 + 3;
+        if (i10 < charSequence.length() && charSequence.charAt(i7 + 1) == charAt && charSequence.charAt(i7 + 2) == charAt && charSequence.charAt(i10) == ' ') {
+            return 3;
+        }
+        if (charAt != '+') {
+            return 2;
+        }
+        return 1;
     }
 
-    public final void d(int i7, boolean z10) {
-        int i10;
-        int i11;
-        if (this.f34339p == i7 && (i11 = this.f34340q) != i7) {
-            this.f34339p = i11;
-            this.f34341r = 1.0f;
+    public static File i(org.telegram.messenger.fj fjVar) {
+        File file;
+        TLRPC.Message message = fjVar.f23993k;
+        int i7 = fjVar.K1;
+        if (!TextUtils.isEmpty(message.attachPath)) {
+            file = new File(fjVar.f23993k.attachPath);
+        } else {
+            file = null;
         }
-        if (z10) {
-            int i12 = this.f34339p;
-            if (i12 != i7 && (i10 = this.f34340q) != i7) {
-                if ((i12 == 0 && i7 == 1) || (i12 == 1 && i7 == 0)) {
-                    this.f34334k = 300.0f;
-                } else if (i12 == 2 && (i7 == 3 || i7 == 14)) {
-                    this.f34334k = 400.0f;
-                } else if (i12 != 4 && i7 == 6) {
-                    this.f34334k = 360.0f;
-                } else if ((i12 == 4 && i7 == 14) || (i12 == 14 && i7 == 4)) {
-                    this.f34334k = 160.0f;
+        if (file == null || !file.exists()) {
+            org.telegram.messenger.w7.G(i7);
+            file = org.telegram.messenger.w7.M(fjVar.f23993k, false, true);
+        }
+        if (file == null || !file.exists()) {
+            org.telegram.messenger.w7.G(i7);
+            file = org.telegram.messenger.w7.M(fjVar.f23993k, true, true);
+        }
+        if (file == null || !file.exists()) {
+            return null;
+        }
+        return file;
+    }
+
+    public static boolean j(org.telegram.messenger.fj fjVar) {
+        String Q0 = fjVar.Q0();
+        if (!"diff".equalsIgnoreCase(Q0) && !"patch".equalsIgnoreCase(Q0)) {
+            String t12 = fjVar.t1();
+            if (t12 != null) {
+                String lowerCase = t12.toLowerCase();
+                if (!lowerCase.startsWith("text/x-diff") && !lowerCase.startsWith("text/x-patch")) {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public static TL_iv.RichText k(TL_iv.RichText richText) {
+        if (richText == null) {
+            return null;
+        }
+        if (richText instanceof TL_iv.textConcat) {
+            TL_iv.textConcat textconcat = (TL_iv.textConcat) richText;
+            for (int i7 = 0; i7 < textconcat.texts.size(); i7++) {
+                ArrayList<TL_iv.RichText> arrayList = textconcat.texts;
+                arrayList.set(i7, k(arrayList.get(i7)));
+            }
+            return textconcat;
+        } else if (richText instanceof c90) {
+            c90 c90Var = (c90) richText;
+            TL_iv.textStrike k10 = k(c90Var.text);
+            int i10 = c90Var.f34130a;
+            if ((i10 & 4) != 0) {
+                TL_iv.textFixed textfixed = new TL_iv.textFixed();
+                textfixed.text = k10;
+                k10 = textfixed;
+            }
+            if ((i10 & 32) != 0) {
+                TL_iv.textStrike textstrike = new TL_iv.textStrike();
+                textstrike.text = k10;
+                k10 = textstrike;
+            }
+            if ((i10 & 16) != 0) {
+                TL_iv.textUnderline textunderline = new TL_iv.textUnderline();
+                textunderline.text = k10;
+                k10 = textunderline;
+            }
+            if ((i10 & 64) != 0) {
+                TL_iv.textMarked textmarked = new TL_iv.textMarked();
+                textmarked.text = k10;
+                k10 = textmarked;
+            }
+            if ((i10 & 128) != 0) {
+                TL_iv.textSubscript textsubscript = new TL_iv.textSubscript();
+                textsubscript.text = k10;
+                k10 = textsubscript;
+            }
+            if ((i10 & 256) != 0) {
+                TL_iv.textSuperscript textsuperscript = new TL_iv.textSuperscript();
+                textsuperscript.text = k10;
+                k10 = textsuperscript;
+            }
+            if ((i10 & 2) != 0) {
+                TL_iv.textItalic textitalic = new TL_iv.textItalic();
+                textitalic.text = k10;
+                k10 = textitalic;
+            }
+            if ((i10 & 1) != 0) {
+                TL_iv.textBold textbold = new TL_iv.textBold();
+                textbold.text = k10;
+                return textbold;
+            }
+            return k10;
+        } else {
+            TL_iv.RichText richText2 = richText.text;
+            if (richText2 != null) {
+                richText.text = k(richText2);
+            }
+            return richText;
+        }
+    }
+
+    public static org.telegram.tgnet.tl.TL_iv.RichText l(org.telegram.tgnet.tl.TL_iv.RichText r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d90.l(org.telegram.tgnet.tl.TL_iv$RichText):org.telegram.tgnet.tl.TL_iv$RichText");
+    }
+
+    public static String m(String str, ArrayList arrayList) {
+        String[] split;
+        TL_iv.RichText richText;
+        String substring;
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        String[] split2 = str.split("\n", -1);
+        StringBuilder sb2 = new StringBuilder();
+        int i7 = 0;
+        while (i7 < split2.length) {
+            Matcher matcher = f34452a.matcher(split2[i7]);
+            if (matcher.matches()) {
+                String group = matcher.group(1);
+                StringBuilder sb3 = new StringBuilder(matcher.group(2));
+                i7++;
+                while (i7 < split2.length) {
+                    String str2 = split2[i7];
+                    if (!str2.startsWith("    ") && !str2.startsWith("\t")) {
+                        if (!str2.trim().isEmpty()) {
+                            break;
+                        }
+                        int i10 = i7 + 1;
+                        int i11 = i10;
+                        while (i11 < split2.length && split2[i11].trim().isEmpty()) {
+                            i11++;
+                        }
+                        if (i11 >= split2.length || (!split2[i11].startsWith("    ") && !split2[i11].startsWith("\t"))) {
+                            break;
+                        }
+                        sb3.append('\n');
+                        i7 = i10;
+                    } else {
+                        sb3.append('\n');
+                        if (str2.startsWith("\t")) {
+                            substring = str2.substring(1);
+                        } else {
+                            substring = str2.substring(4);
+                        }
+                        sb3.append(substring);
+                        i7++;
+                    }
+                }
+                linkedHashMap.put(group, sb3.toString().trim());
+            } else {
+                sb2.append(split2[i7]);
+                if (i7 < split2.length - 1) {
+                    sb2.append('\n');
+                }
+                i7++;
+            }
+        }
+        Matcher matcher2 = f34453b.matcher(sb2.toString());
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher2.find()) {
+            String group2 = matcher2.group(1);
+            matcher2.appendReplacement(stringBuffer, Matcher.quoteReplacement("<sup>[\\[" + group2 + "\\]](#fn-" + group2 + ")</sup>"));
+        }
+        matcher2.appendTail(stringBuffer);
+        String stringBuffer2 = stringBuffer.toString();
+        List<bf.a> asList = Arrays.asList(new cf.b(0), new cf.b(1));
+        Pattern pattern = ed.i.f10927j;
+        ArrayList arrayList2 = new ArrayList(3);
+        ArrayList arrayList3 = new ArrayList(3);
+        arrayList2.addAll(Arrays.asList(new Object(), new Object(), new Object(), new ed.d(0), new Object(), new Object(), new Object(), new Object(), new ed.d(1)));
+        arrayList3.addAll(Arrays.asList(new hf.a(0), new hf.a(1)));
+        org.telegram.messenger.g0.L(18.0f);
+        Executors.newCachedThreadPool();
+        new Handler(Looper.getMainLooper());
+        new HashMap(3);
+        arrayList2.add(new Object());
+        arrayList2.add(new Object());
+        a8.r7 r7Var = new a8.r7();
+        if (asList != null) {
+            for (bf.a aVar : asList) {
+                if (aVar instanceof cf.b) {
+                    switch (((cf.b) aVar).f5299a) {
+                        case 0:
+                            ((ArrayList) r7Var.f618c).add(new Object());
+                            continue;
+                        default:
+                            ((ArrayList) r7Var.f617b).add(new ff.a(0));
+                            continue;
+                    }
+                }
+            }
+            r7Var.f620f = new wf.b(15, arrayList2, arrayList3);
+            ((ArrayList) r7Var.f617b).add(new ff.a(8));
+            ?? obj = new Object();
+            LinkedHashSet linkedHashSet = gf.g.f13573p;
+            ArrayList arrayList4 = new ArrayList();
+            arrayList4.addAll((ArrayList) r7Var.f617b);
+            for (Class cls : (LinkedHashSet) r7Var.f619e) {
+                arrayList4.add(gf.g.f13574q.get(cls));
+            }
+            obj.f60662a = arrayList4;
+            lf.b bVar = (wf.b) r7Var.f620f;
+            if (bVar == null) {
+                bVar = new nb.a(13);
+            }
+            obj.f60664c = bVar;
+            obj.d = (ArrayList) r7Var.d;
+            ArrayList arrayList5 = (ArrayList) r7Var.f618c;
+            obj.f60663b = arrayList5;
+            bVar.d(new wf.b(23, arrayList5, Collections.EMPTY_MAP));
+            ArrayDeque arrayDeque = new ArrayDeque();
+            String str3 = null;
+            boolean z10 = false;
+            for (String str4 : stringBuffer2.split("\n", -1)) {
+                int i12 = 0;
+                while (i12 < str4.length() && i12 < 3 && str4.charAt(i12) == ' ') {
+                    i12++;
+                }
+                String substring2 = str4.substring(i12);
+                if (z10) {
+                    if (substring2.startsWith(str3)) {
+                        str3 = null;
+                        z10 = false;
+                    }
                 } else {
-                    this.f34334k = 220.0f;
+                    String str5 = "```";
+                    if (!substring2.startsWith("```")) {
+                        str5 = "~~~";
+                        if (!substring2.startsWith("~~~")) {
+                            Matcher matcher3 = f34454c.matcher(str4);
+                            if (matcher3.find()) {
+                                arrayDeque.add(matcher3.group(1));
+                            }
+                        }
+                    }
+                    z10 = true;
+                    str3 = str5;
                 }
-                if (this.f34344u) {
-                    this.f34339p = i10;
+            }
+            z80 z80Var = new z80(arrayList, arrayDeque);
+            z80Var.v(obj.I(stringBuffer2));
+            z80Var.y();
+            if (!linkedHashMap.isEmpty()) {
+                TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
+                String N0 = org.telegram.messenger.gd.N0(2131748998, null);
+                TL_iv.textBold textbold = new TL_iv.textBold();
+                textbold.text = n(N0);
+                pageblockdetails.title = textbold;
+                for (Map.Entry entry : linkedHashMap.entrySet()) {
+                    String str6 = (String) entry.getKey();
+                    ArrayList arrayList6 = new ArrayList();
+                    z80 z80Var2 = new z80(arrayList6, new ArrayDeque());
+                    z80Var2.v(obj.I((String) entry.getValue()));
+                    z80Var2.y();
+                    TL_iv.RichText textconcat = new TL_iv.textConcat();
+                    int size = arrayList6.size();
+                    int i13 = 0;
+                    while (i13 < size) {
+                        Object obj2 = arrayList6.get(i13);
+                        i13++;
+                        TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) obj2;
+                        if (pageBlock instanceof TL_iv.pageBlockParagraph) {
+                            richText = ((TL_iv.pageBlockParagraph) pageBlock).text;
+                        } else if (pageBlock instanceof TL_iv.pageBlockHeader) {
+                            richText = ((TL_iv.pageBlockHeader) pageBlock).text;
+                        } else if (pageBlock instanceof TL_iv.pageBlockSubheader) {
+                            richText = ((TL_iv.pageBlockSubheader) pageBlock).text;
+                        } else if (pageBlock instanceof TL_iv.pageBlockTitle) {
+                            richText = ((TL_iv.pageBlockTitle) pageBlock).text;
+                        } else {
+                            richText = null;
+                        }
+                        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
+                            if (!textconcat.texts.isEmpty()) {
+                                textconcat.texts.add(n("\n\n"));
+                            }
+                            textconcat.texts.add(richText);
+                        }
+                    }
+                    if (textconcat.texts.isEmpty()) {
+                        textconcat = new TL_iv.textEmpty();
+                    } else if (textconcat.texts.size() == 1) {
+                        textconcat = textconcat.texts.get(0);
+                    }
+                    TL_iv.RichText e10 = e(textconcat);
+                    TL_iv.textAnchor textanchor = new TL_iv.textAnchor();
+                    textanchor.name = p5.c.k("fn-", str6);
+                    textanchor.text = e10;
+                    TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
+                    String v = p5.c.v(str6, ". ");
+                    TL_iv.textBold textbold2 = new TL_iv.textBold();
+                    textbold2.text = n(v);
+                    TL_iv.RichText[] richTextArr = {textbold2, textanchor};
+                    TL_iv.textConcat textconcat2 = new TL_iv.textConcat();
+                    for (int i14 = 0; i14 < 2; i14++) {
+                        textconcat2.texts.add(richTextArr[i14]);
+                    }
+                    pageblockparagraph.text = textconcat2;
+                    pageblockdetails.blocks.add(pageblockparagraph);
                 }
-                this.f34344u = true;
-                this.f34340q = i7;
-                this.f34342s = this.f34341r;
-                this.f34341r = 0.0f;
-            } else {
-                return;
+                arrayList.add(pageblockdetails);
             }
-        } else if (this.f34339p == i7) {
-            return;
-        } else {
-            this.f34344u = false;
-            this.f34340q = i7;
-            this.f34339p = i7;
-            this.f34342s = this.f34341r;
-            this.f34341r = 1.0f;
-        }
-        if (i7 == 3 || i7 == 14) {
-            this.v = 112.0f;
-            this.f34346x = 0.0f;
-            this.f34347y = 0.0f;
-            this.f34348z = 0.0f;
-        }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(android.graphics.Canvas r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d90.draw(android.graphics.Canvas):void");
-    }
-
-    public final void e(boolean z10, float f10) {
-        if (this.f34345w == f10) {
-            return;
-        }
-        if (!z10) {
-            this.f34346x = f10;
-            this.f34347y = f10;
-        } else {
-            if (this.f34346x > f10) {
-                this.f34346x = f10;
+            TL_iv.RichText richText2 = z80Var.f42731b;
+            if (richText2 == null) {
+                return null;
             }
-            this.f34347y = this.f34346x;
+            return p(richText2);
         }
-        this.f34345w = f10;
-        this.f34348z = 0.0f;
-        invalidateSelf();
+        throw new NullPointerException("extensions must not be null");
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(48.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(48.0f);
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        return org.telegram.messenger.g0.L(48.0f);
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        return org.telegram.messenger.g0.L(48.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        iy iyVar = this.A;
-        if (iyVar != null) {
-            ((View) iyVar.f36266b).invalidate();
+    public static TL_iv.textPlain n(String str) {
+        TL_iv.textPlain textplain = new TL_iv.textPlain();
+        if (str == null) {
+            str = "";
         }
+        textplain.text = str;
+        return textplain;
     }
 
-    @Override
-    public final void setBounds(int i7, int i10, int i11, int i12) {
-        super.setBounds(i7, i10, i11, i12);
-        float L = (i11 - i7) / org.telegram.messenger.g0.L(48.0f);
-        this.h = L;
-        if (L < 0.7f) {
-            this.f34327b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+    public static int o(TL_iv.RichText richText) {
+        int i7 = 0;
+        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
+            return 0;
+        }
+        if (richText instanceof TL_iv.textPlain) {
+            String str = ((TL_iv.textPlain) richText).text;
+            if (str == null) {
+                return 0;
+            }
+            return str.length();
+        } else if (richText instanceof TL_iv.textConcat) {
+            ArrayList<TL_iv.RichText> arrayList = richText.texts;
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                TL_iv.RichText richText2 = arrayList.get(i10);
+                i10++;
+                i7 += o(richText2);
+            }
+            return i7;
+        } else {
+            return o(richText.text);
         }
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34327b.setColorFilter(colorFilter);
-        this.d.setColorFilter(colorFilter);
-        this.f34329e.setColorFilter(colorFilter);
-        this.f34326a.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
+    public static String p(TL_iv.RichText richText) {
+        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
+            if (richText instanceof TL_iv.textPlain) {
+                return ((TL_iv.textPlain) richText).text;
+            }
+            if (richText instanceof TL_iv.textConcat) {
+                StringBuilder sb2 = new StringBuilder();
+                ArrayList<TL_iv.RichText> arrayList = richText.texts;
+                int size = arrayList.size();
+                int i7 = 0;
+                while (i7 < size) {
+                    TL_iv.RichText richText2 = arrayList.get(i7);
+                    i7++;
+                    sb2.append(p(richText2));
+                }
+                return sb2.toString();
+            }
+            return p(richText.text);
+        }
+        return "";
     }
 }

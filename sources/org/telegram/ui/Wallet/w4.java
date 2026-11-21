@@ -1,46 +1,86 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
+import android.view.View;
+import java.util.Locale;
 import org.telegram.messenger.x10;
-import org.telegram.ui.Components.lc;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.d61;
 public final class w4 implements x10 {
-    public final int f45211a;
-    public final hi.d f45212b;
-    public final org.telegram.ui.ActionBar.x2 f45213c;
-    public final org.telegram.ui.ActionBar.i6 d;
+    public final int f45252a;
+    public final n6 f45253b;
 
-    public w4(hi.d dVar, org.telegram.ui.ActionBar.x2 x2Var, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
-        this.f45211a = i7;
-        this.f45212b = dVar;
-        this.f45213c = x2Var;
-        this.d = i6Var;
+    public w4(n6 n6Var, int i7) {
+        this.f45252a = i7;
+        this.f45253b = n6Var;
     }
 
     @Override
     public final void a(Object obj) {
-        String str = (String) obj;
-        switch (this.f45211a) {
+        switch (this.f45252a) {
             case 0:
-                this.f45212b.setLoading(false);
-                boolean isEmpty = TextUtils.isEmpty(str);
-                org.telegram.ui.ActionBar.x2 x2Var = this.f45213c;
-                if (!isEmpty) {
-                    new lc(x2Var.F, this.d).f0(str, false);
-                    return;
-                } else {
-                    x2Var.dismiss();
+                Boolean bool = (Boolean) obj;
+                n6 n6Var = this.f45253b;
+                n6Var.E0.setClickable(!bool.booleanValue());
+                n6Var.F0.setClickable(!bool.booleanValue());
+                if (bool.booleanValue()) {
+                    n6Var.f44668f0 = 1;
+                    n6Var.f44683s0.setPosition(1);
+                    n6Var.f44683s0.post(new q4(n6Var, 3));
                     return;
                 }
+                return;
+            case 1:
+                String lowerCase = ((String) obj).trim().toLowerCase(Locale.ROOT);
+                n6 n6Var2 = this.f45253b;
+                n6Var2.f44674l0 = lowerCase;
+                h51[] h51VarArr = n6Var2.f44685u0;
+                h51 h51Var = h51VarArr[1];
+                if (h51Var != null) {
+                    n6.d1(h51Var, true);
+                    h51VarArr[1].v0(0);
+                    h51VarArr[1].post(new q4(n6Var2, 3));
+                    return;
+                }
+                return;
+            case 2:
+                float floatValue = ((Float) obj).floatValue();
+                n6 n6Var3 = this.f45253b;
+                if (n6Var3.D0 != floatValue) {
+                    n6Var3.D0 = floatValue;
+                    float B = org.telegram.ui.Cells.c0.B(floatValue, 0.6f, 1.0f, 0.0f);
+                    int i7 = 0;
+                    for (int i10 = 0; i10 < n6Var3.C0.getChildCount(); i10++) {
+                        View childAt = n6Var3.C0.getChildAt(i10);
+                        childAt.setAlpha(B);
+                        childAt.setPivotY(0.0f);
+                        childAt.setScaleY(1.0f - floatValue);
+                    }
+                    d61 d61Var = n6Var3.C0;
+                    if (floatValue != 0.0f) {
+                        i7 = 4;
+                    }
+                    d61Var.setImportantForAccessibility(i7);
+                    n6Var3.C0.requestLayout();
+                    return;
+                }
+                return;
+            case 3:
+                n6.k0(this.f45253b, (String) obj);
+                return;
             default:
-                this.f45212b.setLoading(false);
-                org.telegram.ui.ActionBar.x2 x2Var2 = this.f45213c;
-                if (str != null) {
-                    new lc(x2Var2.F, this.d).f0(str, false);
-                    return;
-                } else {
-                    x2Var2.dismiss();
-                    return;
+                TLRPC.User user = (TLRPC.User) obj;
+                n6 n6Var4 = this.f45253b;
+                if (!n6Var4.isFinished) {
+                    if (user == null) {
+                        org.telegram.messenger.g0.g3(new q4(n6Var4, 9));
+                        return;
+                    } else {
+                        n6Var4.presentFragment(new da(user));
+                        return;
+                    }
                 }
+                return;
         }
     }
 }

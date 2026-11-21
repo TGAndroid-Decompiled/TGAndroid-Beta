@@ -1,33 +1,21 @@
 package org.telegram.ui.Components;
-
-import java.util.ArrayList;
 public final class gs implements Runnable {
-    public final int f35555a;
-    public final hs f35556b;
+    public final int f35638a;
+    public final ks f35639b;
 
-    public gs(hs hsVar, int i7) {
-        this.f35555a = i7;
-        this.f35556b = hsVar;
+    public gs(ks ksVar, int i7) {
+        this.f35638a = i7;
+        this.f35639b = ksVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f35555a) {
+        switch (this.f35638a) {
             case 0:
-                hs hsVar = this.f35556b;
-                hsVar.f35959c = false;
-                hsVar.f35958b.run();
-                ArrayList arrayList = hsVar.h;
-                if (arrayList.isEmpty() || System.currentTimeMillis() - hsVar.f35961f > 3600000) {
-                    arrayList.clear();
-                    hsVar.f35960e = false;
-                    hsVar.f35962g = null;
-                    hsVar.a();
-                    return;
-                }
+                this.f35639b.X(false);
                 return;
             default:
-                this.f35556b.f35963i = false;
+                this.f35639b.O(true);
                 return;
         }
     }

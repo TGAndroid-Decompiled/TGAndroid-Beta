@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-public final class tc1 extends org.telegram.ui.Components.bk0 {
-    public final Context f52250c;
+public final class tc1 extends org.telegram.ui.Components.dk0 {
+    public final Context f52300c;
     public final WallpapersListActivity d;
 
     public tc1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f52250c = context;
+        this.f52300c = context;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59127f == 0) {
+        if (f1Var.f59165f == 0) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class tc1 extends org.telegram.ui.Components.bk0 {
 
     @Override
     public final int b() {
-        return this.d.f45378a;
+        return this.d.f45419a;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class tc1 extends org.telegram.ui.Components.bk0 {
         int i10;
         WallpapersListActivity wallpapersListActivity = this.d;
         i10 = wallpapersListActivity.uploadImageRow;
-        if (i7 != i10 && i7 != wallpapersListActivity.h && i7 != wallpapersListActivity.f45380b && i7 != wallpapersListActivity.f45385e) {
-            if (i7 != wallpapersListActivity.f45387f && i7 != wallpapersListActivity.f45390n) {
+        if (i7 != i10 && i7 != wallpapersListActivity.h && i7 != wallpapersListActivity.f45421b && i7 != wallpapersListActivity.f45426e) {
+            if (i7 != wallpapersListActivity.f45428f && i7 != wallpapersListActivity.f45431n) {
                 return 2;
             }
             return 3;
@@ -47,10 +47,10 @@ public final class tc1 extends org.telegram.ui.Components.bk0 {
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View n8Var;
-        Context context = this.f52250c;
+        Context context = this.f52300c;
         if (i7 != 0) {
             if (i7 != 3) {
-                n8Var = new org.telegram.ui.Components.ej(this, context, 1);
+                n8Var = new org.telegram.ui.Components.gj(this, context, 1);
                 n8Var.setTag(-33024);
             } else {
                 n8Var = new org.telegram.ui.Cells.a9(context);

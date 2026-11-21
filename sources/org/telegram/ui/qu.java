@@ -4,12 +4,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class qu implements View.OnLongClickListener {
-    public final int f51296a;
-    public final cx f51297b;
+    public final int f51350a;
+    public final cx f51351b;
 
     public qu(cx cxVar, int i7) {
-        this.f51296a = i7;
-        this.f51297b = cxVar;
+        this.f51350a = i7;
+        this.f51351b = cxVar;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class qu implements View.OnLongClickListener {
         boolean z11;
         int i7;
         int i10;
-        int i11 = this.f51296a;
-        cx cxVar = this.f51297b;
+        int i11 = this.f51350a;
+        cx cxVar = this.f51351b;
         switch (i11) {
             case 0:
                 ArrayList arrayList = cxVar.K2;
@@ -66,24 +66,24 @@ public final class qu implements View.OnLongClickListener {
                 } else {
                     z11 = false;
                 }
-                org.telegram.ui.Components.y60 I = org.telegram.ui.Components.y60.I(cxVar, view);
+                org.telegram.ui.Components.a70 I = org.telegram.ui.Components.a70.I(cxVar, view);
                 if (z11) {
+                    i7 = 2131745439;
+                } else {
                     i7 = 2131745440;
-                } else {
-                    i7 = 2131745441;
                 }
-                I.l(2131232361, org.telegram.messenger.gd.M0(i7, null), new gu(cxVar, 13), z10);
-                I.c(2131231509, org.telegram.messenger.gd.M0(2131745388, null), new gu(cxVar, 14), false);
+                I.l(2131232361, org.telegram.messenger.gd.N0(i7, null), new gu(cxVar, 13), z10);
+                I.c(2131231509, org.telegram.messenger.gd.N0(2131745387, null), new gu(cxVar, 14), false);
                 if (z12) {
-                    i10 = 2131745319;
+                    i10 = 2131745318;
                 } else {
-                    i10 = 2131745664;
+                    i10 = 2131745663;
                 }
-                I.l(2131232079, org.telegram.messenger.gd.M0(i10, null), new org.telegram.ui.Components.pp0(7, cxVar, z12), z13);
+                I.l(2131232079, org.telegram.messenger.gd.N0(i10, null), new org.telegram.ui.Components.rp0(7, cxVar, z12), z13);
                 I.a0();
                 return true;
             case 1:
-                cx cxVar2 = this.f51297b;
+                cx cxVar2 = this.f51351b;
                 cxVar2.K4(cxVar2.K2, 104, true, true, null);
                 return true;
             case 2:

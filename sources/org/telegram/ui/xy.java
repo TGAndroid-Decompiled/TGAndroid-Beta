@@ -20,90 +20,90 @@ public final class xy extends ez {
 
     @Override
     public final void c() {
-        org.telegram.ui.Components.y60 G = org.telegram.ui.Components.y60.G(this.F.d.f30193c, null, this);
-        G.c(2131232105, org.telegram.messenger.gd.M0(2131751751, null), new Runnable(this) {
-            public final xy f53507b;
+        org.telegram.ui.Components.a70 G = org.telegram.ui.Components.a70.G(this.F.d.f30176c, null, this);
+        G.c(2131232105, org.telegram.messenger.gd.N0(2131751750, null), new Runnable(this) {
+            public final xy f53553b;
 
             {
-                this.f53507b = this;
+                this.f53553b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53507b;
-                        String str = xyVar.f47356y;
+                        xy xyVar = this.f53553b;
+                        String str = xyVar.f47425y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53507b.d();
+                        this.f53553b.d();
                         return;
                     default:
-                        this.f53507b.a();
+                        this.f53553b.a();
                         return;
                 }
             }
         }, false);
-        G.c(2131232322, org.telegram.messenger.gd.M0(2131750456, null), new Runnable(this) {
-            public final xy f53507b;
+        G.c(2131232322, org.telegram.messenger.gd.N0(2131750455, null), new Runnable(this) {
+            public final xy f53553b;
 
             {
-                this.f53507b = this;
+                this.f53553b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53507b;
-                        String str = xyVar.f47356y;
+                        xy xyVar = this.f53553b;
+                        String str = xyVar.f47425y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53507b.d();
+                        this.f53553b.d();
                         return;
                     default:
-                        this.f53507b.a();
+                        this.f53553b.a();
                         return;
                 }
             }
         }, false);
-        G.c(2131232110, org.telegram.messenger.gd.M0(2131751523, null), new Runnable(this) {
-            public final xy f53507b;
+        G.c(2131232110, org.telegram.messenger.gd.N0(2131751522, null), new Runnable(this) {
+            public final xy f53553b;
 
             {
-                this.f53507b = this;
+                this.f53553b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        xy xyVar = this.f53507b;
-                        String str = xyVar.f47356y;
+                        xy xyVar = this.f53553b;
+                        String str = xyVar.f47425y;
                         if (str != null && org.telegram.messenger.g0.g(str)) {
                             new org.telegram.ui.Components.lc(xyVar.F.d.W1, null).k(false).j();
                             return;
                         }
                         return;
                     case 1:
-                        this.f53507b.d();
+                        this.f53553b.d();
                         return;
                     default:
-                        this.f53507b.a();
+                        this.f53553b.a();
                         return;
                 }
             }
         }, true);
-        if (org.telegram.messenger.gd.f24213a0) {
-            G.f42356i = 3;
+        if (org.telegram.messenger.gd.f24241a0) {
+            G.f33365i = 3;
         }
         G.a0();
     }

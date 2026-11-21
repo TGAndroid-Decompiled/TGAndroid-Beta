@@ -4,37 +4,37 @@ import org.telegram.messenger.q10;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoipAudioManager;
-import org.telegram.ui.Components.ry;
+import org.telegram.ui.Components.ty;
 public final class m0 implements Runnable {
-    public final int f13793a;
-    public final boolean f13794b;
-    public final boolean f13795c;
+    public final int f13822a;
+    public final boolean f13823b;
+    public final boolean f13824c;
     public final Object d;
 
     public m0(Object obj, boolean z10, boolean z11, int i7) {
-        this.f13793a = i7;
+        this.f13822a = i7;
         this.d = obj;
-        this.f13794b = z10;
-        this.f13795c = z11;
+        this.f13823b = z10;
+        this.f13824c = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f13793a) {
+        switch (this.f13822a) {
             case 0:
-                wf.b.p((wf.b) ((o0) this.d).d, this.f13794b, this.f13795c);
+                wf.b.p((wf.b) ((o0) this.d).d, this.f13823b, this.f13824c);
                 return;
             case 1:
-                ((VideoPlayerHolderBase) this.d).lambda$setAudioEnabled$8(this.f13794b, this.f13795c);
+                ((VideoPlayerHolderBase) this.d).lambda$setAudioEnabled$8(this.f13823b, this.f13824c);
                 return;
             case 2:
-                ((NativeInstance) this.d).lambda$onNetworkStateUpdated$0(this.f13794b, this.f13795c);
+                ((NativeInstance) this.d).lambda$onNetworkStateUpdated$0(this.f13823b, this.f13824c);
                 return;
             case 3:
-                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$3((q10) this.d, this.f13794b, this.f13795c);
+                VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$3((q10) this.d, this.f13823b, this.f13824c);
                 return;
             default:
-                ((ry) this.d).Q(false, this.f13794b, this.f13795c);
+                ((ty) this.d).Q(false, this.f13823b, this.f13824c);
                 return;
         }
     }

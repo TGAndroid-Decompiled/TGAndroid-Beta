@@ -2,23 +2,23 @@ package org.telegram.messenger;
 
 import android.text.Layout;
 import android.view.View;
-import org.telegram.ui.Components.ox0;
-import org.telegram.ui.Components.px0;
+import org.telegram.ui.Components.qx0;
+import org.telegram.ui.Components.rx0;
 import org.telegram.ui.wg0;
 public final class ru implements wg0 {
-    public final px0 f26696a;
+    public final rx0 f26724a;
 
-    public ru(px0 px0Var) {
-        this.f26696a = px0Var;
+    public ru(rx0 rx0Var) {
+        this.f26724a = rx0Var;
     }
 
     @Override
     public final Layout a() {
-        ox0 ox0Var = this.f26696a.f38593b;
-        if (ox0Var == null) {
+        qx0 qx0Var = this.f26724a.f39360b;
+        if (qx0Var == null) {
             return null;
         }
-        return ox0Var.a();
+        return qx0Var.a();
     }
 
     @Override

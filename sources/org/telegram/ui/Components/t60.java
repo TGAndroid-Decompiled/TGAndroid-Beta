@@ -1,30 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Path;
 import android.view.View;
-public final class t60 implements org.telegram.messenger.x10 {
-    public final int f39915a;
-    public final float f39916b;
-    public final float f39917c;
-    public final View d;
+import android.view.ViewGroup;
+public final class t60 extends org.telegram.ui.ActionBar.g1 {
+    public final ViewGroup f39794o;
+    public final a70 f39795p;
 
-    public t60(float f10, float f11, int i7, View view) {
-        this.f39915a = i7;
-        this.d = view;
-        this.f39916b = f10;
-        this.f39917c = f11;
+    public t60(a70 a70Var, View view, ViewGroup viewGroup) {
+        super(view, -2, -2);
+        this.f39795p = a70Var;
+        this.f39794o = viewGroup;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f39915a) {
-            case 0:
-                ((u60) this.d).f40230y.addPath((Path) obj, this.f39916b, this.f39917c);
-                return;
-            default:
-                Boolean bool = (Boolean) obj;
-                ((org.telegram.ui.Cells.p7) this.d).n(this.f39916b, this.f39917c);
-                return;
+    public final void dismiss() {
+        d(true);
+        ViewGroup viewGroup = this.f39794o;
+        a70 a70Var = this.f39795p;
+        a70.a(a70Var, viewGroup);
+        Runnable runnable = a70Var.f33378p;
+        if (runnable != null) {
+            runnable.run();
+            a70Var.f33378p = null;
         }
     }
 }

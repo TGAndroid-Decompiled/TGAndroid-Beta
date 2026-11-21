@@ -1,6 +1,6 @@
 package org.telegram.tgnet;
 
-import oi.a2;
+import oi.c2;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.ks;
@@ -23,7 +23,7 @@ public class TLParseException extends RuntimeException {
         }
         a8.g(tLParseException, z11);
         if (i7 != -847714938 && i7 != -779361553 && i7 != -212046591) {
-            g0.g3(new a2(tLParseException, 1));
+            g0.g3(new c2(tLParseException, 1));
         }
         if (!z10) {
             return;

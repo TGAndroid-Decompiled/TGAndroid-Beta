@@ -1,9 +1,8 @@
 package org.telegram.ui.Components;
-public final class qm0 {
-    public final int f38841a;
-    public int f38842b;
+public interface qm0 {
+    void F(org.telegram.ui.Cells.u2 u2Var);
 
-    public qm0(int i7) {
-        this.f38841a = i7;
-    }
+    void finish();
+
+    void o(float f10);
 }

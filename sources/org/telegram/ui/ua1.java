@@ -4,19 +4,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ua1 implements RequestDelegate {
-    public final int f52497a;
-    public final bb1 f52498b;
+    public final int f52511a;
+    public final bb1 f52512b;
 
     public ua1(bb1 bb1Var, int i7) {
-        this.f52497a = i7;
-        this.f52498b = bb1Var;
+        this.f52511a = i7;
+        this.f52512b = bb1Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f52497a) {
+        switch (this.f52511a) {
             case 0:
-                final bb1 bb1Var = this.f52498b;
+                final bb1 bb1Var = this.f52512b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -32,16 +32,16 @@ public final class ua1 implements RequestDelegate {
                 });
                 return;
             case 1:
-                org.telegram.messenger.g0.g3(new xa1(this.f52498b, tL_error, 0));
+                org.telegram.messenger.g0.g3(new xa1(this.f52512b, tL_error, 0));
                 return;
             case 2:
-                org.telegram.messenger.g0.g3(new xa1(this.f52498b, tL_error, 1));
+                org.telegram.messenger.g0.g3(new xa1(this.f52512b, tL_error, 1));
                 return;
             case 3:
-                org.telegram.messenger.g0.g3(new xa1(this.f52498b, tL_error, 2));
+                org.telegram.messenger.g0.g3(new xa1(this.f52512b, tL_error, 2));
                 return;
             default:
-                final bb1 bb1Var2 = this.f52498b;
+                final bb1 bb1Var2 = this.f52512b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {

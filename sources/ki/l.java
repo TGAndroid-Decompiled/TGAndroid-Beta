@@ -1,0 +1,103 @@
+package ki;
+
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import c8.ma;
+import c8.ra;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.m80;
+import org.telegram.ui.Components.q9;
+public final class l extends FrameLayout {
+    public static final int f18775n = 0;
+    public final h6 f18776a;
+    public final q9 f18777b;
+    public final ImageView f18778c;
+    public final TextView d;
+    public final TextView f18779e;
+    public final TextView f18780f;
+    public final m80 h;
+
+    public l(Activity activity, h6 h6Var) {
+        super(activity);
+        this.f18776a = h6Var;
+        LinearLayout f10 = org.telegram.messenger.f3.f(activity, 0);
+        f10.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(5.0f));
+        ra.b(f10, 0.025f, 1.4f);
+        addView(f10, ma.e(-1, -1, 119));
+        int i7 = m6.Fi;
+        Drawable a02 = m6.a0(m6.r1(0.1f, m6.w0(i7, h6Var)), 0, 0);
+        p6 K = t6.K(0.1f, i7);
+        setBackground(a02);
+        t6.j(this, a02, null, K, h6Var);
+        LinearLayout f11 = org.telegram.messenger.f3.f(activity, 1);
+        f10.addView(f11, ma.p(-1, -2, 1.0f, 3));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(0);
+        f11.addView(linearLayout, ma.q(-1, -2, 0.0f, 51, 0, 0, 0, 0));
+        TextView textView = new TextView(activity);
+        this.d = textView;
+        textView.setTextSize(1, 14.0f);
+        int i10 = m6.G6;
+        t6.U(textView, i10, h6Var);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        linearLayout.addView(textView, ma.p(-2, -2, 0.0f, 16));
+        ks.i(textView);
+        TextView textView2 = new TextView(activity);
+        this.f18780f = textView2;
+        textView2.setTextSize(1, 11.0f);
+        t6.U(textView2, i7, h6Var);
+        ra.b(textView2, 0.1f, 1.5f);
+        textView2.setPadding(org.telegram.messenger.g0.L(6.33f), 0, org.telegram.messenger.g0.L(6.33f), 0);
+        ShapeDrawable d02 = m6.d0(org.telegram.messenger.g0.L(9.0f), m6.r1(0.1f, m6.w0(i7, h6Var)));
+        p6 K2 = t6.K(0.1f, i7);
+        textView2.setBackground(d02);
+        t6.j(textView2, d02, K2, null, h6Var);
+        textView2.setText(gd.N0(2131753152, null));
+        linearLayout.addView(textView2, ma.q(-2, 17, 0.0f, 19, 5, 1, 0, 0));
+        TextView textView3 = new TextView(activity);
+        this.f18779e = textView3;
+        textView3.setVisibility(8);
+        textView3.setTextSize(1, 14.0f);
+        t6.U(textView3, i10, h6Var);
+        textView3.setTypeface(org.telegram.messenger.g0.o());
+        f11.addView(textView3, ma.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2));
+        ks.i(textView3);
+        m80 m80Var = new m80(activity, null);
+        this.h = m80Var;
+        m80Var.setTextSize(1, 13.0f);
+        t6.G(m80Var, m6.Xc, h6Var);
+        t6.U(m80Var, i10, h6Var);
+        f11.addView(m80Var, ma.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        ks.i(m80Var);
+        q9 q9Var = new q9(activity);
+        this.f18777b = q9Var;
+        q9Var.setRoundRadius(org.telegram.messenger.g0.L(4.0f));
+        q9Var.setVisibility(8);
+        f10.addView(q9Var, ma.t(48, 48, 53, 10, 0, 2, 2));
+        ImageView imageView = new ImageView(activity);
+        this.f18778c = imageView;
+        imageView.setBackground(m6.h0(5, m6.r1(0.2f, m6.w0(m6.W5, h6Var)), -1));
+        ra.a(imageView);
+        imageView.setImageResource(2131232098);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        t6.s(imageView, m6.Ue, h6Var, PorterDuff.Mode.SRC_IN);
+        imageView.setOnClickListener(new bi.o(9));
+        imageView.setVisibility(8);
+        f10.addView(imageView, ma.t(32, 32, 53, 10, 3, 0, 2));
+    }
+
+    public final void a(final org.telegram.ui.bn r24, final org.telegram.messenger.fj r25, org.telegram.ui.af r26, org.telegram.ui.af r27) {
+        throw new UnsupportedOperationException("Method not decompiled: ki.l.a(org.telegram.ui.bn, org.telegram.messenger.fj, org.telegram.ui.af, org.telegram.ui.af):void");
+    }
+}

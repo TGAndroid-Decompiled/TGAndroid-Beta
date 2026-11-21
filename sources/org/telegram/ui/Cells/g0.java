@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.bz;
-import org.telegram.ui.Components.l80;
+import org.telegram.ui.Components.n80;
 public abstract class g0 extends View {
     public int E;
     public final ImageReceiver F;
@@ -19,44 +19,44 @@ public abstract class g0 extends View {
     public boolean J;
     public final y K;
     public int L;
-    public StaticLayout f30632a;
-    public String f30633b;
-    public String f30634c;
+    public StaticLayout f30660a;
+    public String f30661b;
+    public String f30662c;
     public String d;
-    public int f30635e;
-    public int f30636f;
+    public int f30663e;
+    public int f30664f;
     public int h;
-    public int f30637n;
-    public l80 f30638r;
-    public final n2.o0 f30639s;
-    public e0 f30640w;
-    public final int f30641x;
-    public final org.telegram.ui.ActionBar.i6 f30642y;
+    public int f30665n;
+    public n80 f30666r;
+    public final n2.o0 f30667s;
+    public e0 f30668w;
+    public final int f30669x;
+    public final org.telegram.ui.ActionBar.h6 f30670y;
 
-    public g0(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+    public g0(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f30639s = new n2.o0(this);
+        this.f30667s = new n2.o0(this);
         this.I = org.telegram.messenger.g0.L(4.0f);
-        this.f30641x = i7;
-        this.f30642y = i6Var;
+        this.f30669x = i7;
+        this.f30670y = h6Var;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.F = imageReceiver;
         imageReceiver.K0 = true;
         imageReceiver.B0 = true;
-        imageReceiver.f22663t1 = 300;
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29486i6, i6Var);
+        imageReceiver.f22691t1 = 300;
+        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29470i6, h6Var);
         int i10 = bz.Y0;
         this.L = i10;
-        y a02 = org.telegram.ui.ActionBar.n6.a0(w02, i10, i10);
+        y a02 = org.telegram.ui.ActionBar.m6.a0(w02, i10, i10);
         this.K = a02;
         a02.setCallback(this);
     }
 
     public final void a() {
-        if (this.f30638r != null) {
-            this.f30638r = null;
+        if (this.f30666r != null) {
+            this.f30666r = null;
         }
-        this.f30639s.f(true);
+        this.f30667s.f(true);
         invalidate();
     }
 
@@ -69,7 +69,7 @@ public abstract class g0 extends View {
     }
 
     public CharSequence getText() {
-        StaticLayout staticLayout = this.f30632a;
+        StaticLayout staticLayout = this.f30660a;
         if (staticLayout == null) {
             return null;
         }
@@ -94,14 +94,14 @@ public abstract class g0 extends View {
         float f10;
         canvas.save();
         canvas.translate(getSideMenuWidth() / 2.0f, 0.0f);
-        int width = (getWidth() - this.f30635e) / 2;
+        int width = (getWidth() - this.f30663e) / 2;
         int L = org.telegram.messenger.g0.L(2.0f) + this.E;
-        Drawable k10 = org.telegram.ui.ActionBar.n6.f29631q3.k();
+        Drawable k10 = org.telegram.ui.ActionBar.m6.f29615q3.k();
         if (k10 != null) {
-            k10.setBounds(width, L, this.f30635e + width, this.f30636f + L);
+            k10.setBounds(width, L, this.f30663e + width, this.f30664f + L);
             k10.draw(canvas);
         }
-        Point point = org.telegram.messenger.g0.f24118q;
+        Point point = org.telegram.messenger.g0.f24146q;
         int i7 = point.x;
         int i10 = point.y;
         if (getParent() instanceof View) {
@@ -109,37 +109,37 @@ public abstract class g0 extends View {
             i7 = view.getMeasuredWidth();
             i10 = view.getMeasuredHeight();
         }
-        org.telegram.ui.ActionBar.i6 i6Var = this.f30642y;
-        if (i6Var != null) {
-            drawable = i6Var.getDrawable("drawableMsgInMedia");
+        org.telegram.ui.ActionBar.h6 h6Var = this.f30670y;
+        if (h6Var != null) {
+            drawable = h6Var.getDrawable("drawableMsgInMedia");
         } else {
             drawable = null;
         }
         if (drawable == null) {
-            drawable = org.telegram.ui.ActionBar.n6.R0("drawableMsgInMedia");
+            drawable = org.telegram.ui.ActionBar.m6.R0("drawableMsgInMedia");
         }
-        org.telegram.ui.ActionBar.v4 v4Var = (org.telegram.ui.ActionBar.v4) drawable;
-        v4Var.o((int) getY(), i7, i10);
-        v4Var.setBounds(width, 0, this.f30635e + width, this.f30636f);
-        v4Var.draw(canvas);
+        org.telegram.ui.ActionBar.u4 u4Var = (org.telegram.ui.ActionBar.u4) drawable;
+        u4Var.o((int) getY(), i7, i10);
+        u4Var.setBounds(width, 0, this.f30663e + width, this.f30664f);
+        u4Var.draw(canvas);
         y yVar = this.K;
         if (yVar != null) {
             int i11 = this.L;
             int i12 = bz.Y0;
             if (i11 != i12) {
                 this.L = i12;
-                org.telegram.ui.ActionBar.n6.G1(yVar, i12, i12);
+                org.telegram.ui.ActionBar.m6.G1(yVar, i12, i12);
             }
-            yVar.setBounds(org.telegram.messenger.g0.L(2.0f) + width, org.telegram.messenger.g0.L(2.0f), (this.f30635e + width) - org.telegram.messenger.g0.L(2.0f), this.f30636f - org.telegram.messenger.g0.L(2.0f));
+            yVar.setBounds(org.telegram.messenger.g0.L(2.0f) + width, org.telegram.messenger.g0.L(2.0f), (this.f30663e + width) - org.telegram.messenger.g0.L(2.0f), this.f30664f - org.telegram.messenger.g0.L(2.0f));
             yVar.draw(canvas);
         }
         int i13 = this.I;
         float f11 = this.E - i13;
         ImageReceiver imageReceiver = this.F;
-        imageReceiver.y0(width + i13, i13, this.f30635e - (i13 * 2), f11);
+        imageReceiver.y0(width + i13, i13, this.f30663e - (i13 * 2), f11);
         imageReceiver.h(canvas, null);
-        org.telegram.ui.ActionBar.n6.f29591o2.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Vc, i6Var));
-        org.telegram.ui.ActionBar.n6.f29591o2.linkColor = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Xc, i6Var);
+        org.telegram.ui.ActionBar.m6.f29575o2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Vc, h6Var));
+        org.telegram.ui.ActionBar.m6.f29575o2.linkColor = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Xc, h6Var);
         canvas.save();
         if (this.G) {
             f10 = 14.0f;
@@ -150,12 +150,12 @@ public abstract class g0 extends View {
         this.h = L2;
         float f12 = L2;
         int L3 = org.telegram.messenger.g0.L(11.0f) + L;
-        this.f30637n = L3;
+        this.f30665n = L3;
         canvas.translate(f12, L3);
-        if (this.f30639s.h(canvas)) {
+        if (this.f30667s.h(canvas)) {
             invalidate();
         }
-        StaticLayout staticLayout = this.f30632a;
+        StaticLayout staticLayout = this.f30660a;
         if (staticLayout != null) {
             staticLayout.draw(canvas);
         }
@@ -166,7 +166,7 @@ public abstract class g0 extends View {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        StaticLayout staticLayout = this.f30632a;
+        StaticLayout staticLayout = this.f30660a;
         if (staticLayout != null) {
             accessibilityNodeInfo.setText(staticLayout.getText());
         }
@@ -174,7 +174,7 @@ public abstract class g0 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), org.telegram.messenger.g0.L(8.0f) + this.f30636f);
+        setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), org.telegram.messenger.g0.L(8.0f) + this.f30664f);
     }
 
     @Override
@@ -187,7 +187,7 @@ public abstract class g0 extends View {
     }
 
     public void setDelegate(e0 e0Var) {
-        this.f30640w = e0Var;
+        this.f30668w = e0Var;
     }
 
     @Override

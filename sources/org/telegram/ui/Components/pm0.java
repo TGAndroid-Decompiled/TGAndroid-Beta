@@ -1,24 +1,40 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class pm0 extends v4.u0 {
-    public final int f38492a;
-    public final di.i4 f38493b;
+import android.content.Context;
+import android.text.TextUtils;
+import java.util.ArrayList;
+public final class pm0 extends ms {
+    public final org.telegram.ui.cx f38639g0;
+    public final org.telegram.ui.kw f38640h0;
 
-    public pm0(di.i4 i4Var, int i7) {
-        this.f38492a = i7;
-        this.f38493b = i4Var;
+    public pm0(org.telegram.ui.kw kwVar, ek0 ek0Var, Context context, int i7, int i10, org.telegram.ui.cx cxVar) {
+        super(ek0Var, context, i7, i10);
+        this.f38640h0 = kwVar;
+        this.f38639g0 = cxVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f38492a) {
-            case 0:
-                ((org.telegram.ui.kw) this.f38493b.f9008c).P();
-                return;
-            default:
-                ((org.telegram.ui.kw) this.f38493b.f9008c).P();
-                return;
+    public final void O(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        ArrayList arrayList3;
+        ArrayList arrayList4;
+        super.O(z10);
+        hm0 hm0Var = this.f38640h0.f40515j0;
+        if (!this.Z && !this.f37624a0 && (arrayList = this.S) != null && arrayList.isEmpty() && (arrayList2 = this.T) != null && arrayList2.isEmpty() && (arrayList3 = this.V) != null && arrayList3.isEmpty() && (arrayList4 = this.U) != null && arrayList4.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
+        hm0Var.e(z11, z10);
+        if (TextUtils.isEmpty(this.f37628e0)) {
+            hm0Var.d.setText(org.telegram.messenger.gd.N0(2131748038, null));
+            hm0Var.f37991e.setVisibility(0);
+            hm0Var.f37991e.setText(org.telegram.messenger.gd.N0(2131748039, null));
+            return;
+        }
+        hm0Var.d.setText(org.telegram.messenger.gd.N0(2131747974, null));
+        hm0Var.f37991e.setVisibility(8);
     }
 }

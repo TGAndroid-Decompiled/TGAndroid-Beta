@@ -1,30 +1,58 @@
 package org.telegram.ui.Components;
-public final class uk0 implements Runnable {
-    public final int f40370a;
-    public final wk0 f40371b;
 
-    public uk0(wk0 wk0Var, int i7) {
-        this.f40370a = i7;
-        this.f40371b = wk0Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+public final class uk0 extends FrameLayout {
+    public final Paint f40479a;
+    public final h40 f40480b;
+    public final RectF f40481c;
+    public final float d;
+    public float f40482e;
+
+    public uk0(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f40479a = paint;
+        h40 h40Var = new h40(this, 1);
+        this.f40480b = h40Var;
+        this.f40481c = new RectF();
+        this.d = (org.telegram.messenger.g0.L(3.0f) * 0.5f) + org.telegram.messenger.g0.L(5.0f);
+        a(paint, 0.2f);
+        a(h40Var, 1.0f);
+        setWillNotDraw(false);
+    }
+
+    public static void a(Paint paint, float f10) {
+        paint.setColor(-1);
+        paint.setAlpha(Math.round(f10 * 255.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public final void run() {
-        switch (this.f40370a) {
-            case 0:
-                wk0 wk0Var = this.f40371b;
-                wk0Var.getClass();
-                org.telegram.messenger.g0.g3(new uk0(wk0Var, 2));
-                return;
-            case 1:
-                org.telegram.messenger.g0.g3(new uk0(this.f40371b, 3));
-                return;
-            case 2:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            default:
-                super/*android.app.Dialog*/.dismiss();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f10 = this.d;
+        RectF rectF = this.f40481c;
+        rectF.set(f10, f10, getWidth() - f10, getHeight() - f10);
+        canvas.drawOval(rectF, this.f40479a);
+        canvas.drawArc(rectF, -90.0f, this.f40482e * 360.0f, false, this.f40480b);
+    }
+
+    public Paint getPaint() {
+        return this.f40480b;
+    }
+
+    public void setProgress(float f10) {
+        float max = Math.max(0.0f, Math.min(1.0f, f10));
+        if (this.f40482e == max) {
+            return;
         }
+        this.f40482e = max;
+        invalidate();
     }
 }

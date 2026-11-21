@@ -1,15 +1,15 @@
 package org.telegram.ui;
-public final class zv extends i11 {
-    public final cx f54593e;
+public final class zv extends j11 {
+    public final cx f54640e;
 
     public zv(cx cxVar, yv yvVar) {
         super(yvVar);
-        this.f54593e = cxVar;
+        this.f54640e = cxVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f54593e.N0 = null;
+        this.f54640e.N0 = null;
     }
 }

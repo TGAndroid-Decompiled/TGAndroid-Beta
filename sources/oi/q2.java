@@ -1,106 +1,71 @@
 package oi;
 
-import android.text.Editable;
-import org.telegram.messenger.cu;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.kt;
-public final class q2 implements i5, c1 {
-    public final s3 f22254a;
+import android.app.Activity;
+import android.net.Uri;
+import java.util.HashSet;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.q10;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.lu0;
+import org.telegram.ui.cn0;
+public final class q2 implements Runnable {
+    public final int f22327a = 2;
+    public final int f22328b;
+    public final boolean f22329c;
+    public final Object d;
+    public final Object f22330e;
+    public final Object f22331f;
+    public final Object h;
 
-    public q2(s3 s3Var) {
-        this.f22254a = s3Var;
+    public q2(Activity activity, int i7, TLRPC.InputGroupCall inputGroupCall, boolean z10, TLRPC.GroupCall groupCall, HashSet hashSet) {
+        this.d = activity;
+        this.f22328b = i7;
+        this.f22330e = inputGroupCall;
+        this.f22329c = z10;
+        this.f22331f = groupCall;
+        this.h = hashSet;
     }
 
-    public void a(e1 e1Var, h4 h4Var, boolean z10) {
-        int spanStart;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        s3 s3Var = this.f22254a;
-        q3 q3Var = s3Var.f22334p3;
-        Editable text = e1Var.getText();
-        int i7 = -1;
-        if (text == null) {
-            spanStart = -1;
-        } else {
-            spanStart = text.getSpanStart(h4Var);
-        }
-        if (text != null) {
-            i7 = text.getSpanEnd(h4Var);
-        }
-        int i10 = i7;
-        if (spanStart >= 0 && i10 > spanStart) {
-            if (!z10) {
-                TL_iv.textButton textbutton = h4Var.f22089a;
-                if (textbutton != null) {
-                    e2 e2Var = s3Var.R3;
-                    if (e2Var != null) {
-                        e2Var.d();
-                    }
-                    TL_keyboard.RichButtonStyle richButtonStyle = textbutton.style;
-                    if (richButtonStyle != null && richButtonStyle.bg_primary) {
-                        z11 = true;
-                    } else if (richButtonStyle != null && richButtonStyle.bg_danger) {
-                        z11 = true;
-                    } else if (richButtonStyle != null && richButtonStyle.bg_success) {
-                        z11 = false;
-                    } else {
-                        z11 = true;
-                    }
-                    if (richButtonStyle == null) {
-                        richButtonStyle = new TL_keyboard.RichButtonStyle();
-                    }
-                    richButtonStyle.flags = 0;
-                    if (z11) {
-                        z12 = true;
-                    } else {
-                        z12 = false;
-                    }
-                    richButtonStyle.bg_primary = z12;
-                    if (z11) {
-                        z13 = true;
-                    } else {
-                        z13 = false;
-                    }
-                    richButtonStyle.bg_danger = z13;
-                    if (z11) {
-                        z14 = true;
-                    } else {
-                        z14 = false;
-                    }
-                    richButtonStyle.bg_success = z14;
-                    richButtonStyle.link = false;
-                    textbutton.style = richButtonStyle;
-                    Editable text2 = e1Var.getText();
-                    if (text2 != null && text2.getSpanStart(h4Var) >= 0) {
-                        cu cuVar = h4Var.f22090b;
-                        if (cuVar != null && h4Var.f22091c == e1Var) {
-                            cuVar.b(e1Var);
-                            h4Var.f22091c = null;
-                        }
-                        text2.removeSpan(h4Var);
-                        h4 h4Var2 = new h4(textbutton);
-                        h4Var2.a(s3Var.f22331n3, e1Var, s3Var.f22333o3);
-                        text2.setSpan(h4Var2, spanStart, i10, 33);
-                        kt ktVar = e1Var.T1;
-                        if (ktVar != null) {
-                            ktVar.g();
-                        }
-                        e1Var.f22024v2 = true;
-                        e1Var.invalidate();
-                        e1Var.requestLayout();
-                        e1Var.f();
-                        q3Var.onContentChanged();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            }
-            s3Var.r3(false);
-            q3Var.R0(new r3(s3Var, e1Var, spanStart, i10, h4Var), e1Var);
-        }
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: oi.q2.run():void");
+    }
+
+    public q2(t3 t3Var, Uri uri, boolean z10, String str, int i7, a aVar) {
+        this.d = t3Var;
+        this.f22330e = uri;
+        this.f22329c = z10;
+        this.f22331f = str;
+        this.f22328b = i7;
+        this.h = aVar;
+    }
+
+    public q2(lu0 lu0Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i7, fj fjVar, org.telegram.ui.Cells.r1 r1Var, boolean z10) {
+        this.d = lu0Var;
+        this.f22330e = tL_messages_stickerSet;
+        this.f22328b = i7;
+        this.f22331f = fjVar;
+        this.h = r1Var;
+        this.f22329c = z10;
+    }
+
+    public q2(cn0 cn0Var, String str, int i7, TLObject tLObject, boolean z10, TLRPC.User user) {
+        this.d = cn0Var;
+        this.f22331f = str;
+        this.f22328b = i7;
+        this.f22330e = tLObject;
+        this.f22329c = z10;
+        this.h = user;
+    }
+
+    public q2(org.telegram.ui.Wallet.u0 u0Var, boolean z10, org.telegram.ui.Wallet.r0 r0Var, TL_wallet.proofChallenge proofchallenge, int i7, q10 q10Var) {
+        this.d = u0Var;
+        this.f22329c = z10;
+        this.f22330e = r0Var;
+        this.f22331f = proofchallenge;
+        this.f22328b = i7;
+        this.h = q10Var;
     }
 }

@@ -7,12 +7,12 @@ import c8.bc;
 import com.google.android.gms.internal.vision.e2;
 public final class i extends r6.a {
     public static final Parcelable.Creator<i> CREATOR = new b(7);
-    public final String f17305a;
-    public final Bundle f17306b;
-    public final Bundle f17307c;
+    public final String f17330a;
+    public final Bundle f17331b;
+    public final Bundle f17332c;
     public final String d;
-    public final String f17308e;
-    public final String f17309f;
+    public final String f17333e;
+    public final String f17334f;
 
     public i(String type, Bundle credentialRetrievalData, Bundle candidateQueryData, String requestMatcher, String requestType, String protocolType) {
         boolean z10;
@@ -22,12 +22,12 @@ public final class i extends r6.a {
         kotlin.jvm.internal.j.e(requestMatcher, "requestMatcher");
         kotlin.jvm.internal.j.e(requestType, "requestType");
         kotlin.jvm.internal.j.e(protocolType, "protocolType");
-        this.f17305a = type;
-        this.f17306b = credentialRetrievalData;
-        this.f17307c = candidateQueryData;
+        this.f17330a = type;
+        this.f17331b = credentialRetrievalData;
+        this.f17332c = candidateQueryData;
         this.d = requestMatcher;
-        this.f17308e = requestType;
-        this.f17309f = protocolType;
+        this.f17333e = requestType;
+        this.f17334f = protocolType;
         boolean z11 = true;
         if (!xd.d.j(requestType) && !xd.d.j(protocolType)) {
             z10 = true;
@@ -46,12 +46,12 @@ public final class i extends r6.a {
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
         int r10 = bc.r(dest, 20293);
-        bc.l(dest, 1, this.f17305a);
-        bc.b(dest, 2, this.f17306b);
-        bc.b(dest, 3, this.f17307c);
+        bc.l(dest, 1, this.f17330a);
+        bc.b(dest, 2, this.f17331b);
+        bc.b(dest, 3, this.f17332c);
         bc.l(dest, 4, this.d);
-        bc.l(dest, 5, this.f17308e);
-        bc.l(dest, 6, this.f17309f);
+        bc.l(dest, 5, this.f17333e);
+        bc.l(dest, 6, this.f17334f);
         bc.s(dest, r10);
     }
 }

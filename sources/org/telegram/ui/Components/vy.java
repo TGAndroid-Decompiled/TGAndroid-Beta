@@ -1,173 +1,171 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public class vy extends v4.t {
-    public final SparseArray Q;
-    public int R;
-    public int S;
-    public int T;
-    public final int U;
-    public final ck0 V;
-    public boolean W;
-    public boolean X;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class vy extends FrameLayout {
+    public static final int h = 0;
+    public final org.telegram.ui.ActionBar.h6 f41586a;
+    public final TextView f41587b;
+    public final View f41588c;
+    public final rh0 d;
+    public boolean f41589e;
+    public int f41590f;
 
-    public vy(int i7, int i10, ck0 ck0Var) {
-        super(i7);
-        this.Q = new SparseArray();
-        this.R = -1;
-        this.W = true;
-        this.X = true;
-        this.V = ck0Var;
-        this.U = i10;
+    public vy(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context);
+        this.f41586a = h6Var;
+        View radialProgressView = new RadialProgressView(context, null);
+        addView(radialProgressView, c8.ma.c(-2.0f, -2));
+        this.f41588c = radialProgressView;
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setPadding(org.telegram.messenger.g0.L(20.0f), 0, org.telegram.messenger.g0.L(20.0f), 0);
+        linearLayout.setGravity(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        linearLayout.setOrientation(1);
+        ?? imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        imageView.setImportantForAccessibility(2);
+        imageView.setVisibility(8);
+        linearLayout.addView((View) imageView, c8.ma.t(150, 150, 17, 0, 0, 0, 20));
+        TextView textView = new TextView(context);
+        this.f41587b = textView;
+        textView.setTextSize(1, 20.0f);
+        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29361c7, h6Var);
+        org.telegram.messenger.f3.k(textView, 1, null, 2131747974);
+        linearLayout.addView(textView, c8.ma.r(-2, -2, 17));
+        addView(linearLayout, c8.ma.c(-2.0f, -2));
+        org.telegram.messenger.g0.X3(textView, false, 2.0f, true, false);
+        org.telegram.messenger.g0.X3(radialProgressView, false, 1.0f, true, false);
+        setOnTouchListener(new gi.a(19));
     }
 
-    public final void B1() {
-        ck0 ck0Var;
-        v4.i0 adapter;
-        int i7;
-        ck0 ck0Var2;
-        if (this.S > 0 && D1() && (adapter = (ck0Var = this.V).getAdapter()) != null) {
-            int i10 = this.J;
-            boolean z10 = true;
-            int b10 = adapter.b() - 1;
-            g.p pVar = this.O;
-            boolean z11 = true;
-            int i11 = 0;
-            int i12 = 0;
-            int i13 = 0;
-            while (true) {
-                i7 = this.U;
-                if (i11 < b10) {
-                    int i14 = pVar.i(i11);
-                    i12 += i14;
-                    if (i14 == i10 || i12 > i10) {
-                        z11 = z10;
-                        i12 = i14;
-                    }
-                    if (!z11) {
-                        ck0Var2 = ck0Var;
-                    } else {
-                        int d = adapter.d(i11);
-                        SparseArray sparseArray = this.Q;
-                        v4.f1 f1Var = (v4.f1) sparseArray.get(d, null);
-                        if (f1Var == null) {
-                            f1Var = adapter.a(ck0Var, d);
-                            View view = f1Var.f59123a;
-                            sparseArray.put(d, f1Var);
-                            if (view.getLayoutParams() == null) {
-                                view.setLayoutParams(n());
-                            }
-                        }
-                        View view2 = f1Var.f59123a;
-                        if (this.W) {
-                            adapter.t(f1Var, i11);
-                        }
-                        v4.q0 q0Var = (v4.q0) view2.getLayoutParams();
-                        ck0Var2 = ck0Var;
-                        view2.measure(v4.p0.s(d(), this.T, this.f59215k, E() + D() + ((ViewGroup.MarginLayoutParams) q0Var).leftMargin + ((ViewGroup.MarginLayoutParams) q0Var).rightMargin, ((ViewGroup.MarginLayoutParams) q0Var).width), v4.p0.s(this.X, this.S, this.f59216l, C() + F() + ((ViewGroup.MarginLayoutParams) q0Var).topMargin + ((ViewGroup.MarginLayoutParams) q0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) q0Var).height));
-                        i13 += view2.getMeasuredHeight();
-                        if (i13 >= (this.S - i7) - ck0Var2.getPaddingBottom()) {
-                            break;
-                        }
-                        z11 = false;
-                    }
-                    i11++;
-                    ck0Var = ck0Var2;
-                    z10 = true;
+    public final void a(int i7, int i10, int i11) {
+        int i12;
+        if (i7 != 0) {
+            i12 = 0;
+        } else {
+            i12 = 8;
+        }
+        rh0 rh0Var = this.d;
+        rh0Var.setVisibility(i12);
+        if (i7 != 0) {
+            rh0Var.f(i7, i10, i11, null);
+            rh0Var.d();
+        }
+    }
+
+    public final void b() {
+        org.telegram.messenger.g0.X3(this.f41587b, false, 0.9f, true, true);
+        org.telegram.messenger.g0.X3(this.f41588c, true, 1.0f, true, true);
+    }
+
+    public final void c() {
+        org.telegram.messenger.g0.X3(this.f41587b, true, 0.9f, true, true);
+        org.telegram.messenger.g0.X3(this.f41588c, false, 1.0f, true, true);
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        int measuredHeight;
+        int paddingTop;
+        this.f41589e = true;
+        int i13 = i11 - i7;
+        int i14 = i12 - i10;
+        int childCount = getChildCount();
+        for (int i15 = 0; i15 < childCount; i15++) {
+            View childAt = getChildAt(i15);
+            if (childAt.getVisibility() != 8) {
+                int measuredWidth = (i13 - childAt.getMeasuredWidth()) / 2;
+                View view = this.f41588c;
+                if (childAt == view && (view instanceof yz)) {
+                    measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
+                    paddingTop = getPaddingTop();
                 } else {
-                    ck0Var2 = ck0Var;
-                    break;
+                    int i16 = this.f41590f;
+                    if (i16 == 2) {
+                        measuredHeight = (org.telegram.messenger.g0.L(100.0f) - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    } else if (i16 == 1) {
+                        measuredHeight = ((i14 / 2) - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    } else {
+                        measuredHeight = (i14 - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    }
                 }
+                int i17 = paddingTop + measuredHeight;
+                childAt.layout(measuredWidth, i17, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + i17);
             }
-            this.R = Math.max(0, ((this.S - i13) - i7) - ck0Var2.getPaddingBottom());
+        }
+        this.f41589e = false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.f41589e) {
+            super.requestLayout();
         }
     }
 
-    public final void C1() {
-        this.W = false;
-    }
-
-    public boolean D1() {
-        return true;
-    }
-
-    @Override
-    public final void Q() {
-        this.Q.clear();
-        B1();
-    }
-
-    @Override
-    public final void V(RecyclerView recyclerView, int i7, int i10) {
-        super.V(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void W(RecyclerView recyclerView) {
-        this.Q.clear();
-        B1();
-        super.W(recyclerView);
-    }
-
-    @Override
-    public final void X(RecyclerView recyclerView, int i7, int i10) {
-        super.X(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void Y(RecyclerView recyclerView, int i7, int i10) {
-        super.Y(recyclerView, i7, i10);
-        B1();
-    }
-
-    @Override
-    public final void Z() {
-        B1();
-    }
-
-    @Override
-    public final void a0(RecyclerView recyclerView, int i7, int i10, Object obj) {
-        super.a0(recyclerView, i7, i10, obj);
-        B1();
-    }
-
-    @Override
-    public final void d0(v4.x0 x0Var, v4.c1 c1Var, int i7, int i10) {
-        int i11 = this.S;
-        this.T = View.MeasureSpec.getSize(i7);
-        int size = View.MeasureSpec.getSize(i10);
-        this.S = size;
-        if (i11 != size) {
-            B1();
+    public void setProgressBarColor(int i7) {
+        View view = this.f41588c;
+        if (view instanceof RadialProgressView) {
+            ((RadialProgressView) view).setProgressColor(i7);
         }
-        super.d0(x0Var, c1Var, i7, i10);
     }
 
-    @Override
-    public final boolean e() {
-        return this.X;
+    public void setShowAtCenter(boolean z10) {
+        this.f41590f = z10 ? 1 : 0;
     }
 
-    @Override
-    public final void w1(int i7, View view, boolean z10) {
-        if (this.V.G(view).b() == B() - 1) {
-            ((ViewGroup.MarginLayoutParams) ((v4.q0) view.getLayoutParams())).height = Math.max(this.R, 0);
+    public void setShowAtTop(boolean z10) {
+        int i7;
+        if (z10) {
+            i7 = 2;
+        } else {
+            i7 = 0;
         }
-        super.w1(i7, view, z10);
+        this.f41590f = i7;
     }
 
-    public vy(int i7, org.telegram.ui.n30 n30Var) {
-        super(i7, false);
-        this.Q = new SparseArray();
-        this.R = -1;
-        this.W = true;
-        this.X = true;
-        this.V = n30Var;
-        this.U = 0;
+    public void setText(String str) {
+        this.f41587b.setText(str);
+    }
+
+    public void setTextColor(int i7) {
+        TextView textView = this.f41587b;
+        org.telegram.ui.ActionBar.t6.q(textView);
+        textView.setTextColor(i7);
+    }
+
+    public void setTextSize(int i7) {
+        this.f41587b.setTextSize(1, i7);
+    }
+
+    public void setTopImage(int i7) {
+        TextView textView = this.f41587b;
+        if (i7 == 0) {
+            textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
+            return;
+        }
+        Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
+        if (mutate != null) {
+            org.telegram.ui.ActionBar.t6.x(this, mutate, org.telegram.ui.ActionBar.m6.f29361c7, this.f41586a, PorterDuff.Mode.MULTIPLY);
+        }
+        textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
+        textView.setCompoundDrawablePadding(org.telegram.messenger.g0.L(1.0f));
     }
 }

@@ -1,22 +1,22 @@
 package org.telegram.ui;
 public final class e51 implements Runnable {
-    public final int f47066a;
-    public final StickersActivity f47067b;
+    public final int f47139a;
+    public final StickersActivity f47140b;
 
     public e51(StickersActivity stickersActivity, int i7) {
-        this.f47066a = i7;
-        this.f47067b = stickersActivity;
+        this.f47139a = i7;
+        this.f47140b = stickersActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f47066a) {
+        switch (this.f47139a) {
             case 0:
-                this.f47067b.r0();
+                this.f47140b.r0();
                 return;
             default:
-                StickersActivity stickersActivity = this.f47067b;
-                stickersActivity.f43791n--;
+                StickersActivity stickersActivity = this.f47140b;
+                stickersActivity.f43832n--;
                 return;
         }
     }

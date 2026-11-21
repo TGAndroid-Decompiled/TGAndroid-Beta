@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.tgnet.TLRPC;
 public final class bp {
-    public boolean f23112b;
-    public int f23113c;
+    public boolean f23140b;
+    public int f23141c;
     public boolean d;
-    public int f23114e;
-    public int f23115f;
-    public int f23111a = 0;
-    public final int[] f23116g = new int[6];
+    public int f23142e;
+    public int f23143f;
+    public int f23139a = 0;
+    public final int[] f23144g = new int[6];
     public final int[] h = new int[6];
 
     public static bp a(TLRPC.EmojiStatus emojiStatus) {
@@ -19,10 +19,10 @@ public final class bp {
         }
         TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = (TLRPC.TL_emojiStatusCollectible) emojiStatus;
         bp bpVar = new bp();
-        bpVar.f23113c = -1;
+        bpVar.f23141c = -1;
         bpVar.d = true;
         int i7 = tL_emojiStatusCollectible.edge_color;
-        int[] iArr = bpVar.f23116g;
+        int[] iArr = bpVar.f23144g;
         iArr[0] = i7 | (-16777216);
         int i10 = tL_emojiStatusCollectible.center_color;
         iArr[1] = i10 | (-16777216);
@@ -32,7 +32,7 @@ public final class bp {
         iArr[4] = i11 | (-16777216);
         iArr[5] = i11 | (-16777216);
         System.arraycopy(iArr, 0, bpVar.h, 0, 6);
-        bpVar.f23111a = tL_emojiStatusCollectible.pattern_color | (-16777216);
+        bpVar.f23139a = tL_emojiStatusCollectible.pattern_color | (-16777216);
         return bpVar;
     }
 
@@ -41,16 +41,16 @@ public final class bp {
             return null;
         }
         bp bpVar = new bp();
-        bpVar.f23113c = tL_help_peerColorOption.color_id;
+        bpVar.f23141c = tL_help_peerColorOption.color_id;
         bpVar.d = tL_help_peerColorOption.hidden;
         int i7 = tL_help_peerColorOption.flags;
         if ((i7 & 8) != 0) {
-            bpVar.f23114e = tL_help_peerColorOption.channel_min_level;
+            bpVar.f23142e = tL_help_peerColorOption.channel_min_level;
         }
         if ((i7 & 16) != 0) {
-            bpVar.f23115f = tL_help_peerColorOption.group_min_level;
+            bpVar.f23143f = tL_help_peerColorOption.group_min_level;
         }
-        System.arraycopy(p(tL_help_peerColorOption.colors), 0, bpVar.f23116g, 0, 6);
+        System.arraycopy(p(tL_help_peerColorOption.colors), 0, bpVar.f23144g, 0, 6);
         System.arraycopy(p(tL_help_peerColorOption.dark_colors), 0, bpVar.h, 0, 6);
         return bpVar;
     }
@@ -115,30 +115,30 @@ public final class bp {
             if (z10) {
                 iArr = this.h;
             } else {
-                iArr = this.f23116g;
+                iArr = this.f23144g;
             }
             return iArr[3];
         }
         return h(z10);
     }
 
-    public final int e(int i7, org.telegram.ui.ActionBar.i6 i6Var) {
+    public final int e(int i7, org.telegram.ui.ActionBar.h6 h6Var) {
         boolean q10;
         int[] iArr;
         int i10;
         if (i7 >= 0 && i7 <= 5) {
-            if (this.f23112b && (i10 = this.f23113c) >= 0 && i10 < 7) {
-                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29655r8[i10], i6Var);
+            if (this.f23140b && (i10 = this.f23141c) >= 0 && i10 < 7) {
+                return org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29639r8[i10], h6Var);
             }
-            if (i6Var != null) {
-                q10 = i6Var.d();
+            if (h6Var != null) {
+                q10 = h6Var.d();
             } else {
-                q10 = org.telegram.ui.ActionBar.n6.I.q();
+                q10 = org.telegram.ui.ActionBar.m6.I.q();
             }
             if (q10) {
                 iArr = this.h;
             } else {
-                iArr = this.f23116g;
+                iArr = this.f23144g;
             }
             return iArr[i7];
         }
@@ -147,20 +147,20 @@ public final class bp {
 
     public final int f() {
         int[] iArr;
-        if (org.telegram.ui.ActionBar.n6.I.q()) {
+        if (org.telegram.ui.ActionBar.m6.I.q()) {
             iArr = this.h;
         } else {
-            iArr = this.f23116g;
+            iArr = this.f23144g;
         }
         return iArr[0];
     }
 
     public final int g() {
         int[] iArr;
-        if (org.telegram.ui.ActionBar.n6.I.q()) {
+        if (org.telegram.ui.ActionBar.m6.I.q()) {
             iArr = this.h;
         } else {
-            iArr = this.f23116g;
+            iArr = this.f23144g;
         }
         return iArr[1];
     }
@@ -170,17 +170,17 @@ public final class bp {
         if (z10) {
             iArr = this.h;
         } else {
-            iArr = this.f23116g;
+            iArr = this.f23144g;
         }
         return iArr[1];
     }
 
     public final int i() {
         int[] iArr;
-        if (org.telegram.ui.ActionBar.n6.I.q()) {
+        if (org.telegram.ui.ActionBar.m6.I.q()) {
             iArr = this.h;
         } else {
-            iArr = this.f23116g;
+            iArr = this.f23144g;
         }
         return iArr[2];
     }
@@ -190,26 +190,26 @@ public final class bp {
         if (z10) {
             iArr = this.h;
         } else {
-            iArr = this.f23116g;
+            iArr = this.f23144g;
         }
         return iArr[2];
     }
 
     public final int k() {
         int[] iArr;
-        if (org.telegram.ui.ActionBar.n6.I.q()) {
+        if (org.telegram.ui.ActionBar.m6.I.q()) {
             iArr = this.h;
         } else {
-            iArr = this.f23116g;
+            iArr = this.f23144g;
         }
         return iArr[4];
     }
 
     public final int l(boolean z10) {
         if (z10) {
-            return this.f23115f;
+            return this.f23143f;
         }
-        return this.f23114e;
+        return this.f23142e;
     }
 
     public final int m(boolean z10) {
@@ -218,7 +218,7 @@ public final class bp {
             if (z10) {
                 iArr = this.h;
             } else {
-                iArr = this.f23116g;
+                iArr = this.f23144g;
             }
             return iArr[4];
         }
@@ -227,7 +227,7 @@ public final class bp {
 
     public final int n(boolean z10) {
         boolean o4 = o(z10);
-        int[] iArr = this.f23116g;
+        int[] iArr = this.f23144g;
         int[] iArr2 = this.h;
         if (o4) {
             if (z10) {
@@ -243,7 +243,7 @@ public final class bp {
 
     public final boolean o(boolean z10) {
         int[] iArr;
-        int[] iArr2 = this.f23116g;
+        int[] iArr2 = this.f23144g;
         int[] iArr3 = this.h;
         if (z10) {
             iArr = iArr3;

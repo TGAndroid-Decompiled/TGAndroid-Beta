@@ -2,11 +2,11 @@ package ch;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import org.telegram.ui.Components.o5;
+import org.telegram.ui.Components.p5;
 import org.telegram.ui.Components.q9;
 public final class j0 extends q9 {
     public boolean H;
-    public o5 I;
+    public p5 I;
     public d J;
     public boolean K;
     public final l0 L;
@@ -21,9 +21,9 @@ public final class j0 extends q9 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.K = true;
-        o5 o5Var = this.I;
-        if (o5Var != null) {
-            o5Var.a(this);
+        p5 p5Var = this.I;
+        if (p5Var != null) {
+            p5Var.a(this);
         }
         d dVar = this.J;
         if (dVar != null) {
@@ -35,9 +35,9 @@ public final class j0 extends q9 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.K = false;
-        o5 o5Var = this.I;
-        if (o5Var != null) {
-            o5Var.n(this);
+        p5 p5Var = this.I;
+        if (p5Var != null) {
+            p5Var.n(this);
         }
         d dVar = this.J;
         if (dVar != null) {
@@ -47,9 +47,9 @@ public final class j0 extends q9 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        o5 o5Var = this.I;
-        if (o5Var != null) {
-            o5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        p5 p5Var = this.I;
+        if (p5Var != null) {
+            p5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.I.setAlpha(255);
             this.I.draw(canvas);
             this.H = true;
@@ -62,13 +62,13 @@ public final class j0 extends q9 {
             this.H = true;
             return;
         }
-        if (getImageReceiver().B() != null && getImageReceiver().B().f37495l0) {
+        if (getImageReceiver().B() != null && getImageReceiver().B().f38226l0) {
             this.H = true;
         }
-        if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f37495l0) {
+        if (!this.H && getImageReceiver().B() != null && !getImageReceiver().B().f38226l0) {
             l0 l0Var = this.L;
-            if (l0Var.f5400a == 2 && !l0Var.f5422z) {
-                getImageReceiver().B().N(getImageReceiver().B().f37486e[0] - 1, false, false);
+            if (l0Var.f5429a == 2 && !l0Var.f5451z) {
+                getImageReceiver().B().N(getImageReceiver().B().f38217e[0] - 1, false, false);
             } else {
                 getImageReceiver().B().N(0, false, false);
                 getImageReceiver().B().start();

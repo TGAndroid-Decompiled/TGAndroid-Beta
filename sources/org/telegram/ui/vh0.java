@@ -9,25 +9,25 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vh0 extends org.telegram.ui.ActionBar.j {
-    public final Context f52788a;
-    public final yh0 f52789b;
+    public final Context f52830a;
+    public final yh0 f52831b;
 
     public vh0(yh0 yh0Var, Context context) {
-        this.f52789b = yh0Var;
-        this.f52788a = context;
+        this.f52831b = yh0Var;
+        this.f52830a = context;
     }
 
     @Override
     public final void b(int i7) {
         int i10;
         int i11;
-        org.telegram.ui.ActionBar.a5 a5Var;
-        yh0 yh0Var = this.f52789b;
-        org.telegram.ui.ActionBar.i6 i6Var = yh0Var.f54165f;
+        org.telegram.ui.ActionBar.z4 z4Var;
+        yh0 yh0Var = this.f52831b;
+        org.telegram.ui.ActionBar.h6 h6Var = yh0Var.f54207f;
         SparseArray sparseArray = yh0Var.J;
         if (i7 == -1) {
-            a5Var = ((org.telegram.ui.ActionBar.h2) yh0Var).simpleActionBar;
-            if (a5Var.x()) {
+            z4Var = ((org.telegram.ui.ActionBar.g2) yh0Var).simpleActionBar;
+            if (z4Var.x()) {
                 yh0.b0(yh0Var);
                 return;
             } else {
@@ -36,24 +36,24 @@ public final class vh0 extends org.telegram.ui.ActionBar.j {
             }
         }
         if (i7 == 1) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, yh0Var.getParentActivity(), i6Var);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, yh0Var.getParentActivity(), h6Var);
             String G = org.telegram.messenger.gd.G(sparseArray.size(), "DeleteTones", new Object[0]);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
-            u1Var.S = G;
-            u1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.G(sparseArray.size(), "DeleteTonesMessage", new Object[0]));
-            alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), new l60(4));
-            alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131751587, null), new zr(this, 28));
+            org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+            t1Var.S = G;
+            t1Var.U = org.telegram.messenger.g0.W2(org.telegram.messenger.gd.G(sparseArray.size(), "DeleteTonesMessage", new Object[0]));
+            alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131752577, null), new m60(4));
+            alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131751586, null), new zr(this, 28));
             TextView textView = (TextView) alertDialog$Builder.p().d(-1);
             if (textView != null) {
-                org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29635q7, i6Var);
+                org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29619q7, h6Var);
             }
         } else if (i7 == 2) {
             int size = sparseArray.size();
-            Context context = this.f52788a;
+            Context context = this.f52830a;
             if (size == 1) {
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
-                i11 = ((org.telegram.ui.ActionBar.h2) yh0Var).currentAccount;
+                i11 = ((org.telegram.ui.ActionBar.g2) yh0Var).currentAccount;
                 Uri a10 = ((wh0) sparseArray.valueAt(0)).a(i11);
                 if (a10 != null) {
                     intent.putExtra("android.intent.extra.STREAM", a10);
@@ -64,7 +64,7 @@ public final class vh0 extends org.telegram.ui.ActionBar.j {
                 intent2.setAction("android.intent.action.SEND_MULTIPLE");
                 ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
                 for (int i12 = 0; i12 < sparseArray.size(); i12++) {
-                    i10 = ((org.telegram.ui.ActionBar.h2) yh0Var).currentAccount;
+                    i10 = ((org.telegram.ui.ActionBar.g2) yh0Var).currentAccount;
                     Uri a11 = ((wh0) sparseArray.valueAt(i12)).a(i10);
                     if (a11 != null) {
                         arrayList.add(a11);
@@ -77,7 +77,7 @@ public final class vh0 extends org.telegram.ui.ActionBar.j {
             }
             yh0.b0(yh0Var);
             yh0Var.i0();
-            yh0Var.f54164e.f();
+            yh0Var.f54206e.f();
         }
     }
 }

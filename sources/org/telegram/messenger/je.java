@@ -3,25 +3,25 @@ package org.telegram.messenger;
 import android.graphics.SurfaceTexture;
 import java.util.ArrayList;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.i61;
 import org.telegram.ui.PhotoViewer;
-public final class je implements d61 {
-    public final int f24844a;
-    public final int f24845b;
-    public final fj f24846c;
+public final class je implements g61 {
+    public final int f24872a;
+    public final int f24873b;
+    public final fj f24874c;
     public final MediaController d;
 
     public je(MediaController mediaController, int i7, fj fjVar, int i10) {
-        this.f24844a = i10;
+        this.f24872a = i10;
         this.d = mediaController;
-        this.f24845b = i7;
-        this.f24846c = fjVar;
+        this.f24873b = i7;
+        this.f24874c = fjVar;
     }
 
     @Override
-    public final void onError(f61 f61Var, Exception exc) {
-        switch (this.f24844a) {
+    public final void onError(i61 i61Var, Exception exc) {
+        switch (this.f24872a) {
             case 0:
                 return;
             default:
@@ -32,48 +32,48 @@ public final class je implements d61 {
 
     @Override
     public final void onRenderedFirstFrame(m2.a aVar) {
-        int i7 = this.f24844a;
+        int i7 = this.f24872a;
     }
 
     @Override
     public final void onSeekFinished(m2.a aVar) {
-        int i7 = this.f24844a;
+        int i7 = this.f24872a;
     }
 
     @Override
     public final void onSeekStarted(m2.a aVar) {
-        int i7 = this.f24844a;
+        int i7 = this.f24872a;
     }
 
     @Override
     public final void onStateChanged(boolean z10, int i7) {
-        int i10 = this.f24844a;
-        int i11 = this.f24845b;
+        int i10 = this.f24872a;
+        int i11 = this.f24873b;
         switch (i10) {
             case 0:
                 MediaController mediaController = this.d;
                 ArrayList arrayList = mediaController.S0;
-                if (i11 == mediaController.f22723n0) {
-                    fj fjVar = this.f24846c;
-                    if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z10 || fjVar.f23925b0 < 0.999f)) {
-                        f61 f61Var = mediaController.f22716j0;
-                        if (f61Var != null && mediaController.f22738u0 != 0.0f && (i7 == 3 || i7 == 1)) {
-                            mediaController.f22716j0.q0((int) (((float) f61Var.U()) * mediaController.f22738u0), false);
-                            mediaController.f22738u0 = 0.0f;
+                if (i11 == mediaController.f22751n0) {
+                    fj fjVar = this.f24874c;
+                    if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z10 || fjVar.f23953b0 < 0.999f)) {
+                        i61 i61Var = mediaController.f22744j0;
+                        if (i61Var != null && mediaController.f22766u0 != 0.0f && (i7 == 3 || i7 == 1)) {
+                            mediaController.f22744j0.q0((int) (((float) i61Var.U()) * mediaController.f22766u0), false);
+                            mediaController.f22766u0 = 0.0f;
                         }
                     } else {
-                        fjVar.f23925b0 = 1.0f;
+                        fjVar.f23953b0 = 1.0f;
                         ks.f(fjVar.K1).k(148, Integer.valueOf(fjVar.e1()), 0);
                         if (!mediaController.a0()) {
-                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !fj.R4(fjVar.f23965k))) {
+                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !fj.R4(fjVar.f23993k))) {
                                 mediaController.U(true);
                             } else {
-                                mediaController.q(true, mediaController.F(), fj.R4(fjVar.f23965k), false);
+                                mediaController.q(true, mediaController.F(), fj.R4(fjVar.f23993k), false);
                             }
                         }
                     }
-                    if (mediaController.f22716j0 != null && d1.f.u()) {
-                        mediaController.f22716j0.t0(true);
+                    if (mediaController.f22744j0 != null && d1.f.u()) {
+                        mediaController.f22744j0.t0(true);
                         return;
                     }
                     return;
@@ -81,8 +81,8 @@ public final class je implements d61 {
                 return;
             default:
                 MediaController mediaController2 = this.d;
-                if (i11 == mediaController2.f22723n0) {
-                    MediaController.f(mediaController2, this.f24846c, null, true, z10, i7);
+                if (i11 == mediaController2.f22751n0) {
+                    MediaController.f(mediaController2, this.f24874c, null, true, z10, i7);
                     return;
                 }
                 return;
@@ -91,7 +91,7 @@ public final class je implements d61 {
 
     @Override
     public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        switch (this.f24844a) {
+        switch (this.f24872a) {
             case 0:
                 return false;
             default:
@@ -128,10 +128,10 @@ public final class je implements d61 {
                         }
                         PipRoundVideoView pipRoundVideoView2 = mediaController.I0;
                         if (pipRoundVideoView2 != null) {
-                            if (pipRoundVideoView2.f33003c.getSurfaceTexture() != surfaceTexture) {
-                                mediaController.I0.f33003c.setSurfaceTexture(surfaceTexture);
+                            if (pipRoundVideoView2.f33036c.getSurfaceTexture() != surfaceTexture) {
+                                mediaController.I0.f33036c.setSurfaceTexture(surfaceTexture);
                             }
-                            mediaController.F0.A0(mediaController.I0.f33003c);
+                            mediaController.F0.A0(mediaController.I0.f33036c);
                         }
                     }
                     mediaController.J0 = 0;
@@ -146,13 +146,13 @@ public final class je implements d61 {
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int i7 = this.f24844a;
+        int i7 = this.f24872a;
     }
 
     @Override
     public final void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
-        switch (this.f24844a) {
+        switch (this.f24872a) {
             case 0:
                 return;
             default:
@@ -174,7 +174,7 @@ public final class je implements d61 {
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f24844a) {
+        switch (this.f24872a) {
             case 0:
                 return;
             default:
@@ -217,7 +217,7 @@ public final class je implements d61 {
     private final void j(SurfaceTexture surfaceTexture) {
     }
 
-    private final void a(f61 f61Var, Exception exc) {
+    private final void a(i61 i61Var, Exception exc) {
     }
 
     private final void k(int i7, int i10, float f10, int i11) {

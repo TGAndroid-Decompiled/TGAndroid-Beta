@@ -7,53 +7,53 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public abstract class pc {
-    public static int f26213a = 198684;
-    public static int f26214b = 204383;
-    public static int f26215c = 262143;
+    public static int f26241a = 198684;
+    public static int f26242b = 204383;
+    public static int f26243c = 262143;
     public static int d = 10;
-    public static int f26216e = 10;
-    public static int f26217f = 10;
-    public static int f26218g = 0;
+    public static int f26244e = 10;
+    public static int f26245f = 10;
+    public static int f26246g = 0;
     public static boolean h = false;
-    public static int f26219i = 0;
-    public static boolean f26220j = false;
-    public static volatile int f26221k = -1;
-    public static volatile long f26222l;
-    public static volatile boolean f26223m;
-    public static HashSet f26224n;
+    public static int f26247i = 0;
+    public static boolean f26248j = false;
+    public static volatile int f26249k = -1;
+    public static volatile long f26250l;
+    public static volatile boolean f26251m;
+    public static HashSet f26252n;
 
     public static void a(x10 x10Var) {
-        if (f26224n == null) {
-            f26224n = new HashSet();
+        if (f26252n == null) {
+            f26252n = new HashSet();
         }
-        f26224n.add(x10Var);
+        f26252n.add(x10Var);
     }
 
     public static int b() {
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (!f26223m && (f26222l == 0 || elapsedRealtime - f26222l > 60000)) {
-            f26223m = true;
-            f26222l = elapsedRealtime;
-            Utilities.f22779e.c(new j2(5));
+        if (!f26251m && (f26250l == 0 || elapsedRealtime - f26250l > 60000)) {
+            f26251m = true;
+            f26250l = elapsedRealtime;
+            Utilities.f22807e.c(new j2(5));
         }
-        return f26221k;
+        return f26249k;
     }
 
     public static int c() {
-        if (!f26220j) {
+        if (!f26248j) {
             g();
         }
-        return f26218g;
+        return f26246g;
     }
 
     public static int d(boolean z10) {
-        if (!f26220j) {
+        if (!f26248j) {
             g();
         }
         if (!z10) {
-            if (f26218g > 0) {
+            if (f26246g > 0) {
                 int b10 = b();
-                int i7 = f26218g;
+                int i7 = f26246g;
                 if (i7 >= 100 || (b10 >= 0 && b10 <= i7)) {
                     if (!h) {
                         h = true;
@@ -67,7 +67,7 @@ public abstract class pc {
                 j(false);
             }
         }
-        return f26219i;
+        return f26247i;
     }
 
     public static boolean e(int i7) {
@@ -118,14 +118,14 @@ public abstract class pc {
 
     public static void g() {
         int i7;
-        int i10 = f26215c;
-        int i11 = f26217f;
+        int i10 = f26243c;
+        int i11 = f26245f;
         if (bz.o() == 0) {
-            i10 = f26213a;
+            i10 = f26241a;
             i11 = d;
         } else if (bz.o() == 1) {
-            i10 = f26214b;
-            i11 = f26216e;
+            i10 = f26242b;
+            i11 = f26244e;
         }
         SharedPreferences g12 = mp.g1();
         if (!g12.contains("lite_mode6")) {
@@ -144,7 +144,7 @@ public abstract class pc {
             } else if (g12.contains("lite_mode")) {
                 i10 = g12.getInt("lite_mode", i10);
                 if (i10 == 4095) {
-                    i10 = f26215c;
+                    i10 = f26243c;
                 }
             } else {
                 if (g12.contains("light_mode")) {
@@ -154,9 +154,9 @@ public abstract class pc {
                         i7 = 0;
                     }
                     if ((g12.getInt("light_mode", i7) & 1) > 0) {
-                        i10 = f26213a;
+                        i10 = f26241a;
                     } else {
-                        i10 = f26215c;
+                        i10 = f26243c;
                     }
                 }
                 if (g12.contains("loopStickers")) {
@@ -189,14 +189,14 @@ public abstract class pc {
                 }
             }
         }
-        int i12 = f26219i;
+        int i12 = f26247i;
         int i13 = g12.getInt("lite_mode6", i10);
-        f26219i = i13;
-        if (f26220j) {
+        f26247i = i13;
+        if (f26248j) {
             i(i12, i13);
         }
-        f26218g = g12.getInt("lite_mode_battery_level", i11);
-        f26220j = true;
+        f26246g = g12.getInt("lite_mode_battery_level", i11);
+        f26248j = true;
     }
 
     public static void h(Intent intent) {
@@ -205,9 +205,9 @@ public abstract class pc {
             int intExtra2 = intent.getIntExtra("scale", -1);
             if (intExtra >= 0 && intExtra2 > 0) {
                 int b10 = c8.l9.b(Math.round((intExtra * 100.0f) / intExtra2), 0, 100);
-                f26222l = SystemClock.elapsedRealtime();
-                if (f26221k != b10) {
-                    f26221k = b10;
+                f26250l = SystemClock.elapsedRealtime();
+                if (f26249k != b10) {
+                    f26249k = b10;
                     g0.g3(new j2(6));
                 }
             }
@@ -217,15 +217,15 @@ public abstract class pc {
     public static void i(int i7, int i10) {
         int i11 = (~i7) & i10;
         if ((i11 & 28700) > 0) {
-            org.telegram.ui.Components.o5.t();
+            org.telegram.ui.Components.p5.t();
         }
         int i12 = i11 & 32;
         if (i12 > 0) {
-            int[] iArr = lz.f25478u;
+            int[] iArr = lz.f25506u;
             lz.A = e(32);
         }
         if (i12 > 0) {
-            org.telegram.ui.ActionBar.n6.u1(true);
+            org.telegram.ui.ActionBar.m6.u1(true);
         }
         if (!c8.dd.a(i11, 256) && !c8.dd.a(i11, 262144)) {
             return;
@@ -239,13 +239,13 @@ public abstract class pc {
         } else {
             i(0, d(true));
         }
-        if (f26224n != null) {
+        if (f26252n != null) {
             g0.g3(new c9(2, z10));
         }
     }
 
     public static void k() {
-        mp.g1().edit().putInt("lite_mode6", f26219i).putInt("lite_mode_battery_level", f26218g).apply();
+        mp.g1().edit().putInt("lite_mode6", f26247i).putInt("lite_mode_battery_level", f26246g).apply();
     }
 
     public static void l(TLRPC.TL_jsonObject tL_jsonObject) {
@@ -256,9 +256,9 @@ public abstract class pc {
                 if (jSONValue instanceof TLRPC.TL_jsonArray) {
                     ArrayList<TLRPC.JSONValue> arrayList = ((TLRPC.TL_jsonArray) jSONValue).value;
                     try {
-                        f26213a = (int) ((TLRPC.TL_jsonNumber) arrayList.get(0)).value;
-                        f26214b = (int) ((TLRPC.TL_jsonNumber) arrayList.get(1)).value;
-                        f26215c = (int) ((TLRPC.TL_jsonNumber) arrayList.get(2)).value;
+                        f26241a = (int) ((TLRPC.TL_jsonNumber) arrayList.get(0)).value;
+                        f26242b = (int) ((TLRPC.TL_jsonNumber) arrayList.get(1)).value;
+                        f26243c = (int) ((TLRPC.TL_jsonNumber) arrayList.get(2)).value;
                     } catch (Exception e10) {
                         a8.g(e10, true);
                     }
@@ -270,8 +270,8 @@ public abstract class pc {
                     ArrayList<TLRPC.JSONValue> arrayList2 = ((TLRPC.TL_jsonArray) jSONValue2).value;
                     try {
                         d = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(0)).value;
-                        f26216e = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
-                        f26217f = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
+                        f26244e = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
+                        f26245f = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
                     } catch (Exception e11) {
                         a8.g(e11, true);
                     }

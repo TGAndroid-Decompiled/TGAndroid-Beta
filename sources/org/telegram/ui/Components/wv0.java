@@ -1,40 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class wv0 extends AnimatorListenerAdapter {
-    public final int f41800a;
-    public final boolean f41801b;
-    public final iw0 f41802c;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class wv0 extends ap0 {
+    public final kw0 V2;
 
-    public wv0(iw0 iw0Var, int i7, boolean z10) {
-        this.f41802c = iw0Var;
-        this.f41800a = i7;
-        this.f41801b = z10;
+    public wv0(kw0 kw0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, null, str, false, str2, false, h6Var);
+        this.V2 = kw0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        AnimatorSet[] animatorSetArr = this.f41802c.D1;
-        int i7 = this.f41800a;
-        AnimatorSet animatorSet = animatorSetArr[i7];
-        if (animatorSet != null && animatorSet.equals(animator)) {
-            animatorSetArr[i7] = null;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        iw0 iw0Var = this.f41802c;
-        AnimatorSet[] animatorSetArr = iw0Var.D1;
-        int i7 = this.f41800a;
-        AnimatorSet animatorSet = animatorSetArr[i7];
-        if (animatorSet != null && animatorSet.equals(animator)) {
-            if (!this.f41801b) {
-                iw0Var.E1[i7].setVisibility(4);
+    public final void L() {
+        super.L();
+        org.telegram.ui.ActionBar.g2 g2Var = this.V2.G1;
+        if (g2Var instanceof org.telegram.ui.bn) {
+            org.telegram.messenger.g0.Z2(g2Var.getParentActivity(), g2Var.getClassGuid());
+            if (((org.telegram.ui.bn) g2Var).f45946a0.getVisibility() == 0) {
+                g2Var.getFragmentView().requestLayout();
             }
-            animatorSetArr[i7] = null;
         }
+    }
+
+    @Override
+    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        org.telegram.messenger.g0.h3(new org.telegram.ui.b0(this, hVar, i7, 27), 100L);
     }
 }

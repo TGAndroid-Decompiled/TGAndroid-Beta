@@ -1,72 +1,36 @@
 package tg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.n10;
-import org.telegram.ui.Components.ck0;
-public final class j1 extends ck0 implements fs {
-    public final Path f57974f3;
-    public q0.a f57975g3;
-
-    public j1(Context context) {
-        super(context, null);
-        this.f57974f3 = new Path();
-        setWillNotDraw(false);
-        setLayoutManager(new v4.c0());
-        setAdapter(new v4.i0());
-        setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
-        setClipToPadding(false);
+import android.view.ViewGroup;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.dk0;
+public final class j1 extends dk0 {
+    @Override
+    public final boolean D(v4.f1 f1Var) {
+        return true;
     }
 
     @Override
-    public final Integer V0(int i7) {
-        return 285212671;
+    public final int b() {
+        return sg.a0.c().size();
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.F5) {
-            getAdapter().f();
+    public final void t(v4.f1 f1Var, int i7) {
+        e1 e1Var = (e1) f1Var.f59161a;
+        sg.a0 a0Var = (sg.a0) sg.a0.c().get(i7);
+        e1Var.getClass();
+        e1Var.setTypeface(a0Var.d());
+        String str = a0Var.f57197c;
+        if (str == null) {
+            str = gd.O0(a0Var.f57196b);
         }
+        e1Var.setText(str);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        q0.a aVar = this.f57975g3;
-        if (aVar != null) {
-            Path path = this.f57974f3;
-            aVar.accept(path);
-            canvas.save();
-            canvas.clipPath(path);
-        }
-        super.draw(canvas);
-        if (this.f57975g3 != null) {
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ks.e().c(this, ks.F5);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ks.e().n(this, ks.F5);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(i7, n10.C(16.0f, org.telegram.messenger.g0.L(48.0f) * Math.min(sg.a0.c().size(), 6), 1073741824));
-    }
-
-    public void setMaskProvider(q0.a aVar) {
-        this.f57975g3 = aVar;
-        invalidate();
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        e1 e1Var = new e1(viewGroup.getContext());
+        e1Var.setLayoutParams(new v4.q0(-1, -2));
+        return new v4.f1(e1Var);
     }
 }

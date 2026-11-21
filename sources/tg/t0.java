@@ -1,184 +1,92 @@
 package tg;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import hi.b5;
-import org.telegram.messenger.bz;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.v4;
-public final class t0 implements i6 {
-    public final TextPaint f58132a;
-    public final TextPaint f58133b;
-    public final TextPaint f58134c;
-    public final Paint d;
-    public final Paint f58135e;
-    public final b5 f58136f;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import hi.a5;
+import hi.u5;
+import java.util.ArrayList;
+import org.telegram.messenger.aj;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.xi;
+import org.telegram.ui.Components.ca;
+import org.telegram.ui.Components.dk0;
+public final class t0 extends dk0 {
+    public final Context f58170c;
+    public final ca d;
+    public final u5 f58171e;
+    public final boolean f58172f;
+    public final a5 h;
 
-    public t0(b5 b5Var) {
-        this.f58136f = b5Var;
-        TextPaint textPaint = new TextPaint();
-        this.f58132a = textPaint;
-        TextPaint textPaint2 = new TextPaint();
-        this.f58133b = textPaint2;
-        TextPaint textPaint3 = new TextPaint();
-        this.f58134c = textPaint3;
-        new Paint(3);
-        this.d = new Paint(3);
-        Paint paint = new Paint(3);
-        this.f58135e = paint;
-        textPaint.setTextSize(org.telegram.messenger.g0.L(Math.max(16, bz.W0) - 2));
-        textPaint2.setTextSize(org.telegram.messenger.g0.L(Math.max(16, bz.W0) - 2));
-        textPaint3.setTextSize(org.telegram.messenger.g0.L(15.0f));
-        textPaint3.setTypeface(org.telegram.messenger.g0.o());
-        paint.setColor(352321536);
+    public t0(a5 a5Var, Context context, ca caVar, u5 u5Var, boolean z10) {
+        this.h = a5Var;
+        this.f58170c = context;
+        this.d = caVar;
+        this.f58171e = u5Var;
+        this.f58172f = z10;
     }
 
     @Override
-    public final boolean d() {
-        return this.f58136f.C0;
+    public final boolean D(v4.f1 f1Var) {
+        return true;
     }
 
     @Override
-    public final void e(float f10, float f11, int i7, int i10) {
-        n6.r(f10, f11, i7, i10);
+    public final int b() {
+        return this.h.f58198t0.size();
     }
 
     @Override
-    public final ColorFilter f() {
-        return n6.f29726v3;
+    public final int d(int i7) {
+        ArrayList arrayList = this.h.f58198t0;
+        return ((fj) arrayList.get((arrayList.size() - 1) - i7)).U;
     }
 
     @Override
-    public final Paint g(String str) {
-        str.getClass();
-        char c10 = 65535;
-        switch (str.hashCode()) {
-            case -1490966183:
-                if (str.equals("paintChatActionText2")) {
-                    c10 = 0;
-                    break;
+    public final void t(v4.f1 f1Var, int i7) {
+        boolean z10;
+        boolean z11;
+        xi d;
+        boolean z12;
+        a5 a5Var = this.h;
+        ArrayList arrayList = a5Var.f58198t0;
+        fj fjVar = (fj) arrayList.get((arrayList.size() - 1) - i7);
+        View view = f1Var.f59161a;
+        if (view instanceof org.telegram.ui.Cells.r1) {
+            org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) view;
+            aj ajVar = a5Var.f58199u0;
+            if (ajVar != null && (d = ajVar.d(fjVar)) != null) {
+                if (d.f27910c != 0) {
+                    z12 = true;
+                } else {
+                    z12 = false;
                 }
-                break;
-            case 1712385955:
-                if (str.equals("paintChatBotButton")) {
-                    c10 = 1;
-                    break;
-                }
-                break;
-            case 1790254137:
-                if (str.equals("paintChatActionBackgroundDarken")) {
-                    c10 = 2;
-                    break;
-                }
-                break;
-            case 1897339317:
-                if (str.equals("paintChatActionBackgroundSelected")) {
-                    c10 = 3;
-                    break;
-                }
-                break;
-            case 2030114297:
-                if (str.equals("paintChatActionText")) {
-                    c10 = 4;
-                    break;
-                }
-                break;
-        }
-        switch (c10) {
-            case 0:
-                return this.f58133b;
-            case 1:
-                return this.f58134c;
-            case 2:
-                return this.f58135e;
-            case 3:
-                return this.d;
-            case 4:
-                return this.f58132a;
-            default:
-                return n6.V0(str);
+                z10 = z12;
+            } else {
+                z10 = false;
+            }
+            aj ajVar2 = a5Var.f58199u0;
+            if (ajVar2 != null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            r1Var.y3(fjVar, ajVar2, z11, z10, false, false);
+        } else if (view instanceof org.telegram.ui.Cells.v0) {
+            ((org.telegram.ui.Cells.v0) view).setMessageObject(fjVar);
         }
     }
 
     @Override
-    public final Drawable getDrawable(String str) {
-        b5 b5Var = this.f58136f;
-        t0 t0Var = b5Var.E0;
-        if (str.equals("drawableMsgIn")) {
-            if (b5Var.F0 == null) {
-                b5Var.F0 = new v4(0, false, false, t0Var);
-            }
-            return b5Var.F0;
-        } else if (str.equals("drawableMsgInSelected")) {
-            if (b5Var.G0 == null) {
-                b5Var.G0 = new v4(0, false, true, t0Var);
-            }
-            return b5Var.G0;
-        } else if (str.equals("drawableMsgOut")) {
-            if (b5Var.H0 == null) {
-                b5Var.H0 = new v4(0, true, false, t0Var);
-            }
-            return b5Var.H0;
-        } else if (str.equals("drawableMsgOutSelected")) {
-            if (b5Var.I0 == null) {
-                b5Var.I0 = new v4(0, true, true, t0Var);
-            }
-            return b5Var.I0;
-        } else if (str.equals("drawableMsgInMedia")) {
-            if (b5Var.J0 == null) {
-                b5Var.J0 = new v4(1, false, false, t0Var);
-            }
-            b5Var.J0.invalidateSelf();
-            return b5Var.J0;
-        } else if (str.equals("drawableMsgInMediaSelected")) {
-            if (b5Var.K0 == null) {
-                b5Var.K0 = new v4(1, false, true, t0Var);
-            }
-            return b5Var.K0;
-        } else if (str.equals("drawableMsgOutMedia")) {
-            if (b5Var.L0 == null) {
-                b5Var.L0 = new v4(1, true, false, t0Var);
-            }
-            return b5Var.L0;
-        } else if (str.equals("drawableMsgOutMediaSelected")) {
-            if (b5Var.M0 == null) {
-                b5Var.M0 = new v4(1, true, true, t0Var);
-            }
-            return b5Var.M0;
-        } else {
-            return n6.R0(str);
+    public final v4.f1 x(ViewGroup viewGroup, int i7) {
+        u0 u0Var = this.h.E0;
+        Context context = this.f58170c;
+        if (i7 == 1) {
+            return new v4.f1(new r0(this, context, u0Var));
         }
-    }
-
-    @Override
-    public final boolean h() {
-        return bz.H0;
-    }
-
-    @Override
-    public final int i(int i7) {
-        return k(i7);
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final int k(int i7) {
-        return this.f58136f.D0.get(i7, n6.x0(null, i7, false));
-    }
-
-    @Override
-    public final int m(int i7) {
-        return k(i7);
-    }
-
-    @Override
-    public final void l(int i7, int i10) {
+        s0 s0Var = new s0(this, context, j10.f24798t0, u0Var);
+        s0Var.f31425f6 = true;
+        return new v4.f1(s0Var);
     }
 }

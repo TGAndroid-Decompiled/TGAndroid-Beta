@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class gu implements Runnable {
-    public final int f48091a;
-    public final cx f48092b;
+    public final int f48168a;
+    public final cx f48169b;
 
     public gu(cx cxVar, int i7) {
-        this.f48091a = i7;
-        this.f48092b = cxVar;
+        this.f48168a = i7;
+        this.f48169b = cxVar;
     }
 
     @Override

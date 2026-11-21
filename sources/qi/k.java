@@ -1,25 +1,25 @@
 package qi;
 public final class k implements Runnable {
-    public final int f56191a;
-    public final p f56192b;
+    public final int f56232a;
+    public final p f56233b;
 
     public k(p pVar, int i7) {
-        this.f56191a = i7;
-        this.f56192b = pVar;
+        this.f56232a = i7;
+        this.f56233b = pVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f56191a) {
+        switch (this.f56232a) {
             case 0:
-                a aVar = this.f56192b.f56207w;
+                a aVar = this.f56233b.f56248w;
                 if (aVar != null) {
                     aVar.close();
                     return;
                 }
                 return;
             default:
-                this.f56192b.a();
+                this.f56233b.a();
                 return;
         }
     }

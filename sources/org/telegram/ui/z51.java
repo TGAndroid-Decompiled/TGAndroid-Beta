@@ -7,14 +7,14 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 public final class z51 extends View {
-    public static final int f54397c = 0;
-    public final Paint f54398a;
-    public int[] f54399b;
+    public static final int f54441c = 0;
+    public final Paint f54442a;
+    public int[] f54443b;
 
     public z51(Context context) {
         super(context);
-        this.f54398a = new Paint(1);
-        this.f54399b = new int[7];
+        this.f54442a = new Paint(1);
+        this.f54443b = new int[7];
     }
 
     @Override
@@ -24,15 +24,15 @@ public final class z51 extends View {
         float L = org.telegram.messenger.g0.L(5.0f);
         float L2 = org.telegram.messenger.g0.L(20.0f) - L;
         Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.f54398a;
+        Paint paint = this.f54442a;
         paint.setStyle(style);
         int i7 = 0;
-        paint.setColor(this.f54399b[0]);
+        paint.setColor(this.f54443b[0]);
         canvas.drawCircle(measuredWidth, measuredHeight, L, paint);
         double d = 0.0d;
         while (i7 < 6) {
             i7++;
-            paint.setColor(this.f54399b[i7]);
+            paint.setColor(this.f54443b[i7]);
             canvas.drawCircle((((float) Math.sin(d)) * L2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * L2), L, paint);
             d += 1.0471975511965976d;
         }
@@ -41,7 +41,7 @@ public final class z51 extends View {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setText(org.telegram.messenger.gd.M0(2131752004, "ColorPickerMainColor"));
+        accessibilityNodeInfo.setText(org.telegram.messenger.gd.N0(2131752003, "ColorPickerMainColor"));
         accessibilityNodeInfo.setClassName(Button.class.getName());
         accessibilityNodeInfo.setEnabled(true);
     }

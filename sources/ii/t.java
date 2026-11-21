@@ -1,6 +1,6 @@
 package ii;
 
-import ai.e1;
+import ai.g1;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
@@ -9,24 +9,25 @@ import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import bi.a2;
-import bi.a3;
-import bi.d8;
+import bi.e2;
+import bi.e3;
 import bi.h8;
-import bi.i3;
-import bi.l6;
-import bi.q1;
+import bi.l8;
+import bi.m3;
+import bi.p6;
+import bi.u1;
 import c8.ma;
-import di.c7;
 import di.e0;
 import di.ob;
 import di.pb;
 import di.ua;
-import di.x8;
-import hi.e7;
+import di.v6;
+import di.y8;
+import hi.d7;
 import hi.w4;
 import j$.util.Objects;
 import java.util.ArrayList;
+import ki.h3;
 import org.telegram.messenger.fs;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gd;
@@ -42,55 +43,56 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.s4;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.g71;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.lq;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.n6;
-import org.telegram.ui.Components.qt0;
-import org.telegram.ui.Components.uz;
-import org.telegram.ui.Components.z41;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.r4;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.nq;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.o41;
+import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.tt0;
+import org.telegram.ui.Components.wz;
 import org.telegram.ui.Wallet.m7;
 import org.telegram.ui.d61;
 import org.telegram.ui.r00;
 import org.telegram.ui.s00;
 import org.telegram.ui.uv;
-import ug.u1;
+import ug.t1;
 import v4.c0;
 public final class t extends s00 implements fs {
     public FrameLayout S;
     public m7 T;
     public ob U;
-    public qt0 V;
-    public i3 W;
+    public tt0 V;
+    public m3 W;
     public View X;
     public te.a Y;
     public te.a Z;
-    public te.a f16334a0;
-    public int f16336c0;
-    public int f16337d0;
-    public boolean f16338e0;
-    public boolean f16339f0;
-    public i3 f16341h0;
-    public final boolean f16342i0;
-    public LinearLayout f16343j0;
-    public SpannableStringBuilder f16344k0;
-    public n6 f16345l0;
-    public n6 m0;
-    public a3 f16346n0;
-    public hi.d f16347o0;
-    public d61 f16348p0;
-    public hi.d f16349q0;
-    public hi.d f16350r0;
-    public boolean f16351s0;
-    public boolean f16352t0;
-    public boolean f16353u0;
-    public d8 f16354v0;
-    public int f16335b0 = -1;
-    public final hi.k f16340g0 = new hi.k(this, 25);
+    public te.a f16359a0;
+    public int f16361c0;
+    public int f16362d0;
+    public boolean f16363e0;
+    public boolean f16364f0;
+    public m3 f16366h0;
+    public final boolean f16367i0;
+    public LinearLayout f16368j0;
+    public SpannableStringBuilder f16369k0;
+    public o6 f16370l0;
+    public o6 m0;
+    public e3 f16371n0;
+    public hi.e f16372o0;
+    public d61 f16373p0;
+    public hi.e f16374q0;
+    public hi.e f16375r0;
+    public boolean f16376s0;
+    public boolean f16377t0;
+    public boolean f16378u0;
+    public h8 f16379v0;
+    public int f16360b0 = -1;
+    public final hi.l f16365g0 = new hi.l(this, 25);
 
     public t() {
         boolean z10;
@@ -101,28 +103,28 @@ public final class t extends s00 implements fs {
         } else {
             z10 = true;
         }
-        this.f16342i0 = z10;
+        this.f16367i0 = z10;
         this.N = true;
     }
 
     public static void A0(t tVar, int i7) {
-        l41 G;
-        d8 d8Var = tVar.f16354v0;
-        if (d8Var != null && (G = d8Var.G(i7)) != null) {
+        o41 G;
+        h8 h8Var = tVar.f16379v0;
+        if (h8Var != null && (G = h8Var.G(i7)) != null) {
             int i10 = G.d;
             if (i10 == -1) {
-                tVar.f16354v0.O(true);
+                tVar.f16379v0.O(true);
             } else if (i10 == -2) {
-                x8.y(tVar.currentAccount, true).u();
-                a2.l1(true, v1.a(tVar.currentAccount).b());
+                y8.y(tVar.currentAccount, true).u();
+                e2.l1(true, v1.a(tVar.currentAccount).b());
             } else if (i10 == -3) {
-                x8.y(tVar.currentAccount, true).U();
-                tVar.f16354v0.O(true);
+                y8.y(tVar.currentAccount, true).U();
+                tVar.f16379v0.O(true);
             } else if (i10 == -4) {
                 if (mp.u1(tVar.currentAccount).A2()) {
                     org.telegram.ui.b.b(tVar.currentAccount);
                 } else {
-                    tVar.presentFragment(new ki.i3(tVar.getUserConfig().e()));
+                    tVar.presentFragment(new h3(tVar.getUserConfig().e()));
                 }
             }
         }
@@ -130,55 +132,55 @@ public final class t extends s00 implements fs {
 
     public final void D0() {
         G0();
-        ck0 ck0Var = this.f51823c;
-        if (ck0Var != null && this.V != null && ck0Var.getLayoutParams() != null) {
-            int D = n10.D(48.0f, this.f16336c0, -g0.L(8.0f));
-            int D2 = n10.D(48.0f, this.f16337d0, -g0.L(8.0f));
-            g0.z3(this.f51823c, 0, D, 0, D2);
-            ck0 ck0Var2 = this.f51823c;
+        ek0 ek0Var = this.f51799c;
+        if (ek0Var != null && this.V != null && ek0Var.getLayoutParams() != null) {
+            int D = n10.D(48.0f, this.f16361c0, -g0.L(8.0f));
+            int D2 = n10.D(48.0f, this.f16362d0, -g0.L(8.0f));
+            g0.z3(this.f51799c, 0, D, 0, D2);
+            ek0 ek0Var2 = this.f51799c;
             int i7 = -D;
-            ck0Var2.setPadding(ck0Var2.getPaddingLeft(), i7, this.f51823c.getPaddingRight(), this.f16337d0 - D2);
+            ek0Var2.setPadding(ek0Var2.getPaddingLeft(), i7, this.f51799c.getPaddingRight(), this.f16362d0 - D2);
             this.V.z(i7, -D2);
         }
     }
 
-    public final void E0(ArrayList arrayList, z41 z41Var) {
+    public final void E0(ArrayList arrayList, c51 c51Var) {
         boolean z10;
-        ck0 ck0Var;
-        qt0 qt0Var = this.V;
-        if (qt0Var != null && qt0Var.f38906f0) {
+        ek0 ek0Var;
+        tt0 tt0Var = this.V;
+        if (tt0Var != null && tt0Var.f40055f0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f16335b0 = -1;
+        this.f16360b0 = -1;
         if (getParentActivity() != null) {
-            x8 y10 = x8.y(this.currentAccount, true);
-            l41 l41Var = new l41(-2);
-            l41Var.f37010c = (uv) super.o0(getParentActivity());
-            arrayList.add(l41Var);
-            arrayList.add(l41.k(this.f16343j0));
-            boolean z11 = this.f16342i0;
+            y8 y10 = y8.y(this.currentAccount, true);
+            o41 o41Var = new o41(-2);
+            o41Var.f38090c = (uv) super.o0(getParentActivity());
+            arrayList.add(o41Var);
+            arrayList.add(o41.k(this.f16368j0));
+            boolean z11 = this.f16367i0;
             if (z11 && !n.c(this.currentAccount)) {
-                arrayList.add(l41.C(gd.M0(2131749339, null)));
+                arrayList.add(o41.C(gd.N0(2131749338, null)));
             }
             boolean M = y10.M(0);
-            this.f16351s0 = M;
+            this.f16376s0 = M;
             if (M) {
                 if (!z11 || n.c(this.currentAccount)) {
-                    arrayList.add(l41.C(null));
+                    arrayList.add(o41.C(null));
                 }
-                this.f16335b0 = arrayList.size();
-                arrayList.add(l41.n(this.W, -2));
-                if (z10 && (ck0Var = this.f51823c) != null) {
-                    hi.k kVar = this.f16340g0;
-                    ck0Var.removeCallbacks(kVar);
-                    this.f51823c.post(kVar);
+                this.f16360b0 = arrayList.size();
+                arrayList.add(o41.n(this.W, -2));
+                if (z10 && (ek0Var = this.f51799c) != null) {
+                    hi.l lVar = this.f16365g0;
+                    ek0Var.removeCallbacks(lVar);
+                    this.f51799c.post(lVar);
                     return;
                 }
                 return;
             }
-            arrayList.add(l41.m(this.f16341h0));
+            arrayList.add(o41.m(this.f16366h0));
         }
     }
 
@@ -187,32 +189,32 @@ public final class t extends s00 implements fs {
         final boolean z10;
         float f10;
         TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
-        x8 y10 = x8.y(this.currentAccount, true);
-        double d = ((i0) getMessagesController().A7.f26151l.f15642b).f24532a;
+        y8 y10 = y8.y(this.currentAccount, true);
+        double d = ((i0) getMessagesController().A7.f26179l.f15705b).f24560a;
         TL_stars.StarsAmount p10 = y10.p();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) this.f16344k0);
+        spannableStringBuilder.append((CharSequence) this.f16369k0);
         spannableStringBuilder.append((CharSequence) pb.M0(p10, 0.66f, ' '));
-        this.f16345l0.setText(spannableStringBuilder);
+        this.f16370l0.setText(spannableStringBuilder);
         if (((int) ((p10.amount / 1.0E9d) * d * 100.0d)) > 0) {
             this.m0.setText("≈" + r1.i().f(i7, "USD"));
         } else {
-            this.m0.setText(gd.M0(2131742531, null));
+            this.m0.setText(gd.N0(2131742525, null));
         }
         TLRPC.TL_payments_starsRevenueStats j3 = e0.g(this.currentAccount).j(getUserConfig().e(), false);
-        if (!this.f16353u0) {
+        if (!this.f16378u0) {
             if (j3 != null && (tL_starsRevenueStatus = j3.status) != null && tL_starsRevenueStatus.overall_revenue.positive()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (this.f16352t0 == z10) {
+            if (this.f16377t0 == z10) {
                 return;
             }
-            this.f16352t0 = z10;
-            this.f16346n0.setVisibility(0);
-            this.f16348p0.setVisibility(0);
-            ViewPropertyAnimator animate = this.f16346n0.animate();
+            this.f16377t0 = z10;
+            this.f16371n0.setVisibility(0);
+            this.f16373p0.setVisibility(0);
+            ViewPropertyAnimator animate = this.f16371n0.animate();
             float f11 = 1.0f;
             if (z10) {
                 f10 = 0.0f;
@@ -220,10 +222,10 @@ public final class t extends s00 implements fs {
                 f10 = 1.0f;
             }
             animate.alpha(f10).withEndAction(new Runnable(this) {
-                public final t f16330b;
+                public final t f16355b;
 
                 {
-                    this.f16330b = this;
+                    this.f16355b = this;
                 }
 
                 @Override
@@ -231,28 +233,28 @@ public final class t extends s00 implements fs {
                     switch (r3) {
                         case 0:
                             if (z10) {
-                                this.f16330b.f16346n0.setVisibility(8);
+                                this.f16355b.f16371n0.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
                             if (!z10) {
-                                this.f16330b.f16348p0.setVisibility(8);
+                                this.f16355b.f16373p0.setVisibility(8);
                                 return;
                             }
                             return;
                     }
                 }
             }).start();
-            ViewPropertyAnimator animate2 = this.f16348p0.animate();
+            ViewPropertyAnimator animate2 = this.f16373p0.animate();
             if (!z10) {
                 f11 = 0.0f;
             }
             animate2.alpha(f11).withEndAction(new Runnable(this) {
-                public final t f16330b;
+                public final t f16355b;
 
                 {
-                    this.f16330b = this;
+                    this.f16355b = this;
                 }
 
                 @Override
@@ -260,13 +262,13 @@ public final class t extends s00 implements fs {
                     switch (r3) {
                         case 0:
                             if (z10) {
-                                this.f16330b.f16346n0.setVisibility(8);
+                                this.f16355b.f16371n0.setVisibility(8);
                                 return;
                             }
                             return;
                         default:
                             if (!z10) {
-                                this.f16330b.f16348p0.setVisibility(8);
+                                this.f16355b.f16373p0.setVisibility(8);
                                 return;
                             }
                             return;
@@ -280,7 +282,7 @@ public final class t extends s00 implements fs {
         if (this.X == null) {
             return;
         }
-        int L = g0.L(44.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f16336c0;
+        int L = g0.L(44.0f) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + this.f16361c0;
         ViewGroup.LayoutParams layoutParams = this.X.getLayoutParams();
         if (layoutParams.height != L) {
             layoutParams.height = L;
@@ -300,11 +302,11 @@ public final class t extends s00 implements fs {
         if (aVar == null) {
             f10 = 0.0f;
         } else {
-            f10 = aVar.f57657e;
+            f10 = aVar.f57696e;
         }
         te.a aVar2 = this.Z;
         if (aVar2 != null) {
-            f11 = aVar2.f57657e;
+            f11 = aVar2.f57696e;
         }
         view.setTranslationY(((-(1.0f - f10)) * org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - ((1.0f - f11) * g0.L(44.0f)));
     }
@@ -319,66 +321,66 @@ public final class t extends s00 implements fs {
         int i12;
         this.H = false;
         this.F = g0.L(238.0f);
-        qt0 qt0Var = new qt0(context);
-        this.V = qt0Var;
-        qt0Var.setCommonInsetsManagedExternally(true);
-        if (!this.f16338e0) {
-            s4 s4Var = this.parentLayout;
-            if (s4Var != null && ((ActionBarLayout) s4Var).T0) {
+        tt0 tt0Var = new tt0(context);
+        this.V = tt0Var;
+        tt0Var.setCommonInsetsManagedExternally(true);
+        if (!this.f16363e0) {
+            r4 r4Var = this.parentLayout;
+            if (r4Var != null && ((ActionBarLayout) r4Var).T0) {
                 i12 = 0;
             } else {
-                i12 = g0.f24112m;
+                i12 = g0.f24140m;
             }
-            this.f16336c0 = i12;
-            this.f16337d0 = g0.f24113n;
+            this.f16361c0 = i12;
+            this.f16362d0 = g0.f24141n;
         }
         this.V.setGeometry(new w4(this, 4));
-        this.V.z(-n10.D(48.0f, this.f16336c0, -g0.L(8.0f)), -n10.D(48.0f, this.f16337d0, -g0.L(8.0f)));
-        qt0 qt0Var2 = this.V;
-        qt0Var2.getClass();
-        this.W = new i3(26, context, qt0Var2);
+        this.V.z(-n10.D(48.0f, this.f16361c0, -g0.L(8.0f)), -n10.D(48.0f, this.f16362d0, -g0.L(8.0f)));
+        tt0 tt0Var2 = this.V;
+        tt0Var2.getClass();
+        this.W = new m3(26, context, tt0Var2);
         this.U = new ob(context, this.currentAccount, true, 0L, getClassGuid(), getResourceProvider(), this.V);
-        this.f16341h0 = new i3(4, context, this);
+        this.f16366h0 = new m3(4, context, this);
         super.createView(context);
-        r00 r00Var = this.f51828s;
-        getBaseSimpleGlass().f(r00Var, this.f51823c, this.simpleActionBar, this.resourceProvider);
+        r00 r00Var = this.f51804s;
+        getBaseSimpleGlass().f(r00Var, this.f51799c, this.simpleActionBar, this.resourceProvider);
         this.simpleActionBar.setBackground(null);
         this.E.bringToFront();
         this.simpleActionBar.bringToFront();
-        getBaseSimpleGlass().f56625n = this.V;
-        this.f51823c.setCaptureSectionsDecoratorAllowed(true);
+        getBaseSimpleGlass().f56666n = this.V;
+        this.f51799c.setCaptureSectionsDecoratorAllowed(true);
         this.U.setGlassEngine(this.glassEngine);
-        getBaseSimpleGlass().f56626o = new di.f(2, this, new di.e(2, r00Var));
+        getBaseSimpleGlass().f56667o = new di.f(2, this, new di.e(2, r00Var));
         FrameLayout tabsContainer = this.U.getTabsContainer();
         View view = new View(getParentActivity());
         this.X = view;
         float f11 = 0.0f;
         view.setAlpha(0.0f);
-        qt0 qt0Var3 = this.V;
-        qt0Var3.addView(this.X, qt0Var3.indexOfChild(tabsContainer), ma.e(-1, 0, 48));
+        tt0 tt0Var3 = this.V;
+        tt0Var3.addView(this.X, tt0Var3.indexOfChild(tabsContainer), ma.e(-1, 0, 48));
         this.X.setBackground(getBaseSimpleGlass().a(this.X));
         o oVar = new o(this, 0);
-        lr lrVar = lr.h;
-        te.a aVar = new te.a(0, oVar, lrVar, 380L, false);
+        nr nrVar = nr.h;
+        te.a aVar = new te.a(0, oVar, nrVar, 380L, false);
         this.Y = aVar;
-        this.Z = new te.a(1, new o(this, 1), lrVar, 380L, false);
-        this.f16334a0 = new te.a(2, new o(this, 2), lrVar, 380L, false);
-        if (!this.f51823c.canScrollVertically(-1) && !this.simpleActionBar.x()) {
+        this.Z = new te.a(1, new o(this, 1), nrVar, 380L, false);
+        this.f16359a0 = new te.a(2, new o(this, 2), nrVar, 380L, false);
+        if (!this.f51799c.canScrollVertically(-1) && !this.simpleActionBar.x()) {
             z10 = false;
         } else {
             z10 = true;
         }
         aVar.a(z10, false);
-        this.Z.a(this.V.f38906f0, false);
-        this.f51823c.j(new q1(this, 17));
+        this.Z.a(this.V.f40055f0, false);
+        this.f51799c.j(new u1(this, 17));
         G0();
-        fh.g c10 = getBaseSimpleGlass().f56616c.c(tabsContainer, null, false);
+        fh.g c10 = getBaseSimpleGlass().f56657c.c(tabsContainer, null, false);
         c10.p(c8.i0.m(this.resourceProvider));
         c10.q(g0.L(9.66f));
         c10.r(g0.L(18.0f));
         tabsContainer.setBackground(c10);
-        s4 s4Var2 = this.parentLayout;
-        if (s4Var2 != null && ((ActionBarLayout) s4Var2).U0) {
+        r4 r4Var2 = this.parentLayout;
+        if (r4Var2 != null && ((ActionBarLayout) r4Var2).U0) {
             this.simpleActionBar.setBackButtonImage(2131231241);
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -386,95 +388,95 @@ public final class t extends s00 implements fs {
         frameLayout.setClickable(true);
         m7 m7Var = new m7(170, context, false);
         this.T = m7Var;
-        m7Var.setStarParticlesView(this.f51824e);
+        m7Var.setStarParticlesView(this.f51800e);
         this.S.addView(this.T, ma.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
-        String M0 = gd.M0(2131749336, null);
+        String N0 = gd.N0(2131749335, null);
         if (n.c(this.currentAccount)) {
-            i7 = 2131749337;
+            i7 = 2131749336;
         } else {
-            i7 = 2131749338;
+            i7 = 2131749337;
         }
-        j0(M0, g0.H2(g0.T2(gd.M0(i7, null), new ai.a(context, 9)), true), this.S, null);
-        this.f51823c.setOverScrollMode(2);
+        j0(N0, g0.H2(g0.T2(gd.N0(i7, null), new ai.a(context, 9)), true), this.S, null);
+        this.f51799c.setOverScrollMode(2);
         v4.k kVar = new v4.k();
-        kVar.f59152m = false;
+        kVar.f59190m = false;
         kVar.C = false;
-        kVar.o(lrVar);
+        kVar.o(nrVar);
         kVar.n(350L);
-        this.f51823c.setItemAnimator(kVar);
-        this.f51823c.setOnItemClickListener(new h8(this, 12));
-        this.f51828s.addView(new uz(getParentActivity()), ma.c(-1.0f, -1));
-        x8.y(this.currentAccount, true);
+        this.f51799c.setItemAnimator(kVar);
+        this.f51799c.setOnItemClickListener(new l8(this, 12));
+        this.f51804s.addView(new wz(getParentActivity()), ma.c(-1.0f, -1));
+        y8.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
-        this.f16343j0 = linearLayout;
+        this.f16368j0 = linearLayout;
         linearLayout.setOrientation(1);
-        this.f16343j0.setPadding(0, g0.L(20.0f), 0, g0.L(10.0f));
-        n6 n6Var = new n6(getParentActivity(), false, true, false);
-        this.f16345l0 = n6Var;
-        n6Var.setTypeface(g0.o());
-        this.f16345l0.setTextSize(g0.L(32.0f));
-        this.f16345l0.setGravity(17);
-        u6.Y(this.f16345l0, org.telegram.ui.ActionBar.n6.G6, this.resourceProvider);
-        this.f16344k0 = new SpannableStringBuilder("S");
-        lq lqVar = new lq(2131231958, 0);
-        lqVar.d = false;
-        lqVar.I = 0.5f;
-        lqVar.J = 0.5f;
-        lqVar.f37198r = -g0.L(3.0f);
-        lqVar.f37199s = 0.0f;
-        this.f16344k0.setSpan(lqVar, 0, 1, 33);
-        this.f16343j0.addView(this.f16345l0, ma.d(-1, 40.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
-        n6 n6Var2 = new n6(getParentActivity(), false, false, false);
-        this.m0 = n6Var2;
-        n6Var2.setTextSize(g0.L(14.0f));
+        this.f16368j0.setPadding(0, g0.L(20.0f), 0, g0.L(10.0f));
+        o6 o6Var = new o6(getParentActivity(), false, true, false);
+        this.f16370l0 = o6Var;
+        o6Var.setTypeface(g0.o());
+        this.f16370l0.setTextSize(g0.L(32.0f));
+        this.f16370l0.setGravity(17);
+        t6.Y(this.f16370l0, m6.G6, this.resourceProvider);
+        this.f16369k0 = new SpannableStringBuilder("S");
+        nq nqVar = new nq(2131231958, 0);
+        nqVar.d = false;
+        nqVar.I = 0.5f;
+        nqVar.J = 0.5f;
+        nqVar.f37946r = -g0.L(3.0f);
+        nqVar.f37947s = 0.0f;
+        this.f16369k0.setSpan(nqVar, 0, 1, 33);
+        this.f16368j0.addView(this.f16370l0, ma.d(-1, 40.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
+        o6 o6Var2 = new o6(getParentActivity(), false, false, false);
+        this.m0 = o6Var2;
+        o6Var2.setTextSize(g0.L(14.0f));
         this.m0.setGravity(17);
-        this.m0.setText(gd.M0(2131742531, null));
-        u6.Y(this.m0, org.telegram.ui.ActionBar.n6.f29805z6, this.resourceProvider);
-        this.f16343j0.addView(this.m0, ma.d(-1, 20.0f, 17, 24.0f, 0.0f, 24.0f, 8.0f));
+        this.m0.setText(gd.N0(2131742525, null));
+        t6.Y(this.m0, m6.f29789z6, this.resourceProvider);
+        this.f16368j0.addView(this.m0, ma.d(-1, 20.0f, 17, 24.0f, 0.0f, 24.0f, 8.0f));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
-        a3 a3Var = new a3(6, getParentActivity(), this);
-        this.f16346n0 = a3Var;
-        frameLayout2.addView(a3Var);
+        e3 e3Var = new e3(6, getParentActivity(), this);
+        this.f16371n0 = e3Var;
+        frameLayout2.addView(e3Var);
         boolean c11 = n.c(this.currentAccount);
-        this.f16353u0 = c11;
+        this.f16378u0 = c11;
         if (c11) {
-            this.f16352t0 = true;
+            this.f16377t0 = true;
         }
-        boolean z11 = this.f16342i0;
+        boolean z11 = this.f16367i0;
         if (z11 && !c11) {
-            hi.d dVar = new hi.d(getParentActivity(), this.resourceProvider, true);
-            dVar.setRoundRadius(24);
-            this.f16347o0 = dVar;
-            dVar.f();
-            this.f16347o0.i(gd.M0(2131743795, null), false, true);
-            this.f16347o0.setOnClickListener(new View.OnClickListener(this) {
-                public final t f16328b;
+            hi.e eVar = new hi.e(getParentActivity(), this.resourceProvider, true);
+            eVar.setRoundRadius(24);
+            this.f16372o0 = eVar;
+            eVar.f();
+            this.f16372o0.i(gd.N0(2131743789, null), false, true);
+            this.f16372o0.setOnClickListener(new View.OnClickListener(this) {
+                public final t f16353b;
 
                 {
-                    this.f16328b = this;
+                    this.f16353b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     int i13 = r2;
-                    t tVar = this.f16328b;
+                    t tVar = this.f16353b;
                     switch (i13) {
                         case 0:
-                            vf.c.v(tVar.getParentActivity(), gd.M0(2131743793, null), false);
+                            vf.c.v(tVar.getParentActivity(), gd.N0(2131743787, null), false);
                             return;
                         case 1:
-                            vf.c.v(tVar.getParentActivity(), gd.M0(2131743793, null), false);
+                            vf.c.v(tVar.getParentActivity(), gd.N0(2131743787, null), false);
                             return;
                         case 2:
-                            hi.d dVar2 = tVar.f16349q0;
-                            if (dVar2 != null && !dVar2.R) {
-                                dVar2.setLoading(true);
+                            hi.e eVar2 = tVar.f16374q0;
+                            if (eVar2 != null && !eVar2.R) {
+                                eVar2.setLoading(true);
                                 int currentAccount = tVar.getCurrentAccount();
-                                l6 l6Var = new l6(10, dVar2, tVar);
+                                p6 p6Var = new p6(10, eVar2, tVar);
                                 TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
                                 tL_payments_getStarsRevenueStats.ton = true;
                                 tL_payments_getStarsRevenueStats.peer = new TLRPC.TL_inputPeerSelf();
-                                ConnectionsManager.getInstance(currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new e1(l6Var, 13));
+                                ConnectionsManager.getInstance(currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new g1(p6Var, 13));
                                 return;
                             }
                             return;
@@ -484,46 +486,46 @@ public final class t extends s00 implements fs {
                     }
                 }
             });
-            this.f16346n0.addView(this.f16347o0, ma.e(-1, 48, 119));
+            this.f16371n0.addView(this.f16372o0, ma.e(-1, 48, 119));
         }
         d61 d61Var = new d61(4, getParentActivity(), this);
-        this.f16348p0 = d61Var;
+        this.f16373p0 = d61Var;
         frameLayout2.addView(d61Var);
-        hi.d dVar2 = new hi.d(getParentActivity(), this.resourceProvider, true);
-        dVar2.setRoundRadius(24);
-        this.f16349q0 = dVar2;
+        hi.e eVar2 = new hi.e(getParentActivity(), this.resourceProvider, true);
+        eVar2.setRoundRadius(24);
+        this.f16374q0 = eVar2;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  ");
-        spannableStringBuilder.setSpan(new lq(2131231978, 2), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) gd.M0(2131743808, null));
-        this.f16349q0.i(spannableStringBuilder, false, true);
-        this.f16349q0.setOnClickListener(new View.OnClickListener(this) {
-            public final t f16328b;
+        spannableStringBuilder.setSpan(new nq(2131231978, 2), 0, 1, 33);
+        spannableStringBuilder.append((CharSequence) gd.N0(2131743802, null));
+        this.f16374q0.i(spannableStringBuilder, false, true);
+        this.f16374q0.setOnClickListener(new View.OnClickListener(this) {
+            public final t f16353b;
 
             {
-                this.f16328b = this;
+                this.f16353b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 int i13 = r2;
-                t tVar = this.f16328b;
+                t tVar = this.f16353b;
                 switch (i13) {
                     case 0:
-                        vf.c.v(tVar.getParentActivity(), gd.M0(2131743793, null), false);
+                        vf.c.v(tVar.getParentActivity(), gd.N0(2131743787, null), false);
                         return;
                     case 1:
-                        vf.c.v(tVar.getParentActivity(), gd.M0(2131743793, null), false);
+                        vf.c.v(tVar.getParentActivity(), gd.N0(2131743787, null), false);
                         return;
                     case 2:
-                        hi.d dVar22 = tVar.f16349q0;
-                        if (dVar22 != null && !dVar22.R) {
-                            dVar22.setLoading(true);
+                        hi.e eVar22 = tVar.f16374q0;
+                        if (eVar22 != null && !eVar22.R) {
+                            eVar22.setLoading(true);
                             int currentAccount = tVar.getCurrentAccount();
-                            l6 l6Var = new l6(10, dVar22, tVar);
+                            p6 p6Var = new p6(10, eVar22, tVar);
                             TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
                             tL_payments_getStarsRevenueStats.ton = true;
                             tL_payments_getStarsRevenueStats.peer = new TLRPC.TL_inputPeerSelf();
-                            ConnectionsManager.getInstance(currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new e1(l6Var, 13));
+                            ConnectionsManager.getInstance(currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new g1(p6Var, 13));
                             return;
                         }
                         return;
@@ -533,36 +535,36 @@ public final class t extends s00 implements fs {
                 }
             }
         });
-        if (this.f16353u0) {
-            this.f16349q0.i(gd.M0(2131749330, null), false, true);
-            this.f16349q0.setOnClickListener(new View.OnClickListener(this) {
-                public final t f16328b;
+        if (this.f16378u0) {
+            this.f16374q0.i(gd.N0(2131749329, null), false, true);
+            this.f16374q0.setOnClickListener(new View.OnClickListener(this) {
+                public final t f16353b;
 
                 {
-                    this.f16328b = this;
+                    this.f16353b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     int i13 = r2;
-                    t tVar = this.f16328b;
+                    t tVar = this.f16353b;
                     switch (i13) {
                         case 0:
-                            vf.c.v(tVar.getParentActivity(), gd.M0(2131743793, null), false);
+                            vf.c.v(tVar.getParentActivity(), gd.N0(2131743787, null), false);
                             return;
                         case 1:
-                            vf.c.v(tVar.getParentActivity(), gd.M0(2131743793, null), false);
+                            vf.c.v(tVar.getParentActivity(), gd.N0(2131743787, null), false);
                             return;
                         case 2:
-                            hi.d dVar22 = tVar.f16349q0;
-                            if (dVar22 != null && !dVar22.R) {
-                                dVar22.setLoading(true);
+                            hi.e eVar22 = tVar.f16374q0;
+                            if (eVar22 != null && !eVar22.R) {
+                                eVar22.setLoading(true);
                                 int currentAccount = tVar.getCurrentAccount();
-                                l6 l6Var = new l6(10, dVar22, tVar);
+                                p6 p6Var = new p6(10, eVar22, tVar);
                                 TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
                                 tL_payments_getStarsRevenueStats.ton = true;
                                 tL_payments_getStarsRevenueStats.peer = new TLRPC.TL_inputPeerSelf();
-                                ConnectionsManager.getInstance(currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new e1(l6Var, 13));
+                                ConnectionsManager.getInstance(currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new g1(p6Var, 13));
                                 return;
                             }
                             return;
@@ -574,51 +576,51 @@ public final class t extends s00 implements fs {
             });
         }
         int i13 = 8;
-        if (z11 || this.f16353u0) {
-            d61 d61Var2 = this.f16348p0;
-            hi.d dVar3 = this.f16349q0;
-            if (this.f16353u0) {
+        if (z11 || this.f16378u0) {
+            d61 d61Var2 = this.f16373p0;
+            hi.e eVar3 = this.f16374q0;
+            if (this.f16378u0) {
                 i10 = 0;
             } else {
                 i10 = 8;
             }
-            d61Var2.addView(dVar3, ma.q(-1, 48, 17.0f, 1, 0, 0, i10, 0));
+            d61Var2.addView(eVar3, ma.q(-1, 48, 17.0f, 1, 0, 0, i10, 0));
         }
-        hi.d dVar4 = new hi.d(getParentActivity(), this.resourceProvider, true);
-        dVar4.setRoundRadius(24);
-        this.f16350r0 = dVar4;
+        hi.e eVar4 = new hi.e(getParentActivity(), this.resourceProvider, true);
+        eVar4.setRoundRadius(24);
+        this.f16375r0 = eVar4;
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x  ");
-        spannableStringBuilder2.setSpan(new lq(2131231974, 2), 0, 1, 33);
-        spannableStringBuilder2.append((CharSequence) gd.M0(2131743809, null));
-        this.f16350r0.i(spannableStringBuilder2, false, true);
-        this.f16350r0.setOnClickListener(new View.OnClickListener(this) {
-            public final t f16328b;
+        spannableStringBuilder2.setSpan(new nq(2131231974, 2), 0, 1, 33);
+        spannableStringBuilder2.append((CharSequence) gd.N0(2131743803, null));
+        this.f16375r0.i(spannableStringBuilder2, false, true);
+        this.f16375r0.setOnClickListener(new View.OnClickListener(this) {
+            public final t f16353b;
 
             {
-                this.f16328b = this;
+                this.f16353b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 int i132 = r2;
-                t tVar = this.f16328b;
+                t tVar = this.f16353b;
                 switch (i132) {
                     case 0:
-                        vf.c.v(tVar.getParentActivity(), gd.M0(2131743793, null), false);
+                        vf.c.v(tVar.getParentActivity(), gd.N0(2131743787, null), false);
                         return;
                     case 1:
-                        vf.c.v(tVar.getParentActivity(), gd.M0(2131743793, null), false);
+                        vf.c.v(tVar.getParentActivity(), gd.N0(2131743787, null), false);
                         return;
                     case 2:
-                        hi.d dVar22 = tVar.f16349q0;
-                        if (dVar22 != null && !dVar22.R) {
-                            dVar22.setLoading(true);
+                        hi.e eVar22 = tVar.f16374q0;
+                        if (eVar22 != null && !eVar22.R) {
+                            eVar22.setLoading(true);
                             int currentAccount = tVar.getCurrentAccount();
-                            l6 l6Var = new l6(10, dVar22, tVar);
+                            p6 p6Var = new p6(10, eVar22, tVar);
                             TLRPC.TL_payments_getStarsRevenueStats tL_payments_getStarsRevenueStats = new TLRPC.TL_payments_getStarsRevenueStats();
                             tL_payments_getStarsRevenueStats.ton = true;
                             tL_payments_getStarsRevenueStats.peer = new TLRPC.TL_inputPeerSelf();
-                            ConnectionsManager.getInstance(currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new e1(l6Var, 13));
+                            ConnectionsManager.getInstance(currentAccount).sendRequest(tL_payments_getStarsRevenueStats, new g1(p6Var, 13));
                             return;
                         }
                         return;
@@ -628,68 +630,68 @@ public final class t extends s00 implements fs {
                 }
             }
         });
-        if (!this.f16353u0) {
-            this.f16348p0.addView(this.f16350r0, ma.q(-1, 48, 17.0f, 1, 0, 0, 0, 0));
+        if (!this.f16378u0) {
+            this.f16373p0.addView(this.f16375r0, ma.q(-1, 48, 17.0f, 1, 0, 0, 0, 0));
         }
-        this.f16343j0.addView(frameLayout2, ma.d(-1, 48.0f, 17, 20.0f, 6.0f, 20.0f, 4.0f));
-        this.f16346n0.animate().cancel();
-        this.f16348p0.animate().cancel();
-        d61 d61Var3 = this.f16348p0;
-        if (this.f16352t0) {
+        this.f16368j0.addView(frameLayout2, ma.d(-1, 48.0f, 17, 20.0f, 6.0f, 20.0f, 4.0f));
+        this.f16371n0.animate().cancel();
+        this.f16373p0.animate().cancel();
+        d61 d61Var3 = this.f16373p0;
+        if (this.f16377t0) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
         d61Var3.setAlpha(f10);
-        a3 a3Var2 = this.f16346n0;
-        if (!this.f16352t0) {
+        e3 e3Var2 = this.f16371n0;
+        if (!this.f16377t0) {
             f11 = 1.0f;
         }
-        a3Var2.setAlpha(f11);
-        d61 d61Var4 = this.f16348p0;
-        if (this.f16352t0) {
+        e3Var2.setAlpha(f11);
+        d61 d61Var4 = this.f16373p0;
+        if (this.f16377t0) {
             i11 = 0;
         } else {
             i11 = 8;
         }
         d61Var4.setVisibility(i11);
-        a3 a3Var3 = this.f16346n0;
-        if (!this.f16352t0) {
+        e3 e3Var3 = this.f16371n0;
+        if (!this.f16377t0) {
             i13 = 0;
         }
-        a3Var3.setVisibility(i13);
+        e3Var3.setVisibility(i13);
         F0();
-        d8 d8Var = this.f16354v0;
-        if (d8Var != null) {
-            d8Var.O(false);
+        h8 h8Var = this.f16379v0;
+        if (h8Var != null) {
+            h8Var.O(false);
         }
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25221x3) {
+        if (i7 == ks.f25249x3) {
             u0();
-            d8 d8Var = this.f16354v0;
-            if (d8Var != null) {
-                d8Var.O(true);
+            h8 h8Var = this.f16379v0;
+            if (h8Var != null) {
+                h8Var.O(true);
             }
             h0();
         } else if (i7 == ks.B3) {
-            x8 y10 = x8.y(this.currentAccount, true);
-            if (this.f16351s0 != y10.M(0)) {
-                this.f16351s0 = y10.M(0);
+            y8 y10 = y8.y(this.currentAccount, true);
+            if (this.f16376s0 != y10.M(0)) {
+                this.f16376s0 = y10.M(0);
                 u0();
-                d8 d8Var2 = this.f16354v0;
-                if (d8Var2 != null) {
-                    d8Var2.O(false);
+                h8 h8Var2 = this.f16379v0;
+                if (h8Var2 != null) {
+                    h8Var2.O(false);
                 }
                 h0();
             }
         } else if (i7 == ks.C3) {
-            d8 d8Var3 = this.f16354v0;
-            if (d8Var3 != null) {
-                d8Var3.O(true);
+            h8 h8Var3 = this.f16379v0;
+            if (h8Var3 != null) {
+                h8Var3.O(true);
             }
         } else if (i7 == ks.A3) {
             F0();
@@ -700,29 +702,29 @@ public final class t extends s00 implements fs {
 
     @Override
     public final int getNavigationBarColor() {
-        return org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29485i5, false);
+        return m6.x0(null, m6.f29469i5, false);
     }
 
     @Override
     public final void h0() {
-        qt0 qt0Var;
+        tt0 tt0Var;
         super.h0();
-        if (this.f16339f0 && (qt0Var = this.V) != null && this.f16335b0 != -1) {
-            qt0Var.a();
+        if (this.f16364f0 && (tt0Var = this.V) != null && this.f16360b0 != -1) {
+            tt0Var.a();
         }
-        this.f16339f0 = false;
+        this.f16364f0 = false;
     }
 
     @Override
     public final void i0() {
-        this.f51828s.addView(this.V, ma.c(-1.0f, -1));
-        this.V.u(this.f51823c, new o(this, 3));
-        qt0 qt0Var = this.V;
+        this.f51804s.addView(this.V, ma.c(-1.0f, -1));
+        this.V.u(this.f51799c, new o(this, 3));
+        tt0 tt0Var = this.V;
         ob obVar = this.U;
-        g71 viewPager = obVar.getViewPager();
+        j71 viewPager = obVar.getViewPager();
         ob obVar2 = this.U;
         Objects.requireNonNull(obVar2);
-        qt0Var.x(obVar, viewPager, new c7(obVar2, 24));
+        tt0Var.x(obVar, viewPager, new v6(obVar2, 25));
         this.V.y(this.U.getTabsContainer());
         this.U.getTabsContainer().setLayoutParams(ma.d(-1, -2.0f, 48, -4.0f, 0.0f, -4.0f, 0.0f));
         D0();
@@ -730,8 +732,8 @@ public final class t extends s00 implements fs {
 
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        qt0 qt0Var = this.V;
-        if (qt0Var == null || motionEvent == null || qt0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.V.c() || this.U.getViewPager().f35376b == 0) {
+        tt0 tt0Var = this.V;
+        if (tt0Var == null || motionEvent == null || tt0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.V.c() || this.U.getViewPager().f36438b == 0) {
             return true;
         }
         return false;
@@ -739,21 +741,21 @@ public final class t extends s00 implements fs {
 
     @Override
     public final v4.i0 k0() {
-        d8 d8Var = new d8(this, this.f51823c, getParentActivity(), this.currentAccount, this.classGuid, new e7(this, 4), getResourceProvider(), 3);
-        this.f16354v0 = d8Var;
-        d8Var.f42809r = false;
-        return d8Var;
+        h8 h8Var = new h8(this, this.f51799c, getParentActivity(), this.currentAccount, this.classGuid, new d7(this, 4), getResourceProvider(), 3);
+        this.f16379v0 = h8Var;
+        h8Var.f34068r = false;
+        return h8Var;
     }
 
     @Override
     public final c0 l0(Context context) {
-        qt0 qt0Var = this.V;
-        qt0Var.getClass();
-        return new jg.i0(5, qt0Var, false);
+        tt0 tt0Var = this.V;
+        tt0Var.getClass();
+        return new jg.i0(5, tt0Var, false);
     }
 
     @Override
-    public final u1 m0() {
+    public final t1 m0() {
         return new ua(getParentActivity(), 75, 1, 1);
     }
 
@@ -769,26 +771,26 @@ public final class t extends s00 implements fs {
 
     @Override
     public final boolean onFragmentCreate() {
-        ks.f(this.currentAccount).c(this, ks.f25221x3);
+        ks.f(this.currentAccount).c(this, ks.f25249x3);
         ks.f(this.currentAccount).c(this, ks.A3);
         ks.f(this.currentAccount).c(this, ks.B3);
         ks.f(this.currentAccount).c(this, ks.C3);
         ks.f(this.currentAccount).c(this, ks.E3);
-        x8.y(this.currentAccount, true).R(true);
-        x8.y(this.currentAccount, true).Q();
+        y8.y(this.currentAccount, true).R(true);
+        y8.y(this.currentAccount, true).Q();
         e0.g(this.currentAccount).j(getUserConfig().e(), true);
-        x8.y(this.currentAccount, true).z();
+        y8.y(this.currentAccount, true).z();
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        ck0 ck0Var = this.f51823c;
-        if (ck0Var != null) {
-            ck0Var.removeCallbacks(this.f16340g0);
+        ek0 ek0Var = this.f51799c;
+        if (ek0Var != null) {
+            ek0Var.removeCallbacks(this.f16365g0);
         }
-        ks.f(this.currentAccount).n(this, ks.f25221x3);
+        ks.f(this.currentAccount).n(this, ks.f25249x3);
         ks.f(this.currentAccount).n(this, ks.A3);
         ks.f(this.currentAccount).n(this, ks.B3);
         ks.f(this.currentAccount).n(this, ks.C3);
@@ -797,9 +799,9 @@ public final class t extends s00 implements fs {
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f16338e0 = true;
-        this.f16336c0 = i10;
-        this.f16337d0 = i12;
+        this.f16363e0 = true;
+        this.f16361c0 = i10;
+        this.f16362d0 = i12;
         D0();
     }
 
@@ -823,11 +825,11 @@ public final class t extends s00 implements fs {
 
     @Override
     public final float q0() {
-        ck0 ck0Var = this.f51823c;
-        if (ck0Var == null) {
+        ek0 ek0Var = this.f51799c;
+        if (ek0Var == null) {
             return 0.0f;
         }
-        return ck0Var.getY();
+        return ek0Var.getY();
     }
 
     @Override
@@ -837,8 +839,8 @@ public final class t extends s00 implements fs {
 
     @Override
     public final void s0(boolean z10) {
-        te.a aVar = this.f16334a0;
-        if (aVar != null && aVar.f57658f != z10) {
+        te.a aVar = this.f16359a0;
+        if (aVar != null && aVar.f57697f != z10) {
             aVar.a(z10, true);
         }
     }
@@ -855,16 +857,16 @@ public final class t extends s00 implements fs {
     public final void u0() {
         boolean z10;
         super.u0();
-        qt0 qt0Var = this.V;
-        if (qt0Var != null && qt0Var.f38906f0) {
+        tt0 tt0Var = this.V;
+        if (tt0Var != null && tt0Var.f40055f0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f16339f0 = z10;
-        ck0 ck0Var = this.f51823c;
-        if (ck0Var != null && this.Q >= 0) {
-            this.R -= ck0Var.getPaddingTop();
+        this.f16364f0 = z10;
+        ek0 ek0Var = this.f51799c;
+        if (ek0Var != null && this.Q >= 0) {
+            this.R -= ek0Var.getPaddingTop();
         }
     }
 

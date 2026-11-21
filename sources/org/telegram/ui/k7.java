@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
 public final class k7 extends f7 {
-    public final ArrayList f49181n;
-    public final s7 f49182r;
+    public final ArrayList f49221n;
+    public final s7 f49222r;
 
     public k7(s7 s7Var) {
         super(s7Var, 2);
-        this.f49182r = s7Var;
-        this.f49181n = new ArrayList();
+        this.f49222r = s7Var;
+        this.f49221n = new ArrayList();
     }
 
     @Override
     public final void F() {
         boolean z10;
         super.F();
-        ArrayList arrayList = this.f49181n;
+        ArrayList arrayList = this.f49221n;
         arrayList.clear();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f47077e;
+            ArrayList arrayList2 = this.f47150e;
             if (i7 < arrayList2.size()) {
-                String path = ((l7) arrayList2.get(i7)).d.f10963a.getPath();
+                String path = ((l7) arrayList2.get(i7)).d.f10992a.getPath();
                 if (((l7) arrayList2.get(i7)).d.d == 1) {
                     z10 = true;
                 } else {
@@ -47,10 +47,10 @@ public final class k7 extends f7 {
         String name;
         String str;
         float f10;
-        View view = f1Var.f59123a;
+        View view = f1Var.f59161a;
         j7 j7Var = (j7) view;
-        org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) j7Var.f48890b.getChildAt(0);
-        ArrayList arrayList = this.f47077e;
+        org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) j7Var.f48906b.getChildAt(0);
+        ArrayList arrayList = this.f47150e;
         ei.b bVar = ((l7) arrayList.get(i7)).d;
         if (bVar == view.getTag()) {
             z10 = true;
@@ -63,18 +63,18 @@ public final class k7 extends f7 {
             z11 = false;
         }
         view.setTag(bVar);
-        File file = bVar.f10963a;
+        File file = bVar.f10992a;
         long lastModified = file.lastModified();
         String str2 = null;
         if (bVar.h == 5) {
-            name = org.telegram.messenger.gd.M0(2131753939, null);
+            name = org.telegram.messenger.gd.N0(2131753938, null);
         } else {
             name = file.getName();
         }
         String str3 = name;
         String s5 = org.telegram.messenger.gd.s(lastModified / 1000, true);
         String name2 = file.getName();
-        Pattern pattern = Utilities.f22776a;
+        Pattern pattern = Utilities.f22804a;
         int lastIndexOf = name2.lastIndexOf(46);
         if (lastIndexOf != -1) {
             str = name2.substring(lastIndexOf + 1);
@@ -96,15 +96,15 @@ public final class k7 extends f7 {
         }
         imageView.setRoundRadius(org.telegram.messenger.g0.L(f10));
         j7Var.d = z11;
-        j7Var.f48891c.setText(org.telegram.messenger.g0.i0(bVar.f10965c, false, false));
-        j7Var.f48889a.a(this.f49182r.h.f10976j.contains(bVar), z10);
+        j7Var.f48907c.setText(org.telegram.messenger.g0.i0(bVar.f10994c, false, false));
+        j7Var.f48905a.a(this.f49222r.h.f11005j.contains(bVar), z10);
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         j7 j7Var = new j7(this, viewGroup.getContext(), 0);
-        j7Var.f48892e = 2;
-        j7Var.f48890b.addView(new org.telegram.ui.Cells.i7(3, viewGroup.getContext(), null));
+        j7Var.f48908e = 2;
+        j7Var.f48906b.addView(new org.telegram.ui.Cells.i7(3, viewGroup.getContext(), null));
         return new v4.f1(j7Var);
     }
 }

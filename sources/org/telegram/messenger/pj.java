@@ -3,15 +3,15 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.ui.SecretMediaViewer;
 public final class pj implements Runnable {
-    public final int f26254a;
-    public final mp f26255b;
-    public final a0.h f26256c;
+    public final int f26282a;
+    public final mp f26283b;
+    public final a0.h f26284c;
     public final a0.h d;
 
     public pj(mp mpVar, a0.h hVar, a0.h hVar2, int i7) {
-        this.f26254a = i7;
-        this.f26255b = mpVar;
-        this.f26256c = hVar;
+        this.f26282a = i7;
+        this.f26283b = mpVar;
+        this.f26284c = hVar;
         this.d = hVar2;
     }
 
@@ -23,10 +23,10 @@ public final class pj implements Runnable {
         ArrayList arrayList;
         boolean z11;
         char c11 = 0;
-        switch (this.f26254a) {
+        switch (this.f26282a) {
             case 0:
-                mp mpVar = this.f26255b;
-                a0.h hVar = this.f26256c;
+                mp mpVar = this.f26283b;
+                a0.h hVar = this.f26284c;
                 a0.h hVar2 = this.d;
                 if (hVar != null) {
                     int i7 = 0;
@@ -45,13 +45,13 @@ public final class pj implements Runnable {
                 }
                 a0.h hVar3 = hVar2;
                 if (hVar3 != null) {
-                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f43754s) {
+                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f43795s) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     if (z10) {
-                        fjVar = SecretMediaViewer.f().f43731g0;
+                        fjVar = SecretMediaViewer.f().f43772g0;
                     } else {
                         fjVar = null;
                     }
@@ -60,7 +60,7 @@ public final class pj implements Runnable {
                     while (i10 < m11) {
                         long j10 = hVar3.j(i10);
                         ArrayList arrayList3 = (ArrayList) hVar3.n(i10);
-                        if (z10 && fjVar != null && fjVar.K1 == mpVar.currentAccount && fj.B0(fjVar.f23965k) == j10 && arrayList3.contains(Integer.valueOf(fjVar.e1()))) {
+                        if (z10 && fjVar != null && fjVar.K1 == mpVar.currentAccount && fj.B0(fjVar.f23993k) == j10 && arrayList3.contains(Integer.valueOf(fjVar.e1()))) {
                             int e12 = fjVar.e1();
                             arrayList3.remove(Integer.valueOf(e12));
                             fjVar.I0 = true;
@@ -69,10 +69,10 @@ public final class pj implements Runnable {
                             arrayList = arrayList3;
                             mp mpVar2 = mpVar;
                             mpVar = mpVar2;
-                            SecretMediaViewer.f().f43746o1 = new uj(e12, V, j10, mpVar2);
+                            SecretMediaViewer.f().f43787o1 = new uj(e12, V, j10, mpVar2);
                             ks notificationCenter = mpVar.getNotificationCenter();
                             Object[] objArr = new Object[1];
-                            objArr[c10] = fjVar.f23965k;
+                            objArr[c10] = fjVar.f23993k;
                             notificationCenter.k(48, objArr);
                         } else {
                             c10 = c11;
@@ -80,7 +80,7 @@ public final class pj implements Runnable {
                         }
                         if (!arrayList.isEmpty()) {
                             tr messagesStorage = mpVar.getMessagesStorage();
-                            messagesStorage.f27052a.c(new gr(messagesStorage, arrayList, j10, 2));
+                            messagesStorage.f27080a.c(new gr(messagesStorage, arrayList, j10, 2));
                         }
                         i10++;
                         c11 = c10;
@@ -89,23 +89,23 @@ public final class pj implements Runnable {
                 Utilities.d.c(new pj(mpVar, hVar, hVar3, 3));
                 return;
             case 1:
-                mp mpVar3 = this.f26255b;
-                a0.h hVar4 = this.f26256c;
+                mp mpVar3 = this.f26283b;
+                a0.h hVar4 = this.f26284c;
                 a0.h hVar5 = this.d;
                 mpVar3.X = hVar4;
                 mpVar3.Y = hVar5;
                 return;
             case 2:
-                mp mpVar4 = this.f26255b;
-                a0.h hVar6 = this.f26256c;
+                mp mpVar4 = this.f26283b;
+                a0.h hVar6 = this.f26284c;
                 a0.h hVar7 = this.d;
                 mpVar4.W1 = true;
                 tr messagesStorage2 = mpVar4.getMessagesStorage();
-                messagesStorage2.f27052a.c(new kg(messagesStorage2, hVar6, hVar7, 17));
+                messagesStorage2.f27080a.c(new kg(messagesStorage2, hVar6, hVar7, 17));
                 return;
             default:
-                mp mpVar5 = this.f26255b;
-                Utilities.d.c(new pj(mpVar5, this.f26256c, this.d, 2));
+                mp mpVar5 = this.f26283b;
+                Utilities.d.c(new pj(mpVar5, this.f26284c, this.d, 2));
                 mpVar5.X1 = 0;
                 mpVar5.Y1 = null;
                 mpVar5.Z1 = null;

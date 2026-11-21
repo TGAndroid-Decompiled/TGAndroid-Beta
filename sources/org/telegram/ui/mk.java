@@ -3,11 +3,11 @@ package org.telegram.ui;
 import android.content.Context;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
-public final class mk extends org.telegram.ui.Components.ua0 {
+public final class mk extends org.telegram.ui.Components.wa0 {
     public final bn I;
 
-    public mk(bn bnVar, Context context, bn bnVar2, dh.c cVar, org.telegram.messenger.jj jjVar, TLRPC.User user, TLRPC.Chat chat, int i7, org.telegram.ui.Components.qa0 qa0Var, int i10, boolean z10) {
-        super(context, bnVar2, cVar, jjVar, user, chat, i7, qa0Var, i10, z10);
+    public mk(bn bnVar, Context context, bn bnVar2, dh.c cVar, org.telegram.messenger.jj jjVar, TLRPC.User user, TLRPC.Chat chat, int i7, org.telegram.ui.Components.sa0 sa0Var, int i10, boolean z10) {
+        super(context, bnVar2, cVar, jjVar, user, chat, i7, sa0Var, i10, z10);
         this.I = bnVar;
     }
 
@@ -17,10 +17,10 @@ public final class mk extends org.telegram.ui.Components.ua0 {
         rm rmVar;
         bn bnVar = this.I;
         rm rmVar2 = bnVar.D5;
-        if (rmVar2 != null && (fjVar = rmVar2.f51640a) != null && ((rmVar = bnVar.f46228x5.d) == null || rmVar.f51640a == null || fjVar.e1() == bnVar.f46228x5.d.f51640a.e1())) {
+        if (rmVar2 != null && (fjVar = rmVar2.f51615a) != null && ((rmVar = bnVar.f46251x5.d) == null || rmVar.f51615a == null || fjVar.e1() == bnVar.f46251x5.d.f51615a.e1())) {
             return;
         }
-        bnVar.D5 = bnVar.f46228x5.d;
+        bnVar.D5 = bnVar.f46251x5.d;
     }
 
     @Override
@@ -32,18 +32,18 @@ public final class mk extends org.telegram.ui.Components.ua0 {
         int i10 = 0;
         a(false);
         bn bnVar = this.I;
-        org.telegram.messenger.jj jjVar = bnVar.f46228x5;
+        org.telegram.messenger.jj jjVar = bnVar.f46251x5;
         if (jjVar != null) {
             if (!z10) {
                 bnVar.E5 = true;
             }
-            org.telegram.messenger.hj hjVar2 = jjVar.f24865b;
+            org.telegram.messenger.hj hjVar2 = jjVar.f24893b;
             if (hjVar2 != null) {
-                int size = hjVar2.f24455e.size();
+                int size = hjVar2.f24483e.size();
                 i7 = 0;
                 z11 = false;
                 for (int i11 = 0; i11 < size; i11++) {
-                    org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) bnVar.f46228x5.f24865b.f24455e.get(i11);
+                    org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) bnVar.f46251x5.f24893b.f24483e.get(i11);
                     if (fjVar.D4()) {
                         i7 = 3;
                     } else if (fjVar.T3()) {
@@ -57,7 +57,7 @@ public final class mk extends org.telegram.ui.Components.ua0 {
                     } else if (fjVar.z3()) {
                         z11 = true;
                     }
-                    bnVar.f46112o6[0].put(fjVar.e1(), fjVar);
+                    bnVar.f46135o6[0].put(fjVar.e1(), fjVar);
                 }
             } else {
                 i7 = 0;
@@ -65,20 +65,20 @@ public final class mk extends org.telegram.ui.Components.ua0 {
             }
             Bundle l10 = org.telegram.ui.Cells.c0.l(3, "onlySelect", "dialogsType", true);
             l10.putBoolean("quote", !z10);
-            if (!z10 && (hjVar = bnVar.f46228x5.f24864a) != null && !hjVar.f24455e.isEmpty() && bnVar.f46228x5.d == null) {
+            if (!z10 && (hjVar = bnVar.f46251x5.f24892a) != null && !hjVar.f24483e.isEmpty() && bnVar.f46251x5.d == null) {
                 z12 = true;
             } else {
                 z12 = false;
             }
             l10.putBoolean("reply_to", z12);
             if (z12) {
-                bnVar.gb(l10, (org.telegram.messenger.fj) bnVar.f46228x5.f24864a.f24455e.get(0));
+                bnVar.gb(l10, (org.telegram.messenger.fj) bnVar.f46251x5.f24892a.f24483e.get(0));
             }
             l10.putInt("hasPoll", i7);
             l10.putBoolean("hasInvoice", z11);
-            org.telegram.messenger.hj hjVar3 = bnVar.f46228x5.f24865b;
+            org.telegram.messenger.hj hjVar3 = bnVar.f46251x5.f24893b;
             if (hjVar3 != null) {
-                i10 = hjVar3.f24455e.size();
+                i10 = hjVar3.f24483e.size();
             }
             l10.putInt("messagesCount", i10);
             l10.putBoolean("canSelectTopics", true);

@@ -1,75 +1,81 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.text.TextPaint;
-import android.text.style.LineHeightSpan;
-import android.text.style.MetricAffectingSpan;
-public final class gh0 extends MetricAffectingSpan implements LineHeightSpan {
-    public hh0 f35503a;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class gh0 extends Drawable {
+    public final View f35555a;
+    public final Paint f35556b;
+    public final Path f35557c;
+    public int d;
+    public boolean f35558e;
+    public final d6 f35559f;
 
-    @Override
-    public final void chooseHeight(CharSequence charSequence, int i7, int i10, int i11, int i12, Paint.FontMetricsInt fontMetricsInt) {
-        int i13;
-        int i14;
-        hh0 hh0Var = this.f35503a;
-        if (hh0Var.f35872b) {
-            int i15 = 2;
-            if (hh0Var.f35875f) {
-                i13 = 7;
-            } else {
-                i13 = 2;
-            }
-            if (i7 <= hh0Var.f35873c) {
-                int i16 = fontMetricsInt.ascent;
-                if (hh0Var.f35876n) {
-                    i14 = 2;
-                } else {
-                    i14 = 0;
-                }
-                fontMetricsInt.ascent = i16 - org.telegram.messenger.g0.L(i14 + i13);
-                int i17 = fontMetricsInt.top;
-                if (!this.f35503a.f35876n) {
-                    i15 = 0;
-                }
-                fontMetricsInt.top = i17 - org.telegram.messenger.g0.L(i15 + i13);
-            }
-            if (i10 >= this.f35503a.d) {
-                float f10 = i13;
-                fontMetricsInt.descent = org.telegram.messenger.g0.L(f10) + fontMetricsInt.descent;
-                fontMetricsInt.bottom = org.telegram.messenger.g0.L(f10) + fontMetricsInt.bottom;
-            }
-        }
+    public gh0(View view) {
+        Paint paint = new Paint(1);
+        this.f35556b = paint;
+        Path path = new Path();
+        this.f35557c = path;
+        this.d = 255;
+        this.f35555a = view;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        this.f35559f = new d6(view, 0L, 350L, nr.h);
+        float N = org.telegram.messenger.g0.N(4.66f);
+        float N2 = org.telegram.messenger.g0.N(2.16f);
+        path.rewind();
+        path.moveTo(N / 2.0f, 0.0f);
+        float f10 = (-N) / 2.0f;
+        path.lineTo(f10, 0.0f);
+        float f11 = f10 + N2;
+        path.lineTo(f11, -N2);
+        path.moveTo(f10, 0.0f);
+        path.lineTo(f11, N2);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        float f10;
-        if (textPaint == null) {
-            return;
-        }
-        if (this.f35503a.f35871a) {
-            f10 = 16.0f;
-        } else {
-            f10 = org.telegram.messenger.bz.W0 - 2;
-        }
-        textPaint.setTextSize(org.telegram.messenger.g0.L(f10));
+    public final void draw(Canvas canvas) {
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        float d = this.f35559f.d(this.f35558e);
+        float N = org.telegram.messenger.g0.N(2.51f);
+        canvas.save();
+        canvas.translate(centerX, centerY);
+        canvas.save();
+        canvas.translate(N, N);
+        canvas.rotate(45.0f);
+        canvas.scale(org.telegram.messenger.g0.T1(-1.0f, 1.0f, d), 1.0f);
+        Path path = this.f35557c;
+        Paint paint = this.f35556b;
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.save();
+        float f10 = -N;
+        canvas.translate(f10, f10);
+        canvas.rotate(225.0f);
+        canvas.scale(org.telegram.messenger.g0.T1(-1.0f, 1.0f, d), 1.0f);
+        canvas.drawPath(path, paint);
+        canvas.restore();
+        canvas.restore();
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        float f10;
-        float f11;
-        if (this.f35503a.f35871a) {
-            f10 = 16.0f;
-        } else {
-            f10 = org.telegram.messenger.bz.W0 - 2;
-        }
-        textPaint.setTextSize(org.telegram.messenger.g0.L(f10));
-        if (this.f35503a.f35871a) {
-            f11 = 1.1f;
-        } else {
-            f11 = 1.0f;
-        }
-        textPaint.setTextScaleX(f11);
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.d = i7;
+        this.f35556b.setAlpha(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

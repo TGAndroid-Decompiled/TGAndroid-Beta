@@ -1,7 +1,7 @@
 package ci;
 public final class b {
-    public String f5544a;
-    public float f5545b;
-    public float f5546c;
+    public String f5573a;
+    public float f5574b;
+    public float f5575c;
     public boolean d;
 }

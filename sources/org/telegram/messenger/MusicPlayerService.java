@@ -18,17 +18,17 @@ import java.io.File;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public class MusicPlayerService extends Service implements fs {
-    public static final boolean f22753s;
-    public static android.support.v4.media.session.a0 f22754w;
-    public RemoteControlClient f22755a;
-    public AudioManager f22756b;
-    public android.support.v4.media.session.d0 f22757c;
+    public static final boolean f22781s;
+    public static android.support.v4.media.session.a0 f22782w;
+    public RemoteControlClient f22783a;
+    public AudioManager f22784b;
+    public android.support.v4.media.session.d0 f22785c;
     public Bitmap d;
-    public int f22758e;
-    public ImageReceiver f22759f;
+    public int f22786e;
+    public ImageReceiver f22787f;
     public boolean h;
-    public String f22760n;
-    public final q0 f22761r = new q0(2);
+    public String f22788n;
+    public final q0 f22789r = new q0(2);
 
     static {
         boolean z10;
@@ -37,7 +37,7 @@ public class MusicPlayerService extends Service implements fs {
         } else {
             z10 = false;
         }
-        f22753s = z10;
+        f22781s = z10;
     }
 
     public static int b(int i7) {
@@ -50,8 +50,8 @@ public class MusicPlayerService extends Service implements fs {
     public static float d(fj fjVar, boolean z10) {
         if (z10) {
             if (fjVar != null) {
-                if (fj.R4(fjVar.f23965k) || fjVar.h4()) {
-                    return MediaController.B().f22728q0;
+                if (fj.R4(fjVar.f23993k) || fjVar.h4()) {
+                    return MediaController.B().f22756q0;
                 }
                 return 1.0f;
             }
@@ -61,7 +61,7 @@ public class MusicPlayerService extends Service implements fs {
     }
 
     public static void g() {
-        if (f22754w != null) {
+        if (f22782w != null) {
             int i7 = bz.S0;
             int i10 = 2;
             if (i7 != 1) {
@@ -71,7 +71,7 @@ public class MusicPlayerService extends Service implements fs {
                     i10 = 1;
                 }
             }
-            f22754w.w(i10);
+            f22782w.w(i10);
         }
     }
 
@@ -99,17 +99,17 @@ public class MusicPlayerService extends Service implements fs {
                     fileLocation2 = user.photo.photo_small;
                 }
                 if (fileLocation2 != null) {
-                    w7.G(j10.f24770t0);
+                    w7.G(j10.f24798t0);
                     File J = w7.J(fileLocation2, null, true, true);
                     if (J.exists()) {
                         float f10 = i10;
                         return ec.K(J.getAbsolutePath(), null, f10, f10, false);
                     } else if (z10) {
                         if (z11) {
-                            this.f22760n = w7.r(null, fileLocation2);
-                            this.f22759f.q0(fc.l(j10.f24770t0, 0, user), "", null, null, null, 0);
+                            this.f22788n = w7.r(null, fileLocation2);
+                            this.f22787f.q0(fc.l(j10.f24798t0, 0, user), "", null, null, null, 0);
                         } else {
-                            this.f22760n = null;
+                            this.f22788n = null;
                         }
                     }
                 }
@@ -121,17 +121,17 @@ public class MusicPlayerService extends Service implements fs {
                     fileLocation = chat.photo.photo_small;
                 }
                 if (fileLocation != null) {
-                    w7.G(j10.f24770t0);
+                    w7.G(j10.f24798t0);
                     File J2 = w7.J(fileLocation, null, true, true);
                     if (J2.exists()) {
                         float f11 = i10;
                         return ec.K(J2.getAbsolutePath(), null, f11, f11, false);
                     } else if (z10) {
                         if (z11) {
-                            this.f22760n = w7.r(null, fileLocation);
-                            this.f22759f.q0(fc.a(0, chat), "", null, null, null, 0);
+                            this.f22788n = w7.r(null, fileLocation);
+                            this.f22787f.q0(fc.a(0, chat), "", null, null, null, 0);
                         } else {
-                            this.f22760n = null;
+                            this.f22788n = null;
                         }
                     }
                 }
@@ -142,13 +142,13 @@ public class MusicPlayerService extends Service implements fs {
         if (z10) {
             return null;
         }
-        org.telegram.ui.ActionBar.n6.T(this);
+        org.telegram.ui.ActionBar.m6.T(this);
         if (tLObject instanceof TLRPC.User) {
             b9Var = new org.telegram.ui.Components.b9(0, (TLRPC.User) tLObject);
         } else {
             b9Var = new org.telegram.ui.Components.b9((TLRPC.Chat) tLObject);
         }
-        b9Var.f33603r = 1;
+        b9Var.f33811r = 1;
         float f12 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(g0.L(f12), g0.L(f12), Bitmap.Config.ARGB_8888);
         b9Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -162,19 +162,19 @@ public class MusicPlayerService extends Service implements fs {
         String str2;
         int i11;
         float f10;
-        if (i7 == ks.f25118g2) {
-            fj fjVar = MediaController.B().f22740v0;
+        if (i7 == ks.f25146g2) {
+            fj fjVar = MediaController.B().f22768v0;
             if (fjVar != null) {
                 a(fjVar, false);
             } else {
                 stopSelf();
             }
-        } else if (i7 == ks.f25130i2) {
-            fj fjVar2 = MediaController.B().f22740v0;
+        } else if (i7 == ks.f25158i2) {
+            fj fjVar2 = MediaController.B().f22768v0;
             if (fjVar2 != null) {
-                long round = Math.round(((Float) objArr[1]).floatValue() * fjVar2.f23962j0) * 1000;
+                long round = Math.round(((Float) objArr[1]).floatValue() * fjVar2.f23990j0) * 1000;
                 f(round);
-                RemoteControlClient remoteControlClient = this.f22755a;
+                RemoteControlClient remoteControlClient = this.f22783a;
                 if (remoteControlClient != null) {
                     if (MediaController.B().H()) {
                         i11 = 2;
@@ -191,14 +191,14 @@ public class MusicPlayerService extends Service implements fs {
             }
         } else if (i7 == ks.R1) {
             String str3 = (String) objArr[0];
-            fj fjVar3 = MediaController.B().f22740v0;
-            if (fjVar3 != null && (str2 = this.f22760n) != null && str2.equals(str3)) {
+            fj fjVar3 = MediaController.B().f22768v0;
+            if (fjVar3 != null && (str2 = this.f22788n) != null && str2.equals(str3)) {
                 a(fjVar3, false);
             }
         } else if (i7 == ks.Y1) {
             String str4 = (String) objArr[0];
-            fj fjVar4 = MediaController.B().f22740v0;
-            if (fjVar4 != null && (str = this.f22760n) != null && str.equals(str4)) {
+            fj fjVar4 = MediaController.B().f22768v0;
+            if (fjVar4 != null && (str = this.f22788n) != null && str.equals(str4)) {
                 a(fjVar4, false);
             }
         }
@@ -220,13 +220,13 @@ public class MusicPlayerService extends Service implements fs {
             }
             return ec.K(absolutePath, null, f10, f11, false);
         } else if (z11) {
-            this.f22760n = A.getAbsolutePath();
+            this.f22788n = A.getAbsolutePath();
             if (!z10) {
-                this.f22759f.o0(str, "48_48", null, null, 0L);
+                this.f22787f.o0(str, "48_48", null, null, 0L);
             }
             return null;
         } else {
-            this.f22760n = null;
+            this.f22788n = null;
             return null;
         }
     }
@@ -236,26 +236,26 @@ public class MusicPlayerService extends Service implements fs {
         int i7;
         int i10;
         int i11;
-        this.f22757c = new android.support.v4.media.session.d0();
+        this.f22785c = new android.support.v4.media.session.d0();
         boolean H = MediaController.B().H();
         boolean z10 = !H;
         if (MediaController.B().B0) {
-            android.support.v4.media.session.d0 d0Var = this.f22757c;
+            android.support.v4.media.session.d0 d0Var = this.f22785c;
             d0Var.c(6, 0L, 1.0f);
-            d0Var.f1711e = 0L;
+            d0Var.f1723e = 0L;
         } else {
-            fj fjVar = MediaController.B().f22740v0;
+            fj fjVar = MediaController.B().f22768v0;
             if (fjVar != null && fjVar.I3()) {
                 if (bz.N0) {
                     i11 = 2131232559;
                 } else {
                     i11 = 2131232560;
                 }
-                android.support.v4.media.session.d0 d0Var2 = this.f22757c;
-                String M0 = gd.M0(2131745127, null);
+                android.support.v4.media.session.d0 d0Var2 = this.f22785c;
+                String N0 = gd.N0(2131745126, null);
                 if (!TextUtils.isEmpty("org.telegram.android.musicplayer.shuffle")) {
-                    if (!TextUtils.isEmpty(M0)) {
-                        d0Var2.a(new PlaybackStateCompat.CustomAction("org.telegram.android.musicplayer.shuffle", M0, i11, null));
+                    if (!TextUtils.isEmpty(N0)) {
+                        d0Var2.a(new PlaybackStateCompat.CustomAction("org.telegram.android.musicplayer.shuffle", N0, i11, null));
                         j10 = 2360118;
                     } else {
                         throw new IllegalArgumentException("You must specify a name to build a CustomAction");
@@ -266,14 +266,14 @@ public class MusicPlayerService extends Service implements fs {
             } else {
                 j10 = 2360070;
             }
-            android.support.v4.media.session.d0 d0Var3 = this.f22757c;
+            android.support.v4.media.session.d0 d0Var3 = this.f22785c;
             if (!H) {
                 i7 = 3;
             } else {
                 i7 = 2;
             }
             d0Var3.c(i7, j3, d(fjVar, z10));
-            d0Var3.f1711e = j10;
+            d0Var3.f1723e = j10;
             if (fjVar != null && fjVar.I3()) {
                 int i12 = bz.S0;
                 if (i12 != 1) {
@@ -285,11 +285,11 @@ public class MusicPlayerService extends Service implements fs {
                 } else {
                     i10 = 2131232557;
                 }
-                android.support.v4.media.session.d0 d0Var4 = this.f22757c;
-                String M02 = gd.M0(2131746078, null);
+                android.support.v4.media.session.d0 d0Var4 = this.f22785c;
+                String N02 = gd.N0(2131746077, null);
                 if (!TextUtils.isEmpty("org.telegram.android.musicplayer.repeat")) {
-                    if (!TextUtils.isEmpty(M02)) {
-                        d0Var4.a(new PlaybackStateCompat.CustomAction("org.telegram.android.musicplayer.repeat", M02, i10, null));
+                    if (!TextUtils.isEmpty(N02)) {
+                        d0Var4.a(new PlaybackStateCompat.CustomAction("org.telegram.android.musicplayer.repeat", N02, i10, null));
                     } else {
                         throw new IllegalArgumentException("You must specify a name to build a CustomAction");
                     }
@@ -298,7 +298,7 @@ public class MusicPlayerService extends Service implements fs {
                 }
             }
         }
-        f22754w.u(this.f22757c.b());
+        f22782w.u(this.f22785c.b());
     }
 
     @Override
@@ -308,55 +308,55 @@ public class MusicPlayerService extends Service implements fs {
 
     @Override
     public final void onCreate() {
-        this.f22756b = (AudioManager) getSystemService("audio");
+        this.f22784b = (AudioManager) getSystemService("audio");
         for (int i7 = 0; i7 < 4; i7++) {
-            ks.f(i7).b(this, ks.f25130i2);
-            ks.f(i7).b(this, ks.f25118g2);
+            ks.f(i7).b(this, ks.f25158i2);
+            ks.f(i7).b(this, ks.f25146g2);
             ks.f(i7).b(this, ks.R1);
             ks.f(i7).b(this, ks.Y1);
         }
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f22759f = imageReceiver;
-        imageReceiver.f22639h1 = new j1(this, 14);
-        if (f22754w == null) {
-            f22754w = new android.support.v4.media.session.a0(getApplicationContext(), "telegramAudioPlayer", (ComponentName) null, (PendingIntent) null);
+        this.f22787f = imageReceiver;
+        imageReceiver.f22667h1 = new j1(this, 14);
+        if (f22782w == null) {
+            f22782w = new android.support.v4.media.session.a0(getApplicationContext(), "telegramAudioPlayer", (ComponentName) null, (PendingIntent) null);
         }
-        this.f22757c = new android.support.v4.media.session.d0();
+        this.f22785c = new android.support.v4.media.session.d0();
         this.d = Bitmap.createBitmap(g0.L(102.0f), g0.L(102.0f), Bitmap.Config.ARGB_8888);
         Drawable drawable = getResources().getDrawable(2131232450);
         drawable.setBounds(0, 0, this.d.getWidth(), this.d.getHeight());
         drawable.draw(new Canvas(this.d));
-        f22754w.s(new i6.g(this, 1), null);
-        f22754w.r(true);
+        f22782w.s(new i6.g(this, 1), null);
+        f22782w.r(true);
         g();
-        android.support.v4.media.session.a0 a0Var = f22754w;
+        android.support.v4.media.session.a0 a0Var = f22782w;
         if (a0Var != null) {
             a0Var.x(bz.N0 ? 1 : 0);
         }
-        registerReceiver(this.f22761r, new IntentFilter("android.media.AUDIO_BECOMING_NOISY"));
+        registerReceiver(this.f22789r, new IntentFilter("android.media.AUDIO_BECOMING_NOISY"));
         super.onCreate();
     }
 
     @Override
     public final void onDestroy() {
-        unregisterReceiver(this.f22761r);
+        unregisterReceiver(this.f22789r);
         super.onDestroy();
         stopForeground(true);
-        RemoteControlClient remoteControlClient = this.f22755a;
+        RemoteControlClient remoteControlClient = this.f22783a;
         if (remoteControlClient != null) {
             RemoteControlClient.MetadataEditor editMetadata = remoteControlClient.editMetadata(true);
             editMetadata.clear();
             editMetadata.apply();
-            this.f22756b.unregisterRemoteControlClient(this.f22755a);
+            this.f22784b.unregisterRemoteControlClient(this.f22783a);
         }
-        android.support.v4.media.session.a0 a0Var = f22754w;
+        android.support.v4.media.session.a0 a0Var = f22782w;
         if (a0Var != null) {
             a0Var.s(null, null);
-            f22754w.r(false);
+            f22782w.r(false);
         }
         for (int i7 = 0; i7 < 4; i7++) {
-            ks.f(i7).n(this, ks.f25130i2);
-            ks.f(i7).n(this, ks.f25118g2);
+            ks.f(i7).n(this, ks.f25158i2);
+            ks.f(i7).n(this, ks.f25146g2);
             ks.f(i7).n(this, ks.R1);
             ks.f(i7).n(this, ks.Y1);
         }
@@ -374,23 +374,23 @@ public class MusicPlayerService extends Service implements fs {
                 e10.printStackTrace();
             }
         }
-        fj fjVar = MediaController.B().f22740v0;
+        fj fjVar = MediaController.B().f22768v0;
         if (fjVar == null) {
             g0.g3(new a(this, 29));
             return 1;
         }
-        if (f22753s) {
+        if (f22781s) {
             ComponentName componentName = new ComponentName(getApplicationContext(), MusicPlayerReceiver.class.getName());
             try {
-                if (this.f22755a == null) {
-                    this.f22756b.registerMediaButtonEventReceiver(componentName);
+                if (this.f22783a == null) {
+                    this.f22784b.registerMediaButtonEventReceiver(componentName);
                     Intent intent2 = new Intent("android.intent.action.MEDIA_BUTTON");
                     intent2.setComponent(componentName);
                     RemoteControlClient remoteControlClient = new RemoteControlClient(PendingIntent.getBroadcast(this, 0, intent2, b(33554432)));
-                    this.f22755a = remoteControlClient;
-                    this.f22756b.registerRemoteControlClient(remoteControlClient);
+                    this.f22783a = remoteControlClient;
+                    this.f22784b.registerRemoteControlClient(remoteControlClient);
                 }
-                this.f22755a.setTransportControlFlags(189);
+                this.f22783a.setTransportControlFlags(189);
             } catch (Exception e11) {
                 a8.g(e11, true);
             }

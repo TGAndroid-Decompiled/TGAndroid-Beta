@@ -9,26 +9,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.lc;
 public final class o implements x10 {
-    public final int f44676a;
-    public final Object f44677b;
-    public final Object f44678c;
+    public final int f44716a;
+    public final Object f44717b;
+    public final Object f44718c;
     public final Object d;
 
     public o(Object obj, Object obj2, Object obj3, int i7) {
-        this.f44676a = i7;
-        this.f44677b = obj;
-        this.f44678c = obj2;
+        this.f44716a = i7;
+        this.f44717b = obj;
+        this.f44718c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(Object obj) {
         String str;
-        int i7 = this.f44676a;
+        int i7 = this.f44716a;
         boolean z10 = false;
         Object obj2 = this.d;
-        Object obj3 = this.f44678c;
-        Object obj4 = this.f44677b;
+        Object obj3 = this.f44718c;
+        Object obj4 = this.f44717b;
         switch (i7) {
             case 0:
                 u0 u0Var = (u0) obj4;
@@ -53,10 +53,10 @@ public final class o implements x10 {
                 Runnable runnable = (Runnable) obj2;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 if (x10Var != null) {
-                    u0Var2.f45097q.put(wallettransaction, x10Var);
+                    u0Var2.f45137q.put(wallettransaction, x10Var);
                 }
                 if (runnable != null) {
-                    u0Var2.f45098r.put(wallettransaction, runnable);
+                    u0Var2.f45138r.put(wallettransaction, runnable);
                     return;
                 } else {
                     u0Var2.getClass();
@@ -68,10 +68,10 @@ public final class o implements x10 {
                 oi.c cVar = (oi.c) obj2;
                 String str3 = (String) obj;
                 l2Var.getClass();
-                if (!h2Var.f44300n && !l2Var.j(h2Var) && l2Var.A(h2Var) && str3 == null) {
+                if (!h2Var.f44340n && !l2Var.j(h2Var) && l2Var.A(h2Var) && str3 == null) {
                     z10 = true;
                 }
-                h2Var.f44302p = z10;
+                h2Var.f44342p = z10;
                 cVar.a(null, str3);
                 return;
             case 3:
@@ -80,9 +80,9 @@ public final class o implements x10 {
                 x10 x10Var2 = (x10) obj2;
                 String str4 = (String) obj;
                 l2Var2.getClass();
-                h2Var2.f44299m = false;
-                if (h2Var2.f44304r == null && l2Var2.f44484g == h2Var2) {
-                    l2Var2.f44484g = null;
+                h2Var2.f44339m = false;
+                if (h2Var2.f44344r == null && l2Var2.f44524g == h2Var2) {
+                    l2Var2.f44524g = null;
                 }
                 x10Var2.a(str4);
                 return;
@@ -106,12 +106,12 @@ public final class o implements x10 {
                 return;
             case 6:
                 e3[] e3VarArr = (e3[]) obj3;
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) obj2;
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj2;
                 String str5 = (String) obj;
-                ((hi.d) obj4).setLoading(false);
+                ((hi.e) obj4).setLoading(false);
                 if (!u0.L(str5)) {
                     if (!TextUtils.isEmpty(str5)) {
-                        new lc(e3VarArr[0].F, i6Var).f0(str5, false);
+                        new lc(e3VarArr[0].F, h6Var).f0(str5, false);
                         return;
                     } else {
                         e3VarArr[0].dismiss();
@@ -127,18 +127,18 @@ public final class o implements x10 {
                 u0 u0Var3 = (u0) obj4;
                 TLRPC.User user = (TLRPC.User) obj2;
                 String str6 = (String) obj;
-                if (!naVar.f44671r) {
-                    if (!TextUtils.isEmpty(str6) && u0.c(naVar.f44669f, u0Var3.y())) {
-                        i0 i0Var = new i0(u0Var3, str6, naVar.f44667e, null, new s(naVar, u0Var3, user, str6));
+                if (!naVar.f44711r) {
+                    if (!TextUtils.isEmpty(str6) && u0.c(naVar.f44709f, u0Var3.y())) {
+                        i0 i0Var = new i0(u0Var3, str6, naVar.f44707e, null, new s(naVar, u0Var3, user, str6));
                         u0Var3.x0(i0Var);
-                        naVar.f44670n = new m(i0Var, 2);
+                        naVar.f44710n = new m(i0Var, 2);
                         return;
                     }
                     naVar.h = false;
-                    naVar.f44663a0.setLoading(false);
+                    naVar.f44703a0.setLoading(false);
                     lc b02 = lc.b0(naVar);
                     if (TextUtils.isEmpty(str6)) {
-                        str = gd.M0(2131742781, null);
+                        str = gd.N0(2131742775, null);
                     } else {
                         str = "WALLET_CHANGED";
                     }
@@ -151,30 +151,30 @@ public final class o implements x10 {
                 return;
             default:
                 e3 e3Var = (e3) obj3;
-                org.telegram.ui.ActionBar.i6 i6Var2 = (org.telegram.ui.ActionBar.i6) obj2;
+                org.telegram.ui.ActionBar.h6 h6Var2 = (org.telegram.ui.ActionBar.h6) obj2;
                 String str7 = (String) obj;
-                ((hi.d) obj4).setLoading(false);
+                ((hi.e) obj4).setLoading(false);
                 if (str7 == null) {
                     e3Var.dismiss();
                     return;
                 } else {
-                    lc.d0(str7, e3Var.F, i6Var2);
+                    lc.d0(str7, e3Var.F, h6Var2);
                     return;
                 }
         }
     }
 
     public o(x10 x10Var, u0 u0Var, z0 z0Var, d9 d9Var) {
-        this.f44676a = 7;
-        this.f44677b = d9Var;
-        this.f44678c = x10Var;
+        this.f44716a = 7;
+        this.f44717b = d9Var;
+        this.f44718c = x10Var;
         this.d = z0Var;
     }
 
     public o(na naVar, u0 u0Var, TLRPC.User user) {
-        this.f44676a = 8;
-        this.f44678c = naVar;
-        this.f44677b = u0Var;
+        this.f44716a = 8;
+        this.f44718c = naVar;
+        this.f44717b = u0Var;
         this.d = user;
     }
 }

@@ -1,6 +1,6 @@
 package c8;
 public final class v7 implements na.d {
-    public static final v7 f5018a = new Object();
+    public static final v7 f5047a = new Object();
 
     static {
         p5.c.u(a8.p0.x(w.class, new s(1)));

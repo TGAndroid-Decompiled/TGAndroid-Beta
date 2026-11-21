@@ -14,26 +14,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class a implements m {
     public static final Pattern h = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
-    public final boolean f13156a;
-    public final e4.b f13157b;
+    public final boolean f13185a;
+    public final e4.b f13186b;
     public LinkedHashMap d;
-    public float f13159e = -3.4028235E38f;
-    public float f13160f = -3.4028235E38f;
-    public final x f13158c = new x();
+    public float f13188e = -3.4028235E38f;
+    public float f13189f = -3.4028235E38f;
+    public final x f13187c = new x();
 
     public a(List list) {
         if (list != null && !list.isEmpty()) {
-            this.f13156a = true;
+            this.f13185a = true;
             String r10 = l0.r((byte[]) list.get(0));
             la.f(r10.startsWith("Format:"));
             e4.b b10 = e4.b.b(r10);
             b10.getClass();
-            this.f13157b = b10;
+            this.f13186b = b10;
             b(new x((byte[]) list.get(1)), StandardCharsets.UTF_8);
             return;
         }
-        this.f13156a = false;
-        this.f13157b = null;
+        this.f13185a = false;
+        this.f13186b = null;
     }
 
     public static int a(long j3, ArrayList arrayList, ArrayList arrayList2) {
@@ -71,7 +71,7 @@ public final class a implements m {
             return -9223372036854775807L;
         }
         String group = matcher.group(1);
-        String str2 = l0.f13783a;
+        String str2 = l0.f13812a;
         return (Long.parseLong(matcher.group(4)) * 10000) + (Long.parseLong(matcher.group(3)) * 1000000) + (Long.parseLong(matcher.group(2)) * 60000000) + (Long.parseLong(group) * 3600000000L);
     }
 

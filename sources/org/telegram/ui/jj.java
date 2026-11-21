@@ -4,16 +4,16 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 public final class jj extends org.telegram.ui.Cells.v0 {
-    public final bn f48970z2;
+    public final bn f49003z2;
 
-    public jj(Context context, org.telegram.ui.ActionBar.i6 i6Var, bn bnVar) {
-        super(context, i6Var, false);
-        this.f48970z2 = bnVar;
+    public jj(Context context, org.telegram.ui.ActionBar.h6 h6Var, bn bnVar) {
+        super(context, h6Var, false);
+        this.f49003z2 = bnVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        bn bnVar = this.f48970z2;
+        bn bnVar = this.f49003z2;
         if (bnVar.R8 == null) {
             float y10 = ((bnVar.A0.getY() + bnVar.P9) - getY()) - org.telegram.messenger.g0.L(4.0f);
             if (y10 > 0.0f) {
@@ -34,9 +34,9 @@ public final class jj extends org.telegram.ui.Cells.v0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            bn bnVar = this.f48970z2;
-            kVar = ((org.telegram.ui.ActionBar.h2) bnVar).actionBar;
-            if (!kVar.y() && !bnVar.Y9()) {
+            bn bnVar = this.f49003z2;
+            kVar = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
+            if (!kVar.x() && !bnVar.Y9()) {
                 return super.onInterceptTouchEvent(motionEvent);
             }
             return false;
@@ -48,9 +48,9 @@ public final class jj extends org.telegram.ui.Cells.v0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            bn bnVar = this.f48970z2;
-            kVar = ((org.telegram.ui.ActionBar.h2) bnVar).actionBar;
-            if (!kVar.y() && !bnVar.Y9()) {
+            bn bnVar = this.f49003z2;
+            kVar = ((org.telegram.ui.ActionBar.g2) bnVar).actionBar;
+            if (!kVar.x() && !bnVar.Y9()) {
                 return super.onTouchEvent(motionEvent);
             }
             return false;

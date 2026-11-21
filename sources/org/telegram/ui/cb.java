@@ -4,8 +4,8 @@ public final class cb extends pi.k {
     public hq0 X;
     public final lb Y;
 
-    public cb(lb lbVar, org.telegram.ui.Components.ck0 ck0Var, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(null, ck0Var, i6Var);
+    public cb(lb lbVar, org.telegram.ui.Components.ek0 ek0Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(null, ek0Var, h6Var);
         this.Y = lbVar;
         this.W = -1;
     }
@@ -32,7 +32,7 @@ public final class cb extends pi.k {
             org.telegram.messenger.g0.r(hq0Var);
             this.X = null;
         }
-        if (org.telegram.messenger.s2.f26721a) {
+        if (org.telegram.messenger.s2.f26749a) {
             org.telegram.messenger.a8.b("admin logs chatItemAnimator disable notifications");
         }
     }

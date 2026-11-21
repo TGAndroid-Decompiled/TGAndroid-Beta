@@ -1,9 +1,9 @@
 package d9;
 public final class o implements n, he.b, ib.b {
-    public final Object f7922a;
+    public final Object f7951a;
 
     public o(Object obj) {
-        this.f7922a = obj;
+        this.f7951a = obj;
     }
 
     public static o b(Object obj) {
@@ -15,20 +15,20 @@ public final class o implements n, he.b, ib.b {
 
     @Override
     public Object a() {
-        return this.f7922a;
+        return this.f7951a;
     }
 
     public Object c() {
-        if (q7.a.f55982b == null) {
-            q7.a.f55982b = new Exception();
+        if (q7.a.f56023b == null) {
+            q7.a.f56023b = new Exception();
         }
-        synchronized (q7.a.f55981a) {
+        synchronized (q7.a.f56022a) {
         }
         throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
     }
 
     @Override
     public Object mo24get() {
-        return this.f7922a;
+        return this.f7951a;
     }
 }

@@ -1,60 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.style.ImageSpan;
-public final class nn implements TextWatcher {
-    public final mn f37829a;
-    public final int f37830b;
-    public final org.telegram.ui.l4 f37831c;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ImageView;
+public final class nn implements View.OnKeyListener {
+    public final int f37898a;
+    public final Object f37899b;
 
-    public nn(org.telegram.ui.l4 l4Var, mn mnVar, int i7) {
-        this.f37831c = l4Var;
-        this.f37829a = mnVar;
-        this.f37830b = i7;
+    public nn(Object obj, int i7) {
+        this.f37898a = i7;
+        this.f37899b = obj;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i7;
-        rn rnVar = (rn) this.f37831c.f49432e;
-        mn mnVar = this.f37829a;
-        if (mnVar.getTag() != null) {
-            return;
+    public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
+        switch (this.f37898a) {
+            case 0:
+                rn rnVar = (rn) this.f37899b;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
+                if (i7 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
+                    ImageView imageView = rnVar.f30474f;
+                    if (imageView != null) {
+                        imageView.callOnClick();
+                    }
+                    return true;
+                }
+                return false;
+            default:
+                ku kuVar = (ku) this.f37899b;
+                kuVar.getClass();
+                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && kuVar.isShowing()) {
+                    kuVar.dismiss();
+                    return true;
+                }
+                return false;
         }
-        int i10 = this.f37830b;
-        if (i10 == 11) {
-            i7 = rnVar.f39233o0;
-        } else {
-            i7 = rnVar.f39232n0;
-        }
-        v4.f1 K = rnVar.f39242s.K(i7);
-        if (K != null && rnVar.f39251y != null) {
-            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
-                editable.removeSpan(imageSpan);
-            }
-            org.telegram.messenger.j6.l(editable, mnVar.getEditField().getPaint().getFontMetricsInt(), false);
-            rnVar.f39251y.setDirection(1);
-            rnVar.f39251y.setDelegate(mnVar);
-            rnVar.f39251y.setTranslationY(K.f59123a.getY());
-            rnVar.f39251y.e();
-        }
-        if (i10 == 11) {
-            rnVar.P = editable;
-        } else {
-            rnVar.O = editable;
-        }
-        if (K != null) {
-            rn.Q(rnVar, K.f59123a, i7);
-        }
-        rnVar.Y();
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

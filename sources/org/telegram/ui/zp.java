@@ -2,23 +2,23 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class zp extends np {
-    public final boolean[] f54565d1;
-    public final long f54566e1;
-    public final rq f54567f1;
+    public final boolean[] f54612d1;
+    public final long f54613e1;
+    public final rq f54614f1;
 
     public zp(rq rqVar, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i7, boolean[] zArr, long j11) {
         super(j3, j10, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i7, true, false, null);
-        this.f54567f1 = rqVar;
-        this.f54565d1 = zArr;
-        this.f54566e1 = j11;
+        this.f54614f1 = rqVar;
+        this.f54612d1 = zArr;
+        this.f54613e1 = j11;
     }
 
     @Override
     public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f54565d1[0]) {
-            rq rqVar = this.f54567f1;
+        if (!z10 && z11 && this.f54612d1[0]) {
+            rq rqVar = this.f54614f1;
             if (org.telegram.ui.Components.lc.a(rqVar)) {
-                long j3 = this.f54566e1;
+                long j3 = this.f54613e1;
                 if (j3 > 0) {
                     TLRPC.User c22 = getMessagesController().c2(Long.valueOf(j3));
                     if (c22 != null) {

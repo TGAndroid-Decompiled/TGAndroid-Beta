@@ -1,39 +1,59 @@
 package bi;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import c8.ma;
-import org.telegram.ui.Components.mh0;
-import org.telegram.ui.Components.q9;
-public final class k7 extends LinearLayout {
-    public final TextView f3792a;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.o41;
+public final class k7 extends n41 {
+    public static final int f3795b = 0;
 
-    public k7(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context);
-        setOrientation(1);
-        q9 q9Var = new q9(context);
-        q9Var.setImageDrawable(new mh0(2131624320, org.telegram.messenger.g0.L(130.0f), org.telegram.messenger.g0.L(130.0f)));
-        addView(q9Var, ma.t(64, 64, 17, 0, 32, 0, 0));
-        TextView textView = new TextView(context);
-        this.f3792a = textView;
-        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.A6, i6Var);
-        textView.setTextSize(1, 14.0f);
-        textView.setGravity(17);
-        addView(textView, ma.t(-1, -2, 7, 12, 12, 12, 24));
+    static {
+        n41.h(new n41());
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int size = View.MeasureSpec.getSize(i7);
-        if (View.MeasureSpec.getMode(i7) == Integer.MIN_VALUE) {
-            size = org.telegram.messenger.g0.L(250.0f);
+    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
+        l7 l7Var = (l7) view;
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) o41Var.H;
+        int i7 = o41Var.A;
+        String str = (String) o41Var.f38098m;
+        boolean z11 = o41Var.f38091e;
+        l7Var.getClass();
+        ShapeDrawable L = org.telegram.ui.ActionBar.m6.L(org.telegram.messenger.g0.L(20.0f), stargiftattributebackdrop.center_color | (-16777216));
+        SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;
+        if (!TextUtils.isEmpty(str)) {
+            spannableStringBuilder = org.telegram.messenger.g0.w1(spannableStringBuilder, str, l7Var.P);
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i10);
+        if (i7 > 0) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
+            spannableStringBuilder2.append((CharSequence) "  ");
+            int length = spannableStringBuilder2.length();
+            spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
+            spannableStringBuilder2.setSpan(new l41(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder = spannableStringBuilder2;
+        }
+        l7Var.j(spannableStringBuilder, 0, L);
+        l7Var.setChecked(z11);
     }
 
-    public void set(CharSequence charSequence) {
-        this.f3792a.setText(charSequence);
+    @Override
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        org.telegram.ui.ActionBar.y0 y0Var = new org.telegram.ui.ActionBar.y0(0, context, h6Var, false, false);
+        y0Var.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
+        y0Var.c(org.telegram.ui.ActionBar.m6.E8, org.telegram.ui.ActionBar.m6.F8);
+        y0Var.g(-1, PorterDuff.Mode.MULTIPLY);
+        y0Var.f30286c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
+        y0Var.a(2);
+        y0Var.setBackground(null);
+        return y0Var;
     }
 }

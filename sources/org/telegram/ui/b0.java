@@ -6,24 +6,24 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class b0 implements Runnable {
-    public final int f45701a;
-    public final Object f45702b;
-    public final int f45703c;
+    public final int f45737a;
+    public final Object f45738b;
+    public final int f45739c;
     public final Object d;
 
     public b0(int i7, Object obj, Object obj2, int i10) {
-        this.f45701a = i10;
-        this.f45703c = i7;
-        this.f45702b = obj;
+        this.f45737a = i10;
+        this.f45739c = i7;
+        this.f45738b = obj;
         this.d = obj2;
     }
 
     private final void a() {
-        int i7 = this.f45703c;
-        TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) this.f45702b;
+        int i7 = this.f45739c;
+        TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) this.f45738b;
         Integer num = (Integer) this.d;
         try {
-            SQLiteDatabase sQLiteDatabase = org.telegram.messenger.tr.a0(i7).f27054b;
+            SQLiteDatabase sQLiteDatabase = org.telegram.messenger.tr.a0(i7).f27082b;
             if (sQLiteDatabase != null) {
                 if (tL_messages_emojiGroups == null) {
                     sQLiteDatabase.executeFast("DELETE FROM emoji_groups WHERE type = " + num).stepThis().dispose();
@@ -45,14 +45,14 @@ public final class b0 implements Runnable {
     }
 
     private final void b() {
-        org.telegram.ui.Components.yw0 yw0Var = (org.telegram.ui.Components.yw0) this.f45702b;
+        org.telegram.ui.Components.ax0 ax0Var = (org.telegram.ui.Components.ax0) this.f45738b;
         String str = (String) this.d;
         ArrayList arrayList = new ArrayList(1);
         ?? obj = new Object();
-        obj.f25927a = str;
-        obj.f25928b = null;
+        obj.f25955a = str;
+        obj.f25956b = null;
         arrayList.add(obj);
-        org.telegram.messenger.ri.d0(yw0Var.f42643a).Q(arrayList, 15, false, false, new org.telegram.ui.Components.kp0(yw0Var, this.f45703c, str, arrayList));
+        org.telegram.messenger.ri.d0(ax0Var.f33639a).Q(arrayList, 15, false, false, new org.telegram.ui.Components.mp0(ax0Var, this.f45739c, str, arrayList));
     }
 
     @Override
@@ -61,30 +61,30 @@ public final class b0 implements Runnable {
     }
 
     public b0(Object obj, int i7, Object obj2, int i10) {
-        this.f45701a = i10;
-        this.f45702b = obj;
-        this.f45703c = i7;
+        this.f45737a = i10;
+        this.f45738b = obj;
+        this.f45739c = i7;
         this.d = obj2;
     }
 
     public b0(Object obj, Object obj2, int i7, int i10) {
-        this.f45701a = i10;
-        this.f45702b = obj;
+        this.f45737a = i10;
+        this.f45738b = obj;
         this.d = obj2;
-        this.f45703c = i7;
+        this.f45739c = i7;
     }
 
-    public b0(String str, int i7, org.telegram.ui.ActionBar.x2[] x2VarArr) {
-        this.f45701a = 4;
+    public b0(String str, int i7, org.telegram.ui.ActionBar.w2[] w2VarArr) {
+        this.f45737a = 4;
         this.d = str;
-        this.f45703c = i7;
-        this.f45702b = x2VarArr;
+        this.f45739c = i7;
+        this.f45738b = w2VarArr;
     }
 
     public b0(e4 e4Var, int i7, int[] iArr, int[] iArr2) {
-        this.f45701a = 3;
-        this.f45702b = e4Var;
-        this.f45703c = i7;
+        this.f45737a = 3;
+        this.f45738b = e4Var;
+        this.f45739c = i7;
         this.d = iArr2;
     }
 }

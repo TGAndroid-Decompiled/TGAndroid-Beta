@@ -7,36 +7,36 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class nb implements Runnable {
-    public final int f25903a = 3;
-    public final long f25904b;
-    public final int f25905c;
+    public final int f25931a = 3;
+    public final long f25932b;
+    public final int f25933c;
     public final Object d;
-    public final Object f25906e;
-    public final Object f25907f;
+    public final Object f25934e;
+    public final Object f25935f;
     public final Object h;
-    public final Object f25908n;
+    public final Object f25936n;
 
-    public nb(int i7, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, x10 x10Var, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f25905c = i7;
-        this.f25904b = j3;
+    public nb(int i7, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, x10 x10Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f25933c = i7;
+        this.f25932b = j3;
         this.d = activity;
-        this.f25906e = arrayList;
-        this.f25907f = i6Var;
+        this.f25934e = arrayList;
+        this.f25935f = h6Var;
         this.h = x10Var;
-        this.f25908n = hashMap;
+        this.f25936n = hashMap;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25903a;
+        int i7 = this.f25931a;
         TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = null;
-        long j3 = this.f25904b;
-        int i10 = this.f25905c;
-        Object obj = this.f25908n;
+        long j3 = this.f25932b;
+        int i10 = this.f25933c;
+        Object obj = this.f25936n;
         Object obj2 = this.d;
         Object obj3 = this.h;
-        Object obj4 = this.f25907f;
-        Object obj5 = this.f25906e;
+        Object obj4 = this.f25935f;
+        Object obj5 = this.f25934e;
         switch (i7) {
             case 0:
                 ks.f(i10).k(138, (String) obj2, (TLRPC.InputFile) obj5, (TLRPC.InputEncryptedFile) obj4, (byte[]) obj3, (byte[]) obj, Long.valueOf(j3));
@@ -78,27 +78,27 @@ public final class nb implements Runnable {
                     }
                     if (tL_messageMediaWebPage == null) {
                         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                            ((fj) arrayList.get(i11)).f23965k.media.webpage = new TLRPC.TL_webPageEmpty();
-                            tL_messages_messages.messages.add(((fj) arrayList.get(i11)).f23965k);
+                            ((fj) arrayList.get(i11)).f23993k.media.webpage = new TLRPC.TL_webPageEmpty();
+                            tL_messages_messages.messages.add(((fj) arrayList.get(i11)).f23993k);
                         }
                     } else {
                         TLRPC.WebPage webPage = tL_messageMediaWebPage.webpage;
                         if (!(webPage instanceof TLRPC.TL_webPage) && !(webPage instanceof TLRPC.TL_webPageEmpty)) {
-                            hVar.k(arrayList, webPage.f28558id);
+                            hVar.k(arrayList, webPage.f28586id);
                         } else {
                             for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                                ((fj) arrayList.get(i12)).f23965k.media.webpage = tL_messageMediaWebPage.webpage;
+                                ((fj) arrayList.get(i12)).f23993k.media.webpage = tL_messageMediaWebPage.webpage;
                                 if (i12 == 0) {
-                                    ec.W(((fj) arrayList.get(i12)).f23965k);
+                                    ec.W(((fj) arrayList.get(i12)).f23993k);
                                 }
-                                tL_messages_messages.messages.add(((fj) arrayList.get(i12)).f23965k);
+                                tL_messages_messages.messages.add(((fj) arrayList.get(i12)).f23993k);
                             }
                         }
                     }
                     if (!tL_messages_messages.messages.isEmpty()) {
                         tr messagesStorage = mpVar2.getMessagesStorage();
-                        int i13 = this.f25905c;
-                        long j10 = this.f25904b;
+                        int i13 = this.f25933c;
+                        long j10 = this.f25932b;
                         messagesStorage.h1(-2, 0, i13, j10, 0L, tL_messages_messages, false);
                         mpVar2.getNotificationCenter().k(49, Long.valueOf(j10), arrayList);
                         return;
@@ -109,15 +109,15 @@ public final class nb implements Runnable {
             case 3:
                 Activity activity = (Activity) obj2;
                 ArrayList arrayList2 = (ArrayList) obj5;
-                org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) obj4;
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) obj4;
                 x10 x10Var = (x10) obj3;
                 HashMap hashMap = (HashMap) obj;
-                long j11 = di.x8.y(i10, false).p().amount;
-                long j12 = this.f25904b;
+                long j11 = di.y8.y(i10, false).p().amount;
+                long j12 = this.f25932b;
                 if (j11 < j12) {
                     if (activity != null) {
                         long longValue = ((Long) arrayList2.get(0)).longValue();
-                        new di.fb(activity, i6Var, j12, 13, n5.s(i10, longValue), new org.telegram.ui.Components.f2(x10Var, hashMap, 0), longValue).show();
+                        new di.fb(activity, h6Var, j12, 13, n5.s(i10, longValue), new org.telegram.ui.Components.g2(x10Var, hashMap, 0), longValue).show();
                         return;
                     }
                     return;
@@ -135,12 +135,12 @@ public final class nb implements Runnable {
                     e0Var.a(null, str);
                     return;
                 }
-                String str2 = h2Var.f44292e;
+                String str2 = h2Var.f44332e;
                 if (l2Var.A(h2Var) && !l2Var.j(h2Var)) {
-                    l2Var.f44484g = h2Var;
-                    if ("sendTransaction".equals(str2) && h2Var.f44293f != null) {
-                        if (mp.u1(l2Var.f44479a).h7.contains(org.telegram.ui.Wallet.l2.l(j3, i10) + ".transfer")) {
-                            h2Var.f44299m = true;
+                    l2Var.f44524g = h2Var;
+                    if ("sendTransaction".equals(str2) && h2Var.f44333f != null) {
+                        if (mp.u1(l2Var.f44519a).h7.contains(org.telegram.ui.Wallet.l2.l(j3, i10) + ".transfer")) {
+                            h2Var.f44339m = true;
                             l2Var.B(h2Var, r0Var, new x10() {
                                 @Override
                                 public final void a(Object obj6) {
@@ -150,7 +150,7 @@ public final class nb implements Runnable {
                                             l2 l2Var2 = l2Var;
                                             l2Var2.getClass();
                                             h2 h2Var2 = h2Var;
-                                            h2Var2.f44299m = false;
+                                            h2Var2.f44339m = false;
                                             l2Var2.u(h2Var2);
                                             e0Var.a(null, str3);
                                             return;
@@ -164,7 +164,7 @@ public final class nb implements Runnable {
                             return;
                         }
                     }
-                    if (h2Var.f44298l < 0 && !"disconnect".equals(str2)) {
+                    if (h2Var.f44338l < 0 && !"disconnect".equals(str2)) {
                         e0Var.a(h2Var, null);
                         return;
                     }
@@ -178,7 +178,7 @@ public final class nb implements Runnable {
                                     l2 l2Var2 = l2Var;
                                     l2Var2.getClass();
                                     h2 h2Var2 = h2Var;
-                                    h2Var2.f44299m = false;
+                                    h2Var2.f44339m = false;
                                     l2Var2.u(h2Var2);
                                     e0Var.a(null, str3);
                                     return;
@@ -197,42 +197,42 @@ public final class nb implements Runnable {
     }
 
     public nb(int i7, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j3) {
-        this.f25905c = i7;
+        this.f25933c = i7;
         this.d = str;
-        this.f25906e = inputFile;
-        this.f25907f = inputEncryptedFile;
+        this.f25934e = inputFile;
+        this.f25935f = inputEncryptedFile;
         this.h = bArr;
-        this.f25908n = bArr2;
-        this.f25904b = j3;
+        this.f25936n = bArr2;
+        this.f25932b = j3;
     }
 
     public nb(mp mpVar, HashMap hashMap, String str, TLObject tLObject, a0.h hVar, long j3, int i7) {
-        this.f25906e = mpVar;
-        this.f25907f = hashMap;
+        this.f25934e = mpVar;
+        this.f25935f = hashMap;
         this.d = str;
         this.h = tLObject;
-        this.f25908n = hVar;
-        this.f25904b = j3;
-        this.f25905c = i7;
+        this.f25936n = hVar;
+        this.f25932b = j3;
+        this.f25933c = i7;
     }
 
     public nb(mp mpVar, boolean[] zArr, TLRPC.Chat chat, Runnable[] runnableArr, long j3, int i7, ap apVar) {
         this.d = mpVar;
-        this.f25906e = zArr;
-        this.f25907f = chat;
+        this.f25934e = zArr;
+        this.f25935f = chat;
         this.h = runnableArr;
-        this.f25904b = j3;
-        this.f25905c = i7;
-        this.f25908n = apVar;
+        this.f25932b = j3;
+        this.f25933c = i7;
+        this.f25936n = apVar;
     }
 
     public nb(org.telegram.ui.Wallet.l2 l2Var, org.telegram.ui.Wallet.h2 h2Var, org.telegram.ui.Wallet.e0 e0Var, String str, long j3, int i7, org.telegram.ui.Wallet.r0 r0Var) {
-        this.f25906e = l2Var;
-        this.f25907f = h2Var;
+        this.f25934e = l2Var;
+        this.f25935f = h2Var;
         this.h = e0Var;
         this.d = str;
-        this.f25904b = j3;
-        this.f25905c = i7;
-        this.f25908n = r0Var;
+        this.f25932b = j3;
+        this.f25933c = i7;
+        this.f25936n = r0Var;
     }
 }

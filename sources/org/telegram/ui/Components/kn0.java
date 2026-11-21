@@ -1,38 +1,25 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-public final class kn0 extends v4.u0 {
-    public final xe f36832a;
+import android.widget.LinearLayout;
+public final class kn0 extends LinearLayout {
+    public final int f36932a;
+    public final int f36933b;
 
-    public kn0(xe xeVar) {
-        this.f36832a = xeVar;
+    public kn0(Context context, int i7, int i10) {
+        super(context);
+        this.f36932a = i7;
+        this.f36933b = i10;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        boolean z10;
-        float f10;
-        xe xeVar = this.f36832a;
-        View view = xeVar.f38142u;
-        if (xeVar.f38143w.I0() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Boolean bool = xeVar.f38144x;
-        if (bool != null && z10 == bool.booleanValue()) {
-            return;
-        }
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (z10) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        animate.alpha(f10).setDuration(150L).start();
-        xeVar.f38144x = Boolean.valueOf(z10);
+    public final int getSuggestedMinimumWidth() {
+        return org.telegram.messenger.g0.L(260.0f);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), this.f36932a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f36933b), View.MeasureSpec.getMode(i10)));
     }
 }

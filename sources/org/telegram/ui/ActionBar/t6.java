@@ -1,137 +1,586 @@
 package org.telegram.ui.ActionBar;
 
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.util.SparseArray;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.IdentityHashMap;
-import org.telegram.messenger.a8;
-public final class t6 implements q0.a {
-    public final IdentityHashMap f30016a = new IdentityHashMap();
-    public boolean f30017b;
-    public int f30018c;
-    public HashSet d;
-    public boolean f30019e;
+import java.util.List;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.RadioButton;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.d30;
+import org.telegram.ui.n30;
+public abstract class t6 {
+    public static final s6 f30065a = new s6();
+    public static int f30066b = 1;
+    public static long f30067c = -1;
+    public static float d;
 
-    public final void a() {
-        this.f30016a.clear();
-        this.d = null;
-        this.f30019e = false;
+    public static void A(EditTextBoldCursor editTextBoldCursor, int i7, h6 h6Var) {
+        l(editTextBoldCursor, 34, i7, h6Var);
     }
 
-    @Override
-    public final void accept(Object obj) {
-        b((View) obj);
+    public static void B(View view, Drawable drawable, p6 p6Var, h6 h6Var) {
+        view.setBackground(drawable);
+        j(view, drawable, p6Var, null, h6Var);
     }
 
-    public final void b(View view) {
-        v4.w0 recycledViewPool;
-        if (view != null && this.f30016a.put(view, Boolean.TRUE) == null) {
-            int i7 = 0;
-            if (this.f30018c == 0) {
-                if (view instanceof c6) {
-                    try {
-                        ((c6) view).updateColors();
-                    } catch (Exception e10) {
-                        a8.g(e10, true);
-                    }
-                }
-                try {
-                    u6.a0(view);
-                } catch (Exception e11) {
-                    a8.g(e11, true);
-                }
-                Drawable background = view.getBackground();
-                if (background instanceof c6) {
-                    try {
-                        ((c6) background).updateColors();
-                    } catch (Exception e12) {
-                        a8.g(e12, true);
-                    }
-                    background.invalidateSelf();
-                }
-                Drawable foreground = view.getForeground();
-                if (foreground instanceof c6) {
-                    try {
-                        ((c6) foreground).updateColors();
-                    } catch (Exception e13) {
-                        a8.g(e13, true);
-                    }
-                    foreground.invalidateSelf();
-                }
-                view.invalidate();
-            } else {
-                HashSet hashSet = this.d;
-                if (view instanceof c6) {
-                    ((c6) view).addColorKeys(hashSet);
-                }
-                p6 o4 = u6.o(view, false);
-                if (o4 != null) {
-                    for (int i10 = 0; i10 < 6; i10++) {
-                        o6 o6Var = o4.f29869a[i10];
-                        if (o6Var != null) {
-                            u6.f(o6Var, hashSet);
+    public static void C(TextView textView, int i7, h6 h6Var) {
+        n(textView, 3, i7, -1, 0, 0.0f, h6Var);
+    }
+
+    public static void D(TextView textView, int i7, h6 h6Var) {
+        n(textView, 1, i7, -1, 0, 0.0f, h6Var);
+    }
+
+    public static void E(EditTextBoldCursor editTextBoldCursor, int i7) {
+        D(editTextBoldCursor, i7, null);
+    }
+
+    public static void F(EditTextBoldCursor editTextBoldCursor, int i7, int i10, int i11, h6 h6Var) {
+        editTextBoldCursor.u(m6.w0(i7, h6Var), m6.w0(i10, h6Var), m6.w0(i11, h6Var));
+        T(editTextBoldCursor, 31, i7, h6Var).f29818g = editTextBoldCursor.getLineColor();
+        T(editTextBoldCursor, 32, i10, h6Var).f29818g = editTextBoldCursor.getActiveLineColor();
+        T(editTextBoldCursor, 33, i11, h6Var).f29818g = editTextBoldCursor.getErrorLineColor();
+    }
+
+    public static void G(TextView textView, int i7, h6 h6Var) {
+        n(textView, 2, i7, -1, 0, 0.0f, h6Var);
+    }
+
+    public static void H(RecyclerView recyclerView, int i7, h6 h6Var) {
+        l(recyclerView, 21, i7, h6Var);
+    }
+
+    public static void I(int i7, n30 n30Var) {
+        l(n30Var, 20, i7, null);
+    }
+
+    public static void J(ek0 ek0Var, int i7, h6 h6Var) {
+        l(ek0Var, 20, i7, h6Var);
+    }
+
+    public static p6 K(float f10, int i7) {
+        return new p6(i7, -1, f10, 2);
+    }
+
+    public static s6 L(boolean z10, int i7, HashSet hashSet) {
+        s6 s6Var = f30065a;
+        if (s6Var.f30002e) {
+            s6Var = new s6();
+        }
+        s6Var.f30002e = true;
+        s6Var.f30000b = z10;
+        s6Var.f30001c = i7;
+        s6Var.d = hashSet;
+        s6Var.f29999a.clear();
+        return s6Var;
+    }
+
+    public static p6 M(int i7) {
+        return new p6(i7, -1, 0.0f, 0);
+    }
+
+    public static n6 N(View view, int i7, int i10, int i11, int i12, float f10, h6 h6Var, int i13, PorterDuffColorFilter porterDuffColorFilter) {
+        n6[] n6VarArr = o(view, true).f29852a;
+        n6 n6Var = n6VarArr[i7];
+        if (n6Var == null) {
+            n6Var = new n6();
+            n6VarArr[i7] = n6Var;
+        }
+        n6 n6Var2 = n6Var;
+        n6Var2.c(i10, i11, i12, f10, h6Var);
+        n6Var2.f29818g = i13;
+        n6Var2.f29819i = porterDuffColorFilter;
+        return n6Var2;
+    }
+
+    public static void O(RadioButton radioButton, int i7, int i10, h6 h6Var) {
+        radioButton.b(m6.w0(i7, h6Var), m6.w0(i10, h6Var));
+        l(radioButton, 23, i7, h6Var);
+        l(radioButton, 24, i10, h6Var);
+    }
+
+    public static int P(int i7, int i10, int i11, float f10, h6 h6Var) {
+        int w02 = m6.w0(i7, h6Var);
+        if (i11 != 1) {
+            if (i11 != 2) {
+                if (i11 != 3) {
+                    if (i11 != 4) {
+                        if (i11 != 5) {
+                            return w02;
                         }
+                        return a6.b(w02);
                     }
-                    if (o4.f29870b != null) {
-                        for (int i11 = 0; i11 < o4.f29870b.size(); i11++) {
-                            u6.f((o6) o4.f29870b.get(i11), hashSet);
-                        }
-                    }
-                    if (o4.f29871c != null) {
-                        for (int i12 = 0; i12 < o4.f29871c.size(); i12++) {
-                            u6.f((o6) o4.f29871c.get(i12), hashSet);
-                        }
-                    }
-                    o6 o6Var2 = o4.f29872e;
-                    if (o6Var2 != null) {
-                        u6.f(o6Var2, hashSet);
-                    }
-                    o6 o6Var3 = o4.f29873f;
-                    if (o6Var3 != null) {
-                        u6.f(o6Var3, hashSet);
-                    }
+                    return m6.w(w02, m6.w0(i10, h6Var));
                 }
+                return i0.a.f(f10, w02, m6.w0(i10, h6Var));
             }
-            if (view instanceof RecyclerView) {
-                RecyclerView recyclerView = (RecyclerView) view;
-                boolean z10 = this.f30017b;
-                for (int i13 = 0; i13 < recyclerView.getChildCount(); i13++) {
-                    b(recyclerView.getChildAt(i13));
+            return m6.r1(f10, w02);
+        }
+        return i0.a.o(w02, (int) f10);
+    }
+
+    public static void Q(View view, Drawable drawable, p6 p6Var, p6 p6Var2, h6 h6Var) {
+        view.setBackground(drawable);
+        j(view, drawable, p6Var, p6Var2, h6Var);
+    }
+
+    public static void R(View view, org.telegram.ui.Cells.y yVar, p6 p6Var, p6 p6Var2) {
+        Q(view, yVar, p6Var, p6Var2, null);
+    }
+
+    public static void S(View view, n6 n6Var, int i7) {
+        Drawable drawable;
+        int i10 = n6Var.f29822l;
+        boolean z10 = false;
+        switch (i10) {
+            case 1:
+            case 2:
+                if (view instanceof k) {
+                    k kVar = (k) view;
+                    if (i10 == 2) {
+                        z10 = true;
+                    }
+                    kVar.G(i7, z10);
+                    return;
                 }
-                for (int i14 = 0; i14 < recyclerView.getHiddenChildCount(); i14++) {
-                    b(recyclerView.V(i14));
+                return;
+            case 3:
+            case 4:
+                if (view instanceof k) {
+                    k kVar2 = (k) view;
+                    if (i10 == 4) {
+                        z10 = true;
+                    }
+                    kVar2.F(i7, z10);
+                    return;
                 }
-                for (int i15 = 0; i15 < recyclerView.getAttachedScrapChildCount(); i15++) {
-                    b(recyclerView.O(i15));
+                return;
+            case 5:
+                if (view instanceof k) {
+                    ((k) view).setTitleColor(i7);
+                    return;
                 }
-                for (int i16 = 0; i16 < recyclerView.getCachedChildCount(); i16++) {
-                    b(recyclerView.P(i16));
+                return;
+            case 6:
+                if (view instanceof k) {
+                    ((k) view).setSubtitleColor(i7);
+                    return;
                 }
-                if (z10 && (recycledViewPool = recyclerView.getRecycledViewPool()) != null) {
-                    ArrayList arrayList = new ArrayList();
-                    SparseArray sparseArray = recycledViewPool.f59250a;
-                    for (int i17 = 0; i17 < sparseArray.size(); i17++) {
-                        ArrayList arrayList2 = ((v4.v0) sparseArray.valueAt(i17)).f59244a;
-                        for (int i18 = 0; i18 < arrayList2.size(); i18++) {
-                            arrayList.add(((v4.f1) arrayList2.get(i18)).f59123a);
+                return;
+            default:
+                switch (i10) {
+                    case 20:
+                        if (view instanceof ek0) {
+                            ((ek0) view).setSelectorDrawableColor(i7);
+                            return;
                         }
-                    }
-                    while (i7 < arrayList.size()) {
-                        b((View) arrayList.get(i7));
-                        i7++;
-                    }
+                        return;
+                    case 21:
+                        if (view instanceof RecyclerView) {
+                            ((RecyclerView) view).setGlowColor(i7);
+                            return;
+                        }
+                        return;
+                    case 22:
+                        WeakReference weakReference = n6Var.f29820j;
+                        if (weakReference != null) {
+                            drawable = (Drawable) weakReference.get();
+                        } else {
+                            drawable = null;
+                        }
+                        if (drawable != null && i7 != n6Var.f29818g) {
+                            drawable.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
+                            view.invalidate();
+                            return;
+                        }
+                        return;
+                    case 23:
+                        if (view instanceof RadioButton) {
+                            ((RadioButton) view).setBackgroundColor(i7);
+                            return;
+                        }
+                        return;
+                    case 24:
+                        if (view instanceof RadioButton) {
+                            ((RadioButton) view).setCheckedColor(i7);
+                            return;
+                        }
+                        return;
+                    default:
+                        if (view instanceof EditTextBoldCursor) {
+                            EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
+                            switch (i10) {
+                                case 30:
+                                    editTextBoldCursor.setCursorColor(i7);
+                                    return;
+                                case 31:
+                                    editTextBoldCursor.setLineColor(i7);
+                                    return;
+                                case 32:
+                                    editTextBoldCursor.setActiveLineColor(i7);
+                                    return;
+                                case 33:
+                                    editTextBoldCursor.setErrorLineColor(i7);
+                                    return;
+                                case 34:
+                                    editTextBoldCursor.setHintColor(i7);
+                                    return;
+                                case 35:
+                                    editTextBoldCursor.setHeaderHintColor(i7);
+                                    return;
+                                case 36:
+                                    editTextBoldCursor.setHandlesColor(i7);
+                                    return;
+                                default:
+                                    return;
+                            }
+                        }
+                        return;
                 }
-            } else if (view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) view;
-                while (i7 < viewGroup.getChildCount()) {
-                    b(viewGroup.getChildAt(i7));
-                    i7++;
-                }
+        }
+    }
+
+    public static n6 T(View view, int i7, int i10, h6 h6Var) {
+        n6 w10 = w(i7, view);
+        w10.c(i10, -1, 0, 0.0f, h6Var);
+        w10.f29824n = null;
+        w10.f29825o = null;
+        w10.f29823m = true;
+        return w10;
+    }
+
+    public static void U(TextView textView, int i7, h6 h6Var) {
+        m(textView, i7, -1, 0, 0.0f, h6Var);
+    }
+
+    public static void V(TextView textView, p6 p6Var, h6 h6Var) {
+        m(textView, p6Var.f29892a, p6Var.f29893b, p6Var.f29894c, p6Var.d, h6Var);
+    }
+
+    public static void W(m5 m5Var, int i7) {
+        X(m5Var, i7, null);
+    }
+
+    public static void X(m5 m5Var, int i7, h6 h6Var) {
+        m(m5Var, i7, -1, 0, 0.0f, h6Var);
+    }
+
+    public static void Y(org.telegram.ui.Components.o6 o6Var, int i7, h6 h6Var) {
+        m(o6Var, i7, -1, 0, 0.0f, h6Var);
+    }
+
+    public static void Z(View view, Context context, int i7, int i10) {
+        Drawable X0 = m6.X0(context, i7, m6.w0(i10, null));
+        view.setBackground(X0);
+        if (X0 == null) {
+            return;
+        }
+        n6 T = T(view, 22, i10, null);
+        T.f29820j = new WeakReference(X0);
+        T.f29818g = m6.v0(i10);
+    }
+
+    public static void a(k kVar, int i7, h6 h6Var, boolean z10) {
+        int i10;
+        if (z10) {
+            i10 = 4;
+        } else {
+            i10 = 3;
+        }
+        l(kVar, i10, i7, h6Var);
+    }
+
+    public static void a0(android.view.View r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.t6.a0(android.view.View):void");
+    }
+
+    public static void b(k kVar, int i7, h6 h6Var, boolean z10) {
+        int i10;
+        if (z10) {
+            i10 = 2;
+        } else {
+            i10 = 1;
+        }
+        l(kVar, i10, i7, h6Var);
+    }
+
+    public static void b0(ActionBarLayout actionBarLayout, boolean z10) {
+        f30066b++;
+        s6 L = L(z10, 0, null);
+        try {
+            List j3 = org.telegram.messenger.g0.j();
+            if (j3 == null) {
+                j3 = new ArrayList();
+            }
+            for (int i7 = 0; i7 < j3.size(); i7++) {
+                L.b((View) j3.get(i7));
+            }
+            L.b(actionBarLayout);
+            L.a();
+        } catch (Throwable th2) {
+            L.a();
+            throw th2;
+        }
+    }
+
+    public static void c(k kVar, int i7, h6 h6Var) {
+        l(kVar, 5, i7, h6Var);
+    }
+
+    public static void c0(FrameLayout frameLayout, boolean z10) {
+        s6 L = L(z10, 0, null);
+        try {
+            L.b(frameLayout);
+        } finally {
+            L.a();
+        }
+    }
+
+    public static void d(d30 d30Var, int i7) {
+        l(d30Var, 5, i7, null);
+    }
+
+    public static p6 e(int i7) {
+        return new p6(i7, -1, 0.0f, 5);
+    }
+
+    public static void f(n6 n6Var, HashSet hashSet) {
+        hashSet.add(Integer.valueOf(n6Var.f29813a));
+        int i7 = n6Var.f29814b;
+        if (i7 >= 0) {
+            hashSet.add(Integer.valueOf(i7));
+        }
+    }
+
+    public static p6 g(int i7, int i10) {
+        return new p6(i7, -1, i10, 1);
+    }
+
+    public static void h(int i7, View view, h6 h6Var) {
+        int P = P(i7, -1, 0, 0.0f, h6Var);
+        view.setBackgroundColor(P);
+        N(view, 4, i7, -1, 0, 0.0f, h6Var, P, null);
+    }
+
+    public static void i(View view, p6 p6Var, h6 h6Var) {
+        int i7 = p6Var.f29892a;
+        int i10 = p6Var.f29893b;
+        int i11 = p6Var.f29894c;
+        float f10 = p6Var.d;
+        int P = P(i7, i10, i11, f10, h6Var);
+        view.setBackgroundColor(P);
+        N(view, 4, i7, i10, i11, f10, h6Var, P, null);
+    }
+
+    public static void j(View view, Drawable drawable, p6 p6Var, p6 p6Var2, h6 h6Var) {
+        o6 o4 = o(view, true);
+        o4.d = drawable;
+        o4.f29855e = null;
+        o4.f29856f = null;
+        if (drawable != null) {
+            if (p6Var != null) {
+                n6 n6Var = new n6();
+                o4.f29855e = n6Var;
+                n6Var.c(p6Var.f29892a, p6Var.f29893b, p6Var.f29894c, p6Var.d, h6Var);
+                n6Var.f29818g = t(drawable);
+            }
+            if (p6Var2 != null) {
+                n6 n6Var2 = new n6();
+                o4.f29856f = n6Var2;
+                n6Var2.c(p6Var2.f29892a, p6Var2.f29893b, p6Var2.f29894c, p6Var2.d, h6Var);
+                n6Var2.f29818g = n6Var2.b();
             }
         }
+    }
+
+    public static void k(View view, Drawable drawable, int i7, int i10, int i11, float f10, h6 h6Var, PorterDuff.Mode mode) {
+        int P = P(i7, i10, i11, f10, h6Var);
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(P, mode);
+        drawable.setColorFilter(porterDuffColorFilter);
+        if (view == null) {
+            return;
+        }
+        boolean z10 = true;
+        o6 o4 = o(view, true);
+        if (o4.f29853b == null) {
+            o4.f29853b = new ArrayList(2);
+        }
+        n6 n6Var = null;
+        for (int size = o4.f29853b.size() - 1; size >= 0; size--) {
+            n6 n6Var2 = (n6) o4.f29853b.get(size);
+            Drawable drawable2 = (Drawable) n6Var2.f29820j.get();
+            if (drawable2 == drawable) {
+                n6Var = n6Var2;
+            } else if (drawable2 == null || (!n6Var2.f29821k && drawable2.getColorFilter() != n6Var2.f29819i)) {
+                o4.f29853b.remove(size);
+            }
+        }
+        if (n6Var == null) {
+            n6Var = new n6();
+            n6Var.f29820j = new WeakReference(drawable);
+            o4.f29853b.add(n6Var);
+        }
+        n6 n6Var3 = n6Var;
+        n6Var3.c(i7, i10, i11, f10, h6Var);
+        n6Var3.f29818g = P;
+        n6Var3.f29819i = porterDuffColorFilter;
+        n6Var3.h = mode;
+        if (drawable.getColorFilter() == porterDuffColorFilter) {
+            z10 = false;
+        }
+        n6Var3.f29821k = z10;
+    }
+
+    public static void l(View view, int i7, int i10, h6 h6Var) {
+        n6 T = T(view, i7, i10, h6Var);
+        int b10 = T.b();
+        S(view, T, b10);
+        T.f29818g = b10;
+    }
+
+    public static void m(View view, int i7, int i10, int i11, float f10, h6 h6Var) {
+        int P = P(i7, i10, i11, f10, h6Var);
+        if (view instanceof TextView) {
+            ((TextView) view).setTextColor(P);
+        } else if (view instanceof m5) {
+            ((m5) view).setTextColor(P);
+        } else {
+            ((org.telegram.ui.Components.o6) view).setTextColor(P);
+        }
+        N(view, 0, i7, i10, i11, f10, h6Var, P, null);
+    }
+
+    public static void n(TextView textView, int i7, int i10, int i11, int i12, float f10, h6 h6Var) {
+        int P = P(i10, i11, i12, f10, h6Var);
+        if (i7 != 1) {
+            if (i7 != 2) {
+                if (i7 == 3) {
+                    textView.setHighlightColor(P);
+                }
+            } else {
+                textView.setLinkTextColor(P);
+            }
+        } else {
+            textView.setHintTextColor(P);
+        }
+        N(textView, i7, i10, i11, i12, f10, h6Var, P, null);
+    }
+
+    public static o6 o(View view, boolean z10) {
+        Object tag = view.getTag(2131296711);
+        if (tag instanceof o6) {
+            return (o6) tag;
+        }
+        if (!z10) {
+            return null;
+        }
+        o6 o6Var = new o6();
+        view.setTag(2131296711, o6Var);
+        return o6Var;
+    }
+
+    public static p6 p(int i7, int i10) {
+        return new p6(i7, i10, 0.0f, 4);
+    }
+
+    public static void q(View view) {
+        if (view != null) {
+            view.setTag(2131296711, null);
+        }
+    }
+
+    public static HashSet r() {
+        HashSet hashSet = new HashSet();
+        s6 L = L(true, 1, hashSet);
+        try {
+            List j3 = org.telegram.messenger.g0.j();
+            if (j3 == null) {
+                j3 = new ArrayList();
+            }
+            for (int i7 = 0; i7 < j3.size(); i7++) {
+                L.b((View) j3.get(i7));
+            }
+            return hashSet;
+        } finally {
+            L.a();
+        }
+    }
+
+    public static void s(ImageView imageView, int i7, h6 h6Var, PorterDuff.Mode mode) {
+        int P = P(i7, -1, 0, 0.0f, h6Var);
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(P, mode);
+        imageView.setColorFilter(porterDuffColorFilter);
+        N(imageView, 5, i7, -1, 0, 0.0f, h6Var, P, porterDuffColorFilter).h = mode;
+    }
+
+    public static int t(Drawable drawable) {
+        if (drawable instanceof InsetDrawable) {
+            drawable = ((InsetDrawable) drawable).getDrawable();
+        }
+        if (drawable instanceof RippleDrawable) {
+            RippleDrawable rippleDrawable = (RippleDrawable) drawable;
+            if (rippleDrawable.getNumberOfLayers() > 0 && rippleDrawable.getId(0) != 16908334) {
+                drawable = rippleDrawable.getDrawable(0);
+            } else {
+                drawable = null;
+            }
+        }
+        if (drawable instanceof ShapeDrawable) {
+            return ((ShapeDrawable) drawable).getPaint().getColor();
+        }
+        if (!(drawable instanceof ColorDrawable)) {
+            return 0;
+        }
+        return ((ColorDrawable) drawable).getColor();
+    }
+
+    public static void u(EditTextBoldCursor editTextBoldCursor, int i7) {
+        v(editTextBoldCursor, i7, null);
+    }
+
+    public static void v(EditTextBoldCursor editTextBoldCursor, int i7, h6 h6Var) {
+        l(editTextBoldCursor, 30, i7, h6Var);
+    }
+
+    public static n6 w(int i7, View view) {
+        o6 o4 = o(view, true);
+        if (o4.f29854c == null) {
+            o4.f29854c = new ArrayList(2);
+        }
+        for (int i10 = 0; i10 < o4.f29854c.size(); i10++) {
+            if (((n6) o4.f29854c.get(i10)).f29822l == i7) {
+                return (n6) o4.f29854c.get(i10);
+            }
+        }
+        n6 n6Var = new n6();
+        n6Var.f29822l = i7;
+        o4.f29854c.add(n6Var);
+        return n6Var;
+    }
+
+    public static void x(View view, Drawable drawable, int i7, h6 h6Var, PorterDuff.Mode mode) {
+        k(view, drawable, i7, -1, 0, 0.0f, h6Var, mode);
+    }
+
+    public static void y(EditTextBoldCursor editTextBoldCursor, int i7, h6 h6Var) {
+        l(editTextBoldCursor, 36, i7, h6Var);
+    }
+
+    public static void z(EditTextBoldCursor editTextBoldCursor, int i7, h6 h6Var) {
+        l(editTextBoldCursor, 35, i7, h6Var);
     }
 }

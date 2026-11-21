@@ -1,210 +1,30 @@
 package ai;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.n10;
-import org.telegram.ui.Cells.k8;
-import org.telegram.ui.Components.av;
-import org.telegram.ui.Components.bv;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.ex;
-import org.telegram.ui.Components.jx;
-import org.telegram.ui.Components.q9;
-import org.telegram.ui.Components.ry;
-import org.telegram.ui.fm0;
-import org.telegram.ui.nf0;
-import org.telegram.ui.vg0;
-public final class i0 extends v4.o0 {
-    public final int f1237a;
-    public final Object f1238b;
+import org.telegram.messenger.x10;
+public final class i0 implements Runnable {
+    public final int f1227a = 1;
+    public final String f1228b;
+    public final x10 f1229c;
 
-    public i0(Object obj, int i7) {
-        this.f1237a = i7;
-        this.f1238b = obj;
+    public i0(String str, x10 x10Var) {
+        this.f1228b = str;
+        this.f1229c = x10Var;
     }
 
     @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.c1 c1Var) {
-        int L;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        int i7;
-        int i10;
-        int i11;
-        switch (this.f1237a) {
+    public final void run() {
+        switch (this.f1227a) {
             case 0:
-                n0 n0Var = (n0) this.f1238b;
-                if (n0Var.F0 > 0.0f && RecyclerView.R(view) == 0) {
-                    rect.bottom += (int) n0Var.F0;
-                    return;
-                }
-                return;
-            case 1:
-                if (((hi.u1) this.f1238b).f15523e.E1(RecyclerView.R(view))) {
-                    L = 0;
-                } else {
-                    L = org.telegram.messenger.g0.L(4.0f);
-                }
-                rect.right = L;
-                rect.bottom = org.telegram.messenger.g0.L(4.0f);
-                return;
-            case 2:
-                org.telegram.ui.Cells.t tVar = (org.telegram.ui.Cells.t) this.f1238b;
-                int b10 = recyclerView.T(view).b();
-                if (b10 == 0) {
-                    rect.left = org.telegram.messenger.g0.L(18.0f);
-                }
-                if (b10 == tVar.getAdapter().b() - 1) {
-                    rect.right = org.telegram.messenger.g0.L(18.0f);
-                    return;
-                }
-                int b11 = tVar.getAdapter().b();
-                if (b11 == 4) {
-                    rect.right = n10.B(58.0f, b11, tVar.getWidth() - org.telegram.messenger.g0.L(36.0f)) / (b11 - 1);
-                    return;
-                } else {
-                    rect.right = org.telegram.messenger.g0.L(24.0f);
-                    return;
-                }
-            case 3:
-                hi.w wVar = ((bv) this.f1238b).f33788r1;
-                if (view instanceof av) {
-                    rect.left = -wVar.getPaddingLeft();
-                    rect.right = -wVar.getPaddingRight();
-                    return;
-                }
-                wVar.getClass();
-                if (RecyclerView.R(view) == 1) {
-                    rect.top = org.telegram.messenger.g0.L(14.0f);
-                    return;
-                }
-                return;
-            case 4:
-                ry ryVar = (ry) this.f1238b;
-                ex exVar = ryVar.Q;
-                if (view instanceof k8) {
-                    rect.left = org.telegram.messenger.g0.L(5.0f);
-                    rect.right = org.telegram.messenger.g0.L(5.0f);
-                    if (RecyclerView.R(view) + 1 > ryVar.S.F && !j10.i(ryVar.f39345d1).q() && !ryVar.V0) {
-                        rect.top = org.telegram.messenger.g0.L(10.0f);
-                        return;
-                    }
-                    return;
-                } else if (!(view instanceof ck0) && !(view instanceof jx)) {
-                    if (view instanceof q9) {
-                        rect.bottom = org.telegram.messenger.g0.L(12.0f);
-                        return;
-                    }
-                    return;
-                } else {
-                    rect.left = -exVar.getPaddingLeft();
-                    rect.right = -exVar.getPaddingRight();
-                    if (view instanceof jx) {
-                        rect.top = org.telegram.messenger.g0.L(8.0f);
-                        return;
-                    }
-                    return;
-                }
-            case 5:
-                if (RecyclerView.R(view) == ((ArrayList) this.f1238b).size() - 1) {
-                    rect.bottom = org.telegram.messenger.g0.L(4.0f);
-                    return;
-                }
-                return;
-            case 6:
-                if (RecyclerView.R(view) == ((nf0) this.f1238b).f50160c.size() - 1) {
-                    rect.bottom = org.telegram.messenger.g0.L(4.0f);
-                    return;
-                }
-                return;
-            case 7:
-                super.e(rect, view, recyclerView, c1Var);
-                int R = RecyclerView.R(view);
-                vg0 vg0Var = (vg0) this.f1238b;
-                if (R == vg0Var.Y1.size()) {
-                    rect.bottom = vg0Var.f52778h2;
-                    return;
-                }
-                return;
-            case 8:
-                int R2 = RecyclerView.R(view);
-                fm0 fm0Var = (fm0) this.f1238b;
-                int i12 = fm0Var.f47699c0;
-                if (R2 >= i12) {
-                    int i13 = fm0Var.f47705g0;
-                    if (R2 < i12 + i13) {
-                        int i14 = R2 - i12;
-                        int i15 = i14 / 3;
-                        boolean z13 = true;
-                        int i16 = 0;
-                        if (i15 == 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        if (i15 == (i13 - 1) / 3) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        int i17 = i14 % 3;
-                        if (i17 == 0) {
-                            z12 = true;
-                        } else {
-                            z12 = false;
-                        }
-                        if (i17 != 2) {
-                            z13 = false;
-                        }
-                        if (z10) {
-                            i7 = org.telegram.messenger.g0.L(8.0f);
-                        } else {
-                            i7 = 0;
-                        }
-                        rect.top = i7;
-                        if (z11) {
-                            i10 = org.telegram.messenger.g0.L(8.0f);
-                        } else {
-                            i10 = 0;
-                        }
-                        rect.bottom = i10;
-                        if (z12) {
-                            i11 = org.telegram.messenger.g0.L(10.0f);
-                        } else {
-                            i11 = 0;
-                        }
-                        rect.left = i11;
-                        if (z13) {
-                            i16 = org.telegram.messenger.g0.L(10.0f);
-                        }
-                        rect.right = i16;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 9:
-                super.e(rect, view, recyclerView, c1Var);
-                int R3 = RecyclerView.R(view);
-                wg.w0 w0Var = (wg.w0) this.f1238b;
-                if (R3 == w0Var.Z1.size()) {
-                    rect.bottom = w0Var.f59844l2;
-                    return;
-                }
+                this.f1229c.a(this.f1228b);
                 return;
             default:
-                super.e(rect, view, recyclerView, c1Var);
-                int R4 = RecyclerView.R(view);
-                wg.d1 d1Var = (wg.d1) this.f1238b;
-                if (R4 == d1Var.f59739b2.size()) {
-                    rect.bottom = d1Var.f59748l2;
-                    return;
-                }
+                org.telegram.messenger.g0.g3(new c1.a(19, this.f1229c, ci.f.c(this.f1228b, org.telegram.messenger.g0.L(240.0f), gc.b.M, 0.75f, null)));
                 return;
         }
+    }
+
+    public i0(x10 x10Var, String str) {
+        this.f1229c = x10Var;
+        this.f1228b = str;
     }
 }

@@ -1,96 +1,34 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.Toast;
-import org.telegram.ui.PhotoViewer;
-public final class tn0 implements View.OnClickListener {
-    public final int f40059a;
-    public final yo0 f40060b;
+import org.telegram.messenger.Utilities;
+public final class tn0 {
+    public final bu f40003a;
+    public final long f40004b;
+    public final float f40005c;
+    public final float d;
+    public final float f40006e;
 
-    public tn0(yo0 yo0Var, int i7) {
-        this.f40059a = i7;
-        this.f40060b = yo0Var;
+    public tn0(View view) {
+        bu buVar = new bu(1, view);
+        this.f40004b = System.currentTimeMillis();
+        this.f40003a = buVar;
+        g5.a aVar = Utilities.f22806c;
+        this.f40005c = org.telegram.messenger.g0.T1(5.0f, 9.0f, Utilities.l(aVar.nextFloat()));
+        this.d = org.telegram.messenger.g0.T1(2.5f, 5.0f, Utilities.l(aVar.nextFloat()));
+        this.f40006e = org.telegram.messenger.g0.T1(2.5f, 5.2f, Utilities.l(aVar.nextFloat()));
     }
 
-    @Override
-    public final void onClick(View view) {
-        int i7 = this.f40059a;
-        yo0 yo0Var = this.f40060b;
-        switch (i7) {
-            case 0:
-                yo0Var.W0(true);
-                return;
-            case 1:
-                mp mpVar = yo0Var.f42553a2;
-                mpVar.a(!mpVar.f37598a.f32838q, true);
-                yo0Var.b1();
-                return;
-            case 2:
-                org.telegram.ui.ActionBar.h1 h1Var = yo0Var.F2;
-                if (h1Var != null && h1Var.isShowing()) {
-                    yo0Var.F2.d(true);
-                }
-                yo0Var.W0(false);
-                return;
-            case 3:
-                org.telegram.ui.ActionBar.h1 h1Var2 = yo0Var.F2;
-                if (h1Var2 != null && h1Var2.isShowing()) {
-                    yo0Var.F2.d(true);
-                }
-                yo0Var.W0(true);
-                return;
-            case 4:
-                String[] strArr = yo0Var.f42562k2;
-                if (yo0Var.Q1.m() == 0) {
-                    if (yo0Var.f42561j2 || strArr[0] != null) {
-                        yo0Var.dismiss();
-                        PhotoViewer.p1().z0(true, false);
-                        if (strArr[0] == null && yo0Var.f42559h2) {
-                            yo0Var.f42560i2 = true;
-                            Toast.makeText(yo0Var.getContext(), org.telegram.messenger.gd.M0(2131748587, null), 0).show();
-                            return;
-                        }
-                        yo0Var.getContext();
-                        yo0Var.N0();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                String[] strArr2 = yo0Var.f42562k2;
-                if (yo0Var.Q1.m() == 0) {
-                    if (yo0Var.f42561j2 || strArr2[0] != null) {
-                        yo0Var.dismiss();
-                        if (strArr2[0] == null && yo0Var.f42559h2) {
-                            yo0Var.f42560i2 = true;
-                            Toast.makeText(yo0Var.getContext(), org.telegram.messenger.gd.M0(2131748587, null), 0).show();
-                            return;
-                        }
-                        yo0Var.getContext();
-                        yo0Var.N0();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                String[] strArr3 = yo0Var.f42562k2;
-                if (yo0Var.Q1.m() == 0) {
-                    if (yo0Var.f42561j2 || strArr3[0] != null) {
-                        yo0Var.dismiss();
-                        if (strArr3[0] == null && yo0Var.f42559h2) {
-                            yo0Var.f42560i2 = true;
-                            Toast.makeText(yo0Var.getContext(), org.telegram.messenger.gd.M0(2131748587, null), 0).show();
-                            return;
-                        }
-                        yo0Var.getContext();
-                        yo0Var.N0();
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void a(Canvas canvas, float f10) {
+        bu buVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f40004b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f40005c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f10);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10, ((float) Math.sin(currentTimeMillis * this.f40006e * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10);
+        canvas.translate(-0.0f, -0.0f);
+        if (f10 > 0.0f && (buVar = this.f40003a) != null) {
+            buVar.run();
         }
     }
 }

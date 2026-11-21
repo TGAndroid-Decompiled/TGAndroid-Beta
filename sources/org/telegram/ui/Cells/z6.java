@@ -3,9 +3,9 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.view.View;
 public final class z6 extends View {
-    public int f32518a;
-    public final int f32519b;
-    public boolean f32520c;
+    public int f32546a;
+    public final int f32547b;
+    public boolean f32548c;
     public boolean d;
 
     public z6(Context context) {
@@ -13,7 +13,7 @@ public final class z6 extends View {
     }
 
     private int getBackgroundResId() {
-        boolean z10 = this.f32520c;
+        boolean z10 = this.f32548c;
         if (z10 && this.d) {
             return 2131231229;
         }
@@ -28,11 +28,11 @@ public final class z6 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f32518a), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(this.f32546a), 1073741824));
     }
 
     public void setSize(int i7) {
-        this.f32518a = i7;
+        this.f32546a = i7;
     }
 
     public z6(Context context, Object obj) {
@@ -41,10 +41,10 @@ public final class z6 extends View {
 
     public z6(Context context, c0 c0Var) {
         super(context);
-        this.f32520c = true;
+        this.f32548c = true;
         this.d = true;
-        this.f32518a = 12;
-        int i7 = this.f32519b;
+        this.f32546a = 12;
+        int i7 = this.f32547b;
         if (i7 == 0) {
             setBackground(null);
         } else {
@@ -54,10 +54,10 @@ public final class z6 extends View {
 
     public z6(Context context, int i7, int i10) {
         super(context);
-        this.f32520c = true;
+        this.f32548c = true;
         this.d = true;
-        this.f32519b = i7;
-        this.f32518a = 12;
+        this.f32547b = i7;
+        this.f32546a = 12;
         if (i7 == 0) {
             setBackground(null);
         } else {

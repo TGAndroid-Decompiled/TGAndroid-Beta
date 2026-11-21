@@ -2,34 +2,34 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class qh0 extends rg.a {
-    public int f51226c;
+    public int f51280c;
     public int d;
-    public CharSequence f51227e;
-    public CharSequence f51228f;
-    public uh0 f51229g;
+    public CharSequence f51281e;
+    public CharSequence f51282f;
+    public uh0 f51283g;
     public int h;
-    public boolean f51230i;
+    public boolean f51284i;
 
     public static qh0 b(int i7, String str, boolean z10) {
         ?? aVar = new rg.a(1, true);
-        aVar.f51226c = i7;
-        aVar.f51227e = str;
-        aVar.f51230i = z10;
+        aVar.f51280c = i7;
+        aVar.f51281e = str;
+        aVar.f51284i = z10;
         return aVar;
     }
 
     public static qh0 c(int i7, String str, String str2) {
         ?? aVar = new rg.a(5, true);
-        aVar.f51226c = i7;
-        aVar.f51227e = str;
-        aVar.f51228f = str2;
+        aVar.f51280c = i7;
+        aVar.f51281e = str;
+        aVar.f51282f = str2;
         return aVar;
     }
 
     public static qh0 d(int i7, String str) {
         ?? aVar = new rg.a(4, true);
-        aVar.f51226c = i7;
-        aVar.f51227e = str;
+        aVar.f51280c = i7;
+        aVar.f51281e = str;
         return aVar;
     }
 
@@ -38,7 +38,7 @@ public final class qh0 extends rg.a {
         if (this != aVar) {
             if (qh0.class == aVar.getClass()) {
                 qh0 qh0Var = (qh0) aVar;
-                if (this.f51226c == qh0Var.f51226c && this.d == qh0Var.d && this.h == qh0Var.h && this.f51230i == qh0Var.f51230i && Objects.equals(this.f51227e, qh0Var.f51227e) && Objects.equals(this.f51228f, qh0Var.f51228f) && this.f51229g == qh0Var.f51229g) {
+                if (this.f51280c == qh0Var.f51280c && this.d == qh0Var.d && this.h == qh0Var.h && this.f51284i == qh0Var.f51284i && Objects.equals(this.f51281e, qh0Var.f51281e) && Objects.equals(this.f51282f, qh0Var.f51282f) && this.f51283g == qh0Var.f51283g) {
                     return true;
                 }
                 return false;
@@ -54,7 +54,7 @@ public final class qh0 extends rg.a {
         }
         if (obj != null && qh0.class == obj.getClass()) {
             qh0 qh0Var = (qh0) obj;
-            if (this.f51226c == qh0Var.f51226c && this.h == qh0Var.h && ((this.f56589a == 8 || (this.d == qh0Var.d && Objects.equals(this.f51227e, qh0Var.f51227e) && (this.f56589a == 6 || Objects.equals(this.f51228f, qh0Var.f51228f)))) && this.f51229g == qh0Var.f51229g)) {
+            if (this.f51280c == qh0Var.f51280c && this.h == qh0Var.h && ((this.f56630a == 8 || (this.d == qh0Var.d && Objects.equals(this.f51281e, qh0Var.f51281e) && (this.f56630a == 6 || Objects.equals(this.f51282f, qh0Var.f51282f)))) && this.f51283g == qh0Var.f51283g)) {
                 return true;
             }
         }

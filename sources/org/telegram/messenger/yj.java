@@ -7,29 +7,29 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yj implements Runnable {
-    public final int f28146a;
-    public final int f28147b;
-    public final Object f28148c;
+    public final int f28174a;
+    public final int f28175b;
+    public final Object f28176c;
     public final Object d;
-    public final Object f28149e;
-    public final Object f28150f;
+    public final Object f28177e;
+    public final Object f28178f;
 
     public yj(Object obj, Object obj2, int i7, Object obj3, Object obj4, int i10) {
-        this.f28146a = i10;
-        this.f28148c = obj;
+        this.f28174a = i10;
+        this.f28176c = obj;
         this.d = obj2;
-        this.f28147b = i7;
-        this.f28149e = obj3;
-        this.f28150f = obj4;
+        this.f28175b = i7;
+        this.f28177e = obj3;
+        this.f28178f = obj4;
     }
 
     private final void a() {
         TLRPC.MessageMedia messageMedia;
-        tr trVar = (tr) this.f28148c;
+        tr trVar = (tr) this.f28176c;
         String str = (String) this.d;
-        TLObject tLObject = (TLObject) this.f28149e;
-        int i7 = this.f28147b;
-        String str2 = (String) this.f28150f;
+        TLObject tLObject = (TLObject) this.f28177e;
+        int i7 = this.f28175b;
+        String str2 = (String) this.f28178f;
         trVar.getClass();
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -48,7 +48,7 @@ public final class yj implements Runnable {
                         messageMedia = null;
                     }
                     if (messageMedia != null) {
-                        sQLitePreparedStatement = trVar.f27054b.executeFast("REPLACE INTO sent_files_v2 VALUES(?, ?, ?, ?)");
+                        sQLitePreparedStatement = trVar.f27082b.executeFast("REPLACE INTO sent_files_v2 VALUES(?, ?, ?, ?)");
                         sQLitePreparedStatement.requery();
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(messageMedia.getObjectSize());
                         messageMedia.serializeToStream(nativeByteBuffer);
@@ -85,29 +85,29 @@ public final class yj implements Runnable {
     }
 
     public yj(Object obj, Object obj2, Object obj3, Object obj4, int i7, int i10) {
-        this.f28146a = i10;
-        this.f28148c = obj;
+        this.f28174a = i10;
+        this.f28176c = obj;
         this.d = obj2;
-        this.f28149e = obj3;
-        this.f28150f = obj4;
-        this.f28147b = i7;
+        this.f28177e = obj3;
+        this.f28178f = obj4;
+        this.f28175b = i7;
     }
 
     public yj(c1 c1Var, Serializable serializable, Object obj, int i7, Serializable serializable2, int i10) {
-        this.f28146a = i10;
-        this.f28148c = c1Var;
+        this.f28174a = i10;
+        this.f28176c = c1Var;
         this.d = serializable;
-        this.f28149e = obj;
-        this.f28147b = i7;
-        this.f28150f = serializable2;
+        this.f28177e = obj;
+        this.f28175b = i7;
+        this.f28178f = serializable2;
     }
 
     public yj(qz qzVar, int i7, ArrayList arrayList, a0.h hVar, a0.h hVar2) {
-        this.f28146a = 6;
-        this.f28148c = qzVar;
-        this.f28147b = i7;
+        this.f28174a = 6;
+        this.f28176c = qzVar;
+        this.f28175b = i7;
         this.d = arrayList;
-        this.f28149e = hVar;
-        this.f28150f = hVar2;
+        this.f28177e = hVar;
+        this.f28178f = hVar2;
     }
 }

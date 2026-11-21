@@ -1,128 +1,210 @@
 package org.telegram.ui.Components;
 
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.SweepGradient;
-import android.os.SystemClock;
-import android.view.View;
-import java.util.Random;
-public final class p0 {
-    public float[] D;
-    public float[] E;
-    public float[] F;
-    public int G;
-    public long I;
-    public final View f38199a;
-    public boolean f38200b;
-    public boolean f38201c;
-    public boolean d;
-    public final c6 f38202e;
-    public final c6 f38203f;
-    public long f38204g;
-    public LinearGradient f38214r;
-    public SweepGradient f38215s;
-    public int f38217u;
-    public final Paint h = new Paint(1);
-    public final Path f38205i = new Path();
-    public final Paint f38206j = new Paint(1);
-    public final Paint f38207k = new Paint(1);
-    public final Paint f38208l = new Paint(1);
-    public final Paint f38209m = new Paint(1);
-    public final Paint f38210n = new Paint(1);
-    public final Path f38211o = new Path();
-    public final RectF f38212p = new RectF();
-    public final Matrix f38213q = new Matrix();
-    public float f38216t = -1.0f;
-    public final float[] v = new float[3];
-    public final float[] f38218w = new float[3];
-    public final float[] f38219x = new float[3];
-    public final float[] f38220y = new float[3];
-    public final long[] f38221z = new long[3];
-    public final int[] A = new int[3];
-    public final boolean[] B = new boolean[3];
-    public final Random C = new Random(5905022);
-    public float H = -1.0f;
-    public float J = Float.NaN;
-    public float K = Float.NaN;
-    public final float[] L = new float[5];
-    public final float[] M = new float[5];
-    public final float[] N = new float[5];
-    public final float[] O = new float[5];
-    public final float[] P = new float[5];
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class p0 extends sa {
+    public c51 T1;
+    public TLRPC.TL_channelAdminLogEventsFilter U1;
+    public ArrayList V1;
+    public a0.h W1;
+    public final boolean X1;
+    public final ah.a Y1;
+    public boolean Z1;
+    public boolean f38434a2;
+    public boolean f38435b2;
+    public org.telegram.ui.ra f38436c2;
+    public int d2;
 
-    public p0(re reVar) {
-        this.f38199a = reVar;
-        Random random = new Random(31249L);
-        float[] fArr = {-1.0f, 1.0f, -0.6f, 0.7f, -0.85f};
-        for (int i7 = 0; i7 < 5; i7++) {
-            this.L[i7] = random.nextFloat() * 2.0f;
-            this.M[i7] = org.telegram.ui.Cells.c0.h(random, 0.55f, 0.75f);
-            this.N[i7] = fArr[i7] * org.telegram.messenger.g0.L(random.nextInt(5) + 9);
-            this.O[i7] = org.telegram.messenger.g0.L((random.nextFloat() * 1.4f) + 1.6f);
-            this.P[i7] = org.telegram.messenger.g0.L(random.nextInt(6) + 6);
-        }
-        this.f38202e = new c6(reVar, 0L, 420L, lr.h);
-        this.f38203f = new c6(reVar, 0L, 360L, lr.f37209g);
-        this.f38205i.moveTo(0.0f, -1.0f);
-        this.f38205i.quadTo(0.2f, -0.2f, 1.0f, 0.0f);
-        this.f38205i.quadTo(0.2f, 0.2f, 0.0f, 1.0f);
-        this.f38205i.quadTo(-0.2f, 0.2f, -1.0f, 0.0f);
-        this.f38205i.quadTo(-0.2f, -0.2f, 0.0f, -1.0f);
-        this.f38205i.close();
-        Paint paint = this.f38207k;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        Paint paint2 = this.f38207k;
-        Paint.Cap cap = Paint.Cap.ROUND;
-        paint2.setStrokeCap(cap);
-        this.f38209m.setStyle(style);
-        this.f38209m.setStrokeCap(cap);
-    }
-
-    public final void a(float f10, int i7) {
-        if (this.f38216t == f10 && this.f38217u == i7) {
-            return;
-        }
-        this.f38216t = f10;
-        this.f38217u = i7;
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, f10 * 2.2f, 0.0f, new int[]{16777215, 16777215, 956301311, 16777215, 16777215}, new float[]{0.0f, 0.3f, 0.5f, 0.7f, 1.0f}, Shader.TileMode.REPEAT);
-        this.f38214r = linearGradient;
-        this.f38206j.setShader(linearGradient);
-        SweepGradient sweepGradient = new SweepGradient(0.0f, 0.0f, new int[]{9497855, 9497855, -1935871745, -421988097, -1}, new float[]{0.0f, 0.55f, 0.8f, 0.95f, 1.0f});
-        this.f38215s = sweepGradient;
-        this.f38207k.setShader(sweepGradient);
-        int f11 = i0.a.f(0.55f, i7, -6297345) & 16777215;
-        this.f38210n.setShader(new RadialGradient(0.0f, 0.0f, f10 + org.telegram.messenger.g0.L(4.0f), new int[]{f11, Integer.MIN_VALUE | f11, f11}, new float[]{(f10 - org.telegram.messenger.g0.L(1.0f)) / (org.telegram.messenger.g0.L(4.0f) + f10), (org.telegram.messenger.g0.L(0.5f) + f10) / (f10 + org.telegram.messenger.g0.L(4.0f)), 1.0f}, Shader.TileMode.CLAMP));
-    }
-
-    public final void b(android.graphics.Canvas r56, android.graphics.RectF r57, int r58, int r59) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p0.b(android.graphics.Canvas, android.graphics.RectF, int, int):void");
-    }
-
-    public final void c(boolean z10) {
-        long j3;
-        if (this.f38201c == z10) {
-            return;
-        }
-        this.f38201c = z10;
-        if (z10) {
-            this.f38204g = SystemClock.uptimeMillis();
-        }
-        if (z10) {
-            j3 = 300;
+    public p0(org.telegram.ui.ActionBar.g2 g2Var, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, a0.h hVar, boolean z10) {
+        super(g2Var.getContext(), g2Var, false, true, 2, g2Var.getResourceProvider());
+        this.U1 = new TLRPC.TL_channelAdminLogEventsFilter();
+        this.Z1 = false;
+        this.f38434a2 = false;
+        this.f38435b2 = false;
+        this.f39546v1 = 0.35f;
+        O();
+        int i7 = org.telegram.ui.ActionBar.m6.f29469i5;
+        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, this.J0);
+        this.d2 = w02;
+        v0(w02);
+        Z0();
+        this.f39549y1 = true;
+        if (tL_channelAdminLogEventsFilter != null) {
+            TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.U1;
+            tL_channelAdminLogEventsFilter2.join = tL_channelAdminLogEventsFilter.join;
+            tL_channelAdminLogEventsFilter2.leave = tL_channelAdminLogEventsFilter.leave;
+            tL_channelAdminLogEventsFilter2.edit_rank = tL_channelAdminLogEventsFilter.edit_rank;
+            tL_channelAdminLogEventsFilter2.invite = tL_channelAdminLogEventsFilter.invite;
+            tL_channelAdminLogEventsFilter2.ban = tL_channelAdminLogEventsFilter.ban;
+            tL_channelAdminLogEventsFilter2.unban = tL_channelAdminLogEventsFilter.unban;
+            tL_channelAdminLogEventsFilter2.kick = tL_channelAdminLogEventsFilter.kick;
+            tL_channelAdminLogEventsFilter2.unkick = tL_channelAdminLogEventsFilter.unkick;
+            tL_channelAdminLogEventsFilter2.promote = tL_channelAdminLogEventsFilter.promote;
+            tL_channelAdminLogEventsFilter2.demote = tL_channelAdminLogEventsFilter.demote;
+            tL_channelAdminLogEventsFilter2.info = tL_channelAdminLogEventsFilter.info;
+            tL_channelAdminLogEventsFilter2.settings = tL_channelAdminLogEventsFilter.settings;
+            tL_channelAdminLogEventsFilter2.pinned = tL_channelAdminLogEventsFilter.pinned;
+            tL_channelAdminLogEventsFilter2.edit = tL_channelAdminLogEventsFilter.edit;
+            tL_channelAdminLogEventsFilter2.delete = tL_channelAdminLogEventsFilter.delete;
+            tL_channelAdminLogEventsFilter2.group_call = tL_channelAdminLogEventsFilter.group_call;
+            tL_channelAdminLogEventsFilter2.invites = tL_channelAdminLogEventsFilter.invites;
         } else {
-            j3 = 560;
+            TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter3 = this.U1;
+            tL_channelAdminLogEventsFilter3.join = true;
+            tL_channelAdminLogEventsFilter3.leave = true;
+            tL_channelAdminLogEventsFilter3.edit_rank = true;
+            tL_channelAdminLogEventsFilter3.invite = true;
+            tL_channelAdminLogEventsFilter3.ban = true;
+            tL_channelAdminLogEventsFilter3.unban = true;
+            tL_channelAdminLogEventsFilter3.kick = true;
+            tL_channelAdminLogEventsFilter3.unkick = true;
+            tL_channelAdminLogEventsFilter3.promote = true;
+            tL_channelAdminLogEventsFilter3.demote = true;
+            tL_channelAdminLogEventsFilter3.info = true;
+            tL_channelAdminLogEventsFilter3.settings = true;
+            tL_channelAdminLogEventsFilter3.pinned = true;
+            tL_channelAdminLogEventsFilter3.edit = true;
+            tL_channelAdminLogEventsFilter3.delete = true;
+            tL_channelAdminLogEventsFilter3.group_call = true;
+            tL_channelAdminLogEventsFilter3.invites = true;
         }
-        this.f38203f.f33895g = j3;
-        this.f38199a.invalidate();
+        if (hVar != null) {
+            this.W1 = hVar.clone();
+        }
+        this.X1 = z10;
+        this.T1.O(false);
+        v4.k kVar = new v4.k();
+        kVar.f59190m = false;
+        kVar.C = false;
+        kVar.o(nr.h);
+        kVar.n(350L);
+        this.f39539o1.setItemAnimator(kVar);
+        this.f39539o1.setOnItemClickListener(new c0(this, 1));
+        ah.a aVar = new ah.a(getContext(), this.J0, (ek0) null);
+        this.Y1 = aVar;
+        aVar.setClickable(true);
+        aVar.setOrientation(1);
+        aVar.setPadding(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f));
+        org.telegram.ui.ActionBar.t6.h(i7, aVar, this.J0);
+        hi.e eVar = new hi.e(getContext(), this.J0, true);
+        eVar.f();
+        eVar.i(org.telegram.messenger.gd.N0(2131750991, null), false, true);
+        eVar.setOnClickListener(new o0(this, 0));
+        aVar.addView(eVar, c8.ma.r(-1, 48, 87));
+        ViewGroup viewGroup = this.f30173b;
+        int i10 = this.f30208u0;
+        viewGroup.addView(aVar, c8.ma.f(-2.0f, -1, 87, i10, 0, i10, 0));
+        ek0 ek0Var = this.f39539o1;
+        int i11 = this.f30208u0;
+        ek0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(68.0f));
+        this.f39539o1.r1();
     }
 
-    public final float d() {
-        return ((float) (SystemClock.uptimeMillis() - this.f38204g)) / 1000.0f;
+    @Override
+    public final boolean G() {
+        return !this.f39539o1.canScrollVertically(-1);
+    }
+
+    @Override
+    public final dk0 M0(ek0 ek0Var) {
+        c51 c51Var = new c51(ek0Var, getContext(), this.f30170a, 0, true, new d(this, 3), this.J0);
+        this.T1 = c51Var;
+        return c51Var;
+    }
+
+    @Override
+    public final CharSequence P0() {
+        return org.telegram.messenger.gd.N0(2131751067, null);
+    }
+
+    public final String e1(int i7) {
+        int i10;
+        int i11;
+        int i12;
+        int i13 = 0;
+        if (i7 != 0) {
+            if (i7 != 1) {
+                StringBuilder sb2 = new StringBuilder();
+                TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter = this.U1;
+                sb2.append((tL_channelAdminLogEventsFilter.delete ? 1 : 0) + (tL_channelAdminLogEventsFilter.edit ? 1 : 0) + (tL_channelAdminLogEventsFilter.pinned ? 1 : 0));
+                sb2.append("/3");
+                return sb2.toString();
+            }
+            StringBuilder sb3 = new StringBuilder();
+            TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.U1;
+            if (tL_channelAdminLogEventsFilter2.info || tL_channelAdminLogEventsFilter2.settings) {
+                i13 = 1;
+            }
+            sb3.append(i13 + (tL_channelAdminLogEventsFilter2.invites ? 1 : 0) + (tL_channelAdminLogEventsFilter2.group_call ? 1 : 0));
+            sb3.append("/3");
+            return sb3.toString();
+        }
+        StringBuilder sb4 = new StringBuilder();
+        TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter3 = this.U1;
+        if (!tL_channelAdminLogEventsFilter3.promote && !tL_channelAdminLogEventsFilter3.demote) {
+            i10 = 0;
+        } else {
+            i10 = 1;
+        }
+        boolean z10 = this.X1;
+        if (z10 && (tL_channelAdminLogEventsFilter3.kick || tL_channelAdminLogEventsFilter3.ban || tL_channelAdminLogEventsFilter3.unkick || tL_channelAdminLogEventsFilter3.unban)) {
+            i11 = 1;
+        } else {
+            i11 = 0;
+        }
+        int i14 = i10 + i11;
+        if (tL_channelAdminLogEventsFilter3.invite || tL_channelAdminLogEventsFilter3.join) {
+            i13 = 1;
+        }
+        sb4.append(i14 + i13 + (tL_channelAdminLogEventsFilter3.leave ? 1 : 0) + (tL_channelAdminLogEventsFilter3.edit_rank ? 1 : 0));
+        sb4.append("/");
+        if (z10) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        sb4.append(i12);
+        return sb4.toString();
+    }
+
+    public final void f1(ArrayList arrayList) {
+        this.V1 = arrayList;
+        if (arrayList != null && this.W1 == null) {
+            this.W1 = new a0.h();
+            ArrayList arrayList2 = this.V1;
+            int size = arrayList2.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList2.get(i7);
+                i7++;
+                long o4 = org.telegram.messenger.n5.o(((TLRPC.ChannelParticipant) obj).peer);
+                this.W1.k(org.telegram.messenger.mp.u1(this.f30170a).c2(Long.valueOf(o4)), o4);
+            }
+        }
+        c51 c51Var = this.T1;
+        if (c51Var != null) {
+            c51Var.O(true);
+        }
+    }
+
+    @Override
+    public final void q0(float f10) {
+        super.q0(f10);
+        this.Y1.setTranslationY(-f10);
+    }
+
+    @Override
+    public final void s0() {
+        try {
+            super.s0();
+            int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29469i5, this.J0);
+            if (w02 != this.d2) {
+                this.d2 = w02;
+                v0(w02);
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
     }
 }

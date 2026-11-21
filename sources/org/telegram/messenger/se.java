@@ -2,10 +2,10 @@ package org.telegram.messenger;
 
 import android.telephony.PhoneStateListener;
 public final class se extends PhoneStateListener {
-    public final MediaController f26792a;
+    public final MediaController f26820a;
 
     public se(MediaController mediaController) {
-        this.f26792a = mediaController;
+        this.f26820a = mediaController;
     }
 
     @Override

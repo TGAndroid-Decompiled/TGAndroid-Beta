@@ -1,68 +1,150 @@
 package bi;
 
-import android.content.Context;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.q10;
-import org.telegram.tgnet.TLRPC;
+import android.text.TextUtils;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.tr;
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.lc;
-public final class q4 implements q10 {
-    public final ai.v1 f3968a;
-    public final long f3969b;
-    public final long f3970c;
-    public final Context d;
-    public final int f3971e;
-    public final org.telegram.ui.ActionBar.i6 f3972f;
-    public final TL_stars.TL_starGiftUnique f3973g;
-    public final long h;
-    public final TLRPC.TL_textWithEntities f3974i;
-    public final boolean f3975j;
-    public final lc f3976k;
-    public final c1.c f3977l;
-    public final c1.c f3978m;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.gf;
+import org.telegram.ui.Components.ng;
+public final class q4 implements Runnable {
+    public final int f4024a = 1;
+    public final long f4025b;
+    public final boolean f4026c;
+    public final int d;
+    public final int f4027e;
+    public final Object f4028f;
+    public final Object h;
 
-    public q4(ai.v1 v1Var, long j3, long j10, Context context, int i7, org.telegram.ui.ActionBar.i6 i6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j11, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10, lc lcVar, c1.c cVar, c1.c cVar2) {
-        this.f3968a = v1Var;
-        this.f3969b = j3;
-        this.f3970c = j10;
-        this.d = context;
-        this.f3971e = i7;
-        this.f3972f = i6Var;
-        this.f3973g = tL_starGiftUnique;
-        this.h = j11;
-        this.f3974i = tL_textWithEntities;
-        this.f3975j = z10;
-        this.f3976k = lcVar;
-        this.f3977l = cVar;
-        this.f3978m = cVar2;
+    public q4(tr trVar, long j3, ArrayList arrayList, boolean z10, int i7, int i10) {
+        this.f4028f = trVar;
+        this.f4025b = j3;
+        this.h = arrayList;
+        this.f4026c = z10;
+        this.d = i7;
+        this.f4027e = i10;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        Long l10 = (Long) obj;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        Boolean bool = Boolean.FALSE;
-        ai.v1 v1Var = this.f3968a;
-        v1Var.a(bool);
-        int i7 = (l10.longValue() > 0L ? 1 : (l10.longValue() == 0L ? 0 : -1));
-        long j3 = this.f3970c;
-        Context context = this.d;
-        int i10 = this.f3971e;
-        org.telegram.ui.ActionBar.i6 i6Var = this.f3972f;
-        if (i7 > 0 && l10.longValue() + this.f3969b >= 100000000 + j3) {
-            long longValue = l10.longValue();
-            s4 s4Var = new s4(context, i10, this.f3973g, this.h, this.f3974i, this.f3975j, i6Var, v1Var, this.f3976k, this.f3977l, this.f3978m);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
-            String M0 = gd.M0(2131749331, null);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
-            u1Var.S = M0;
-            u1Var.U = org.telegram.messenger.g0.W2(gd.a0(null, null, 2131749332, gd.a0(null, null, 2131749619, org.telegram.ui.Wallet.u0.t(longValue, false))));
-            alertDialog$Builder.h(gd.M0(2131752578, null), null);
-            alertDialog$Builder.k(gd.M0(2131746550, null), new ii.h(longValue, v1Var, i10, j3, s4Var));
-            alertDialog$Builder.p();
-            return;
+    public final void run() {
+        TL_stars.TL_starGiftUnique tL_starGiftUnique;
+        boolean z10;
+        long j3;
+        int i7;
+        switch (this.f4024a) {
+            case 0:
+                TLObject tLObject = (TLObject) this.f4028f;
+                String str = (String) this.h;
+                boolean z11 = tLObject instanceof TL_stars.TL_payments_uniqueStarGift;
+                int i10 = this.d;
+                if (z11) {
+                    TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
+                    mp.u1(i10).f4(tL_payments_uniqueStarGift.users, false);
+                    mp.u1(i10).Z3(tL_payments_uniqueStarGift.chats, false);
+                    TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
+                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                        tL_starGiftUnique = (TL_stars.TL_starGiftUnique) starGift;
+                        z10 = this.f4026c;
+                        j3 = this.f4025b;
+                        if ((tL_starGiftUnique != null || y4.m(tL_starGiftUnique) != z10 || (z10 && j3 != 0 && tL_starGiftUnique.getResellAmount(cg.b.f5303b).f5301b != j3)) && (i7 = this.f4027e + 1) < 8) {
+                            org.telegram.messenger.g0.h3(new o4(i10, i7, j3, str, z10), y4.f4286a[i7]);
+                            return;
+                        } else if (tL_starGiftUnique != null) {
+                            org.telegram.ui.Wallet.u0.D(i10).B().i(tL_starGiftUnique);
+                            di.y8.y(i10, false).a0(tL_starGiftUnique);
+                            ArrayList arrayList = k8.U;
+                            if (!TextUtils.isEmpty(tL_starGiftUnique.slug)) {
+                                boolean m10 = y4.m(tL_starGiftUnique);
+                                ArrayList arrayList2 = new ArrayList(arrayList);
+                                int size = arrayList2.size();
+                                int i11 = 0;
+                                while (i11 < size) {
+                                    Object obj = arrayList2.get(i11);
+                                    i11++;
+                                    WeakReference weakReference = (WeakReference) obj;
+                                    y7 y7Var = (y7) weakReference.get();
+                                    if (y7Var == null) {
+                                        arrayList.remove(weakReference);
+                                    } else {
+                                        ArrayList arrayList3 = y7Var.d;
+                                        if (y7Var.f4293a == i10 && y7Var.f4294b == tL_starGiftUnique.gift_id) {
+                                            int i12 = 0;
+                                            while (true) {
+                                                if (i12 < arrayList3.size()) {
+                                                    TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) arrayList3.get(i12);
+                                                    if (!tL_starGiftUnique.slug.equals(tL_starGiftUnique2.slug)) {
+                                                        i12++;
+                                                    } else if (y4.m(tL_starGiftUnique2)) {
+                                                        if (!m10) {
+                                                            y7Var.n(tL_starGiftUnique2);
+                                                        } else {
+                                                            arrayList3.set(i12, tL_starGiftUnique);
+                                                            x10 x10Var = y7Var.f4295c;
+                                                            if (x10Var != null) {
+                                                                x10Var.a(Boolean.FALSE);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                return;
+                            }
+                            return;
+                        } else {
+                            return;
+                        }
+                    }
+                }
+                tL_starGiftUnique = null;
+                z10 = this.f4026c;
+                j3 = this.f4025b;
+                if (tL_starGiftUnique != null) {
+                }
+                org.telegram.messenger.g0.h3(new o4(i10, i7, j3, str, z10), y4.f4286a[i7]);
+                return;
+            case 1:
+                ((tr) this.f4028f).Q0(this.d, this.f4027e, this.f4025b, (ArrayList) this.h, this.f4026c);
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f4028f;
+                CharSequence charSequence = (CharSequence) this.h;
+                chatActivityEnterView.f32619g0 = null;
+                chatActivityEnterView.O0(true);
+                gf gfVar = chatActivityEnterView.F0;
+                if (gfVar != null) {
+                    gfVar.setText("");
+                }
+                ng ngVar = chatActivityEnterView.P3;
+                if (ngVar != null) {
+                    ngVar.H(charSequence, this.f4026c, this.d, this.f4027e, this.f4025b);
+                    return;
+                }
+                return;
         }
-        o3.e1(context, i10, i6Var, j3, 2131749614);
+    }
+
+    public q4(TLObject tLObject, int i7, boolean z10, long j3, int i10, String str) {
+        this.f4028f = tLObject;
+        this.d = i7;
+        this.f4026c = z10;
+        this.f4025b = j3;
+        this.f4027e = i10;
+        this.h = str;
+    }
+
+    public q4(ChatActivityEnterView chatActivityEnterView, CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
+        this.f4028f = chatActivityEnterView;
+        this.h = charSequence;
+        this.f4026c = z10;
+        this.d = i7;
+        this.f4027e = i10;
+        this.f4025b = j3;
     }
 }

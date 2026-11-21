@@ -4,18 +4,18 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class l20 implements TextWatcher {
-    public final f40 f49411a;
+    public final f40 f49449a;
 
     public l20(f40 f40Var) {
-        this.f49411a = f40Var;
+        this.f49449a = f40Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String str;
         int i7;
-        f40 f40Var = this.f49411a;
-        f40Var.f47511z5.a(TextUtils.isEmpty(editable), true);
+        f40 f40Var = this.f49449a;
+        f40Var.f47579z5.a(TextUtils.isEmpty(editable), true);
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         int i10 = f40Var.Y1;
         if (codePointCount + 25 > i10) {
@@ -25,13 +25,13 @@ public final class l20 implements TextWatcher {
         }
         f40Var.H1.a();
         f40Var.H1.setText(str);
-        org.telegram.ui.Components.n6 n6Var = f40Var.H1;
+        org.telegram.ui.Components.o6 o6Var = f40Var.H1;
         if (codePointCount >= i10) {
             i7 = -1280137;
         } else {
             i7 = -1;
         }
-        n6Var.setTextColor(i7);
+        o6Var.setTextColor(i7);
         if (codePointCount > i10) {
             org.telegram.messenger.q2.APP_ERROR.a();
         }

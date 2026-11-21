@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-public final class jq extends org.telegram.ui.Components.o10 {
+public final class jq extends org.telegram.ui.Components.r10 {
     public final rq n1;
 
     public jq(rq rqVar, Activity activity, rq rqVar2) {
@@ -12,7 +12,7 @@ public final class jq extends org.telegram.ui.Components.o10 {
     @Override
     public final void K0() {
         rq rqVar = this.n1;
-        rqVar.getMessagesController().S(rqVar.getParentActivity(), rqVar.f51745n, rqVar, new w0(this, 27));
+        rqVar.getMessagesController().S(rqVar.getParentActivity(), rqVar.f51720n, rqVar, new w0(this, 27));
     }
 
     @Override

@@ -1,45 +1,115 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
+import java.util.List;
 import org.telegram.tgnet.TLRPC;
-public final class yx {
-    public final ArrayList f42661a = new ArrayList();
-    public final ry f42662b;
+public final class yx extends wy {
+    public final yt0 X;
+    public final ty Y;
 
-    public yx(ry ryVar) {
-        this.f42662b = ryVar;
+    public yx(ty tyVar) {
+        super(100, true);
+        this.Y = tyVar;
+        this.X = new Object();
+        this.O = new bi.w2(this, 11);
     }
 
-    public final void a(String str, boolean z10) {
-        ry ryVar = this.f42662b;
-        int i7 = ryVar.f39345d1;
-        String p10 = a8.p0.p("gif_search_", str, "_");
-        if (!z10 || !ryVar.m0.containsKey(p10)) {
-            String str2 = str;
-            di.j3 j3Var = new di.j3(this, str2, z10, p10, 6);
-            ArrayList arrayList = this.f42661a;
-            if (z10) {
-                arrayList.add(p10);
-                org.telegram.messenger.tr.a0(i7).M(p10, j3Var);
-                return;
-            }
-            org.telegram.messenger.mp u12 = org.telegram.messenger.mp.u1(i7);
-            TLObject h22 = u12.h2(u12.N3);
-            if (!(h22 instanceof TLRPC.User)) {
-                return;
-            }
-            arrayList.add(p10);
-            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-            if (str2 == null) {
-                str2 = "";
-            }
-            tL_messages_getInlineBotResults.query = str2;
-            tL_messages_getInlineBotResults.bot = u12.s1((TLRPC.User) h22);
-            tL_messages_getInlineBotResults.offset = "";
-            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-            ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getInlineBotResults, j3Var, 2);
+    @Override
+    public final int A() {
+        ty tyVar = this.Y;
+        v4.i0 adapter = tyVar.f40114i0.getAdapter();
+        xx xxVar = tyVar.f40120k0;
+        if (adapter == xxVar && xxVar.f42251y.isEmpty()) {
+            return 0;
         }
+        return B() - 1;
+    }
+
+    @Override
+    public final yt0 D1(int i7) {
+        ArrayList<TLRPC.DocumentAttribute> arrayList;
+        TLRPC.Document document;
+        ty tyVar = this.Y;
+        xx xxVar = tyVar.f40120k0;
+        v4.i0 adapter = tyVar.f40114i0.getAdapter();
+        xx xxVar2 = tyVar.f40130o0;
+        TLRPC.Document document2 = null;
+        r4 = null;
+        ArrayList<TLRPC.DocumentAttribute> arrayList2 = null;
+        if (adapter == xxVar2) {
+            int i10 = xxVar2.I;
+            if (i7 > i10) {
+                TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) xxVar2.f42251y.get((i7 - i10) - 1);
+                document = botInlineResult.document;
+                if (document != null) {
+                    arrayList2 = document.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument = botInlineResult.content;
+                    if (webDocument != null) {
+                        arrayList2 = webDocument.attributes;
+                    } else {
+                        TLRPC.WebDocument webDocument2 = botInlineResult.thumb;
+                        if (webDocument2 != null) {
+                            arrayList2 = webDocument2.attributes;
+                        }
+                    }
+                }
+                arrayList = arrayList2;
+                document2 = document;
+                return F1(document2, arrayList);
+            } else if (i7 == i10) {
+                return null;
+            } else {
+                document2 = (TLRPC.Document) tyVar.f40118j1.get(i7);
+                arrayList = document2.attributes;
+                return F1(document2, arrayList);
+            }
+        } else if (!xxVar.f42251y.isEmpty()) {
+            TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) xxVar.f42251y.get(i7);
+            document = botInlineResult2.document;
+            if (document != null) {
+                arrayList2 = document.attributes;
+            } else {
+                TLRPC.WebDocument webDocument3 = botInlineResult2.content;
+                if (webDocument3 != null) {
+                    arrayList2 = webDocument3.attributes;
+                } else {
+                    TLRPC.WebDocument webDocument4 = botInlineResult2.thumb;
+                    if (webDocument4 != null) {
+                        arrayList2 = webDocument4.attributes;
+                    }
+                }
+            }
+            arrayList = arrayList2;
+            document2 = document;
+            return F1(document2, arrayList);
+        } else {
+            arrayList = null;
+            return F1(document2, arrayList);
+        }
+    }
+
+    public final yt0 F1(TLRPC.Document document, List list) {
+        TLRPC.PhotoSize w10;
+        int i7;
+        int i10;
+        yt0 yt0Var = this.X;
+        yt0Var.f42554b = 100.0f;
+        yt0Var.f42553a = 100.0f;
+        if (document != null && (w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false)) != null && (i7 = w10.f28456w) != 0 && (i10 = w10.h) != 0) {
+            yt0Var.f42553a = i7;
+            yt0Var.f42554b = i10;
+        }
+        if (list != null) {
+            for (int i11 = 0; i11 < list.size(); i11++) {
+                TLRPC.DocumentAttribute documentAttribute = (TLRPC.DocumentAttribute) list.get(i11);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                    yt0Var.f42553a = documentAttribute.f28438w;
+                    yt0Var.f42554b = documentAttribute.h;
+                    break;
+                }
+            }
+        }
+        return yt0Var;
     }
 }

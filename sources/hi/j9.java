@@ -1,105 +1,189 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.lv;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.bc1;
-public final class j9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14827a;
-    public final float f14828b;
-    public final float f14829c;
-    public final Object d;
+import android.graphics.Bitmap;
+import android.graphics.RectF;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import org.telegram.messenger.ef;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.q10;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.Components.yt0;
+import org.telegram.ui.ProfileActivity;
+public final class j9 implements q10 {
+    public final int f14836a;
+    public final boolean f14837b;
+    public final fs f14838c;
 
-    public j9(Object obj, float f10, float f11, int i7) {
-        this.f14827a = i7;
-        this.d = obj;
-        this.f14828b = f10;
-        this.f14829c = f11;
+    public j9(fs fsVar, boolean z10, int i7) {
+        this.f14836a = i7;
+        this.f14838c = fsVar;
+        this.f14837b = z10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final void a(Object obj, Object obj2) {
         boolean z10;
-        int i7 = this.f14827a;
-        float f10 = this.f14829c;
-        float f11 = this.f14828b;
-        Object obj = this.d;
+        float f10;
+        yt0 yt0Var;
+        TLRPC.PhotoSize w10;
+        int i7 = this.f14836a;
+        int i10 = 0;
+        boolean z11 = this.f14837b;
+        fs fsVar = this.f14838c;
         switch (i7) {
             case 0:
-                ta taVar = (ta) obj;
-                taVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                taVar.f15473r.setTranslationY(f11 * floatValue);
-                taVar.f15473r.b(f10 * floatValue);
-                return;
-            case 1:
-                lv lvVar = (lv) obj;
-                lvVar.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lvVar.M = floatValue2;
-                lvVar.L = org.telegram.messenger.g0.T1(f11, f10, floatValue2);
-                lvVar.f36144b.invalidate();
-                return;
-            case 2:
-                bc1 bc1Var = (bc1) obj;
-                bc1Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float L = f11 + org.telegram.messenger.g0.L(28.0f);
-                float L2 = f10 + org.telegram.messenger.g0.L(52.0f);
-                float f12 = bc1Var.E;
-                bc1Var.H = L - (L * f12);
-                bc1Var.I = L2 - (f12 * L2);
-                bc1Var.invalidate();
-                return;
-            case 3:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21893a;
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f11;
-                float f13 = photoViewer.f43166a6;
-                cropAreaView.f32892o0 = floatValue3;
-                cropAreaView.f32893p0 = ((photoViewer.f43204e6 - f13) * photoViewer.f43264l6) + f13;
-                cropAreaView.f32894q0 = 0.0f;
-                cropAreaView.f32896r0 = 0.0f;
-                cropAreaView.invalidate();
-                photoViewer.D1.f38764c.b(org.telegram.messenger.g0.T1(f10, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                return;
-            case 4:
-                org.telegram.ui.Wallet.m4 m4Var = (org.telegram.ui.Wallet.m4) obj;
-                float floatValue4 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m4Var.A = (f11 * floatValue4) + m4Var.g();
-                m4Var.B = (f10 * floatValue4) + (m4Var.f44533k.F * 0.14f);
-                if (floatValue4 > 0.0f) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                m4Var.D = z10;
-                m4Var.f44515a.invalidate();
-                return;
-            case 5:
-                org.telegram.ui.Wallet.s6 s6Var = (org.telegram.ui.Wallet.s6) obj;
-                s6Var.getClass();
-                float floatValue5 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s6Var.O = f11 * floatValue5;
-                s6Var.P = f10 * floatValue5;
-                return;
-            case 6:
-                te.c cVar = (te.c) obj;
-                if (cVar.h) {
-                    DecelerateInterpolator decelerateInterpolator = se.a.f57146a;
-                    float animatedFraction = valueAnimator.getAnimatedFraction();
-                    cVar.d((f10 * animatedFraction) + f11, animatedFraction);
+                sa saVar = (sa) fsVar;
+                Bitmap bitmap = (Bitmap) obj2;
+                int i11 = saVar.f15389c;
+                if (obj != null && saVar.f15433q2 == null && !saVar.X && saVar.I()) {
+                    if (z11) {
+                        if (saVar.L1 != null) {
+                            saVar.t();
+                            saVar.L1.f14356j = true;
+                            if (obj instanceof ef) {
+                                u9 u9Var = saVar.f15453w1;
+                                u9Var.b0(u9Var.h0(((ef) obj).I, false));
+                            } else if (obj instanceof TLObject) {
+                                u9 u9Var2 = saVar.f15453w1;
+                                TLObject tLObject = (TLObject) obj;
+                                u9Var2.V1 = true;
+                                f5 f5Var = u9Var2.B0;
+                                if ((tLObject instanceof TLRPC.Photo) && (w10 = org.telegram.messenger.w7.w(((TLRPC.Photo) tLObject).sizes, 1000, false, null, false)) != null) {
+                                    f10 = w10.f28456w / w10.h;
+                                } else {
+                                    f10 = 1.0f;
+                                }
+                                if (f10 > 1.0f) {
+                                    float floor = (float) Math.floor(Math.max(u9Var2.B1, f5Var.getMeasuredWidth()) * 0.5d);
+                                    yt0Var = new yt0(floor, floor / f10);
+                                } else {
+                                    float floor2 = (float) Math.floor(Math.max(u9Var2.C1, f5Var.getMeasuredHeight()) * 0.5d);
+                                    yt0Var = new yt0(f10 * floor2, floor2);
+                                }
+                                tg.p1 p1Var = new tg.p1(u9Var2.getContext(), u9Var2.c0(), yt0Var, tLObject);
+                                p1Var.setDelegate(u9Var2);
+                                f5Var.addView(p1Var);
+                                u9Var2.d0();
+                                u9Var2.b0(p1Var);
+                            }
+                            saVar.e(false);
+                        } else {
+                            return;
+                        }
+                    } else {
+                        saVar.h0(false, true);
+                        saVar.R0.a(saVar.P1);
+                        d6 d6Var = saVar.P0;
+                        if (saVar.P1 == 1) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        d6Var.f14528o0 = -1.0f;
+                        d6Var.f14529p0 = z10;
+                        d6Var.invalidate();
+                        saVar.e(false);
+                        boolean z12 = obj instanceof ef;
+                        if (z12) {
+                            ef efVar = (ef) obj;
+                            if (efVar.f27875b && !efVar.d()) {
+                                i10 = 1;
+                            }
+                            saVar.P1 = i10;
+                            c7 l10 = c7.l(efVar);
+                            l10.M0 = bitmap;
+                            l10.J0 = saVar.f15452w0;
+                            l10.K0 = saVar.f15456x0;
+                            l10.A();
+                            saVar.M1 = true;
+                            if (saVar.B0.j()) {
+                                saVar.H1 = null;
+                                l10.P = 1.0f;
+                                if (saVar.B0.l(l10)) {
+                                    saVar.L1 = c7.a(saVar.B0.getLayout(), saVar.B0.getContent());
+                                }
+                                saVar.l0(true);
+                            } else {
+                                l10.B();
+                                saVar.L1 = l10;
+                                if (z12) {
+                                    q8.a(i11, l10);
+                                }
+                                saVar.J(1, true);
+                            }
+                        } else if (obj instanceof c7) {
+                            c7 c7Var = (c7) obj;
+                            if (c7Var.L == null && !c7Var.v()) {
+                                saVar.f15401f1.c("Failed to load draft");
+                                mp.u1(i11).R1().f12441w.b(c7Var);
+                                return;
+                            }
+                            c7Var.J0 = saVar.f15452w0;
+                            c7Var.K0 = saVar.f15456x0;
+                            saVar.P1 = c7Var.K ? 1 : 0;
+                            c7Var.M0 = bitmap;
+                            saVar.M1 = false;
+                            saVar.B0.n(c7Var);
+                            saVar.L1 = c7Var;
+                            if (z12) {
+                                q8.a(i11, c7Var);
+                            }
+                            saVar.J(1, true);
+                        } else {
+                            return;
+                        }
+                    }
+                    g3 g3Var = saVar.N0;
+                    if (g3Var != null) {
+                        saVar.f15421m2 = g3Var.f14491e.e0();
+                        saVar.f15424n2 = saVar.N0.getSelectedAlbum();
+                        return;
+                    }
                     return;
                 }
                 return;
+            case 1:
+                li.d0 d0Var = (li.d0) fsVar;
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error != null) {
+                    if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
+                        li.l0.f(new lc((FrameLayout) d0Var.f30173b, d0Var.J0), 2, z11);
+                        d0Var.f19930o1.A(0);
+                        return;
+                    }
+                    org.telegram.ui.Cells.c0.t((FrameLayout) d0Var.f30173b, d0Var.J0, tL_error, false);
+                    return;
+                }
+                li.l0.f(new lc((FrameLayout) d0Var.f30173b, d0Var.J0), 1, z11);
+                d0Var.f19930o1.A(0);
+                return;
             default:
-                vg.e eVar = (vg.e) obj;
-                eVar.getClass();
-                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = eVar.f59414a;
-                fVar.d = f11 * floatValue6;
-                fVar.f59431i = f10 * floatValue6;
+                ProfileActivity profileActivity = (ProfileActivity) fsVar;
+                Integer num = (Integer) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                RectF rectF = ProfileActivity.Z6;
+                if (!profileActivity.c4()) {
+                    if (lc.a(profileActivity)) {
+                        if (num.intValue() == 1) {
+                            lc.l(null, profileActivity, z11).j();
+                        } else if (num.intValue() == 2) {
+                            lc.l(org.telegram.messenger.n5.t(profileActivity.f43581e1), profileActivity, z11).j();
+                        } else if (tL_error2 != null) {
+                            lc.e0(tL_error2);
+                        }
+                    }
+                    org.telegram.messenger.n6 n6Var = profileActivity.Y1;
+                    if (n6Var != null) {
+                        n6Var.g();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

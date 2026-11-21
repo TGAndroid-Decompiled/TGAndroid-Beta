@@ -7,44 +7,44 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class ql implements Runnable {
-    public final int f26415a = 0;
-    public final boolean f26416b;
-    public final String f26417c;
+    public final int f26443a = 0;
+    public final boolean f26444b;
+    public final String f26445c;
     public final boolean d;
-    public final Object f26418e;
-    public final Object f26419f;
+    public final Object f26446e;
+    public final Object f26447f;
     public final Object h;
-    public final Object f26420n;
-    public final Object f26421r;
-    public final Object f26422s;
+    public final Object f26448n;
+    public final Object f26449r;
+    public final Object f26450s;
 
     public ql(t7 t7Var, boolean z10, String str, boolean z11, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, y8 y8Var) {
-        this.f26418e = t7Var;
-        this.f26416b = z10;
-        this.f26417c = str;
+        this.f26446e = t7Var;
+        this.f26444b = z10;
+        this.f26445c = str;
         this.d = z11;
-        this.f26419f = inputFile;
+        this.f26447f = inputFile;
         this.h = inputEncryptedFile;
-        this.f26420n = bArr;
-        this.f26421r = bArr2;
-        this.f26422s = y8Var;
+        this.f26448n = bArr;
+        this.f26449r = bArr2;
+        this.f26450s = y8Var;
     }
 
     @Override
     public final void run() {
         y8 y8Var;
         y8 y8Var2;
-        switch (this.f26415a) {
+        switch (this.f26443a) {
             case 0:
-                mp mpVar = (mp) this.f26418e;
-                org.telegram.ui.ox oxVar = (org.telegram.ui.ActionBar.h2) this.f26419f;
+                mp mpVar = (mp) this.f26446e;
+                org.telegram.ui.ox oxVar = (org.telegram.ui.ActionBar.g2) this.f26447f;
                 vf.b bVar = (vf.b) this.h;
-                boolean[] zArr = (boolean[]) this.f26420n;
-                TLRPC.User user = (TLRPC.User) this.f26421r;
-                String str = this.f26417c;
-                boolean z10 = this.f26416b;
+                boolean[] zArr = (boolean[]) this.f26448n;
+                TLRPC.User user = (TLRPC.User) this.f26449r;
+                String str = this.f26445c;
+                boolean z10 = this.f26444b;
                 boolean z11 = this.d;
-                TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) this.f26422s;
+                TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) this.f26450s;
                 if (oxVar == null) {
                     oxVar = LaunchActivity.T();
                 }
@@ -58,7 +58,7 @@ public final class ql implements Runnable {
                             mp.d5(H1, oxVar);
                             return;
                         } else if (user.bot_has_main_app) {
-                            long j3 = user.f28552id;
+                            long j3 = user.f28580id;
                             if (oxVar instanceof org.telegram.ui.bn) {
                                 j3 = ((org.telegram.ui.bn) oxVar).a();
                             } else if (oxVar instanceof ProfileActivity) {
@@ -68,15 +68,15 @@ public final class ql implements Runnable {
                                 oxVar = ((ActionBarLayout) oxVar.getParentLayout()).getSheetFragment();
                             }
                             g0.v1(oxVar.getFragmentView());
-                            ki.f4 b10 = ki.f4.b(mpVar.currentAccount, j3, user.f28552id, null, null, 4, 0, 0L, null, false, str, user, 0, z10, z11);
+                            ki.e4 b10 = ki.e4.b(mpVar.currentAccount, j3, user.f28580id, null, null, 4, 0, 0L, null, false, str, user, 0, z10, z11);
                             LaunchActivity launchActivity = LaunchActivity.H1;
                             if (launchActivity == null || launchActivity.N() == null || LaunchActivity.H1.N().k(b10) == null) {
-                                ki.t2 t2Var = new ki.t2(oxVar.getContext(), oxVar.getResourceProvider());
-                                t2Var.B(true);
-                                t2Var.C0 = false;
-                                t2Var.m0 = oxVar.getParentActivity();
-                                t2Var.x(oxVar, b10);
-                                t2Var.show();
+                                ki.s2 s2Var = new ki.s2(oxVar.getContext(), oxVar.getResourceProvider());
+                                s2Var.B(true);
+                                s2Var.C0 = false;
+                                s2Var.m0 = oxVar.getParentActivity();
+                                s2Var.x(oxVar, b10);
+                                s2Var.show();
                                 return;
                             }
                             return;
@@ -89,21 +89,21 @@ public final class ql implements Runnable {
                                 TL_bots.TL_botMenuButton tL_botMenuButton = (TL_bots.TL_botMenuButton) botInfoArr[0].menu_button;
                                 g0.v1(oxVar.getFragmentView());
                                 int i7 = mpVar.currentAccount;
-                                long j10 = user.f28552id;
-                                ki.f4 b11 = ki.f4.b(i7, j10, j10, tL_botMenuButton.text, tL_botMenuButton.url, 2, 0, 0L, null, false, str, user, 0, z10, z11);
+                                long j10 = user.f28580id;
+                                ki.e4 b11 = ki.e4.b(i7, j10, j10, tL_botMenuButton.text, tL_botMenuButton.url, 2, 0, 0L, null, false, str, user, 0, z10, z11);
                                 LaunchActivity launchActivity2 = LaunchActivity.H1;
                                 if (launchActivity2 == null || launchActivity2.N() == null || LaunchActivity.H1.N().k(b11) == null) {
-                                    ki.t2 t2Var2 = new ki.t2(oxVar.getContext(), oxVar.getResourceProvider());
-                                    t2Var2.B(false);
-                                    t2Var2.C0 = true;
-                                    t2Var2.m0 = oxVar.getParentActivity();
-                                    t2Var2.x(oxVar, b11);
-                                    t2Var2.show();
+                                    ki.s2 s2Var2 = new ki.s2(oxVar.getContext(), oxVar.getResourceProvider());
+                                    s2Var2.B(false);
+                                    s2Var2.C0 = true;
+                                    s2Var2.m0 = oxVar.getParentActivity();
+                                    s2Var2.x(oxVar, b11);
+                                    s2Var2.show();
                                     return;
                                 }
                                 return;
                             }
-                            oxVar.presentFragment(org.telegram.ui.bn.ua(user.f28552id));
+                            oxVar.presentFragment(org.telegram.ui.bn.ua(user.f28580id));
                             return;
                         }
                     }
@@ -111,55 +111,55 @@ public final class ql implements Runnable {
                 }
                 return;
             default:
-                t7 t7Var = (t7) this.f26418e;
-                boolean z12 = this.f26416b;
-                String str2 = this.f26417c;
+                t7 t7Var = (t7) this.f26446e;
+                boolean z12 = this.f26444b;
+                String str2 = this.f26445c;
                 boolean z13 = this.d;
-                TLRPC.InputFile inputFile = (TLRPC.InputFile) this.f26419f;
+                TLRPC.InputFile inputFile = (TLRPC.InputFile) this.f26447f;
                 TLRPC.InputEncryptedFile inputEncryptedFile = (TLRPC.InputEncryptedFile) this.h;
-                byte[] bArr = (byte[]) this.f26420n;
-                byte[] bArr2 = (byte[]) this.f26421r;
-                y8 y8Var3 = (y8) this.f26422s;
+                byte[] bArr = (byte[]) this.f26448n;
+                byte[] bArr2 = (byte[]) this.f26449r;
+                y8 y8Var3 = (y8) this.f26450s;
                 if (z12) {
-                    t7Var.d.f27652n.remove(str2);
+                    t7Var.d.f27680n.remove(str2);
                 } else {
                     t7Var.d.h.remove(str2);
                 }
                 if (z13) {
                     w7 w7Var = t7Var.d;
-                    int i10 = w7Var.f27654s - 1;
-                    w7Var.f27654s = i10;
-                    if (i10 < 1 && (y8Var2 = (y8) w7Var.f27651f.poll()) != null) {
-                        t7Var.d.f27654s++;
+                    int i10 = w7Var.f27682s - 1;
+                    w7Var.f27682s = i10;
+                    if (i10 < 1 && (y8Var2 = (y8) w7Var.f27679f.poll()) != null) {
+                        t7Var.d.f27682s++;
                         y8Var2.c();
                     }
                 } else {
                     w7 w7Var2 = t7Var.d;
-                    int i11 = w7Var2.f27653r - 1;
-                    w7Var2.f27653r = i11;
-                    if (i11 < 1 && (y8Var = (y8) w7Var2.f27650e.poll()) != null) {
-                        t7Var.d.f27653r++;
+                    int i11 = w7Var2.f27681r - 1;
+                    w7Var2.f27681r = i11;
+                    if (i11 < 1 && (y8Var = (y8) w7Var2.f27678e.poll()) != null) {
+                        t7Var.d.f27681r++;
                         y8Var.c();
                     }
                 }
                 ob obVar = t7Var.d.F;
                 if (obVar != null) {
-                    Utilities.d.c(new ii.i(obVar, obVar.f26048a, str2, inputFile, inputEncryptedFile, bArr, bArr2, y8Var3.f28101t));
+                    Utilities.d.c(new ii.i(obVar, obVar.f26076a, str2, inputFile, inputEncryptedFile, bArr, bArr2, y8Var3.f28129t));
                     return;
                 }
                 return;
         }
     }
 
-    public ql(mp mpVar, org.telegram.ui.ActionBar.h2 h2Var, vf.b bVar, boolean[] zArr, TLRPC.User user, String str, boolean z10, boolean z11, TL_bots.BotInfo[] botInfoArr) {
-        this.f26418e = mpVar;
-        this.f26419f = h2Var;
+    public ql(mp mpVar, org.telegram.ui.ActionBar.g2 g2Var, vf.b bVar, boolean[] zArr, TLRPC.User user, String str, boolean z10, boolean z11, TL_bots.BotInfo[] botInfoArr) {
+        this.f26446e = mpVar;
+        this.f26447f = g2Var;
         this.h = bVar;
-        this.f26420n = zArr;
-        this.f26421r = user;
-        this.f26417c = str;
-        this.f26416b = z10;
+        this.f26448n = zArr;
+        this.f26449r = user;
+        this.f26445c = str;
+        this.f26444b = z10;
         this.d = z11;
-        this.f26422s = botInfoArr;
+        this.f26450s = botInfoArr;
     }
 }

@@ -6,25 +6,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ci implements RequestDelegate {
-    public final int f23355a;
-    public final c1 f23356b;
-    public final Object f23357c;
+    public final int f23383a;
+    public final c1 f23384b;
+    public final Object f23385c;
     public final Object d;
 
     public ci(c1 c1Var, Object obj, Object obj2, int i7) {
-        this.f23355a = i7;
-        this.f23356b = c1Var;
-        this.f23357c = obj;
+        this.f23383a = i7;
+        this.f23384b = c1Var;
+        this.f23385c = obj;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         long j3;
-        int i7 = this.f23355a;
+        int i7 = this.f23383a;
         Object obj = this.d;
-        Object obj2 = this.f23357c;
-        c1 c1Var = this.f23356b;
+        Object obj2 = this.f23385c;
+        c1 c1Var = this.f23384b;
         switch (i7) {
             case 0:
                 ri riVar = (ri) c1Var;
@@ -50,10 +50,10 @@ public final class ci implements RequestDelegate {
                 return;
             case 3:
                 mp mpVar = (mp) c1Var;
-                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) obj2;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) obj2;
                 TLRPC.TL_messages_createChat tL_messages_createChat = (TLRPC.TL_messages_createChat) obj;
                 if (tL_error != null) {
-                    g0.g3(new tl(mpVar, tL_error, h2Var, tL_messages_createChat, 2));
+                    g0.g3(new tl(mpVar, tL_error, g2Var, tL_messages_createChat, 2));
                     return;
                 } else if (tLObject instanceof TLRPC.TL_messages_invitedUsers) {
                     TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) tLObject;
@@ -65,10 +65,10 @@ public final class ci implements RequestDelegate {
                 }
             case 4:
                 mp mpVar2 = (mp) c1Var;
-                org.telegram.ui.ActionBar.h2 h2Var2 = (org.telegram.ui.ActionBar.h2) obj2;
+                org.telegram.ui.ActionBar.g2 g2Var2 = (org.telegram.ui.ActionBar.g2) obj2;
                 TLRPC.TL_channels_createChannel tL_channels_createChannel = (TLRPC.TL_channels_createChannel) obj;
                 if (tL_error != null) {
-                    g0.g3(new tl(mpVar2, tL_error, h2Var2, tL_channels_createChannel, 1));
+                    g0.g3(new tl(mpVar2, tL_error, g2Var2, tL_channels_createChannel, 1));
                     return;
                 }
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -91,16 +91,16 @@ public final class ci implements RequestDelegate {
                 if (tLObject != null) {
                     TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
                     if (v3.T(chat)) {
-                        mpVar4.S3(tL_messages_affectedHistory.pts, tL_messages_affectedHistory.pts_count, chat.f28403id);
+                        mpVar4.S3(tL_messages_affectedHistory.pts, tL_messages_affectedHistory.pts_count, chat.f28431id);
                     } else {
                         mpVar4.T3(tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
                     }
                     new ArrayList();
                     tr messagesStorage = mpVar4.getMessagesStorage();
                     if (chat != null) {
-                        j3 = -chat.f28403id;
+                        j3 = -chat.f28431id;
                     } else {
-                        j3 = user.f28552id;
+                        j3 = user.f28580id;
                     }
                     messagesStorage.c2(j3, null, false, 0, 0, false, null);
                     return;
@@ -148,13 +148,13 @@ public final class ci implements RequestDelegate {
                 return;
             default:
                 zy zyVar = (zy) c1Var;
-                org.telegram.ui.ActionBar.h2 h2Var3 = (org.telegram.ui.ActionBar.h2) obj2;
+                org.telegram.ui.ActionBar.g2 g2Var3 = (org.telegram.ui.ActionBar.g2) obj2;
                 TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) obj;
                 if (tL_error == null) {
                     zyVar.getMessagesController().V3((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
-                    g0.g3(new mw(zyVar, tL_error, h2Var3, tL_messages_editMessage, 0));
+                    g0.g3(new mw(zyVar, tL_error, g2Var3, tL_messages_editMessage, 0));
                     return;
                 }
         }

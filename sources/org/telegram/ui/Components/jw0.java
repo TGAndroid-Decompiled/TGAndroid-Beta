@@ -1,45 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.ViewGroup;
+import android.animation.ValueAnimator;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class jw0 extends bk0 {
-    public final Context f36542c;
-    public final kw0 d;
+public final class jw0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36706a;
+    public final a8.b8 f36707b;
+    public final int f36708c;
 
-    public jw0(kw0 kw0Var, Activity activity) {
-        this.d = kw0Var;
-        this.f36542c = activity;
+    public jw0(a8.b8 b8Var, int i7, int i10) {
+        this.f36706a = i10;
+        this.f36707b = b8Var;
+        this.f36708c = i7;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.f36906c.size();
-    }
-
-    @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) f1Var.f59123a;
-        ArrayList arrayList = this.d.f36906c;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
-        boolean z10 = true;
-        if (i7 == arrayList.size() - 1) {
-            z10 = false;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f36706a) {
+            case 0:
+                Float f10 = (Float) valueAnimator.getAnimatedValue();
+                f10.getClass();
+                ((ArrayList) this.f36707b.d).set(this.f36708c, f10);
+                return;
+            case 1:
+                Float f11 = (Float) valueAnimator.getAnimatedValue();
+                f11.getClass();
+                ((ArrayList) this.f36707b.f344e).set(this.f36708c, f11);
+                return;
+            case 2:
+                Float f12 = (Float) valueAnimator.getAnimatedValue();
+                f12.getClass();
+                ((ArrayList) this.f36707b.f345f).set(this.f36708c, f12);
+                return;
+            case 3:
+                Float f13 = (Float) valueAnimator.getAnimatedValue();
+                f13.getClass();
+                ((ArrayList) this.f36707b.d).set(this.f36708c, f13);
+                return;
+            case 4:
+                Float f14 = (Float) valueAnimator.getAnimatedValue();
+                f14.getClass();
+                ((ArrayList) this.f36707b.f344e).set(this.f36708c, f14);
+                return;
+            default:
+                Float f15 = (Float) valueAnimator.getAnimatedValue();
+                f15.getClass();
+                ((ArrayList) this.f36707b.f345f).set(this.f36708c, f15);
+                return;
         }
-        vVar.b(stickerSetCovered, z10);
-    }
-
-    @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(this.f36542c, false);
-        vVar.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(82.0f)));
-        return new v4.f1(vVar);
     }
 }

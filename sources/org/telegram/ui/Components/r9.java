@@ -7,42 +7,42 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class r9 extends Drawable implements Drawable.Callback {
-    public static int[] f39066s;
-    public final Context f39067a;
-    public final m6 f39068b;
-    public Drawable f39069c;
+    public static int[] f39112s;
+    public final Context f39113a;
+    public final n6 f39114b;
+    public Drawable f39115c;
     public Drawable d;
-    public int f39070e;
-    public int f39071f;
+    public int f39116e;
+    public int f39117f;
     public int h;
-    public int f39072n;
-    public int f39073r;
+    public int f39118n;
+    public int f39119r;
 
     public r9(Context context) {
-        this.f39067a = context;
-        m6 m6Var = new m6(false, false, false);
-        this.f39068b = m6Var;
-        m6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
-        m6Var.n(0.2f, 160L, lr.h);
-        m6Var.w(org.telegram.messenger.g0.L(10.0f));
-        m6Var.f37377b = 17;
-        m6Var.setCallback(this);
-        m6Var.U = true;
-        if (f39066s != null) {
+        this.f39113a = context;
+        n6 n6Var = new n6(false, false, false);
+        this.f39114b = n6Var;
+        n6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
+        n6Var.n(0.2f, 160L, nr.h);
+        n6Var.w(org.telegram.messenger.g0.L(10.0f));
+        n6Var.f37791b = 17;
+        n6Var.setCallback(this);
+        n6Var.U = true;
+        if (f39112s != null) {
             return;
         }
-        f39066s = new int[]{2131232587, 2131232588, 2131232591, 2131232592, 2131232595, 2131232596, 2131232599, 2131232600, 2131232603, 2131232604, 2131232607, 2131232608, 2131232611, 2131232612, 2131232615, 2131232616, 2131232619, 2131232620, 2131232585, 2131232586, 2131232589, 2131232590, 2131232593, 2131232594, 2131232597, 2131232598, 2131232601, 2131232602, 2131232605, 2131232606, 2131232609, 2131232610, 2131232613, 2131232614, 2131232617, 2131232618, 2131232621, 2131232622};
+        f39112s = new int[]{2131232587, 2131232588, 2131232591, 2131232592, 2131232595, 2131232596, 2131232599, 2131232600, 2131232603, 2131232604, 2131232607, 2131232608, 2131232611, 2131232612, 2131232615, 2131232616, 2131232619, 2131232620, 2131232585, 2131232586, 2131232589, 2131232590, 2131232593, 2131232594, 2131232597, 2131232598, 2131232601, 2131232602, 2131232605, 2131232606, 2131232609, 2131232610, 2131232613, 2131232614, 2131232617, 2131232618, 2131232621, 2131232622};
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Drawable drawable = this.d;
-        if (drawable != null && this.f39069c != null) {
+        if (drawable != null && this.f39115c != null) {
             drawable.draw(canvas);
-            this.f39069c.draw(canvas);
+            this.f39115c.draw(canvas);
             canvas.save();
             canvas.translate(getBounds().exactCenterX(), getBounds().exactCenterY());
-            this.f39068b.draw(canvas);
+            this.f39114b.draw(canvas);
             canvas.restore();
         }
     }
@@ -69,7 +69,7 @@ public final class r9 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        Drawable drawable = this.f39069c;
+        Drawable drawable = this.f39115c;
         if (drawable != null) {
             drawable.setBounds(getBounds());
         }
@@ -86,19 +86,19 @@ public final class r9 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void setAlpha(int i7) {
-        int o4 = i0.a.o(this.f39070e, i7);
-        if (this.f39070e != o4) {
-            this.f39070e = o4;
-            Drawable drawable = this.f39069c;
+        int o4 = i0.a.o(this.f39116e, i7);
+        if (this.f39116e != o4) {
+            this.f39116e = o4;
+            Drawable drawable = this.f39115c;
             if (drawable != null) {
                 drawable.setColorFilter(o4, PorterDuff.Mode.MULTIPLY);
                 invalidateSelf();
             }
         }
-        int o10 = i0.a.o(this.f39071f, i7);
-        if (this.f39071f != o10) {
-            this.f39071f = o10;
-            if (this.f39069c != null) {
+        int o10 = i0.a.o(this.f39117f, i7);
+        if (this.f39117f != o10) {
+            this.f39117f = o10;
+            if (this.f39115c != null) {
                 this.d.setColorFilter(o10, PorterDuff.Mode.MULTIPLY);
                 invalidateSelf();
             }
@@ -106,7 +106,7 @@ public final class r9 extends Drawable implements Drawable.Callback {
         int o11 = i0.a.o(this.h, i7);
         if (this.h != o11) {
             this.h = o11;
-            this.f39068b.v(o11, false);
+            this.f39114b.v(o11, false);
             invalidateSelf();
         }
     }

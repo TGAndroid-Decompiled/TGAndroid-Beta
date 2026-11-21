@@ -8,24 +8,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class i5 implements RequestDelegate {
-    public final int f48537a;
-    public final t5 f48538b;
-    public final CountDownLatch f48539c;
+    public final int f48575a;
+    public final t5 f48576b;
+    public final CountDownLatch f48577c;
     public final Runnable d;
 
     public i5(t5 t5Var, CountDownLatch countDownLatch, Runnable runnable, int i7) {
-        this.f48537a = i7;
-        this.f48538b = t5Var;
-        this.f48539c = countDownLatch;
+        this.f48575a = i7;
+        this.f48576b = t5Var;
+        this.f48577c = countDownLatch;
         this.d = runnable;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f48537a) {
+        switch (this.f48575a) {
             case 0:
-                final t5 t5Var = this.f48538b;
-                final CountDownLatch countDownLatch = this.f48539c;
+                final t5 t5Var = this.f48576b;
+                final CountDownLatch countDownLatch = this.f48577c;
                 final Runnable runnable = this.d;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
@@ -44,7 +44,7 @@ public final class i5 implements RequestDelegate {
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z10 = false;
                                     org.telegram.messenger.mp.u1(t5Var2.T).f4(tL_premium_boostsList.users, false);
-                                    t5Var2.f52173l0 = tL_premium_boostsList.next_offset;
+                                    t5Var2.f52223l0 = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
                                     int i7 = 0;
@@ -60,12 +60,12 @@ public final class i5 implements RequestDelegate {
                                             }
                                             i7 += i11;
                                         } else {
-                                            t5Var2.f52164c0 = Math.max(0, tL_premium_boostsList.count - i7);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && t5Var2.f52164c0 > 0) {
+                                            t5Var2.f52214c0 = Math.max(0, tL_premium_boostsList.count - i7);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && t5Var2.f52214c0 > 0) {
                                                 z10 = true;
                                             }
-                                            t5Var2.f52163b0 = z10;
-                                            t5Var2.f52175o0 = tL_premium_boostsList.count;
+                                            t5Var2.f52213b0 = z10;
+                                            t5Var2.f52225o0 = tL_premium_boostsList.count;
                                             Runnable runnable2 = runnable;
                                             if (runnable2 != null) {
                                                 runnable2.run();
@@ -87,11 +87,11 @@ public final class i5 implements RequestDelegate {
                                 }
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 != null) {
-                                    t5Var3.f52174n0 = 20;
+                                    t5Var3.f52224n0 = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z11 = false;
                                     org.telegram.messenger.mp.u1(t5Var3.T).f4(tL_premium_boostsList2.users, false);
-                                    t5Var3.f52172k0 = tL_premium_boostsList2.next_offset;
+                                    t5Var3.f52222k0 = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
                                     int i13 = 0;
@@ -107,12 +107,12 @@ public final class i5 implements RequestDelegate {
                                             }
                                             i13 += i15;
                                         } else {
-                                            t5Var3.f52162a0 = Math.max(0, tL_premium_boostsList2.count - i13);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && t5Var3.f52162a0 > 0) {
+                                            t5Var3.f52212a0 = Math.max(0, tL_premium_boostsList2.count - i13);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && t5Var3.f52212a0 > 0) {
                                                 z11 = true;
                                             }
                                             t5Var3.Z = z11;
-                                            t5Var3.f52176p0 = tL_premium_boostsList2.count;
+                                            t5Var3.f52226p0 = tL_premium_boostsList2.count;
                                             Runnable runnable3 = runnable;
                                             if (runnable3 != null) {
                                                 runnable3.run();
@@ -130,8 +130,8 @@ public final class i5 implements RequestDelegate {
                 });
                 return;
             default:
-                final t5 t5Var2 = this.f48538b;
-                final CountDownLatch countDownLatch2 = this.f48539c;
+                final t5 t5Var2 = this.f48576b;
+                final CountDownLatch countDownLatch2 = this.f48577c;
                 final Runnable runnable2 = this.d;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
@@ -150,7 +150,7 @@ public final class i5 implements RequestDelegate {
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z10 = false;
                                     org.telegram.messenger.mp.u1(t5Var22.T).f4(tL_premium_boostsList.users, false);
-                                    t5Var22.f52173l0 = tL_premium_boostsList.next_offset;
+                                    t5Var22.f52223l0 = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
                                     int i7 = 0;
@@ -166,12 +166,12 @@ public final class i5 implements RequestDelegate {
                                             }
                                             i7 += i11;
                                         } else {
-                                            t5Var22.f52164c0 = Math.max(0, tL_premium_boostsList.count - i7);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && t5Var22.f52164c0 > 0) {
+                                            t5Var22.f52214c0 = Math.max(0, tL_premium_boostsList.count - i7);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && t5Var22.f52214c0 > 0) {
                                                 z10 = true;
                                             }
-                                            t5Var22.f52163b0 = z10;
-                                            t5Var22.f52175o0 = tL_premium_boostsList.count;
+                                            t5Var22.f52213b0 = z10;
+                                            t5Var22.f52225o0 = tL_premium_boostsList.count;
                                             Runnable runnable22 = runnable2;
                                             if (runnable22 != null) {
                                                 runnable22.run();
@@ -193,11 +193,11 @@ public final class i5 implements RequestDelegate {
                                 }
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 != null) {
-                                    t5Var3.f52174n0 = 20;
+                                    t5Var3.f52224n0 = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z11 = false;
                                     org.telegram.messenger.mp.u1(t5Var3.T).f4(tL_premium_boostsList2.users, false);
-                                    t5Var3.f52172k0 = tL_premium_boostsList2.next_offset;
+                                    t5Var3.f52222k0 = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
                                     int i13 = 0;
@@ -213,12 +213,12 @@ public final class i5 implements RequestDelegate {
                                             }
                                             i13 += i15;
                                         } else {
-                                            t5Var3.f52162a0 = Math.max(0, tL_premium_boostsList2.count - i13);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && t5Var3.f52162a0 > 0) {
+                                            t5Var3.f52212a0 = Math.max(0, tL_premium_boostsList2.count - i13);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && t5Var3.f52212a0 > 0) {
                                                 z11 = true;
                                             }
                                             t5Var3.Z = z11;
-                                            t5Var3.f52176p0 = tL_premium_boostsList2.count;
+                                            t5Var3.f52226p0 = tL_premium_boostsList2.count;
                                             Runnable runnable3 = runnable2;
                                             if (runnable3 != null) {
                                                 runnable3.run();

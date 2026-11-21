@@ -4,22 +4,22 @@ import a8.ja;
 import a8.la;
 import android.opengl.GLES20;
 import android.text.TextUtils;
-import org.telegram.ui.Components.a40;
+import org.telegram.ui.Components.d40;
 public class b {
-    public final int f10817a;
-    public final int f10818b;
-    public final int f10819c;
+    public final int f10846a;
+    public final int f10847b;
+    public final int f10848c;
     public final int d;
-    public final int f10820e;
-    public final int f10821f;
+    public final int f10849e;
+    public final int f10850f;
 
     public b(int i7, int i10, int i11, int i12, int i13, int i14) {
-        this.f10817a = i7;
-        this.f10818b = i10;
-        this.f10819c = i11;
+        this.f10846a = i7;
+        this.f10847b = i10;
+        this.f10848c = i11;
         this.d = i12;
-        this.f10820e = i13;
-        this.f10821f = i14;
+        this.f10849e = i13;
+        this.f10850f = i14;
     }
 
     public static b b(String str) {
@@ -99,16 +99,16 @@ public class b {
     }
 
     public void a() {
-        GLES20.glDeleteProgram(this.f10817a);
-        GLES20.glDeleteShader(this.f10818b);
-        GLES20.glDeleteShader(this.f10819c);
+        GLES20.glDeleteProgram(this.f10846a);
+        GLES20.glDeleteShader(this.f10847b);
+        GLES20.glDeleteShader(this.f10848c);
     }
 
     public b(int i7) {
-        int a10 = a40.a(35633, 2131624185);
-        this.f10818b = a10;
-        int a11 = a40.a(35632, i7);
-        this.f10819c = a11;
+        int a10 = d40.a(35633, 2131624185);
+        this.f10847b = a10;
+        int a11 = d40.a(35632, i7);
+        this.f10848c = a11;
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, a10);
         GLES20.glAttachShader(glCreateProgram, a11);
@@ -119,9 +119,9 @@ public class b {
             GLES20.glDeleteProgram(glCreateProgram);
             glCreateProgram = 0;
         }
-        this.f10817a = glCreateProgram;
+        this.f10846a = glCreateProgram;
         this.d = GLES20.glGetAttribLocation(glCreateProgram, "aPosition");
-        this.f10820e = GLES20.glGetAttribLocation(glCreateProgram, "aTextureCoord");
-        this.f10821f = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
+        this.f10849e = GLES20.glGetAttribLocation(glCreateProgram, "aTextureCoord");
+        this.f10850f = GLES20.glGetUniformLocation(glCreateProgram, "sTexture");
     }
 }

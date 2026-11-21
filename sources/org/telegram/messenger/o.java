@@ -12,31 +12,31 @@ import org.telegram.tgnet.QuickAckDelegate;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.xg0;
-public final class o implements org.telegram.ui.ActionBar.r1, RequestTimeDelegate, xo, xg0, QuickAckDelegate {
-    public final int f26010a;
-    public final Object f26011b;
-    public final Object f26012c;
+public final class o implements org.telegram.ui.ActionBar.q1, RequestTimeDelegate, xo, xg0, QuickAckDelegate {
+    public final int f26038a;
+    public final Object f26039b;
+    public final Object f26040c;
 
     public o(int i7, Object obj, Object obj2) {
-        this.f26010a = i7;
-        this.f26011b = obj;
-        this.f26012c = obj2;
+        this.f26038a = i7;
+        this.f26039b = obj;
+        this.f26040c = obj2;
     }
 
     @Override
     public void a(Canvas canvas) {
-        dv dvVar = ((wu) this.f26011b).X;
+        dv dvVar = ((wu) this.f26039b).X;
         AtomicReference atomicReference = dvVar.E;
-        StaticLayout staticLayout = dvVar.f23577b;
-        ArrayList arrayList = dvVar.f23585x;
-        xh.f.g((View) this.f26012c, false, -1, 0, atomicReference, 0, staticLayout, arrayList, canvas, false);
-        org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, dvVar.f23577b, dvVar.F, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
+        StaticLayout staticLayout = dvVar.f23605b;
+        ArrayList arrayList = dvVar.f23613x;
+        xh.f.g((View) this.f26040c, false, -1, 0, atomicReference, 0, staticLayout, arrayList, canvas, false);
+        org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, dvVar.f23605b, dvVar.F, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
     }
 
     @Override
     public boolean e(TLRPC.TL_error tL_error) {
-        q0.a aVar = (q0.a) this.f26011b;
-        TLRPC.User user = (TLRPC.User) this.f26012c;
+        q0.a aVar = (q0.a) this.f26039b;
+        TLRPC.User user = (TLRPC.User) this.f26040c;
         if (aVar != null) {
             aVar.accept(user);
         }
@@ -47,33 +47,33 @@ public final class o implements org.telegram.ui.ActionBar.r1, RequestTimeDelegat
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f26010a) {
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f26038a) {
             case 0:
-                String str = (String) this.f26011b;
-                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.f26012c;
+                String str = (String) this.f26039b;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f26040c;
                 try {
-                    h2Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + str)), 500);
+                    g2Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + str)), 500);
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
                     return;
                 }
             default:
-                ((SharedPreferences) this.f26011b).edit().putBoolean("proxycheckstatusip", true).apply();
-                ((yf) this.f26012c).run();
+                ((SharedPreferences) this.f26039b).edit().putBoolean("proxycheckstatusip", true).apply();
+                ((yf) this.f26040c).run();
                 return;
         }
     }
 
     @Override
     public void run(long j3) {
-        g0.g3(new d4((boolean[]) this.f26011b, j3, (org.telegram.ui.Components.nc[]) this.f26012c, 10));
+        g0.g3(new d4((boolean[]) this.f26039b, j3, (org.telegram.ui.Components.nc[]) this.f26040c, 10));
     }
 
     @Override
     public void run() {
-        TLRPC.Message message = (TLRPC.Message) this.f26012c;
-        g0.g3(new pw((zy) this.f26011b, message, message.f28424id, 1));
+        TLRPC.Message message = (TLRPC.Message) this.f26040c;
+        g0.g3(new pw((zy) this.f26039b, message, message.f28452id, 1));
     }
 }

@@ -1,113 +1,54 @@
 package oi;
 
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Outline;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.n6;
-public final class y1 extends Drawable implements Drawable.Callback {
-    public final Drawable f22496a;
-    public final Paint f22497b;
-    public final Path f22498c;
-    public final RectF d;
-    public final Outline f22499e;
-    public boolean f22500f;
-    public final boolean h;
-    public boolean f22501n;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.nr;
+public final class y1 extends Drawable {
+    public boolean f22537c;
+    public final Paint f22535a = new Paint(1);
+    public final org.telegram.ui.Components.d6 f22536b = new org.telegram.ui.Components.d6(new kg.i0(this, 29), 420, nr.h, 0);
+    public int d = 255;
 
-    public y1(Drawable drawable) {
-        Paint paint = new Paint(1);
-        this.f22497b = paint;
-        this.f22498c = new Path();
-        this.d = new RectF();
-        this.f22499e = new Outline();
-        this.f22500f = true;
-        this.f22496a = drawable;
-        drawable.setCallback(this);
-        paint.setColor(0);
-        this.h = true;
-        a(n6.I.q());
+    public y1(int i7) {
+        a(i7);
     }
 
-    public final void a(boolean z10) {
-        float f10;
-        this.f22501n = z10;
-        float L = org.telegram.messenger.g0.L(12.0f);
-        float L2 = org.telegram.messenger.g0.L(4.0f);
-        if (z10) {
-            f10 = 0.3f;
-        } else {
-            f10 = 0.1f;
-        }
-        this.f22497b.setShadowLayer(L, 0.0f, L2, n6.r1(f10, -16777216));
+    public final void a(int i7) {
+        this.f22535a.setColor(i7);
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r7) {
-        throw new UnsupportedOperationException("Method not decompiled: oi.y1.draw(android.graphics.Canvas):void");
+    public final void draw(Canvas canvas) {
+        float d = this.f22536b.d(this.f22537c);
+        if (d <= 0.0f) {
+            return;
+        }
+        Paint paint = this.f22535a;
+        paint.setAlpha((int) (this.d * d));
+        paint.setShadowLayer(org.telegram.messenger.g0.L(12.0f) * d, 0.0f, org.telegram.messenger.g0.L(3.0f), m6.r1(d, 805306368));
+        Rect bounds = getBounds();
+        float L = org.telegram.messenger.g0.L(8.0f) * d;
+        float L2 = org.telegram.messenger.g0.L(0.0f) * d;
+        float L3 = org.telegram.messenger.g0.L(12.0f) * d;
+        canvas.drawRoundRect(bounds.left + L, bounds.top + L2, bounds.right - L, (org.telegram.messenger.g0.L(6.0f) * d) + (bounds.bottom - L2), L3, L3, paint);
     }
 
     @Override
     public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final boolean isStateful() {
-        return this.f22496a.isStateful();
-    }
-
-    @Override
-    public final void jumpToCurrentState() {
-        this.f22496a.jumpToCurrentState();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f22496a.setBounds(rect);
-        this.f22500f = true;
-    }
-
-    @Override
-    public final boolean onStateChange(int[] iArr) {
-        return this.f22496a.setState(iArr);
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
+        return -2;
     }
 
     @Override
     public final void setAlpha(int i7) {
-        this.f22496a.setAlpha(i7);
+        this.d = i7;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f22496a.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setHotspot(float f10, float f11) {
-        this.f22496a.setHotspot(f10, f11);
-    }
-
-    @Override
-    public final void setHotspotBounds(int i7, int i10, int i11, int i12) {
-        this.f22496a.setHotspotBounds(i7, i10, i11, i12);
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
+        this.f22535a.setColorFilter(colorFilter);
     }
 }

@@ -7,14 +7,14 @@ public abstract class ne {
     public static zzd a(zb.d dVar) {
         ac.b bVar = (ac.b) pb.g.c().a(ac.b.class);
         uf b10 = wf.b();
-        ?? mobileVisionBase = new MobileVisionBase((ac.f) bVar.f1012a.R0(dVar), (Executor) bVar.f1013b.f55518a.get());
+        ?? mobileVisionBase = new MobileVisionBase((ac.f) bVar.f1012a.R0(dVar), (Executor) bVar.f1013b.f55559a.get());
         ga.d dVar2 = new ga.d(1);
         dVar2.d = db.TYPE_THIN;
         q4.q qVar = new q4.q(9, false);
-        qVar.f55827c = dVar.a();
-        qVar.f55826b = eb.NO_ERROR;
-        dVar2.f13279e = new ae(qVar);
-        pb.n.f55540a.execute(new a8.qa(b10, new a8.xa(dVar2, 1), fb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 1));
+        qVar.f55868c = dVar.a();
+        qVar.f55867b = eb.NO_ERROR;
+        dVar2.f13308e = new ae(qVar);
+        pb.n.f55581a.execute(new a8.qa(b10, new a8.xa(dVar2, 1), fb.ON_DEVICE_SUBJECT_SEGMENTATION_CREATE, b10.c(), 1));
         return mobileVisionBase;
     }
 }

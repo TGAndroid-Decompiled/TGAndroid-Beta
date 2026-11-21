@@ -7,22 +7,22 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class b extends Drawable {
-    public Drawable f56141a;
-    public float f56142b;
-    public int f56143c;
+    public Drawable f56182a;
+    public float f56183b;
+    public int f56184c;
 
     public final void a(int i7) {
-        if (this.f56143c != i7) {
-            this.f56143c = i7;
+        if (this.f56184c != i7) {
+            this.f56184c = i7;
             setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.f56141a;
+        Drawable drawable = this.f56182a;
         Rect bounds = getBounds();
-        float f10 = this.f56142b;
+        float f10 = this.f56183b;
         if (f10 == 1.0f) {
             drawable.setBounds(bounds);
         } else {
@@ -33,7 +33,7 @@ public final class b extends Drawable {
 
     @Override
     public final ColorFilter getColorFilter() {
-        Drawable drawable = this.f56141a;
+        Drawable drawable = this.f56182a;
         if (drawable != null) {
             return drawable.getColorFilter();
         }
@@ -47,11 +47,11 @@ public final class b extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f56141a.setAlpha(i7);
+        this.f56182a.setAlpha(i7);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f56141a.setColorFilter(colorFilter);
+        this.f56182a.setColorFilter(colorFilter);
     }
 }

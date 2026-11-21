@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.WindowInsets;
 public abstract class a0 {
     public static void a(WindowInsets windowInsets, View view) {
-        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(2131296698);
+        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(2131296700);
         if (onApplyWindowInsetsListener != null) {
             onApplyWindowInsetsListener.onApplyWindowInsets(view, windowInsets);
         }
@@ -55,15 +55,15 @@ public abstract class a0 {
             onApplyWindowInsetsListener = null;
         }
         if (Build.VERSION.SDK_INT < 30) {
-            view.setTag(2131296687, onApplyWindowInsetsListener);
+            view.setTag(2131296689, onApplyWindowInsetsListener);
         }
-        if (view.getTag(2131296686) != null) {
+        if (view.getTag(2131296688) != null) {
             return;
         }
         if (onApplyWindowInsetsListener != null) {
             view.setOnApplyWindowInsetsListener(onApplyWindowInsetsListener);
         } else {
-            view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(2131296698));
+            view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(2131296700));
         }
     }
 

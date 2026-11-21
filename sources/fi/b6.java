@@ -30,7 +30,7 @@ public final class b6 extends h6 {
     @Override
     public final fj f(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f12045i;
+            ArrayList arrayList = this.f12086i;
             if (i7 < arrayList.size()) {
                 return (fj) arrayList.get(i7);
             }
@@ -51,7 +51,7 @@ public final class b6 extends h6 {
 
     @Override
     public final int i() {
-        return this.f12045i.size();
+        return this.f12086i.size();
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class b6 extends h6 {
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
         TLObject tLObject = null;
-        int i10 = this.f12041c;
+        int i10 = this.f12082c;
         if (!isEmpty) {
             TLObject h22 = mp.u1(i10).h2(str2);
             if (h22 == null) {
@@ -99,7 +99,7 @@ public final class b6 extends h6 {
             tL_stories_searchPosts.flags |= 4;
             tL_stories_searchPosts.peer = mp.m1(tLObject);
         }
-        this.I = ConnectionsManager.getInstance(i10).sendRequest(tL_stories_searchPosts, new ai.e1(this, 7));
+        this.I = ConnectionsManager.getInstance(i10).sendRequest(tL_stories_searchPosts, new ai.g1(this, 7));
         return true;
     }
 

@@ -2,22 +2,22 @@ package di;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.k41;
-public final class jb extends k41 {
-    public static final int f9104b = 0;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.n41;
+public final class jb extends n41 {
+    public static final int f9127b = 0;
 
     static {
-        k41.h(new k41());
+        n41.h(new n41());
     }
 
     @Override
-    public final void b(android.view.View r32, org.telegram.ui.Components.l41 r33, boolean r34, org.telegram.ui.Components.z41 r35, org.telegram.ui.Components.e51 r36) {
-        throw new UnsupportedOperationException("Method not decompiled: di.jb.b(android.view.View, org.telegram.ui.Components.l41, boolean, org.telegram.ui.Components.z41, org.telegram.ui.Components.e51):void");
+    public final void b(android.view.View r32, org.telegram.ui.Components.o41 r33, boolean r34, org.telegram.ui.Components.c51 r35, org.telegram.ui.Components.h51 r36) {
+        throw new UnsupportedOperationException("Method not decompiled: di.jb.b(android.view.View, org.telegram.ui.Components.o41, boolean, org.telegram.ui.Components.c51, org.telegram.ui.Components.h51):void");
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        return new kb(i7, context, i6Var);
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        return new kb(i7, context, h6Var);
     }
 }

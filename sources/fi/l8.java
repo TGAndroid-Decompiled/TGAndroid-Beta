@@ -8,24 +8,24 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.nr;
 public final class l8 extends Drawable {
-    public int f12225a;
-    public final View f12226b;
-    public final Paint f12227c;
+    public int f12268a;
+    public final View f12269b;
+    public final Paint f12270c;
     public final Paint d;
-    public final org.telegram.ui.Components.c6 f12230g;
+    public final org.telegram.ui.Components.d6 f12273g;
     public boolean h;
-    public Paint f12231i;
-    public int f12228e = 255;
-    public final float[] f12229f = new float[15];
-    public final Path f12232j = new Path();
+    public Paint f12274i;
+    public int f12271e = 255;
+    public final float[] f12272f = new float[15];
+    public final Path f12275j = new Path();
 
     public l8(View view) {
-        this.f12226b = view;
-        this.f12230g = new org.telegram.ui.Components.c6(view, 350L, lr.h);
+        this.f12269b = view;
+        this.f12273g = new org.telegram.ui.Components.d6(view, 350L, nr.h);
         Paint paint = new Paint(1);
-        this.f12227c = paint;
+        this.f12270c = paint;
         paint.setShadowLayer(org.telegram.messenger.g0.L(4.0f), 0.0f, 0.0f, 1593835520);
         Paint paint2 = new Paint(1);
         this.d = paint2;
@@ -33,10 +33,10 @@ public final class l8 extends Drawable {
     }
 
     public final void a() {
-        int i7 = this.f12225a + 1;
-        this.f12225a = i7;
+        int i7 = this.f12268a + 1;
+        this.f12268a = i7;
         if (i7 >= 2) {
-            this.f12225a = 0;
+            this.f12268a = 0;
         }
     }
 
@@ -49,14 +49,14 @@ public final class l8 extends Drawable {
             } else {
                 f10 = 0.0f;
             }
-            this.f12230g.e(true, f10);
+            this.f12273g.e(true, f10);
             return;
         }
-        this.f12226b.invalidate();
+        this.f12269b.invalidate();
     }
 
     public final void c(float f10) {
-        this.f12227c.setShadowLayer(org.telegram.messenger.g0.L(2.0f) / f10, 0.0f, org.telegram.messenger.g0.N(0.7f) / f10, i0.a.o(-16777216, 45));
+        this.f12270c.setShadowLayer(org.telegram.messenger.g0.L(2.0f) / f10, 0.0f, org.telegram.messenger.g0.N(0.7f) / f10, i0.a.o(-16777216, 45));
     }
 
     @Override
@@ -66,7 +66,7 @@ public final class l8 extends Drawable {
         int i7;
         int i10;
         int i11;
-        float[] fArr = this.f12229f;
+        float[] fArr = this.f12272f;
         int i12 = 0;
         fArr[0] = getBounds().centerX();
         int i13 = 1;
@@ -92,35 +92,35 @@ public final class l8 extends Drawable {
         } else {
             f10 = 0.0f;
         }
-        float e10 = this.f12230g.e(false, f10);
-        int i17 = this.f12225a;
+        float e10 = this.f12273g.e(false, f10);
+        int i17 = this.f12268a;
         Paint paint2 = this.d;
         if (i17 == 0) {
             paint2.setColor(-1);
         } else if (i17 == 1) {
-            if (this.f12231i == null) {
+            if (this.f12274i == null) {
                 Paint paint3 = new Paint(1);
-                this.f12231i = paint3;
+                this.f12274i = paint3;
                 paint3.setColor(-16777216);
-                this.f12231i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                this.f12231i.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+                this.f12274i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                this.f12274i.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
             }
             paint2.setColor(i0.a.o(-16777216, 127));
         }
-        if (this.f12228e == 255 && this.f12225a != 1) {
+        if (this.f12271e == 255 && this.f12268a != 1) {
             canvas.save();
         } else {
-            canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.f12228e, 31);
+            canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.f12271e, 31);
         }
-        Path path = this.f12232j;
+        Path path = this.f12275j;
         path.rewind();
         int i18 = 0;
         while (i18 < i14) {
-            if (this.f12225a == i13 && i18 == 0) {
+            if (this.f12268a == i13 && i18 == 0) {
                 i10 = i14;
             } else {
                 if (i18 == 0) {
-                    paint = this.f12227c;
+                    paint = this.f12270c;
                 } else {
                     paint = paint2;
                 }
@@ -173,7 +173,7 @@ public final class l8 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f12228e = i7;
+        this.f12271e = i7;
     }
 
     @Override

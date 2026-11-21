@@ -1,3 +1,3 @@
 package org.telegram.messenger;
-public final class e2 extends org.telegram.ui.Components.lq {
+public final class e2 extends org.telegram.ui.Components.nq {
 }

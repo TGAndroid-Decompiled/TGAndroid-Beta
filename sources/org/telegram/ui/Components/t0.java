@@ -1,43 +1,24 @@
 package org.telegram.ui.Components;
+public final class t0 implements Runnable {
+    public final int f39749a;
+    public final org.telegram.ui.ActionBar.v2 f39750b;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-public final class t0 implements org.telegram.ui.ActionBar.r1 {
-    public final int f39873a;
-    public final Context f39874b;
-
-    public t0(Context context, int i7) {
-        this.f39873a = i7;
-        this.f39874b = context;
+    public t0(org.telegram.ui.ActionBar.v2 v2Var, int i7) {
+        this.f39749a = i7;
+        this.f39750b = v2Var;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f39873a) {
+    public final void run() {
+        switch (this.f39749a) {
             case 0:
-                Context context = this.f39874b;
-                try {
-                    context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
-            case 1:
-                vf.c.t(this.f39874b, org.telegram.messenger.s2.f26726g);
+                this.f39750b.invalidateSelf();
                 return;
             default:
-                Context context2 = this.f39874b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26913b.getPackageName()));
-                    context2.startActivity(intent);
-                    return;
-                } catch (Exception e11) {
-                    org.telegram.messenger.a8.g(e11, true);
-                    return;
-                }
+                org.telegram.ui.ActionBar.v2 v2Var = this.f39750b;
+                ((d6) v2Var.d).e(true, 0.0f);
+                v2Var.invalidateSelf();
+                return;
         }
     }
 }

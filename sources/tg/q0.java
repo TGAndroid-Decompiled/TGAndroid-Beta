@@ -1,67 +1,34 @@
 package tg;
 
 import android.content.Context;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import hi.b5;
-import org.telegram.messenger.bz;
-import org.telegram.ui.Components.ga;
-public final class q0 extends org.telegram.ui.Cells.v0 {
-    public final TextPaint A2;
-    public final s0 B2;
-    public final ga f58093z2;
+import hi.a5;
+import java.util.ArrayList;
+import org.telegram.ui.Components.ek0;
+public final class q0 extends ek0 {
+    public final ArrayList f58131f3;
+    public final ArrayList f58132g3;
+    public final ArrayList f58133h3;
+    public final ArrayList f58134i3;
+    public final ArrayList j3;
+    public final a5 f58135k3;
 
-    public q0(s0 s0Var, Context context, t0 t0Var) {
-        super(context, t0Var, false);
-        this.B2 = s0Var;
-        this.f58093z2 = new ga(s0Var.d, this, 10, false);
-        TextPaint textPaint = new TextPaint(1);
-        this.A2 = textPaint;
-        textPaint.setTypeface(org.telegram.messenger.g0.o());
-        textPaint.setTextSize(org.telegram.messenger.g0.L(Math.max(16, bz.W0) - 2));
-        textPaint.setColor(-1);
+    public q0(a5 a5Var, Context context, u0 u0Var) {
+        super(context, u0Var);
+        this.f58135k3 = a5Var;
+        this.f58131f3 = new ArrayList();
+        this.f58132g3 = new ArrayList();
+        this.f58133h3 = new ArrayList();
+        this.f58134i3 = new ArrayList();
+        this.j3 = new ArrayList(10);
     }
 
     @Override
-    public final Paint P(String str) {
-        float f10;
-        float f11;
-        if (!"paintChatActionText".equals(str) && !"paintChatActionText2".equals(str)) {
-            if ("paintChatActionBackground".equals(str)) {
-                b5 b5Var = this.B2.h;
-                b5Var.f58145w0 = true;
-                boolean z10 = b5Var.C0;
-                ga gaVar = this.f58093z2;
-                if (gaVar.f35447r != z10) {
-                    gaVar.f35447r = z10;
-                    if (gaVar.f35438i == 10) {
-                        ColorMatrix colorMatrix = new ColorMatrix();
-                        colorMatrix.setSaturation(1.6f);
-                        if (gaVar.f35447r) {
-                            f10 = 0.97f;
-                        } else {
-                            f10 = 0.92f;
-                        }
-                        org.telegram.messenger.g0.n2(colorMatrix, f10);
-                        if (gaVar.f35447r) {
-                            f11 = 0.12f;
-                        } else {
-                            f11 = -0.06f;
-                        }
-                        org.telegram.messenger.g0.h(colorMatrix, f11);
-                        gaVar.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                        gaVar.f35437g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                    }
-                }
-                Paint c10 = gaVar.c(1.0f);
-                if (c10 != null) {
-                    return c10;
-                }
-            }
-            return super.P(str);
-        }
-        return this.A2;
+    public final void dispatchDraw(android.graphics.Canvas r28) {
+        throw new UnsupportedOperationException("Method not decompiled: tg.q0.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: tg.q0.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 }

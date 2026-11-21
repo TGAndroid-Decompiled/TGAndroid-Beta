@@ -1,188 +1,28 @@
 package hi;
+public final class j2 implements Runnable {
+    public final int f14819a;
+    public final n2 f14820b;
+    public final s6 f14821c;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.fs;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.ri;
-import org.telegram.messenger.t10;
-import org.telegram.messenger.y10;
-import org.telegram.tgnet.TLRPC;
-public class j2 extends org.telegram.ui.ActionBar.x2 implements fs {
-    public static int C1 = 1;
-    public kg.g A1;
-    public y10 B1;
-    public String f14793m1;
-    public int n1;
-    public final g1 f14794o1;
-    public final h1 f14795p1;
-    public final i1 f14796q1;
-    public final i2 f14797r1;
-    public float f14798s1;
-    public final boolean f14799t1;
-    public final boolean f14800u1;
-    public boolean f14801v1;
-    public int f14802w1;
-    public bi.b f14803x1;
-    public float f14804y1;
-    public t10 f14805z1;
-
-    public j2(Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10, boolean z11) {
-        super(1, context, i6Var, true);
-        int i7;
-        this.f14793m1 = null;
-        this.n1 = -1;
-        this.f14794o1 = new TLRPC.Document();
-        this.f14795p1 = new TLRPC.Document();
-        this.f14798s1 = -1.0f;
-        this.f14799t1 = z10;
-        this.f14800u1 = z11;
-        this.G = true;
-        P(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, i6Var));
-        this.f14802w1 = this.H0;
-        this.f30229x = true;
-        G0(false);
-        this.f30190b = new k1(this, context);
-        i1 i1Var = new i1(0, context, this);
-        this.f14796q1 = i1Var;
-        if (z10) {
-            i7 = 0;
-        } else {
-            i7 = C1;
-        }
-        i1Var.f35376b = i7;
-        i1Var.setAdapter(new j1(this, z10, context));
-        this.f30190b.addView(i1Var, c8.ma.e(-1, -1, 87));
-        new p3(this.f30190b, false, new e1(this, 0));
-        if (!z10) {
-            i2 i2Var = new i2(context);
-            this.f14797r1 = i2Var;
-            i2Var.H = new e1(this, 1);
-            i2Var.G = i1Var.f35376b;
-            i2Var.invalidate();
-            this.f30190b.addView(i2Var, c8.ma.e(-1, -2, 87));
-        }
-        ks.f(this.f30187a).c(this, ks.f25218x0);
-        ks.f(this.f30187a).c(this, ks.B0);
-        boolean z12 = org.telegram.messenger.a8.f22838j;
-        if (!z10) {
-            ri.d0(this.f30187a).D(5);
-            ri.d0(this.f30187a).y();
-            ri.d0(this.f30187a).Y0(0, true, true, false);
-        }
-        ri.d0(this.f30187a).D(0);
-        ri.d0(this.f30187a).Y0(0, false, true, false);
-        ri.d0(this.f30187a).Y0(2, false, true, false);
-        ri.d0(this.f30187a).Y0(7, false, true, false);
+    public j2(n2 n2Var, s6 s6Var, int i7) {
+        this.f14819a = i7;
+        this.f14820b = n2Var;
+        this.f14821c = s6Var;
     }
 
     @Override
-    public final boolean G() {
-        if (this.f14796q1.getTranslationY() >= ((int) this.f14798s1)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean J0(Integer num) {
-        return true;
-    }
-
-    public boolean K0(Integer num) {
-        return true;
-    }
-
-    public boolean L0(Runnable runnable) {
-        return true;
-    }
-
-    public final void M0() {
-        View[] viewPages;
-        e2 e2Var;
-        this.d = false;
-        this.f30193c.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.j1.f29017w).start();
-        for (View view : this.f14796q1.getViewPages()) {
-            if (view instanceof z1) {
-                e2 e2Var2 = ((z1) view).f15802f;
-                if (e2Var2 != null) {
-                    org.telegram.messenger.g0.v1(e2Var2.f14525e);
-                }
-            } else if ((view instanceof u1) && (e2Var = ((u1) view).d) != null) {
-                org.telegram.messenger.g0.v1(e2Var.f14525e);
-            }
-        }
-    }
-
-    public final void N0(int i7) {
-        if (J0(Integer.valueOf(i7))) {
-            if ((i7 != 1 || L0(new ai.w0(this, i7, 10))) && ((Boolean) this.B1.a(Integer.valueOf(i7))).booleanValue()) {
-                dismiss();
-            }
-        }
-    }
-
-    public final void O0(y10 y10Var) {
-        View[] viewPages;
-        this.B1 = y10Var;
-        for (View view : this.f14796q1.getViewPages()) {
-            if (view instanceof z1) {
-                y1 y1Var = ((z1) view).f15800c;
-                if (y1Var.I == null) {
-                    y1Var.D(null);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final int S() {
-        if (this.f30190b.getMeasuredHeight() <= 0) {
-            return org.telegram.messenger.g0.f24118q.y;
-        }
-        return (int) (this.f30190b.getMeasuredHeight() - this.f14796q1.getY());
-    }
-
-    @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        View[] viewPages;
-        int i11 = ks.f25218x0;
-        int i12 = ks.B0;
-        if (i7 == i11 || i7 == i12) {
-            for (View view : this.f14796q1.getViewPages()) {
-                if (view instanceof z1) {
-                    z1 z1Var = (z1) view;
-                    if (i7 == i12 || ((z1Var.f15567a == 0 && ((Integer) objArr[0]).intValue() == 5) || (z1Var.f15567a == 1 && ((Integer) objArr[0]).intValue() == 0))) {
-                        y1 y1Var = z1Var.f15800c;
-                        if (y1Var.I == null) {
-                            y1Var.D(null);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        ks.f(this.f30187a).n(this, ks.f25218x0);
-        ks.f(this.f30187a).n(this, ks.B0);
-        M0();
-        super.dismiss();
-        boolean z10 = org.telegram.messenger.a8.f22838j;
-    }
-
-    @Override
-    public final void s0() {
-        int w02;
-        super.s0();
-        try {
-            if (this.G0 < 0 && this.H0 == this.f14802w1 && (w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, this.J0)) != this.H0) {
-                this.H0 = w02;
-                this.f14802w1 = w02;
-                E0(w02);
-            }
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void run() {
+        switch (this.f14819a) {
+            case 0:
+                n2 n2Var = this.f14820b;
+                n2Var.getClass();
+                org.telegram.messenger.g0.h3(new j2(n2Var, this.f14821c, 1), 320L);
+                return;
+            default:
+                n2 n2Var2 = this.f14820b;
+                n2Var2.getClass();
+                this.f14821c.a(new ai.h0(n2Var2, 24));
+                return;
         }
     }
 }

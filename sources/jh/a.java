@@ -4,16 +4,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.fj;
 import org.telegram.ui.bj;
 public final class a {
-    public RecyclerView f17744a;
-    public int f17745b;
-    public long f17746c;
+    public RecyclerView f17769a;
+    public int f17770b;
+    public long f17771c;
     public int d;
-    public boolean f17747e;
+    public boolean f17772e;
 
     public final boolean a(fj fjVar) {
         if (fjVar != null) {
-            if (fjVar.e1() != this.f17745b) {
-                if (this.f17746c != 0 && fjVar.c1() == this.f17746c) {
+            if (fjVar.e1() != this.f17770b) {
+                if (this.f17771c != 0 && fjVar.c1() == this.f17771c) {
                     return true;
                 }
                 return false;
@@ -24,17 +24,17 @@ public final class a {
     }
 
     public final boolean b() {
-        return this.f17747e;
+        return this.f17772e;
     }
 
     public final boolean c(int i7, long j3) {
-        if (this.f17745b == i7 && this.f17746c == j3) {
+        if (this.f17770b == i7 && this.f17771c == j3) {
             return false;
         }
-        this.f17745b = i7;
-        this.f17746c = j3;
+        this.f17770b = i7;
+        this.f17771c = j3;
         if (i7 == 0) {
-            this.f17747e = false;
+            this.f17772e = false;
             return true;
         }
         return true;
@@ -45,6 +45,6 @@ public final class a {
     }
 
     public final void e(bj bjVar) {
-        this.f17744a = bjVar;
+        this.f17769a = bjVar;
     }
 }

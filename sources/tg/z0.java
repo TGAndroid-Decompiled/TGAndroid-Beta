@@ -3,31 +3,145 @@ package tg;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.view.View;
-public final class z0 extends View {
-    public final Paint f58194a;
-    public float f58195b;
+import bi.l8;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.nr;
+public abstract class z0 extends ek0 {
+    public static final Paint f58229k3;
+    public static final Paint f58230l3;
+    public static final Path f58231m3;
+    public static final Paint f58232n3;
+    public final Paint f58233f3;
+    public final Paint f58234g3;
+    public int f58235h3;
+    public sg.k0 f58236i3;
+    public q0.a j3;
+
+    static {
+        Paint paint = new Paint(1);
+        f58229k3 = paint;
+        Paint paint2 = new Paint(1);
+        f58230l3 = paint2;
+        paint.setColor(-2013265920);
+        paint2.setColor(-1996488705);
+        f58231m3 = new Path();
+        f58232n3 = new Paint(1);
+    }
 
     public z0(Context context) {
-        super(context);
+        super(context, null);
+        this.f58233f3 = new Paint(1);
         Paint paint = new Paint(1);
-        this.f58194a = paint;
-        paint.setColor(-1);
+        this.f58234g3 = paint;
+        this.f58235h3 = -1;
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
+        setLayoutManager(new v4.t(7));
+        setAdapter(new x0(this, context));
+        setOverScrollMode(2);
+        setOnItemClickListener(new l8(this, 21));
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        Paint paint = this.f58194a;
-        canvas.drawLine((getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-6.7f, -7.0f, this.f58195b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(0.71f, 0.0f, this.f58195b)), (getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-2.45f, 7.0f, this.f58195b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(4.79f, 0.0f, this.f58195b)), paint);
-        canvas.drawLine((getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-2.45f, 0.0f, this.f58195b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(4.79f, 7.0f, this.f58195b)), (getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(6.59f, 0.0f, this.f58195b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-4.27f, -7.0f, this.f58195b)), paint);
+    public static void A1(float f10, float f11, float f12, int i7, Canvas canvas) {
+        Paint paint = f58232n3;
+        paint.setColor(i7);
+        if (paint.getAlpha() != 255) {
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(f10 - f12, f11 - f12, f10 + f12, f11 + f12);
+            paint.setAlpha(255);
+            canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
+            Path path = f58231m3;
+            path.rewind();
+            path.moveTo(rectF.centerX(), rectF.centerY());
+            path.lineTo((float) i5.c.c(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
+            path.moveTo(rectF.centerX(), rectF.centerY());
+            path.lineTo((float) i5.c.c(4.71238898038469d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(4.71238898038469d) * (rectF.height() / 2.0f)) + rectF.centerY()));
+            path.addArc(rectF, -45.0f, 180.0f);
+            canvas.save();
+            canvas.clipPath(path);
+            z1(canvas, rectF, org.telegram.messenger.g0.L(4.0f));
+            canvas.restore();
+            paint.setColor(i7);
+            canvas.drawArc(rectF, -45.0f, 180.0f, true, paint);
+            return;
+        }
+        canvas.drawCircle(f10, f11, f12, paint);
     }
 
-    public void setProgress(float f10) {
-        this.f58195b = f10;
+    public static void z1(Canvas canvas, RectF rectF, int i7) {
+        float f10 = rectF.left;
+        while (f10 <= rectF.right) {
+            float f11 = rectF.top;
+            while (f11 <= rectF.bottom) {
+                float f12 = i7;
+                float f13 = f10 + f12;
+                float f14 = f11 + f12;
+                Paint paint = f58229k3;
+                Canvas canvas2 = canvas;
+                canvas2.drawRect(f10, f11, f13, f14, paint);
+                float f15 = i7 * 2;
+                float f16 = f10 + f15;
+                Paint paint2 = f58230l3;
+                float f17 = f11;
+                canvas2.drawRect(f13, f17, f16, f14, paint2);
+                float f18 = f17 + f15;
+                canvas2.drawRect(f13, f14, f16, f18, paint);
+                canvas2.drawRect(f10, f14, f13, f18, paint2);
+                canvas = canvas2;
+                f11 = f18;
+            }
+            f10 += i7 * 2;
+            canvas = canvas;
+        }
+    }
+
+    public final void B1(boolean z10, float f10) {
+        float interpolation;
+        float f11;
+        if (z10) {
+            interpolation = nr.f37957g.getInterpolation(f10);
+        } else {
+            interpolation = nr.f37958i.getInterpolation(f10);
+        }
+        float childCount = 1.0f / (getChildCount() - 1);
+        for (int i7 = 0; i7 < getChildCount(); i7++) {
+            View childAt = getChildAt(i7);
+            if (i7 == 0) {
+                if (interpolation == 1.0f) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                childAt.setAlpha(f11);
+            } else {
+                float f12 = i7 * childCount;
+                float min = Math.min(interpolation, f12) / f12;
+                childAt.setScaleX(min);
+                childAt.setScaleY(min);
+            }
+        }
         invalidate();
+    }
+
+    public int getSelectedColorIndex() {
+        return this.f58235h3;
+    }
+
+    public void setColorListener(q0.a aVar) {
+        this.j3 = aVar;
+    }
+
+    public void setColorPalette(sg.k0 k0Var) {
+        this.f58236i3 = k0Var;
+        getAdapter().f();
+    }
+
+    public void setSelectedColorIndex(int i7) {
+        this.f58235h3 = i7;
+        getAdapter().f();
     }
 }

@@ -1,58 +1,68 @@
 package org.telegram.ui.Components;
-public final class nh implements Runnable {
-    public final int f37790a;
-    public final si f37791b;
-    public final boolean f37792c;
 
-    public nh(si siVar, boolean z10, int i7) {
-        this.f37790a = i7;
-        this.f37791b = siVar;
-        this.f37792c = z10;
+import android.view.KeyEvent;
+import android.widget.LinearLayout;
+import org.telegram.messenger.Utilities;
+public final class nh implements r1.d {
+    public final int f37871a = 1;
+    public final boolean f37872b;
+    public final float f37873c;
+    public final float d;
+    public final KeyEvent.Callback f37874e;
+
+    public nh(ui uiVar, float f10, float f11, boolean z10) {
+        this.f37874e = uiVar;
+        this.f37873c = f10;
+        this.d = f11;
+        this.f37872b = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37790a) {
+    public final void a(r1.g gVar, float f10, float f11) {
+        switch (this.f37871a) {
             case 0:
-                boolean z10 = this.f37792c;
-                si siVar = this.f37791b;
-                if (!z10) {
-                    siVar.f39660a3.setVisibility(8);
-                    return;
-                } else {
-                    siVar.getClass();
-                    return;
+                ui uiVar = (ui) this.f37874e;
+                LinearLayout linearLayout = uiVar.j3;
+                LinearLayout linearLayout2 = uiVar.f40407l3;
+                float f12 = f10 / 500.0f;
+                fi fiVar = uiVar.Z1;
+                mi miVar = uiVar.f40448w2;
+                Float valueOf = Float.valueOf(f12);
+                fiVar.getClass();
+                fiVar.a(miVar, valueOf);
+                uiVar.V2.setAlpha(org.telegram.messenger.g0.T1(this.f37873c, this.d, f12));
+                uiVar.N1(uiVar.f40448w2, 0);
+                uiVar.N1(uiVar.f40452x2, 0);
+                if (!(uiVar.f40452x2 instanceof rm) || this.f37872b) {
+                    f12 = 1.0f - f12;
                 }
-            case 1:
-                boolean z11 = this.f37792c;
-                si siVar2 = this.f37791b;
-                if (!z11) {
-                    siVar2.f39731w1.setVisibility(8);
-                    return;
-                } else {
-                    siVar2.getClass();
-                    return;
-                }
-            case 2:
-                boolean z12 = this.f37792c;
-                si siVar3 = this.f37791b;
-                if (!z12) {
-                    siVar3.f39739y1.setVisibility(8);
-                    return;
-                } else {
-                    siVar3.getClass();
-                    return;
-                }
+                float i7 = Utilities.i(f12, 1.0f, 0.0f);
+                linearLayout2.setAlpha(i7);
+                float f13 = 1.0f - i7;
+                linearLayout.setAlpha(f13);
+                linearLayout.setTranslationX(i7 * (-org.telegram.messenger.g0.L(16.0f)));
+                linearLayout2.setTranslationX(f13 * org.telegram.messenger.g0.L(16.0f));
+                return;
             default:
-                boolean z13 = this.f37792c;
-                si siVar4 = this.f37791b;
-                if (z13) {
-                    siVar4.f39729v3.setVisibility(4);
-                    return;
-                } else {
-                    siVar4.getClass();
+                rn0 rn0Var = (rn0) this.f37874e;
+                boolean z10 = this.f37872b;
+                if (z10) {
+                    if (f10 > this.f37873c / 2.0f || !rn0Var.f39285s) {
+                        return;
+                    }
+                } else if (f10 < this.d / 2.0f || !rn0Var.f39284r) {
                     return;
                 }
+                rn0Var.f39285s = !z10;
+                rn0Var.f39284r = z10;
+                return;
         }
+    }
+
+    public nh(rn0 rn0Var, boolean z10, float f10, float f11) {
+        this.f37874e = rn0Var;
+        this.f37872b = z10;
+        this.f37873c = f10;
+        this.d = f11;
     }
 }

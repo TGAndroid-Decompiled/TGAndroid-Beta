@@ -4,28 +4,28 @@ import fi.f7;
 import org.json.JSONObject;
 import org.telegram.messenger.a8;
 public final class u implements Runnable {
-    public final int f53281a;
-    public final String[] f53282b;
-    public final int f53283c;
+    public final int f53324a;
+    public final String[] f53325b;
+    public final int f53326c;
     public final s0 d;
-    public final f7 f53284e;
+    public final f7 f53327e;
 
     public u(String[] strArr, int i7, s0 s0Var, f7 f7Var, int i10) {
-        this.f53281a = i10;
-        this.f53282b = strArr;
-        this.f53283c = i7;
+        this.f53324a = i10;
+        this.f53325b = strArr;
+        this.f53326c = i7;
         this.d = s0Var;
-        this.f53284e = f7Var;
+        this.f53327e = f7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f53281a) {
+        switch (this.f53324a) {
             case 0:
-                int i7 = this.f53283c;
+                int i7 = this.f53326c;
                 s0 s0Var = this.d;
-                f7 f7Var = this.f53284e;
-                String[] strArr = this.f53282b;
+                f7 f7Var = this.f53327e;
+                String[] strArr = this.f53325b;
                 if (strArr[0] != null) {
                     try {
                         JSONObject jSONObject = new JSONObject();
@@ -39,10 +39,10 @@ public final class u implements Runnable {
                 }
                 return;
             default:
-                String[] strArr2 = this.f53282b;
-                int i10 = this.f53283c;
+                String[] strArr2 = this.f53325b;
+                int i10 = this.f53326c;
                 s0 s0Var2 = this.d;
-                f7 f7Var2 = this.f53284e;
+                f7 f7Var2 = this.f53327e;
                 try {
                     JSONObject jSONObject2 = new JSONObject();
                     jSONObject2.put("status", strArr2[0]);

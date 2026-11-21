@@ -7,13 +7,13 @@ import java.util.Arrays;
 import org.json.JSONObject;
 public final class r extends r6.a {
     public static final Parcelable.Creator<r> CREATOR = new v(18);
-    public final k f11451a;
-    public String f11452b;
-    public final JSONObject f11453c;
+    public final k f11480a;
+    public String f11481b;
+    public final JSONObject f11482c;
 
     public r(k kVar, JSONObject jSONObject) {
-        this.f11451a = kVar;
-        this.f11453c = jSONObject;
+        this.f11480a = kVar;
+        this.f11482c = jSONObject;
     }
 
     public final boolean equals(Object obj) {
@@ -24,29 +24,29 @@ public final class r extends r6.a {
             return false;
         }
         r rVar = (r) obj;
-        if (!x6.c.a(this.f11453c, rVar.f11453c)) {
+        if (!x6.c.a(this.f11482c, rVar.f11482c)) {
             return false;
         }
-        return q6.m.l(this.f11451a, rVar.f11451a);
+        return q6.m.l(this.f11480a, rVar.f11480a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11451a, String.valueOf(this.f11453c)});
+        return Arrays.hashCode(new Object[]{this.f11480a, String.valueOf(this.f11482c)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         String jSONObject;
-        JSONObject jSONObject2 = this.f11453c;
+        JSONObject jSONObject2 = this.f11482c;
         if (jSONObject2 == null) {
             jSONObject = null;
         } else {
             jSONObject = jSONObject2.toString();
         }
-        this.f11452b = jSONObject;
+        this.f11481b = jSONObject;
         int r10 = bc.r(parcel, 20293);
-        bc.k(parcel, 2, this.f11451a, i7);
-        bc.l(parcel, 3, this.f11452b);
+        bc.k(parcel, 2, this.f11480a, i7);
+        bc.l(parcel, 3, this.f11481b);
         bc.s(parcel, r10);
     }
 }

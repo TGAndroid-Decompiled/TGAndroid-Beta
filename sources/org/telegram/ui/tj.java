@@ -6,14 +6,14 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 public final class tj extends org.telegram.ui.Components.bd {
-    public org.telegram.ui.Cells.y f52291e;
-    public int f52292f;
+    public org.telegram.ui.Cells.y f52337e;
+    public int f52338f;
     public final boolean h;
-    public final bn f52293n;
+    public final bn f52339n;
 
     public tj(bn bnVar, Context context, boolean z10) {
         super(context);
-        this.f52293n = bnVar;
+        this.f52339n = bnVar;
         this.h = z10;
     }
 
@@ -21,18 +21,18 @@ public final class tj extends org.telegram.ui.Components.bd {
     public final void d() {
         int i7;
         try {
-            int themedColor = this.f52293n.getThemedColor(org.telegram.ui.ActionBar.n6.f29584nf);
-            if (this.f52291e != null) {
+            int themedColor = this.f52339n.getThemedColor(org.telegram.ui.ActionBar.m6.f29568nf);
+            if (this.f52337e != null) {
                 Drawable background = getBackground();
-                Drawable drawable = this.f52291e;
+                Drawable drawable = this.f52337e;
                 if (background == drawable) {
-                    if (themedColor != this.f52292f) {
-                        org.telegram.ui.ActionBar.n6.H1(drawable, themedColor & 436207615, true);
+                    if (themedColor != this.f52338f) {
+                        org.telegram.ui.ActionBar.m6.H1(drawable, themedColor & 436207615, true);
                     }
-                    if (getImageView() != null && (themedColor != this.f52292f || getImageView().getColorFilter() == null)) {
+                    if (getImageView() != null && (themedColor != this.f52338f || getImageView().getColorFilter() == null)) {
                         getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
                     }
-                    this.f52292f = themedColor;
+                    this.f52338f = themedColor;
                     if (getTextView() == null && getTextView().getCurrentTextColor() != themedColor) {
                         getTextView().setTextColor(themedColor);
                         return;
@@ -45,13 +45,13 @@ public final class tj extends org.telegram.ui.Components.bd {
                 i7 = 0;
             }
             int i10 = i7;
-            org.telegram.ui.Cells.y Y = org.telegram.ui.ActionBar.n6.Y(org.telegram.messenger.g0.L(19.0f), themedColor & 436207615, i10, org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f));
-            this.f52291e = Y;
+            org.telegram.ui.Cells.y Y = org.telegram.ui.ActionBar.m6.Y(org.telegram.messenger.g0.L(19.0f), themedColor & 436207615, i10, org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f));
+            this.f52337e = Y;
             setBackground(Y);
             if (getImageView() != null) {
                 getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
             }
-            this.f52292f = themedColor;
+            this.f52338f = themedColor;
             if (getTextView() == null) {
             }
         } catch (Exception e10) {

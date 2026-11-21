@@ -17,42 +17,42 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Utilities {
-    public static final Pattern f22776a = Pattern.compile("[\\-0-9]+");
-    public static final SecureRandom f22777b;
-    public static final g5.a f22778c;
+    public static final Pattern f22804a = Pattern.compile("[\\-0-9]+");
+    public static final SecureRandom f22805b;
+    public static final g5.a f22806c;
     public static volatile q5 d;
-    public static volatile q5 f22779e;
-    public static volatile q5 f22780f;
-    public static volatile q5 f22781g;
+    public static volatile q5 f22807e;
+    public static volatile q5 f22808f;
+    public static volatile q5 f22809g;
     public static volatile q5 h;
-    public static volatile q5 f22782i;
-    public static volatile q5 f22783j;
-    public static volatile r5 f22784k;
-    public static final char[] f22785l;
+    public static volatile q5 f22810i;
+    public static volatile q5 f22811j;
+    public static volatile r5 f22812k;
+    public static final char[] f22813l;
 
     static {
         SecureRandom secureRandom = new SecureRandom();
-        f22777b = secureRandom;
+        f22805b = secureRandom;
         long nextLong = secureRandom.nextLong();
         ?? random = new Random(0L);
         long a10 = a8.ia.a(nextLong);
-        random.f13181a = a10;
+        random.f13210a = a10;
         long a11 = a8.ia.a(a10);
-        random.f13182b = a11;
-        if (random.f13181a == 0 && a11 == 0) {
+        random.f13211b = a11;
+        if (random.f13210a == 0 && a11 == 0) {
             long a12 = a8.ia.a(3735928559L);
-            random.f13181a = a12;
-            random.f13182b = a8.ia.a(a12);
+            random.f13210a = a12;
+            random.f13211b = a8.ia.a(a12);
         }
-        f22778c = random;
+        f22806c = random;
         d = new q5("stageQueue");
-        f22779e = new q5("globalQueue");
-        f22780f = new q5("cacheClearQueue");
-        f22781g = new q5("searchQueue");
+        f22807e = new q5("globalQueue");
+        f22808f = new q5("cacheClearQueue");
+        f22809g = new q5("searchQueue");
         h = new q5("phoneBookQueue");
-        f22782i = new q5("themeQueue");
-        f22783j = new q5("externalNetworkQueue");
-        f22785l = "0123456789ABCDEF".toCharArray();
+        f22810i = new q5("themeQueue");
+        f22811j = new q5("externalNetworkQueue");
+        f22813l = "0123456789ABCDEF".toCharArray();
         try {
             FileInputStream fileInputStream = new FileInputStream(new File("/dev/urandom"));
             byte[] bArr = new byte[1024];
@@ -70,7 +70,7 @@ public class Utilities {
             return 0L;
         }
         try {
-            Matcher matcher = f22776a.matcher(str);
+            Matcher matcher = f22804a.matcher(str);
             if (matcher.find()) {
                 j3 = Long.parseLong(matcher.group(0));
             }
@@ -224,7 +224,7 @@ public class Utilities {
         for (int i7 = 0; i7 < bArr.length; i7++) {
             byte b10 = bArr[i7];
             int i10 = i7 * 2;
-            char[] cArr2 = f22785l;
+            char[] cArr2 = f22813l;
             cArr[i10] = cArr2[(b10 & 255) >>> 4];
             cArr[i10 + 1] = cArr2[b10 & 15];
         }

@@ -14,14 +14,14 @@ import java.util.Set;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.rv0;
+import org.telegram.ui.Components.uv0;
 public final class xr implements Runnable {
-    public final int f27954a;
-    public final Object f27955b;
+    public final int f27982a;
+    public final Object f27983b;
 
     public xr(Object obj, int i7) {
-        this.f27954a = i7;
-        this.f27955b = obj;
+        this.f27982a = i7;
+        this.f27983b = obj;
     }
 
     @Override
@@ -30,36 +30,36 @@ public final class xr implements Runnable {
         Task task;
         TLRPC.Message message;
         boolean z10;
-        switch (this.f27954a) {
+        switch (this.f27982a) {
             case 0:
                 try {
-                    t0.f26913b.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, (Bundle) this.f27955b);
+                    t0.f26941b.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, (Bundle) this.f27983b);
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
                     return;
                 }
             case 1:
-                ks.f(((ys) this.f27955b).f28178a).k(42, new Object[0]);
+                ks.f(((ys) this.f27983b).f28206a).k(42, new Object[0]);
                 return;
             case 2:
-                kt ktVar = (kt) this.f27955b;
-                ktVar.f25254a = true;
-                int i7 = j10.f24770t0;
+                kt ktVar = (kt) this.f27983b;
+                ktVar.f25282a = true;
+                int i7 = j10.f24798t0;
                 int i10 = 0;
                 boolean z11 = false;
                 while (true) {
-                    ArrayList arrayList = bz.f23216z1;
+                    ArrayList arrayList = bz.f23244z1;
                     if (i10 < arrayList.size()) {
                         az azVar = (az) arrayList.get(i10);
-                        if (!azVar.f22987c && SystemClock.elapsedRealtime() - azVar.f22988e >= 120000) {
-                            azVar.f22987c = true;
-                            ConnectionsManager.getInstance(i7).checkProxy(azVar.f22985a, new j1(azVar, 15));
+                        if (!azVar.f23015c && SystemClock.elapsedRealtime() - azVar.f23016e >= 120000) {
+                            azVar.f23015c = true;
+                            ConnectionsManager.getInstance(i7).checkProxy(azVar.f23013a, new j1(azVar, 15));
                             z11 = true;
                         }
                         i10++;
                     } else if (!z11) {
-                        ktVar.f25254a = false;
+                        ktVar.f25282a = false;
                         ktVar.a();
                         return;
                     } else {
@@ -68,11 +68,11 @@ public final class xr implements Runnable {
                 }
                 break;
             case 3:
-                nt ntVar = (nt) this.f27955b;
+                nt ntVar = (nt) this.f27983b;
                 try {
-                    bz.f23167i = SystemClock.elapsedRealtime();
-                    o9.g.f(t0.f26913b);
-                    ob.c cVar = FirebaseMessaging.f7556m;
+                    bz.f23195i = SystemClock.elapsedRealtime();
+                    o9.g.f(t0.f26941b);
+                    ob.c cVar = FirebaseMessaging.f7585m;
                     synchronized (FirebaseMessaging.class) {
                         firebaseMessaging = FirebaseMessaging.getInstance(o9.g.c());
                     }
@@ -80,7 +80,7 @@ public final class xr implements Runnable {
                         task = Tasks.forException(new IllegalStateException("API disabled. Please use {@link #register()} instead or enable this API by removing {@code <meta-data android:name=\"firebase_messaging_installation_id_enabled\" android:value=\"true\" />} from your app's manifest."));
                     } else {
                         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                        firebaseMessaging.f7564g.execute(new a1.e(6, firebaseMessaging, taskCompletionSource));
+                        firebaseMessaging.f7593g.execute(new a1.e(6, firebaseMessaging, taskCompletionSource));
                         task = taskCompletionSource.getTask();
                     }
                     task.addOnCompleteListener(new ed(ntVar, 13));
@@ -90,36 +90,36 @@ public final class xr implements Runnable {
                     return;
                 }
             case 4:
-                ut utVar = (ut) this.f27955b;
-                ev evVar = utVar.f27244e;
+                ut utVar = (ut) this.f27983b;
+                ev evVar = utVar.f27272e;
                 if (evVar == null || !evVar.H()) {
-                    utVar.f27249w.l0();
+                    utVar.f27277w.l0();
                     return;
                 }
                 return;
             case 5:
-                View view = ((bu) this.f27955b).W;
+                View view = ((bu) this.f27983b).W;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             case 6:
-                View view2 = ((cu) this.f27955b).h;
+                View view2 = ((cu) this.f27983b).h;
                 if (view2 != null) {
                     view2.invalidate();
                     return;
                 }
                 return;
             case 7:
-                org.telegram.ui.Cells.m1 m1Var = ((ev) this.f27955b).F;
+                org.telegram.ui.Cells.m1 m1Var = ((ev) this.f27983b).F;
                 if (m1Var != null) {
                     m1Var.m();
                     return;
                 }
                 return;
             case 8:
-                dv dvVar = (dv) this.f27955b;
+                dv dvVar = (dv) this.f27983b;
                 dvVar.K = null;
                 if (dvVar.R != null) {
                     dvVar.L = true;
@@ -131,10 +131,10 @@ public final class xr implements Runnable {
                         }
                     }
                     cu cuVar = dvVar.R;
-                    ev evVar2 = dvVar.f23576a;
+                    ev evVar2 = dvVar.f23604a;
                     org.telegram.ui.Cells.r1 r1Var = evVar2.E;
                     org.telegram.ui.Cells.m1 m1Var2 = evVar2.F;
-                    TL_iv.textButton textbutton = cuVar.f23420b;
+                    TL_iv.textButton textbutton = cuVar.f23448b;
                     if (r1Var != null && m1Var2 != null) {
                         m1Var2.I1(r1Var, textbutton);
                         return;
@@ -160,8 +160,8 @@ public final class xr implements Runnable {
                     return;
                 }
             case 9:
-                xv xvVar = (xv) this.f27955b;
-                ArrayList arrayList2 = xvVar.f28011f;
+                xv xvVar = (xv) this.f27983b;
+                ArrayList arrayList2 = xvVar.f28039f;
                 if (!arrayList2.isEmpty()) {
                     xvVar.getMessagesController().U3(arrayList2, null, null, false, 0);
                     arrayList2.clear();
@@ -169,13 +169,13 @@ public final class xr implements Runnable {
                 }
                 return;
             case 10:
-                ((rv0) this.f27955b).a(null);
+                ((uv0) this.f27983b).a(null);
                 return;
             case 11:
-                g0.g3((ww) this.f27955b);
+                g0.g3((ww) this.f27983b);
                 return;
             case 12:
-                zy zyVar = (zy) this.f27955b;
+                zy zyVar = (zy) this.f27983b;
                 zyVar.getNotificationCenter().b(zyVar, 138);
                 zyVar.getNotificationCenter().b(zyVar, 140);
                 zyVar.getNotificationCenter().b(zyVar, 139);
@@ -188,14 +188,14 @@ public final class xr implements Runnable {
                 zyVar.getNotificationCenter().b(zyVar, 143);
                 return;
             case 13:
-                fj fjVar = (fj) this.f27955b;
-                if (fjVar != null && (message = fjVar.f23965k) != null) {
+                fj fjVar = (fj) this.f27983b;
+                if (fjVar != null && (message = fjVar.f23993k) != null) {
                     message.reqId = 0;
                     return;
                 }
                 return;
             case 14:
-                a8.b8 b8Var = (a8.b8) this.f27955b;
+                a8.b8 b8Var = (a8.b8) this.f27983b;
                 vy vyVar = (vy) b8Var.f341a;
                 Location location = (Location) b8Var.f345f;
                 if (location != null) {
@@ -206,32 +206,32 @@ public final class xr implements Runnable {
                 b8Var.d();
                 return;
             case 15:
-                qz qzVar = (qz) this.f27955b;
-                android.support.v4.media.session.a0 a0Var = qzVar.f26500b;
-                int i11 = j10.f24770t0;
-                qzVar.f26501c = i11;
-                qzVar.d = g0.b1(mp.u1(i11).f25658g7, "auto_lastSelectedDialog", 0L);
-                qzVar.f26502e = false;
-                qzVar.f26503f = false;
-                qzVar.f26504g.clear();
+                qz qzVar = (qz) this.f27983b;
+                android.support.v4.media.session.a0 a0Var = qzVar.f26528b;
+                int i11 = j10.f24798t0;
+                qzVar.f26529c = i11;
+                qzVar.d = g0.b1(mp.u1(i11).f25686g7, "auto_lastSelectedDialog", 0L);
+                qzVar.f26530e = false;
+                qzVar.f26531f = false;
+                qzVar.f26532g.clear();
                 qzVar.h.b();
-                qzVar.f26505i.b();
-                qzVar.f26506j.b();
-                qzVar.f26507k.b();
-                qzVar.f26508l.b();
+                qzVar.f26533i.b();
+                qzVar.f26534j.b();
+                qzVar.f26535k.b();
+                qzVar.f26536l.b();
                 try {
                     a0Var.v(null);
-                    ((android.support.v4.media.session.u) a0Var.f1705b).f1735a.setQueueTitle(null);
+                    ((android.support.v4.media.session.u) a0Var.f1717b).f1747a.setQueueTitle(null);
                     return;
                 } catch (Throwable unused3) {
                     return;
                 }
             case 16:
-                ks.f(((pz) this.f27955b).f26323g.f26501c).k(150, 0);
+                ks.f(((pz) this.f27983b).f26351g.f26529c).k(150, 0);
                 return;
             default:
-                z00 z00Var = (z00) this.f27955b;
-                mp mpVar = z00Var.f28242n;
+                z00 z00Var = (z00) this.f27983b;
+                mp mpVar = z00Var.f28270n;
                 String string = mpVar.h7.getString("translating_dialog_languages2", null);
                 if (string != null) {
                     for (String str : string.split(";")) {
@@ -255,10 +255,10 @@ public final class xr implements Runnable {
                                     str3 = null;
                                 }
                                 if (str2 != null) {
-                                    z00Var.f28240e.put(Long.valueOf(parseLong), str2);
+                                    z00Var.f28268e.put(Long.valueOf(parseLong), str2);
                                     if (!z00Var.w(str2)) {
-                                        z00Var.f28237a.put(parseLong, Boolean.valueOf(!z10));
-                                        z00Var.f28238b.add(Long.valueOf(parseLong));
+                                        z00Var.f28265a.put(parseLong, Boolean.valueOf(!z10));
+                                        z00Var.f28266b.add(Long.valueOf(parseLong));
                                     }
                                     if (str3 != null) {
                                         z00Var.d.put(Long.valueOf(parseLong), str3);
@@ -285,7 +285,7 @@ public final class xr implements Runnable {
     }
 
     public xr(zy zyVar, fj fjVar) {
-        this.f27954a = 13;
-        this.f27955b = fjVar;
+        this.f27982a = 13;
+        this.f27983b = fjVar;
     }
 }

@@ -3,11 +3,11 @@ package qi;
 import android.text.SpannableString;
 import java.lang.reflect.Array;
 public class d extends SpannableString {
-    public volatile boolean f56175a;
+    public volatile boolean f56216a;
 
     public d(CharSequence charSequence) {
         super(charSequence);
-        this.f56175a = false;
+        this.f56216a = false;
     }
 
     public static Object[] a(d dVar, int i7, Class cls) {
@@ -24,7 +24,7 @@ public class d extends SpannableString {
 
     @Override
     public int getSpanEnd(Object obj) {
-        if (!this.f56175a) {
+        if (!this.f56216a) {
             return -1;
         }
         return super.getSpanEnd(obj);
@@ -32,7 +32,7 @@ public class d extends SpannableString {
 
     @Override
     public int getSpanFlags(Object obj) {
-        if (!this.f56175a) {
+        if (!this.f56216a) {
             return 0;
         }
         return super.getSpanFlags(obj);
@@ -40,7 +40,7 @@ public class d extends SpannableString {
 
     @Override
     public int getSpanStart(Object obj) {
-        if (!this.f56175a) {
+        if (!this.f56216a) {
             return -1;
         }
         return super.getSpanStart(obj);
@@ -48,7 +48,7 @@ public class d extends SpannableString {
 
     @Override
     public Object[] getSpans(int i7, int i10, Class cls) {
-        if (!this.f56175a) {
+        if (!this.f56216a) {
             return (Object[]) Array.newInstance(cls, 0);
         }
         return super.getSpans(i7, i10, cls);
@@ -56,7 +56,7 @@ public class d extends SpannableString {
 
     @Override
     public int nextSpanTransition(int i7, int i10, Class cls) {
-        if (!this.f56175a) {
+        if (!this.f56216a) {
             return i10;
         }
         return super.nextSpanTransition(i7, i10, cls);

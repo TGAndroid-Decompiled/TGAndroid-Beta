@@ -4,19 +4,19 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
-public final class mx0 extends org.telegram.ui.Components.y61 {
-    public boolean f49982a;
-    public final org.telegram.ui.Components.hq0 f49983b;
+public final class mx0 extends org.telegram.ui.Components.b71 {
+    public boolean f50023a;
+    public final org.telegram.ui.Components.jq0 f50024b;
 
-    public mx0(org.telegram.ui.Components.hq0 hq0Var) {
-        this.f49983b = hq0Var;
+    public mx0(org.telegram.ui.Components.jq0 jq0Var) {
+        this.f50024b = jq0Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        org.telegram.ui.Components.hq0 hq0Var = this.f49983b;
-        ru0 ru0Var = hq0Var.f50344w;
-        org.telegram.ui.Components.f71 f71Var = hq0Var.f50337b;
+        org.telegram.ui.Components.jq0 jq0Var = this.f50024b;
+        ru0 ru0Var = jq0Var.f50351w;
+        org.telegram.ui.Components.i71 i71Var = jq0Var.f50344b;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i7 = 0;
@@ -30,8 +30,8 @@ public final class mx0 extends org.telegram.ui.Components.y61 {
                 arrayList2.add(num);
             }
         }
-        int f10 = f(f71Var.getCurrentPosition());
-        fi.d6 d6Var = hq0Var.f50338c;
+        int f10 = f(i71Var.getCurrentPosition());
+        fi.d6 d6Var = jq0Var.f50345c;
         d6Var.getClass();
         HashMap hashMap = new HashMap();
         ArrayList arrayList3 = d6Var.h;
@@ -41,7 +41,7 @@ public final class mx0 extends org.telegram.ui.Components.y61 {
             Object obj2 = arrayList3.get(i11);
             i11++;
             fi.i6 i6Var = (fi.i6) obj2;
-            hashMap.put(Integer.valueOf(i6Var.f12109a), i6Var);
+            hashMap.put(Integer.valueOf(i6Var.f12141a), i6Var);
         }
         ArrayList arrayList4 = new ArrayList();
         int size3 = arrayList2.size();
@@ -59,7 +59,7 @@ public final class mx0 extends org.telegram.ui.Components.y61 {
         arrayList3.addAll(arrayList4);
         if (f10 >= 0) {
             int i12 = i(f10);
-            f71Var.f(0.0f, i12, i12);
+            i71Var.f(0.0f, i12, i12);
         }
         org.telegram.messenger.g0.r(ru0Var);
         org.telegram.messenger.g0.h3(ru0Var, 1000L);
@@ -70,7 +70,7 @@ public final class mx0 extends org.telegram.ui.Components.y61 {
         if (i7 == 0) {
             return false;
         }
-        if (this.f49982a && i7 == e() - 1) {
+        if (this.f50023a && i7 == e() - 1) {
             return false;
         }
         return true;
@@ -81,12 +81,12 @@ public final class mx0 extends org.telegram.ui.Components.y61 {
         if (i7 == -1) {
             return null;
         }
-        return new View(this.f49983b.getContext());
+        return new View(this.f50024b.getContext());
     }
 
     @Override
     public final int e() {
-        return this.f49983b.f50338c.h.size() + 1 + (this.f49982a ? 1 : 0);
+        return this.f50024b.f50345c.h.size() + 1 + (this.f50023a ? 1 : 0);
     }
 
     @Override
@@ -94,31 +94,31 @@ public final class mx0 extends org.telegram.ui.Components.y61 {
         if (i7 == 0) {
             return 0;
         }
-        if (this.f49982a && i7 == e() - 1) {
+        if (this.f50023a && i7 == e() - 1) {
             return -1;
         }
-        return ((fi.i6) this.f49983b.f50338c.h.get(i7 - 1)).f12109a;
+        return ((fi.i6) this.f50024b.f50345c.h.get(i7 - 1)).f12141a;
     }
 
     @Override
     public final CharSequence g(int i7) {
         if (i7 == 0) {
-            return org.telegram.messenger.gd.M0(2131744551, null);
+            return org.telegram.messenger.gd.N0(2131744545, null);
         }
-        if (this.f49982a && i7 == e() - 1) {
+        if (this.f50023a && i7 == e() - 1) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
-            spannableStringBuilder.append((CharSequence) org.telegram.messenger.gd.M0(2131744572, null));
-            org.telegram.ui.Components.lq lqVar = new org.telegram.ui.Components.lq(2131232562, 0);
-            lqVar.H = 0.8f;
-            spannableStringBuilder.setSpan(lqVar, 0, 1, 33);
+            spannableStringBuilder.append((CharSequence) org.telegram.messenger.gd.N0(2131744566, null));
+            org.telegram.ui.Components.nq nqVar = new org.telegram.ui.Components.nq(2131232562, 0);
+            nqVar.H = 0.8f;
+            spannableStringBuilder.setSpan(nqVar, 0, 1, 33);
             return spannableStringBuilder;
         }
-        return ((fi.i6) this.f49983b.f50338c.h.get(i7 - 1)).f12110b;
+        return ((fi.i6) this.f50024b.f50345c.h.get(i7 - 1)).f12142b;
     }
 
     @Override
     public final int h(int i7) {
-        if (this.f49982a && i7 == e() - 1) {
+        if (this.f50023a && i7 == e() - 1) {
             return -1;
         }
         return i7;
@@ -128,7 +128,7 @@ public final class mx0 extends org.telegram.ui.Components.y61 {
         if (i7 == 0) {
             return 0;
         }
-        int c10 = this.f49983b.f50338c.c(i7);
+        int c10 = this.f50024b.f50345c.c(i7);
         if (c10 == -1) {
             return -1;
         }

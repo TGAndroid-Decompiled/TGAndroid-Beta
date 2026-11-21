@@ -3,25 +3,25 @@ package g2;
 import android.graphics.Bitmap;
 import android.text.Layout;
 public final class a {
-    public CharSequence f13080a = null;
-    public Bitmap f13081b = null;
-    public Layout.Alignment f13082c = null;
+    public CharSequence f13109a = null;
+    public Bitmap f13110b = null;
+    public Layout.Alignment f13111c = null;
     public Layout.Alignment d = null;
-    public float f13083e = -3.4028235E38f;
-    public int f13084f = Integer.MIN_VALUE;
-    public int f13085g = Integer.MIN_VALUE;
+    public float f13112e = -3.4028235E38f;
+    public int f13113f = Integer.MIN_VALUE;
+    public int f13114g = Integer.MIN_VALUE;
     public float h = -3.4028235E38f;
-    public int f13086i = Integer.MIN_VALUE;
-    public int f13087j = Integer.MIN_VALUE;
-    public float f13088k = -3.4028235E38f;
-    public float f13089l = -3.4028235E38f;
-    public final float f13090m = -3.4028235E38f;
-    public final boolean f13091n = false;
-    public final int f13092o = -16777216;
-    public int f13093p = Integer.MIN_VALUE;
-    public float f13094q;
+    public int f13115i = Integer.MIN_VALUE;
+    public int f13116j = Integer.MIN_VALUE;
+    public float f13117k = -3.4028235E38f;
+    public float f13118l = -3.4028235E38f;
+    public final float f13119m = -3.4028235E38f;
+    public final boolean f13120n = false;
+    public final int f13121o = -16777216;
+    public int f13122p = Integer.MIN_VALUE;
+    public float f13123q;
 
     public final b a() {
-        return new b(this.f13080a, this.f13082c, this.d, this.f13081b, this.f13083e, this.f13084f, this.f13085g, this.h, this.f13086i, this.f13087j, this.f13088k, this.f13089l, this.f13090m, this.f13091n, this.f13092o, this.f13093p, this.f13094q, 0);
+        return new b(this.f13109a, this.f13111c, this.d, this.f13110b, this.f13112e, this.f13113f, this.f13114g, this.h, this.f13115i, this.f13116j, this.f13117k, this.f13118l, this.f13119m, this.f13120n, this.f13121o, this.f13122p, this.f13123q, 0);
     }
 }

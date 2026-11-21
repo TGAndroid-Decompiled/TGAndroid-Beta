@@ -158,7 +158,7 @@ public interface m1 {
 
     void p(r1 r1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7);
 
-    boolean p0(org.telegram.ui.Components.x5 x5Var);
+    boolean p0(org.telegram.ui.Components.y5 y5Var);
 
     void p1(r1 r1Var, int i7);
 

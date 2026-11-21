@@ -2,53 +2,53 @@ package sg;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import hi.t6;
+import hi.s6;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.r5;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class b1 {
-    public static final r5 f57163m = new r5("ShapeDetector", true);
-    public static final double f57164n = Math.sqrt(125000.0d) / 2.0d;
-    public int f57165a;
-    public ArrayList f57166b;
-    public ArrayList f57167c;
+    public static final r5 f57204m = new r5("ShapeDetector", true);
+    public static final double f57205n = Math.sqrt(125000.0d) / 2.0d;
+    public int f57206a;
+    public ArrayList f57207b;
+    public ArrayList f57208c;
     public boolean d;
-    public t6 f57168e;
-    public Context f57169f;
-    public SharedPreferences f57170g;
+    public s6 f57209e;
+    public Context f57210f;
+    public SharedPreferences f57211g;
     public boolean h;
-    public ArrayList f57171i;
-    public AtomicBoolean f57172j;
-    public AtomicBoolean f57173k;
-    public y0 f57174l;
+    public ArrayList f57212i;
+    public AtomicBoolean f57213j;
+    public AtomicBoolean f57214k;
+    public y0 f57215l;
 
     public static m8.d a(ArrayList arrayList) {
         if (arrayList.size() <= 0) {
             return null;
         }
-        double d = ((z0) arrayList.get(0)).f57412a;
-        double d2 = ((z0) arrayList.get(0)).f57413b;
+        double d = ((z0) arrayList.get(0)).f57453a;
+        double d2 = ((z0) arrayList.get(0)).f57454b;
         m8.d dVar = new m8.d(1);
-        dVar.f20896b = d;
-        dVar.f20897c = d2;
+        dVar.f20924b = d;
+        dVar.f20925c = d2;
         dVar.d = d;
-        dVar.f20898e = d2;
+        dVar.f20926e = d2;
         for (int i7 = 1; i7 < arrayList.size(); i7++) {
             z0 z0Var = (z0) arrayList.get(i7);
-            double d10 = z0Var.f57412a;
-            double d11 = z0Var.f57413b;
-            if (dVar.f20896b >= d10) {
-                dVar.f20896b = d10;
+            double d10 = z0Var.f57453a;
+            double d11 = z0Var.f57454b;
+            if (dVar.f20924b >= d10) {
+                dVar.f20924b = d10;
             }
-            if (dVar.f20897c >= d11) {
-                dVar.f20897c = d11;
+            if (dVar.f20925c >= d11) {
+                dVar.f20925c = d11;
             }
             if (dVar.d <= d10) {
                 dVar.d = d10;
             }
-            if (dVar.f20898e <= d11) {
-                dVar.f20898e = d11;
+            if (dVar.f20926e <= d11) {
+                dVar.f20926e = d11;
             }
         }
         return dVar;
@@ -58,11 +58,11 @@ public final class b1 {
         z0 z0Var = new z0(0.0d, 0.0d);
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             z0 z0Var2 = (z0) arrayList.get(i7);
-            z0Var.f57412a += z0Var2.f57412a;
-            z0Var.f57413b += z0Var2.f57413b;
+            z0Var.f57453a += z0Var2.f57453a;
+            z0Var.f57454b += z0Var2.f57454b;
         }
-        z0Var.f57412a /= arrayList.size();
-        z0Var.f57413b /= arrayList.size();
+        z0Var.f57453a /= arrayList.size();
+        z0Var.f57454b /= arrayList.size();
         return z0Var;
     }
 
@@ -75,12 +75,12 @@ public final class b1 {
         int i7 = 0;
         while (i7 < min) {
             z0 z0Var3 = (z0) arrayList.get(i7);
-            double d10 = z0Var3.f57412a;
+            double d10 = z0Var3.f57453a;
             double d11 = cos;
-            double d12 = z0Var2.f57412a;
+            double d12 = z0Var2.f57453a;
             double d13 = d10 - d12;
-            double d14 = z0Var3.f57413b;
-            double d15 = z0Var2.f57413b;
+            double d14 = z0Var3.f57454b;
+            double d15 = z0Var2.f57454b;
             double d16 = d14 - d15;
             d2 += ((z0) arrayList2.get(i7)).a(((d13 * d11) - (d16 * sin)) + d12, (d16 * d11) + (d13 * sin) + d15);
             i7++;
@@ -98,9 +98,9 @@ public final class b1 {
             int i10 = max + 1;
             z0 z0Var3 = (z0) arrayList.get(i10);
             z0Var.getClass();
-            double a10 = z0Var.a(z0Var2.f57412a, z0Var2.f57413b);
-            double a11 = z0Var.a(z0Var3.f57412a, z0Var3.f57413b);
-            double a12 = z0Var2.a(z0Var3.f57412a, z0Var3.f57413b);
+            double a10 = z0Var.a(z0Var2.f57453a, z0Var2.f57454b);
+            double a11 = z0Var.a(z0Var3.f57453a, z0Var3.f57454b);
+            double a12 = z0Var2.a(z0Var3.f57453a, z0Var3.f57454b);
             if ((Math.acos((((a11 * a11) + (a10 * a10)) - (a12 * a12)) / ((a10 * 2.0d) * a11)) / 3.141592653589793d) * 180.0d > 18.0d) {
                 if (i7 > 0) {
                     i7--;
@@ -117,7 +117,7 @@ public final class b1 {
         ArrayList arrayList2 = new ArrayList();
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             z0 z0Var = (z0) arrayList.get(i7);
-            arrayList2.add(new z0(z0Var.f57412a, z0Var.f57413b));
+            arrayList2.add(new z0(z0Var.f57453a, z0Var.f57454b));
         }
         return arrayList2;
     }
@@ -125,17 +125,17 @@ public final class b1 {
     public final void c() {
         ArrayList arrayList;
         synchronized (this) {
-            this.f57166b.clear();
+            this.f57207b.clear();
         }
-        f57163m.cancelRunnable(this.f57174l);
-        this.f57173k.set(false);
+        f57204m.cancelRunnable(this.f57215l);
+        this.f57214k.set(false);
         this.d = false;
-        if (this.h && (arrayList = this.f57171i) != null) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f57169f);
-            alertDialog$Builder.f28744a.S = "Shape?";
+        if (this.h && (arrayList = this.f57212i) != null) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f57210f);
+            alertDialog$Builder.f28774a.S = "Shape?";
             alertDialog$Builder.f(new String[]{"Log all", "Circle", "Rectangle", "Star", "Bubble", "Arrow", "None"}, new og.j(14, this, arrayList));
             alertDialog$Builder.p();
-            this.f57171i = null;
+            this.f57212i = null;
         }
     }
 }

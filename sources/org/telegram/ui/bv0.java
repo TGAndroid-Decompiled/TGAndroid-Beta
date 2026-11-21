@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.RectF;
-public final class bv0 extends org.telegram.ui.Components.e5 {
+public final class bv0 extends org.telegram.ui.Components.f5 {
     public final ProfileActivity V0;
 
     public bv0(ProfileActivity profileActivity, Context context) {
@@ -22,11 +22,11 @@ public final class bv0 extends org.telegram.ui.Components.e5 {
         int r12;
         ProfileActivity profileActivity = this.V0;
         profileActivity.K5 = i7;
-        int f10 = i0.a.f(profileActivity.G5, i7, org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29786y6, profileActivity.A0));
+        int f10 = i0.a.f(profileActivity.G5, i7, org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.f29770y6, profileActivity.A0));
         super.setTextColor(f10);
         xw0 xw0Var = profileActivity.F6;
-        if (xw0Var != null && xw0Var.f53927c != (r12 = org.telegram.ui.ActionBar.n6.r1(1.4f, org.telegram.ui.ActionBar.n6.b(-0.02f, 0.15f, f10)))) {
-            xw0Var.f53927c = r12;
+        if (xw0Var != null && xw0Var.f53976c != (r12 = org.telegram.ui.ActionBar.m6.r1(1.4f, org.telegram.ui.ActionBar.m6.b(-0.02f, 0.15f, f10)))) {
+            xw0Var.f53976c = r12;
             xw0Var.invalidateSelf();
         }
     }
@@ -38,9 +38,9 @@ public final class bv0 extends org.telegram.ui.Components.e5 {
         ProfileActivity profileActivity = this.V0;
         profileActivity.r4();
         profileActivity.getClass();
-        org.telegram.ui.Components.uu0 uu0Var = profileActivity.T;
-        if (uu0Var != null) {
-            uu0Var.setTranslationX(f10 - profileActivity.r4());
+        org.telegram.ui.Components.xu0 xu0Var = profileActivity.T;
+        if (xu0Var != null) {
+            xu0Var.setTranslationX(f10 - profileActivity.r4());
         }
     }
 
@@ -53,9 +53,9 @@ public final class bv0 extends org.telegram.ui.Components.e5 {
             org.telegram.messenger.g0.L(3.0f);
             profileActivity.T.getVisibilityFactor();
         }
-        org.telegram.ui.Components.uu0 uu0Var = profileActivity.T;
-        if (uu0Var != null) {
-            uu0Var.setTranslationY(f10 - org.telegram.messenger.g0.L(5.0f));
+        org.telegram.ui.Components.xu0 xu0Var = profileActivity.T;
+        if (xu0Var != null) {
+            xu0Var.setTranslationY(f10 - org.telegram.messenger.g0.L(5.0f));
         }
     }
 }

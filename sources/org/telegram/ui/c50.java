@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class c50 extends rg.a {
-    public final String f46395c;
+    public final String f46427c;
 
     public c50(String str) {
         super(5, true);
-        this.f46395c = str;
+        this.f46427c = str;
     }
 }

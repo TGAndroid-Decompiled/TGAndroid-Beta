@@ -1,54 +1,127 @@
 package oi;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Components.lr;
-public final class w1 extends Drawable {
-    public boolean f22433c;
-    public final Paint f22431a = new Paint(1);
-    public final org.telegram.ui.Components.c6 f22432b = new org.telegram.ui.Components.c6(new kg.j0(this, 29), 420, lr.h, 0);
-    public int d = 255;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
+import org.telegram.messenger.gd;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.ap0;
+import org.telegram.ui.Components.ug;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.cx;
+public final class w1 extends ug {
+    public final int f22493y0 = 0;
+    public final Object f22494z0;
 
-    public w1(int i7) {
-        a(i7);
-    }
-
-    public final void a(int i7) {
-        this.f22431a.setColor(i7);
+    public w1(y3 y3Var, Context context, h6 h6Var) {
+        super(2131232696, context, h6Var, true);
+        this.f22494z0 = y3Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float d = this.f22432b.d(this.f22433c);
-        if (d <= 0.0f) {
-            return;
+    public boolean b() {
+        switch (this.f22493y0) {
+            case 0:
+                return ((b2) this.f22494z0).q0();
+            case 1:
+            case 2:
+            default:
+                return super.b();
+            case 3:
+                return false;
+            case 4:
+                return false;
         }
-        Paint paint = this.f22431a;
-        paint.setAlpha((int) (this.d * d));
-        paint.setShadowLayer(org.telegram.messenger.g0.L(12.0f) * d, 0.0f, org.telegram.messenger.g0.L(3.0f), n6.r1(d, 805306368));
-        Rect bounds = getBounds();
-        float L = org.telegram.messenger.g0.L(8.0f) * d;
-        float L2 = org.telegram.messenger.g0.L(0.0f) * d;
-        float L3 = org.telegram.messenger.g0.L(12.0f) * d;
-        canvas.drawRoundRect(bounds.left + L, bounds.top + L2, bounds.right - L, (org.telegram.messenger.g0.L(6.0f) * d) + (bounds.bottom - L2), L3, L3, paint);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final boolean d() {
+        switch (this.f22493y0) {
+            case 0:
+                if (!((b2) this.f22494z0).M0 && this.f40363w <= 0) {
+                    return false;
+                }
+                return true;
+            case 1:
+                if (!((y3) this.f22494z0).f22542a0 && this.f40363w <= 0) {
+                    return false;
+                }
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            default:
+                return true;
+        }
     }
 
     @Override
-    public final void setAlpha(int i7) {
-        this.d = i7;
+    public int getFillColor() {
+        int i7 = this.f22493y0;
+        Object obj = this.f22494z0;
+        switch (i7) {
+            case 2:
+                return m6.w0(m6.S5, ((ap0) obj).J0);
+            case 3:
+            default:
+                return super.getFillColor();
+            case 4:
+                int i10 = m6.f29627qg;
+                Drawable[] drawableArr = PhotoViewer.Z8;
+                return ((PhotoViewer) obj).w1(i10);
+        }
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f22431a.setColorFilter(colorFilter);
+    public boolean j() {
+        switch (this.f22493y0) {
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            default:
+                return super.j();
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f22493y0) {
+            case 3:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(gd.G(((cx) this.f22494z0).K2.size(), "AccDescrShareInChats", new Object[0]));
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    public w1(b2 b2Var, Context context, int i7, h6 h6Var) {
+        super(i7, context, h6Var, true);
+        this.f22494z0 = b2Var;
+    }
+
+    public w1(ap0 ap0Var, Context context, h6 h6Var) {
+        super(2131232696, context, h6Var, false);
+        this.f22494z0 = ap0Var;
+    }
+
+    public w1(cx cxVar, Context context, h6 h6Var) {
+        super(2131232696, context, h6Var, false);
+        this.f22494z0 = cxVar;
+    }
+
+    public w1(PhotoViewer photoViewer, Context context, h6 h6Var) {
+        super(2131232696, context, h6Var, false);
+        this.f22494z0 = photoViewer;
     }
 }

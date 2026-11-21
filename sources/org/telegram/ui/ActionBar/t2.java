@@ -1,50 +1,491 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Region;
+import android.os.Build;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.camera.CameraView;
 import org.telegram.messenger.ks;
-public final class t2 extends AnimatorListenerAdapter {
-    public final int f29995a;
-    public final u2 f29996b;
+import org.telegram.ui.Components.nr;
+public abstract class t2 extends FrameLayout implements b6 {
+    public float E;
+    public boolean F;
+    public final Paint G;
+    public final w2 H;
+    public VelocityTracker f30053a;
+    public int f30054b;
+    public int f30055c;
+    public int d;
+    public boolean f30056e;
+    public boolean f30057f;
+    public AnimatorSet h;
+    public final e2.r0 f30058n;
+    public final Rect f30059r;
+    public final Paint f30060s;
+    public boolean f30061w;
+    public int f30062x;
+    public float f30063y;
 
-    public t2(u2 u2Var, int i7) {
-        this.f29995a = i7;
-        this.f29996b = u2Var;
+    public t2(w2 w2Var, Context context) {
+        super(context);
+        this.H = w2Var;
+        this.f30053a = null;
+        this.d = -1;
+        this.f30056e = false;
+        this.f30057f = false;
+        this.h = null;
+        this.f30059r = new Rect();
+        this.f30060s = new Paint();
+        this.f30063y = 0.0f;
+        this.E = 0.0f;
+        this.G = new Paint(1);
+        this.f30058n = new Object();
+        setWillNotDraw(false);
+    }
+
+    public final void a() {
+        AnimatorSet animatorSet = this.h;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.h = null;
+        }
+        this.H.r0();
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f29995a;
-        u2 u2Var = this.f29996b;
-        switch (i7) {
-            case 0:
-                AnimatorSet animatorSet = u2Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    u2Var.h = null;
-                }
-                ks.e().k(99, 512);
-                return;
-            case 1:
-                u2Var.E = 0.0f;
-                x2 x2Var = u2Var.H;
-                x2Var.f30190b.setTranslationX(0.0f);
-                x2Var.f30193c.invalidate();
-                return;
-            case 2:
-                x2 x2Var2 = u2Var.H;
-                x2Var2.O0 = true;
-                x2Var2.f30190b.setTranslationX(u2Var.getMeasuredWidth());
-                x2Var2.dismiss();
-                x2Var2.f30193c.invalidate();
-                return;
-            default:
-                u2Var.H.f30190b.setTranslationY(0.0f);
-                u2Var.H.h0();
-                x2 x2Var3 = u2Var.H;
-                x2Var3.q0(x2Var3.f30190b.getTranslationY());
-                u2Var.invalidate();
-                return;
+    public final void addColorKeys(HashSet hashSet) {
+        this.H.E(hashSet);
+    }
+
+    public final void b(float f10, float f11) {
+        w2 w2Var = this.H;
+        float translationY = w2Var.f30173b.getTranslationY();
+        if ((translationY < org.telegram.messenger.g0.a1(false, 0.8f) && (f11 < 3500.0f || Math.abs(f11) < Math.abs(f10))) || (f11 < 0.0f && Math.abs(f11) >= 3500.0f)) {
+            this.f30056e = false;
+            this.h = new AnimatorSet();
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new r2(this, 1));
+            this.h.playTogether(ObjectAnimator.ofFloat(w2Var.f30173b, "translationY", 0.0f), ofFloat);
+            this.h.setDuration((int) ((Math.max(0.0f, translationY) / org.telegram.messenger.g0.a1(false, 0.8f)) * 250.0f));
+            this.h.setInterpolator(nr.f37956f);
+            this.h.addListener(new s2(this, 0));
+            ks.e().k(ks.f25163j1, 512);
+            this.h.start();
+            return;
         }
+        boolean z10 = w2Var.f30182e0;
+        w2Var.f30182e0 = false;
+        w2Var.dismiss();
+        w2Var.f30182e0 = z10;
+    }
+
+    public final void c(Canvas canvas, float f10) {
+        int i7;
+        float max;
+        int left;
+        int i10 = Build.VERSION.SDK_INT;
+        Paint paint = this.f30060s;
+        w2 w2Var = this.H;
+        if (i10 >= 26) {
+            int i11 = w2Var.G0;
+            if (i11 >= 0) {
+                paint.setColor(m6.w0(i11, w2Var.J0));
+            } else {
+                paint.setColor(w2Var.H0);
+            }
+        } else {
+            paint.setColor(-16777216);
+        }
+        if (!w2Var.W0 || w2Var.f30173b.getVisibility() == 0) {
+            boolean z10 = w2Var.f30198n;
+            float f11 = 0.0f;
+            if ((z10 && w2Var.S != 0) || w2Var.F0 != 0.0f) {
+                if (z10) {
+                    i7 = w2Var.R();
+                } else {
+                    i7 = 0;
+                }
+                if (!w2Var.f30210w && (i10 < 29 || w2.B(w2Var) <= 0)) {
+                    max = 0.0f;
+                } else if (w2Var.f30205s) {
+                    max = Math.max(0.0f, Math.min(i7 - w2Var.F0, w2Var.f30173b.getTranslationY()));
+                } else {
+                    max = Math.max(0.0f, w2Var.R() - (w2Var.f30173b.getMeasuredHeight() - w2Var.f30173b.getTranslationY()));
+                }
+                int alpha = paint.getAlpha();
+                if (w2Var.W0) {
+                    f10 *= w2Var.f30173b.getAlpha();
+                }
+                if (w2Var.W0) {
+                    left = (int) w2Var.f30173b.getX();
+                } else {
+                    left = w2Var.f30173b.getLeft();
+                }
+                int i12 = left;
+                int i13 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
+                if (i13 < 0) {
+                    paint.setAlpha((int) (alpha * f10));
+                }
+                canvas.drawRect(w2Var.f30208u0 + i12, ((getMeasuredHeight() - i7) + max) - w2Var.F0, w2Var.f30173b.getRight() - w2Var.f30208u0, getMeasuredHeight() + max, paint);
+                paint.setAlpha(alpha);
+                int i14 = w2Var.f30190h1;
+                if (i14 != 0) {
+                    paint.setColor(i14);
+                    int alpha2 = paint.getAlpha();
+                    float R0 = org.telegram.messenger.g0.R0(i7);
+                    if (i13 < 0) {
+                        paint.setAlpha((int) (alpha2 * f10 * R0));
+                    } else {
+                        f11 = max;
+                    }
+                    if (paint.getAlpha() > 0) {
+                        canvas.drawRect(i12 + w2Var.f30208u0, ((getMeasuredHeight() - i7) + f11) - w2Var.F0, w2Var.f30173b.getRight() - w2Var.f30208u0, getMeasuredHeight() + f11, paint);
+                    }
+                    paint.setAlpha(alpha2);
+                }
+            }
+        }
+    }
+
+    public final boolean d(MotionEvent motionEvent, boolean z10) {
+        w2 w2Var = this.H;
+        m2 m2Var = w2Var.f30176c;
+        int i7 = w2Var.f30193j0;
+        if (!w2Var.J) {
+            if (!w2Var.f0(motionEvent)) {
+                if (!w2Var.J(motionEvent) && !this.F) {
+                    if (w2Var.I() && motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f30057f && !this.f30056e && motionEvent.getPointerCount() == 1)) {
+                        this.f30054b = (int) motionEvent.getX();
+                        int y10 = (int) motionEvent.getY();
+                        this.f30055c = y10;
+                        if (w2Var.Y(this.f30054b, y10)) {
+                            w2Var.o0();
+                            return true;
+                        }
+                        this.d = motionEvent.getPointerId(0);
+                        this.f30056e = true;
+                        a();
+                        VelocityTracker velocityTracker = this.f30053a;
+                        if (velocityTracker != null) {
+                            velocityTracker.clear();
+                        }
+                    } else if (w2Var.G() && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
+                        if (this.f30053a == null) {
+                            this.f30053a = VelocityTracker.obtain();
+                        }
+                        float abs = Math.abs((int) (motionEvent.getX() - this.f30054b));
+                        float y11 = ((int) motionEvent.getY()) - this.f30055c;
+                        this.f30053a.addMovement(motionEvent);
+                        if (!w2Var.E0 && this.f30056e && !this.f30057f && y11 > 0.0f && y11 / 3.0f > Math.abs(abs) && Math.abs(y11) >= i7) {
+                            this.f30055c = (int) motionEvent.getY();
+                            this.f30056e = false;
+                            this.f30057f = true;
+                            requestDisallowInterceptTouchEvent(true);
+                        } else if (this.f30057f) {
+                            float f10 = this.f30063y + y11;
+                            this.f30063y = f10;
+                            float max = Math.max(f10, 0.0f);
+                            this.f30063y = max;
+                            w2Var.f30173b.setTranslationY(Math.max(max, 0.0f));
+                            w2Var.h0();
+                            this.f30055c = (int) motionEvent.getY();
+                            m2Var.invalidate();
+                        }
+                    } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+                        if (this.f30053a == null) {
+                            this.f30053a = VelocityTracker.obtain();
+                        }
+                        this.f30053a.computeCurrentVelocity(1000);
+                        if (!this.f30057f && this.f30063y <= 0.0f) {
+                            this.f30056e = false;
+                        } else {
+                            b(this.f30053a.getXVelocity(), this.f30053a.getYVelocity());
+                        }
+                        this.f30057f = false;
+                        VelocityTracker velocityTracker2 = this.f30053a;
+                        if (velocityTracker2 != null) {
+                            velocityTracker2.recycle();
+                            this.f30053a = null;
+                        }
+                        this.d = -1;
+                    }
+                } else if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f30057f && !this.f30056e && motionEvent.getPointerCount() == 1)) {
+                    this.F = true;
+                    this.f30054b = (int) motionEvent.getX();
+                    this.f30055c = (int) motionEvent.getY();
+                    this.d = motionEvent.getPointerId(0);
+                    this.f30056e = true;
+                    a();
+                } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
+                    float x10 = motionEvent.getX() - this.f30054b;
+                    float y12 = motionEvent.getY() - this.f30055c;
+                    if (this.f30053a == null) {
+                        this.f30053a = VelocityTracker.obtain();
+                    }
+                    this.f30053a.addMovement(motionEvent);
+                    if (!w2Var.E0 && this.f30056e && !this.f30057f && x10 > 0.0f && x10 / 3.0f > Math.abs(y12) && Math.abs(x10) >= i7) {
+                        this.f30054b = (int) motionEvent.getX();
+                        this.f30056e = false;
+                        this.f30057f = true;
+                    } else if (this.f30057f) {
+                        float f11 = this.E + x10;
+                        this.E = f11;
+                        w2Var.f30173b.setTranslationX(Math.max(f11, 0.0f));
+                        this.f30054b = (int) motionEvent.getX();
+                        m2Var.invalidate();
+                    }
+                } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+                    if (this.f30053a == null) {
+                        this.f30053a = VelocityTracker.obtain();
+                    }
+                    float xVelocity = this.f30053a.getXVelocity();
+                    float yVelocity = this.f30053a.getYVelocity();
+                    if (this.E < w2Var.f30173b.getMeasuredWidth() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
+                        float max2 = Math.max(this.E, 0.0f);
+                        this.E = max2;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 0.0f);
+                        ofFloat.addUpdateListener(new r2(this, 2));
+                        ofFloat.addListener(new s2(this, 1));
+                        ofFloat.setInterpolator(nr.f37956f);
+                        ofFloat.setDuration(220L);
+                        ofFloat.start();
+                    } else {
+                        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.E, getMeasuredWidth());
+                        ofFloat2.addUpdateListener(new r2(this, 3));
+                        ofFloat2.addListener(new s2(this, 2));
+                        nr nrVar = nr.h;
+                        ofFloat2.setInterpolator(nrVar);
+                        ofFloat2.setDuration(320L);
+                        ofFloat2.start();
+                        ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
+                        ofFloat3.addUpdateListener(new r2(this, 4));
+                        ofFloat3.setInterpolator(nrVar);
+                        ofFloat3.setDuration(320L);
+                        ofFloat3.start();
+                    }
+                    this.f30056e = false;
+                    this.f30057f = false;
+                    this.d = -1;
+                    this.F = false;
+                }
+                if ((z10 || !this.f30056e) && !this.f30057f && (w2Var.G() || w2Var.J(motionEvent))) {
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void dispatchDraw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.t2.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view instanceof CameraView) {
+            if (this.H.H0()) {
+                c(canvas, 1.0f);
+            }
+            return super.drawChild(canvas, view, j3);
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public int getNestedScrollAxes() {
+        return this.f30058n.b();
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        boolean z10;
+        int i7;
+        int i10;
+        int i11;
+        Paint paint = this.f30060s;
+        int alpha = paint.getAlpha();
+        w2 w2Var = this.H;
+        int i12 = 0;
+        if (alpha < 255 && w2Var.f30198n) {
+            float f10 = 0.0f;
+            if (w2Var.f30210w || (Build.VERSION.SDK_INT >= 29 && w2.B(w2Var) > 0)) {
+                f10 = Math.max(0.0f, w2Var.R() - (w2Var.f30173b.getMeasuredHeight() - w2Var.f30173b.getTranslationY()));
+            }
+            if (w2Var.f30198n) {
+                i11 = w2Var.R();
+            } else {
+                i11 = 0;
+            }
+            canvas.save();
+            canvas.clipRect(w2Var.f30173b.getLeft() + w2Var.f30208u0, ((getMeasuredHeight() - i11) + f10) - w2Var.F0, w2Var.f30173b.getRight() - w2Var.f30208u0, getMeasuredHeight() + f10, Region.Op.DIFFERENCE);
+            canvas2 = canvas;
+            z10 = true;
+        } else {
+            canvas2 = canvas;
+            z10 = false;
+        }
+        super.onDraw(canvas2);
+        if (w2Var.f30198n && w2Var.h != null && w2Var.f30184f != 0) {
+            int i13 = w2Var.f30174b0;
+            if (i13 >= 0) {
+                i7 = m6.w0(i13, w2Var.J0);
+            } else {
+                i7 = 0;
+            }
+            paint.setColor(i7);
+            float left = w2Var.f30173b.getLeft() + w2Var.f30208u0;
+            int measuredHeight = getMeasuredHeight() - w2Var.f30184f;
+            if (w2Var.f30198n) {
+                i10 = w2Var.R();
+            } else {
+                i10 = 0;
+            }
+            float f11 = measuredHeight - i10;
+            float right = w2Var.f30173b.getRight() - w2Var.f30208u0;
+            int measuredHeight2 = getMeasuredHeight();
+            if (w2Var.f30198n) {
+                i12 = w2Var.R();
+            }
+            canvas2.drawRect(left, f11, right, measuredHeight2 - i12, paint);
+        }
+        w2Var.d0();
+        if (z10) {
+            canvas2.restore();
+        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        w2 w2Var = this.H;
+        if (!w2Var.G() && !w2Var.J(motionEvent)) {
+            return super.onInterceptTouchEvent(motionEvent);
+        }
+        return d(motionEvent, true);
+    }
+
+    @Override
+    public final void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.t2.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public final void onMeasure(int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.t2.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onNestedFling(View view, float f10, float f11, boolean z10) {
+        return false;
+    }
+
+    @Override
+    public final boolean onNestedPreFling(View view, float f10, float f11) {
+        return false;
+    }
+
+    @Override
+    public final void onNestedPreScroll(View view, int i7, int i10, int[] iArr) {
+        w2 w2Var = this.H;
+        if (!w2Var.J && w2Var.f30204r0) {
+            a();
+            float translationY = w2Var.f30173b.getTranslationY();
+            float f10 = 0.0f;
+            if (translationY > 0.0f && i10 > 0) {
+                float f11 = translationY - i10;
+                iArr[1] = i10;
+                if (f11 >= 0.0f) {
+                    f10 = f11;
+                }
+                w2Var.f30173b.setTranslationY(f10);
+                w2Var.h0();
+                w2Var.f30176c.invalidate();
+            }
+        }
+    }
+
+    @Override
+    public final void onNestedScroll(View view, int i7, int i10, int i11, int i12) {
+        w2 w2Var = this.H;
+        if (!w2Var.J && w2Var.f30204r0) {
+            a();
+            if (i12 != 0) {
+                float translationY = w2Var.f30173b.getTranslationY() - i12;
+                if (translationY < 0.0f) {
+                    translationY = 0.0f;
+                }
+                w2Var.f30173b.setTranslationY(translationY);
+                w2Var.h0();
+                w2Var.f30176c.invalidate();
+            }
+        }
+    }
+
+    @Override
+    public final void onNestedScrollAccepted(View view, View view2, int i7) {
+        this.f30058n.f10713a = i7;
+        w2 w2Var = this.H;
+        if (!w2Var.J && w2Var.f30204r0) {
+            a();
+        }
+    }
+
+    @Override
+    public final boolean onStartNestedScroll(View view, View view2, int i7) {
+        w2 w2Var = this.H;
+        if (!w2Var.J && w2Var.f30204r0 && i7 == 2 && !w2Var.G()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onStopNestedScroll(View view) {
+        this.f30058n.f10713a = 0;
+        w2 w2Var = this.H;
+        if (!w2Var.J && w2Var.f30204r0) {
+            b(0.0f, 0.0f);
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return d(motionEvent, false);
+    }
+
+    @Override
+    public final void requestDisallowInterceptTouchEvent(boolean z10) {
+        if (this.f30056e && !this.f30057f) {
+            d(null, false);
+        }
+        super.requestDisallowInterceptTouchEvent(z10);
+    }
+
+    @Override
+    public final void updateColors() {
+        w2 w2Var = this.H;
+        try {
+            w2.A(w2Var);
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+        w2Var.s0();
     }
 }

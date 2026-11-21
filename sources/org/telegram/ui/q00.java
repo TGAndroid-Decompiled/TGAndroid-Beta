@@ -1,7 +1,7 @@
 package org.telegram.ui;
-public final class q00 extends ug.t1 {
+public final class q00 extends ug.s1 {
     @Override
     public final int b() {
-        return i0.a.o(org.telegram.ui.ActionBar.n6.F0(this.Q), 200);
+        return i0.a.o(org.telegram.ui.ActionBar.m6.F0(this.Q), 200);
     }
 }

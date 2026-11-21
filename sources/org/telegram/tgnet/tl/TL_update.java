@@ -16,7 +16,7 @@ import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.tgnet.v;
+import org.telegram.tgnet.w;
 public class TL_update {
 
     public static class TL_updateAiComposeTones extends TLRPC.Update {
@@ -295,12 +295,12 @@ public class TL_update {
         public static final int constructor = -761649164;
         public long channel_id;
         public int forwards;
-        public int f28658id;
+        public int f28686id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.channel_id = inputSerializedData.readInt64(z10);
-            this.f28658id = inputSerializedData.readInt32(z10);
+            this.f28686id = inputSerializedData.readInt32(z10);
             this.forwards = inputSerializedData.readInt32(z10);
         }
 
@@ -308,7 +308,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-761649164);
             outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.f28658id);
+            outputSerializedData.writeInt32(this.f28686id);
             outputSerializedData.writeInt32(this.forwards);
         }
     }
@@ -316,13 +316,13 @@ public class TL_update {
     public static class TL_updateChannelMessageViews extends TLRPC.Update {
         public static final int constructor = -232346616;
         public long channel_id;
-        public int f28659id;
+        public int f28687id;
         public int views;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.channel_id = inputSerializedData.readInt64(z10);
-            this.f28659id = inputSerializedData.readInt32(z10);
+            this.f28687id = inputSerializedData.readInt32(z10);
             this.views = inputSerializedData.readInt32(z10);
         }
 
@@ -330,7 +330,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-232346616);
             outputSerializedData.writeInt64(this.channel_id);
-            outputSerializedData.writeInt32(this.f28659id);
+            outputSerializedData.writeInt32(this.f28687id);
             outputSerializedData.writeInt32(this.views);
         }
     }
@@ -902,12 +902,12 @@ public class TL_update {
         public static final int constructor = 654302845;
         public TLRPC.DialogFilter filter;
         public int flags;
-        public int f28660id;
+        public int f28688id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
-            this.f28660id = inputSerializedData.readInt32(z10);
+            this.f28688id = inputSerializedData.readInt32(z10);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.filter = TLRPC.DialogFilter.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
@@ -917,7 +917,7 @@ public class TL_update {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(654302845);
             outputSerializedData.writeInt32(this.flags);
-            outputSerializedData.writeInt32(this.f28660id);
+            outputSerializedData.writeInt32(this.f28688id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.filter.serializeToStream(outputSerializedData);
             }
@@ -1391,7 +1391,7 @@ public class TL_update {
             outputSerializedData.writeInt32(-1535694705);
             this.call.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.sub_chain_id);
-            Vector.serialize(outputSerializedData, new v(outputSerializedData, 2), this.blocks);
+            Vector.serialize(outputSerializedData, new w(outputSerializedData, 2), this.blocks);
             outputSerializedData.writeInt32(this.next_offset);
         }
     }
@@ -1706,19 +1706,19 @@ public class TL_update {
 
     public static class TL_updateMessageID extends TLRPC.Update {
         public static final int constructor = 1318109142;
-        public int f28661id;
+        public int f28689id;
         public long random_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f28661id = inputSerializedData.readInt32(z10);
+            this.f28689id = inputSerializedData.readInt32(z10);
             this.random_id = inputSerializedData.readInt64(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1318109142);
-            outputSerializedData.writeInt32(this.f28661id);
+            outputSerializedData.writeInt32(this.f28689id);
             outputSerializedData.writeInt64(this.random_id);
         }
     }
@@ -3245,19 +3245,19 @@ public class TL_update {
 
     public static class TL_updateStoryID extends TLRPC.Update {
         public static final int constructor = 468923833;
-        public int f28662id;
+        public int f28690id;
         public long random_id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f28662id = inputSerializedData.readInt32(z10);
+            this.f28690id = inputSerializedData.readInt32(z10);
             this.random_id = inputSerializedData.readInt64(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(468923833);
-            outputSerializedData.writeInt32(this.f28662id);
+            outputSerializedData.writeInt32(this.f28690id);
             outputSerializedData.writeInt64(this.random_id);
         }
     }

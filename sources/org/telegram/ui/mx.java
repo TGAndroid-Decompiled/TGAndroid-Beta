@@ -3,30 +3,30 @@ package org.telegram.ui;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class mx {
-    public float f49965a;
-    public float f49966b;
-    public boolean f49967c;
+    public float f50006a;
+    public float f50007b;
+    public boolean f50008c;
     public float d;
-    public float f49968e;
-    public float f49969f;
-    public float f49970g;
+    public float f50009e;
+    public float f50010f;
+    public float f50011g;
     public boolean h;
-    public boolean f49971i;
-    public ch.d f49972j;
-    public long f49973k;
-    public boolean f49974l;
-    public boolean f49975m;
-    public boolean f49976n;
-    public float f49977o;
-    public int f49978p;
-    public TLRPC.Document f49979q;
-    public final ImageReceiver f49980r;
-    public String f49981s;
+    public boolean f50012i;
+    public ch.d f50013j;
+    public long f50014k;
+    public boolean f50015l;
+    public boolean f50016m;
+    public boolean f50017n;
+    public float f50018o;
+    public int f50019p;
+    public TLRPC.Document f50020q;
+    public final ImageReceiver f50021r;
+    public String f50022s;
 
     public mx() {
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f49980r = imageReceiver;
+        this.f50021r = imageReceiver;
         imageReceiver.A1 = true;
-        imageReceiver.f22622b = true;
+        imageReceiver.f22650b = true;
     }
 }

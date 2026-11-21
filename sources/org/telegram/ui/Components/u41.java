@@ -1,37 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.widget.TextView;
-public final class u41 extends LinkMovementMethod {
-    public final UndoView f40211a;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class u41 extends URLSpan {
+    public final fz0 f40267a;
+    public boolean f40268b;
 
-    public u41(UndoView undoView) {
-        this.f40211a = undoView;
+    public u41(String str, fz0 fz0Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f40267a = fz0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        CharacterStyle[] characterStyleArr;
-        try {
-            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f40211a.b(characterStyleArr2[0]);
-                    }
-                    Selection.removeSelection(spannable);
-                    return true;
-                }
-                return super.onTouchEvent(textView, spannable, motionEvent);
+    public final void onClick(View view) {
+        if (this.f40268b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
+        }
+        vf.c.q(view.getContext(), Uri.parse(getURL()), true, true);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        fz0 fz0Var = this.f40267a;
+        if (fz0Var != null) {
+            fz0Var.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            return false;
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-            return false;
+            textPaint.setUnderlineText(z10);
         }
     }
 }

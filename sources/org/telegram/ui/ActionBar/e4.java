@@ -1,42 +1,37 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
-public final class e4 extends Animation {
-    public final int f28892a;
-    public final float f28893b;
-    public final float f28894c;
-    public final int d;
-    public final k4 f28895e;
+import android.content.Context;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+public final class e4 extends ArrayAdapter {
+    public final j4 f28929a;
 
-    public e4(k4 k4Var, float f10, float f11, int i7, int i10) {
-        this.f28892a = i10;
-        this.f28895e = k4Var;
-        this.f28893b = f10;
-        this.f28894c = f11;
-        this.d = i7;
+    public e4(j4 j4Var, Context context) {
+        super(context, 0);
+        this.f28929a = j4Var;
     }
 
     @Override
-    public final void applyTransformation(float f10, Transformation transformation) {
-        switch (this.f28892a) {
-            case 0:
-                float f11 = this.f28893b;
-                float z10 = com.google.android.gms.internal.vision.e2.z(this.f28894c, f11, f10, f11);
-                k4 k4Var = this.f28895e;
-                k4Var.f29128i.setX(z10 + (k4Var.f29126f.getWidth() - this.d));
-                float f12 = 1.0f - f10;
-                k4Var.f29131l.setAlpha(f12);
-                k4Var.f29129j.setAlpha(f12);
-                return;
-            default:
-                float f13 = this.f28893b;
-                float z11 = com.google.android.gms.internal.vision.e2.z(this.f28894c, f13, f10, f13);
-                k4 k4Var2 = this.f28895e;
-                k4Var2.f29128i.setX(z11 + (k4Var2.f29126f.getWidth() - this.d));
-                k4Var2.f29131l.setAlpha(f10);
-                k4Var2.f29129j.setAlpha(f10);
-                return;
+    public final View getView(int i7, View view, ViewGroup viewGroup) {
+        j4 j4Var = this.f28929a;
+        ab.v vVar = j4Var.f29061q;
+        MenuItem menuItem = (MenuItem) getItem(i7);
+        int width = j4Var.I.getWidth();
+        boolean z10 = false;
+        if (view != null) {
+            int i10 = vVar.f1000a;
+            if (((j4) vVar.f1003e).Q.f29223j != null) {
+                z10 = true;
+            }
+            l4.e(view, menuItem, z10);
+        } else {
+            view = l4.b(((j4) vVar.f1003e).Q, (Context) vVar.f1002c, menuItem, true, false, false);
+            int i11 = vVar.f1001b;
+            view.setPadding(i11, 0, i11, 0);
         }
+        view.setMinimumWidth(width);
+        return view;
     }
 }

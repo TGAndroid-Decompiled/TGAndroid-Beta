@@ -6,19 +6,19 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class za extends FrameLayout {
-    public final TextView f45368a;
-    public final ImageView f45369b;
-    public m7 f45370c;
+    public final TextView f45409a;
+    public final ImageView f45410b;
+    public m7 f45411c;
     public float d;
-    public float f45371e;
-    public boolean f45372f;
+    public float f45412e;
+    public boolean f45413f;
 
     public za(Context context) {
         super(context);
         setClipChildren(false);
         setClipToPadding(false);
         TextView textView = new TextView(context);
-        this.f45368a = textView;
+        this.f45409a = textView;
         textView.setSingleLine(true);
         textView.setIncludeFontPadding(false);
         textView.setGravity(21);
@@ -26,7 +26,7 @@ public final class za extends FrameLayout {
         textView.setTypeface(org.telegram.messenger.g0.o1("fonts/rmedium.ttf"));
         addView(textView);
         ImageView imageView = new ImageView(context);
-        this.f45369b = imageView;
+        this.f45410b = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setImportantForAccessibility(2);
         addView(imageView, c8.ma.c(16.0f, 16));
@@ -36,27 +36,27 @@ public final class za extends FrameLayout {
         float f10;
         float height = (((getHeight() * 0.5f) - org.telegram.messenger.g0.L(19.0f)) * this.d) + org.telegram.messenger.g0.L(19.0f);
         float width = getWidth() - (c() * 0.5f);
-        TextView textView = this.f45368a;
+        TextView textView = this.f45409a;
         textView.setPivotX(textView.getWidth());
         textView.setPivotY(textView.getHeight() * 0.5f);
         textView.setScaleX((this.d * 0.42857146f) + 1.0f);
         textView.setScaleY((this.d * 0.42857146f) + 1.0f);
         textView.setTranslationX(((getWidth() - c()) - b()) - textView.getWidth());
         textView.setTranslationY(height - (textView.getHeight() * 0.5f));
-        ImageView imageView = this.f45369b;
+        ImageView imageView = this.f45410b;
         imageView.setTranslationX(width - org.telegram.messenger.g0.L(8.0f));
         imageView.setTranslationY(height - org.telegram.messenger.g0.L(8.0f));
         imageView.setAlpha(1.0f - this.d);
-        m7 m7Var = this.f45370c;
+        m7 m7Var = this.f45411c;
         if (m7Var != null) {
             m7Var.setTranslationX(width - org.telegram.messenger.g0.L(20.0f));
-            this.f45370c.setTranslationY(height - org.telegram.messenger.g0.L(20.0f));
-            this.f45370c.setPivotX(org.telegram.messenger.g0.L(20.0f));
-            this.f45370c.setPivotY(org.telegram.messenger.g0.L(20.0f));
-            this.f45370c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.f45371e * 0.12f) + 1.0f));
-            this.f45370c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.f45371e * 0.18f)));
-            m7 m7Var2 = this.f45370c;
-            if (this.f45372f) {
+            this.f45411c.setTranslationY(height - org.telegram.messenger.g0.L(20.0f));
+            this.f45411c.setPivotX(org.telegram.messenger.g0.L(20.0f));
+            this.f45411c.setPivotY(org.telegram.messenger.g0.L(20.0f));
+            this.f45411c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.f45412e * 0.12f) + 1.0f));
+            this.f45411c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.f45412e * 0.18f)));
+            m7 m7Var2 = this.f45411c;
+            if (this.f45413f) {
                 f10 = 0.0f;
             } else {
                 f10 = this.d;
@@ -75,10 +75,10 @@ public final class za extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        TextView textView = this.f45368a;
+        TextView textView = this.f45409a;
         textView.layout(0, 0, textView.getMeasuredWidth(), textView.getMeasuredHeight());
-        this.f45369b.layout(0, 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
-        m7 m7Var = this.f45370c;
+        this.f45410b.layout(0, 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
+        m7 m7Var = this.f45411c;
         if (m7Var != null) {
             m7Var.layout(0, 0, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(40.0f));
         }
@@ -89,10 +89,10 @@ public final class za extends FrameLayout {
     public final void onMeasure(int i7, int i10) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) (Math.max(0, View.MeasureSpec.getSize(i7) - Math.round(b() + c())) / ((this.d * 0.42857146f) + 1.0f)), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.0f), 1073741824);
-        TextView textView = this.f45368a;
+        TextView textView = this.f45409a;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f45369b.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.0f), 1073741824));
-        m7 m7Var = this.f45370c;
+        this.f45410b.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(16.0f), 1073741824));
+        m7 m7Var = this.f45411c;
         if (m7Var != null) {
             m7Var.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(40.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(40.0f), 1073741824));
         }

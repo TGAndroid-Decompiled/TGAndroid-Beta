@@ -1,86 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-public final class vg0 extends Drawable {
-    public final Drawable f40620a;
-    public final Drawable f40621b;
-    public final Paint f40622c;
-    public final RectF d;
-    public int f40623e;
-    public long f40624f;
-    public float f40625g;
-    public boolean h;
-    public boolean f40626i;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class vg0 extends AnimatorListenerAdapter {
+    public final int f40822a;
+    public final wg0 f40823b;
 
-    public vg0(Context context) {
-        Paint paint = new Paint(1);
-        this.f40622c = paint;
-        this.d = new RectF();
-        this.f40623e = 0;
-        this.f40620a = i5.c.g(context, 2131232509);
-        this.f40621b = i5.c.g(context, 2131232508);
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        this.f40624f = SystemClock.elapsedRealtime();
+    public vg0(wg0 wg0Var, int i7) {
+        this.f40822a = i7;
+        this.f40823b = wg0Var;
     }
 
-    public final void a(Drawable drawable) {
-        Rect bounds = getBounds();
-        drawable.setBounds(org.telegram.ui.Cells.c0.C(2, bounds.centerX(), drawable), org.telegram.ui.Cells.c0.A(2, bounds.centerY(), drawable), org.telegram.ui.Cells.c0.y(2, bounds.centerX(), drawable), org.telegram.ui.Cells.c0.j(2, bounds.centerY(), drawable));
-    }
-
-    public final void b(boolean z10, boolean z11, boolean z12) {
-        float f10;
-        this.f40626i = z10;
-        this.h = z11;
-        this.f40624f = SystemClock.elapsedRealtime();
-        if (!z12) {
-            if (this.h) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            this.f40625g = f10;
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f40822a) {
+            case 1:
+                wg0 wg0Var = this.f40823b;
+                AnimatorSet animatorSet = wg0Var.f41821s;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    wg0Var.f41821s = null;
+                    wg0Var.getClass();
+                    return;
+                }
+                return;
+            case 2:
+                wg0 wg0Var2 = this.f40823b;
+                AnimatorSet animatorSet2 = wg0Var2.f41821s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    wg0Var2.f41821s = null;
+                    wg0Var2.getClass();
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        invalidateSelf();
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vg0.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(24.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(24.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f40620a.setColorFilter(colorFilter);
-        this.f40621b.setColorFilter(colorFilter);
-        this.f40622c.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
+    public final void onAnimationEnd(Animator animator) {
+        int i7 = this.f40822a;
+        wg0 wg0Var = this.f40823b;
+        switch (i7) {
+            case 0:
+                AnimatorSet animatorSet = wg0Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    wg0Var.h = null;
+                }
+                org.telegram.messenger.ks.e().k(99, 512);
+                return;
+            case 1:
+                AnimatorSet animatorSet2 = wg0Var.f41821s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    wg0Var.f41821s = null;
+                    if (wg0Var.f41823x) {
+                        wg0Var.setLayerType(0, null);
+                    }
+                }
+                org.telegram.messenger.ks.e().k(99, 512);
+                return;
+            default:
+                AnimatorSet animatorSet3 = wg0Var.f41821s;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    wg0Var.f41821s = null;
+                    org.telegram.messenger.g0.g3(new hb0(this, 11));
+                }
+                org.telegram.messenger.ks.e().k(99, 512);
+                return;
+        }
     }
 }

@@ -4,15 +4,15 @@ import android.text.TextUtils;
 import org.telegram.messenger.ri;
 import org.telegram.tgnet.tl.TL_account;
 public final class u {
-    public TL_account.TL_businessChatLink f18490a;
+    public TL_account.TL_businessChatLink f18520a;
 
     public final boolean equals(Object obj) {
-        TL_account.TL_businessChatLink tL_businessChatLink = this.f18490a;
+        TL_account.TL_businessChatLink tL_businessChatLink = this.f18520a;
         if (this == obj) {
             return true;
         }
         if (obj != null && u.class == obj.getClass()) {
-            TL_account.TL_businessChatLink tL_businessChatLink2 = ((u) obj).f18490a;
+            TL_account.TL_businessChatLink tL_businessChatLink2 = ((u) obj).f18520a;
             if (tL_businessChatLink.views == tL_businessChatLink2.views && TextUtils.equals(tL_businessChatLink.link, tL_businessChatLink2.link) && TextUtils.equals(tL_businessChatLink.title, tL_businessChatLink2.title) && TextUtils.equals(tL_businessChatLink.message, tL_businessChatLink2.message) && ri.M(tL_businessChatLink.entities, tL_businessChatLink2.entities)) {
                 return true;
             }

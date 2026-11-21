@@ -1,27 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class nz0 extends FrameLayout {
-    public static final int f37910e = 0;
-    public float f37911a;
-    public float f37912b;
-    public boolean f37913c;
-    public final ThemeEditorView d;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.view.View;
+import java.util.ArrayList;
+public final class nz0 {
+    public final View f38015a;
+    public final ArrayList f38016b;
+    public final Runnable f38017c;
+    public Runnable d;
+    public final Bitmap f38018e;
+    public final Matrix f38019f;
+    public float f38020g;
 
-    public nz0(ThemeEditorView themeEditorView, Activity activity) {
-        super(activity);
-        this.d = themeEditorView;
+    public nz0(View view, Runnable runnable) {
+        this.f38020g = 1.0f;
+        this.f38015a = view;
+        this.f38016b = null;
+        this.f38017c = null;
+        this.d = runnable;
+        this.f38018e = null;
+        this.f38019f = null;
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
+    public nz0(ArrayList arrayList, es0 es0Var) {
+        this.f38020g = 1.0f;
+        this.f38015a = null;
+        this.f38016b = arrayList;
+        this.f38017c = null;
+        this.d = es0Var;
+        this.f38018e = null;
+        this.f38019f = null;
     }
 
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.nz0.onTouchEvent(android.view.MotionEvent):boolean");
+    public nz0(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.f38020g = 1.0f;
+        this.f38015a = null;
+        this.f38016b = null;
+        this.f38017c = runnable;
+        this.d = runnable2;
+        this.f38019f = matrix;
+        this.f38018e = bitmap;
     }
 }

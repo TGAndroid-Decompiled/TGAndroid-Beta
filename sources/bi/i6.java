@@ -1,26 +1,30 @@
 package bi;
 
-import android.content.Context;
-import org.telegram.ui.Components.lc;
-public final class i6 extends di.f6 {
-    public final int A3;
-    public final j6 B3;
+import org.telegram.ui.Components.gq0;
+public final class i6 extends v4.k {
+    public final gq0 F;
 
-    public i6(j6 j6Var, Context context, int i7, long j3, org.telegram.ui.ActionBar.i6 i6Var, int i10) {
-        super(context, i7, j3, i6Var, null);
-        this.A3 = i10;
-        this.B3 = j6Var;
+    public i6(gq0 gq0Var) {
+        this.F = gq0Var;
     }
 
     @Override
-    public final lc k() {
-        switch (this.A3) {
-            case 0:
-                return lc.b0(this.B3.f3756a.f3941a);
-            case 1:
-                return lc.b0(this.B3.f3756a.f3941a);
-            default:
-                return lc.b0(this.B3.f3756a.f3941a);
-        }
+    public final void M() {
+        this.F.p();
+    }
+
+    @Override
+    public final void O() {
+        this.F.p();
+    }
+
+    @Override
+    public final void P(v4.f1 f1Var) {
+        this.F.p();
+    }
+
+    @Override
+    public final void Q() {
+        this.F.p();
     }
 }

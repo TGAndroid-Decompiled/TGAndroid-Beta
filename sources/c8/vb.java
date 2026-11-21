@@ -23,18 +23,18 @@ public abstract class vb {
                 j2.k kVar = new j2.k(b0Var, mVar2);
                 try {
                     byte[] b10 = i9.f.b(kVar);
-                    x2.u uVar = new x2.u(mVar, b0Var.f17153c, b0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
-                    ji.j jVar = new ji.j(b10, 22);
-                    jVar.f17946c = uVar;
-                    q2.v vVar = new q2.v(jVar);
-                    String str2 = h2.l0.f13783a;
+                    x2.u uVar = new x2.u(mVar, b0Var.f17178c, b0Var.d, SystemClock.elapsedRealtime(), 0L, b10.length);
+                    ji.l lVar = new ji.l(b10, 22);
+                    lVar.f17977c = uVar;
+                    q2.v vVar = new q2.v(lVar);
+                    String str2 = h2.l0.f13812a;
                     try {
                         kVar.close();
                     } catch (IOException unused) {
                     }
                     return vVar;
                 } catch (j2.x e10) {
-                    int i10 = e10.f17222c;
+                    int i10 = e10.f17247c;
                     String str3 = null;
                     if ((i10 == 307 || i10 == 308) && i7 < 5 && (map2 = e10.d) != null && (list = (List) map2.get("Location")) != null && !list.isEmpty()) {
                         str3 = (String) list.get(0);
@@ -42,9 +42,9 @@ public abstract class vb {
                     if (str3 != null) {
                         i7++;
                         j2.l a10 = mVar2.a();
-                        a10.f17181e = Uri.parse(str3);
+                        a10.f17206e = Uri.parse(str3);
                         mVar2 = a10.d();
-                        String str4 = h2.l0.f13783a;
+                        String str4 = h2.l0.f13812a;
                         try {
                             kVar.close();
                         } catch (IOException unused2) {
@@ -54,7 +54,7 @@ public abstract class vb {
                     }
                 }
             } catch (Exception e11) {
-                throw new q2.w(mVar, b0Var.f17153c, b0Var.f17151a.getResponseHeaders(), b0Var.f17152b, e11);
+                throw new q2.w(mVar, b0Var.f17178c, b0Var.f17176a.getResponseHeaders(), b0Var.f17177b, e11);
             }
         }
     }

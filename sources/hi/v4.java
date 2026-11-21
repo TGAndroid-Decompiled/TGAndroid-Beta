@@ -3,32 +3,32 @@ package hi;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class v4 extends AnimatorListenerAdapter {
-    public final int f15569a;
-    public final l5 f15570b;
+    public final int f15614a;
+    public final k5 f15615b;
 
-    public v4(l5 l5Var, int i7) {
-        this.f15569a = i7;
-        this.f15570b = l5Var;
+    public v4(k5 k5Var, int i7) {
+        this.f15614a = i7;
+        this.f15615b = k5Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f15569a) {
+        switch (this.f15614a) {
             case 0:
-                l5 l5Var = this.f15570b;
-                l5Var.L1 = 0.0f;
-                l5Var.J1.setAlpha(1.0f);
-                l5Var.J1.setVisibility(8);
-                l5Var.J1.n();
+                k5 k5Var = this.f15615b;
+                k5Var.L1 = 0.0f;
+                k5Var.J1.setAlpha(1.0f);
+                k5Var.J1.setVisibility(8);
+                k5Var.J1.n();
                 return;
             case 1:
-                this.f15570b.Z1.setTranslationY(0.0f);
+                this.f15615b.Z1.setTranslationY(0.0f);
                 return;
             default:
-                l5 l5Var2 = this.f15570b;
-                l5Var2.f14898c2 = false;
-                l5Var2.Z1.setTranslationY(0.0f);
-                l5Var2.t0();
+                k5 k5Var2 = this.f15615b;
+                k5Var2.f14873c2 = false;
+                k5Var2.Z1.setTranslationY(0.0f);
+                k5Var2.t0();
                 return;
         }
     }

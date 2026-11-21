@@ -5,34 +5,34 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class x4 implements RequestDelegate {
-    public final int f27814a;
-    public final long f27815b;
-    public final Object f27816c;
+    public final int f27842a;
+    public final long f27843b;
+    public final Object f27844c;
 
     public x4(Object obj, long j3, int i7) {
-        this.f27814a = i7;
-        this.f27816c = obj;
-        this.f27815b = j3;
+        this.f27842a = i7;
+        this.f27844c = obj;
+        this.f27843b = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27814a) {
+        switch (this.f27842a) {
             case 0:
-                i5 i5Var = (i5) this.f27816c;
-                ArrayList arrayList = i5Var.f24579x;
+                i5 i5Var = (i5) this.f27844c;
+                ArrayList arrayList = i5Var.f24607x;
                 if (tL_error == null) {
                     TLRPC.contacts_Contacts contacts_contacts = (TLRPC.contacts_Contacts) tLObject;
-                    if (this.f27815b != 0 && (contacts_contacts instanceof TLRPC.TL_contacts_contactsNotModified)) {
+                    if (this.f27843b != 0 && (contacts_contacts instanceof TLRPC.TL_contacts_contactsNotModified)) {
                         i5Var.h = true;
-                        if (!arrayList.isEmpty() && i5Var.f24576r) {
+                        if (!arrayList.isEmpty() && i5Var.f24604r) {
                             i5Var.c(arrayList, null, null, null);
                             arrayList.clear();
                         }
-                        i5Var.getUserConfig().f24794r = (int) (System.currentTimeMillis() / 1000);
+                        i5Var.getUserConfig().f24822r = (int) (System.currentTimeMillis() / 1000);
                         i5Var.getUserConfig().v(false);
                         g0.g3(new m4(i5Var, 6));
-                        if (s2.f26721a) {
+                        if (s2.f26749a) {
                             a8.b("load contacts don't change");
                             return;
                         }
@@ -45,18 +45,18 @@ public final class x4 implements RequestDelegate {
                 }
                 return;
             case 1:
-                qd qdVar = (qd) this.f27816c;
+                qd qdVar = (qd) this.f27844c;
                 if (tL_error == null) {
-                    g0.g3(new d4(qdVar, this.f27815b, tLObject, 1));
+                    g0.g3(new d4(qdVar, this.f27843b, tLObject, 1));
                     return;
                 }
                 return;
             case 2:
-                g0.g3(new br((pv) this.f27816c, tLObject, this.f27815b, 4));
+                g0.g3(new br((pv) this.f27844c, tLObject, this.f27843b, 4));
                 return;
             case 3:
-                xv xvVar = (xv) this.f27816c;
-                long j3 = this.f27815b;
+                xv xvVar = (xv) this.f27844c;
+                long j3 = this.f27843b;
                 if (j3 != 0) {
                     xvVar.getMessagesStorage().q1(j3);
                     return;
@@ -65,11 +65,11 @@ public final class x4 implements RequestDelegate {
                     return;
                 }
             case 4:
-                zy zyVar = (zy) this.f27816c;
+                zy zyVar = (zy) this.f27844c;
                 if (tL_error == null) {
                     zyVar.getMessagesController().V3((TLRPC.Updates) tLObject, false);
                 }
-                long j10 = this.f27815b;
+                long j10 = this.f27843b;
                 if (j10 != 0) {
                     zyVar.getMessagesStorage().q1(j10);
                     return;
@@ -78,9 +78,9 @@ public final class x4 implements RequestDelegate {
                     return;
                 }
             default:
-                e00 e00Var = (e00) this.f27816c;
+                e00 e00Var = (e00) this.f27844c;
                 e00Var.getClass();
-                g0.g3(new br(e00Var, this.f27815b, tLObject, 6));
+                g0.g3(new br(e00Var, this.f27843b, tLObject, 6));
                 return;
         }
     }

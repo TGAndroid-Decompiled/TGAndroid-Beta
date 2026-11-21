@@ -14,22 +14,22 @@ import org.telegram.ui.Cells.a9;
 import org.telegram.ui.Cells.e2;
 import org.telegram.ui.Cells.y3;
 import org.telegram.ui.Cells.z6;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.z41;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.nr;
 import org.telegram.ui.Wallet.n6;
 import org.telegram.ui.Wallet.na;
 import org.telegram.ui.g00;
 public final class y implements y10 {
-    public final int f5839a;
+    public final int f5868a;
 
     public y(int i7) {
-        this.f5839a = i7;
+        this.f5868a = i7;
     }
 
     @Override
     public final Object a(Object obj) {
         boolean z10 = true;
-        switch (this.f5839a) {
+        switch (this.f5868a) {
             case 0:
                 String str = (String) obj;
                 if (TextUtils.isEmpty(str) || (!str.startsWith("tg:") && !vf.c.g(Uri.parse(str), false, null))) {
@@ -38,7 +38,7 @@ public final class y implements y10 {
                 return Boolean.valueOf(z10);
             case 1:
                 String str2 = (String) obj;
-                lr lrVar = b0.A0;
+                nr nrVar = b0.A0;
                 if (TextUtils.isEmpty(str2) || (!str2.startsWith("tg:") && !vf.c.g(Uri.parse(str2), false, null))) {
                     z10 = false;
                 }
@@ -68,7 +68,7 @@ public final class y implements y10 {
                 }
                 return Boolean.valueOf(z10);
             case 8:
-                return Boolean.valueOf(z41.K(((Integer) obj).intValue()));
+                return Boolean.valueOf(c51.K(((Integer) obj).intValue()));
             case 9:
                 TL_wallet.exportSecretPhrase exportsecretphrase = new TL_wallet.exportSecretPhrase();
                 exportsecretphrase.password = (TLRPC.InputCheckPasswordSRP) obj;

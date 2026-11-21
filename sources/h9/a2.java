@@ -1,31 +1,31 @@
 package h9;
 public final class a2 extends t0 {
-    public static final Object[] f13961r;
-    public static final a2 f13962s;
+    public static final Object[] f13990r;
+    public static final a2 f13991s;
     public final transient Object[] d;
-    public final transient int f13963e;
-    public final transient Object[] f13964f;
+    public final transient int f13992e;
+    public final transient Object[] f13993f;
     public final transient int h;
-    public final transient int f13965n;
+    public final transient int f13994n;
 
     static {
         Object[] objArr = new Object[0];
-        f13961r = objArr;
-        f13962s = new a2(0, 0, 0, objArr, objArr);
+        f13990r = objArr;
+        f13991s = new a2(0, 0, 0, objArr, objArr);
     }
 
     public a2(int i7, int i10, int i11, Object[] objArr, Object[] objArr2) {
         this.d = objArr;
-        this.f13963e = i7;
-        this.f13964f = objArr2;
+        this.f13992e = i7;
+        this.f13993f = objArr2;
         this.h = i10;
-        this.f13965n = i11;
+        this.f13994n = i11;
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f13964f;
+            Object[] objArr = this.f13993f;
             if (objArr.length != 0) {
                 int v = o.v(obj);
                 while (true) {
@@ -46,13 +46,13 @@ public final class a2 extends t0 {
 
     @Override
     public final int hashCode() {
-        return this.f13963e;
+        return this.f13992e;
     }
 
     @Override
     public final int i(int i7, Object[] objArr) {
         Object[] objArr2 = this.d;
-        int i10 = this.f13965n;
+        int i10 = this.f13994n;
         System.arraycopy(objArr2, 0, objArr, i7, i10);
         return i7 + i10;
     }
@@ -64,7 +64,7 @@ public final class a2 extends t0 {
 
     @Override
     public final int k() {
-        return this.f13965n;
+        return this.f13994n;
     }
 
     @Override
@@ -84,11 +84,11 @@ public final class a2 extends t0 {
 
     @Override
     public final i0 r() {
-        return i0.o(this.f13965n, this.d);
+        return i0.o(this.f13994n, this.d);
     }
 
     @Override
     public final int size() {
-        return this.f13965n;
+        return this.f13994n;
     }
 }

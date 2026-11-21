@@ -1,25 +1,15 @@
 package hi;
 
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
-public final class qb extends TLObject {
-    public double f15295a;
-    public double f15296b;
-    public String f15297c;
-    public float d;
+import java.util.TimeZone;
+public abstract class qb {
+    public static String f15314a;
+    public static pb f15315b;
 
-    public final String a() {
-        if (rb.a()) {
-            return Math.round(this.d) + "°C";
+    public static boolean a() {
+        String id2 = TimeZone.getDefault().getID();
+        if (!id2.startsWith("US/") && !"America/Nassau".equals(id2) && !"America/Belize".equals(id2) && !"America/Cayman".equals(id2) && !"Pacific/Palau".equals(id2)) {
+            return true;
         }
-        return a8.p0.n((int) Math.round(((this.d * 9.0d) / 5.0d) + 32.0d), "°F", new StringBuilder());
-    }
-
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        outputSerializedData.writeDouble(this.f15295a);
-        outputSerializedData.writeDouble(this.f15296b);
-        outputSerializedData.writeString(this.f15297c);
-        outputSerializedData.writeFloat(this.d);
+        return false;
     }
 }

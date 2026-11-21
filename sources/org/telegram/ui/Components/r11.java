@@ -1,30 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class r11 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38982a;
-    public final u11 f38983b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class r11 extends Drawable {
+    public Paint f39042a;
+    public RectF f39043b;
 
-    public r11(u11 u11Var, int i7) {
-        this.f38982a = i7;
-        this.f38983b = u11Var;
+    @Override
+    public final void draw(Canvas canvas) {
+        RectF rectF = this.f39043b;
+        rectF.set(getBounds());
+        rectF.inset(org.telegram.messenger.g0.L(1.0f), (rectF.height() - org.telegram.messenger.g0.L(28.0f)) / 2.0f);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), this.f39042a);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38982a) {
-            case 0:
-                fi.u2 u2Var = this.f38983b.f40172f;
-                u2Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                u2Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                u2Var.invalidate();
-                return;
-            default:
-                u11 u11Var = this.f38983b;
-                u11Var.getClass();
-                u11Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u11Var.h();
-                return;
-        }
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f39042a.setAlpha(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

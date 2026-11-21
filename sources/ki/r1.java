@@ -1,47 +1,26 @@
 package ki;
 
 import android.animation.ValueAnimator;
-import android.graphics.Paint;
 public final class r1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f18858a;
-    public final t2 f18859b;
-    public final int f18860c;
-    public final int d;
+    public final int f18891a;
+    public final s2 f18892b;
 
-    public r1(t2 t2Var, int i7, int i10, int i11) {
-        this.f18858a = i11;
-        this.f18859b = t2Var;
-        this.f18860c = i7;
-        this.d = i10;
+    public r1(s2 s2Var, int i7) {
+        this.f18891a = i7;
+        this.f18892b = s2Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        boolean z10;
-        switch (this.f18858a) {
+        switch (this.f18891a) {
             case 0:
-                t2 t2Var = this.f18859b;
-                Paint paint = t2Var.R;
-                paint.setColor(i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f18860c, this.d));
-                t2Var.F();
-                t2Var.f18927f.invalidate();
-                org.telegram.ui.b3 b3Var = t2Var.Z0;
-                if (b3Var != null) {
-                    if (org.telegram.messenger.g0.B(paint.getColor()) <= 0.721f) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    b3Var.b(z10, false);
-                    t2Var.Z0.setBackgroundColor(paint.getColor());
-                }
-                t2Var.K();
+                s2 s2Var = this.f18892b;
+                s2Var.getClass();
+                s2Var.S0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s2Var.l();
                 return;
             default:
-                t2 t2Var2 = this.f18859b;
-                t2Var2.getClass();
-                t2Var2.T = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f18860c, this.d);
-                t2Var2.l();
+                this.f18892b.F.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

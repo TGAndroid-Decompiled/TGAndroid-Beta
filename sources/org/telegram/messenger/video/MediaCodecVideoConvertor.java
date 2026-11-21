@@ -6,8 +6,8 @@ import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
 import com.google.android.gms.internal.vision.e2;
-import hi.c7;
-import hi.u;
+import hi.b7;
+import hi.v;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class MediaCodecVideoConvertor {
         String blurPath;
         File cacheFile;
         kf callback;
-        u collage;
+        v collage;
         ArrayList<d20> collageParts;
         we cropState;
         long duration;
@@ -60,7 +60,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        c7 hdrInfo;
+        b7 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -115,12 +115,12 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.mediaEntities = e20Var.G;
             convertVideoParams.isPhoto = e20Var.I;
             convertVideoParams.cropState = e20Var.H;
-            convertVideoParams.isRound = e20Var.f23652s;
+            convertVideoParams.isRound = e20Var.f23680s;
             convertVideoParams.callback = kfVar;
             convertVideoParams.gradientTopColor = e20Var.Q;
             convertVideoParams.gradientBottomColor = e20Var.R;
-            convertVideoParams.muted = e20Var.f23653t;
-            convertVideoParams.volume = e20Var.f23654u;
+            convertVideoParams.muted = e20Var.f23681t;
+            convertVideoParams.volume = e20Var.f23682u;
             convertVideoParams.isStory = e20Var.J;
             convertVideoParams.hdrInfo = e20Var.K;
             convertVideoParams.isDark = e20Var.T;
@@ -181,7 +181,7 @@ public class MediaCodecVideoConvertor {
             long j3 = 0;
             while (!this.stopFeeding) {
                 try {
-                    if (MediaCodecVideoConvertor.this.callback != null && ((e20) ((pe) MediaCodecVideoConvertor.this.callback).f26232b).W) {
+                    if (MediaCodecVideoConvertor.this.callback != null && ((e20) ((pe) MediaCodecVideoConvertor.this.callback).f26260b).W) {
                         return;
                     }
                     int sampleTrackIndex = this.extractor.getSampleTrackIndex();
@@ -272,8 +272,8 @@ public class MediaCodecVideoConvertor {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i7);
                 try {
                     dg.c cVar = new dg.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f8362b;
-                    cVar.f8359a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    AudioDecoder audioDecoder = cVar.f8391b;
+                    cVar.f8388a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j3 = mixedSoundInfo.startTime;
                     int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                     if (i10 > 0) {
@@ -302,7 +302,7 @@ public class MediaCodecVideoConvertor {
 
     private void checkConversionCanceled() {
         kf kfVar = this.callback;
-        if (kfVar != null && ((e20) ((pe) kfVar).f26232b).W) {
+        if (kfVar != null && ((e20) ((pe) kfVar).f26260b).W) {
             throw new ConversionCanceledException();
         }
     }
@@ -492,7 +492,7 @@ public class MediaCodecVideoConvertor {
         return sb2.toString();
     }
 
-    private static String hdrFragmentShader(int i7, int i10, int i11, int i12, boolean z10, c7 c7Var, int i13, boolean z11) {
+    private static String hdrFragmentShader(int i7, int i10, int i11, int i12, boolean z10, b7 b7Var, int i13, boolean z11) {
         int i14;
         int i15;
         String y22;
@@ -554,7 +554,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f10);
         String glslFloat7 = glslFloat(1.0f / f12);
-        if (c7Var.a() == 1) {
+        if (b7Var.a() == 1) {
             y22 = g0.y2(null, 2131624046);
         } else {
             y22 = g0.y2(null, 2131624047);

@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-public final class up0 extends tg.o0 {
+public final class up0 extends tg.p0 {
     public final PhotoViewer L;
 
     public up0(PhotoViewer photoViewer, Context context, int i7, Bitmap bitmap, Bitmap bitmap2, int i10, org.telegram.messenger.we weVar) {

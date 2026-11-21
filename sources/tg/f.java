@@ -3,57 +3,57 @@ package tg;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.Utilities;
 public final class f implements ValueAnimator.AnimatorUpdateListener {
-    public final int f57829a;
-    public final j f57830b;
+    public final int f57841a;
+    public final j f57842b;
 
     public f(j jVar, int i7) {
-        this.f57829a = i7;
-        this.f57830b = jVar;
+        this.f57841a = i7;
+        this.f57842b = jVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f57829a) {
+        switch (this.f57841a) {
             case 0:
-                j jVar = this.f57830b;
-                jVar.g(org.telegram.messenger.g0.b2(jVar.M, jVar.f57959j0, jVar.R.getAnimatedFraction()));
+                j jVar = this.f57842b;
+                jVar.g(org.telegram.messenger.g0.b2(jVar.M, jVar.f57982j0, jVar.R.getAnimatedFraction()));
                 return;
             case 1:
-                j jVar2 = this.f57830b;
+                j jVar2 = this.f57842b;
                 jVar2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jVar2.f57964o0 = floatValue;
+                jVar2.f57987o0 = floatValue;
                 jVar2.setAlpha(floatValue);
                 i iVar = jVar2.I;
                 if (iVar != null) {
-                    iVar.setScaleX(Utilities.i(jVar2.f57964o0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.g0.T1(0.9f, 1.0f, jVar2.f57960k0));
-                    jVar2.I.setScaleY(Utilities.i(jVar2.f57964o0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.g0.T1(0.9f, 1.0f, jVar2.f57960k0));
-                    jVar2.I.setAlpha(Math.max(0.0f, jVar2.f57964o0 - 0.8f) * jVar2.f57960k0 * 5.0f);
+                    iVar.setScaleX(Utilities.i(jVar2.f57987o0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.g0.T1(0.9f, 1.0f, jVar2.f57983k0));
+                    jVar2.I.setScaleY(Utilities.i(jVar2.f57987o0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.g0.T1(0.9f, 1.0f, jVar2.f57983k0));
+                    jVar2.I.setAlpha(Math.max(0.0f, jVar2.f57987o0 - 0.8f) * jVar2.f57983k0 * 5.0f);
                 }
                 jVar2.invalidate();
                 return;
             case 2:
-                j jVar3 = this.f57830b;
+                j jVar3 = this.f57842b;
                 jVar3.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jVar3.f57960k0 = floatValue2;
+                jVar3.f57983k0 = floatValue2;
                 i iVar2 = jVar3.I;
                 if (iVar2 != null) {
-                    iVar2.setScaleX(Utilities.i(jVar3.f57964o0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.g0.T1(0.9f, 1.0f, floatValue2));
-                    jVar3.I.setScaleY(Utilities.i(jVar3.f57964o0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.g0.T1(0.9f, 1.0f, jVar3.f57960k0));
-                    jVar3.I.setAlpha(Math.max(0.0f, jVar3.f57964o0 - 0.8f) * jVar3.f57960k0 * 5.0f);
+                    iVar2.setScaleX(Utilities.i(jVar3.f57987o0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.g0.T1(0.9f, 1.0f, floatValue2));
+                    jVar3.I.setScaleY(Utilities.i(jVar3.f57987o0 * 1.25f, 1.0f, 0.0f) * org.telegram.messenger.g0.T1(0.9f, 1.0f, jVar3.f57983k0));
+                    jVar3.I.setAlpha(Math.max(0.0f, jVar3.f57987o0 - 0.8f) * jVar3.f57983k0 * 5.0f);
                     return;
                 }
                 return;
             case 3:
-                this.f57830b.k();
+                this.f57842b.k();
                 return;
             case 4:
-                this.f57830b.k();
+                this.f57842b.k();
                 return;
             default:
-                j jVar4 = this.f57830b;
-                float b22 = org.telegram.messenger.g0.b2(jVar4.f57959j0, jVar4.M, valueAnimator.getAnimatedFraction());
+                j jVar4 = this.f57842b;
+                float b22 = org.telegram.messenger.g0.b2(jVar4.f57982j0, jVar4.M, valueAnimator.getAnimatedFraction());
                 jVar4.P = b22;
                 jVar4.g(b22);
                 return;

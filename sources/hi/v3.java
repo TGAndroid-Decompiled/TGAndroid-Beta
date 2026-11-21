@@ -1,35 +1,389 @@
 package hi;
 
+import android.content.ContentUris;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.util.Size;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.z41;
-public final class v3 extends k41 {
-    public static final int f15568b = 0;
+import java.io.File;
+import java.util.HashSet;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.nr;
+public final class v3 extends View implements org.telegram.ui.ActionBar.b6 {
+    public float E;
+    public final org.telegram.ui.Components.d6 F;
+    public final org.telegram.ui.Components.d6 G;
+    public final org.telegram.ui.ActionBar.h6 f15603a;
+    public final ImageReceiver f15604b;
+    public final Paint f15605c;
+    public final Paint d;
+    public final org.telegram.ui.Components.n6 f15606e;
+    public boolean f15607f;
+    public boolean h;
+    public View.OnClickListener f15608n;
+    public final mc f15609r;
+    public int f15610s;
+    public String f15611w;
+    public float f15612x;
+    public float f15613y;
 
-    static {
-        k41.h(new k41());
+    public v3(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f15604b = imageReceiver;
+        Paint paint = new Paint(1);
+        this.f15605c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, false, false);
+        this.f15606e = n6Var;
+        this.f15609r = new mc(this);
+        this.f15610s = -1;
+        nr nrVar = nr.h;
+        this.F = new org.telegram.ui.Components.d6(this, 0L, 320L, nrVar);
+        this.G = new org.telegram.ui.Components.d6(this, 0L, 320L, nrVar);
+        n6Var.setCallback(this);
+        n6Var.u(-1);
+        n6Var.f37791b = 17;
+        n6Var.w(org.telegram.messenger.g0.L(16.0f));
+        n6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
+        n6Var.N = org.telegram.messenger.g0.f24146q.x;
+        n6Var.n(0.65f, 480L, nrVar);
+        n6Var.B = 0.35f;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-1);
+        this.f15603a = h6Var;
+        paint2.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, h6Var));
+        imageReceiver.J0(org.telegram.messenger.g0.L(6.0f));
+        c8.ra.a(this);
     }
 
-    @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        w3 w3Var = (w3) view;
-        w3Var.a(l41Var.d, l41Var.A, (d7) l41Var.H);
-        w3Var.b(l41Var.f37011e, false);
-        boolean z11 = l41Var.f37012f;
-        if (w3Var.h != z11) {
-            w3Var.h = z11;
-            w3Var.G.a(z11);
-            w3Var.invalidate();
+    public final void a(int i7, int i10, final c7 c7Var) {
+        String str;
+        Uri withAppendedId;
+        if (this.f15610s != i7) {
+            this.f15611w = null;
+            this.f15604b.f();
+            this.f15610s = i7;
         }
-        w3Var.setOnCheckboxClick(l41Var.E);
+        this.f15606e.t(Integer.toString(i10 + 1), false, true);
+        File file = c7Var.O0;
+        if (file != null) {
+            if (!TextUtils.equals(this.f15611w, file.getPath())) {
+                this.f15611w = c7Var.O0.getPath();
+                Utilities.f22809g.c(new Runnable(this) {
+                    public final v3 f15368b;
+
+                    {
+                        this.f15368b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                BitmapFactory.Options options = new BitmapFactory.Options();
+                                options.inJustDecodeBounds = true;
+                                c7 c7Var2 = c7Var;
+                                BitmapFactory.decodeFile(c7Var2.O0.getPath(), options);
+                                int L = org.telegram.messenger.g0.L(94.0f);
+                                org.telegram.messenger.g0.L(112.0f);
+                                c7.C(options, L);
+                                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                                options.inDither = true;
+                                options.inJustDecodeBounds = false;
+                                final Bitmap decodeFile = BitmapFactory.decodeFile(c7Var2.O0.getPath(), options);
+                                final v3 v3Var = this.f15368b;
+                                org.telegram.messenger.g0.g3(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                v3Var.f15604b.v0(decodeFile);
+                                                return;
+                                            default:
+                                                v3Var.f15604b.v0(decodeFile);
+                                                return;
+                                        }
+                                    }
+                                });
+                                return;
+                            default:
+                                BitmapFactory.Options options2 = new BitmapFactory.Options();
+                                options2.inJustDecodeBounds = true;
+                                c7 c7Var3 = c7Var;
+                                BitmapFactory.decodeFile(c7Var3.L.getPath(), options2);
+                                int L2 = org.telegram.messenger.g0.L(94.0f);
+                                org.telegram.messenger.g0.L(112.0f);
+                                c7.C(options2, L2);
+                                options2.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                                options2.inDither = true;
+                                options2.inJustDecodeBounds = false;
+                                final Bitmap decodeFile2 = BitmapFactory.decodeFile(c7Var3.L.getPath(), options2);
+                                final v3 v3Var2 = this.f15368b;
+                                org.telegram.messenger.g0.g3(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                v3Var2.f15604b.v0(decodeFile2);
+                                                return;
+                                            default:
+                                                v3Var2.f15604b.v0(decodeFile2);
+                                                return;
+                                        }
+                                    }
+                                });
+                                return;
+                        }
+                    }
+                });
+            }
+        } else if (c7Var.K) {
+            Bitmap bitmap = c7Var.M0;
+            if (bitmap == null) {
+                bitmap = null;
+            }
+            if (bitmap == null && (str = c7Var.N) != null && str.startsWith("vthumb://")) {
+                if (!TextUtils.equals(this.f15611w, c7Var.N)) {
+                    String str2 = c7Var.N;
+                    this.f15611w = str2;
+                    long parseLong = Long.parseLong(str2.substring(9));
+                    if (bitmap == null && Build.VERSION.SDK_INT >= 29) {
+                        try {
+                            if (c7Var.K) {
+                                withAppendedId = ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, parseLong);
+                            } else {
+                                withAppendedId = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, parseLong);
+                            }
+                            bitmap = getContext().getContentResolver().loadThumbnail(withAppendedId, new Size(org.telegram.messenger.g0.L(94.0f), org.telegram.messenger.g0.L(112.0f)), null);
+                        } catch (Exception unused) {
+                        }
+                    }
+                } else {
+                    return;
+                }
+            }
+            this.f15604b.v0(bitmap);
+        } else {
+            File file2 = c7Var.L;
+            if (file2 != null && !TextUtils.equals(this.f15611w, file2.getPath())) {
+                this.f15611w = c7Var.L.getPath();
+                Utilities.f22809g.c(new Runnable(this) {
+                    public final v3 f15368b;
+
+                    {
+                        this.f15368b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                BitmapFactory.Options options = new BitmapFactory.Options();
+                                options.inJustDecodeBounds = true;
+                                c7 c7Var2 = c7Var;
+                                BitmapFactory.decodeFile(c7Var2.O0.getPath(), options);
+                                int L = org.telegram.messenger.g0.L(94.0f);
+                                org.telegram.messenger.g0.L(112.0f);
+                                c7.C(options, L);
+                                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                                options.inDither = true;
+                                options.inJustDecodeBounds = false;
+                                final Bitmap decodeFile = BitmapFactory.decodeFile(c7Var2.O0.getPath(), options);
+                                final v3 v3Var = this.f15368b;
+                                org.telegram.messenger.g0.g3(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                v3Var.f15604b.v0(decodeFile);
+                                                return;
+                                            default:
+                                                v3Var.f15604b.v0(decodeFile);
+                                                return;
+                                        }
+                                    }
+                                });
+                                return;
+                            default:
+                                BitmapFactory.Options options2 = new BitmapFactory.Options();
+                                options2.inJustDecodeBounds = true;
+                                c7 c7Var3 = c7Var;
+                                BitmapFactory.decodeFile(c7Var3.L.getPath(), options2);
+                                int L2 = org.telegram.messenger.g0.L(94.0f);
+                                org.telegram.messenger.g0.L(112.0f);
+                                c7.C(options2, L2);
+                                options2.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                                options2.inDither = true;
+                                options2.inJustDecodeBounds = false;
+                                final Bitmap decodeFile2 = BitmapFactory.decodeFile(c7Var3.L.getPath(), options2);
+                                final v3 v3Var2 = this.f15368b;
+                                org.telegram.messenger.g0.g3(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                v3Var2.f15604b.v0(decodeFile2);
+                                                return;
+                                            default:
+                                                v3Var2.f15604b.v0(decodeFile2);
+                                                return;
+                                        }
+                                    }
+                                });
+                                return;
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        if (this.f15607f == z10) {
+            return;
+        }
+        this.f15607f = z10;
+        if (!z11) {
+            this.F.a(z10);
+        }
+        invalidate();
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        return new w3(context, i6Var);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        ImageReceiver imageReceiver = this.f15604b;
+        imageReceiver.y0(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(94.0f), org.telegram.messenger.g0.L(112.0f));
+        imageReceiver.h(canvas, null);
+        Paint paint = this.f15605c;
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
+        float d = this.F.d(this.f15607f);
+        if (d > 0.0f) {
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(96.0f), org.telegram.messenger.g0.L(116.0f));
+            paint.setAlpha((int) (d * 255.0f));
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), paint);
+        }
+        this.f15612x = (getWidth() - org.telegram.messenger.g0.L(17.163f)) - org.telegram.messenger.g0.L(3.0f);
+        this.f15613y = org.telegram.messenger.g0.L(3.0f) + org.telegram.messenger.g0.L(17.833f);
+        this.E = org.telegram.messenger.g0.L(12.833f);
+        float d2 = this.G.d(this.h);
+        float a10 = this.f15609r.a(0.075f);
+        canvas.save();
+        canvas.scale(a10, a10, this.f15612x, this.f15613y);
+        int i7 = (d2 > 0.0f ? 1 : (d2 == 0.0f ? 0 : -1));
+        if (i7 > 0) {
+            Paint paint2 = this.d;
+            paint2.setAlpha((int) (d2 * 255.0f));
+            canvas.drawCircle(this.f15612x, this.f15613y, this.E, paint2);
+        }
+        paint.setAlpha(255);
+        canvas.drawCircle(this.f15612x, this.f15613y, this.E - org.telegram.messenger.g0.L(1.0f), paint);
+        if (i7 > 0) {
+            float f10 = this.f15612x;
+            float f11 = this.E;
+            float f12 = f10 - f11;
+            float f13 = this.f15613y;
+            float f14 = f10 + f11;
+            org.telegram.ui.Components.n6 n6Var = this.f15606e;
+            n6Var.o(f12, f13, f14, f13);
+            n6Var.C = (int) (d2 * 255.0f);
+            n6Var.draw(canvas);
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f15604b.P();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f15604b.R();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(98.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(120.0f), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        View.OnClickListener onClickListener;
+        if (motionEvent.getX() >= this.f15612x - org.telegram.messenger.g0.L(14.0f) && motionEvent.getX() <= this.f15612x + org.telegram.messenger.g0.L(14.0f) && motionEvent.getY() >= this.f15613y - org.telegram.messenger.g0.L(14.0f) && motionEvent.getY() <= this.f15613y + org.telegram.messenger.g0.L(14.0f)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int action = motionEvent.getAction();
+        mc mcVar = this.f15609r;
+        if (action == 0) {
+            mcVar.c(z10);
+        } else if (motionEvent.getAction() == 1) {
+            if (mcVar.f37479i && z10 && (onClickListener = this.f15608n) != null) {
+                onClickListener.onClick(this);
+            }
+            mcVar.c(false);
+        } else if (motionEvent.getAction() == 3) {
+            mcVar.c(false);
+        }
+        if (mcVar.f37479i || super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void setOnCheckboxClick(View.OnClickListener onClickListener) {
+        this.f15608n = onClickListener;
+    }
+
+    public void setPosition(int i7) {
+        String num;
+        if (i7 < 0) {
+            num = "";
+        } else {
+            num = Integer.toString(i7 + 1);
+        }
+        this.f15606e.t(num, true, true);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.d.setColor(org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f15603a));
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f15606e && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -16,20 +16,20 @@ import android.widget.TextView;
 import c8.ma;
 import java.util.ArrayList;
 import org.telegram.messenger.gd;
-import org.telegram.ui.Components.mh0;
+import org.telegram.ui.Components.oh0;
 public final class t6 extends FrameLayout {
-    public final ArrayList f12584a;
-    public ValueAnimator f12585b;
-    public int f12586c;
+    public final ArrayList f12623a;
+    public ValueAnimator f12624b;
+    public int f12625c;
     public int d;
-    public final f2.a f12587e;
+    public final f2.a f12626e;
 
     public t6(Context context, t8 t8Var) {
         super(context);
-        this.f12586c = -1;
+        this.f12625c = -1;
         int i7 = 0;
         this.d = 0;
-        this.f12587e = new f2.a(this, 14);
+        this.f12626e = new f2.a(this, 14);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         addView(imageView, -1, -1);
@@ -43,21 +43,21 @@ public final class t6 extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
         textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setText(gd.M0(2131744528, null));
+        textView.setText(gd.N0(2131744522, null));
         textView.setTextSize(1, 20.0f);
         linearLayout.addView(textView, ma.o(-2, -2));
         TextView textView2 = new TextView(context);
         textView2.setTextColor(-1761607681);
-        textView2.setText(gd.M0(2131744525, null));
+        textView2.setText(gd.N0(2131744519, null));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
         linearLayout.addView(textView2, ma.k(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
         ArrayList arrayList = new ArrayList(4);
-        this.f12584a = arrayList;
-        arrayList.add(new s6(context, 2131624233, gd.M0(2131744532, null), gd.M0(2131744531, null)));
-        arrayList.add(new s6(context, 2131624235, gd.M0(2131744527, null), gd.M0(2131744526, null)));
-        arrayList.add(new s6(context, 2131624232, gd.M0(2131744534, null), gd.M0(2131744533, null)));
-        arrayList.add(new s6(context, 2131624234, gd.M0(2131744530, null), gd.M0(2131744529, null)));
+        this.f12623a = arrayList;
+        arrayList.add(new s6(context, 2131624233, gd.N0(2131744526, null), gd.N0(2131744525, null)));
+        arrayList.add(new s6(context, 2131624235, gd.N0(2131744521, null), gd.N0(2131744520, null)));
+        arrayList.add(new s6(context, 2131624232, gd.N0(2131744528, null), gd.N0(2131744527, null)));
+        arrayList.add(new s6(context, 2131624234, gd.N0(2131744524, null), gd.N0(2131744523, null)));
         int measuredWidth = t8Var.getMeasuredWidth() - org.telegram.messenger.g0.L(100.0f);
         int size = arrayList.size();
         int i10 = 0;
@@ -65,14 +65,14 @@ public final class t6 extends FrameLayout {
             Object obj = arrayList.get(i10);
             i10++;
             s6 s6Var = (s6) obj;
-            TextPaint textPaint = s6Var.f12526e;
-            String str = s6Var.f12523a;
+            TextPaint textPaint = s6Var.f12567e;
+            String str = s6Var.f12564a;
             int length = str.length();
-            Rect rect = s6Var.f12529r;
+            Rect rect = s6Var.f12570r;
             textPaint.getTextBounds(str, 0, length, rect);
             int width = rect.width();
-            TextPaint textPaint2 = s6Var.f12527f;
-            String str2 = s6Var.f12524b;
+            TextPaint textPaint2 = s6Var.f12568f;
+            String str2 = s6Var.f12565b;
             textPaint2.getTextBounds(str2, 0, str2.length(), rect);
             int max = Math.max(width, rect.width()) + org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.L(88.0f);
             if (max > measuredWidth) {
@@ -81,7 +81,7 @@ public final class t6 extends FrameLayout {
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(org.telegram.messenger.g0.L(8.0f) + measuredWidth > t8Var.getMeasuredWidth() ? t8Var.getMeasuredWidth() - org.telegram.messenger.g0.L(8.0f) : measuredWidth, org.telegram.messenger.g0.L(64.0f));
         layoutParams.setMargins(0, org.telegram.messenger.g0.L(5.0f), 0, org.telegram.messenger.g0.L(5.0f));
-        ArrayList arrayList2 = this.f12584a;
+        ArrayList arrayList2 = this.f12623a;
         int size2 = arrayList2.size();
         while (i7 < size2) {
             Object obj2 = arrayList2.get(i7);
@@ -91,7 +91,7 @@ public final class t6 extends FrameLayout {
         TextView textView3 = new TextView(context);
         textView3.setTextColor(-1);
         textView3.setTypeface(org.telegram.messenger.g0.o());
-        textView3.setText(gd.M0(2131744535, null));
+        textView3.setText(gd.N0(2131744529, null));
         textView3.setTextSize(1, 14.0f);
         linearLayout.addView(textView3, ma.k(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
         addView(linearLayout, ma.e(-1, -2, 17));
@@ -102,46 +102,46 @@ public final class t6 extends FrameLayout {
     }
 
     public final void a(boolean z10) {
-        ValueAnimator valueAnimator = this.f12585b;
+        ValueAnimator valueAnimator = this.f12624b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f12585b = ofFloat;
+        this.f12624b = ofFloat;
         if (z10) {
             ofFloat.setStartDelay(50L);
         }
-        this.f12585b.setDuration(350L);
-        this.f12585b.setInterpolator(new AccelerateDecelerateInterpolator());
-        this.f12585b.getCurrentPlayTime();
-        this.f12585b.addListener(new ai.j0(this, 16));
-        this.f12585b.addUpdateListener(new ah.g(this, 23));
-        this.f12585b.start();
-        org.telegram.messenger.g0.h3(this.f12587e, (((s6) this.f12584a.get(this.d)).f12525c.r() * 2) + 100);
+        this.f12624b.setDuration(350L);
+        this.f12624b.setInterpolator(new AccelerateDecelerateInterpolator());
+        this.f12624b.getCurrentPlayTime();
+        this.f12624b.addListener(new ai.k0(this, 16));
+        this.f12624b.addUpdateListener(new ah.g(this, 23));
+        this.f12624b.start();
+        org.telegram.messenger.g0.h3(this.f12626e, (((s6) this.f12623a.get(this.d)).f12566c.r() * 2) + 100);
     }
 
     public final void b() {
-        org.telegram.messenger.g0.r(this.f12587e);
-        ValueAnimator valueAnimator = this.f12585b;
+        org.telegram.messenger.g0.r(this.f12626e);
+        ValueAnimator valueAnimator = this.f12624b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f12585b = null;
+            this.f12624b = null;
         }
-        int i7 = this.f12586c;
-        ArrayList arrayList = this.f12584a;
+        int i7 = this.f12625c;
+        ArrayList arrayList = this.f12623a;
         if (i7 != -1) {
             s6 s6Var = (s6) arrayList.get(i7);
-            mh0 mh0Var = s6Var.f12525c;
-            mh0Var.M(0);
-            mh0Var.stop();
-            s6Var.f12528n = 0.0f;
+            oh0 oh0Var = s6Var.f12566c;
+            oh0Var.M(0);
+            oh0Var.stop();
+            s6Var.f12569n = 0.0f;
             s6Var.invalidate();
         }
         s6 s6Var2 = (s6) arrayList.get(this.d);
-        mh0 mh0Var2 = s6Var2.f12525c;
-        mh0Var2.M(0);
-        mh0Var2.stop();
-        s6Var2.f12528n = 0.0f;
+        oh0 oh0Var2 = s6Var2.f12566c;
+        oh0Var2.M(0);
+        oh0Var2.stop();
+        s6Var2.f12569n = 0.0f;
         s6Var2.invalidate();
         c();
     }
@@ -149,14 +149,14 @@ public final class t6 extends FrameLayout {
     public final void c() {
         int i7 = this.d + 1;
         this.d = i7;
-        ArrayList arrayList = this.f12584a;
+        ArrayList arrayList = this.f12623a;
         if (i7 >= arrayList.size()) {
             this.d = 0;
         }
-        int i10 = this.f12586c + 1;
-        this.f12586c = i10;
+        int i10 = this.f12625c + 1;
+        this.f12625c = i10;
         if (i10 >= arrayList.size()) {
-            this.f12586c = 0;
+            this.f12625c = 0;
         }
     }
 }

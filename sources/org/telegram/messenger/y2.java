@@ -4,9 +4,9 @@ import android.content.SharedPreferences;
 import android.util.Pair;
 import java.util.HashMap;
 public abstract class y2 {
-    public final long f28071a;
-    public HashMap f28072b;
-    public HashMap f28073c;
+    public final long f28099a;
+    public HashMap f28100b;
+    public HashMap f28101c;
     public HashMap d;
 
     public y2() {
@@ -17,10 +17,10 @@ public abstract class y2 {
         if (!j(pair.second)) {
             return;
         }
-        if (this.f28072b == null) {
-            this.f28072b = new HashMap();
+        if (this.f28100b == null) {
+            this.f28100b = new HashMap();
         }
-        this.f28072b.put(pair, obj);
+        this.f28100b.put(pair, obj);
     }
 
     public boolean b(Object obj) {
@@ -30,12 +30,12 @@ public abstract class y2 {
     public final void c(int i7, Object obj, x10 x10Var) {
         Object obj2;
         Pair pair = new Pair(Integer.valueOf(i7), obj);
-        HashMap hashMap = this.f28073c;
+        HashMap hashMap = this.f28101c;
         if (hashMap != null && hashMap.get(pair) != null) {
             g0.g3(new yf(this, pair, x10Var, 11));
             return;
         }
-        HashMap hashMap2 = this.f28072b;
+        HashMap hashMap2 = this.f28100b;
         if (hashMap2 == null) {
             obj2 = null;
         } else {
@@ -75,10 +75,10 @@ public abstract class y2 {
         }
         if ((this instanceof lo) && l10 == null) {
             int hashCode = pair.hashCode();
-            SharedPreferences sharedPreferences = ((lo) this).f25414e.h7;
+            SharedPreferences sharedPreferences = ((lo) this).f25442e.h7;
             l10 = Long.valueOf(sharedPreferences.getLong("effects_last_" + hashCode, 0L));
         }
-        if (l10 != null && System.currentTimeMillis() - l10.longValue() < this.f28071a) {
+        if (l10 != null && System.currentTimeMillis() - l10.longValue() < this.f28099a) {
             return false;
         }
         return true;
@@ -89,7 +89,7 @@ public abstract class y2 {
     }
 
     public y2(int i7) {
-        this.f28071a = i7;
+        this.f28099a = i7;
     }
 
     public void h(int i7, long j3) {

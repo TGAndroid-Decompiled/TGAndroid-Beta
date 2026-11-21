@@ -12,7 +12,7 @@ public abstract class p6 {
         String str = j0Var.d;
         String str2 = j0Var2.d;
         if (str == null && str2 == null) {
-            if (Objects.equals(Objects.toString(j0Var.f10228a), Objects.toString(j0Var2.f10228a)) && Objects.equals(j0Var.f10230c, j0Var2.f10230c) && Boolean.valueOf(j0Var.f10231e).equals(Boolean.valueOf(j0Var2.f10231e)) && Boolean.valueOf(j0Var.f10232f).equals(Boolean.valueOf(j0Var2.f10232f))) {
+            if (Objects.equals(Objects.toString(j0Var.f10257a), Objects.toString(j0Var2.f10257a)) && Objects.equals(j0Var.f10259c, j0Var2.f10259c) && Boolean.valueOf(j0Var.f10260e).equals(Boolean.valueOf(j0Var2.f10260e)) && Boolean.valueOf(j0Var.f10261f).equals(Boolean.valueOf(j0Var2.f10261f))) {
                 return true;
             }
             return false;
@@ -28,6 +28,6 @@ public abstract class p6 {
         if (str != null) {
             return str.hashCode();
         }
-        return Objects.hash(j0Var.f10228a, j0Var.f10230c, Boolean.valueOf(j0Var.f10231e), Boolean.valueOf(j0Var.f10232f));
+        return Objects.hash(j0Var.f10257a, j0Var.f10259c, Boolean.valueOf(j0Var.f10260e), Boolean.valueOf(j0Var.f10261f));
     }
 }

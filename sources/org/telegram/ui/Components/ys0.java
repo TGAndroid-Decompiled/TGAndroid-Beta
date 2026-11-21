@@ -1,224 +1,151 @@
 package org.telegram.ui.Components;
 
+import android.util.SparseArray;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-public final class ys0 implements org.telegram.messenger.fs {
-    public boolean E;
-    public final xi.e F;
-    public boolean f42630f;
+import java.util.HashMap;
+public final class ys0 {
+    public boolean f42526g;
     public boolean h;
-    public final vs0[] f42631n;
-    public final long f42632r;
-    public final long f42633s;
-    public long f42634w;
-    public final org.telegram.ui.ActionBar.h2 f42635x;
-    public int[] f42626a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public int[] f42627b = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final int[] f42628c = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final int[] d = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final int[] f42629e = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    public final ArrayList f42636y = new ArrayList();
+    public int f42529k;
+    public int f42531m;
+    public int f42532n;
+    public boolean f42533o;
+    public int f42534p;
+    public boolean f42536r;
+    public int f42538t;
+    public int f42539u;
+    public boolean v;
+    public boolean f42540w;
+    public final ArrayList f42521a = new ArrayList();
+    public final SparseArray[] f42522b = {new SparseArray(), new SparseArray()};
+    public final ArrayList f42523c = new ArrayList();
+    public final HashMap d = new HashMap();
+    public final ArrayList f42524e = new ArrayList();
+    public final int[] f42525f = {0, 0};
+    public final boolean[] f42527i = {false, true};
+    public final int[] f42528j = {0, 0};
+    public boolean f42530l = true;
+    public int f42535q = 0;
+    public final ArrayList f42537s = new ArrayList();
+    public v4.w0 f42541x = new v4.w0();
 
-    public ys0(org.telegram.ui.ActionBar.h2 h2Var) {
-        int i7;
-        TLRPC.ChatFull P0;
-        this.f42635x = h2Var;
-        if (h2Var instanceof zg) {
-            zg zgVar = (zg) h2Var;
-            long a10 = zgVar.a();
-            this.f42632r = a10;
-            this.f42634w = zgVar.M();
-            this.f42633s = zgVar.d();
-            if (a10 != h2Var.getUserConfig().e()) {
-                h2Var.getMessagesController().I1().f(a10, new org.telegram.messenger.x10(this) {
-                    public final ys0 f42180b;
-
-                    {
-                        this.f42180b = this;
-                    }
-
-                    @Override
-                    public final void a(Object obj) {
-                        Boolean bool = (Boolean) obj;
-                        switch (r2) {
-                            case 0:
-                                ys0 ys0Var = this.f42180b;
-                                ArrayList arrayList = ys0Var.f42636y;
-                                boolean booleanValue = bool.booleanValue();
-                                ys0Var.f42630f = booleanValue;
-                                ys0Var.h = true;
-                                if (booleanValue) {
-                                    int size = arrayList.size();
-                                    for (int i10 = 0; i10 < size; i10++) {
-                                        ((zs0) arrayList.get(i10)).R();
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                ys0 ys0Var2 = this.f42180b;
-                                ArrayList arrayList2 = ys0Var2.f42636y;
-                                boolean booleanValue2 = bool.booleanValue();
-                                ys0Var2.f42630f = booleanValue2;
-                                ys0Var2.h = true;
-                                if (booleanValue2) {
-                                    int size2 = arrayList2.size();
-                                    for (int i11 = 0; i11 < size2; i11++) {
-                                        ((zs0) arrayList2.get(i11)).R();
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-            }
-        } else if (h2Var instanceof ProfileActivity) {
-            ProfileActivity profileActivity = (ProfileActivity) h2Var;
-            if (profileActivity.f43562h1) {
-                this.f42632r = profileActivity.getUserConfig().e();
-                this.f42633s = profileActivity.a();
+    public final boolean a(org.telegram.messenger.fj fjVar, int i7, boolean z10, boolean z11) {
+        SparseArray[] sparseArrayArr = this.f42522b;
+        SparseArray sparseArray = sparseArrayArr[i7];
+        int e12 = fjVar.e1();
+        String str = fjVar.Y;
+        if (sparseArray.indexOfKey(e12) >= 0) {
+            return false;
+        }
+        HashMap hashMap = this.d;
+        ArrayList arrayList = (ArrayList) hashMap.get(str);
+        if (arrayList == null) {
+            arrayList = new ArrayList();
+            hashMap.put(str, arrayList);
+            ArrayList arrayList2 = this.f42523c;
+            if (z10) {
+                arrayList2.add(0, str);
             } else {
-                long a11 = profileActivity.a();
-                this.f42632r = a11;
-                this.f42633s = profileActivity.f43555g1;
-                TLRPC.ChatFull chatFull = profileActivity.f43657v2;
-                if (chatFull != null) {
-                    c(chatFull);
-                }
-                if (a11 != h2Var.getUserConfig().e()) {
-                    h2Var.getMessagesController().I1().f(a11, new org.telegram.messenger.x10(this) {
-                        public final ys0 f42180b;
-
-                        {
-                            this.f42180b = this;
-                        }
-
-                        @Override
-                        public final void a(Object obj) {
-                            Boolean bool = (Boolean) obj;
-                            switch (r2) {
-                                case 0:
-                                    ys0 ys0Var = this.f42180b;
-                                    ArrayList arrayList = ys0Var.f42636y;
-                                    boolean booleanValue = bool.booleanValue();
-                                    ys0Var.f42630f = booleanValue;
-                                    ys0Var.h = true;
-                                    if (booleanValue) {
-                                        int size = arrayList.size();
-                                        for (int i10 = 0; i10 < size; i10++) {
-                                            ((zs0) arrayList.get(i10)).R();
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    ys0 ys0Var2 = this.f42180b;
-                                    ArrayList arrayList2 = ys0Var2.f42636y;
-                                    boolean booleanValue2 = bool.booleanValue();
-                                    ys0Var2.f42630f = booleanValue2;
-                                    ys0Var2.h = true;
-                                    if (booleanValue2) {
-                                        int size2 = arrayList2.size();
-                                        for (int i11 = 0; i11 < size2; i11++) {
-                                            ((zs0) arrayList2.get(i11)).R();
-                                        }
-                                        return;
-                                    }
-                                    return;
-                            }
-                        }
-                    });
-                }
-            }
-        } else if (h2Var instanceof i90) {
-            this.f42632r = ((i90) h2Var).f36078e;
-        } else if (h2Var instanceof org.telegram.ui.cx) {
-            this.f42632r = h2Var.getUserConfig().e();
-        }
-        if (this.f42634w == 0 && org.telegram.messenger.n5.z(this.f42632r) && (P0 = h2Var.getMessagesController().P0(-this.f42632r)) != null) {
-            long j3 = P0.migrated_from_chat_id;
-            if (j3 != 0) {
-                this.f42634w = -j3;
+                arrayList2.add(str);
             }
         }
-        this.f42631n = new vs0[9];
-        int i10 = 0;
-        while (true) {
-            vs0[] vs0VarArr = this.f42631n;
-            if (i10 >= vs0VarArr.length) {
-                break;
-            }
-            vs0VarArr[i10] = new vs0();
-            vs0 vs0Var = this.f42631n[i10];
-            if (org.telegram.messenger.n5.C(this.f42632r)) {
-                i7 = Integer.MIN_VALUE;
-            } else {
-                i7 = Integer.MAX_VALUE;
-            }
-            vs0Var.f41419j[0] = i7;
-            this.f42631n[i10].f41419j[1] = Integer.MAX_VALUE;
-            i10++;
+        ArrayList arrayList3 = this.f42521a;
+        if (z10) {
+            arrayList.add(0, fjVar);
+            arrayList3.add(0, fjVar);
+        } else {
+            arrayList.add(fjVar);
+            arrayList3.add(fjVar);
         }
-        a();
-        org.telegram.ui.ActionBar.h2 h2Var2 = this.f42635x;
-        if (h2Var2 == null) {
-            this.F = null;
-            return;
+        sparseArrayArr[i7].put(fjVar.e1(), fjVar);
+        int[] iArr = this.f42528j;
+        if (!z11) {
+            if (fjVar.e1() > 0) {
+                iArr[i7] = Math.min(fjVar.e1(), iArr[i7]);
+                this.f42529k = Math.max(fjVar.e1(), this.f42529k);
+            }
+        } else {
+            iArr[i7] = Math.max(fjVar.e1(), iArr[i7]);
+            this.f42529k = Math.min(fjVar.e1(), this.f42529k);
         }
-        org.telegram.messenger.ks notificationCenter = h2Var2.getNotificationCenter();
-        notificationCenter.getClass();
-        xi.e eVar = new xi.e(notificationCenter, this);
-        eVar.c(org.telegram.messenger.ks.X);
-        eVar.c(org.telegram.messenger.ks.W);
-        eVar.c(1);
-        eVar.c(org.telegram.messenger.ks.K);
-        eVar.c(org.telegram.messenger.ks.V);
-        eVar.c(org.telegram.messenger.ks.f25210w);
-        eVar.c(org.telegram.messenger.ks.m0);
-        eVar.c(org.telegram.messenger.ks.T);
-        eVar.c(org.telegram.messenger.ks.Y1);
-        eVar.c(org.telegram.messenger.ks.A5);
-        eVar.c(org.telegram.messenger.ks.f25131i3);
-        this.F = eVar;
+        if (!this.v && org.telegram.messenger.fj.L4(fjVar.f23993k)) {
+            this.v = true;
+        }
+        if (!this.f42540w && org.telegram.messenger.fj.S3(fjVar.f23993k)) {
+            this.f42540w = true;
+        }
+        return true;
     }
 
-    public final void a() {
-        org.telegram.ui.ActionBar.h2 h2Var = this.f42635x;
-        if (h2Var != null) {
-            org.telegram.messenger.ri mediaDataController = h2Var.getMediaDataController();
-            long j3 = this.f42633s;
-            mediaDataController.g0(this.f42632r, h2Var.getClassGuid(), j3);
-            if (this.f42634w != 0) {
-                h2Var.getMediaDataController().g0(this.f42634w, h2Var.getClassGuid(), this.f42633s);
-            }
+    public final org.telegram.messenger.fj b(int i7, int i10) {
+        SparseArray[] sparseArrayArr = this.f42522b;
+        org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) sparseArrayArr[i10].get(i7);
+        if (fjVar == null) {
+            return null;
+        }
+        String str = fjVar.Y;
+        HashMap hashMap = this.d;
+        ArrayList arrayList = (ArrayList) hashMap.get(str);
+        if (arrayList == null) {
+            return null;
+        }
+        arrayList.remove(fjVar);
+        this.f42521a.remove(fjVar);
+        sparseArrayArr[i10].remove(fjVar.e1());
+        if (arrayList.isEmpty()) {
+            hashMap.remove(str);
+            this.f42523c.remove(str);
+        }
+        int[] iArr = this.f42525f;
+        int i11 = iArr[i10] - 1;
+        iArr[i10] = i11;
+        if (i11 < 0) {
+            iArr[i10] = 0;
+        }
+        return fjVar;
+    }
+
+    public final ArrayList c() {
+        if (this.f42536r) {
+            return this.f42537s;
+        }
+        return this.f42521a;
+    }
+
+    public final int d() {
+        if (this.f42536r) {
+            return this.f42538t;
+        }
+        return this.f42531m;
+    }
+
+    public final int e() {
+        int[] iArr = this.f42525f;
+        return iArr[0] + iArr[1];
+    }
+
+    public final void f(int i7, int i10, int i11) {
+        SparseArray[] sparseArrayArr = this.f42522b;
+        org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) sparseArrayArr[i7].get(i10);
+        if (fjVar != null) {
+            sparseArrayArr[i7].remove(i10);
+            sparseArrayArr[i7].put(i11, fjVar);
+            fjVar.f23993k.f28452id = i11;
+            int[] iArr = this.f42528j;
+            iArr[i7] = Math.min(i11, iArr[i7]);
         }
     }
 
-    public final void b(org.telegram.ui.ActionBar.h2 h2Var) {
-        if (h2Var == this.f42635x) {
-            this.f42636y.clear();
-            xi.e eVar = this.F;
-            if (eVar != null) {
-                eVar.b();
+    public final void g(boolean z10) {
+        if (this.f42536r != z10) {
+            this.f42536r = z10;
+            if (z10) {
+                this.f42538t = this.f42531m;
+                this.f42539u = this.f42532n;
+                ArrayList arrayList = this.f42537s;
+                arrayList.clear();
+                arrayList.addAll(this.f42521a);
             }
         }
-    }
-
-    public final void c(TLRPC.ChatFull chatFull) {
-        org.telegram.ui.ActionBar.h2 h2Var = this.f42635x;
-        if (h2Var != null && chatFull != null) {
-            long j3 = chatFull.migrated_from_chat_id;
-            if (j3 != 0 && this.f42634w == 0) {
-                this.f42634w = -j3;
-                h2Var.getMediaDataController().g0(this.f42634w, h2Var.getClassGuid(), this.f42633s);
-            }
-        }
-    }
-
-    @Override
-    public final void didReceivedNotification(int r24, int r25, java.lang.Object... r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ys0.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 }

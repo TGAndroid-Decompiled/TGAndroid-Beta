@@ -1,31 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class ov0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38176a;
-    public final View f38177b;
-    public final FrameLayout f38178c;
+import android.content.Context;
+public final class ov0 extends q9 implements org.telegram.messenger.fs {
+    public final int H;
+    public int I;
+    public String J;
 
-    public ov0(FrameLayout frameLayout, View view, int i7) {
-        this.f38176a = i7;
-        this.f38178c = frameLayout;
-        this.f38177b = view;
+    public ov0(Context context, int i7) {
+        super(context);
+        this.J = "tg_placeholders_android";
+        this.H = i7;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38176a) {
-            case 0:
-                pv0 pv0Var = (pv0) this.f38178c;
-                pv0Var.f38569b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pv0Var.invalidate();
-                ((el0) this.f38177b).invalidate();
-                return;
-            default:
-                ((g71) this.f38178c).B(this.f38177b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == org.telegram.messenger.ks.f25253y0) {
+            if (this.J.equals((String) objArr[0])) {
+                v();
+            }
         }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        v();
+        org.telegram.messenger.ks.f(this.H).c(this, org.telegram.messenger.ks.f25253y0);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.ks.f(this.H).n(this, org.telegram.messenger.ks.f25253y0);
+    }
+
+    public void setStickerNum(int i7) {
+        if (this.I != i7) {
+            this.I = i7;
+            v();
+        }
+    }
+
+    public void setStickerPackName(String str) {
+        this.J = str;
+    }
+
+    public final void v() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ov0.v():void");
     }
 }

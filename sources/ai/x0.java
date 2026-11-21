@@ -1,104 +1,65 @@
 package ai;
 
-import fi.y6;
-import java.util.ArrayList;
+import android.content.SharedPreferences;
+import android.util.Log;
+import java.io.File;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
-import org.telegram.messenger.gd;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.lc;
+import java.util.concurrent.TimeUnit;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Dictation.DictationLid;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.cx;
 public final class x0 implements Runnable {
-    public final int f1606a = 0;
-    public final int f1607b;
-    public final long f1608c;
-    public final boolean d;
-    public final Object f1609e;
-    public final Object f1610f;
+    public final int f1601a;
+    public final File f1602b;
 
-    public x0(c1 c1Var, boolean z10, float[] fArr, long j3, int i7) {
-        this.f1609e = c1Var;
-        this.d = z10;
-        this.f1610f = fArr;
-        this.f1608c = j3;
-        this.f1607b = i7;
+    public x0(File file, int i7) {
+        this.f1601a = i7;
+        this.f1602b = file;
     }
 
     @Override
     public final void run() {
-        TL_stories.StoryItem storyItem;
-        int i7 = this.f1606a;
-        float[] fArr = null;
-        r2 = null;
-        y6 a10 = null;
-        boolean z10 = this.d;
-        long j3 = this.f1608c;
-        int i10 = this.f1607b;
-        Object obj = this.f1610f;
-        Object obj2 = this.f1609e;
-        switch (i7) {
+        CountDownLatch e10;
+        switch (this.f1601a) {
             case 0:
-                c1 c1Var = (c1) obj2;
-                float[] fArr2 = (float[]) obj;
-                ExecutorService executorService = DictationLid.f43030a;
-                if (z10) {
-                    fArr = fArr2;
+                File file = this.f1602b;
+                ExecutorService executorService = DictationLid.f43071a;
+                SharedPreferences g12 = mp.g1();
+                long[] jArr = {0};
+                try {
+                    if (l1.d() && (e10 = l1.e()) != null) {
+                        try {
+                            e10.await(20000L, TimeUnit.MILLISECONDS);
+                        } catch (InterruptedException unused) {
+                        }
+                    }
+                    TLRPC.TL_transcriptionModel f10 = l1.f(l1.a(), "tinylid");
+                    if (f10 == null && !file.exists()) {
+                        Log.d("Dictation", "tinylid: not on the server");
+                    }
+                    int c10 = l1.c(f10, file, false, new a1.c(jArr, 8));
+                    if (c10 >= 0) {
+                        g12.edit().putLong("tinylid_checked", System.currentTimeMillis()).apply();
+                    }
+                    if (c10 > 0) {
+                        DictationLid.f43074e = true;
+                        DictationLid.f43076g = true;
+                        DictationLid.f43071a.execute(new x0(file, 2));
+                    }
+                } finally {
+                    try {
+                        return;
+                    } finally {
+                    }
                 }
-                c1Var.a(fArr, j3, i10);
+                return;
+            case 1:
+                DictationLid.g(this.f1602b);
                 return;
             default:
-                LaunchActivity launchActivity = (LaunchActivity) obj2;
-                TLObject tLObject = (TLObject) obj;
-                String str = LaunchActivity.C1;
-                if (tLObject instanceof TL_stories.TL_stories_stories) {
-                    TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
-                    int i11 = 0;
-                    while (true) {
-                        if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f28642id == i10) {
-                                storyItem = tL_stories_stories.stories.get(i11);
-                            } else {
-                                i11++;
-                            }
-                        } else {
-                            storyItem = null;
-                        }
-                    }
-                    if (storyItem != null) {
-                        storyItem.dialogId = j3;
-                        org.telegram.ui.ActionBar.h2 Q = LaunchActivity.Q();
-                        if (Q != null) {
-                            if (Q instanceof cx) {
-                                try {
-                                    a10 = y6.a(((cx) Q).F0.h);
-                                } catch (Exception unused) {
-                                }
-                            }
-                            y6 y6Var = a10;
-                            Q.getOrCreateStoryViewer().B();
-                            ArrayList arrayList = new ArrayList();
-                            arrayList.add(Long.valueOf(j3));
-                            if (z10) {
-                                Q.getOrCreateStoryViewer().f12003w1 = true;
-                            }
-                            Q.getOrCreateStoryViewer().M(launchActivity, storyItem, arrayList, 0, null, null, y6Var, false);
-                            return;
-                        }
-                        return;
-                    }
-                }
-                lc.Y().Q(2131624012, 36, gd.M0(2131744371, null)).k(false);
+                DictationLid.g(this.f1602b);
                 return;
         }
-    }
-
-    public x0(LaunchActivity launchActivity, TLObject tLObject, int i7, long j3, boolean z10) {
-        this.f1609e = launchActivity;
-        this.f1610f = tLObject;
-        this.f1607b = i7;
-        this.f1608c = j3;
-        this.d = z10;
     }
 }

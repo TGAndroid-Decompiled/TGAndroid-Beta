@@ -13,8 +13,8 @@ public final class tv extends fi.q {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
-        kVar = ((org.telegram.ui.ActionBar.h2) this.P0).actionBar;
-        if (!kVar.y() && super.dispatchTouchEvent(motionEvent)) {
+        kVar = ((org.telegram.ui.ActionBar.g2) this.P0).actionBar;
+        if (!kVar.x() && super.dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return false;

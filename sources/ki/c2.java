@@ -1,52 +1,397 @@
 package ki;
 
-import org.telegram.messenger.mp;
-import org.telegram.messenger.voip.VoIPGroupNotification;
-import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.p5;
-import org.telegram.ui.LaunchActivity;
 public final class c2 implements RequestDelegate {
-    public final int f18601a;
-    public final int f18602b;
+    public final int f18635a;
+    public final s2 f18636b;
 
-    public c2(int i7, int i10) {
-        this.f18601a = i10;
-        this.f18602b = i7;
+    public c2(s2 s2Var, int i7) {
+        this.f18635a = i7;
+        this.f18636b = s2Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f18601a;
-        int i10 = this.f18602b;
-        switch (i7) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f18635a) {
             case 0:
-                org.telegram.messenger.g0.g3(new jg.x(i10, 1));
+                org.telegram.messenger.g0.g3(new ji.i(10, this.f18636b, tL_error));
                 return;
             case 1:
-                VoIPGroupNotification.lambda$decline$3(i10, tLObject, tL_error);
+                final s2 s2Var = this.f18636b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                s2 s2Var2 = s2Var;
+                                if (tL_error != null) {
+                                    s2Var2.getClass();
+                                    return;
+                                }
+                                e4 e4Var = s2Var2.f18960x0;
+                                if (e4Var != null) {
+                                    e4Var.a(tLObject);
+                                    s2Var2.s();
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                s2 s2Var3 = s2Var;
+                                if (tL_error != null) {
+                                    s2Var3.getClass();
+                                    return;
+                                }
+                                e4 e4Var2 = s2Var3.f18960x0;
+                                if (e4Var2 != null) {
+                                    e4Var2.a(tLObject);
+                                    s2Var3.s();
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                s2 s2Var4 = s2Var;
+                                if (tL_error != null) {
+                                    s2Var4.getClass();
+                                    return;
+                                }
+                                e4 e4Var3 = s2Var4.f18960x0;
+                                if (e4Var3 != null) {
+                                    e4Var3.a(tLObject);
+                                    s2Var4.s();
+                                    return;
+                                }
+                                return;
+                            case 3:
+                                s2 s2Var5 = s2Var;
+                                if (tL_error != null) {
+                                    s2Var5.getClass();
+                                    return;
+                                }
+                                e4 e4Var4 = s2Var5.f18960x0;
+                                if (e4Var4 != null) {
+                                    e4Var4.a(tLObject);
+                                    s2Var5.s();
+                                    return;
+                                }
+                                return;
+                            default:
+                                s2 s2Var6 = s2Var;
+                                if (tL_error != null) {
+                                    s2Var6.getClass();
+                                    return;
+                                }
+                                e4 e4Var5 = s2Var6.f18960x0;
+                                if (e4Var5 != null) {
+                                    e4Var5.a(tLObject);
+                                    s2Var6.s();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 2:
-                VoIPPreNotificationService.lambda$decline$4(i10, tLObject, tL_error);
+                final s2 s2Var2 = this.f18636b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                s2 s2Var22 = s2Var2;
+                                if (tL_error != null) {
+                                    s2Var22.getClass();
+                                    return;
+                                }
+                                e4 e4Var = s2Var22.f18960x0;
+                                if (e4Var != null) {
+                                    e4Var.a(tLObject);
+                                    s2Var22.s();
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                s2 s2Var3 = s2Var2;
+                                if (tL_error != null) {
+                                    s2Var3.getClass();
+                                    return;
+                                }
+                                e4 e4Var2 = s2Var3.f18960x0;
+                                if (e4Var2 != null) {
+                                    e4Var2.a(tLObject);
+                                    s2Var3.s();
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                s2 s2Var4 = s2Var2;
+                                if (tL_error != null) {
+                                    s2Var4.getClass();
+                                    return;
+                                }
+                                e4 e4Var3 = s2Var4.f18960x0;
+                                if (e4Var3 != null) {
+                                    e4Var3.a(tLObject);
+                                    s2Var4.s();
+                                    return;
+                                }
+                                return;
+                            case 3:
+                                s2 s2Var5 = s2Var2;
+                                if (tL_error != null) {
+                                    s2Var5.getClass();
+                                    return;
+                                }
+                                e4 e4Var4 = s2Var5.f18960x0;
+                                if (e4Var4 != null) {
+                                    e4Var4.a(tLObject);
+                                    s2Var5.s();
+                                    return;
+                                }
+                                return;
+                            default:
+                                s2 s2Var6 = s2Var2;
+                                if (tL_error != null) {
+                                    s2Var6.getClass();
+                                    return;
+                                }
+                                e4 e4Var5 = s2Var6.f18960x0;
+                                if (e4Var5 != null) {
+                                    e4Var5.a(tLObject);
+                                    s2Var6.s();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 3:
-                org.telegram.messenger.g0.g3(new p5(i10, tLObject));
+                final s2 s2Var3 = this.f18636b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                s2 s2Var22 = s2Var3;
+                                if (tL_error != null) {
+                                    s2Var22.getClass();
+                                    return;
+                                }
+                                e4 e4Var = s2Var22.f18960x0;
+                                if (e4Var != null) {
+                                    e4Var.a(tLObject);
+                                    s2Var22.s();
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                s2 s2Var32 = s2Var3;
+                                if (tL_error != null) {
+                                    s2Var32.getClass();
+                                    return;
+                                }
+                                e4 e4Var2 = s2Var32.f18960x0;
+                                if (e4Var2 != null) {
+                                    e4Var2.a(tLObject);
+                                    s2Var32.s();
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                s2 s2Var4 = s2Var3;
+                                if (tL_error != null) {
+                                    s2Var4.getClass();
+                                    return;
+                                }
+                                e4 e4Var3 = s2Var4.f18960x0;
+                                if (e4Var3 != null) {
+                                    e4Var3.a(tLObject);
+                                    s2Var4.s();
+                                    return;
+                                }
+                                return;
+                            case 3:
+                                s2 s2Var5 = s2Var3;
+                                if (tL_error != null) {
+                                    s2Var5.getClass();
+                                    return;
+                                }
+                                e4 e4Var4 = s2Var5.f18960x0;
+                                if (e4Var4 != null) {
+                                    e4Var4.a(tLObject);
+                                    s2Var5.s();
+                                    return;
+                                }
+                                return;
+                            default:
+                                s2 s2Var6 = s2Var3;
+                                if (tL_error != null) {
+                                    s2Var6.getClass();
+                                    return;
+                                }
+                                e4 e4Var5 = s2Var6.f18960x0;
+                                if (e4Var5 != null) {
+                                    e4Var5.a(tLObject);
+                                    s2Var6.s();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             case 4:
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    mp.u1(i10).V3((TLRPC.TL_updates) tLObject, false);
-                    return;
-                }
-                return;
-            case 5:
-                String str = LaunchActivity.C1;
-                org.telegram.messenger.g0.g3(new p5(i10, 2, tLObject));
+                final s2 s2Var4 = this.f18636b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                s2 s2Var22 = s2Var4;
+                                if (tL_error != null) {
+                                    s2Var22.getClass();
+                                    return;
+                                }
+                                e4 e4Var = s2Var22.f18960x0;
+                                if (e4Var != null) {
+                                    e4Var.a(tLObject);
+                                    s2Var22.s();
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                s2 s2Var32 = s2Var4;
+                                if (tL_error != null) {
+                                    s2Var32.getClass();
+                                    return;
+                                }
+                                e4 e4Var2 = s2Var32.f18960x0;
+                                if (e4Var2 != null) {
+                                    e4Var2.a(tLObject);
+                                    s2Var32.s();
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                s2 s2Var42 = s2Var4;
+                                if (tL_error != null) {
+                                    s2Var42.getClass();
+                                    return;
+                                }
+                                e4 e4Var3 = s2Var42.f18960x0;
+                                if (e4Var3 != null) {
+                                    e4Var3.a(tLObject);
+                                    s2Var42.s();
+                                    return;
+                                }
+                                return;
+                            case 3:
+                                s2 s2Var5 = s2Var4;
+                                if (tL_error != null) {
+                                    s2Var5.getClass();
+                                    return;
+                                }
+                                e4 e4Var4 = s2Var5.f18960x0;
+                                if (e4Var4 != null) {
+                                    e4Var4.a(tLObject);
+                                    s2Var5.s();
+                                    return;
+                                }
+                                return;
+                            default:
+                                s2 s2Var6 = s2Var4;
+                                if (tL_error != null) {
+                                    s2Var6.getClass();
+                                    return;
+                                }
+                                e4 e4Var5 = s2Var6.f18960x0;
+                                if (e4Var5 != null) {
+                                    e4Var5.a(tLObject);
+                                    s2Var6.s();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                String str2 = LaunchActivity.C1;
-                org.telegram.messenger.g0.g3(new p5(i10, 1, tLObject));
+                final s2 s2Var5 = this.f18636b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                s2 s2Var22 = s2Var5;
+                                if (tL_error != null) {
+                                    s2Var22.getClass();
+                                    return;
+                                }
+                                e4 e4Var = s2Var22.f18960x0;
+                                if (e4Var != null) {
+                                    e4Var.a(tLObject);
+                                    s2Var22.s();
+                                    return;
+                                }
+                                return;
+                            case 1:
+                                s2 s2Var32 = s2Var5;
+                                if (tL_error != null) {
+                                    s2Var32.getClass();
+                                    return;
+                                }
+                                e4 e4Var2 = s2Var32.f18960x0;
+                                if (e4Var2 != null) {
+                                    e4Var2.a(tLObject);
+                                    s2Var32.s();
+                                    return;
+                                }
+                                return;
+                            case 2:
+                                s2 s2Var42 = s2Var5;
+                                if (tL_error != null) {
+                                    s2Var42.getClass();
+                                    return;
+                                }
+                                e4 e4Var3 = s2Var42.f18960x0;
+                                if (e4Var3 != null) {
+                                    e4Var3.a(tLObject);
+                                    s2Var42.s();
+                                    return;
+                                }
+                                return;
+                            case 3:
+                                s2 s2Var52 = s2Var5;
+                                if (tL_error != null) {
+                                    s2Var52.getClass();
+                                    return;
+                                }
+                                e4 e4Var4 = s2Var52.f18960x0;
+                                if (e4Var4 != null) {
+                                    e4Var4.a(tLObject);
+                                    s2Var52.s();
+                                    return;
+                                }
+                                return;
+                            default:
+                                s2 s2Var6 = s2Var5;
+                                if (tL_error != null) {
+                                    s2Var6.getClass();
+                                    return;
+                                }
+                                e4 e4Var5 = s2Var6.f18960x0;
+                                if (e4Var5 != null) {
+                                    e4Var5.a(tLObject);
+                                    s2Var6.s();
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

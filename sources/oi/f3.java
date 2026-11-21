@@ -1,94 +1,68 @@
 package oi;
 
 import android.view.View;
-import org.telegram.messenger.w7;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class f3 implements w4 {
-    public final r f22059a;
-    public final a f22060b;
-    public final s3 f22061c;
+public final class f3 implements x4 {
+    public final r f22121a;
+    public final a f22122b;
+    public final t3 f22123c;
 
-    public f3(a aVar, r rVar, s3 s3Var) {
-        this.f22061c = s3Var;
-        this.f22059a = rVar;
-        this.f22060b = aVar;
+    public f3(a aVar, r rVar, t3 t3Var) {
+        this.f22123c = t3Var;
+        this.f22121a = rVar;
+        this.f22122b = aVar;
     }
 
     @Override
     public final void a() {
-        r rVar = this.f22059a;
-        rVar.f22258a = 3;
-        s3 s3Var = this.f22061c;
-        s3Var.f22325h4.remove(rVar);
-        s3Var.t4(this.f22060b, rVar);
-        s3Var.f22334p3.onContentChanged();
+        r rVar = this.f22121a;
+        rVar.f22341a = 3;
+        t3 t3Var = this.f22123c;
+        t3Var.f22416h4.remove(rVar);
+        int indexOf = t3Var.f22433t3.indexOf(this.f22122b);
+        if (indexOf >= 0) {
+            t3Var.f22433t3.remove(indexOf);
+            t3Var.f35796g3.O(true);
+        }
+        t3Var.f22425p3.onContentChanged();
     }
 
     @Override
-    public final void b(int i7, int i10) {
-        if (i7 > 0 && i10 > 0) {
-            r rVar = this.f22059a;
-            rVar.f22265j = i7;
-            rVar.f22266k = i10;
-        }
-        View C1 = this.f22061c.C1(this.f22060b);
-        if (C1 instanceof r4) {
-            C1.requestLayout();
-            C1.invalidate();
-        }
-    }
-
-    @Override
-    public final void c(TLRPC.Photo photo) {
-        int i7;
-        int i10;
-        r rVar = this.f22059a;
-        rVar.f22263g = photo;
-        rVar.f22258a = 2;
-        TLRPC.PhotoSize w10 = w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false);
-        if (w10 != null && (i7 = w10.f28428w) > 0 && (i10 = w10.h) > 0) {
-            rVar.f22265j = i7;
-            rVar.f22266k = i10;
-        }
-        a aVar = this.f22060b;
-        TL_iv.PageBlock Q3 = s3.Q3(aVar, rVar);
-        if (Q3 instanceof TL_iv.pageBlockPhoto) {
-            ((TL_iv.pageBlockPhoto) Q3).photo_id = photo.f28427id;
-        }
-        s3 s3Var = this.f22061c;
-        s3Var.f22325h4.remove(rVar);
-        s3Var.q4(aVar);
-        s3Var.f22334p3.onContentChanged();
-    }
-
-    @Override
-    public final void d(TLRPC.Document document) {
-        r rVar = this.f22059a;
+    public final void f(TLRPC.Document document) {
+        r rVar = this.f22121a;
         rVar.h = document;
-        rVar.f22258a = 2;
-        a aVar = this.f22060b;
-        TL_iv.PageBlock Q3 = s3.Q3(aVar, rVar);
-        if (Q3 instanceof TL_iv.pageBlockVideo) {
-            ((TL_iv.pageBlockVideo) Q3).video_id = document.f28409id;
+        rVar.f22347i = document;
+        rVar.f22341a = 2;
+        TL_iv.PageBlock pageBlock = this.f22122b.f21932b;
+        if (pageBlock instanceof TL_iv.pageBlockAudio) {
+            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f28437id;
         }
-        s3 s3Var = this.f22061c;
-        s3Var.f22325h4.remove(rVar);
-        s3Var.q4(aVar);
-        s3Var.f22334p3.onContentChanged();
+        t3 t3Var = this.f22123c;
+        t3Var.f22416h4.remove(rVar);
+        t3Var.f35796g3.O(false);
+        t3Var.f22425p3.onContentChanged();
     }
 
     @Override
     public final void g(float f10) {
-        this.f22059a.f22262f = f10;
-        a aVar = this.f22060b;
-        s3 s3Var = this.f22061c;
-        View C1 = s3Var.C1(aVar);
-        if (C1 instanceof r4) {
-            C1.requestLayout();
+        this.f22121a.f22345f = f10;
+        a aVar = this.f22122b;
+        t3 t3Var = this.f22123c;
+        View C1 = t3Var.C1(aVar);
+        if (C1 instanceof x) {
+            ((x) C1).n(false);
             C1.invalidate();
         }
-        s3Var.f22334p3.onContentChanged();
+        t3Var.f22425p3.onContentChanged();
+    }
+
+    @Override
+    public final void c(TLRPC.Photo photo) {
+    }
+
+    @Override
+    public final void d(TLRPC.Document document) {
     }
 
     @Override
@@ -96,6 +70,6 @@ public final class f3 implements w4 {
     }
 
     @Override
-    public final void f(TLRPC.Document document) {
+    public final void b(int i7, int i10) {
     }
 }

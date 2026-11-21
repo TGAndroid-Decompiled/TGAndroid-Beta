@@ -3,17 +3,17 @@ package l2;
 import a8.la;
 import j$.util.Objects;
 public final class v0 {
-    public final x2.g0 f19564a;
-    public final long f19565b;
-    public final long f19566c;
+    public final x2.g0 f19592a;
+    public final long f19593b;
+    public final long f19594c;
     public final long d;
-    public final long f19567e;
-    public final long f19568f;
-    public final boolean f19569g;
+    public final long f19595e;
+    public final long f19596f;
+    public final boolean f19597g;
     public final boolean h;
-    public final boolean f19570i;
-    public final boolean f19571j;
-    public final boolean f19572k;
+    public final boolean f19598i;
+    public final boolean f19599j;
+    public final boolean f19600k;
 
     public v0(x2.g0 g0Var, long j3, long j10, long j11, long j12, long j13, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
         boolean z15;
@@ -35,31 +35,31 @@ public final class v0 {
             z17 = false;
         }
         la.f(z17);
-        this.f19564a = g0Var;
-        this.f19565b = j3;
-        this.f19566c = j10;
+        this.f19592a = g0Var;
+        this.f19593b = j3;
+        this.f19594c = j10;
         this.d = j11;
-        this.f19567e = j12;
-        this.f19568f = j13;
-        this.f19569g = z10;
+        this.f19595e = j12;
+        this.f19596f = j13;
+        this.f19597g = z10;
         this.h = z11;
-        this.f19570i = z12;
-        this.f19571j = z13;
-        this.f19572k = z14;
+        this.f19598i = z12;
+        this.f19599j = z13;
+        this.f19600k = z14;
     }
 
     public final v0 a(long j3) {
         if (j3 == this.d) {
             return this;
         }
-        return new v0(this.f19564a, this.f19565b, this.f19566c, j3, this.f19567e, this.f19568f, this.f19569g, this.h, this.f19570i, this.f19571j, this.f19572k);
+        return new v0(this.f19592a, this.f19593b, this.f19594c, j3, this.f19595e, this.f19596f, this.f19597g, this.h, this.f19598i, this.f19599j, this.f19600k);
     }
 
     public final v0 b(long j3, long j10) {
-        if (j3 == this.f19565b && j10 == this.f19566c) {
+        if (j3 == this.f19593b && j10 == this.f19594c) {
             return this;
         }
-        return new v0(this.f19564a, j3, j10, this.d, this.f19567e, this.f19568f, this.f19569g, this.h, this.f19570i, this.f19571j, this.f19572k);
+        return new v0(this.f19592a, j3, j10, this.d, this.f19595e, this.f19596f, this.f19597g, this.h, this.f19598i, this.f19599j, this.f19600k);
     }
 
     public final boolean equals(Object obj) {
@@ -68,7 +68,7 @@ public final class v0 {
         }
         if (obj != null && v0.class == obj.getClass()) {
             v0 v0Var = (v0) obj;
-            if (this.f19565b == v0Var.f19565b && this.d == v0Var.d && this.f19567e == v0Var.f19567e && this.f19568f == v0Var.f19568f && this.f19569g == v0Var.f19569g && this.h == v0Var.h && this.f19570i == v0Var.f19570i && this.f19571j == v0Var.f19571j && this.f19572k == v0Var.f19572k && Objects.equals(this.f19564a, v0Var.f19564a)) {
+            if (this.f19593b == v0Var.f19593b && this.d == v0Var.d && this.f19595e == v0Var.f19595e && this.f19596f == v0Var.f19596f && this.f19597g == v0Var.f19597g && this.h == v0Var.h && this.f19598i == v0Var.f19598i && this.f19599j == v0Var.f19599j && this.f19600k == v0Var.f19600k && Objects.equals(this.f19592a, v0Var.f19592a)) {
                 return true;
             }
         }
@@ -76,6 +76,6 @@ public final class v0 {
     }
 
     public final int hashCode() {
-        return ((((((((((((((((((this.f19564a.hashCode() + 527) * 31) + ((int) this.f19565b)) * 31) + ((int) this.d)) * 31) + ((int) this.f19567e)) * 31) + ((int) this.f19568f)) * 31) + (this.f19569g ? 1 : 0)) * 31) + (this.h ? 1 : 0)) * 31) + (this.f19570i ? 1 : 0)) * 31) + (this.f19571j ? 1 : 0)) * 31) + (this.f19572k ? 1 : 0);
+        return ((((((((((((((((((this.f19592a.hashCode() + 527) * 31) + ((int) this.f19593b)) * 31) + ((int) this.d)) * 31) + ((int) this.f19595e)) * 31) + ((int) this.f19596f)) * 31) + (this.f19597g ? 1 : 0)) * 31) + (this.h ? 1 : 0)) * 31) + (this.f19598i ? 1 : 0)) * 31) + (this.f19599j ? 1 : 0)) * 31) + (this.f19600k ? 1 : 0);
     }
 }

@@ -1,24 +1,24 @@
 package jb;
 public final class l {
-    public final q f17367a;
-    public final q f17368b;
+    public final q f17392a;
+    public final q f17393b;
 
     public l(q localOverrideSettings, q remoteSettings) {
         kotlin.jvm.internal.j.e(localOverrideSettings, "localOverrideSettings");
         kotlin.jvm.internal.j.e(remoteSettings, "remoteSettings");
-        this.f17367a = localOverrideSettings;
-        this.f17368b = remoteSettings;
+        this.f17392a = localOverrideSettings;
+        this.f17393b = remoteSettings;
     }
 
     public final double a() {
-        Double d = this.f17367a.d();
+        Double d = this.f17392a.d();
         if (d != null) {
             double doubleValue = d.doubleValue();
             if (0.0d <= doubleValue && doubleValue <= 1.0d) {
                 return doubleValue;
             }
         }
-        Double d2 = this.f17368b.d();
+        Double d2 = this.f17393b.d();
         if (d2 != null) {
             double doubleValue2 = d2.doubleValue();
             if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {

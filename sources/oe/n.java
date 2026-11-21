@@ -3,18 +3,18 @@ package oe;
 import c8.w9;
 import java.util.List;
 public final class n implements me.d {
-    public final String f21817a;
-    public final me.c f21818b;
+    public final String f21842a;
+    public final me.c f21843b;
 
     public n(String str, me.c kind) {
         kotlin.jvm.internal.j.e(kind, "kind");
-        this.f21817a = str;
-        this.f21818b = kind;
+        this.f21842a = str;
+        this.f21843b = kind;
     }
 
     @Override
     public final String a() {
-        return this.f21817a;
+        return this.f21842a;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class n implements me.d {
 
     @Override
     public final w9 e() {
-        return this.f21818b;
+        return this.f21843b;
     }
 
     public final boolean equals(Object obj) {
@@ -41,7 +41,7 @@ public final class n implements me.d {
             return false;
         }
         n nVar = (n) obj;
-        if (kotlin.jvm.internal.j.a(this.f21817a, nVar.f21817a) && kotlin.jvm.internal.j.a(this.f21818b, nVar.f21818b)) {
+        if (kotlin.jvm.internal.j.a(this.f21842a, nVar.f21842a) && kotlin.jvm.internal.j.a(this.f21843b, nVar.f21843b)) {
             return true;
         }
         return false;
@@ -59,7 +59,7 @@ public final class n implements me.d {
 
     @Override
     public final List getAnnotations() {
-        return hd.n.f14145a;
+        return hd.n.f14174a;
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class n implements me.d {
     }
 
     public final int hashCode() {
-        return (this.f21818b.hashCode() * 31) + this.f21817a.hashCode();
+        return (this.f21843b.hashCode() * 31) + this.f21842a.hashCode();
     }
 
     @Override
@@ -87,6 +87,6 @@ public final class n implements me.d {
     }
 
     public final String toString() {
-        return "PrimitiveDescriptor(" + this.f21817a + ')';
+        return "PrimitiveDescriptor(" + this.f21842a + ')';
     }
 }

@@ -6,17 +6,17 @@ import android.text.TextWatcher;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class rk0 implements TextWatcher {
-    public boolean f51620a;
-    public String f51621b;
-    public boolean f51622c;
+    public boolean f51595a;
+    public String f51596b;
+    public boolean f51597c;
     public int d;
-    public int f51623e;
-    public boolean f51624f;
+    public int f51598e;
+    public boolean f51599f;
     public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
-    public final ml0 f51625n;
+    public final ml0 f51600n;
 
     public rk0(ml0 ml0Var) {
-        this.f51625n = ml0Var;
+        this.f51600n = ml0Var;
     }
 
     public final int a(String str) {
@@ -42,8 +42,8 @@ public final class rk0 implements TextWatcher {
         String str;
         String str2;
         String substring;
-        ml0 ml0Var = this.f51625n;
-        if (ml0Var.f49878n0) {
+        ml0 ml0Var = this.f51600n;
+        if (ml0Var.f49919n0) {
             return;
         }
         Long l10 = ml0Var.I0;
@@ -52,7 +52,7 @@ public final class rk0 implements TextWatcher {
         } else {
             j3 = 0;
         }
-        String str3 = this.f51621b;
+        String str3 = this.f51596b;
         if (str3 == null) {
             str3 = org.telegram.messenger.gd.n(editable.toString());
         }
@@ -299,7 +299,7 @@ public final class rk0 implements TextWatcher {
         String o4 = a8.p0.o(longValue2, "");
         String str6 = "" + (i7 - 1);
         if (a10 > 0 && o4.length() > str6.length()) {
-            if (this.f51623e - a10 < o4.length()) {
+            if (this.f51598e - a10 < o4.length()) {
                 substring = o4.substring(0, str6.length());
             } else {
                 substring = o4.substring(o4.length() - str6.length());
@@ -315,37 +315,37 @@ public final class rk0 implements TextWatcher {
                 ml0Var.I0 = Long.valueOf(j10);
             }
         }
-        int selectionStart = ml0Var.f49867f[0].getSelectionStart();
-        ml0Var.f49878n0 = true;
+        int selectionStart = ml0Var.f49908f[0].getSelectionStart();
+        ml0Var.f49919n0 = true;
         if (ml0Var.I0.longValue() == 0) {
-            ml0Var.f49867f[0].setText("");
+            ml0Var.f49908f[0].setText("");
         } else {
-            EditTextBoldCursor editTextBoldCursor = ml0Var.f49867f[0];
+            EditTextBoldCursor editTextBoldCursor = ml0Var.f49908f[0];
             str5 = org.telegram.messenger.gd.E0().q(ml0Var.I0.longValue(), false, z10, true, ml0Var.D0.invoice.currency);
             editTextBoldCursor.setText(str5);
         }
-        if (j3 < ml0Var.I0.longValue() && j3 != 0 && this.f51620a && selectionStart >= 0) {
-            EditTextBoldCursor editTextBoldCursor2 = ml0Var.f49867f[0];
+        if (j3 < ml0Var.I0.longValue() && j3 != 0 && this.f51595a && selectionStart >= 0) {
+            EditTextBoldCursor editTextBoldCursor2 = ml0Var.f49908f[0];
             editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
-        } else if (this.f51622c && this.d != ml0Var.f49867f[0].length()) {
-            EditTextBoldCursor editTextBoldCursor3 = ml0Var.f49867f[0];
+        } else if (this.f51597c && this.d != ml0Var.f49908f[0].length()) {
+            EditTextBoldCursor editTextBoldCursor3 = ml0Var.f49908f[0];
             editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
-        } else if (!this.f51624f && z10 && a10 >= 0) {
+        } else if (!this.f51599f && z10 && a10 >= 0) {
             int a11 = a(str5);
             if (a11 > 0) {
-                ml0Var.f49867f[0].setSelection(a11 + 1);
+                ml0Var.f49908f[0].setSelection(a11 + 1);
             } else {
-                EditTextBoldCursor editTextBoldCursor4 = ml0Var.f49867f[0];
+                EditTextBoldCursor editTextBoldCursor4 = ml0Var.f49908f[0];
                 editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
             }
         } else {
-            EditTextBoldCursor editTextBoldCursor5 = ml0Var.f49867f[0];
+            EditTextBoldCursor editTextBoldCursor5 = ml0Var.f49908f[0];
             editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
         }
-        this.f51624f = z10;
+        this.f51599f = z10;
         ml0Var.R0();
-        this.f51621b = null;
-        ml0Var.f49878n0 = false;
+        this.f51596b = null;
+        ml0Var.f49919n0 = false;
     }
 
     @Override
@@ -353,22 +353,22 @@ public final class rk0 implements TextWatcher {
         int length;
         boolean z10;
         String str;
-        if (!this.f51625n.f49878n0) {
-            this.f51620a = !TextUtils.isEmpty(charSequence);
-            this.f51621b = null;
+        if (!this.f51600n.f49919n0) {
+            this.f51595a = !TextUtils.isEmpty(charSequence);
+            this.f51596b = null;
             if (charSequence == null) {
                 length = 0;
             } else {
                 length = charSequence.length();
             }
             this.d = length;
-            this.f51623e = i7;
+            this.f51598e = i7;
             if (i10 == 1 && i11 == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f51622c = z10;
+            this.f51597c = z10;
             if (z10) {
                 String n10 = org.telegram.messenger.gd.n(charSequence);
                 char charAt = n10.charAt(i7);
@@ -381,7 +381,7 @@ public final class rk0 implements TextWatcher {
                 long longValue = Utilities.A(pf.b.d(str, false)).longValue();
                 if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
                     if (a10 > 0 && i7 > a10 && longValue == 0) {
-                        this.f51621b = n10.substring(0, a10 - 1);
+                        this.f51596b = n10.substring(0, a10 - 1);
                         return;
                     }
                     return;
@@ -391,7 +391,7 @@ public final class rk0 implements TextWatcher {
                     if (i12 >= 0) {
                         char charAt2 = n10.charAt(i12);
                         if (charAt2 >= '0' && charAt2 <= '9') {
-                            this.f51621b = n10.substring(0, i12) + n10.substring(i7);
+                            this.f51596b = n10.substring(0, i12) + n10.substring(i7);
                             return;
                         }
                         i7 = i12;

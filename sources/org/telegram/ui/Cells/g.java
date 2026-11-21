@@ -3,20 +3,20 @@ package org.telegram.ui.Cells;
 import android.graphics.RectF;
 import android.text.Layout;
 import android.text.style.ClickableSpan;
-import org.telegram.ui.Components.o80;
+import org.telegram.ui.Components.q80;
 import org.telegram.ui.ProfileActivity;
 public final class g extends vf.b {
-    public o80 d;
-    public final Layout f30629e;
-    public final ClickableSpan f30630f;
-    public final float f30631g;
+    public q80 d;
+    public final Layout f30657e;
+    public final ClickableSpan f30658f;
+    public final float f30659g;
     public final j h;
 
     public g(j jVar, Layout layout, ClickableSpan clickableSpan, float f10) {
         this.h = jVar;
-        this.f30629e = layout;
-        this.f30630f = clickableSpan;
-        this.f30631g = f10;
+        this.f30657e = layout;
+        this.f30658f = clickableSpan;
+        this.f30659g = f10;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class g extends vf.b {
     public final void d() {
         j jVar = this.h;
         n2.o0 o0Var = jVar.F;
-        o80 o80Var = jVar.H;
-        if (o80Var != null) {
-            o0Var.n(o80Var, true);
+        q80 q80Var = jVar.H;
+        if (q80Var != null) {
+            o0Var.n(q80Var, true);
         }
-        o80 k10 = n2.o0.k(this.f30629e, this.f30630f, this.f30631g);
+        q80 k10 = n2.o0.k(this.f30657e, this.f30658f, this.f30659g);
         this.d = k10;
         jVar.H = k10;
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Ce, jVar.J);
+        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Ce, jVar.J);
         RectF rectF = ProfileActivity.Z6;
-        this.d.g(org.telegram.ui.ActionBar.n6.r1(0.8f, w02), org.telegram.ui.ActionBar.n6.r1(1.3f, w02), org.telegram.ui.ActionBar.n6.r1(1.0f, w02), org.telegram.ui.ActionBar.n6.r1(4.0f, w02));
-        this.d.f38032x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
+        this.d.g(org.telegram.ui.ActionBar.m6.r1(0.8f, w02), org.telegram.ui.ActionBar.m6.r1(1.3f, w02), org.telegram.ui.ActionBar.m6.r1(1.0f, w02), org.telegram.ui.ActionBar.m6.r1(4.0f, w02));
+        this.d.f38839x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
         o0Var.c(this.d, null);
     }
 }

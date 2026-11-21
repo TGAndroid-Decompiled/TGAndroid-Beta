@@ -1,121 +1,443 @@
 package ug;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ScrollView;
 import c8.ma;
-import org.telegram.messenger.f3;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.k80;
+import com.google.android.gms.internal.vision.e2;
+import di.f6;
+import di.n4;
+import fi.d4;
+import fi.k3;
+import fi.l7;
+import java.util.ArrayList;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.lz;
+import org.telegram.messenger.mz;
+import org.telegram.messenger.ri;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.ActionBar.w2;
+import org.telegram.ui.Components.h10;
+import org.telegram.ui.Components.ia;
+import org.telegram.ui.Components.n20;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.v7;
+import org.telegram.ui.Components.y01;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.hs0;
 import org.telegram.ui.ws0;
-public final class y0 extends LinearLayout {
-    public int f58950a;
-    public final TextView f58951b;
-    public final k80 f58952c;
-    public LinearLayout d;
-    public final o0 f58953e;
-    public final ViewGroup f58954f;
-    public boolean h;
-    public final z0 f58955n;
+import org.telegram.ui.xs0;
+import org.telegram.ui.y61;
+public final class y0 extends w2 implements fs {
+    public static final int J1 = 0;
+    public boolean A1;
+    public int B1;
+    public int C1;
+    public float D1;
+    public final xs0 E1;
+    public int F1;
+    public int G1;
+    public int H1;
+    public v7 I1;
+    public final g2 f58992m1;
+    public final r0 n1;
+    public final ArrayList f58993o1;
+    public float f58994p1;
+    public float f58995q1;
+    public boolean f58996r1;
+    public final w0 f58997s1;
+    public final y61 f58998t1;
+    public int f58999u1;
+    public final FrameLayout f59000v1;
+    public boolean f59001w1;
+    public final lz f59002x1;
+    public final int f59003y1;
+    public final boolean f59004z1;
 
-    public y0(z0 z0Var, Context context, int i7) {
-        super(context);
-        int i10;
-        i iVar;
-        this.f58955n = z0Var;
-        setOrientation(1);
-        ws0 ws0Var = (ws0) z0Var.f58959o1.get(i7);
-        int i11 = ws0Var.f53469a;
-        if (i11 == 0) {
-            ?? aVar = new a(context, z0Var.J0);
-            aVar.f58596b.setOnScrollListener(new u0(z0Var, 1));
-            iVar = aVar;
-        } else if (i11 != 14 && i11 != 28) {
-            if (i11 == 5) {
-                iVar = new n1(context, z0Var.f30187a);
-            } else if (i11 == 10) {
-                iVar = new q0(context, z0Var.J0);
-            } else {
-                iVar = new x1(context, z0Var.f58968x1, z0Var.f30187a, ws0Var.f53469a, z0Var.J0);
+    public y0(int i7, Context context, h6 h6Var) {
+        this(null, context, j10.f24798t0, false, i7, true, null, h6Var);
+    }
+
+    @Override
+    public final boolean G() {
+        int i7 = 0;
+        while (true) {
+            w0 w0Var = this.f58997s1;
+            if (i7 >= w0Var.getChildCount()) {
+                return true;
             }
-        } else {
-            if (i11 == 28) {
-                i10 = 1;
-            } else {
+            x0 x0Var = (x0) w0Var.getChildAt(i7);
+            if (x0Var.f58983a == this.B1) {
+                ViewGroup viewGroup = x0Var.f58987f;
+                if (viewGroup instanceof a) {
+                    return !((a) viewGroup).f58637b.canScrollVertically(-1);
+                }
+            }
+            i7++;
+        }
+    }
+
+    public final void J0() {
+        w0 w0Var;
+        int i7;
+        float f10;
+        View m10;
+        View m11;
+        int i10 = -1;
+        boolean z10 = false;
+        int i11 = -1;
+        int i12 = 0;
+        while (true) {
+            w0Var = this.f58997s1;
+            if (i12 >= w0Var.getChildCount()) {
+                break;
+            }
+            x0 x0Var = (x0) w0Var.getChildAt(i12);
+            int i13 = x0Var.f58983a;
+            ViewGroup viewGroup = x0Var.f58987f;
+            if (i13 == this.B1 && (viewGroup instanceof a) && ((m11 = ((a) viewGroup).f58638c.m(0)) == null || (i10 = m11.getTop()) < 0)) {
                 i10 = 0;
             }
-            i iVar2 = new i(i10, context, z0Var.J0);
-            iVar2.f58596b.setOnScrollListener(new u0(z0Var, 0));
-            iVar = iVar2;
+            if (x0Var.f58983a == this.C1 && (viewGroup instanceof a) && ((m10 = ((a) viewGroup).f58638c.m(0)) == null || (i11 = m10.getTop()) < 0)) {
+                i11 = 0;
+            }
+            i12++;
         }
-        this.f58954f = iVar;
-        addView(iVar);
-        this.f58953e = iVar;
-        TextView textView = new TextView(context);
-        this.f58951b = textView;
-        textView.setGravity(1);
-        int i12 = n6.f29502j5;
-        f3.l(textView, i12, z0Var.J0, 1, 20.0f);
-        addView(textView, ma.d(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
-        k80 k80Var = new k80(context, null);
-        this.f58952c = k80Var;
-        k80Var.setGravity(1);
-        k80Var.setTextSize(1, 15.0f);
-        u6.U(k80Var, i12, z0Var.J0);
-        if (!z0Var.f58970z1) {
-            k80Var.setLines(2);
+        int i14 = this.G1;
+        if (i10 >= 0) {
+            float f11 = 1.0f - this.D1;
+            i14 = Math.min(i14, (int) e2.z(1.0f, f11, i14, i10 * f11));
         }
-        addView(k80Var, ma.t(-1, -2, 1, 21, 10, 21, 16));
-        setImportantForAccessibility(2);
-        setClipChildren(false);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f58954f) {
-            boolean z10 = view instanceof a;
-            if (z10) {
-                setTranslationY(0.0f);
+        if (i11 >= 0) {
+            float f12 = this.D1;
+            i14 = Math.min(i14, (int) e2.z(1.0f, f12, this.G1, i11 * f12));
+        }
+        FrameLayout frameLayout = this.f59000v1;
+        frameLayout.setAlpha(1.0f - this.f58995q1);
+        if (this.f58994p1 == 1.0f) {
+            frameLayout.setVisibility(4);
+        } else {
+            frameLayout.setVisibility(0);
+        }
+        boolean z11 = this.f58996r1;
+        y61 y61Var = this.f58998t1;
+        if (z11) {
+            i7 = y61Var.getMeasuredWidth();
+        } else {
+            i7 = -y61Var.getMeasuredWidth();
+        }
+        y61Var.setTranslationX(i7 * this.f58995q1);
+        if (i14 != this.H1) {
+            this.H1 = i14;
+            for (int i15 = 0; i15 < w0Var.getChildCount(); i15++) {
+                if (!((x0) w0Var.getChildAt(i15)).h) {
+                    w0Var.getChildAt(i15).setTranslationY(this.H1);
+                }
+            }
+            y61Var.setTranslationY(this.H1);
+            frameLayout.setTranslationY(this.H1);
+            this.f30173b.invalidate();
+            int i16 = this.H1;
+            if (this.f59003y1 == 40) {
+                f10 = 5.0f;
             } else {
-                setTranslationY(this.f58955n.G1);
+                f10 = 30.0f;
             }
-            if (z10) {
-                return super.drawChild(canvas, view, j3);
+            if (i16 < org.telegram.messenger.g0.L(f10)) {
+                z10 = true;
             }
-            canvas.save();
-            canvas.clipRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
+            org.telegram.messenger.g0.X3(this.I1, z10, 1.0f, true, true);
         }
-        return super.drawChild(canvas, view, j3);
+    }
+
+    public final void K0() {
+        boolean z10 = this.A1;
+        r0 r0Var = this.n1;
+        if (z10) {
+            r0Var.f58900f.setText(gd.N0(2131754942, null));
+        } else if (this.f59004z1) {
+            int i7 = this.f59003y1;
+            if (i7 == 4) {
+                r0Var.f58900f.setText(gd.N0(2131743616, null));
+                r0Var.setIcon(2131624315);
+            } else if (i7 == 10) {
+                r0Var.f58900f.setText(gd.N0(2131743617, null));
+                r0Var.setIcon(2131624315);
+            } else {
+                r0Var.f58900f.setText(gd.N0(2131754942, null));
+            }
+        } else {
+            r0Var.f58900f.setText(PremiumPreviewFragment.t0(this.f30170a, this.E1));
+        }
+    }
+
+    public final void L0() {
+        this.A1 = true;
+        r0 r0Var = this.n1;
+        r0Var.f58902r = false;
+        r0Var.d(true);
+        K0();
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        TextView textView = this.f58951b;
-        textView.setVisibility(0);
-        ViewGroup viewGroup = this.f58954f;
-        boolean z10 = viewGroup instanceof a;
-        z0 z0Var = this.f58955n;
-        if (z10) {
-            ((a) viewGroup).setTopOffset(z0Var.G1);
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 != ks.f25182m5 && i7 != ks.f25166j5) {
+            if (i7 == ks.f25161i5) {
+                boolean q10 = j10.i(this.f30170a).q();
+                r0 r0Var = this.n1;
+                if (q10) {
+                    r0Var.c(gd.N0(2131747637, null), false, true);
+                    return;
+                }
+                r0Var.f58902r = false;
+                r0Var.d(true);
+                return;
+            }
+            return;
         }
-        viewGroup.getLayoutParams().height = z0Var.f58965u1;
-        k80 k80Var = this.f58952c;
-        k80Var.setVisibility(0);
-        ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = 0;
-        super.onMeasure(i7, i10);
-        if (this.h) {
-            viewGroup.getLayoutParams().height = getMeasuredHeight() - org.telegram.messenger.g0.L(16.0f);
-            ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(16.0f);
-            textView.setVisibility(8);
-            k80Var.setVisibility(8);
-            super.onMeasure(i7, i10);
+        K0();
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        ks.e().n(this, ks.f25182m5);
+        ks.f(this.f30170a).n(this, ks.f25166j5);
+        ks.f(this.f30170a).n(this, ks.f25161i5);
+        ks.e().k(ks.f25168k1, 16);
+    }
+
+    @Override
+    public final boolean m0() {
+        w0 w0Var = this.f58997s1;
+        if (w0Var.getChildCount() > 0) {
+            x0 x0Var = (x0) w0Var.getChildAt(0);
+            ViewGroup viewGroup = x0Var.f58987f;
+            if (viewGroup instanceof p0) {
+                p0 p0Var = (p0) viewGroup;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(x0Var.getMeasuredWidth(), 0.0f);
+                p0Var.setOffset(x0Var.getMeasuredWidth());
+                this.f59001w1 = true;
+                ofFloat.addUpdateListener(new d4(p0Var, 13));
+                ofFloat.addListener(new h10(22, this, p0Var));
+                ofFloat.setDuration(500L);
+                ofFloat.setStartDelay(100L);
+                ofFloat.setInterpolator(nr.h);
+                ofFloat.start();
+            }
         }
+        return false;
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        ks.e().c(this, ks.f25182m5);
+        ks.f(this.f30170a).c(this, ks.f25166j5);
+        ks.f(this.f30170a).c(this, ks.f25161i5);
+        v7 v7Var = new v7(7, getContext(), this);
+        this.I1 = v7Var;
+        t6.h(m6.f29451h5, v7Var, this.J0);
+        t6.l(this.I1, 5, m6.G6, this.J0);
+        t6.l(this.I1, 3, m6.f29791z8, this.J0);
+        v7 v7Var2 = this.I1;
+        int i7 = m6.f29772y8;
+        t6.l(v7Var2, 1, i7, this.J0);
+        t6.b(this.I1, i7, this.J0, true);
+        this.I1.setCastShadows(true);
+        this.I1.setExtraHeight(org.telegram.messenger.g0.L(2.0f));
+        this.I1.setBackButtonImage(2131231240);
+        this.I1.setActionBarMenuOnItemClick(new hs0(this, 26));
+        this.f30173b.addView(this.I1, ma.d(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
+        ((FrameLayout.LayoutParams) this.I1.getLayoutParams()).topMargin = (-this.f30207t0) - org.telegram.messenger.g0.L(2.0f);
+        org.telegram.messenger.g0.X3(this.I1, false, 1.0f, true, false);
+        int i10 = this.B1;
+        ArrayList arrayList = this.f58993o1;
+        if (((ws0) arrayList.get(i10)).f53515a == 14) {
+            this.I1.setTitle(gd.N0(2131743562, null));
+            this.I1.requestLayout();
+        } else if (((ws0) arrayList.get(this.B1)).f53515a == 28) {
+            this.I1.setTitle(gd.N0(2131744011, null));
+            this.I1.requestLayout();
+        } else if (((ws0) arrayList.get(this.B1)).f53515a == 40) {
+            this.I1.setTitle(gd.N0(2131750825, null));
+            this.I1.requestLayout();
+        } else {
+            this.I1.setTitle(gd.N0(2131751337, null));
+            this.I1.requestLayout();
+        }
+    }
+
+    @Override
+    public final void show() {
+        super.show();
+        ks.e().k(ks.f25163j1, 16);
+    }
+
+    public y0(g2 g2Var, int i7, boolean z10) {
+        this(g2Var, g2Var.getContext(), g2Var.getCurrentAccount(), false, i7, z10, null);
+    }
+
+    public y0(g2 g2Var, Context context, int i7, int i10, boolean z10) {
+        this(g2Var, context, i7, false, i10, z10, null);
+    }
+
+    public y0(org.telegram.ui.ActionBar.g2 r11, android.content.Context r12, int r13, boolean r14, int r15, boolean r16, org.telegram.ui.xs0 r17) {
+        throw new UnsupportedOperationException("Method not decompiled: ug.y0.<init>(org.telegram.ui.ActionBar.g2, android.content.Context, int, boolean, int, boolean, org.telegram.ui.xs0):void");
+    }
+
+    public y0(g2 g2Var, Context context, int i7, boolean z10, int i10, boolean z11, xs0 xs0Var, h6 h6Var) {
+        super(1, context, h6Var, false);
+        ArrayList arrayList = new ArrayList();
+        this.f58993o1 = arrayList;
+        this.F1 = 255;
+        this.f58992m1 = g2Var;
+        this.E1 = xs0Var;
+        Q(m6.f29451h5);
+        this.f59003y1 = i10;
+        this.f59004z1 = z11;
+        this.f59002x1 = mz.i(org.telegram.messenger.g0.y2(null, 2131624216));
+        y01 y01Var = new y01(11, getContext(), this);
+        if (!z10 && i10 != 35) {
+            PremiumPreviewFragment.s0(i7, arrayList);
+        } else {
+            PremiumPreviewFragment.r0(i7, arrayList, false);
+            PremiumPreviewFragment.r0(i7, arrayList, true);
+        }
+        if (i10 == 40) {
+            arrayList.clear();
+            arrayList.add(new ws0(40, 2131231216, gd.N0(2131750825, null), gd.N0(2131750824, null)));
+        }
+        int i11 = 0;
+        while (true) {
+            if (i11 >= this.f58993o1.size()) {
+                i11 = 0;
+                break;
+            } else if (((ws0) this.f58993o1.get(i11)).f53515a == i10) {
+                break;
+            } else {
+                i11++;
+            }
+        }
+        if (z11) {
+            this.f58993o1.clear();
+            this.f58993o1.add((ws0) this.f58993o1.get(i11));
+            i11 = 0;
+        }
+        ws0 ws0Var = (ws0) this.f58993o1.get(i11);
+        this.f30209v0 = false;
+        this.f30211w0 = false;
+        this.U0 = false;
+        a1 a1Var = new a1(m6.Rk, m6.Sk, m6.Tk, -1, null);
+        a1Var.f58651o = 1.1f;
+        a1Var.f58652p = 1.5f;
+        a1Var.f58653q = -0.2f;
+        a1Var.f58649m = true;
+        y61 y61Var = new y61(this, getContext(), a1Var, 6);
+        this.f58998t1 = y61Var;
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        this.f59000v1 = frameLayout;
+        frameLayout.setContentDescription(gd.N0(2131752029, null));
+        ImageView imageView = new ImageView(getContext());
+        imageView.setImageResource(2131232098);
+        int L = org.telegram.messenger.g0.L(12.0f);
+        int o4 = i0.a.o(-1, 40);
+        int o10 = i0.a.o(-1, 100);
+        imageView.setBackground(m6.k0(L, L, L, L, o4, o10, o10));
+        frameLayout.addView(imageView, ma.e(24, 24, 17));
+        frameLayout.setOnClickListener(new View.OnClickListener(this) {
+            public final y0 f58926b;
+
+            {
+                this.f58926b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        this.f58926b.dismiss();
+                        return;
+                    default:
+                        this.f58926b.dismiss();
+                        return;
+                }
+            }
+        });
+        y01Var.addView(y61Var, ma.t(-1, -2, 1, 0, 16, 0, 0));
+        w0 w0Var = new w0(this, getContext());
+        this.f58997s1 = w0Var;
+        w0Var.setOverScrollMode(2);
+        w0Var.setOffscreenPageLimit(0);
+        w0Var.setAdapter(new n20(this, 4));
+        this.B1 = i11;
+        w0Var.setCurrentItem(i11);
+        y01Var.addView(w0Var, ma.d(-1, 100.0f, 0, 0.0f, 18.0f, 0.0f, 0.0f));
+        y01Var.addView(frameLayout, ma.d(52, 52.0f, 53, 0.0f, 24.0f, 0.0f, 0.0f));
+        ia iaVar = new ia(getContext(), w0Var, this.f58993o1.size());
+        w0Var.b(new l7(this, iaVar, 1));
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        linearLayout.addView(y01Var);
+        linearLayout.setOrientation(1);
+        int i12 = m6.V8;
+        int i13 = m6.P9;
+        iaVar.f36238n = i12;
+        iaVar.f36239r = i13;
+        if (!z11) {
+            linearLayout.addView(iaVar, ma.t(this.f58993o1.size() * 11, 5, 1, 0, 0, 0, 10));
+        }
+        r0 r0Var = new r0(getContext(), h6Var, true);
+        this.n1 = r0Var;
+        r0Var.f58904w.setOnClickListener(new k3(this, g2Var, z11, ws0Var, 5));
+        r0Var.h.setOnClickListener(new View.OnClickListener(this) {
+            public final y0 f58926b;
+
+            {
+                this.f58926b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        this.f58926b.dismiss();
+                        return;
+                    default:
+                        this.f58926b.dismiss();
+                        return;
+                }
+            }
+        });
+        FrameLayout frameLayout2 = new FrameLayout(getContext());
+        frameLayout2.addView(r0Var, ma.d(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        t6.h(m6.f29451h5, frameLayout2, h6Var);
+        linearLayout.addView(frameLayout2, ma.r(-1, 68, 80));
+        if (i10 == 40) {
+            r0Var.c(f6.t2(gd.N0(2131743645, null)), true, false);
+        } else if (j10.i(i7).q()) {
+            r0Var.c(gd.N0(2131747637, null), false, false);
+        }
+        ScrollView scrollView = new ScrollView(getContext());
+        scrollView.addView(linearLayout);
+        this.O = scrollView;
+        ri.d0(i7).r1();
+        K0();
+        this.V0 = 83;
+        n4 n4Var = new n4(this, getContext(), scrollView, getContext().getDrawable(2131231237).mutate());
+        this.f30173b = n4Var;
+        int i14 = this.f30208u0;
+        n4Var.setPadding(i14, this.f30207t0 - 1, i14, 0);
     }
 }

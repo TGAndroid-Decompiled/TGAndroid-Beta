@@ -1,10 +1,15 @@
 package oi;
 public final class d2 {
-    public final c2[] f21984a;
-    public final b2 f21985b;
+    public static final d2 f22049e = new d2(-1, 0, 0, -1);
+    public final long f22050a;
+    public final int f22051b;
+    public final int f22052c;
+    public final int d;
 
-    public d2(c2[] c2VarArr, b2 b2Var) {
-        this.f21984a = c2VarArr;
-        this.f21985b = b2Var;
+    public d2(int i7, int i10, int i11, long j3) {
+        this.f22050a = j3;
+        this.f22051b = i7;
+        this.f22052c = i10;
+        this.d = i11;
     }
 }

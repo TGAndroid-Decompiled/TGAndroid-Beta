@@ -1,44 +1,33 @@
 package tg;
 
 import android.content.Context;
-import android.view.ViewGroup;
-public final class w0 extends v4.i0 {
-    public final Context f58160c;
-    public final y0 d;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+public final class w0 extends View {
+    public final Paint f58207a;
+    public float f58208b;
 
-    public w0(y0 y0Var, Context context) {
-        this.d = y0Var;
-        this.f58160c = context;
+    public w0(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f58207a = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
     }
 
     @Override
-    public final int b() {
-        return 14;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Paint paint = this.f58207a;
+        canvas.drawLine((getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-5.33f, -4.0f, this.f58208b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(5.33f, 0.0f, this.f58208b)), (getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(5.33f, 3.0f, this.f58208b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-5.33f, -7.0f, this.f58208b)), paint);
+        canvas.drawLine((getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(5.33f, 3.0f, this.f58208b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(5.33f, 7.0f, this.f58208b)), (getWidth() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-5.33f, -4.0f, this.f58208b)), (getHeight() / 2.0f) + org.telegram.messenger.g0.L(org.telegram.messenger.g0.T1(-5.33f, 0.0f, this.f58208b)), paint);
     }
 
-    @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        float f10;
-        x0 x0Var = (x0) f1Var.f59123a;
-        ViewGroup.LayoutParams layoutParams = x0Var.getLayoutParams();
-        y0 y0Var = this.d;
-        layoutParams.height = ((y0Var.getHeight() - y0Var.getPaddingTop()) - y0Var.getPaddingBottom()) / 2;
-        sg.k0 k0Var = y0Var.f58180i3;
-        if (k0Var != null) {
-            x0Var.f58167a = k0Var.b(i7);
-            x0Var.invalidate();
-            if (y0Var.f58179h3 == i7) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            x0Var.f58168b = f10;
-            x0Var.invalidate();
-        }
-    }
-
-    @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        return new v4.f1(new x0(this.d, this.f58160c));
+    public void setProgress(float f10) {
+        this.f58208b = f10;
+        invalidate();
     }
 }

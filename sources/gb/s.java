@@ -2,31 +2,31 @@ package gb;
 
 import android.content.Context;
 public final class s implements ib.b {
-    public final int f13404a = 0;
-    public final ib.c f13405b;
-    public final d9.o f13406c;
+    public final int f13433a = 0;
+    public final ib.c f13434b;
+    public final d9.o f13435c;
 
     public s(ib.c cVar, d9.o oVar) {
-        this.f13405b = cVar;
-        this.f13406c = oVar;
+        this.f13434b = cVar;
+        this.f13435c = oVar;
     }
 
     @Override
     public final Object mo24get() {
-        switch (this.f13404a) {
+        switch (this.f13433a) {
             case 0:
-                Context appContext = (Context) this.f13406c.f7922a;
-                id.h blockingDispatcher = (id.h) this.f13405b.mo24get();
+                Context appContext = (Context) this.f13435c.f7951a;
+                id.h blockingDispatcher = (id.h) this.f13434b.mo24get();
                 kotlin.jvm.internal.j.e(appContext, "appContext");
                 kotlin.jvm.internal.j.e(blockingDispatcher, "blockingDispatcher");
-                return q.a(jb.j.f17362a, new h9.g1(new o(0), 13), zd.b0.b(blockingDispatcher), new p(appContext, 0));
+                return q.a(jb.j.f17387a, new h9.g1(new o(0), 13), zd.b0.b(blockingDispatcher), new p(appContext, 0));
             default:
-                return new jb.f((b) this.f13405b.mo24get(), (id.h) this.f13406c.f7922a);
+                return new jb.f((b) this.f13434b.mo24get(), (id.h) this.f13435c.f7951a);
         }
     }
 
     public s(d9.o oVar, ib.c cVar) {
-        this.f13406c = oVar;
-        this.f13405b = cVar;
+        this.f13435c = oVar;
+        this.f13434b = cVar;
     }
 }

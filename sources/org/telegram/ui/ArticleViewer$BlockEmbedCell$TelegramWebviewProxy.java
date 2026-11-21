@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.webkit.JavascriptInterface;
 public class ArticleViewer$BlockEmbedCell$TelegramWebviewProxy {
-    public final q1 f30326a;
+    public final q1 f30354a;
 
     public ArticleViewer$BlockEmbedCell$TelegramWebviewProxy(q1 q1Var) {
-        this.f30326a = q1Var;
+        this.f30354a = q1Var;
     }
 
     @JavascriptInterface

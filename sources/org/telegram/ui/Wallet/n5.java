@@ -16,30 +16,30 @@ import org.telegram.messenger.fs;
 import org.telegram.messenger.ks;
 import org.telegram.messenger.n10;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.g71;
 import org.telegram.ui.Components.gc;
-public final class n5 extends g71 {
+import org.telegram.ui.Components.j71;
+public final class n5 extends j71 {
     public boolean W;
-    public final m5 f44615a0;
-    public final ArrayList f44616b0;
-    public final t0 f44617c0;
-    public final int f44618d0;
-    public final Rect f44619e0;
-    public final View[] f44620f0;
+    public final m5 f44655a0;
+    public final ArrayList f44656b0;
+    public final t0 f44657c0;
+    public final int f44658d0;
+    public final Rect f44659e0;
+    public final View[] f44660f0;
 
-    public n5(Context context, org.telegram.ui.ActionBar.i6 i6Var, final ArrayList arrayList, final t0 t0Var, int i7, Rect rect, View[] viewArr) {
-        super(context, i6Var);
-        this.f44616b0 = arrayList;
-        this.f44617c0 = t0Var;
-        this.f44618d0 = i7;
-        this.f44619e0 = rect;
-        this.f44620f0 = viewArr;
-        this.f44615a0 = new fs() {
+    public n5(Context context, org.telegram.ui.ActionBar.h6 h6Var, final ArrayList arrayList, final t0 t0Var, int i7, Rect rect, View[] viewArr) {
+        super(context, h6Var);
+        this.f44656b0 = arrayList;
+        this.f44657c0 = t0Var;
+        this.f44658d0 = i7;
+        this.f44659e0 = rect;
+        this.f44660f0 = viewArr;
+        this.f44655a0 = new fs() {
             @Override
             public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
                 int i12;
                 ArrayList arrayList2 = arrayList;
-                ArrayList arrayList3 = t0Var.f45043c;
+                ArrayList arrayList3 = t0Var.f45083c;
                 u0[] u0VarArr = u0.R;
                 IdentityHashMap identityHashMap = new IdentityHashMap();
                 HashMap hashMap = new HashMap();
@@ -96,7 +96,7 @@ public final class n5 extends g71 {
         view.setTranslationX(f10);
         if (getMeasuredWidth() > 0) {
             float i7 = Utilities.i(f10 / getMeasuredWidth(), 1.0f, -1.0f);
-            view.setTranslationX(f10 - ((2.0f * i7) * this.f44619e0.left));
+            view.setTranslationX(f10 - ((2.0f * i7) * this.f44659e0.left));
             if (i7 > 0.0f) {
                 measuredWidth = 0.0f;
             } else {
@@ -128,26 +128,26 @@ public final class n5 extends g71 {
                     float L = (-(f12 - m7Var.R)) * org.telegram.messenger.g0.L(140.0f);
                     m7Var.R = f12;
                     if (m7Var.P == null) {
-                        r1.g gVar = new r1.g(m7Var, r1.g.f56306o);
+                        r1.g gVar = new r1.g(m7Var, r1.g.f56347o);
                         m7Var.P = gVar;
                         r1.h hVar = new r1.h(0.0f);
                         hVar.a(0.32f);
                         hVar.b(300.0f);
-                        gVar.f56323m = hVar;
+                        gVar.f56364m = hVar;
                         m7Var.P.b(new g7(m7Var, 1));
                     }
                     float A = n10.A(m7Var.Q, L, org.telegram.messenger.g0.L(1600.0f), -org.telegram.messenger.g0.L(1600.0f));
                     m7Var.Q = A;
                     r1.g gVar2 = m7Var.P;
-                    gVar2.f56313a = A;
+                    gVar2.f56354a = A;
                     gVar2.c(0.0f);
                 }
                 if (f11 != 0.0f) {
                     m7Var.V = Math.max(-720.0f, Math.min(720.0f, m7Var.V - (f11 * 300.0f)));
-                    if (!m7Var.f44569a0 && m7Var.f44585n) {
-                        m7Var.f44569a0 = true;
+                    if (!m7Var.f44609a0 && m7Var.f44625n) {
+                        m7Var.f44609a0 = true;
                         m7Var.W = 0L;
-                        Choreographer.getInstance().postFrameCallback(m7Var.f44571b0);
+                        Choreographer.getInstance().postFrameCallback(m7Var.f44611b0);
                     }
                 }
             }
@@ -155,9 +155,9 @@ public final class n5 extends g71 {
     }
 
     public final void H() {
-        if (this.f35376b >= this.f44616b0.size() - 2) {
-            t0 t0Var = this.f44617c0;
-            if (!t0Var.f45049k && !t0Var.h) {
+        if (this.f36438b >= this.f44656b0.size() - 2) {
+            t0 t0Var = this.f44657c0;
+            if (!t0Var.f45089k && !t0Var.h) {
                 t0Var.h();
             }
         }
@@ -166,7 +166,7 @@ public final class n5 extends g71 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        Rect rect = this.f44619e0;
+        Rect rect = this.f44659e0;
         canvas.clipRect(rect.left, -getHeight(), getWidth() - rect.right, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -186,21 +186,21 @@ public final class n5 extends g71 {
     @Override
     public final float getAvailableTranslationX() {
         int measuredWidth = getMeasuredWidth();
-        Rect rect = this.f44619e0;
+        Rect rect = this.f44659e0;
         return Math.max(1, (measuredWidth - rect.left) - rect.right);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ks.f(this.f44618d0).c(this.f44615a0, ks.f25108e4);
+        ks.f(this.f44658d0).c(this.f44655a0, ks.f25136e4);
         H();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ks.f(this.f44618d0).n(this.f44615a0, ks.f25108e4);
+        ks.f(this.f44658d0).n(this.f44655a0, ks.f25136e4);
     }
 
     @Override
@@ -227,7 +227,7 @@ public final class n5 extends g71 {
             ((Runnable) childAt.getTag()).run();
         }
         H();
-        gc gcVar = gc.f35453w;
+        gc gcVar = gc.f35500w;
         if (gcVar != null) {
             gcVar.c(0L, false);
         }
@@ -236,7 +236,7 @@ public final class n5 extends g71 {
     @Override
     public final void s(boolean z10) {
         requestLayout();
-        View view = this.f44620f0[0];
+        View view = this.f44660f0[0];
         if (view != null) {
             view.invalidate();
         }

@@ -1,19 +1,19 @@
 package org.telegram.messenger;
 public final class zi {
-    public int f28300a;
-    public int f28301b;
-    public int f28302c;
+    public int f28328a;
+    public int f28329b;
+    public int f28330c;
     public int d;
-    public float f28303e;
-    public float f28304f;
-    public float f28305g;
+    public float f28331e;
+    public float f28332f;
+    public float f28333g;
     public float h;
-    public boolean f28306i;
-    public boolean f28307j;
-    public boolean f28308k;
-    public boolean f28309l;
-    public org.telegram.ui.Cells.r1 f28310m;
-    public float f28311n;
-    public boolean f28312o;
-    public boolean f28313p;
+    public boolean f28334i;
+    public boolean f28335j;
+    public boolean f28336k;
+    public boolean f28337l;
+    public org.telegram.ui.Cells.r1 f28338m;
+    public float f28339n;
+    public boolean f28340o;
+    public boolean f28341p;
 }

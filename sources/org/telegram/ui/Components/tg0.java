@@ -1,74 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class tg0 extends AnimatorListenerAdapter {
-    public final int f39996a;
-    public final ug0 f39997b;
+import android.app.Activity;
+import android.graphics.Point;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class tg0 extends LinearLayout {
+    public boolean f39915a;
+    public final wg0 f39916b;
 
-    public tg0(ug0 ug0Var, int i7) {
-        this.f39996a = i7;
-        this.f39997b = ug0Var;
+    public tg0(wg0 wg0Var, Activity activity) {
+        super(activity);
+        this.f39916b = wg0Var;
+        this.f39915a = false;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f39996a) {
-            case 1:
-                ug0 ug0Var = this.f39997b;
-                AnimatorSet animatorSet = ug0Var.f40348s;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    ug0Var.f40348s = null;
-                    ug0Var.getClass();
-                    return;
-                }
-                return;
-            case 2:
-                ug0 ug0Var2 = this.f39997b;
-                AnimatorSet animatorSet2 = ug0Var2.f40348s;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ug0Var2.f40348s = null;
-                    ug0Var2.getClass();
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void onMeasure(int i7, int i10) {
+        int i11;
+        wg0 wg0Var = this.f39916b;
+        tb0 tb0Var = wg0Var.I;
+        tb0 tb0Var2 = wg0Var.H;
+        this.f39915a = true;
+        Point point = org.telegram.messenger.g0.f24146q;
+        if (point.x > point.y) {
+            i11 = 3;
+        } else {
+            i11 = 5;
         }
+        tb0Var2.setItemCount(i11);
+        tb0Var.setItemCount(i11);
+        tb0Var2.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * i11;
+        tb0Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * i11;
+        this.f39915a = false;
+        int size = View.MeasureSpec.getSize(i7);
+        wg0Var.O = size;
+        if (size != 0) {
+            wg0Var.c(false);
+        }
+        super.onMeasure(i7, i10);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f39996a;
-        ug0 ug0Var = this.f39997b;
-        switch (i7) {
-            case 0:
-                AnimatorSet animatorSet = ug0Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    ug0Var.h = null;
-                }
-                org.telegram.messenger.ks.e().k(99, 512);
-                return;
-            case 1:
-                AnimatorSet animatorSet2 = ug0Var.f40348s;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ug0Var.f40348s = null;
-                    if (ug0Var.f40350x) {
-                        ug0Var.setLayerType(0, null);
-                    }
-                }
-                org.telegram.messenger.ks.e().k(99, 512);
-                return;
-            default:
-                AnimatorSet animatorSet3 = ug0Var.f40348s;
-                if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    ug0Var.f40348s = null;
-                    org.telegram.messenger.g0.g3(new gb0(this, 11));
-                }
-                org.telegram.messenger.ks.e().k(99, 512);
-                return;
+    public final void requestLayout() {
+        if (this.f39915a) {
+            return;
         }
+        super.requestLayout();
     }
 }

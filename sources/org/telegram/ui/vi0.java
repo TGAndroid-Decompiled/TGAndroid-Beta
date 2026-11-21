@@ -4,18 +4,18 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vi0 implements View.OnClickListener {
-    public final int f52790a;
-    public final hk0 f52791b;
+    public final int f52832a;
+    public final hk0 f52833b;
 
     public vi0(hk0 hk0Var, int i7) {
-        this.f52790a = i7;
-        this.f52791b = hk0Var;
+        this.f52832a = i7;
+        this.f52833b = hk0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f52790a;
-        hk0 hk0Var = this.f52791b;
+        int i7 = this.f52832a;
+        hk0 hk0Var = this.f52833b;
         switch (i7) {
             case 0:
                 hk0Var.T0 = 2;
@@ -46,9 +46,9 @@ public final class vi0 implements View.OnClickListener {
                 hk0Var.presentFragment(t9Var);
                 return;
             case 6:
-                hk0Var.f48383f = true;
+                hk0Var.f48426f = true;
                 hk0Var.M.callOnClick();
-                hk0Var.f48383f = false;
+                hk0Var.f48426f = false;
                 return;
             case 7:
                 hk0Var.T0 = 0;
@@ -72,16 +72,16 @@ public final class vi0 implements View.OnClickListener {
                 return;
             case 13:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hk0Var.getParentActivity());
-                String M0 = org.telegram.messenger.gd.M0(2131743997, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
-                u1Var.S = M0;
-                u1Var.U = org.telegram.messenger.gd.M0(2131743998, null);
-                alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131751587, null), new xi0(hk0Var, 5));
-                alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
-                hk0Var.showDialog(u1Var);
-                TextView textView = (TextView) u1Var.d(-1);
+                String N0 = org.telegram.messenger.gd.N0(2131743991, null);
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+                t1Var.S = N0;
+                t1Var.U = org.telegram.messenger.gd.N0(2131743992, null);
+                alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131751586, null), new xi0(hk0Var, 5));
+                alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131752577, null), null);
+                hk0Var.showDialog(t1Var);
+                TextView textView = (TextView) t1Var.d(-1);
                 if (textView != null) {
-                    org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29635q7, null);
+                    org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29619q7, null);
                     return;
                 }
                 return;
@@ -92,9 +92,9 @@ public final class vi0 implements View.OnClickListener {
                 hk0.a0(hk0Var);
                 return;
             default:
-                hk0Var.f48383f = true;
+                hk0Var.f48426f = true;
                 hk0Var.M.callOnClick();
-                hk0Var.f48383f = false;
+                hk0Var.f48426f = false;
                 return;
         }
     }

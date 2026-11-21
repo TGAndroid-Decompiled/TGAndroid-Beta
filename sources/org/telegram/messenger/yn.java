@@ -11,20 +11,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class yn implements RequestDelegate {
-    public final int f28164a;
-    public final c1 f28165b;
-    public final Object f28166c;
+    public final int f28192a;
+    public final c1 f28193b;
+    public final Object f28194c;
     public final Object d;
-    public final Object f28167e;
-    public final Object f28168f;
+    public final Object f28195e;
+    public final Object f28196f;
 
     public yn(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f28164a = i7;
-        this.f28165b = c1Var;
-        this.f28166c = obj;
+        this.f28192a = i7;
+        this.f28193b = c1Var;
+        this.f28194c = obj;
         this.d = obj2;
-        this.f28167e = obj3;
-        this.f28168f = obj4;
+        this.f28195e = obj3;
+        this.f28196f = obj4;
     }
 
     @Override
@@ -35,25 +35,25 @@ public final class yn implements RequestDelegate {
         TLRPC.Photo photo;
         TLRPC.EncryptedChat encryptedChat;
         byte[] bArr;
-        int i7 = this.f28164a;
+        int i7 = this.f28192a;
         String str = "";
         int i10 = 0;
-        Object obj = this.f28168f;
-        Object obj2 = this.f28167e;
+        Object obj = this.f28196f;
+        Object obj2 = this.f28195e;
         Object obj3 = this.d;
-        Object obj4 = this.f28166c;
-        c1 c1Var = this.f28165b;
+        Object obj4 = this.f28194c;
+        c1 c1Var = this.f28193b;
         switch (i7) {
             case 0:
                 final mp mpVar = (mp) c1Var;
                 TLRPC.TL_theme tL_theme = (TLRPC.TL_theme) obj4;
-                final org.telegram.ui.ActionBar.m6 m6Var = (org.telegram.ui.ActionBar.m6) obj3;
+                final org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) obj3;
                 TLRPC.TL_inputThemeSettings tL_inputThemeSettings = (TLRPC.TL_inputThemeSettings) obj2;
-                final org.telegram.ui.ActionBar.k6 k6Var = (org.telegram.ui.ActionBar.k6) obj;
+                final org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) obj;
                 if (tL_theme != null) {
                     n10 = tL_theme.title;
                 } else {
-                    n10 = m6Var.n();
+                    n10 = l6Var.n();
                 }
                 int lastIndexOf = n10.lastIndexOf(".attheme");
                 if (lastIndexOf > 0) {
@@ -63,12 +63,12 @@ public final class yn implements RequestDelegate {
                     TLRPC.Document document2 = (TLRPC.Document) tLObject;
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
                     tL_inputDocument.access_hash = document2.access_hash;
-                    tL_inputDocument.f28415id = document2.f28409id;
+                    tL_inputDocument.f28443id = document2.f28437id;
                     tL_inputDocument.file_reference = document2.file_reference;
                     if (tL_theme != null && tL_theme.creator) {
                         TL_account.updateTheme updatetheme = new TL_account.updateTheme();
                         TLRPC.TL_inputTheme tL_inputTheme = new TLRPC.TL_inputTheme();
-                        tL_inputTheme.f28474id = tL_theme.f28542id;
+                        tL_inputTheme.f28502id = tL_theme.f28570id;
                         tL_inputTheme.access_hash = tL_theme.access_hash;
                         updatetheme.theme = tL_inputTheme;
                         updatetheme.slug = tL_theme.slug;
@@ -87,39 +87,39 @@ public final class yn implements RequestDelegate {
                                 switch (r4) {
                                     case 0:
                                         final mp mpVar2 = mpVar;
-                                        final org.telegram.ui.ActionBar.m6 m6Var2 = m6Var;
-                                        final org.telegram.ui.ActionBar.k6 k6Var2 = k6Var;
+                                        final org.telegram.ui.ActionBar.l6 l6Var2 = l6Var;
+                                        final org.telegram.ui.ActionBar.j6 j6Var2 = j6Var;
                                         g0.g3(new Runnable() {
                                             @Override
                                             public final void run() {
                                                 boolean z10;
                                                 int i12 = r5;
-                                                org.telegram.ui.ActionBar.k6 k6Var3 = k6Var2;
-                                                org.telegram.ui.ActionBar.m6 m6Var3 = m6Var2;
+                                                org.telegram.ui.ActionBar.j6 j6Var3 = j6Var2;
+                                                org.telegram.ui.ActionBar.l6 l6Var3 = l6Var2;
                                                 TLObject tLObject3 = tLObject2;
                                                 mp mpVar3 = mpVar2;
                                                 switch (i12) {
                                                     case 0:
                                                         if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                            org.telegram.ui.ActionBar.n6.I1(m6Var3, k6Var3, (TLRPC.TL_theme) tLObject3, mpVar3.currentAccount, false);
-                                                            mpVar3.getNotificationCenter().k(182, m6Var3, k6Var3);
+                                                            org.telegram.ui.ActionBar.m6.I1(l6Var3, j6Var3, (TLRPC.TL_theme) tLObject3, mpVar3.currentAccount, false);
+                                                            mpVar3.getNotificationCenter().k(182, l6Var3, j6Var3);
                                                             return;
                                                         }
-                                                        mpVar3.getNotificationCenter().k(183, m6Var3, k6Var3);
+                                                        mpVar3.getNotificationCenter().k(183, l6Var3, j6Var3);
                                                         return;
                                                     default:
                                                         if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                            org.telegram.ui.ActionBar.n6.I1(m6Var3, k6Var3, (TLRPC.TL_theme) tLObject3, mpVar3.currentAccount, false);
-                                                            if (m6Var3 == org.telegram.ui.ActionBar.n6.J) {
+                                                            org.telegram.ui.ActionBar.m6.I1(l6Var3, j6Var3, (TLRPC.TL_theme) tLObject3, mpVar3.currentAccount, false);
+                                                            if (l6Var3 == org.telegram.ui.ActionBar.m6.J) {
                                                                 z10 = true;
                                                             } else {
                                                                 z10 = false;
                                                             }
-                                                            mpVar3.m2(m6Var3, k6Var3, z10);
-                                                            mpVar3.getNotificationCenter().k(182, m6Var3, k6Var3);
+                                                            mpVar3.m2(l6Var3, j6Var3, z10);
+                                                            mpVar3.getNotificationCenter().k(182, l6Var3, j6Var3);
                                                             return;
                                                         }
-                                                        mpVar3.getNotificationCenter().k(183, m6Var3, k6Var3);
+                                                        mpVar3.getNotificationCenter().k(183, l6Var3, j6Var3);
                                                         return;
                                                 }
                                             }
@@ -127,39 +127,39 @@ public final class yn implements RequestDelegate {
                                         return;
                                     default:
                                         final mp mpVar3 = mpVar;
-                                        final org.telegram.ui.ActionBar.m6 m6Var3 = m6Var;
-                                        final org.telegram.ui.ActionBar.k6 k6Var3 = k6Var;
+                                        final org.telegram.ui.ActionBar.l6 l6Var3 = l6Var;
+                                        final org.telegram.ui.ActionBar.j6 j6Var3 = j6Var;
                                         g0.g3(new Runnable() {
                                             @Override
                                             public final void run() {
                                                 boolean z10;
                                                 int i12 = r5;
-                                                org.telegram.ui.ActionBar.k6 k6Var32 = k6Var3;
-                                                org.telegram.ui.ActionBar.m6 m6Var32 = m6Var3;
+                                                org.telegram.ui.ActionBar.j6 j6Var32 = j6Var3;
+                                                org.telegram.ui.ActionBar.l6 l6Var32 = l6Var3;
                                                 TLObject tLObject3 = tLObject2;
                                                 mp mpVar32 = mpVar3;
                                                 switch (i12) {
                                                     case 0:
                                                         if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                            org.telegram.ui.ActionBar.n6.I1(m6Var32, k6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
-                                                            mpVar32.getNotificationCenter().k(182, m6Var32, k6Var32);
+                                                            org.telegram.ui.ActionBar.m6.I1(l6Var32, j6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
+                                                            mpVar32.getNotificationCenter().k(182, l6Var32, j6Var32);
                                                             return;
                                                         }
-                                                        mpVar32.getNotificationCenter().k(183, m6Var32, k6Var32);
+                                                        mpVar32.getNotificationCenter().k(183, l6Var32, j6Var32);
                                                         return;
                                                     default:
                                                         if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                            org.telegram.ui.ActionBar.n6.I1(m6Var32, k6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
-                                                            if (m6Var32 == org.telegram.ui.ActionBar.n6.J) {
+                                                            org.telegram.ui.ActionBar.m6.I1(l6Var32, j6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
+                                                            if (l6Var32 == org.telegram.ui.ActionBar.m6.J) {
                                                                 z10 = true;
                                                             } else {
                                                                 z10 = false;
                                                             }
-                                                            mpVar32.m2(m6Var32, k6Var32, z10);
-                                                            mpVar32.getNotificationCenter().k(182, m6Var32, k6Var32);
+                                                            mpVar32.m2(l6Var32, j6Var32, z10);
+                                                            mpVar32.getNotificationCenter().k(182, l6Var32, j6Var32);
                                                             return;
                                                         }
-                                                        mpVar32.getNotificationCenter().k(183, m6Var32, k6Var32);
+                                                        mpVar32.getNotificationCenter().k(183, l6Var32, j6Var32);
                                                         return;
                                                 }
                                             }
@@ -188,39 +188,39 @@ public final class yn implements RequestDelegate {
                             switch (r4) {
                                 case 0:
                                     final mp mpVar2 = mpVar;
-                                    final org.telegram.ui.ActionBar.m6 m6Var2 = m6Var;
-                                    final org.telegram.ui.ActionBar.k6 k6Var2 = k6Var;
+                                    final org.telegram.ui.ActionBar.l6 l6Var2 = l6Var;
+                                    final org.telegram.ui.ActionBar.j6 j6Var2 = j6Var;
                                     g0.g3(new Runnable() {
                                         @Override
                                         public final void run() {
                                             boolean z10;
                                             int i12 = r5;
-                                            org.telegram.ui.ActionBar.k6 k6Var32 = k6Var2;
-                                            org.telegram.ui.ActionBar.m6 m6Var32 = m6Var2;
+                                            org.telegram.ui.ActionBar.j6 j6Var32 = j6Var2;
+                                            org.telegram.ui.ActionBar.l6 l6Var32 = l6Var2;
                                             TLObject tLObject3 = tLObject2;
                                             mp mpVar32 = mpVar2;
                                             switch (i12) {
                                                 case 0:
                                                     if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                        org.telegram.ui.ActionBar.n6.I1(m6Var32, k6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
-                                                        mpVar32.getNotificationCenter().k(182, m6Var32, k6Var32);
+                                                        org.telegram.ui.ActionBar.m6.I1(l6Var32, j6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
+                                                        mpVar32.getNotificationCenter().k(182, l6Var32, j6Var32);
                                                         return;
                                                     }
-                                                    mpVar32.getNotificationCenter().k(183, m6Var32, k6Var32);
+                                                    mpVar32.getNotificationCenter().k(183, l6Var32, j6Var32);
                                                     return;
                                                 default:
                                                     if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                        org.telegram.ui.ActionBar.n6.I1(m6Var32, k6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
-                                                        if (m6Var32 == org.telegram.ui.ActionBar.n6.J) {
+                                                        org.telegram.ui.ActionBar.m6.I1(l6Var32, j6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
+                                                        if (l6Var32 == org.telegram.ui.ActionBar.m6.J) {
                                                             z10 = true;
                                                         } else {
                                                             z10 = false;
                                                         }
-                                                        mpVar32.m2(m6Var32, k6Var32, z10);
-                                                        mpVar32.getNotificationCenter().k(182, m6Var32, k6Var32);
+                                                        mpVar32.m2(l6Var32, j6Var32, z10);
+                                                        mpVar32.getNotificationCenter().k(182, l6Var32, j6Var32);
                                                         return;
                                                     }
-                                                    mpVar32.getNotificationCenter().k(183, m6Var32, k6Var32);
+                                                    mpVar32.getNotificationCenter().k(183, l6Var32, j6Var32);
                                                     return;
                                             }
                                         }
@@ -228,39 +228,39 @@ public final class yn implements RequestDelegate {
                                     return;
                                 default:
                                     final mp mpVar3 = mpVar;
-                                    final org.telegram.ui.ActionBar.m6 m6Var3 = m6Var;
-                                    final org.telegram.ui.ActionBar.k6 k6Var3 = k6Var;
+                                    final org.telegram.ui.ActionBar.l6 l6Var3 = l6Var;
+                                    final org.telegram.ui.ActionBar.j6 j6Var3 = j6Var;
                                     g0.g3(new Runnable() {
                                         @Override
                                         public final void run() {
                                             boolean z10;
                                             int i12 = r5;
-                                            org.telegram.ui.ActionBar.k6 k6Var32 = k6Var3;
-                                            org.telegram.ui.ActionBar.m6 m6Var32 = m6Var3;
+                                            org.telegram.ui.ActionBar.j6 j6Var32 = j6Var3;
+                                            org.telegram.ui.ActionBar.l6 l6Var32 = l6Var3;
                                             TLObject tLObject3 = tLObject2;
                                             mp mpVar32 = mpVar3;
                                             switch (i12) {
                                                 case 0:
                                                     if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                        org.telegram.ui.ActionBar.n6.I1(m6Var32, k6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
-                                                        mpVar32.getNotificationCenter().k(182, m6Var32, k6Var32);
+                                                        org.telegram.ui.ActionBar.m6.I1(l6Var32, j6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
+                                                        mpVar32.getNotificationCenter().k(182, l6Var32, j6Var32);
                                                         return;
                                                     }
-                                                    mpVar32.getNotificationCenter().k(183, m6Var32, k6Var32);
+                                                    mpVar32.getNotificationCenter().k(183, l6Var32, j6Var32);
                                                     return;
                                                 default:
                                                     if (tLObject3 instanceof TLRPC.TL_theme) {
-                                                        org.telegram.ui.ActionBar.n6.I1(m6Var32, k6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
-                                                        if (m6Var32 == org.telegram.ui.ActionBar.n6.J) {
+                                                        org.telegram.ui.ActionBar.m6.I1(l6Var32, j6Var32, (TLRPC.TL_theme) tLObject3, mpVar32.currentAccount, false);
+                                                        if (l6Var32 == org.telegram.ui.ActionBar.m6.J) {
                                                             z10 = true;
                                                         } else {
                                                             z10 = false;
                                                         }
-                                                        mpVar32.m2(m6Var32, k6Var32, z10);
-                                                        mpVar32.getNotificationCenter().k(182, m6Var32, k6Var32);
+                                                        mpVar32.m2(l6Var32, j6Var32, z10);
+                                                        mpVar32.getNotificationCenter().k(182, l6Var32, j6Var32);
                                                         return;
                                                     }
-                                                    mpVar32.getNotificationCenter().k(183, m6Var32, k6Var32);
+                                                    mpVar32.getNotificationCenter().k(183, l6Var32, j6Var32);
                                                     return;
                                             }
                                         }
@@ -271,31 +271,31 @@ public final class yn implements RequestDelegate {
                     });
                     return;
                 }
-                g0.g3(new kg(mpVar, m6Var, k6Var, 6));
+                g0.g3(new kg(mpVar, l6Var, j6Var, 6));
                 return;
             case 1:
                 mp mpVar2 = (mp) c1Var;
-                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj4;
+                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) obj4;
                 vf.b bVar = (vf.b) obj3;
-                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) obj2;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) obj2;
                 Bundle bundle = (Bundle) obj;
                 if (tLObject != null) {
-                    g0.g3(new tj(mpVar2, u1Var, bVar, tLObject, h2Var, bundle, 5));
+                    g0.g3(new tj(mpVar2, t1Var, bVar, tLObject, g2Var, bundle, 5));
                     return;
                 }
                 return;
             case 2:
                 xv xvVar = (xv) c1Var;
                 Context context = (Context) obj4;
-                org.telegram.ui.ActionBar.u1 u1Var2 = (org.telegram.ui.ActionBar.u1) obj3;
+                org.telegram.ui.ActionBar.t1 t1Var2 = (org.telegram.ui.ActionBar.t1) obj3;
                 byte[] bArr2 = (byte[]) obj2;
                 TLRPC.User user = (TLRPC.User) obj;
                 if (tL_error == null) {
-                    g0.g3(new tj(xvVar, context, u1Var2, tLObject, bArr2, user, 8));
+                    g0.g3(new tj(xvVar, context, t1Var2, tLObject, bArr2, user, 8));
                     return;
                 }
-                xvVar.f28011f.clear();
-                g0.g3(new uv(xvVar, context, u1Var2, 1));
+                xvVar.f28039f.clear();
+                g0.g3(new uv(xvVar, context, t1Var2, 1));
                 return;
             case 3:
                 xv xvVar2 = (xv) c1Var;
@@ -304,7 +304,7 @@ public final class yn implements RequestDelegate {
                 TLRPC.Message message = (TLRPC.Message) obj2;
                 fj fjVar2 = (fj) obj;
                 if (tL_error == null && (decryptedMessage.action instanceof TLRPC.TL_decryptedMessageActionNotifyLayer)) {
-                    TLRPC.EncryptedChat c12 = xvVar2.getMessagesController().c1(Integer.valueOf(encryptedChat2.f28411id));
+                    TLRPC.EncryptedChat c12 = xvVar2.getMessagesController().c1(Integer.valueOf(encryptedChat2.f28439id));
                     if (c12 == null) {
                         encryptedChat = encryptedChat2;
                     } else {
@@ -312,7 +312,7 @@ public final class yn implements RequestDelegate {
                     }
                     if (encryptedChat.key_hash == null) {
                         byte[] bArr3 = encryptedChat.auth_key;
-                        Typeface typeface = g0.f24090a;
+                        Typeface typeface = g0.f24118a;
                         byte[] bArr4 = new byte[16];
                         System.arraycopy(Utilities.n(bArr3), 0, bArr4, 0, 16);
                         encryptedChat.key_hash = bArr4;
@@ -329,12 +329,12 @@ public final class yn implements RequestDelegate {
                             a8.g(th2, true);
                         }
                     }
-                    xvVar2.f28007a.remove(Integer.valueOf(encryptedChat.f28411id));
+                    xvVar2.f28035a.remove(Integer.valueOf(encryptedChat.f28439id));
                     int i12 = encryptedChat.layer;
-                    Typeface typeface2 = g0.f24090a;
+                    Typeface typeface2 = g0.f24118a;
                     encryptedChat.layer = (i12 & (-65536)) | 151;
                     tr messagesStorage = xvVar2.getMessagesStorage();
-                    messagesStorage.f27052a.c(new zp(messagesStorage, encryptedChat, 2));
+                    messagesStorage.f27080a.c(new zp(messagesStorage, encryptedChat, 2));
                 }
                 if (tL_error == null) {
                     String str2 = message.attachPath;
@@ -349,7 +349,7 @@ public final class yn implements RequestDelegate {
                     if (fjVar2 != null) {
                         TLRPC.EncryptedFile encryptedFile = messages_sentencryptedmessage.file;
                         if (encryptedFile instanceof TLRPC.TL_encryptedFile) {
-                            TLRPC.Message message2 = fjVar2.f23965k;
+                            TLRPC.Message message2 = fjVar2.f23993k;
                             TLRPC.MessageMedia messageMedia = message2.media;
                             if ((messageMedia instanceof TLRPC.TL_messageMediaPhoto) && (photo = messageMedia.photo) != null) {
                                 TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) i5.c.h(1, photo.sizes);
@@ -361,7 +361,7 @@ public final class yn implements RequestDelegate {
                                 tL_fileEncryptedLocation.iv = decryptedMessageMedia.iv;
                                 tL_fileEncryptedLocation.dc_id = encryptedFile.dc_id;
                                 fjVar = fjVar2;
-                                tL_fileEncryptedLocation.volume_id = encryptedFile.f28412id;
+                                tL_fileEncryptedLocation.volume_id = encryptedFile.f28440id;
                                 tL_fileEncryptedLocation.secret = encryptedFile.access_hash;
                                 tL_fileEncryptedLocation.local_id = encryptedFile.key_fingerprint;
                                 File file = new File(w7.z(4), p5.c.v(str3, ".jpg"));
@@ -376,7 +376,7 @@ public final class yn implements RequestDelegate {
                                 if ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && (document = messageMedia.document) != null) {
                                     messageMedia.document = new TLRPC.TL_documentEncrypted();
                                     TLRPC.Document document3 = message2.media.document;
-                                    document3.f28409id = encryptedFile.f28412id;
+                                    document3.f28437id = encryptedFile.f28440id;
                                     document3.access_hash = encryptedFile.access_hash;
                                     document3.date = document.date;
                                     document3.attributes = document.attributes;
@@ -400,8 +400,8 @@ public final class yn implements RequestDelegate {
                                         TLRPC.Document document4 = message2.media.document;
                                         fileLoader.getClass();
                                         if (file2.renameTo(w7.I(document4))) {
-                                            fjVar.f24024z0 = fjVar.f24020y0;
-                                            fjVar.f24020y0 = false;
+                                            fjVar.f24052z0 = fjVar.f24048y0;
+                                            fjVar.f24048y0 = false;
                                             message2.attachPath = "";
                                         }
                                     }
@@ -413,7 +413,7 @@ public final class yn implements RequestDelegate {
                             i10 = fjVar.o1();
                         }
                     }
-                    xvVar2.getMessagesStorage().f27052a.c(new dg(xvVar2, message, messages_sentencryptedmessage, i10, 16));
+                    xvVar2.getMessagesStorage().f27080a.c(new dg(xvVar2, message, messages_sentencryptedmessage, i10, 16));
                     return;
                 }
                 xvVar2.getMessagesStorage().N0(0, message);
@@ -426,11 +426,11 @@ public final class yn implements RequestDelegate {
     }
 
     public yn(xv xvVar, TLRPC.DecryptedMessage decryptedMessage, TLRPC.EncryptedChat encryptedChat, TLRPC.Message message, fj fjVar, String str) {
-        this.f28164a = 3;
-        this.f28165b = xvVar;
-        this.f28166c = decryptedMessage;
+        this.f28192a = 3;
+        this.f28193b = xvVar;
+        this.f28194c = decryptedMessage;
         this.d = encryptedChat;
-        this.f28167e = message;
-        this.f28168f = fjVar;
+        this.f28195e = message;
+        this.f28196f = fjVar;
     }
 }

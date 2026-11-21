@@ -1,27 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-public final class bp extends org.telegram.ui.x71 {
-    public final int f33753m2;
+import android.animation.ValueAnimator;
+public final class bp implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f33897a = false;
+    public final i01 f33898b;
+    public final float f33899c;
+    public final boolean d;
+    public final np f33900e;
 
-    public bp(Object obj, Bitmap bitmap, boolean z10, int i7) {
-        super(obj, bitmap, z10);
-        this.f33753m2 = i7;
+    public bp(np npVar, i01 i01Var, float f10, boolean z10) {
+        this.f33900e = npVar;
+        this.f33898b = i01Var;
+        this.f33899c = f10;
+        this.d = z10;
     }
 
     @Override
-    public final boolean Z0() {
-        switch (this.f33753m2) {
-            case 0:
-                return true;
-            case 1:
-                return true;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            default:
-                return true;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        np npVar = this.f33900e;
+        npVar.M1 = floatValue;
+        if (!this.d) {
+            floatValue = 1.0f - floatValue;
+        }
+        this.f33898b.setRadius(this.f33899c * floatValue);
+        if (!this.f33897a && npVar.M1 > 0.5f) {
+            this.f33897a = true;
         }
     }
 }

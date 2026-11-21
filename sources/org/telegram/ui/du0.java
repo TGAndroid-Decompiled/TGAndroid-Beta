@@ -4,21 +4,21 @@ import android.animation.ValueAnimator;
 import android.graphics.RectF;
 import android.view.View;
 public final class du0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f46976a;
-    public final ProfileActivity f46977b;
+    public final int f47042a;
+    public final ProfileActivity f47043b;
 
     public du0(ProfileActivity profileActivity, int i7) {
-        this.f46976a = i7;
-        this.f46977b = profileActivity;
+        this.f47042a = i7;
+        this.f47043b = profileActivity;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f46976a;
-        ProfileActivity profileActivity = this.f46977b;
+        int i7 = this.f47042a;
+        ProfileActivity profileActivity = this.f47043b;
         switch (i7) {
             case 0:
-                profileActivity.f43679y0.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
+                profileActivity.f43720y0.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
                 return;
             case 1:
                 RectF rectF = ProfileActivity.Z6;

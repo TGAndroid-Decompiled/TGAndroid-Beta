@@ -1,23 +1,62 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class j60 extends v4.k {
-    public final LanguageSelectActivity F;
+import android.telephony.PhoneNumberUtils;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.TLRPC;
+public final class j60 implements Predicate {
+    public final int f48901a;
+    public final Object f48902b;
 
-    public j60(LanguageSelectActivity languageSelectActivity) {
-        this.F = languageSelectActivity;
+    public j60(Object obj, int i7) {
+        this.f48901a = i7;
+        this.f48902b = obj;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i7 = this.f48901a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f48901a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            case 2:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i7 = this.f48901a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void P(v4.f1 f1Var) {
-        View view;
-        LanguageSelectActivity languageSelectActivity = this.F;
-        languageSelectActivity.f43061b.invalidate();
-        org.telegram.ui.Components.ck0 ck0Var = languageSelectActivity.f43061b;
-        int i7 = ck0Var.D1;
-        if (i7 != -1 && (view = ck0Var.E1) != null) {
-            ck0Var.k1(i7, view);
-            ck0Var.invalidate();
+    public final boolean test(Object obj) {
+        switch (this.f48901a) {
+            case 0:
+                String str = (String) this.f48902b;
+                String str2 = (String) obj;
+                if (str2 != null && str2.equals(str)) {
+                    return true;
+                }
+                return false;
+            case 1:
+                return PhoneNumberUtils.compare((String) this.f48902b, (String) obj);
+            case 2:
+                String str3 = (String) this.f48902b;
+                String str4 = (String) obj;
+                if (str4 != null && str4.equals(str3)) {
+                    return true;
+                }
+                return false;
+            default:
+                return bn.E1((bn) this.f48902b, (TLRPC.MessageEntity) obj);
         }
     }
 }

@@ -9,28 +9,28 @@ import v4.b1;
 import v4.c0;
 import v4.p0;
 public class l extends b1 {
-    public final LinearInterpolator f55692i;
-    public final DecelerateInterpolator f55693j;
-    public final float f55694k;
-    public int f55695l;
-    public int f55696m;
-    public final int f55697n;
-    public final float f55698o;
-    public int f55699p;
+    public final LinearInterpolator f55733i;
+    public final DecelerateInterpolator f55734j;
+    public final float f55735k;
+    public int f55736l;
+    public int f55737m;
+    public final int f55738n;
+    public final float f55739o;
+    public int f55740p;
 
     public l(Context context, int i7) {
-        this.f55692i = new LinearInterpolator();
-        this.f55693j = new DecelerateInterpolator(1.5f);
-        this.f55695l = 0;
-        this.f55696m = 0;
-        this.f55698o = 1.0f;
-        this.f55694k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
-        this.f55697n = i7;
+        this.f55733i = new LinearInterpolator();
+        this.f55734j = new DecelerateInterpolator(1.5f);
+        this.f55736l = 0;
+        this.f55737m = 0;
+        this.f55739o = 1.0f;
+        this.f55735k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+        this.f55738n = i7;
     }
 
     @Override
     public final PointF a(int i7) {
-        p0 p0Var = this.f59069c;
+        p0 p0Var = this.f59107c;
         if (p0Var instanceof c0) {
             return ((c0) p0Var).E0(i7);
         }
@@ -39,41 +39,41 @@ public class l extends b1 {
 
     @Override
     public final void d(int i7, int i10, a1 a1Var) {
-        if (this.f59068b.f2822y.r() == 0) {
+        if (this.f59106b.f2834y.r() == 0) {
             h();
             return;
         }
-        int i11 = this.f55695l;
+        int i11 = this.f55736l;
         int i12 = i11 - i7;
         int i13 = 0;
         if (i11 * i12 <= 0) {
             i12 = 0;
         }
-        this.f55695l = i12;
-        int i14 = this.f55696m;
+        this.f55736l = i12;
+        int i14 = this.f55737m;
         int i15 = i14 - i10;
         if (i14 * i15 > 0) {
             i13 = i15;
         }
-        this.f55696m = i13;
+        this.f55737m = i13;
         if (i12 == 0 && i13 == 0) {
-            PointF a10 = a(this.f59067a);
+            PointF a10 = a(this.f59105a);
             if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
                 b1.b(a10);
-                this.f55695l = (int) (a10.x * 10000.0f);
-                this.f55696m = (int) (a10.y * 10000.0f);
-                a1Var.b((int) (this.f55695l * 1.2f), (int) (this.f55696m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f55694k)) * 1.2f), this.f55692i);
+                this.f55736l = (int) (a10.x * 10000.0f);
+                this.f55737m = (int) (a10.y * 10000.0f);
+                a1Var.b((int) (this.f55736l * 1.2f), (int) (this.f55737m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f55735k)) * 1.2f), this.f55733i);
                 return;
             }
-            a1Var.d = this.f59067a;
+            a1Var.d = this.f59105a;
             h();
         }
     }
 
     @Override
     public final void f() {
-        this.f55696m = 0;
-        this.f55695l = 0;
+        this.f55737m = 0;
+        this.f55736l = 0;
     }
 
     @Override
@@ -82,13 +82,13 @@ public class l extends b1 {
     }
 
     public l(Context context, int i7, float f10) {
-        this.f55692i = new LinearInterpolator();
-        this.f55693j = new DecelerateInterpolator(1.5f);
-        this.f55695l = 0;
-        this.f55696m = 0;
-        this.f55698o = f10;
-        this.f55694k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f10;
-        this.f55697n = i7;
+        this.f55733i = new LinearInterpolator();
+        this.f55734j = new DecelerateInterpolator(1.5f);
+        this.f55736l = 0;
+        this.f55737m = 0;
+        this.f55739o = f10;
+        this.f55735k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f10;
+        this.f55738n = i7;
     }
 
     @Override

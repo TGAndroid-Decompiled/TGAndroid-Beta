@@ -1,46 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class x01 extends Drawable {
-    public final Paint f41852a = new Paint(1);
-    public final RectF f41853b = new RectF();
-    public final int f41854c;
-    public final f11 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class x01 extends AnimatorListenerAdapter {
+    public final int f41946a;
+    public final h11 f41947b;
 
-    public x01(f11 f11Var, int i7) {
-        this.d = f11Var;
-        this.f41854c = i7;
+    public x01(h11 h11Var, int i7) {
+        this.f41946a = i7;
+        this.f41947b = h11Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f41853b;
-        rectF.set(bounds);
-        int i7 = this.f41854c;
-        rectF.inset(i7, i7);
-        float height = rectF.height() / 2.0f;
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.O5, this.d.f34880e);
-        Paint paint = this.f41852a;
-        paint.setColor(w02);
-        canvas.drawRoundRect(rectF, height, height, paint);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f41946a) {
+            case 0:
+                h11 h11Var = this.f41947b;
+                if (h11Var.f35729b0 == animator) {
+                    h11Var.f35729b0 = null;
+                    return;
+                }
+                return;
+            case 1:
+                h11 h11Var2 = this.f41947b;
+                if (h11Var2.f35741k0 == animator) {
+                    h11Var2.f35741k0 = null;
+                }
+                h11Var2.c(1.0f);
+                return;
+            default:
+                h11 h11Var3 = this.f41947b;
+                if (h11Var3.K == animator) {
+                    h11Var3.K = null;
+                    return;
+                }
+                return;
+        }
     }
 }

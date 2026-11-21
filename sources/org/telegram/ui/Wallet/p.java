@@ -9,23 +9,23 @@ import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.a70;
 import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.y60;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.bn;
 import org.telegram.ui.ne;
 import org.telegram.ui.u60;
 public final class p implements Runnable {
-    public final int f44728a;
-    public final Object f44729b;
-    public final Object f44730c;
+    public final int f44768a;
+    public final Object f44769b;
+    public final Object f44770c;
     public final Object d;
 
     public p(Object obj, Object obj2, Object obj3, int i7) {
-        this.f44728a = i7;
-        this.f44729b = obj;
-        this.f44730c = obj2;
+        this.f44768a = i7;
+        this.f44769b = obj;
+        this.f44770c = obj2;
         this.d = obj3;
     }
 
@@ -33,20 +33,20 @@ public final class p implements Runnable {
     public final void run() {
         String str;
         boolean z10;
-        int i7 = this.f44728a;
+        int i7 = this.f44768a;
         byte[] bArr = null;
         boolean z11 = true;
         int i10 = 0;
         Object obj = this.d;
-        Object obj2 = this.f44729b;
-        Object obj3 = this.f44730c;
+        Object obj2 = this.f44769b;
+        Object obj3 = this.f44770c;
         switch (i7) {
             case 0:
                 u0 u0Var = (u0) obj2;
                 j0 j0Var = (j0) obj;
                 if (u0Var.Q.get((String) obj3) == j0Var) {
-                    j0Var.f44377e = true;
-                    ArrayList arrayList = j0Var.f44378f;
+                    j0Var.f44417e = true;
+                    ArrayList arrayList = j0Var.f44418f;
                     u0Var.v0(j0Var);
                     int size = arrayList.size();
                     while (i10 < size) {
@@ -83,7 +83,7 @@ public final class p implements Runnable {
                 q10Var.a(importedWalletProof, null);
                 return;
             case 2:
-                ((g2) obj2).f44251f = false;
+                ((g2) obj2).f44291f = false;
                 ((k) obj).a((String) obj3);
                 return;
             case 3:
@@ -91,14 +91,14 @@ public final class p implements Runnable {
                 return;
             case 4:
                 h2 h2Var = (h2) obj3;
-                hi.d dVar = (hi.d) obj;
-                if (!((bi.g6) obj2).canScrollVertically(1)) {
-                    h2Var.f44302p = true;
+                hi.e eVar = (hi.e) obj;
+                if (!((bi.k6) obj2).canScrollVertically(1)) {
+                    h2Var.f44342p = true;
                 }
-                if (!h2Var.f44302p || h2Var.f44299m || h2Var.f44300n) {
+                if (!h2Var.f44342p || h2Var.f44339m || h2Var.f44340n) {
                     z11 = false;
                 }
-                dVar.setEnabled(z11);
+                eVar.setEnabled(z11);
                 return;
             case 5:
                 l2 l2Var = (l2) obj2;
@@ -106,7 +106,7 @@ public final class p implements Runnable {
                 l2Var.getClass();
                 k kVar = new k((x10) obj, 1);
                 if (tonconnectsession != null && tonconnectsession.dapp_client_id != null && tonconnectsession.client_id != null && tonconnectsession.nonce != null) {
-                    if (!l2Var.f44481c.add(Long.valueOf(tonconnectsession.f28665id))) {
+                    if (!l2Var.f44521c.add(Long.valueOf(tonconnectsession.f28693id))) {
                         kVar.a("A TON Connect operation is already in progress");
                         return;
                     }
@@ -115,7 +115,7 @@ public final class p implements Runnable {
                         oVar.a(null);
                         return;
                     } else {
-                        l2Var.f44480b.x0(new p(l2Var, oVar, tonconnectsession, 6));
+                        l2Var.f44520b.x0(new p(l2Var, oVar, tonconnectsession, 6));
                         return;
                     }
                 }
@@ -125,7 +125,7 @@ public final class p implements Runnable {
                 l2 l2Var2 = (l2) obj2;
                 o oVar2 = (o) obj3;
                 TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) obj;
-                u0 u0Var2 = l2Var2.f44480b;
+                u0 u0Var2 = l2Var2.f44520b;
                 String y10 = u0Var2.y();
                 byte[] E = u0Var2.E();
                 if (E != null) {
@@ -144,14 +144,14 @@ public final class p implements Runnable {
                 g2 g2Var = (g2) obj3;
                 l2Var3.getClass();
                 k kVar2 = new k((u60) obj, 2);
-                TL_wallet.tonConnectSession tonconnectsession3 = g2Var.f44250e;
+                TL_wallet.tonConnectSession tonconnectsession3 = g2Var.f44290e;
                 if (!tonconnectsession3.closed && !tonconnectsession3.closing && tonconnectsession3.manifest_error == null && tonconnectsession3.manifest != null) {
-                    if (g2Var.f44251f) {
+                    if (g2Var.f44291f) {
                         kVar2.a("A TON Connect operation is already in progress");
                         return;
                     }
-                    g2Var.f44251f = true;
-                    l2Var3.f44480b.x0(new v7(l2Var3, g2Var, kVar2, tonconnectsession3, 7));
+                    g2Var.f44291f = true;
+                    l2Var3.f44520b.x0(new v7(l2Var3, g2Var, kVar2, tonconnectsession3, 7));
                     return;
                 }
                 kVar2.a("The dApp manifest is unavailable or the session is closed");
@@ -159,38 +159,38 @@ public final class p implements Runnable {
             case 8:
                 boolean[] zArr = (boolean[]) obj3;
                 w2 w2Var = (w2) obj;
-                z2.f45342a.remove((bi.c5) obj2);
+                z2.f45382a.remove((bi.g5) obj2);
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    lc.c0(gd.M0(2131742701, null));
+                    lc.c0(gd.N0(2131742695, null));
                     w2Var.a();
                     return;
                 }
                 return;
             case 9:
                 y2 y2Var = (y2) obj2;
-                hi.d dVar2 = (hi.d) obj3;
-                hi.d dVar3 = (hi.d) obj;
+                hi.e eVar2 = (hi.e) obj3;
+                hi.e eVar3 = (hi.e) obj;
                 boolean a10 = y2Var.a();
                 if (!a10 && !y2Var.d) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                dVar2.setEnabled(z10);
+                eVar2.setEnabled(z10);
                 if (a10 || y2Var.d) {
                     z11 = false;
                 }
-                dVar3.setEnabled(z11);
+                eVar3.setEnabled(z11);
                 return;
             case 10:
                 w3 w3Var = (w3) obj2;
-                w3Var.V = new r3((org.telegram.ui.ActionBar.h2) obj3, (TL_wallet.card) obj, 0);
+                w3Var.V = new r3((org.telegram.ui.ActionBar.g2) obj3, (TL_wallet.card) obj, 0);
                 w3Var.dismiss();
                 return;
             case 11:
                 ((v7) obj2).run();
-                ((y60) obj3).L((y60) obj);
+                ((a70) obj3).L((a70) obj);
                 return;
             case 12:
                 e3[] e3VarArr = (e3[]) obj3;
@@ -200,7 +200,7 @@ public final class p implements Runnable {
                     if (e3Var != null) {
                         e3Var.dismiss();
                     }
-                    org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
+                    org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
                     if (T != null) {
                         T.presentFragment(bn.ua(wallettransactionpeeruser.user_id));
                         return;
@@ -221,7 +221,7 @@ public final class p implements Runnable {
                     if (e3Var2 != null) {
                         e3Var2.dismiss();
                     }
-                    org.telegram.ui.ActionBar.h2 T2 = LaunchActivity.T();
+                    org.telegram.ui.ActionBar.g2 T2 = LaunchActivity.T();
                     if (T2 != null) {
                         T2.presentFragment(bn.ua(-walletTransactionPeer.channel_id));
                         return;
@@ -235,11 +235,11 @@ public final class p implements Runnable {
             case 16:
                 s6 s6Var = (s6) obj2;
                 p6 p6Var = (p6) obj3;
-                s6Var.f44996b = p6Var;
-                p6Var.j(s6Var.f44998c);
-                s6Var.f45006h0 = Float.NaN;
-                s6Var.b(s6Var.f45000d0, s6Var.f45005g0);
-                s6Var.f45001e.setVisibility(0);
+                s6Var.f45036b = p6Var;
+                p6Var.j(s6Var.f45038c);
+                s6Var.f45046h0 = Float.NaN;
+                s6Var.b(s6Var.f45040d0, s6Var.f45045g0);
+                s6Var.f45041e.setVisibility(0);
                 ((q6) obj).run();
                 q3 q3Var = s6Var.d;
                 if (q3Var != null) {
@@ -265,21 +265,21 @@ public final class p implements Runnable {
                 int[] iArr = (int[]) obj3;
                 Bitmap bitmap = (Bitmap) obj;
                 q8Var.C = false;
-                r8 r8Var = q8Var.f44832d0;
-                boolean z12 = r8Var.f44888b1;
-                x6 x6Var = r8Var.f44889c;
+                r8 r8Var = q8Var.f44872d0;
+                boolean z12 = r8Var.f44928b1;
+                x6 x6Var = r8Var.f44929c;
                 if (!z12) {
-                    if (q8Var.f44848u == null) {
-                        q8Var.f44848u = Bitmap.createBitmap(288, 288, Bitmap.Config.ARGB_8888);
+                    if (q8Var.f44888u == null) {
+                        q8Var.f44888u = Bitmap.createBitmap(288, 288, Bitmap.Config.ARGB_8888);
                         if (x6Var.isShown() && x6Var.getAlpha() > 0.0f) {
-                            p8 p8Var = q8Var.f44845r;
+                            p8 p8Var = q8Var.f44885r;
                             p8Var.a(0.0f);
-                            p8Var.f44796b = 1.0f;
+                            p8Var.f44836b = 1.0f;
                         }
                     }
-                    q8Var.f44848u.setPixels(iArr, 0, 288, 0, 0, 288, 288);
-                    if (bitmap != null && q8Var.f44849w == null) {
-                        q8Var.f44849w = bitmap;
+                    q8Var.f44888u.setPixels(iArr, 0, 288, 0, 0, 288, 288);
+                    if (bitmap != null && q8Var.f44889w == null) {
+                        q8Var.f44889w = bitmap;
                     }
                     if (q8Var.D) {
                         q8Var.c();
@@ -291,12 +291,12 @@ public final class p implements Runnable {
             default:
                 d9 d9Var = (d9) obj3;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, d9Var.getParentActivity(), d9Var.getResourceProvider());
-                String M0 = gd.M0(2131742893, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
-                u1Var.S = M0;
-                u1Var.U = gd.M0(2131742896, null);
-                alertDialog$Builder.h(gd.M0(2131752578, null), null);
-                alertDialog$Builder.k(gd.M0(2131742898, null), new x8(d9Var, (u0) obj2, (o0) obj));
+                String N0 = gd.N0(2131742887, null);
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+                t1Var.S = N0;
+                t1Var.U = gd.N0(2131742890, null);
+                alertDialog$Builder.h(gd.N0(2131752577, null), null);
+                alertDialog$Builder.k(gd.N0(2131742892, null), new x8(d9Var, (u0) obj2, (o0) obj));
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.p();
                 return;
@@ -304,23 +304,23 @@ public final class p implements Runnable {
     }
 
     public p(Object obj, Object obj2, String str, int i7) {
-        this.f44728a = i7;
-        this.f44729b = obj;
+        this.f44768a = i7;
+        this.f44769b = obj;
         this.d = obj2;
-        this.f44730c = str;
+        this.f44770c = str;
     }
 
     public p(u0 u0Var, WalletEngine2.ImportedWalletProof importedWalletProof, Exception exc, q10 q10Var) {
-        this.f44728a = 1;
-        this.f44729b = importedWalletProof;
-        this.f44730c = exc;
+        this.f44768a = 1;
+        this.f44769b = importedWalletProof;
+        this.f44770c = exc;
         this.d = q10Var;
     }
 
     public p(d9 d9Var, u0 u0Var, o0 o0Var) {
-        this.f44728a = 22;
-        this.f44730c = d9Var;
-        this.f44729b = u0Var;
+        this.f44768a = 22;
+        this.f44770c = d9Var;
+        this.f44769b = u0Var;
         this.d = o0Var;
     }
 }

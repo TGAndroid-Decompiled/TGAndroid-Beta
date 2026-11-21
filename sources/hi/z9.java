@@ -1,32 +1,28 @@
 package hi;
-public final class z9 implements n2 {
-    public final ta f15838a;
 
-    public z9(ta taVar) {
-        this.f15838a = taVar;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.text.style.ImageSpan;
+public final class z9 extends ImageSpan {
+    public final Drawable f15868a;
+
+    public z9(Drawable drawable, Drawable drawable2) {
+        super(drawable);
+        this.f15868a = drawable2;
     }
 
     @Override
-    public final void setInvert(float f10) {
-        boolean z10;
-        ta taVar = this.f15838a;
-        sa saVar = taVar.f15461n;
-        int i7 = (f10 > 0.5f ? 1 : (f10 == 0.5f ? 0 : -1));
-        boolean z11 = false;
-        if (i7 > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        org.telegram.messenger.g0.n3(saVar, z10);
-        sa saVar2 = taVar.f15461n;
-        if (i7 > 0) {
-            z11 = true;
-        }
-        org.telegram.messenger.g0.q3(saVar2, z11);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        canvas.save();
+        canvas.translate(0.0f, org.telegram.messenger.g0.L(1.0f) + ((i13 - i11) / 2));
+        this.f15868a.setAlpha(paint.getAlpha());
+        super.draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
+        canvas.restore();
     }
 
     @Override
-    public final void invalidate() {
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        return (super.getSize(paint, charSequence, i7, i10, fontMetricsInt) / 3) * 2;
     }
 }

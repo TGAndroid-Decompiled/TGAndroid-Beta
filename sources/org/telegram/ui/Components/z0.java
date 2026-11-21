@@ -1,29 +1,67 @@
 package org.telegram.ui.Components;
 
+import android.content.DialogInterface;
 import android.view.View;
-public final class z0 implements View.OnClickListener {
-    public final int f42692a;
-    public final org.telegram.ui.Cells.d2[] f42693b;
+public final class z0 implements DialogInterface.OnDismissListener {
+    public final int f42616a;
+    public final Object f42617b;
 
-    public z0(org.telegram.ui.Cells.d2[] d2VarArr, int i7) {
-        this.f42692a = i7;
-        this.f42693b = d2VarArr;
+    public z0(Object obj, int i7) {
+        this.f42616a = i7;
+        this.f42617b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f42692a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        int i7 = this.f42616a;
+        Object obj = this.f42617b;
+        switch (i7) {
             case 0:
-                Integer num = (Integer) view.getTag();
-                int intValue = num.intValue();
-                org.telegram.ui.Cells.d2[] d2VarArr = this.f42693b;
-                d2VarArr[intValue].c(!d2VarArr[num.intValue()].b(), true);
+                ((org.telegram.ui.vf) obj).run();
+                return;
+            case 1:
+                org.telegram.messenger.g0.v1((b5) obj);
+                return;
+            case 2:
+                org.telegram.messenger.g0.v1((i4) obj);
+                return;
+            case 3:
+                ((ui) obj).A4 = false;
+                return;
+            case 4:
+                zk zkVar = (zk) obj;
+                zkVar.U0 = null;
+                zkVar.T.post(new tk(zkVar, 2));
+                return;
+            case 5:
+                ot otVar = (ot) obj;
+                otVar.f38353b2 = null;
+                otVar.requestFocus();
+                return;
+            case 6:
+                float[] fArr = FragmentContextView.X0;
+                ((FragmentContextView) obj).c(false);
+                return;
+            case 7:
+                em0.I = null;
+                ((View) obj).requestFocus();
+                return;
+            case 8:
+                org.telegram.messenger.g0.v1((yl0) obj);
                 return;
             default:
-                Integer num2 = (Integer) view.getTag();
-                int intValue2 = num2.intValue();
-                org.telegram.ui.Cells.d2[] d2VarArr2 = this.f42693b;
-                d2VarArr2[intValue2].c(!d2VarArr2[num2.intValue()].b(), true);
+                ThemeEditorView themeEditorView = ((pz0) obj).d;
+                themeEditorView.f33189n = null;
+                if (themeEditorView.d != null) {
+                    org.telegram.messenger.g0.w3(themeEditorView.f33185j, themeEditorView.f33180c, themeEditorView.f33184i);
+                    try {
+                        themeEditorView.f33185j.addView(themeEditorView.f33180c, themeEditorView.f33184i);
+                        themeEditorView.e();
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
                 return;
         }
     }

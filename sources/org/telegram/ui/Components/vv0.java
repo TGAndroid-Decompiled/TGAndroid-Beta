@@ -1,85 +1,36 @@
 package org.telegram.ui.Components;
+public final class vv0 implements Runnable {
+    public final int f41562a;
+    public final kw0 f41563b;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.TextView;
-import java.io.Serializable;
-import java.util.HashMap;
-public final class vv0 implements TextWatcher {
-    public final int f41464a = 0;
-    public final EditTextBoldCursor f41465b;
-    public final Serializable f41466c;
-    public final Object d;
-    public final org.telegram.messenger.fs f41467e;
-
-    public vv0(iw0 iw0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
-        this.f41467e = iw0Var;
-        this.f41466c = iArr;
-        this.d = textView;
-        this.f41465b = editTextBoldCursor;
+    public vv0(kw0 kw0Var, int i7) {
+        this.f41562a = i7;
+        this.f41563b = kw0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        switch (this.f41464a) {
+    public final void run() {
+        switch (this.f41562a) {
             case 0:
+                this.f41563b.f37016o1.f();
+                return;
+            case 1:
+                this.f41563b.f37016o1.f();
+                return;
+            case 2:
+                kw0 kw0Var = this.f41563b;
+                kw0Var.dismiss();
+                org.telegram.messenger.ri.d0(kw0Var.f30170a).k2(kw0Var.getContext(), kw0Var.N1, 1, kw0Var.G1, false, false);
+                return;
+            case 3:
+                kw0 kw0Var2 = this.f41563b;
+                org.telegram.messenger.mp.u1(kw0Var2.f30170a).F3("stickers", kw0Var2.G1, 1, null);
                 return;
             default:
-                org.telegram.ui.hk0 hk0Var = (org.telegram.ui.hk0) this.f41467e;
-                String str = (String) this.f41466c;
-                if (((HashMap) this.d) == hk0Var.f48415u1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                EditTextBoldCursor editTextBoldCursor = this.f41465b;
-                org.telegram.ui.hk0.N0(hk0Var, editTextBoldCursor, str, editable, z10);
-                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
-                EditTextBoldCursor editTextBoldCursor2 = hk0Var.Z[intValue];
-                if (intValue == 6) {
-                    hk0Var.c1(true);
-                    return;
-                }
+                kw0 kw0Var3 = this.f41563b;
+                kw0Var3.dismiss();
+                org.telegram.messenger.ri.d0(kw0Var3.f30170a).k2(kw0Var3.getContext(), kw0Var3.N1, 1, kw0Var3.G1, false, false);
                 return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f41464a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f41464a) {
-            case 0:
-                if (((int[]) this.f41466c)[0] == 2) {
-                    ((iw0) this.f41467e).L0((TextView) this.d, this.f41465b.getText().toString(), false);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    public vv0(org.telegram.ui.hk0 hk0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
-        this.f41467e = hk0Var;
-        this.f41465b = editTextBoldCursor;
-        this.f41466c = str;
-        this.d = hashMap;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

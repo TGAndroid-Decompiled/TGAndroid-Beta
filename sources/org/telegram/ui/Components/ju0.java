@@ -1,57 +1,38 @@
 package org.telegram.ui.Components;
+public final class ju0 implements Runnable {
+    public final int f36703a;
+    public final lu0 f36704b;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.View;
-public class ju0 extends v4.d0 {
-    public final lr f36534r;
-    public int f36535s;
-    public float f36536t;
-
-    public ju0(Context context) {
-        super(context);
-        this.f36534r = lr.f37208f;
-        this.f36536t = 1.0f;
+    public ju0(lu0 lu0Var, int i7) {
+        this.f36703a = i7;
+        this.f36704b = lu0Var;
     }
 
     @Override
-    public final void g(View view, v4.a1 a1Var) {
-        int j3 = j(o(), view);
-        int k10 = k(p(), view);
-        int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
-        if (m10 > 0) {
-            a1Var.b(-j3, -k10, m10, this.f36534r);
+    public final void run() {
+        switch (this.f36703a) {
+            case 0:
+                lu0 lu0Var = this.f36704b;
+                lu0Var.W0 = false;
+                if (!lu0Var.Z0 && lu0Var.X0) {
+                    lu0Var.C(true);
+                    return;
+                }
+                return;
+            case 1:
+                this.f36704b.W0 = false;
+                return;
+            case 2:
+                lu0 lu0Var2 = this.f36704b;
+                lu0Var2.Z0 = false;
+                if (!lu0Var2.W0 && lu0Var2.X0) {
+                    lu0Var2.C(true);
+                    return;
+                }
+                return;
+            default:
+                this.f36704b.Z0 = false;
+                return;
         }
-        org.telegram.messenger.g0.h3(new ap0(this, 8), Math.max(0, m10));
-    }
-
-    @Override
-    public final int k(int i7, View view) {
-        return super.k(i7, view) - this.f36535s;
-    }
-
-    @Override
-    public final int m(int i7) {
-        return Math.round(Math.min(super.m(i7), 500) * this.f36536t);
-    }
-
-    @Override
-    public final int n(int i7) {
-        return Math.round(Math.min(super.n(i7), 150) * this.f36536t);
-    }
-
-    @Override
-    public final void q(v4.a1 a1Var) {
-        PointF a10 = a(this.f59067a);
-        if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
-            v4.b1.b(a10);
-            this.f59104k = a10;
-            this.f59108o = (int) (a10.x * 10000.0f);
-            this.f59109p = (int) (a10.y * 10000.0f);
-            a1Var.b((int) (this.f59108o * 1.2f), (int) (this.f59109p * 1.2f), (int) (n(10000) * 1.2f), this.f36534r);
-            return;
-        }
-        a1Var.d = this.f59067a;
-        h();
     }
 }

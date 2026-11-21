@@ -40,27 +40,27 @@ public abstract class zt implements wg0 {
     public int U;
     public int V;
     public View W;
-    public final ev f28349a;
-    public final Rect f28350b;
-    public final int f28351c;
+    public final ev f28377a;
+    public final Rect f28378b;
+    public final int f28379c;
     public StaticLayout d;
-    public float f28352e;
-    public int f28353f;
+    public float f28380e;
+    public int f28381f;
     public int h;
-    public int f28354n;
-    public CheckBoxBase f28355r;
-    public float f28356s;
-    public int f28357w;
-    public boolean f28358x;
-    public boolean f28359y;
+    public int f28382n;
+    public CheckBoxBase f28383r;
+    public float f28384s;
+    public int f28385w;
+    public boolean f28386x;
+    public boolean f28387y;
     public final RectF I = new RectF();
     public boolean R = true;
     public boolean S = true;
 
     public zt(ev evVar, Rect rect, int i7) {
-        this.f28349a = evVar;
-        this.f28350b = new Rect(rect);
-        this.f28351c = (i7 - rect.left) - rect.right;
+        this.f28377a = evVar;
+        this.f28378b = new Rect(rect);
+        this.f28379c = (i7 - rect.left) - rect.right;
     }
 
     public static CharSequence h0(CharSequence charSequence) {
@@ -76,7 +76,7 @@ public abstract class zt implements wg0 {
                 int spanStart = spanned.getSpanStart(p9Var);
                 int spanEnd = spanned.getSpanEnd(p9Var);
                 if (spanStart >= 0 && spanEnd >= 0 && spanStart <= spanEnd && spanEnd <= spannableStringBuilder.length()) {
-                    CharSequence charSequence2 = p9Var.f31259a;
+                    CharSequence charSequence2 = p9Var.f31287a;
                     if (charSequence2 == null) {
                         charSequence2 = "";
                     }
@@ -91,11 +91,11 @@ public abstract class zt implements wg0 {
     public static void l(SpannableStringBuilder spannableStringBuilder, dv dvVar, dv[] dvVarArr) {
         StaticLayout staticLayout;
         StaticLayout staticLayout2;
-        if (dvVar != null && (staticLayout2 = dvVar.f23577b) != null && !TextUtils.isEmpty(staticLayout2.getText())) {
+        if (dvVar != null && (staticLayout2 = dvVar.f23605b) != null && !TextUtils.isEmpty(staticLayout2.getText())) {
             spannableStringBuilder.append(h0(staticLayout2.getText()));
         } else if (dvVarArr != null) {
             for (dv dvVar2 : dvVarArr) {
-                if (dvVar2 != null && (staticLayout = dvVar2.f23577b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
+                if (dvVar2 != null && (staticLayout = dvVar2.f23605b) != null && !TextUtils.isEmpty(staticLayout.getText())) {
                     if (spannableStringBuilder.length() > 0 && spannableStringBuilder.charAt(spannableStringBuilder.length() - 1) != '\n') {
                         spannableStringBuilder.append('\n');
                     }
@@ -106,9 +106,9 @@ public abstract class zt implements wg0 {
     }
 
     public void A(int i7, Rect rect) {
-        int i10 = this.f28350b.left;
+        int i10 = this.f28378b.left;
         float f10 = this.N;
-        rect.set(i10, (int) f10, this.f28351c + i10, (int) (f10 + I()));
+        rect.set(i10, (int) f10, this.f28379c + i10, (int) (f10 + I()));
     }
 
     public int B() {
@@ -124,9 +124,9 @@ public abstract class zt implements wg0 {
     }
 
     public final RectF F() {
-        ev evVar = this.f28349a;
+        ev evVar = this.f28377a;
         float textY = evVar.E.getTextY() + this.N;
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         float f10 = textY + rect.top;
         return new RectF(g0.L(4.0f) + (evVar.E.getTextX() - evVar.S), f10, ((evVar.E.getTextX() + evVar.C) + evVar.T) - g0.L(4.0f), ((I() + f10) - rect.top) - rect.bottom);
     }
@@ -139,8 +139,8 @@ public abstract class zt implements wg0 {
         if (tLObject instanceof TL_iv.PageListOrderedItem) {
             return ((TL_iv.PageListOrderedItem) tLObject).checked;
         }
-        CheckBoxBase checkBoxBase = this.f28355r;
-        if (checkBoxBase != null && checkBoxBase.f32838q) {
+        CheckBoxBase checkBoxBase = this.f28383r;
+        if (checkBoxBase != null && checkBoxBase.f32871q) {
             return true;
         }
         return false;
@@ -157,8 +157,8 @@ public abstract class zt implements wg0 {
     }
 
     public int K() {
-        Rect rect = this.f28350b;
-        return rect.left + this.f28351c + rect.right;
+        Rect rect = this.f28378b;
+        return rect.left + this.f28379c + rect.right;
     }
 
     public org.telegram.ui.Cells.u9[] L() {
@@ -166,21 +166,21 @@ public abstract class zt implements wg0 {
     }
 
     public final boolean M(int i7) {
-        if (this.f28355r != null && i7 == 0 && G()) {
+        if (this.f28383r != null && i7 == 0 && G()) {
             return true;
         }
         return false;
     }
 
     public final boolean O(int i7) {
-        if (this.f28355r != null && i7 == 0 && !n()) {
+        if (this.f28383r != null && i7 == 0 && !n()) {
             return false;
         }
         return true;
     }
 
     public final boolean P(int i7) {
-        if ((this.f28355r == null || i7 != 0) && (this instanceof fu)) {
+        if ((this.f28383r == null || i7 != 0) && (this instanceof fu)) {
             return true;
         }
         return false;
@@ -192,13 +192,13 @@ public abstract class zt implements wg0 {
 
     public final boolean R() {
         int indexOf;
-        ev evVar = this.f28349a;
-        if (evVar.h.isEmpty() || (indexOf = evVar.f23772g.indexOf(this)) < 0) {
+        ev evVar = this.f28377a;
+        if (evVar.h.isEmpty() || (indexOf = evVar.f23800g.indexOf(this)) < 0) {
             return false;
         }
         for (int i7 = 0; i7 < evVar.h.size(); i7++) {
             vt vtVar = (vt) evVar.h.get(i7);
-            if (indexOf >= vtVar.f27595a && indexOf <= vtVar.f27596b) {
+            if (indexOf >= vtVar.f27623a && indexOf <= vtVar.f27624b) {
                 return true;
             }
         }
@@ -237,9 +237,9 @@ public abstract class zt implements wg0 {
             for (org.telegram.ui.Cells.u9 u9Var : L) {
                 if (u9Var instanceof dv) {
                     dv dvVar = (dv) u9Var;
-                    dvVar.f23578c = i7 - dvVar.f23580f;
+                    dvVar.f23606c = i7 - dvVar.f23608f;
                     dvVar.d = i10;
-                    dvVar.f23579e = i11;
+                    dvVar.f23607e = i11;
                 }
             }
         }
@@ -265,15 +265,15 @@ public abstract class zt implements wg0 {
 
     public final void b0(TLObject tLObject, boolean z10) {
         this.H = tLObject;
-        if (this.f28355r == null) {
-            CheckBoxBase checkBoxBase = new CheckBoxBase(20, null, this.f28349a.D);
-            this.f28355r = checkBoxBase;
-            checkBoxBase.h(org.telegram.ui.ActionBar.n6.Yl, org.telegram.ui.ActionBar.n6.f29804z5, org.telegram.ui.ActionBar.n6.f29524k7);
-            this.f28355r.d(10);
-            this.f28355r.k(true);
-            this.f28355r.i(g0.L(5.0f));
+        if (this.f28383r == null) {
+            CheckBoxBase checkBoxBase = new CheckBoxBase(20, null, this.f28377a.D);
+            this.f28383r = checkBoxBase;
+            checkBoxBase.h(org.telegram.ui.ActionBar.m6.Yl, org.telegram.ui.ActionBar.m6.f29788z5, org.telegram.ui.ActionBar.m6.f29508k7);
+            this.f28383r.d(10);
+            this.f28383r.k(true);
+            this.f28383r.i(g0.L(5.0f));
         }
-        this.f28355r.f(-1, z10, false);
+        this.f28383r.f(-1, z10, false);
         g0();
     }
 
@@ -282,8 +282,8 @@ public abstract class zt implements wg0 {
         String str2;
         int i7;
         Layout.Alignment alignment;
-        ev evVar = this.f28349a;
-        evVar.f23787x.setTextSize(g0.L(bz.W0));
+        ev evVar = this.f28377a;
+        evVar.f23815x.setTextSize(g0.L(bz.W0));
         Layout a10 = a();
         if (a10 == null) {
             text = null;
@@ -292,7 +292,7 @@ public abstract class zt implements wg0 {
         }
         if (!TextUtils.isEmpty(str) && (text instanceof Spanned) && text.length() > 0) {
             for (av avVar : (av[]) ((Spanned) text).getSpans(0, 1, av.class)) {
-                if (TLObject.hasFlag(avVar.f22970b, 16)) {
+                if (TLObject.hasFlag(avVar.f22998b, 16)) {
                     SpannableString spannableString = new SpannableString(str);
                     spannableString.setSpan(new StyleSpan(1), 0, spannableString.length(), 33);
                     str2 = spannableString;
@@ -301,10 +301,10 @@ public abstract class zt implements wg0 {
             }
         }
         str2 = str;
-        int i10 = this.f28354n;
+        int i10 = this.f28382n;
         if (i10 <= 0) {
             boolean I = evVar.I();
-            Rect rect = this.f28350b;
+            Rect rect = this.f28378b;
             if (I) {
                 i7 = rect.right;
             } else {
@@ -313,17 +313,17 @@ public abstract class zt implements wg0 {
             i10 = Math.max(i7, g0.L(evVar.M + 4));
         }
         int i11 = i10;
-        TextPaint textPaint = evVar.f23787x;
+        TextPaint textPaint = evVar.f23815x;
         if (evVar.I()) {
             alignment = Layout.Alignment.ALIGN_NORMAL;
         } else {
             alignment = Layout.Alignment.ALIGN_OPPOSITE;
         }
         this.d = new StaticLayout(str2, textPaint, i11, alignment, 1.0f, 0.0f, false);
-        this.f28353f = g0.L(evVar.M + 4);
+        this.f28381f = g0.L(evVar.M + 4);
         this.h = 0;
         for (int i12 = 0; i12 < this.d.getLineCount(); i12++) {
-            this.f28353f = Math.min(this.f28353f, (int) this.d.getLineLeft(i12));
+            this.f28381f = Math.min(this.f28381f, (int) this.d.getLineLeft(i12));
             this.h = Math.max(this.h, (int) this.d.getLineRight(i12));
         }
         g0();
@@ -344,9 +344,9 @@ public abstract class zt implements wg0 {
         if (!n()) {
             return;
         }
-        ev evVar = this.f28349a;
-        if (!mp.u1(evVar.f23767a).B4()) {
-            new ug.z0(43, evVar.E.getContext(), evVar.D).show();
+        ev evVar = this.f28377a;
+        if (!mp.u1(evVar.f23795a).B4()) {
+            new ug.y0(43, evVar.E.getContext(), evVar.D).show();
             return;
         }
         boolean z10 = !G();
@@ -358,9 +358,9 @@ public abstract class zt implements wg0 {
         }
         View view = evVar.Q;
         if (view != null) {
-            this.f28355r.f32824a = view;
+            this.f28383r.f32857a = view;
         }
-        this.f28355r.f(-1, z10, true);
+        this.f28383r.f(-1, z10, true);
         View view2 = evVar.Q;
         if (view2 != null) {
             view2.invalidate();
@@ -375,13 +375,13 @@ public abstract class zt implements wg0 {
     public final boolean f0(MotionEvent motionEvent) {
         boolean z10;
         View view;
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         motionEvent.offsetLocation(-rect.left, -rect.top);
         try {
-            if (this.f28355r != null) {
+            if (this.f28383r != null) {
                 int actionMasked = motionEvent.getActionMasked();
                 boolean contains = this.I.contains(motionEvent.getX(), motionEvent.getY());
-                ev evVar = this.f28349a;
+                ev evVar = this.f28377a;
                 if (actionMasked == 0) {
                     if (contains && n()) {
                         this.J = true;
@@ -442,21 +442,21 @@ public abstract class zt implements wg0 {
 
     public final void g0() {
         StaticLayout staticLayout = this.d;
-        Rect rect = this.f28350b;
-        ev evVar = this.f28349a;
+        Rect rect = this.f28378b;
+        ev evVar = this.f28377a;
         if (staticLayout != null) {
             if (a() != null && a().getLineCount() > 0 && this.d.getLineCount() > 0) {
-                this.f28352e = (a().getLineBaseline(0) + H()) - this.d.getLineBaseline(0);
+                this.f28380e = (a().getLineBaseline(0) + H()) - this.d.getLineBaseline(0);
             } else {
-                this.f28352e = (Math.min(g0.L(evVar.M + 14), (I() - rect.top) - rect.bottom) - this.d.getHeight()) / 2.0f;
+                this.f28380e = (Math.min(g0.L(evVar.M + 14), (I() - rect.top) - rect.bottom) - this.d.getHeight()) / 2.0f;
             }
         }
-        if (this.f28355r != null) {
+        if (this.f28383r != null) {
             if (a() != null && a().getLineCount() > 0) {
-                this.f28356s = (a().getLineBaseline(0) + H()) - (g0.L(20.0f) * 0.7f);
+                this.f28384s = (a().getLineBaseline(0) + H()) - (g0.L(20.0f) * 0.7f);
                 return;
             }
-            this.f28356s = (Math.min(g0.L(evVar.M + 14), (I() - rect.top) - rect.bottom) - g0.L(20.0f)) / 2.0f;
+            this.f28384s = (Math.min(g0.L(evVar.M + 14), (I() - rect.top) - rect.bottom) - g0.L(20.0f)) / 2.0f;
         }
     }
 
@@ -467,17 +467,17 @@ public abstract class zt implements wg0 {
         }
         if (view2 != null) {
             V();
-            CheckBoxBase checkBoxBase = this.f28355r;
+            CheckBoxBase checkBoxBase = this.f28383r;
             if (checkBoxBase != null) {
-                checkBoxBase.f32833l = false;
+                checkBoxBase.f32866l = false;
             }
             this.W = null;
         }
         this.W = view;
-        CheckBoxBase checkBoxBase2 = this.f28355r;
+        CheckBoxBase checkBoxBase2 = this.f28383r;
         if (checkBoxBase2 != null) {
-            checkBoxBase2.f32824a = view;
-            checkBoxBase2.f32833l = true;
+            checkBoxBase2.f32857a = view;
+            checkBoxBase2.f32866l = true;
         }
         T();
     }
@@ -486,7 +486,7 @@ public abstract class zt implements wg0 {
         ev evVar;
         org.telegram.ui.Cells.r1 r1Var;
         org.telegram.ui.Cells.m1 m1Var;
-        if (this.f28355r != null && this.H != null && (r1Var = (evVar = this.f28349a).E) != null && (m1Var = evVar.F) != null && m1Var.U(r1Var)) {
+        if (this.f28383r != null && this.H != null && (r1Var = (evVar = this.f28377a).E) != null && (m1Var = evVar.F) != null && m1Var.U(r1Var)) {
             return true;
         }
         return false;
@@ -507,57 +507,57 @@ public abstract class zt implements wg0 {
         float N;
         float f12;
         canvas.save();
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         canvas.translate(rect.left, rect.top);
-        ev evVar = this.f28349a;
+        ev evVar = this.f28377a;
         boolean I = evVar.I();
-        TextPaint textPaint = evVar.f23787x;
+        TextPaint textPaint = evVar.f23815x;
         float L = (((evVar.C + evVar.T) - g0.L(14.0f)) - rect.right) - rect.left;
         if (this.d != null) {
             textPaint.setTextSize(g0.L(bz.W0));
             if (evVar.E()) {
-                i11 = org.telegram.ui.ActionBar.n6.Wc;
+                i11 = org.telegram.ui.ActionBar.m6.Wc;
             } else {
-                i11 = org.telegram.ui.ActionBar.n6.Vc;
+                i11 = org.telegram.ui.ActionBar.m6.Vc;
             }
-            textPaint.setColor(org.telegram.ui.ActionBar.n6.w0(i11, evVar.D));
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.w0(i11, evVar.D));
             canvas.save();
             int i12 = 0;
-            if (!this.f28358x && !this.f28359y) {
+            if (!this.f28386x && !this.f28387y) {
                 float N2 = g0.N(5.0f);
                 if (I) {
-                    N = (this.f28354n + L) - g0.N(0.5f);
+                    N = (this.f28382n + L) - g0.N(0.5f);
                     f12 = N2 / 2.0f;
                 } else {
                     N = (N2 / 2.0f) + g0.N(0.5f);
-                    f12 = this.f28354n;
+                    f12 = this.f28382n;
                 }
-                canvas.drawCircle(N - f12, (this.f28352e + this.d.getLineBaseline(0)) - (g0.L(bz.W0) * 0.35f), N2 / 2.0f, textPaint);
+                canvas.drawCircle(N - f12, (this.f28380e + this.d.getLineBaseline(0)) - (g0.L(bz.W0) * 0.35f), N2 / 2.0f, textPaint);
             } else if (I) {
-                float L2 = (g0.L(0.0f) + L) - this.f28353f;
-                if (this.f28355r != null) {
+                float L2 = (g0.L(0.0f) + L) - this.f28381f;
+                if (this.f28383r != null) {
                     i12 = g0.L(26.0f);
                 }
-                canvas.translate(L2 + i12, this.f28352e);
+                canvas.translate(L2 + i12, this.f28380e);
                 this.d.draw(canvas);
             } else {
-                canvas.translate((g0.L(0.0f) - this.f28354n) - this.f28353f, this.f28352e);
+                canvas.translate((g0.L(0.0f) - this.f28382n) - this.f28381f, this.f28380e);
                 this.d.draw(canvas);
             }
             canvas.restore();
         }
-        if (this.f28355r != null) {
+        if (this.f28383r != null) {
             if (I) {
                 i10 = (int) (L + g0.L(6.0f));
             } else {
                 i10 = -g0.L(26.0f);
             }
-            this.I.set(i10 - g0.L(6.0f), this.f28356s - g0.L(6.0f), g0.L(6.0f) + g0.L(20.0f) + i10, this.f28356s + g0.L(20.0f) + g0.L(6.0f));
+            this.I.set(i10 - g0.L(6.0f), this.f28384s - g0.L(6.0f), g0.L(6.0f) + g0.L(20.0f) + i10, this.f28384s + g0.L(20.0f) + g0.L(6.0f));
             View view = evVar.Q;
             if (view != null) {
-                CheckBoxBase checkBoxBase = this.f28355r;
-                if (checkBoxBase.f32824a == null) {
-                    checkBoxBase.f32824a = view;
+                CheckBoxBase checkBoxBase = this.f28383r;
+                if (checkBoxBase.f32857a == null) {
+                    checkBoxBase.f32857a = view;
                 }
             }
             org.telegram.ui.Components.mc mcVar = this.K;
@@ -567,9 +567,9 @@ public abstract class zt implements wg0 {
                 f11 = 1.0f;
             }
             canvas.save();
-            canvas.scale(f11, f11, g0.L(10.0f) + i10, this.f28356s + g0.L(10.0f));
-            this.f28355r.e(i10, (int) this.f28356s, g0.L(20.0f), g0.L(20.0f));
-            this.f28355r.a(canvas);
+            canvas.scale(f11, f11, g0.L(10.0f) + i10, this.f28384s + g0.L(10.0f));
+            this.f28383r.e(i10, (int) this.f28384s, g0.L(20.0f), g0.L(20.0f));
+            this.f28383r.a(canvas);
             canvas.restore();
         }
         if (i7 == Integer.MIN_VALUE) {
@@ -582,17 +582,17 @@ public abstract class zt implements wg0 {
 
     public boolean s(Canvas canvas, ColorFilter colorFilter) {
         dv dvVar;
-        org.telegram.ui.Components.t5 t5Var;
+        org.telegram.ui.Components.u5 u5Var;
         org.telegram.ui.Cells.u9[] L = L();
         if (L == null) {
             return false;
         }
         boolean z10 = false;
         for (org.telegram.ui.Cells.u9 u9Var : L) {
-            if ((u9Var instanceof dv) && (t5Var = (dvVar = (dv) u9Var).F) != null && !t5Var.f39906a.isEmpty()) {
+            if ((u9Var instanceof dv) && (u5Var = (dvVar = (dv) u9Var).F) != null && !u5Var.f40269a.isEmpty()) {
                 canvas.save();
-                canvas.translate(dvVar.f23578c, dvVar.d - this.N);
-                org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, dvVar.f23577b, dvVar.F, 0.0f, dvVar.f23585x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
+                canvas.translate(dvVar.f23606c, dvVar.d - this.N);
+                org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, dvVar.f23605b, dvVar.F, 0.0f, dvVar.f23613x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
                 canvas.restore();
                 z10 = true;
             }
@@ -608,12 +608,12 @@ public abstract class zt implements wg0 {
                 float f10 = 0.0f;
                 if (yg0Var.g(this)) {
                     if (yg0Var.g(this)) {
-                        i7 = yg0Var.f54154e;
+                        i7 = yg0Var.f54194e;
                     } else {
                         i7 = -1;
                     }
                     if (yg0Var.g(this)) {
-                        f10 = yg0Var.f54155f;
+                        f10 = yg0Var.f54195f;
                     }
                     r(canvas, i7, f10);
                     return;
@@ -623,8 +623,8 @@ public abstract class zt implements wg0 {
                     return;
                 }
                 if (c10 < 1.0f) {
-                    Rect rect = this.f28350b;
-                    int saveLayerAlpha = canvas.saveLayerAlpha(0.0f, 0.0f, rect.left + this.f28351c + rect.right, I(), (int) (c10 * 255.0f));
+                    Rect rect = this.f28378b;
+                    int saveLayerAlpha = canvas.saveLayerAlpha(0.0f, 0.0f, rect.left + this.f28379c + rect.right, I(), (int) (c10 * 255.0f));
                     q(canvas);
                     canvas.restoreToCount(saveLayerAlpha);
                     return;
@@ -643,9 +643,9 @@ public abstract class zt implements wg0 {
             for (org.telegram.ui.Cells.u9 u9Var : L) {
                 if (u9Var instanceof dv) {
                     if (((dv) u9Var).o(characterStyle, qtVar)) {
-                        Rect rect = this.f28350b;
-                        qtVar.f26450e = rect.left - dvVar.f23580f;
-                        qtVar.f26451f = i7 + rect.top;
+                        Rect rect = this.f28378b;
+                        qtVar.f26478e = rect.left - dvVar.f23608f;
+                        qtVar.f26479f = i7 + rect.top;
                         return true;
                     }
                 }
@@ -663,11 +663,11 @@ public abstract class zt implements wg0 {
 
     public final void w(int i7, Rect rect) {
         int i10;
-        CheckBoxBase checkBoxBase = this.f28355r;
+        CheckBoxBase checkBoxBase = this.f28383r;
         if (checkBoxBase != null && i7 == 0) {
-            int i11 = this.f28350b.left;
+            int i11 = this.f28378b.left;
             float f10 = this.N;
-            rect.set(i11, (int) f10, this.f28351c + i11, (int) (f10 + I()));
+            rect.set(i11, (int) f10, this.f28379c + i11, (int) (f10 + I()));
         } else {
             if (checkBoxBase == null) {
                 i10 = 0;
@@ -676,7 +676,7 @@ public abstract class zt implements wg0 {
             }
             A(i7 - i10, rect);
         }
-        ev evVar = this.f28349a;
+        ev evVar = this.f28377a;
         int i12 = evVar.C + evVar.T;
         int min = Math.min(i12, Math.max(rect.left, -evVar.S));
         rect.left = min;
@@ -687,10 +687,10 @@ public abstract class zt implements wg0 {
         int i10;
         CharSequence charSequence;
         StaticLayout staticLayout;
-        CheckBoxBase checkBoxBase = this.f28355r;
+        CheckBoxBase checkBoxBase = this.f28383r;
         if (checkBoxBase != null && i7 == 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            if (this.f28358x && (staticLayout = this.d) != null) {
+            if (this.f28386x && (staticLayout = this.d) != null) {
                 charSequence = staticLayout.getText();
             } else {
                 charSequence = null;
@@ -706,7 +706,7 @@ public abstract class zt implements wg0 {
             if (spannableStringBuilder.length() > 0) {
                 return spannableStringBuilder;
             }
-            return gd.M0(2131754903, null);
+            return gd.N0(2131754903, null);
         }
         if (checkBoxBase == null) {
             i10 = 0;
@@ -717,25 +717,25 @@ public abstract class zt implements wg0 {
     }
 
     public CharSequence y() {
-        String M0;
+        String N0;
         int i7 = this.F;
         String str = null;
         if (i7 == 0) {
-            M0 = null;
+            N0 = null;
         } else {
-            M0 = gd.M0(i7, null);
+            N0 = gd.N0(i7, null);
         }
         int i10 = this.G;
         if (i10 != 0) {
-            str = gd.M0(i10, null);
+            str = gd.N0(i10, null);
         }
-        if (TextUtils.isEmpty(M0)) {
+        if (TextUtils.isEmpty(N0)) {
             return str;
         }
         if (TextUtils.isEmpty(str)) {
-            return M0;
+            return N0;
         }
-        return TextUtils.concat(M0, ", ", str);
+        return TextUtils.concat(N0, ", ", str);
     }
 
     public float z() {

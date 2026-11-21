@@ -3,18 +3,18 @@ package fi;
 import android.app.Activity;
 import android.content.Context;
 import java.util.WeakHashMap;
-import org.telegram.ui.Components.si;
+import org.telegram.ui.Components.ui;
 import org.telegram.ui.bn;
 import org.telegram.ui.pl;
 import org.telegram.ui.rj;
-public final class n2 extends si {
+public final class n2 extends ui {
     public final int J4;
     public final Object K4;
 
-    public n2(org.telegram.ui.ActionBar.h2 h2Var, Activity activity, org.telegram.ui.ActionBar.h2 h2Var2, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
-        super(activity, h2Var2, false, false, true, i6Var);
+    public n2(org.telegram.ui.ActionBar.g2 g2Var, Activity activity, org.telegram.ui.ActionBar.g2 g2Var2, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        super(activity, g2Var2, false, false, true, h6Var);
         this.J4 = i7;
-        this.K4 = h2Var;
+        this.K4 = g2Var;
     }
 
     @Override
@@ -34,16 +34,16 @@ public final class n2 extends si {
             case 2:
                 bn bnVar = (bn) obj;
                 n2 n2Var2 = bnVar.Y1;
-                if (n2Var2 != null && (n2Var2.isShowing() || this.f39716s2)) {
+                if (n2Var2 != null && (n2Var2.isShowing() || this.f40432s2)) {
                     Activity parentActivity = bnVar.getParentActivity();
-                    i7 = ((org.telegram.ui.ActionBar.h2) bnVar).classGuid;
+                    i7 = ((org.telegram.ui.ActionBar.g2) bnVar).classGuid;
                     org.telegram.messenger.g0.Z2(parentActivity, i7);
                 }
                 super.L();
                 bnVar.wa(false, true);
-                pl plVar = bnVar.f46084m1;
+                pl plVar = bnVar.f46107m1;
                 if (plVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f56244a;
+                    WeakHashMap weakHashMap = r0.i0.f56285a;
                     r0.y.c(plVar);
                     return;
                 }
@@ -71,7 +71,7 @@ public final class n2 extends si {
         switch (i10) {
             case 0:
                 z3 z3Var = (z3) obj;
-                n2 n2Var = z3Var.f12870s2;
+                n2 n2Var = z3Var.f12911s2;
                 if (n2Var != null) {
                     n2Var.A0(false);
                 }
@@ -95,17 +95,17 @@ public final class n2 extends si {
                 return;
             case 2:
                 bn bnVar = (bn) obj;
-                boolean z10 = this.f39716s2;
-                boolean O = this.f39732w2.O();
+                boolean z10 = this.f40432s2;
+                boolean O = this.f40448w2.O();
                 if (!O) {
                     bnVar.S3 = false;
-                    rj rjVar2 = bnVar.f45923a0;
+                    rj rjVar2 = bnVar.f45946a0;
                     if (rjVar2 != null) {
                         if (!z10) {
                             rjVar2.U();
                         }
-                        if (bnVar.f45923a0.getEditField() != null) {
-                            bnVar.f45923a0.getEditField().clearFocus();
+                        if (bnVar.f45946a0.getEditField() != null) {
+                            bnVar.f45946a0.getEditField().clearFocus();
                         }
                     }
                 }
@@ -114,19 +114,19 @@ public final class n2 extends si {
                     if (n2Var4 != null) {
                         n2Var4.A0(false);
                     }
-                    if (O && (rjVar = bnVar.f45923a0) != null && rjVar.getEditField() != null) {
-                        bnVar.f45923a0.getEditField().requestFocus();
+                    if (O && (rjVar = bnVar.f45946a0) != null && rjVar.getEditField() != null) {
+                        bnVar.f45946a0.getEditField().requestFocus();
                     }
                     n2 n2Var5 = bnVar.Y1;
                     if (n2Var5 != null && n2Var5.isShowing()) {
                         Activity parentActivity = bnVar.getParentActivity();
-                        i7 = ((org.telegram.ui.ActionBar.h2) bnVar).classGuid;
+                        i7 = ((org.telegram.ui.ActionBar.g2) bnVar).classGuid;
                         org.telegram.messenger.g0.Z2(parentActivity, i7);
                     }
                     bnVar.wa(false, false);
-                    pl plVar = bnVar.f46084m1;
+                    pl plVar = bnVar.f46107m1;
                     if (plVar != null) {
-                        WeakHashMap weakHashMap = r0.i0.f56244a;
+                        WeakHashMap weakHashMap = r0.i0.f56285a;
                         r0.y.c(plVar);
                         return;
                     }
@@ -138,14 +138,14 @@ public final class n2 extends si {
         }
     }
 
-    public n2(Context context, org.telegram.ui.ActionBar.h2 h2Var, org.telegram.ui.ActionBar.i6 i6Var, Runnable runnable) {
-        super(context, h2Var, false, false, true, i6Var);
+    public n2(Context context, org.telegram.ui.ActionBar.g2 g2Var, org.telegram.ui.ActionBar.h6 h6Var, Runnable runnable) {
+        super(context, g2Var, false, false, true, h6Var);
         this.J4 = 3;
         this.K4 = runnable;
     }
 
-    public n2(z3 z3Var, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, null, false, false, true, i6Var);
+    public n2(z3 z3Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, null, false, false, true, h6Var);
         this.J4 = 0;
         this.K4 = z3Var;
     }

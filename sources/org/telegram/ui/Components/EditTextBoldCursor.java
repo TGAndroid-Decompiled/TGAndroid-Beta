@@ -36,7 +36,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Stack;
-public class EditTextBoldCursor extends pt {
+public class EditTextBoldCursor extends rt {
     public static Field E1;
     public static Field F1;
     public static Field G1;
@@ -73,89 +73,89 @@ public class EditTextBoldCursor extends pt {
     public boolean V0;
     public AnimatorSet W0;
     public float X0;
-    public org.telegram.ui.ActionBar.m4 Y0;
-    public org.telegram.ui.ActionBar.y3 Z0;
-    public fl f32904a1;
-    public Object f32905b0;
-    public View f32906b1;
-    public final GradientDrawable f32907c0;
-    public View f32908c1;
-    public sw0 f32909d0;
-    public int f32910d1;
-    public float f32911e0;
-    public boolean f32912e1;
-    public final a6 f32913f0;
-    public final ft f32914f1;
-    public final Paint f32915g0;
-    public final ArrayList f32916g1;
-    public final Paint f32917h0;
-    public boolean f32918h1;
-    public final TextPaint f32919i0;
-    public int f32920i1;
-    public int f32921j0;
-    public final Rect f32922j1;
-    public int f32923k0;
-    public int f32924k1;
-    public int f32925l0;
+    public org.telegram.ui.ActionBar.l4 Y0;
+    public org.telegram.ui.ActionBar.x3 Z0;
+    public hl f32937a1;
+    public Object f32938b0;
+    public View f32939b1;
+    public final GradientDrawable f32940c0;
+    public View f32941c1;
+    public uw0 f32942d0;
+    public int f32943d1;
+    public float f32944e0;
+    public boolean f32945e1;
+    public final b6 f32946f0;
+    public final ht f32947f1;
+    public final Paint f32948g0;
+    public final ArrayList f32949g1;
+    public final Paint f32950h0;
+    public boolean f32951h1;
+    public final TextPaint f32952i0;
+    public int f32953i1;
+    public int f32954j0;
+    public final Rect f32955j1;
+    public int f32956k0;
+    public int f32957k1;
+    public int f32958l0;
     public int l1;
     public int m0;
-    public LinearGradient f32926m1;
-    public float f32927n0;
+    public LinearGradient f32959m1;
+    public float f32960n0;
     public boolean n1;
-    public final Rect f32928o0;
-    public float f32929o1;
-    public StaticLayout f32930p0;
-    public float f32931p1;
-    public float f32932q0;
-    public long f32933q1;
-    public boolean f32934r0;
-    public Rect f32935r1;
-    public boolean f32936s0;
-    public dh.c f32937s1;
-    public bi.b f32938t0;
-    public Drawable f32939t1;
-    public et f32940u0;
-    public Drawable f32941u1;
-    public et f32942v0;
-    public Drawable f32943v1;
-    public CharSequence f32944w0;
-    public PorterDuffColorFilter f32945w1;
-    public CharSequence f32946x0;
-    public int f32947x1;
-    public int f32948y0;
-    public Runnable f32949y1;
-    public int f32950z0;
-    public boolean f32951z1;
+    public final Rect f32961o0;
+    public float f32962o1;
+    public StaticLayout f32963p0;
+    public float f32964p1;
+    public float f32965q0;
+    public long f32966q1;
+    public boolean f32967r0;
+    public Rect f32968r1;
+    public boolean f32969s0;
+    public dh.c f32970s1;
+    public bi.b f32971t0;
+    public Drawable f32972t1;
+    public gt f32973u0;
+    public Drawable f32974u1;
+    public gt f32975v0;
+    public Drawable f32976v1;
+    public CharSequence f32977w0;
+    public PorterDuffColorFilter f32978w1;
+    public CharSequence f32979x0;
+    public int f32980x1;
+    public int f32981y0;
+    public Runnable f32982y1;
+    public int f32983z0;
+    public boolean f32984z1;
 
     public EditTextBoldCursor(Context context) {
         super(context, null, 0, 2131755179);
         String str;
         boolean z10;
         ArrayList arrayList = new ArrayList();
-        this.f38550a = arrayList;
-        this.f38551b = new Stack();
-        this.f38552c = new ArrayList();
-        this.f38553e = true;
-        this.f38555n = new Path();
+        this.f39328a = arrayList;
+        this.f39329b = new Stack();
+        this.f39330c = new ArrayList();
+        this.f39331e = true;
+        this.f39333n = new Path();
         this.H = true;
         this.I = null;
-        this.K = new i(this, 1);
+        this.K = new j(this, 1);
         this.L = new Rect();
-        if (pt.f38549a0 == null) {
+        if (rt.f39327a0 == null) {
             String str2 = Build.MANUFACTURER;
             if ((str2 != null && (str2.toLowerCase().contains("honor") || str2.toLowerCase().contains("huawei") || str2.toLowerCase().contains("alps") || str2.toLowerCase().contains("vivo") || str2.toLowerCase().contains("oppo") || str2.toLowerCase().contains("oneplus") || str2.toLowerCase().contains("realme"))) || ((str = Build.MODEL) != null && str.toLowerCase().contains("mediapad"))) {
                 z10 = false;
             } else {
                 z10 = true;
             }
-            pt.f38549a0 = Boolean.valueOf(z10);
+            rt.f39327a0 = Boolean.valueOf(z10);
         }
-        this.Q = pt.f38549a0.booleanValue();
+        this.Q = rt.f39327a0.booleanValue();
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            this.f38554f = new gf.c(this, arrayList, new ot(this));
+            this.f39332f = new gf.c(this, arrayList, new qt(this));
         }
-        this.f32913f0 = new a6(this, 1);
-        this.f32928o0 = new Rect();
+        this.f32946f0 = new b6(this, 1);
+        this.f32961o0 = new Rect();
         this.A0 = true;
         this.B0 = 1.0f;
         this.D0 = true;
@@ -167,29 +167,29 @@ public class EditTextBoldCursor extends pt {
         this.Q0 = 0.0f;
         this.R0 = 0.0f;
         this.U0 = true;
-        this.f32916g1 = new ArrayList();
-        this.f32918h1 = false;
-        this.f32922j1 = new Rect();
-        this.f32924k1 = -1;
-        this.f32929o1 = Float.NaN;
+        this.f32949g1 = new ArrayList();
+        this.f32951h1 = false;
+        this.f32955j1 = new Rect();
+        this.f32957k1 = -1;
+        this.f32962o1 = Float.NaN;
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 26) {
             setImportantForAutofill(2);
         }
-        this.f32915g0 = new Paint();
-        this.f32917h0 = new Paint();
+        this.f32948g0 = new Paint();
+        this.f32950h0 = new Paint();
         TextPaint textPaint = new TextPaint(1);
-        this.f32919i0 = textPaint;
+        this.f32952i0 = textPaint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(11.0f));
         if (i7 >= 26) {
             setImportantForAutofill(2);
         }
         if (i7 >= 29) {
-            ft ftVar = new ft(this);
-            this.f32914f1 = ftVar;
-            ftVar.setShape(new RectShape());
-            this.f32907c0 = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-11230757, -11230757});
-            setTextCursorDrawable(this.f32914f1);
+            ht htVar = new ht(this);
+            this.f32947f1 = htVar;
+            htVar.setShape(new RectShape());
+            this.f32940c0 = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-11230757, -11230757});
+            setTextCursorDrawable(this.f32947f1);
         }
         try {
             if (!H1 && G1 == null) {
@@ -226,14 +226,14 @@ public class EditTextBoldCursor extends pt {
         } catch (Throwable th2) {
             org.telegram.messenger.a8.g(th2, true);
         }
-        if (this.f32914f1 == null) {
+        if (this.f32947f1 == null) {
             try {
                 GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-11230757, -11230757});
-                this.f32907c0 = gradientDrawable;
+                this.f32940c0 = gradientDrawable;
                 if (Build.VERSION.SDK_INT >= 29) {
                     setTextCursorDrawable(gradientDrawable);
                 }
-                this.f32905b0 = E1.get(this);
+                this.f32938b0 = E1.get(this);
             } catch (Throwable unused4) {
             }
             try {
@@ -249,13 +249,13 @@ public class EditTextBoldCursor extends pt {
             } catch (Throwable unused5) {
             }
         }
-        this.f32921j0 = org.telegram.messenger.g0.L(24.0f);
+        this.f32954j0 = org.telegram.messenger.g0.L(24.0f);
     }
 
     @Override
     public final void addTextChangedListener(TextWatcher textWatcher) {
-        this.f32916g1.add(textWatcher);
-        if (this.f32918h1) {
+        this.f32949g1.add(textWatcher);
+        if (this.f32951h1) {
             return;
         }
         super.addTextChangedListener(textWatcher);
@@ -275,7 +275,7 @@ public class EditTextBoldCursor extends pt {
     }
 
     public int getCursorColor() {
-        return this.f32920i1;
+        return this.f32953i1;
     }
 
     public int getErrorLineColor() {
@@ -284,9 +284,9 @@ public class EditTextBoldCursor extends pt {
 
     @Override
     public int getExtendedPaddingBottom() {
-        int i7 = this.f32925l0;
+        int i7 = this.f32958l0;
         if (i7 != 0) {
-            this.f32925l0 = i7 - 1;
+            this.f32958l0 = i7 - 1;
             int i10 = this.m0;
             if (i10 != Integer.MAX_VALUE) {
                 return -i10;
@@ -298,16 +298,16 @@ public class EditTextBoldCursor extends pt {
 
     @Override
     public int getExtendedPaddingTop() {
-        int i7 = this.f32923k0;
+        int i7 = this.f32956k0;
         if (i7 != 0) {
-            this.f32923k0 = i7 - 1;
+            this.f32956k0 = i7 - 1;
             return 0;
         }
         return super.getExtendedPaddingTop();
     }
 
     public int getHandlesColor() {
-        return this.f32947x1;
+        return this.f32980x1;
     }
 
     public float getHeaderAnimationProgress() {
@@ -315,15 +315,15 @@ public class EditTextBoldCursor extends pt {
     }
 
     public int getHeaderHintColor() {
-        return this.f32950z0;
+        return this.f32983z0;
     }
 
     public int getHintColor() {
-        return this.f32948y0;
+        return this.f32981y0;
     }
 
     public Layout getHintLayoutEx() {
-        return this.f32930p0;
+        return this.f32963p0;
     }
 
     public int getLineColor() {
@@ -340,45 +340,45 @@ public class EditTextBoldCursor extends pt {
     }
 
     public Runnable getOnPremiumMenuLockClickListener() {
-        return this.f32949y1;
+        return this.f32982y1;
     }
 
-    public org.telegram.ui.ActionBar.i6 getResourcesProvider() {
+    public org.telegram.ui.ActionBar.h6 getResourcesProvider() {
         return null;
     }
 
     @Override
     public Drawable getTextCursorDrawable() {
-        if (this.f32914f1 != null) {
+        if (this.f32947f1 != null) {
             return super.getTextCursorDrawable();
         }
-        ft ftVar = new ft(this, new RectShape());
-        ftVar.getPaint().setColor(0);
-        return ftVar;
+        ht htVar = new ht(this, new RectShape());
+        htVar.getPaint().setColor(0);
+        return htVar;
     }
 
     @Override
     public Drawable getTextSelectHandle() {
-        if (this.f32943v1 == null) {
-            this.f32943v1 = z(super.getTextSelectHandle(), true);
+        if (this.f32976v1 == null) {
+            this.f32976v1 = z(super.getTextSelectHandle(), true);
         }
-        return this.f32943v1;
+        return this.f32976v1;
     }
 
     @Override
     public Drawable getTextSelectHandleLeft() {
-        if (this.f32939t1 == null) {
-            this.f32939t1 = z(super.getTextSelectHandleLeft(), true);
+        if (this.f32972t1 == null) {
+            this.f32972t1 = z(super.getTextSelectHandleLeft(), true);
         }
-        return this.f32939t1;
+        return this.f32972t1;
     }
 
     @Override
     public Drawable getTextSelectHandleRight() {
-        if (this.f32941u1 == null) {
-            this.f32941u1 = z(super.getTextSelectHandleRight(), true);
+        if (this.f32974u1 == null) {
+            this.f32974u1 = z(super.getTextSelectHandleRight(), true);
         }
-        return this.f32941u1;
+        return this.f32974u1;
     }
 
     public final void l(boolean z10) {
@@ -404,7 +404,7 @@ public class EditTextBoldCursor extends pt {
                 }
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "headerAnimationProgress", f10));
                 this.W0.setDuration(200L);
-                this.W0.setInterpolator(lr.h);
+                this.W0.setInterpolator(nr.h);
                 this.W0.start();
             } else {
                 if (z11) {
@@ -417,22 +417,22 @@ public class EditTextBoldCursor extends pt {
     }
 
     public final void m() {
-        org.telegram.ui.ActionBar.m4 m4Var = this.Y0;
-        if (m4Var != null) {
-            m4Var.f29234a.removeOnLayoutChangeListener(m4Var.f29243l);
-            org.telegram.ui.ActionBar.k4 k4Var = m4Var.f29235b;
-            if (!k4Var.F) {
-                k4Var.G = false;
-                k4Var.F = true;
-                k4Var.f29142x.cancel();
-                k4Var.f29141w.start();
-                k4Var.D.setEmpty();
+        org.telegram.ui.ActionBar.l4 l4Var = this.Y0;
+        if (l4Var != null) {
+            l4Var.f29216a.removeOnLayoutChangeListener(l4Var.f29225l);
+            org.telegram.ui.ActionBar.j4 j4Var = l4Var.f29217b;
+            if (!j4Var.F) {
+                j4Var.G = false;
+                j4Var.F = true;
+                j4Var.f29067x.cancel();
+                j4Var.f29066w.start();
+                j4Var.D.setEmpty();
             }
             this.Y0 = null;
         }
-        if (this.f32904a1 != null) {
-            getViewTreeObserver().removeOnPreDrawListener(this.f32904a1);
-            this.f32904a1 = null;
+        if (this.f32937a1 != null) {
+            getViewTreeObserver().removeOnPreDrawListener(this.f32937a1);
+            this.f32937a1 = null;
         }
     }
 
@@ -447,18 +447,18 @@ public class EditTextBoldCursor extends pt {
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
-        this.f32908c1 = getRootView();
+        this.f32941c1 = getRootView();
         if (Build.VERSION.SDK_INT < 29) {
-            bg.k.d().b(this.f32913f0, 2);
+            bg.k.d().b(this.f32946f0, 2);
         }
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f32908c1 = null;
+        this.f32941c1 = null;
         if (Build.VERSION.SDK_INT < 29) {
-            bg.k.d().g(this.f32913f0);
+            bg.k.d().g(this.f32946f0);
         }
     }
 
@@ -481,11 +481,11 @@ public class EditTextBoldCursor extends pt {
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.EditText");
-        if (this.f32930p0 != null) {
+        if (this.f32963p0 != null) {
             if (getText().length() <= 0) {
-                accessibilityNodeInfo.setText(this.f32930p0.getText());
+                accessibilityNodeInfo.setText(this.f32963p0.getText());
             } else {
-                new s0.c(accessibilityNodeInfo).l(this.f32930p0.getText());
+                new s0.c(accessibilityNodeInfo).l(this.f32963p0.getText());
             }
         }
     }
@@ -494,28 +494,28 @@ public class EditTextBoldCursor extends pt {
     public void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        et etVar = this.f32940u0;
-        if (etVar != null) {
-            etVar.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        gt gtVar = this.f32973u0;
+        if (gtVar != null) {
+            gtVar.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         }
-        et etVar2 = this.f32942v0;
-        if (etVar2 != null) {
-            etVar2.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        gt gtVar2 = this.f32975v0;
+        if (gtVar2 != null) {
+            gtVar2.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
         }
-        StaticLayout staticLayout = this.f32930p0;
-        if (staticLayout != null && this.f32940u0 == null) {
-            if (this.f32910d1 != measuredHeight) {
-                s(this.f32944w0, false, staticLayout.getPaint());
+        StaticLayout staticLayout = this.f32963p0;
+        if (staticLayout != null && this.f32973u0 == null) {
+            if (this.f32943d1 != measuredHeight) {
+                s(this.f32977w0, false, staticLayout.getPaint());
             }
-            if (this.f32934r0) {
-                this.M0 = ((((((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - this.f32930p0.getHeight()) / 2.0f) + (getPaddingTop() + getExtendedPaddingTop())) + this.f32930p0.getHeight()) - org.telegram.messenger.g0.L(1.0f);
+            if (this.f32967r0) {
+                this.M0 = ((((((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - this.f32963p0.getHeight()) / 2.0f) + (getPaddingTop() + getExtendedPaddingTop())) + this.f32963p0.getHeight()) - org.telegram.messenger.g0.L(1.0f);
             } else {
-                this.M0 = ((getMeasuredHeight() - this.f32930p0.getHeight()) / 2.0f) + this.f32930p0.getHeight() + org.telegram.messenger.g0.L(6.0f);
+                this.M0 = ((getMeasuredHeight() - this.f32963p0.getHeight()) / 2.0f) + this.f32963p0.getHeight() + org.telegram.messenger.g0.L(6.0f);
             }
         } else {
             this.M0 = getMeasuredHeight() - org.telegram.messenger.g0.L(2.0f);
         }
-        this.f32910d1 = measuredHeight;
+        this.f32943d1 = measuredHeight;
     }
 
     @Override
@@ -537,16 +537,16 @@ public class EditTextBoldCursor extends pt {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f32924k1 = (int) motionEvent.getX();
+            this.f32957k1 = (int) motionEvent.getX();
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public final StaticLayout p(int i7) {
-        if (TextUtils.isEmpty(this.f32946x0)) {
+        if (TextUtils.isEmpty(this.f32979x0)) {
             return null;
         }
-        return new StaticLayout(this.f32946x0, this.f32919i0, i7, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        return new StaticLayout(this.f32979x0, this.f32952i0, i7, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override
@@ -572,10 +572,10 @@ public class EditTextBoldCursor extends pt {
         if (isHardwareAccelerated()) {
             try {
                 if (L1 != null) {
-                    if (this.f32905b0 == null) {
-                        this.f32905b0 = E1.get(this);
+                    if (this.f32938b0 == null) {
+                        this.f32938b0 = E1.get(this);
                     }
-                    Object obj = this.f32905b0;
+                    Object obj = this.f32938b0;
                     if (obj != null) {
                         L1.invoke(obj, null);
                     }
@@ -599,8 +599,8 @@ public class EditTextBoldCursor extends pt {
 
     @Override
     public final void removeTextChangedListener(TextWatcher textWatcher) {
-        this.f32916g1.remove(textWatcher);
-        if (this.f32918h1) {
+        this.f32949g1.remove(textWatcher);
+        if (this.f32951h1) {
             return;
         }
         super.removeTextChangedListener(textWatcher);
@@ -614,9 +614,9 @@ public class EditTextBoldCursor extends pt {
         boolean z12;
         float f10;
         CharSequence charSequence4 = charSequence;
-        et etVar = this.f32940u0;
-        if (etVar != null) {
-            etVar.t(charSequence4, !org.telegram.messenger.gd.f24213a0, true);
+        gt gtVar = this.f32973u0;
+        if (gtVar != null) {
+            gtVar.t(charSequence4, !org.telegram.messenger.gd.f24241a0, true);
             return;
         }
         if (charSequence4 == null) {
@@ -629,15 +629,15 @@ public class EditTextBoldCursor extends pt {
             z11 = z10;
         }
         if (z11) {
-            if (this.f32909d0 == null) {
-                this.f32909d0 = new sw0(this);
+            if (this.f32942d0 == null) {
+                this.f32942d0 = new uw0(this);
             }
-            sw0 sw0Var = this.f32909d0;
-            StaticLayout staticLayout = this.f32930p0;
-            CharSequence charSequence6 = this.f32944w0;
-            sw0Var.getClass();
+            uw0 uw0Var = this.f32942d0;
+            StaticLayout staticLayout = this.f32963p0;
+            CharSequence charSequence6 = this.f32977w0;
+            uw0Var.getClass();
             if (staticLayout != null && !charSequence6.equals(charSequence5)) {
-                ValueAnimator valueAnimator = sw0Var.f39860j;
+                ValueAnimator valueAnimator = uw0Var.f40610j;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
@@ -655,74 +655,74 @@ public class EditTextBoldCursor extends pt {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence2);
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence2);
                     if (indexOf != 0) {
-                        spannableStringBuilder2.setSpan(new sy(false), 0, indexOf, 0);
+                        spannableStringBuilder2.setSpan(new uy(false), 0, indexOf, 0);
                     }
                     if (charSequence3.length() + indexOf != charSequence2.length()) {
-                        spannableStringBuilder2.setSpan(new sy(false), charSequence3.length() + indexOf, charSequence2.length(), 0);
+                        spannableStringBuilder2.setSpan(new uy(false), charSequence3.length() + indexOf, charSequence2.length(), 0);
                     }
-                    spannableStringBuilder.setSpan(new sy(false), indexOf, charSequence3.length() + indexOf, 0);
+                    spannableStringBuilder.setSpan(new uy(false), indexOf, charSequence3.length() + indexOf, 0);
                     int L = org.telegram.messenger.g0.L(400.0f);
                     Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                    sw0Var.f39854b = new StaticLayout(spannableStringBuilder, textPaint, L, alignment, 1.0f, 0.0f, false);
+                    uw0Var.f40604b = new StaticLayout(spannableStringBuilder, textPaint, L, alignment, 1.0f, 0.0f, false);
                     StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder2, textPaint, org.telegram.messenger.g0.L(400.0f), alignment, 1.0f, 0.0f, false);
-                    sw0Var.d = staticLayout2;
-                    sw0Var.f39856e = true;
-                    sw0Var.f39857f = z12;
+                    uw0Var.d = staticLayout2;
+                    uw0Var.f40606e = true;
+                    uw0Var.f40607f = z12;
                     if (indexOf == 0) {
                         f10 = 0.0f;
                     } else {
                         f10 = -staticLayout2.getPrimaryHorizontal(indexOf);
                     }
-                    sw0Var.h = f10;
-                    sw0Var.f39855c = null;
-                    sw0Var.f39858g = false;
+                    uw0Var.h = f10;
+                    uw0Var.f40605c = null;
+                    uw0Var.f40608g = false;
                 } else {
                     int L2 = org.telegram.messenger.g0.L(400.0f);
                     Layout.Alignment alignment2 = Layout.Alignment.ALIGN_NORMAL;
-                    sw0Var.f39854b = new StaticLayout(charSequence5, textPaint, L2, alignment2, 1.0f, 0.0f, false);
-                    sw0Var.f39855c = new StaticLayout(charSequence6, textPaint, org.telegram.messenger.g0.L(400.0f), alignment2, 1.0f, 0.0f, false);
-                    sw0Var.d = null;
-                    sw0Var.f39856e = true;
-                    sw0Var.f39858g = true;
-                    sw0Var.h = 0.0f;
+                    uw0Var.f40604b = new StaticLayout(charSequence5, textPaint, L2, alignment2, 1.0f, 0.0f, false);
+                    uw0Var.f40605c = new StaticLayout(charSequence6, textPaint, org.telegram.messenger.g0.L(400.0f), alignment2, 1.0f, 0.0f, false);
+                    uw0Var.d = null;
+                    uw0Var.f40606e = true;
+                    uw0Var.f40608g = true;
+                    uw0Var.h = 0.0f;
                 }
-                sw0Var.f39859i = 0.0f;
+                uw0Var.f40609i = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                sw0Var.f39860j = ofFloat;
-                ofFloat.addUpdateListener(new e60(sw0Var, 26));
-                sw0Var.f39860j.addListener(new q60(sw0Var, 27));
-                sw0Var.f39860j.setDuration(150L);
-                sw0Var.f39860j.setInterpolator(lr.f37208f);
-                sw0Var.f39860j.start();
+                uw0Var.f40610j = ofFloat;
+                ofFloat.addUpdateListener(new h60(uw0Var, 26));
+                uw0Var.f40610j.addListener(new s60(uw0Var, 27));
+                uw0Var.f40610j.setDuration(150L);
+                uw0Var.f40610j.setInterpolator(nr.f37956f);
+                uw0Var.f40610j.start();
             }
         } else {
-            sw0 sw0Var2 = this.f32909d0;
-            if (sw0Var2 != null) {
-                ValueAnimator valueAnimator2 = sw0Var2.f39860j;
+            uw0 uw0Var2 = this.f32942d0;
+            if (uw0Var2 != null) {
+                ValueAnimator valueAnimator2 = uw0Var2.f40610j;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                sw0Var2.f39856e = false;
+                uw0Var2.f40606e = false;
             }
         }
-        this.f32944w0 = charSequence5;
+        this.f32977w0 = charSequence5;
         if (getMeasuredWidth() != 0) {
             textPaint2 = textPaint;
             charSequence5 = TextUtils.ellipsize(charSequence5, textPaint2, getMeasuredWidth(), TextUtils.TruncateAt.END);
-            StaticLayout staticLayout3 = this.f32930p0;
+            StaticLayout staticLayout3 = this.f32963p0;
             if (staticLayout3 != null && TextUtils.equals(staticLayout3.getText(), charSequence5)) {
                 return;
             }
         } else {
             textPaint2 = textPaint;
         }
-        this.f32930p0 = new StaticLayout(charSequence5, textPaint2, org.telegram.messenger.g0.L(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f32963p0 = new StaticLayout(charSequence5, textPaint2, org.telegram.messenger.g0.L(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         invalidate();
     }
 
     public void setActiveLineColor(int i7) {
         this.K0 = i7;
-        this.f32917h0.setColor(i7);
+        this.f32950h0.setColor(i7);
         invalidate();
     }
 
@@ -732,16 +732,16 @@ public class EditTextBoldCursor extends pt {
     }
 
     public void setBlurredBackgroundDrawableViewFactory(dh.c cVar) {
-        this.f32937s1 = cVar;
+        this.f32970s1 = cVar;
     }
 
     public void setCursorColor(int i7) {
-        this.f32920i1 = i7;
-        ft ftVar = this.f32914f1;
-        if (ftVar != null) {
-            ftVar.getPaint().setColor(i7);
+        this.f32953i1 = i7;
+        ht htVar = this.f32947f1;
+        if (htVar != null) {
+            htVar.getPaint().setColor(i7);
         }
-        GradientDrawable gradientDrawable = this.f32907c0;
+        GradientDrawable gradientDrawable = this.f32940c0;
         if (gradientDrawable != null) {
             gradientDrawable.setColor(i7);
         }
@@ -749,7 +749,7 @@ public class EditTextBoldCursor extends pt {
     }
 
     public void setCursorSize(int i7) {
-        this.f32921j0 = i7;
+        this.f32954j0 = i7;
     }
 
     public void setCursorWidth(float f10) {
@@ -757,7 +757,7 @@ public class EditTextBoldCursor extends pt {
     }
 
     public void setEllipsizeByGradient(boolean z10) {
-        this.f32951z1 = z10;
+        this.f32984z1 = z10;
         if (z10) {
             this.D1 = org.telegram.messenger.g0.L(12.0f);
             this.A1 = new Paint(1);
@@ -770,15 +770,15 @@ public class EditTextBoldCursor extends pt {
 
     public void setErrorLineColor(int i7) {
         this.L0 = i7;
-        this.f32919i0.setColor(i7);
+        this.f32952i0.setColor(i7);
         invalidate();
     }
 
     public void setErrorText(CharSequence charSequence) {
-        if (TextUtils.equals(charSequence, this.f32946x0)) {
+        if (TextUtils.equals(charSequence, this.f32979x0)) {
             return;
         }
-        this.f32946x0 = charSequence;
+        this.f32979x0 = charSequence;
         requestLayout();
     }
 
@@ -788,12 +788,12 @@ public class EditTextBoldCursor extends pt {
     }
 
     public void setHandlesColor(int i7) {
-        if (Build.VERSION.SDK_INT >= 29 && !org.telegram.messenger.c6.i() && this.f32947x1 != i7) {
-            this.f32947x1 = i7;
-            this.f32945w1 = new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN);
-            z(this.f32939t1, false);
-            z(this.f32941u1, false);
-            z(this.f32943v1, false);
+        if (Build.VERSION.SDK_INT >= 29 && !org.telegram.messenger.c6.i() && this.f32980x1 != i7) {
+            this.f32980x1 = i7;
+            this.f32978w1 = new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN);
+            z(this.f32972t1, false);
+            z(this.f32974u1, false);
+            z(this.f32976v1, false);
         }
     }
 
@@ -803,29 +803,29 @@ public class EditTextBoldCursor extends pt {
     }
 
     public void setHeaderHintColor(int i7) {
-        this.f32950z0 = i7;
+        this.f32983z0 = i7;
         invalidate();
     }
 
     public void setHintColor(int i7) {
-        this.f32948y0 = i7;
-        et etVar = this.f32940u0;
-        if (etVar != null) {
-            etVar.u(i7);
+        this.f32981y0 = i7;
+        gt gtVar = this.f32973u0;
+        if (gtVar != null) {
+            gtVar.u(i7);
         }
-        et etVar2 = this.f32942v0;
-        if (etVar2 != null) {
-            etVar2.u(this.f32948y0);
+        gt gtVar2 = this.f32975v0;
+        if (gtVar2 != null) {
+            gtVar2.u(this.f32981y0);
         }
         invalidate();
     }
 
     public void setHintRightOffset(int i7) {
         float f10 = i7;
-        if (this.f32911e0 == f10) {
+        if (this.f32944e0 == f10) {
             return;
         }
-        this.f32911e0 = f10;
+        this.f32944e0 = f10;
         invalidate();
     }
 
@@ -841,7 +841,7 @@ public class EditTextBoldCursor extends pt {
     @Override
     public final void setLineSpacing(float f10, float f11) {
         super.setLineSpacing(f10, f11);
-        this.f32927n0 = f10;
+        this.f32960n0 = f10;
     }
 
     public void setNextSetTextAnimated(boolean z10) {
@@ -849,7 +849,7 @@ public class EditTextBoldCursor extends pt {
     }
 
     public void setOnPremiumMenuLockClickListener(Runnable runnable) {
-        this.f32949y1 = runnable;
+        this.f32982y1 = runnable;
     }
 
     @Override
@@ -875,33 +875,33 @@ public class EditTextBoldCursor extends pt {
     @Override
     public void setTextSelectHandle(Drawable drawable) {
         Drawable z10 = z(drawable, true);
-        this.f32943v1 = z10;
+        this.f32976v1 = z10;
         super.setTextSelectHandle(z10);
     }
 
     @Override
     public void setTextSelectHandleLeft(Drawable drawable) {
         Drawable z10 = z(drawable, true);
-        this.f32939t1 = z10;
+        this.f32972t1 = z10;
         super.setTextSelectHandleLeft(z10);
     }
 
     @Override
     public void setTextSelectHandleRight(Drawable drawable) {
         Drawable z10 = z(drawable, true);
-        this.f32941u1 = z10;
+        this.f32974u1 = z10;
         super.setTextSelectHandleRight(z10);
     }
 
     @Override
     public void setTextSize(int i7, float f10) {
-        et etVar = this.f32940u0;
-        if (etVar != null) {
-            etVar.w(org.telegram.messenger.g0.L(f10));
+        gt gtVar = this.f32973u0;
+        if (gtVar != null) {
+            gtVar.w(org.telegram.messenger.g0.L(f10));
         }
-        et etVar2 = this.f32942v0;
-        if (etVar2 != null) {
-            etVar2.w(org.telegram.messenger.g0.L(f10));
+        gt gtVar2 = this.f32975v0;
+        if (gtVar2 != null) {
+            gtVar2.w(org.telegram.messenger.g0.L(f10));
         }
         super.setTextSize(i7, f10);
     }
@@ -926,36 +926,36 @@ public class EditTextBoldCursor extends pt {
     }
 
     public void setWindowView(View view) {
-        this.f32906b1 = view;
+        this.f32939b1 = view;
     }
 
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback) {
-        if (this.f32906b1 == null && this.f32908c1 == null) {
+        if (this.f32939b1 == null && this.f32941c1 == null) {
             return super.startActionMode(callback);
         }
-        org.telegram.ui.ActionBar.y3 y3Var = this.Z0;
-        if (y3Var != null) {
-            y3Var.finish();
+        org.telegram.ui.ActionBar.x3 x3Var = this.Z0;
+        if (x3Var != null) {
+            x3Var.finish();
         }
         m();
         Context context = getContext();
-        View view = this.f32906b1;
+        View view = this.f32939b1;
         if (view == null) {
-            view = this.f32908c1;
+            view = this.f32941c1;
         }
-        org.telegram.ui.ActionBar.m4 m4Var = new org.telegram.ui.ActionBar.m4(context, view, getActionModeStyle(), getResourcesProvider(), this.f32937s1);
-        this.Y0 = m4Var;
-        m4Var.f29241j = this.f32949y1;
-        m4Var.f29242k = new dt(this, 0);
-        org.telegram.ui.ActionBar.y3 y3Var2 = new org.telegram.ui.ActionBar.y3(getContext(), new org.telegram.ui.Cells.h9(this, callback), this, this.Y0);
-        this.Z0 = y3Var2;
-        this.f32904a1 = new fl(1, this);
-        callback.onCreateActionMode(y3Var2, y3Var2.f30274c);
-        org.telegram.ui.ActionBar.y3 y3Var3 = this.Z0;
-        o(y3Var3, y3Var3.f30274c);
+        org.telegram.ui.ActionBar.l4 l4Var = new org.telegram.ui.ActionBar.l4(context, view, getActionModeStyle(), getResourcesProvider(), this.f32970s1);
+        this.Y0 = l4Var;
+        l4Var.f29223j = this.f32982y1;
+        l4Var.f29224k = new ft(this, 0);
+        org.telegram.ui.ActionBar.x3 x3Var2 = new org.telegram.ui.ActionBar.x3(getContext(), new org.telegram.ui.Cells.h9(this, callback), this, this.Y0);
+        this.Z0 = x3Var2;
+        this.f32937a1 = new hl(1, this);
+        callback.onCreateActionMode(x3Var2, x3Var2.f30257c);
+        org.telegram.ui.ActionBar.x3 x3Var3 = this.Z0;
+        o(x3Var3, x3Var3.f30257c);
         this.Z0.invalidate();
-        getViewTreeObserver().addOnPreDrawListener(this.f32904a1);
+        getViewTreeObserver().addOnPreDrawListener(this.f32937a1);
         invalidate();
         return this.Z0;
     }
@@ -981,21 +981,21 @@ public class EditTextBoldCursor extends pt {
     public final void u(int i7, int i10, int i11) {
         this.I0 = true;
         Drawable drawable = getContext().getResources().getDrawable(2131232685);
-        Rect rect = this.f32922j1;
+        Rect rect = this.f32955j1;
         drawable.getPadding(rect);
         setPadding(rect.left, rect.top, rect.right, rect.bottom);
         this.J0 = i7;
         this.K0 = i10;
-        this.f32917h0.setColor(i10);
+        this.f32950h0.setColor(i10);
         this.L0 = i11;
-        this.f32919i0.setColor(i11);
+        this.f32952i0.setColor(i11);
         invalidate();
     }
 
     public final void v(boolean z10, boolean z11) {
-        if (this.f32918h1 != z10) {
-            this.f32918h1 = z10;
-            ArrayList arrayList = this.f32916g1;
+        if (this.f32951h1 != z10) {
+            this.f32951h1 = z10;
+            ArrayList arrayList = this.f32949g1;
             int i7 = 0;
             if (z10) {
                 int size = arrayList.size();
@@ -1027,8 +1027,8 @@ public class EditTextBoldCursor extends pt {
         if (!hasSelection() || getSelectionStart() < 0 || getSelectionEnd() < 0 || getSelectionStart() == getSelectionEnd() || (text = getText()) == null) {
             return false;
         }
-        gh0[] gh0VarArr = (gh0[]) text.getSpans(getSelectionStart(), getSelectionEnd(), gh0.class);
-        if (gh0VarArr != null && gh0VarArr.length != 0) {
+        ih0[] ih0VarArr = (ih0[]) text.getSpans(getSelectionStart(), getSelectionEnd(), ih0.class);
+        if (ih0VarArr != null && ih0VarArr.length != 0) {
             return false;
         }
         return true;
@@ -1036,30 +1036,30 @@ public class EditTextBoldCursor extends pt {
 
     public final void x(Canvas canvas, Rect rect) {
         if (!this.n1) {
-            this.f32929o1 = Float.NaN;
+            this.f32962o1 = Float.NaN;
             return;
         }
         long uptimeMillis = SystemClock.uptimeMillis();
-        if (Float.isNaN(this.f32929o1)) {
-            this.f32929o1 = rect.left;
-            this.f32931p1 = rect.top;
+        if (Float.isNaN(this.f32962o1)) {
+            this.f32962o1 = rect.left;
+            this.f32964p1 = rect.top;
         } else {
-            float exp = 1.0f - ((float) Math.exp(((float) (-Math.min(64L, uptimeMillis - this.f32933q1))) / 60.0f));
-            float f10 = this.f32929o1;
+            float exp = 1.0f - ((float) Math.exp(((float) (-Math.min(64L, uptimeMillis - this.f32966q1))) / 60.0f));
+            float f10 = this.f32962o1;
             float f11 = rect.left;
             float z10 = com.google.android.gms.internal.vision.e2.z(f11, f10, exp, f10);
-            this.f32929o1 = z10;
-            float f12 = this.f32931p1;
-            this.f32931p1 = com.google.android.gms.internal.vision.e2.z(rect.top, f12, exp, f12);
-            if (Math.abs(f11 - z10) < 0.5f && Math.abs(rect.top - this.f32931p1) < 0.5f) {
-                this.f32929o1 = rect.left;
-                this.f32931p1 = rect.top;
+            this.f32962o1 = z10;
+            float f12 = this.f32964p1;
+            this.f32964p1 = com.google.android.gms.internal.vision.e2.z(rect.top, f12, exp, f12);
+            if (Math.abs(f11 - z10) < 0.5f && Math.abs(rect.top - this.f32964p1) < 0.5f) {
+                this.f32962o1 = rect.left;
+                this.f32964p1 = rect.top;
             } else {
                 postInvalidateOnAnimation();
             }
         }
-        this.f32933q1 = uptimeMillis;
-        canvas.translate(this.f32929o1 - rect.left, this.f32931p1 - rect.top);
+        this.f32966q1 = uptimeMillis;
+        canvas.translate(this.f32962o1 - rect.left, this.f32964p1 - rect.top);
     }
 
     public final void y() {
@@ -1076,15 +1076,15 @@ public class EditTextBoldCursor extends pt {
         int lineTop = layout.getLineTop(lineForOffset);
         int lineTop2 = layout.getLineTop(lineForOffset + 1);
         float max = Math.max(0.5f, layout.getPrimaryHorizontal(selectionStart) - 0.5f);
-        if (this.f32935r1 == null) {
-            this.f32935r1 = new Rect();
+        if (this.f32968r1 == null) {
+            this.f32968r1 = new Rect();
         }
-        GradientDrawable gradientDrawable = this.f32907c0;
+        GradientDrawable gradientDrawable = this.f32940c0;
         if (gradientDrawable != null) {
-            gradientDrawable.getPadding(this.f32935r1);
+            gradientDrawable.getPadding(this.f32968r1);
             i7 = gradientDrawable.getIntrinsicWidth();
         } else {
-            this.f32935r1.setEmpty();
+            this.f32968r1.setEmpty();
             i7 = 0;
         }
         int scrollX = getScrollX();
@@ -1092,15 +1092,15 @@ public class EditTextBoldCursor extends pt {
         int width = (getWidth() - getCompoundPaddingLeft()) - getCompoundPaddingRight();
         float f11 = width;
         if (f10 >= f11 - 1.0f) {
-            i10 = (width + scrollX) - (i7 - this.f32935r1.right);
+            i10 = (width + scrollX) - (i7 - this.f32968r1.right);
         } else if (Math.abs(f10) > 1.0f && (!TextUtils.isEmpty(getText()) || 1048576 - scrollX > f11 + 1.0f || max > 1.0f)) {
-            i10 = ((int) max) - this.f32935r1.left;
+            i10 = ((int) max) - this.f32968r1.left;
         } else {
-            i10 = scrollX - this.f32935r1.left;
+            i10 = scrollX - this.f32968r1.left;
         }
         int L = org.telegram.messenger.g0.L(this.F0);
-        Rect rect = this.f32935r1;
-        this.f32907c0.setBounds(i10, lineTop - rect.top, L + i10, lineTop2 + rect.bottom);
+        Rect rect = this.f32968r1;
+        this.f32940c0.setBounds(i10, lineTop - rect.top, L + i10, lineTop2 + rect.bottom);
         layout.getText();
     }
 
@@ -1109,7 +1109,7 @@ public class EditTextBoldCursor extends pt {
             if (z10) {
                 drawable = drawable.mutate();
             }
-            PorterDuffColorFilter porterDuffColorFilter = this.f32945w1;
+            PorterDuffColorFilter porterDuffColorFilter = this.f32978w1;
             if (porterDuffColorFilter != null) {
                 drawable.setColorFilter(porterDuffColorFilter);
             }
@@ -1128,7 +1128,7 @@ public class EditTextBoldCursor extends pt {
 
     @Override
     public ActionMode startActionMode(ActionMode.Callback callback, int i7) {
-        if (this.f32906b1 == null && this.f32908c1 == null) {
+        if (this.f32939b1 == null && this.f32941c1 == null) {
             return super.startActionMode(callback, i7);
         }
         return startActionMode(callback);

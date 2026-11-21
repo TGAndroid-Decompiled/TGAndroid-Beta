@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class ik implements Runnable {
-    public final int f24680a;
-    public final mp f24681b;
-    public final long f24682c;
+    public final int f24708a;
+    public final mp f24709b;
+    public final long f24710c;
 
     public ik(mp mpVar, long j3, int i7) {
-        this.f24680a = i7;
-        this.f24681b = mpVar;
-        this.f24682c = j3;
+        this.f24708a = i7;
+        this.f24709b = mpVar;
+        this.f24710c = j3;
     }
 
     @Override

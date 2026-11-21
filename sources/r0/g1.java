@@ -3,12 +3,12 @@ package r0;
 import android.view.View;
 import android.view.WindowInsets;
 public class g1 extends e1 {
-    public static final l1 f56238r;
+    public static final l1 f56279r;
 
     static {
         WindowInsets windowInsets;
         windowInsets = WindowInsets.CONSUMED;
-        f56238r = l1.h(null, windowInsets);
+        f56279r = l1.h(null, windowInsets);
     }
 
     public g1(l1 l1Var, WindowInsets windowInsets) {
@@ -17,17 +17,17 @@ public class g1 extends e1 {
 
     @Override
     public i0.b f(int i7) {
-        return i0.b.c(this.f56223c.getInsets(j1.a(i7)));
+        return i0.b.c(this.f56264c.getInsets(j1.a(i7)));
     }
 
     @Override
     public i0.b g(int i7) {
-        return i0.b.c(this.f56223c.getInsetsIgnoringVisibility(j1.a(i7)));
+        return i0.b.c(this.f56264c.getInsetsIgnoringVisibility(j1.a(i7)));
     }
 
     @Override
     public boolean p(int i7) {
-        return this.f56223c.isVisible(j1.a(i7));
+        return this.f56264c.isVisible(j1.a(i7));
     }
 
     @Override

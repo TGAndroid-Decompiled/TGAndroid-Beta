@@ -3,73 +3,73 @@ package wg;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
-import bi.y8;
+import bi.c9;
 import di.i4;
 import java.util.HashSet;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.mp;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.ActionBar.x2;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t1;
+import org.telegram.ui.ActionBar.w2;
 import org.telegram.ui.Components.gc;
-import tg.z1;
-public final class l extends x2 {
-    public static l f59785p1;
-    public final j f59786m1;
+import tg.o1;
+public final class l extends w2 {
+    public static l f59826p1;
+    public final j f59827m1;
     public final w0 n1;
-    public boolean f59787o1;
+    public boolean f59828o1;
 
-    public l(Activity activity, a0 a0Var, w0 w0Var, i6 i6Var, boolean z10) {
-        super(1, (Context) activity, i6Var, true);
+    public l(Activity activity, a0 a0Var, w0 w0Var, h6 h6Var, boolean z10) {
+        super(1, (Context) activity, h6Var, true);
         boolean z11;
         this.n1 = w0Var;
-        this.f30228w0 = false;
-        this.f30226v0 = false;
+        this.f30211w0 = false;
+        this.f30209v0 = false;
         this.U0 = false;
         v0(0);
         O();
-        if (i0.a.h(n6.w0(n6.f29467h5, this.J0)) > 0.699999988079071d) {
+        if (i0.a.h(m6.w0(m6.f29451h5, this.J0)) > 0.699999988079071d) {
             z11 = true;
         } else {
             z11 = false;
         }
         org.telegram.messenger.g0.p3(this, z11);
-        this.f59787o1 = getContext().getResources().getConfiguration().orientation == 2;
-        j jVar = new j(this, getContext(), w0Var, i6Var, a0Var);
-        this.f59786m1 = jVar;
+        this.f59828o1 = getContext().getResources().getConfiguration().orientation == 2;
+        j jVar = new j(this, getContext(), w0Var, h6Var, a0Var);
+        this.f59827m1 = jVar;
         jVar.setOverScrollMode(2);
         jVar.setClipToPadding(false);
         jVar.setAdapter(new i4(a0Var, w0Var));
         jVar.setPosition(0);
         this.O = jVar;
-        a0Var.f59710p2 = new i(this, 0);
-        a0Var.f59708n2 = new sg.h0(this, w0Var, false, 9);
-        w0Var.f59849q2 = new k(this, a0Var, i6Var);
-        w0Var.f59847o2 = new i(this, 1);
+        a0Var.f59748p2 = new i(this, 0);
+        a0Var.f59746n2 = new sg.h0(this, w0Var, false, 9);
+        w0Var.f59890q2 = new k(this, a0Var, h6Var);
+        w0Var.f59888o2 = new i(this, 1);
         if (!z10) {
-            mp.u1(this.f30187a).R1().U();
+            mp.u1(this.f30170a).R1().U();
         }
-        gc.a(this.f30193c, new bi.t(14));
+        gc.a(this.f30176c, new bi.t(14));
     }
 
-    public static void J0(h2 h2Var, i6 i6Var, long j3, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        h2 h2Var2;
-        if (f59785p1 != null) {
+    public static void J0(g2 g2Var, h6 h6Var, long j3, TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        g2 g2Var2;
+        if (f59826p1 != null) {
             return;
         }
-        boolean z10 = i6Var instanceof fi.b;
+        boolean z10 = h6Var instanceof fi.b;
         if (z10) {
-            h2Var2 = new y8(h2Var);
+            g2Var2 = new c9(g2Var);
         } else {
-            h2Var2 = h2Var;
+            g2Var2 = g2Var;
         }
-        l lVar = new l(h2Var.getParentActivity(), new a0(h2Var2, j3, prepaidGiveaway), new w0(h2Var2, j3), h2Var2.getResourceProvider(), z10);
+        l lVar = new l(g2Var.getParentActivity(), new a0(g2Var2, j3, prepaidGiveaway), new w0(g2Var2, j3), g2Var2.getResourceProvider(), z10);
         lVar.show();
-        f59785p1 = lVar;
+        f59826p1 = lVar;
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class l extends x2 {
     @Override
     public final void L() {
         super.L();
-        f59785p1 = null;
+        f59826p1 = null;
     }
 
     @Override
@@ -92,50 +92,50 @@ public final class l extends x2 {
         } else {
             z10 = false;
         }
-        this.f59787o1 = z10;
+        this.f59828o1 = z10;
     }
 
     @Override
     public final void onBackPressed() {
-        String M0;
-        j jVar = this.f59786m1;
+        String N0;
+        j jVar = this.f59827m1;
         if (jVar.getCurrentPosition() > 0) {
             w0 w0Var = this.n1;
-            HashSet hashSet = w0Var.f59834a2;
+            HashSet hashSet = w0Var.f59875a2;
             int size = hashSet.size();
-            HashSet hashSet2 = w0Var.f59835b2;
+            HashSet hashSet2 = w0Var.f59876b2;
             if (size == hashSet2.size() && hashSet2.containsAll(hashSet) && hashSet.containsAll(hashSet2)) {
                 if (this.d) {
-                    org.telegram.messenger.g0.v1(w0Var.f30190b);
+                    org.telegram.messenger.g0.v1(w0Var.f30173b);
                 }
                 jVar.A(0);
                 return;
             }
-            int i7 = w0Var.f59846n2;
+            int i7 = w0Var.f59887n2;
             Context context = w0Var.getContext();
-            i6 i6Var = w0Var.J0;
+            h6 h6Var = w0Var.J0;
             r0 r0Var = new r0(w0Var, 0);
             r0 r0Var2 = new r0(w0Var, 6);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
-            String M02 = gd.M0(2131743598, "UnsavedChanges");
-            u1 u1Var = alertDialog$Builder.f28744a;
-            u1Var.S = M02;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, h6Var);
+            String N02 = gd.N0(2131743592, "UnsavedChanges");
+            t1 t1Var = alertDialog$Builder.f28774a;
+            t1Var.S = N02;
             if (i7 != 1) {
                 if (i7 != 2) {
                     if (i7 != 3) {
-                        M0 = "";
+                        N0 = "";
                     } else {
-                        M0 = gd.M0(2131753594, "BoostingApplyChangesCountries");
+                        N0 = gd.N0(2131753593, "BoostingApplyChangesCountries");
                     }
                 } else {
-                    M0 = gd.M0(2131753595, "BoostingApplyChangesChannels");
+                    N0 = gd.N0(2131753594, "BoostingApplyChangesChannels");
                 }
             } else {
-                M0 = gd.M0(2131753593, "BoostingApplyChangesUsers");
+                N0 = gd.N0(2131753592, "BoostingApplyChangesUsers");
             }
-            u1Var.U = M0;
-            alertDialog$Builder.k(gd.M0(2131754214, "ApplyTheme"), new z1(r0Var, 12));
-            alertDialog$Builder.h(gd.M0(2131751395, "Discard"), new z1(r0Var2, 9));
+            t1Var.U = N0;
+            alertDialog$Builder.k(gd.N0(2131754213, "ApplyTheme"), new o1(r0Var, 13));
+            alertDialog$Builder.h(gd.N0(2131751394, "Discard"), new o1(r0Var2, 10));
             alertDialog$Builder.p();
             return;
         }

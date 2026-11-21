@@ -1,21 +1,113 @@
 package org.telegram.ui.Components;
-public final class ut0 extends r1.e {
-    public final st0 f40414a;
-    public final tt0 f40415b;
-    public float f40416c = 1.0f;
 
-    public ut0(st0 st0Var, tt0 tt0Var) {
-        this.f40414a = st0Var;
-        this.f40415b = tt0Var;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+public final class ut0 extends View {
+    public final ImageReceiver f40589a;
+    public final b9 f40590b;
+    public final Paint f40591c;
+    public float d;
+    public boolean f40592e;
+    public ValueAnimator f40593f;
+
+    public ut0(Context context) {
+        super(context);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f40589a = imageReceiver;
+        this.f40590b = new b9((org.telegram.ui.ActionBar.h6) null);
+        Paint paint = new Paint(1);
+        this.f40591c = paint;
+        imageReceiver.J0(org.telegram.messenger.g0.L(28.0f));
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        ValueAnimator valueAnimator = this.f40593f;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float f10 = 0.0f;
+        if (z11) {
+            if (z10) {
+                f10 = 1.0f;
+            }
+            ValueAnimator duration = ValueAnimator.ofFloat(this.d, f10).setDuration(200L);
+            duration.setInterpolator(nr.f37956f);
+            duration.addUpdateListener(new h60(this, 22));
+            duration.addListener(new s60(this, 22));
+            duration.start();
+            this.f40593f = duration;
+            return;
+        }
+        if (z10) {
+            f10 = 1.0f;
+        }
+        this.d = f10;
+        invalidate();
     }
 
     @Override
-    public final float a(Object obj) {
-        return this.f40414a.get(obj) * this.f40416c;
+    public final boolean isSelected() {
+        if (this.d == 1.0f) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void b(Object obj, float f10) {
-        this.f40415b.c(obj, f10 / this.f40416c);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f40589a.P();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f40589a.R();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        float f10 = (this.d * 0.1f) + 0.9f;
+        canvas.scale(f10, f10);
+        int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29542m5, false);
+        Paint paint = this.f40591c;
+        paint.setColor(x02);
+        paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.d));
+        float strokeWidth = paint.getStrokeWidth();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);
+        canvas.drawArc(rectF, -90.0f, this.d * 360.0f, false, paint);
+        canvas.restore();
+        if (!this.f40592e) {
+            float strokeWidth2 = paint.getStrokeWidth() * 2.5f * this.d;
+            float f11 = 2.0f * strokeWidth2;
+            float width = getWidth() - f11;
+            float height = getHeight() - f11;
+            ImageReceiver imageReceiver = this.f40589a;
+            imageReceiver.y0(strokeWidth2, strokeWidth2, width, height);
+            imageReceiver.h(canvas, null);
+        }
+    }
+
+    public void setAvatar(TLObject tLObject) {
+        b9 b9Var = this.f40590b;
+        b9Var.l(tLObject);
+        this.f40589a.i0(tLObject, b9Var, null);
+    }
+
+    public void setHideAvatar(boolean z10) {
+        this.f40592e = z10;
+        invalidate();
     }
 }

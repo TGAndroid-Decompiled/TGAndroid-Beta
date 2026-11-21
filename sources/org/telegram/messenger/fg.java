@@ -1,17 +1,17 @@
 package org.telegram.messenger;
 public final class fg implements Runnable {
-    public final int f23904a;
-    public final x10 f23905b;
+    public final int f23932a;
+    public final x10 f23933b;
 
     public fg(x10 x10Var, int i7) {
-        this.f23904a = i7;
-        this.f23905b = x10Var;
+        this.f23932a = i7;
+        this.f23933b = x10Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f23904a;
-        x10 x10Var = this.f23905b;
+        int i7 = this.f23932a;
+        x10 x10Var = this.f23933b;
         switch (i7) {
             case 0:
                 if (x10Var != null) {
@@ -65,7 +65,7 @@ public final class fg implements Runnable {
                 }
                 return;
             default:
-                int i10 = ShortcutResultReceiver.f22774a;
+                int i10 = ShortcutResultReceiver.f22802a;
                 x10Var.a(Boolean.TRUE);
                 return;
         }

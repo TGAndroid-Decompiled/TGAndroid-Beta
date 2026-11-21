@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class n81 implements Runnable {
-    public final int f50120a;
-    public final o81 f50121b;
-    public final String f50122c;
+    public final int f50147a;
+    public final o81 f50148b;
+    public final String f50149c;
     public final int d;
 
     public n81(o81 o81Var, String str, int i7, int i10) {
-        this.f50120a = i10;
-        this.f50121b = o81Var;
-        this.f50122c = str;
+        this.f50147a = i10;
+        this.f50148b = o81Var;
+        this.f50149c = str;
         this.d = i7;
     }
 

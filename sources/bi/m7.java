@@ -1,270 +1,130 @@
 package bi;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.RectF;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.RemoteException;
-import android.util.Log;
-import android.view.View;
-import android.widget.FrameLayout;
-import c8.bc;
-import java.util.ArrayList;
-import org.telegram.messenger.n10;
-public final class m7 implements org.telegram.ui.ActionBar.u4, yb.a {
-    public boolean f3859a;
-    public Object f3860b;
-    public Object f3861c;
-    public Object d;
-    public Object f3862e;
+import android.text.SpannableString;
+import android.widget.LinearLayout;
+import c8.ma;
+import di.pb;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.x10;
+import org.telegram.ui.Components.nq;
+import org.telegram.ui.Components.r80;
+public final class m7 extends LinearLayout implements fs {
+    public final int f3885a;
+    public final org.telegram.ui.Components.o6 f3886b;
+    public final org.telegram.ui.Components.o6 f3887c;
+    public final nq[] d;
+    public final nq[] f3888e;
+    public SpannableString f3889f;
+    public x10 h;
+    public long f3890n;
 
-    @Override
-    public boolean a() {
-        return true;
+    public m7(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context);
+        this.d = new nq[1];
+        this.f3888e = new nq[1];
+        this.f3890n = -1L;
+        this.f3885a = i7;
+        setOrientation(1);
+        setGravity(21);
+        int L = org.telegram.messenger.g0.L(6.0f);
+        setPadding(org.telegram.messenger.g0.L(13.0f) + L, L, org.telegram.messenger.g0.L(14.0f) + L, L);
+        org.telegram.ui.Components.o6 a10 = a(context, h6Var);
+        this.f3886b = a10;
+        addView(a10, ma.r(-2, 18, 5));
+        org.telegram.ui.Components.o6 a11 = a(context, h6Var);
+        this.f3887c = a11;
+        addView(a11, ma.r(-2, 18, 5));
+        b(false);
     }
 
-    @Override
-    public boolean b(org.telegram.ui.ActionBar.r0 r0Var, RectF rectF) {
-        int L;
-        float L2 = org.telegram.messenger.g0.L(6.0f);
-        rectF.set(L2, L2, ((FrameLayout) this.f3860b).getWidth() - L, ((FrameLayout) this.f3860b).getHeight() - L);
-        return true;
+    public static org.telegram.ui.Components.o6 a(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, true, false);
+        o6Var.f38125n = true;
+        o6Var.setTypeface(org.telegram.messenger.g0.o());
+        o6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
+        o6Var.setGravity(5);
+        org.telegram.ui.ActionBar.t6.Y(o6Var, org.telegram.ui.ActionBar.m6.G6, h6Var);
+        return o6Var;
     }
 
-    @Override
-    public ArrayList c(ub.a aVar) {
-        Bitmap createBitmap;
-        if (((a8.z0) this.f3862e) == null) {
-            zzb();
+    public final void b(boolean z10) {
+        int i7 = this.f3885a;
+        di.y8 y10 = di.y8.y(i7, false);
+        di.y8 y11 = di.y8.y(i7, true);
+        long j3 = y10.p().amount;
+        cg.a s5 = y11.s();
+        if (ii.n.c(i7)) {
+            s5 = cg.a.j(Math.max(0L, org.telegram.ui.Wallet.u0.D(i7).A()) + s5.f5301b, cg.b.f5303b);
         }
-        if (((a8.z0) this.f3862e) != null) {
-            int i7 = aVar.f58566e;
-            if (i7 != -1) {
-                if (i7 != 17) {
-                    if (i7 != 35) {
-                        if (i7 != 842094169) {
-                            throw new lb.a("Unsupported image format", 13);
-                        }
-                        q6.m.h(null);
-                        throw null;
-                    }
-                    q6.m.h(null);
-                    throw null;
-                }
-                q6.m.h(null);
-                throw null;
-            }
-            Bitmap bitmap = aVar.f58563a;
-            q6.m.h(bitmap);
-            int i10 = aVar.d;
-            int i11 = aVar.f58564b;
-            int i12 = aVar.f58565c;
-            if (i10 == 0) {
-                createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i11, i12);
+        boolean z11 = y10.f10085e;
+        org.telegram.ui.Components.o6 o6Var = this.f3886b;
+        org.telegram.ui.Components.o6 o6Var2 = this.f3887c;
+        if (z11 && y11.f10085e) {
+            o6Var.c(pb.b1(false, i5.c.l(j3, ' ', new StringBuilder("⭐️")), 0.7f, this.d), z10, true);
+            if (s5.l()) {
+                o6Var2.setVisibility(8);
             } else {
-                Matrix matrix = new Matrix();
-                matrix.postRotate(i10);
-                createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i11, i12, matrix, true);
-            }
-            try {
-                a8.z0 z0Var = (a8.z0) this.f3862e;
-                q6.m.h(z0Var);
-                a7.b bVar = new a7.b(createBitmap);
-                Parcel p12 = z0Var.p1();
-                int i13 = a8.g0.f404a;
-                p12.writeStrongBinder(bVar);
-                p12.writeInt(1);
-                int r10 = bc.r(p12, 20293);
-                bc.q(p12, 2, 4);
-                p12.writeInt(-1);
-                bc.s(p12, r10);
-                Parcel r12 = z0Var.r1(p12, 1);
-                a8.y4[] y4VarArr = (a8.y4[]) r12.createTypedArray(a8.y4.CREATOR);
-                r12.recycle();
-                ArrayList arrayList = new ArrayList();
-                for (a8.y4 y4Var : y4VarArr) {
-                    arrayList.add(new wb.a(y4Var.f720c, y4Var.d, y4Var.f719b, y4Var.f718a));
+                o6Var2.setVisibility(0);
+                nq[] nqVarArr = this.f3888e;
+                o6Var2.c(pb.b1(true, "⭐️" + s5.o(2).d(), 0.7f, nqVarArr), z10, true);
+                nq nqVar = nqVarArr[0];
+                if (nqVar != null) {
+                    nqVar.a(org.telegram.ui.ActionBar.m6.Zl);
                 }
-                return arrayList;
-            } catch (RemoteException e10) {
-                throw new lb.a("Failed to run legacy image labeler.", e10);
             }
+            this.f3890n = j3;
+            return;
         }
-        throw new lb.a("Waiting for the image labeling module to be downloaded. Please wait.", 14);
-    }
-
-    @Override
-    public boolean d() {
-        return true;
-    }
-
-    @Override
-    public boolean e() {
-        return true;
-    }
-
-    @Override
-    public boolean f() {
-        return false;
-    }
-
-    @Override
-    public fh.g g(org.telegram.ui.ActionBar.k5 k5Var) {
-        g8 g8Var = (g8) this.f3862e;
-        fh.g c10 = g8Var.getBaseSimpleGlass().d.c(k5Var, null, false);
-        c10.p(g8Var.N);
-        n10.s(c10, org.telegram.messenger.g0.L(23.0f), 6.0f);
-        return c10;
-    }
-
-    @Override
-    public int getButtonsGlassBackgroundColor() {
-        gh.e eVar = ((g8) this.f3862e).N;
-        return eVar.a(eVar.f13625e);
-    }
-
-    @Override
-    public gh.a getButtonsGlassColorProvider() {
-        return ((g8) this.f3862e).N;
-    }
-
-    @Override
-    public int getMenuAnchorTint() {
-        return 0;
-    }
-
-    @Override
-    public int getMenuDimAlpha() {
-        return -1;
-    }
-
-    @Override
-    public int getMenuExtraBelow() {
-        return 0;
-    }
-
-    @Override
-    public gh.a getMenuGlassColorProvider() {
-        return ((g8) this.f3862e).N;
-    }
-
-    @Override
-    public View getMenuHostView() {
-        return (FrameLayout) this.f3860b;
-    }
-
-    @Override
-    public int getMenuMaxHeight() {
-        return 0;
-    }
-
-    @Override
-    public org.telegram.ui.ActionBar.i6 getMenuResourcesProvider() {
-        org.telegram.ui.ActionBar.i6 i6Var;
-        i6Var = ((org.telegram.ui.ActionBar.h2) ((g8) this.f3862e)).resourceProvider;
-        return i6Var;
-    }
-
-    @Override
-    public int getMenuRise() {
-        return org.telegram.messenger.g0.L(8.0f);
-    }
-
-    @Override
-    public View getMenuView() {
-        return (l7) this.f3861c;
-    }
-
-    @Override
-    public org.telegram.ui.ActionBar.k5 getOpenMenuOverlay() {
-        if (this.f3859a) {
-            return (org.telegram.ui.ActionBar.k5) this.d;
+        if (this.f3889f == null) {
+            SpannableString spannableString = new SpannableString("x");
+            this.f3889f = spannableString;
+            spannableString.setSpan(new r80(org.telegram.messenger.g0.L(48.0f), o6Var), 0, 1, 33);
         }
-        return null;
+        o6Var.c(this.f3889f, false, true);
+        o6Var2.setVisibility(8);
+        this.f3890n = -1L;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.k5 k5Var, org.telegram.ui.ActionBar.r0 r0Var) {
-        boolean z10;
-        int i7 = 0;
-        if (k5Var != null) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 != ks.A3 && i7 != ks.f25130d4) {
+            return;
         }
-        this.f3859a = z10;
-        FrameLayout frameLayout = (FrameLayout) this.f3860b;
-        if (z10) {
-            i7 = 4;
-        }
-        frameLayout.setVisibility(i7);
+        b(true);
     }
 
     @Override
-    public void setMenuGlassFrostedProgress(float f10) {
-        ui.d dVar = ((g8) this.f3862e).getBaseSimpleGlass().f56617e;
-        if (dVar != null) {
-            dVar.j(f10);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        b(false);
+        int i7 = this.f3885a;
+        ks.f(i7).b(this, ks.A3);
+        ks.f(i7).b(this, ks.f25130d4);
+        if (ii.n.c(i7) && org.telegram.ui.Wallet.u0.D(i7).y() == null) {
+            org.telegram.ui.Wallet.u0.D(i7).K();
         }
     }
 
     @Override
-    public void zzb() {
-        IInterface aVar;
-        String str = (String) this.d;
-        Context context = (Context) this.f3860b;
-        Log.d("LegacyLabelDelegate", "Try to load legacy label module.");
-        if (((a8.z0) this.f3862e) == null) {
-            try {
-                IBinder b10 = b7.f.c(context, b7.f.f2946b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
-                int i7 = a8.w2.f697b;
-                if (b10 == null) {
-                    aVar = null;
-                } else {
-                    IInterface queryLocalInterface = b10.queryLocalInterface("com.google.android.gms.vision.label.internal.client.INativeImageLabelerCreator");
-                    if (queryLocalInterface instanceof a8.x3) {
-                        aVar = (a8.x3) queryLocalInterface;
-                    } else {
-                        aVar = new a8.a(b10, "com.google.android.gms.vision.label.internal.client.INativeImageLabelerCreator", 0);
-                    }
-                }
-                a8.z0 x12 = ((a8.v1) aVar).x1(new a7.b(context), (a8.y6) this.f3861c);
-                this.f3862e = x12;
-                if (x12 == null && !this.f3859a) {
-                    Log.d("LegacyLabelDelegate", "Request ICA optional module download.");
-                    pb.j.b(context);
-                    this.f3859a = true;
-                }
-            } catch (RemoteException e10) {
-                throw new lb.a("Failed to create legacy image labeler.", e10);
-            } catch (b7.b e11) {
-                if (!str.equals("com.google.android.gms.vision.dynamite")) {
-                    if (!this.f3859a) {
-                        Log.d("LegacyLabelDelegate", "Request ICA optional module download.");
-                        pb.j.b(context);
-                        this.f3859a = true;
-                        return;
-                    }
-                    return;
-                }
-                throw new lb.a("Failed to load deprecated vision dynamite module.", e11);
-            }
-        }
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i7 = this.f3885a;
+        ks.f(i7).n(this, ks.A3);
+        ks.f(i7).n(this, ks.f25130d4);
     }
 
     @Override
-    public void zzc() {
-        a8.z0 z0Var = (a8.z0) this.f3862e;
-        if (z0Var != null) {
-            try {
-                z0Var.t1(z0Var.p1(), 2);
-            } catch (RemoteException e10) {
-                Log.e("LegacyLabelDelegate", "Failed to release legacy image labeler.", e10);
-            }
-            this.f3862e = null;
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        super.onSizeChanged(i7, i10, i11, i12);
+        x10 x10Var = this.h;
+        if (x10Var != null && i7 != i11) {
+            x10Var.a(Integer.valueOf(i7));
         }
+    }
+
+    public void setOnWidthChanged(x10 x10Var) {
+        this.h = x10Var;
     }
 }

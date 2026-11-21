@@ -5,12 +5,12 @@ import java.util.concurrent.Executor;
 import zd.u0;
 import zd.x;
 public final class d extends u0 implements Executor {
-    public static final d f13507c = new x();
+    public static final d f13536c = new x();
     public static final x d;
 
     static {
-        l lVar = l.f13518c;
-        int i7 = u.f10949a;
+        l lVar = l.f13547c;
+        int i7 = u.f10978a;
         if (64 >= i7) {
             i7 = 64;
         }
@@ -29,7 +29,7 @@ public final class d extends u0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(id.i.f16226a, runnable);
+        c(id.i.f16251a, runnable);
     }
 
     @Override

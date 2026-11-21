@@ -9,9 +9,9 @@ public final class b extends a {
 
     @Override
     public final v4.i0 a() {
-        c cVar = new c(j10.f24770t0, this.f58595a);
+        c cVar = new c(j10.f24798t0, this.f58636a);
         this.d = cVar;
-        cVar.f58622r = this;
+        cVar.f58671r = this;
         return cVar;
     }
 
@@ -22,15 +22,15 @@ public final class b extends a {
         Context context = getContext();
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        ArrayList arrayList = cVar.f58620f;
-        e eVar = new e(context, cVar.f58618c);
+        ArrayList arrayList = cVar.f58669f;
+        e eVar = new e(context, cVar.f58667c);
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             eVar.a((d) arrayList.get(i12));
             eVar.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
-            ((d) arrayList.get(i12)).f58640e = i11;
+            ((d) arrayList.get(i12)).f58679e = i11;
             i11 += eVar.getMeasuredHeight();
         }
-        cVar.f58621n = i11;
+        cVar.f58670n = i11;
     }
 }

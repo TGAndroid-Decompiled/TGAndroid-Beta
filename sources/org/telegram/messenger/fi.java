@@ -7,21 +7,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class fi implements Runnable {
-    public final int f23908a;
-    public final Object f23909b;
-    public final Object f23910c;
+    public final int f23936a;
+    public final Object f23937b;
+    public final Object f23938c;
 
     public fi(int i7, Object obj, Object obj2) {
-        this.f23908a = i7;
-        this.f23909b = obj;
-        this.f23910c = obj2;
+        this.f23936a = i7;
+        this.f23937b = obj;
+        this.f23938c = obj2;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f23908a;
-        Object obj = this.f23910c;
-        Object obj2 = this.f23909b;
+        int i7 = this.f23936a;
+        Object obj = this.f23938c;
+        Object obj2 = this.f23937b;
         switch (i7) {
             case 0:
                 x10 x10Var = (x10) obj2;
@@ -39,25 +39,25 @@ public final class fi implements Runnable {
                 }
                 return;
             case 2:
-                ri riVar = (ri) ((m9.u) obj2).f20956c;
+                ri riVar = (ri) ((m9.u) obj2).f20984c;
                 riVar.B0.clear();
                 riVar.B0.addAll((ArrayList) obj);
                 return;
             case 3:
-                ArrayList arrayList2 = ((ri) ((androidx.activity.g) obj2).f1769c).B0;
+                ArrayList arrayList2 = ((ri) ((androidx.activity.g) obj2).f1781c).B0;
                 arrayList2.clear();
                 arrayList2.addAll((ArrayList) obj);
                 ks.e().k(300, new Object[0]);
                 return;
             case 4:
                 fj fjVar = (fj) obj2;
-                fjVar.f23977n = (TLRPC.Document) obj;
+                fjVar.f24005n = (TLRPC.Document) obj;
                 ks.f(fjVar.K1).k(116, fjVar);
                 return;
             case 5:
                 mp mpVar = (mp) obj2;
                 TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
-                long[] a22 = mpVar.getMessagesStorage().a2(tL_updateMessageID.random_id, 0L, null, tL_updateMessageID.f28661id, 0, -1, 0);
+                long[] a22 = mpVar.getMessagesStorage().a2(tL_updateMessageID.random_id, 0L, null, tL_updateMessageID.f28689id, 0, -1, 0);
                 if (a22 != null) {
                     g0.g3(new kg(mpVar, a22, tL_updateMessageID, 7));
                     return;
@@ -69,11 +69,11 @@ public final class fi implements Runnable {
                 return;
             case 7:
                 TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) obj;
-                ((mp) obj2).getNotificationCenter().k(177, Long.valueOf(tL_updateGroupCallMessage.call.f28420id), tL_updateGroupCallMessage, Boolean.FALSE);
+                ((mp) obj2).getNotificationCenter().k(177, Long.valueOf(tL_updateGroupCallMessage.call.f28448id), tL_updateGroupCallMessage, Boolean.FALSE);
                 return;
             case 8:
                 TL_update.TL_updateDeleteGroupCallMessages tL_updateDeleteGroupCallMessages = (TL_update.TL_updateDeleteGroupCallMessages) obj;
-                ((mp) obj2).getNotificationCenter().k(177, Long.valueOf(tL_updateDeleteGroupCallMessages.call.f28420id), tL_updateDeleteGroupCallMessages, Boolean.FALSE);
+                ((mp) obj2).getNotificationCenter().k(177, Long.valueOf(tL_updateDeleteGroupCallMessages.call.f28448id), tL_updateDeleteGroupCallMessages, Boolean.FALSE);
                 return;
             case 9:
                 TL_update.TL_updateUserTyping tL_updateUserTyping = (TL_update.TL_updateUserTyping) obj;
@@ -86,8 +86,8 @@ public final class fi implements Runnable {
             case 11:
                 mp mpVar2 = (mp) obj2;
                 TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) obj;
-                mpVar2.f25756s1.clear();
-                mpVar2.f25820z1.clear();
+                mpVar2.f25784s1.clear();
+                mpVar2.f25848z1.clear();
                 mpVar2.f4(updates_difference.users, false);
                 mpVar2.Z3(updates_difference.chats, false);
                 return;
@@ -167,7 +167,7 @@ public final class fi implements Runnable {
                 mpVar10.Z3(updates.chats, false);
                 ArrayList<TLRPC.Chat> arrayList3 = updates.chats;
                 if (arrayList3 != null && !arrayList3.isEmpty()) {
-                    mpVar10.getNotificationCenter().k(28, Long.valueOf(updates.chats.get(0).f28403id));
+                    mpVar10.getNotificationCenter().k(28, Long.valueOf(updates.chats.get(0).f28431id));
                     return;
                 } else {
                     mpVar10.getNotificationCenter().k(29, new Object[0]);
@@ -186,8 +186,8 @@ public final class fi implements Runnable {
                 return;
             case 24:
                 mp mpVar11 = (mp) obj2;
-                ((ai.g0) obj).a(mpVar11.f25630d8);
-                mpVar11.f25622c8 = false;
+                ((ai.h0) obj).a(mpVar11.f25658d8);
+                mpVar11.f25650c8 = false;
                 return;
             case 25:
                 q0.a aVar = (q0.a) obj2;
@@ -201,7 +201,7 @@ public final class fi implements Runnable {
                 mp mpVar12 = (mp) obj2;
                 fj fjVar2 = (fj) obj;
                 mpVar12.getClass();
-                long B0 = fj.B0(fjVar2.f23965k);
+                long B0 = fj.B0(fjVar2.f23993k);
                 int e12 = fjVar2.e1();
                 a0.h hVar = mpVar12.K0;
                 ArrayList arrayList4 = (ArrayList) hVar.f(B0);
@@ -216,12 +216,12 @@ public final class fi implements Runnable {
             case 27:
                 fp fpVar = (fp) obj2;
                 TLObject tLObject = (TLObject) obj;
-                fpVar.f24047c = false;
+                fpVar.f24075c = false;
                 fpVar.d = true;
                 if (tLObject instanceof TL_account.TL_savedMusicIds) {
-                    fpVar.f24046b.addAll(((TL_account.TL_savedMusicIds) tLObject).ids);
+                    fpVar.f24074b.addAll(((TL_account.TL_savedMusicIds) tLObject).ids);
                 }
-                ks.f(fpVar.f24045a).k(248, new Object[0]);
+                ks.f(fpVar.f24073a).k(248, new Object[0]);
                 return;
             case 28:
                 ((a4) obj2).a((ArrayList) obj);

@@ -31,7 +31,6 @@ import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import c8.ma;
 import com.google.android.gms.internal.vision.u2;
-import com.google.android.gms.internal.vision.x1;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.camera.CameraSessionWrapper;
@@ -42,21 +41,21 @@ import org.telegram.messenger.pc;
 import org.telegram.messenger.x10;
 import org.telegram.messenger.y10;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.s4;
-import org.telegram.ui.ActionBar.y1;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.r4;
+import org.telegram.ui.ActionBar.x1;
+import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.nr;
 public final class b0 extends FrameLayout {
-    public static final lr A0 = new lr(0.05d, 0.7d, 0.1d, 1.0d);
-    public static final lr B0 = new lr(0.3d, 0.0d, 0.1d, 1.0d);
+    public static final nr A0 = new nr(0.05d, 0.7d, 0.1d, 1.0d);
+    public static final nr B0 = new nr(0.3d, 0.0d, 0.1d, 1.0d);
     public final Paint E;
     public final Paint F;
     public final b1 G;
     public final Drawable H;
     public final Drawable I;
     public final Drawable J;
-    public final y1 K;
+    public final x1 K;
     public final TextPaint L;
     public String M;
     public final TextPaint N;
@@ -69,94 +68,94 @@ public final class b0 extends FrameLayout {
     public ValueAnimator U;
     public boolean V;
     public boolean W;
-    public final a0 f5547a;
-    public int f5548a0;
-    public CameraView f5549b;
-    public float f5550b0;
-    public Object f5551c;
-    public float f5552c0;
+    public final a0 f5576a;
+    public int f5577a0;
+    public CameraView f5578b;
+    public float f5579b0;
+    public Object f5580c;
+    public float f5581c0;
     public final RectF d;
-    public float f5553d0;
-    public final RectF f5554e;
-    public boolean f5555e0;
-    public final RectF f5556f;
-    public float f5557f0;
-    public final HandlerThread f5558g0;
+    public float f5582d0;
+    public final RectF f5583e;
+    public boolean f5584e0;
+    public final RectF f5585f;
+    public float f5586f0;
+    public final HandlerThread f5587g0;
     public final RectF h;
-    public final Handler f5559h0;
-    public volatile boolean f5560i0;
-    public u8.n f5561j0;
-    public d6.i f5562k0;
-    public Bitmap f5563l0;
+    public final Handler f5588h0;
+    public volatile boolean f5589i0;
+    public u8.n f5590j0;
+    public d6.i f5591k0;
+    public Bitmap f5592l0;
     public boolean m0;
-    public final RectF f5564n;
-    public PointF[] f5565n0;
-    public float f5566o0;
-    public Bitmap f5567p0;
-    public Bitmap f5568q0;
-    public final RectF f5569r;
-    public final RectF f5570r0;
-    public final RectF f5571s;
-    public final Paint f5572s0;
-    public BitmapShader f5573t0;
-    public final Paint f5574u0;
-    public final Matrix f5575v0;
-    public final Path f5576w;
-    public Bitmap f5577w0;
-    public final Path f5578x;
-    public final Paint f5579x0;
-    public final Paint f5580y;
-    public final RectF f5581y0;
-    public final sa f5582z0;
+    public final RectF f5593n;
+    public PointF[] f5594n0;
+    public float f5595o0;
+    public Bitmap f5596p0;
+    public Bitmap f5597q0;
+    public final RectF f5598r;
+    public final RectF f5599r0;
+    public final RectF f5600s;
+    public final Paint f5601s0;
+    public BitmapShader f5602t0;
+    public final Paint f5603u0;
+    public final Matrix f5604v0;
+    public final Path f5605w;
+    public Bitmap f5606w0;
+    public final Path f5607x;
+    public final Paint f5608x0;
+    public final Paint f5609y;
+    public final RectF f5610y0;
+    public final sa f5611z0;
 
     public b0(Activity activity, RectF rectF, RectF rectF2, a0 a0Var) {
         super(activity);
         View view;
         RectF rectF3 = new RectF();
         this.d = rectF3;
-        this.f5554e = new RectF();
+        this.f5583e = new RectF();
         RectF rectF4 = new RectF();
-        this.f5556f = rectF4;
+        this.f5585f = rectF4;
         this.h = new RectF();
-        this.f5564n = new RectF();
-        this.f5569r = new RectF();
-        this.f5571s = new RectF();
-        this.f5576w = new Path();
-        this.f5578x = new Path();
-        this.f5580y = new Paint(1);
+        this.f5593n = new RectF();
+        this.f5598r = new RectF();
+        this.f5600s = new RectF();
+        this.f5605w = new Path();
+        this.f5607x = new Path();
+        this.f5609y = new Paint(1);
         Paint paint = new Paint(1);
         this.E = paint;
         Paint paint2 = new Paint(1);
         this.F = paint2;
         this.G = new b1(0);
-        y1 y1Var = new y1(true);
-        this.K = y1Var;
+        x1 x1Var = new x1(true);
+        this.K = x1Var;
         TextPaint textPaint = new TextPaint(1);
         this.L = textPaint;
         this.N = new TextPaint(1);
         this.P = new y(0);
-        this.f5548a0 = -1;
-        this.f5550b0 = 1.0f;
-        this.f5552c0 = 1.0f;
-        this.f5553d0 = 1.0f;
+        this.f5577a0 = -1;
+        this.f5579b0 = 1.0f;
+        this.f5581c0 = 1.0f;
+        this.f5582d0 = 1.0f;
         HandlerThread handlerThread = new HandlerThread("QrScan");
-        this.f5558g0 = handlerThread;
-        this.f5570r0 = new RectF();
-        this.f5572s0 = new Paint(2);
-        this.f5574u0 = new Paint(3);
-        this.f5575v0 = new Matrix();
-        this.f5579x0 = new Paint(2);
-        this.f5581y0 = new RectF();
-        this.f5582z0 = new sa(this, 17);
-        this.f5547a = a0Var;
+        this.f5587g0 = handlerThread;
+        this.f5599r0 = new RectF();
+        this.f5601s0 = new Paint(2);
+        this.f5603u0 = new Paint(3);
+        this.f5604v0 = new Matrix();
+        this.f5608x0 = new Paint(2);
+        this.f5610y0 = new RectF();
+        this.f5611z0 = new sa(this, 17);
+        this.f5576a = a0Var;
         rectF3.set(rectF);
         rectF4.set(rectF2);
         setWillNotDraw(false);
         this.H = o(activity, 2131232321);
         this.I = o(activity, 2131232631);
         this.J = o(activity, 2131232632);
-        y1Var.a(-1);
-        y1Var.b(-1);
+        x1Var.a(-1);
+        x1Var.b(-1);
         textPaint.setColor(-1);
         textPaint.setTextSize(org.telegram.messenger.g0.L(22.0f));
         textPaint.setTypeface(org.telegram.messenger.g0.o());
@@ -182,7 +181,7 @@ public final class b0 extends FrameLayout {
         this.S = w.g(view);
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());
-        this.f5559h0 = handler;
+        this.f5588h0 = handler;
         handler.post(new x(this, 2));
         invalidate();
         a(1.0f, 390L, new x(this, 3));
@@ -224,17 +223,17 @@ public final class b0 extends FrameLayout {
         return false;
     }
 
-    public static b0 k(b51 b51Var, View view, y10 y10Var, x10 x10Var, Runnable runnable) {
+    public static b0 k(e51 e51Var, View view, y10 y10Var, x10 x10Var, Runnable runnable) {
         FrameLayout frameLayout;
         int[] iArr;
         int[] iArr2;
-        s4 parentLayout = b51Var.getParentLayout();
+        r4 parentLayout = e51Var.getParentLayout();
         if (parentLayout != null) {
             frameLayout = parentLayout.getOverlayContainerView();
         } else {
             frameLayout = null;
         }
-        if (frameLayout == null || b51Var.getParentActivity() == null) {
+        if (frameLayout == null || e51Var.getParentActivity() == null) {
             return null;
         }
         frameLayout.getLocationInWindow(new int[2]);
@@ -242,10 +241,10 @@ public final class b0 extends FrameLayout {
         float width = (view.getWidth() / 2.0f) + (iArr2[0] - iArr[0]);
         float height = (view.getHeight() / 2.0f) + (iArr2[1] - iArr[1]);
         float min = Math.min(view.getWidth(), view.getHeight()) / 2.0f;
-        b0 b0Var = new b0(b51Var.getParentActivity(), new RectF(width - min, height - min, width + min, height + min), new RectF(), new wf.b(10, x10Var, runnable));
+        b0 b0Var = new b0(e51Var.getParentActivity(), new RectF(width - min, height - min, width + min, height + min), new RectF(), new wf.b(10, x10Var, runnable));
         b0Var.setPlainButton(true);
         b0Var.setAccept(y10Var);
-        b0Var.setOnGallery(new ai.s(b51Var, b0Var, y10Var, x10Var, 5));
+        b0Var.setOnGallery(new ai.r(e51Var, b0Var, y10Var, x10Var, 5));
         frameLayout.addView(b0Var, ma.c(-1.0f, -1));
         return b0Var;
     }
@@ -254,10 +253,10 @@ public final class b0 extends FrameLayout {
         u8.n nVar;
         String str = null;
         try {
-            Context context = org.telegram.messenger.t0.f26913b;
+            Context context = org.telegram.messenger.t0.f26941b;
             ?? obj = new Object();
-            obj.f7329a = 256;
-            nVar = new u8.n(new u2(context, (x1) obj));
+            obj.f7358a = 256;
+            nVar = new u8.n(new u2(context, (com.google.android.gms.internal.vision.x1) obj));
         } catch (Throwable th2) {
             a8.g(th2, true);
             nVar = null;
@@ -265,7 +264,7 @@ public final class b0 extends FrameLayout {
         try {
             q4.q f10 = f(bitmap, nVar, new d6.i(20), y10Var);
             if (f10 != null) {
-                str = (String) f10.f55826b;
+                str = (String) f10.f55867b;
             }
             return str;
         } finally {
@@ -281,13 +280,13 @@ public final class b0 extends FrameLayout {
         return mutate;
     }
 
-    public static void p(h2 h2Var, int i7, z zVar) {
-        if (h2Var.isFinished) {
+    public static void p(g2 g2Var, int i7, z zVar) {
+        if (g2Var.isFinished) {
             return;
         }
-        s4 parentLayout = h2Var.getParentLayout();
-        if (parentLayout != null && ((parentLayout.getLastFragment() != h2Var || ((ActionBarLayout) parentLayout).B()) && i7 < 40)) {
-            org.telegram.messenger.g0.h3(new ai.a1(h2Var, i7, zVar, 5), 50L);
+        r4 parentLayout = g2Var.getParentLayout();
+        if (parentLayout != null && ((parentLayout.getLastFragment() != g2Var || ((ActionBarLayout) parentLayout).B()) && i7 < 40)) {
+            org.telegram.messenger.g0.h3(new ai.c1(g2Var, i7, zVar, 5), 50L);
         } else {
             zVar.run();
         }
@@ -328,39 +327,39 @@ public final class b0 extends FrameLayout {
             float x10 = motionEvent.getX();
             float y10 = motionEvent.getY();
             int actionMasked = motionEvent.getActionMasked();
-            RectF rectF = this.f5564n;
+            RectF rectF = this.f5593n;
             RectF rectF2 = this.h;
-            RectF rectF3 = this.f5556f;
+            RectF rectF3 = this.f5585f;
             int i7 = -1;
             if (actionMasked != 0) {
                 if (actionMasked != 1) {
                     if (actionMasked != 2) {
                         if (actionMasked == 3) {
-                            this.f5548a0 = -1;
+                            this.f5577a0 = -1;
                             invalidate();
                             return true;
                         }
-                    } else if ((this.f5548a0 == 0 && !j(x10, y10, rectF3)) || ((this.f5548a0 == 1 && !j(x10, y10, rectF2)) || (this.f5548a0 == 2 && !j(x10, y10, rectF)))) {
-                        this.f5548a0 = -1;
+                    } else if ((this.f5577a0 == 0 && !j(x10, y10, rectF3)) || ((this.f5577a0 == 1 && !j(x10, y10, rectF2)) || (this.f5577a0 == 2 && !j(x10, y10, rectF)))) {
+                        this.f5577a0 = -1;
                         invalidate();
                         return true;
                     }
                 } else {
-                    int i10 = this.f5548a0;
+                    int i10 = this.f5577a0;
                     if (i10 == 0) {
                         performHapticFeedback(3);
                         e();
                     } else if (i10 == 1) {
                         performHapticFeedback(3);
-                        CameraView cameraView = this.f5549b;
+                        CameraView cameraView = this.f5578b;
                         if (cameraView != null) {
                             cameraSessionWrapper = cameraView.getCameraSession();
                         } else {
                             cameraSessionWrapper = null;
                         }
                         if (cameraSessionWrapper != null) {
-                            boolean z10 = this.f5555e0;
-                            this.f5555e0 = !z10;
+                            boolean z10 = this.f5584e0;
+                            this.f5584e0 = !z10;
                             if (!z10) {
                                 str = "torch";
                             } else {
@@ -373,12 +372,12 @@ public final class b0 extends FrameLayout {
                         performHapticFeedback(3);
                         this.Q.run();
                     } else {
-                        CameraView cameraView2 = this.f5549b;
+                        CameraView cameraView2 = this.f5578b;
                         if (cameraView2 != null) {
                             cameraView2.focusToPoint((int) x10, (int) y10);
                         }
                     }
-                    this.f5548a0 = -1;
+                    this.f5577a0 = -1;
                     invalidate();
                     return true;
                 }
@@ -390,7 +389,7 @@ public final class b0 extends FrameLayout {
                 } else if (this.Q != null && j(x10, y10, rectF)) {
                     i7 = 2;
                 }
-                this.f5548a0 = i7;
+                this.f5577a0 = i7;
                 invalidate();
             }
         }
@@ -401,31 +400,31 @@ public final class b0 extends FrameLayout {
         TextureView textureView;
         if (!this.V && !this.W) {
             this.V = true;
-            this.f5560i0 = false;
-            Matrix matrix = this.f5575v0;
-            RectF rectF = this.f5570r0;
-            CameraView cameraView = this.f5549b;
+            this.f5589i0 = false;
+            Matrix matrix = this.f5604v0;
+            RectF rectF = this.f5599r0;
+            CameraView cameraView = this.f5578b;
             if (cameraView != null && cameraView.getAlpha() >= 0.5f && (textureView = cameraView.getTextureView()) != null && textureView.isAvailable() && textureView.getWidth() > 0 && textureView.getHeight() > 0) {
                 try {
-                    this.f5567p0 = textureView.getBitmap(Math.max(1, textureView.getWidth() / 2), Math.max(1, textureView.getHeight() / 2));
+                    this.f5596p0 = textureView.getBitmap(Math.max(1, textureView.getWidth() / 2), Math.max(1, textureView.getHeight() / 2));
                 } catch (Throwable th2) {
                     a8.g(th2, true);
-                    this.f5567p0 = null;
+                    this.f5596p0 = null;
                 }
-                if (this.f5567p0 != null) {
+                if (this.f5596p0 != null) {
                     rectF.set(textureView.getLeft() + cameraView.getLeft(), textureView.getTop() + cameraView.getTop(), textureView.getRight() + cameraView.getLeft(), textureView.getBottom() + cameraView.getTop());
                     if (c()) {
-                        Bitmap bitmap = this.f5567p0;
-                        Bitmap createScaledBitmap = Bitmap.createScaledBitmap(bitmap, Math.max(1, bitmap.getWidth() / 8), Math.max(1, this.f5567p0.getHeight() / 8), true);
-                        this.f5568q0 = createScaledBitmap;
+                        Bitmap bitmap = this.f5596p0;
+                        Bitmap createScaledBitmap = Bitmap.createScaledBitmap(bitmap, Math.max(1, bitmap.getWidth() / 8), Math.max(1, this.f5596p0.getHeight() / 8), true);
+                        this.f5597q0 = createScaledBitmap;
                         Utilities.stackBlurBitmap(createScaledBitmap, 6);
-                        Bitmap bitmap2 = this.f5568q0;
+                        Bitmap bitmap2 = this.f5597q0;
                         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        this.f5573t0 = new BitmapShader(bitmap2, tileMode, tileMode);
-                        matrix.setScale(rectF.width() / this.f5568q0.getWidth(), rectF.height() / this.f5568q0.getHeight());
+                        this.f5602t0 = new BitmapShader(bitmap2, tileMode, tileMode);
+                        matrix.setScale(rectF.width() / this.f5597q0.getWidth(), rectF.height() / this.f5597q0.getHeight());
                         matrix.postTranslate(rectF.left, rectF.top);
-                        this.f5573t0.setLocalMatrix(matrix);
-                        this.f5574u0.setShader(this.f5573t0);
+                        this.f5602t0.setLocalMatrix(matrix);
+                        this.f5603u0.setShader(this.f5602t0);
                     }
                 }
             }
@@ -439,15 +438,15 @@ public final class b0 extends FrameLayout {
             return;
         }
         this.W = true;
-        this.f5560i0 = false;
+        this.f5589i0 = false;
         ValueAnimator valueAnimator = this.U;
         if (valueAnimator != null) {
             valueAnimator.cancel();
             this.U = null;
         }
         m();
-        this.f5559h0.removeCallbacksAndMessages(null);
-        this.f5559h0.post(new x(this, 1));
+        this.f5588h0.removeCallbacksAndMessages(null);
+        this.f5588h0.post(new x(this, 1));
     }
 
     public final void h(Canvas canvas, RectF rectF, float f10, float f11, Drawable drawable) {
@@ -455,10 +454,10 @@ public final class b0 extends FrameLayout {
         canvas.scale(f10, f10, rectF.centerX(), rectF.centerY());
         float height = rectF.height() / 2.0f;
         i(height, f11, canvas, rectF, true);
-        if (drawable == this.I && this.f5557f0 > 0.0f) {
-            Paint paint = this.f5580y;
+        if (drawable == this.I && this.f5586f0 > 0.0f) {
+            Paint paint = this.f5609y;
             paint.setColor(-1);
-            paint.setAlpha((int) (this.f5557f0 * 102.0f * f11));
+            paint.setAlpha((int) (this.f5586f0 * 102.0f * f11));
             canvas.drawRoundRect(rectF, height, height, paint);
         }
         if (drawable != null) {
@@ -469,12 +468,12 @@ public final class b0 extends FrameLayout {
             drawable.setAlpha((int) (f11 * 255.0f));
             drawable.draw(canvas);
         } else {
-            y1 y1Var = this.K;
-            y1Var.setAlpha((int) (f11 * 255.0f));
+            x1 x1Var = this.K;
+            x1Var.setAlpha((int) (f11 * 255.0f));
             canvas.save();
             float centerX2 = rectF.centerX() - (org.telegram.messenger.g0.L(24.0f) / 2.0f);
             n10.k(org.telegram.messenger.g0.L(24.0f), 2.0f, rectF.centerY(), centerX2, canvas);
-            y1Var.draw(canvas);
+            x1Var.draw(canvas);
             canvas.restore();
         }
         canvas.restore();
@@ -486,28 +485,28 @@ public final class b0 extends FrameLayout {
         if (f11 <= 0.0f) {
             return;
         }
-        int l10 = (int) (Utilities.l(c1.f5612b[3] / 100.0f) * 255.0f);
-        Paint paint = this.f5580y;
+        int l10 = (int) (Utilities.l(c1.f5641b[3] / 100.0f) * 255.0f);
+        Paint paint = this.f5609y;
         if (z10) {
-            if (this.f5549b != null && canvas.isHardwareAccelerated() && c()) {
-                if (this.f5551c == null) {
-                    this.f5551c = this.f5549b.getBlurRenderNode();
+            if (this.f5578b != null && canvas.isHardwareAccelerated() && c()) {
+                if (this.f5580c == null) {
+                    this.f5580c = this.f5578b.getBlurRenderNode();
                     invalidate();
                 }
-                z11 = w.e(this.f5551c);
+                z11 = w.e(this.f5580c);
             } else {
                 z11 = false;
             }
             if (z11) {
-                Path path = this.f5578x;
+                Path path = this.f5607x;
                 path.rewind();
                 path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
                 canvas.save();
-                canvas.translate(this.f5549b.getLeft(), this.f5549b.getTop());
-                w.h(this.f5551c, f11);
-                w.c(canvas, this.f5551c);
+                canvas.translate(this.f5578b.getLeft(), this.f5578b.getTop());
+                w.h(this.f5580c, f11);
+                w.c(canvas, this.f5580c);
                 canvas.restore();
                 paint.setColor((l10 << 24) | 16777215);
                 paint.setAlpha((int) (l10 * f11));
@@ -517,8 +516,8 @@ public final class b0 extends FrameLayout {
                 this.G.a(f10, f11, 0, canvas, rectF);
             }
         }
-        if (z10 && this.f5568q0 != null) {
-            Paint paint2 = this.f5574u0;
+        if (z10 && this.f5597q0 != null) {
+            Paint paint2 = this.f5603u0;
             paint2.setAlpha((int) (255.0f * f11));
             canvas.drawRoundRect(rectF, f10, f10, paint2);
             paint.setColor((l10 << 24) | 16777215);
@@ -541,14 +540,14 @@ public final class b0 extends FrameLayout {
     }
 
     public final void m() {
-        CameraView cameraView = this.f5549b;
+        CameraView cameraView = this.f5578b;
         if (cameraView == null) {
             return;
         }
-        this.f5549b = null;
-        this.f5551c = null;
+        this.f5578b = null;
+        this.f5580c = null;
         CameraSessionWrapper cameraSession = cameraView.getCameraSession();
-        if (this.f5555e0 && cameraSession != null) {
+        if (this.f5584e0 && cameraSession != null) {
             cameraSession.setCurrentFlashMode("off");
         }
         cameraView.animate().cancel();
@@ -576,7 +575,7 @@ public final class b0 extends FrameLayout {
         float f13 = L - min;
         float f14 = f11 + min;
         float f15 = L + min;
-        RectF rectF = this.f5569r;
+        RectF rectF = this.f5598r;
         rectF.set(f12, f13, f14, f15);
         float L2 = org.telegram.messenger.g0.L(56.0f);
         float L3 = rectF.bottom + org.telegram.messenger.g0.L(64.0f);
@@ -589,12 +588,12 @@ public final class b0 extends FrameLayout {
         float f17 = L2 + L3;
         this.h.set(f10 - f16, L3, f10 + f16, f17);
         float L4 = (f11 - org.telegram.messenger.g0.L(35.0f)) - f16;
-        this.f5564n.set(L4 - f16, L3, L4 + f16, f17);
-        this.R = new StaticLayout(gd.M0(2131745666, null), this.L, i5.c.d(72.0f, i14, 1), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        RectF rectF2 = this.f5556f;
+        this.f5593n.set(L4 - f16, L3, L4 + f16, f17);
+        this.R = new StaticLayout(gd.N0(2131745665, null), this.L, i5.c.d(72.0f, i14, 1), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        RectF rectF2 = this.f5585f;
         if (rectF2.isEmpty()) {
             String[] strArr = z0.C9;
-            int i15 = org.telegram.messenger.g0.f24112m;
+            int i15 = org.telegram.messenger.g0.f24140m;
             View view = this;
             int i16 = 0;
             while (true) {

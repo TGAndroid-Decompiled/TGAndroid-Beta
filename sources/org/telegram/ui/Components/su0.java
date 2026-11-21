@@ -1,39 +1,68 @@
 package org.telegram.ui.Components;
-public final class su0 {
-    public org.telegram.messenger.bp f39846a;
-    public org.telegram.ui.ActionBar.i6 f39847b;
-    public int f39848c;
-    public int d;
-    public float f39849e;
 
-    public final void a(org.telegram.messenger.bp bpVar) {
-        int b10;
-        int i7;
-        this.f39846a = bpVar;
-        if (bpVar == null) {
-            this.f39848c = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.A8, this.f39847b);
-            this.d = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29674s8, this.f39847b);
-            this.f39848c = i0.a.f(this.f39849e, this.f39848c, 603979776);
-            this.d = i0.a.f(this.f39849e, this.d, -1);
-            return;
-        }
-        int c10 = bpVar.c(org.telegram.ui.ActionBar.n6.I.q());
-        int d = bpVar.d(org.telegram.ui.ActionBar.n6.I.q());
-        org.telegram.ui.ActionBar.i6 i6Var = this.f39847b;
-        int f10 = i0.a.f(0.75f, d, c10);
-        if (org.telegram.messenger.g0.B(f10) > 0.721f) {
-            b10 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29729v6, i6Var);
-        } else {
-            b10 = org.telegram.ui.ActionBar.n6.b(0.08f, -0.08f, f10);
-        }
-        this.f39848c = b10;
-        if (org.telegram.messenger.g0.B(b10) > 0.721f) {
-            i7 = -16777216;
-        } else {
-            i7 = -1;
-        }
-        this.d = i7;
-        this.f39848c = i0.a.f(this.f39849e, this.f39848c, 603979776);
-        this.d = i0.a.f(this.f39849e, this.d, -1);
+import android.animation.TimeAnimator;
+import android.animation.ValueAnimator;
+public final class su0 extends TimeAnimator {
+    public int f39698a;
+    public int f39699b;
+    public ValueAnimator.AnimatorUpdateListener f39700c;
+    public Float d;
+    public float[] f39701e;
+
+    @Override
+    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
+        this.f39700c = animatorUpdateListener;
+    }
+
+    @Override
+    public final void end() {
+        this.f39700c = null;
+        super.end();
+    }
+
+    @Override
+    public final Object getAnimatedValue() {
+        return this.d;
+    }
+
+    @Override
+    public final void setFloatValues(float[] fArr) {
+        super.setFloatValues(fArr);
+        this.f39701e = fArr;
+    }
+
+    @Override
+    public final void start() {
+        setTimeListener(new TimeAnimator.TimeListener() {
+            @Override
+            public final void onTimeUpdate(TimeAnimator timeAnimator, long j3, long j10) {
+                int i7;
+                su0 su0Var = su0.this;
+                int i10 = su0Var.f39698a;
+                if (i10 > 0 && (i7 = su0Var.f39699b) > 0) {
+                    int i11 = i10 - 1;
+                    su0Var.f39698a = i11;
+                    if (su0Var.f39700c != null) {
+                        float[] fArr = su0Var.f39701e;
+                        if (fArr != null && fArr.length == 2) {
+                            float interpolation = su0Var.getInterpolator().getInterpolation(1.0f - (i11 / i7));
+                            float[] fArr2 = su0Var.f39701e;
+                            float f10 = fArr2[0];
+                            su0Var.d = Float.valueOf(((fArr2[1] - f10) * interpolation) + f10);
+                            su0Var.f39700c.onAnimationUpdate(su0Var);
+                            return;
+                        }
+                        su0Var.end();
+                        return;
+                    }
+                    return;
+                }
+                su0Var.end();
+            }
+        });
+        int duration = (int) (((float) getDuration()) / org.telegram.messenger.g0.f24149t);
+        this.f39698a = duration;
+        this.f39699b = duration;
+        super.start();
     }
 }

@@ -1,20 +1,277 @@
 package hi;
 
-import android.content.Context;
-import android.graphics.PointF;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.mh0;
-import org.telegram.ui.Components.vt0;
-public final class c5 extends tg.f2 {
-    public final l5 f14311z0;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.util.SparseIntArray;
+import org.telegram.messenger.bz;
+public class c5 implements org.telegram.ui.ActionBar.h6 {
+    public final int f14329a;
+    public Object f14330b;
+    public Object f14331c;
 
-    public c5(l5 l5Var, Context context, PointF pointF, float f10, float f11, vt0 vt0Var, TLRPC.Document document, Object obj) {
-        super(context, pointF, f10, f11, vt0Var, document, obj);
-        this.f14311z0 = l5Var;
+    public c5() {
+        this.f14329a = 1;
     }
 
     @Override
-    public final void q(mh0 mh0Var) {
-        this.f14311z0.getClass();
+    public final boolean d() {
+        switch (this.f14329a) {
+            case 0:
+                return true;
+            case 1:
+            default:
+                return org.telegram.ui.ActionBar.m6.I.q();
+        }
+    }
+
+    @Override
+    public final void e(float f10, float f11, int i7, int i10) {
+        switch (this.f14329a) {
+            case 0:
+                org.telegram.ui.ActionBar.m6.r(f10, f11, i7, i10);
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.m6.r(f10, f11, i7, i10);
+                return;
+            default:
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var == null) {
+                    org.telegram.ui.ActionBar.m6.r(f10, f11, i7, i10);
+                    return;
+                } else {
+                    h6Var.e(f10, f11, i7, i10);
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public final ColorFilter f() {
+        switch (this.f14329a) {
+            case 0:
+                if (((PorterDuffColorFilter) this.f14330b) == null) {
+                    this.f14330b = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+                }
+                return (PorterDuffColorFilter) this.f14330b;
+            case 1:
+                return org.telegram.ui.ActionBar.m6.f29710v3;
+            default:
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var == null) {
+                    return org.telegram.ui.ActionBar.m6.f29710v3;
+                }
+                return h6Var.f();
+        }
+    }
+
+    @Override
+    public final Paint g(String str) {
+        switch (this.f14329a) {
+            case 0:
+                return ((org.telegram.ui.ActionBar.h6) this.f14331c).g(str);
+            case 1:
+                return org.telegram.ui.ActionBar.m6.V0(str);
+            default:
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var == null) {
+                    return org.telegram.ui.ActionBar.m6.V0(str);
+                }
+                return h6Var.g(str);
+        }
+    }
+
+    @Override
+    public final Drawable getDrawable(String str) {
+        switch (this.f14329a) {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            default:
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var == null) {
+                    return org.telegram.ui.ActionBar.m6.R0(str);
+                }
+                return h6Var.getDrawable(str);
+        }
+    }
+
+    @Override
+    public final boolean h() {
+        switch (this.f14329a) {
+            case 0:
+                return bz.H0;
+            case 1:
+                return bz.H0;
+            default:
+                return bz.H0;
+        }
+    }
+
+    @Override
+    public final int i(int i7) {
+        switch (this.f14329a) {
+            case 0:
+                return k(i7);
+            case 1:
+                return k(i7);
+            default:
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var == null) {
+                    return org.telegram.ui.ActionBar.m6.x0(null, i7, false);
+                }
+                return h6Var.i(i7);
+        }
+    }
+
+    @Override
+    public final boolean j() {
+        switch (this.f14329a) {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            default:
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var == null) {
+                    return org.telegram.ui.ActionBar.m6.d1();
+                }
+                return h6Var.j();
+        }
+    }
+
+    @Override
+    public final int k(int i7) {
+        switch (this.f14329a) {
+            case 0:
+                if (i7 == org.telegram.ui.ActionBar.m6.G8) {
+                    return -14145495;
+                }
+                if (i7 != org.telegram.ui.ActionBar.m6.E8) {
+                    if (i7 == org.telegram.ui.ActionBar.m6.f29451h5) {
+                        return -14737633;
+                    }
+                    if (i7 == org.telegram.ui.ActionBar.m6.f29486j5) {
+                        return -592138;
+                    }
+                    if (i7 == org.telegram.ui.ActionBar.m6.f29636r5) {
+                        return -8553091;
+                    }
+                    if (i7 == org.telegram.ui.ActionBar.m6.f29798zf) {
+                        return -16777216;
+                    }
+                    if (i7 == org.telegram.ui.ActionBar.m6.Cf) {
+                        return -1610612736;
+                    }
+                    if (i7 == org.telegram.ui.ActionBar.m6.Ff || i7 == org.telegram.ui.ActionBar.m6.Jf || i7 == org.telegram.ui.ActionBar.m6.Ef) {
+                        return -9539985;
+                    }
+                    if (i7 != org.telegram.ui.ActionBar.m6.G6) {
+                        int i10 = org.telegram.ui.ActionBar.m6.Di;
+                        if (i7 == i10) {
+                            return -11754001;
+                        }
+                        if (i7 == org.telegram.ui.ActionBar.m6.f29470i6) {
+                            return 536870911;
+                        }
+                        if (i7 != org.telegram.ui.ActionBar.m6.f29743wi && i7 != org.telegram.ui.ActionBar.m6.f29724vi && i7 != org.telegram.ui.ActionBar.m6.f29762xi) {
+                            if (i7 == org.telegram.ui.ActionBar.m6.f29781yi) {
+                                return 352321535;
+                            }
+                            if (i7 != org.telegram.ui.ActionBar.m6.Bf && i7 != i10) {
+                                if (i7 == org.telegram.ui.ActionBar.m6.Af) {
+                                    return 780633991;
+                                }
+                                if (i7 == org.telegram.ui.ActionBar.m6.f29321a7) {
+                                    return -15921907;
+                                }
+                                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                                if (h6Var != null) {
+                                    return h6Var.k(i7);
+                                }
+                                return org.telegram.ui.ActionBar.m6.v0(i7);
+                            }
+                            return -7895161;
+                        }
+                    }
+                }
+                return -1;
+            case 1:
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f14330b;
+                int indexOfKey = sparseIntArray.indexOfKey(i7);
+                if (indexOfKey >= 0) {
+                    return sparseIntArray.valueAt(indexOfKey);
+                }
+                return org.telegram.ui.ActionBar.m6.v0(i7);
+            default:
+                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f14330b;
+                int indexOfKey2 = sparseIntArray2.indexOfKey(i7);
+                if (indexOfKey2 >= 0) {
+                    return sparseIntArray2.valueAt(indexOfKey2);
+                }
+                org.telegram.ui.ActionBar.h6 h6Var2 = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var2 == null) {
+                    return org.telegram.ui.ActionBar.m6.v0(i7);
+                }
+                return h6Var2.k(i7);
+        }
+    }
+
+    @Override
+    public final void l(int i7, int i10) {
+        switch (this.f14329a) {
+            case 0:
+            case 1:
+                return;
+            default:
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var != null) {
+                    h6Var.l(i7, i10);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final int m(int i7) {
+        switch (this.f14329a) {
+            case 0:
+                return k(i7);
+            case 1:
+                return ((SparseIntArray) this.f14330b).get(i7);
+            default:
+                org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) this.f14331c;
+                if (h6Var == null) {
+                    return org.telegram.ui.ActionBar.m6.x0(null, i7, false);
+                }
+                return h6Var.m(i7);
+        }
+    }
+
+    public c5(int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f14329a = i7;
+        switch (i7) {
+            case 2:
+                this.f14330b = new SparseIntArray();
+                this.f14331c = h6Var;
+                a();
+                return;
+            default:
+                this.f14331c = h6Var;
+                return;
+        }
+    }
+
+    public void a() {
+    }
+
+    private final void b(int i7, int i10) {
+    }
+
+    private final void c(int i7, int i10) {
     }
 }

@@ -6,14 +6,14 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.widget.FrameLayout;
 import java.util.HashSet;
-public final class cy extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
-    public Paint f46769a;
-    public float[] f46770b;
-    public Path f46771c;
+public final class cy extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
+    public Paint f46825a;
+    public float[] f46826b;
+    public Path f46827c;
     public float d;
 
     public final void a(float f10, float f11) {
-        float[] fArr = this.f46770b;
+        float[] fArr = this.f46826b;
         fArr[7] = f10;
         fArr[6] = f10;
         fArr[1] = f10;
@@ -28,15 +28,15 @@ public final class cy extends FrameLayout implements org.telegram.ui.ActionBar.c
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float measuredWidth = getMeasuredWidth() / 2.0f;
-        Path path = this.f46771c;
+        Path path = this.f46827c;
         path.rewind();
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(0.0f, 0.0f, measuredWidth - org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), getMeasuredHeight());
         a(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)));
-        float[] fArr = this.f46770b;
+        float[] fArr = this.f46826b;
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, fArr, direction);
-        Paint paint = this.f46769a;
+        Paint paint = this.f46825a;
         canvas.drawPath(path, paint);
         path.rewind();
         rectF.set(measuredWidth + org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), 0.0f, getMeasuredWidth(), getMeasuredHeight());
@@ -48,7 +48,7 @@ public final class cy extends FrameLayout implements org.telegram.ui.ActionBar.c
     @Override
     public final void updateColors() {
         try {
-            this.f46769a.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Fi, false));
+            this.f46825a.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Fi, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

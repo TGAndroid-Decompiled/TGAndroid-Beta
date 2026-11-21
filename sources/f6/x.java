@@ -6,12 +6,12 @@ import c8.bc;
 import java.util.Arrays;
 public final class x extends r6.a {
     public static final Parcelable.Creator<x> CREATOR = new v(3);
-    public final w f11474a;
-    public final w f11475b;
+    public final w f11503a;
+    public final w f11504b;
 
     public x(w wVar, w wVar2) {
-        this.f11474a = wVar;
-        this.f11475b = wVar2;
+        this.f11503a = wVar;
+        this.f11504b = wVar2;
     }
 
     public final boolean equals(Object obj) {
@@ -22,21 +22,21 @@ public final class x extends r6.a {
             return false;
         }
         x xVar = (x) obj;
-        if (j6.a.d(this.f11474a, xVar.f11474a) && j6.a.d(this.f11475b, xVar.f11475b)) {
+        if (j6.a.d(this.f11503a, xVar.f11503a) && j6.a.d(this.f11504b, xVar.f11504b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11474a, this.f11475b});
+        return Arrays.hashCode(new Object[]{this.f11503a, this.f11504b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        bc.k(parcel, 2, this.f11474a, i7);
-        bc.k(parcel, 3, this.f11475b, i7);
+        bc.k(parcel, 2, this.f11503a, i7);
+        bc.k(parcel, 3, this.f11504b, i7);
         bc.s(parcel, r10);
     }
 }

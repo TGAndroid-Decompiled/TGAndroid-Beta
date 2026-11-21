@@ -1,70 +1,45 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class no extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
-    public final int U;
-    public Object V;
+import org.telegram.tgnet.TLRPC;
+public final class no implements View.OnClickListener {
+    public final int f37901a;
+    public final Context f37902b;
+    public final int f37903c;
+    public final Object d;
+    public final Object f37904e;
+    public final Object f37905f;
 
-    public no(int i7, int i10, int i11, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(i7, i10, context, i6Var);
-        this.U = i11;
+    public no(Object obj, Context context, Object obj2, int i7, Object obj3, int i10) {
+        this.f37901a = i10;
+        this.d = obj;
+        this.f37902b = context;
+        this.f37904e = obj2;
+        this.f37903c = i7;
+        this.f37905f = obj3;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.U) {
+    public final void onClick(View view) {
+        switch (this.f37901a) {
             case 0:
-                canvas.save();
-                Path path = (Path) this.V;
-                path.rewind();
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path.addRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), Path.Direction.CW);
-                canvas.clipPath(path);
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild;
-            case 1:
-                canvas.save();
-                Path path2 = (Path) this.V;
-                path2.rewind();
-                RectF rectF2 = org.telegram.messenger.g0.P;
-                rectF2.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path2.addRoundRect(rectF2, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), Path.Direction.CW);
-                canvas.clipPath(path2);
-                boolean drawChild2 = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild2;
+                ((ro) this.d).a();
+                ai.u1 u1Var = new ai.u1(this.f37903c, (qo) this.f37905f, 9);
+                c5.D(this.f37902b, (org.telegram.ui.ActionBar.h6) this.f37904e, u1Var);
+                return;
             default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        int i11;
-        switch (this.U) {
-            case 2:
-                y60 y60Var = (y60) this.V;
-                if (this == y60Var.A && (i11 = y60Var.f42343a0) > 0) {
-                    i10 = View.MeasureSpec.makeMeasureSpec(Math.min(i11, View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10));
+                op opVar = (op) this.f37904e;
+                TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = (TLRPC.TL_inputGroupCallSlug) this.f37905f;
+                ((org.telegram.ui.ActionBar.w2) this.d).dismiss();
+                Activity W = org.telegram.messenger.g0.W(this.f37902b);
+                if (W != null) {
+                    org.telegram.messenger.mp.g1().edit().putBoolean("callmiconstart", opVar.f38327a.f32871q).apply();
+                    org.telegram.ui.Components.voip.b2.g(W, this.f37903c, tL_inputGroupCallSlug, false, null, null);
+                    return;
                 }
-                super.onMeasure(i7, i10);
-                return;
-            default:
-                super.onMeasure(i7, i10);
                 return;
         }
-    }
-
-    public no(y60 y60Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
-        super(2131232569, i7, context, i6Var);
-        this.U = 2;
-        this.V = y60Var;
     }
 }

@@ -1,33 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class pz0 extends AnimatorListenerAdapter {
-    public final int f38650a;
-    public final ThemeEditorView f38651b;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class pz0 extends FrameLayout {
+    public static final int f38715e = 0;
+    public float f38716a;
+    public float f38717b;
+    public boolean f38718c;
+    public final ThemeEditorView d;
 
-    public pz0(ThemeEditorView themeEditorView, int i7) {
-        this.f38650a = i7;
-        this.f38651b = themeEditorView;
+    public pz0(ThemeEditorView themeEditorView, Activity activity) {
+        super(activity);
+        this.d = themeEditorView;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38650a) {
-            case 0:
-                ThemeEditorView themeEditorView = this.f38651b;
-                nz0 nz0Var = themeEditorView.f33147c;
-                if (nz0Var != null) {
-                    nz0Var.setBackground(null);
-                    themeEditorView.f33152j.removeView(themeEditorView.f33147c);
-                    return;
-                }
-                return;
-            default:
-                ThemeEditorView themeEditorView2 = this.f38651b;
-                org.telegram.ui.ActionBar.n6.x1(themeEditorView2.f33157o, true, false, false);
-                themeEditorView2.b();
-                return;
-        }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pz0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

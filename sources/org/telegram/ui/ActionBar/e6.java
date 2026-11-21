@@ -1,73 +1,98 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import java.io.File;
 import java.util.ArrayList;
-import org.json.JSONObject;
-import org.telegram.messenger.a8;
+import java.util.HashMap;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.w7;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class e6 {
-    public String f28897a = "";
-    public String f28898b = "";
-    public String f28899c = "";
-    public int d;
-    public int f28900e;
-    public int f28901f;
-    public int f28902g;
-    public int h;
-    public boolean f28903i;
-    public boolean f28904j;
-    public float f28905k;
-    public long f28906l;
-    public long f28907m;
-    public long f28908n;
-    public boolean f28909o;
-    public m6 f28910p;
-    public k6 f28911q;
-    public float f28912r;
-    public ArrayList f28913s;
-    public TLRPC.WallPaper f28914t;
+import org.telegram.tgnet.Vector;
+public final class e6 implements RequestDelegate {
+    public final int f28934a;
+    public final fs f28935b;
+    public final Object f28936c;
 
-    public static void a(e6 e6Var) {
-        org.telegram.messenger.t0.f26913b.getSharedPreferences("themeconfig", 0).edit().remove(e6Var.b()).commit();
-        new File(org.telegram.messenger.t0.h(), e6Var.f28897a).delete();
-        new File(org.telegram.messenger.t0.h(), e6Var.f28898b).delete();
+    public e6(fs fsVar, Object obj, int i7) {
+        this.f28934a = i7;
+        this.f28935b = fsVar;
+        this.f28936c = obj;
     }
 
-    public final String b() {
-        if (this.f28911q != null) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f28910p.f29247a);
-            sb2.append("_");
-            return a8.p0.n(this.f28911q.f29168a, "_owp", sb2);
-        }
-        return a8.p0.s(new StringBuilder(), this.f28910p.f29247a, "_owp");
-    }
-
-    public final void c() {
-        try {
-            String b10 = b();
-            SharedPreferences.Editor edit = org.telegram.messenger.t0.f26913b.getSharedPreferences("themeconfig", 0).edit();
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("wall", this.f28897a);
-            jSONObject.put("owall", this.f28898b);
-            jSONObject.put("pColor", this.d);
-            jSONObject.put("pGrColor", this.f28900e);
-            jSONObject.put("pGrColor2", this.f28901f);
-            jSONObject.put("pGrColor3", this.f28902g);
-            jSONObject.put("pGrAngle", this.h);
-            String str = this.f28899c;
-            if (str == null) {
-                str = "";
-            }
-            jSONObject.put("wallSlug", str);
-            jSONObject.put("wBlur", this.f28903i);
-            jSONObject.put("wMotion", this.f28904j);
-            jSONObject.put("pIntensity", this.f28905k);
-            edit.putString(b10, jSONObject.toString());
-            edit.commit();
-        } catch (Throwable th2) {
-            a8.g(th2, true);
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f28934a) {
+            case 0:
+                g6 g6Var = (g6) this.f28935b;
+                ArrayList arrayList = (ArrayList) this.f28936c;
+                if (tLObject instanceof Vector) {
+                    Vector vector = (Vector) tLObject;
+                    int size = vector.objects.size();
+                    String str = null;
+                    ArrayList arrayList2 = null;
+                    int i7 = 0;
+                    while (i7 < size) {
+                        TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) vector.objects.get(i7);
+                        if (wallPaper instanceof TLRPC.TL_wallPaper) {
+                            TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) wallPaper;
+                            if (tL_wallPaper.pattern) {
+                                w7.G(j10.f24798t0);
+                                File J = w7.J(tL_wallPaper.document, str, true, true);
+                                int size2 = arrayList.size();
+                                String str2 = str;
+                                Boolean bool = str2;
+                                int i10 = 0;
+                                Bitmap bitmap = str2;
+                                while (i10 < size2) {
+                                    j6 j6Var = (j6) arrayList.get(i10);
+                                    if (j6Var.f29105o.equals(tL_wallPaper.slug)) {
+                                        if (bool == null) {
+                                            bool = Boolean.valueOf(J.exists());
+                                        }
+                                        if (bitmap == 0 && !bool.booleanValue()) {
+                                            String r10 = w7.r(null, tL_wallPaper.document);
+                                            if (g6Var.f28985b == null) {
+                                                g6Var.f28985b = new HashMap();
+                                            }
+                                            f6 f6Var = (f6) g6Var.f28985b.get(r10);
+                                            f6 f6Var2 = f6Var;
+                                            if (f6Var == null) {
+                                                ?? obj = new Object();
+                                                obj.f28961b = new ArrayList();
+                                                obj.f28960a = tL_wallPaper;
+                                                g6Var.f28985b.put(r10, obj);
+                                                f6Var2 = obj;
+                                            }
+                                            f6Var2.f28961b.add(j6Var);
+                                        } else {
+                                            bitmap = g6.b(bitmap, "application/x-tgwallpattern".equals(tL_wallPaper.document.mime_type), J, j6Var);
+                                            if (arrayList2 == null) {
+                                                arrayList2 = new ArrayList();
+                                            }
+                                            arrayList2.add(j6Var);
+                                        }
+                                    }
+                                    i10++;
+                                    bitmap = bitmap;
+                                }
+                                if (bitmap != 0) {
+                                    bitmap.recycle();
+                                }
+                            }
+                        }
+                        i7++;
+                        str = null;
+                    }
+                    org.telegram.messenger.g0.g3(new di.p6((Object) g6Var, (Object) arrayList2, true, 13));
+                    return;
+                }
+                return;
+            default:
+                org.telegram.messenger.g0.g3(new kg.y((l6) this.f28935b, tLObject, (l6) this.f28936c, 26));
+                return;
         }
     }
 }

@@ -4,19 +4,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class xx implements RequestDelegate {
-    public final int f53930a;
-    public final ky f53931b;
+    public final int f53979a;
+    public final ky f53980b;
 
     public xx(ky kyVar, int i7) {
-        this.f53930a = i7;
-        this.f53931b = kyVar;
+        this.f53979a = i7;
+        this.f53980b = kyVar;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f53930a) {
+        switch (this.f53979a) {
             case 0:
-                final ky kyVar = this.f53931b;
+                final ky kyVar = this.f53980b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -27,7 +27,7 @@ public final class xx implements RequestDelegate {
                             case 0:
                                 kyVar2.F = 0;
                                 if (tL_error2 == null) {
-                                    org.telegram.messenger.f3.n(null, 2131750731, org.telegram.ui.Components.lc.b0(kyVar2), 2131623990, 36);
+                                    org.telegram.messenger.f3.n(null, 2131750730, org.telegram.ui.Components.lc.b0(kyVar2), 2131623990, 36);
                                     return;
                                 }
                                 return;
@@ -39,7 +39,7 @@ public final class xx implements RequestDelegate {
                 });
                 return;
             default:
-                final ky kyVar2 = this.f53931b;
+                final ky kyVar2 = this.f53980b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -50,7 +50,7 @@ public final class xx implements RequestDelegate {
                             case 0:
                                 kyVar22.F = 0;
                                 if (tL_error2 == null) {
-                                    org.telegram.messenger.f3.n(null, 2131750731, org.telegram.ui.Components.lc.b0(kyVar22), 2131623990, 36);
+                                    org.telegram.messenger.f3.n(null, 2131750730, org.telegram.ui.Components.lc.b0(kyVar22), 2131623990, 36);
                                     return;
                                 }
                                 return;

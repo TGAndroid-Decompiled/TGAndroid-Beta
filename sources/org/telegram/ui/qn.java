@@ -11,7 +11,7 @@ public final class qn extends org.telegram.ui.Cells.n8 {
     public final void onDraw(Canvas canvas) {
         float L;
         int i7;
-        if (org.telegram.messenger.gd.f24213a0) {
+        if (org.telegram.messenger.gd.f24241a0) {
             L = 0.0f;
         } else {
             L = org.telegram.messenger.g0.L(20.0f);
@@ -19,11 +19,11 @@ public final class qn extends org.telegram.ui.Cells.n8 {
         float f10 = L;
         float measuredHeight = getMeasuredHeight() - 1;
         int measuredWidth = getMeasuredWidth();
-        if (org.telegram.messenger.gd.f24213a0) {
+        if (org.telegram.messenger.gd.f24241a0) {
             i7 = org.telegram.messenger.g0.L(20.0f);
         } else {
             i7 = 0;
         }
-        canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.n6.f29517k0);
+        canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.m6.f29501k0);
     }
 }

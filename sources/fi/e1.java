@@ -8,28 +8,28 @@ import java.util.ArrayList;
 import org.telegram.messenger.j10;
 import org.telegram.messenger.mp;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.cn0;
+import org.telegram.ui.Components.fn0;
 import org.telegram.ui.LaunchActivity;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.TextureViewRenderer;
 import org.webrtc.VideoSink;
 public final class e1 implements wi.l {
-    public static e1 f11868w;
-    public wi.n f11869a;
-    public c1 f11870b;
-    public f9 f11871c;
-    public org.telegram.ui.Components.voip.t0 f11872e;
-    public hi.r3 f11873f;
+    public static e1 f11909w;
+    public wi.n f11910a;
+    public c1 f11911b;
+    public f9 f11912c;
+    public org.telegram.ui.Components.voip.t0 f11913e;
+    public hi.q3 f11914f;
     public VideoSink h;
-    public LaunchActivity f11875r;
-    public boolean f11876s;
+    public LaunchActivity f11916r;
+    public boolean f11917s;
     public final d1 d = new d1(this);
-    public final f2.a f11874n = new f2.a(this, 5);
+    public final f2.a f11915n = new f2.a(this, 5);
 
     public static boolean a(c1 c1Var) {
         wi.n nVar;
-        e1 e1Var = f11868w;
-        if (c1Var == null || e1Var == null || e1Var.f11870b != c1Var || (nVar = e1Var.f11869a) == null || !nVar.d() || e1Var.f11869a.f59989c == 0) {
+        e1 e1Var = f11909w;
+        if (c1Var == null || e1Var == null || e1Var.f11911b != c1Var || (nVar = e1Var.f11910a) == null || !nVar.d() || e1Var.f11910a.f60030c == 0) {
             return false;
         }
         return true;
@@ -37,13 +37,13 @@ public final class e1 implements wi.l {
 
     @Override
     public final void B(View view) {
-        hi.r3 r3Var;
-        c1 c1Var = this.f11870b;
-        if (c1Var != null && view == (r3Var = this.f11873f)) {
+        hi.q3 q3Var;
+        c1 c1Var = this.f11911b;
+        if (c1Var != null && view == (q3Var = this.f11914f)) {
             this.h = c1Var.P;
-            this.d.f11836a = r3Var.getSink();
-            this.f11870b.s(this.d);
-            this.f11870b.v(1.0f);
+            this.d.f11876a = q3Var.getSink();
+            this.f11911b.s(this.d);
+            this.f11911b.v(1.0f);
             g(true);
         }
     }
@@ -51,10 +51,10 @@ public final class e1 implements wi.l {
     @Override
     public final void D(SurfaceTexture surfaceTexture) {
         VideoSink videoSink;
-        org.telegram.ui.Components.voip.t0 t0Var = this.f11872e;
-        this.f11872e = null;
-        this.d.f11836a = null;
-        c1 c1Var = this.f11870b;
+        org.telegram.ui.Components.voip.t0 t0Var = this.f11913e;
+        this.f11913e = null;
+        this.d.f11876a = null;
+        c1 c1Var = this.f11911b;
         if (c1Var != null && (videoSink = this.h) != null) {
             c1Var.s(videoSink);
         }
@@ -73,8 +73,8 @@ public final class e1 implements wi.l {
     @Override
     public final boolean G() {
         c1 c1Var;
-        f9 f9Var = this.f11871c;
-        if (f9Var != null && !f9Var.H0 && (c1Var = this.f11870b) != null && f9Var.B0 == c1Var) {
+        f9 f9Var = this.f11912c;
+        if (f9Var != null && !f9Var.H0 && (c1Var = this.f11911b) != null && f9Var.B0 == c1Var) {
             return true;
         }
         return false;
@@ -84,13 +84,13 @@ public final class e1 implements wi.l {
     public final int J() {
         TextureViewRenderer textureViewRenderer;
         int i7;
-        hi.r3 r3Var;
-        if (this.d.f11837b > 0) {
-            return this.d.f11837b;
+        hi.q3 q3Var;
+        if (this.d.f11877b > 0) {
+            return this.d.f11877b;
         }
-        f9 f9Var = this.f11871c;
-        if (f9Var != null && (r3Var = f9Var.E0) != null) {
-            textureViewRenderer = r3Var.d;
+        f9 f9Var = this.f11912c;
+        if (f9Var != null && (q3Var = f9Var.E0) != null) {
+            textureViewRenderer = q3Var.d;
         } else {
             textureViewRenderer = null;
         }
@@ -102,8 +102,8 @@ public final class e1 implements wi.l {
 
     @Override
     public final boolean N() {
-        c1 c1Var = this.f11870b;
-        if (c1Var != null && !c1Var.f11799x) {
+        c1 c1Var = this.f11911b;
+        if (c1Var != null && !c1Var.f11842x) {
             return true;
         }
         return false;
@@ -128,21 +128,21 @@ public final class e1 implements wi.l {
     public final void U() {
         boolean z10;
         VideoSink videoSink;
-        this.f11876s = false;
-        c1 c1Var = this.f11870b;
-        f9 f9Var = this.f11871c;
-        if (this.f11873f == null && this.h == null) {
+        this.f11917s = false;
+        c1 c1Var = this.f11911b;
+        f9 f9Var = this.f11912c;
+        if (this.f11914f == null && this.h == null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f11869a = null;
-        this.f11870b = null;
-        this.d.f11836a = null;
-        org.telegram.ui.Components.voip.t0 t0Var = this.f11872e;
+        this.f11910a = null;
+        this.f11911b = null;
+        this.d.f11876a = null;
+        org.telegram.ui.Components.voip.t0 t0Var = this.f11913e;
         if (t0Var != null) {
             t0Var.a();
-            this.f11872e = null;
+            this.f11913e = null;
         }
         if (z10 && f9Var != null) {
             g(false);
@@ -150,14 +150,14 @@ public final class e1 implements wi.l {
                 c1Var.s(videoSink);
             }
             this.h = null;
-            this.f11871c = null;
+            this.f11912c = null;
             f9Var.u(false);
             return;
         }
-        this.f11871c = null;
-        if (c1Var != null && !c1Var.f11799x) {
+        this.f11912c = null;
+        if (c1Var != null && !c1Var.f11842x) {
             if (f9Var == null || f9Var.B0 != c1Var) {
-                if (!c1Var.f11795n && c1Var != c1.X) {
+                if (!c1Var.f11838n && c1Var != c1.X) {
                     c1Var.e();
                 } else {
                     c1Var.s(null);
@@ -167,35 +167,35 @@ public final class e1 implements wi.l {
     }
 
     @Override
-    public final boolean V(boolean z10, float f10, cn0 cn0Var) {
+    public final boolean V(boolean z10, float f10, fn0 fn0Var) {
         return false;
     }
 
     @Override
     public final void X(View view) {
-        this.f11873f = (hi.r3) view;
+        this.f11914f = (hi.q3) view;
     }
 
     @Override
     public final void Z() {
         LaunchActivity launchActivity;
-        c1 c1Var = this.f11870b;
+        c1 c1Var = this.f11911b;
         if (c1Var != null) {
-            int i7 = c1Var.f11793e;
-            if (!c1Var.f11799x) {
-                if (i7 != j10.f24770t0 && (launchActivity = LaunchActivity.H1) != null) {
+            int i7 = c1Var.f11836e;
+            if (!c1Var.f11842x) {
+                if (i7 != j10.f24798t0 && (launchActivity = LaunchActivity.H1) != null) {
                     launchActivity.O0(i7);
                 }
-                org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
-                TL_stories.StoryItem u10 = mp.u1(i7).R1().u(c1Var.f11792c, c1Var.f11791b);
+                org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
+                TL_stories.StoryItem u10 = mp.u1(i7).R1().u(c1Var.f11835c, c1Var.f11834b);
                 if (u10 == null) {
-                    u10 = c1Var.f11790a;
+                    u10 = c1Var.f11833a;
                 }
                 if (T != null && u10 != null && T.getContext() != null) {
                     T.getOrCreateStoryViewer().G(i7, T.getContext(), u10, null);
                     return;
                 }
-                wi.n nVar = this.f11869a;
+                wi.n nVar = this.f11910a;
                 if (nVar != null) {
                     nVar.b();
                     return;
@@ -203,7 +203,7 @@ public final class e1 implements wi.l {
                 return;
             }
         }
-        wi.n nVar2 = this.f11869a;
+        wi.n nVar2 = this.f11910a;
         if (nVar2 != null) {
             nVar2.b();
         }
@@ -213,13 +213,13 @@ public final class e1 implements wi.l {
     public final int a0() {
         TextureViewRenderer textureViewRenderer;
         int i7;
-        hi.r3 r3Var;
-        if (this.d.f11838c > 0) {
-            return this.d.f11838c;
+        hi.q3 q3Var;
+        if (this.d.f11878c > 0) {
+            return this.d.f11878c;
         }
-        f9 f9Var = this.f11871c;
-        if (f9Var != null && (r3Var = f9Var.E0) != null) {
-            textureViewRenderer = r3Var.d;
+        f9 f9Var = this.f11912c;
+        if (f9Var != null && (q3Var = f9Var.E0) != null) {
+            textureViewRenderer = q3Var.d;
         } else {
             textureViewRenderer = null;
         }
@@ -231,9 +231,9 @@ public final class e1 implements wi.l {
 
     @Override
     public final void b() {
-        if (!this.f11876s) {
-            this.f11876s = true;
-            c1 c1Var = this.f11870b;
+        if (!this.f11917s) {
+            this.f11917s = true;
+            c1 c1Var = this.f11911b;
             if (c1Var != null) {
                 c1Var.v(0.0f);
             }
@@ -249,14 +249,14 @@ public final class e1 implements wi.l {
     public final void d(View view) {
         VideoSink videoSink;
         g(false);
-        if (view == this.f11873f) {
-            this.d.f11836a = null;
-            c1 c1Var = this.f11870b;
+        if (view == this.f11914f) {
+            this.d.f11876a = null;
+            c1 c1Var = this.f11911b;
             if (c1Var != null && (videoSink = this.h) != null) {
                 c1Var.s(videoSink);
             }
             this.h = null;
-            this.f11873f = null;
+            this.f11914f = null;
         }
     }
 
@@ -267,9 +267,9 @@ public final class e1 implements wi.l {
 
     @Override
     public final void f() {
-        if (this.f11876s) {
-            this.f11876s = false;
-            c1 c1Var = this.f11870b;
+        if (this.f11917s) {
+            this.f11917s = false;
+            c1 c1Var = this.f11911b;
             if (c1Var != null) {
                 c1Var.v(1.0f);
             }
@@ -279,8 +279,8 @@ public final class e1 implements wi.l {
     public final void g(boolean z10) {
         t8 t8Var;
         int i7;
-        f9 f9Var = this.f11871c;
-        if (f9Var != null && (t8Var = f9Var.f11992s) != null) {
+        f9 f9Var = this.f11912c;
+        if (f9Var != null && (t8Var = f9Var.f12033s) != null) {
             if (z10) {
                 i7 = 8;
             } else {
@@ -297,18 +297,18 @@ public final class e1 implements wi.l {
 
     @Override
     public final boolean h() {
-        return !this.f11876s;
+        return !this.f11917s;
     }
 
     @Override
     public final void i(wi.o oVar) {
-        if (this.f11870b == null) {
+        if (this.f11911b == null) {
             return;
         }
         org.telegram.ui.Components.voip.t0 t0Var = new org.telegram.ui.Components.voip.t0(oVar);
-        this.f11872e = t0Var;
-        this.d.f11836a = t0Var;
-        c1 c1Var = this.f11870b;
+        this.f11913e = t0Var;
+        this.d.f11876a = t0Var;
+        c1 c1Var = this.f11911b;
         this.h = c1Var.P;
         c1Var.s(this.d);
     }
@@ -341,32 +341,32 @@ public final class e1 implements wi.l {
     @Override
     public final View v(LaunchActivity launchActivity) {
         int i7;
-        c1 c1Var = this.f11870b;
+        c1 c1Var = this.f11911b;
         if (c1Var != null) {
-            i7 = c1Var.f11793e;
+            i7 = c1Var.f11836e;
         } else {
-            i7 = j10.f24770t0;
+            i7 = j10.f24798t0;
         }
-        return new hi.r3(launchActivity, i7);
+        return new hi.q3(launchActivity, i7);
     }
 
     @Override
     public final void w(View view) {
-        if (view == this.f11873f) {
-            this.d.f11836a = null;
-            this.f11873f = null;
+        if (view == this.f11914f) {
+            this.d.f11876a = null;
+            this.f11914f = null;
         }
-        hi.r3 r3Var = (hi.r3) view;
-        TextureViewRenderer textureViewRenderer = r3Var.d;
+        hi.q3 q3Var = (hi.q3) view;
+        TextureViewRenderer textureViewRenderer = q3Var.d;
         if (textureViewRenderer != null) {
             textureViewRenderer.release();
         }
-        SurfaceViewRenderer surfaceViewRenderer = r3Var.f15313c;
+        SurfaceViewRenderer surfaceViewRenderer = q3Var.f15291c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.release();
         }
-        r3Var.f15317r = false;
-        r3Var.c(false, false);
+        q3Var.f15295r = false;
+        q3Var.c(false, false);
     }
 
     @Override

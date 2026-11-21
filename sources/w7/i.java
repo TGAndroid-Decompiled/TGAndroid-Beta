@@ -4,14 +4,14 @@ import a8.v;
 import java.util.Iterator;
 import java.util.Map;
 public final class i extends f {
-    public final transient v f59614c;
+    public final transient v f59652c;
     public final transient Object[] d;
-    public final transient int f59615e;
+    public final transient int f59653e;
 
     public i(v vVar, Object[] objArr, int i7) {
-        this.f59614c = vVar;
+        this.f59652c = vVar;
         this.d = objArr;
-        this.f59615e = i7;
+        this.f59653e = i7;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class i extends f {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f59614c.get(key))) {
+            if (value != null && value.equals(this.f59652c.get(key))) {
                 return true;
             }
         }
@@ -29,26 +29,26 @@ public final class i extends f {
 
     @Override
     public final int f(Object[] objArr) {
-        d dVar = this.f59610b;
+        d dVar = this.f59648b;
         if (dVar == null) {
             dVar = new h(this);
-            this.f59610b = dVar;
+            this.f59648b = dVar;
         }
         return dVar.f(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        d dVar = this.f59610b;
+        d dVar = this.f59648b;
         if (dVar == null) {
             dVar = new h(this);
-            this.f59610b = dVar;
+            this.f59648b = dVar;
         }
         return dVar.listIterator(0);
     }
 
     @Override
     public final int size() {
-        return this.f59615e;
+        return this.f59653e;
     }
 }

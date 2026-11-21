@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import java.util.ArrayList;
-public final class mi extends org.telegram.ui.Components.bv {
+public final class mi extends org.telegram.ui.Components.ev {
     public final bn R1;
 
-    public mi(bn bnVar, org.telegram.ui.ActionBar.h2 h2Var, Activity activity, org.telegram.ui.ActionBar.i6 i6Var, ArrayList arrayList) {
-        super(h2Var, activity, i6Var, arrayList);
+    public mi(bn bnVar, org.telegram.ui.ActionBar.g2 g2Var, Activity activity, org.telegram.ui.ActionBar.h6 h6Var, ArrayList arrayList) {
+        super(g2Var, activity, h6Var, arrayList);
         this.R1 = bnVar;
     }
 

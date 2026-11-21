@@ -5,27 +5,27 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-public final class r61 extends org.telegram.ui.Components.ck0 {
-    public boolean f51479f3;
-    public float f51480g3;
-    public final x71 f51481h3;
+public final class r61 extends org.telegram.ui.Components.ek0 {
+    public boolean f51468f3;
+    public float f51469g3;
+    public final x71 f51470h3;
 
     public r61(Context context, x71 x71Var) {
         super(context, null);
-        this.f51481h3 = x71Var;
+        this.f51470h3 = x71Var;
     }
 
     @Override
     public final boolean F0(View view) {
         v4.f1 T;
-        r61 r61Var = this.f51481h3.f53731w0;
+        r61 r61Var = this.f51470h3.f53772w0;
         View F = r61Var.F(view);
         if (F == null) {
             T = null;
         } else {
             T = r61Var.T(F);
         }
-        if (T != null && T.f59127f == 2) {
+        if (T != null && T.f59165f == 2) {
             return false;
         }
         return true;
@@ -42,9 +42,9 @@ public final class r61 extends org.telegram.ui.Components.ck0 {
             if (avatarImage != null) {
                 int top = view.getTop();
                 boolean K2 = r1Var.K2();
-                x71 x71Var = this.f51481h3;
-                if (K2 && (T = x71Var.f53731w0.T(view)) != null) {
-                    if (x71Var.f53731w0.K(T.b() - 1) != null) {
+                x71 x71Var = this.f51470h3;
+                if (K2 && (T = x71Var.f53772w0.T(view)) != null) {
+                    if (x71Var.f53772w0.K(T.b() - 1) != null) {
                         avatarImage.M0 = -org.telegram.messenger.g0.L(1000.0f);
                         avatarImage.h(canvas, null);
                         return drawChild;
@@ -52,19 +52,19 @@ public final class r61 extends org.telegram.ui.Components.ck0 {
                 }
                 float translationX = r1Var.getTranslationX();
                 int layoutHeight = r1Var.getLayoutHeight() + view.getTop();
-                int measuredHeight = x71Var.f53731w0.getMeasuredHeight() - x71Var.f53731w0.getPaddingBottom();
+                int measuredHeight = x71Var.f53772w0.getMeasuredHeight() - x71Var.f53772w0.getPaddingBottom();
                 if (layoutHeight > measuredHeight) {
                     layoutHeight = measuredHeight;
                 }
-                if (r1Var.L2() && (r12 = x71Var.f53731w0.T(view)) != null) {
+                if (r1Var.L2() && (r12 = x71Var.f53772w0.T(view)) != null) {
                     int i7 = 0;
                     while (i7 < 20) {
                         i7++;
-                        v4.f1 T2 = x71Var.f53731w0.K(T2.b() + 1);
+                        v4.f1 T2 = x71Var.f53772w0.K(T2.b() + 1);
                         if (T2 == null) {
                             break;
                         }
-                        View view2 = T2.f59123a;
+                        View view2 = T2.f59161a;
                         int top2 = view2.getTop();
                         if (layoutHeight - org.telegram.messenger.g0.L(48.0f) < view2.getBottom()) {
                             translationX = Math.min(view2.getTranslationX(), translationX);
@@ -106,43 +106,43 @@ public final class r61 extends org.telegram.ui.Components.ck0 {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        this.f51481h3.a1();
+        this.f51470h3.a1();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getAction();
-        x71 x71Var = this.f51481h3;
+        x71 x71Var = this.f51470h3;
         if (action == 1) {
-            if (!x71Var.f53724t0 && (x71Var.D1 instanceof rc1) && x71Var.N0[0].getVisibility() == 0) {
+            if (!x71Var.f53765t0 && (x71Var.D1 instanceof rc1) && x71Var.N0[0].getVisibility() == 0) {
                 x71Var.k1(0, false, true);
             }
-            x71Var.f53724t0 = false;
+            x71Var.f53765t0 = false;
         }
-        if (x71Var.f53681c2) {
+        if (x71Var.f53722c2) {
             if (motionEvent.getAction() == 0) {
-                this.f51480g3 = motionEvent.getX();
+                this.f51469g3 = motionEvent.getX();
                 motionEvent.getY();
                 if (getParent() != null) {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
-                this.f51479f3 = true;
+                this.f51468f3 = true;
             } else if (motionEvent.getAction() == 2) {
-                if (!this.f51479f3 && Math.abs(this.f51480g3 - motionEvent.getX()) > org.telegram.messenger.g0.f24097e) {
+                if (!this.f51468f3 && Math.abs(this.f51469g3 - motionEvent.getX()) > org.telegram.messenger.g0.f24125e) {
                     if (getParent() != null) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
-                    this.f51479f3 = true;
+                    this.f51468f3 = true;
                 }
             } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-                this.f51479f3 = false;
+                this.f51468f3 = false;
                 if (getParent() != null) {
                     getParent().requestDisallowInterceptTouchEvent(false);
                 }
             }
             x71Var.U1.a(motionEvent);
         }
-        if (!this.f51479f3 && !super.onTouchEvent(motionEvent)) {
+        if (!this.f51468f3 && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
@@ -151,26 +151,26 @@ public final class r61 extends org.telegram.ui.Components.ck0 {
     @Override
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        x71 x71Var = this.f51481h3;
+        x71 x71Var = this.f51470h3;
         int i7 = 0;
         if (x71Var.L0 != null) {
             int i10 = 0;
             while (true) {
-                org.telegram.ui.Components.h71[] h71VarArr = x71Var.L0;
-                if (i10 >= h71VarArr.length) {
+                org.telegram.ui.Components.k71[] k71VarArr = x71Var.L0;
+                if (i10 >= k71VarArr.length) {
                     break;
                 }
-                h71VarArr[i10].invalidate();
+                k71VarArr[i10].invalidate();
                 i10++;
             }
         }
         if (x71Var.M0 != null) {
             while (true) {
-                org.telegram.ui.Components.h71[] h71VarArr2 = x71Var.M0;
-                if (i7 >= h71VarArr2.length) {
+                org.telegram.ui.Components.k71[] k71VarArr2 = x71Var.M0;
+                if (i7 >= k71VarArr2.length) {
                     break;
                 }
-                h71VarArr2[i7].invalidate();
+                k71VarArr2[i7].invalidate();
                 i7++;
             }
         }

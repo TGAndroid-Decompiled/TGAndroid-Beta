@@ -1,12 +1,12 @@
 package org.telegram.ui.Wallet;
 public final class aa {
-    public final String f43937a;
-    public final boolean f43938b;
-    public final ba f43939c;
+    public final String f43978a;
+    public final boolean f43979b;
+    public final ba f43980c;
 
     public aa(ca caVar, String str, boolean z10, ba baVar) {
-        this.f43937a = str;
-        this.f43938b = z10;
-        this.f43939c = new ba(caVar, baVar, baVar.f43966a, true);
+        this.f43978a = str;
+        this.f43979b = z10;
+        this.f43980c = new ba(caVar, baVar, baVar.f44000a, true);
     }
 }

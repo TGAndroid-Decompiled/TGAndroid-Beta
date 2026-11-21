@@ -2,30 +2,88 @@ package hi;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.widget.ImageView;
-import org.telegram.ui.Components.mc;
-public final class j extends ImageView {
-    public final float f14780a;
-    public final mc f14781b;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.KeyEvent;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.ui;
+import org.telegram.ui.Components.v90;
+public final class j extends v90 {
+    public final int W;
+    public final KeyEvent.Callback f14813a0;
 
-    public j(Context context) {
-        super(context);
-        this.f14781b = new mc(this);
-        this.f14780a = 0.2f;
+    public j(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.g2 g2Var, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        super(context, j3, 0L, g2Var, h6Var);
+        this.W = i7;
+        this.f14813a0 = callback;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        canvas.save();
-        float a10 = this.f14781b.a(this.f14780a);
-        canvas.scale(a10, a10, getWidth() / 2.0f, getHeight() / 2.0f);
-        super.draw(canvas);
-        canvas.restore();
+    public void f(Canvas canvas, Rect rect, float f10) {
+        switch (this.W) {
+            case 0:
+                o oVar = (o) this.f14813a0;
+                Paint paint = oVar.f15146e;
+                RectF rectF = oVar.f15174z0;
+                rectF.set(rect);
+                if (oVar.g()) {
+                    oVar.h(oVar.U, canvas, oVar.f15174z0, f10, false, -oVar.N.getX(), -oVar.N.getY(), false);
+                    return;
+                }
+                Paint c10 = oVar.U.c(1.0f);
+                if (c10 == null) {
+                    paint.setAlpha(128);
+                    canvas.drawRoundRect(rectF, f10, f10, paint);
+                    return;
+                }
+                canvas.drawRoundRect(rectF, f10, f10, c10);
+                paint.setAlpha(80);
+                canvas.drawRoundRect(rectF, f10, f10, paint);
+                return;
+            default:
+                super.f(canvas, rect, f10);
+                return;
+        }
     }
 
     @Override
-    public void setPressed(boolean z10) {
-        super.setPressed(z10);
-        this.f14781b.c(z10);
+    public boolean h() {
+        switch (this.W) {
+            case 0:
+                return true;
+            default:
+                return super.h();
+        }
+    }
+
+    @Override
+    public void i() {
+        switch (this.W) {
+            case 1:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ui) this.f14813a0).f40386e2;
+                if (chatAttachAlertPhotoLayout != null) {
+                    chatAttachAlertPhotoLayout.Y();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void n(boolean z10) {
+        switch (this.W) {
+            case 1:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((ui) this.f14813a0).f40386e2;
+                if (chatAttachAlertPhotoLayout != null) {
+                    chatAttachAlertPhotoLayout.Y();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
     }
 }

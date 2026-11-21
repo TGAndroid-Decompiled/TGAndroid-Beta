@@ -1,16 +1,11 @@
 package org.telegram.ui.Components;
-public final class jy0 extends org.telegram.ui.Cells.r1 {
-    @Override
-    public final int getParentWidth() {
-        return org.telegram.messenger.n10.z(128.0f, org.telegram.messenger.g0.f24118q.x, 2);
-    }
 
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class jy0 extends ViewOutlineProvider {
     @Override
-    public final boolean isPressed() {
-        return false;
-    }
-
-    @Override
-    public final void b4() {
+    public final void getOutline(View view, Outline outline) {
+        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), org.telegram.messenger.g0.L(16.0f));
     }
 }

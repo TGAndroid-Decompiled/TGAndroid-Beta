@@ -8,8 +8,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
-public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.ui.Components.xt0 {
-    public static final q0 f53485h0 = new q0("crossfadeProgress", 4);
+public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.ui.Components.au0 {
+    public static final q0 f53531h0 = new q0("crossfadeProgress", 4);
     public boolean H;
     public float I;
     public float J;
@@ -26,13 +26,13 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
     public ImageReceiver U;
     public final ImageReceiver V;
     public float W;
-    public org.telegram.messenger.hc f53486a0;
-    public boolean f53487b0;
-    public float f53488c0;
-    public org.telegram.ui.Components.fg0 f53489d0;
-    public boolean f53490e0;
-    public float f53491f0;
-    public Runnable f53492g0;
+    public org.telegram.messenger.hc f53532a0;
+    public boolean f53533b0;
+    public float f53534c0;
+    public org.telegram.ui.Components.hg0 f53535d0;
+    public boolean f53536e0;
+    public float f53537f0;
+    public Runnable f53538g0;
 
     public wv0(Context context) {
         super(context);
@@ -43,9 +43,9 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
         this.P = new RectF();
         this.R = true;
         this.S = 1.0f;
-        this.f53487b0 = true;
-        this.f53491f0 = 1.0f;
-        this.f53492g0 = null;
+        this.f53533b0 = true;
+        this.f53537f0 = 1.0f;
+        this.f53538g0 = null;
         setLayerType(2, null);
         this.V = new ImageReceiver(this);
         Paint paint = new Paint(1);
@@ -55,14 +55,14 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
 
     @Override
     public final void e(Runnable runnable) {
-        this.f53492g0 = runnable;
+        this.f53538g0 = runnable;
     }
 
     public float getForegroundAlpha() {
         return this.W;
     }
 
-    public org.telegram.ui.Components.zg getPrevFragment() {
+    public org.telegram.ui.Components.bh getPrevFragment() {
         return null;
     }
 
@@ -76,11 +76,11 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
     @Override
     public final void invalidate() {
         super.invalidate();
-        org.telegram.ui.Components.fg0 fg0Var = this.f53489d0;
-        if (fg0Var != null) {
-            fg0Var.invalidate();
+        org.telegram.ui.Components.hg0 hg0Var = this.f53535d0;
+        if (hg0Var != null) {
+            hg0Var.invalidate();
         }
-        Runnable runnable = this.f53492g0;
+        Runnable runnable = this.f53538g0;
         if (runnable != null) {
             runnable.run();
         }
@@ -96,17 +96,17 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.V.R();
-        org.telegram.messenger.hc hcVar = this.f53486a0;
+        org.telegram.messenger.hc hcVar = this.f53532a0;
         if (hcVar != null) {
             hcVar.a();
-            this.f53486a0 = null;
+            this.f53532a0 = null;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         boolean z10;
-        org.telegram.ui.Components.xf0 xf0Var;
+        org.telegram.ui.Components.zf0 zf0Var;
         float f10;
         ImageReceiver imageReceiver;
         float f11;
@@ -118,35 +118,35 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
         float f15;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        org.telegram.ui.Components.fg0 fg0Var = this.f53489d0;
+        org.telegram.ui.Components.hg0 hg0Var = this.f53535d0;
         boolean z12 = true;
-        if (fg0Var != null && fg0Var.getVisibility() == 0 && this.N && this.I > 0.0f) {
+        if (hg0Var != null && hg0Var.getVisibility() == 0 && this.N && this.I > 0.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            org.telegram.ui.Components.xf0 blurDrawer = this.f53489d0.getBlurDrawer();
+            org.telegram.ui.Components.zf0 blurDrawer = this.f53535d0.getBlurDrawer();
             if (blurDrawer == null) {
                 z12 = false;
             }
             boolean z13 = z12;
-            xf0Var = blurDrawer;
+            zf0Var = blurDrawer;
             z10 = z13;
         } else {
-            xf0Var = null;
+            zf0Var = null;
         }
-        if (this.f53490e0) {
+        if (this.f53536e0) {
             f10 = (int) org.telegram.messenger.g0.N(3.5f);
         } else {
             f10 = 0.0f;
         }
-        float A = org.telegram.messenger.f3.A(1.0f, this.W, this.f53491f0, (1.0f - this.f53488c0) * f10);
-        org.telegram.ui.Components.o5 o5Var = this.f38745e;
-        if (o5Var != null) {
-            imageReceiver = o5Var.f37976k;
+        float A = org.telegram.messenger.f3.A(1.0f, this.W, this.f53537f0, (1.0f - this.f53534c0) * f10);
+        org.telegram.ui.Components.p5 p5Var = this.f38845e;
+        if (p5Var != null) {
+            imageReceiver = p5Var.f38501k;
         } else {
-            imageReceiver = this.f38742a;
+            imageReceiver = this.f38842a;
         }
         int i10 = this.L;
         if (i10 > 0) {
@@ -206,7 +206,7 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
             i7 = 0;
             f13 = f11;
         }
-        if (imageReceiver != null && f13 > f12 && (this.W < f11 || !this.f53487b0)) {
+        if (imageReceiver != null && f13 > f12 && (this.W < f11 || !this.f53533b0)) {
             float f27 = A * 2.0f;
             imageReceiver.y0(A, A, f18 - f27, measuredHeight - f27);
             float alpha2 = imageReceiver.getAlpha();
@@ -223,7 +223,7 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
             }
             imageReceiver.setAlpha(alpha2);
         }
-        if (this.W > f12 && this.f53487b0 && f13 > f12) {
+        if (this.W > f12 && this.f53533b0 && f13 > f12) {
             ImageReceiver imageReceiver3 = this.V;
             if (imageReceiver3.t() != null) {
                 float f28 = A * 2.0f;
@@ -243,13 +243,13 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
         if (z11) {
             float f31 = measuredHeight;
             canvas.translate(A, A + f31);
-            if (!this.H && !xf0Var.f41999a && this.f53489d0.getRealPosition() != 0) {
+            if (!this.H && !zf0Var.f42792a && this.f53535d0.getRealPosition() != 0) {
                 f14 = f11;
             } else {
                 f14 = f11 - this.I;
             }
             float f32 = A * 2.0f;
-            xf0Var.e(canvas, this, f18 - f32, f31 - f32, true, f14, f13);
+            zf0Var.e(canvas, this, f18 - f32, f31 - f32, true, f14, f13);
         }
         canvas.restore();
     }
@@ -258,8 +258,8 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
         this.U = imageReceiver;
     }
 
-    public void setAvatarsViewPager(org.telegram.ui.Components.fg0 fg0Var) {
-        this.f53489d0 = fg0Var;
+    public void setAvatarsViewPager(org.telegram.ui.Components.hg0 hg0Var) {
+        this.f53535d0 = hg0Var;
     }
 
     public void setCrossfadeProgress(float f10) {
@@ -276,35 +276,35 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
         if (hcVar != null) {
             this.V.w0(hcVar.d);
         }
-        org.telegram.messenger.hc hcVar2 = this.f53486a0;
+        org.telegram.messenger.hc hcVar2 = this.f53532a0;
         if (hcVar2 != null) {
             hcVar2.a();
-            this.f53486a0 = null;
+            this.f53532a0 = null;
         }
-        this.f53486a0 = hcVar;
+        this.f53532a0 = hcVar;
     }
 
     public void setHasStories(boolean z10) {
-        if (this.f53490e0 == z10) {
+        if (this.f53536e0 == z10) {
             return;
         }
-        this.f53490e0 = z10;
+        this.f53536e0 = z10;
         invalidate();
     }
 
     public void setProgressToExpand(float f10) {
-        if (this.f53488c0 == f10) {
+        if (this.f53534c0 == f10) {
             return;
         }
-        this.f53488c0 = f10;
+        this.f53534c0 = f10;
         invalidate();
     }
 
     public void setProgressToStoriesInsets(float f10) {
-        if (f10 == this.f53491f0) {
+        if (f10 == this.f53537f0) {
             return;
         }
-        this.f53491f0 = f10;
+        this.f53537f0 = f10;
         invalidate();
     }
 
@@ -338,17 +338,17 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
 
     public final void w(org.telegram.messenger.fc fcVar, String str, Drawable drawable) {
         this.V.p0(fcVar, str, drawable, 0L, null, null, 0);
-        org.telegram.messenger.hc hcVar = this.f53486a0;
+        org.telegram.messenger.hc hcVar = this.f53532a0;
         if (hcVar != null) {
             hcVar.a();
-            this.f53486a0 = null;
+            this.f53532a0 = null;
         }
     }
 
     @Override
     public final void invalidate(Rect rect) {
         super.invalidate(rect);
-        Runnable runnable = this.f53492g0;
+        Runnable runnable = this.f53538g0;
         if (runnable != null) {
             runnable.run();
         }
@@ -357,7 +357,7 @@ public class wv0 extends org.telegram.ui.Components.q9 implements org.telegram.u
     @Override
     public final void invalidate(int i7, int i10, int i11, int i12) {
         super.invalidate(i7, i10, i11, i12);
-        Runnable runnable = this.f53492g0;
+        Runnable runnable = this.f53538g0;
         if (runnable != null) {
             runnable.run();
         }

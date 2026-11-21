@@ -4,14 +4,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 public final class ld implements TextView.OnEditorActionListener {
-    public final int f49546a;
-    public final Object f49547b;
-    public final Object f49548c;
+    public final int f49586a;
+    public final Object f49587b;
+    public final Object f49588c;
 
     public ld(int i7, Object obj, Object obj2) {
-        this.f49546a = i7;
-        this.f49547b = obj;
-        this.f49548c = obj2;
+        this.f49586a = i7;
+        this.f49587b = obj;
+        this.f49588c = obj2;
     }
 
     @Override
@@ -20,34 +20,34 @@ public final class ld implements TextView.OnEditorActionListener {
         int b10;
         v4.f1 T2;
         int b11;
-        switch (this.f49546a) {
+        switch (this.f49586a) {
             case 0:
-                xd xdVar = (xd) this.f49547b;
-                c51 c51Var = (c51) this.f49548c;
+                xd xdVar = (xd) this.f49587b;
+                c51 c51Var = (c51) this.f49588c;
                 if (i7 == 5) {
                     TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
                     hd hdVar = new hd(xdVar, twoStepVerificationActivity, 1);
-                    twoStepVerificationActivity.f43872a0 = 1;
-                    twoStepVerificationActivity.f43876c0 = hdVar;
+                    twoStepVerificationActivity.f43913a0 = 1;
+                    twoStepVerificationActivity.f43917c0 = hdVar;
                     xdVar.H0.setLoading(true);
                     twoStepVerificationActivity.x0(new id(xdVar, c51Var, twoStepVerificationActivity, 1));
                     return true;
                 }
                 return false;
             case 1:
-                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f49547b;
-                ki.m1 m1Var = (ki.m1) this.f49548c;
-                if ((i7 != 6 && keyEvent.getKeyCode() != 66) || !u1Var.isShowing()) {
+                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) this.f49587b;
+                ki.l1 l1Var = (ki.l1) this.f49588c;
+                if ((i7 != 6 && keyEvent.getKeyCode() != 66) || !t1Var.isShowing()) {
                     return false;
                 }
-                m1Var.h(u1Var, 0);
+                l1Var.h(t1Var, 0);
                 return true;
             case 2:
-                org.telegram.ui.Components.pn pnVar = (org.telegram.ui.Components.pn) this.f49548c;
-                org.telegram.ui.Components.rn rnVar = (org.telegram.ui.Components.rn) ((l4) this.f49547b).f49432e;
-                f61 f61Var = rnVar.f39242s;
+                org.telegram.ui.Components.rn rnVar = (org.telegram.ui.Components.rn) this.f49588c;
+                org.telegram.ui.Components.tn tnVar = (org.telegram.ui.Components.tn) ((l4) this.f49587b).f49470e;
+                f61 f61Var = tnVar.f39991s;
                 if (i7 == 5) {
-                    View F = f61Var.F(pnVar);
+                    View F = f61Var.F(rnVar);
                     if (F == null) {
                         T = null;
                     } else {
@@ -56,21 +56,21 @@ public final class ld implements TextView.OnEditorActionListener {
                     if (T == null || (b10 = T.b()) == -1) {
                         return true;
                     }
-                    int i10 = b10 - rnVar.f39245u0;
-                    int i11 = rnVar.N;
+                    int i10 = b10 - tnVar.f39994u0;
+                    int i11 = tnVar.N;
                     int i12 = i11 - 1;
-                    if (i10 == i12 && i11 < rnVar.K) {
-                        rnVar.U();
+                    if (i10 == i12 && i11 < tnVar.K) {
+                        tnVar.U();
                         return true;
                     } else if (i10 == i12) {
-                        org.telegram.messenger.g0.v1(pnVar.getTextView());
+                        org.telegram.messenger.g0.v1(rnVar.getTextView());
                         return true;
                     } else {
                         v4.f1 K = f61Var.K(b10 + 1);
                         if (K == null) {
                             return true;
                         }
-                        View view = K.f59123a;
+                        View view = K.f59161a;
                         if (!(view instanceof org.telegram.ui.Cells.b6)) {
                             return true;
                         }
@@ -80,10 +80,10 @@ public final class ld implements TextView.OnEditorActionListener {
                 }
                 return false;
             default:
-                mr0 mr0Var = (mr0) this.f49548c;
-                pr0 pr0Var = ((nr0) this.f49547b).d;
+                mr0 mr0Var = (mr0) this.f49588c;
+                pr0 pr0Var = ((nr0) this.f49587b).d;
                 if (i7 == 5) {
-                    f61 f61Var2 = pr0Var.f50888c;
+                    f61 f61Var2 = pr0Var.f50933c;
                     View F2 = f61Var2.F(mr0Var);
                     if (F2 == null) {
                         T2 = null;
@@ -93,21 +93,21 @@ public final class ld implements TextView.OnEditorActionListener {
                     if (T2 == null || (b11 = T2.b()) == -1) {
                         return true;
                     }
-                    int i13 = b11 - pr0Var.f50903o0;
+                    int i13 = b11 - pr0Var.f50948o0;
                     int i14 = pr0Var.E;
                     int i15 = i14 - 1;
-                    if (i13 == i15 && i14 < pr0Var.f50901n) {
+                    if (i13 == i15 && i14 < pr0Var.f50946n) {
                         pr0Var.k0();
                         return true;
                     } else if (i13 == i15) {
                         org.telegram.messenger.g0.v1(mr0Var.getTextView());
                         return true;
                     } else {
-                        v4.f1 K2 = pr0Var.f50888c.K(b11 + 1);
+                        v4.f1 K2 = pr0Var.f50933c.K(b11 + 1);
                         if (K2 == null) {
                             return true;
                         }
-                        View view2 = K2.f59123a;
+                        View view2 = K2.f59161a;
                         if (!(view2 instanceof org.telegram.ui.Cells.b6)) {
                             return true;
                         }

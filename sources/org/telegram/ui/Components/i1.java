@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
+public final class i1 implements Runnable {
+    public final int f36109a;
+    public final b5 f36110b;
+    public final org.telegram.ui.ActionBar.t1 f36111c;
+    public final org.telegram.ui.ActionBar.g2 d;
 
-import android.view.View;
-public final class i1 implements View.OnClickListener {
-    public final int f36024a;
-    public final org.telegram.ui.Cells.d2 f36025b;
-
-    public i1(org.telegram.ui.Cells.d2 d2Var, int i7) {
-        this.f36024a = i7;
-        this.f36025b = d2Var;
+    public i1(b5 b5Var, org.telegram.ui.ActionBar.t1 t1Var, org.telegram.ui.ActionBar.g2 g2Var, int i7) {
+        this.f36109a = i7;
+        this.f36110b = b5Var;
+        this.f36111c = t1Var;
+        this.d = g2Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f36024a) {
+    public final void run() {
+        switch (this.f36109a) {
             case 0:
-                org.telegram.ui.Cells.d2 d2Var = this.f36025b;
-                d2Var.c(!d2Var.b(), true);
+                org.telegram.messenger.g0.g3(new i1(this.f36110b, this.f36111c, this.d, 1));
                 return;
             default:
-                org.telegram.ui.Cells.d2 d2Var2 = this.f36025b;
-                d2Var2.c(!d2Var2.b(), true);
+                c5.b0(this.f36110b, this.f36111c, this.d);
                 return;
         }
     }

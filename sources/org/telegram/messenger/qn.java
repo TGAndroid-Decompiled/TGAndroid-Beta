@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class qn implements Runnable {
-    public final int f26427a;
-    public final mp f26428b;
+    public final int f26455a;
+    public final mp f26456b;
 
     public qn(mp mpVar, int i7) {
-        this.f26427a = i7;
-        this.f26428b = mpVar;
+        this.f26455a = i7;
+        this.f26456b = mpVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f26427a;
-        mp mpVar = this.f26428b;
+        int i7 = this.f26455a;
+        mp mpVar = this.f26456b;
         switch (i7) {
             case 0:
                 mpVar.getNotificationCenter().k(2, 8192);
                 return;
             case 1:
-                mpVar.f25662h2 = false;
+                mpVar.f25690h2 = false;
                 return;
             case 2:
                 mpVar.getNotificationCenter().k(2, 8192);
@@ -30,26 +30,26 @@ public final class qn implements Runnable {
                 mpVar.T1.b();
                 mpVar.U1.clear();
                 mpVar.V1.clear();
-                mpVar.f25643f1.clear();
-                mpVar.f25652g1.clear();
-                mpVar.f25661h1.clear();
-                mpVar.f25615c1.b();
-                mpVar.f25624d1.b();
-                mpVar.f25669i1 = 0L;
-                mpVar.f25677j1 = 0L;
-                mpVar.f25685k1 = 0L;
-                mpVar.f25780v0.clear();
-                mpVar.f25790w0.clear();
-                mpVar.f25670i2 = false;
-                mpVar.f25728p2 = null;
-                mpVar.f25737q2 = null;
+                mpVar.f25671f1.clear();
+                mpVar.f25680g1.clear();
+                mpVar.f25689h1.clear();
+                mpVar.f25643c1.b();
+                mpVar.f25652d1.b();
+                mpVar.f25697i1 = 0L;
+                mpVar.f25705j1 = 0L;
+                mpVar.f25713k1 = 0L;
+                mpVar.f25808v0.clear();
+                mpVar.f25818w0.clear();
+                mpVar.f25698i2 = false;
+                mpVar.f25756p2 = null;
+                mpVar.f25765q2 = null;
                 return;
             case 5:
                 a8.b("cleanup: isUpdating = false");
                 mpVar.getConnectionsManager().setIsUpdating(false);
                 mpVar.X0.b();
                 mpVar.Y0.clear();
-                mpVar.f25595a1.b();
+                mpVar.f25623a1.b();
                 mpVar.Z0.clear();
                 mpVar.A0.clear();
                 mpVar.B0.b();
@@ -68,7 +68,7 @@ public final class qn implements Runnable {
                 mpVar.getNotificationCenter().k(2, 4);
                 return;
             case 9:
-                mpVar.f25702m2 = false;
+                mpVar.f25730m2 = false;
                 return;
             case 10:
                 x10 x10Var = mpVar.N7;

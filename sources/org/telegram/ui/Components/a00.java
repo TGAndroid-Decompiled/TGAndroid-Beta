@@ -1,36 +1,21 @@
 package org.telegram.ui.Components;
+public final class a00 implements org.telegram.messenger.x10 {
+    public final int f33234a = 1;
+    public final org.telegram.ui.ActionBar.r4 f33235b;
+    public final rh f33236c;
 
-import android.animation.ValueAnimator;
-public final class a00 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33197a;
-    public final c00 f33198b;
-
-    public a00(c00 c00Var, int i7) {
-        this.f33197a = i7;
-        this.f33198b = c00Var;
+    public a00(org.telegram.ui.ActionBar.r4 r4Var, rh rhVar) {
+        this.f33235b = r4Var;
+        this.f33236c = rhVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33197a) {
-            case 0:
-                c00 c00Var = this.f33198b;
-                c00Var.getClass();
-                c00Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c00Var.invalidate();
-                return;
-            case 1:
-                c00 c00Var2 = this.f33198b;
-                c00Var2.getClass();
-                c00Var2.f33834w = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                c00Var2.invalidate();
-                return;
-            default:
-                c00 c00Var3 = this.f33198b;
-                c00Var3.getClass();
-                c00Var3.f33831n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c00Var3.invalidate();
-                return;
-        }
+    public final void a(java.lang.Object r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a00.a(java.lang.Object):void");
+    }
+
+    public a00(rh rhVar, org.telegram.ui.ActionBar.r4 r4Var) {
+        this.f33236c = rhVar;
+        this.f33235b = r4Var;
     }
 }

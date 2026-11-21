@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class ro0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.i6 f51709a;
-    public final PhotoViewer f51710b;
+    public final org.telegram.ui.ActionBar.h6 f51684a;
+    public final PhotoViewer f51685b;
 
-    public ro0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f51710b = photoViewer;
-        this.f51709a = i6Var;
+    public ro0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f51685b = photoViewer;
+        this.f51684a = h6Var;
     }
 
     @Override

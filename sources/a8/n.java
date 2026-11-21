@@ -305,7 +305,7 @@ public class n extends AbstractCollection {
             case 4:
                 return ((h9.l) this.f546b).size();
             case 5:
-                return ((h9.l1) this.f546b).f14020f;
+                return ((h9.l1) this.f546b).f14049f;
             case 6:
                 return ((h9.s) this.f546b).size();
             default:

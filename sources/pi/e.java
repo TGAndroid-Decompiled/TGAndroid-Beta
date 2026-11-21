@@ -3,32 +3,32 @@ package pi;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Cells.r1;
-import org.telegram.ui.Components.go;
+import org.telegram.ui.Components.io;
 public final class e extends AnimatorListenerAdapter {
-    public final r1 f55658a;
-    public final float f55659b;
-    public final float f55660c;
+    public final r1 f55699a;
+    public final float f55700b;
+    public final float f55701c;
     public final float d;
-    public final float f55661e;
-    public final k f55662f;
+    public final float f55702e;
+    public final k f55703f;
 
     public e(k kVar, r1 r1Var, float f10, float f11, float f12, float f13) {
-        this.f55662f = kVar;
-        this.f55658a = r1Var;
-        this.f55659b = f10;
-        this.f55660c = f11;
+        this.f55703f = kVar;
+        this.f55699a = r1Var;
+        this.f55700b = f10;
+        this.f55701c = f11;
         this.d = f12;
-        this.f55661e = f13;
+        this.f55702e = f13;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        r1 r1Var = this.f55658a;
+        r1 r1Var = this.f55699a;
         r1Var.getTransitionParams().e();
-        r1Var.getPhotoImage().y0(this.f55659b, this.f55660c, this.d, this.f55661e);
-        go goVar = this.f55662f.P;
-        if (goVar != null) {
-            goVar.h.setAlpha(1.0f);
+        r1Var.getPhotoImage().y0(this.f55700b, this.f55701c, this.d, this.f55702e);
+        io ioVar = this.f55703f.P;
+        if (ioVar != null) {
+            ioVar.h.setAlpha(1.0f);
         }
         r1Var.invalidate();
     }

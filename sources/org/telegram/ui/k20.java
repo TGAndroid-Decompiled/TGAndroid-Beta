@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.view.View;
-public final class k20 extends org.telegram.ui.Components.wt {
+public final class k20 extends org.telegram.ui.Components.yt {
     public final f40 W;
 
-    public k20(f40 f40Var, LaunchActivity launchActivity, l30 l30Var, org.telegram.ui.ActionBar.h2 h2Var, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(launchActivity, l30Var, h2Var, 5, true, i6Var);
+    public k20(f40 f40Var, LaunchActivity launchActivity, l30 l30Var, org.telegram.ui.ActionBar.g2 g2Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(launchActivity, l30Var, g2Var, 5, true, h6Var);
         this.W = f40Var;
     }
 
@@ -15,7 +15,7 @@ public final class k20 extends org.telegram.ui.Components.wt {
         if (view == getEditText()) {
             canvas.save();
             f40 f40Var = this.W;
-            f40Var.C1.getEditText().setTranslationY(view.getMeasuredHeight() - f40Var.A5.f57663f);
+            f40Var.C1.getEditText().setTranslationY(view.getMeasuredHeight() - f40Var.A5.f57702f);
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -26,12 +26,12 @@ public final class k20 extends org.telegram.ui.Components.wt {
     @Override
     public final void f() {
         super.f();
-        org.telegram.ui.Components.ry emojiView = getEmojiView();
+        org.telegram.ui.Components.ty emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f39407x0 = false;
-            emojiView.f39413y2 = false;
+            emojiView.f40161x0 = false;
+            emojiView.f40167y2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(this.W.f30190b.getPaddingBottom());
+            emojiView.setBottomInset(this.W.f30173b.getPaddingBottom());
         }
     }
 
@@ -39,7 +39,7 @@ public final class k20 extends org.telegram.ui.Components.wt {
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         te.c cVar = this.W.A5;
-        if (cVar.f57663f == 0.0f) {
+        if (cVar.f57702f == 0.0f) {
             cVar.c(getMeasuredHeight());
         } else {
             cVar.a(getMeasuredHeight());
@@ -50,7 +50,7 @@ public final class k20 extends org.telegram.ui.Components.wt {
     public final void p() {
         int i7;
         rh.h hVar = this.W.B3;
-        if (this.f41789e) {
+        if (this.f42545e) {
             i7 = Math.max(0, getEmojiPadding());
         } else if (this.O) {
             i7 = Math.max(0, getKeyboardHeight());
@@ -66,6 +66,6 @@ public final class k20 extends org.telegram.ui.Components.wt {
 
     @Override
     public final void y() {
-        this.W.f30190b.requestApplyInsets();
+        this.W.f30173b.requestApplyInsets();
     }
 }

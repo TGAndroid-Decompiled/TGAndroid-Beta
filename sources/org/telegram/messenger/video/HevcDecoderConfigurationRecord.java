@@ -97,17 +97,17 @@ public class HevcDecoderConfigurationRecord {
 
     private static j5.c createSampleEntry(ArrayList<ByteBuffer> arrayList, ArrayList<ByteBuffer> arrayList2, ArrayList<ByteBuffer> arrayList3, SequenceParameterSetRbsp sequenceParameterSetRbsp) {
         j5.c cVar = new j5.c("hvc1");
-        cVar.f17230f = 1;
-        cVar.f17238y = 24;
-        cVar.f17236w = 1;
-        cVar.f17234r = 72.0d;
-        cVar.f17235s = 72.0d;
-        cVar.f17237x = "HEVC Coding";
+        cVar.f17255f = 1;
+        cVar.f17263y = 24;
+        cVar.f17261w = 1;
+        cVar.f17259r = 72.0d;
+        cVar.f17260s = 72.0d;
+        cVar.f17262x = "HEVC Coding";
         HevcConfigurationBox hevcConfigurationBox = new HevcConfigurationBox();
         hevcConfigurationBox.getHevcDecoderConfigurationRecord().setConfigurationVersion(1);
         if (sequenceParameterSetRbsp != null) {
             cVar.h = sequenceParameterSetRbsp.pic_width_in_luma_samples;
-            cVar.f17233n = sequenceParameterSetRbsp.pic_height_in_luma_samples;
+            cVar.f17258n = sequenceParameterSetRbsp.pic_height_in_luma_samples;
             HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord = hevcConfigurationBox.getHevcDecoderConfigurationRecord();
             hevcDecoderConfigurationRecord.setChromaFormat(sequenceParameterSetRbsp.chroma_format_idc);
             hevcDecoderConfigurationRecord.setGeneral_profile_idc(sequenceParameterSetRbsp.general_profile_idc);
@@ -195,7 +195,7 @@ public class HevcDecoderConfigurationRecord {
                     byteBuffer.position(2);
                     ByteBuffer slice = byteBuffer.slice();
                     ?? obj = new Object();
-                    obj.f55558a = slice;
+                    obj.f55599a = slice;
                     sequenceParameterSetRbsp = new SequenceParameterSetRbsp(new jc.a(Channels.newInputStream((ReadableByteChannel) obj)));
                     break;
                 case 34:

@@ -6,18 +6,18 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class hu0 implements RequestDelegate {
-    public final int f48484a;
-    public final ProfileActivity f48485b;
+    public final int f48527a;
+    public final ProfileActivity f48528b;
 
     public hu0(ProfileActivity profileActivity, int i7) {
-        this.f48484a = i7;
-        this.f48485b = profileActivity;
+        this.f48527a = i7;
+        this.f48528b = profileActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        int i7 = this.f48484a;
-        final ProfileActivity profileActivity = this.f48485b;
+        int i7 = this.f48527a;
+        final ProfileActivity profileActivity = this.f48528b;
         switch (i7) {
             case 0:
                 RectF rectF = ProfileActivity.Z6;
@@ -35,7 +35,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -46,7 +46,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -57,7 +57,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -68,7 +68,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -93,7 +93,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -104,7 +104,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -115,7 +115,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -126,7 +126,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -151,7 +151,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -162,7 +162,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -173,7 +173,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -184,7 +184,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -209,7 +209,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -220,7 +220,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -231,7 +231,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -242,7 +242,7 @@ public final class hu0 implements RequestDelegate {
                                     org.telegram.ui.Components.lc.e0(tL_error2);
                                     return;
                                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
-                                    org.telegram.messenger.f3.o(null, 2131743642, org.telegram.ui.Components.lc.b0(profileActivity2), null);
+                                    org.telegram.messenger.f3.o(null, 2131743636, org.telegram.ui.Components.lc.b0(profileActivity2), null);
                                     return;
                                 } else {
                                     return;
@@ -254,7 +254,7 @@ public final class hu0 implements RequestDelegate {
             case 4:
                 RectF rectF5 = ProfileActivity.Z6;
                 if (tLObject != null) {
-                    org.telegram.messenger.g0.g3(new tr0(13, profileActivity, tLObject));
+                    org.telegram.messenger.g0.g3(new tr0(15, profileActivity, tLObject));
                     return;
                 }
                 return;

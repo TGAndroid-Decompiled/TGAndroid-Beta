@@ -1,61 +1,202 @@
 package fi;
 
-import java.util.HashMap;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.messenger.x10;
-import org.telegram.tgnet.tl.TL_stories;
-public final class o5 implements x10 {
-    public final int f12326a;
-    public final p6 f12327b;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o5 implements RequestDelegate {
+    public final int f12368a;
+    public final p6 f12369b;
 
     public o5(p6 p6Var, int i7) {
-        this.f12326a = i7;
-        this.f12327b = p6Var;
+        this.f12368a = i7;
+        this.f12369b = p6Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f12326a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f12368a) {
             case 0:
-                h6 h6Var = (h6) obj;
-                p6 p6Var = this.f12327b;
-                HashMap hashMap = p6Var.H;
-                int i7 = h6Var.f12042e;
-                int i10 = h6Var.f12043f;
-                long j3 = h6Var.d;
-                if (i7 == 0 && i10 > 0) {
-                    HashMap hashMap2 = (HashMap) hashMap.get(Long.valueOf(j3));
-                    if (hashMap2 != null) {
-                        hashMap2.remove(Integer.valueOf(i10));
-                        if (hashMap2.isEmpty()) {
-                            hashMap.remove(Long.valueOf(j3));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                HashMap hashMap3 = p6Var.G[i7];
-                if (hashMap3 != null) {
-                    hashMap3.remove(Long.valueOf(j3));
+                TLRPC.Updates updates = (TLRPC.Updates) tLObject;
+                if (updates != null) {
+                    p6 p6Var = this.f12369b;
+                    mp.u1(p6Var.f12422a).U3(updates.updates, updates.users, updates.chats, false, updates.date);
+                    org.telegram.messenger.g0.g3(new v5(p6Var, 1));
                     return;
                 }
                 return;
             case 1:
-                this.f12327b.f12386f = (LongSparseIntArray) obj;
+                final p6 p6Var2 = this.f12369b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                p6 p6Var3 = p6Var2;
+                                HashSet hashSet = p6Var3.L;
+                                int i7 = p6Var3.f12422a;
+                                TLObject tLObject2 = tLObject;
+                                boolean z10 = true;
+                                if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
+                                    TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject2;
+                                    mp.u1(i7).f4(tL_contacts_blocked.users, false);
+                                    mp.u1(i7).Z3(tL_contacts_blocked.chats, false);
+                                    hashSet.clear();
+                                    ArrayList<TLRPC.TL_peerBlocked> arrayList = tL_contacts_blocked.blocked;
+                                    int size = arrayList.size();
+                                    int i10 = 0;
+                                    while (i10 < size) {
+                                        TLRPC.TL_peerBlocked tL_peerBlocked = arrayList.get(i10);
+                                        i10++;
+                                        hashSet.add(Long.valueOf(org.telegram.messenger.n5.o(tL_peerBlocked.peer_id)));
+                                    }
+                                    p6Var3.N = Math.max(hashSet.size(), tL_contacts_blocked.count);
+                                    p6Var3.O = true;
+                                } else if (tLObject2 instanceof TLRPC.TL_contacts_blockedSlice) {
+                                    TLRPC.TL_contacts_blockedSlice tL_contacts_blockedSlice = (TLRPC.TL_contacts_blockedSlice) tLObject2;
+                                    mp.u1(i7).f4(tL_contacts_blockedSlice.users, false);
+                                    mp.u1(i7).Z3(tL_contacts_blockedSlice.chats, false);
+                                    ArrayList<TLRPC.TL_peerBlocked> arrayList2 = tL_contacts_blockedSlice.blocked;
+                                    int size2 = arrayList2.size();
+                                    int i11 = 0;
+                                    while (i11 < size2) {
+                                        TLRPC.TL_peerBlocked tL_peerBlocked2 = arrayList2.get(i11);
+                                        i11++;
+                                        hashSet.add(Long.valueOf(org.telegram.messenger.n5.o(tL_peerBlocked2.peer_id)));
+                                    }
+                                    p6Var3.N = tL_contacts_blockedSlice.count;
+                                    if (hashSet.size() < p6Var3.N) {
+                                        z10 = false;
+                                    }
+                                    p6Var3.O = z10;
+                                } else {
+                                    return;
+                                }
+                                ks.f(i7).k(198, new Object[0]);
+                                p6Var3.P = false;
+                                p6Var3.Q = System.currentTimeMillis();
+                                return;
+                            default:
+                                p6 p6Var4 = p6Var2;
+                                int i12 = p6Var4.f12422a;
+                                ArrayList arrayList3 = p6Var4.T;
+                                arrayList3.clear();
+                                arrayList3.add(new TLRPC.TL_inputPeerSelf());
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TLRPC.TL_messages_chats) {
+                                    ArrayList<TLRPC.Chat> arrayList4 = ((TLRPC.TL_messages_chats) tLObject3).chats;
+                                    mp.u1(i12).Z3(arrayList4, false);
+                                    int size3 = arrayList4.size();
+                                    int i13 = 0;
+                                    while (i13 < size3) {
+                                        TLRPC.Chat chat = arrayList4.get(i13);
+                                        i13++;
+                                        arrayList3.add(mp.n1(chat));
+                                    }
+                                }
+                                p6Var4.U = false;
+                                p6Var4.V = true;
+                                ks.f(i12).k(200, new Object[0]);
+                                return;
+                        }
+                    }
+                });
                 return;
-            default:
-                TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) obj;
-                p6 p6Var2 = this.f12327b;
-                p6Var2.f12393n = false;
-                if (tL_stories_allStories != null) {
-                    p6Var2.b0(tL_stories_allStories, false, true, false);
-                    p6Var2.T(false);
-                    p6Var2.T(true);
+            case 2:
+                final p6 p6Var3 = this.f12369b;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                p6 p6Var32 = p6Var3;
+                                HashSet hashSet = p6Var32.L;
+                                int i7 = p6Var32.f12422a;
+                                TLObject tLObject2 = tLObject;
+                                boolean z10 = true;
+                                if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
+                                    TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject2;
+                                    mp.u1(i7).f4(tL_contacts_blocked.users, false);
+                                    mp.u1(i7).Z3(tL_contacts_blocked.chats, false);
+                                    hashSet.clear();
+                                    ArrayList<TLRPC.TL_peerBlocked> arrayList = tL_contacts_blocked.blocked;
+                                    int size = arrayList.size();
+                                    int i10 = 0;
+                                    while (i10 < size) {
+                                        TLRPC.TL_peerBlocked tL_peerBlocked = arrayList.get(i10);
+                                        i10++;
+                                        hashSet.add(Long.valueOf(org.telegram.messenger.n5.o(tL_peerBlocked.peer_id)));
+                                    }
+                                    p6Var32.N = Math.max(hashSet.size(), tL_contacts_blocked.count);
+                                    p6Var32.O = true;
+                                } else if (tLObject2 instanceof TLRPC.TL_contacts_blockedSlice) {
+                                    TLRPC.TL_contacts_blockedSlice tL_contacts_blockedSlice = (TLRPC.TL_contacts_blockedSlice) tLObject2;
+                                    mp.u1(i7).f4(tL_contacts_blockedSlice.users, false);
+                                    mp.u1(i7).Z3(tL_contacts_blockedSlice.chats, false);
+                                    ArrayList<TLRPC.TL_peerBlocked> arrayList2 = tL_contacts_blockedSlice.blocked;
+                                    int size2 = arrayList2.size();
+                                    int i11 = 0;
+                                    while (i11 < size2) {
+                                        TLRPC.TL_peerBlocked tL_peerBlocked2 = arrayList2.get(i11);
+                                        i11++;
+                                        hashSet.add(Long.valueOf(org.telegram.messenger.n5.o(tL_peerBlocked2.peer_id)));
+                                    }
+                                    p6Var32.N = tL_contacts_blockedSlice.count;
+                                    if (hashSet.size() < p6Var32.N) {
+                                        z10 = false;
+                                    }
+                                    p6Var32.O = z10;
+                                } else {
+                                    return;
+                                }
+                                ks.f(i7).k(198, new Object[0]);
+                                p6Var32.P = false;
+                                p6Var32.Q = System.currentTimeMillis();
+                                return;
+                            default:
+                                p6 p6Var4 = p6Var3;
+                                int i12 = p6Var4.f12422a;
+                                ArrayList arrayList3 = p6Var4.T;
+                                arrayList3.clear();
+                                arrayList3.add(new TLRPC.TL_inputPeerSelf());
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TLRPC.TL_messages_chats) {
+                                    ArrayList<TLRPC.Chat> arrayList4 = ((TLRPC.TL_messages_chats) tLObject3).chats;
+                                    mp.u1(i12).Z3(arrayList4, false);
+                                    int size3 = arrayList4.size();
+                                    int i13 = 0;
+                                    while (i13 < size3) {
+                                        TLRPC.Chat chat = arrayList4.get(i13);
+                                        i13++;
+                                        arrayList3.add(mp.n1(chat));
+                                    }
+                                }
+                                p6Var4.U = false;
+                                p6Var4.V = true;
+                                ks.f(i12).k(200, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 3:
+                p6 p6Var4 = this.f12369b;
+                p6Var4.getClass();
+                org.telegram.messenger.g0.g3(new v5(p6Var4, 0));
+                return;
+            case 4:
+                p6 p6Var5 = this.f12369b;
+                p6Var5.getClass();
+                if (tL_error == null) {
+                    org.telegram.messenger.g0.g3(new v5(p6Var5, 0));
                     return;
                 }
-                p6Var2.q();
-                p6Var2.W();
+                return;
+            default:
+                org.telegram.messenger.g0.g3(new di.a8(this.f12369b, tLObject, tL_error, 5));
                 return;
         }
     }

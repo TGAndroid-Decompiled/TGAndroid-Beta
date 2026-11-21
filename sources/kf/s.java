@@ -2,10 +2,10 @@ package kf;
 
 import c8.f1;
 public final class s extends p {
-    public String f18237g;
+    public String f18268g;
 
     public s(String str) {
-        this.f18237g = str;
+        this.f18268g = str;
     }
 
     @Override
@@ -15,6 +15,6 @@ public final class s extends p {
 
     @Override
     public final String f() {
-        return "literal=" + this.f18237g;
+        return "literal=" + this.f18268g;
     }
 }

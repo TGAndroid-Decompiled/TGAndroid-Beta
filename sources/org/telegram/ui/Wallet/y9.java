@@ -6,10 +6,10 @@ import android.graphics.Rect;
 import android.graphics.drawable.GradientDrawable;
 import android.view.MotionEvent;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.nr;
 public final class y9 extends EditTextBoldCursor {
-    public final org.telegram.ui.Components.c6 M1;
-    public final org.telegram.ui.Components.c6 N1;
+    public final org.telegram.ui.Components.d6 M1;
+    public final org.telegram.ui.Components.d6 N1;
     public float O1;
     public float P1;
     public final ca Q1;
@@ -17,8 +17,8 @@ public final class y9 extends EditTextBoldCursor {
     public y9(ca caVar, Context context) {
         super(context);
         this.Q1 = caVar;
-        this.M1 = new org.telegram.ui.Components.c6(this, 180L, lr.h);
-        this.N1 = new org.telegram.ui.Components.c6(this, 320L, ca.T);
+        this.M1 = new org.telegram.ui.Components.d6(this, 180L, nr.h);
+        this.N1 = new org.telegram.ui.Components.d6(this, 320L, ca.T);
         this.O1 = 1.0f;
     }
 

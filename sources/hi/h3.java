@@ -1,98 +1,86 @@
 package hi;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ue;
-public final class h3 extends e3 {
-    public final int f14719l0 = 0;
-    public final Object m0;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.x10;
+import org.telegram.ui.Components.du0;
+import org.telegram.ui.Components.nr;
+public final class h3 extends org.telegram.ui.ActionBar.w2 {
+    public final g3 f14741m1;
+    public ValueAnimator n1;
+    public r1.g f14742o1;
+    public Boolean f14743p1;
+    public x10 f14744q1;
 
-    public h3(int i7, Context context, fi.b bVar, float f10, String str) {
-        super(i7, context, bVar, null, true, f10, false, false);
-        this.m0 = str;
+    public h3(Context context, org.telegram.ui.ActionBar.h6 h6Var, String str, float f10) {
+        super(1, context, h6Var, false);
+        P(-14737633);
+        g3 g3Var = new g3(j10.f24798t0, context, new fi.b(), f10, str);
+        this.f14741m1 = g3Var;
+        g3Var.H.setVisibility(8);
+        g3Var.setMultipleOnClick(false);
+        g3Var.setOnBackClickListener(new e3(this, 0));
+        g3Var.setOnSelectListener(new bi.b(this, 27));
+        du0 du0Var = new du0(context, null);
+        this.f30173b = du0Var;
+        int i7 = this.f30208u0;
+        du0Var.setPadding(i7, 0, i7, 0);
+        this.f30173b.addView(g3Var);
     }
 
     @Override
-    public void a() {
-        switch (this.f14719l0) {
-            case 1:
-                ta taVar = (ta) this.m0;
-                taVar.N0.setTranslationY(taVar.f15461n.getMeasuredHeight() - taVar.N0.g());
-                c9 c9Var = taVar.f15476r2;
-                if (c9Var != null) {
-                    c9Var.run();
-                    taVar.f15476r2 = null;
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final boolean G() {
+        return !this.f14741m1.f14503x;
+    }
+
+    public final void K0(boolean z10, e3 e3Var) {
+        float height;
+        g3 g3Var = this.f14741m1;
+        float translationY = g3Var.getTranslationY();
+        if (z10) {
+            height = 0.0f;
+        } else {
+            height = (this.f30173b.getHeight() - g3Var.g()) + (org.telegram.messenger.g0.f24141n * 2.5f);
         }
+        this.f14743p1 = Boolean.valueOf(z10);
+        if (z10) {
+            r1.g gVar = new r1.g(g3Var, r1.g.f56348p, height);
+            this.f14742o1 = gVar;
+            gVar.f56364m.a(0.75f);
+            this.f14742o1.f56364m.b(350.0f);
+            this.f14742o1.a(new f3(this, height, e3Var));
+            this.f14742o1.h();
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(translationY, height);
+        this.n1 = ofFloat;
+        ofFloat.addUpdateListener(new ah.g(this, 29));
+        this.n1.addListener(new ah.l(5, this, e3Var));
+        this.n1.setDuration(450L);
+        this.n1.setInterpolator(nr.h);
+        this.n1.start();
     }
 
     @Override
-    public void c(boolean z10) {
-        switch (this.f14719l0) {
-            case 1:
-                if (((ta) this.m0).f15442g0 == 0 && z10) {
-                    org.telegram.messenger.g0.g3(new k(this, 18));
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public final void dismiss() {
+        K0(false, new e3(this, 1));
+        super.dismiss();
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f14719l0) {
-            case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < g()) {
-                    ta taVar = (ta) this.m0;
-                    taVar.M0 = true;
-                    taVar.e(false);
-                    return true;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f14741m1.g()) {
+            dismiss();
+            return true;
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public String getTitle() {
-        switch (this.f14719l0) {
-            case 0:
-                return (String) this.m0;
-            default:
-                return super.getTitle();
-        }
-    }
-
-    @Override
-    public void setTranslationY(float f10) {
-        switch (this.f14719l0) {
-            case 1:
-                super.setTranslationY(f10);
-                ta taVar = (ta) this.m0;
-                if (taVar.f15458l2) {
-                    float i7 = Utilities.i(1.0f - (f10 / (taVar.f15461n.getMeasuredHeight() - taVar.N0.g())), 1.0f, 0.0f);
-                    taVar.f15473r.b(org.telegram.messenger.g0.L(-32.0f) * i7);
-                    taVar.f15473r.setAlpha(1.0f - (0.6f * i7));
-                    taVar.f15451j0.setAlpha(1.0f - i7);
-                    return;
-                }
-                return;
-            default:
-                super.setTranslationY(f10);
-                return;
-        }
-    }
-
-    public h3(ta taVar, int i7, Context context, fi.b bVar, ue ueVar, boolean z10, boolean z11, boolean z12) {
-        super(i7, context, bVar, ueVar, z10, 1.39f, z11, z12);
-        this.m0 = taVar;
+    public final void show() {
+        super.show();
+        K0(true, null);
     }
 }

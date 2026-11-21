@@ -2,10 +2,10 @@ package h3;
 
 import e2.u;
 public final class g implements a {
-    public final u f13877a;
+    public final u f13906a;
 
     public g(u uVar) {
-        this.f13877a = uVar;
+        this.f13906a = uVar;
     }
 
     @Override

@@ -1,109 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.util.Log;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import org.json.JSONArray;
-import org.json.JSONTokener;
-public final class o21 extends Thread {
-    public final String f37941a;
-    public final String f37942b;
-    public final String f37943c;
-    public final org.telegram.messenger.q10 d;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class o21 extends v4.u0 {
+    public final b31 f38073a;
 
-    public o21(String str, String str2, String str3, org.telegram.messenger.q10 q10Var) {
-        this.f37941a = str;
-        this.f37942b = str2;
-        this.f37943c = str3;
-        this.d = q10Var;
+    public o21(b31 b31Var) {
+        this.f38073a = b31Var;
     }
 
     @Override
-    public final void run() {
-        HttpURLConnection httpURLConnection;
-        Integer num;
-        String str;
-        org.telegram.messenger.q10 q10Var = this.d;
-        String str2 = this.f37943c;
-        boolean z10 = false;
-        String str3 = null;
-        try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f37941a) + "&tl=" + Uri.encode(this.f37942b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
-            try {
-                httpURLConnection.setRequestMethod("GET");
-                httpURLConnection.setRequestProperty("User-Agent", y21.S1[(int) Math.round(Math.random() * 5)]);
-                httpURLConnection.setRequestProperty("Content-Type", "application/json");
-                StringBuilder sb2 = new StringBuilder();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), g9.j.f13252a));
-                while (true) {
-                    int read = bufferedReader.read();
-                    if (read == -1) {
-                        break;
-                    }
-                    sb2.append((char) read);
-                }
-                bufferedReader.close();
-                JSONArray jSONArray = new JSONArray(new JSONTokener(sb2.toString()));
-                JSONArray jSONArray2 = jSONArray.getJSONArray(0);
-                try {
-                    str = jSONArray.getString(2);
-                } catch (Exception unused) {
-                    str = null;
-                }
-                if (str != null && str.contains("-")) {
-                    str.substring(0, str.indexOf("-"));
-                }
-                String str4 = "";
-                for (int i7 = 0; i7 < jSONArray2.length(); i7++) {
-                    String string = jSONArray2.getJSONArray(i7).getString(0);
-                    if (string != null && !string.equals("null")) {
-                        str4 = str4 + string;
-                    }
-                }
-                if (str2.length() > 0 && str2.charAt(0) == '\n') {
-                    str4 = "\n" + str4;
-                }
-                org.telegram.messenger.g0.g3(new n21(str4, 0, q10Var));
-            } catch (Exception e10) {
-                e = e10;
-                try {
-                    StringBuilder sb3 = new StringBuilder();
-                    sb3.append("failed to translate a text ");
-                    if (httpURLConnection != null) {
-                        num = Integer.valueOf(httpURLConnection.getResponseCode());
-                    } else {
-                        num = null;
-                    }
-                    sb3.append(num);
-                    sb3.append(" ");
-                    if (httpURLConnection != null) {
-                        str3 = httpURLConnection.getResponseMessage();
-                    }
-                    sb3.append(str3);
-                    Log.e("translate", sb3.toString());
-                } catch (IOException e11) {
-                    e11.printStackTrace();
-                }
-                e.printStackTrace();
-                if (httpURLConnection != null) {
-                    try {
-                        if (httpURLConnection.getResponseCode() == 429) {
-                            z10 = true;
-                        }
-                    } catch (Exception unused2) {
-                        org.telegram.messenger.g0.g3(new ap0(q10Var, 22));
-                        return;
-                    }
-                }
-                org.telegram.messenger.g0.g3(new pp0(5, q10Var, z10));
-            }
-        } catch (Exception e12) {
-            e = e12;
-            httpURLConnection = null;
+    public final void a(RecyclerView recyclerView, int i7) {
+        b31 b31Var = this.f38073a;
+        n21 n21Var = b31Var.H1;
+        if (i7 == 0) {
+            b31Var.G1 = false;
         }
+        if ((i7 == 0 || i7 == 2) && b31Var.M0(false) > 0.0f && b31Var.M0(false) < org.telegram.messenger.g0.L(96.0f) && n21Var.canScrollVertically(1) && b31.J0(b31Var)) {
+            b31Var.G1 = true;
+            n21Var.w0(0, (int) b31Var.M0(false), null);
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        float f10;
+        b31 b31Var = this.f38073a;
+        b31Var.f30173b.invalidate();
+        boolean canScrollVertically = b31Var.H1.canScrollVertically(1);
+        View view = b31Var.L1;
+        Boolean bool = b31Var.R1;
+        if (bool != null && bool.booleanValue() == canScrollVertically) {
+            return;
+        }
+        b31Var.R1 = Boolean.valueOf(canScrollVertically);
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (canScrollVertically) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        org.telegram.messenger.n10.o(animate.alpha(f10), nr.h, 320L);
     }
 }

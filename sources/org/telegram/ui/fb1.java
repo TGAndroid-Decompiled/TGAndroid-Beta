@@ -6,8 +6,8 @@ public final class fb1 extends org.telegram.ui.Cells.l3 {
     public final int F;
     public final UserInfoActivity G;
 
-    public fb1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.i6 i6Var, int i7) {
-        super(context, str, false, false, -1, i6Var);
+    public fb1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.h6 h6Var, int i7) {
+        super(context, str, false, false, -1, h6Var);
         this.F = i7;
         this.G = userInfoActivity;
     }
@@ -29,8 +29,8 @@ public final class fb1 extends org.telegram.ui.Cells.l3 {
         }
     }
 
-    public fb1(UserInfoActivity userInfoActivity, Context context, String str, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, str, true, false, i7, i6Var);
+    public fb1(UserInfoActivity userInfoActivity, Context context, String str, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, str, true, false, i7, h6Var);
         this.F = 2;
         this.G = userInfoActivity;
     }

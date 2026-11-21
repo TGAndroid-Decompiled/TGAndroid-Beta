@@ -4,24 +4,24 @@ import android.content.Context;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class qa extends bk0 {
-    public final int f38753c;
+public final class qa extends dk0 {
+    public final int f38855c;
     public final Context d;
-    public final Object f38754e;
-    public final KeyEvent.Callback f38755f;
+    public final Object f38856e;
+    public final KeyEvent.Callback f38857f;
 
-    public qa(fj fjVar, Context context) {
-        this.f38753c = 1;
-        this.f38755f = fjVar;
-        this.f38754e = new ArrayList();
+    public qa(hj hjVar, Context context) {
+        this.f38855c = 1;
+        this.f38857f = hjVar;
+        this.f38856e = new ArrayList();
         this.d = context;
     }
 
     @Override
     public void B(v4.k0 k0Var) {
-        switch (this.f38753c) {
+        switch (this.f38855c) {
             case 0:
-                ((bk0) this.f38754e).B(new pa(this, k0Var));
+                ((dk0) this.f38856e).B(new pa(this, k0Var));
                 return;
             default:
                 super.B(k0Var);
@@ -31,11 +31,11 @@ public final class qa extends bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        switch (this.f38753c) {
+        switch (this.f38855c) {
             case 0:
-                return ((bk0) this.f38754e).D(f1Var);
+                return ((dk0) this.f38856e).D(f1Var);
             default:
-                if (f1Var.f59127f == 0) {
+                if (f1Var.f59165f == 0) {
                     return true;
                 }
                 return false;
@@ -44,20 +44,20 @@ public final class qa extends bk0 {
 
     @Override
     public final int b() {
-        switch (this.f38753c) {
+        switch (this.f38855c) {
             case 0:
-                return ((bk0) this.f38754e).b() + 1;
+                return ((dk0) this.f38856e).b() + 1;
             default:
-                return ((ArrayList) this.f38754e).size();
+                return ((ArrayList) this.f38856e).size();
         }
     }
 
     @Override
     public final int d(int i7) {
         int i10;
-        switch (this.f38753c) {
+        switch (this.f38855c) {
             case 0:
-                sa saVar = (sa) this.f38755f;
+                sa saVar = (sa) this.f38857f;
                 if (saVar.K1) {
                     i10 = b() - 1;
                 } else {
@@ -66,7 +66,7 @@ public final class qa extends bk0 {
                 if (i7 == i10) {
                     return -1000;
                 }
-                return ((bk0) this.f38754e).d(i7 - (!saVar.K1 ? 1 : 0));
+                return ((dk0) this.f38856e).d(i7 - (!saVar.K1 ? 1 : 0));
             default:
                 return 0;
         }
@@ -75,47 +75,47 @@ public final class qa extends bk0 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         int i10;
-        switch (this.f38753c) {
+        switch (this.f38855c) {
             case 0:
-                sa saVar = (sa) this.f38755f;
+                sa saVar = (sa) this.f38857f;
                 if (saVar.K1) {
                     i10 = b() - 1;
                 } else {
                     i10 = 0;
                 }
                 if (i7 != i10) {
-                    ((bk0) this.f38754e).t(f1Var, i7 - (!saVar.K1 ? 1 : 0));
+                    ((dk0) this.f38856e).t(f1Var, i7 - (!saVar.K1 ? 1 : 0));
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) f1Var.f59123a;
+                org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) f1Var.f59161a;
                 vaVar.d(1, false, false);
-                vaVar.setSize(((fj) this.f38755f).f35115r);
-                vaVar.e(1, ((ArrayList) this.f38754e).get(i7), null, 0);
+                vaVar.setSize(((hj) this.f38857f).f35922r);
+                vaVar.e(1, ((ArrayList) this.f38856e).get(i7), null, 0);
                 return;
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        switch (this.f38753c) {
+        switch (this.f38855c) {
             case 0:
                 if (i7 == -1000) {
-                    return new v4.f1(new bi.i3((sa) this.f38755f, this.d));
+                    return new v4.f1(new bi.m3((sa) this.f38857f, this.d));
                 }
-                return ((bk0) this.f38754e).x(viewGroup, i7);
+                return ((dk0) this.f38856e).x(viewGroup, i7);
             default:
-                ej ejVar = new ej(this, this.d);
-                ejVar.f32189b = false;
-                return new v4.f1(ejVar);
+                gj gjVar = new gj(this, this.d);
+                gjVar.f32217b = false;
+                return new v4.f1(gjVar);
         }
     }
 
-    public qa(sa saVar, bk0 bk0Var, Context context) {
-        this.f38753c = 0;
-        this.f38755f = saVar;
-        this.f38754e = bk0Var;
+    public qa(sa saVar, dk0 dk0Var, Context context) {
+        this.f38855c = 0;
+        this.f38857f = saVar;
+        this.f38856e = dk0Var;
         this.d = context;
     }
 }

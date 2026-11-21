@@ -1,104 +1,113 @@
 package ji;
 
-import ai.c2;
-import ai.n0;
-import ai.t;
+import ai.e2;
+import ai.z;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.vr;
 import org.telegram.messenger.x10;
-import org.telegram.ui.Dictation.DictationAsr;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.v2;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.rf;
 public final class g implements x10 {
-    public final int f17937a;
-    public final m f17938b;
-    public final String[] f17939c;
+    public final int f17963a;
+    public final o f17964b;
 
-    public g(m mVar, String[] strArr, int i7) {
-        this.f17937a = i7;
-        this.f17938b = mVar;
-        this.f17939c = strArr;
+    public g(o oVar, int i7) {
+        this.f17963a = i7;
+        this.f17964b = oVar;
     }
 
     @Override
     public final void a(Object obj) {
-        boolean z10;
-        c2 c2Var;
-        p pVar;
-        c2 c2Var2;
-        Integer num = (Integer) obj;
-        switch (this.f17937a) {
+        r rVar;
+        String str;
+        int G0;
+        switch (this.f17963a) {
             case 0:
-                m mVar = this.f17938b;
-                mVar.getClass();
-                if (num.intValue() == 0) {
-                    DictationAsr.T(true);
+                o oVar = this.f17964b;
+                String str2 = (String) obj;
+                if (oVar.f17994c == 3 && (rVar = oVar.h) != null) {
+                    rVar.setBusy(false);
+                    if (str2 != null && !str2.trim().isEmpty()) {
+                        oVar.f18007n = str2;
+                        oVar.h.r(str2);
+                        return;
+                    }
                     return;
                 }
-                String str = this.f17939c[num.intValue() - 1];
-                t H = DictationAsr.H(str);
-                if (H != null && !DictationAsr.w(H)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                DictationAsr.S(str);
-                DictationAsr.r(H);
-                if (z10 && mVar.f17963c == 2 && (pVar = mVar.h) != null) {
-                    mVar.f17976n = "";
-                    if (pVar.P1) {
-                        pVar.f18043x1 = null;
-                    }
-                    pVar.f18014k0 = "";
-                    pVar.f18046y1 = -1;
-                    pVar.f18016l0 = null;
-                    pVar.f18020o0.clear();
-                    pVar.U0 = true;
-                    pVar.D0 = 0.0f;
-                    pVar.C0 = 0.0f;
-                    pVar.E0 = 0.0f;
-                    pVar.F0 = 0.0f;
-                    pVar.H0 = -1.0f;
-                    pVar.G0 = -1.0f;
-                    pVar.J0 = -1.0f;
-                    pVar.L0 = false;
-                    pVar.S0 = 0L;
-                    pVar.T0 = 0.0f;
-                    pVar.A0 = true;
-                    pVar.Z0 = true;
-                    pVar.invalidate();
-                }
-                p pVar2 = mVar.h;
-                if (pVar2 != null) {
-                    pVar2.setLanguage(n0.p(str));
-                }
-                if (mVar.f17963c == 2 && (c2Var = mVar.f17968f) != null) {
-                    c2Var.p(str);
-                }
-                mVar.u();
                 return;
             default:
-                boolean z11 = true;
-                if (num.intValue() == 0) {
-                    DictationAsr.T(true);
+                o oVar2 = this.f17964b;
+                if (!oVar2.f18007n.trim().isEmpty()) {
+                    rf rfVar = oVar2.f17992b;
+                    String trim = oVar2.f18007n.trim();
+                    if (!trim.isEmpty() && oVar2.h != null) {
+                        g0.r(oVar2.f18005k0);
+                        g0.r(oVar2.f18004j0);
+                        Drawable drawable = null;
+                        if (vr.f27619k == oVar2) {
+                            vr.f27619k = null;
+                        }
+                        e2 e2Var = oVar2.f17999f;
+                        if (e2Var != null) {
+                            e2Var.c();
+                            oVar2.f17999f = null;
+                        }
+                        z zVar = oVar2.d;
+                        if (zVar != null) {
+                            zVar.d();
+                            oVar2.d = null;
+                        }
+                        oVar2.f17997e = null;
+                        oVar2.f17994c = 3;
+                        Log.d("VoiceLive", "review: voice paused, restyling " + trim.length() + " chars");
+                        oVar2.h.setListening(false);
+                        rfVar.e();
+                        if (oVar2.H == null) {
+                            oVar2.H = trim;
+                        }
+                        r rVar2 = oVar2.h;
+                        boolean z10 = obj instanceof ai.g;
+                        if (z10) {
+                            str = ((ai.g) obj).a();
+                        } else {
+                            str = null;
+                        }
+                        rVar2.setStyleLabel(str);
+                        r rVar3 = oVar2.h;
+                        ChatActivityEnterView chatActivityEnterView = rfVar.f39168a;
+                        if (z10) {
+                            ai.g gVar = (ai.g) obj;
+                            long j3 = gVar.f1201b;
+                            if (j3 != 0) {
+                                drawable = p5.m(chatActivityEnterView.R, j3, null, 2);
+                            } else if (gVar.d) {
+                                drawable = new v2(chatActivityEnterView.getContext());
+                                if (m6.I.q()) {
+                                    G0 = -1;
+                                } else {
+                                    int i7 = m6.G6;
+                                    int i10 = ChatActivityEnterView.f32566s7;
+                                    G0 = chatActivityEnterView.G0(i7);
+                                }
+                                drawable.setColorFilter(new PorterDuffColorFilter(G0, PorterDuff.Mode.SRC_IN));
+                            }
+                        }
+                        rVar3.setStyleIcon(drawable);
+                        oVar2.h.setReview(true);
+                        oVar2.h.setBusy(true);
+                        rfVar.f(obj, oVar2.H, new g(oVar2, 0));
+                        g0.h3(oVar2.I, 400L);
+                        return;
+                    }
                     return;
                 }
-                String str2 = this.f17939c[num.intValue() - 1];
-                t H2 = DictationAsr.H(str2);
-                z11 = (H2 == null || DictationAsr.w(H2)) ? false : false;
-                DictationAsr.S(str2);
-                DictationAsr.r(H2);
-                m mVar2 = this.f17938b;
-                if (z11 && mVar2.f17963c == 2 && mVar2.X == null && mVar2.f17967e0 == null) {
-                    mVar2.M.clear();
-                    mVar2.p();
-                }
-                String p10 = n0.p(str2);
-                mVar2.f17975l0 = p10;
-                e eVar = mVar2.K;
-                if (eVar != null) {
-                    eVar.setLanguage(p10);
-                }
-                if (mVar2.f17963c == 2 && (c2Var2 = mVar2.f17968f) != null) {
-                    c2Var2.p(str2);
-                }
-                mVar2.u();
                 return;
         }
     }

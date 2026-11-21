@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class vi extends org.telegram.ui.Components.ao {
+public final class vi extends org.telegram.ui.Components.co {
     public final bn B0;
 
-    public vi(bn bnVar, Context context, bn bnVar2, boolean z10, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, bnVar2, z10, i6Var);
+    public vi(bn bnVar, Context context, bn bnVar2, boolean z10, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, bnVar2, z10, h6Var);
         this.B0 = bnVar;
     }
 
@@ -15,9 +15,9 @@ public final class vi extends org.telegram.ui.Components.ao {
         boolean z10;
         bn bnVar = this.B0;
         if (!bnVar.mb && !bnVar.isInPreviewMode()) {
-            z10 = ((org.telegram.ui.ActionBar.h2) bnVar).inBubbleMode;
-            if (!z10 && bnVar.f46058k0 != null && !bnVar.H3) {
-                if (!bnVar.fa() || bnVar.f46227x4) {
+            z10 = ((org.telegram.ui.ActionBar.g2) bnVar).inBubbleMode;
+            if (!z10 && bnVar.f46081k0 != null && !bnVar.H3) {
+                if (!bnVar.fa() || bnVar.f46250x4) {
                     return true;
                 }
                 return false;
@@ -30,14 +30,14 @@ public final class vi extends org.telegram.ui.Components.ao {
     @Override
     public final boolean d() {
         bn bnVar = this.B0;
-        TLRPC.User user = bnVar.f45992f;
+        TLRPC.User user = bnVar.f46015f;
         if (user != null && user.linked_community_id != 0) {
-            bnVar.showDialog(new li.d0(bnVar, bnVar.f45992f.linked_community_id, null, null));
+            bnVar.showDialog(new li.d0(bnVar, bnVar.f46015f.linked_community_id, null, null));
             return true;
         }
-        TLRPC.Chat chat = bnVar.f45978e;
+        TLRPC.Chat chat = bnVar.f46001e;
         if (chat != null && chat.linked_community_id != 0) {
-            bnVar.showDialog(new li.d0(bnVar, bnVar.f45978e.linked_community_id, null, null));
+            bnVar.showDialog(new li.d0(bnVar, bnVar.f46001e.linked_community_id, null, null));
             return true;
         }
         return false;
@@ -57,7 +57,7 @@ public final class vi extends org.telegram.ui.Components.ao {
 
     @Override
     public final boolean o() {
-        if (this.B0.f46009g4 == 3) {
+        if (this.B0.f46032g4 == 3) {
             return true;
         }
         return false;

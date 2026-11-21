@@ -1,10 +1,10 @@
 package n5;
 public final class c implements na.d {
-    public static final c f21343a = new Object();
-    public static final na.c f21344b = na.c.c("logRequest");
+    public static final c f21371a = new Object();
+    public static final na.c f21372b = na.c.c("logRequest");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        ((na.e) obj2).a(f21344b, ((m) ((w) obj)).f21391a);
+        ((na.e) obj2).a(f21372b, ((m) ((w) obj)).f21419a);
     }
 }

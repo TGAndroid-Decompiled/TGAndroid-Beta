@@ -2,19 +2,18 @@ package wg;
 
 import android.content.Intent;
 import android.net.Uri;
-import bi.i2;
-import bi.m1;
+import bi.q1;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.j10;
 import org.telegram.messenger.mp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.au0;
-import org.telegram.ui.Components.bk0;
-import org.telegram.ui.Components.ck0;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.du0;
+import org.telegram.ui.Components.ek0;
 import org.telegram.ui.Components.gc;
 import org.telegram.ui.Components.sa;
 import org.telegram.ui.LaunchActivity;
@@ -24,8 +23,8 @@ public final class c0 extends sa {
     public b0 V1;
     public final String W1;
 
-    public c0(h2 h2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
-        super(h2Var, true);
+    public c0(g2 g2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
+        super(g2Var, true);
         boolean z10;
         if (tL_payments_checkedGiftCode.used_date == 0) {
             z10 = true;
@@ -35,18 +34,18 @@ public final class c0 extends sa {
         this.U1 = z10;
         this.T1 = tL_payments_checkedGiftCode;
         this.W1 = str;
-        this.f30226v0 = false;
-        this.f30228w0 = false;
+        this.f30209v0 = false;
+        this.f30211w0 = false;
         O();
         c1();
         b0 b0Var = this.V1;
-        n2 n2Var = this.f30193c;
+        m2 m2Var = this.f30176c;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f60486e = h2Var;
-        b0Var.f60487f = tL_payments_checkedGiftCode;
+        b0Var.f60527e = g2Var;
+        b0Var.f60528f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f60488n = n2Var;
+        b0Var.f60529n = m2Var;
     }
 
     public static boolean e1(Intent intent, vf.b bVar) {
@@ -80,26 +79,26 @@ public final class c0 extends sa {
         return false;
     }
 
-    public static void f1(h2 h2Var, String str, vf.b bVar) {
-        if (h2Var == null) {
+    public static void f1(g2 g2Var, String str, vf.b bVar) {
+        if (g2Var == null) {
             return;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (bVar != null) {
             bVar.d();
-            bVar.f59375b = new c(atomicBoolean, 1);
+            bVar.f59413b = new c(atomicBoolean, 1);
         }
-        i2 i2Var = new i2(atomicBoolean, h2Var, str, bVar);
+        bi.m2 m2Var = new bi.m2(atomicBoolean, g2Var, str, bVar);
         e eVar = new e(atomicBoolean, bVar, 1);
-        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(j10.f24770t0);
-        mp u12 = mp.u1(j10.f24770t0);
+        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(j10.f24798t0);
+        mp u12 = mp.u1(j10.f24798t0);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
-        connectionsManager.sendRequest(tL_payments_checkGiftCode, new m1(u12, i2Var, eVar, 25));
+        connectionsManager.sendRequest(tL_payments_checkGiftCode, new q1(u12, m2Var, eVar, 25));
     }
 
     @Override
-    public final bk0 M0(ck0 ck0Var) {
+    public final dk0 M0(ek0 ek0Var) {
         b0 b0Var = new b0(this, this.J0);
         this.V1 = b0Var;
         return b0Var;
@@ -108,13 +107,13 @@ public final class c0 extends sa {
     @Override
     public final CharSequence P0() {
         if (this.U1) {
-            return gd.M0(2131753498, null);
+            return gd.N0(2131753497, null);
         }
-        return gd.M0(2131753171, null);
+        return gd.N0(2131753170, null);
     }
 
     @Override
-    public final void V0(au0 au0Var) {
-        gc.a(this.f30193c, new bi.t(15));
+    public final void V0(du0 du0Var) {
+        gc.a(this.f30176c, new bi.t(15));
     }
 }

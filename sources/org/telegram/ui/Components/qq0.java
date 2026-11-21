@@ -1,33 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLRPC;
-public final class qq0 implements org.telegram.ui.e50 {
-    public final gt0 f38886a;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class qq0 extends v4.o0 {
+    public final kq0 f38984a;
 
-    public qq0(gt0 gt0Var) {
-        this.f38886a = gt0Var;
+    public qq0(kq0 kq0Var) {
+        this.f38984a = kq0Var;
     }
 
     @Override
-    public final void c(org.telegram.ui.f50 f50Var, long j3) {
-        Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", j3);
-        bundle.putBoolean("just_created_chat", true);
-        f50Var.presentFragment(new org.telegram.ui.bn(bundle), true);
-        ur0 ur0Var = this.f38886a.S;
-        org.telegram.ui.ActionBar.h2 h2Var = ur0Var.f40408r.f35642y1;
-        if (ur0Var.f40407n != 0) {
-            h2Var.getConnectionsManager().cancelRequest(ur0Var.f40407n, true);
-            ur0Var.f40407n = 0;
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.c1 c1Var) {
+        boolean z10;
+        boolean z11;
+        if (view instanceof org.telegram.ui.Cells.p7) {
+            org.telegram.ui.Cells.p7 p7Var = (org.telegram.ui.Cells.p7) view;
+            kq0 kq0Var = this.f38984a;
+            kq0Var.f34566n.getClass();
+            int R = RecyclerView.R(p7Var);
+            int i7 = kq0Var.f34567r.J;
+            boolean z12 = true;
+            if (R < i7) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            p7Var.f31253b0 = z10;
+            int i10 = R % i7;
+            if (i10 == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            p7Var.W = z11;
+            if (i10 != i7 - 1) {
+                z12 = false;
+            }
+            p7Var.f31251a0 = z12;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
+            return;
         }
-        ur0Var.d.clear();
-        ur0Var.f40405e = false;
-        ur0Var.h = false;
-        ur0Var.E(0L);
-        TLRPC.User c22 = h2Var.getMessagesController().c2(Long.valueOf(ur0Var.F()));
-        if (c22 != null) {
-            h2Var.getMessagesController().c3(c22, h2Var.getClassGuid(), true, null);
-        }
+        rect.left = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        rect.right = 0;
     }
 }

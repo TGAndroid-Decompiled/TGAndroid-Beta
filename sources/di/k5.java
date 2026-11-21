@@ -3,39 +3,39 @@ package di;
 import android.graphics.Typeface;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.nr;
 public final class k5 {
-    public final Runnable f9159a;
-    public j5 f9160b;
-    public j5 f9161c;
+    public final Runnable f9182a;
+    public j5 f9183b;
+    public j5 f9184c;
     public j5 d;
-    public int f9162e;
-    public float f9163f;
-    public final ArrayList f9164g;
+    public int f9185e;
+    public float f9186f;
+    public final ArrayList f9187g;
     public final j5 h;
-    public final j5 f9165i;
-    public final float f9166j;
-    public final int f9167k;
-    public int f9168l;
-    public final org.telegram.ui.Components.c6 f9169m;
-    public int f9170n = -1;
+    public final j5 f9188i;
+    public final float f9189j;
+    public final int f9190k;
+    public int f9191l;
+    public final org.telegram.ui.Components.d6 f9192m;
+    public int f9193n = -1;
 
     public k5(Runnable runnable, ArrayList arrayList, j5 j5Var, j5 j5Var2, float f10, int i7) {
-        this.f9163f = 0.0f;
-        this.f9159a = runnable;
-        this.f9164g = arrayList;
+        this.f9186f = 0.0f;
+        this.f9182a = runnable;
+        this.f9187g = arrayList;
         this.h = j5Var;
-        this.f9165i = j5Var2;
-        this.f9166j = f10;
-        this.f9167k = i7;
-        org.telegram.ui.Components.c6 c6Var = new org.telegram.ui.Components.c6(runnable, 300L, lr.h);
-        this.f9169m = c6Var;
-        c6Var.a(true);
-        this.f9163f = -0.5f;
-        this.f9162e = 1;
-        this.f9168l = i7;
-        this.f9160b = j5Var;
-        this.f9161c = d(false);
+        this.f9188i = j5Var2;
+        this.f9189j = f10;
+        this.f9190k = i7;
+        org.telegram.ui.Components.d6 d6Var = new org.telegram.ui.Components.d6(runnable, 300L, nr.h);
+        this.f9192m = d6Var;
+        d6Var.a(true);
+        this.f9186f = -0.5f;
+        this.f9185e = 1;
+        this.f9191l = i7;
+        this.f9183b = j5Var;
+        this.f9184c = d(false);
         this.d = d(false);
     }
 
@@ -44,21 +44,21 @@ public final class k5 {
         if (j5Var != null) {
             j5Var.a();
         }
-        j5 j5Var2 = this.f9165i;
+        j5 j5Var2 = this.f9188i;
         if (j5Var2 != null) {
             j5Var2.a();
         }
     }
 
     public final boolean b(float f10) {
-        if (this.f9161c == this.f9165i && this.f9163f + f10 >= this.f9162e + 0.5f) {
+        if (this.f9184c == this.f9188i && this.f9186f + f10 >= this.f9185e + 0.5f) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f9161c == this.f9165i && this.f9163f >= this.f9162e + 0.5f) {
+        if (this.f9184c == this.f9188i && this.f9186f >= this.f9185e + 0.5f) {
             return true;
         }
         return false;
@@ -68,23 +68,23 @@ public final class k5 {
         ArrayList arrayList;
         Object obj;
         if (z10) {
-            j5 j5Var = this.f9165i;
+            j5 j5Var = this.f9188i;
             if (j5Var.b()) {
-                int i7 = this.f9168l;
+                int i7 = this.f9191l;
                 if (i7 <= 0) {
                     return j5Var;
                 }
-                this.f9168l = i7 - 1;
+                this.f9191l = i7 - 1;
             }
         }
         ArrayList arrayList2 = new ArrayList();
         int i10 = 0;
         while (true) {
-            arrayList = this.f9164g;
+            arrayList = this.f9187g;
             if (i10 >= arrayList.size()) {
                 break;
             }
-            if (i10 != this.f9170n && ((j5) arrayList.get(i10)).b()) {
+            if (i10 != this.f9193n && ((j5) arrayList.get(i10)).b()) {
                 arrayList2.add(Integer.valueOf(i10));
             }
             i10++;
@@ -99,24 +99,24 @@ public final class k5 {
                 return this.h;
             }
         }
-        Typeface typeface = org.telegram.messenger.g0.f24090a;
+        Typeface typeface = org.telegram.messenger.g0.f24118a;
         if (arrayList2.isEmpty()) {
             obj = null;
         } else {
-            obj = arrayList2.get(Math.abs(((int) Utilities.f22778c.nextLong()) % arrayList2.size()));
+            obj = arrayList2.get(Math.abs(((int) Utilities.f22806c.nextLong()) % arrayList2.size()));
         }
         int intValue = ((Integer) obj).intValue();
-        this.f9170n = intValue;
+        this.f9193n = intValue;
         return (j5) arrayList.get(intValue);
     }
 
     public final void e() {
-        this.f9160b = this.f9161c;
-        this.f9161c = this.f9165i;
+        this.f9183b = this.f9184c;
+        this.f9184c = this.f9188i;
         this.d = null;
-        int i7 = this.f9162e + 1;
-        this.f9162e = i7;
-        this.f9163f = i7 + 0.5f;
+        int i7 = this.f9185e + 1;
+        this.f9185e = i7;
+        this.f9186f = i7 + 0.5f;
     }
 
     public final float f(boolean z10, float f10) {
@@ -126,8 +126,8 @@ public final class k5 {
         float f11;
         j5 j5Var;
         j5 d;
-        int i10 = this.f9168l;
-        int i11 = this.f9167k;
+        int i10 = this.f9191l;
+        int i11 = this.f9190k;
         if (i10 >= i11) {
             j3 = 450;
         } else {
@@ -138,40 +138,40 @@ public final class k5 {
             }
             j3 = i7;
         }
-        org.telegram.ui.Components.c6 c6Var = this.f9169m;
-        c6Var.f33895g = j3;
+        org.telegram.ui.Components.d6 d6Var = this.f9192m;
+        d6Var.f34394g = j3;
         if (i10 >= i11) {
             z11 = true;
         } else {
             z11 = false;
         }
-        float d2 = c6Var.d(z11);
+        float d2 = d6Var.d(z11);
         if (i11 == 3) {
             f11 = 0.75f;
         } else {
             f11 = 2.0f;
         }
-        float T1 = (f10 * org.telegram.messenger.g0.T1(f11, 7.5f, d2) * this.f9166j) + this.f9163f;
-        this.f9163f = T1;
+        float T1 = (f10 * org.telegram.messenger.g0.T1(f11, 7.5f, d2) * this.f9189j) + this.f9186f;
+        this.f9186f = T1;
         int i12 = (T1 > 0.0f ? 1 : (T1 == 0.0f ? 0 : -1));
-        j5 j5Var2 = this.f9165i;
+        j5 j5Var2 = this.f9188i;
         if (i12 >= 0) {
             double d10 = T1;
-            if (Math.floor(d10) + 1.0d > this.f9162e && (j5Var = this.f9161c) != j5Var2) {
-                this.f9160b = j5Var;
+            if (Math.floor(d10) + 1.0d > this.f9185e && (j5Var = this.f9184c) != j5Var2) {
+                this.f9183b = j5Var;
                 j5 j5Var3 = this.d;
-                this.f9161c = j5Var3;
+                this.f9184c = j5Var3;
                 if (j5Var3 == j5Var2) {
                     d = null;
                 } else {
                     d = d(z10);
                 }
                 this.d = d;
-                this.f9162e = ((int) Math.floor(d10)) + 1;
+                this.f9185e = ((int) Math.floor(d10)) + 1;
             }
         }
-        if (this.f9161c == j5Var2) {
-            return Math.min(T1, this.f9162e + 0.5f);
+        if (this.f9184c == j5Var2) {
+            return Math.min(T1, this.f9185e + 0.5f);
         }
         return T1;
     }

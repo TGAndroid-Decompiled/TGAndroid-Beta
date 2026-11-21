@@ -2,38 +2,38 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.ConnectionsManager;
 public final class s10 implements Runnable {
-    public final f40 f51837a;
+    public final f40 f51814a;
 
     public s10(f40 f40Var) {
-        this.f51837a = f40Var;
+        this.f51814a = f40Var;
     }
 
     @Override
     public final void run() {
         int i7;
-        f40 f40Var = this.f51837a;
-        org.telegram.ui.ActionBar.n5 n5Var = f40Var.P1;
+        f40 f40Var = this.f51814a;
+        org.telegram.ui.ActionBar.m5 m5Var = f40Var.P1;
         m30 m30Var = f40Var.Q1;
         if (m30Var != null && !f40Var.J) {
             org.telegram.messenger.t3 t3Var = f40Var.V2;
             if (t3Var != null) {
-                i7 = t3Var.f26935b.schedule_date;
+                i7 = t3Var.f26963b.schedule_date;
             } else {
-                i7 = f40Var.f47435j4;
+                i7 = f40Var.f47503j4;
             }
             if (i7 != 0) {
-                int currentTime = i7 - ConnectionsManager.getInstance(f40Var.f47454o1.f23218a).getCurrentTime();
+                int currentTime = i7 - ConnectionsManager.getInstance(f40Var.f47522o1.f23246a).getCurrentTime();
                 if (currentTime >= 86400) {
                     m30Var.l(org.telegram.messenger.gd.G(Math.round(currentTime / 86400.0f), "Days", new Object[0]), false);
                 } else {
                     m30Var.l(org.telegram.messenger.g0.j0(Math.abs(currentTime)), false);
-                    if (currentTime < 0 && n5Var.getTag() == null) {
-                        n5Var.setTag(1);
-                        n5Var.l(org.telegram.messenger.gd.M0(2131743204, null), false);
+                    if (currentTime < 0 && m5Var.getTag() == null) {
+                        m5Var.setTag(1);
+                        m5Var.l(org.telegram.messenger.gd.N0(2131743198, null), false);
                     }
                 }
                 f40Var.R1.l(org.telegram.messenger.gd.W(3, i7, true), false);
-                org.telegram.messenger.g0.h3(f40Var.f47490v4, 1000L);
+                org.telegram.messenger.g0.h3(f40Var.f47558v4, 1000L);
             }
         }
     }

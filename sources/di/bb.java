@@ -7,69 +7,69 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.p80;
-import org.telegram.ui.Components.z41;
-public final class bb extends k41 {
-    public static final int f8576b = 0;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.o41;
+import org.telegram.ui.Components.r80;
+public final class bb extends n41 {
+    public static final int f8601b = 0;
 
     static {
-        k41.h(new k41());
+        n41.h(new n41());
     }
 
-    public static l41 i(int i7, int i10, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
+    public static o41 i(int i7, int i10, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
         String f10;
-        l41 K = l41.K(bb.class);
+        o41 K = o41.K(bb.class);
         K.d = i7;
         K.A = i10;
         long j3 = tL_starsTopupOption.stars;
         K.C = j3;
-        K.f37018m = gd.H(' ', "StarsCount", (int) j3);
+        K.f38098m = gd.H(' ', "StarsCount", (int) j3);
         if (tL_starsTopupOption.loadingStorePrice) {
             f10 = null;
         } else {
             f10 = org.telegram.messenger.r1.i().f(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
         }
-        K.f37019n = f10;
+        K.f38099n = f10;
         K.H = tL_starsTopupOption;
         return K;
     }
 
     @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         float f10;
         cb cbVar = (cb) view;
-        int i7 = l41Var.A;
-        CharSequence charSequence = l41Var.f37018m;
-        CharSequence charSequence2 = l41Var.f37019n;
-        org.telegram.ui.Components.n6 n6Var = cbVar.f8627e;
+        int i7 = o41Var.A;
+        CharSequence charSequence = o41Var.f38098m;
+        CharSequence charSequence2 = o41Var.f38099n;
+        org.telegram.ui.Components.o6 o6Var = cbVar.f8654e;
         TextView textView = cbVar.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        cbVar.f8629n = i7;
+        cbVar.f8656n = i7;
         if (!equals) {
-            cbVar.f8630r.e(true, i7);
+            cbVar.f8657r.e(true, i7);
         }
         textView.setText(charSequence);
         if (charSequence2 == null) {
-            if (cbVar.f8628f == null) {
+            if (cbVar.f8655f == null) {
                 SpannableString spannableString = new SpannableString("x");
-                cbVar.f8628f = spannableString;
-                spannableString.setSpan(new p80(org.telegram.messenger.g0.L(55.0f), n6Var), 0, cbVar.f8628f.length(), 33);
+                cbVar.f8655f = spannableString;
+                spannableString.setSpan(new r80(org.telegram.messenger.g0.L(55.0f), o6Var), 0, cbVar.f8655f.length(), 33);
             }
-            charSequence2 = cbVar.f8628f;
+            charSequence2 = cbVar.f8655f;
         }
-        n6Var.setText(charSequence2);
-        if (gd.f24213a0) {
+        o6Var.setText(charSequence2);
+        if (gd.f24241a0) {
             f10 = -1.0f;
         } else {
             f10 = 1.0f;
         }
         if (equals) {
-            textView.animate().translationX(f10 * (i7 - 1) * org.telegram.messenger.g0.L(2.66f)).setDuration(320L).setInterpolator(lr.h).start();
+            textView.animate().translationX(f10 * (i7 - 1) * org.telegram.messenger.g0.L(2.66f)).setDuration(320L).setInterpolator(nr.h).start();
         } else {
             textView.setTranslationX(f10 * (i7 - 1) * org.telegram.messenger.g0.L(2.66f));
         }
@@ -78,21 +78,21 @@ public final class bb extends k41 {
     }
 
     @Override
-    public final boolean c(l41 l41Var, l41 l41Var2) {
-        if (l41Var.A == l41Var2.A && l41Var.d == l41Var2.d && TextUtils.equals(l41Var.f37019n, l41Var2.f37019n)) {
+    public final boolean c(o41 o41Var, o41 o41Var2) {
+        if (o41Var.A == o41Var2.A && o41Var.d == o41Var2.d && TextUtils.equals(o41Var.f38099n, o41Var2.f38099n)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        return new cb(context, i6Var);
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        return new cb(context, h6Var);
     }
 
     @Override
-    public final boolean e(l41 l41Var, l41 l41Var2) {
-        if (l41Var.d == l41Var2.d) {
+    public final boolean e(o41 o41Var, o41 o41Var2) {
+        if (o41Var.d == o41Var2.d) {
             return true;
         }
         return false;

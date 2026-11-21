@@ -1,15 +1,31 @@
 package hi;
-public final class k implements Runnable {
-    public final int f14835a;
-    public final Object f14836b;
 
-    public k(Object obj, int i7) {
-        this.f14835a = i7;
-        this.f14836b = obj;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.ImageView;
+import org.telegram.ui.Components.mc;
+public final class k extends ImageView {
+    public final float f14843a;
+    public final mc f14844b;
+
+    public k(Context context) {
+        super(context);
+        this.f14844b = new mc(this);
+        this.f14843a = 0.2f;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: hi.k.run():void");
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        float a10 = this.f14844b.a(this.f14843a);
+        canvas.scale(a10, a10, getWidth() / 2.0f, getHeight() / 2.0f);
+        super.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        super.setPressed(z10);
+        this.f14844b.c(z10);
     }
 }

@@ -3,24 +3,24 @@ package fi;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.Utilities;
 public final class n8 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f12308a;
-    public final f9 f12309b;
+    public final int f12350a;
+    public final f9 f12351b;
 
     public n8(f9 f9Var, int i7) {
-        this.f12308a = i7;
-        this.f12309b = f9Var;
+        this.f12350a = i7;
+        this.f12351b = f9Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         z3 currentPeerView;
-        switch (this.f12308a) {
+        switch (this.f12350a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f9 f9Var = this.f12309b;
+                f9 f9Var = this.f12351b;
                 f9Var.V = floatValue;
                 f9Var.q();
-                t8 t8Var = f9Var.f11992s;
+                t8 t8Var = f9Var.f12033s;
                 if (t8Var != null) {
                     t8Var.invalidate();
                 }
@@ -32,10 +32,10 @@ public final class n8 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f9 f9Var2 = this.f12309b;
+                f9 f9Var2 = this.f12351b;
                 f9Var2.V = floatValue2;
-                u8 u8Var = f9Var2.f12001w;
-                if (u8Var != null && floatValue2 > 0.6f && v.f12626c && u8Var.f12627a) {
+                u8 u8Var = f9Var2.f12042w;
+                if (u8Var != null && floatValue2 > 0.6f && v.f12670c && u8Var.f12671a) {
                     u8Var.a(false);
                 }
                 c1 c1Var2 = f9Var2.B0;
@@ -43,7 +43,7 @@ public final class n8 implements ValueAnimator.AnimatorUpdateListener {
                     c1Var2.v((1.0f - f9Var2.W) * f9Var2.V);
                 }
                 f9Var2.q();
-                t8 t8Var2 = f9Var2.f11992s;
+                t8 t8Var2 = f9Var2.f12033s;
                 if (t8Var2 != null) {
                     t8Var2.invalidate();
                     return;
@@ -51,10 +51,10 @@ public final class n8 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f9 f9Var3 = this.f12309b;
-                f9Var3.f11953a0 = floatValue3;
-                f9Var3.f11964e0 = Utilities.i(f9Var3.f11953a0 / org.telegram.messenger.g0.L(200.0f), 1.0f, 0.0f);
-                v8 v8Var = f9Var3.f11983o0;
+                f9 f9Var3 = this.f12351b;
+                f9Var3.f11994a0 = floatValue3;
+                f9Var3.f12005e0 = Utilities.i(f9Var3.f11994a0 / org.telegram.messenger.g0.L(200.0f), 1.0f, 0.0f);
+                v8 v8Var = f9Var3.f12024o0;
                 if (v8Var == null) {
                     currentPeerView = null;
                 } else {
@@ -67,9 +67,9 @@ public final class n8 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f9 f9Var4 = this.f12309b;
-                f9Var4.f11967f0 = floatValue4;
-                f9Var4.f12001w.invalidate();
+                f9 f9Var4 = this.f12351b;
+                f9Var4.f12008f0 = floatValue4;
+                f9Var4.f12042w.invalidate();
                 return;
         }
     }

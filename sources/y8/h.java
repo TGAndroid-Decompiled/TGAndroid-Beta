@@ -6,12 +6,12 @@ import android.os.Parcelable;
 import c8.bc;
 public final class h extends r6.a {
     public static final Parcelable.Creator<h> CREATOR = new v(6);
-    public PendingIntent f61071a;
+    public PendingIntent f61112a;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        bc.k(parcel, 1, this.f61071a, i7);
+        bc.k(parcel, 1, this.f61112a, i7);
         bc.s(parcel, r10);
     }
 }

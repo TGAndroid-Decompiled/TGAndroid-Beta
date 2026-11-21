@@ -22,20 +22,20 @@ import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.f80;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.Components.nu0;
-import org.telegram.ui.Components.o80;
-import org.telegram.ui.Components.ox0;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.n80;
+import org.telegram.ui.Components.q80;
+import org.telegram.ui.Components.qu0;
+import org.telegram.ui.Components.qx0;
 import org.telegram.ui.xg0;
 import org.telegram.ui.yg0;
-public final class dv implements org.telegram.ui.Cells.u9, ox0 {
+public final class dv implements org.telegram.ui.Cells.u9, qx0 {
     public static Paint U;
     public final AtomicReference E;
-    public org.telegram.ui.Components.t5 F;
-    public final f80 G;
-    public f80 H;
-    public o80 I;
+    public org.telegram.ui.Components.u5 F;
+    public final h80 G;
+    public h80 H;
+    public q80 I;
     public n2.o0 J;
     public xr K;
     public boolean L;
@@ -43,23 +43,23 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
     public CharacterStyle N;
     public int O;
     public int P;
-    public org.telegram.ui.Components.x5 Q;
+    public org.telegram.ui.Components.y5 Q;
     public cu R;
     public final RectF S;
     public View T;
-    public final ev f23576a;
-    public final StaticLayout f23577b;
-    public int f23578c;
+    public final ev f23604a;
+    public final StaticLayout f23605b;
+    public int f23606c;
     public int d;
-    public int f23579e;
-    public final int f23580f;
+    public int f23607e;
+    public final int f23608f;
     public final int h;
-    public final int f23581n;
-    public boolean f23582r;
-    public final int f23583s;
-    public boolean f23584w;
-    public final ArrayList f23585x;
-    public final Stack f23586y;
+    public final int f23609n;
+    public boolean f23610r;
+    public final int f23611s;
+    public boolean f23612w;
+    public final ArrayList f23613x;
+    public final Stack f23614y;
 
     public dv(ev evVar, CharSequence charSequence, int i7) {
         this(evVar, charSequence, i7, Layout.Alignment.ALIGN_NORMAL);
@@ -74,25 +74,25 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         ?? obj = new Object();
         int i13 = i10 - i7;
         if (i13 > 0) {
-            org.telegram.ui.Components.x5[] x5VarArr = (org.telegram.ui.Components.x5[]) spanned.getSpans(i7, i10, org.telegram.ui.Components.x5.class);
+            org.telegram.ui.Components.y5[] y5VarArr = (org.telegram.ui.Components.y5[]) spanned.getSpans(i7, i10, org.telegram.ui.Components.y5.class);
             g6[] g6VarArr = (g6[]) spanned.getSpans(i7, i10, g6.class);
-            if (x5VarArr.length == 0 && g6VarArr.length == 0) {
+            if (y5VarArr.length == 0 && g6VarArr.length == 0) {
                 iArr = null;
             } else {
                 iArr = new int[i13];
             }
-            int length = x5VarArr.length;
+            int length = y5VarArr.length;
             int i14 = 0;
             while (i14 < length) {
                 int i15 = i14;
-                org.telegram.ui.Components.x5 x5Var = x5VarArr[i15];
-                int spanStart = spanned.getSpanStart(x5Var);
-                int min = Math.min(i10, spanned.getSpanEnd(x5Var));
+                org.telegram.ui.Components.y5 y5Var = y5VarArr[i15];
+                int spanStart = spanned.getSpanStart(y5Var);
+                int min = Math.min(i10, spanned.getSpanEnd(y5Var));
                 if (spanStart >= i7 && spanStart < i10 && min > spanStart) {
                     int i16 = spanStart - i7;
                     iArr[i16] = Math.max(iArr[i16], min);
                     i12 = i15;
-                    obj.f2945c = Math.max(obj.f2945c, x5Var.getSize(textPaint, spanned, spanStart, min, null) + 1);
+                    obj.f2957c = Math.max(obj.f2957c, y5Var.getSize(textPaint, spanned, spanStart, min, null) + 1);
                 } else {
                     i12 = i15;
                 }
@@ -104,7 +104,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                 if (spanStart2 >= i7 && spanStart2 < i10 && min2 > spanStart2) {
                     int i17 = spanStart2 - i7;
                     iArr[i17] = Math.max(iArr[i17], min2);
-                    obj.f2945c = Math.max(obj.f2945c, g6Var.getSize(textPaint, spanned, spanStart2, min2, null));
+                    obj.f2957c = Math.max(obj.f2957c, g6Var.getSize(textPaint, spanned, spanStart2, min2, null));
                 }
             }
             cu[] cuVarArr2 = (cu[]) spanned.getSpans(i7, i10, cu.class);
@@ -112,7 +112,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                 cuVarArr = null;
                 for (cu cuVar2 : cuVarArr2) {
                     int spanStart3 = spanned.getSpanStart(cuVar2);
-                    if (cuVar2.f23419a.f22946a.f23583s > 0 && spanStart3 >= i7 && spanStart3 < i10) {
+                    if (cuVar2.f23447a.f22974a.f23611s > 0 && spanStart3 >= i7 && spanStart3 < i10) {
                         if (cuVarArr == null) {
                             cuVarArr = new cu[i13];
                         }
@@ -132,15 +132,15 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         cuVar = cuVarArr[i19];
                     }
                     if (cuVar != null) {
-                        au auVar = cuVar.f23419a;
-                        dv dvVar = auVar.f22946a;
-                        dv dvVar2 = auVar.f22946a;
-                        if (dvVar.f23577b.getText() instanceof Spanned) {
-                            Spanned spanned2 = (Spanned) dvVar2.f23577b.getText();
-                            b7.d s5 = s(spanned2, 0, spanned2.length(), dvVar2.f23577b.getPaint());
-                            obj.f2943a += s5.f2943a;
-                            obj.f2944b += Math.max(1, s5.f2944b);
-                            obj.f2945c = Math.max(obj.f2945c, s5.f2945c);
+                        au auVar = cuVar.f23447a;
+                        dv dvVar = auVar.f22974a;
+                        dv dvVar2 = auVar.f22974a;
+                        if (dvVar.f23605b.getText() instanceof Spanned) {
+                            Spanned spanned2 = (Spanned) dvVar2.f23605b.getText();
+                            b7.d s5 = s(spanned2, 0, spanned2.length(), dvVar2.f23605b.getPaint());
+                            obj.f2955a += s5.f2955a;
+                            obj.f2956b += Math.max(1, s5.f2956b);
+                            obj.f2957c = Math.max(obj.f2957c, s5.f2957c);
                             i18 = Math.min(i10, spanned.getSpanEnd(cuVar));
                         }
                     }
@@ -150,13 +150,13 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         i11 = iArr[i19];
                     }
                     if (i11 > i18) {
-                        obj.f2943a++;
-                        obj.f2944b++;
+                        obj.f2955a++;
+                        obj.f2956b++;
                         i18 = i11;
                     } else {
                         int codePointAt = Character.codePointAt(spanned, i18);
                         if (!Character.isWhitespace(codePointAt)) {
-                            obj.f2944b++;
+                            obj.f2956b++;
                         }
                         i18 += Character.charCount(codePointAt);
                     }
@@ -168,12 +168,12 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
 
     @Override
     public final Layout a() {
-        return this.f23577b;
+        return this.f23605b;
     }
 
     @Override
     public final int b() {
-        return this.f23583s;
+        return this.f23611s;
     }
 
     @Override
@@ -190,31 +190,31 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         int i11;
         canvas.save();
         canvas.translate(-n(), 0.0f);
-        ev evVar = this.f23576a;
+        ev evVar = this.f23604a;
         boolean E = evVar.E();
-        TextPaint textPaint = evVar.f23786w;
+        TextPaint textPaint = evVar.f23814w;
         if (E) {
-            i7 = org.telegram.ui.ActionBar.n6.Wc;
+            i7 = org.telegram.ui.ActionBar.m6.Wc;
         } else {
-            i7 = org.telegram.ui.ActionBar.n6.Vc;
+            i7 = org.telegram.ui.ActionBar.m6.Vc;
         }
-        int w02 = org.telegram.ui.ActionBar.n6.w0(i7, evVar.D);
+        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, evVar.D);
         textPaint.setColor(w02);
         if (evVar.E()) {
-            i10 = org.telegram.ui.ActionBar.n6.Yc;
+            i10 = org.telegram.ui.ActionBar.m6.Yc;
         } else {
-            i10 = org.telegram.ui.ActionBar.n6.Xc;
+            i10 = org.telegram.ui.ActionBar.m6.Xc;
         }
-        textPaint.linkColor = org.telegram.ui.ActionBar.n6.w0(i10, evVar.D);
-        f80 f80Var = this.G;
-        if (f80Var != null) {
+        textPaint.linkColor = org.telegram.ui.ActionBar.m6.w0(i10, evVar.D);
+        h80 h80Var = this.G;
+        if (h80Var != null) {
             if (U == null) {
                 Paint paint = new Paint(1);
                 U = paint;
-                paint.setPathEffect(f80.c());
+                paint.setPathEffect(h80.c());
             }
-            U.setColor((evVar.f23788y.i() & 16777215) | 855638016);
-            canvas.drawPath(f80Var, U);
+            U.setColor((evVar.f23816y.i() & 16777215) | 855638016);
+            canvas.drawPath(h80Var, U);
         }
         if (view != null) {
             view2 = view;
@@ -225,57 +225,57 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         if (o0Var != null && o0Var.h(canvas) && view2 != null) {
             view2.invalidate();
         }
-        StaticLayout staticLayout = this.f23577b;
+        StaticLayout staticLayout = this.f23605b;
         AtomicReference atomicReference = this.E;
-        ArrayList arrayList = this.f23585x;
+        ArrayList arrayList = this.f23613x;
         xh.f.g(view2, false, w02, 0, atomicReference, 0, staticLayout, arrayList, canvas, false);
-        StaticLayout staticLayout2 = this.f23577b;
-        nu0.a(canvas, staticLayout2);
+        StaticLayout staticLayout2 = this.f23605b;
+        qu0.a(canvas, staticLayout2);
         if (!evVar.F()) {
-            org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, this.f23577b, this.F, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
+            org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, this.f23605b, this.F, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
         }
         float f10 = evVar.V;
         if (f10 > 0.0f) {
-            fj fjVar = evVar.f23768b;
-            if (!evVar.O && (fjVar == null || !mp.u1(evVar.f23767a).f25787v7.A(fjVar))) {
+            fj fjVar = evVar.f23796b;
+            if (!evVar.O && (fjVar == null || !mp.u1(evVar.f23795a).f25815v7.A(fjVar))) {
                 z10 = false;
             } else {
                 z10 = true;
             }
             if (this.I == null) {
-                o80 o80Var = new o80();
-                this.I = o80Var;
-                o80Var.D = true;
-                f80 f80Var2 = new f80(0);
-                this.H = f80Var2;
-                f80Var2.f38523c = true;
-                o80 o80Var2 = this.I;
-                o80Var2.f38033y = f80Var2;
-                o80Var2.k(5.0f);
-                this.I.f38013b = -1L;
+                q80 q80Var = new q80();
+                this.I = q80Var;
+                q80Var.D = true;
+                h80 h80Var2 = new h80(0);
+                this.H = h80Var2;
+                h80Var2.f39306c = true;
+                q80 q80Var2 = this.I;
+                q80Var2.f38840y = h80Var2;
+                q80Var2.k(5.0f);
+                this.I.f38820b = -1L;
                 this.H.reset();
                 this.H.d(staticLayout2, 0, 0.0f);
-                this.H.f35030n = false;
+                this.H.f35830n = false;
                 staticLayout2.getSelectionPath(0, staticLayout2.getText().length(), this.H);
-                f80 f80Var3 = this.H;
-                f80Var3.f35030n = true;
-                f80Var3.a();
+                h80 h80Var3 = this.H;
+                h80Var3.f35830n = true;
+                h80Var3.a();
                 this.I.l();
             }
             if (z10 && (this.I.d() || this.I.c())) {
-                o80 o80Var3 = this.I;
-                o80Var3.f38013b = -1L;
-                o80Var3.f38014c = -1L;
+                q80 q80Var3 = this.I;
+                q80Var3.f38820b = -1L;
+                q80Var3.f38821c = -1L;
             } else if (!z10 && !this.I.d() && !this.I.c()) {
                 this.I.a();
             }
             if (evVar.E()) {
-                i11 = org.telegram.ui.ActionBar.n6.Yc;
+                i11 = org.telegram.ui.ActionBar.m6.Yc;
             } else {
-                i11 = org.telegram.ui.ActionBar.n6.Xc;
+                i11 = org.telegram.ui.ActionBar.m6.Xc;
             }
-            int w03 = org.telegram.ui.ActionBar.n6.w0(i11, evVar.D);
-            this.I.g(org.telegram.ui.ActionBar.n6.r1(0.05f, w03), org.telegram.ui.ActionBar.n6.r1(0.15f, w03), org.telegram.ui.ActionBar.n6.r1(0.1f, w03), org.telegram.ui.ActionBar.n6.r1(0.3f, w03));
+            int w03 = org.telegram.ui.ActionBar.m6.w0(i11, evVar.D);
+            this.I.g(org.telegram.ui.ActionBar.m6.r1(0.05f, w03), org.telegram.ui.ActionBar.m6.r1(0.15f, w03), org.telegram.ui.ActionBar.m6.r1(0.1f, w03), org.telegram.ui.ActionBar.m6.r1(0.3f, w03));
             this.I.setAlpha((int) (f10 * 255.0f));
             this.I.draw(canvas);
         }
@@ -284,9 +284,9 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
 
     public final boolean e(cu cuVar, float f10, float f11) {
         float L = g0.L(8.0f);
-        RectF rectF = cuVar.f23421c;
+        RectF rectF = cuVar.f23449c;
         if (f10 < rectF.left - L || f10 >= rectF.right + L || f11 < rectF.top - L || f11 >= rectF.bottom + L) {
-            StaticLayout staticLayout = this.f23577b;
+            StaticLayout staticLayout = this.f23605b;
             cu cuVar2 = null;
             if (staticLayout.getText() instanceof Spanned) {
                 Spanned spanned = (Spanned) staticLayout.getText();
@@ -320,11 +320,11 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         View view2 = this.T;
         if (view2 == view && view2 != null) {
             this.T = null;
-            org.telegram.ui.Components.x5.release((View) null, this.F);
+            org.telegram.ui.Components.y5.release((View) null, this.F);
             this.F = null;
             n2.o0 o0Var = this.J;
             if (o0Var != null) {
-                o0Var.f21192c = null;
+                o0Var.f21220c = null;
             }
             cu[] p10 = p();
             if (p10 != null) {
@@ -337,7 +337,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
 
     @Override
     public final void g(int i7) {
-        this.f23579e = i7;
+        this.f23607e = i7;
     }
 
     @Override
@@ -347,7 +347,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
 
     @Override
     public final int getRow() {
-        return this.f23579e;
+        return this.f23607e;
     }
 
     @Override
@@ -360,7 +360,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
 
     @Override
     public final int getX() {
-        return this.f23578c;
+        return this.f23606c;
     }
 
     @Override
@@ -382,15 +382,15 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                 f(view2);
             }
             this.T = view;
-            if (this.f23576a.v && !this.f23584w) {
+            if (this.f23604a.v && !this.f23612w) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.F = org.telegram.ui.Components.x5.update(0, view, z10, this.F, this.f23577b);
+            this.F = org.telegram.ui.Components.y5.update(0, view, z10, this.F, this.f23605b);
             n2.o0 o0Var = this.J;
             if (o0Var != null) {
-                o0Var.f21192c = this.T;
+                o0Var.f21220c = this.T;
             }
             cu[] p10 = p();
             if (p10 != null) {
@@ -403,7 +403,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
 
     @Override
     public final void j(int i7) {
-        this.f23578c = i7;
+        this.f23606c = i7;
     }
 
     public final void k() {
@@ -423,55 +423,55 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         int i11;
         canvas.save();
         canvas.translate(-n(), 0.0f);
-        ev evVar = this.f23576a;
+        ev evVar = this.f23604a;
         boolean E = evVar.E();
-        TextPaint textPaint = evVar.f23786w;
+        TextPaint textPaint = evVar.f23814w;
         if (E) {
-            i10 = org.telegram.ui.ActionBar.n6.Wc;
+            i10 = org.telegram.ui.ActionBar.m6.Wc;
         } else {
-            i10 = org.telegram.ui.ActionBar.n6.Vc;
+            i10 = org.telegram.ui.ActionBar.m6.Vc;
         }
-        final int w02 = org.telegram.ui.ActionBar.n6.w0(i10, evVar.D);
+        final int w02 = org.telegram.ui.ActionBar.m6.w0(i10, evVar.D);
         textPaint.setColor(w02);
         if (evVar.E()) {
-            i11 = org.telegram.ui.ActionBar.n6.Yc;
+            i11 = org.telegram.ui.ActionBar.m6.Yc;
         } else {
-            i11 = org.telegram.ui.ActionBar.n6.Xc;
+            i11 = org.telegram.ui.ActionBar.m6.Xc;
         }
-        textPaint.linkColor = org.telegram.ui.ActionBar.n6.w0(i11, evVar.D);
+        textPaint.linkColor = org.telegram.ui.ActionBar.m6.w0(i11, evVar.D);
         final View view = this.T;
-        yg0.b(canvas, this.f23577b, i7, f10, new xg0() {
+        yg0.b(canvas, this.f23605b, i7, f10, new xg0() {
             @Override
             public final void a(Canvas canvas2) {
                 dv dvVar = dv.this;
                 AtomicReference atomicReference = dvVar.E;
-                StaticLayout staticLayout = dvVar.f23577b;
-                ArrayList arrayList = dvVar.f23585x;
+                StaticLayout staticLayout = dvVar.f23605b;
+                ArrayList arrayList = dvVar.f23613x;
                 xh.f.g(view, false, w02, 0, atomicReference, 0, staticLayout, arrayList, canvas2, false);
-                nu0.a(canvas2, dvVar.f23577b);
-                org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas2, dvVar.f23577b, dvVar.F, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
+                qu0.a(canvas2, dvVar.f23605b);
+                org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas2, dvVar.f23605b, dvVar.F, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
             }
         });
         canvas.restore();
     }
 
     public final int n() {
-        if (this.f23582r) {
+        if (this.f23610r) {
             return 0;
         }
-        return this.f23580f;
+        return this.f23608f;
     }
 
     public final boolean o(CharacterStyle characterStyle, qt qtVar) {
-        StaticLayout staticLayout = this.f23577b;
+        StaticLayout staticLayout = this.f23605b;
         if (staticLayout.getText() instanceof Spanned) {
             Spanned spanned = (Spanned) staticLayout.getText();
             int spanStart = spanned.getSpanStart(characterStyle);
             int spanEnd = spanned.getSpanEnd(characterStyle);
             if (spanStart >= 0 && spanEnd > spanStart) {
-                qtVar.f26447a = staticLayout;
-                qtVar.f26448b = spanStart;
-                qtVar.f26449c = spanEnd;
+                qtVar.f26475a = staticLayout;
+                qtVar.f26476b = spanStart;
+                qtVar.f26477c = spanEnd;
                 qtVar.d = staticLayout.getWidth();
                 return true;
             }
@@ -481,7 +481,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
     }
 
     public final cu[] p() {
-        StaticLayout staticLayout = this.f23577b;
+        StaticLayout staticLayout = this.f23605b;
         if (!(staticLayout.getText() instanceof Spanned)) {
             return null;
         }
@@ -490,11 +490,11 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
     }
 
     public final int q() {
-        return Math.max(0, this.f23581n - this.f23580f);
+        return Math.max(0, this.f23609n - this.f23608f);
     }
 
     public final int r() {
-        return Math.max(0, this.h - this.f23580f);
+        return Math.max(0, this.h - this.f23608f);
     }
 
     public final boolean t(MotionEvent motionEvent) {
@@ -508,9 +508,9 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         int actionMasked = motionEvent.getActionMasked();
         int n10 = n() + ((int) motionEvent.getX());
         int y10 = (int) motionEvent.getY();
-        ArrayList arrayList = this.f23585x;
-        ev evVar = this.f23576a;
-        StaticLayout staticLayout = this.f23577b;
+        ArrayList arrayList = this.f23613x;
+        ev evVar = this.f23604a;
+        StaticLayout staticLayout = this.f23605b;
         boolean z12 = true;
         int i7 = 0;
         if (actionMasked == 0) {
@@ -533,8 +533,8 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
             if (p10 != null) {
                 for (cu cuVar : p10) {
                     if (e(cuVar, n10, y10)) {
-                        au auVar = cuVar.f23419a;
-                        if (auVar.f22947b) {
+                        au auVar = cuVar.f23447a;
+                        if (auVar.f22975b) {
                             return true;
                         }
                         this.R = cuVar;
@@ -564,14 +564,14 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         this.O = spannable.getSpanStart(clickableSpan);
                         this.P = spannable.getSpanEnd(this.N);
                         this.L = false;
-                        l80 l80Var = new l80(this.N, evVar.D, f10, y10, 0);
-                        f80 b10 = l80Var.b();
+                        n80 n80Var = new n80(this.N, evVar.D, f10, y10, 0);
+                        h80 b10 = n80Var.b();
                         b10.d(staticLayout, this.O, 0.0f);
                         staticLayout.getSelectionPath(this.O, this.P, b10);
                         if (this.J == null) {
                             this.J = new n2.o0(this.T);
                         }
-                        this.J.b(l80Var, null);
+                        this.J.b(n80Var, null);
                         View view2 = this.T;
                         if (view2 != null) {
                             view2.invalidate();
@@ -586,7 +586,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         while (i11 < length) {
                             z11 = z12;
                             avVar = avVarArr[i11];
-                            if (TLObject.hasFlag(avVar.f22970b, 256)) {
+                            if (TLObject.hasFlag(avVar.f22998b, 256)) {
                                 break;
                             }
                             i11++;
@@ -606,7 +606,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                             while (true) {
                                 if (i13 < length2) {
                                     avVar3 = avVarArr2[i13];
-                                    if (TLObject.hasFlag(avVar3.f22970b, 256)) {
+                                    if (TLObject.hasFlag(avVar3.f22998b, 256)) {
                                         break;
                                     }
                                     i13++;
@@ -628,7 +628,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                             while (true) {
                                 if (i14 < length3) {
                                     avVar2 = avVarArr3[i14];
-                                    if (TLObject.hasFlag(avVar2.f22970b, 256)) {
+                                    if (TLObject.hasFlag(avVar2.f22998b, 256)) {
                                         break;
                                     }
                                     i14++;
@@ -646,14 +646,14 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         this.O = spanStart2;
                         this.P = spanEnd2;
                         this.L = false;
-                        l80 l80Var2 = new l80(avVar, evVar.D, f10, y10, 0);
-                        f80 b11 = l80Var2.b();
+                        n80 n80Var2 = new n80(avVar, evVar.D, f10, y10, 0);
+                        h80 b11 = n80Var2.b();
                         b11.d(staticLayout, spanStart2, 0.0f);
                         staticLayout.getSelectionPath(spanStart2, spanEnd2, b11);
                         if (this.J == null) {
                             this.J = new n2.o0(this.T);
                         }
-                        this.J.b(l80Var2, null);
+                        this.J.b(n80Var2, null);
                         View view3 = this.T;
                         if (view3 != null) {
                             view3.invalidate();
@@ -661,9 +661,9 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         u();
                         return z11;
                     }
-                    org.telegram.ui.Components.x5[] x5VarArr = (org.telegram.ui.Components.x5[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, org.telegram.ui.Components.x5.class);
-                    if (x5VarArr != null && x5VarArr.length > 0) {
-                        this.Q = x5VarArr[0];
+                    org.telegram.ui.Components.y5[] y5VarArr = (org.telegram.ui.Components.y5[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, org.telegram.ui.Components.y5.class);
+                    if (y5VarArr != null && y5VarArr.length > 0) {
+                        this.Q = y5VarArr[0];
                         return z11;
                     }
                 }
@@ -676,7 +676,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                     return true;
                 }
                 k();
-                this.R.f23419a.m(false);
+                this.R.f23447a.m(false);
                 this.R = null;
                 this.L = false;
                 return true;
@@ -686,7 +686,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                 k();
                 cu cuVar3 = this.R;
                 this.R = null;
-                cuVar3.f23419a.m(false);
+                cuVar3.f23447a.m(false);
                 if (!this.L) {
                     View view4 = this.T;
                     if (view4 != null) {
@@ -694,7 +694,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                     }
                     org.telegram.ui.Cells.r1 r1Var = evVar.E;
                     org.telegram.ui.Cells.m1 m1Var = evVar.F;
-                    TL_iv.textButton textbutton = cuVar3.f23420b;
+                    TL_iv.textButton textbutton = cuVar3.f23448b;
                     if (r1Var != null && m1Var != null) {
                         m1Var.k1(r1Var, textbutton);
                     }
@@ -709,7 +709,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                 float height = staticLayout.getHeight();
                 float sqrt = (float) Math.sqrt((height * height) + (width * width));
                 View view5 = this.T;
-                this.M.f60561q = new bv(this, view5, evVar);
+                this.M.f60602q = new bv(this, view5, evVar);
                 int size2 = arrayList.size();
                 int i15 = 0;
                 while (i15 < size2) {
@@ -735,8 +735,8 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                 this.L = false;
                 return true;
             } else {
-                org.telegram.ui.Components.x5 x5Var = this.Q;
-                if (x5Var == null) {
+                org.telegram.ui.Components.y5 y5Var = this.Q;
+                if (y5Var == null) {
                     return false;
                 }
                 this.Q = null;
@@ -747,7 +747,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                     if (view6 != null) {
                         view6.playSoundEffect(0);
                     }
-                    m1Var2.p0(x5Var);
+                    m1Var2.p0(y5Var);
                     return true;
                 }
                 return true;
@@ -757,7 +757,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
             this.Q = null;
             if (this.R != null) {
                 k();
-                this.R.f23419a.m(false);
+                this.R.f23447a.m(false);
                 this.R = null;
                 this.L = false;
             }
@@ -795,22 +795,22 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         av[] avVarArr2;
         cu[] cuVarArr;
         SpannableStringBuilder spannableStringBuilder;
-        Class<org.telegram.ui.Components.x5> cls;
+        Class<org.telegram.ui.Components.y5> cls;
         int i12;
         g6[] g6VarArr;
         av[] avVarArr3;
-        this.f23585x = new ArrayList();
-        this.f23586y = new Stack();
+        this.f23613x = new ArrayList();
+        this.f23614y = new Stack();
         this.E = new AtomicReference();
         this.S = new RectF();
-        this.f23576a = evVar;
-        TextPaint textPaint = evVar.f23786w;
+        this.f23604a = evVar;
+        TextPaint textPaint = evVar.f23814w;
         Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();
         boolean z11 = true;
         boolean z12 = false;
         if (charSequence instanceof Spanned) {
             for (av avVar : (av[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), av.class)) {
-                int i13 = avVar.f22970b & 15;
+                int i13 = avVar.f22998b & 15;
                 if (i13 >= 1 && i13 <= 6) {
                     TextPaint textPaint2 = new TextPaint(textPaint);
                     avVar.a(textPaint2);
@@ -824,18 +824,18 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         CharSequence n10 = j6.n(charSequence, fontMetricsInt, false, null, 0, z10 ? 0.85f : 1.0f, 0);
         if (n10 instanceof Spanned) {
             Spanned spanned = (Spanned) n10;
-            Class<org.telegram.ui.Components.x5> cls2 = org.telegram.ui.Components.x5.class;
-            if (((org.telegram.ui.Components.x5[]) spanned.getSpans(0, spanned.length(), cls2)).length != 0 || ((g6[]) spanned.getSpans(0, spanned.length(), g6.class)).length != 0 || ((cu[]) spanned.getSpans(0, spanned.length(), cu.class)).length != 0) {
+            Class<org.telegram.ui.Components.y5> cls2 = org.telegram.ui.Components.y5.class;
+            if (((org.telegram.ui.Components.y5[]) spanned.getSpans(0, spanned.length(), cls2)).length != 0 || ((g6[]) spanned.getSpans(0, spanned.length(), g6.class)).length != 0 || ((cu[]) spanned.getSpans(0, spanned.length(), cu.class)).length != 0) {
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(n10);
-                for (org.telegram.ui.Components.x5 x5Var : (org.telegram.ui.Components.x5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), cls2)) {
-                    x5Var.setPreserveFontMetrics(true);
+                for (org.telegram.ui.Components.y5 y5Var : (org.telegram.ui.Components.y5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), cls2)) {
+                    y5Var.setPreserveFontMetrics(true);
                 }
                 for (g6 g6Var : (g6[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), g6.class)) {
-                    g6Var.f24175e = true;
+                    g6Var.f24203e = true;
                 }
                 for (cu cuVar : (cu[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), cu.class)) {
-                    if (cuVar.f23419a.f22946a.f23583s > 0) {
-                        cuVar.f23422e = true;
+                    if (cuVar.f23447a.f22974a.f23611s > 0) {
+                        cuVar.f23450e = true;
                     }
                 }
                 int i14 = 0;
@@ -848,20 +848,20 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                     boolean z13 = indexOf >= 0 ? z11 : z12;
                     indexOf = z13 ? indexOf : spannableStringBuilder2.length();
                     b7.d s5 = s(spannableStringBuilder2, i14, indexOf, textPaint);
-                    int i15 = s5.f2944b;
-                    if (i15 <= 0 || s5.f2943a * 100 < i15 * 70 || (i12 = s5.f2945c) <= 0) {
+                    int i15 = s5.f2956b;
+                    if (i15 <= 0 || s5.f2955a * 100 < i15 * 70 || (i12 = s5.f2957c) <= 0) {
                         spannableStringBuilder = spannableStringBuilder2;
                         cls = cls2;
                     } else {
-                        org.telegram.ui.Components.x5[] x5VarArr = (org.telegram.ui.Components.x5[]) spannableStringBuilder2.getSpans(i14, indexOf, cls2);
-                        int length = x5VarArr.length;
+                        org.telegram.ui.Components.y5[] y5VarArr = (org.telegram.ui.Components.y5[]) spannableStringBuilder2.getSpans(i14, indexOf, cls2);
+                        int length = y5VarArr.length;
                         int i16 = 0;
                         while (i16 < length) {
-                            org.telegram.ui.Components.x5 x5Var2 = x5VarArr[i16];
-                            Class<org.telegram.ui.Components.x5> cls3 = cls2;
-                            int spanStart = spannableStringBuilder2.getSpanStart(x5Var2);
+                            org.telegram.ui.Components.y5 y5Var2 = y5VarArr[i16];
+                            Class<org.telegram.ui.Components.y5> cls3 = cls2;
+                            int spanStart = spannableStringBuilder2.getSpanStart(y5Var2);
                             if (spanStart >= i14 && spanStart < indexOf) {
-                                x5Var2.setMinimumLineHeight(i12);
+                                y5Var2.setMinimumLineHeight(i12);
                             }
                             i16++;
                             cls2 = cls3;
@@ -870,7 +870,7 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         for (g6 g6Var2 : (g6[]) spannableStringBuilder2.getSpans(i14, indexOf, g6.class)) {
                             int spanStart2 = spannableStringBuilder2.getSpanStart(g6Var2);
                             if (spanStart2 >= i14 && spanStart2 < indexOf) {
-                                g6Var2.f24176f = i12;
+                                g6Var2.f24204f = i12;
                             }
                         }
                         cu[] cuVarArr2 = (cu[]) spannableStringBuilder2.getSpans(i14, indexOf, cu.class);
@@ -880,8 +880,8 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                             cu cuVar2 = cuVarArr2[i17];
                             int spanStart3 = spannableStringBuilder2.getSpanStart(cuVar2);
                             SpannableStringBuilder spannableStringBuilder3 = spannableStringBuilder2;
-                            if (cuVar2.f23419a.f22946a.f23583s > 0 && spanStart3 >= i14 && spanStart3 < indexOf) {
-                                cuVar2.f23423f = i12;
+                            if (cuVar2.f23447a.f22974a.f23611s > 0 && spanStart3 >= i14 && spanStart3 < indexOf) {
+                                cuVar2.f23451f = i12;
                             }
                             i17++;
                             spannableStringBuilder2 = spannableStringBuilder3;
@@ -900,8 +900,8 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                 n10 = spannableStringBuilder;
             }
         }
-        int d = oi.b6.d(n10);
-        this.f23583s = d;
+        int d = oi.c6.d(n10);
+        this.f23611s = d;
         if (d == 0 && (n10 instanceof Spanned)) {
             Spanned spanned2 = (Spanned) n10;
             cu[] cuVarArr3 = (cu[]) spanned2.getSpans(0, n10.length(), cu.class);
@@ -918,22 +918,22 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         if (spanStart4 < 0 || spanEnd <= spanStart4) {
                             break;
                         }
-                        dv dvVar = cuVar3.f23419a.f22946a;
-                        if (dvVar.f23583s == 0) {
+                        dv dvVar = cuVar3.f23447a.f22974a;
+                        if (dvVar.f23611s == 0) {
                             break;
                         }
-                        spannableStringBuilder4.replace(spanStart4, spanEnd, dvVar.f23577b.getText());
+                        spannableStringBuilder4.replace(spanStart4, spanEnd, dvVar.f23605b.getText());
                         i18++;
                     } else {
-                        this.f23583s = oi.b6.d(spannableStringBuilder4);
+                        this.f23611s = oi.c6.d(spannableStringBuilder4);
                         break;
                     }
                 }
             }
         }
-        if (this.f23583s > 0 && (n10 instanceof Spanned)) {
+        if (this.f23611s > 0 && (n10 instanceof Spanned)) {
             for (av avVar2 : (av[]) ((Spanned) n10).getSpans(0, n10.length(), av.class)) {
-                if ((avVar2.f22970b & 15) == 14) {
+                if ((avVar2.f22998b & 15) == 14) {
                     avVar2.d = true;
                 }
             }
@@ -941,39 +941,39 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
         if (n10 instanceof Spanned) {
             av[] avVarArr4 = (av[]) ((Spanned) n10).getSpans(0, n10.length(), av.class);
             int length4 = avVarArr4.length;
-            for (int i19 = 0; i19 < length4 && (avVarArr4[i19].f22970b & 15) == 0; i19++) {
+            for (int i19 = 0; i19 < length4 && (avVarArr4[i19].f22998b & 15) == 0; i19++) {
             }
         }
-        this.f23577b = fj.g5(n10, evVar.f23786w, i7, f10, 0.0f, false, alignment);
-        this.f23580f = i7;
+        this.f23605b = fj.g5(n10, evVar.f23814w, i7, f10, 0.0f, false, alignment);
+        this.f23608f = i7;
         this.h = 0;
-        for (int i20 = 0; i20 < this.f23577b.getLineCount(); i20++) {
-            this.f23580f = Math.min(this.f23580f, (int) Math.floor(this.f23577b.getLineLeft(i20)));
-            this.h = Math.max(this.h, (int) Math.ceil(this.f23577b.getLineRight(i20)));
+        for (int i20 = 0; i20 < this.f23605b.getLineCount(); i20++) {
+            this.f23608f = Math.min(this.f23608f, (int) Math.floor(this.f23605b.getLineLeft(i20)));
+            this.h = Math.max(this.h, (int) Math.ceil(this.f23605b.getLineRight(i20)));
         }
-        this.f23581n = 0;
-        if (this.f23577b.getLineCount() > 0) {
-            StaticLayout staticLayout = this.f23577b;
-            this.f23581n = (int) Math.ceil(staticLayout.getLineRight(staticLayout.getLineCount() - 1));
+        this.f23609n = 0;
+        if (this.f23605b.getLineCount() > 0) {
+            StaticLayout staticLayout = this.f23605b;
+            this.f23609n = (int) Math.ceil(staticLayout.getLineRight(staticLayout.getLineCount() - 1));
         }
-        f80 f80Var = null;
-        xh.f.c(null, this.f23577b, this.f23586y, this.f23585x);
-        if (this.f23577b.getText() instanceof Spanned) {
-            Spanned spanned3 = (Spanned) this.f23577b.getText();
+        h80 h80Var = null;
+        xh.f.c(null, this.f23605b, this.f23614y, this.f23613x);
+        if (this.f23605b.getText() instanceof Spanned) {
+            Spanned spanned3 = (Spanned) this.f23605b.getText();
             for (av avVar3 : (av[]) spanned3.getSpans(0, spanned3.length(), av.class)) {
-                int i21 = avVar3.f22970b;
+                int i21 = avVar3.f22998b;
                 if (TLObject.hasFlag(i21, 8192)) {
                     int spanStart5 = spanned3.getSpanStart(avVar3);
                     int spanEnd2 = spanned3.getSpanEnd(avVar3);
                     if (spanStart5 >= 0 && spanEnd2 > spanStart5) {
-                        if (f80Var == null) {
+                        if (h80Var == null) {
                             i10 = 0;
-                            f80Var = new f80(0);
-                            f80Var.f35030n = false;
+                            h80Var = new h80(0);
+                            h80Var.f35830n = false;
                         } else {
                             i10 = 0;
                         }
-                        f80Var.d(this.f23577b, spanStart5, 0.0f);
+                        h80Var.d(this.f23605b, spanStart5, 0.0f);
                         if (TLObject.hasFlag(i21, 4096)) {
                             L = -g0.L(6.0f);
                         } else {
@@ -984,14 +984,14 @@ public final class dv implements org.telegram.ui.Cells.u9, ox0 {
                         } else {
                             i11 = i10;
                         }
-                        f80Var.f35031o = i11;
-                        this.f23577b.getSelectionPath(spanStart5, spanEnd2, f80Var);
+                        h80Var.f35831o = i11;
+                        this.f23605b.getSelectionPath(spanStart5, spanEnd2, h80Var);
                     }
                 }
             }
-            if (f80Var != null) {
-                f80Var.f35030n = true;
-                this.G = f80Var;
+            if (h80Var != null) {
+                h80Var.f35830n = true;
+                this.G = h80Var;
             }
         }
     }

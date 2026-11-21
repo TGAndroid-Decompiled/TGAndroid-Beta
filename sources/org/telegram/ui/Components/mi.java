@@ -1,54 +1,195 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.TextView;
-public final class mi extends ni {
-    public int f37515b;
-    public final si f37516c;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+public abstract class mi extends FrameLayout {
+    public final org.telegram.ui.ActionBar.h6 f37520a;
+    public final ui f37521b;
+    public ek0 f37522c;
+    public ek0 d;
+    public int f37523e;
+    public boolean f37524f;
+    public boolean h;
 
-    public mi(si siVar, Context context) {
+    public mi(Context context, org.telegram.ui.ActionBar.h6 h6Var, ui uiVar) {
         super(context);
-        this.f37516c = siVar;
-        setWillNotDraw(false);
-        setFocusable(true);
-        int i7 = si.I4;
-        org.telegram.ui.ActionBar.i6 i6Var = siVar.J0;
-        qh.b bVar = new qh.b(context);
-        bVar.d = i6Var;
-        bVar.R = true;
-        TextView textView = bVar.f56156a;
-        textView.setTextSize(1, 11.0f);
-        textView.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
-        bVar.b(false);
-        bVar.f56157b.setLayoutParams(c8.ma.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
-        bVar.f56165x = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Tl, i6Var);
-        bVar.f56163s = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Rl, i6Var);
-        bVar.f56164w = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Sl, i6Var);
-        bVar.a();
-        this.f37793a = bVar;
-        addView(bVar, c8.ma.c(-1.0f, -1));
+        this.f37520a = h6Var;
+        this.f37521b = uiVar;
     }
 
-    public final void a(int i7, String str, qh.a aVar) {
-        this.f37793a.setText(str);
-        this.f37793a.setTabAnimation(aVar);
-        this.f37515b = i7;
-    }
+    public abstract void B(int i7, int i10);
 
-    @Override
-    public final boolean hasOverlappingRendering() {
+    public boolean G(int i7) {
         return false;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        boolean z10;
-        super.onAttachedToWindow();
-        if (this.f37515b == this.f37516c.U2) {
-            z10 = true;
+    public boolean M(boolean z10, int i7, int i10, long j3, boolean z11) {
+        return false;
+    }
+
+    public boolean N() {
+        return !(this instanceof ml);
+    }
+
+    public boolean O() {
+        return true;
+    }
+
+    public boolean b() {
+        return true;
+    }
+
+    public boolean c() {
+        return true;
+    }
+
+    public boolean e() {
+        return this instanceof zk;
+    }
+
+    public boolean f() {
+        return this instanceof zk;
+    }
+
+    public boolean g() {
+        return false;
+    }
+
+    public int getButtonsHideOffset() {
+        float f10;
+        if (j() != 0) {
+            f10 = 12.0f;
         } else {
-            z10 = false;
+            f10 = 17.0f;
         }
-        this.f37793a.f(z10, false);
+        return org.telegram.messenger.g0.L(f10);
+    }
+
+    public int getCurrentItemTop() {
+        return 0;
+    }
+
+    public int getCustomActionBarBackground() {
+        return 0;
+    }
+
+    public int getCustomBackground() {
+        return 0;
+    }
+
+    public int getFirstOffset() {
+        return 0;
+    }
+
+    public int getListTopPadding() {
+        return 0;
+    }
+
+    public int getSelectedItemsCount() {
+        return 0;
+    }
+
+    public ArrayList<org.telegram.ui.ActionBar.v6> getThemeDescriptions() {
+        return null;
+    }
+
+    public boolean h() {
+        return this instanceof zk;
+    }
+
+    public boolean i() {
+        return false;
+    }
+
+    public int j() {
+        return 0;
+    }
+
+    public boolean k() {
+        return false;
+    }
+
+    public void n(float f10, float f11) {
+        m(f10);
+    }
+
+    public boolean o(MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean q() {
+        return false;
+    }
+
+    public boolean s() {
+        return true;
+    }
+
+    public void setBlur3Capture(ek0 ek0Var) {
+        int i7 = ui.I4;
+        this.f37521b.Y0.b(ek0Var);
+        this.f37522c = ek0Var;
+    }
+
+    public void E(int i7) {
+    }
+
+    public void I(mi miVar) {
+    }
+
+    public void a(CharSequence charSequence) {
+    }
+
+    public void m(float f10) {
+    }
+
+    public void r(int i7) {
+    }
+
+    public void v(float f10) {
+    }
+
+    public void w(int i7) {
+    }
+
+    public void A() {
+    }
+
+    public void C() {
+    }
+
+    public void J() {
+    }
+
+    public void K() {
+    }
+
+    public void d() {
+    }
+
+    public void l() {
+    }
+
+    public void p() {
+    }
+
+    public void t() {
+    }
+
+    public void u() {
+    }
+
+    public void x() {
+    }
+
+    public void y() {
+    }
+
+    public void F(float f10, float f11) {
+    }
+
+    public void z(int i7, boolean z10) {
     }
 }

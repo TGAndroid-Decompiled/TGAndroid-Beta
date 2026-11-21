@@ -2,8 +2,8 @@ package org.telegram.messenger.voip;
 
 import android.text.TextUtils;
 import android.util.LongSparseArray;
-import bi.k2;
-import di.p2;
+import bi.o2;
+import di.q2;
 import j$.util.DesugarArrays;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import oi.s2;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.j10;
@@ -275,15 +274,15 @@ public class ConferenceCall {
         VoIPService sharedInstance;
         t3 t3Var;
         TLRPC.GroupCall groupCall;
-        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (t3Var = sharedInstance.groupCall) != null && (groupCall = t3Var.f26935b) != null && groupCall.f28413id == this.groupCall.f28413id) {
-            updateParticipants(t3Var.f26937e, false);
-            sharedInstance.groupCall.f26943l.clear();
+        if (this.groupCall != null && (sharedInstance = VoIPService.getSharedInstance()) != null && (t3Var = sharedInstance.groupCall) != null && (groupCall = t3Var.f26963b) != null && groupCall.f28441id == this.groupCall.f28441id) {
+            updateParticipants(t3Var.f26965e, false);
+            sharedInstance.groupCall.f26971l.clear();
             t3 t3Var2 = sharedInstance.groupCall;
-            t3Var2.f26943l.addAll(sharedInstance.conference.getShadyLeftParticipants(t3Var2.f26937e));
-            sharedInstance.groupCall.f26944m.clear();
+            t3Var2.f26971l.addAll(sharedInstance.conference.getShadyLeftParticipants(t3Var2.f26965e));
+            sharedInstance.groupCall.f26972m.clear();
             t3 t3Var3 = sharedInstance.groupCall;
-            t3Var3.f26944m.addAll(sharedInstance.conference.getShadyJoiningParticipants(t3Var3.f26937e));
-            ks.f(this.currentAccount).k(ks.f25213w2, 0L, Long.valueOf(this.groupCall.f28413id), Boolean.FALSE);
+            t3Var3.f26972m.addAll(sharedInstance.conference.getShadyJoiningParticipants(t3Var3.f26965e));
+            ks.f(this.currentAccount).k(ks.f25241w2, 0L, Long.valueOf(this.groupCall.f28441id), Boolean.FALSE);
         }
     }
 
@@ -315,7 +314,7 @@ public class ConferenceCall {
     }
 
     public static String lambda$poll$9(CallParticipant callParticipant) {
-        return "[" + callParticipant.user_id + "]: " + n5.l(j10.f24770t0, callParticipant.user_id);
+        return "[" + callParticipant.user_id + "]: " + n5.l(j10.f24798t0, callParticipant.user_id);
     }
 
     public void lambda$processUpdates$4(TLObject tLObject) {
@@ -338,7 +337,7 @@ public class ConferenceCall {
     }
 
     public void lambda$requestLastBlock$3(long j3, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
-        org.telegram.messenger.g0.g3(new k2(this, j3, tLObject, tL_error, runnable, 8));
+        org.telegram.messenger.g0.g3(new o2(this, j3, tLObject, tL_error, runnable, 8));
     }
 
     public void lambda$updateParticipants$10(long j3, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -404,7 +403,7 @@ public class ConferenceCall {
                 z10 = true;
             }
         }
-        Utilities.d.c(new s2(10, this, updates));
+        Utilities.d.c(new oi.t(12, this, updates));
         return z10;
     }
 
@@ -481,11 +480,11 @@ public class ConferenceCall {
             if (groupCall == null) {
                 a8.b("[tde2e] received updateGroupCallChainBlocks but we dont have groupcall yet!");
                 return false;
-            } else if (tL_updateGroupCallChainBlocks.call.f28420id != groupCall.f28413id) {
+            } else if (tL_updateGroupCallChainBlocks.call.f28448id != groupCall.f28441id) {
                 StringBuilder sb2 = new StringBuilder("[tde2e] received updateGroupCallChainBlocks for ");
-                sb2.append(tL_updateGroupCallChainBlocks.call.f28420id);
+                sb2.append(tL_updateGroupCallChainBlocks.call.f28448id);
                 sb2.append(" but we have ");
-                i5.c.v(this.groupCall.f28413id, sb2);
+                i5.c.v(this.groupCall.f28441id, sb2);
                 return false;
             } else {
                 StringBuilder sb3 = new StringBuilder("[tde2e] received update with ");
@@ -824,7 +823,7 @@ public class ConferenceCall {
         getgroupcallchainblocks.sub_chain_id = 0;
         getgroupcallchainblocks.offset = -1;
         getgroupcallchainblocks.limit = 1;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new p2(this, currentTimeMillis, runnable, 4));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new q2(this, currentTimeMillis, runnable, 4));
     }
 
     public void reset() {

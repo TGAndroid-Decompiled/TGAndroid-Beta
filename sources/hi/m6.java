@@ -1,37 +1,18 @@
 package hi;
 
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.gd;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.bn;
-public final class m6 extends n6 {
-    public final TLRPC.Chat f15030b;
+public abstract class m6 {
+    public final String f15022a;
 
-    public m6(String str, TLRPC.Chat chat) {
-        super(str);
-        this.f15030b = chat;
+    public m6(String str) {
+        this.f15022a = str;
     }
 
-    @Override
-    public final String a() {
-        return gd.M0(2131754819, null);
-    }
+    public abstract String a();
 
-    @Override
-    public final String b() {
-        return this.f15030b.title;
-    }
+    public abstract String b();
 
-    @Override
-    public final void c(org.telegram.ui.ActionBar.h2 h2Var) {
-        h2Var.presentFragment(bn.ua(-this.f15030b.f28403id));
-    }
+    public abstract void c(org.telegram.ui.ActionBar.g2 g2Var);
 
-    @Override
-    public final void d(ImageReceiver imageReceiver) {
-        org.telegram.ui.Components.b9 b9Var = new org.telegram.ui.Components.b9((org.telegram.ui.ActionBar.i6) null);
-        TLRPC.Chat chat = this.f15030b;
-        b9Var.q(chat);
-        imageReceiver.i0(chat, b9Var, null);
-    }
+    public abstract void d(ImageReceiver imageReceiver);
 }

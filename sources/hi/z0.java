@@ -8,24 +8,24 @@ import org.telegram.messenger.tr;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.tl.TL_account;
 public final class z0 implements Runnable {
-    public final int f15796a;
-    public final tr f15797b;
-    public final ArrayList f15798c;
+    public final int f15825a;
+    public final tr f15826b;
+    public final ArrayList f15827c;
 
     public z0(tr trVar, ArrayList arrayList, int i7) {
-        this.f15796a = i7;
-        this.f15797b = trVar;
-        this.f15798c = arrayList;
+        this.f15825a = i7;
+        this.f15826b = trVar;
+        this.f15827c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f15796a) {
+        switch (this.f15825a) {
             case 0:
-                tr trVar = this.f15797b;
-                ArrayList arrayList = this.f15798c;
+                tr trVar = this.f15826b;
+                ArrayList arrayList = this.f15827c;
                 try {
-                    SQLiteDatabase sQLiteDatabase = trVar.f27054b;
+                    SQLiteDatabase sQLiteDatabase = trVar.f27082b;
                     if (sQLiteDatabase != null) {
                         sQLiteDatabase.executeFast("DELETE FROM story_drafts WHERE id IN (" + TextUtils.join(", ", arrayList) + ")").stepThis().dispose();
                         return;
@@ -36,12 +36,12 @@ public final class z0 implements Runnable {
                     return;
                 }
             case 1:
-                tr trVar2 = this.f15797b;
-                ArrayList arrayList2 = this.f15798c;
+                tr trVar2 = this.f15826b;
+                ArrayList arrayList2 = this.f15827c;
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        SQLiteDatabase sQLiteDatabase2 = trVar2.f27054b;
+                        SQLiteDatabase sQLiteDatabase2 = trVar2.f27082b;
                         sQLiteDatabase2.executeFast("DELETE FROM business_links").stepThis().dispose();
                         sQLitePreparedStatement = sQLiteDatabase2.executeFast("REPLACE INTO business_links VALUES(?, ?)");
                         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
@@ -71,10 +71,10 @@ public final class z0 implements Runnable {
                     throw th2;
                 }
             default:
-                tr trVar3 = this.f15797b;
-                ArrayList arrayList3 = this.f15798c;
+                tr trVar3 = this.f15826b;
+                ArrayList arrayList3 = this.f15827c;
                 try {
-                    SQLiteDatabase sQLiteDatabase3 = trVar3.f27054b;
+                    SQLiteDatabase sQLiteDatabase3 = trVar3.f27082b;
                     String join = TextUtils.join(", ", arrayList3);
                     sQLiteDatabase3.executeFast("DELETE FROM quick_replies_messages WHERE topic_id IN (" + join + ")").stepThis().dispose();
                     return;

@@ -1,41 +1,41 @@
 package org.telegram.messenger;
 public final class ko implements fs {
-    public final int f25061a;
-    public final int f25062b;
-    public final int f25063c;
+    public final int f25089a;
+    public final int f25090b;
+    public final int f25091c;
     public final long d;
-    public final ap f25064e;
-    public final mp f25065f;
+    public final ap f25092e;
+    public final mp f25093f;
 
     public ko(mp mpVar, int i7, int i10, int i11, long j3, ap apVar) {
-        this.f25065f = mpVar;
-        this.f25061a = i7;
-        this.f25062b = i10;
-        this.f25063c = i11;
+        this.f25093f = mpVar;
+        this.f25089a = i7;
+        this.f25090b = i10;
+        this.f25091c = i11;
         this.d = j3;
-        this.f25064e = apVar;
+        this.f25092e = apVar;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         int i11 = ks.I;
-        ap apVar = this.f25064e;
-        int i12 = this.f25061a;
-        mp mpVar = this.f25065f;
+        ap apVar = this.f25092e;
+        int i12 = this.f25089a;
+        mp mpVar = this.f25093f;
         int i13 = ks.H;
         if (i7 == i13 && ((Integer) objArr[0]).intValue() == i12) {
             int intValue = ((Integer) objArr[1]).intValue();
             boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
             boolean booleanValue2 = ((Boolean) objArr[3]).booleanValue();
             int intValue2 = ((Integer) objArr[4]).intValue();
-            int i14 = this.f25062b;
+            int i14 = this.f25090b;
             if (intValue < i14 / 2 && !booleanValue2 && booleanValue) {
-                int i15 = this.f25063c;
+                int i15 = this.f25091c;
                 if (i15 != 0) {
-                    mpVar.f3(this.d, 0L, false, i14, i15, 0, false, 0, this.f25061a, 3, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
+                    mpVar.f3(this.d, 0L, false, i14, i15, 0, false, 0, this.f25089a, 3, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
                     return;
                 } else {
-                    mpVar.f3(this.d, 0L, false, i14, i15, 0, false, 0, this.f25061a, 2, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
+                    mpVar.f3(this.d, 0L, false, i14, i15, 0, false, 0, this.f25089a, 2, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
                     return;
                 }
             }

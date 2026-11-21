@@ -1,5 +1,5 @@
 package org.telegram.ui.Wallet;
-public final class j4 extends bi.f3 {
+public final class j4 extends bi.j3 {
     public final org.telegram.ui.Cells.v0 E;
 
     public j4(org.telegram.ui.Cells.v0 v0Var, org.telegram.ui.Cells.v0 v0Var2) {

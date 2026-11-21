@@ -1,23 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.view.animation.OvershootInterpolator;
-public abstract class q6 {
-    public static final OvershootInterpolator f38711a = new OvershootInterpolator(1.9f);
-    public static final o6 f38712b = new o6("alpha", 0);
-    public static final org.telegram.ui.Cells.p8 f38713c;
-    public static final o6 d;
-    public static final o6 f38714e;
-    public static final org.telegram.ui.Cells.p8 f38715f;
-    public static final org.telegram.ui.Cells.p8 f38716g;
-    public static final org.telegram.ui.Cells.p8 h;
+import android.util.Property;
+public abstract class q6 extends Property {
+    public final int f38798a;
 
-    static {
-        new o6("color", 1);
-        f38713c = new org.telegram.ui.Cells.p8("currentAlpha", 4);
-        d = new o6("alpha", 2);
-        f38714e = new o6("alpha", 3);
-        f38715f = new org.telegram.ui.Cells.p8("animationProgress", 5);
-        f38716g = new org.telegram.ui.Cells.p8("animationValue", 6);
-        h = new org.telegram.ui.Cells.p8("clipProgress", 7);
+    public q6(String str, int i7) {
+        super(Float.class, str);
+        this.f38798a = i7;
+        switch (i7) {
+            case 1:
+                super(Integer.class, str);
+                return;
+            default:
+                return;
+        }
+    }
+
+    public void a(Object obj, Float f10) {
+        c(obj, f10.floatValue());
+    }
+
+    public abstract void b(int i7, Object obj);
+
+    public abstract void c(Object obj, float f10);
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        switch (this.f38798a) {
+            case 0:
+                c(obj, ((Float) obj2).floatValue());
+                return;
+            default:
+                b(((Integer) obj2).intValue(), obj);
+                return;
+        }
     }
 }

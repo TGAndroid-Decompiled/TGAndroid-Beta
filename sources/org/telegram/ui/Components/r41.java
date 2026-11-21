@@ -1,41 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
+import android.graphics.Typeface;
 import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class r41 extends URLSpan {
-    public final dz0 f39038a;
-    public boolean f39039b;
+import android.text.style.MetricAffectingSpan;
+public final class r41 extends MetricAffectingSpan {
+    public final CharSequence f39062a;
+    public final int f39063b;
+    public final int f39064c;
+    public final byte d;
+    public final fz0 f39065e;
 
-    public r41(String str, dz0 dz0Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f39038a = dz0Var;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        if (this.f39039b && (view.getContext() instanceof LaunchActivity)) {
-            ((LaunchActivity) view.getContext()).X0 = true;
-        }
-        vf.c.q(view.getContext(), Uri.parse(getURL()), true, true);
+    public r41(CharSequence charSequence, int i7, int i10, byte b10, fz0 fz0Var) {
+        this.f39062a = charSequence;
+        this.f39063b = i7;
+        this.f39064c = i10;
+        this.d = b10;
+        this.f39065e = fz0Var;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        dz0 dz0Var = this.f39038a;
-        if (dz0Var != null) {
-            dz0Var.a(textPaint);
-            if (textPaint.linkColor == color) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            textPaint.setUnderlineText(z10);
+        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.bz.W0 - 1));
+        byte b10 = this.d;
+        if (b10 == 2) {
+            textPaint.setColor(-1);
+        } else if (b10 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Wc, false));
+        } else {
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Vc, false));
+        }
+        fz0 fz0Var = this.f39065e;
+        if (fz0Var != null) {
+            fz0Var.a(textPaint);
+            return;
+        }
+        textPaint.setTypeface(Typeface.MONOSPACE);
+        textPaint.setUnderlineText(false);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.bz.W0 - 1));
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        fz0 fz0Var = this.f39065e;
+        if (fz0Var != null) {
+            fz0Var.a(textPaint);
+        } else {
+            textPaint.setTypeface(Typeface.MONOSPACE);
         }
     }
 }

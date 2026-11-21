@@ -1,36 +1,17 @@
 package fi;
+public final class l4 implements Runnable {
+    public final int f12259a;
+    public final Object f12260b;
+    public final Object f12261c;
 
-import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.ui.Components.rl0;
-public final class l4 extends rl0 {
-    public di.w2 f12217f;
-    public final a5 h;
-
-    public l4(a5 a5Var, Context context, b bVar) {
-        super(context, 13.0f, bVar);
-        this.h = a5Var;
+    public l4(int i7, Object obj, Object obj2) {
+        this.f12259a = i7;
+        this.f12260b = obj;
+        this.f12261c = obj2;
     }
 
     @Override
-    public final void a(String str) {
-        di.w2 w2Var = this.f12217f;
-        if (w2Var != null) {
-            org.telegram.messenger.g0.r(w2Var);
-        }
-        this.f12217f = new di.w2(28, this, str);
-        if (!TextUtils.isEmpty(str)) {
-            org.telegram.messenger.g0.h3(this.f12217f, 300L);
-        } else {
-            this.f12217f.run();
-        }
-        if (this.f12217f != null) {
-            a5 a5Var = this.h;
-            if (!a5Var.R) {
-                a5Var.R = true;
-                a5Var.f11734x.E();
-                a5Var.f11735y.h1(0, -a5Var.f11731r.getPaddingTop());
-            }
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: fi.l4.run():void");
     }
 }

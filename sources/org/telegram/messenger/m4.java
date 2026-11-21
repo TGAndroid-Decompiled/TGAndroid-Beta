@@ -6,29 +6,29 @@ import android.provider.ContactsContract;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class m4 implements Runnable {
-    public final int f25520a;
-    public final i5 f25521b;
+    public final int f25548a;
+    public final i5 f25549b;
 
     public m4(i5 i5Var, int i7) {
-        this.f25520a = i7;
-        this.f25521b = i5Var;
+        this.f25548a = i7;
+        this.f25549b = i5Var;
     }
 
     private final void a() {
-        i5 i5Var = this.f25521b;
-        if (i5Var.f24567f0.isEmpty() && !i5Var.h) {
+        i5 i5Var = this.f25549b;
+        if (i5Var.f24595f0.isEmpty() && !i5Var.h) {
             i5Var.A(0L, true);
             return;
         }
-        synchronized (i5Var.f24561c) {
-            i5Var.f24559b = false;
+        synchronized (i5Var.f24589c) {
+            i5Var.f24587b = false;
         }
     }
 
     private final void b() {
-        i5 i5Var = this.f25521b;
-        synchronized (i5Var.f24561c) {
-            i5Var.f24559b = false;
+        i5 i5Var = this.f25549b;
+        synchronized (i5Var.f24589c) {
+            i5Var.f24587b = false;
         }
         i5Var.getNotificationCenter().k(ks.O, new Object[0]);
     }
@@ -36,10 +36,10 @@ public final class m4 implements Runnable {
     @Override
     public final void run() {
         TLRPC.User f10;
-        switch (this.f25520a) {
+        switch (this.f25548a) {
             case 0:
-                i5 i5Var = this.f25521b;
-                AccountManager accountManager = AccountManager.get(t0.f26913b);
+                i5 i5Var = this.f25549b;
+                AccountManager accountManager = AccountManager.get(t0.f26941b);
                 try {
                     Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
                     for (int i7 = 0; i7 < accountsByType.length; i7++) {
@@ -48,9 +48,9 @@ public final class m4 implements Runnable {
                         while (true) {
                             if (i10 < 4) {
                                 if (j10.i(i10).f() != null) {
-                                    if (account.name.equals("" + f10.f28552id)) {
+                                    if (account.name.equals("" + f10.f28580id)) {
                                         if (i10 == i5Var.currentAccount) {
-                                            i5Var.f24557a = account;
+                                            i5Var.f24585a = account;
                                         }
                                     }
                                 }
@@ -66,19 +66,19 @@ public final class m4 implements Runnable {
                 } catch (Throwable unused2) {
                 }
                 if (i5Var.getUserConfig().p()) {
-                    synchronized (i5Var.f24561c) {
+                    synchronized (i5Var.f24589c) {
                         try {
-                            if (!i5Var.f24559b) {
-                                i5Var.f24559b = true;
+                            if (!i5Var.f24587b) {
+                                i5Var.f24587b = true;
                                 Utilities.d.c(new m4(i5Var, 5));
                             }
                         } finally {
                         }
                     }
-                    if (i5Var.f24557a == null) {
+                    if (i5Var.f24585a == null) {
                         try {
                             Account account2 = new Account("" + i5Var.getUserConfig().e(), "org.telegram.messenger");
-                            i5Var.f24557a = account2;
+                            i5Var.f24585a = account2;
                             accountManager.addAccountExplicitly(account2, "", null);
                             return;
                         } catch (Exception unused3) {
@@ -89,19 +89,19 @@ public final class m4 implements Runnable {
                 }
                 return;
             case 1:
-                i5 i5Var2 = this.f25521b;
-                if (s2.f26721a) {
+                i5 i5Var2 = this.f25549b;
+                if (s2.f26749a) {
                     a8.b("force import contacts");
                 }
                 i5Var2.F(new HashMap(), true, true, true, true, false, false);
                 return;
             case 2:
-                this.f25521b.A(0L, false);
+                this.f25549b.A(0L, false);
                 return;
             case 3:
-                i5 i5Var3 = this.f25521b;
+                i5 i5Var3 = this.f25549b;
                 if (i5Var3.e()) {
-                    if (s2.f26721a) {
+                    if (s2.f26749a) {
                         a8.b("detected contacts change");
                     }
                     i5Var3.F(i5.q(i5Var3.Z), true, false, true, false, true, false);
@@ -109,9 +109,9 @@ public final class m4 implements Runnable {
                 }
                 return;
             case 4:
-                i5 i5Var4 = this.f25521b;
-                i5Var4.f24577s = false;
-                i5Var4.f24575n0 = 0;
+                i5 i5Var4 = this.f25549b;
+                i5Var4.f24605s = false;
+                i5Var4.f24603n0 = 0;
                 return;
             case 5:
                 a();
@@ -120,14 +120,14 @@ public final class m4 implements Runnable {
                 b();
                 return;
             case 7:
-                tr messagesStorage = this.f25521b.getMessagesStorage();
-                messagesStorage.f27052a.c(new yq(messagesStorage, true, 0));
+                tr messagesStorage = this.f25549b.getMessagesStorage();
+                messagesStorage.f27080a.c(new yq(messagesStorage, true, 0));
                 return;
             case 8:
-                i5 i5Var5 = this.f25521b;
+                i5 i5Var5 = this.f25549b;
                 try {
                     if (i5.w()) {
-                        t0.f26913b.getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, true, new g5(i5Var5));
+                        t0.f26941b.getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, true, new g5(i5Var5));
                         return;
                     }
                     return;
@@ -135,8 +135,8 @@ public final class m4 implements Runnable {
                     return;
                 }
             default:
-                i5 i5Var6 = this.f25521b;
-                i5Var6.f24574n = true;
+                i5 i5Var6 = this.f25549b;
+                i5Var6.f24602n = true;
                 i5Var6.getNotificationCenter().k(25, new Object[0]);
                 return;
         }

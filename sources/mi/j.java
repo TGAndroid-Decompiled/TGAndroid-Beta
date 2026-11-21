@@ -15,50 +15,50 @@ import org.telegram.messenger.f3;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.n10;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.pa0;
-public final class j extends LinearLayout implements c6 {
-    public final i6 f21034a;
-    public final pa0 f21035b;
-    public final FrameLayout f21036c;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.ra0;
+public final class j extends LinearLayout implements b6 {
+    public final h6 f21062a;
+    public final ra0 f21063b;
+    public final FrameLayout f21064c;
     public final ImageView d;
-    public final TextView f21037e;
-    public final TextView f21038f;
+    public final TextView f21065e;
+    public final TextView f21066f;
     public final boolean h;
-    public boolean f21039n;
+    public boolean f21067n;
 
-    public j(Context context, i6 i6Var, boolean z10) {
+    public j(Context context, h6 h6Var, boolean z10) {
         super(context);
         int i7;
         int i10;
         int i11;
         int i12;
-        this.f21034a = i6Var;
+        this.f21062a = h6Var;
         this.h = z10;
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f21036c = frameLayout;
-        pa0 pa0Var = new pa0(1);
-        this.f21035b = pa0Var;
-        frameLayout.setBackground(pa0Var);
+        this.f21064c = frameLayout;
+        ra0 ra0Var = new ra0(1);
+        this.f21063b = ra0Var;
+        frameLayout.setBackground(ra0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         frameLayout.addView(imageView, ma.e(24, 24, 17));
         LinearLayout g10 = f3.g(context, 1);
         TextView textView = new TextView(context);
-        this.f21037e = textView;
+        this.f21065e = textView;
         textView.setTextSize(1, 16.0f);
         TextView f10 = n10.f(g10, textView, ma.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f21038f = f10;
+        this.f21066f = f10;
         f10.setGravity(17);
         f10.setMinWidth(g0.L(20.66f));
         f10.setPadding(g0.L(6.33f), 0, g0.L(6.33f), 0);
         f10.setTextSize(1, 16.0f);
-        if (gd.f24213a0) {
+        if (gd.f24241a0) {
             addView(f10, ma.j(13.33f, 0.0f));
             if (z10) {
                 i11 = 12;
@@ -99,14 +99,14 @@ public final class j extends LinearLayout implements c6 {
         } else {
             i12 = 8;
         }
-        this.f21036c.setVisibility(i12);
+        this.f21064c.setVisibility(i12);
         if (i11 == 0) {
             f10 = g0.L(2.0f);
         } else {
             f10 = 0.0f;
         }
-        this.f21037e.setTranslationX(f10);
-        this.f21035b.b(i7, i10);
+        this.f21065e.setTranslationX(f10);
+        this.f21063b.b(i7, i10);
         this.d.setImageResource(i11);
         setTitle(charSequence);
         setValue(charSequence2);
@@ -115,8 +115,8 @@ public final class j extends LinearLayout implements c6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(n6.G6));
-        hashSet.add(Integer.valueOf(n6.U8));
+        hashSet.add(Integer.valueOf(m6.G6));
+        hashSet.add(Integer.valueOf(m6.U8));
     }
 
     @Override
@@ -132,21 +132,21 @@ public final class j extends LinearLayout implements c6 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f21037e.setText(charSequence);
+        this.f21065e.setText(charSequence);
     }
 
     public void setUnreadMode(boolean z10) {
         float f10;
         Typeface typeface;
         int i7;
-        if (this.f21039n != z10) {
-            this.f21039n = z10;
+        if (this.f21067n != z10) {
+            this.f21067n = z10;
             if (z10) {
                 f10 = 13.0f;
             } else {
                 f10 = 16.0f;
             }
-            TextView textView = this.f21038f;
+            TextView textView = this.f21066f;
             textView.setTextSize(1, f10);
             ShapeDrawable shapeDrawable = null;
             if (z10) {
@@ -156,14 +156,14 @@ public final class j extends LinearLayout implements c6 {
             }
             textView.setTypeface(typeface);
             if (z10) {
-                i7 = n6.W8;
+                i7 = m6.W8;
             } else {
-                i7 = n6.f29576n6;
+                i7 = m6.f29560n6;
             }
-            i6 i6Var = this.f21034a;
-            u6.U(textView, i7, i6Var);
+            h6 h6Var = this.f21062a;
+            t6.U(textView, i7, h6Var);
             if (z10) {
-                shapeDrawable = n6.d0(g0.L(10.33f), n6.w0(n6.U8, i6Var));
+                shapeDrawable = m6.d0(g0.L(10.33f), m6.w0(m6.U8, h6Var));
             }
             textView.setBackground(shapeDrawable);
         }
@@ -176,7 +176,7 @@ public final class j extends LinearLayout implements c6 {
         } else {
             i7 = 8;
         }
-        TextView textView = this.f21038f;
+        TextView textView = this.f21066f;
         textView.setVisibility(i7);
         textView.setText(charSequence);
     }
@@ -186,28 +186,28 @@ public final class j extends LinearLayout implements c6 {
         int i7;
         ShapeDrawable shapeDrawable;
         boolean q10;
-        int i10 = n6.G6;
-        i6 i6Var = this.f21034a;
-        this.f21037e.setTextColor(n6.w0(i10, i6Var));
-        if (this.f21039n) {
-            i7 = n6.W8;
+        int i10 = m6.G6;
+        h6 h6Var = this.f21062a;
+        this.f21065e.setTextColor(m6.w0(i10, h6Var));
+        if (this.f21067n) {
+            i7 = m6.W8;
         } else {
-            i7 = n6.f29576n6;
+            i7 = m6.f29560n6;
         }
-        int w02 = n6.w0(i7, i6Var);
-        TextView textView = this.f21038f;
+        int w02 = m6.w0(i7, h6Var);
+        TextView textView = this.f21066f;
         textView.setTextColor(w02);
-        if (this.f21039n) {
-            shapeDrawable = n6.d0(g0.L(10.33f), n6.w0(n6.U8, i6Var));
+        if (this.f21067n) {
+            shapeDrawable = m6.d0(g0.L(10.33f), m6.w0(m6.U8, h6Var));
         } else {
             shapeDrawable = null;
         }
         textView.setBackground(shapeDrawable);
-        if (i6Var != null) {
-            q10 = i6Var.d();
+        if (h6Var != null) {
+            q10 = h6Var.d();
         } else {
-            q10 = n6.I.q();
+            q10 = m6.I.q();
         }
-        this.f21035b.f38332b = q10;
+        this.f21063b.f39128b = q10;
     }
 }

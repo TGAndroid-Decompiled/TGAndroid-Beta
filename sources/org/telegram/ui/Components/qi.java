@@ -1,23 +1,18 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface qi {
-    void K0();
+import android.content.Context;
+import android.view.MotionEvent;
+public final class qi extends e10 {
+    public final ui K;
 
-    void R0(Object obj);
+    public qi(Context context, org.telegram.ui.ActionBar.h6 h6Var, ui uiVar) {
+        super(context, h6Var);
+        this.K = uiVar;
+    }
 
-    boolean V1();
-
-    void b2(ArrayList arrayList, CharSequence charSequence, boolean z10, int i7, int i10, long j3, boolean z11, long j10);
-
-    void f0(eh ehVar);
-
-    boolean g0();
-
-    void h1(TLRPC.User user);
-
-    void v0();
-
-    void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10);
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        this.K.i1(this.f34647r, true);
+        return super.onInterceptTouchEvent(motionEvent);
+    }
 }

@@ -2,69 +2,89 @@ package oi;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import org.telegram.ui.Components.lr;
-public final class t1 extends HorizontalScrollView {
-    public final h6.m f22364a;
-    public final org.telegram.ui.Components.c6 f22365b;
-    public final org.telegram.ui.Components.c6 f22366c;
-    public final z1 d;
+import android.view.KeyEvent;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.du0;
+import org.telegram.ui.Components.lc;
+public final class t1 extends du0 {
+    public boolean f22397g0;
+    public final Paint f22398h0;
+    public final RectF f22399i0;
+    public final b2 f22400j0;
 
-    public t1(z1 z1Var, Context context) {
-        super(context);
-        this.d = z1Var;
-        this.f22364a = new h6.m(29);
-        lr lrVar = lr.h;
-        this.f22365b = new org.telegram.ui.Components.c6(this, 300L, lrVar);
-        this.f22366c = new org.telegram.ui.Components.c6(this, 300L, lrVar);
+    public t1(b2 b2Var, Context context) {
+        super(context, null);
+        this.f22400j0 = b2Var;
+        this.f22398h0 = new Paint(1);
+        new Path();
+        this.f22399i0 = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        float d = this.f22365b.d(canScrollHorizontally(-1));
-        float d2 = this.f22366c.d(canScrollHorizontally(1));
-        int i7 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
-        if (i7 <= 0 && d2 <= 0.0f) {
-            canvas2 = canvas;
-        } else {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(getScrollX(), 0.0f, getWidth() + getScrollX(), getHeight(), 255, 31);
-        }
-        super.dispatchDraw(canvas2);
-        if (i7 <= 0 && d2 <= 0.0f) {
+        b2 b2Var = this.f22400j0;
+        Rect rect = b2Var.f22016x;
+        int r12 = m6.r1(b2Var.J, b2Var.getThemedColor(m6.f29378d6));
+        Paint paint = this.f22398h0;
+        paint.setColor(r12);
+        if (b2Var.F && b2Var.f22018y != null) {
+            RectF rectF = this.f22399i0;
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            rectF.inset(-org.telegram.messenger.g0.L(7.0f), -org.telegram.messenger.g0.L(7.0f));
+            float T1 = org.telegram.messenger.g0.T1(org.telegram.messenger.g0.N(22.0f), 0.0f, b2Var.J);
+            org.telegram.messenger.g0.Z1(b2Var.E, rectF, b2Var.J, rectF);
+            rect.set(b2Var.f22018y.getBounds());
+            b2Var.f22018y.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            b2Var.f22018y.r(T1);
+            b2Var.f22018y.setAlpha((int) ((1.0f - b2Var.J) * 255.0f));
+            b2Var.f22018y.draw(canvas);
+            b2Var.f22018y.setBounds(rect);
+            rectF.inset(org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(7.0f));
+            canvas.drawRoundRect(rectF, T1, T1, paint);
+            if (b2Var.f22014w != null) {
+                canvas.save();
+                canvas.translate(org.telegram.messenger.g0.W1(b2Var.J, b2Var.H[0], b2Var.I[0]), org.telegram.messenger.g0.W1(b2Var.J, b2Var.H[1], b2Var.I[1]));
+                canvas.saveLayerAlpha(0.0f, 0.0f, b2Var.f22014w.getWidth(), b2Var.f22014w.getHeight(), (int) ((1.0f - b2Var.J) * 255.0f), 31);
+                b2Var.f22014w.draw(canvas);
+                canvas.restore();
+                canvas.restore();
+                canvas.save();
+                canvas.translate(org.telegram.messenger.g0.T1(rectF.right, (b2Var.f22020z0.getX() + (b2Var.f21988b0.getX() + (b2Var.f21985a0.getX() + b2Var.Z.getX()))) + b2Var.f22020z0.getWidth(), b2Var.J) - b2Var.f22014w.f32695q2.getWidth(), org.telegram.messenger.g0.T1(rectF.bottom, (b2Var.f22020z0.getY() + (b2Var.f21988b0.getY() + (b2Var.f21985a0.getY() + b2Var.Z.getY()))) + b2Var.f22020z0.getHeight(), b2Var.J) - b2Var.f22014w.f32695q2.getHeight());
+                canvas.saveLayerAlpha(-org.telegram.messenger.g0.L(6.0f), -org.telegram.messenger.g0.L(6.0f), b2Var.f22014w.f32695q2.getWidth(), b2Var.f22014w.f32695q2.getHeight(), (int) ((1.0f - b2Var.J) * 255.0f), 31);
+                b2Var.f22014w.f32695q2.draw(canvas);
+                canvas.restore();
+                canvas.restore();
+            }
+            canvas.save();
+            super.dispatchDraw(canvas);
+            canvas.restore();
             return;
         }
-        canvas2.save();
-        h6.m mVar = this.f22364a;
-        if (i7 > 0) {
-            RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(getScrollX(), 0.0f, org.telegram.messenger.g0.L(48.0f) + getScrollX(), getHeight());
-            mVar.n(canvas2, rectF, 0, d);
-        }
-        if (d2 > 0.0f) {
-            RectF rectF2 = org.telegram.messenger.g0.P;
-            rectF2.set((getWidth() + getScrollX()) - org.telegram.messenger.g0.L(48.0f), 0.0f, getWidth() + getScrollX(), getHeight());
-            mVar.n(canvas2, rectF2, 2, d2);
-        }
-        canvas2.restore();
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int mode = View.MeasureSpec.getMode(i7);
-        if (mode == 1073741824) {
-            super.onMeasure(i7, i10);
-            return;
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        int action = keyEvent.getAction();
+        b2 b2Var = this.f22400j0;
+        if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
+            if (b2Var.v0()) {
+                org.telegram.messenger.f3.n(null, 2131745807, new lc(b2Var.Y, b2Var.getResourceProvider()), 2131623990, 36);
+                return true;
+            }
+        } else if (!b2Var.Q.k3(keyEvent)) {
+            return super.dispatchKeyEvent(keyEvent);
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 0), i10);
-        int measuredWidth = getMeasuredWidth();
-        int i11 = this.d.f22528l0;
-        if (mode == Integer.MIN_VALUE) {
-            i11 = Math.min(i11, View.MeasureSpec.getSize(i7));
-        }
-        setMeasuredDimension(Math.min(measuredWidth, i11), getMeasuredHeight());
+        return true;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(android.view.MotionEvent r8) {
+        throw new UnsupportedOperationException("Method not decompiled: oi.t1.dispatchTouchEvent(android.view.MotionEvent):boolean");
     }
 }

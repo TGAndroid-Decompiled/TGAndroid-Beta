@@ -9,40 +9,40 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
-public final class br0 extends org.telegram.ui.Components.ck0 {
-    public final int f46275f3 = 0;
-    public final Paint f46276g3;
-    public final Object f46277h3;
-    public final Object f46278i3;
+public final class br0 extends org.telegram.ui.Components.ek0 {
+    public final int f46298f3 = 0;
+    public final Paint f46299g3;
+    public final Object f46300h3;
+    public final Object f46301i3;
 
     public br0(Context context) {
         super(context, null);
         Paint paint = new Paint(1);
-        this.f46276g3 = paint;
-        this.f46278i3 = new RectF();
+        this.f46299g3 = paint;
+        this.f46301i3 = new RectF();
         setWillNotDraw(false);
         setClipToPadding(false);
         setTranslationY(-org.telegram.messenger.g0.L(10.0f));
         ar0 ar0Var = new ar0(this);
         setItemAnimator(ar0Var);
         ar0Var.C = false;
-        ar0Var.f59152m = false;
+        ar0Var.f59190m = false;
         setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f));
         paint.setColor(2130706432);
-        this.f46277h3 = context.getResources().getDrawable(2131232531).mutate();
+        this.f46300h3 = context.getResources().getDrawable(2131232531).mutate();
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f46275f3) {
+        switch (this.f46298f3) {
             case 1:
-                Path path = (Path) this.f46277h3;
+                Path path = (Path) this.f46300h3;
                 path.rewind();
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                 path.addRoundRect(rectF, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), Path.Direction.CW);
-                int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false);
-                Paint paint = this.f46276g3;
+                int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29451h5, false);
+                Paint paint = this.f46299g3;
                 paint.setColor(x02);
                 canvas.drawPath(path, paint);
                 canvas.save();
@@ -58,9 +58,9 @@ public final class br0 extends org.telegram.ui.Components.ck0 {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f46275f3) {
+        switch (this.f46298f3) {
             case 1:
-                if (((vs0) this.f46278i3).f52845n.f43443r0 >= 1.0f) {
+                if (((vs0) this.f46301i3).f52886n.f43484r0 >= 1.0f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -71,10 +71,10 @@ public final class br0 extends org.telegram.ui.Components.ck0 {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f46275f3) {
+        switch (this.f46298f3) {
             case 0:
-                RectF rectF = (RectF) this.f46278i3;
-                Drawable drawable = (Drawable) this.f46277h3;
+                RectF rectF = (RectF) this.f46301i3;
+                Drawable drawable = (Drawable) this.f46300h3;
                 super.onDraw(canvas);
                 int childCount = getChildCount();
                 if (childCount > 0) {
@@ -90,7 +90,7 @@ public final class br0 extends org.telegram.ui.Components.ck0 {
                     }
                     if (i10 != Integer.MAX_VALUE && i7 != Integer.MIN_VALUE) {
                         rectF.set(i10 - org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f) + i7, org.telegram.messenger.g0.L(103.0f));
-                        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), this.f46276g3);
+                        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), this.f46299g3);
                         return;
                     }
                     return;
@@ -104,9 +104,9 @@ public final class br0 extends org.telegram.ui.Components.ck0 {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f46275f3) {
+        switch (this.f46298f3) {
             case 1:
-                if (((vs0) this.f46278i3).f52845n.f43443r0 >= 1.0f) {
+                if (((vs0) this.f46301i3).f52886n.f43484r0 >= 1.0f) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -117,10 +117,10 @@ public final class br0 extends org.telegram.ui.Components.ck0 {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f46275f3) {
+        switch (this.f46298f3) {
             case 1:
                 super.onSizeChanged(i7, i10, i11, i12);
-                PremiumPreviewFragment premiumPreviewFragment = ((vs0) this.f46278i3).f52845n;
+                PremiumPreviewFragment premiumPreviewFragment = ((vs0) this.f46301i3).f52886n;
                 int i13 = 0;
                 int i14 = 0;
                 while (true) {
@@ -144,10 +144,10 @@ public final class br0 extends org.telegram.ui.Components.ck0 {
 
     public br0(vs0 vs0Var, Context context) {
         super(context, null);
-        this.f46278i3 = vs0Var;
+        this.f46301i3 = vs0Var;
         Paint paint = new Paint(1);
-        this.f46276g3 = paint;
-        paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29467h5, false));
-        this.f46277h3 = new Path();
+        this.f46299g3 = paint;
+        paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29451h5, false));
+        this.f46300h3 = new Path();
     }
 }

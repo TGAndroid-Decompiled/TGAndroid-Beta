@@ -1,26 +1,26 @@
 package org.telegram.ui;
 
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ey implements org.telegram.ui.ActionBar.r1 {
-    public final int f47338a;
-    public final EditTextBoldCursor f47339b;
+public final class ey implements org.telegram.ui.ActionBar.q1 {
+    public final int f47407a;
+    public final EditTextBoldCursor f47408b;
 
     public ey(EditTextBoldCursor editTextBoldCursor, int i7) {
-        this.f47338a = i7;
-        this.f47339b = editTextBoldCursor;
+        this.f47407a = i7;
+        this.f47408b = editTextBoldCursor;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f47338a) {
+    public final void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f47407a) {
             case 0:
-                org.telegram.messenger.g0.v1(this.f47339b);
+                org.telegram.messenger.g0.v1(this.f47408b);
                 return;
             case 1:
-                org.telegram.messenger.g0.v1(this.f47339b);
+                org.telegram.messenger.g0.v1(this.f47408b);
                 return;
             default:
-                org.telegram.messenger.g0.v1(this.f47339b);
+                org.telegram.messenger.g0.v1(this.f47408b);
                 return;
         }
     }

@@ -1,14 +1,14 @@
 package org.telegram.ui.Components;
 public final class aj0 {
-    public final org.telegram.ui.ActionBar.l5 f33353a;
-    public final int f33354b;
-    public final int f33355c;
-    public final boolean d;
+    public float f33522a;
+    public float f33523b;
+    public float f33524c;
+    public float d;
 
-    public aj0(org.telegram.ui.ActionBar.l5 l5Var, int i7, int i10, boolean z10) {
-        this.f33353a = l5Var;
-        this.f33354b = i7;
-        this.f33355c = i10;
-        this.d = z10;
+    public aj0(float f10, float f11, float f12, float f13) {
+        this.f33522a = f10;
+        this.f33523b = f11;
+        this.f33524c = f12;
+        this.d = f13;
     }
 }

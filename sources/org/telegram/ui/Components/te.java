@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.animation.AnimatorSet;
 import android.os.SystemClock;
 public final class te implements Runnable {
-    public final int f39984a;
-    public final ChatActivityEnterView f39985b;
+    public final int f39884a;
+    public final ChatActivityEnterView f39885b;
 
     public te(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f39984a = i7;
-        this.f39985b = chatActivityEnterView;
+        this.f39884a = i7;
+        this.f39885b = chatActivityEnterView;
     }
 
     @Override
@@ -16,14 +16,14 @@ public final class te implements Runnable {
         long j3;
         long j10;
         long j11;
-        switch (this.f39984a) {
+        switch (this.f39884a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f39985b;
-                te teVar = chatActivityEnterView.f32587f4;
-                if ((!chatActivityEnterView.D0() || !chatActivityEnterView.A()) && !org.telegram.ui.ActionBar.h2.hasSheets(chatActivityEnterView.D3) && !chatActivityEnterView.M2 && chatActivityEnterView.F0 != null && chatActivityEnterView.Y3 && !chatActivityEnterView.f32645n3 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E) {
-                    kg kgVar = chatActivityEnterView.N3;
-                    if (kgVar != null) {
-                        kgVar.o1();
+                ChatActivityEnterView chatActivityEnterView = this.f39885b;
+                te teVar = chatActivityEnterView.f32631h4;
+                if ((!chatActivityEnterView.H0() || !chatActivityEnterView.A()) && !org.telegram.ui.ActionBar.g2.hasSheets(chatActivityEnterView.F3) && !chatActivityEnterView.O2 && chatActivityEnterView.F0 != null && chatActivityEnterView.f32572a4 && !chatActivityEnterView.f32688p3 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E) {
+                    ng ngVar = chatActivityEnterView.P3;
+                    if (ngVar != null) {
+                        ngVar.o1();
                     }
                     chatActivityEnterView.F0.requestFocus();
                     org.telegram.messenger.g0.I3(chatActivityEnterView.F0);
@@ -33,15 +33,15 @@ public final class te implements Runnable {
                 }
                 return;
             case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f39985b;
-                ai.l1 l1Var = chatActivityEnterView2.f32640m6;
-                if (l1Var != null && l1Var.d) {
-                    long j12 = l1Var.f1311e;
+                ChatActivityEnterView chatActivityEnterView2 = this.f39885b;
+                ai.n1 n1Var = chatActivityEnterView2.f32683o6;
+                if (n1Var != null && n1Var.d) {
+                    long j12 = n1Var.f1336e;
                     if (j12 == 0) {
                         j11 = 0;
                     } else {
-                        long j13 = j12 + l1Var.f1308a;
-                        if (l1Var.C) {
+                        long j13 = j12 + n1Var.f1333a;
+                        if (n1Var.C) {
                             j10 = 180;
                         } else {
                             j10 = 0;
@@ -56,30 +56,30 @@ public final class te implements Runnable {
                     org.telegram.messenger.g0.h3(this, j3 + 16);
                     return;
                 }
-                chatActivityEnterView2.f32668q6 = null;
-                chatActivityEnterView2.f32654o6 = false;
-                chatActivityEnterView2.f32661p6 = true;
-                chatActivityEnterView2.f32676r6 = SystemClock.uptimeMillis();
-                ai.l1 l1Var2 = chatActivityEnterView2.f32640m6;
-                if (l1Var2 != null) {
-                    l1Var2.c();
+                chatActivityEnterView2.f32716s6 = null;
+                chatActivityEnterView2.f32699q6 = false;
+                chatActivityEnterView2.f32708r6 = true;
+                chatActivityEnterView2.t6 = SystemClock.uptimeMillis();
+                ai.n1 n1Var2 = chatActivityEnterView2.f32683o6;
+                if (n1Var2 != null) {
+                    n1Var2.c();
                 }
                 try {
-                    chatActivityEnterView2.r1();
+                    chatActivityEnterView2.v1();
                     return;
                 } finally {
-                    chatActivityEnterView2.f32661p6 = false;
+                    chatActivityEnterView2.f32708r6 = false;
                     org.telegram.messenger.g0.h3(new td(chatActivityEnterView2, 17), 450L);
                 }
             case 2:
-                kg kgVar2 = this.f39985b.N3;
-                if (kgVar2 != null) {
-                    kgVar2.o2(0, 0, 0, 0L, 0L, true);
+                ng ngVar2 = this.f39885b.P3;
+                if (ngVar2 != null) {
+                    ngVar2.o2(0, 0, 0, 0L, 0L, true);
                     return;
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView3 = this.f39985b;
+                ChatActivityEnterView chatActivityEnterView3 = this.f39885b;
                 AnimatorSet animatorSet = chatActivityEnterView3.W0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
                     chatActivityEnterView3.W0.start();

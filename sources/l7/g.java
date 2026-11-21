@@ -8,21 +8,21 @@ import android.os.Looper;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
 import m.o3;
-import tg.x;
+import tg.y;
 public final class g extends q6.h {
     public final z5.b F;
 
     public g(Context context, Looper looper, o3 o3Var, z5.b bVar, k kVar, l lVar) {
         super(context, looper, 68, o3Var, kVar, lVar, 0);
-        bVar = bVar == null ? z5.b.f61480c : bVar;
-        x xVar = new x(9, (byte) 0);
-        xVar.f58165b = Boolean.FALSE;
-        z5.b bVar2 = z5.b.f61480c;
+        bVar = bVar == null ? z5.b.f61521c : bVar;
+        y yVar = new y(9, (byte) 0);
+        yVar.f58220b = Boolean.FALSE;
+        z5.b bVar2 = z5.b.f61521c;
         bVar.getClass();
-        xVar.f58165b = Boolean.valueOf(bVar.f61481a);
-        xVar.f58166c = bVar.f61482b;
-        xVar.f58166c = e.a();
-        this.F = new z5.b(xVar);
+        yVar.f58220b = Boolean.valueOf(bVar.f61522a);
+        yVar.f58221c = bVar.f61523b;
+        yVar.f58221c = e.a();
+        this.F = new z5.b(yVar);
     }
 
     @Override
@@ -48,8 +48,8 @@ public final class g extends q6.h {
         bVar.getClass();
         Bundle bundle = new Bundle();
         bundle.putString("consumer_package", null);
-        bundle.putBoolean("force_save_dialog", bVar.f61481a);
-        bundle.putString("log_session_id", bVar.f61482b);
+        bundle.putBoolean("force_save_dialog", bVar.f61522a);
+        bundle.putString("log_session_id", bVar.f61523b);
         return bundle;
     }
 

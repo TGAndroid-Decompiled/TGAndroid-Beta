@@ -4,11 +4,11 @@ import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 final class AudioRecorderNative {
-    public long f54635a;
-    public final AtomicBoolean f54636b = new AtomicBoolean(false);
+    public long f54676a;
+    public final AtomicBoolean f54677b = new AtomicBoolean(false);
 
     public AudioRecorderNative(long j3) {
-        this.f54635a = j3;
+        this.f54676a = j3;
     }
 
     public static AudioRecorderNative a(long j3, long j10, File file, File file2) {
@@ -49,11 +49,11 @@ final class AudioRecorderNative {
     private static native int nWriteFrame(long j3, ByteBuffer byteBuffer, int i7);
 
     public final boolean c() {
-        if (!this.f54636b.compareAndSet(false, true)) {
+        if (!this.f54677b.compareAndSet(false, true)) {
             return false;
         }
-        long j3 = this.f54635a;
-        this.f54635a = 0L;
+        long j3 = this.f54676a;
+        this.f54676a = 0L;
         if (j3 == 0 || !nFinish(j3)) {
             return false;
         }
@@ -61,16 +61,16 @@ final class AudioRecorderNative {
     }
 
     public final long d() {
-        if (!this.f54636b.get()) {
-            return nFlush(this.f54635a);
+        if (!this.f54677b.get()) {
+            return nFlush(this.f54676a);
         }
         throw new IllegalStateException("Native audio recorder is already released");
     }
 
     public final void f() {
-        if (this.f54636b.compareAndSet(false, true)) {
-            long j3 = this.f54635a;
-            this.f54635a = 0L;
+        if (this.f54677b.compareAndSet(false, true)) {
+            long j3 = this.f54676a;
+            this.f54676a = 0L;
             if (j3 != 0) {
                 nDestroy(j3);
             }
@@ -86,8 +86,8 @@ final class AudioRecorderNative {
     }
 
     public final int g(ByteBuffer byteBuffer, int i7) {
-        if (!this.f54636b.get()) {
-            return nWriteFrame(this.f54635a, byteBuffer, i7);
+        if (!this.f54677b.get()) {
+            return nWriteFrame(this.f54676a, byteBuffer, i7);
         }
         throw new IllegalStateException("Native audio recorder is already released");
     }

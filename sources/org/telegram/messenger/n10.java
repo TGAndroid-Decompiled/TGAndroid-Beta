@@ -65,10 +65,10 @@ public abstract class n10 {
         return new TextView(context);
     }
 
-    public static hi.d g(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
-        hi.d dVar = new hi.d(context, i6Var, z10);
-        dVar.setRoundRadius(i7);
-        return dVar;
+    public static hi.e g(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
+        hi.e eVar = new hi.e(context, h6Var, z10);
+        eVar.setRoundRadius(i7);
+        return eVar;
     }
 
     public static String h(StringBuilder sb2, String str, pf.b bVar) {
@@ -80,10 +80,10 @@ public abstract class n10 {
         return byteBuffer.order(ByteOrder.nativeOrder()).asFloatBuffer();
     }
 
-    public static org.telegram.ui.ActionBar.x2 j(Activity activity, boolean z10, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        org.telegram.ui.ActionBar.x2 x2Var = new org.telegram.ui.ActionBar.x2(i7, activity, i6Var, z10);
-        x2Var.O();
-        return x2Var;
+    public static org.telegram.ui.ActionBar.w2 j(Activity activity, boolean z10, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        org.telegram.ui.ActionBar.w2 w2Var = new org.telegram.ui.ActionBar.w2(i7, activity, h6Var, z10);
+        w2Var.O();
+        return w2Var;
     }
 
     public static void k(float f10, float f11, float f12, float f13, Canvas canvas) {
@@ -91,20 +91,20 @@ public abstract class n10 {
     }
 
     public static void l(float f10, int i7, int i10, TextView textView, String str) {
-        textView.setText(gd.M0(i7, str));
+        textView.setText(gd.N0(i7, str));
         textView.setTextSize(i10, f10);
     }
 
-    public static void m(int i7, org.telegram.ui.ActionBar.h2 h2Var) {
-        h2Var.presentFragment(new ThemeActivity(i7));
+    public static void m(int i7, org.telegram.ui.ActionBar.g2 g2Var) {
+        g2Var.presentFragment(new ThemeActivity(i7));
     }
 
     public static void n(ViewPropertyAnimator viewPropertyAnimator, float f10, long j3) {
         viewPropertyAnimator.alpha(f10).setDuration(j3).start();
     }
 
-    public static void o(ViewPropertyAnimator viewPropertyAnimator, org.telegram.ui.Components.lr lrVar, long j3) {
-        viewPropertyAnimator.setInterpolator(lrVar).setDuration(j3).start();
+    public static void o(ViewPropertyAnimator viewPropertyAnimator, org.telegram.ui.Components.nr nrVar, long j3) {
+        viewPropertyAnimator.setInterpolator(nrVar).setDuration(j3).start();
     }
 
     public static void p(TextView textView, int i7, float f10) {
@@ -118,9 +118,9 @@ public abstract class n10 {
         textView.setMaxLines(i11);
     }
 
-    public static void r(TextView textView, int i7, org.telegram.ui.ActionBar.i6 i6Var, String str, int i10) {
-        org.telegram.ui.ActionBar.u6.U(textView, i7, i6Var);
-        textView.setText(gd.M0(i10, str));
+    public static void r(TextView textView, int i7, org.telegram.ui.ActionBar.h6 h6Var, String str, int i10) {
+        org.telegram.ui.ActionBar.t6.U(textView, i7, h6Var);
+        textView.setText(gd.N0(i10, str));
     }
 
     public static void s(fh.g gVar, float f10, float f11) {
@@ -129,7 +129,7 @@ public abstract class n10 {
     }
 
     public static void t(String str, int i7, org.telegram.ui.Components.lc lcVar) {
-        lcVar.i(gd.M0(i7, str)).j();
+        lcVar.i(gd.N0(i7, str)).j();
     }
 
     public static void u(String str, org.telegram.ui.Components.lc lcVar, int i7, int i10) {

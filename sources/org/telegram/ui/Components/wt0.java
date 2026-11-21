@@ -1,3 +1,4 @@
 package org.telegram.ui.Components;
-public abstract class wt0 {
+public interface wt0 {
+    void c(Object obj, float f10);
 }

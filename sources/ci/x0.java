@@ -1,11 +1,11 @@
 package ci;
 public final class x0 {
-    public int f5833a;
-    public int f5834b;
-    public int f5835c;
+    public int f5862a;
+    public int f5863b;
+    public int f5864c;
     public int d;
-    public int f5836e;
-    public int f5837f;
-    public int f5838g;
+    public int f5865e;
+    public int f5866f;
+    public int f5867g;
     public int h;
 }

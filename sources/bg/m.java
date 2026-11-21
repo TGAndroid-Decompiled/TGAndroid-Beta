@@ -13,22 +13,22 @@ public final class m implements SensorEventListener {
     public float G;
     public boolean H;
     public long I;
-    public final da0 f3301a;
-    public SensorManager f3302b;
-    public Sensor f3303c;
+    public final da0 f3313a;
+    public SensorManager f3314b;
+    public Sensor f3315c;
     public Sensor d;
-    public Sensor f3304e;
-    public boolean f3305f;
+    public Sensor f3316e;
+    public boolean f3317f;
     public final float[] h = new float[9];
-    public final float[] f3306n = new float[9];
-    public final float[] f3307r = new float[4];
-    public final float[] f3308s = new float[3];
-    public final float[] f3309w = new float[3];
-    public boolean f3310x;
-    public float f3311y;
+    public final float[] f3318n = new float[9];
+    public final float[] f3319r = new float[4];
+    public final float[] f3320s = new float[3];
+    public final float[] f3321w = new float[3];
+    public boolean f3322x;
+    public float f3323y;
 
     public m(da0 da0Var) {
-        this.f3301a = da0Var;
+        this.f3313a = da0Var;
     }
 
     public final void a(Location location) {
@@ -36,7 +36,7 @@ public final class m implements SensorEventListener {
             return;
         }
         try {
-            this.f3311y = new GeomagneticField((float) location.getLatitude(), (float) location.getLongitude(), (float) location.getAltitude(), System.currentTimeMillis()).getDeclination();
+            this.f3323y = new GeomagneticField((float) location.getLatitude(), (float) location.getLongitude(), (float) location.getAltitude(), System.currentTimeMillis()).getDeclination();
         } catch (Exception e10) {
             a8.g(e10, true);
         }

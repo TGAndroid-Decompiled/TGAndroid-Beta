@@ -4,27 +4,27 @@ import android.os.SystemClock;
 import android.util.SparseArray;
 import java.util.ArrayList;
 public final class as implements Runnable {
-    public final int f22940a;
-    public final ks f22941b;
+    public final int f22968a;
+    public final ks f22969b;
 
     public as(ks ksVar, int i7) {
-        this.f22940a = i7;
-        this.f22941b = ksVar;
+        this.f22968a = i7;
+        this.f22969b = ksVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f22940a) {
+        switch (this.f22968a) {
             case 0:
-                ks ksVar = this.f22941b;
+                ks ksVar = this.f22969b;
                 ArrayList arrayList = null;
-                ksVar.f25244i = null;
-                SparseArray sparseArray = ksVar.f25249n;
+                ksVar.f25272i = null;
+                SparseArray sparseArray = ksVar.f25277n;
                 if (sparseArray.size() != 0) {
                     long elapsedRealtime = SystemClock.elapsedRealtime();
                     long j3 = Long.MAX_VALUE;
                     for (int i7 = 0; i7 < sparseArray.size(); i7++) {
-                        long j10 = ((ds) sparseArray.valueAt(i7)).f23568b;
+                        long j10 = ((ds) sparseArray.valueAt(i7)).f23596b;
                         if (elapsedRealtime - j10 > 1000) {
                             if (arrayList == null) {
                                 arrayList = new ArrayList();
@@ -47,8 +47,8 @@ public final class as implements Runnable {
                 }
                 return;
             default:
-                ks ksVar2 = this.f22941b;
-                ksVar2.f25244i = new as(ksVar2, 0);
+                ks ksVar2 = this.f22969b;
+                ksVar2.f25272i = new as(ksVar2, 0);
                 return;
         }
     }

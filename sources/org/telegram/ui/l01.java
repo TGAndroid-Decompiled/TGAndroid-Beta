@@ -1,67 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-public final class l01 extends AnimatorListenerAdapter {
-    public final int f49400a;
-    public final boolean f49401b;
-    public final r11 f49402c;
+import android.content.Context;
+import android.view.View;
+public final class l01 extends View {
+    public final int f49441a;
+    public final Integer f49442b;
 
-    public l01(r11 r11Var, boolean z10, int i7) {
-        this.f49400a = i7;
-        this.f49402c = r11Var;
-        this.f49401b = z10;
+    public l01(Context context, Integer num, int i7) {
+        super(context);
+        this.f49441a = i7;
+        this.f49442b = num;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i7;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        int i10;
-        switch (this.f49400a) {
+    public final void onMeasure(int i7, int i10) {
+        switch (this.f49441a) {
             case 0:
-                r11 r11Var = this.f49402c;
-                f01 f01Var = r11Var.f51400j0;
-                int i11 = 8;
-                boolean z10 = this.f49401b;
-                if (z10) {
-                    i7 = 0;
-                } else {
-                    i7 = 8;
-                }
-                f01Var.setVisibility(i7);
-                p01 p01Var = r11Var.f51398i0;
-                if (!z10) {
-                    i11 = 0;
-                }
-                p01Var.setVisibility(i11);
-                r11Var.G1 = null;
-                if (!z10 && (arrayList2 = r11Var.C1) != null) {
-                    arrayList2.clear();
-                    ArrayList arrayList3 = r11Var.F1;
-                    if (arrayList3 != null) {
-                        arrayList3.clear();
-                    }
-                    r11Var.f51415r0.E(false);
-                }
-                if (!z10 && (arrayList = r11Var.D1) != null) {
-                    arrayList.clear();
+                super.onMeasure(i7, i10);
+                Integer num = this.f49442b;
+                if (num != null) {
+                    setPivotX(num.intValue());
                     return;
                 }
                 return;
             default:
-                r11 r11Var2 = this.f49402c;
-                FrameLayout frameLayout = r11Var2.f51402k0;
-                if (this.f49401b && r11Var2.f51400j0.getVisibility() == 0) {
-                    i10 = 0;
-                } else {
-                    i10 = 8;
+                super.onMeasure(i7, i10);
+                Integer num2 = this.f49442b;
+                if (num2 != null) {
+                    setPivotX(num2.intValue());
+                    return;
                 }
-                frameLayout.setVisibility(i10);
-                r11Var2.J1 = null;
                 return;
         }
     }

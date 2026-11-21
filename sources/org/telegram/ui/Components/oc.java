@@ -6,36 +6,36 @@ import android.graphics.RectF;
 import android.text.SpannableString;
 import android.text.style.ReplacementSpan;
 public final class oc extends ReplacementSpan {
-    public final org.telegram.ui.ActionBar.i6 f38057a;
-    public final Paint f38058b = new Paint(1);
-    public final vy0 f38059c;
+    public final org.telegram.ui.ActionBar.h6 f38168a;
+    public final Paint f38169b = new Paint(1);
+    public final xy0 f38170c;
     public final Runnable d;
-    public mc f38060e;
-    public Integer f38061f;
+    public mc f38171e;
+    public Integer f38172f;
 
-    public oc(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f38057a = i6Var;
+    public oc(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f38168a = h6Var;
         this.d = runnable;
-        this.f38059c = new vy0(charSequence, 12.0f, null);
+        this.f38170c = new xy0(charSequence, 12.0f, null);
     }
 
-    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.i6 i6Var, Integer num) {
+    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.h6 h6Var, Integer num) {
         SpannableString spannableString = new SpannableString("btn");
-        oc ocVar = new oc(charSequence, runnable, i6Var);
+        oc ocVar = new oc(charSequence, runnable, h6Var);
         spannableString.setSpan(ocVar, 0, spannableString.length(), 33);
-        ocVar.f38061f = num;
+        ocVar.f38172f = num;
         return spannableString;
     }
 
     public final int a() {
-        return (int) (this.f38059c.f41482c + org.telegram.messenger.g0.L(14.0f));
+        return (int) (this.f38170c.f42254c + org.telegram.messenger.g0.L(14.0f));
     }
 
     public final void c(nc ncVar, boolean z10) {
-        if (this.f38060e == null) {
-            this.f38060e = new mc(ncVar);
+        if (this.f38171e == null) {
+            this.f38171e = new mc(ncVar);
         }
-        this.f38060e.c(z10);
+        this.f38171e.c(z10);
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class oc extends ReplacementSpan {
         RectF rectF = org.telegram.messenger.g0.P;
         float f12 = N / 2.0f;
         rectF.set(f10, f11 - f12, a() + f10, f11 + f12);
-        mc mcVar = this.f38060e;
+        mc mcVar = this.f38171e;
         if (mcVar == null) {
             a10 = 1.0f;
         } else {
@@ -55,18 +55,18 @@ public final class oc extends ReplacementSpan {
         }
         canvas.save();
         canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
-        Integer num = this.f38061f;
+        Integer num = this.f38172f;
         if (num != null) {
             w02 = num.intValue();
         } else {
-            w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, this.f38057a);
+            w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, this.f38168a);
         }
         int i14 = w02;
-        int r12 = org.telegram.ui.ActionBar.n6.r1(0.15f, i14);
-        Paint paint2 = this.f38058b;
+        int r12 = org.telegram.ui.ActionBar.m6.r1(0.15f, i14);
+        Paint paint2 = this.f38169b;
         paint2.setColor(r12);
         canvas.drawRoundRect(rectF, f12, f12, paint2);
-        this.f38059c.c(f10 + org.telegram.messenger.g0.L(7.0f), f11, 1.0f, i14, canvas);
+        this.f38170c.c(f10 + org.telegram.messenger.g0.L(7.0f), f11, 1.0f, i14, canvas);
         canvas.restore();
     }
 

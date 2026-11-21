@@ -4,19 +4,19 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
 public final class n90 implements Runnable {
-    public final int f50125a;
-    public final ProfileActivity f50126b;
+    public final int f50152a;
+    public final ProfileActivity f50153b;
 
     public n90(ProfileActivity profileActivity, int i7) {
-        this.f50125a = i7;
-        this.f50126b = profileActivity;
+        this.f50152a = i7;
+        this.f50153b = profileActivity;
     }
 
     @Override
     public final void run() {
         lw0 lw0Var;
-        int i7 = this.f50125a;
-        ProfileActivity profileActivity = this.f50126b;
+        int i7 = this.f50152a;
+        ProfileActivity profileActivity = this.f50153b;
         switch (i7) {
             case 0:
                 vv0 vv0Var = profileActivity.O;
@@ -41,10 +41,10 @@ public final class n90 implements Runnable {
                 org.telegram.messenger.g0.h3(new n90(profileActivity, 1), 200L);
                 return;
             case 4:
-                TLRPC.UserFull userFull = profileActivity.f43665w2;
+                TLRPC.UserFull userFull = profileActivity.f43706w2;
                 if (userFull != null) {
                     org.telegram.messenger.g0.g(org.telegram.messenger.fj.h0(userFull.note, false));
-                    org.telegram.messenger.n10.t(null, 2131743959, org.telegram.ui.Components.lc.b0(profileActivity));
+                    org.telegram.messenger.n10.t(null, 2131743953, org.telegram.ui.Components.lc.b0(profileActivity));
                     return;
                 }
                 return;
@@ -52,13 +52,13 @@ public final class n90 implements Runnable {
                 RectF rectF = ProfileActivity.Z6;
                 profileActivity.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", profileActivity.f43540e1);
+                bundle.putLong("user_id", profileActivity.f43581e1);
                 bundle.putBoolean("focus_notes", true);
                 profileActivity.presentFragment(new qr(bundle, profileActivity.A0));
                 return;
             case 6:
                 RectF rectF2 = ProfileActivity.Z6;
-                profileActivity.getSendMessagesHelper().r0(org.telegram.messenger.xy.b("/start", profileActivity.f43540e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                profileActivity.getSendMessagesHelper().r0(org.telegram.messenger.xy.b("/start", profileActivity.f43581e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 7:
                 RectF rectF3 = ProfileActivity.Z6;
@@ -76,12 +76,12 @@ public final class n90 implements Runnable {
             case 10:
                 RectF rectF6 = ProfileActivity.Z6;
                 profileActivity.getClass();
-                profileActivity.presentFragment(new kg.f1());
+                profileActivity.presentFragment(new kg.e1());
                 return;
             case 11:
                 RectF rectF7 = ProfileActivity.Z6;
                 profileActivity.getClass();
-                profileActivity.presentFragment(new kg.d1());
+                profileActivity.presentFragment(new kg.c1());
                 return;
             case 12:
                 RectF rectF8 = ProfileActivity.Z6;
@@ -101,14 +101,14 @@ public final class n90 implements Runnable {
             case 15:
                 RectF rectF11 = ProfileActivity.Z6;
                 ?? obj = new Object();
-                obj.f28921a = true;
+                obj.f28902a = true;
                 profileActivity.showAsSheet(new PrivacyControlActivity(11, false), obj);
                 return;
             case 16:
                 RectF rectF12 = ProfileActivity.Z6;
                 profileActivity.B4(true);
-                if (profileActivity.f43583k2.isRunning()) {
-                    profileActivity.f43583k2.cancel();
+                if (profileActivity.f43624k2.isRunning()) {
+                    profileActivity.f43624k2.cancel();
                 }
                 profileActivity.a5(1.0f);
                 return;
@@ -129,7 +129,7 @@ public final class n90 implements Runnable {
                 }
                 return;
             case 20:
-                if (!profileActivity.f43508a.c0() && (lw0Var = profileActivity.d) != null) {
+                if (!profileActivity.f43549a.c0() && (lw0Var = profileActivity.d) != null) {
                     lw0Var.f();
                     return;
                 }
@@ -153,8 +153,8 @@ public final class n90 implements Runnable {
                 RectF rectF18 = ProfileActivity.Z6;
                 profileActivity.getClass();
                 Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f43548f1);
-                bundle2.putLong("user_id", profileActivity.f43540e1);
+                bundle2.putLong("chat_id", profileActivity.f43589f1);
+                bundle2.putLong("user_id", profileActivity.f43581e1);
                 profileActivity.presentFragment(new ci.j0(bundle2));
                 return;
             case 26:

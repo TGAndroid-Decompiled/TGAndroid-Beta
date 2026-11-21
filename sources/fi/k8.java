@@ -18,34 +18,34 @@ import org.telegram.messenger.gd;
 import org.telegram.messenger.n10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.lr;
 import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.nr;
 public final class k8 extends View {
-    public int f12187a;
-    public int f12188b;
-    public final Matrix f12189c;
+    public int f12229a;
+    public int f12230b;
+    public final Matrix f12231c;
     public final Paint[] d;
-    public final org.telegram.ui.Components.c6 f12190e;
-    public boolean f12191f;
+    public final org.telegram.ui.Components.d6 f12232e;
+    public boolean f12233f;
     public int h;
-    public final Drawable[] f12192n;
-    public final float[] f12193r;
-    public boolean f12194s;
-    public final Paint f12195w;
-    public final Path f12196x;
-    public final mc f12197y;
+    public final Drawable[] f12234n;
+    public final float[] f12235r;
+    public boolean f12236s;
+    public final Paint f12237w;
+    public final Path f12238x;
+    public final mc f12239y;
 
     public k8(Context context) {
         super(context);
-        this.f12189c = new Matrix();
+        this.f12231c = new Matrix();
         this.d = r0;
-        this.f12190e = new org.telegram.ui.Components.c6(this, 0L, 260L, lr.h);
-        this.f12192n = new Drawable[2];
-        this.f12193r = new float[2];
+        this.f12232e = new org.telegram.ui.Components.d6(this, 0L, 260L, nr.h);
+        this.f12234n = new Drawable[2];
+        this.f12235r = new float[2];
         Paint paint = new Paint(1);
-        this.f12195w = paint;
-        this.f12196x = new Path();
-        this.f12197y = new mc(this, 0.6f, 5.0f);
+        this.f12237w = paint;
+        this.f12238x = new Path();
+        this.f12239y = new mc(this, 0.6f, 5.0f);
         Paint[] paintArr = {new Paint(1), new Paint(1)};
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -54,36 +54,36 @@ public final class k8 extends View {
     }
 
     public final void a(boolean z10, o6 o6Var, boolean z11) {
-        hi.o8 o8Var;
-        this.f12194s = z10;
-        this.f12191f = true;
+        hi.n8 n8Var;
+        this.f12236s = z10;
+        this.f12233f = true;
         int i7 = 0;
-        if (o6Var != null && (o8Var = o6Var.f12330c.E0) != null) {
-            int i10 = o8Var.f15192a;
-            org.telegram.ui.Components.c6 c6Var = this.f12190e;
+        if (o6Var != null && (n8Var = o6Var.f12372c.E0) != null) {
+            int i10 = n8Var.f15125a;
+            org.telegram.ui.Components.d6 d6Var = this.f12232e;
             if (i10 == 1) {
                 c(15.0f, 2131232388);
                 d(-7808710, -13781445);
-                c6Var.f(z11, !z11);
+                d6Var.f(z11, !z11);
             } else if (i10 == 2) {
                 c(17.33f, 2131232164);
                 d(-3905294, -6923014);
-                c6Var.f(z11, !z11);
+                d6Var.f(z11, !z11);
             } else if (i10 == 3) {
                 c(17.33f, 2131232162);
                 d(-18621, -618956);
-                c6Var.f(z11, !z11);
+                d6Var.f(z11, !z11);
             } else if (z10) {
                 c(17.33f, 2131232161);
                 d(-15292942, -15630089);
-                c6Var.f(z11, !z11);
+                d6Var.f(z11, !z11);
             } else {
-                this.f12191f = false;
+                this.f12233f = false;
             }
         } else {
-            this.f12191f = false;
+            this.f12233f = false;
         }
-        if (!this.f12191f) {
+        if (!this.f12233f) {
             i7 = 8;
         }
         setVisibility(i7);
@@ -92,37 +92,37 @@ public final class k8 extends View {
 
     public final void b(boolean z10, TL_stories.StoryItem storyItem, boolean z11) {
         ArrayList<TLRPC.PrivacyRule> arrayList;
-        this.f12194s = z10;
-        this.f12191f = true;
+        this.f12236s = z10;
+        this.f12233f = true;
         int i7 = 0;
         if (storyItem == null) {
-            this.f12191f = false;
+            this.f12233f = false;
         } else {
             boolean z12 = storyItem.close_friends;
-            org.telegram.ui.Components.c6 c6Var = this.f12190e;
+            org.telegram.ui.Components.d6 d6Var = this.f12232e;
             if (z12) {
                 c(15.0f, 2131232388);
                 d(-7808710, -13781445);
-                c6Var.f(z11, true);
+                d6Var.f(z11, true);
             } else if (storyItem.contacts) {
                 c(17.33f, 2131232164);
                 d(-3905294, -6923014);
-                c6Var.f(z11, true);
+                d6Var.f(z11, true);
             } else if (!storyItem.selected_contacts && (!z10 || ((arrayList = storyItem.privacy) != null && !arrayList.isEmpty()))) {
                 if (z10) {
                     c(17.33f, 2131232161);
                     d(-15292942, -15630089);
-                    c6Var.f(z11, true);
+                    d6Var.f(z11, true);
                 } else {
-                    this.f12191f = false;
+                    this.f12233f = false;
                 }
             } else {
                 c(17.33f, 2131232162);
                 d(-18621, -618956);
-                c6Var.f(z11, true);
+                d6Var.f(z11, true);
             }
         }
-        if (!this.f12191f) {
+        if (!this.f12233f) {
             i7 = 8;
         }
         setVisibility(i7);
@@ -131,18 +131,18 @@ public final class k8 extends View {
 
     public final void c(float f10, int i7) {
         if (i7 == 2131232388) {
-            setContentDescription(gd.M0(2131744297, null));
+            setContentDescription(gd.N0(2131744291, null));
         } else if (i7 == 2131232164) {
-            setContentDescription(gd.M0(2131744295, null));
+            setContentDescription(gd.N0(2131744289, null));
         } else if (i7 == 2131232162) {
-            setContentDescription(gd.M0(2131744285, null));
+            setContentDescription(gd.N0(2131744279, null));
         } else if (i7 == 2131232161) {
-            setContentDescription(gd.M0(2131744293, null));
+            setContentDescription(gd.N0(2131744287, null));
         }
-        Drawable[] drawableArr = this.f12192n;
+        Drawable[] drawableArr = this.f12234n;
         Drawable drawable = drawableArr[0];
         drawableArr[1] = drawable;
-        float[] fArr = this.f12193r;
+        float[] fArr = this.f12235r;
         fArr[1] = fArr[0];
         if (drawable != null && i7 == this.h) {
             return;
@@ -158,13 +158,13 @@ public final class k8 extends View {
     public final void d(int i7, int i10) {
         Paint[] paintArr = this.d;
         paintArr[1].setShader(paintArr[0].getShader());
-        if (this.f12187a == i7 && this.f12188b == i10) {
+        if (this.f12229a == i7 && this.f12230b == i10) {
             return;
         }
-        this.f12187a = i7;
-        this.f12188b = i10;
+        this.f12229a = i7;
+        this.f12230b = i10;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(23.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        Matrix matrix = this.f12189c;
+        Matrix matrix = this.f12231c;
         matrix.reset();
         matrix.postTranslate(0.0f, org.telegram.messenger.g0.L(8.0f));
         linearGradient.setLocalMatrix(matrix);
@@ -175,7 +175,7 @@ public final class k8 extends View {
     public float getCenterX() {
         int L;
         float width = (getWidth() / 2.0f) + getX();
-        if (this.f12194s) {
+        if (this.f12236s) {
             L = 0;
         } else {
             L = org.telegram.messenger.g0.L(14.0f);
@@ -192,15 +192,15 @@ public final class k8 extends View {
         float f11;
         float centerX;
         float centerX2;
-        if (!this.f12191f) {
+        if (!this.f12233f) {
             return;
         }
-        if (this.f12194s) {
+        if (this.f12236s) {
             N = 0.0f;
         } else {
             N = org.telegram.messenger.g0.N(7.0f);
         }
-        if (this.f12194s) {
+        if (this.f12236s) {
             N2 = org.telegram.messenger.g0.N(43.0f);
         } else {
             N2 = org.telegram.messenger.g0.N(23.66f);
@@ -208,10 +208,10 @@ public final class k8 extends View {
         float N3 = org.telegram.messenger.g0.N(23.66f);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(com.google.android.gms.internal.vision.e2.A(getWidth(), N2, 2.0f, N), (getHeight() - N3) / 2.0f, org.telegram.messenger.f3.a(getWidth(), N2, 2.0f, N), (getHeight() + N3) / 2.0f);
-        float a10 = this.f12197y.a(0.075f);
+        float a10 = this.f12239y.a(0.075f);
         canvas.save();
         canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
-        float e10 = this.f12190e.e(false, 0.0f);
+        float e10 = this.f12232e.e(false, 0.0f);
         int i7 = (e10 > 0.0f ? 1 : (e10 == 0.0f ? 0 : -1));
         Paint[] paintArr = this.d;
         if (i7 > 0) {
@@ -223,11 +223,11 @@ public final class k8 extends View {
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), paintArr[0]);
         }
         float abs = Math.abs(e10 - 0.5f) + 0.5f;
-        Drawable[] drawableArr = this.f12192n;
+        Drawable[] drawableArr = this.f12234n;
         Drawable drawable = drawableArr[1];
-        float[] fArr = this.f12193r;
+        float[] fArr = this.f12235r;
         if (drawable != null && e10 > 0.5f) {
-            if (this.f12194s) {
+            if (this.f12236s) {
                 centerX2 = org.telegram.messenger.g0.N(14.66f) + rectF.left;
             } else {
                 centerX2 = rectF.centerX();
@@ -245,7 +245,7 @@ public final class k8 extends View {
             f11 = 12.0f;
         }
         if (drawableArr[c10] != null && e10 <= f10) {
-            if (this.f12194s) {
+            if (this.f12236s) {
                 centerX = org.telegram.messenger.g0.N(14.66f) + rectF.left;
             } else {
                 centerX = rectF.centerX();
@@ -255,14 +255,14 @@ public final class k8 extends View {
             drawableArr[c10].setBounds((int) n10.w(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f13), (int) (f13 + centerX), (int) com.google.android.gms.internal.vision.e2.c(fArr[c10], 2.0f, abs, rectF.centerY()));
             drawableArr[c10].draw(canvas);
         }
-        if (this.f12194s) {
-            Path path = this.f12196x;
+        if (this.f12236s) {
+            Path path = this.f12238x;
             path.rewind();
             path.moveTo(rectF.right - org.telegram.messenger.g0.N(15.66f), rectF.centerY() - org.telegram.messenger.g0.N(1.33f));
             path.lineTo(rectF.right - org.telegram.messenger.g0.N(f11), org.telegram.messenger.g0.N(2.33f) + rectF.centerY());
             path.lineTo(rectF.right - org.telegram.messenger.g0.N(8.16f), rectF.centerY() - org.telegram.messenger.g0.N(1.33f));
             float N4 = org.telegram.messenger.g0.N(1.33f);
-            Paint paint = this.f12195w;
+            Paint paint = this.f12237w;
             paint.setStrokeWidth(N4);
             canvas.drawPath(path, paint);
         }
@@ -277,6 +277,6 @@ public final class k8 extends View {
     @Override
     public void setPressed(boolean z10) {
         super.setPressed(z10);
-        this.f12197y.c(z10);
+        this.f12239y.c(z10);
     }
 }

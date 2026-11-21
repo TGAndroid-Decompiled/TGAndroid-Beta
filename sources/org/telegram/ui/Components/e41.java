@@ -1,38 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
 import org.telegram.tgnet.TLRPC;
-public abstract class e41 {
-    public String[] f34602a = new String[0];
+public final class e41 implements hw0 {
+    public final k41 f34679a;
 
-    public boolean a() {
-        return false;
+    public e41(k41 k41Var) {
+        this.f34679a = k41Var;
     }
 
-    public String[] b() {
-        return this.f34602a;
+    @Override
+    public final boolean b() {
+        return this.f34679a.f36766b.a();
     }
 
-    public boolean c() {
-        return false;
+    @Override
+    public final boolean c() {
+        return this.f34679a.f36766b.c();
     }
 
-    public boolean d(x31 x31Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(x31 x31Var, n nVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f34602a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z10, int i7) {
+    @Override
+    public final void d(TLRPC.Document document, String str, Object obj, org.telegram.messenger.bj bjVar, boolean z10, boolean z11, int i7, int i10) {
+        this.f34679a.f36766b.f(document, obj, z11, i7);
     }
 }

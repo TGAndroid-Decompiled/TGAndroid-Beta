@@ -10,16 +10,16 @@ import org.telegram.messenger.lz;
 import org.telegram.messenger.ri;
 import org.telegram.tgnet.TLRPC;
 public abstract class e3 extends LinearLayout implements fs {
-    public int f30563a;
-    public org.telegram.ui.Components.q9 f30564b;
-    public TextView f30565c;
+    public int f30591a;
+    public org.telegram.ui.Components.q9 f30592b;
+    public TextView f30593c;
     public TextView d;
-    public TextView f30566e;
+    public TextView f30594e;
 
     public final void a() {
         TLRPC.Document document;
-        org.telegram.ui.Components.q9 q9Var = this.f30564b;
-        int i7 = this.f30563a;
+        org.telegram.ui.Components.q9 q9Var = this.f30592b;
+        int i7 = this.f30591a;
         TLRPC.TL_messages_stickerSet r02 = ri.d0(i7).r0("tg_placeholders_android");
         if (r02 == null) {
             r02 = ri.d0(i7).p0("tg_placeholders_android");
@@ -32,12 +32,12 @@ public abstract class e3 extends LinearLayout implements fs {
             document = null;
         }
         if (document != null) {
-            lz d = org.telegram.messenger.u5.d(document.thumbs, org.telegram.ui.ActionBar.n6.f29337a7, 0.2f, false);
+            lz d = org.telegram.messenger.u5.d(document.thumbs, org.telegram.ui.ActionBar.m6.f29321a7, 0.2f, false);
             if (d != null) {
-                d.f25486e = 512;
-                d.f25487f = 512;
+                d.f25514e = 512;
+                d.f25515f = 512;
             }
-            this.f30564b.k(fc.b(document), "130_130", "tgs", d, tL_messages_stickerSet);
+            this.f30592b.k(fc.b(document), "130_130", "tgs", d, tL_messages_stickerSet);
             q9Var.getImageReceiver().W(2);
             return;
         }
@@ -51,7 +51,7 @@ public abstract class e3 extends LinearLayout implements fs {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25225y0 && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
+        if (i7 == ks.f25253y0 && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
             a();
         }
     }
@@ -59,32 +59,32 @@ public abstract class e3 extends LinearLayout implements fs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ks.f(this.f30563a).c(this, ks.f25225y0);
+        ks.f(this.f30591a).c(this, ks.f25253y0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ks.f(this.f30563a).n(this, ks.f25225y0);
+        ks.f(this.f30591a).n(this, ks.f25253y0);
     }
 
     public void set(TLRPC.RequestPeerType requestPeerType) {
         TextView textView = this.d;
-        TextView textView2 = this.f30565c;
-        TextView textView3 = this.f30566e;
+        TextView textView2 = this.f30593c;
+        TextView textView3 = this.f30594e;
         if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
-            textView2.setText(gd.M0(2131747952, null));
-            textView.setText(gd.M0(2131747951, null));
+            textView2.setText(gd.N0(2131747951, null));
+            textView.setText(gd.N0(2131747950, null));
             textView3.setVisibility(0);
-            textView3.setText(gd.M0(2131751741, null));
+            textView3.setText(gd.N0(2131751740, null));
         } else if (requestPeerType instanceof TLRPC.TL_requestPeerTypeChat) {
-            textView2.setText(gd.M0(2131747950, null));
-            textView.setText(gd.M0(2131747949, null));
+            textView2.setText(gd.N0(2131747949, null));
+            textView.setText(gd.N0(2131747948, null));
             textView3.setVisibility(0);
-            textView3.setText(gd.M0(2131751735, null));
+            textView3.setText(gd.N0(2131751734, null));
         } else {
-            textView2.setText(gd.M0(2131747948, null));
-            textView.setText(gd.M0(2131747947, null));
+            textView2.setText(gd.N0(2131747947, null));
+            textView.setText(gd.N0(2131747946, null));
             textView3.setVisibility(8);
         }
     }

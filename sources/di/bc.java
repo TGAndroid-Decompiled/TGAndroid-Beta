@@ -3,18 +3,18 @@ package di;
 import android.content.Context;
 import org.telegram.ui.vs0;
 public final class bc extends vg.m {
-    public final int f8577j0;
+    public final int f8602j0;
 
     public bc(Context context, int i7, int i10, int i11) {
         super(context, i7, i10);
-        this.f8577j0 = i11;
+        this.f8602j0 = i11;
     }
 
     @Override
     public void h() {
-        switch (this.f8577j0) {
+        switch (this.f8602j0) {
             case 2:
-                boolean z10 = org.telegram.messenger.s2.f26721a;
+                boolean z10 = org.telegram.messenger.s2.f26749a;
                 return;
             default:
                 return;
@@ -23,7 +23,7 @@ public final class bc extends vg.m {
 
     @Override
     public void n() {
-        switch (this.f8577j0) {
+        switch (this.f8602j0) {
             case 0:
                 return;
             default:
@@ -34,7 +34,7 @@ public final class bc extends vg.m {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f8577j0) {
+        switch (this.f8602j0) {
             case 1:
                 super.onAttachedToWindow();
                 setPaused(false);
@@ -60,7 +60,7 @@ public final class bc extends vg.m {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f8577j0) {
+        switch (this.f8602j0) {
             case 1:
                 super.onDetachedFromWindow();
                 setPaused(true);
@@ -86,7 +86,7 @@ public final class bc extends vg.m {
 
     public bc(vs0 vs0Var, Context context, int i7, int i10, Context context2) {
         super(context, i7, i10);
-        this.f8577j0 = 2;
+        this.f8602j0 = 2;
     }
 
     private final void p() {

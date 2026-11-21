@@ -9,27 +9,27 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.cn0;
-import org.telegram.ui.Components.gk;
+import org.telegram.ui.Components.fn0;
+import org.telegram.ui.Components.ik;
 import org.telegram.ui.Components.me;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ac1;
 import org.telegram.ui.hc1;
 public final class i2 implements wi.l {
     public static i2 h;
-    public wi.n f40924a;
-    public m f40925b;
-    public long f40926c;
+    public wi.n f41059a;
+    public m f41060b;
+    public long f41061c;
     public boolean d;
-    public final gk f40927e = new gk(this, 25);
-    public boolean f40928f;
+    public final ik f41062e = new ik(this, 25);
+    public boolean f41063f;
 
     public static void g() {
         boolean z10;
         ?? r52;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         boolean z11 = true;
-        if (hc1.f48251m1 == null && h2.d() == null) {
+        if (hc1.f48325m1 == null && h2.d() == null) {
             z10 = false;
         } else {
             z10 = true;
@@ -40,47 +40,47 @@ public final class i2 implements wi.l {
                 h = new i2();
             }
             i2 i2Var = h;
-            wi.n nVar = i2Var.f40924a;
+            wi.n nVar = i2Var.f41059a;
             if (nVar == null || !nVar.d()) {
-                i2Var.f40924a = l2.i.d().k(i2Var);
+                i2Var.f41059a = l2.i.d().k(i2Var);
             }
-            wi.n nVar2 = i2Var.f40924a;
-            if (nVar2.f59989c == 2) {
+            wi.n nVar2 = i2Var.f41059a;
+            if (nVar2.f60030c == 2) {
                 nVar2.c();
                 return;
             }
-            if (hc1.f48251m1 == null) {
+            if (hc1.f48325m1 == null) {
                 h2Var = h2.d();
             }
-            wi.n nVar3 = i2Var.f40924a;
+            wi.n nVar3 = i2Var.f41059a;
             if (h2Var != null) {
                 r52 = 1;
             } else {
                 r52 = 0;
             }
-            if (h2Var == null || !h2Var.f40905e) {
+            if (h2Var == null || !h2Var.f41040e) {
                 z11 = false;
             }
-            int i7 = nVar3.f59989c;
+            int i7 = nVar3.f60030c;
             if (i7 != 3) {
-                nVar3.f59991f = r52;
-                nVar3.f59992g = z11;
+                nVar3.f60032f = r52;
+                nVar3.f60033g = z11;
                 if (i7 == 2) {
                     nVar3.d = r52;
                 } else {
-                    nVar3.f59989c = r52;
+                    nVar3.f60030c = r52;
                 }
-                nVar3.f59988b.f();
+                nVar3.f60029b.f();
             }
-            i2Var.f40924a.c();
+            i2Var.f41059a.c();
             return;
         }
         i2 i2Var2 = h;
         if (i2Var2 != null) {
             h = null;
-            wi.n nVar4 = i2Var2.f40924a;
+            wi.n nVar4 = i2Var2.f41059a;
             if (nVar4 != null) {
-                i2Var2.f40924a = null;
+                i2Var2.f41059a = null;
                 nVar4.f();
             }
         }
@@ -89,17 +89,17 @@ public final class i2 implements wi.l {
     @Override
     public final void B(View view) {
         m mVar;
-        hc1 hc1Var = hc1.f48251m1;
-        if (hc1Var != null && (mVar = this.f40925b) == view && !this.f40928f) {
-            this.f40928f = true;
+        hc1 hc1Var = hc1.f48325m1;
+        if (hc1Var != null && (mVar = this.f41060b) == view && !this.f41063f) {
+            this.f41063f = true;
             mVar.getClass();
-            mVar.f41040r = SystemClock.elapsedRealtime();
+            mVar.f41175r = SystemClock.elapsedRealtime();
             mVar.b();
-            hc1Var.f48278k1 = this.f40925b.f41034a;
+            hc1Var.f48352k1 = this.f41060b.f41169a;
             hc1Var.l1 = true;
             hc1Var.y();
             try {
-                ((WindowManager) hc1Var.f48255b.getSystemService("window")).removeView(hc1Var.f48290u0);
+                ((WindowManager) hc1Var.f48329b.getSystemService("window")).removeView(hc1Var.f48364u0);
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
@@ -118,8 +118,8 @@ public final class i2 implements wi.l {
 
     @Override
     public final boolean G() {
-        hc1 hc1Var = hc1.f48251m1;
-        if (hc1Var != null && hc1Var.f48261d0.isAttachedToWindow()) {
+        hc1 hc1Var = hc1.f48325m1;
+        if (hc1Var != null && hc1Var.f48335d0.isAttachedToWindow()) {
             return true;
         }
         return false;
@@ -164,26 +164,26 @@ public final class i2 implements wi.l {
 
     @Override
     public final void U() {
-        this.f40924a = null;
+        this.f41059a = null;
         if (h == this) {
             h = null;
         }
-        hc1 hc1Var = hc1.f48251m1;
+        hc1 hc1Var = hc1.f48325m1;
         if (hc1Var != null) {
             hc1Var.G0 = true;
-            hc1Var.f48261d0.d.release();
-            hc1Var.f48264e0.d.release();
-            hc1Var.f48259c0.release();
+            hc1Var.f48335d0.d.release();
+            hc1Var.f48338e0.d.release();
+            hc1Var.f48333c0.release();
             hc1Var.c();
-            hc1Var.f48290u0.d();
-            hc1.f48251m1 = null;
+            hc1Var.f48364u0.d();
+            hc1.f48325m1 = null;
             g();
         }
         h2.b();
     }
 
     @Override
-    public final boolean V(boolean z10, float f10, cn0 cn0Var) {
+    public final boolean V(boolean z10, float f10, fn0 fn0Var) {
         return false;
     }
 
@@ -196,26 +196,26 @@ public final class i2 implements wi.l {
         } else {
             z10 = false;
         }
-        g.f40871a = z10;
+        g.f41006a = z10;
         m mVar = (m) view;
-        this.f40925b = mVar;
+        this.f41060b = mVar;
         mVar.b();
-        this.f40926c = g.c();
+        this.f41061c = g.c();
         this.d = m.a(VoIPService.getSharedInstance());
-        gk gkVar = this.f40927e;
-        org.telegram.messenger.g0.r(gkVar);
-        org.telegram.messenger.g0.h3(gkVar, 500L);
-        this.f40928f = false;
-        if (hc1.f48251m1 == null && h2.d() != null) {
+        ik ikVar = this.f41062e;
+        org.telegram.messenger.g0.r(ikVar);
+        org.telegram.messenger.g0.h3(ikVar, 500L);
+        this.f41063f = false;
+        if (hc1.f48325m1 == null && h2.d() != null) {
             h2 d = h2.d();
-            n2 n2Var = this.f40925b.f41034a;
+            n2 n2Var = this.f41060b.f41169a;
             d.getClass();
             VoIPService sharedInstance2 = VoIPService.getSharedInstance();
             if (sharedInstance2 != null) {
-                sharedInstance2.setSinks(d.f40908r.d, n2Var.d);
+                sharedInstance2.setSinks(d.f41043r.d, n2Var.d);
             }
             try {
-                d.f40904c.removeView(d.f40902a);
+                d.f41039c.removeView(d.f41037a);
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
@@ -224,20 +224,20 @@ public final class i2 implements wi.l {
 
     public final m2 a() {
         n2 n2Var;
-        m mVar = this.f40925b;
+        m mVar = this.f41060b;
         if (mVar != null) {
-            m2 m2Var = mVar.f41034a.d;
+            m2 m2Var = mVar.f41169a.d;
             if (m2Var.rotatedFrameWidth > 0) {
                 return m2Var;
             }
         }
-        hc1 hc1Var = hc1.f48251m1;
-        if (hc1Var != null && (n2Var = hc1Var.f48261d0) != null) {
+        hc1 hc1Var = hc1.f48325m1;
+        if (hc1Var != null && (n2Var = hc1Var.f48335d0) != null) {
             return n2Var.d;
         }
         h2 d = h2.d();
         if (d != null) {
-            return d.f40909s.d;
+            return d.f41044s.d;
         }
         return null;
     }
@@ -262,37 +262,37 @@ public final class i2 implements wi.l {
 
     @Override
     public final void d(View view) {
-        g.f40871a = false;
-        org.telegram.messenger.g0.r(this.f40927e);
-        this.f40925b = null;
-        hc1 hc1Var = hc1.f48251m1;
+        g.f41006a = false;
+        org.telegram.messenger.g0.r(this.f41062e);
+        this.f41060b = null;
+        hc1 hc1Var = hc1.f48325m1;
         if (hc1Var != null) {
             try {
-                if (hc1Var.f48290u0.getParent() == null) {
-                    ac1 ac1Var = hc1Var.f48290u0;
+                if (hc1Var.f48364u0.getParent() == null) {
+                    ac1 ac1Var = hc1Var.f48364u0;
                     ac1Var.getClass();
-                    ((WindowManager) hc1Var.f48255b.getSystemService("window")).addView(ac1Var, r2.a());
+                    ((WindowManager) hc1Var.f48329b.getSystemService("window")).addView(ac1Var, r2.a());
                 }
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
             hc1Var.l1 = false;
-            hc1Var.f48278k1 = null;
+            hc1Var.f48352k1 = null;
             hc1Var.y();
-            hc1Var.f48290u0.invalidate();
+            hc1Var.f48364u0.invalidate();
         } else if (h2.d() != null) {
             h2 d = h2.d();
-            ai.k0 k0Var = d.f40902a;
+            ai.l0 l0Var = d.f41037a;
             try {
-                if (k0Var.getParent() == null) {
-                    d.f40904c.addView(k0Var, d.d);
+                if (l0Var.getParent() == null) {
+                    d.f41039c.addView(l0Var, d.d);
                 }
             } catch (Exception e11) {
                 a8.g(e11, true);
             }
             VoIPService sharedInstance = VoIPService.getSharedInstance();
             if (sharedInstance != null) {
-                sharedInstance.setSinks(d.f40908r.d, d.f40909s.d);
+                sharedInstance.setSinks(d.f41043r.d, d.f41044s.d);
             }
         }
     }
@@ -355,13 +355,13 @@ public final class i2 implements wi.l {
 
     @Override
     public final void w(View view) {
-        org.telegram.messenger.g0.r(this.f40927e);
-        if (this.f40925b == view) {
-            this.f40925b = null;
+        org.telegram.messenger.g0.r(this.f41062e);
+        if (this.f41060b == view) {
+            this.f41060b = null;
         }
         m mVar = (m) view;
-        mVar.f41038f.b();
-        mVar.f41034a.d.release();
+        mVar.f41173f.b();
+        mVar.f41169a.d.release();
     }
 
     @Override

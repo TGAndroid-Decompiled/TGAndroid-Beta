@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.telegram.ui.tv;
 public final class m extends rg.b {
     public final boolean d;
-    public final tv f12240e;
+    public final tv f12283e;
 
     public m(tv tvVar, boolean z10) {
-        this.f12240e = tvVar;
+        this.f12283e = tvVar;
         this.d = z10;
     }
 
@@ -21,31 +21,31 @@ public final class m extends rg.b {
     public final int b() {
         ArrayList arrayList;
         boolean z10 = this.d;
-        tv tvVar = this.f12240e;
+        tv tvVar = this.f12283e;
         if (z10) {
             arrayList = tvVar.E;
         } else {
-            arrayList = tvVar.f12442y;
+            arrayList = tvVar.f12482y;
         }
         return arrayList.size();
     }
 
     @Override
     public final void t(v4.f1 f1Var, int i7) {
-        p pVar = (p) f1Var.f59123a;
-        pVar.f12354b = i7;
+        p pVar = (p) f1Var.f59161a;
+        pVar.f12396b = i7;
         boolean z10 = this.d;
-        tv tvVar = this.f12240e;
+        tv tvVar = this.f12283e;
         if (z10) {
-            pVar.setDialogId(((n) tvVar.E.get(i7)).f12279c);
+            pVar.setDialogId(((n) tvVar.E.get(i7)).f12317c);
         } else {
-            pVar.setDialogId(((n) tvVar.f12442y.get(i7)).f12279c);
+            pVar.setDialogId(((n) tvVar.f12482y.get(i7)).f12317c);
         }
     }
 
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        p pVar = new p(this.f12240e, viewGroup.getContext());
+        p pVar = new p(this.f12283e, viewGroup.getContext());
         boolean z10 = this.d;
         pVar.O = z10;
         if (z10) {

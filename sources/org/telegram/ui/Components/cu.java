@@ -1,86 +1,77 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.ViewParent;
-import android.webkit.WebView;
-public final class cu extends WebView {
-    public final int f34180a;
-    public final Context f34181b;
-    public final KeyEvent.Callback f34182c;
+import android.view.OrientationEventListener;
+import org.telegram.ui.PhotoViewer;
+public final class cu extends OrientationEventListener {
+    public final int f34307a;
+    public final Object f34308b;
 
-    public cu(KeyEvent.Callback callback, Context context, Context context2, int i7) {
+    public cu(int i7, Context context, Object obj) {
         super(context);
-        this.f34180a = i7;
-        this.f34182c = callback;
-        this.f34181b = context2;
+        this.f34307a = i7;
+        this.f34308b = obj;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.f34180a) {
-            case 1:
-                super.draw(canvas);
-                ViewParent parent = getParent();
-                org.telegram.ui.dq0 dq0Var = (org.telegram.ui.dq0) this.f34182c;
-                if (parent != dq0Var && dq0Var.h.getVisibility() == 0) {
-                    canvas.drawColor(-16777216);
-                    dq0Var.j(canvas, getWidth(), getHeight());
-                    return;
-                }
-                return;
-            default:
-                super.draw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        switch (this.f34180a) {
+    public final void onOrientationChanged(int i7) {
+        Activity activity;
+        ue0 ue0Var;
+        Activity activity2;
+        int i10;
+        switch (this.f34307a) {
             case 0:
-                org.telegram.messenger.g0.u(this.f34181b, true);
-                super.onAttachedToWindow();
-                return;
-            default:
-                org.telegram.messenger.g0.u(this.f34181b, true);
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        switch (this.f34180a) {
-            case 0:
-                org.telegram.messenger.g0.u(this.f34181b, false);
-                super.onDetachedFromWindow();
-                return;
-            default:
-                org.telegram.messenger.g0.u(this.f34181b, false);
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f34180a) {
-            case 0:
-                gu guVar = (gu) this.f34182c;
-                boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if (onTouchEvent) {
-                    if (motionEvent.getAction() == 1) {
-                        guVar.E0 = false;
+                iu iuVar = (iu) this.f34308b;
+                z71 z71Var = iuVar.n1;
+                if (iuVar.A1 != null && z71Var.getVisibility() == 0 && (activity = iuVar.f36324t1) != null && z71Var.U && iuVar.H1) {
+                    if (i7 >= 240 && i7 <= 300) {
+                        iuVar.I1 = true;
+                        return;
+                    } else if (iuVar.I1 && i7 > 0) {
+                        if (i7 >= 330 || i7 <= 30) {
+                            activity.setRequestedOrientation(iuVar.G1);
+                            iuVar.H1 = false;
+                            iuVar.I1 = false;
+                            return;
+                        }
+                        return;
                     } else {
-                        guVar.E0 = true;
+                        return;
                     }
                 }
-                return onTouchEvent;
+                return;
             default:
-                return super.onTouchEvent(motionEvent);
+                PhotoViewer photoViewer = (PhotoViewer) this.f34308b;
+                if (photoViewer.W3 != null && (ue0Var = photoViewer.f43428z2) != null && ue0Var.getVisibility() == 0 && (activity2 = photoViewer.E) != null && (i10 = photoViewer.Y3) != 0) {
+                    if (i10 == 1) {
+                        if (i7 >= 240 && i7 <= 300) {
+                            photoViewer.Z3 = true;
+                            return;
+                        } else if (photoViewer.Z3 && i7 > 0) {
+                            if (i7 >= 330 || i7 <= 30) {
+                                activity2.setRequestedOrientation(photoViewer.X3);
+                                photoViewer.Y3 = 0;
+                                photoViewer.Z3 = false;
+                                return;
+                            }
+                            return;
+                        } else {
+                            return;
+                        }
+                    } else if (i7 > 0 && (i7 >= 330 || i7 <= 30)) {
+                        photoViewer.Z3 = true;
+                        return;
+                    } else if (photoViewer.Z3 && i7 >= 240 && i7 <= 300) {
+                        activity2.setRequestedOrientation(photoViewer.X3);
+                        photoViewer.Y3 = 0;
+                        photoViewer.Z3 = false;
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
         }
     }
 }

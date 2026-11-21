@@ -1,53 +1,56 @@
 package hi;
 
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.dq;
-import org.telegram.ui.Components.ey;
-import org.telegram.ui.Components.rl0;
-import org.telegram.ui.j01;
-public final class c2 extends dq {
-    public final int h;
-    public final Object f14304i;
+import android.content.Context;
+import org.telegram.messenger.pc;
+import org.telegram.ui.Components.hv0;
+import org.telegram.ui.Components.lv0;
+public final class c2 extends lv0 {
+    public final boolean H3;
+    public final d2 I3;
 
-    public c2(int i7, FrameLayout frameLayout) {
-        this.h = i7;
-        this.f14304i = frameLayout;
+    public c2(d2 d2Var, Context context, int i7, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
+        super(i7, context, h6Var);
+        this.I3 = d2Var;
+        this.H3 = z10;
     }
 
     @Override
-    public final int a() {
-        switch (this.h) {
-            case 0:
-                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Bf, (org.telegram.ui.ActionBar.i6) this.f14304i);
-            case 1:
-                return ((org.telegram.ui.ActionBar.r0) this.f14304i).f29918c.f30297b.f29096s0;
-            case 2:
-                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Bf, ((ey) this.f14304i).H.f39335a2);
-            case 3:
-                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Q5, ((rl0) this.f14304i).f39175e);
-            default:
-                return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Bf, ((j01) this.f14304i).G.f51378a1);
+    public final boolean D1() {
+        return pc.e(8200);
+    }
+
+    @Override
+    public final hv0[] E1(hv0[] hv0VarArr) {
+        if (hv0VarArr != null && this.H3) {
+            int i7 = 0;
+            while (true) {
+                if (i7 < hv0VarArr.length) {
+                    hv0 hv0Var = hv0VarArr[i7];
+                    if (hv0Var != null && hv0Var.f35985b) {
+                        break;
+                    }
+                    i7++;
+                } else {
+                    i7 = -1;
+                    break;
+                }
+            }
+            if (i7 >= 0) {
+                int length = hv0VarArr.length;
+                hv0[] hv0VarArr2 = new hv0[length];
+                hv0VarArr2[0] = hv0VarArr[i7];
+                for (int i10 = 1; i10 < length; i10++) {
+                    hv0VarArr2[i10] = hv0VarArr[i10 <= i7 ? i10 - 1 : i10];
+                }
+                return hv0VarArr2;
+            }
         }
+        return hv0VarArr;
     }
 
-    public c2(ey eyVar) {
-        super(1.25f);
-        this.h = 2;
-        this.f14304i = eyVar;
-        this.f34485f = org.telegram.messenger.g0.L(7.0f);
-    }
-
-    public c2(org.telegram.ui.ActionBar.i6 i6Var) {
-        super(1.25f);
-        this.h = 0;
-        this.f14304i = i6Var;
-        this.f34485f = org.telegram.messenger.g0.L(7.0f);
-    }
-
-    public c2(j01 j01Var) {
-        super(1.25f);
-        this.h = 4;
-        this.f14304i = j01Var;
-        this.f34485f = org.telegram.messenger.g0.L(7.0f);
+    @Override
+    public final void H1(int i7) {
+        super.H1(i7);
+        this.I3.d(false);
     }
 }

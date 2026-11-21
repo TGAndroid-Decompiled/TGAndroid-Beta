@@ -10,14 +10,14 @@ public final class bu extends zt {
     public final au[] X;
     public final int Y;
     public int Z;
-    public au f23130a0;
-    public au f23131b0;
-    public final org.telegram.ui.Cells.m9 f23132c0;
+    public au f23158a0;
+    public au f23159b0;
+    public final org.telegram.ui.Cells.m9 f23160c0;
 
     public bu(ev evVar, Rect rect, int i7, TL_iv.pageBlockButtonRow pageblockbuttonrow) {
         super(evVar, rect, i7);
         this.Z = -1;
-        this.f23132c0 = new org.telegram.ui.Cells.m9(new h9.g1(this, 25));
+        this.f23160c0 = new org.telegram.ui.Cells.m9(new h9.g1(this, 25));
         this.X = new au[pageblockbuttonrow.buttons.size()];
         int size = pageblockbuttonrow.buttons.size();
         for (int i10 = 0; i10 < size; i10++) {
@@ -43,14 +43,14 @@ public final class bu extends zt {
         buVar.m0();
         au[] auVarArr = buVar.X;
         if (auVarArr.length == 0) {
-            c10 = g0.L(buVar.f28349a.M + 18);
+            c10 = g0.L(buVar.f28377a.M + 18);
         } else {
             c10 = auVarArr[0].c();
         }
         float I = (buVar.I() - c10) / 2.0f;
         if (f11 >= I && f11 <= I + c10) {
             for (au auVar : auVarArr) {
-                if (f10 >= auVar.d && f10 <= i7 + auVar.f22949e) {
+                if (f10 >= auVar.d && f10 <= i7 + auVar.f22977e) {
                     return auVar;
                 }
             }
@@ -60,12 +60,12 @@ public final class bu extends zt {
     }
 
     public static void j0(bu buVar, au auVar) {
-        au auVar2 = buVar.f23130a0;
+        au auVar2 = buVar.f23158a0;
         if (auVar2 != auVar) {
             if (auVar2 != null) {
                 auVar2.m(false);
             }
-            buVar.f23130a0 = auVar;
+            buVar.f23158a0 = auVar;
             if (auVar != null) {
                 auVar.m(true);
             }
@@ -77,23 +77,23 @@ public final class bu extends zt {
         int c10;
         au[] auVarArr = this.X;
         if (auVarArr.length == 0) {
-            c10 = g0.L(this.f28349a.M + 18);
+            c10 = g0.L(this.f28377a.M + 18);
         } else {
             c10 = auVarArr[0].c();
         }
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         return g0.L(4.333f) + rect.top + c10 + rect.bottom;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         return k0() + rect.left + rect.right;
     }
 
     @Override
     public final boolean Q() {
-        if (this.f23131b0 != null) {
+        if (this.f23159b0 != null) {
             return true;
         }
         return false;
@@ -103,7 +103,7 @@ public final class bu extends zt {
     public final void T() {
         au[] auVarArr;
         for (au auVar : this.X) {
-            auVar.f22946a.i(this.W);
+            auVar.f22974a.i(this.W);
         }
     }
 
@@ -111,7 +111,7 @@ public final class bu extends zt {
     public final void V() {
         au[] auVarArr;
         for (au auVar : this.X) {
-            auVar.f22946a.f(this.W);
+            auVar.f22974a.f(this.W);
         }
     }
 
@@ -121,7 +121,7 @@ public final class bu extends zt {
         if (view == null) {
             return false;
         }
-        return this.f23132c0.a(view, motionEvent);
+        return this.f23160c0.a(view, motionEvent);
     }
 
     public final int k0() {
@@ -134,7 +134,7 @@ public final class bu extends zt {
         for (au auVar : auVarArr) {
             L += auVar.h();
         }
-        return Math.min(this.f28351c, L);
+        return Math.min(this.f28379c, L);
     }
 
     public final void l0(int i7) {
@@ -157,18 +157,18 @@ public final class bu extends zt {
             int i19 = 0;
             for (au auVar : auVarArr) {
                 int h = auVar.h();
-                auVar.f22949e = h;
+                auVar.f22977e = h;
                 i19 += h;
             }
             int i20 = this.Y;
             if (i19 > max) {
                 int i21 = 0;
                 for (au auVar2 : auVarArr) {
-                    i21 += auVar2.f22949e - auVar2.e();
+                    i21 += auVar2.f22977e - auVar2.e();
                 }
                 if (i21 <= 0) {
                     for (au auVar3 : auVarArr) {
-                        auVar3.f22949e = auVar3.e();
+                        auVar3.f22977e = auVar3.e();
                     }
                 } else {
                     int min = Math.min(i19 - max, i21);
@@ -176,7 +176,7 @@ public final class bu extends zt {
                     int i23 = 0;
                     while (i22 < auVarArr.length) {
                         au auVar4 = auVarArr[i22];
-                        int e10 = auVar4.f22949e - auVar4.e();
+                        int e10 = auVar4.f22977e - auVar4.e();
                         if (i22 == auVarArr.length - i17) {
                             i16 = min - i23;
                             i14 = i17;
@@ -187,7 +187,7 @@ public final class bu extends zt {
                             i16 = (int) ((min * e10) / i21);
                         }
                         int min2 = Math.min(i16, e10);
-                        auVar4.f22949e -= min2;
+                        auVar4.f22977e -= min2;
                         i23 += min2;
                         i22++;
                         i17 = i14;
@@ -204,7 +204,7 @@ public final class bu extends zt {
                         int i24 = max / length2;
                         z10 = false;
                         for (int i25 = 0; i25 < auVarArr.length; i25++) {
-                            if (!zArr[i25] && (i12 = auVarArr[i25].f22949e) > i24) {
+                            if (!zArr[i25] && (i12 = auVarArr[i25].f22977e) > i24) {
                                 zArr[i25] = true;
                                 max -= i12;
                                 length2--;
@@ -224,7 +224,7 @@ public final class bu extends zt {
                                 } else {
                                     i11 = 0;
                                 }
-                                auVar5.f22949e = i11 + i26;
+                                auVar5.f22977e = i11 + i26;
                                 i27 = i29;
                             }
                         }
@@ -232,7 +232,7 @@ public final class bu extends zt {
                 }
             }
             for (au auVar6 : auVarArr) {
-                i18 += auVar6.f22949e;
+                i18 += auVar6.f22977e;
             }
             int c10 = p1.g.c(i20);
             if (c10 != i10) {
@@ -246,16 +246,16 @@ public final class bu extends zt {
             }
             for (au auVar7 : auVarArr) {
                 auVar7.d = i13;
-                i13 += auVar7.f22949e + L;
+                i13 += auVar7.f22977e + L;
             }
         }
     }
 
     public final void m0() {
-        ev evVar = this.f28349a;
+        ev evVar = this.f28377a;
         int i7 = evVar.C;
         int i10 = evVar.S;
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         int max = Math.max(0, ((((i7 + i10) + evVar.T) - (i10 * 2)) - rect.left) - rect.right);
         if (this.Z != max) {
             l0(max);

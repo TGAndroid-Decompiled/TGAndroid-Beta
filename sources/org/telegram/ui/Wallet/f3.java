@@ -6,32 +6,32 @@ import di.pb;
 import org.telegram.messenger.gd;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class f3 {
-    public final int f44166a;
-    public final int f44167b;
-    public final boolean f44168c;
+    public final int f44206a;
+    public final int f44207b;
+    public final boolean f44208c;
     public final int d;
-    public final long f44169e;
-    public final long f44170f;
-    public final long f44171g;
+    public final long f44209e;
+    public final long f44210f;
+    public final long f44211g;
     public final long h;
-    public long f44172i;
-    public final int f44173j;
-    public boolean f44174k;
-    public final String f44175l;
-    public final int f44176m;
+    public long f44212i;
+    public final int f44213j;
+    public boolean f44214k;
+    public final String f44215l;
+    public final int f44216m;
 
     public f3(int i7, int i10, boolean z10, int i11, long j3, long j10, long j11, long j12, int i12, String str, int i13) {
-        this.f44166a = i7;
-        this.f44167b = i10;
-        this.f44168c = z10;
+        this.f44206a = i7;
+        this.f44207b = i10;
+        this.f44208c = z10;
         this.d = i11;
-        this.f44169e = j3;
-        this.f44170f = j10;
-        this.f44171g = j11;
+        this.f44209e = j3;
+        this.f44210f = j10;
+        this.f44211g = j11;
         this.h = j12;
-        this.f44173j = i12;
-        this.f44175l = TextUtils.isEmpty(str) ? null : str;
-        this.f44176m = i13;
+        this.f44213j = i12;
+        this.f44215l = TextUtils.isEmpty(str) ? null : str;
+        this.f44216m = i13;
     }
 
     public static String a(TL_wallet.WalletOnchainGiftAction walletOnchainGiftAction) {
@@ -65,7 +65,7 @@ public final class f3 {
         } else {
             j12 = j3;
         }
-        return new f3(i7, 2131232844, true, 0, j12, j10, 0L, j11, 0, str, 2131742782);
+        return new f3(i7, 2131232844, true, 0, j12, j10, 0L, j11, 0, str, 2131742776);
     }
 
     public static SpannableStringBuilder f(int i7, long j3) {
@@ -73,66 +73,66 @@ public final class f3 {
     }
 
     public final CharSequence b() {
-        int i7 = this.f44166a;
-        long j3 = this.f44169e;
-        long j10 = this.f44170f;
+        int i7 = this.f44206a;
+        long j3 = this.f44209e;
+        long j10 = this.f44210f;
         switch (i7) {
             case 0:
                 if (j10 == 0) {
                     j10 = Math.abs(j3);
                 }
-                return f(2131742822, j10);
+                return f(2131742816, j10);
             case 1:
                 if (j3 != 0) {
                     j10 = Math.abs(j3);
                 }
-                return f(2131742811, j10);
+                return f(2131742805, j10);
             case 2:
-                return f(2131742821, Math.abs(j3));
+                return f(2131742815, Math.abs(j3));
             case 3:
                 if (j10 != 0) {
-                    return f(2131742815, j10);
+                    return f(2131742809, j10);
                 }
-                return gd.M0(2131742816, null);
+                return gd.N0(2131742810, null);
             case 4:
-                return gd.M0(2131742814, null);
+                return gd.N0(2131742808, null);
             case 5:
-                return gd.M0(2131742817, null);
+                return gd.N0(2131742811, null);
             case 6:
-                return gd.M0(2131742820, null);
+                return gd.N0(2131742814, null);
             case 7:
-                return gd.M0(2131742819, null);
+                return gd.N0(2131742813, null);
             case 8:
-                return gd.M0(2131742818, null);
+                return gd.N0(2131742812, null);
             case 9:
-                return f(2131742813, j10);
+                return f(2131742807, j10);
             default:
                 return "";
         }
     }
 
     public final String e() {
-        switch (this.f44166a) {
+        switch (this.f44206a) {
             case 0:
-                return gd.M0(2131742808, null);
+                return gd.N0(2131742802, null);
             case 1:
-                return gd.M0(2131742805, null);
+                return gd.N0(2131742799, null);
             case 2:
-                return gd.M0(2131742810, null);
+                return gd.N0(2131742804, null);
             case 3:
-                return gd.M0(2131742807, null);
+                return gd.N0(2131742801, null);
             case 4:
-                return gd.M0(2131742806, null);
+                return gd.N0(2131742800, null);
             case 5:
-                return gd.M0(2131742817, null);
+                return gd.N0(2131742811, null);
             case 6:
-                return gd.M0(2131742820, null);
+                return gd.N0(2131742814, null);
             case 7:
-                return gd.M0(2131742819, null);
+                return gd.N0(2131742813, null);
             case 8:
-                return gd.M0(2131742818, null);
+                return gd.N0(2131742812, null);
             case 9:
-                return gd.M0(2131742809, null);
+                return gd.N0(2131742803, null);
             default:
                 return "";
         }

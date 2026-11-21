@@ -7,9 +7,9 @@ import android.widget.TextView;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.n10;
 public final class n5 extends FrameLayout {
-    public ImageView f31113a;
-    public ImageView f31114b;
-    public TextView f31115c;
+    public ImageView f31141a;
+    public ImageView f31142b;
+    public TextView f31143c;
     public int d;
 
     @Override
@@ -22,20 +22,20 @@ public final class n5 extends FrameLayout {
     }
 
     public void setType(int i7) {
-        TextView textView = this.f31115c;
-        ImageView imageView = this.f31114b;
-        ImageView imageView2 = this.f31113a;
+        TextView textView = this.f31143c;
+        ImageView imageView = this.f31142b;
+        ImageView imageView2 = this.f31141a;
         if (i7 == 0) {
             imageView2.setImageResource(2131232516);
             imageView.setImageResource(2131232517);
-            textView.setText(gd.M0(2131752582, null));
+            textView.setText(gd.N0(2131752581, null));
             imageView2.setLayoutParams(c8.ma.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             imageView.setLayoutParams(c8.ma.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             return;
         }
         imageView2.setImageResource(2131232518);
         imageView.setImageResource(2131232519);
-        textView.setText(gd.M0(2131750460, null));
+        textView.setText(gd.N0(2131750459, null));
         imageView2.setLayoutParams(c8.ma.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
         imageView.setLayoutParams(c8.ma.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
     }

@@ -1,3 +1,176 @@
 package oi;
-public interface b0 {
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.SpannableStringBuilder;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import org.telegram.messenger.au;
+import org.telegram.messenger.ev;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.h6;
+public final class b0 extends View {
+    public final au f21978a;
+    public final int f21979b;
+    public boolean f21980c;
+    public boolean d;
+    public final ai.y0 f21981e;
+    public final e0 f21982f;
+
+    public b0(e0 e0Var, Context context, TL_keyboard.PageButton pageButton, int i7) {
+        super(context);
+        this.f21982f = e0Var;
+        this.f21979b = i7;
+        int i10 = e0Var.f22061n;
+        int d = i5.c.d(32.0f, org.telegram.messenger.g0.f24146q.x, org.telegram.messenger.g0.L(240.0f));
+        h6 h6Var = e0Var.f22062r;
+        kg.i0 i0Var = new kg.i0(this, 27);
+        ev evVar = new ev(i10, d, h6Var);
+        SpannableStringBuilder l10 = evVar.l(pageButton.text, ev.R(16, 13));
+        TL_keyboard.InlineButtonType inlineButtonType = pageButton.type;
+        au auVar = new au(evVar, d, l10, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, i0Var);
+        this.f21978a = auVar;
+        this.f21981e = new ai.y0(this, i7, 19);
+        auVar.f22977e = auVar.h();
+        setContentDescription(c6.l(pageButton.text));
+        setClickable(true);
+        setLongClickable(true);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f21978a.f22974a.i(this);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        org.telegram.messenger.g0.r(this.f21981e);
+        this.f21978a.f22974a.f(this);
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        int height = getHeight();
+        au auVar = this.f21978a;
+        canvas.translate(0.0f, (height - auVar.c()) / 2.0f);
+        auVar.a(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        au auVar = this.f21978a;
+        setMeasuredDimension(auVar.f22977e, org.telegram.messenger.g0.L(8.0f) + auVar.c());
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        e0 e0Var;
+        c0 c0Var;
+        a aVar;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        int actionMasked = motionEvent.getActionMasked();
+        ai.y0 y0Var = this.f21981e;
+        au auVar = this.f21978a;
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked != 3) {
+                        return super.onTouchEvent(motionEvent);
+                    }
+                    this.f21980c = false;
+                    auVar.m(false);
+                    org.telegram.messenger.g0.r(y0Var);
+                    return true;
+                } else if (motionEvent.getX() < 0.0f || motionEvent.getY() < 0.0f || motionEvent.getX() > getWidth() || motionEvent.getY() > getHeight()) {
+                    this.f21980c = false;
+                    auVar.m(false);
+                    org.telegram.messenger.g0.r(y0Var);
+                    return true;
+                }
+            } else {
+                if (this.f21980c && !this.d) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                this.f21980c = false;
+                auVar.m(false);
+                org.telegram.messenger.g0.r(y0Var);
+                if (z10 && (c0Var = (e0Var = this.f21982f).F) != null && (aVar = e0Var.f22528a) != null) {
+                    t3 t3Var = ((l3) c0Var).f22221a;
+                    TL_iv.PageBlock pageBlock = aVar.f21932b;
+                    if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
+                        TL_iv.pageBlockButtonRow pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
+                        int i7 = this.f21979b;
+                        if (i7 >= 0 && i7 < pageblockbuttonrow.buttons.size()) {
+                            g2 g2Var = t3Var.R3;
+                            if (g2Var != null) {
+                                g2Var.d();
+                            }
+                            TL_keyboard.PageButton pageButton = pageblockbuttonrow.buttons.get(i7);
+                            if (pageButton != null) {
+                                TL_keyboard.RichButtonStyle richButtonStyle = pageButton.style;
+                                if (richButtonStyle != null && richButtonStyle.bg_primary) {
+                                    z11 = true;
+                                } else if (richButtonStyle != null && richButtonStyle.bg_danger) {
+                                    z11 = true;
+                                } else if (richButtonStyle != null && richButtonStyle.bg_success) {
+                                    z11 = false;
+                                } else {
+                                    z11 = true;
+                                }
+                                if (richButtonStyle == null) {
+                                    richButtonStyle = new TL_keyboard.RichButtonStyle();
+                                }
+                                richButtonStyle.flags = 0;
+                                if (z11) {
+                                    z12 = true;
+                                } else {
+                                    z12 = false;
+                                }
+                                richButtonStyle.bg_primary = z12;
+                                if (z11) {
+                                    z13 = true;
+                                } else {
+                                    z13 = false;
+                                }
+                                richButtonStyle.bg_danger = z13;
+                                if (z11) {
+                                    z14 = true;
+                                } else {
+                                    z14 = false;
+                                }
+                                richButtonStyle.bg_success = z14;
+                                richButtonStyle.link = false;
+                                pageButton.style = richButtonStyle;
+                            }
+                            t3Var.f35796g3.O(false);
+                            g2 g2Var2 = t3Var.R3;
+                            if (g2Var2 != null) {
+                                g2Var2.h();
+                            }
+                            t3Var.f22425p3.onContentChanged();
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        this.f21980c = true;
+        this.d = false;
+        auVar.m(true);
+        org.telegram.messenger.g0.h3(y0Var, ViewConfiguration.getLongPressTimeout());
+        return true;
+    }
 }

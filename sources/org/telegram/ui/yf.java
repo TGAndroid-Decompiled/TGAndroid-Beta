@@ -2,28 +2,28 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class yf implements Runnable {
-    public final int f54136a;
-    public final bn f54137b;
-    public final org.telegram.ui.ActionBar.u1[] f54138c;
+    public final int f54175a;
+    public final bn f54176b;
+    public final org.telegram.ui.ActionBar.t1[] f54177c;
     public final int d;
 
-    public yf(bn bnVar, org.telegram.ui.ActionBar.u1[] u1VarArr, int i7, int i10) {
-        this.f54136a = i10;
-        this.f54137b = bnVar;
-        this.f54138c = u1VarArr;
+    public yf(bn bnVar, org.telegram.ui.ActionBar.t1[] t1VarArr, int i7, int i10) {
+        this.f54175a = i10;
+        this.f54176b = bnVar;
+        this.f54177c = t1VarArr;
         this.d = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f54136a) {
+        switch (this.f54175a) {
             case 0:
-                org.telegram.ui.ActionBar.u1[] u1VarArr = this.f54138c;
-                org.telegram.ui.ActionBar.u1 u1Var = u1VarArr[0];
-                if (u1Var != null) {
-                    final bn bnVar = this.f54137b;
+                org.telegram.ui.ActionBar.t1[] t1VarArr = this.f54177c;
+                org.telegram.ui.ActionBar.t1 t1Var = t1VarArr[0];
+                if (t1Var != null) {
+                    final bn bnVar = this.f54176b;
                     final int i7 = this.d;
-                    u1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    t1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
                             switch (r3) {
@@ -39,17 +39,17 @@ public final class yf implements Runnable {
                             }
                         }
                     });
-                    bnVar.showDialog(u1VarArr[0]);
+                    bnVar.showDialog(t1VarArr[0]);
                     return;
                 }
                 return;
             case 1:
-                org.telegram.ui.ActionBar.u1[] u1VarArr2 = this.f54138c;
-                org.telegram.ui.ActionBar.u1 u1Var2 = u1VarArr2[0];
-                if (u1Var2 != null) {
-                    final bn bnVar2 = this.f54137b;
+                org.telegram.ui.ActionBar.t1[] t1VarArr2 = this.f54177c;
+                org.telegram.ui.ActionBar.t1 t1Var2 = t1VarArr2[0];
+                if (t1Var2 != null) {
+                    final bn bnVar2 = this.f54176b;
                     final int i10 = this.d;
-                    u1Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    t1Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
                             switch (r3) {
@@ -65,17 +65,17 @@ public final class yf implements Runnable {
                             }
                         }
                     });
-                    bnVar2.showDialog(u1VarArr2[0]);
+                    bnVar2.showDialog(t1VarArr2[0]);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.u1[] u1VarArr3 = this.f54138c;
-                org.telegram.ui.ActionBar.u1 u1Var3 = u1VarArr3[0];
-                if (u1Var3 != null) {
-                    final bn bnVar3 = this.f54137b;
+                org.telegram.ui.ActionBar.t1[] t1VarArr3 = this.f54177c;
+                org.telegram.ui.ActionBar.t1 t1Var3 = t1VarArr3[0];
+                if (t1Var3 != null) {
+                    final bn bnVar3 = this.f54176b;
                     final int i11 = this.d;
-                    u1Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    t1Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public final void onCancel(DialogInterface dialogInterface) {
                             switch (r3) {
@@ -91,7 +91,7 @@ public final class yf implements Runnable {
                             }
                         }
                     });
-                    bnVar3.showDialog(u1VarArr3[0]);
+                    bnVar3.showDialog(t1VarArr3[0]);
                     return;
                 }
                 return;

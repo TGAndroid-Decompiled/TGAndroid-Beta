@@ -4,8 +4,8 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class v41 {
-    public TLRPC.User f52673a;
-    public String f52674b;
+    public TLRPC.User f52716a;
+    public String f52717b;
 
     public static TLRPC.User a(ArrayList arrayList, long j3) {
         int size = arrayList.size();
@@ -14,21 +14,21 @@ public final class v41 {
             Object obj = arrayList.get(i7);
             i7++;
             TLRPC.User user = (TLRPC.User) obj;
-            if (user.f28552id == j3) {
+            if (user.f28580id == j3) {
                 return user;
             }
         }
         return null;
     }
 
-    public final void b(org.telegram.ui.ActionBar.h2 h2Var) {
+    public final void b(org.telegram.ui.ActionBar.g2 g2Var) {
         Bundle bundle = new Bundle();
-        bundle.putLong("user_id", this.f52673a.f28552id);
-        org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24770t0).e4(this.f52673a, false, false);
-        h2Var.presentFragment(new ProfileActivity(bundle, null));
+        bundle.putLong("user_id", this.f52716a.f28580id);
+        org.telegram.messenger.mp.u1(org.telegram.messenger.j10.f24798t0).e4(this.f52716a, false, false);
+        g2Var.presentFragment(new ProfileActivity(bundle, null));
     }
 
-    public final void c(final org.telegram.tgnet.TLRPC.ChatFull r17, final org.telegram.ui.c51 r18, final org.telegram.ui.ActionBar.u1[] r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.v41.c(org.telegram.tgnet.TLRPC$ChatFull, org.telegram.ui.c51, org.telegram.ui.ActionBar.u1[], boolean):void");
+    public final void c(final org.telegram.tgnet.TLRPC.ChatFull r17, final org.telegram.ui.c51 r18, final org.telegram.ui.ActionBar.t1[] r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.v41.c(org.telegram.tgnet.TLRPC$ChatFull, org.telegram.ui.c51, org.telegram.ui.ActionBar.t1[], boolean):void");
     }
 }

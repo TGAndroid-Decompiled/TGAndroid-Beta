@@ -2,20 +2,20 @@ package org.telegram.ui;
 
 import android.view.View;
 import android.view.ViewGroup;
-public final class uv0 implements hi.ka {
-    public final ProfileActivity f52620a;
+public final class uv0 implements hi.ja {
+    public final ProfileActivity f52643a;
 
     public uv0(ProfileActivity profileActivity) {
-        this.f52620a = profileActivity;
+        this.f52643a = profileActivity;
     }
 
     @Override
-    public final hi.oa a(long j3) {
+    public final hi.na a(long j3) {
         float f10;
-        ProfileActivity profileActivity = this.f52620a;
+        ProfileActivity profileActivity = this.f52643a;
         if (j3 == profileActivity.a()) {
-            profileActivity.f43547f0.setRoundRadiusForExpand((int) org.telegram.messenger.g0.T1(profileActivity.s4(), 0.0f, profileActivity.f43589l2));
-            zu0 zu0Var = profileActivity.f43547f0;
+            profileActivity.f43588f0.setRoundRadiusForExpand((int) org.telegram.messenger.g0.T1(profileActivity.s4(), 0.0f, profileActivity.f43630l2));
+            zu0 zu0Var = profileActivity.f43588f0;
             boolean c02 = org.telegram.messenger.v3.c0(profileActivity.F2);
             if (zu0Var != null && zu0Var.getRootView() != null) {
                 float scaleX = ((View) zu0Var.getParent()).getScaleX();
@@ -25,17 +25,17 @@ public final class uv0 implements hi.ka {
                 } else {
                     f10 = f11;
                 }
-                hi.ma maVar = new hi.ma(zu0Var, 0);
+                hi.la laVar = new hi.la(zu0Var, 0);
                 int[] iArr = new int[2];
                 float[] fArr = new float[2];
                 zu0Var.getRootView().getLocationOnScreen(iArr);
                 org.telegram.messenger.g0.r1(zu0Var, (ViewGroup) zu0Var.getRootView(), fArr);
                 float f12 = (zu0Var.getImageReceiver().L0 * scaleX) + iArr[0] + fArr[0];
                 float f13 = (zu0Var.getImageReceiver().M0 * scaleX) + iArr[1] + fArr[1];
-                maVar.f15201c.set(f12, f13, f12 + f11, f11 + f13);
-                maVar.f15202e = zu0Var.getImageReceiver();
-                maVar.f15200b = f10;
-                return maVar;
+                laVar.f15134c.set(f12, f13, f12 + f11, f11 + f13);
+                laVar.f15135e = zu0Var.getImageReceiver();
+                laVar.f15133b = f10;
+                return laVar;
             }
             return null;
         }
@@ -43,13 +43,13 @@ public final class uv0 implements hi.ka {
     }
 
     @Override
-    public final void b(long j3, bi.y3 y3Var) {
-        ProfileActivity profileActivity = this.f52620a;
-        profileActivity.f43547f0.setHasStories(profileActivity.A4());
-        if (j3 == profileActivity.a() && profileActivity.f43615p2 && profileActivity.f43589l2 > 0.0f) {
-            profileActivity.f43524c.h1(0, profileActivity.j4() - profileActivity.f43508a.getPaddingTop());
-            profileActivity.f43508a.post(new n90(profileActivity, 16));
+    public final void b(long j3, bi.c4 c4Var) {
+        ProfileActivity profileActivity = this.f52643a;
+        profileActivity.f43588f0.setHasStories(profileActivity.A4());
+        if (j3 == profileActivity.a() && profileActivity.f43656p2 && profileActivity.f43630l2 > 0.0f) {
+            profileActivity.f43565c.h1(0, profileActivity.j4() - profileActivity.f43549a.getPaddingTop());
+            profileActivity.f43549a.post(new n90(profileActivity, 16));
         }
-        org.telegram.messenger.g0.h3(y3Var, 30L);
+        org.telegram.messenger.g0.h3(c4Var, 30L);
     }
 }

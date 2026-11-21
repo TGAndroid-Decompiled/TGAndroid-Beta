@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class df implements Runnable {
-    public final int f23513a;
-    public final ef f23514b;
+    public final int f23541a;
+    public final ef f23542b;
 
     public df(ef efVar, int i7) {
-        this.f23513a = i7;
-        this.f23514b = efVar;
+        this.f23541a = i7;
+        this.f23542b = efVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f23513a) {
+        switch (this.f23541a) {
             case 0:
-                ef efVar = this.f23514b;
+                ef efVar = this.f23542b;
                 efVar.d();
                 g0.g3(new df(efVar, 1));
                 return;
             default:
-                ef efVar2 = this.f23514b;
+                ef efVar2 = this.f23542b;
                 efVar2.X = false;
                 ArrayList arrayList = efVar2.Y;
                 efVar2.Y = null;

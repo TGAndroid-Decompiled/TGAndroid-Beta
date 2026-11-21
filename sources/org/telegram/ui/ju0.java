@@ -4,21 +4,21 @@ import android.app.Activity;
 import android.graphics.RectF;
 import android.view.View;
 public final class ju0 implements View.OnClickListener {
-    public final int f49062a;
-    public final ProfileActivity f49063b;
-    public final String f49064c;
+    public final int f49095a;
+    public final ProfileActivity f49096b;
+    public final String f49097c;
 
     public ju0(ProfileActivity profileActivity, String str, int i7) {
-        this.f49062a = i7;
-        this.f49063b = profileActivity;
-        this.f49064c = str;
+        this.f49095a = i7;
+        this.f49096b = profileActivity;
+        this.f49097c = str;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f49062a;
-        String str = this.f49064c;
-        ProfileActivity profileActivity = this.f49063b;
+        int i7 = this.f49095a;
+        String str = this.f49097c;
+        ProfileActivity profileActivity = this.f49096b;
         switch (i7) {
             case 0:
                 RectF rectF = ProfileActivity.Z6;

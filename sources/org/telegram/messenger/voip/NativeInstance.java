@@ -1,8 +1,8 @@
 package org.telegram.messenger.voip;
 
-import ai.a1;
+import ai.c1;
 import android.graphics.Point;
-import bi.m2;
+import bi.q2;
 import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.a8;
@@ -87,19 +87,19 @@ public class NativeInstance {
     }
 
     public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i7, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j3, AudioLevelsCallback audioLevelsCallback) {
-        if (s2.f26721a) {
+        if (s2.f26749a) {
             a8.b("create new tgvoip instance, version " + str);
         }
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.persistentStateFilePath = str2;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
-        Point point = org.telegram.messenger.g0.f24118q;
+        Point point = org.telegram.messenger.g0.f24146q;
         nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i7, encryptionKey, videoSink, j3, Math.min(point.x, point.y) / Math.max(point.x, point.y));
         return nativeInstance;
     }
 
     public static NativeInstance makeGroup(String str, long j3, boolean z10, boolean z11, PayloadCallback payloadCallback, AudioLevelsCallback audioLevelsCallback, VideoSourcesCallback videoSourcesCallback, RequestBroadcastPartCallback requestBroadcastPartCallback, RequestBroadcastPartCallback requestBroadcastPartCallback2, RequestCurrentTimeCallback requestCurrentTimeCallback, boolean z12) {
-        ContextUtils.initialize(org.telegram.messenger.t0.f26913b);
+        ContextUtils.initialize(org.telegram.messenger.t0.f26941b);
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.payloadCallback = payloadCallback;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
@@ -129,7 +129,7 @@ public class NativeInstance {
 
     private void onEmitJoinPayload(String str, int i7) {
         try {
-            org.telegram.messenger.g0.g3(new a1(this, i7, str, 27));
+            org.telegram.messenger.g0.g3(new c1(this, i7, str, 27));
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -145,7 +145,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        org.telegram.messenger.g0.g3(new m2(this, j3, iArr, 14));
+        org.telegram.messenger.g0.g3(new q2(this, j3, iArr, 14));
     }
 
     private void onRemoteMediaStateUpdated(int i7, int i10) {

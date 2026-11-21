@@ -6,55 +6,55 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ew implements Runnable {
-    public final int f23790a = 0;
-    public final int f23791b;
-    public final boolean f23792c;
+    public final int f23818a = 0;
+    public final int f23819b;
+    public final boolean f23820c;
     public final boolean d;
-    public final Object f23793e;
-    public final Serializable f23794f;
+    public final Object f23821e;
+    public final Serializable f23822f;
     public final Object h;
-    public final Object f23795n;
-    public final TLObject f23796r;
+    public final Object f23823n;
+    public final TLObject f23824r;
 
     public ew(zy zyVar, ArrayList arrayList, boolean z10, boolean z11, TLRPC.Message message, ArrayList arrayList2, ArrayList arrayList3, int i7) {
-        this.f23793e = zyVar;
-        this.f23794f = arrayList;
-        this.f23792c = z10;
+        this.f23821e = zyVar;
+        this.f23822f = arrayList;
+        this.f23820c = z10;
         this.d = z11;
-        this.f23796r = message;
+        this.f23824r = message;
         this.h = arrayList2;
-        this.f23795n = arrayList3;
-        this.f23791b = i7;
+        this.f23823n = arrayList3;
+        this.f23819b = i7;
     }
 
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f23790a;
-        TLObject tLObject = this.f23796r;
-        Object obj = this.f23795n;
+        int i10 = this.f23818a;
+        TLObject tLObject = this.f23824r;
+        Object obj = this.f23823n;
         Object obj2 = this.h;
-        Serializable serializable = this.f23794f;
-        Object obj3 = this.f23793e;
+        Serializable serializable = this.f23822f;
+        Object obj3 = this.f23821e;
         switch (i10) {
             case 0:
                 zy zyVar = (zy) obj3;
                 tr messagesStorage = zyVar.getMessagesStorage();
-                boolean z10 = this.f23792c;
+                boolean z10 = this.f23820c;
                 messagesStorage.j1((ArrayList) serializable, true, false, false, 0, false, !z10 ? 1 : 0, 0L);
-                g0.g3(new di.ia(zyVar, this.d, (TLRPC.Message) tLObject, (ArrayList) obj2, z10, (ArrayList) obj, this.f23791b));
+                g0.g3(new di.ia(zyVar, this.d, (TLRPC.Message) tLObject, (ArrayList) obj2, z10, (ArrayList) obj, this.f23819b));
                 return;
             default:
                 org.telegram.ui.ca caVar = (org.telegram.ui.ca) obj3;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) tLObject;
-                org.telegram.ui.la laVar = caVar.f46468a;
-                ArrayList arrayList = laVar.f49496x;
-                ArrayList arrayList2 = laVar.f49495w;
+                org.telegram.ui.la laVar = caVar.f46498a;
+                ArrayList arrayList = laVar.f49536x;
+                ArrayList arrayList2 = laVar.f49535w;
                 arrayList.remove((String) serializable);
                 boolean z11 = ((TLObject) obj2) instanceof TLRPC.TL_boolTrue;
-                int i11 = this.f23791b;
-                boolean z12 = this.f23792c;
+                int i11 = this.f23819b;
+                boolean z12 = this.f23820c;
                 TLRPC.TL_username tL_username2 = null;
                 if (z11) {
                     laVar.n0(i11, z12, false);
@@ -64,20 +64,20 @@ public final class ew implements Runnable {
                         tL_username.active = z12;
                         laVar.n0(i11, z12, false);
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, laVar.getParentActivity(), laVar.getResourceProvider());
-                        String M0 = gd.M0(2131743435, null);
-                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
-                        u1Var.S = M0;
-                        u1Var.U = gd.M0(2131743436, null);
-                        alertDialog$Builder.k(gd.M0(2131747638, null), new ab.j(caVar, tL_username, z13, 4));
+                        String N0 = gd.N0(2131743429, null);
+                        org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+                        t1Var.S = N0;
+                        t1Var.U = gd.N0(2131743430, null);
+                        alertDialog$Builder.k(gd.N0(2131747637, null), new ab.j(caVar, tL_username, z13, 4));
                         alertDialog$Builder.p();
                     } else {
                         laVar.o0(tL_username, z13, true);
                     }
                 }
-                i7 = ((org.telegram.ui.ActionBar.h2) laVar).currentAccount;
+                i7 = ((org.telegram.ui.ActionBar.g2) laVar).currentAccount;
                 TLRPC.User c22 = mp.u1(i7).c2(Long.valueOf(laVar.l0()));
                 laVar.getMessagesController().F5(c22, tL_username.username, tL_username.active);
-                if (laVar.f49497y != 0 && arrayList2 != null) {
+                if (laVar.f49537y != 0 && arrayList2 != null) {
                     int size = arrayList2.size();
                     int i12 = 0;
                     while (i12 < size) {
@@ -111,13 +111,13 @@ public final class ew implements Runnable {
     }
 
     public ew(org.telegram.ui.ca caVar, String str, TLObject tLObject, int i7, boolean z10, TLRPC.TL_error tL_error, TLRPC.TL_username tL_username, boolean z11) {
-        this.f23793e = caVar;
-        this.f23794f = str;
+        this.f23821e = caVar;
+        this.f23822f = str;
         this.h = tLObject;
-        this.f23791b = i7;
-        this.f23792c = z10;
-        this.f23795n = tL_error;
-        this.f23796r = tL_username;
+        this.f23819b = i7;
+        this.f23820c = z10;
+        this.f23823n = tL_error;
+        this.f23824r = tL_username;
         this.d = z11;
     }
 }

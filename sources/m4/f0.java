@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import javax.net.SocketFactory;
 public final class f0 {
-    public final int f20611a;
-    public final int f20612b;
-    public int f20613c;
+    public final int f20639a;
+    public final int f20640b;
+    public int f20641c;
     public final Object d;
-    public Object f20614e;
+    public Object f20642e;
 
     public f0(int i7, int i10) {
         this(Integer.MIN_VALUE, i7, i10);
@@ -27,26 +27,26 @@ public final class f0 {
         b3.j jVar = null;
         int i10 = 0;
         for (InetAddress inetAddress : inetAddressArr) {
-            int i11 = this.f20612b;
+            int i11 = this.f20640b;
             if ((i11 != 2 || (inetAddress instanceof Inet4Address)) && (i11 != 3 || (inetAddress instanceof Inet6Address))) {
-                int i12 = i10 + this.f20613c;
+                int i12 = i10 + this.f20641c;
                 b3.j jVar2 = new b3.j(i12, 14);
-                arrayList.add(new rc.t(obj, (SocketFactory) this.d, new InetSocketAddress(inetAddress, ((rc.a) this.f20614e).f56493b), this.f20611a, jVar, jVar2));
+                arrayList.add(new rc.t(obj, (SocketFactory) this.d, new InetSocketAddress(inetAddress, ((rc.a) this.f20642e).f56534b), this.f20639a, jVar, jVar2));
                 jVar = jVar2;
                 i10 = i12;
             }
         }
-        obj.f56514b = arrayList;
-        obj.f56513a = new CountDownLatch(((ArrayList) obj.f56514b).size());
-        ArrayList arrayList2 = (ArrayList) obj.f56514b;
+        obj.f56555b = arrayList;
+        obj.f56554a = new CountDownLatch(((ArrayList) obj.f56555b).size());
+        ArrayList arrayList2 = (ArrayList) obj.f56555b;
         int size = arrayList2.size();
         while (i7 < size) {
             Object obj2 = arrayList2.get(i7);
             i7++;
             ((rc.t) obj2).start();
         }
-        ((CountDownLatch) obj.f56513a).await();
-        Socket socket = (Socket) obj.f56515c;
+        ((CountDownLatch) obj.f56554a).await();
+        Socket socket = (Socket) obj.f56556c;
         if (socket != null) {
             return socket;
         }
@@ -59,18 +59,18 @@ public final class f0 {
 
     public void b() {
         int i7;
-        int i10 = this.f20613c;
+        int i10 = this.f20641c;
         if (i10 == Integer.MIN_VALUE) {
-            i7 = this.f20611a;
+            i7 = this.f20639a;
         } else {
-            i7 = i10 + this.f20612b;
+            i7 = i10 + this.f20640b;
         }
-        this.f20613c = i7;
-        this.f20614e = ((String) this.d) + this.f20613c;
+        this.f20641c = i7;
+        this.f20642e = ((String) this.d) + this.f20641c;
     }
 
     public void c() {
-        if (this.f20613c != Integer.MIN_VALUE) {
+        if (this.f20641c != Integer.MIN_VALUE) {
             return;
         }
         throw new IllegalStateException("generateNewId() must be called before retrieving ids.");
@@ -84,17 +84,17 @@ public final class f0 {
             str = e2.i(i7, "/");
         }
         this.d = str;
-        this.f20611a = i10;
-        this.f20612b = i11;
-        this.f20613c = Integer.MIN_VALUE;
-        this.f20614e = "";
+        this.f20639a = i10;
+        this.f20640b = i11;
+        this.f20641c = Integer.MIN_VALUE;
+        this.f20642e = "";
     }
 
     public f0(SocketFactory socketFactory, rc.a aVar, int i7, int i10, int i11) {
         this.d = socketFactory;
-        this.f20614e = aVar;
-        this.f20611a = i7;
-        this.f20612b = i10;
-        this.f20613c = i11;
+        this.f20642e = aVar;
+        this.f20639a = i7;
+        this.f20640b = i10;
+        this.f20641c = i11;
     }
 }

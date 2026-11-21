@@ -2,15 +2,15 @@ package bi;
 
 import org.telegram.messenger.q10;
 public final class h0 implements q10 {
-    public final int f3636a;
-    public final Object f3637b;
-    public final Object f3638c;
+    public final int f3689a;
+    public final Object f3690b;
+    public final Object f3691c;
     public final Object d;
 
     public h0(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3636a = i7;
-        this.f3637b = obj;
-        this.f3638c = obj2;
+        this.f3689a = i7;
+        this.f3690b = obj;
+        this.f3691c = obj2;
         this.d = obj3;
     }
 

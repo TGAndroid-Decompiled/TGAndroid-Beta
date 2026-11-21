@@ -1,5 +1,5 @@
 package org.telegram.ui;
 public final class f1 {
-    public int[] f47376a;
-    public float[] f47377b;
+    public int[] f47445a;
+    public float[] f47446b;
 }

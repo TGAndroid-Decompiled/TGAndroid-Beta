@@ -20,7 +20,7 @@ import java.util.Set;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class vt extends org.telegram.ui.Components.b51 {
+public final class vt extends org.telegram.ui.Components.e51 {
     public static void d0(String str, StringBuilder sb2) {
         String[] supportedTypes;
         ArrayList arrayList;
@@ -111,96 +111,96 @@ public final class vt extends org.telegram.ui.Components.b51 {
     }
 
     @Override
-    public final void Z(ArrayList arrayList, org.telegram.ui.Components.z41 z41Var) {
-        arrayList.add(org.telegram.ui.Components.l41.u("Contacts and chats"));
-        arrayList.add(org.telegram.ui.Components.l41.e(1, org.telegram.messenger.gd.M0(2131751618, null)));
-        arrayList.add(org.telegram.ui.Components.l41.e(2, org.telegram.messenger.gd.M0(2131751612, null)));
-        arrayList.add(org.telegram.ui.Components.l41.e(3, org.telegram.messenger.gd.M0(2131751611, null)));
-        arrayList.add(org.telegram.ui.Components.l41.e(4, org.telegram.messenger.gd.M0(2131751610, null)));
-        arrayList.add(org.telegram.ui.Components.l41.e(5, org.telegram.messenger.gd.M0(2131751613, null)));
-        arrayList.add(org.telegram.ui.Components.l41.C(null));
-        arrayList.add(org.telegram.ui.Components.l41.u("Data"));
-        arrayList.add(org.telegram.ui.Components.l41.e(8, org.telegram.messenger.gd.M0(2131751632, null)));
-        arrayList.add(org.telegram.ui.Components.l41.e(45, "Forget all hints"));
-        arrayList.add(org.telegram.ui.Components.l41.e(35, "Reload app config"));
-        boolean z10 = org.telegram.messenger.s2.f26721a;
-        arrayList.add(org.telegram.ui.Components.l41.e(29, "Clear Mini Apps Permissions and Files"));
-        arrayList.add(org.telegram.ui.Components.l41.C(null));
-        arrayList.add(org.telegram.ui.Components.l41.u("App"));
+    public final void Z(ArrayList arrayList, org.telegram.ui.Components.c51 c51Var) {
+        arrayList.add(org.telegram.ui.Components.o41.u("Contacts and chats"));
+        arrayList.add(org.telegram.ui.Components.o41.e(1, org.telegram.messenger.gd.N0(2131751617, null)));
+        arrayList.add(org.telegram.ui.Components.o41.e(2, org.telegram.messenger.gd.N0(2131751611, null)));
+        arrayList.add(org.telegram.ui.Components.o41.e(3, org.telegram.messenger.gd.N0(2131751610, null)));
+        arrayList.add(org.telegram.ui.Components.o41.e(4, org.telegram.messenger.gd.N0(2131751609, null)));
+        arrayList.add(org.telegram.ui.Components.o41.e(5, org.telegram.messenger.gd.N0(2131751612, null)));
+        arrayList.add(org.telegram.ui.Components.o41.C(null));
+        arrayList.add(org.telegram.ui.Components.o41.u("Data"));
+        arrayList.add(org.telegram.ui.Components.o41.e(8, org.telegram.messenger.gd.N0(2131751631, null)));
+        arrayList.add(org.telegram.ui.Components.o41.e(45, "Forget all hints"));
+        arrayList.add(org.telegram.ui.Components.o41.e(35, "Reload app config"));
+        boolean z10 = org.telegram.messenger.s2.f26749a;
+        arrayList.add(org.telegram.ui.Components.o41.e(29, "Clear Mini Apps Permissions and Files"));
+        arrayList.add(org.telegram.ui.Components.o41.C(null));
+        arrayList.add(org.telegram.ui.Components.o41.u("App"));
         org.telegram.messenger.t0.u();
         org.telegram.messenger.t0.n();
-        arrayList.add(org.telegram.ui.Components.l41.e(10, org.telegram.messenger.gd.M0(2131751633, null)));
-        arrayList.add(org.telegram.ui.Components.l41.e(37, "Make Memory Dump"));
-        org.telegram.ui.Components.l41 i7 = org.telegram.ui.Components.l41.i(42, "Experimental settings");
-        aj.a aVar = aj.e.f1649a;
+        arrayList.add(org.telegram.ui.Components.o41.e(10, org.telegram.messenger.gd.N0(2131751632, null)));
+        arrayList.add(org.telegram.ui.Components.o41.e(37, "Make Memory Dump"));
+        org.telegram.ui.Components.o41 i7 = org.telegram.ui.Components.o41.i(42, "Experimental settings");
+        aj.a aVar = aj.e.f1661a;
         aVar.a();
         i7.L(aVar.d);
         arrayList.add(i7);
-        arrayList.add(org.telegram.ui.Components.l41.C(null));
-        arrayList.add(org.telegram.ui.Components.l41.u("Interface"));
+        arrayList.add(org.telegram.ui.Components.o41.C(null));
+        arrayList.add(org.telegram.ui.Components.o41.u("Interface"));
         org.telegram.messenger.g0.R1();
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 28) {
-            org.telegram.ui.Components.l41 i11 = org.telegram.ui.Components.l41.i(34, org.telegram.messenger.gd.M0(2131751609, null));
+            org.telegram.ui.Components.o41 i11 = org.telegram.ui.Components.o41.i(34, org.telegram.messenger.gd.N0(2131751608, null));
             i11.L(org.telegram.messenger.bz.V0);
             arrayList.add(i11);
         }
         if (org.telegram.messenger.bz.e() && i10 >= 31) {
-            org.telegram.ui.Components.l41 i12 = org.telegram.ui.Components.l41.i(31, "New GPU blur");
-            i12.L(org.telegram.messenger.bz.f23146a0);
+            org.telegram.ui.Components.o41 i12 = org.telegram.ui.Components.o41.i(31, "New GPU blur");
+            i12.L(org.telegram.messenger.bz.f23174a0);
             arrayList.add(i12);
         }
-        org.telegram.ui.Components.l41 i13 = org.telegram.ui.Components.l41.i(36, "Force Forum Tabs");
-        i13.L(org.telegram.messenger.bz.f23180n);
+        org.telegram.ui.Components.o41 i13 = org.telegram.ui.Components.o41.i(36, "Force Forum Tabs");
+        i13.L(org.telegram.messenger.bz.f23208n);
         arrayList.add(i13);
-        org.telegram.ui.Components.l41 i14 = org.telegram.ui.Components.l41.i(39, "Frame metrics");
-        i14.L(org.telegram.messenger.bz.f23185p);
+        org.telegram.ui.Components.o41 i14 = org.telegram.ui.Components.o41.i(39, "Frame metrics");
+        i14.L(org.telegram.messenger.bz.f23213p);
         arrayList.add(i14);
-        org.telegram.ui.Components.l41 i15 = org.telegram.ui.Components.l41.i(46, org.telegram.messenger.gd.M0(2131751821, null));
+        org.telegram.ui.Components.o41 i15 = org.telegram.ui.Components.o41.i(46, org.telegram.messenger.gd.N0(2131751820, null));
         i15.L(org.telegram.messenger.bz.H0);
         arrayList.add(i15);
-        arrayList.add(org.telegram.ui.Components.l41.C(null));
-        arrayList.add(org.telegram.ui.Components.l41.u("Camera and media"));
-        org.telegram.ui.Components.l41 i16 = org.telegram.ui.Components.l41.i(7, org.telegram.messenger.gd.M0(2131751621, null));
-        i16.L(org.telegram.messenger.bz.f23212y0);
+        arrayList.add(org.telegram.ui.Components.o41.C(null));
+        arrayList.add(org.telegram.ui.Components.o41.u("Camera and media"));
+        org.telegram.ui.Components.o41 i16 = org.telegram.ui.Components.o41.i(7, org.telegram.messenger.gd.N0(2131751620, null));
+        i16.L(org.telegram.messenger.bz.f23240y0);
         arrayList.add(i16);
-        org.telegram.ui.Components.l41 i17 = org.telegram.ui.Components.l41.i(28, "Use Camera 2 API");
+        org.telegram.ui.Components.o41 i17 = org.telegram.ui.Components.o41.i(28, "Use Camera 2 API");
         i17.L(org.telegram.messenger.bz.s(this.currentAccount));
         arrayList.add(i17);
-        org.telegram.ui.Components.l41 i18 = org.telegram.ui.Components.l41.i(23, org.telegram.messenger.gd.M0(2131751623, null));
+        org.telegram.ui.Components.o41 i18 = org.telegram.ui.Components.o41.i(23, org.telegram.messenger.gd.N0(2131751622, null));
         i18.L(hi.d1.q(getParentActivity()));
         arrayList.add(i18);
-        org.telegram.ui.Components.l41 i19 = org.telegram.ui.Components.l41.i(24, "SurfaceView in stories");
-        i19.L(org.telegram.messenger.bz.f23149b0);
+        org.telegram.ui.Components.o41 i19 = org.telegram.ui.Components.o41.i(24, "SurfaceView in stories");
+        i19.L(org.telegram.messenger.bz.f23177b0);
         arrayList.add(i19);
-        org.telegram.ui.Components.l41 i20 = org.telegram.ui.Components.l41.i(33, "Video qualities debug");
+        org.telegram.ui.Components.o41 i20 = org.telegram.ui.Components.o41.i(33, "Video qualities debug");
         i20.L(org.telegram.messenger.bz.R0);
         arrayList.add(i20);
-        arrayList.add(org.telegram.ui.Components.l41.C(null));
-        arrayList.add(org.telegram.ui.Components.l41.u("Calls"));
-        arrayList.add(org.telegram.ui.Components.l41.e(9, org.telegram.messenger.gd.M0(2131751634, null)));
-        arrayList.add(org.telegram.ui.Components.l41.C(null));
-        arrayList.add(org.telegram.ui.Components.l41.u("WebView"));
-        arrayList.add(org.telegram.ui.Components.l41.e(15, org.telegram.messenger.gd.M0(2131751630, null)));
-        org.telegram.ui.Components.l41 i21 = org.telegram.ui.Components.l41.i(16, org.telegram.messenger.gd.M0(2131751619, null));
+        arrayList.add(org.telegram.ui.Components.o41.C(null));
+        arrayList.add(org.telegram.ui.Components.o41.u("Calls"));
+        arrayList.add(org.telegram.ui.Components.o41.e(9, org.telegram.messenger.gd.N0(2131751633, null)));
+        arrayList.add(org.telegram.ui.Components.o41.C(null));
+        arrayList.add(org.telegram.ui.Components.o41.u("WebView"));
+        arrayList.add(org.telegram.ui.Components.o41.e(15, org.telegram.messenger.gd.N0(2131751629, null)));
+        org.telegram.ui.Components.o41 i21 = org.telegram.ui.Components.o41.i(16, org.telegram.messenger.gd.N0(2131751618, null));
         i21.L(org.telegram.messenger.bz.J0);
         arrayList.add(i21);
-        org.telegram.ui.Components.l41 i22 = org.telegram.ui.Components.l41.i(32, "Adaptive browser colors");
-        i22.L(org.telegram.messenger.bz.f23203v0);
+        org.telegram.ui.Components.o41 i22 = org.telegram.ui.Components.o41.i(32, "Adaptive browser colors");
+        i22.L(org.telegram.messenger.bz.f23231v0);
         arrayList.add(i22);
-        org.telegram.ui.Components.l41 i23 = org.telegram.ui.Components.l41.i(26, "Invoice Payment");
-        i23.L(org.telegram.messenger.bz.f23154d0);
+        org.telegram.ui.Components.o41 i23 = org.telegram.ui.Components.o41.i(26, "Invoice Payment");
+        i23.L(org.telegram.messenger.bz.f23182d0);
         arrayList.add(i23);
-        arrayList.add(org.telegram.ui.Components.l41.C(null));
+        arrayList.add(org.telegram.ui.Components.o41.C(null));
     }
 
     @Override
     public final CharSequence a0() {
-        return org.telegram.messenger.gd.M0(2131751635, null);
+        return org.telegram.messenger.gd.N0(2131751634, null);
     }
 
     @Override
-    public final void b0(org.telegram.ui.Components.l41 l41Var, View view) {
+    public final void b0(org.telegram.ui.Components.o41 o41Var, View view) {
         boolean z10;
         int i7;
         Long l10;
@@ -211,7 +211,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
         String str5;
         int i10;
         int i11 = 0;
-        switch (l41Var.d) {
+        switch (o41Var.d) {
             case 1:
                 z10 = true;
                 getUserConfig().V = true;
@@ -232,16 +232,16 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 break;
             case 5:
                 org.telegram.messenger.tr messagesStorage = getMessagesStorage();
-                messagesStorage.f27052a.c(new org.telegram.messenger.rp(messagesStorage, -1, 2));
+                messagesStorage.f27080a.c(new org.telegram.messenger.rp(messagesStorage, -1, 2));
                 z10 = true;
                 break;
             case 6:
-                org.telegram.messenger.s2.f26721a = !org.telegram.messenger.s2.f26721a;
-                org.telegram.messenger.t0.f26913b.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", org.telegram.messenger.s2.f26721a).commit();
-                if (org.telegram.messenger.s2.f26721a) {
-                    i5.c.v(org.telegram.messenger.t0.f26919s, new StringBuilder("app start time = "));
+                org.telegram.messenger.s2.f26749a = !org.telegram.messenger.s2.f26749a;
+                org.telegram.messenger.t0.f26941b.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", org.telegram.messenger.s2.f26749a).commit();
+                if (org.telegram.messenger.s2.f26749a) {
+                    i5.c.v(org.telegram.messenger.t0.f26947s, new StringBuilder("app start time = "));
                     try {
-                        org.telegram.messenger.a8.b("buildVersion = " + org.telegram.messenger.t0.f26913b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f26913b.getPackageName(), 0).versionCode);
+                        org.telegram.messenger.a8.b("buildVersion = " + org.telegram.messenger.t0.f26941b.getPackageManager().getPackageInfo(org.telegram.messenger.t0.f26941b.getPackageName(), 0).versionCode);
                     } catch (Exception e10) {
                         z10 = true;
                         org.telegram.messenger.a8.g(e10, true);
@@ -251,17 +251,17 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 z10 = true;
                 break;
             case 7:
-                org.telegram.messenger.bz.f23212y0 = !org.telegram.messenger.bz.f23212y0;
+                org.telegram.messenger.bz.f23240y0 = !org.telegram.messenger.bz.f23240y0;
                 SharedPreferences.Editor edit = org.telegram.messenger.mp.g1().edit();
-                edit.putBoolean("inappCamera", org.telegram.messenger.bz.f23212y0);
+                edit.putBoolean("inappCamera", org.telegram.messenger.bz.f23240y0);
                 edit.apply();
                 z10 = true;
                 break;
             case 8:
                 org.telegram.messenger.tr messagesStorage2 = getMessagesStorage();
-                messagesStorage2.f27052a.c(new org.telegram.messenger.pq(messagesStorage2, 11));
+                messagesStorage2.f27080a.c(new org.telegram.messenger.pq(messagesStorage2, 11));
                 org.telegram.messenger.f4 f10 = org.telegram.messenger.f4.f(this.currentAccount);
-                f10.f23832c = 0L;
+                f10.f23860c = 0L;
                 f10.d = 0L;
                 f10.h().edit().clear().apply();
                 getMessagesController().h7.edit().remove("peerColors").remove("profilePeerColors").apply();
@@ -283,7 +283,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 edit2.apply();
                 break;
             case 12:
-                org.telegram.messenger.bz.f23172j1 = null;
+                org.telegram.messenger.bz.f23200j1 = null;
                 org.telegram.messenger.bz.y();
                 org.telegram.messenger.ks.e().k(org.telegram.messenger.ks.T4, new Object[0]);
                 z10 = true;
@@ -292,15 +292,15 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 Set set = getMessagesController().V3;
                 set.add("VALIDATE_PHONE_NUMBER");
                 set.add("VALIDATE_PASSWORD");
-                getNotificationCenter().k(org.telegram.messenger.ks.f25186s1, new Object[0]);
+                getNotificationCenter().k(org.telegram.messenger.ks.f25214s1, new Object[0]);
                 z10 = true;
                 break;
             case 14:
-                org.telegram.messenger.t0.f26913b.deleteDatabase("webview.db");
-                org.telegram.messenger.t0.f26913b.deleteDatabase("webviewCache.db");
+                org.telegram.messenger.t0.f26941b.deleteDatabase("webview.db");
+                org.telegram.messenger.t0.f26941b.deleteDatabase("webviewCache.db");
                 WebStorage.getInstance().deleteAllData();
                 try {
-                    WebView webView = new WebView(org.telegram.messenger.t0.f26913b);
+                    WebView webView = new WebView(org.telegram.messenger.t0.f26941b);
                     webView.clearHistory();
                     webView.destroy();
                 } catch (Exception unused) {
@@ -317,11 +317,11 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 org.telegram.messenger.bz.K();
                 Activity parentActivity = getParentActivity();
                 if (org.telegram.messenger.bz.J0) {
-                    i7 = 2131751607;
+                    i7 = 2131751606;
                 } else {
-                    i7 = 2131751608;
+                    i7 = 2131751607;
                 }
-                Toast.makeText(parentActivity, org.telegram.messenger.gd.M0(i7, null), 0).show();
+                Toast.makeText(parentActivity, org.telegram.messenger.gd.N0(i7, null), 0).show();
                 z10 = true;
                 break;
             case 17:
@@ -339,7 +339,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 z10 = true;
                 break;
             case 18:
-                c8.sb.a((LaunchActivity) getParentActivity(), !org.telegram.messenger.bz.f23210x1, true);
+                c8.sb.a((LaunchActivity) getParentActivity(), !org.telegram.messenger.bz.f23238x1, true);
                 z10 = true;
                 break;
             case 19:
@@ -352,7 +352,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 break;
             case 20:
                 int i12 = ConnectionsManager.CPU_COUNT;
-                int memoryClass = ((ActivityManager) org.telegram.messenger.t0.f26913b.getSystemService("activity")).getMemoryClass();
+                int memoryClass = ((ActivityManager) org.telegram.messenger.t0.f26941b.getSystemService("activity")).getMemoryClass();
                 StringBuilder sb2 = new StringBuilder();
                 long j3 = 0;
                 long j10 = 0;
@@ -443,13 +443,13 @@ public final class vt extends org.telegram.ui.Components.b51 {
                     }
                     sb3.append("\n");
                 }
-                ConfigurationInfo deviceConfigurationInfo = ((ActivityManager) org.telegram.messenger.t0.f26913b.getSystemService("activity")).getDeviceConfigurationInfo();
+                ConfigurationInfo deviceConfigurationInfo = ((ActivityManager) org.telegram.messenger.t0.f26941b.getSystemService("activity")).getDeviceConfigurationInfo();
                 sb3.append("GLES Version: ");
                 sb3.append(deviceConfigurationInfo.getGlEsVersion());
                 sb3.append("\nMemory: class=");
                 sb3.append(org.telegram.messenger.g0.i0(memoryClass * 1048576, false, false));
                 ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
-                ((ActivityManager) org.telegram.messenger.t0.f26913b.getSystemService("activity")).getMemoryInfo(memoryInfo);
+                ((ActivityManager) org.telegram.messenger.t0.f26941b.getSystemService("activity")).getMemoryInfo(memoryInfo);
                 sb3.append(", total=");
                 sb3.append(org.telegram.messenger.g0.i0(memoryInfo.totalMem, false, false));
                 sb3.append(", avail=");
@@ -497,7 +497,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
             case 21:
                 String str6 = "";
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getParentActivity(), getResourceProvider());
-                alertDialog$Builder.f28744a.S = "Force performance class";
+                alertDialog$Builder.f28774a.S = "Force performance class";
                 int o4 = org.telegram.messenger.bz.o();
                 int v = org.telegram.messenger.bz.v();
                 if (o4 == 2) {
@@ -531,7 +531,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
                     str6 = " (measured)";
                 }
                 alertDialog$Builder.f(new CharSequence[]{W2, W22, org.telegram.messenger.g0.W2(str5.concat(str6))}, new tt(v, 0));
-                i5.c.y(null, 2131752578, alertDialog$Builder, null);
+                i5.c.y(null, 2131752577, alertDialog$Builder, null);
                 z10 = true;
                 break;
             case 22:
@@ -544,11 +544,11 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 try {
                     Activity parentActivity3 = getParentActivity();
                     if (!q10) {
-                        i10 = 2131751622;
+                        i10 = 2131751621;
                     } else {
-                        i10 = 2131751624;
+                        i10 = 2131751623;
                     }
-                    Toast.makeText(parentActivity3, org.telegram.messenger.gd.M0(i10, null), 0).show();
+                    Toast.makeText(parentActivity3, org.telegram.messenger.gd.N0(i10, null), 0).show();
                 } catch (Exception unused2) {
                 }
                 z10 = true;
@@ -556,7 +556,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
             case 24:
                 org.telegram.messenger.bz.O();
                 while (i11 < getParentLayout().getFragmentStack().size()) {
-                    ((org.telegram.ui.ActionBar.h2) getParentLayout().getFragmentStack().get(i11)).clearSheets();
+                    ((org.telegram.ui.ActionBar.g2) getParentLayout().getFragmentStack().get(i11)).clearSheets();
                     i11++;
                 }
                 z10 = true;
@@ -578,10 +578,10 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 z10 = true;
                 break;
             case 29:
-                ki.q.b();
-                ki.s0.c();
-                ki.h0.a();
-                ki.d4.c();
+                ki.p.b();
+                ki.r0.c();
+                ki.g0.a();
+                ki.c4.c();
                 z10 = true;
                 break;
             case 30:
@@ -605,7 +605,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 break;
             case 34:
                 org.telegram.messenger.bz.V0 = !org.telegram.messenger.bz.V0;
-                org.telegram.messenger.g0.f24090a = null;
+                org.telegram.messenger.g0.f24118a = null;
                 SharedPreferences.Editor edit5 = org.telegram.messenger.mp.g1().edit();
                 edit5.putBoolean("useSystemBoldFont", org.telegram.messenger.bz.V0);
                 edit5.apply();
@@ -616,9 +616,9 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 z10 = true;
                 break;
             case 36:
-                org.telegram.messenger.bz.f23180n = !org.telegram.messenger.bz.f23180n;
+                org.telegram.messenger.bz.f23208n = !org.telegram.messenger.bz.f23208n;
                 SharedPreferences.Editor edit6 = org.telegram.messenger.mp.g1().edit();
-                edit6.putBoolean("forceForumTabs", org.telegram.messenger.bz.f23180n);
+                edit6.putBoolean("forceForumTabs", org.telegram.messenger.bz.f23208n);
                 edit6.apply();
                 z10 = true;
                 break;
@@ -628,16 +628,16 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 z10 = true;
                 break;
             case 38:
-                org.telegram.messenger.bz.f23182o = !org.telegram.messenger.bz.f23182o;
+                org.telegram.messenger.bz.f23210o = !org.telegram.messenger.bz.f23210o;
                 SharedPreferences.Editor edit7 = org.telegram.messenger.mp.g1().edit();
-                edit7.putBoolean("fastWallpaperDisabled", org.telegram.messenger.bz.f23182o);
+                edit7.putBoolean("fastWallpaperDisabled", org.telegram.messenger.bz.f23210o);
                 edit7.apply();
                 z10 = true;
                 break;
             case 39:
-                org.telegram.messenger.bz.f23185p = !org.telegram.messenger.bz.f23185p;
+                org.telegram.messenger.bz.f23213p = !org.telegram.messenger.bz.f23213p;
                 SharedPreferences.Editor edit8 = org.telegram.messenger.mp.g1().edit();
-                edit8.putBoolean("frameMetricsEnabled", org.telegram.messenger.bz.f23185p);
+                edit8.putBoolean("frameMetricsEnabled", org.telegram.messenger.bz.f23213p);
                 edit8.apply();
                 LaunchActivity launchActivity = LaunchActivity.H1;
                 if (launchActivity != null) {
@@ -649,26 +649,26 @@ public final class vt extends org.telegram.ui.Components.b51 {
             default:
                 return;
             case 41:
-                SharedPreferences.Editor edit9 = org.telegram.messenger.t0.f26913b.getSharedPreferences("mainconfig", 0).edit();
-                boolean z11 = !org.telegram.messenger.bz.f23164g1;
-                org.telegram.messenger.bz.f23164g1 = z11;
+                SharedPreferences.Editor edit9 = org.telegram.messenger.t0.f26941b.getSharedPreferences("mainconfig", 0).edit();
+                boolean z11 = !org.telegram.messenger.bz.f23192g1;
+                org.telegram.messenger.bz.f23192g1 = z11;
                 edit9.putBoolean("debugViewMetrics", z11).apply();
                 z10 = true;
                 break;
             case 42:
-                aj.a aVar = aj.e.f1649a;
+                aj.a aVar = aj.e.f1661a;
                 synchronized (aVar) {
-                    if (!aVar.f1641b) {
-                        SharedPreferences sharedPreferences = aj.d.f1648a;
-                        aVar.f1642c = sharedPreferences.contains("experimental_settings_allowed");
+                    if (!aVar.f1653b) {
+                        SharedPreferences sharedPreferences = aj.d.f1660a;
+                        aVar.f1654c = sharedPreferences.contains("experimental_settings_allowed");
                         aVar.d = sharedPreferences.getBoolean("experimental_settings_allowed", true);
-                        aVar.f1641b = true;
+                        aVar.f1653b = true;
                     }
                     boolean z12 = !aVar.d;
                     aVar.d = z12;
-                    aVar.f1642c = true;
-                    aVar.f1641b = true;
-                    aj.d.f1648a.edit().putBoolean("experimental_settings_allowed", z12).apply();
+                    aVar.f1654c = true;
+                    aVar.f1653b = true;
+                    aj.d.f1660a.edit().putBoolean("experimental_settings_allowed", z12).apply();
                 }
                 z10 = true;
                 break;
@@ -676,7 +676,7 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 while (i11 < 4) {
                     if (org.telegram.messenger.j10.i(i11).p()) {
                         org.telegram.messenger.tr a02 = org.telegram.messenger.tr.a0(i11);
-                        a02.f27052a.c(new org.telegram.messenger.pq(a02, 1));
+                        a02.f27080a.c(new org.telegram.messenger.pq(a02, 1));
                     }
                     i11++;
                 }
@@ -700,16 +700,16 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 org.telegram.messenger.bz.R = false;
                 org.telegram.messenger.bz.P = false;
                 org.telegram.messenger.bz.Q = false;
-                org.telegram.messenger.bz.f23153c1 = 3;
-                org.telegram.messenger.bz.f23155d1 = 3;
-                org.telegram.messenger.bz.f23158e1 = 3;
-                org.telegram.messenger.bz.f23204v1 = 3;
-                org.telegram.messenger.bz.f23157e0 = 2;
+                org.telegram.messenger.bz.f23181c1 = 3;
+                org.telegram.messenger.bz.f23183d1 = 3;
+                org.telegram.messenger.bz.f23186e1 = 3;
+                org.telegram.messenger.bz.f23232v1 = 3;
+                org.telegram.messenger.bz.f23185e0 = 2;
                 org.telegram.messenger.bz.T(2);
                 org.telegram.messenger.bz.H(false);
                 org.telegram.messenger.bz.G(false);
                 org.telegram.messenger.bz.C(false);
-                getNotificationCenter().k(org.telegram.messenger.ks.f25186s1, new Object[0]);
+                getNotificationCenter().k(org.telegram.messenger.ks.f25214s1, new Object[0]);
                 sy0.b0();
                 sg.k0.e(this.currentAccount).a();
                 SharedPreferences sharedPreferences2 = getMessagesController().h7;
@@ -721,8 +721,8 @@ public final class vt extends org.telegram.ui.Components.b51 {
                     }
                 }
                 edit10.apply();
-                SharedPreferences.Editor edit11 = org.telegram.messenger.mp.u1(this.currentAccount).f25658g7.edit();
-                for (String str8 : org.telegram.messenger.mp.u1(this.currentAccount).f25658g7.getAll().keySet()) {
+                SharedPreferences.Editor edit11 = org.telegram.messenger.mp.u1(this.currentAccount).f25686g7.edit();
+                for (String str8 : org.telegram.messenger.mp.u1(this.currentAccount).f25686g7.getAll().keySet()) {
                     if (str8.startsWith("dialog_bar_botver")) {
                         edit11.remove(str8);
                     }
@@ -735,17 +735,17 @@ public final class vt extends org.telegram.ui.Components.b51 {
                 SharedPreferences.Editor edit12 = org.telegram.messenger.mp.g1().edit();
                 edit12.putBoolean("compactMode", org.telegram.messenger.bz.H0);
                 edit12.apply();
-                org.telegram.ui.ActionBar.n6.k(false, false);
+                org.telegram.ui.ActionBar.m6.k(false, false);
                 z10 = true;
                 break;
         }
-        if (l41Var.f56589a == 4) {
-            this.f33530a.f34607g3.O(z10);
+        if (o41Var.f56630a == 4) {
+            this.f34683a.f35796g3.O(z10);
         }
     }
 
     @Override
-    public final boolean c0(org.telegram.ui.Components.l41 l41Var, View view) {
+    public final boolean c0(org.telegram.ui.Components.o41 o41Var, View view) {
         return false;
     }
 
@@ -753,14 +753,14 @@ public final class vt extends org.telegram.ui.Components.b51 {
     public final View createView(Context context) {
         setHasOwnBackground(true);
         this.fragmentView = super.createView(context);
-        this.f33530a.r1();
-        this.f33530a.setSectionsDrawBackground(true);
+        this.f34683a.r1();
+        this.f34683a.setSectionsDrawBackground(true);
         return this.fragmentView;
     }
 
     @Override
-    public final org.telegram.ui.Components.ck0 getListViewForSimpleGlass() {
-        return this.f33530a;
+    public final org.telegram.ui.Components.ek0 getListViewForSimpleGlass() {
+        return this.f34683a;
     }
 
     @Override

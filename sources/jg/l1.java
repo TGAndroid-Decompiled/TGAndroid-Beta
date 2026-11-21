@@ -15,37 +15,37 @@ import org.telegram.messenger.ma;
 import org.telegram.messenger.ri;
 import org.telegram.messenger.v3;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.u2;
-import org.telegram.ui.Components.bk0;
-import org.telegram.ui.Components.wz;
+import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.yz;
 import org.telegram.ui.bn;
-public final class l1 extends bk0 implements fs {
+public final class l1 extends dk0 implements fs {
     public b6 E;
-    public final Context f17564c;
-    public final bn f17566f;
+    public final Context f17589c;
+    public final bn f17591f;
     public int h;
-    public int f17567n;
-    public final i6 f17569s;
-    public final int f17570w;
-    public final boolean f17571x;
-    public String f17572y;
+    public int f17592n;
+    public final h6 f17594s;
+    public final int f17595w;
+    public final boolean f17596x;
+    public String f17597y;
     public final HashSet d = new HashSet();
-    public final ArrayList f17565e = new ArrayList();
-    public final int f17568r = j10.f24770t0;
-    public final hi.k F = new hi.k(this, 26);
+    public final ArrayList f17590e = new ArrayList();
+    public final int f17593r = j10.f24798t0;
+    public final hi.l F = new hi.l(this, 26);
 
-    public l1(Context context, bn bnVar, i6 i6Var, int i7, boolean z10) {
-        this.f17569s = i6Var;
-        this.f17564c = context;
-        this.f17566f = bnVar;
-        this.f17570w = i7;
-        this.f17571x = z10;
+    public l1(Context context, bn bnVar, h6 h6Var, int i7, boolean z10) {
+        this.f17594s = h6Var;
+        this.f17589c = context;
+        this.f17591f = bnVar;
+        this.f17595w = i7;
+        this.f17596x = z10;
     }
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59127f;
+        int i7 = f1Var.f59165f;
         if (i7 != 0 && i7 != 2) {
             return false;
         }
@@ -54,7 +54,7 @@ public final class l1 extends bk0 implements fs {
 
     public final Object E(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f17565e;
+            ArrayList arrayList = this.f17590e;
             if (i7 < arrayList.size()) {
                 return arrayList.get(i7);
             }
@@ -65,12 +65,12 @@ public final class l1 extends bk0 implements fs {
 
     @Override
     public final int b() {
-        return this.f17565e.size() + this.f17567n;
+        return this.f17590e.size() + this.f17592n;
     }
 
     @Override
     public final int d(int i7) {
-        if (i7 < this.f17565e.size()) {
+        if (i7 < this.f17590e.size()) {
             return 0;
         }
         return 1;
@@ -87,16 +87,16 @@ public final class l1 extends bk0 implements fs {
     public final void f() {
         ArrayList arrayList;
         int b10 = b();
-        ArrayList arrayList2 = this.f17565e;
+        ArrayList arrayList2 = this.f17590e;
         arrayList2.clear();
         HashSet hashSet = this.d;
         hashSet.clear();
-        int i7 = this.f17568r;
-        int i10 = this.f17570w;
+        int i7 = this.f17593r;
+        int i10 = this.f17595w;
         if (i10 == 0) {
             arrayList = ri.d0(i7).Z0;
         } else {
-            arrayList = ma.a(i7).b(i10).f25339a;
+            arrayList = ma.a(i7).b(i10).f25367a;
         }
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
@@ -106,18 +106,18 @@ public final class l1 extends bk0 implements fs {
                 hashSet.add(Integer.valueOf(fjVar.e1()));
             }
         }
-        int i13 = this.f17567n;
+        int i13 = this.f17592n;
         this.h = arrayList2.size();
         if (i10 != 0) {
-            if (!ma.a(i7).b(i10).f25350n && this.h != 0) {
-                i11 = Utilities.j(ma.a(i7).b(i10).f25349m - this.h, 3, 0);
+            if (!ma.a(i7).b(i10).f25378n && this.h != 0) {
+                i11 = Utilities.j(ma.a(i7).b(i10).f25377m - this.h, 3, 0);
             }
-            this.f17567n = i11;
+            this.f17592n = i11;
         } else {
             if (!ri.d0(i7).b2() && this.h != 0) {
                 i11 = Utilities.j(ri.d0(i7).l0() - this.h, 3, 0);
             }
-            this.f17567n = i11;
+            this.f17592n = i11;
         }
         int b11 = b();
         if (b10 < b11) {
@@ -135,18 +135,18 @@ public final class l1 extends bk0 implements fs {
         boolean z10;
         int i10;
         int i11;
-        int i12 = f1Var.f59127f;
-        View view = f1Var.f59123a;
+        int i12 = f1Var.f59165f;
+        View view = f1Var.f59161a;
         if (i12 == 0) {
             u2 u2Var = (u2) view;
-            u2Var.f31987t2 = true;
+            u2Var.f32015t2 = true;
             fj fjVar = (fj) E(i7);
-            long B0 = fj.B0(fjVar.f23965k);
-            int i13 = fjVar.f23965k.date;
-            if (this.f17571x) {
-                u2Var.f31980s0 = true;
+            long B0 = fj.B0(fjVar.f23993k);
+            int i13 = fjVar.f23993k.date;
+            if (this.f17596x) {
+                u2Var.f32008s0 = true;
                 long P1 = fjVar.P1();
-                TLRPC.Message message = fjVar.f23965k;
+                TLRPC.Message message = fjVar.f23993k;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                 if (messageFwdHeader != null && ((i10 = messageFwdHeader.date) != 0 || messageFwdHeader.saved_date != 0)) {
                     if (i10 == 0) {
@@ -161,7 +161,7 @@ public final class l1 extends bk0 implements fs {
                 z10 = false;
                 B0 = P1;
             } else {
-                if (fjVar.P3() || v3.o0(this.f17568r, B0)) {
+                if (fjVar.P3() || v3.o0(this.f17593r, B0)) {
                     B0 = fjVar.Z0();
                 }
                 z10 = true;
@@ -177,25 +177,25 @@ public final class l1 extends bk0 implements fs {
     @Override
     public final v4.f1 x(ViewGroup viewGroup, int i7) {
         View u2Var;
-        wz wzVar;
+        yz yzVar;
         if (i7 != 0) {
-            i6 i6Var = this.f17569s;
-            Context context = this.f17564c;
+            h6 h6Var = this.f17594s;
+            Context context = this.f17589c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     u2Var = null;
                 } else {
-                    wzVar = new k1(context, i6Var);
+                    yzVar = new k1(context, h6Var);
                 }
             } else {
-                wz wzVar2 = new wz(context, i6Var);
-                wzVar2.setIsSingleCell(true);
-                wzVar2.setViewType(7);
-                wzVar = wzVar2;
+                yz yzVar2 = new yz(context, h6Var);
+                yzVar2.setIsSingleCell(true);
+                yzVar2.setViewType(7);
+                yzVar = yzVar2;
             }
-            u2Var = wzVar;
+            u2Var = yzVar;
         } else {
-            u2Var = new u2(null, this.f17564c, true, this.f17568r, this.f17569s);
+            u2Var = new u2(null, this.f17589c, true, this.f17593r, this.f17594s);
         }
         return i5.c.q(u2Var, u2Var, -1, -2);
     }

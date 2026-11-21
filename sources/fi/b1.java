@@ -2,15 +2,15 @@ package fi;
 
 import org.telegram.messenger.voip.Instance;
 public final class b1 implements Instance.OnStateUpdatedListener {
-    public final c1 f11761a;
+    public final c1 f11791a;
 
     public b1(c1 c1Var) {
-        this.f11761a = c1Var;
+        this.f11791a = c1Var;
     }
 
     @Override
     public final void onStateUpdated(int i7, boolean z10) {
-        c1 c1Var = this.f11761a;
+        c1 c1Var = this.f11791a;
         boolean m10 = c1Var.m();
         c1Var.E = i7;
         org.telegram.messenger.a8.b("[LivePlayer] connectionState = " + i7);

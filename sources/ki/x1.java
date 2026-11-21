@@ -1,24 +1,28 @@
 package ki;
 
-import android.app.Dialog;
 import android.view.View;
-import android.view.WindowInsets;
-public final class x1 implements View.OnApplyWindowInsetsListener {
-    public final int f19041a;
-    public final Dialog f19042b;
+public final class x1 implements View.OnClickListener {
+    public final int f19071a;
+    public final s2 f19072b;
 
-    public x1(Dialog dialog, int i7) {
-        this.f19041a = i7;
-        this.f19042b = dialog;
+    public x1(s2 s2Var, int i7) {
+        this.f19071a = i7;
+        this.f19072b = s2Var;
     }
 
     @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f19041a) {
+    public final void onClick(View view) {
+        switch (this.f19071a) {
             case 0:
-                return t2.h((t2) this.f19042b, view, windowInsets);
+                org.telegram.ui.web.s0 webView = this.f19072b.E.getWebView();
+                if (webView != null) {
+                    webView.reload();
+                    return;
+                }
+                return;
             default:
-                return org.telegram.ui.ActionBar.x2.z((org.telegram.ui.ActionBar.x2) this.f19042b, windowInsets);
+                this.f19072b.w();
+                return;
         }
     }
 }

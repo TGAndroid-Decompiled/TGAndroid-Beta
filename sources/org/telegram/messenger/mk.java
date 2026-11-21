@@ -5,55 +5,55 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class mk implements Runnable {
-    public final int f25577a = 1;
-    public final mp f25578b;
-    public final long f25579c;
+    public final int f25605a = 1;
+    public final mp f25606b;
+    public final long f25607c;
     public final int d;
-    public final long f25580e;
-    public final Object f25581f;
+    public final long f25608e;
+    public final Object f25609f;
     public final Object h;
-    public final Object f25582n;
-    public final Object f25583r;
+    public final Object f25610n;
+    public final Object f25611r;
 
     public mk(mp mpVar, ArrayList arrayList, long j3, TLRPC.updates_ChannelDifference updates_channeldifference, TLRPC.Chat chat, a0.h hVar, int i7, long j10) {
-        this.f25578b = mpVar;
-        this.f25581f = arrayList;
-        this.f25579c = j3;
+        this.f25606b = mpVar;
+        this.f25609f = arrayList;
+        this.f25607c = j3;
         this.h = updates_channeldifference;
-        this.f25582n = chat;
-        this.f25583r = hVar;
+        this.f25610n = chat;
+        this.f25611r = hVar;
         this.d = i7;
-        this.f25580e = j10;
+        this.f25608e = j10;
     }
 
     @Override
     public final void run() {
         TLRPC.Chat chat;
         a0.h hVar;
-        switch (this.f25577a) {
+        switch (this.f25605a) {
             case 0:
-                mp mpVar = this.f25578b;
-                boolean[] zArr = (boolean[]) this.f25581f;
+                mp mpVar = this.f25606b;
+                boolean[] zArr = (boolean[]) this.f25609f;
                 tr trVar = (tr) this.h;
-                long j3 = this.f25579c;
-                Runnable[] runnableArr = (Runnable[]) this.f25582n;
-                long j10 = this.f25580e;
+                long j3 = this.f25607c;
+                Runnable[] runnableArr = (Runnable[]) this.f25610n;
+                long j10 = this.f25608e;
                 int i7 = this.d;
-                ap apVar = (ap) this.f25583r;
+                ap apVar = (ap) this.f25611r;
                 if (!zArr[0]) {
                     g0.g3(new nb(mpVar, zArr, trVar.O(j3), runnableArr, j10, i7, apVar));
                     return;
                 }
                 return;
             default:
-                mp mpVar2 = this.f25578b;
-                ArrayList arrayList = (ArrayList) this.f25581f;
-                long j11 = this.f25579c;
+                mp mpVar2 = this.f25606b;
+                ArrayList arrayList = (ArrayList) this.f25609f;
+                long j11 = this.f25607c;
                 TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) this.h;
-                TLRPC.Chat chat2 = (TLRPC.Chat) this.f25582n;
-                a0.h hVar2 = (a0.h) this.f25583r;
+                TLRPC.Chat chat2 = (TLRPC.Chat) this.f25610n;
+                a0.h hVar2 = (a0.h) this.f25611r;
                 int i10 = this.d;
-                long j12 = this.f25580e;
+                long j12 = this.f25608e;
                 if (!arrayList.isEmpty()) {
                     SparseArray sparseArray = new SparseArray();
                     int size = arrayList.size();
@@ -65,9 +65,9 @@ public final class mk implements Runnable {
                         TLRPC.Chat chat3 = chat2;
                         a0.h hVar3 = hVar2;
                         ArrayList arrayList2 = arrayList;
-                        long[] a22 = mpVar2.getMessagesStorage().a2(tL_updateMessageID.random_id, -j11, null, tL_updateMessageID.f28661id, 0, -1, 0);
+                        long[] a22 = mpVar2.getMessagesStorage().a2(tL_updateMessageID.random_id, -j11, null, tL_updateMessageID.f28689id, 0, -1, 0);
                         if (a22 != null) {
-                            sparseArray.put(tL_updateMessageID.f28661id, a22);
+                            sparseArray.put(tL_updateMessageID.f28689id, a22);
                         }
                         chat2 = chat3;
                         hVar2 = hVar3;
@@ -88,13 +88,13 @@ public final class mk implements Runnable {
     }
 
     public mk(mp mpVar, boolean[] zArr, tr trVar, long j3, Runnable[] runnableArr, long j10, int i7, ap apVar) {
-        this.f25578b = mpVar;
-        this.f25581f = zArr;
+        this.f25606b = mpVar;
+        this.f25609f = zArr;
         this.h = trVar;
-        this.f25579c = j3;
-        this.f25582n = runnableArr;
-        this.f25580e = j10;
+        this.f25607c = j3;
+        this.f25610n = runnableArr;
+        this.f25608e = j10;
         this.d = i7;
-        this.f25583r = apVar;
+        this.f25611r = apVar;
     }
 }

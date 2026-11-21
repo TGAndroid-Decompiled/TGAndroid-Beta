@@ -10,7 +10,7 @@ public abstract class t {
     }
 
     public static int b(int i7, int i10, int i11) {
-        int[] iArr = mp.u1(i7).f25601a7;
+        int[] iArr = mp.u1(i7).f25629a7;
         for (int i12 = 0; i12 < iArr.length / 7; i12++) {
             int i13 = i12 * 7;
             if (i10 >= iArr[i13]) {

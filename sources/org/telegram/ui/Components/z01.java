@@ -1,72 +1,46 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-import java.util.ArrayList;
-public final class z01 extends v4.o {
-    public final int f42706b = 1;
-    public ArrayList f42707c;
-    public ArrayList d;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class z01 extends Drawable {
+    public final Paint f42618a = new Paint(1);
+    public final RectF f42619b = new RectF();
+    public final int f42620c;
+    public final h11 d;
 
-    public z01() {
+    public z01(h11 h11Var, int i7) {
+        this.d = h11Var;
+        this.f42620c = i7;
     }
 
     @Override
-    public final boolean a(int i7, int i10) {
-        switch (this.f42706b) {
-            case 0:
-                return true;
-            default:
-                rg.a aVar = (rg.a) this.f42707c.get(i7);
-                rg.a aVar2 = (rg.a) this.d.get(i10);
-                if (aVar.f56589a != aVar2.f56589a) {
-                    return false;
-                }
-                return aVar.a(aVar2);
-        }
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f42619b;
+        rectF.set(bounds);
+        int i7 = this.f42620c;
+        rectF.inset(i7, i7);
+        float height = rectF.height() / 2.0f;
+        int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.O5, this.d.f35733e);
+        Paint paint = this.f42618a;
+        paint.setColor(w02);
+        canvas.drawRoundRect(rectF, height, height, paint);
     }
 
     @Override
-    public final boolean b(int i7, int i10) {
-        switch (this.f42706b) {
-            case 0:
-                c11 c11Var = (c11) this.f42707c.get(i7);
-                c11 c11Var2 = (c11) this.d.get(i10);
-                if (c11Var.f33850a == c11Var2.f33850a && Objects.equals(c11Var.f33851b, c11Var2.f33851b)) {
-                    return true;
-                }
-                return false;
-            default:
-                rg.a aVar = (rg.a) this.f42707c.get(i7);
-                rg.a aVar2 = (rg.a) this.d.get(i10);
-                if (aVar.f56589a != aVar2.f56589a) {
-                    return false;
-                }
-                return aVar.equals(aVar2);
-        }
+    public final int getOpacity() {
+        return -3;
     }
 
     @Override
-    public final int d() {
-        switch (this.f42706b) {
-            case 0:
-                return this.d.size();
-            default:
-                return this.d.size();
-        }
+    public final void setAlpha(int i7) {
     }
 
     @Override
-    public final int e() {
-        switch (this.f42706b) {
-            case 0:
-                return this.f42707c.size();
-            default:
-                return this.f42707c.size();
-        }
-    }
-
-    public z01(ArrayList arrayList, ArrayList arrayList2) {
-        this.f42707c = arrayList;
-        this.d = arrayList2;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

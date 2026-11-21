@@ -6,25 +6,25 @@ import android.view.View;
 import java.io.Serializable;
 import org.telegram.messenger.v10;
 import org.telegram.messenger.w10;
-import org.telegram.ui.Components.l41;
-public final class o4 implements org.telegram.ui.ActionBar.r1, v10, w10 {
-    public final n6 f44701a;
+import org.telegram.ui.Components.o41;
+public final class o4 implements org.telegram.ui.ActionBar.q1, v10, w10 {
+    public final n6 f44741a;
 
     public o4(n6 n6Var) {
-        this.f44701a = n6Var;
+        this.f44741a = n6Var;
     }
 
     @Override
-    public Boolean a(l41 l41Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(this.f44701a.c0(l41Var, view));
+    public Boolean a(o41 o41Var, View view, Integer num, Float f10, Float f11) {
+        return Boolean.valueOf(this.f44741a.c0(o41Var, view));
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        n6 n6Var = this.f44701a;
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        n6 n6Var = this.f44741a;
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26913b.getPackageName()));
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f26941b.getPackageName()));
             n6Var.getParentActivity().startActivity(intent);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
@@ -36,6 +36,6 @@ public final class o4 implements org.telegram.ui.ActionBar.r1, v10, w10 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        this.f44701a.b0((l41) obj, (View) obj2);
+        this.f44741a.b0((o41) obj, (View) obj2);
     }
 }

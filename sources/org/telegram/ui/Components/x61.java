@@ -1,30 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.view.View;
-public final class x61 extends AnimatorListenerAdapter {
-    public boolean f41925a;
-    public final View f41926b;
-    public final float f41927c;
-    public final g71 d;
+public final class x61 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41994a;
+    public final j71 f41995b;
 
-    public x61(g71 g71Var, View view, float f10) {
-        this.d = g71Var;
-        this.f41926b = view;
-        this.f41927c = f10;
+    public x61(j71 j71Var, int i7) {
+        this.f41994a = i7;
+        this.f41995b = j71Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        super.onAnimationCancel(animator);
-        this.f41925a = true;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        if (!this.f41925a) {
-            this.d.B(this.f41926b, this.f41927c);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41994a) {
+            case 0:
+                j71 j71Var = this.f41995b;
+                j71Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View[] viewArr = j71Var.f36440e;
+                View view = viewArr[1];
+                if (view != null) {
+                    if (j71Var.E) {
+                        j71Var.B(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
+                        View view2 = viewArr[0];
+                        j71Var.B(view2, (-view2.getMeasuredWidth()) * floatValue);
+                    } else {
+                        j71Var.B(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
+                        View view3 = viewArr[0];
+                        j71Var.B(view3, view3.getMeasuredWidth() * floatValue);
+                    }
+                    j71Var.f36439c = floatValue;
+                    j71Var.t(true);
+                    z61 z61Var = j71Var.N;
+                    if (z61Var != null) {
+                        z61Var.f36226w.invalidate();
+                        j71Var.N.f36226w.g1();
+                        j71Var.N.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                j71 j71Var2 = this.f41995b;
+                j71Var2.getClass();
+                j71Var2.U = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 2:
+                j71 j71Var3 = this.f41995b;
+                j71Var3.O.onAnimationUpdate(valueAnimator);
+                j71Var3.N.f36200a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j71Var3.N.f36226w.g1();
+                j71Var3.N.invalidate();
+                return;
+            default:
+                j71 j71Var4 = this.f41995b;
+                j71Var4.getClass();
+                j71Var4.U = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
         }
     }
 }

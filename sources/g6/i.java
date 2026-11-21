@@ -7,32 +7,32 @@ import android.os.RemoteException;
 import com.google.android.gms.internal.cast.l4;
 import com.google.android.gms.internal.cast.s6;
 public final class i {
-    public final c f13225a;
+    public final c f13254a;
 
     public i(c cVar) {
-        this.f13225a = cVar;
+        this.f13254a = cVar;
     }
 
     public final void a() {
-        c cVar = this.f13225a;
-        q qVar = cVar.f13210e;
+        c cVar = this.f13254a;
+        q qVar = cVar.f13239e;
         if (qVar != null) {
             try {
-                h6.h hVar = cVar.f13214j;
+                h6.h hVar = cVar.f13243j;
                 if (hVar != null) {
                     hVar.u();
                 }
                 o oVar = (o) qVar;
                 Parcel p12 = oVar.p1();
-                int i7 = com.google.android.gms.internal.cast.t.f6663a;
+                int i7 = com.google.android.gms.internal.cast.t.f6692a;
                 p12.writeInt(0);
                 oVar.t1(p12, 1);
             } catch (RemoteException e10) {
-                c.f13208m.a(e10, "Unable to call %s on %s.", "onConnected", q.class.getSimpleName());
+                c.f13237m.a(e10, "Unable to call %s on %s.", "onConnected", q.class.getSimpleName());
             }
-            l4 l4Var = cVar.f13216l;
+            l4 l4Var = cVar.f13245l;
             if (l4Var != null) {
-                r7.O(l4Var.f6570a, new s6(new xa(3, 4)));
+                r7.O(l4Var.f6599a, new s6(new xa(3, 4)));
             }
         }
     }

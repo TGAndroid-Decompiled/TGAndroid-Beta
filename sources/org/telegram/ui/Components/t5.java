@@ -1,38 +1,37 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class t5 {
-    public ArrayList f39906a;
-    public HashMap f39907b;
-    public ArrayList f39908c;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.view.View;
+import java.lang.ref.WeakReference;
+public final class t5 implements v5 {
+    public final WeakReference f39772a;
+    public final boolean f39773b;
+    public Layout f39774c;
+    public y5 d;
+    public Rect f39775e;
+    public p5 f39776f;
+    public org.telegram.messenger.f6 h;
+    public boolean f39777n;
+    public float f39778r;
+    public float f39779s;
+    public boolean f39780w;
 
-    public final void a() {
-        ArrayList arrayList = this.f39906a;
-        for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            ((s5) arrayList.get(i7)).d.spanDrawn = false;
-        }
+    public t5(View view, boolean z10) {
+        this.f39772a = new WeakReference(view);
+        this.f39773b = z10;
     }
 
-    public final void b(int i7) {
-        s5 s5Var = (s5) this.f39906a.remove(i7);
-        HashMap hashMap = this.f39907b;
-        v5 v5Var = (v5) hashMap.get(s5Var.f39487c);
-        if (v5Var != null) {
-            ArrayList arrayList = v5Var.f40497b;
-            arrayList.remove(s5Var);
-            v5Var.a();
-            if (arrayList.isEmpty()) {
-                hashMap.remove(s5Var.f39487c);
-                this.f39908c.remove(v5Var);
-            }
-            o5 o5Var = s5Var.f39489f;
-            if (o5Var != null) {
-                o5Var.o(s5Var);
-                return;
-            }
+    @Override
+    public final void invalidate() {
+        View view = (View) this.f39772a.get();
+        if (view == null) {
             return;
         }
-        throw new RuntimeException("!!!");
+        if (this.f39773b && view.getParent() != null) {
+            ((View) view.getParent()).invalidate();
+        } else {
+            view.invalidate();
+        }
     }
 }

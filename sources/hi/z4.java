@@ -1,105 +1,82 @@
 package hi;
 
 import android.app.Activity;
-import android.content.Context;
-import android.os.Build;
-import org.telegram.messenger.gd;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.j10;
-import org.telegram.messenger.mp;
-import org.telegram.ui.Components.lc;
-public final class z4 extends j2 {
-    public final int D1;
-    public final l5 E1;
+import org.telegram.messenger.q10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.bn;
+public final class z4 extends bn {
+    public final q10 f15851vd;
+    public final k5 f15852wd;
 
-    public z4(l5 l5Var, Context context, d5 d5Var, int i7) {
-        super(context, d5Var, false, false);
-        this.E1 = l5Var;
-        this.D1 = i7;
+    public z4(k5 k5Var, q10 q10Var) {
+        super(null);
+        this.f15852wd = k5Var;
+        this.f15851vd = q10Var;
     }
 
     @Override
-    public final boolean J0(Integer num) {
-        g5 g5Var = this.E1.B0;
-        if (num.intValue() == 3) {
-            int i7 = 0;
-            for (int i10 = 0; i10 < g5Var.getChildCount(); i10++) {
-                if (g5Var.getChildAt(i10) instanceof tg.q1) {
-                    i7++;
-                }
-            }
-            int i11 = mp.u1(this.f30187a).f25750r5;
-            org.telegram.ui.ActionBar.n2 n2Var = this.f30193c;
-            if (i7 >= i11 && !j10.i(this.f30187a).q()) {
-                String G = gd.G(mp.u1(this.f30187a).s5, "StoryPremiumWidgets2", new Object[0]);
-                try {
-                    n2Var.performHapticFeedback(3);
-                } catch (Exception unused) {
-                }
-                new lc(n2Var, this.J0).I(2131624217, gd.M0(2131749007, null), org.telegram.messenger.g0.R2(G, org.telegram.ui.ActionBar.n6.Xc, 0, new k(this, 4), this.J0)).k(true);
-                return false;
-            } else if (i7 >= mp.u1(this.f30187a).s5) {
-                try {
-                    n2Var.performHapticFeedback(3);
-                } catch (Exception unused2) {
-                }
-                new lc(n2Var, this.J0).I(2131623982, gd.M0(2131748786, "LimitReached"), gd.G(mp.u1(this.f30187a).s5, "StoryReactionsWidgetLimit2", new Object[0])).k(true);
-                return false;
-            }
-        }
-        return true;
+    public final boolean V9() {
+        return false;
     }
 
     @Override
-    public final boolean K0(Integer num) {
-        l5 l5Var = this.E1;
-        g5 g5Var = l5Var.B0;
-        boolean z10 = false;
-        if (l5Var.H1) {
-            if (num.intValue() != 2) {
-                return false;
-            }
-        } else if (num.intValue() == 5) {
-            int i7 = 0;
-            while (true) {
-                if (i7 >= g5Var.getChildCount()) {
-                    break;
-                } else if (g5Var.getChildAt(i7) instanceof tg.n2) {
-                    z10 = true;
-                    break;
-                } else {
-                    i7++;
-                }
-            }
-            return !z10;
-        }
-        return true;
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public final boolean L0(Runnable runnable) {
-        ta taVar = ((v9) this.E1).f15614k2;
-        Activity activity = taVar.f15424b;
-        if (activity != null) {
-            if (Build.VERSION.SDK_INT >= 33) {
-                if (activity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
-                    activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 115);
-                    taVar.f15504z2 = (ai.w0) runnable;
-                    return false;
-                }
-                return true;
-            } else if (activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 115);
-                taVar.f15504z2 = (ai.w0) runnable;
-                return false;
+    public final void b(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
+        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint;
+        TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint2;
+        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
+            tL_mediaAreaGeoPoint2 = new TL_stories.TL_mediaAreaGeoPoint();
+            tL_mediaAreaGeoPoint2.geo = messageMedia.geo;
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            TLRPC.TL_messageMediaVenue tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) messageMedia;
+            long j10 = tL_messageMediaVenue.query_id;
+            if (j10 != -1 && j10 != -2) {
+                TL_stories.TL_inputMediaAreaVenue tL_inputMediaAreaVenue = new TL_stories.TL_inputMediaAreaVenue();
+                tL_inputMediaAreaVenue.query_id = tL_messageMediaVenue.query_id;
+                tL_inputMediaAreaVenue.result_id = tL_messageMediaVenue.result_id;
+                tL_mediaAreaGeoPoint = tL_inputMediaAreaVenue;
             } else {
-                return true;
+                TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint3 = new TL_stories.TL_mediaAreaGeoPoint();
+                tL_mediaAreaGeoPoint3.geo = messageMedia.geo;
+                TL_stories.TL_geoPointAddress tL_geoPointAddress = tL_messageMediaVenue.geoAddress;
+                tL_mediaAreaGeoPoint3.address = tL_geoPointAddress;
+                if (tL_geoPointAddress != null) {
+                    tL_mediaAreaGeoPoint3.flags |= 1;
+                }
+                Utilities.f22807e.c(new c(5, messageMedia, tL_mediaAreaGeoPoint3));
+                tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
+            tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
+        } else {
+            return;
         }
-        return true;
+        this.f15851vd.a(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
-    public final void n0() {
-        this.E1.O0(this.D1);
+    public final Activity getParentActivity() {
+        return org.telegram.messenger.g0.W(this.f15852wd.getContext());
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.h6 getResourceProvider() {
+        return this.f15852wd.f14896q1;
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.User j() {
+        return j10.i(this.currentAccount).f();
     }
 }

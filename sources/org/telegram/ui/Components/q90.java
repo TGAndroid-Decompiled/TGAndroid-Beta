@@ -1,15 +1,49 @@
 package org.telegram.ui.Components;
+public final class q90 {
+    public final org.telegram.ui.ActionBar.g2 f38853a;
+    public final v90 f38854b;
 
-import android.graphics.Paint;
-import org.telegram.tgnet.TLRPC;
-public interface q90 {
-    Paint.FontMetricsInt P();
+    public q90(v90 v90Var, org.telegram.ui.ActionBar.g2 g2Var) {
+        this.f38854b = v90Var;
+        this.f38853a = g2Var;
+    }
 
-    void Y(TLRPC.TL_document tL_document, String str, Object obj);
+    public final void a(boolean z10) {
+        v90 v90Var = this.f38854b;
+        boolean z11 = false;
+        if (v90Var.getNeededLayoutManager() != v90Var.getCurrentLayoutManager() && v90Var.a()) {
+            if (v90Var.f40745f.N0 > 0) {
+                v90Var.O = true;
+                v90Var.o(false);
+                return;
+            }
+            v90Var.f40742b.setLayoutManager(v90Var.getNeededLayoutManager());
+        }
+        if (z10 && !v90Var.a()) {
+            z10 = false;
+        }
+        if (!z10 || v90Var.f40745f.K() > 0) {
+            z11 = z10;
+        }
+        v90Var.o(z11);
+    }
 
-    void g(TLRPC.BotInlineResult botInlineResult, boolean z10, int i7);
+    public final void b(boolean z10) {
+        this.f38854b.l(z10);
+    }
 
-    void l0(int i7, int i10, CharSequence charSequence, boolean z10);
-
-    void q0(String str);
+    public final void c() {
+        long j3;
+        v90 v90Var = this.f38854b;
+        oo ooVar = v90Var.K;
+        if (v90Var.f40742b.getLayoutManager() != v90Var.d && v90Var.J) {
+            org.telegram.messenger.g0.r(ooVar);
+            if (this.f38853a.getFragmentBeginToShow()) {
+                j3 = 0;
+            } else {
+                j3 = 100;
+            }
+            org.telegram.messenger.g0.h3(ooVar, j3);
+        }
+    }
 }

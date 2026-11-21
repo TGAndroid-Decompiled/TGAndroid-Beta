@@ -9,22 +9,22 @@ import org.telegram.messenger.q10;
 import org.telegram.messenger.u10;
 import org.telegram.messenger.x10;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.y60;
+import org.telegram.ui.Components.a70;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.p51;
 public final class v7 implements Runnable {
-    public final int f45168a;
-    public final Object f45169b;
-    public final Object f45170c;
+    public final int f45209a;
+    public final Object f45210b;
+    public final Object f45211c;
     public final Object d;
-    public final Object f45171e;
+    public final Object f45212e;
 
     public v7(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f45168a = i7;
-        this.f45169b = obj;
+        this.f45209a = i7;
+        this.f45210b = obj;
         this.d = obj2;
-        this.f45171e = obj3;
-        this.f45170c = obj4;
+        this.f45212e = obj3;
+        this.f45211c = obj4;
     }
 
     @Override
@@ -35,13 +35,13 @@ public final class v7 implements Runnable {
         int i10;
         boolean z10;
         int i11;
-        int i12 = this.f45168a;
+        int i12 = this.f45209a;
         byte[] bArr = null;
         boolean z11 = true;
-        Object obj = this.f45170c;
-        Object obj2 = this.f45171e;
+        Object obj = this.f45211c;
+        Object obj2 = this.f45212e;
         Object obj3 = this.d;
-        Object obj4 = this.f45169b;
+        Object obj4 = this.f45210b;
         switch (i12) {
             case 0:
                 ((WalletEngine2) obj4).lambda$prepareRotateKey$37((u10) obj3, (WalletEngine2.PreparedRotation) obj2, (String) obj);
@@ -70,15 +70,15 @@ public final class v7 implements Runnable {
                 TL_wallet.nftItem nftitem = (TL_wallet.nftItem) obj2;
                 t0 t0Var2 = (t0) obj;
                 u0Var.getClass();
-                if (wallettransaction2.pending || wallettransaction2.failed || TextUtils.isEmpty(wallettransaction2.f28666id)) {
+                if (wallettransaction2.pending || wallettransaction2.failed || TextUtils.isEmpty(wallettransaction2.f28694id)) {
                     wallettransaction2.pending = false;
                     wallettransaction2.failed = true;
-                    u0Var.f45098r.remove(wallettransaction2);
-                    x10 x10Var = (x10) u0Var.f45097q.remove(wallettransaction2);
+                    u0Var.f45138r.remove(wallettransaction2);
+                    x10 x10Var = (x10) u0Var.f45137q.remove(wallettransaction2);
                     if (x10Var != null) {
                         x10Var.a(Boolean.FALSE);
                     }
-                    if (nftitem != null && (l0Var = u0Var.f45095o) != null) {
+                    if (nftitem != null && (l0Var = u0Var.f45135o) != null) {
                         l0.a(l0Var, wallettransaction2);
                     }
                     t0Var2.k();
@@ -108,7 +108,7 @@ public final class v7 implements Runnable {
                 g2 g2Var = (g2) obj3;
                 k kVar = (k) obj2;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
-                u0 u0Var2 = l2Var.f44480b;
+                u0 u0Var2 = l2Var.f44520b;
                 String y10 = u0Var2.y();
                 byte[] E = u0Var2.E();
                 if (E != null) {
@@ -129,47 +129,47 @@ public final class v7 implements Runnable {
                 h2 h2Var = (h2) obj2;
                 p51 p51Var3 = (p51) obj;
                 try {
-                    jSONObject = WalletEngine2.signData(r0Var, h2Var.f44289a, h2Var.h, h2Var.f44294g, new JSONObject(h2Var.f44297k), l2.n(h2Var.f44289a.manifest.url), l2Var2.f44483f.getCurrentTime());
+                    jSONObject = WalletEngine2.signData(r0Var, h2Var.f44329a, h2Var.h, h2Var.f44334g, new JSONObject(h2Var.f44337k), l2.n(h2Var.f44329a.manifest.url), l2Var2.f44523f.getCurrentTime());
                     i7 = null;
                 } catch (Exception e10) {
                     i7 = l2.i("sign data", e10);
                     jSONObject = null;
                 }
-                org.telegram.messenger.g0.g3(new bi.h2(l2Var2, h2Var, r0Var, p51Var3, jSONObject, i7, 24));
+                org.telegram.messenger.g0.g3(new bi.l2(l2Var2, h2Var, r0Var, p51Var3, jSONObject, i7, 24));
                 return;
             case 9:
                 y2 y2Var = (y2) obj4;
-                hi.d dVar = (hi.d) obj3;
+                hi.e eVar = (hi.e) obj3;
                 int[] iArr = (int[]) obj2;
-                hi.d dVar2 = (hi.d) obj;
+                hi.e eVar2 = (hi.e) obj;
                 boolean a10 = y2Var.a();
                 if (iArr[0] == 2) {
-                    i10 = 2131742732;
+                    i10 = 2131742726;
                 } else {
-                    i10 = 2131742930;
+                    i10 = 2131742924;
                 }
-                dVar.setText(gd.M0(i10, null));
+                eVar.setText(gd.N0(i10, null));
                 if (!a10 && !y2Var.d && ((i11 = iArr[0]) == 1 || i11 == 2)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                dVar.setEnabled(z10);
+                eVar.setEnabled(z10);
                 if (a10 || y2Var.d) {
                     z11 = false;
                 }
-                dVar2.setEnabled(z11);
+                eVar2.setEnabled(z11);
                 return;
             case 10:
-                n6.i0((n6) obj4, (LinearLayout) obj3, (u0) obj2, (y60) obj);
+                n6.i0((n6) obj4, (LinearLayout) obj3, (u0) obj2, (a70) obj);
                 return;
             case 11:
                 boolean[] zArr = (boolean[]) obj3;
-                org.telegram.ui.ActionBar.z0 z0Var = (org.telegram.ui.ActionBar.z0) obj2;
+                org.telegram.ui.ActionBar.y0 y0Var = (org.telegram.ui.ActionBar.y0) obj2;
                 v7 v7Var = (v7) obj;
                 g gVar = ((u0) obj4).h;
                 if (gVar.f() != null && !zArr[0]) {
-                    z0Var.setSubtext(gVar.i());
+                    y0Var.setSubtext(gVar.i());
                     v7Var.run();
                     zArr[0] = true;
                     return;
@@ -191,26 +191,26 @@ public final class v7 implements Runnable {
     }
 
     public v7(Object obj, Object obj2, String str, Object obj3, int i7) {
-        this.f45168a = i7;
-        this.f45169b = obj;
+        this.f45209a = i7;
+        this.f45210b = obj;
         this.d = obj2;
-        this.f45170c = str;
-        this.f45171e = obj3;
+        this.f45211c = str;
+        this.f45212e = obj3;
     }
 
     public v7(WalletEngine2 walletEngine2, String str, byte[] bArr, q10 q10Var) {
-        this.f45168a = 13;
-        this.f45169b = walletEngine2;
-        this.f45170c = str;
+        this.f45209a = 13;
+        this.f45210b = walletEngine2;
+        this.f45211c = str;
         this.d = bArr;
-        this.f45171e = q10Var;
+        this.f45212e = q10Var;
     }
 
     public v7(WalletEngine2 walletEngine2, byte[] bArr, String str, u10 u10Var) {
-        this.f45168a = 14;
-        this.f45169b = walletEngine2;
-        this.f45171e = bArr;
-        this.f45170c = str;
+        this.f45209a = 14;
+        this.f45210b = walletEngine2;
+        this.f45212e = bArr;
+        this.f45211c = str;
         this.d = u10Var;
     }
 }

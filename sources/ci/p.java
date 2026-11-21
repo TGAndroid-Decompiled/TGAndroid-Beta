@@ -9,48 +9,48 @@ import android.view.MotionEvent;
 import android.view.View;
 import com.google.android.gms.internal.vision.e2;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.o5;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.p5;
 public final class p extends View {
-    public final o5 f5739a;
-    public final Drawable f5740b;
-    public float f5741c;
+    public final p5 f5768a;
+    public final Drawable f5769b;
+    public float f5770c;
     public boolean d;
 
     public p(h0 h0Var, Context context, int i7, TLRPC.Document document) {
         super(context);
         int i10;
         if (document != null) {
-            this.f5739a = o5.l(h0Var.f5757a, 5, document);
-            this.f5740b = null;
+            this.f5768a = p5.l(h0Var.f5786a, 5, document);
+            this.f5769b = null;
             return;
         }
-        this.f5739a = null;
+        this.f5768a = null;
         if (i7 == 0) {
             i10 = 2131231064;
         } else {
             i10 = 2131232127;
         }
         Drawable mutate = context.getDrawable(i10).mutate();
-        this.f5740b = mutate;
+        this.f5769b = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        o5 o5Var = this.f5739a;
-        if (o5Var != null) {
-            o5Var.a(this);
+        p5 p5Var = this.f5768a;
+        if (p5Var != null) {
+            p5Var.a(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        o5 o5Var = this.f5739a;
-        if (o5Var != null) {
-            o5Var.n(this);
+        p5 p5Var = this.f5768a;
+        if (p5Var != null) {
+            p5Var.n(this);
         }
     }
 
@@ -62,22 +62,22 @@ public final class p extends View {
         } else {
             f10 = 0.0f;
         }
-        float f11 = this.f5741c;
+        float f11 = this.f5770c;
         if (f11 != f10) {
             if (Math.abs(f11 - f10) >= 0.02f) {
-                float f12 = this.f5741c;
+                float f12 = this.f5770c;
                 f10 = e2.z(f10, f12, 0.35f, f12);
             }
-            this.f5741c = f10;
+            this.f5770c = f10;
             invalidate();
         }
-        float interpolation = (1.0f - (lr.f37209g.getInterpolation(this.f5741c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
+        float interpolation = (1.0f - (nr.f37957g.getInterpolation(this.f5770c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
         float f13 = interpolation / 2.0f;
         int width = (int) ((getWidth() / 2.0f) - f13);
         int height = (int) ((getHeight() / 2.0f) - f13);
-        Drawable drawable = this.f5739a;
+        Drawable drawable = this.f5768a;
         if (drawable == null) {
-            drawable = this.f5740b;
+            drawable = this.f5769b;
         }
         if (drawable != null) {
             drawable.setBounds(width, height, (int) (width + interpolation), (int) (height + interpolation));

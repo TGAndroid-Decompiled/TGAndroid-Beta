@@ -4,14 +4,14 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c9 {
-    public b9 f33925a;
-    public org.telegram.ui.Cells.f4 f33926b;
-    public long f33927c;
+    public b9 f34122a;
+    public org.telegram.ui.Cells.f4 f34123b;
+    public long f34124c;
     public long d;
-    public ImageReceiver f33928e;
-    public TLRPC.GroupCallParticipant f33929f;
-    public long f33930g;
+    public ImageReceiver f34125e;
+    public TLRPC.GroupCallParticipant f34126f;
+    public long f34127g;
     public TLObject h;
-    public int f33931i;
-    public int f33932j;
+    public int f34128i;
+    public int f34129j;
 }

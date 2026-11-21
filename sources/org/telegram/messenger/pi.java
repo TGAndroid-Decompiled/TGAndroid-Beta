@@ -2,21 +2,21 @@ package org.telegram.messenger;
 
 import j$.util.Objects;
 public final class pi {
-    public final boolean f26251a;
-    public final String f26252b;
-    public final String f26253c;
+    public final boolean f26279a;
+    public final String f26280b;
+    public final String f26281c;
 
     public pi(String str, String str2, boolean z10) {
-        this.f26251a = z10;
-        this.f26252b = str;
-        this.f26253c = str2;
+        this.f26279a = z10;
+        this.f26280b = str;
+        this.f26281c = str2;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && pi.class == obj.getClass()) {
                 pi piVar = (pi) obj;
-                if (this.f26251a == piVar.f26251a && Objects.equals(this.f26252b, piVar.f26252b) && Objects.equals(this.f26253c, piVar.f26253c)) {
+                if (this.f26279a == piVar.f26279a && Objects.equals(this.f26280b, piVar.f26280b) && Objects.equals(this.f26281c, piVar.f26281c)) {
                     return true;
                 }
                 return false;
@@ -27,6 +27,6 @@ public final class pi {
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f26251a), this.f26252b, this.f26253c);
+        return Objects.hash(Boolean.valueOf(this.f26279a), this.f26280b, this.f26281c);
     }
 }

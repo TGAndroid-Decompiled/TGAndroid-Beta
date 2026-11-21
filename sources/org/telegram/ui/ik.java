@@ -2,17 +2,17 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
-public final class ik extends org.telegram.ui.Components.vi0 {
+public final class ik extends org.telegram.ui.Components.xi0 {
     public final int[] n1;
-    public ValueAnimator f48742o1;
-    public boolean f48743p1;
-    public final bn f48744q1;
+    public ValueAnimator f48764o1;
+    public boolean f48765p1;
+    public final bn f48766q1;
 
-    public ik(bn bnVar, bn bnVar2, Activity activity, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(3, i7, activity, bnVar2, i6Var);
-        this.f48744q1 = bnVar;
+    public ik(bn bnVar, bn bnVar2, Activity activity, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(3, i7, activity, bnVar2, h6Var);
+        this.f48766q1 = bnVar;
         this.n1 = new int[2];
-        this.f48743p1 = true;
+        this.f48765p1 = true;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class ik extends org.telegram.ui.Components.vi0 {
         org.telegram.ui.ActionBar.k kVar;
         int i13;
         super.onLayout(z10, i7, i10, i11, i12);
-        kVar = ((org.telegram.ui.ActionBar.h2) this.f48744q1).actionBar;
-        org.telegram.ui.ActionBar.r0 j3 = kVar.q(null).j(28);
+        kVar = ((org.telegram.ui.ActionBar.g2) this.f48766q1).actionBar;
+        org.telegram.ui.ActionBar.q0 j3 = kVar.p(null).j(28);
         if (j3 != null) {
             int[] iArr = this.n1;
             getLocationInWindow(iArr);
@@ -30,7 +30,7 @@ public final class ik extends org.telegram.ui.Components.vi0 {
             j3.getLocationInWindow(iArr);
             float width2 = (j3.getWidth() / 2.0f) + iArr[0];
             int L = org.telegram.messenger.g0.L(20.0f);
-            boolean z11 = org.telegram.messenger.gd.f24213a0;
+            boolean z11 = org.telegram.messenger.gd.f24241a0;
             if (z11) {
                 i13 = -1;
             } else {
@@ -38,29 +38,29 @@ public final class ik extends org.telegram.ui.Components.vi0 {
             }
             float f10 = width2 + (L * i13);
             if (z11) {
-                s(!this.f48743p1, f10 - x10);
+                s(!this.f48765p1, f10 - x10);
             } else {
-                s(!this.f48743p1, f10 - width);
+                s(!this.f48765p1, f10 - width);
             }
-            this.f48743p1 = false;
+            this.f48765p1 = false;
         }
     }
 
     public final void s(boolean z10, float f10) {
-        ValueAnimator valueAnimator = this.f48742o1;
+        ValueAnimator valueAnimator = this.f48764o1;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f48742o1 = null;
+            this.f48764o1 = null;
         }
         if (!z10) {
             setBubbleOffset(f10);
             return;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.V0, f10);
-        this.f48742o1 = ofFloat;
+        this.f48764o1 = ofFloat;
         ofFloat.addUpdateListener(new a3(this, 5));
-        this.f48742o1.setInterpolator(org.telegram.ui.Components.lr.h);
-        this.f48742o1.setDuration(420L);
-        this.f48742o1.start();
+        this.f48764o1.setInterpolator(org.telegram.ui.Components.nr.h);
+        this.f48764o1.setDuration(420L);
+        this.f48764o1.start();
     }
 }

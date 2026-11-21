@@ -1,47 +1,89 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.text.TextUtils;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MotionEvent;
-public final class xh extends wt {
-    public final si W;
+public final class xh extends yt {
+    public boolean W;
+    public int f42098a0;
+    public int f42099b0;
+    public ValueAnimator f42100c0;
+    public final ui f42101d0;
 
-    public xh(si siVar, Context context, fi fiVar, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, fiVar, null, 1, true, i6Var);
-        this.W = siVar;
+    public xh(ui uiVar, Context context, hi hiVar, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, hiVar, null, 1, true, h6Var);
+        this.f42101d0 = uiVar;
+    }
+
+    @Override
+    public final void c(float f10) {
+        ui uiVar = this.f42101d0;
+        uiVar.f40388e4 = f10;
+        uh uhVar = uiVar.B2;
+        uhVar.setTranslationY(f10);
+        uhVar.invalidate();
+        uiVar.V0();
+        uiVar.N1(uiVar.f40448w2, 0);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.W) {
+            ot editText = this.f42101d0.C2.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f42099b0 - editText.getScrollY()) + (this.f42098a0 - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new ch.w(14, this, editText));
+            ValueAnimator valueAnimator = this.f42100c0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            this.f42100c0 = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(nr.f37956f);
+            ofFloat.start();
+            this.W = false;
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void e() {
+        super/*org.telegram.ui.ActionBar.w2*/.dismiss();
     }
 
     @Override
     public final void f() {
         super.f();
-        ry emojiView = getEmojiView();
+        ty emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f39407x0 = false;
-            emojiView.f39413y2 = false;
+            emojiView.f40161x0 = false;
+            emojiView.f40167y2 = false;
             emojiView.setShouldDrawBackground(false);
-            emojiView.setBottomInset(org.telegram.messenger.g0.f24113n);
+            emojiView.setBottomInset(org.telegram.messenger.g0.f24141n);
         }
     }
 
     @Override
     public final void i(ActionMode actionMode, Menu menu) {
-        org.telegram.ui.ActionBar.h2 h2Var = this.W.f39659a2;
-        if (h2Var instanceof org.telegram.ui.bn) {
-            org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) h2Var).h, true, true, true, true);
+        org.telegram.ui.ActionBar.g2 g2Var = this.f42101d0.f40375a2;
+        if (g2Var instanceof org.telegram.ui.bn) {
+            org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) g2Var).h, true, true, true, true);
         }
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        si siVar = this.W;
-        xh xhVar = siVar.N2;
-        if (!siVar.f39717s3) {
+        ui uiVar = this.f42101d0;
+        xh xhVar = uiVar.C2;
+        if (!uiVar.f40433s3) {
             if (motionEvent.getX() > xhVar.getEditText().getLeft() && motionEvent.getX() < xhVar.getEditText().getRight() && motionEvent.getY() > xhVar.getEditText().getTop() && motionEvent.getY() < xhVar.getEditText().getBottom()) {
-                siVar.i1(xhVar.getEditText(), true);
+                uiVar.i1(xhVar.getEditText(), true);
             } else {
-                siVar.i1(xhVar.getEditText(), false);
+                uiVar.i1(xhVar.getEditText(), false);
             }
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -50,21 +92,32 @@ public final class xh extends wt {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        this.W.R1();
+        this.f42101d0.K1();
     }
 
     @Override
     public final void q(int i7, int i10) {
-        boolean z10;
-        si siVar = this.W;
-        siVar.R1();
-        if (siVar.X1) {
+        ui uiVar = this.f42101d0;
+        uh uhVar = uiVar.B2;
+        boolean z10 = false;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.W = true;
+            this.f42098a0 = getEditText().getMeasuredHeight();
+            this.f42099b0 = getEditText().getScrollY();
+            invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.W = false;
+        }
+        if (!uiVar.X1) {
             if (i10 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                 z10 = true;
-            } else {
-                z10 = false;
             }
-            siVar.C1(z10);
+            uiVar.C1(z10);
         }
+        uiVar.U3 = uhVar.getTop() + uiVar.T3;
+        uhVar.invalidate();
+        uiVar.K1();
     }
 }

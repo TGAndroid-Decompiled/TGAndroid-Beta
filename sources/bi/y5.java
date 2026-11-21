@@ -1,52 +1,61 @@
 package bi;
 
-import java.util.ArrayList;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.x10;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.eq0;
-import org.telegram.ui.Components.f71;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.ProfileActivity;
-public final class y5 implements x10 {
-    public final int f4247a;
-    public final j6 f4248b;
-    public final TL_stars.SavedStarGift f4249c;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.a70;
+import org.telegram.ui.PhotoViewer;
+public final class y5 implements Runnable {
+    public final int f4288a;
+    public final a70 f4289b;
+    public final a70 f4290c;
 
-    public y5(j6 j6Var, TL_stars.SavedStarGift savedStarGift, int i7) {
-        this.f4247a = i7;
-        this.f4248b = j6Var;
-        this.f4249c = savedStarGift;
+    public y5(a70 a70Var, a70 a70Var2, int i7) {
+        this.f4288a = i7;
+        this.f4289b = a70Var;
+        this.f4290c = a70Var2;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i7 = this.f4247a;
-        TL_stars.SavedStarGift savedStarGift = this.f4249c;
-        j6 j6Var = this.f4248b;
+    public final void run() {
+        int i7 = this.f4288a;
+        a70 a70Var = this.f4290c;
+        a70 a70Var2 = this.f4289b;
         switch (i7) {
             case 0:
-                j6Var.f3756a.f3944e.b((String) obj, new y5(j6Var, savedStarGift, 1));
+                a70Var2.L(a70Var);
+                return;
+            case 1:
+                a70Var2.L(a70Var);
+                return;
+            case 2:
+                a70Var2.L(a70Var);
+                return;
+            case 3:
+                a70Var2.L(a70Var);
+                return;
+            case 4:
+                a70Var2.L(a70Var);
+                return;
+            case 5:
+                a70Var2.L(a70Var);
+                return;
+            case 6:
+                a70Var2.L(a70Var);
+                return;
+            case 7:
+                a70Var2.L(a70Var);
+                return;
+            case 8:
+                a70Var2.L(a70Var);
+                return;
+            case 9:
+                a70Var2.L(a70Var);
+                return;
+            case 10:
+                a70Var2.L(a70Var);
                 return;
             default:
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                eq0 eq0Var = j6Var.f3756a;
-                di.m8 m8Var = eq0Var.f3944e;
-                int i10 = tL_starGiftCollection.collection_id;
-                m8Var.getClass();
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(savedStarGift);
-                m8Var.a(i10, arrayList);
-                eq0Var.f(true);
-                f71 f71Var = eq0Var.f3946n;
-                int i11 = tL_starGiftCollection.collection_id;
-                f71Var.e(i11, eq0Var.f3944e.f(i11) + 1);
-                org.telegram.ui.ActionBar.h2 h2Var = eq0Var.f3941a;
-                if (h2Var instanceof ProfileActivity) {
-                    ((ProfileActivity) h2Var).X4(true);
-                }
-                eq0Var.o();
-                lc.b0(h2Var).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.W2(gd.a0(null, null, 2131750377, di.f6.F1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                Drawable[] drawableArr = PhotoViewer.Z8;
+                a70Var2.L(a70Var);
                 return;
         }
     }

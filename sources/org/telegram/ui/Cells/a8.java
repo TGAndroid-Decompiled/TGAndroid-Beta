@@ -19,7 +19,7 @@ import org.telegram.messenger.j10;
 import org.telegram.messenger.ks;
 import org.telegram.messenger.sy;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.nr;
 public class a8 extends FrameLayout implements fs, rg.c {
     public static final AccelerateInterpolator O = new AccelerateInterpolator(0.5f);
     public boolean E;
@@ -31,53 +31,53 @@ public class a8 extends FrameLayout implements fs, rg.c {
     public final ImageView K;
     public int L;
     public boolean M;
-    public final org.telegram.ui.ActionBar.i6 N;
-    public final z7 f30386a;
-    public final ug.c1 f30387b;
-    public TLRPC.Document f30388c;
+    public final org.telegram.ui.ActionBar.h6 N;
+    public final z7 f30414a;
+    public final ug.b1 f30415b;
+    public TLRPC.Document f30416c;
     public sy d;
-    public Object f30389e;
-    public String f30390f;
+    public Object f30417e;
+    public String f30418f;
     public final TextView h;
-    public float f30391n;
-    public boolean f30392r;
-    public long f30393s;
-    public boolean f30394w;
-    public float f30395x;
-    public long f30396y;
+    public float f30419n;
+    public boolean f30420r;
+    public long f30421s;
+    public boolean f30422w;
+    public float f30423x;
+    public long f30424y;
 
-    public a8(Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10) {
+    public a8(Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10) {
         super(context);
-        this.f30391n = 1.0f;
-        this.F = j10.f24770t0;
+        this.f30419n = 1.0f;
+        this.F = j10.f24798t0;
         this.I = 1.0f;
-        this.N = i6Var;
+        this.N = h6Var;
         this.G = z10;
-        z7 z7Var = new z7(this, i6Var);
-        this.f30386a = z7Var;
+        z7 z7Var = new z7(this, h6Var);
+        this.f30414a = z7Var;
         z7Var.S0 = true;
         z7Var.A1 = true;
         z7Var.E0(1);
         TextView textView = new TextView(context);
         this.h = textView;
         textView.setTextSize(1, 16.0f);
-        new Paint(1).setColor(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Fi, false));
-        ug.c1 c1Var = new ug.c1(1, context, null);
-        this.f30387b = c1Var;
-        c1Var.setImageReceiver(z7Var);
-        c1Var.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
-        c1Var.setImageReceiver(z7Var);
-        addView(c1Var, c8.ma.d(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+        new Paint(1).setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Fi, false));
+        ug.b1 b1Var = new ug.b1(1, context, null);
+        this.f30415b = b1Var;
+        b1Var.setImageReceiver(z7Var);
+        b1Var.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
+        b1Var.setImageReceiver(z7Var);
+        addView(b1Var, c8.ma.d(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.K = imageView;
         imageView.setImageResource(2131231966);
         imageView.setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
         int L = org.telegram.messenger.g0.L(12.0f);
-        int i7 = org.telegram.ui.ActionBar.n6.f29633q5;
-        ShapeDrawable d02 = org.telegram.ui.ActionBar.n6.d0(L, org.telegram.ui.ActionBar.n6.w0(i7, i6Var));
-        org.telegram.ui.ActionBar.q6 M = org.telegram.ui.ActionBar.u6.M(i7);
+        int i7 = org.telegram.ui.ActionBar.m6.f29617q5;
+        ShapeDrawable d02 = org.telegram.ui.ActionBar.m6.d0(L, org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
+        org.telegram.ui.ActionBar.p6 M = org.telegram.ui.ActionBar.t6.M(i7);
         imageView.setBackground(d02);
-        org.telegram.ui.ActionBar.u6.j(imageView, d02, M, null, i6Var);
+        org.telegram.ui.ActionBar.t6.j(imageView, d02, M, null, h6Var);
         imageView.setAlpha(0.0f);
         addView(imageView, c8.ma.e(-2, -2, 5));
         setFocusable(true);
@@ -86,7 +86,7 @@ public class a8 extends FrameLayout implements fs, rg.c {
     public final void a(boolean z10) {
         ImageView imageView = this.K;
         if (z10) {
-            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(lr.f37208f).start();
+            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(nr.f37956f).start();
         } else {
             imageView.setAlpha(0.0f);
         }
@@ -94,41 +94,41 @@ public class a8 extends FrameLayout implements fs, rg.c {
 
     public final void b(Canvas canvas, ViewGroup viewGroup) {
         boolean z10;
-        boolean z11 = this.f30392r;
+        boolean z11 = this.f30420r;
         float f10 = this.I;
-        z7 z7Var = this.f30386a;
-        if (z11 || (((z10 = this.f30394w) && this.f30395x != 0.8f) || (!z10 && this.f30395x != 1.0f))) {
+        z7 z7Var = this.f30414a;
+        if (z11 || (((z10 = this.f30422w) && this.f30423x != 0.8f) || (!z10 && this.f30423x != 1.0f))) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f30393s;
-            this.f30393s = currentTimeMillis;
-            if (this.f30392r) {
-                long j10 = this.f30396y + j3;
-                this.f30396y = j10;
+            long j3 = currentTimeMillis - this.f30421s;
+            this.f30421s = currentTimeMillis;
+            if (this.f30420r) {
+                long j10 = this.f30424y + j3;
+                this.f30424y = j10;
                 if (j10 > 1050) {
-                    this.f30396y = 1050L;
+                    this.f30424y = 1050L;
                 }
-                float interpolation = (O.getInterpolation(((float) this.f30396y) / 150.0f) * 0.5f) + 0.5f;
-                this.f30391n = interpolation;
+                float interpolation = (O.getInterpolation(((float) this.f30424y) / 150.0f) * 0.5f) + 0.5f;
+                this.f30419n = interpolation;
                 if (interpolation >= 1.0f) {
-                    this.f30392r = false;
-                    this.f30391n = 1.0f;
+                    this.f30420r = false;
+                    this.f30419n = 1.0f;
                 }
-                z7Var.setAlpha(this.f30391n * f10);
+                z7Var.setAlpha(this.f30419n * f10);
             } else {
-                if (this.f30394w) {
-                    float f11 = this.f30395x;
+                if (this.f30422w) {
+                    float f11 = this.f30423x;
                     if (f11 != 0.8f) {
                         float f12 = f11 - (((float) j3) / 400.0f);
-                        this.f30395x = f12;
+                        this.f30423x = f12;
                         if (f12 < 0.8f) {
-                            this.f30395x = 0.8f;
+                            this.f30423x = 0.8f;
                         }
                     }
                 }
-                float f13 = (((float) j3) / 400.0f) + this.f30395x;
-                this.f30395x = f13;
+                float f13 = (((float) j3) / 400.0f) + this.f30423x;
+                this.f30423x = f13;
                 if (f13 > 1.0f) {
-                    this.f30395x = 1.0f;
+                    this.f30423x = 1.0f;
                 }
             }
             viewGroup.invalidate();
@@ -139,10 +139,10 @@ public class a8 extends FrameLayout implements fs, rg.c {
         float f15 = f14 / 2.0f;
         float measuredHeight = getMeasuredHeight() >> 1;
         z7Var.y0(measuredWidth - f15, measuredHeight - f15, f14, f14);
-        z7Var.setAlpha(this.f30391n * f10);
-        if (this.f30395x != 1.0f) {
+        z7Var.setAlpha(this.f30419n * f10);
+        if (this.f30423x != 1.0f) {
             canvas.save();
-            float f16 = this.f30395x;
+            float f16 = this.f30423x;
             canvas.scale(f16, f16, measuredWidth, measuredHeight);
             z7Var.h(canvas, null);
             canvas.restore();
@@ -157,7 +157,7 @@ public class a8 extends FrameLayout implements fs, rg.c {
             imageView.setAlpha(0.0f);
             imageView.setScaleX(0.4f);
             imageView.setScaleY(0.4f);
-            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(lr.f37208f).start();
+            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(nr.f37956f).start();
             return;
         }
         imageView.setAlpha(1.0f);
@@ -171,7 +171,7 @@ public class a8 extends FrameLayout implements fs, rg.c {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25133i5) {
+        if (i7 == ks.f25161i5) {
             e(true);
         }
     }
@@ -190,8 +190,8 @@ public class a8 extends FrameLayout implements fs, rg.c {
         } else {
             this.J = false;
         }
-        ug.c1 c1Var = this.f30387b;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) c1Var.getLayoutParams();
+        ug.b1 b1Var = this.f30415b;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) b1Var.getLayoutParams();
         int i7 = this.F;
         if (!j10.i(i7).q()) {
             int L = org.telegram.messenger.g0.L(24.0f);
@@ -200,7 +200,7 @@ public class a8 extends FrameLayout implements fs, rg.c {
             layoutParams.gravity = 81;
             layoutParams.rightMargin = 0;
             layoutParams.bottomMargin = org.telegram.messenger.g0.L(8.0f);
-            c1Var.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
+            b1Var.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
         } else {
             int L2 = org.telegram.messenger.g0.L(16.0f);
             layoutParams.width = L2;
@@ -208,46 +208,46 @@ public class a8 extends FrameLayout implements fs, rg.c {
             layoutParams.gravity = 85;
             layoutParams.bottomMargin = org.telegram.messenger.g0.L(8.0f);
             layoutParams.rightMargin = org.telegram.messenger.g0.L(8.0f);
-            c1Var.setPadding(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f));
+            b1Var.setPadding(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(1.0f));
         }
-        c1Var.setLocked(!j10.i(i7).q());
-        org.telegram.messenger.g0.X3(c1Var, this.J, 0.9f, true, z10);
+        b1Var.setLocked(!j10.i(i7).q());
+        org.telegram.messenger.g0.X3(b1Var, this.J, 0.9f, true, z10);
         invalidate();
     }
 
     public String getEmoji() {
-        return this.f30390f;
+        return this.f30418f;
     }
 
     public ImageReceiver getImageView() {
-        return this.f30386a;
+        return this.f30414a;
     }
 
     public Object getParentObject() {
-        return this.f30389e;
+        return this.f30417e;
     }
 
     public bj getSendAnimationData() {
-        z7 z7Var = this.f30386a;
+        z7 z7Var = this.f30414a;
         if (!z7Var.L()) {
             return null;
         }
         ?? obj = new Object();
         int[] iArr = new int[2];
         getLocationInWindow(iArr);
-        obj.f23079a = z7Var.r() + iArr[0];
-        obj.f23080b = z7Var.s() + iArr[1];
-        obj.f23081c = z7Var.N0;
+        obj.f23107a = z7Var.r() + iArr[0];
+        obj.f23108b = z7Var.s() + iArr[1];
+        obj.f23109c = z7Var.N0;
         return obj;
     }
 
     public TLRPC.Document getSticker() {
-        return this.f30388c;
+        return this.f30416c;
     }
 
     public sy getStickerPath() {
         sy syVar = this.d;
-        if (syVar != null && syVar.f26902c) {
+        if (syVar != null && syVar.f26930c) {
             return syVar;
         }
         return null;
@@ -266,7 +266,7 @@ public class a8 extends FrameLayout implements fs, rg.c {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         boolean z10 = this.M;
-        z7 z7Var = this.f30386a;
+        z7 z7Var = this.f30414a;
         if (z10) {
             z7Var.K0 = true;
             z7Var.H0((View) getParent());
@@ -274,41 +274,41 @@ public class a8 extends FrameLayout implements fs, rg.c {
             z7Var.H0(this);
         }
         z7Var.P();
-        ks.f(this.F).c(this, ks.f25133i5);
+        ks.f(this.F).c(this, ks.f25161i5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f30386a.R();
-        ks.f(this.F).n(this, ks.f25133i5);
+        this.f30414a.R();
+        ks.f(this.F).n(this, ks.f25161i5);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        String M0 = gd.M0(2131753934, null);
-        if (this.f30388c != null) {
+        String N0 = gd.N0(2131753933, null);
+        if (this.f30416c != null) {
             int i7 = 0;
             while (true) {
-                if (i7 >= this.f30388c.attributes.size()) {
+                if (i7 >= this.f30416c.attributes.size()) {
                     break;
                 }
-                TLRPC.DocumentAttribute documentAttribute = this.f30388c.attributes.get(i7);
+                TLRPC.DocumentAttribute documentAttribute = this.f30416c.attributes.get(i7);
                 if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                     String str = documentAttribute.alt;
                     if (str != null && str.length() > 0) {
                         String str2 = documentAttribute.alt;
                         TextView textView = this.h;
                         textView.setText(org.telegram.messenger.j6.m(str2, textView.getPaint().getFontMetricsInt(), false, null, 0));
-                        M0 = p5.c.m(documentAttribute.alt, " ", M0, new StringBuilder());
+                        N0 = p5.c.m(documentAttribute.alt, " ", N0, new StringBuilder());
                     }
                 } else {
                     i7++;
                 }
             }
         }
-        accessibilityNodeInfo.setContentDescription(M0);
+        accessibilityNodeInfo.setContentDescription(N0);
         accessibilityNodeInfo.setEnabled(true);
     }
 
@@ -317,14 +317,14 @@ public class a8 extends FrameLayout implements fs, rg.c {
     }
 
     public void setScaled(boolean z10) {
-        this.f30394w = z10;
-        this.f30393s = System.currentTimeMillis();
+        this.f30422w = z10;
+        this.f30421s = System.currentTimeMillis();
         invalidate();
     }
 
     public void setSticker(sy syVar) {
         boolean z10;
-        String str = syVar.f26901b;
+        String str = syVar.f26929b;
         if (str != null) {
             z10 = true;
         } else {

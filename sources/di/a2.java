@@ -2,21 +2,21 @@ package di;
 
 import org.telegram.messenger.p10;
 public final class a2 implements p10 {
-    public final int f8464a;
-    public final Object f8465b;
+    public final int f8493a;
+    public final Object f8494b;
 
     public a2(Object obj, int i7) {
-        this.f8464a = i7;
-        this.f8465b = obj;
+        this.f8493a = i7;
+        this.f8494b = obj;
     }
 
     @Override
     public final Object run() {
-        switch (this.f8464a) {
+        switch (this.f8493a) {
             case 0:
-                return ((f6) this.f8465b).k();
+                return ((f6) this.f8494b).k();
             default:
-                return ((org.telegram.ui.ActionBar.h2) this.f8465b).getSimpleMenuOverlay();
+                return ((org.telegram.ui.ActionBar.g2) this.f8494b).getSimpleMenuOverlay();
         }
     }
 }

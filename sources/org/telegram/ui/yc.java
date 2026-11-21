@@ -7,10 +7,10 @@ public final class yc extends RadialProgressView {
     public final int O;
     public final Object P;
 
-    public yc(org.telegram.ui.Components.t30 t30Var, Context context, int i7) {
+    public yc(org.telegram.ui.Components.w30 w30Var, Context context, int i7) {
         super(context, null);
         this.O = i7;
-        this.P = t30Var;
+        this.P = w30Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class yc extends RadialProgressView {
         switch (this.O) {
             case 3:
                 super.invalidate();
-                qq0 qq0Var = ((PhotoViewer) this.P).f43208f0;
+                qq0 qq0Var = ((PhotoViewer) this.P).f43249f0;
                 if (qq0Var != null) {
                     qq0Var.invalidate();
                     return;
@@ -39,7 +39,7 @@ public final class yc extends RadialProgressView {
                 return;
             case 1:
                 super.setAlpha(f10);
-                ((f50) this.P).f47524e.invalidate();
+                ((f50) this.P).f47592e.invalidate();
                 return;
             case 2:
                 super.setAlpha(f10);
@@ -47,7 +47,7 @@ public final class yc extends RadialProgressView {
                 return;
             default:
                 super.setAlpha(f10);
-                qq0 qq0Var = ((PhotoViewer) this.P).f43208f0;
+                qq0 qq0Var = ((PhotoViewer) this.P).f43249f0;
                 if (qq0Var != null) {
                     qq0Var.invalidate();
                     return;
@@ -56,8 +56,8 @@ public final class yc extends RadialProgressView {
         }
     }
 
-    public yc(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(contextThemeWrapper, i6Var);
+    public yc(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(contextThemeWrapper, h6Var);
         this.O = 3;
         this.P = photoViewer;
     }

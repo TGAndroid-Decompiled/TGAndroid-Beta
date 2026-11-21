@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class bd0 implements DialogInterface.OnDismissListener {
-    public final int f45835a;
-    public final hd0 f45836b;
+    public final int f45867a;
+    public final gd0 f45868b;
 
-    public bd0(hd0 hd0Var, int i7) {
-        this.f45835a = i7;
-        this.f45836b = hd0Var;
+    public bd0(gd0 gd0Var, int i7) {
+        this.f45867a = i7;
+        this.f45868b = gd0Var;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f45835a) {
+        switch (this.f45867a) {
             case 0:
-                this.f45836b.f48331v0.finishFragment();
+                this.f45868b.f48080v0.finishFragment();
                 return;
             default:
-                this.f45836b.f48331v0.finishFragment();
+                this.f45868b.f48080v0.finishFragment();
                 return;
         }
     }

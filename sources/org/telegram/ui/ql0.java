@@ -8,8 +8,8 @@ public final class ql0 extends sl0 {
     public int H;
     public final lm0 I;
 
-    public ql0(lm0 lm0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i6Var);
+    public ql0(lm0 lm0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
         this.I = lm0Var;
         this.H = 0;
     }

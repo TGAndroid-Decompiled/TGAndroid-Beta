@@ -6,16 +6,16 @@ import org.telegram.messenger.ef;
 import org.telegram.messenger.ks;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.eh;
-import org.telegram.ui.Components.qi;
+import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.si;
-public final class l implements qi {
-    public final si f22138a;
-    public final o f22139b;
+import org.telegram.ui.Components.ui;
+public final class l implements si {
+    public final ui f22213a;
+    public final o f22214b;
 
-    public l(o oVar, si siVar) {
-        this.f22139b = oVar;
-        this.f22138a = siVar;
+    public l(o oVar, ui uiVar) {
+        this.f22214b = oVar;
+        this.f22213a = uiVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class l implements qi {
     }
 
     @Override
-    public final void f0(eh ehVar) {
-        ks.f(this.f22139b.f22206n).d(ehVar);
+    public final void f0(gh ghVar) {
+        ks.f(this.f22214b.f22266n).d(ghVar);
     }
 
     @Override
@@ -35,14 +35,14 @@ public final class l implements qi {
 
     @Override
     public final void y1(int i7, boolean z10, boolean z11, int i10, int i11, long j3, boolean z12, boolean z13, long j10) {
-        si siVar = this.f22138a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = siVar.f39670e2;
-        s3 s3Var = this.f22139b.f22207r;
+        ui uiVar = this.f22213a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = uiVar.f40386e2;
+        t3 t3Var = this.f22214b.f22267r;
         if (i7 == 7 || i7 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = s3Var.f22327j4;
-            s3Var.f22327j4 = null;
+            a aVar = t3Var.f22418j4;
+            t3Var.f22418j4 = null;
             int i12 = 0;
             while (true) {
                 if (i12 >= selectedPhotosOrder.size()) {
@@ -51,17 +51,17 @@ public final class l implements qi {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i12));
                 if (obj instanceof ef) {
                     if (aVar != null) {
-                        s3Var.X1(aVar, (ef) obj);
+                        t3Var.X1(aVar, (ef) obj);
                     } else {
-                        s3Var.i2((ef) obj);
+                        t3Var.i2((ef) obj);
                     }
                 } else {
                     i12++;
                 }
             }
         }
-        s3Var.f22327j4 = null;
-        siVar.a(true);
+        t3Var.f22418j4 = null;
+        uiVar.a(true);
     }
 
     @Override

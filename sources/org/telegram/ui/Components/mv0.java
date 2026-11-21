@@ -1,6 +1,28 @@
 package org.telegram.ui.Components;
-public final class mv0 extends cc {
-    public mv0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.i6 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mv0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.i6):void");
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class mv0 extends AnimatorListenerAdapter {
+    public final int f37651a;
+    public final nv0 f37652b;
+
+    public mv0(nv0 nv0Var, int i7) {
+        this.f37651a = i7;
+        this.f37652b = nv0Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37651a) {
+            case 0:
+                this.f37652b.f37995s.setVisibility(8);
+                return;
+            case 1:
+                this.f37652b.f37995s.setVisibility(8);
+                return;
+            default:
+                this.f37652b.f37995s.setVisibility(8);
+                return;
+        }
     }
 }

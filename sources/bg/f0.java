@@ -6,12 +6,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import bi.f1;
-import bi.g1;
+import bi.j1;
+import bi.k1;
 import di.f6;
-import hi.b7;
-import hi.d7;
-import hi.w5;
+import hi.a7;
+import hi.c7;
+import hi.v5;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ScheduledFuture;
@@ -20,13 +20,13 @@ import org.telegram.messenger.q10;
 import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.q1;
+import org.telegram.ui.ActionBar.t1;
 import org.telegram.ui.Cells.d2;
-import org.telegram.ui.Components.t30;
-import org.telegram.ui.Components.wk0;
-import org.telegram.ui.Components.z4;
+import org.telegram.ui.Components.a5;
+import org.telegram.ui.Components.w30;
+import org.telegram.ui.Components.yk0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.bn;
@@ -35,32 +35,32 @@ import org.telegram.ui.f40;
 import org.telegram.ui.oa1;
 import org.telegram.ui.rv0;
 import org.telegram.ui.wq0;
-import p4.o0;
-public final class f0 implements t30, f1, b7, oa1, z4, r1, w5.b, v9.g {
-    public final int f3229a;
-    public final long f3230b;
-    public final Object f3231c;
+import p4.z;
+public final class f0 implements w30, j1, a7, oa1, a5, q1, w5.b, v9.g {
+    public final int f3241a;
+    public final long f3242b;
+    public final Object f3243c;
     public final Object d;
-    public final Object f3232e;
+    public final Object f3244e;
 
-    public f0(Object obj, long j3, h2 h2Var, Object obj2, int i7) {
-        this.f3229a = i7;
-        this.f3231c = obj;
-        this.f3230b = j3;
-        this.d = h2Var;
-        this.f3232e = obj2;
+    public f0(Object obj, long j3, g2 g2Var, Object obj2, int i7) {
+        this.f3241a = i7;
+        this.f3243c = obj;
+        this.f3242b = j3;
+        this.d = g2Var;
+        this.f3244e = obj2;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        bn.A1((bn) this.f3231c, (ArrayList) this.d, this.f3230b, (wk0) this.f3232e, z10, i7);
+        bn.A1((bn) this.f3243c, (ArrayList) this.d, this.f3242b, (yk0) this.f3244e, z10, i7);
     }
 
     @Override
     public void V(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        bn bnVar = (bn) this.f3231c;
+        bn bnVar = (bn) this.f3243c;
         TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
-        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f3232e;
+        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f3244e;
         if (inputFile == null && inputFile2 == null && videoSize == null) {
             fileLocationArr[0] = photoSize2.location;
             fileLocationArr2[0] = photoSize.location;
@@ -81,54 +81,54 @@ public final class f0 implements t30, f1, b7, oa1, z4, r1, w5.b, v9.g {
             tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
             tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        bnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new h0(bnVar, fileLocationArr, str, fileLocationArr2, this.f3230b));
+        bnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new h0(bnVar, fileLocationArr, str, fileLocationArr2, this.f3242b));
     }
 
     @Override
     public ScheduledFuture a(final v4.f0 f0Var) {
-        switch (this.f3229a) {
+        switch (this.f3241a) {
             case 8:
-                v9.f fVar = (v9.f) this.f3231c;
-                return fVar.f59324b.schedule(new v9.d(fVar, (Runnable) this.d, f0Var, 1), this.f3230b, (TimeUnit) this.f3232e);
+                v9.f fVar = (v9.f) this.f3243c;
+                return fVar.f59362b.schedule(new v9.d(fVar, (Runnable) this.d, f0Var, 1), this.f3242b, (TimeUnit) this.f3244e);
             default:
-                final v9.f fVar2 = (v9.f) this.f3231c;
+                final v9.f fVar2 = (v9.f) this.f3243c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f59324b.schedule(new Callable() {
+                return fVar2.f59362b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f59323a.submit(new o0(24, callable, f0Var));
+                        return f.this.f59361a.submit(new z(26, callable, f0Var));
                     }
-                }, this.f3230b, (TimeUnit) this.f3232e);
+                }, this.f3242b, (TimeUnit) this.f3244e);
         }
     }
 
     @Override
     public void b(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z10) {
-        f6 f6Var = (f6) this.f3231c;
-        g1 g1Var = (g1) this.d;
-        TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f3232e;
+        f6 f6Var = (f6) this.f3243c;
+        k1 k1Var = (k1) this.d;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) this.f3244e;
         f6Var.getClass();
-        if (g1Var.G1) {
+        if (k1Var.G1) {
             return;
         }
-        f6Var.p1(tL_starGiftUnique, this.f3230b, tL_textWithEntities, z10, g1Var);
+        f6Var.p1(tL_starGiftUnique, this.f3242b, tL_textWithEntities, z10, k1Var);
     }
 
     @Override
     public Bitmap c(BitmapFactory.Options options) {
-        w5 w5Var = (w5) this.f3231c;
-        d7 d7Var = (d7) this.d;
-        long j3 = this.f3230b;
-        String str = (String) this.f3232e;
-        if (d7Var.K) {
-            String str2 = d7Var.N;
+        v5 v5Var = (v5) this.f3243c;
+        c7 c7Var = (c7) this.d;
+        long j3 = this.f3242b;
+        String str = (String) this.f3244e;
+        if (c7Var.K) {
+            String str2 = c7Var.N;
             if (str2 != null) {
                 return BitmapFactory.decodeFile(str2, options);
             }
             try {
-                return MediaStore.Video.Thumbnails.getThumbnail(w5Var.getContext().getContentResolver(), j3, 1, options);
+                return MediaStore.Video.Thumbnails.getThumbnail(v5Var.getContext().getContentResolver(), j3, 1, options);
             } catch (Throwable unused) {
-                w5Var.invalidate();
+                v5Var.invalidate();
                 return null;
             }
         }
@@ -142,10 +142,10 @@ public final class f0 implements t30, f1, b7, oa1, z4, r1, w5.b, v9.g {
 
     @Override
     public Object g() {
-        ia.c cVar = (ia.c) this.f3231c;
+        ia.c cVar = (ia.c) this.f3243c;
         Iterable iterable = (Iterable) this.d;
-        o5.i iVar = (o5.i) this.f3232e;
-        v5.g gVar = (v5.g) ((v5.d) cVar.f16190c);
+        o5.i iVar = (o5.i) this.f3244e;
+        v5.g gVar = (v5.g) ((v5.d) cVar.f16215c);
         gVar.getClass();
         if (iterable.iterator().hasNext()) {
             String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + v5.g.g(iterable);
@@ -164,7 +164,7 @@ public final class f0 implements t30, f1, b7, oa1, z4, r1, w5.b, v9.g {
                 a10.endTransaction();
             }
         }
-        gVar.c(new ai.d0(((x5.a) cVar.f16193g).r() + this.f3230b, iVar));
+        gVar.c(new ai.d0(((x5.a) cVar.f16218g).r() + this.f3242b, iVar));
         return null;
     }
 
@@ -179,24 +179,24 @@ public final class f0 implements t30, f1, b7, oa1, z4, r1, w5.b, v9.g {
     }
 
     @Override
-    public void h(u1 u1Var, int i7) {
-        switch (this.f3229a) {
+    public void h(t1 t1Var, int i7) {
+        switch (this.f3241a) {
             case 5:
-                t3 t3Var = (t3) this.f3231c;
-                Runnable runnable = (Runnable) this.f3232e;
+                t3 t3Var = (t3) this.f3243c;
+                Runnable runnable = (Runnable) this.f3244e;
                 boolean z10 = false;
                 d2 d2Var = ((d2[]) this.d)[0];
                 if (d2Var != null && d2Var.b()) {
                     z10 = true;
                 }
-                f40.C1(t3Var, z10, this.f3230b, runnable);
+                f40.C1(t3Var, z10, this.f3242b, runnable);
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) this.f3232e;
-                ProfileActivity profileActivity = ((rv0) this.f3231c).f51797b;
+                TLRPC.User user = (TLRPC.User) this.f3244e;
+                ProfileActivity profileActivity = ((rv0) this.f3243c).f51772b;
                 profileActivity.N1 = true;
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
-                long j3 = -this.f3230b;
+                long j3 = -this.f3242b;
                 k10.putLong("chat_id", j3);
                 if (profileActivity.getMessagesController().E(k10, (cx) this.d, null, null)) {
                     bn bnVar = new bn(k10);
@@ -212,16 +212,16 @@ public final class f0 implements t30, f1, b7, oa1, z4, r1, w5.b, v9.g {
 
     @Override
     public void k(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        h2 h2Var = (h2) this.f3231c;
+        g2 g2Var = (g2) this.f3243c;
         TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.d;
-        q10 q10Var = (q10) this.f3232e;
-        int currentAccount = h2Var.getCurrentAccount();
-        boolean[] zArr = ii.n.f16322a;
+        q10 q10Var = (q10) this.f3244e;
+        int currentAccount = g2Var.getCurrentAccount();
+        boolean[] zArr = ii.n.f16347a;
         if (zArr[currentAccount]) {
             return;
         }
         zArr[currentAccount] = true;
-        ii.n.b(h2Var, this.f3230b, tL_inputCheckPasswordSRP, twoStepVerificationActivity, q10Var, null);
+        ii.n.b(g2Var, this.f3242b, tL_inputCheckPasswordSRP, twoStepVerificationActivity, q10Var, null);
     }
 
     @Override
@@ -230,19 +230,19 @@ public final class f0 implements t30, f1, b7, oa1, z4, r1, w5.b, v9.g {
     }
 
     public f0(Object obj, Object obj2, long j3, Object obj3, int i7) {
-        this.f3229a = i7;
-        this.f3231c = obj;
+        this.f3241a = i7;
+        this.f3243c = obj;
         this.d = obj2;
-        this.f3230b = j3;
-        this.f3232e = obj3;
+        this.f3242b = j3;
+        this.f3244e = obj3;
     }
 
     public f0(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f3229a = i7;
-        this.f3231c = obj;
+        this.f3241a = i7;
+        this.f3243c = obj;
         this.d = obj2;
-        this.f3232e = obj3;
-        this.f3230b = j3;
+        this.f3244e = obj3;
+        this.f3242b = j3;
     }
 
     @Override

@@ -3,11 +3,11 @@ package hb;
 import aa.j;
 import java.util.concurrent.CountDownLatch;
 public final class a {
-    public final CountDownLatch f14112a;
-    public j f14113b = null;
+    public final CountDownLatch f14141a;
+    public j f14142b = null;
 
     public a(CountDownLatch countDownLatch) {
-        this.f14112a = countDownLatch;
+        this.f14141a = countDownLatch;
     }
 
     public final boolean equals(Object obj) {
@@ -18,7 +18,7 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (kotlin.jvm.internal.j.a(this.f14112a, aVar.f14112a) && kotlin.jvm.internal.j.a(this.f14113b, aVar.f14113b)) {
+        if (kotlin.jvm.internal.j.a(this.f14141a, aVar.f14141a) && kotlin.jvm.internal.j.a(this.f14142b, aVar.f14142b)) {
             return true;
         }
         return false;
@@ -26,8 +26,8 @@ public final class a {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = this.f14112a.hashCode() * 31;
-        j jVar = this.f14113b;
+        int hashCode2 = this.f14141a.hashCode() * 31;
+        j jVar = this.f14142b;
         if (jVar == null) {
             hashCode = 0;
         } else {
@@ -37,6 +37,6 @@ public final class a {
     }
 
     public final String toString() {
-        return "Dependency(latch=" + this.f14112a + ", subscriber=" + this.f14113b + ')';
+        return "Dependency(latch=" + this.f14141a + ", subscriber=" + this.f14142b + ')';
     }
 }

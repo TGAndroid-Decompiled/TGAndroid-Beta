@@ -5,16 +5,16 @@ import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 import org.telegram.tgnet.TLObject;
 public final class av extends MetricAffectingSpan {
-    public final ev f22969a;
-    public final int f22970b;
-    public final boolean f22971c;
+    public final ev f22997a;
+    public final int f22998b;
+    public final boolean f22999c;
     public boolean d;
-    public int f22972e;
+    public int f23000e;
 
     public av(ev evVar, int i7, boolean z10) {
-        this.f22969a = evVar;
-        this.f22970b = i7;
-        this.f22971c = z10;
+        this.f22997a = evVar;
+        this.f22998b = i7;
+        this.f22999c = z10;
     }
 
     public final void a(TextPaint textPaint) {
@@ -25,7 +25,7 @@ public final class av extends MetricAffectingSpan {
         int w02;
         int i10;
         int i11;
-        int i12 = this.f22970b;
+        int i12 = this.f22998b;
         int i13 = i12 & 15;
         if (i13 == 8) {
             typeface = Typeface.MONOSPACE;
@@ -84,7 +84,7 @@ public final class av extends MetricAffectingSpan {
                     break;
                 case 8:
                     int i15 = i14 - 2;
-                    L = g0.L(Math.max(Math.min(10, i15), i15 - this.f22972e));
+                    L = g0.L(Math.max(Math.min(10, i15), i15 - this.f23000e));
                     break;
                 case 9:
                 case 11:
@@ -109,31 +109,31 @@ public final class av extends MetricAffectingSpan {
             L -= g0.L(4.0f);
         }
         textPaint.setTextSize(L);
-        if (!this.f22971c) {
+        if (!this.f22999c) {
             textPaint.setFlags(TLObject.setFlag(TLObject.setFlag(textPaint.getFlags(), 8, TLObject.hasFlag(i12, 64)), 16, TLObject.hasFlag(i12, 128)));
             if (i13 != 8) {
-                ev evVar = this.f22969a;
+                ev evVar = this.f22997a;
                 if (i13 == 11) {
                     if (evVar.E()) {
-                        i11 = org.telegram.ui.ActionBar.n6.Tb;
+                        i11 = org.telegram.ui.ActionBar.m6.Tb;
                     } else {
-                        i11 = org.telegram.ui.ActionBar.n6.Nd;
+                        i11 = org.telegram.ui.ActionBar.m6.Nd;
                     }
-                    w02 = org.telegram.ui.ActionBar.n6.w0(i11, evVar.D);
+                    w02 = org.telegram.ui.ActionBar.m6.w0(i11, evVar.D);
                 } else if (i13 == 10) {
                     if (evVar.E()) {
-                        i10 = org.telegram.ui.ActionBar.n6.Wc;
+                        i10 = org.telegram.ui.ActionBar.m6.Wc;
                     } else {
-                        i10 = org.telegram.ui.ActionBar.n6.Vc;
+                        i10 = org.telegram.ui.ActionBar.m6.Vc;
                     }
-                    w02 = org.telegram.ui.ActionBar.n6.r1(0.5f, org.telegram.ui.ActionBar.n6.w0(i10, evVar.D));
+                    w02 = org.telegram.ui.ActionBar.m6.r1(0.5f, org.telegram.ui.ActionBar.m6.w0(i10, evVar.D));
                 } else {
                     if (evVar.E()) {
-                        i7 = org.telegram.ui.ActionBar.n6.Wc;
+                        i7 = org.telegram.ui.ActionBar.m6.Wc;
                     } else {
-                        i7 = org.telegram.ui.ActionBar.n6.Vc;
+                        i7 = org.telegram.ui.ActionBar.m6.Vc;
                     }
-                    w02 = org.telegram.ui.ActionBar.n6.w0(i7, evVar.D);
+                    w02 = org.telegram.ui.ActionBar.m6.w0(i7, evVar.D);
                 }
                 textPaint.setColor(w02);
             }

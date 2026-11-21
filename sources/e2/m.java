@@ -4,37 +4,37 @@ import com.google.android.gms.internal.vision.e2;
 import java.util.Arrays;
 public final class m {
     public static final m h = new m(1, 2, 3, null, -1, -1);
-    public static final String f10508i;
-    public static final String f10509j;
-    public static final String f10510k;
-    public static final String f10511l;
-    public static final String f10512m;
-    public static final String f10513n;
-    public final int f10514a;
-    public final int f10515b;
-    public final int f10516c;
+    public static final String f10537i;
+    public static final String f10538j;
+    public static final String f10539k;
+    public static final String f10540l;
+    public static final String f10541m;
+    public static final String f10542n;
+    public final int f10543a;
+    public final int f10544b;
+    public final int f10545c;
     public final byte[] d;
-    public final int f10517e;
-    public final int f10518f;
-    public int f10519g;
+    public final int f10546e;
+    public final int f10547f;
+    public int f10548g;
 
     static {
-        String str = h2.l0.f13783a;
-        f10508i = Integer.toString(0, 36);
-        f10509j = Integer.toString(1, 36);
-        f10510k = Integer.toString(2, 36);
-        f10511l = Integer.toString(3, 36);
-        f10512m = Integer.toString(4, 36);
-        f10513n = Integer.toString(5, 36);
+        String str = h2.l0.f13812a;
+        f10537i = Integer.toString(0, 36);
+        f10538j = Integer.toString(1, 36);
+        f10539k = Integer.toString(2, 36);
+        f10540l = Integer.toString(3, 36);
+        f10541m = Integer.toString(4, 36);
+        f10542n = Integer.toString(5, 36);
     }
 
     public m(int i7, int i10, int i11, byte[] bArr, int i12, int i13) {
-        this.f10514a = i7;
-        this.f10515b = i10;
-        this.f10516c = i11;
+        this.f10543a = i7;
+        this.f10544b = i10;
+        this.f10545c = i11;
         this.d = bArr;
-        this.f10517e = i12;
-        this.f10518f = i13;
+        this.f10546e = i12;
+        this.f10547f = i13;
     }
 
     public static String a(int i7) {
@@ -95,15 +95,15 @@ public final class m {
         if (mVar == null) {
             return true;
         }
-        int i7 = mVar.f10514a;
+        int i7 = mVar.f10543a;
         if (i7 == -1 || i7 == 1 || i7 == 2) {
-            int i10 = mVar.f10515b;
+            int i10 = mVar.f10544b;
             if (i10 == -1 || i10 == 2) {
-                int i11 = mVar.f10516c;
+                int i11 = mVar.f10545c;
                 if ((i11 == -1 || i11 == 3) && mVar.d == null) {
-                    int i12 = mVar.f10518f;
+                    int i12 = mVar.f10547f;
                     if (i12 == -1 || i12 == 8) {
-                        int i13 = mVar.f10517e;
+                        int i13 = mVar.f10546e;
                         if (i13 == -1 || i13 == 8) {
                             return true;
                         }
@@ -154,7 +154,7 @@ public final class m {
     }
 
     public final boolean d() {
-        if (this.f10514a != -1 && this.f10515b != -1 && this.f10516c != -1) {
+        if (this.f10543a != -1 && this.f10544b != -1 && this.f10545c != -1) {
             return true;
         }
         return false;
@@ -166,7 +166,7 @@ public final class m {
         }
         if (obj != null && m.class == obj.getClass()) {
             m mVar = (m) obj;
-            if (this.f10514a == mVar.f10514a && this.f10515b == mVar.f10515b && this.f10516c == mVar.f10516c && Arrays.equals(this.d, mVar.d) && this.f10517e == mVar.f10517e && this.f10518f == mVar.f10518f) {
+            if (this.f10543a == mVar.f10543a && this.f10544b == mVar.f10544b && this.f10545c == mVar.f10545c && Arrays.equals(this.d, mVar.d) && this.f10546e == mVar.f10546e && this.f10547f == mVar.f10547f) {
                 return true;
             }
         }
@@ -174,21 +174,21 @@ public final class m {
     }
 
     public final int hashCode() {
-        if (this.f10519g == 0) {
-            this.f10519g = ((((Arrays.hashCode(this.d) + ((((((527 + this.f10514a) * 31) + this.f10515b) * 31) + this.f10516c) * 31)) * 31) + this.f10517e) * 31) + this.f10518f;
+        if (this.f10548g == 0) {
+            this.f10548g = ((((Arrays.hashCode(this.d) + ((((((527 + this.f10543a) * 31) + this.f10544b) * 31) + this.f10545c) * 31)) * 31) + this.f10546e) * 31) + this.f10547f;
         }
-        return this.f10519g;
+        return this.f10548g;
     }
 
     public final String toString() {
         boolean z10;
         String str;
         StringBuilder sb2 = new StringBuilder("ColorInfo(");
-        sb2.append(b(this.f10514a));
+        sb2.append(b(this.f10543a));
         sb2.append(", ");
-        sb2.append(a(this.f10515b));
+        sb2.append(a(this.f10544b));
         sb2.append(", ");
-        sb2.append(c(this.f10516c));
+        sb2.append(c(this.f10545c));
         sb2.append(", ");
         if (this.d != null) {
             z10 = true;
@@ -198,7 +198,7 @@ public final class m {
         sb2.append(z10);
         sb2.append(", ");
         String str2 = "NA";
-        int i7 = this.f10517e;
+        int i7 = this.f10546e;
         if (i7 == -1) {
             str = "NA";
         } else {
@@ -206,7 +206,7 @@ public final class m {
         }
         sb2.append(str);
         sb2.append(", ");
-        int i10 = this.f10518f;
+        int i10 = this.f10547f;
         if (i10 != -1) {
             str2 = e2.i(i10, "bit Chroma");
         }

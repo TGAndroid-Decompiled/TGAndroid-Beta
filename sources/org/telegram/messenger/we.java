@@ -7,55 +7,55 @@ import org.telegram.tgnet.TLObject;
 public final class we extends TLObject {
     public Matrix B;
     public boolean C;
-    public float f27674a;
-    public float f27675b;
+    public float f27702a;
+    public float f27703b;
     public float d;
-    public int f27679i;
-    public int f27680j;
-    public int f27681k;
-    public boolean f27682l;
-    public float f27683m;
-    public float f27684o;
-    public Matrix f27685r;
-    public int f27686s;
-    public int f27687t;
-    public boolean f27688u;
+    public int f27707i;
+    public int f27708j;
+    public int f27709k;
+    public boolean f27710l;
+    public float f27711m;
+    public float f27712o;
+    public Matrix f27713r;
+    public int f27714s;
+    public int f27715t;
+    public boolean f27716u;
     public float v;
-    public int f27689z;
-    public float f27676c = 1.0f;
-    public float f27677e = 1.0f;
-    public float f27678f = 1.0f;
+    public int f27717z;
+    public float f27704c = 1.0f;
+    public float f27705e = 1.0f;
+    public float f27706f = 1.0f;
 
     public final we clone() {
         we weVar = new we();
-        weVar.f27674a = this.f27674a;
-        weVar.f27675b = this.f27675b;
-        weVar.f27676c = this.f27676c;
+        weVar.f27702a = this.f27702a;
+        weVar.f27703b = this.f27703b;
+        weVar.f27704c = this.f27704c;
         weVar.d = this.d;
-        weVar.f27677e = this.f27677e;
-        weVar.f27678f = this.f27678f;
-        weVar.f27679i = this.f27679i;
-        weVar.f27680j = this.f27680j;
-        weVar.f27681k = this.f27681k;
-        weVar.f27682l = this.f27682l;
-        weVar.f27683m = this.f27683m;
-        weVar.f27684o = this.f27684o;
-        weVar.f27685r = this.f27685r;
-        weVar.f27686s = this.f27686s;
-        weVar.f27687t = this.f27687t;
-        weVar.f27688u = this.f27688u;
+        weVar.f27705e = this.f27705e;
+        weVar.f27706f = this.f27706f;
+        weVar.f27707i = this.f27707i;
+        weVar.f27708j = this.f27708j;
+        weVar.f27709k = this.f27709k;
+        weVar.f27710l = this.f27710l;
+        weVar.f27711m = this.f27711m;
+        weVar.f27712o = this.f27712o;
+        weVar.f27713r = this.f27713r;
+        weVar.f27714s = this.f27714s;
+        weVar.f27715t = this.f27715t;
+        weVar.f27716u = this.f27716u;
         weVar.v = this.v;
-        weVar.f27689z = this.f27689z;
+        weVar.f27717z = this.f27717z;
         weVar.C = this.C;
         weVar.B = this.B;
         return weVar;
     }
 
     public final boolean b() {
-        Matrix matrix = this.f27685r;
+        Matrix matrix = this.f27713r;
         if (matrix == null || matrix.isIdentity()) {
             Matrix matrix2 = this.B;
-            if ((matrix2 == null || matrix2.isIdentity()) && this.f27677e == 1.0f && this.f27678f == 1.0f && this.f27676c == 1.0f && this.d == 0.0f && this.f27679i == 0 && this.f27680j == 0 && this.f27681k == 0 && !this.f27682l && this.f27683m == 0.0f && this.f27684o == 0.0f && this.f27686s == 0 && this.f27687t == 0 && !this.f27688u && this.v == 0.0f) {
+            if ((matrix2 == null || matrix2.isIdentity()) && this.f27705e == 1.0f && this.f27706f == 1.0f && this.f27704c == 1.0f && this.d == 0.0f && this.f27707i == 0 && this.f27708j == 0 && this.f27709k == 0 && !this.f27710l && this.f27711m == 0.0f && this.f27712o == 0.0f && this.f27714s == 0 && this.f27715t == 0 && !this.f27716u && this.v == 0.0f) {
                 return true;
             }
             return false;
@@ -65,28 +65,28 @@ public final class we extends TLObject {
 
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.f27674a = inputSerializedData.readFloat(z10);
-        this.f27675b = inputSerializedData.readFloat(z10);
-        this.f27676c = inputSerializedData.readFloat(z10);
+        this.f27702a = inputSerializedData.readFloat(z10);
+        this.f27703b = inputSerializedData.readFloat(z10);
+        this.f27704c = inputSerializedData.readFloat(z10);
         this.d = inputSerializedData.readFloat(z10);
-        this.f27677e = inputSerializedData.readFloat(z10);
-        this.f27678f = inputSerializedData.readFloat(z10);
-        this.f27679i = inputSerializedData.readInt32(z10);
-        this.f27680j = inputSerializedData.readInt32(z10);
-        this.f27681k = inputSerializedData.readInt32(z10);
-        this.f27682l = inputSerializedData.readBool(z10);
-        this.f27683m = inputSerializedData.readFloat(z10);
-        this.f27684o = inputSerializedData.readFloat(z10);
+        this.f27705e = inputSerializedData.readFloat(z10);
+        this.f27706f = inputSerializedData.readFloat(z10);
+        this.f27707i = inputSerializedData.readInt32(z10);
+        this.f27708j = inputSerializedData.readInt32(z10);
+        this.f27709k = inputSerializedData.readInt32(z10);
+        this.f27710l = inputSerializedData.readBool(z10);
+        this.f27711m = inputSerializedData.readFloat(z10);
+        this.f27712o = inputSerializedData.readFloat(z10);
         float[] fArr = new float[9];
         for (int i7 = 0; i7 < 9; i7++) {
             fArr[i7] = inputSerializedData.readFloat(z10);
         }
         Matrix matrix = new Matrix();
-        this.f27685r = matrix;
+        this.f27713r = matrix;
         matrix.setValues(fArr);
-        this.f27686s = inputSerializedData.readInt32(z10);
-        this.f27687t = inputSerializedData.readInt32(z10);
-        this.f27688u = inputSerializedData.readBool(z10);
+        this.f27714s = inputSerializedData.readInt32(z10);
+        this.f27715t = inputSerializedData.readInt32(z10);
+        this.f27716u = inputSerializedData.readBool(z10);
         this.v = inputSerializedData.readFloat(z10);
         if (inputSerializedData.readInt32(z10) == 178403937) {
             for (int i10 = 0; i10 < 9; i10++) {
@@ -97,26 +97,26 @@ public final class we extends TLObject {
             matrix2.setValues(fArr);
         }
         this.C = inputSerializedData.readBool(z10);
-        this.f27689z = inputSerializedData.readInt32(z10);
+        this.f27717z = inputSerializedData.readInt32(z10);
     }
 
     @Override
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
         outputSerializedData.writeInt32(1151577037);
-        outputSerializedData.writeFloat(this.f27674a);
-        outputSerializedData.writeFloat(this.f27675b);
-        outputSerializedData.writeFloat(this.f27676c);
+        outputSerializedData.writeFloat(this.f27702a);
+        outputSerializedData.writeFloat(this.f27703b);
+        outputSerializedData.writeFloat(this.f27704c);
         outputSerializedData.writeFloat(this.d);
-        outputSerializedData.writeFloat(this.f27677e);
-        outputSerializedData.writeFloat(this.f27678f);
-        outputSerializedData.writeInt32(this.f27679i);
-        outputSerializedData.writeInt32(this.f27680j);
-        outputSerializedData.writeInt32(this.f27681k);
-        outputSerializedData.writeBool(this.f27682l);
-        outputSerializedData.writeFloat(this.f27683m);
-        outputSerializedData.writeFloat(this.f27684o);
+        outputSerializedData.writeFloat(this.f27705e);
+        outputSerializedData.writeFloat(this.f27706f);
+        outputSerializedData.writeInt32(this.f27707i);
+        outputSerializedData.writeInt32(this.f27708j);
+        outputSerializedData.writeInt32(this.f27709k);
+        outputSerializedData.writeBool(this.f27710l);
+        outputSerializedData.writeFloat(this.f27711m);
+        outputSerializedData.writeFloat(this.f27712o);
         float[] fArr = new float[9];
-        Matrix matrix = this.f27685r;
+        Matrix matrix = this.f27713r;
         if (matrix != null) {
             matrix.getValues(fArr);
         } else {
@@ -127,9 +127,9 @@ public final class we extends TLObject {
         for (int i10 = 0; i10 < 9; i10++) {
             outputSerializedData.writeFloat(fArr[i10]);
         }
-        outputSerializedData.writeInt32(this.f27686s);
-        outputSerializedData.writeInt32(this.f27687t);
-        outputSerializedData.writeBool(this.f27688u);
+        outputSerializedData.writeInt32(this.f27714s);
+        outputSerializedData.writeInt32(this.f27715t);
+        outputSerializedData.writeBool(this.f27716u);
         outputSerializedData.writeFloat(this.v);
         if (this.B == null) {
             outputSerializedData.writeInt32(1450380236);
@@ -141,6 +141,6 @@ public final class we extends TLObject {
             }
         }
         outputSerializedData.writeBool(this.C);
-        outputSerializedData.writeInt32(this.f27689z);
+        outputSerializedData.writeInt32(this.f27717z);
     }
 }

@@ -1,133 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.view.View;
-import android.view.ViewConfiguration;
-public final class uj0 extends m10 {
-    public View f40368a;
-    public final vj0 f40369b;
+import android.view.animation.OvershootInterpolator;
+public final class uj0 implements Runnable {
+    public final int f40474a;
+    public final float f40475b;
+    public final float f40476c;
+    public final Object d;
 
-    public uj0(vj0 vj0Var) {
-        this.f40369b = vj0Var;
+    public uj0(Object obj, float f10, float f11, int i7) {
+        this.f40474a = i7;
+        this.d = obj;
+        this.f40475b = f10;
+        this.f40476c = f11;
     }
 
     @Override
-    public final boolean a() {
-        if (((ck0) this.f40369b.f40689b).X0 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void b(View view, MotionEvent motionEvent) {
-        ck0 ck0Var = (ck0) this.f40369b.f40689b;
-        if (view != null) {
-            if (ck0Var.U0 != null || ck0Var.V0 != null) {
-                float x10 = motionEvent.getX();
-                float y10 = motionEvent.getY();
-                ck0Var.j1(view, x10, y10, true);
-                int i7 = ck0Var.N1;
-                if (ck0Var.Q1 && i7 != -1) {
-                    try {
-                        view.playSoundEffect(0);
-                    } catch (Exception unused) {
-                    }
-                    view.sendAccessibilityEvent(1);
-                    oj0 oj0Var = ck0Var.U0;
-                    if (oj0Var != null) {
-                        oj0Var.c(i7, view);
-                    } else {
-                        pj0 pj0Var = ck0Var.V0;
-                        if (pj0Var != null) {
-                            pj0Var.f(x10 - view.getX(), y10 - view.getY(), i7, view);
-                        }
-                    }
+    public final void run() {
+        View view;
+        int i7 = this.f40474a;
+        float f10 = this.f40476c;
+        float f11 = this.f40475b;
+        Object obj = this.d;
+        switch (i7) {
+            case 0:
+                ek0 ek0Var = (ek0) ((xj0) obj).f42160b;
+                if (ek0Var.f34855d1 != null && (view = ek0Var.M1) != null) {
+                    ek0Var.j1(view, f11, f10, true);
+                    ek0Var.f34855d1 = null;
+                    return;
                 }
-                tj0 tj0Var = new tj0(this, view, i7, x10, y10);
-                ck0Var.R1 = tj0Var;
-                org.telegram.messenger.g0.h3(tj0Var, ViewConfiguration.getPressedStateDuration());
-                sj0 sj0Var = ck0Var.f34054d1;
-                if (sj0Var != null) {
-                    org.telegram.messenger.g0.r(sj0Var);
-                    ck0Var.f34054d1 = null;
-                    ck0Var.M1 = null;
-                    ck0Var.O1 = false;
-                    ck0Var.m1(view, motionEvent);
+                return;
+            default:
+                vg.h hVar = (vg.h) obj;
+                vg.m mVar = hVar.f59489b;
+                ValueAnimator valueAnimator = mVar.f59505d0;
+                vg.g gVar = mVar.f59512i0;
+                vg.g gVar2 = mVar.f59511h0;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    mVar.f59505d0.cancel();
+                    mVar.f59505d0 = null;
                 }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        pj0 pj0Var;
-        ck0 ck0Var = (ck0) this.f40369b.f40689b;
-        View view = this.f40368a;
-        if (view != null && (pj0Var = ck0Var.V0) != null && pj0Var.b1(view)) {
-            ck0Var.V0.s0(this.f40368a, motionEvent.getX(), motionEvent.getY());
-            this.f40368a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        int i7;
-        ck0 ck0Var = (ck0) this.f40369b.f40689b;
-        View view = ck0Var.M1;
-        if (view != null && (i7 = ck0Var.N1) != -1) {
-            qj0 qj0Var = ck0Var.W0;
-            if (qj0Var != null || ck0Var.X0 != null) {
-                if (qj0Var != null) {
-                    if (qj0Var.c(i7, view)) {
-                        try {
-                            view.performHapticFeedback(0);
-                        } catch (Exception unused) {
-                        }
-                        view.sendAccessibilityEvent(2);
-                    }
-                } else if (ck0Var.X0.mo23f(motionEvent.getX() - ck0Var.M1.getX(), motionEvent.getY() - ck0Var.M1.getY(), i7, view)) {
-                    try {
-                        view.performHapticFeedback(0);
-                    } catch (Exception unused2) {
-                    }
-                    view.sendAccessibilityEvent(2);
-                    ck0Var.Y0 = true;
+                AnimatorSet animatorSet = mVar.f59507e0;
+                if (animatorSet != null) {
+                    animatorSet.removeAllListeners();
+                    mVar.f59507e0.cancel();
+                    mVar.f59507e0 = null;
                 }
-            }
+                if (Math.abs(mVar.f59501b.d) > 10.0f) {
+                    mVar.l();
+                    return;
+                }
+                org.telegram.messenger.g0.r(mVar.f59509f0);
+                mVar.f59507e0 = new AnimatorSet();
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(mVar.f59501b.d, f11);
+                ofFloat.addUpdateListener(gVar2);
+                long j3 = 220;
+                ofFloat.setDuration(j3);
+                nr nrVar = nr.h;
+                ofFloat.setInterpolator(nrVar);
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f11, 0.0f);
+                ofFloat2.addUpdateListener(gVar2);
+                ofFloat2.setStartDelay(j3);
+                ofFloat2.setDuration(600L);
+                OvershootInterpolator overshootInterpolator = org.telegram.messenger.g0.H;
+                ofFloat2.setInterpolator(overshootInterpolator);
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(mVar.f59501b.f59469i, f10);
+                ofFloat3.addUpdateListener(gVar);
+                ofFloat3.setDuration(j3);
+                ofFloat3.setInterpolator(nrVar);
+                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f10, 0.0f);
+                ofFloat4.addUpdateListener(gVar);
+                ofFloat4.setStartDelay(j3);
+                ofFloat4.setDuration(600L);
+                ofFloat4.setInterpolator(overshootInterpolator);
+                mVar.f59507e0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+                mVar.f59507e0.addListener(new org.telegram.ui.k71(hVar, 23));
+                mVar.f59507e0.start();
+                return;
         }
-    }
-
-    @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        pj0 pj0Var;
-        View view = this.f40368a;
-        if (view != null && (pj0Var = ((ck0) this.f40369b.f40689b).V0) != null && pj0Var.b1(view)) {
-            b(this.f40368a, motionEvent);
-            this.f40368a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        ck0 ck0Var = (ck0) this.f40369b.f40689b;
-        View view = ck0Var.M1;
-        if (view != null) {
-            pj0 pj0Var = ck0Var.V0;
-            if (pj0Var != null && pj0Var.b1(view)) {
-                this.f40368a = ck0Var.M1;
-                return false;
-            }
-            b(ck0Var.M1, motionEvent);
-        }
-        return false;
     }
 }

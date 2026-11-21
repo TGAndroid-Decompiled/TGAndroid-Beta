@@ -1,36 +1,29 @@
 package ki;
 
-import org.telegram.messenger.i9;
-public final class u1 implements r3, i9, org.telegram.ui.ActionBar.r1 {
-    public final t2 f18971a;
+import org.telegram.messenger.fs;
+import org.telegram.ui.Components.cu0;
+public final class u1 implements cu0 {
+    public final int f18999a;
+    public final fs f19000b;
 
-    public u1(t2 t2Var) {
-        this.f18971a = t2Var;
+    public u1(fs fsVar, int i7) {
+        this.f18999a = i7;
+        this.f19000b = fsVar;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        this.f18971a.o(false);
-    }
-
-    @Override
-    public Object m(Object obj) {
-        boolean z10;
-        Void r22 = (Void) obj;
-        if (this.f18971a.f18927f.getKeyboardHeight() >= org.telegram.messenger.g0.L(20.0f)) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void L(int i7, boolean z10) {
+        switch (this.f18999a) {
+            case 0:
+                j2 j2Var = ((s2) this.f19000b).f18959x;
+                if (i7 > org.telegram.messenger.g0.L(20.0f)) {
+                    j2Var.e(j2Var.getTopActionBarOffsetY() + (-j2Var.getOffsetY()));
+                    return;
+                }
+                return;
+            default:
+                ((oi.b2) this.f19000b).getClass();
+                return;
         }
-        return Boolean.valueOf(z10);
-    }
-
-    @Override
-    public void s(boolean z10) {
-        t2 t2Var = this.f18971a;
-        if (t2Var.f18928f0 && z10) {
-            return;
-        }
-        t2Var.o(true);
     }
 }

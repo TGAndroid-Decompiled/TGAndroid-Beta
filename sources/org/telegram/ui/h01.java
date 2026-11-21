@@ -1,23 +1,39 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class h01 extends n11 {
-    public final View R;
-    public final TL_stars.TL_starGiftUnique S;
-    public final i01 T;
+import androidx.recyclerview.widget.RecyclerView;
+public final class h01 extends v4.t {
+    public final int Q;
+    public final s11 R;
 
-    public h01(i01 i01Var, Context context, Runnable runnable, View view, b11 b11Var, org.telegram.ui.ActionBar.i6 i6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(i01Var.f48514e, context, runnable, view, b11Var, i6Var);
-        this.T = i01Var;
-        this.R = view2;
-        this.S = tL_starGiftUnique;
+    public h01(s11 s11Var, int i7) {
+        super(40);
+        this.Q = i7;
+        this.R = s11Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.T.f48514e.Y0 = null;
+    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
+        switch (this.Q) {
+            case 0:
+                try {
+                    hi.l1 l1Var = new hi.l1(3, recyclerView.getContext(), this);
+                    l1Var.f59105a = i7;
+                    w0(l1Var);
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return;
+                }
+            default:
+                try {
+                    hi.l1 l1Var2 = new hi.l1(5, recyclerView.getContext(), this);
+                    l1Var2.f59105a = i7;
+                    w0(l1Var2);
+                    return;
+                } catch (Exception e11) {
+                    org.telegram.messenger.a8.g(e11, true);
+                    return;
+                }
+        }
     }
 }

@@ -1,9 +1,4 @@
 package org.telegram.ui.Components;
-
-import android.graphics.Bitmap;
-import java.io.File;
 public interface l71 {
-    void a();
-
-    void b(File file, Bitmap bitmap, boolean z10);
+    void g(int i7, int i10);
 }

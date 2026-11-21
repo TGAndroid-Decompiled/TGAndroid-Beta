@@ -1,108 +1,46 @@
 package ki;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.view.MotionEvent;
 import org.telegram.messenger.mp;
-import org.telegram.messenger.o10;
-import org.telegram.ui.ActionBar.i6;
-public final class l2 extends org.telegram.ui.web.v0 {
-    public final int U0;
-    public final Object V0;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.r4;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class l2 implements Runnable {
+    public final int f18796a;
+    public final n2 f18797b;
 
-    public l2(Object obj, Context context, i6 i6Var, int i7, int i10) {
-        super(i7, context, i6Var, true);
-        this.U0 = i10;
-        this.V0 = obj;
+    public l2(n2 n2Var, int i7) {
+        this.f18796a = i7;
+        this.f18797b = n2Var;
     }
 
     @Override
-    public void E(boolean z10, String str) {
-        String q10;
-        boolean z11;
-        switch (this.U0) {
+    public final void run() {
+        switch (this.f18796a) {
             case 0:
-                t2 t2Var = (t2) this.V0;
-                Paint paint = t2Var.R;
-                if (z10) {
-                    t2Var.m();
-                    org.telegram.ui.b3 b3Var = t2Var.Z0;
-                    if (t2Var.q()) {
-                        q10 = t2Var.f18950x0.f18666e;
-                    } else {
-                        q10 = o10.q(mp.u1(t2Var.I).c2(Long.valueOf(t2Var.J)));
-                    }
-                    b3Var.a(q10, str);
-                    org.telegram.ui.b3 b3Var2 = t2Var.Z0;
-                    if (org.telegram.messenger.g0.B(paint.getColor()) <= 0.721f) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    b3Var2.b(z11, false);
-                    t2Var.Z0.setBackgroundColor(paint.getColor());
-                    t2Var.Y0 = str;
-                }
-                org.telegram.ui.b3 b3Var3 = t2Var.Z0;
-                t2Var.X0 = z10;
-                org.telegram.messenger.g0.X3(b3Var3, z10, 1.0f, true, false);
-                invalidate();
+                TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
+                n2 n2Var = this.f18797b;
+                s2 s2Var = n2Var.d;
+                toggleuseremojistatuspermission.bot = mp.u1(s2Var.I).q1(s2Var.J);
+                toggleuseremojistatuspermission.enabled = false;
+                ConnectionsManager.getInstance(s2Var.I).sendRequest(toggleuseremojistatuspermission, new m2(n2Var, 1));
                 return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void K(org.telegram.ui.web.s0 s0Var) {
-        switch (this.U0) {
-            case 0:
-                t2 t2Var = (t2) this.V0;
-                t2Var.f18949x.setWebView(s0Var);
-                w0 w0Var = t2Var.D0;
-                if (w0Var != null) {
-                    w0Var.f19011k = s0Var;
-                }
-                t2Var.f18937o0.setWebView(s0Var);
-                t2Var.K();
-                return;
-            default:
-                ((t3) this.V0).K.setWebView(s0Var);
-                return;
-        }
-    }
-
-    @Override
-    public void L(org.telegram.ui.web.s0 s0Var) {
-        switch (this.U0) {
-            case 0:
-                t2 t2Var = (t2) this.V0;
-                w0 w0Var = t2Var.D0;
-                if (w0Var != null && w0Var.f19011k == s0Var) {
-                    w0Var.f19011k = null;
-                    w0Var.b();
-                }
-                t2Var.f18937o0.setWebView(null);
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.U0) {
             case 1:
-                if (motionEvent.getAction() == 0) {
-                    t3 t3Var = (t3) this.V0;
-                    if (!t3Var.Q) {
-                        t3Var.Q = true;
-                        t3Var.f18955n.R();
-                    }
-                }
-                return super.dispatchTouchEvent(motionEvent);
+                s2 s2Var2 = this.f18797b.d;
+                r0.e(s2Var2.getContext(), s2Var2.I, s2Var2.J).l(false, null);
+                return;
             default:
-                return super.dispatchTouchEvent(motionEvent);
+                s2 s2Var3 = this.f18797b.d;
+                org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
+                if (T != null && T.getParentLayout() != null) {
+                    r4 parentLayout = T.getParentLayout();
+                    T.presentFragment(ProfileActivity.D4(s2Var3.J));
+                    org.telegram.messenger.g0.j3(parentLayout, "botPermissionLocation");
+                    s2Var3.o(true);
+                    return;
+                }
+                return;
         }
     }
 }

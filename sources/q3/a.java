@@ -8,35 +8,35 @@ import e2.u;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class a implements p0 {
-    public static final u f55781g;
+    public static final u f55822g;
     public static final u h;
-    public final String f55782a;
-    public final String f55783b;
-    public final long f55784c;
+    public final String f55823a;
+    public final String f55824b;
+    public final long f55825c;
     public final long d;
-    public final byte[] f55785e;
-    public int f55786f;
+    public final byte[] f55826e;
+    public int f55827f;
 
     static {
         t tVar = new t();
-        tVar.f10714r = s0.n("application/id3");
-        f55781g = new u(tVar);
+        tVar.f10743r = s0.n("application/id3");
+        f55822g = new u(tVar);
         t tVar2 = new t();
-        tVar2.f10714r = s0.n("application/x-scte35");
+        tVar2.f10743r = s0.n("application/x-scte35");
         h = new u(tVar2);
     }
 
     public a(String str, String str2, long j3, long j10, byte[] bArr) {
-        this.f55782a = str;
-        this.f55783b = str2;
-        this.f55784c = j3;
+        this.f55823a = str;
+        this.f55824b = str2;
+        this.f55825c = j3;
         this.d = j10;
-        this.f55785e = bArr;
+        this.f55826e = bArr;
     }
 
     @Override
     public final u a() {
-        String str = this.f55782a;
+        String str = this.f55823a;
         str.getClass();
         char c10 = 65535;
         switch (str.hashCode()) {
@@ -64,7 +64,7 @@ public final class a implements p0 {
                 return h;
             case 1:
             case 2:
-                return f55781g;
+                return f55822g;
             default:
                 return null;
         }
@@ -73,7 +73,7 @@ public final class a implements p0 {
     @Override
     public final byte[] c() {
         if (a() != null) {
-            return this.f55785e;
+            return this.f55826e;
         }
         return null;
     }
@@ -84,7 +84,7 @@ public final class a implements p0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f55784c == aVar.f55784c && this.d == aVar.d && Objects.equals(this.f55782a, aVar.f55782a) && Objects.equals(this.f55783b, aVar.f55783b) && Arrays.equals(this.f55785e, aVar.f55785e)) {
+            if (this.f55825c == aVar.f55825c && this.d == aVar.d && Objects.equals(this.f55823a, aVar.f55823a) && Objects.equals(this.f55824b, aVar.f55824b) && Arrays.equals(this.f55826e, aVar.f55826e)) {
                 return true;
             }
         }
@@ -93,28 +93,28 @@ public final class a implements p0 {
 
     public final int hashCode() {
         int i7;
-        if (this.f55786f == 0) {
+        if (this.f55827f == 0) {
             int i10 = 0;
-            String str = this.f55782a;
+            String str = this.f55823a;
             if (str != null) {
                 i7 = str.hashCode();
             } else {
                 i7 = 0;
             }
             int i11 = (527 + i7) * 31;
-            String str2 = this.f55783b;
+            String str2 = this.f55824b;
             if (str2 != null) {
                 i10 = str2.hashCode();
             }
-            long j3 = this.f55784c;
+            long j3 = this.f55825c;
             long j10 = this.d;
-            this.f55786f = Arrays.hashCode(this.f55785e) + ((((((i11 + i10) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31);
+            this.f55827f = Arrays.hashCode(this.f55826e) + ((((((i11 + i10) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31);
         }
-        return this.f55786f;
+        return this.f55827f;
     }
 
     public final String toString() {
-        return "EMSG: scheme=" + this.f55782a + ", id=" + this.d + ", durationMs=" + this.f55784c + ", value=" + this.f55783b;
+        return "EMSG: scheme=" + this.f55823a + ", id=" + this.d + ", durationMs=" + this.f55825c + ", value=" + this.f55824b;
     }
 
     @Override

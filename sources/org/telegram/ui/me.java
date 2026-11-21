@@ -4,25 +4,25 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.tgnet.tl.TL_stories;
 public final class me implements org.telegram.messenger.x10 {
-    public final int f49817a;
-    public final bn f49818b;
+    public final int f49855a;
+    public final bn f49856b;
 
     public me(bn bnVar, int i7) {
-        this.f49817a = i7;
-        this.f49818b = bnVar;
+        this.f49855a = i7;
+        this.f49856b = bnVar;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f49817a;
-        bn bnVar = this.f49818b;
+        int i7 = this.f49855a;
+        bn bnVar = this.f49856b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.kj kjVar = (org.telegram.messenger.kj) obj;
-                bn bnVar2 = this.f49818b;
-                bnVar2.f46241y5 = kjVar;
-                bnVar2.H5.f23965k.suggested_post = kjVar.c();
-                bnVar2.gc(true, null, bnVar2.H5, null, null, true, 0, null, false, 0L, null, true);
+                bn bnVar2 = this.f49856b;
+                bnVar2.f46264y5 = kjVar;
+                bnVar2.H5.f23993k.suggested_post = kjVar.c();
+                bnVar2.fc(true, null, bnVar2.H5, null, null, true, 0, null, false, 0L);
                 return;
             case 1:
                 bnVar.kc((org.telegram.messenger.kj) obj);
@@ -59,8 +59,8 @@ public final class me implements org.telegram.messenger.x10 {
                     }
                     r1Var.Z6 = bnVar.m9();
                     int n92 = bnVar.n9();
-                    if (r1Var.f31331a7 != n92) {
-                        r1Var.f31331a7 = n92;
+                    if (r1Var.f31359a7 != n92) {
+                        r1Var.f31359a7 = n92;
                         r1Var.b4();
                         r1Var.invalidate();
                         return;
@@ -68,13 +68,13 @@ public final class me implements org.telegram.messenger.x10 {
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.v0) {
                     org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) view;
-                    v0Var.f32079f0 = bnVar.Q9();
-                    v0Var.f32091j0 = bnVar.ba();
+                    v0Var.f32107f0 = bnVar.Q9();
+                    v0Var.f32119j0 = bnVar.ba();
                     bnVar.aa();
                     bnVar.m9();
                     int n93 = bnVar.n9();
-                    if (v0Var.f32094k0 != n93) {
-                        v0Var.f32094k0 = n93;
+                    if (v0Var.f32122k0 != n93) {
+                        v0Var.f32122k0 = n93;
                         v0Var.invalidate();
                         return;
                     }
@@ -95,30 +95,30 @@ public final class me implements org.telegram.messenger.x10 {
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus != null) {
                     bnVar.S1 = tL_premium_boostsStatus;
-                    bnVar.getMessagesController().I0().b(bnVar.f46076l6, tL_premium_boostsStatus, new me(bnVar, 4));
+                    bnVar.getMessagesController().I0().b(bnVar.f46099l6, tL_premium_boostsStatus, new me(bnVar, 4));
                     return;
                 }
                 return;
             case 7:
                 Long l10 = (Long) obj;
-                org.telegram.ui.Components.z11 z11Var = bnVar.f46007g2;
-                if (z11Var != null) {
-                    z11Var.n(l10.longValue(), true);
+                org.telegram.ui.Components.b21 b21Var = bnVar.f46030g2;
+                if (b21Var != null) {
+                    b21Var.n(l10.longValue(), true);
                     return;
                 }
                 return;
             case 8:
-                fr frVar = bnVar.f45993f0;
-                frVar.f47746c.add(((org.telegram.ui.ActionBar.r0) obj).getIconView());
+                fr frVar = bnVar.f46016f0;
+                frVar.f47813c.add(((org.telegram.ui.ActionBar.q0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();
-                int i10 = bn.f45913md;
+                int i10 = bn.f45936md;
                 bnVar.db(intValue);
                 return;
             default:
                 int intValue2 = ((Integer) obj).intValue();
-                int i11 = bn.f45913md;
+                int i11 = bn.f45936md;
                 bnVar.db(intValue2);
                 return;
         }

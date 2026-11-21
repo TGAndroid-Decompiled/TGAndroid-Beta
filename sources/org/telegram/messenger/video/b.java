@@ -4,15 +4,15 @@ import java.util.Comparator;
 import org.telegram.messenger.video.Track;
 import org.telegram.messenger.video.VideoFramesRewinder;
 public final class b implements Comparator {
-    public final int f27378a;
+    public final int f27406a;
 
     public b(int i7) {
-        this.f27378a = i7;
+        this.f27406a = i7;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f27378a) {
+        switch (this.f27406a) {
             case 0:
                 return Track.a((Track.SamplePresentationTime) obj, (Track.SamplePresentationTime) obj2);
             default:

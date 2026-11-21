@@ -1,11 +1,22 @@
 package org.telegram.ui.Components;
+public final class ot0 {
+    public static final ot0 f38355a;
+    public static final ot0 f38356b;
+    public static final ot0[] f38357c;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public interface ot0 {
-    float j(RecyclerView recyclerView);
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f38355a = r02;
+        ?? r12 = new Enum("RECORDING", 1);
+        f38356b = r12;
+        f38357c = new ot0[]{r02, r12};
+    }
 
-    RecyclerView n(View view);
+    public static ot0 valueOf(String str) {
+        return (ot0) Enum.valueOf(ot0.class, str);
+    }
 
-    void r(RecyclerView recyclerView);
+    public static ot0[] values() {
+        return (ot0[]) f38357c.clone();
+    }
 }

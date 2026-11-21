@@ -1,25 +1,23 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class yh0 extends v4.u0 {
-    public final v4.c0 f42501a;
-    public final ei0 f42502b;
+import android.content.Context;
+import android.view.View;
+public final class yh0 extends ek0 {
+    public final gi0 f42444f3;
 
-    public yh0(ei0 ei0Var, v4.c0 c0Var) {
-        this.f42502b = ei0Var;
-        this.f42501a = c0Var;
+    public yh0(gi0 gi0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
+        this.f42444f3 = gi0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        int loadCount;
-        ei0 ei0Var = this.f42502b;
-        if (ei0Var.f34719x && ei0Var.f34720y && !ei0Var.f34718w) {
-            int N0 = this.f42501a.N0();
-            loadCount = ei0Var.getLoadCount();
-            if (N0 >= (ei0Var.f34714f.b() - 1) - loadCount) {
-                ei0Var.c();
-            }
+    public final void onMeasure(int i7, int i10) {
+        gi0 gi0Var = this.f42444f3;
+        aa0 aa0Var = gi0Var.K;
+        if (aa0Var != null) {
+            aa0Var.measure(i7, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0));
         }
+        super.onMeasure(i7, i10);
+        gi0Var.j();
     }
 }

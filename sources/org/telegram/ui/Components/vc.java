@@ -3,37 +3,37 @@ package org.telegram.ui.Components;
 import android.graphics.Paint;
 import java.util.Random;
 public final class vc {
-    public float f40568a;
-    public float f40569b;
-    public float f40570c;
+    public float f40773a;
+    public float f40774b;
+    public float f40775c;
     public float d;
-    public float f40571e;
-    public float f40572f;
-    public int f40573g;
-    public float[] f40576k;
-    public float[] f40577l;
-    public float[] f40578m;
-    public float[] f40579n;
-    public float[] f40580o;
-    public float[] f40581p;
-    public float[] f40582q;
-    public float[] f40583r;
-    public float[] f40584s;
-    public float[] f40585t;
-    public float[] f40586u;
+    public float f40776e;
+    public float f40777f;
+    public int f40778g;
+    public float[] f40781k;
+    public float[] f40782l;
+    public float[] f40783m;
+    public float[] f40784n;
+    public float[] f40785o;
+    public float[] f40786p;
+    public float[] f40787q;
+    public float[] f40788r;
+    public float[] f40789s;
+    public float[] f40790t;
+    public float[] f40791u;
     public float[] v;
-    public float[] f40587w;
-    public int f40588x;
+    public float[] f40792w;
+    public int f40793x;
     public int h = -11318601;
-    public final Paint f40574i = new Paint(1);
-    public final Random f40575j = new Random();
-    public int f40589y = 255;
+    public final Paint f40779i = new Paint(1);
+    public final Random f40780j = new Random();
+    public int f40794y = 255;
 
     public final void a() {
         int i7 = this.h;
-        Paint paint = this.f40574i;
+        Paint paint = this.f40779i;
         paint.setColor(i7);
-        paint.setAlpha((this.f40573g * this.f40589y) / 255);
+        paint.setAlpha((this.f40778g * this.f40794y) / 255);
     }
 
     public final void b(int r10) {
@@ -41,43 +41,43 @@ public final class vc {
     }
 
     public final void c(int i7) {
-        this.f40588x = i7;
-        this.f40576k = new float[i7];
-        this.f40577l = new float[i7];
-        this.f40578m = new float[i7];
-        this.f40579n = new float[i7];
-        this.f40580o = new float[i7];
-        this.f40581p = new float[i7];
-        this.f40582q = new float[i7];
-        this.f40583r = new float[i7];
-        this.f40584s = new float[i7];
-        this.f40585t = new float[i7];
-        this.f40586u = new float[i7];
+        this.f40793x = i7;
+        this.f40781k = new float[i7];
+        this.f40782l = new float[i7];
+        this.f40783m = new float[i7];
+        this.f40784n = new float[i7];
+        this.f40785o = new float[i7];
+        this.f40786p = new float[i7];
+        this.f40787q = new float[i7];
+        this.f40788r = new float[i7];
+        this.f40789s = new float[i7];
+        this.f40790t = new float[i7];
+        this.f40791u = new float[i7];
         this.v = new float[i7];
-        this.f40587w = new float[i7];
-        for (int i10 = 0; i10 < this.f40588x; i10++) {
-            float[] fArr = this.f40576k;
-            Random random = this.f40575j;
+        this.f40792w = new float[i7];
+        for (int i10 = 0; i10 < this.f40793x; i10++) {
+            float[] fArr = this.f40781k;
+            Random random = this.f40780j;
             fArr[i10] = random.nextFloat();
-            this.f40578m[i10] = (((random.nextFloat() - 0.5f) * 2.0f) * 0.18f) / this.f40588x;
+            this.f40783m[i10] = (((random.nextFloat() - 0.5f) * 2.0f) * 0.18f) / this.f40793x;
             b(i10);
-            this.f40580o[i10] = random.nextFloat();
+            this.f40785o[i10] = random.nextFloat();
         }
         a();
     }
 
     public final void d(float f10) {
-        for (int i7 = 0; i7 < this.f40588x; i7++) {
-            float[] fArr = this.f40580o;
+        for (int i7 = 0; i7 < this.f40793x; i7++) {
+            float[] fArr = this.f40785o;
             float f11 = fArr[i7];
-            float f12 = this.f40581p[i7];
+            float f12 = this.f40786p[i7];
             uc ucVar = wc.H;
             float f13 = (f12 * f10 * 8.2f) + (0.8f * f12) + f11;
             fArr[i7] = f13;
             if (f13 >= 1.0f) {
                 fArr[i7] = 0.0f;
-                this.f40576k[i7] = this.f40577l[i7];
-                this.f40578m[i7] = this.f40579n[i7];
+                this.f40781k[i7] = this.f40782l[i7];
+                this.f40783m[i7] = this.f40784n[i7];
                 b(i7);
             }
         }

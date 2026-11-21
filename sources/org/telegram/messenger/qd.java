@@ -24,37 +24,37 @@ public final class qd extends c1 implements fs, na, oa {
     public boolean M;
     public final ra N;
     public final qa O;
-    public final a0.h f26379a;
-    public final ArrayList f26380b;
-    public final a0.h f26381c;
+    public final a0.h f26407a;
+    public final ArrayList f26408b;
+    public final a0.h f26409c;
     public final a0.h d;
-    public final LocationManager f26382e;
-    public final od f26383f;
+    public final LocationManager f26410e;
+    public final od f26411f;
     public final od h;
-    public final od f26384n;
-    public final hi.u5 f26385r;
-    public Location f26386s;
-    public long f26387w;
-    public boolean f26388x;
-    public long f26389y;
+    public final od f26412n;
+    public final hi.t5 f26413r;
+    public Location f26414s;
+    public long f26415w;
+    public boolean f26416x;
+    public long f26417y;
 
     public qd(int i7) {
         super(i7);
-        this.f26379a = new a0.h();
-        this.f26380b = new ArrayList();
-        this.f26381c = new a0.h();
+        this.f26407a = new a0.h();
+        this.f26408b = new ArrayList();
+        this.f26409c = new a0.h();
         this.d = new a0.h();
-        this.f26383f = new od(this, 0);
+        this.f26411f = new od(this, 0);
         this.h = new od(this, 0);
-        this.f26384n = new od(this, 0);
-        this.f26385r = new hi.u5(this, 27);
-        this.f26388x = true;
+        this.f26412n = new od(this, 0);
+        this.f26413r = new hi.t5(this, 27);
+        this.f26416x = true;
         this.G = new SparseIntArray();
         this.H = new a0.h();
         this.J = new ArrayList();
         this.K = new a0.h();
-        this.f26382e = (LocationManager) t0.f26913b.getSystemService("location");
-        this.N = ((h6.m) t0.j()).onCreateLocationServicesAPI(t0.f26913b, this, this);
+        this.f26410e = (LocationManager) t0.f26941b.getSystemService("location");
+        this.N = ((h6.m) t0.j()).onCreateLocationServicesAPI(t0.f26941b, this, this);
         qa onCreateLocationRequest = ((h6.m) t0.j()).onCreateLocationRequest();
         this.O = onCreateLocationRequest;
         z9 z9Var = (z9) onCreateLocationRequest;
@@ -62,7 +62,7 @@ public final class qd extends c1 implements fs, na, oa {
         z9Var.b();
         z9Var.a();
         g0.g3(new hd(this, 5));
-        getMessagesStorage().f27052a.c(new hd(this, 0));
+        getMessagesStorage().f27080a.c(new hd(this, 0));
     }
 
     public static String b(String str) {
@@ -109,7 +109,7 @@ public final class qd extends c1 implements fs, na, oa {
         HashMap hashMap = R;
         Runnable runnable = (Runnable) hashMap.get(r0Var);
         if (runnable != null) {
-            Utilities.f22779e.a(runnable);
+            Utilities.f22807e.a(runnable);
             hashMap.remove(r0Var);
         }
         if (location == null) {
@@ -117,9 +117,9 @@ public final class qd extends c1 implements fs, na, oa {
             return;
         }
         try {
-            locale = gd.E0().f24241y;
+            locale = gd.E0().f24269y;
         } catch (Exception unused) {
-            locale = gd.E0().f24242z;
+            locale = gd.E0().f24270z;
         }
         Locale locale3 = locale;
         if (locale3.getLanguage().contains("en")) {
@@ -127,7 +127,7 @@ public final class qd extends c1 implements fs, na, oa {
         } else {
             locale2 = Locale.US;
         }
-        q5 q5Var = Utilities.f22779e;
+        q5 q5Var = Utilities.f22807e;
         yj yjVar = new yj(locale3, location, i7, locale2, r0Var, 1);
         q5Var.d(yjVar, 300L);
         R.put(r0Var, yjVar);
@@ -180,7 +180,7 @@ public final class qd extends c1 implements fs, na, oa {
                 LocationSharingService.b();
                 return;
             }
-            t0.f26913b.startService(new Intent(t0.f26913b, LocationSharingService.class));
+            t0.f26941b.startService(new Intent(t0.f26941b, LocationSharingService.class));
         } catch (Throwable th2) {
             a8.g(th2, true);
             LocationSharingService.b();
@@ -192,8 +192,8 @@ public final class qd extends c1 implements fs, na, oa {
             return;
         }
         int i7 = LocationSharingService.d;
-        new e0.i0(t0.f26913b).b(6, "live_location_paused");
-        t0.f26913b.stopService(new Intent(t0.f26913b, LocationSharingService.class));
+        new e0.i0(t0.f26941b).b(6, "live_location_paused");
+        t0.f26941b.stopService(new Intent(t0.f26941b, LocationSharingService.class));
     }
 
     public final void a(boolean r21) {
@@ -206,7 +206,7 @@ public final class qd extends c1 implements fs, na, oa {
         long j3;
         ArrayList arrayList2;
         int i11 = ks.I4;
-        a0.h hVar = this.f26381c;
+        a0.h hVar = this.f26409c;
         if (i7 == 1) {
             if (!((Boolean) objArr[2]).booleanValue()) {
                 Long l10 = (Long) objArr[0];
@@ -221,18 +221,18 @@ public final class qd extends c1 implements fs, na, oa {
                             while (true) {
                                 if (i13 < arrayList2.size()) {
                                     if (fj.B1(((TLRPC.Message) arrayList2.get(i13)).from_id) == fjVar.Z0()) {
-                                        arrayList2.set(i13, fjVar.f23965k);
+                                        arrayList2.set(i13, fjVar.f23993k);
                                         break;
                                     }
                                     i13++;
                                 } else {
-                                    arrayList2.add(fjVar.f23965k);
+                                    arrayList2.add(fjVar.f23993k);
                                     break;
                                 }
                             }
                             z10 = true;
                         } else {
-                            TLRPC.Message message = fjVar.f23965k;
+                            TLRPC.Message message = fjVar.f23993k;
                             if (message.action instanceof TLRPC.TL_messageActionGeoProximityReached) {
                                 long B0 = fj.B0(message);
                                 if (n5.E(B0)) {
@@ -246,7 +246,7 @@ public final class qd extends c1 implements fs, na, oa {
                     }
                 }
             }
-        } else if (i7 == ks.f25210w) {
+        } else if (i7 == ks.f25238w) {
             if (!((Boolean) objArr[2]).booleanValue()) {
                 ArrayList arrayList4 = this.J;
                 if (!arrayList4.isEmpty()) {
@@ -257,15 +257,15 @@ public final class qd extends c1 implements fs, na, oa {
                         pd pdVar = (pd) arrayList4.get(i14);
                         fj fjVar2 = pdVar.h;
                         if (fjVar2 != null) {
-                            j3 = fj.v0(fjVar2.f23965k);
+                            j3 = fj.v0(fjVar2.f23993k);
                         } else {
                             j3 = 0;
                         }
-                        if (longValue2 == j3 && arrayList5.contains(Integer.valueOf(pdVar.f26226b))) {
+                        if (longValue2 == j3 && arrayList5.contains(Integer.valueOf(pdVar.f26254b))) {
                             if (arrayList6 == null) {
                                 arrayList6 = new ArrayList();
                             }
-                            arrayList6.add(Long.valueOf(pdVar.f26225a));
+                            arrayList6.add(Long.valueOf(pdVar.f26253a));
                         }
                     }
                     if (arrayList6 != null) {
@@ -291,7 +291,7 @@ public final class qd extends c1 implements fs, na, oa {
                             if (!fjVar3.C3()) {
                                 arrayList.remove(i17);
                             } else {
-                                arrayList.set(i17, fjVar3.f23965k);
+                                arrayList.set(i17, fjVar3.f23993k);
                             }
                             z11 = true;
                         } else {
@@ -320,7 +320,7 @@ public final class qd extends c1 implements fs, na, oa {
     public final void j(long j3) {
         ArrayList arrayList;
         ?? tL_messages_readMessageContents;
-        if (!n5.C(j3) && (arrayList = (ArrayList) this.f26381c.f(j3)) != null && !arrayList.isEmpty()) {
+        if (!n5.C(j3) && (arrayList = (ArrayList) this.f26409c.f(j3)) != null && !arrayList.isEmpty()) {
             a0.h hVar = this.d;
             Integer num = (Integer) hVar.f(j3);
             int elapsedRealtime = (int) (SystemClock.elapsedRealtime() / 1000);
@@ -333,7 +333,7 @@ public final class qd extends c1 implements fs, na, oa {
                         tL_messages_readMessageContents = new TLRPC.TL_channels_readMessageContents();
                         int size = arrayList.size();
                         while (i7 < size) {
-                            i7 = com.google.android.gms.internal.vision.e2.f(((TLRPC.Message) arrayList.get(i7)).f28424id, i7, 1, tL_messages_readMessageContents.f28442id);
+                            i7 = com.google.android.gms.internal.vision.e2.f(((TLRPC.Message) arrayList.get(i7)).f28452id, i7, 1, tL_messages_readMessageContents.f28470id);
                         }
                         tL_messages_readMessageContents.channel = getMessagesController().j1(j10);
                         getConnectionsManager().sendRequest(tL_messages_readMessageContents, new id(this, 2));
@@ -342,7 +342,7 @@ public final class qd extends c1 implements fs, na, oa {
                 tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
                 int size2 = arrayList.size();
                 while (i7 < size2) {
-                    i7 = com.google.android.gms.internal.vision.e2.f(((TLRPC.Message) arrayList.get(i7)).f28424id, i7, 1, tL_messages_readMessageContents.f28508id);
+                    i7 = com.google.android.gms.internal.vision.e2.f(((TLRPC.Message) arrayList.get(i7)).f28452id, i7, 1, tL_messages_readMessageContents.f28536id);
                 }
                 getConnectionsManager().sendRequest(tL_messages_readMessageContents, new id(this, 2));
             }
@@ -354,12 +354,12 @@ public final class qd extends c1 implements fs, na, oa {
     }
 
     public final void l(pd pdVar, int i7) {
-        getMessagesStorage().f27052a.c(new l7(this, i7, pdVar, 5));
+        getMessagesStorage().f27080a.c(new l7(this, i7, pdVar, 5));
     }
 
     public final void m(Location location) {
         if (location == null || (SystemClock.elapsedRealtimeNanos() - location.getElapsedRealtimeNanos()) / 1000000000 <= 300) {
-            this.f26386s = location;
+            this.f26414s = location;
             if (location != null) {
                 g0.g3(new j2(8));
             }
@@ -372,14 +372,14 @@ public final class qd extends c1 implements fs, na, oa {
             return;
         }
         this.F = true;
-        if (!z10 && ((location2 = this.f26386s) == null || location2.distanceTo(location) < 20.0f)) {
-            if (this.f26388x) {
-                this.f26387w = SystemClock.elapsedRealtime() - 10000;
-                this.f26388x = false;
+        if (!z10 && ((location2 = this.f26414s) == null || location2.distanceTo(location) < 20.0f)) {
+            if (this.f26416x) {
+                this.f26415w = SystemClock.elapsedRealtime() - 10000;
+                this.f26416x = false;
             }
         } else {
-            this.f26387w = SystemClock.elapsedRealtime() - 30000;
-            this.f26388x = false;
+            this.f26415w = SystemClock.elapsedRealtime() - 30000;
+            this.f26416x = false;
         }
         m(location);
     }
@@ -387,50 +387,50 @@ public final class qd extends c1 implements fs, na, oa {
     public final void o(int i7, long j3, boolean z10) {
         pd pdVar = (pd) this.K.f(j3);
         if (pdVar != null) {
-            pdVar.f26229f = i7;
+            pdVar.f26257f = i7;
         }
-        getMessagesStorage().f27052a.c(new di.b9(this, i7, j3, 2));
+        getMessagesStorage().f27080a.c(new di.c9(this, i7, j3, 2));
         if (z10) {
             Utilities.d.c(new hd(this, 3));
         }
     }
 
     public final void p() {
-        LocationManager locationManager = this.f26382e;
+        LocationManager locationManager = this.f26410e;
         if (!this.E) {
-            this.f26389y = SystemClock.elapsedRealtime();
+            this.f26417y = SystemClock.elapsedRealtime();
             this.E = true;
             if (this.L == null) {
                 ((h6.m) t0.j()).getClass();
-                this.L = Boolean.valueOf(nt.f25966b.hasServices());
+                this.L = Boolean.valueOf(nt.f25994b.hasServices());
             }
             if (this.L.booleanValue()) {
                 try {
-                    ((com.google.android.gms.common.api.internal.d0) this.N).f6250a.d();
+                    ((com.google.android.gms.common.api.internal.d0) this.N).f6279a.d();
                     return;
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
             }
             try {
-                this.f26382e.requestLocationUpdates("gps", 1L, 0.0f, this.f26383f);
+                this.f26410e.requestLocationUpdates("gps", 1L, 0.0f, this.f26411f);
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
             try {
-                this.f26382e.requestLocationUpdates("network", 1L, 0.0f, this.h);
+                this.f26410e.requestLocationUpdates("network", 1L, 0.0f, this.h);
             } catch (Exception e11) {
                 a8.g(e11, true);
             }
             try {
-                this.f26382e.requestLocationUpdates("passive", 1L, 0.0f, this.f26384n);
+                this.f26410e.requestLocationUpdates("passive", 1L, 0.0f, this.f26412n);
             } catch (Exception e12) {
                 a8.g(e12, true);
             }
-            if (this.f26386s == null) {
+            if (this.f26414s == null) {
                 try {
                     m(locationManager.getLastKnownLocation("gps"));
-                    if (this.f26386s == null) {
+                    if (this.f26414s == null) {
                         m(locationManager.getLastKnownLocation("network"));
                     }
                 } catch (Exception e13) {
@@ -444,38 +444,38 @@ public final class qd extends c1 implements fs, na, oa {
         this.E = false;
         if (this.L == null) {
             ((h6.m) t0.j()).getClass();
-            this.L = Boolean.valueOf(nt.f25966b.hasServices());
+            this.L = Boolean.valueOf(nt.f25994b.hasServices());
         }
         if (this.L.booleanValue()) {
             try {
-                ((h6.m) t0.j()).removeLocationUpdates(this.f26385r);
-                ((com.google.android.gms.common.api.internal.d0) this.N).f6250a.e();
+                ((h6.m) t0.j()).removeLocationUpdates(this.f26413r);
+                ((com.google.android.gms.common.api.internal.d0) this.N).f6279a.e();
             } catch (Throwable th2) {
                 a8.g(th2, false);
             }
         }
-        od odVar = this.f26383f;
-        LocationManager locationManager = this.f26382e;
+        od odVar = this.f26411f;
+        LocationManager locationManager = this.f26410e;
         locationManager.removeUpdates(odVar);
         if (z10) {
             locationManager.removeUpdates(this.h);
-            locationManager.removeUpdates(this.f26384n);
+            locationManager.removeUpdates(this.f26412n);
         }
     }
 
     public final void t() {
         Location location;
         getUserConfig();
-        ArrayList arrayList = this.f26380b;
+        ArrayList arrayList = this.f26408b;
         boolean z10 = false;
         if (!arrayList.isEmpty()) {
             int i7 = 0;
             boolean z11 = false;
             while (i7 < arrayList.size()) {
                 pd pdVar = (pd) arrayList.get(i7);
-                if (pdVar.f26227c <= getConnectionsManager().getCurrentTime()) {
+                if (pdVar.f26255c <= getConnectionsManager().getCurrentTime()) {
                     arrayList.remove(i7);
-                    this.f26379a.l(pdVar.f26225a);
+                    this.f26407a.l(pdVar.f26253a);
                     l(pdVar, 1);
                     g0.g3(new jd(this, pdVar, 2));
                     i7--;
@@ -489,18 +489,18 @@ public final class qd extends c1 implements fs, na, oa {
         }
         if (this.E) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (this.F || Math.abs(this.f26389y - elapsedRealtime) > 10000 || (SystemClock.elapsedRealtime() > this.I && Math.abs(this.f26387w - SystemClock.elapsedRealtime()) >= 2000 && (location = this.f26386s) != null && location.getElapsedRealtimeNanos() / 1000000 >= this.f26389y)) {
+            if (this.F || Math.abs(this.f26417y - elapsedRealtime) > 10000 || (SystemClock.elapsedRealtime() > this.I && Math.abs(this.f26415w - SystemClock.elapsedRealtime()) >= 2000 && (location = this.f26414s) != null && location.getElapsedRealtimeNanos() / 1000000 >= this.f26417y)) {
                 this.F = false;
-                this.f26388x = true;
-                if (SystemClock.elapsedRealtime() - this.f26387w > 2000) {
+                this.f26416x = true;
+                if (SystemClock.elapsedRealtime() - this.f26415w > 2000) {
                     z10 = true;
                 }
-                this.f26389y = elapsedRealtime;
-                this.f26387w = SystemClock.elapsedRealtime();
+                this.f26417y = elapsedRealtime;
+                this.f26415w = SystemClock.elapsedRealtime();
                 a(z10);
             }
-        } else if (!arrayList.isEmpty() && Math.abs(this.f26387w - SystemClock.elapsedRealtime()) > 30000) {
-            this.f26389y = SystemClock.elapsedRealtime();
+        } else if (!arrayList.isEmpty() && Math.abs(this.f26415w - SystemClock.elapsedRealtime()) > 30000) {
+            this.f26417y = SystemClock.elapsedRealtime();
             p();
         }
     }

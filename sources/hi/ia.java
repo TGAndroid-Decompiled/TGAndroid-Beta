@@ -1,143 +1,147 @@
 package hi;
 
-import android.content.Context;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.ui.ActionBar.ActionBarLayout;
+import android.widget.FrameLayout;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.mp;
+import org.telegram.ui.Components.aj0;
+import org.telegram.ui.Components.du0;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.k00;
 import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.xk;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.i20;
-import org.telegram.ui.pc0;
-public final class ia extends ClickableSpan {
-    public final int f14774a;
-    public final Object f14775b;
+public final class ia extends t {
+    public final Path R1;
+    public final sa S1;
 
-    public ia(Object obj, int i7) {
-        this.f14774a = i7;
-        this.f14775b = obj;
+    public ia(sa saVar, Activity activity, FrameLayout frameLayout, du0 du0Var, FrameLayout frameLayout2, fi.b bVar, org.telegram.ui.Components.ca caVar) {
+        super(activity, frameLayout, du0Var, frameLayout2, bVar, caVar);
+        this.S1 = saVar;
+        this.R1 = new Path();
     }
 
     @Override
-    public final void onClick(View view) {
-        GroupCallMessage groupCallMessage;
-        switch (this.f14774a) {
-            case 0:
-                ((ja) this.f14775b).S1.S();
-                return;
-            case 1:
-                nh.c cVar = (nh.c) this.f14775b;
-                nh.a aVar = cVar.J;
-                if (aVar != null && (groupCallMessage = cVar.I) != null) {
-                    ((i20) aVar).a(groupCallMessage);
-                    return;
+    public final boolean e() {
+        gc gcVar;
+        if (mp.u1(this.V).K3() || ((gcVar = gc.f35500w) != null && gcVar.f35501a == 2)) {
+            return false;
+        }
+        int i7 = mp.u1(this.V).Z4;
+        SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(gd.G(Math.round(i7 / mp.u1(this.V).Y4), "CaptionPremiumSubtitle", i5.c.i(i7, "")));
+        int indexOf = W2.toString().indexOf("__");
+        if (indexOf >= 0) {
+            W2.replace(indexOf, indexOf + 2, (CharSequence) "");
+            int indexOf2 = W2.toString().indexOf("__");
+            if (indexOf2 >= 0) {
+                W2.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
+                W2.setSpan(new k00(org.telegram.ui.ActionBar.m6.Xc, this.f15139a), indexOf, indexOf2, 33);
+                W2.setSpan(new ha(this, 0), indexOf, indexOf2, 33);
+            }
+        }
+        gc I = new lc(this.S1.m0, this.f15139a).I(2131623970, gd.N0(2131752544, null), W2);
+        I.f35501a = 2;
+        I.f35508j = 5000;
+        I.k(false);
+        return true;
+    }
+
+    @Override
+    public final boolean g() {
+        return this.S1.f15439s0.c();
+    }
+
+    @Override
+    public final int getTimelineHeight() {
+        cb cbVar;
+        sa saVar = this.S1;
+        if (saVar.Z0 != null && (cbVar = saVar.f15383a1) != null && cbVar.getVisibility() == 0) {
+            return saVar.f15383a1.getTimelineHeight();
+        }
+        return 0;
+    }
+
+    @Override
+    public final void h(org.telegram.ui.Components.ga gaVar, Canvas canvas, RectF rectF, float f10, boolean z10, float f11, float f12, boolean z11) {
+        if (!canvas.isHardwareAccelerated()) {
+            return;
+        }
+        canvas.save();
+        Path path = this.R1;
+        path.rewind();
+        path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
+        canvas.clipPath(path);
+        canvas.translate(f11, f12);
+        gaVar.b(canvas, true);
+        canvas.restore();
+    }
+
+    @Override
+    public final void i(Bitmap bitmap) {
+        this.S1.f15422n.X(12.0f, bitmap);
+        Utilities.stackBlurBitmap(bitmap, (int) 12.0f);
+    }
+
+    @Override
+    public final boolean l(float f10, float f11) {
+        sa saVar = this.S1;
+        u9 u9Var = saVar.f15453w1;
+        if (u9Var != null && u9Var.B0 != null) {
+            ia iaVar = saVar.f15394d1;
+            if (!iaVar.f15159p0) {
+                float x10 = iaVar.getX() + f10;
+                float y10 = saVar.f15394d1.getY() + f11;
+                float x11 = saVar.m0.getX() + x10;
+                float y11 = saVar.m0.getY() + y10;
+                float x12 = x11 - saVar.f15409i0.getX();
+                float y12 = y11 - saVar.f15409i0.getY();
+                for (int i7 = 0; i7 < saVar.f15453w1.B0.getChildCount(); i7++) {
+                    View childAt = saVar.f15453w1.B0.getChildAt(i7);
+                    if (childAt instanceof tg.j) {
+                        aj0 selectionBounds = ((tg.j) childAt).getSelectionBounds();
+                        RectF rectF = org.telegram.messenger.g0.P;
+                        float f12 = selectionBounds.f33522a;
+                        float f13 = selectionBounds.f33523b;
+                        rectF.set(f12, f13, selectionBounds.f33524c + f12, selectionBounds.d + f13);
+                        if (rectF.contains(x12, y12)) {
+                            return true;
+                        }
+                    }
                 }
-                return;
-            case 2:
-                org.telegram.ui.Cells.c2 c2Var = (org.telegram.ui.Cells.c2) this.f14775b;
-                Context context = c2Var.getContext();
-                vf.c.t(context, "https://fragment.com/username/" + ((org.telegram.ui.ka) c2Var.N).f49222e.f49493r);
-                return;
-            case 3:
-                ((org.telegram.ui.lb) this.f14775b).finishFragment();
-                return;
-            case 4:
-                ((org.telegram.ui.o1) this.f14775b).run();
-                return;
-            case 5:
-                ((lc) this.f14775b).f37091a.presentFragment(new PremiumPreviewFragment(0, "settings"));
-                return;
-            case 6:
-                xk xkVar = (xk) this.f14775b;
-                org.telegram.ui.Wallet.n6.N0(xkVar.f42118n, xkVar.getContext(), xkVar.f36765a);
-                return;
-            case 7:
-                ((ActionBarLayout) ((LaunchActivity) this.f14775b).M()).S(new PremiumPreviewFragment(0, "gift"));
-                return;
-            case 8:
-                ((pc0) this.f14775b).p(false);
-                return;
-            case 9:
-                org.telegram.ui.Wallet.da daVar = (org.telegram.ui.Wallet.da) this.f14775b;
-                org.telegram.ui.Wallet.n6.N0(org.telegram.ui.Wallet.da.i0(daVar), daVar.getParentActivity(), daVar.getResourceProvider());
-                return;
-            case 10:
-                ug.l0 l0Var = ((ug.e0) this.f14775b).f58647c;
-                wg.l.J0(l0Var.f39538s1, l0Var.J0, l0Var.W1, null);
-                return;
-            default:
-                return;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void n() {
+        bi.m3 m3Var = this.S1.f15445u0;
+        if (m3Var != null) {
+            m3Var.invalidate();
         }
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i7 = this.f14774a;
-        Object obj = this.f14775b;
-        switch (i7) {
-            case 0:
-                textPaint.setUnderlineText(false);
-                return;
-            case 1:
-                return;
-            case 2:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 3:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 4:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 5:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 6:
-                textPaint.setColor(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, ((xk) obj).f36765a));
-                textPaint.setUnderlineText(false);
-                return;
-            case 7:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 8:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 9:
-                textPaint.setColor(((org.telegram.ui.Wallet.da) obj).getThemedColor(org.telegram.ui.ActionBar.n6.Fi));
-                textPaint.setUnderlineText(false);
-                return;
-            case 10:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                int i10 = org.telegram.ui.ActionBar.n6.Xc;
-                ug.l0 l0Var = ((ug.e0) obj).f58647c;
-                int i11 = ug.l0.S2;
-                textPaint.setColor(org.telegram.ui.ActionBar.n6.w0(i10, l0Var.J0));
-                return;
-            default:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                Integer num = ((ug.i1) obj).f58693q2;
-                if (num != null) {
-                    textPaint.setColor(num.intValue());
-                    return;
-                }
-                return;
+    public final void q(boolean z10) {
+        boolean z11;
+        c7 c7Var;
+        sa saVar = this.S1;
+        o5 o5Var = saVar.f15391c1;
+        if (!saVar.O1 && !z10) {
+            fi.p6 R1 = mp.u1(this.V).R1();
+            int A = saVar.A();
+            fi.j6 o4 = R1.o();
+            if (o4 == null || !o4.a(R1.f12422a, A) || ((c7Var = saVar.L1) != null && c7Var.f14351g)) {
+                z11 = true;
+                o5Var.setShareEnabled(z11);
+            }
         }
-    }
-
-    private final void a(View view) {
-    }
-
-    private final void b(TextPaint textPaint) {
+        z11 = false;
+        o5Var.setShareEnabled(z11);
     }
 }

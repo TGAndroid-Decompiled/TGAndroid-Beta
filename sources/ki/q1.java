@@ -1,67 +1,48 @@
 package ki;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.util.SparseIntArray;
-import android.widget.ImageView;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-public final class q1 {
-    public final SparseIntArray f18844a = new SparseIntArray();
-    public final SparseIntArray f18845b = new SparseIntArray();
-    public final int[] f18846c = {n6.G6, n6.f29712u8, n6.G8, n6.E8, n6.F8, n6.I5, n6.zj};
-    public float d;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+public final class q1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f18868a;
+    public final s2 f18869b;
+    public final int f18870c;
+    public final int d;
 
-    public final int a(int i7) {
-        return i0.a.f(this.d, this.f18844a.get(i7), this.f18845b.get(i7));
+    public q1(s2 s2Var, int i7, int i10, int i11) {
+        this.f18868a = i11;
+        this.f18869b = s2Var;
+        this.f18870c = i7;
+        this.d = i10;
     }
 
-    public final void b(org.telegram.ui.ActionBar.k kVar, float f10) {
-        this.d = f10;
-        int i7 = n6.G6;
-        kVar.setTitleColor(a(i7));
-        kVar.setSubtitleColor(n6.r1(0.45f, a(i7)));
-        kVar.I(a(i7), false);
-        ImageView imageView = kVar.f29066e;
-        if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(a(i7), PorterDuff.Mode.SRC_IN));
-        }
-        kVar.G(a(n6.f29712u8), false);
-    }
-
-    public final void c(SparseIntArray sparseIntArray, int i7, i6 i6Var) {
-        int i10;
-        int i11;
-        int[] iArr = this.f18846c;
-        int i12 = 0;
-        if (i7 == 0) {
-            while (i12 < iArr.length) {
-                int i13 = iArr[i12];
-                sparseIntArray.put(i13, n6.w0(i13, i6Var));
-                i12++;
-            }
-            return;
-        }
-        if (i0.a.h(i7) < 0.5d) {
-            i10 = -1;
-        } else {
-            i10 = -16777216;
-        }
-        int o4 = i0.a.o(i10, 60);
-        while (i12 < iArr.length) {
-            int i14 = iArr[i12];
-            if (i14 != n6.G8 && i14 != n6.E8 && i14 != n6.F8 && i14 != (i11 = n6.I5)) {
-                if (i14 == n6.zj) {
-                    sparseIntArray.put(i14, i0.a.f(0.5f, i7, i10));
-                } else if (i14 != n6.f29712u8 && i14 != i11) {
-                    sparseIntArray.put(i14, i10);
-                } else {
-                    sparseIntArray.put(i14, o4);
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        boolean z10;
+        switch (this.f18868a) {
+            case 0:
+                s2 s2Var = this.f18869b;
+                Paint paint = s2Var.R;
+                paint.setColor(i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f18870c, this.d));
+                s2Var.F();
+                s2Var.f18937f.invalidate();
+                org.telegram.ui.b3 b3Var = s2Var.Z0;
+                if (b3Var != null) {
+                    if (org.telegram.messenger.g0.B(paint.getColor()) <= 0.721f) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    b3Var.b(z10, false);
+                    s2Var.Z0.setBackgroundColor(paint.getColor());
                 }
-            } else {
-                sparseIntArray.put(i14, n6.w0(i14, i6Var));
-            }
-            i12++;
+                s2Var.K();
+                return;
+            default:
+                s2 s2Var2 = this.f18869b;
+                s2Var2.getClass();
+                s2Var2.T = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), this.f18870c, this.d);
+                s2Var2.l();
+                return;
         }
     }
 }

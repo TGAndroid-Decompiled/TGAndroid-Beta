@@ -1,126 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.os.Handler;
-import android.os.SystemClock;
-import android.view.Choreographer;
-import java.util.ArrayList;
-public final class gz0 implements Choreographer.FrameCallback {
-    public final int f35668a;
-    public final Object f35669b;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class gz0 extends MetricAffectingSpan {
+    public final int f35710a;
+    public final fz0 f35711b;
 
-    public gz0(Object obj, int i7) {
-        this.f35668a = i7;
-        this.f35669b = obj;
+    public gz0(fz0 fz0Var, int i7) {
+        this.f35711b = fz0Var;
+        if (i7 > 0) {
+            this.f35710a = i7;
+        }
+    }
+
+    public final void a(TextPaint textPaint) {
+        fz0 fz0Var = this.f35711b;
+        if (c8.dd.a(fz0Var.f35335a, 49152)) {
+            float textSize = textPaint.getTextSize();
+            textPaint.setTextSize(0.75f * textSize);
+            if (c8.dd.a(fz0Var.f35335a, 32768)) {
+                textPaint.baselineShift -= (int) (textSize * 0.35f);
+            } else if (c8.dd.a(fz0Var.f35335a, 16384)) {
+                textPaint.baselineShift += (int) (textSize * 0.12f);
+            }
+        }
+    }
+
+    public final fz0 b() {
+        return this.f35711b;
+    }
+
+    public final boolean c() {
+        if ((this.f35711b.f35335a & 256) > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void doFrame(long j3) {
-        boolean z10;
-        float min;
-        int i7;
-        boolean z11;
-        switch (this.f35668a) {
-            case 0:
-                kz0 kz0Var = ((mz0) this.f35669b).f37675a;
-                if (kz0Var != null) {
-                    Handler handler = kz0Var.getHandler();
-                    if (handler != null && kz0Var.f36922b.get()) {
-                        handler.sendMessage(handler.obtainMessage(0));
-                    }
-                    if (((mz0) this.f35669b).f37675a.T) {
-                        Choreographer.getInstance().postFrameCallback(this);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                r1.a aVar = (r1.a) ((of) ((org.telegram.ui.nd0) this.f35669b).f50148b).f38076b;
-                long uptimeMillis = SystemClock.uptimeMillis();
-                ArrayList arrayList = aVar.f56301b;
-                long uptimeMillis2 = SystemClock.uptimeMillis();
-                int i10 = 0;
-                while (i10 < arrayList.size()) {
-                    r1.g gVar = (r1.g) arrayList.get(i10);
-                    if (gVar != null) {
-                        a0.l lVar = aVar.f56300a;
-                        Long l10 = (Long) lVar.get(gVar);
-                        if (l10 != null) {
-                            if (l10.longValue() < uptimeMillis2) {
-                                lVar.remove(gVar);
-                            }
-                        }
-                        long j10 = gVar.f56319i;
-                        if (j10 == 0) {
-                            gVar.f56319i = uptimeMillis;
-                            gVar.g(gVar.f56314b);
-                        } else {
-                            long j11 = uptimeMillis - j10;
-                            gVar.f56319i = uptimeMillis;
-                            if (gVar.f56324n != Float.MAX_VALUE) {
-                                r1.h hVar = gVar.f56323m;
-                                double d = hVar.f56331i;
-                                z10 = true;
-                                long j12 = j11 / 2;
-                                org.telegram.ui.Cells.i c10 = hVar.c(gVar.f56314b, gVar.f56313a, j12);
-                                r1.h hVar2 = gVar.f56323m;
-                                hVar2.f56331i = gVar.f56324n;
-                                gVar.f56324n = Float.MAX_VALUE;
-                                org.telegram.ui.Cells.i c11 = hVar2.c(c10.f30773a, c10.f30774b, j12);
-                                gVar.f56314b = c11.f30773a;
-                                gVar.f56313a = c11.f30774b;
-                            } else {
-                                z10 = true;
-                                org.telegram.ui.Cells.i c12 = gVar.f56323m.c(gVar.f56314b, gVar.f56313a, j11);
-                                gVar.f56314b = c12.f30773a;
-                                gVar.f56313a = c12.f30774b;
-                            }
-                            float max = Math.max(gVar.f56314b, gVar.h);
-                            gVar.f56314b = max;
-                            gVar.f56314b = Math.min(max, gVar.f56318g);
-                            float f10 = gVar.f56313a;
-                            r1.h hVar3 = gVar.f56323m;
-                            hVar3.getClass();
-                            double abs = Math.abs(f10);
-                            i7 = i10;
-                            if (abs < hVar3.f56328e && Math.abs(min - ((float) hVar3.f56331i)) < hVar3.d) {
-                                gVar.f56314b = (float) gVar.f56323m.f56331i;
-                                gVar.f56313a = 0.0f;
-                                z11 = z10;
-                            } else {
-                                z11 = false;
-                            }
-                            float min2 = Math.min(gVar.f56314b, gVar.f56318g);
-                            gVar.f56314b = min2;
-                            float max2 = Math.max(min2, gVar.h);
-                            gVar.f56314b = max2;
-                            gVar.g(max2);
-                            if (z11) {
-                                gVar.e(false);
-                            }
-                            i10 = i7 + 1;
-                        }
-                    }
-                    i7 = i10;
-                    i10 = i7 + 1;
-                }
-                if (aVar.f56303e) {
-                    for (int size = arrayList.size() - 1; size >= 0; size--) {
-                        if (arrayList.get(size) == null) {
-                            arrayList.remove(size);
-                        }
-                    }
-                    aVar.f56303e = false;
-                }
-                if (arrayList.size() > 0) {
-                    if (aVar.d == null) {
-                        aVar.d = new org.telegram.ui.nd0(aVar.f56302c);
-                    }
-                    org.telegram.ui.nd0 nd0Var = aVar.d;
-                    ((Choreographer) nd0Var.f50149c).postFrameCallback((gz0) nd0Var.d);
-                    return;
-                }
-                return;
+    public final void updateDrawState(TextPaint textPaint) {
+        int i7 = this.f35710a;
+        if (i7 != 0) {
+            textPaint.setTextSize(i7);
         }
+        a(textPaint);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.f35711b.a(textPaint);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        int i7 = this.f35710a;
+        if (i7 != 0) {
+            textPaint.setTextSize(i7);
+        }
+        a(textPaint);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        this.f35711b.a(textPaint);
     }
 }

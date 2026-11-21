@@ -1,60 +1,57 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class yv extends FrameLayout {
-    public final boolean f42641a;
-    public final ry f42642b;
+import android.view.MotionEvent;
+public final class yv extends ek0 {
+    public boolean f42581f3;
+    public boolean f42582g3;
+    public final ty f42583h3;
 
-    public yv(ry ryVar, Context context, boolean z10) {
-        super(context);
-        this.f42642b = ryVar;
-        this.f42641a = z10;
+    public yv(ty tyVar, Context context) {
+        super(context, null);
+        this.f42583h3 = tyVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        ry ryVar = this.f42642b;
-        fw fwVar = ryVar.C0;
-        aw awVar = ryVar.E0;
-        ew ewVar = ryVar.H0;
-        if (!this.f42641a && (view == awVar || view == ewVar)) {
-            canvas.save();
-            float y10 = fwVar.getY() + fwVar.getMeasuredHeight() + 1.0f;
-            if (view == awVar) {
-                y10 = Math.max(y10, ewVar.getY() + ewVar.getMeasuredHeight() + 1.0f);
-            }
-            canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * ryVar.f39332a.f57657e), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
+        ty tyVar = this.f42583h3;
+        boolean q10 = p10.q(motionEvent, tyVar.f40114i0, tyVar.f40113h2, this.f34875o2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
+            return false;
         }
-        return super.drawChild(canvas, view, j3);
+        return true;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ry ryVar = this.f42642b;
-        ryVar.L0 = true;
-        ryVar.Z();
-        jg.d1 d1Var = ryVar.U0;
-        if (d1Var != null) {
-            d1Var.a();
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        ty tyVar = this.f42583h3;
+        if (tyVar.f40140r0 && tyVar.f40130o0.H > 1) {
+            this.f42581f3 = true;
+            tyVar.f40117j0.h1(0, 0);
+            tyVar.f40133p0.setVisibility(0);
+            tyVar.f40136q0.k(0, 0);
+            tyVar.f40140r0 = false;
+            this.f42581f3 = false;
+        }
+        super.onLayout(z10, i7, i10, i11, i12);
+        ty.f(tyVar, true);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        if (!this.f42582g3) {
+            this.f42583h3.f40130o0.f();
+            this.f42582g3 = true;
         }
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ry ryVar = this.f42642b;
-        ryVar.L0 = false;
-        ryVar.Z();
-        jg.d1 d1Var = ryVar.U0;
-        if (d1Var != null) {
-            d1Var.a();
+    public final void requestLayout() {
+        if (this.f42581f3) {
+            return;
         }
+        super.requestLayout();
     }
 }

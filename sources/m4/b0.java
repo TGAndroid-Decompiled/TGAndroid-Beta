@@ -3,15 +3,15 @@ package m4;
 import h2.k0;
 import h2.l0;
 public final class b0 implements g0 {
-    public final a0 f20547a;
-    public final h2.x f20548b = new h2.x(32);
-    public int f20549c;
+    public final a0 f20575a;
+    public final h2.x f20576b = new h2.x(32);
+    public int f20577c;
     public int d;
-    public boolean f20550e;
-    public boolean f20551f;
+    public boolean f20578e;
+    public boolean f20579f;
 
     public b0(a0 a0Var) {
-        this.f20547a = a0Var;
+        this.f20575a = a0Var;
     }
 
     @Override
@@ -25,13 +25,13 @@ public final class b0 implements g0 {
             z10 = false;
         }
         if (z10) {
-            i10 = xVar.f13834b + xVar.A();
+            i10 = xVar.f13863b + xVar.A();
         } else {
             i10 = -1;
         }
-        if (this.f20551f) {
+        if (this.f20579f) {
             if (z10) {
-                this.f20551f = false;
+                this.f20579f = false;
                 xVar.N(i10);
                 this.d = 0;
             } else {
@@ -40,18 +40,18 @@ public final class b0 implements g0 {
         }
         while (xVar.a() > 0) {
             int i11 = this.d;
-            h2.x xVar2 = this.f20548b;
+            h2.x xVar2 = this.f20576b;
             if (i11 < 3) {
                 if (i11 == 0) {
                     int A = xVar.A();
-                    xVar.N(xVar.f13834b - 1);
+                    xVar.N(xVar.f13863b - 1);
                     if (A == 255) {
-                        this.f20551f = true;
+                        this.f20579f = true;
                         return;
                     }
                 }
                 int min = Math.min(xVar.a(), 3 - this.d);
-                xVar.k(this.d, min, xVar2.f13833a);
+                xVar.k(this.d, min, xVar2.f13862a);
                 int i12 = this.d + min;
                 this.d = i12;
                 if (i12 == 3) {
@@ -65,34 +65,34 @@ public final class b0 implements g0 {
                     } else {
                         z11 = false;
                     }
-                    this.f20550e = z11;
+                    this.f20578e = z11;
                     int i13 = (((A2 & 15) << 8) | A3) + 3;
-                    this.f20549c = i13;
-                    byte[] bArr = xVar2.f13833a;
+                    this.f20577c = i13;
+                    byte[] bArr = xVar2.f13862a;
                     if (bArr.length < i13) {
                         xVar2.c(Math.min(4098, Math.max(i13, bArr.length * 2)));
                     }
                 }
             } else {
-                int min2 = Math.min(xVar.a(), this.f20549c - this.d);
-                xVar.k(this.d, min2, xVar2.f13833a);
+                int min2 = Math.min(xVar.a(), this.f20577c - this.d);
+                xVar.k(this.d, min2, xVar2.f13862a);
                 int i14 = this.d + min2;
                 this.d = i14;
-                int i15 = this.f20549c;
+                int i15 = this.f20577c;
                 if (i14 != i15) {
                     continue;
                 } else {
-                    if (this.f20550e) {
-                        if (l0.p(0, i15, -1, xVar2.f13833a) != 0) {
-                            this.f20551f = true;
+                    if (this.f20578e) {
+                        if (l0.p(0, i15, -1, xVar2.f13862a) != 0) {
+                            this.f20579f = true;
                             return;
                         }
-                        xVar2.M(this.f20549c - 4);
+                        xVar2.M(this.f20577c - 4);
                     } else {
                         xVar2.M(i15);
                     }
                     xVar2.N(0);
-                    this.f20547a.c(xVar2);
+                    this.f20575a.c(xVar2);
                     this.d = 0;
                 }
             }
@@ -101,12 +101,12 @@ public final class b0 implements g0 {
 
     @Override
     public final void b(k0 k0Var, f3.q qVar, f0 f0Var) {
-        this.f20547a.b(k0Var, qVar, f0Var);
-        this.f20551f = true;
+        this.f20575a.b(k0Var, qVar, f0Var);
+        this.f20579f = true;
     }
 
     @Override
     public final void d() {
-        this.f20551f = true;
+        this.f20579f = true;
     }
 }

@@ -1,30 +1,47 @@
 package hi;
 
-import android.os.Build;
-import c8.dd;
-public final class r6 implements ri.n, ri.m {
-    public final v6 f15328a;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.ek0;
+public final class r6 implements eh.a {
+    public final int f15335a;
+    public final org.telegram.ui.ActionBar.w2 f15336b;
 
-    public r6(v6 v6Var) {
-        this.f15328a = v6Var;
+    public r6(org.telegram.ui.ActionBar.w2 w2Var, int i7) {
+        this.f15335a = i7;
+        this.f15336b = w2Var;
     }
 
     @Override
-    public int e() {
-        v6 v6Var = this.f15328a;
-        v6Var.getClass();
-        return org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, v6Var.J0);
+    public final void c(dh.a aVar, RectF rectF) {
+        switch (this.f15335a) {
+            case 0:
+            default:
+                aVar.f8398a = true;
+                return;
+        }
     }
 
     @Override
-    public void l(int i7) {
-        v6 v6Var = this.f15328a;
-        dh.g gVar = v6Var.f15583h2;
-        if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
-            if (dd.a(i7, 4)) {
-                gVar.h(v6Var.Y0.e());
-            }
-            gVar.e(v6Var.f15586k2, v6Var.f30190b.getWidth(), v6Var.f30190b.getHeight());
+    public final void d(Canvas canvas, RectF rectF) {
+        switch (this.f15335a) {
+            case 0:
+                u6 u6Var = (u6) this.f15336b;
+                ek0 ek0Var = u6Var.f39539o1;
+                ih.d.b(ek0Var, canvas, rectF, ek0Var, u6Var.f30173b, 255);
+                return;
+            default:
+                org.telegram.ui.ActionBar.w2 w2Var = this.f15336b;
+                ViewGroup viewGroup = w2Var.f30173b;
+                if (viewGroup != null && viewGroup.getVisibility() == 0 && viewGroup.getParent() == w2Var.f30176c) {
+                    canvas.save();
+                    canvas.translate(viewGroup.getX(), viewGroup.getY());
+                    viewGroup.draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
         }
     }
 }

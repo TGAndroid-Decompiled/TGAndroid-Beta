@@ -4,8 +4,8 @@ import org.telegram.messenger.fj;
 import org.telegram.messenger.sy;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ph;
-import org.telegram.ui.Components.y60;
+import org.telegram.ui.Components.a70;
+import org.telegram.ui.Components.rh;
 import org.telegram.ui.ls;
 public final class q1 implements ls {
     @Override
@@ -24,7 +24,7 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final y60 E(ai.k0 k0Var) {
+    public final a70 E(ai.l0 l0Var) {
         return null;
     }
 
@@ -192,7 +192,7 @@ public final class q1 implements ls {
     }
 
     @Override
-    public final void y(CharSequence charSequence, String str, ph phVar) {
+    public final void y(CharSequence charSequence, String str, rh rhVar) {
     }
 
     @Override

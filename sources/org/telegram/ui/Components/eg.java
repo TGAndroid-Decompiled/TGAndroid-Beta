@@ -1,24 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class eg extends t31 {
-    public final fg f34697q1;
+import android.os.Bundle;
+import org.telegram.tgnet.TLRPC;
+public final class eg extends org.telegram.ui.bn {
+    public boolean f34788vd;
+    public final TLRPC.User f34789wd;
+    public final TLRPC.User f34790xd;
+    public final long f34791yd;
 
-    public eg(fg fgVar, Context context, org.telegram.ui.ActionBar.h2 h2Var, h41 h41Var, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, h2Var, h41Var, i6Var);
-        this.f34697q1 = fgVar;
+    public eg(Bundle bundle, TLRPC.User user, TLRPC.User user2, long j3) {
+        super(bundle);
+        this.f34789wd = user;
+        this.f34790xd = user2;
+        this.f34791yd = j3;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.f34697q1.f35077a;
-        if (chatActivityEnterView.O3 == this) {
-            chatActivityEnterView.O3 = null;
-        }
-        kg kgVar = chatActivityEnterView.N3;
-        if (kgVar != null) {
-            kgVar.A(false);
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.f34788vd) {
+            this.f34788vd = true;
+            lc.b0(this).I(2131623990, org.telegram.messenger.gd.a0(null, null, 2131751727, org.telegram.messenger.o10.q(this.f34789wd)), org.telegram.messenger.g0.T2(org.telegram.messenger.gd.a0(null, null, 2131751728, org.telegram.messenger.o10.q(this.f34790xd)), new bi.c4(this, this.f34791yd, 22))).j();
         }
     }
 }

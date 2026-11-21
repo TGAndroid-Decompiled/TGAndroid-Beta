@@ -5,17 +5,15 @@ import java.util.List;
 import java.util.Map;
 import org.telegram.ui.Cells.c5;
 public interface q {
-    void A(byte[] bArr);
+    byte[] A(byte[] bArr, byte[] bArr2);
 
-    byte[] C(byte[] bArr, byte[] bArr2);
+    void C(byte[] bArr);
 
-    void D(byte[] bArr);
+    void F(byte[] bArr, m2.i iVar);
 
-    void G(byte[] bArr, m2.i iVar);
+    o G(byte[] bArr, List list, int i7, HashMap hashMap);
 
-    o H(byte[] bArr, List list, int i7, HashMap hashMap);
-
-    int J();
+    int H();
 
     boolean O(String str, byte[] bArr);
 
@@ -31,5 +29,7 @@ public interface q {
 
     byte[] t();
 
-    void x(byte[] bArr, byte[] bArr2);
+    void u(byte[] bArr, byte[] bArr2);
+
+    void x(byte[] bArr);
 }

@@ -1,86 +1,25 @@
 package org.telegram.ui.Components;
+public final class gp0 implements org.telegram.messenger.x10 {
+    public final int f35631a;
+    public final jt0 f35632b;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class gp0 implements View.OnClickListener {
-    public final int f35547a;
-    public final gt0 f35548b;
-
-    public gp0(gt0 gt0Var, int i7) {
-        this.f35547a = i7;
-        this.f35548b = gt0Var;
+    public gp0(jt0 jt0Var, int i7) {
+        this.f35631a = i7;
+        this.f35632b = jt0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f35547a) {
+    public final void a(Object obj) {
+        int i7 = this.f35631a;
+        jt0 jt0Var = this.f35632b;
+        fi.i6 i6Var = (fi.i6) obj;
+        switch (i7) {
             case 0:
-                gt0 gt0Var = this.f35548b;
-                int closestTab = gt0Var.getClosestTab();
-                y60 I = y60.I(gt0Var.f35642y1, view);
-                I.J = false;
-                if (gt0Var.b0(closestTab, new org.telegram.ui.Cells.c5(I))) {
-                    if (closestTab != 13 && closestTab != 11) {
-                        I.f42345b0 = true;
-                    } else {
-                        I.b0(0.0f, -org.telegram.messenger.g0.L(52.0f));
-                    }
-                    I.f42375s = 0;
-                    I.a0();
-                    return;
-                }
-                return;
-            case 1:
-                gt0 gt0Var2 = this.f35548b;
-                org.telegram.ui.ActionBar.h5 h5Var = gt0Var2.J;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = h5Var.f29916b;
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.d();
-                }
-                if (gt0Var2.b0(gt0Var2.getClosestTab(), new of(gt0Var2, 6))) {
-                    h5Var.V(null, null);
-                    return;
-                }
-                return;
-            case 2:
-                this.f35548b.V(true);
-                return;
-            case 3:
-                gt0 gt0Var3 = this.f35548b;
-                hq0 hq0Var = gt0Var3.f35576c0;
-                eq0 eq0Var = gt0Var3.f35572b0;
-                if (gt0Var3.f35628t0.getAlpha() >= 0.1f) {
-                    if (eq0Var != null && eq0Var.g()) {
-                        eq0Var.i();
-                    }
-                    if (hq0Var != null && hq0Var.f50340f) {
-                        ft0 x12 = gt0Var3.x1(gt0Var3.w1(gt0Var3.getClosestTab()));
-                        bs0 g02 = gt0Var3.g0(x12.f35164a);
-                        if (g02 != null) {
-                            hq0Var.setReorderingAlbums(false);
-                            lq0 lq0Var = g02.h;
-                            for (int i7 = 0; i7 < lq0Var.getChildCount(); i7++) {
-                                View childAt = lq0Var.getChildAt(i7);
-                                if (childAt instanceof org.telegram.ui.Cells.p7) {
-                                    ((org.telegram.ui.Cells.p7) childAt).l(false, true);
-                                }
-                            }
-                            et0 et0Var = x12.f35166c;
-                            if (et0Var != null && et0Var.f34507y) {
-                                et0Var.f34507y = false;
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                org.telegram.messenger.g0.h3(new fm0(5, jt0Var, i6Var), 100L);
                 return;
             default:
-                org.telegram.ui.ActionBar.h2 h2Var = this.f35548b.f35642y1;
-                h2Var.getMessagesController().h7.edit().putBoolean("story_keep", true).apply();
-                hi.ta.D(h2Var.getParentActivity(), h2Var.getCurrentAccount()).Q(null);
+                int[] iArr = jt0.f36610t2;
+                org.telegram.messenger.g0.h3(new fm0(5, jt0Var, i6Var), 100L);
                 return;
         }
     }

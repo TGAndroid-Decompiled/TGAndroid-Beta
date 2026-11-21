@@ -1,36 +1,24 @@
 package ki;
 
-import org.telegram.messenger.x10;
-import org.telegram.tgnet.TLRPC;
-public final class w1 implements x10 {
-    public final int f19021a;
-    public final t2 f19022b;
+import android.app.Dialog;
+import android.view.View;
+import android.view.WindowInsets;
+public final class w1 implements View.OnApplyWindowInsetsListener {
+    public final int f19051a;
+    public final Dialog f19052b;
 
-    public w1(t2 t2Var, int i7) {
-        this.f19021a = i7;
-        this.f19022b = t2Var;
+    public w1(Dialog dialog, int i7) {
+        this.f19051a = i7;
+        this.f19052b = dialog;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f19021a) {
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        switch (this.f19051a) {
             case 0:
-                Boolean bool = (Boolean) obj;
-                l2 l2Var = this.f19022b.E;
-                if (l2Var != null) {
-                    if (bool.booleanValue()) {
-                        l2Var.Q = System.currentTimeMillis();
-                        l2Var.y("main_button_pressed", null);
-                        return;
-                    }
-                    l2Var.Q = System.currentTimeMillis();
-                    l2Var.y("secondary_button_pressed", null);
-                    return;
-                }
-                return;
+                return s2.h((s2) this.f19052b, view, windowInsets);
             default:
-                org.telegram.messenger.g0.g3(new kg.h0(7, this.f19022b, (TLRPC.UserFull) obj));
-                return;
+                return org.telegram.ui.ActionBar.w2.z((org.telegram.ui.ActionBar.w2) this.f19052b, windowInsets);
         }
     }
 }

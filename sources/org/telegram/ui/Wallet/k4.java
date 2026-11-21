@@ -7,13 +7,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import org.telegram.ui.Components.o80;
-public final class k4 extends o80 {
+import org.telegram.ui.Components.q80;
+public final class k4 extends q80 {
     public final Paint M;
     public final m4 N;
 
-    public k4(m4 m4Var, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(i6Var);
+    public k4(m4 m4Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(h6Var);
         this.N = m4Var;
         Paint paint = new Paint(1);
         this.M = paint;
@@ -24,11 +24,11 @@ public final class k4 extends o80 {
     public final void b(Canvas canvas, Path path) {
         super.b(canvas, path);
         m4 m4Var = this.N;
-        RectF rectF = m4Var.f44524f;
-        if (m4Var.f44541o0 != null) {
+        RectF rectF = m4Var.f44564f;
+        if (m4Var.f44581o0 != null) {
             canvas.saveLayer(rectF, null);
-            m4Var.f44541o0.c((org.telegram.messenger.g0.L(206.0f) - m4Var.f44541o0.k()) / 2.0f, (rectF.bottom - org.telegram.messenger.g0.L(7.0f)) - m4Var.f44541o0.i(), 1.0f, -1, canvas);
-            Shader shader = this.f38032x.getShader();
+            m4Var.f44581o0.c((org.telegram.messenger.g0.L(206.0f) - m4Var.f44581o0.k()) / 2.0f, (rectF.bottom - org.telegram.messenger.g0.L(7.0f)) - m4Var.f44581o0.i(), 1.0f, -1, canvas);
+            Shader shader = this.f38839x.getShader();
             Paint paint = this.M;
             paint.setShader(shader);
             canvas.drawRect(rectF, paint);
@@ -39,6 +39,6 @@ public final class k4 extends o80 {
     @Override
     public final void invalidateSelf() {
         super.invalidateSelf();
-        this.N.f44515a.invalidate();
+        this.N.f44555a.invalidate();
     }
 }

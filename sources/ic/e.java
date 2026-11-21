@@ -4,43 +4,43 @@ import ab.q;
 import cc.f;
 import h6.m;
 public final class e {
-    public final gc.d f16218a;
-    public final int f16219b;
-    public final int f16220c;
+    public final gc.d f16243a;
+    public final int f16244b;
+    public final int f16245c;
     public final int d;
-    public final m f16221e;
+    public final m f16246e;
 
     public e(m mVar, gc.d dVar, int i7, int i10, int i11) {
-        this.f16221e = mVar;
-        this.f16218a = dVar;
-        this.f16219b = i7;
-        this.f16220c = i10;
+        this.f16246e = mVar;
+        this.f16243a = dVar;
+        this.f16244b = i7;
+        this.f16245c = i10;
         this.d = i11;
     }
 
     public final int a() {
-        gc.d dVar = this.f16218a;
+        gc.d dVar = this.f16243a;
         gc.d dVar2 = gc.d.BYTE;
         int i7 = this.d;
         if (dVar == dVar2) {
-            q qVar = (q) this.f16221e.d;
-            int i10 = this.f16219b;
-            return ((String) qVar.f988b).substring(i10, i7 + i10).getBytes(((f) qVar.f989c).f5172a[this.f16220c].charset()).length;
+            q qVar = (q) this.f16246e.d;
+            int i10 = this.f16244b;
+            return ((String) qVar.f988b).substring(i10, i7 + i10).getBytes(((f) qVar.f989c).f5201a[this.f16245c].charset()).length;
         }
         return i7;
     }
 
     public final String toString() {
-        q qVar = (q) this.f16221e.d;
+        q qVar = (q) this.f16246e.d;
         StringBuilder sb2 = new StringBuilder();
-        gc.d dVar = this.f16218a;
+        gc.d dVar = this.f16243a;
         sb2.append(dVar);
         sb2.append('(');
         if (dVar == gc.d.ECI) {
-            sb2.append(((f) qVar.f989c).f5172a[this.f16220c].charset().displayName());
+            sb2.append(((f) qVar.f989c).f5201a[this.f16245c].charset().displayName());
         } else {
             int i7 = this.d;
-            int i10 = this.f16219b;
+            int i10 = this.f16244b;
             String substring = ((String) qVar.f988b).substring(i10, i7 + i10);
             StringBuilder sb3 = new StringBuilder();
             for (int i11 = 0; i11 < substring.length(); i11++) {

@@ -8,25 +8,25 @@ import android.net.Uri;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-public final class tm0 extends org.telegram.ui.ActionBar.h2 {
-    public Bitmap f52301a;
-    public BitmapDrawable f52302b;
-    public sm0 f52303c;
+public final class tm0 extends org.telegram.ui.ActionBar.g2 {
+    public Bitmap f52347a;
+    public BitmapDrawable f52348b;
+    public sm0 f52349c;
     public rm0 d;
-    public boolean f52304e;
-    public boolean f52305f;
+    public boolean f52350e;
+    public boolean f52351f;
 
     @Override
     public final View createView(Context context) {
         this.actionBar.setBackgroundColor(-13421773);
-        this.actionBar.G(-12763843, false);
+        this.actionBar.F(-12763843, false);
         this.actionBar.setTitleColor(-1);
-        this.actionBar.I(-1, false);
+        this.actionBar.G(-1, false);
         this.actionBar.setBackButtonImage(2131231240);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(org.telegram.messenger.gd.M0(2131751687, null));
+        this.actionBar.setTitle(org.telegram.messenger.gd.N0(2131751686, null));
         this.actionBar.setActionBarMenuOnItemClick(new dv(this, 26));
-        this.actionBar.t().h(1, 2131231242, org.telegram.messenger.g0.L(56.0f), org.telegram.messenger.gd.M0(2131751343, null));
+        this.actionBar.s().h(1, 2131231242, org.telegram.messenger.g0.L(56.0f), org.telegram.messenger.gd.N0(2131751342, null));
         rm0 rm0Var = new rm0(this, context);
         this.d = rm0Var;
         this.fragmentView = rm0Var;
@@ -43,7 +43,7 @@ public final class tm0 extends org.telegram.ui.ActionBar.h2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f52301a == null) {
+        if (this.f52347a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
@@ -55,17 +55,17 @@ public final class tm0 extends org.telegram.ui.ActionBar.h2 {
             if (org.telegram.messenger.g0.Q1()) {
                 max = org.telegram.messenger.g0.L(520.0f);
             } else {
-                Point point = org.telegram.messenger.g0.f24118q;
+                Point point = org.telegram.messenger.g0.f24146q;
                 max = Math.max(point.x, point.y);
             }
             float f10 = max;
             Bitmap K = org.telegram.messenger.ec.K(string, uri, f10, f10, true);
-            this.f52301a = K;
+            this.f52347a = K;
             if (K == null) {
                 return false;
             }
         }
-        this.f52302b = new BitmapDrawable(this.f52301a);
+        this.f52348b = new BitmapDrawable(this.f52347a);
         super.onFragmentCreate();
         return true;
     }
@@ -73,11 +73,11 @@ public final class tm0 extends org.telegram.ui.ActionBar.h2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f52301a;
-        if (bitmap != null && !this.f52304e) {
+        Bitmap bitmap = this.f52347a;
+        if (bitmap != null && !this.f52350e) {
             bitmap.recycle();
-            this.f52301a = null;
+            this.f52347a = null;
         }
-        this.f52302b = null;
+        this.f52348b = null;
     }
 }

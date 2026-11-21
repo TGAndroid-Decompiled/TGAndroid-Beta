@@ -1,40 +1,25 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-public final class o3 extends FrameLayout {
-    public final int f37944a;
-    public final org.telegram.ui.Cells.d2[] f37945b;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.Region;
+public final class o3 extends q9 {
+    public final Path H;
 
-    public o3(Context context, org.telegram.ui.Cells.d2[] d2VarArr, int i7) {
+    public o3(Context context) {
         super(context);
-        this.f37944a = i7;
-        this.f37945b = d2VarArr;
+        this.H = new Path();
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        switch (this.f37944a) {
-            case 0:
-                super.onMeasure(i7, i10);
-                org.telegram.ui.Cells.d2[] d2VarArr = this.f37945b;
-                if (d2VarArr[0] != null) {
-                    int measuredWidth = getMeasuredWidth();
-                    int measuredHeight = getMeasuredHeight();
-                    setMeasuredDimension(measuredWidth, org.telegram.messenger.g0.L(7.0f) + d2VarArr[0].getMeasuredHeight() + measuredHeight);
-                    return;
-                }
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                org.telegram.ui.Cells.d2[] d2VarArr2 = this.f37945b;
-                if (d2VarArr2[0] != null) {
-                    int measuredWidth2 = getMeasuredWidth();
-                    int measuredHeight2 = getMeasuredHeight();
-                    setMeasuredDimension(measuredWidth2, org.telegram.messenger.g0.L(7.0f) + d2VarArr2[0].getMeasuredHeight() + measuredHeight2);
-                    return;
-                }
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        Path path = this.H;
+        path.rewind();
+        path.addCircle(org.telegram.messenger.g0.L(54.0f), org.telegram.messenger.g0.L(53.0f), org.telegram.messenger.g0.L(14.0f), Path.Direction.CW);
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+        super.onDraw(canvas);
+        canvas.restore();
     }
 }

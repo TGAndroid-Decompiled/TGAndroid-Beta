@@ -3,25 +3,25 @@ package ie;
 import ee.r;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 public final class j extends r {
-    public final AtomicReferenceArray f16245e;
+    public final AtomicReferenceArray f16270e;
 
     public j(long j3, j jVar, int i7) {
         super(j3, jVar, i7);
-        this.f16245e = new AtomicReferenceArray(i.f16244f);
+        this.f16270e = new AtomicReferenceArray(i.f16269f);
     }
 
     @Override
     public final int g() {
-        return i.f16244f;
+        return i.f16269f;
     }
 
     @Override
     public final void h(int i7, id.h hVar) {
-        this.f16245e.set(i7, i.f16243e);
+        this.f16270e.set(i7, i.f16268e);
         i();
     }
 
     public final String toString() {
-        return "SemaphoreSegment[id=" + this.f10945c + ", hashCode=" + hashCode() + ']';
+        return "SemaphoreSegment[id=" + this.f10974c + ", hashCode=" + hashCode() + ']';
     }
 }

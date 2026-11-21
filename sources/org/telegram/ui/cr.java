@@ -4,17 +4,17 @@ import android.view.View;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.regex.Pattern;
-public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui.Components.tt0, org.telegram.messenger.mc, org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.qb0, org.telegram.ui.Components.ob0 {
-    public final int f46598a;
+public final class cr implements org.telegram.ui.Components.vt0, org.telegram.ui.Components.wt0, org.telegram.messenger.mc, org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.rb0, org.telegram.ui.Components.pb0 {
+    public final int f46654a;
 
     public cr(int i7) {
-        this.f46598a = i7;
+        this.f46654a = i7;
     }
 
     @Override
     public void c(Object obj, float f10) {
         er erVar = (er) obj;
-        switch (this.f46598a) {
+        switch (this.f46654a) {
             case 1:
                 erVar.M1 = f10;
                 if (erVar.getParent() != null) {
@@ -51,7 +51,7 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
     @Override
     public float get(Object obj) {
         er erVar = (er) obj;
-        switch (this.f46598a) {
+        switch (this.f46654a) {
             case 0:
                 return erVar.M1;
             case 1:
@@ -66,23 +66,23 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f46598a) {
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        switch (this.f46654a) {
             case 10:
-                u1Var.dismiss();
+                t1Var.dismiss();
                 return;
             default:
-                u1Var.dismiss();
+                t1Var.dismiss();
                 return;
         }
     }
 
     @Override
     public String i(int i7) {
-        switch (this.f46598a) {
+        switch (this.f46654a) {
             case 12:
                 if (i7 == 0) {
-                    return org.telegram.messenger.gd.M0(2131748339, null);
+                    return org.telegram.messenger.gd.N0(2131748338, null);
                 }
                 Calendar calendar = Calendar.getInstance();
                 int i10 = calendar.get(1);
@@ -94,7 +94,7 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
                 return org.telegram.messenger.gd.E0().y0().format(timeInMillis);
             case 13:
                 if (i7 == 0) {
-                    return org.telegram.messenger.gd.M0(2131748339, null);
+                    return org.telegram.messenger.gd.N0(2131748338, null);
                 }
                 Calendar calendar2 = Calendar.getInstance();
                 int i11 = calendar2.get(1);
@@ -127,7 +127,7 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
                 return String.format("%02d", Integer.valueOf(i7));
             case 21:
                 if (i7 == 0) {
-                    return org.telegram.messenger.gd.M0(2131748339, null);
+                    return org.telegram.messenger.gd.N0(2131748338, null);
                 }
                 Calendar calendar4 = Calendar.getInstance();
                 int i13 = calendar4.get(1);
@@ -149,10 +149,10 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
             case 26:
                 return org.telegram.messenger.gd.G(i7 + 1, "Minutes", new Object[0]);
             case 27:
-                return org.telegram.messenger.gd.M0(2131747715, null);
+                return org.telegram.messenger.gd.N0(2131747714, null);
             case 28:
                 if (i7 == 0) {
-                    return org.telegram.messenger.gd.M0(2131748339, null);
+                    return org.telegram.messenger.gd.N0(2131748338, null);
                 }
                 Calendar calendar5 = Calendar.getInstance();
                 int i14 = calendar5.get(1);
@@ -166,13 +166,13 @@ public final class cr implements org.telegram.ui.Components.st0, org.telegram.ui
     }
 
     @Override
-    public void n(org.telegram.ui.Components.sb0 sb0Var, int i7) {
-        Pattern pattern = org.telegram.ui.Components.b5.f33529a;
+    public void n(org.telegram.ui.Components.tb0 tb0Var, int i7) {
+        Pattern pattern = org.telegram.ui.Components.c5.f34019a;
     }
 
     @Override
     public void q(Exception exc) {
-        switch (this.f46598a) {
+        switch (this.f46654a) {
             case 8:
                 org.telegram.messenger.a8.g(exc, true);
                 return;

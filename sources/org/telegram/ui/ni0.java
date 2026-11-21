@@ -3,36 +3,36 @@ package org.telegram.ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class ni0 implements TextWatcher {
-    public final int f50190a;
-    public final PasscodeActivity f50191b;
+    public final int f50197a;
+    public final PasscodeActivity f50198b;
 
     public ni0(PasscodeActivity passcodeActivity, int i7) {
-        this.f50190a = i7;
-        this.f50191b = passcodeActivity;
+        this.f50197a = i7;
+        this.f50198b = passcodeActivity;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        int i7 = this.f50190a;
+        int i7 = this.f50197a;
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f50190a) {
+        switch (this.f50197a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f50191b;
+                PasscodeActivity passcodeActivity = this.f50198b;
                 ii0 ii0Var = passcodeActivity.T;
                 if (passcodeActivity.S) {
-                    passcodeActivity.f43143n.removeCallbacks(ii0Var);
+                    passcodeActivity.f43184n.removeCallbacks(ii0Var);
                     ii0Var.run();
                     return;
                 }
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f50191b;
+                PasscodeActivity passcodeActivity2 = this.f50198b;
                 ii0 ii0Var2 = passcodeActivity2.T;
                 if (passcodeActivity2.S) {
-                    passcodeActivity2.f43143n.removeCallbacks(ii0Var2);
+                    passcodeActivity2.f43184n.removeCallbacks(ii0Var2);
                     ii0Var2.run();
                     return;
                 }
@@ -42,7 +42,7 @@ public final class ni0 implements TextWatcher {
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f50190a;
+        int i12 = this.f50197a;
     }
 
     private final void a(Editable editable) {

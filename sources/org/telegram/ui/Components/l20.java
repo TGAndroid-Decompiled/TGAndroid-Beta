@@ -1,51 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.widget.LinearLayout;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.widget.TextView;
-public abstract class l20 extends org.telegram.ui.ActionBar.x2 {
-    public c5.l f36984m1;
-    public i20 n1;
-    public LinearLayout f36985o1;
-    public TextView[] f36986p1;
-    public float f36987q1;
-    public int f36988r1;
+public final class l20 extends TextView {
+    public final Paint[] f37070a;
+    public final org.telegram.ui.g30 f37071b;
 
-    public static void J0(org.telegram.ui.g30 g30Var) {
-        TextView textView;
-        TextView[] textViewArr = g30Var.f36986p1;
-        int i7 = g30Var.f36988r1;
-        TextView textView2 = textViewArr[i7];
-        if (i7 < textViewArr.length - 1) {
-            textView = textViewArr[i7 + 1];
-        } else {
-            textView = null;
-        }
-        g30Var.f30190b.getMeasuredWidth();
-        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
-        float measuredWidth2 = (g30Var.f30190b.getMeasuredWidth() / 2) - measuredWidth;
-        if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * g30Var.f36987q1;
-        }
-        for (int i10 = 0; i10 < textViewArr.length; i10++) {
-            int i11 = g30Var.f36988r1;
-            float f10 = 0.9f;
-            float f11 = 0.7f;
-            if (i10 >= i11 && i10 <= i11 + 1) {
-                if (i10 == i11) {
-                    float f12 = g30Var.f36987q1;
-                    f11 = 1.0f - (0.3f * f12);
-                    f10 = 1.0f - (f12 * 0.1f);
-                } else {
-                    float f13 = g30Var.f36987q1;
-                    f11 = 0.7f + (0.3f * f13);
-                    f10 = 0.9f + (f13 * 0.1f);
-                }
+    public l20(org.telegram.ui.g30 g30Var, Context context) {
+        super(context);
+        this.f37071b = g30Var;
+        this.f37070a = new Paint[g30Var.f38070p1.length];
+        int i7 = 0;
+        while (true) {
+            Paint[] paintArr = this.f37070a;
+            if (i7 < paintArr.length) {
+                paintArr[i7] = new Paint(1);
+                i7++;
+            } else {
+                return;
             }
-            textViewArr[i10].setAlpha(f11);
-            textViewArr[i10].setScaleX(f10);
-            textViewArr[i10].setScaleY(f10);
         }
-        g30Var.f36985o1.setTranslationX(measuredWidth2);
-        g30Var.n1.invalidate();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i7;
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        org.telegram.ui.g30 g30Var = this.f37071b;
+        int i10 = g30Var.f38072r1;
+        Paint[] paintArr = this.f37070a;
+        paintArr[i10].setAlpha(255);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), paintArr[g30Var.f38072r1]);
+        float f10 = g30Var.f38071q1;
+        if (f10 > 0.0f && (i7 = g30Var.f38072r1 + 1) < paintArr.length) {
+            paintArr[i7].setAlpha((int) (f10 * 255.0f));
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), paintArr[g30Var.f38072r1 + 1]);
+        }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onSizeChanged(int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.l20.onSizeChanged(int, int, int, int):void");
     }
 }

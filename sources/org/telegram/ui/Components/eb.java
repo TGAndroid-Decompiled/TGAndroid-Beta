@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 public abstract class eb extends lb {
     private db button;
     private int childrenMeasuredWidth;
-    org.telegram.ui.ActionBar.i6 resourcesProvider;
+    org.telegram.ui.ActionBar.h6 resourcesProvider;
     public zb timerView;
     private boolean wrapWidth;
 
-    public eb(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i6Var);
-        this.resourcesProvider = i6Var;
+    public eb(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
+        this.resourcesProvider = h6Var;
     }
 
     public db getButton() {
@@ -60,7 +60,7 @@ public abstract class eb extends lb {
     public void setTimer() {
         zb zbVar = new zb(getContext(), this.resourcesProvider);
         this.timerView = zbVar;
-        zbVar.f42849b = 5000L;
+        zbVar.f42762b = 5000L;
         addView(zbVar, c8.ma.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

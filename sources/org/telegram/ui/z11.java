@@ -1,35 +1,19 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.view.View;
-public final class z11 extends View {
-    public final Paint f54322a;
-    public int f54323b;
-    public LinearGradient f54324c;
-    public final b21 d;
+import androidx.recyclerview.widget.RecyclerView;
+public final class z11 extends v4.u0 {
+    public final c21 f54366a;
 
-    public z11(b21 b21Var, Context context) {
-        super(context);
-        this.d = b21Var;
-        this.f54322a = new Paint(1);
-        this.f54323b = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, b21Var.J0);
-        this.f54324c = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(68.0f), new int[]{org.telegram.ui.ActionBar.n6.r1(0.0f, this.f54323b), this.f54323b}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public z11(c21 c21Var) {
+        this.f54366a = c21Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, this.d.J0);
-        if (w02 != this.f54323b) {
-            this.f54323b = w02;
-            this.f54324c = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(68.0f), new int[]{org.telegram.ui.ActionBar.n6.r1(0.0f, w02), w02}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        c21 c21Var = this.f54366a;
+        if (c21Var.f39539o1.J1) {
+            org.telegram.messenger.g0.v1(c21Var.Y1);
         }
-        LinearGradient linearGradient = this.f54324c;
-        Paint paint = this.f54322a;
-        paint.setShader(linearGradient);
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+        c21.e1(c21Var);
     }
 }

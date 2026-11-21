@@ -2,16 +2,16 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 public class v {
-    public static final AtomicIntegerFieldUpdater f61893b = AtomicIntegerFieldUpdater.newUpdater(v.class, "_handled$volatile");
+    public static final AtomicIntegerFieldUpdater f61934b = AtomicIntegerFieldUpdater.newUpdater(v.class, "_handled$volatile");
     private volatile int _handled$volatile;
-    public final Throwable f61894a;
+    public final Throwable f61935a;
 
     public v(Throwable th2, boolean z10) {
-        this.f61894a = th2;
+        this.f61935a = th2;
         this._handled$volatile = z10 ? 1 : 0;
     }
 
     public final String toString() {
-        return getClass().getSimpleName() + '[' + this.f61894a + ']';
+        return getClass().getSimpleName() + '[' + this.f61935a + ']';
     }
 }

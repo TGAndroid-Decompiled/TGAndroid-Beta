@@ -1,11 +1,47 @@
 package org.telegram.ui.Components;
 public final class kx0 {
-    public final qx0 f36912a;
-    public final sx0 f36913b;
-    public boolean f36914c = true;
+    public final int f37033a;
 
-    public kx0(qx0 qx0Var, sx0 sx0Var) {
-        this.f36912a = qx0Var;
-        this.f36913b = sx0Var;
+    public kx0(int i7) {
+        this.f37033a = i7;
+    }
+
+    public final int a(rx0 rx0Var, int i7) {
+        switch (this.f37033a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i7;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
+        }
+    }
+
+    public final int b(rx0 rx0Var, int i7) {
+        switch (this.f37033a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i7;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public int c(int i7, int i10) {
+        switch (this.f37033a) {
+            case 4:
+                return i10;
+            default:
+                return i7;
+        }
     }
 }

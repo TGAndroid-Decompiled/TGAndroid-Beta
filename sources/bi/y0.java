@@ -1,41 +1,97 @@
 package bi;
-public final class y0 implements Runnable {
-    public final int f4214a;
-    public final g1 f4215b;
 
-    public y0(g1 g1Var, int i7) {
-        this.f4214a = i7;
-        this.f4215b = g1Var;
+import android.animation.AnimatorSet;
+import java.util.LinkedList;
+import org.telegram.ui.Components.cb0;
+import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.lb;
+import org.telegram.ui.Components.og;
+import org.telegram.ui.Components.qc0;
+import org.telegram.ui.Components.ui;
+public final class y0 implements r1.c {
+    public final int f4278a;
+    public final Object f4279b;
+    public final Object f4280c;
+
+    public y0(int i7, Object obj, Object obj2) {
+        this.f4278a = i7;
+        this.f4279b = obj;
+        this.f4280c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f4214a) {
+    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
+        switch (this.f4278a) {
             case 0:
-                g1 g1Var = this.f4215b;
-                rh.h hVar = g1Var.f3594r1;
-                jh.f fVar = g1Var.f3593q1;
-                if (fVar != null) {
-                    fVar.d();
-                }
-                d1 d1Var = g1Var.C1;
-                if (d1Var != null) {
-                    d1Var.setTranslationY(-hVar.d());
-                }
-                org.telegram.ui.Components.n6 n6Var = g1Var.f3599w1;
-                if (n6Var != null) {
-                    n6Var.setTranslationY(-hVar.d());
-                }
-                g1Var.J0();
+                ((b1) this.f4279b).b(0.0f);
+                ((a3.f) this.f4280c).run();
                 return;
             case 1:
-                this.f4215b.C1.performClick();
+                ki.r3 r3Var = (ki.r3) this.f4279b;
+                Runnable runnable = (Runnable) this.f4280c;
+                if (gVar == r3Var.H) {
+                    r3Var.H = null;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                    Runnable runnable2 = r3Var.F;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                    }
+                    float f12 = r3Var.h;
+                    if (f12 != -1.0f) {
+                        boolean z11 = r3Var.f18908s;
+                        r3Var.f18908s = true;
+                        r3Var.setOffsetY(f12);
+                        r3Var.h = -1.0f;
+                        r3Var.f18908s = z11;
+                    }
+                    r3Var.f18906n = -2.1474836E9f;
+                    return;
+                }
                 return;
             case 2:
-                this.f4215b.f3595s1.f1();
+                og ogVar = (og) this.f4280c;
+                ((lb) this.f4279b).setInOutOffset(0.0f);
+                if (!z10) {
+                    ogVar.run();
+                    return;
+                }
+                return;
+            case 3:
+                org.telegram.ui.Components.g gVar2 = (org.telegram.ui.Components.g) this.f4280c;
+                AnimatorSet animatorSet = ((ui) this.f4279b).A0;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    gVar2.run();
+                    return;
+                }
+                return;
+            case 4:
+                ui uiVar = (ui) ((di.a4) this.f4279b).d;
+                uiVar.f40452x2.setTranslationY(0.0f);
+                uiVar.f40452x2.m(uiVar.f40402j4);
+                uiVar.Y0.g();
+                uiVar.f30173b.invalidate();
+                ((gh) this.f4280c).run();
+                uiVar.Q1(0);
                 return;
             default:
-                this.f4215b.dismiss();
+                qc0 qc0Var = (qc0) this.f4279b;
+                cb0 cb0Var = (cb0) this.f4280c;
+                LinkedList linkedList = qc0Var.V;
+                qc0Var.U = null;
+                cb0Var.D = null;
+                cb0Var.y();
+                if (!z10) {
+                    cb0Var.h = 1.0f;
+                    cb0Var.y();
+                    if (!linkedList.isEmpty()) {
+                        ((Runnable) linkedList.poll()).run();
+                        qc0Var.W.poll();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

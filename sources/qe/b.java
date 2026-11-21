@@ -2,11 +2,11 @@ package qe;
 
 import androidx.datastore.preferences.protobuf.k;
 public final class b extends k {
-    public static final b f56110c;
+    public static final b f56151c;
 
     static {
         ?? obj = new Object();
-        obj.f2153b = new hd.d();
-        f56110c = obj;
+        obj.f2165b = new hd.d();
+        f56151c = obj;
     }
 }

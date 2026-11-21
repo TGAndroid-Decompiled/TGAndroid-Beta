@@ -1,28 +1,28 @@
 package da;
 public final class s0 {
-    public long f8176a;
-    public String f8177b;
-    public k2 f8178c;
+    public long f8205a;
+    public String f8206b;
+    public k2 f8207c;
     public l2 d;
-    public m2 f8179e;
-    public p2 f8180f;
-    public byte f8181g;
+    public m2 f8208e;
+    public p2 f8209f;
+    public byte f8210g;
 
     public final t0 a() {
         String str;
         k2 k2Var;
         l2 l2Var;
-        if (this.f8181g == 1 && (str = this.f8177b) != null && (k2Var = this.f8178c) != null && (l2Var = this.d) != null) {
-            return new t0(this.f8176a, str, k2Var, l2Var, this.f8179e, this.f8180f);
+        if (this.f8210g == 1 && (str = this.f8206b) != null && (k2Var = this.f8207c) != null && (l2Var = this.d) != null) {
+            return new t0(this.f8205a, str, k2Var, l2Var, this.f8208e, this.f8209f);
         }
         StringBuilder sb2 = new StringBuilder();
-        if ((1 & this.f8181g) == 0) {
+        if ((1 & this.f8210g) == 0) {
             sb2.append(" timestamp");
         }
-        if (this.f8177b == null) {
+        if (this.f8206b == null) {
             sb2.append(" type");
         }
-        if (this.f8178c == null) {
+        if (this.f8207c == null) {
             sb2.append(" app");
         }
         if (this.d == null) {

@@ -1,29 +1,72 @@
 package bi;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLRPC;
-public final class m1 implements RequestDelegate {
-    public final int f3840a;
-    public final Object f3841b;
-    public final Object f3842c;
-    public final Object d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.tgnet.TLObject;
+public final class m1 extends View {
+    public final l1 f3867a;
 
-    public m1(Object obj, Object obj2, Object obj3, int i7) {
-        this.f3840a = i7;
-        this.f3841b = obj;
-        this.f3842c = obj2;
-        this.d = obj3;
+    public m1(Context context) {
+        super(context);
+        l1 l1Var = new l1();
+        this.f3867a = l1Var;
+        l1Var.f3827r = this;
+        l1Var.d.H0(this);
+    }
+
+    public l1 getDrawable() {
+        return this.f3867a;
+    }
+
+    public TextPaint getTextPaint() {
+        return this.f3867a.f3814c;
     }
 
     @Override
-    public final void run(org.telegram.tgnet.TLObject r11, org.telegram.tgnet.TLRPC.TL_error r12) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.m1.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f3867a.d.P();
     }
 
-    public m1(boolean[] zArr, org.telegram.ui.web.o oVar, TLRPC.UserFull userFull) {
-        this.f3840a = 14;
-        this.f3841b = zArr;
-        this.d = oVar;
-        this.f3842c = userFull;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        l1 l1Var = this.f3867a;
+        l1Var.d.R();
+        org.telegram.ui.Components.y5.release((View) null, l1Var.f3826q);
+        l1Var.f3826q = null;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int paddingLeft = getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int width = getWidth() - getPaddingRight();
+        int height = getHeight() - getPaddingBottom();
+        l1 l1Var = this.f3867a;
+        l1Var.setBounds(paddingLeft, paddingTop, width, height);
+        l1Var.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int size = (View.MeasureSpec.getSize(i7) - getPaddingLeft()) - getPaddingRight();
+        l1 l1Var = this.f3867a;
+        l1Var.b(size);
+        setMeasuredDimension(getPaddingRight() + getPaddingLeft() + l1Var.f3829t, getPaddingBottom() + getPaddingTop() + l1Var.f3830u);
+    }
+
+    public void setMessage(CharSequence charSequence) {
+        l1 l1Var = this.f3867a;
+        l1Var.f3822m = charSequence;
+        l1Var.f3828s = -1;
+        requestLayout();
+    }
+
+    public void setUser(TLObject tLObject) {
+        this.f3867a.c(tLObject);
+        invalidate();
     }
 }

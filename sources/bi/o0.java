@@ -10,8 +10,8 @@ public final class o0 extends di.z5 {
     public final int J0;
     public final t0 K0;
 
-    public o0(t0 t0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, a3.f fVar, o oVar, o oVar2, o oVar3, o oVar4, o oVar5, o oVar6, int i7) {
-        super(context, i6Var, fVar, oVar, null, oVar2, oVar3, oVar4, oVar5, oVar6);
+    public o0(t0 t0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, a3.f fVar, o oVar, o oVar2, o oVar3, o oVar4, o oVar5, o oVar6, int i7) {
+        super(context, h6Var, fVar, oVar, null, oVar2, oVar3, oVar4, oVar5, oVar6);
         this.K0 = t0Var;
         this.J0 = i7;
         this.H0 = new Path();
@@ -28,7 +28,7 @@ public final class o0 extends di.z5 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f10121b) {
+        if (view == this.f10142b) {
             return true;
         }
         return super.drawChild(canvas, view, j3);

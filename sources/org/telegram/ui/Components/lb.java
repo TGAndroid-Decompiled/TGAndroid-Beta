@@ -19,7 +19,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBar.c6 {
+public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
     public static final r1.e IN_OUT_OFFSET_Y = new hb(0);
     public static final Property<lb, Float> IN_OUT_OFFSET_Y2 = new org.telegram.ui.Cells.p8("offsetY", 8);
     Drawable background;
@@ -38,7 +38,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
     public View.OnClickListener onClickListener;
     private Runnable onGlassBackgroundRemoved;
     private boolean pillStyle;
-    private final org.telegram.ui.ActionBar.i6 resourcesProvider;
+    private final org.telegram.ui.ActionBar.h6 resourcesProvider;
     private Drawable themeBackground;
     public boolean top;
     public boolean transitionRunningEnter;
@@ -46,14 +46,14 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
     private int wideScreenGravity;
     private int wideScreenWidth;
 
-    public lb(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
+    public lb(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
         this.callbacks = new ArrayList();
         this.wideScreenWidth = -2;
         this.wideScreenGravity = 1;
-        this.resourcesProvider = i6Var;
+        this.resourcesProvider = h6Var;
         setMinimumHeight(org.telegram.messenger.g0.L(48.0f));
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.n6.wj));
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.m6.wj));
         this.themeBackground = this.background;
         b();
         setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(8.0f));
@@ -63,7 +63,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
 
     public static boolean a() {
         if (!org.telegram.messenger.g0.Q1()) {
-            Point point = org.telegram.messenger.g0.f24118q;
+            Point point = org.telegram.messenger.g0.f24146q;
             if (point.x < point.y) {
                 return false;
             }
@@ -113,7 +113,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
         this.inOutOffset = f10;
         updatePosition();
         gc gcVar = this.bulletin;
-        if (gcVar != null && gcVar.f35462k) {
+        if (gcVar != null && gcVar.f35509k) {
             invalidate();
         }
     }
@@ -150,7 +150,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public boolean canHaveGlassBackground() {
-        if (!this.hasCustomBackground && this.glassBackground == null && this.backgroundColor == getThemedColor(org.telegram.ui.ActionBar.n6.wj)) {
+        if (!this.hasCustomBackground && this.glassBackground == null && this.backgroundColor == getThemedColor(org.telegram.ui.ActionBar.m6.wj)) {
             return true;
         }
         return false;
@@ -163,15 +163,15 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public void dispatchDraw(Canvas canvas) {
         gc gcVar = this.bulletin;
-        if (gcVar != null && gcVar.f35462k) {
+        if (gcVar != null && gcVar.f35509k) {
             if (this.blurVisibilityDrawable == null) {
-                this.blurVisibilityDrawable = new wh.b(new b0(this, 15));
+                this.blurVisibilityDrawable = new wh.b(new c0(this, 15));
             }
             wh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f59866c == null) {
+            if (bVar.f59907c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, org.telegram.messenger.g0.L(10.0f));
             }
-            this.blurVisibilityDrawable.f59870i = c8.l9.b((int) org.telegram.messenger.n10.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f59911i = c8.l9.b((int) org.telegram.messenger.n10.y(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -188,9 +188,9 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
         if (this.bulletin != null && i7 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (fbVar = this.delegate) != null) {
-                float h = fbVar.h(this.bulletin.f35454a) - getY();
+                float h = fbVar.h(this.bulletin.f35501a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f35454a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f35501a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -265,14 +265,14 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
         fb fbVar;
         gc gcVar;
         r1.g gVar;
-        if (this.bulletin != null && (((fbVar = this.delegate) == null || fbVar.e()) && (gVar = (gcVar = this.bulletin).d) != null && gVar.f56317f)) {
-            f10 = gcVar.f35466o;
+        if (this.bulletin != null && (((fbVar = this.delegate) == null || fbVar.e()) && (gVar = (gcVar = this.bulletin).d) != null && gVar.f56358f)) {
+            f10 = gcVar.f35513o;
         } else {
             fb fbVar2 = this.delegate;
             if (fbVar2 != null) {
                 gc gcVar2 = this.bulletin;
                 if (gcVar2 != null) {
-                    i7 = gcVar2.f35454a;
+                    i7 = gcVar2.f35501a;
                 } else {
                     i7 = 0;
                 }
@@ -293,7 +293,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
     }
 
     public int getThemedColor(int i7) {
-        return org.telegram.ui.ActionBar.n6.w0(i7, this.resourcesProvider);
+        return org.telegram.ui.ActionBar.m6.w0(i7, this.resourcesProvider);
     }
 
     public float getTopOffset() {
@@ -302,7 +302,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
         if (fbVar != null) {
             gc gcVar = this.bulletin;
             if (gcVar != null) {
-                i7 = gcVar.f35454a;
+                i7 = gcVar.f35501a;
             } else {
                 i7 = 0;
             }
@@ -357,9 +357,9 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
             this.callbacks.get(i7).d();
         }
         wh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f59866c) != null) {
+        if (bVar != null && (bitmap = bVar.f59907c) != null) {
             bitmap.recycle();
-            bVar.f59866c = null;
+            bVar.f59907c = null;
         }
     }
 
@@ -442,7 +442,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
         try {
             Drawable drawable = this.background;
             if (drawable != null && drawable == this.themeBackground && (drawable instanceof ShapeDrawable)) {
-                ((ShapeDrawable) drawable).getPaint().setColor(getThemedColor(org.telegram.ui.ActionBar.n6.wj));
+                ((ShapeDrawable) drawable).getPaint().setColor(getThemedColor(org.telegram.ui.ActionBar.m6.wj));
                 invalidate();
             }
         } catch (Exception e10) {
@@ -459,7 +459,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
             if (this.top) {
                 gc gcVar = this.bulletin;
                 if (gcVar != null) {
-                    i10 = gcVar.f35454a;
+                    i10 = gcVar.f35501a;
                 } else {
                     i10 = 0;
                 }
@@ -490,7 +490,7 @@ public abstract class lb extends FrameLayout implements org.telegram.ui.ActionBa
         if (this.hasCustomBackground) {
             return;
         }
-        this.background = org.telegram.ui.ActionBar.n6.d0(org.telegram.messenger.g0.L(i10), i7);
+        this.background = org.telegram.ui.ActionBar.m6.d0(org.telegram.messenger.g0.L(i10), i7);
         this.backgroundColor = i7;
     }
 

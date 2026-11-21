@@ -1,133 +1,82 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
+import a8.xa;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
-import java.util.ArrayList;
+import org.telegram.messenger.a8;
 import org.telegram.messenger.gd;
-public final class e3 extends k1.b {
-    public static final int f28888r = 0;
-    public final RectF f28889o;
-    public final Rect f28890p;
-    public final g3 f28891q;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.o10;
+public class e3 {
+    public boolean A;
+    public boolean B;
+    public boolean C;
+    public boolean D;
+    public String E;
+    public Bitmap F;
+    public boolean G;
+    public String H;
+    public float I;
+    public org.telegram.ui.g4 J;
+    public ki.v0 K;
+    public boolean L;
+    public ki.e4 f28906a;
+    public org.telegram.ui.web.s0 f28907b;
+    public org.telegram.ui.k3 f28908c;
+    public Object d;
+    public boolean f28909e;
+    public String f28910f;
+    public int f28911g;
+    public int h;
+    public int f28912i;
+    public boolean f28913j;
+    public float f28914k = Float.MAX_VALUE;
+    public boolean f28915l = true;
+    public Bitmap f28916m;
+    public boolean f28917n;
+    public boolean f28918o;
+    public int f28919p;
+    public int f28920q;
+    public int f28921r;
+    public int f28922s;
+    public boolean f28923t;
+    public boolean f28924u;
+    public boolean v;
+    public xa f28925w;
+    public String f28926x;
+    public boolean f28927y;
+    public boolean f28928z;
 
-    public e3(g3 g3Var, g3 g3Var2) {
-        super(g3Var2);
-        this.f28891q = g3Var;
-        this.f28889o = new RectF();
-        this.f28890p = new Rect();
+    public final void a() {
+        try {
+            org.telegram.ui.web.s0 s0Var = this.f28907b;
+            if (s0Var != null) {
+                s0Var.destroy();
+                this.f28907b = null;
+            }
+            org.telegram.ui.g4 g4Var = this.J;
+            if (g4Var != null) {
+                g4Var.q();
+            }
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
     }
 
-    @Override
-    public final int g(float f10, float f11) {
-        d3 c10;
-        g3 g3Var = this.f28891q;
-        if (g3Var.f28962b) {
-            ArrayList<f3> tabs = g3Var.getTabs();
-            if (!tabs.isEmpty() && (c10 = g3Var.c(tabs.get(0))) != null) {
-                float c11 = c10.c();
-                RectF rectF = this.f28889o;
-                g3Var.d(rectF, c11);
-                Rect bounds = c10.f28843l.getBounds();
-                if (!bounds.isEmpty() && bounds.contains((int) (f10 - rectF.left), (int) (f11 - rectF.centerY()))) {
-                    return 2;
-                }
-                if (rectF.contains(f10, f11)) {
-                    return 1;
-                }
-                return -1;
+    public String b() {
+        if (this.J != null) {
+            if (TextUtils.isEmpty(this.E)) {
+                return gd.N0(2131742662, null);
             }
-            return -1;
+            return this.E;
         }
-        return -1;
-    }
-
-    @Override
-    public final void h(ArrayList arrayList) {
-        g3 g3Var = this.f28891q;
-        if (g3Var.f28962b) {
-            ArrayList<f3> tabs = g3Var.getTabs();
-            if (tabs.isEmpty() || g3Var.c(tabs.get(0)) == null) {
-                return;
-            }
-            arrayList.add(1);
-            arrayList.add(2);
+        ki.e4 e4Var = this.f28906a;
+        if (e4Var == null) {
+            return "";
         }
-    }
-
-    @Override
-    public final boolean k(int i7, int i10) {
-        if (i10 == 16) {
-            g3 g3Var = this.f28891q;
-            ArrayList<f3> tabs = g3Var.getTabs();
-            if (!tabs.isEmpty()) {
-                f3 f3Var = tabs.get(0);
-                if (i7 == 1) {
-                    g3Var.b();
-                    return true;
-                } else if (i7 == 2) {
-                    g3Var.g(f3Var, new fi.e(7));
-                    return true;
-                }
-            }
+        if (e4Var.f18678g == 6) {
+            return e4Var.f18676e;
         }
-        return false;
-    }
-
-    @Override
-    public final void l(int i7, s0.c cVar) {
-        f3 f3Var;
-        d3 c10;
-        String str;
-        String str2;
-        g3 g3Var = this.f28891q;
-        ArrayList<f3> tabs = g3Var.getTabs();
-        if (tabs.isEmpty()) {
-            f3Var = null;
-        } else {
-            f3Var = tabs.get(0);
-        }
-        if (f3Var == null) {
-            c10 = null;
-        } else {
-            c10 = g3Var.c(f3Var);
-        }
-        cVar.i("android.widget.Button");
-        cVar.b(s0.b.f56733c);
-        String str3 = "";
-        Rect rect = this.f28890p;
-        if (c10 == null) {
-            rect.set(0, 0, 1, 1);
-            cVar.h(rect);
-            cVar.j("");
-            cVar.p(false);
-            return;
-        }
-        float c11 = c10.c();
-        RectF rectF = this.f28889o;
-        g3Var.d(rectF, c11);
-        if (f3Var.b() != null) {
-            str3 = f3Var.b();
-        }
-        if (i7 == 2) {
-            Rect bounds = c10.f28843l.getBounds();
-            rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
-            cVar.h(rect);
-            if (TextUtils.isEmpty(str3)) {
-                str2 = gd.M0(2131752030, null);
-            } else {
-                str2 = gd.M0(2131752030, null) + ", " + str3;
-            }
-            cVar.j(str2);
-            return;
-        }
-        rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        cVar.h(rect);
-        if (TextUtils.isEmpty(str3)) {
-            str = gd.M0(2131747624, null);
-        } else {
-            str = gd.M0(2131747624, null) + ", " + str3;
-        }
-        cVar.j(str);
+        return o10.q(mp.u1(e4Var.f18673a).c2(Long.valueOf(this.f28906a.f18675c)));
     }
 }

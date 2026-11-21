@@ -1,165 +1,251 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class s00 extends FrameLayout {
-    public final RectF f39435a;
-    public final FragmentContextView f39436b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class s00 extends AnimatorListenerAdapter {
+    public final int f39426a;
+    public final FragmentContextView f39427b;
 
-    public s00(FragmentContextView fragmentContextView, Context context) {
-        super(context);
-        this.f39436b = fragmentContextView;
-        this.f39435a = new RectF();
+    public s00(FragmentContextView fragmentContextView, int i7) {
+        this.f39426a = i7;
+        this.f39427b = fragmentContextView;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f10;
-        super.dispatchDraw(canvas);
-        FragmentContextView fragmentContextView = this.f39436b;
-        org.telegram.ui.ActionBar.h2 h2Var = fragmentContextView.h;
-        m6 m6Var = fragmentContextView.f32967k0;
-        if (fragmentContextView.V == 4 && fragmentContextView.f32965i0) {
-            int L = org.telegram.messenger.g0.L(24.0f) + ((int) Math.ceil(m6Var.c()));
-            if (L != fragmentContextView.f32963g0) {
-                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{-10121218, -6983683}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                fragmentContextView.f32960e0 = linearGradient;
-                fragmentContextView.f32958d0.setShader(linearGradient);
-                fragmentContextView.f32963g0 = L;
-            }
-            org.telegram.messenger.t3 groupCall = fragmentContextView.f32969n.getGroupCall();
-            if (h2Var != null && groupCall != null && groupCall.j()) {
-                long currentTimeMillis = (groupCall.f26935b.schedule_date * 1000) - h2Var.getConnectionsManager().getCurrentTimeMillis();
-                f10 = 1.0f;
-                if (currentTimeMillis >= 0) {
-                    if (currentTimeMillis < 5000) {
-                        f10 = 1.0f - (((float) currentTimeMillis) / 5000.0f);
-                    } else {
-                        f10 = 0.0f;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39426a) {
+            case 0:
+                FragmentContextView fragmentContextView = this.f39427b;
+                AnimatorSet animatorSet = fragmentContextView.f32994f;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    fragmentContextView.f32994f = null;
+                    return;
+                }
+                return;
+            case 1:
+                FragmentContextView fragmentContextView2 = this.f39427b;
+                fragmentContextView2.f33013v0.e();
+                AnimatorSet animatorSet2 = fragmentContextView2.f32994f;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    fragmentContextView2.setVisibility(8);
+                    z00 z00Var = fragmentContextView2.f33006q0;
+                    if (z00Var != null) {
+                        ((jp0) z00Var).b(false);
                     }
-                }
-                if (currentTimeMillis < 6000) {
-                    invalidate();
-                }
-            } else {
-                f10 = 0.0f;
-            }
-            fragmentContextView.f32962f0.reset();
-            fragmentContextView.f32962f0.postTranslate((-fragmentContextView.f32963g0) * 0.7f * f10, 0.0f);
-            fragmentContextView.f32960e0.setLocalMatrix(fragmentContextView.f32962f0);
-            int measuredWidth = (getMeasuredWidth() - L) - org.telegram.messenger.g0.L(10.0f);
-            int L2 = org.telegram.messenger.g0.L(10.0f);
-            float f11 = measuredWidth;
-            float f12 = L2;
-            float L3 = org.telegram.messenger.g0.L(28.0f) + L2;
-            RectF rectF = this.f39435a;
-            rectF.set(f11, f12, measuredWidth + L, L3);
-            canvas.save();
-            float a10 = fragmentContextView.f32968l0.a(0.1f);
-            canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
-            canvas.translate(f11, f12);
-            RectF rectF2 = org.telegram.messenger.g0.P;
-            rectF2.set(0.0f, 0.0f, L, org.telegram.messenger.g0.L(28.0f));
-            canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), fragmentContextView.f32958d0);
-            canvas.translate(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f));
-            m6Var.setBounds(0, 0, org.telegram.messenger.g0.f24118q.x, org.telegram.messenger.g0.L(16.0f));
-            m6Var.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        zg zgVar;
-        org.telegram.messenger.t3 groupCall;
-        int i7;
-        int i10;
-        FragmentContextView fragmentContextView = this.f39436b;
-        if (fragmentContextView.V == 4 && fragmentContextView.f32965i0 && fragmentContextView.f32968l0 != null) {
-            boolean contains = this.f39435a.contains(motionEvent.getX(), motionEvent.getY());
-            if (motionEvent.getAction() == 0) {
-                fragmentContextView.f32968l0.c(contains);
-            } else if (motionEvent.getAction() == 2) {
-                if (!contains) {
-                    fragmentContextView.f32968l0.c(false);
-                }
-            } else if (motionEvent.getAction() == 1) {
-                if (contains) {
-                    r00 r00Var = fragmentContextView.f32970n0;
-                    org.telegram.ui.ActionBar.h2 h2Var = fragmentContextView.h;
-                    if (h2Var != null && (zgVar = fragmentContextView.f32969n) != null && (groupCall = zgVar.getGroupCall()) != null && groupCall.f26935b != null) {
-                        if (fragmentContextView.T0 != 0) {
-                            h2Var.getConnectionsManager().cancelRequest(fragmentContextView.T0, true);
-                            fragmentContextView.T0 = 0;
-                        }
-                        TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
-                        togglegroupcallstartsubscription.call = groupCall.g(groupCall.f26934a);
-                        TLRPC.GroupCall groupCall2 = groupCall.f26935b;
-                        boolean z10 = !fragmentContextView.f32966j0;
-                        fragmentContextView.f32966j0 = z10;
-                        groupCall2.schedule_start_subscribed = z10;
-                        togglegroupcallstartsubscription.subscribed = z10;
-                        fragmentContextView.T0 = h2Var.getConnectionsManager().sendRequest(togglegroupcallstartsubscription, null);
-                        if (fragmentContextView.m0) {
-                            org.telegram.messenger.g0.r(r00Var);
-                            fragmentContextView.m0 = false;
-                        }
-                        r00Var.run();
-                        lc b02 = lc.b0(h2Var);
-                        boolean z11 = fragmentContextView.f32966j0;
-                        if (z11) {
-                            i7 = 2131624195;
-                        } else {
-                            i7 = 2131624194;
-                        }
-                        if (z11) {
-                            i10 = 2131748588;
-                        } else {
-                            i10 = 2131748589;
-                        }
-                        org.telegram.messenger.f3.n(null, i10, b02, i7, 36);
+                    fragmentContextView2.f32994f = null;
+                    if (fragmentContextView2.f33019y0) {
+                        fragmentContextView2.e(false);
+                    } else if (fragmentContextView2.f33017x0) {
+                        fragmentContextView2.a(false);
+                    } else if (fragmentContextView2.f33020z0) {
+                        fragmentContextView2.g(false);
+                    } else if (fragmentContextView2.A0) {
+                        fragmentContextView2.c(false);
                     }
+                    fragmentContextView2.f33019y0 = false;
+                    fragmentContextView2.f33017x0 = false;
+                    fragmentContextView2.f33020z0 = false;
+                    fragmentContextView2.A0 = false;
+                    return;
                 }
-                fragmentContextView.f32968l0.c(false);
-            } else if (motionEvent.getAction() == 3) {
-                fragmentContextView.f32968l0.c(false);
-            }
-        } else {
-            mc mcVar = fragmentContextView.f32968l0;
-            if (mcVar != null) {
-                mcVar.c(false);
-            }
+                return;
+            case 2:
+                FragmentContextView fragmentContextView3 = this.f39427b;
+                fragmentContextView3.f33013v0.e();
+                AnimatorSet animatorSet3 = fragmentContextView3.f32994f;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    z00 z00Var2 = fragmentContextView3.f33006q0;
+                    if (z00Var2 != null) {
+                        ((jp0) z00Var2).b(false);
+                    }
+                    fragmentContextView3.f32994f = null;
+                    if (fragmentContextView3.f33019y0) {
+                        fragmentContextView3.e(false);
+                    } else if (fragmentContextView3.f33017x0) {
+                        fragmentContextView3.a(false);
+                    } else if (fragmentContextView3.f33020z0) {
+                        fragmentContextView3.g(false);
+                    } else if (fragmentContextView3.A0) {
+                        fragmentContextView3.c(false);
+                    }
+                    fragmentContextView3.f33019y0 = false;
+                    fragmentContextView3.f33017x0 = false;
+                    fragmentContextView3.f33020z0 = false;
+                    fragmentContextView3.A0 = false;
+                    return;
+                }
+                return;
+            case 3:
+                FragmentContextView fragmentContextView4 = this.f39427b;
+                fragmentContextView4.f33013v0.e();
+                AnimatorSet animatorSet4 = fragmentContextView4.f32994f;
+                if (animatorSet4 != null && animatorSet4.equals(animator)) {
+                    fragmentContextView4.setVisibility(8);
+                    fragmentContextView4.f32994f = null;
+                    if (fragmentContextView4.f33019y0) {
+                        fragmentContextView4.e(false);
+                    } else if (fragmentContextView4.f33017x0) {
+                        fragmentContextView4.a(false);
+                    } else if (fragmentContextView4.f33020z0) {
+                        fragmentContextView4.g(false);
+                    } else if (fragmentContextView4.A0) {
+                        fragmentContextView4.c(false);
+                    }
+                    fragmentContextView4.f33019y0 = false;
+                    fragmentContextView4.f33017x0 = false;
+                    fragmentContextView4.f33020z0 = false;
+                    fragmentContextView4.A0 = false;
+                    return;
+                }
+                return;
+            case 4:
+                FragmentContextView fragmentContextView5 = this.f39427b;
+                fragmentContextView5.f33013v0.e();
+                AnimatorSet animatorSet5 = fragmentContextView5.f32994f;
+                if (animatorSet5 != null && animatorSet5.equals(animator)) {
+                    z00 z00Var3 = fragmentContextView5.f33006q0;
+                    if (z00Var3 != null) {
+                        ((jp0) z00Var3).b(false);
+                    }
+                    fragmentContextView5.f32994f = null;
+                    if (fragmentContextView5.f33019y0) {
+                        fragmentContextView5.e(false);
+                    } else if (fragmentContextView5.f33017x0) {
+                        fragmentContextView5.a(false);
+                    } else if (fragmentContextView5.f33020z0) {
+                        fragmentContextView5.g(false);
+                    } else if (fragmentContextView5.A0) {
+                        fragmentContextView5.c(false);
+                    }
+                    fragmentContextView5.f33019y0 = false;
+                    fragmentContextView5.f33017x0 = false;
+                    fragmentContextView5.f33020z0 = false;
+                    fragmentContextView5.A0 = false;
+                    return;
+                }
+                return;
+            case 5:
+                FragmentContextView fragmentContextView6 = this.f39427b;
+                fragmentContextView6.f33013v0.e();
+                AnimatorSet animatorSet6 = fragmentContextView6.f32994f;
+                if (animatorSet6 != null && animatorSet6.equals(animator)) {
+                    fragmentContextView6.setVisibility(8);
+                    fragmentContextView6.f32994f = null;
+                    if (fragmentContextView6.f33019y0) {
+                        fragmentContextView6.e(false);
+                    } else if (fragmentContextView6.f33017x0) {
+                        fragmentContextView6.a(false);
+                    } else if (fragmentContextView6.f33020z0) {
+                        fragmentContextView6.g(false);
+                    } else if (fragmentContextView6.A0) {
+                        fragmentContextView6.c(false);
+                    }
+                    fragmentContextView6.f33019y0 = false;
+                    fragmentContextView6.f33017x0 = false;
+                    fragmentContextView6.f33020z0 = false;
+                    fragmentContextView6.A0 = false;
+                    return;
+                }
+                return;
+            case 6:
+                FragmentContextView fragmentContextView7 = this.f39427b;
+                fragmentContextView7.f33013v0.e();
+                AnimatorSet animatorSet7 = fragmentContextView7.f32994f;
+                if (animatorSet7 != null && animatorSet7.equals(animator)) {
+                    fragmentContextView7.U = false;
+                    fragmentContextView7.f32994f = null;
+                    fragmentContextView7.e(false);
+                    return;
+                }
+                return;
+            case 7:
+                FragmentContextView fragmentContextView8 = this.f39427b;
+                fragmentContextView8.f33015w0.e();
+                AnimatorSet animatorSet8 = fragmentContextView8.f32994f;
+                if (animatorSet8 != null && animatorSet8.equals(animator)) {
+                    fragmentContextView8.f32994f = null;
+                }
+                if (fragmentContextView8.f33019y0) {
+                    fragmentContextView8.e(false);
+                } else if (fragmentContextView8.f33017x0) {
+                    fragmentContextView8.a(false);
+                } else if (fragmentContextView8.f33020z0) {
+                    fragmentContextView8.g(false);
+                } else if (fragmentContextView8.A0) {
+                    fragmentContextView8.c(false);
+                }
+                fragmentContextView8.f33019y0 = false;
+                fragmentContextView8.f33017x0 = false;
+                fragmentContextView8.f33020z0 = false;
+                fragmentContextView8.A0 = false;
+                fragmentContextView8.n();
+                return;
+            case 8:
+                FragmentContextView fragmentContextView9 = this.f39427b;
+                fragmentContextView9.f33013v0.e();
+                AnimatorSet animatorSet9 = fragmentContextView9.f32994f;
+                if (animatorSet9 != null && animatorSet9.equals(animator)) {
+                    fragmentContextView9.setVisibility(8);
+                    fragmentContextView9.f32994f = null;
+                    if (fragmentContextView9.f33019y0) {
+                        fragmentContextView9.e(false);
+                    } else if (fragmentContextView9.f33017x0) {
+                        fragmentContextView9.a(false);
+                    } else if (fragmentContextView9.f33020z0) {
+                        fragmentContextView9.g(false);
+                    } else if (fragmentContextView9.A0) {
+                        fragmentContextView9.c(false);
+                    }
+                    fragmentContextView9.f33019y0 = false;
+                    fragmentContextView9.f33017x0 = false;
+                    fragmentContextView9.f33020z0 = false;
+                    fragmentContextView9.A0 = false;
+                    return;
+                }
+                return;
+            case 9:
+                FragmentContextView fragmentContextView10 = this.f39427b;
+                fragmentContextView10.f33013v0.e();
+                AnimatorSet animatorSet10 = fragmentContextView10.f32994f;
+                if (animatorSet10 != null && animatorSet10.equals(animator)) {
+                    fragmentContextView10.U = false;
+                    fragmentContextView10.f32994f = null;
+                    fragmentContextView10.a(false);
+                    return;
+                }
+                return;
+            case 10:
+                FragmentContextView fragmentContextView11 = this.f39427b;
+                fragmentContextView11.f33015w0.e();
+                AnimatorSet animatorSet11 = fragmentContextView11.f32994f;
+                if (animatorSet11 != null && animatorSet11.equals(animator)) {
+                    fragmentContextView11.f32994f = null;
+                }
+                if (fragmentContextView11.f33019y0) {
+                    fragmentContextView11.e(false);
+                } else if (fragmentContextView11.f33017x0) {
+                    fragmentContextView11.a(false);
+                } else if (fragmentContextView11.f33020z0) {
+                    fragmentContextView11.g(false);
+                } else if (fragmentContextView11.A0) {
+                    fragmentContextView11.c(false);
+                }
+                fragmentContextView11.f33019y0 = false;
+                fragmentContextView11.f33017x0 = false;
+                fragmentContextView11.f33020z0 = false;
+                fragmentContextView11.A0 = false;
+                fragmentContextView11.n();
+                return;
+            default:
+                FragmentContextView fragmentContextView12 = this.f39427b;
+                AnimatorSet animatorSet12 = fragmentContextView12.f32994f;
+                if (animatorSet12 != null && animatorSet12.equals(animator)) {
+                    fragmentContextView12.setVisibility(8);
+                    fragmentContextView12.f32994f = null;
+                    return;
+                }
+                return;
         }
-        mc mcVar2 = fragmentContextView.f32968l0;
-        if ((mcVar2 != null && mcVar2.f37434i) || super.dispatchTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        FragmentContextView fragmentContextView = this.f39436b;
-        e9 e9Var = fragmentContextView.f32957c0;
-        if (e9Var != null && e9Var.getVisibility() == 0) {
-            fragmentContextView.f32957c0.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f39436b.f32967k0 && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

@@ -2,7 +2,7 @@ package fi;
 
 import android.content.Context;
 import android.view.View;
-public final class i9 extends tg.m0 {
+public final class i9 extends tg.n0 {
     public final j9 R;
 
     public i9(j9 j9Var, Context context, float f10) {
@@ -12,7 +12,7 @@ public final class i9 extends tg.m0 {
 
     @Override
     public final void invalidate() {
-        View view = this.R.f12172c;
+        View view = this.R.f12211c;
         if (view != null) {
             view.invalidate();
         }

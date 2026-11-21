@@ -1,14 +1,14 @@
 package sg;
 public abstract class f1 {
-    public final boolean f57192a;
-    public boolean f57193b;
-    public boolean f57194c;
+    public final boolean f57233a;
+    public boolean f57234b;
+    public boolean f57235c;
     public float d;
-    public float f57195e;
+    public float f57236e;
 
     public f1() {
-        this.f57193b = true;
-        this.f57194c = true;
+        this.f57234b = true;
+        this.f57235c = true;
         a();
     }
 
@@ -17,9 +17,9 @@ public abstract class f1 {
     public abstract void b(float f10, float f11);
 
     public f1(int i7) {
-        this.f57193b = true;
-        this.f57194c = true;
-        this.f57192a = true;
+        this.f57234b = true;
+        this.f57235c = true;
+        this.f57233a = true;
         a();
     }
 }

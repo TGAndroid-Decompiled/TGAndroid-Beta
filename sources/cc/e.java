@@ -10,42 +10,42 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 public final class e implements q {
-    public int f5165a;
-    public int f5166b;
-    public int f5167c;
+    public int f5194a;
+    public int f5195b;
+    public int f5196c;
     public Object d;
-    public Serializable f5168e;
-    public Object f5169f;
-    public Serializable f5170g;
+    public Serializable f5197e;
+    public Object f5198f;
+    public Serializable f5199g;
     public Object h;
 
     @Override
     public void a(int i7, ByteBuffer byteBuffer) {
         r rVar = (r) this.h;
-        byteBuffer.asShortBuffer().get((short[]) this.f5168e, rVar.f11073j * rVar.f11067b, i7 / 2);
+        byteBuffer.asShortBuffer().get((short[]) this.f5197e, rVar.f11102j * rVar.f11096b, i7 / 2);
         byteBuffer.position(byteBuffer.position() + i7);
     }
 
     @Override
     public void b(int i7, ByteBuffer byteBuffer) {
         r rVar = (r) this.h;
-        byteBuffer.asShortBuffer().put((short[]) this.f5169f, 0, rVar.f11067b * i7);
-        byteBuffer.position((i7 * 2 * rVar.f11067b) + byteBuffer.position());
+        byteBuffer.asShortBuffer().put((short[]) this.f5198f, 0, rVar.f11096b * i7);
+        byteBuffer.position((i7 * 2 * rVar.f11096b) + byteBuffer.position());
     }
 
     @Override
     public void c(int i7, int i10) {
-        for (int i11 = 0; i11 < ((r) this.h).f11067b * i10; i11++) {
-            ((short[]) this.f5168e)[i7 + i11] = 0;
+        for (int i11 = 0; i11 < ((r) this.h).f11096b * i10; i11++) {
+            ((short[]) this.f5197e)[i7 + i11] = 0;
         }
     }
 
     @Override
     public void d(int i7, int i10) {
-        short[] sArr = (short[]) this.f5168e;
+        short[] sArr = (short[]) this.f5197e;
         r rVar = (r) this.h;
         int i11 = rVar.h / i10;
-        int i12 = rVar.f11067b;
+        int i12 = rVar.f11096b;
         int i13 = i10 * i12;
         int i14 = i7 * i12;
         for (int i15 = 0; i15 < i11; i15++) {
@@ -59,40 +59,40 @@ public final class e implements q {
 
     @Override
     public int e(int i7, int i10, int i11) {
-        return s((short[]) this.f5168e, i7, i10, i11);
+        return s((short[]) this.f5197e, i7, i10, i11);
     }
 
     @Override
     public void f() {
-        this.f5167c = this.f5165a;
+        this.f5196c = this.f5194a;
     }
 
     @Override
     public void flush() {
-        this.f5167c = 0;
-        this.f5165a = 0;
-        this.f5166b = 0;
+        this.f5196c = 0;
+        this.f5194a = 0;
+        this.f5195b = 0;
     }
 
     @Override
     public Object g() {
-        return (short[]) this.f5168e;
+        return (short[]) this.f5197e;
     }
 
     @Override
     public Object h() {
-        return (short[]) this.f5169f;
+        return (short[]) this.f5198f;
     }
 
     @Override
     public void i(int i7) {
-        this.f5169f = r((short[]) this.f5169f, ((r) this.h).f11074k, i7);
+        this.f5198f = r((short[]) this.f5198f, ((r) this.h).f11103k, i7);
     }
 
     @Override
     public boolean j() {
-        int i7 = this.f5165a;
-        if (i7 == 0 || ((r) this.h).f11079p == 0 || this.f5166b > i7 * 3 || i7 * 2 <= this.f5167c * 3) {
+        int i7 = this.f5194a;
+        if (i7 == 0 || ((r) this.h).f11108p == 0 || this.f5195b > i7 * 3 || i7 * 2 <= this.f5196c * 3) {
             return false;
         }
         return true;
@@ -103,17 +103,17 @@ public final class e implements q {
         int i10 = 0;
         while (true) {
             r rVar = (r) this.h;
-            int i11 = rVar.f11067b;
+            int i11 = rVar.f11096b;
             if (i10 < i11) {
-                short[] sArr = (short[]) this.f5170g;
+                short[] sArr = (short[]) this.f5199g;
                 int i12 = (i7 * i11) + i10;
                 short s5 = sArr[i12];
                 short s9 = sArr[i12 + i11];
-                int i13 = rVar.f11076m;
+                int i13 = rVar.f11105m;
                 long j11 = (i13 + 1) * j10;
-                long j12 = j11 - (rVar.f11077n * j3);
+                long j12 = j11 - (rVar.f11106n * j3);
                 long j13 = j11 - (i13 * j10);
-                ((short[]) this.f5169f)[(rVar.f11074k * i11) + i10] = (short) ((((j13 - j12) * s9) + (s5 * j12)) / j13);
+                ((short[]) this.f5198f)[(rVar.f11103k * i11) + i10] = (short) ((((j13 - j12) * s9) + (s5 * j12)) / j13);
                 i10++;
             } else {
                 return;
@@ -123,13 +123,13 @@ public final class e implements q {
 
     @Override
     public Object l() {
-        return (short[]) this.f5170g;
+        return (short[]) this.f5199g;
     }
 
     @Override
     public void m(int i7, int i10, int i11, int i12, int i13) {
-        short[] sArr = (short[]) this.f5169f;
-        short[] sArr2 = (short[]) this.f5168e;
+        short[] sArr = (short[]) this.f5198f;
+        short[] sArr2 = (short[]) this.f5197e;
         for (int i14 = 0; i14 < i10; i14++) {
             int i15 = (i11 * i10) + i14;
             int i16 = (i13 * i10) + i14;
@@ -145,7 +145,7 @@ public final class e implements q {
 
     @Override
     public void n(int i7) {
-        this.f5170g = r((short[]) this.f5170g, ((r) this.h).f11075l, i7);
+        this.f5199g = r((short[]) this.f5199g, ((r) this.h).f11104l, i7);
     }
 
     @Override
@@ -155,7 +155,7 @@ public final class e implements q {
 
     @Override
     public void p(int i7) {
-        this.f5168e = r((short[]) this.f5168e, ((r) this.h).f11073j, i7);
+        this.f5197e = r((short[]) this.f5197e, ((r) this.h).f11102j, i7);
     }
 
     @Override
@@ -165,7 +165,7 @@ public final class e implements q {
 
     public short[] r(short[] sArr, int i7, int i10) {
         int length = sArr.length;
-        int i11 = ((r) this.h).f11067b;
+        int i11 = ((r) this.h).f11096b;
         int i12 = length / i11;
         if (i7 + i10 <= i12) {
             return sArr;
@@ -174,7 +174,7 @@ public final class e implements q {
     }
 
     public int s(short[] sArr, int i7, int i10, int i11) {
-        int i12 = i7 * ((r) this.h).f11067b;
+        int i12 = i7 * ((r) this.h).f11096b;
         int i13 = 255;
         int i14 = 1;
         int i15 = 0;
@@ -194,28 +194,28 @@ public final class e implements q {
             }
             i10++;
         }
-        this.f5165a = i14 / i15;
-        this.f5166b = i16 / i13;
+        this.f5194a = i14 / i15;
+        this.f5195b = i16 / i13;
         return i15;
     }
 
     public void t() {
         ((Canvas) this.d).restore();
-        ArrayList arrayList = (ArrayList) this.f5170g;
-        ((Matrix) this.f5169f).set((Matrix) p5.c.g(1, arrayList));
-        if (((BitSet) this.f5168e).get(arrayList.size())) {
-            this.f5167c--;
+        ArrayList arrayList = (ArrayList) this.f5199g;
+        ((Matrix) this.f5198f).set((Matrix) p5.c.g(1, arrayList));
+        if (((BitSet) this.f5197e).get(arrayList.size())) {
+            this.f5196c--;
         }
-        this.f5165a--;
+        this.f5194a--;
     }
 
     public void u(boolean z10) {
-        ArrayList arrayList = (ArrayList) this.f5170g;
-        ((BitSet) this.f5168e).set(arrayList.size(), z10);
+        ArrayList arrayList = (ArrayList) this.f5199g;
+        ((BitSet) this.f5197e).set(arrayList.size(), z10);
         if (z10) {
-            this.f5167c++;
+            this.f5196c++;
         }
-        arrayList.add(new Matrix((Matrix) this.f5169f));
-        this.f5165a++;
+        arrayList.add(new Matrix((Matrix) this.f5198f));
+        this.f5194a++;
     }
 }

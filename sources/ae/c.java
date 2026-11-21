@@ -25,12 +25,12 @@ public final class c implements l0 {
             default:
                 String str = (String) this.f1043b;
                 u0 u0Var = (u0) this.f1044c;
-                synchronized (v0.f20449b) {
-                    LinkedHashMap linkedHashMap = v0.f20450c;
+                synchronized (v0.f20477b) {
+                    LinkedHashMap linkedHashMap = v0.f20478c;
                     v0 v0Var = (v0) linkedHashMap.get(str);
                     if (v0Var != null) {
-                        v0Var.f20451a.remove(u0Var);
-                        if (v0Var.f20451a.isEmpty()) {
+                        v0Var.f20479a.remove(u0Var);
+                        if (v0Var.f20479a.isEmpty()) {
                             linkedHashMap.remove(str);
                             v0Var.stopWatching();
                         }

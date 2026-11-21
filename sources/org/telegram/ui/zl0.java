@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class zl0 extends v4.u0 {
-    public final int f54532a;
-    public final fm0 f54533b;
+    public final int f54579a;
+    public final fm0 f54580b;
 
     public zl0(fm0 fm0Var, int i7) {
-        this.f54533b = fm0Var;
-        this.f54532a = i7;
+        this.f54580b = fm0Var;
+        this.f54579a = i7;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
-        di.o8 o8Var;
-        fm0 fm0Var = this.f54533b;
-        lm0 lm0Var = fm0Var.f47715q0;
+        di.p8 p8Var;
+        fm0 fm0Var = this.f54580b;
+        lm0 lm0Var = fm0Var.f47782q0;
         fm0Var.h();
         if (fm0Var.L != null) {
             if (fm0Var.K != null && fm0Var.c()) {
@@ -23,13 +23,13 @@ public final class zl0 extends v4.u0 {
             }
             return;
         }
-        if (this.f54532a == 1) {
-            o8Var = lm0Var.f49595c;
+        if (this.f54579a == 1) {
+            p8Var = lm0Var.f49646c;
         } else {
-            o8Var = lm0Var.f49593b;
+            p8Var = lm0Var.f49644b;
         }
-        if (o8Var != null && fm0Var.c()) {
-            o8Var.a();
+        if (p8Var != null && fm0Var.c()) {
+            p8Var.a();
         }
     }
 }

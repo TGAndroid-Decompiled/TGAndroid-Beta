@@ -5,7 +5,7 @@ import android.view.accessibility.AccessibilityEvent;
 import androidx.recyclerview.widget.RecyclerView;
 public final class g1 extends r0.b {
     public final RecyclerView d;
-    public final c5.g f59145e = new c5.g(this);
+    public final c5.g f59183e = new c5.g(this);
 
     public g1(RecyclerView recyclerView) {
         this.d = recyclerView;
@@ -18,15 +18,15 @@ public final class g1 extends r0.b {
             RecyclerView recyclerView = (RecyclerView) view;
             if (recyclerView.getLayoutManager() != null) {
                 c0 c0Var = (c0) recyclerView.getLayoutManager();
-                RecyclerView recyclerView2 = c0Var.f59208b;
-                x0 x0Var = recyclerView2.f2791b;
+                RecyclerView recyclerView2 = c0Var.f59246b;
+                x0 x0Var = recyclerView2.f2803b;
                 if (accessibilityEvent != null) {
                     boolean z10 = true;
-                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f59208b.canScrollVertically(-1) && !c0Var.f59208b.canScrollHorizontally(-1) && !c0Var.f59208b.canScrollHorizontally(1)) {
+                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f59246b.canScrollVertically(-1) && !c0Var.f59246b.canScrollHorizontally(-1) && !c0Var.f59246b.canScrollHorizontally(1)) {
                         z10 = false;
                     }
                     accessibilityEvent.setScrollable(z10);
-                    i0 i0Var = c0Var.f59208b.f2820x;
+                    i0 i0Var = c0Var.f59246b.f2832x;
                     if (i0Var != null) {
                         accessibilityEvent.setItemCount(i0Var.b());
                     }
@@ -41,13 +41,13 @@ public final class g1 extends r0.b {
 
     @Override
     public final void c(View view, s0.c cVar) {
-        this.f56216a.onInitializeAccessibilityNodeInfo(view, cVar.f56740a);
+        this.f56257a.onInitializeAccessibilityNodeInfo(view, cVar.f56781a);
         if (!e()) {
             RecyclerView recyclerView = this.d;
             if (recyclerView.getLayoutManager() != null) {
                 p0 layoutManager = recyclerView.getLayoutManager();
-                RecyclerView recyclerView2 = layoutManager.f59208b;
-                layoutManager.S(recyclerView2.f2791b, recyclerView2.f2817v0, cVar);
+                RecyclerView recyclerView2 = layoutManager.f59246b;
+                layoutManager.S(recyclerView2.f2803b, recyclerView2.f2829v0, cVar);
             }
         }
     }
@@ -59,7 +59,7 @@ public final class g1 extends r0.b {
 
     public final boolean e() {
         RecyclerView recyclerView = this.d;
-        if (!recyclerView.Z() && !recyclerView.f2817v0.f59091g) {
+        if (!recyclerView.Z() && !recyclerView.f2829v0.f59129g) {
             return false;
         }
         return true;

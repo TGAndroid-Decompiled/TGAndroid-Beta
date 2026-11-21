@@ -1,126 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.text.TextUtils;
-import android.view.ViewGroup;
-import org.telegram.tgnet.TLRPC;
-public final class zu0 extends bk0 {
-    public int f42950c;
-    public final iv0 d;
+public abstract class zu0 {
+    public static final Layout.Alignment[] f42990a = Layout.Alignment.values();
 
-    public zu0(iv0 iv0Var) {
-        this.d = iv0Var;
+    public static Layout.Alignment a() {
+        Layout.Alignment[] alignmentArr = f42990a;
+        if (alignmentArr.length >= 5) {
+            return alignmentArr[4];
+        }
+        return Layout.Alignment.ALIGN_OPPOSITE;
     }
 
-    @Override
-    public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59127f == 1) {
-            return true;
-        }
-        return false;
+    public static StaticLayout b(CharSequence charSequence, TextPaint textPaint, int i7, float f10, int i10, int i11) {
+        return c(charSequence, textPaint, i7, Layout.Alignment.ALIGN_NORMAL, f10, TextUtils.TruncateAt.END, i10, i11, true);
     }
 
-    @Override
-    public final int b() {
-        int length;
-        iv0 iv0Var = this.d;
-        ev0[] ev0VarArr = iv0Var.f36212g3;
-        if (ev0VarArr == null) {
-            length = 0;
-        } else {
-            length = ev0VarArr.length;
-        }
-        int i7 = length + 1;
-        if (i7 != this.f42950c) {
-            bi.i3 i3Var = iv0Var.f36224t3;
-            if (i3Var != null) {
-                i3Var.requestLayout();
-            }
-            this.f42950c = i7;
-        }
-        return i7;
-    }
-
-    @Override
-    public final int d(int i7) {
-        if (i7 == 0) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        iv0 iv0Var;
-        ev0[] ev0VarArr;
-        boolean z10 = true;
-        if (f1Var.f59127f == 1 && (ev0VarArr = (iv0Var = this.d).f36212g3) != null) {
-            int i10 = i7 - 1;
-            ev0 ev0Var = ev0VarArr[i10];
-            final dv0 dv0Var = (dv0) f1Var.f59123a;
-            if (iv0Var.f36225u3 != i10) {
-                z10 = false;
-            }
-            dv0Var.getClass();
-            if (!TextUtils.isEmpty(ev0Var.d)) {
-                dv0Var.setContentDescription(ev0Var.d);
-            } else if (!TextUtils.isEmpty(ev0Var.f34808a)) {
-                dv0Var.setContentDescription(ev0Var.f34808a);
-            } else {
-                dv0Var.setContentDescription(null);
-            }
-            ValueAnimator valueAnimator = dv0Var.H;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                dv0Var.H = null;
-            }
-            dv0Var.setImageResource(0);
-            dv0Var.a();
-            final boolean D1 = dv0Var.I.D1();
-            dv0Var.f34519x = false;
-            dv0Var.E = 1.0f;
-            o5.g(org.telegram.messenger.j10.f24770t0).b(ev0Var.f34810c, new l5() {
-                @Override
-                public final void a(TLRPC.Document document) {
-                    dv0 dv0Var2 = dv0.this;
-                    dv0Var2.setOnlyLastFrame(!D1);
-                    dv0Var2.g(24, 24, document);
-                    dv0Var2.d();
+    public static StaticLayout c(CharSequence charSequence, TextPaint textPaint, int i7, Layout.Alignment alignment, float f10, TextUtils.TruncateAt truncateAt, int i10, int i11, boolean z10) {
+        boolean z11;
+        int offsetForHorizontal;
+        TextUtils.TruncateAt truncateAt2;
+        SpannableStringBuilder spannableStringBuilder = charSequence;
+        if (i11 == 1) {
+            try {
+                int indexOf = TextUtils.indexOf(spannableStringBuilder, "\n") - 1;
+                if (indexOf > 0) {
+                    spannableStringBuilder = SpannableStringBuilder.valueOf(spannableStringBuilder.subSequence(0, indexOf)).append((CharSequence) "…");
                 }
-            });
-            org.telegram.messenger.g0.h3(new ap0(dv0Var, 10), 60L);
-            dv0Var.l(z10, false);
-            dv0Var.setAlpha(iv0Var.f36227w3);
-            dv0Var.setScaleX(iv0Var.f36227w3);
-            dv0Var.setScaleY(iv0Var.f36227w3);
-            dv0Var.j();
-        }
-    }
-
-    @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        dv0 dv0Var;
-        iv0 iv0Var = this.d;
-        if (i7 == 0) {
-            bi.i3 i3Var = new bi.i3(28, iv0Var.getContext(), this);
-            iv0Var.f36224t3 = i3Var;
-            dv0Var = i3Var;
-        } else {
-            dv0Var = new dv0(iv0Var, iv0Var.getContext());
-        }
-        return new v4.f1(dv0Var);
-    }
-
-    @Override
-    public final void y(v4.f1 f1Var) {
-        boolean z10 = true;
-        if (f1Var.f59127f == 1) {
-            dv0 dv0Var = (dv0) f1Var.f59123a;
-            if (this.d.f36225u3 != f1Var.b() - 1) {
-                z10 = false;
+                CharSequence ellipsize = TextUtils.ellipsize(spannableStringBuilder, textPaint, i10, TextUtils.TruncateAt.END);
+                return new StaticLayout(ellipsize, 0, ellipsize.length(), textPaint, i7, alignment, 1.0f, f10, false);
+            } catch (Exception e10) {
+                e = e10;
+                z11 = true;
             }
-            dv0Var.l(z10, false);
-            dv0Var.j();
+        } else {
+            try {
+                StaticLayout build = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i7).setAlignment(alignment).setLineSpacing(f10, 1.0f).setIncludePad(false).setEllipsize(null).setEllipsizedWidth(i10).setMaxLines(i11).setBreakStrategy(1).setHyphenationFrequency(0).build();
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= build.getLineCount()) {
+                        break;
+                    } else if (build.getLineRight(i12) > i7) {
+                        build = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i7).setAlignment(alignment).setLineSpacing(f10, 1.0f).setIncludePad(false).setEllipsize(null).setEllipsizedWidth(i10).setMaxLines(i11).setBreakStrategy(0).setHyphenationFrequency(0).build();
+                        break;
+                    } else {
+                        i12++;
+                    }
+                }
+                if (build.getLineCount() <= i11) {
+                    return build;
+                }
+                int i13 = i11 - 1;
+                float lineLeft = build.getLineLeft(i13);
+                float lineWidth = build.getLineWidth(i13);
+                if (lineLeft != 0.0f) {
+                    offsetForHorizontal = build.getOffsetForHorizontal(i13, lineLeft);
+                } else {
+                    offsetForHorizontal = build.getOffsetForHorizontal(i13, lineWidth);
+                }
+                if (lineWidth < i10 - org.telegram.messenger.g0.L(10.0f)) {
+                    offsetForHorizontal += 3;
+                }
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder.subSequence(0, Math.max(0, offsetForHorizontal - 3)));
+                spannableStringBuilder2.append((CharSequence) "…");
+                StaticLayout.Builder includePad = StaticLayout.Builder.obtain(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i7).setAlignment(alignment).setLineSpacing(f10, 1.0f).setIncludePad(false);
+                if (((y5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), y5.class)).length > 0) {
+                    truncateAt2 = null;
+                } else {
+                    truncateAt2 = truncateAt;
+                }
+                return includePad.setEllipsize(truncateAt2).setEllipsizedWidth(i10).setMaxLines(i11).setBreakStrategy(z10 ? 1 : 0).setHyphenationFrequency(0).build();
+            } catch (Exception e11) {
+                e = e11;
+                z11 = true;
+            }
         }
+        org.telegram.messenger.a8.g(e, z11);
+        return null;
+    }
+
+    public static StaticLayout d(CharSequence charSequence, TextPaint textPaint, boolean z10, int i7, int i10) {
+        return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i7).setAlignment(Layout.Alignment.ALIGN_CENTER).setLineSpacing(0.0f, 1.0f).setIncludePad(z10).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i7).setMaxLines(i10).setBreakStrategy(1).setHyphenationFrequency(0).build();
     }
 }

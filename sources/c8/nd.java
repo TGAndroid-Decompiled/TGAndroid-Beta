@@ -6,7 +6,7 @@ import android.os.Build;
 import android.os.Process;
 import android.provider.Settings;
 public abstract class nd {
-    public static wi.m f4890a;
+    public static wi.m f4919a;
 
     public static boolean a(Context context) {
         if (Settings.canDrawOverlays(context)) {

@@ -22,8 +22,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.n10;
 import org.telegram.ui.Cells.y9;
-import org.telegram.ui.Components.bb0;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.cb0;
+import org.telegram.ui.Components.nr;
 import org.webrtc.RendererCommon;
 public class n2 extends FrameLayout {
     public float E;
@@ -45,26 +45,26 @@ public class n2 extends FrameLayout {
     public float U;
     public float V;
     public float W;
-    public final boolean f41074a;
-    public float f41075a0;
-    public float f41076b;
-    public int f41077b0;
-    public boolean f41078c;
-    public ValueAnimator f41079c0;
+    public final boolean f41209a;
+    public float f41210a0;
+    public float f41211b;
+    public int f41212b0;
+    public boolean f41213c;
+    public ValueAnimator f41214c0;
     public final m2 d;
-    public boolean f41080d0;
-    public final TextureView f41081e;
-    public float f41082e0;
-    public final ImageView f41083f;
-    public boolean f41084f0;
-    public boolean f41085g0;
+    public boolean f41215d0;
+    public final TextureView f41216e;
+    public float f41217e0;
+    public final ImageView f41218f;
+    public boolean f41219f0;
+    public boolean f41220g0;
     public final View h;
-    public View f41086n;
-    public final FrameLayout f41087r;
-    public final ImageView f41088s;
-    public final TextView f41089w;
-    public Bitmap f41090x;
-    public final Bitmap f41091y;
+    public View f41221n;
+    public final FrameLayout f41222r;
+    public final ImageView f41223s;
+    public final TextView f41224w;
+    public Bitmap f41225x;
+    public final Bitmap f41226y;
 
     public n2(Context context, boolean z10, boolean z11) {
         this(context, z10, z11, true, false);
@@ -74,7 +74,7 @@ public class n2 extends FrameLayout {
         if (!this.F && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
             this.I = getMeasuredHeight();
             this.J = getMeasuredWidth();
-            if (this.f41085g0 && getParent() != null) {
+            if (this.f41220g0 && getParent() != null) {
                 View view = (View) getParent();
                 this.K = view.getY();
                 this.L = view.getX();
@@ -99,7 +99,7 @@ public class n2 extends FrameLayout {
         if (m2Var.getAlpha() != 1.0f) {
             m2Var.animate().setDuration(300L).alpha(1.0f);
         }
-        TextureView textureView = this.f41081e;
+        TextureView textureView = this.f41216e;
         if (textureView != null && textureView.getAlpha() != 1.0f) {
             textureView.animate().setDuration(300L).alpha(1.0f);
         }
@@ -120,17 +120,17 @@ public class n2 extends FrameLayout {
 
     public final void d(boolean z10, float f10) {
         float f11;
-        if (!this.f41078c) {
+        if (!this.f41213c) {
             return;
         }
         float scaleX = ((View) getParent()).getScaleX();
-        this.f41089w.setAlpha(1.0f - f10);
+        this.f41224w.setAlpha(1.0f - f10);
         if (!z10) {
             f11 = n10.w(0.4f, scaleX, f10, 1.0f / scaleX);
         } else {
             f11 = 1.0f - (0.4f * f10);
         }
-        ImageView imageView = this.f41088s;
+        ImageView imageView = this.f41223s;
         imageView.setScaleX(f11);
         imageView.setScaleY(f11);
         imageView.setTranslationY(org.telegram.messenger.g0.L(60.0f) * f10);
@@ -142,7 +142,7 @@ public class n2 extends FrameLayout {
         boolean z10 = org.telegram.messenger.g0.m0;
         m2 m2Var = this.d;
         if (z10) {
-            TextureView textureView = this.f41081e;
+            TextureView textureView = this.f41216e;
             if (textureView != null) {
                 canvas.save();
                 canvas.translate(textureView.getX(), textureView.getY());
@@ -164,7 +164,7 @@ public class n2 extends FrameLayout {
                 canvas.restore();
             }
         }
-        ImageView imageView = this.f41083f;
+        ImageView imageView = this.f41218f;
         if (imageView.getVisibility() == 0 && m2Var.isFirstFrameRendered()) {
             float f10 = this.E - 0.10666667f;
             this.E = f10;
@@ -180,14 +180,14 @@ public class n2 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        if (org.telegram.messenger.g0.m0 && (view == this.d || view == this.f41081e)) {
+        if (org.telegram.messenger.g0.m0 && (view == this.d || view == this.f41216e)) {
             return false;
         }
         return super.drawChild(canvas, view, j3);
     }
 
     public void e() {
-        TextureView textureView = this.f41081e;
+        TextureView textureView = this.f41216e;
         if (textureView != null) {
             ViewGroup.LayoutParams layoutParams = textureView.getLayoutParams();
             m2 m2Var = this.d;
@@ -197,12 +197,12 @@ public class n2 extends FrameLayout {
     }
 
     public View getPlaceholderView() {
-        if (this.f41086n == null) {
+        if (this.f41221n == null) {
             View view = new View(getContext());
-            this.f41086n = view;
+            this.f41221n = view;
             addView(view, ma.g());
         }
-        return this.f41086n;
+        return this.f41221n;
     }
 
     @Override
@@ -210,16 +210,16 @@ public class n2 extends FrameLayout {
         float top;
         final float left;
         super.onLayout(z10, i7, i10, i11, i12);
-        TextureView textureView = this.f41081e;
+        TextureView textureView = this.f41216e;
         if (textureView != null) {
             this.V = Math.max(getMeasuredHeight() / textureView.getMeasuredHeight(), getMeasuredWidth() / textureView.getMeasuredWidth());
         }
-        boolean z11 = this.f41074a;
+        boolean z11 = this.f41209a;
         m2 m2Var = this.d;
         if (!z11) {
             m2Var.updateRotation();
         }
-        if (this.f41077b0 == 3) {
+        if (this.f41212b0 == 3) {
             if (textureView != null) {
                 textureView.setScaleX(this.V);
                 textureView.setScaleY(this.V);
@@ -228,7 +228,7 @@ public class n2 extends FrameLayout {
             return;
         }
         if (m2Var.getMeasuredHeight() != 0 && m2Var.getMeasuredWidth() != 0 && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            int i13 = this.f41077b0;
+            int i13 = this.f41212b0;
             if (i13 == 0) {
                 this.U = Math.max(getMeasuredHeight() / m2Var.getMeasuredHeight(), getMeasuredWidth() / m2Var.getMeasuredWidth());
             } else if (i13 == 2) {
@@ -241,7 +241,7 @@ public class n2 extends FrameLayout {
                 }
             } else if (i13 == 1) {
                 this.U = Math.min(getMeasuredHeight() / m2Var.getMeasuredHeight(), getMeasuredWidth() / m2Var.getMeasuredWidth());
-                if (this.f41080d0 && !this.f41085g0 && this.f41079c0 == null && !this.F) {
+                if (this.f41215d0 && !this.f41220g0 && this.f41214c0 == null && !this.F) {
                     this.P = (getMeasuredWidth() - m2Var.getMeasuredWidth()) / 2.0f;
                     this.O = (getMeasuredHeight() - m2Var.getMeasuredHeight()) / 2.0f;
                     invalidateOutline();
@@ -249,19 +249,19 @@ public class n2 extends FrameLayout {
             }
         } else {
             this.U = 1.0f;
-            if (this.f41079c0 == null && !this.F) {
+            if (this.f41214c0 == null && !this.F) {
                 this.P = 0.0f;
                 this.O = 0.0f;
             }
         }
-        if (this.f41090x != null) {
-            this.W = Math.max(getMeasuredWidth() / this.f41090x.getWidth(), getMeasuredHeight() / this.f41090x.getHeight());
+        if (this.f41225x != null) {
+            this.W = Math.max(getMeasuredWidth() / this.f41225x.getWidth(), getMeasuredHeight() / this.f41225x.getHeight());
         }
         if (this.F) {
             this.Q /= m2Var.getMeasuredWidth() / this.T;
             this.R /= m2Var.getMeasuredWidth() / this.T;
             this.F = false;
-            if (this.f41085g0 && getParent() != null) {
+            if (this.f41220g0 && getParent() != null) {
                 View view = (View) getParent();
                 top = this.K - view.getTop();
                 left = this.L - view.getLeft();
@@ -284,10 +284,10 @@ public class n2 extends FrameLayout {
             }
             setTranslationY(f10);
             setTranslationX(left);
-            ValueAnimator valueAnimator = this.f41079c0;
+            ValueAnimator valueAnimator = this.f41214c0;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
-                this.f41079c0.cancel();
+                this.f41214c0.cancel();
             }
             m2Var.setScaleX(this.Q);
             m2Var.setScaleY(this.Q);
@@ -303,14 +303,14 @@ public class n2 extends FrameLayout {
             final float f12 = this.R;
             final float f13 = this.S;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            this.f41079c0 = ofFloat;
+            this.f41214c0 = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                     float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                     float f14 = 1.0f - floatValue;
                     n2 n2Var = n2.this;
-                    n2Var.f41082e0 = f14;
+                    n2Var.f41217e0 = f14;
                     n2Var.O = n2Var.M * floatValue;
                     n2Var.P = n2Var.N * floatValue;
                     n2Var.invalidateOutline();
@@ -320,25 +320,25 @@ public class n2 extends FrameLayout {
                     m2Var2.setScaleX(f15);
                     m2Var2.setScaleY(f15);
                     float f16 = (n2Var.V * f14) + (f12 * floatValue);
-                    TextureView textureView2 = n2Var.f41081e;
+                    TextureView textureView2 = n2Var.f41216e;
                     if (textureView2 != null) {
                         textureView2.setScaleX(f16);
                         textureView2.setScaleY(f16);
                     }
                     n2Var.setTranslationX(left * floatValue);
                     n2Var.setTranslationY(f10 * floatValue);
-                    n2Var.f41075a0 = (n2Var.W * f14) + (f13 * floatValue);
+                    n2Var.f41210a0 = (n2Var.W * f14) + (f13 * floatValue);
                 }
             });
             long j3 = this.G;
             if (j3 != 0) {
-                this.f41079c0.setDuration(j3);
+                this.f41214c0.setDuration(j3);
             } else {
-                this.f41079c0.setDuration(350L);
+                this.f41214c0.setDuration(350L);
             }
-            this.f41079c0.setInterpolator(lr.f37208f);
-            this.f41079c0.addListener(new y9(this, 17));
-            this.f41079c0.start();
+            this.f41214c0.setInterpolator(nr.f37956f);
+            this.f41214c0.addListener(new y9(this, 17));
+            this.f41214c0.start();
             ArrayList arrayList = this.H;
             if (!arrayList.isEmpty()) {
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
@@ -347,25 +347,25 @@ public class n2 extends FrameLayout {
             }
             arrayList.clear();
             this.G = 0L;
-        } else if (this.f41079c0 == null) {
+        } else if (this.f41214c0 == null) {
             m2Var.setScaleX(this.U);
             m2Var.setScaleY(this.U);
             if (textureView != null) {
                 textureView.setScaleX(this.V);
                 textureView.setScaleY(this.V);
             }
-            this.f41075a0 = this.W;
+            this.f41210a0 = this.W;
         }
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        boolean z10 = this.f41074a;
+        boolean z10 = this.f41209a;
         m2 m2Var = this.d;
         if (!z10) {
-            this.f41084f0 = true;
+            this.f41219f0 = true;
             m2Var.setScreenRotation(((WindowManager) getContext().getSystemService("window")).getDefaultDisplay().getRotation());
-            this.f41084f0 = false;
+            this.f41219f0 = false;
         }
         super.onMeasure(i7, i10);
         e();
@@ -375,7 +375,7 @@ public class n2 extends FrameLayout {
 
     @Override
     public void requestLayout() {
-        if (this.f41084f0) {
+        if (this.f41219f0) {
             return;
         }
         super.requestLayout();
@@ -386,27 +386,27 @@ public class n2 extends FrameLayout {
     }
 
     public void setAnimateWithParent(boolean z10) {
-        this.f41085g0 = z10;
+        this.f41220g0 = z10;
     }
 
     public void setIsScreencast(boolean z10) {
         int i7;
-        this.f41078c = z10;
+        this.f41213c = z10;
         if (z10) {
             i7 = 0;
         } else {
             i7 = 8;
         }
-        this.f41087r.setVisibility(i7);
-        boolean z11 = this.f41078c;
-        TextureView textureView = this.f41081e;
+        this.f41222r.setVisibility(i7);
+        boolean z11 = this.f41213c;
+        TextureView textureView = this.f41216e;
         m2 m2Var = this.d;
         if (z11) {
             m2Var.setVisibility(8);
             if (textureView != null) {
                 textureView.setVisibility(8);
             }
-            this.f41083f.setVisibility(8);
+            this.f41218f.setVisibility(8);
             return;
         }
         m2Var.setVisibility(0);
@@ -416,23 +416,23 @@ public class n2 extends FrameLayout {
     }
 
     public void setRoundCorners(float f10) {
-        if (this.f41076b != f10) {
-            this.f41076b = f10;
+        if (this.f41211b != f10) {
+            this.f41211b = f10;
             invalidateOutline();
         }
     }
 
     public void setStub(n2 n2Var) {
-        if (this.f41078c) {
+        if (this.f41213c) {
             return;
         }
         Bitmap bitmap = n2Var.d.getBitmap();
-        ImageView imageView = this.f41083f;
+        ImageView imageView = this.f41218f;
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             imageView.setImageBitmap(bitmap);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         } else {
-            imageView.setImageDrawable(n2Var.f41083f.getDrawable());
+            imageView.setImageDrawable(n2Var.f41218f.getDrawable());
         }
         this.E = 1.0f;
         imageView.setVisibility(0);
@@ -440,7 +440,7 @@ public class n2 extends FrameLayout {
     }
 
     public void setThumb(Bitmap bitmap) {
-        this.f41090x = bitmap;
+        this.f41225x = bitmap;
     }
 
     public n2(Context context, boolean z10, boolean z11, boolean z12, boolean z13) {
@@ -450,9 +450,9 @@ public class n2 extends FrameLayout {
         this.Q = 1.0f;
         this.R = 1.0f;
         this.S = 1.0f;
-        this.f41074a = z11;
+        this.f41209a = z11;
         ImageView imageView = new ImageView(context);
-        this.f41083f = imageView;
+        this.f41218f = imageView;
         m2 m2Var = new m2(this, context);
         this.d = m2Var;
         m2Var.setFpsReduction(30.0f);
@@ -466,7 +466,7 @@ public class n2 extends FrameLayout {
             addView(view, ma.c(-1.0f, -1));
             if (z13) {
                 TextureView textureView = new TextureView(context);
-                this.f41081e = textureView;
+                this.f41216e = textureView;
                 addView(textureView, ma.e(-1, -2, 17));
             }
             m2Var.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
@@ -474,36 +474,36 @@ public class n2 extends FrameLayout {
         } else if (!z10) {
             if (z13) {
                 TextureView textureView2 = new TextureView(context);
-                this.f41081e = textureView2;
+                this.f41216e = textureView2;
                 addView(textureView2, ma.e(-1, -2, 17));
             }
             addView(m2Var, ma.e(-1, -2, 17));
         } else {
             if (z13) {
                 TextureView textureView3 = new TextureView(context);
-                this.f41081e = textureView3;
+                this.f41216e = textureView3;
                 addView(textureView3, ma.e(-1, -2, 17));
             }
             addView(m2Var);
         }
         addView(imageView);
-        TextureView textureView4 = this.f41081e;
+        TextureView textureView4 = this.f41216e;
         if (textureView4 != null) {
             textureView4.setOpaque(false);
         }
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f41087r = frameLayout;
-        frameLayout.setBackground(new bb0(true, -14602694, -13935795, -14395293, -14203560));
+        this.f41222r = frameLayout;
+        frameLayout.setBackground(new cb0(true, -14602694, -13935795, -14395293, -14203560));
         addView(frameLayout, ma.c(-1.0f, -1));
         frameLayout.setVisibility(8);
         ImageView imageView2 = new ImageView(getContext());
-        this.f41088s = imageView2;
+        this.f41223s = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(2131232681);
         frameLayout.addView(imageView2, ma.d(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
         TextView textView = new TextView(getContext());
-        this.f41089w = textView;
-        textView.setText(gd.M0(2131742985, null));
+        this.f41224w = textView;
+        textView.setText(gd.N0(2131742979, null));
         textView.setGravity(17);
         textView.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
         textView.setTextColor(-1);
@@ -514,14 +514,14 @@ public class n2 extends FrameLayout {
             setOutlineProvider(new fh.a(this, 8));
             setClipToOutline(true);
         }
-        if (z10 && this.f41091y == null) {
+        if (z10 && this.f41226y == null) {
             try {
                 Bitmap decodeFile = BitmapFactory.decodeFile(new File(org.telegram.messenger.t0.h(), "voip_icthumb.jpg").getAbsolutePath());
-                this.f41091y = decodeFile;
+                this.f41226y = decodeFile;
                 if (decodeFile == null) {
-                    this.f41091y = BitmapFactory.decodeFile(new File(org.telegram.messenger.t0.h(), "icthumb.jpg").getAbsolutePath());
+                    this.f41226y = BitmapFactory.decodeFile(new File(org.telegram.messenger.t0.h(), "icthumb.jpg").getAbsolutePath());
                 }
-                imageView.setImageBitmap(this.f41091y);
+                imageView.setImageBitmap(this.f41226y);
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             } catch (Throwable unused) {
             }

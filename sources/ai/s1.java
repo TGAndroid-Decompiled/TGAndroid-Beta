@@ -1,747 +1,118 @@
 package ai;
 
-import a8.la;
-import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.RemoteException;
+import android.content.Context;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import bi.h4;
-import java.io.ByteArrayOutputStream;
-import java.io.Serializable;
+import bi.g4;
+import bi.i4;
+import bi.s3;
+import bi.y4;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.ExecutionException;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.gd;
-import org.telegram.messenger.j10;
-import org.telegram.messenger.jc;
-import org.telegram.messenger.ks;
-import org.telegram.messenger.lr;
-import org.telegram.messenger.mp;
-import org.telegram.messenger.v3;
-import org.telegram.messenger.xy;
-import org.telegram.messenger.zy;
+import org.telegram.messenger.q10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g8;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.ob0;
-import org.telegram.ui.Components.oo;
-import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.qj0;
-import org.telegram.ui.Components.ti0;
-import org.telegram.ui.Components.ui0;
-import org.telegram.ui.Components.vi0;
-import org.telegram.ui.Components.w7;
-import org.telegram.ui.Components.x7;
-import org.telegram.ui.Components.z4;
-import org.telegram.ui.ContactsActivity;
-import org.telegram.ui.Dictation.DictationAsr;
-import org.telegram.ui.Dictation.DictationLid;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.bn;
-import org.telegram.ui.de0;
-import org.telegram.ui.ee0;
-import org.telegram.ui.hk0;
-import org.telegram.ui.na0;
-import org.telegram.ui.pg0;
-import org.telegram.ui.sg0;
-import org.telegram.ui.ti;
-import org.telegram.ui.vg0;
-import org.telegram.ui.z90;
-public final class s1 implements c1, h2.o, lr, ob0, jc, z4, qj0, pj0, org.telegram.ui.ActionBar.r1, na0, lj0, h2.j {
-    public final int f1517a;
-    public final int f1518b;
-    public final Object f1519c;
+public final class s1 implements q10 {
+    public final int f1500a = 1;
+    public final long f1501b;
+    public final int f1502c;
+    public final Object d;
+    public final Object f1503e;
+    public final Object f1504f;
+    public final Object f1505g;
 
-    public s1(int i7, Object obj, int i10) {
-        this.f1517a = i10;
-        this.f1518b = i7;
-        this.f1519c = obj;
+    public s1(long j3, Context context, int i7, h6 h6Var, lc lcVar, TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer) {
+        this.f1501b = j3;
+        this.d = context;
+        this.f1502c = i7;
+        this.f1503e = h6Var;
+        this.f1504f = lcVar;
+        this.f1505g = tL_messageActionStarGiftOnchainOffer;
     }
 
     @Override
-    public void O(int i7, int i10, boolean z10) {
-        switch (this.f1517a) {
-            case 9:
-                org.telegram.messenger.g0.h3(new jg.q(i7, this.f1518b, (oo) this.f1519c, 12), 16L);
-                return;
-            default:
-                org.telegram.messenger.g0.h3(new jg.q(i7, this.f1518b, (h4) this.f1519c, 13), 16L);
-                return;
-        }
-    }
-
-    @Override
-    public void a(final float[] fArr, final long j3, final int i7) {
-        boolean z10;
-        android.support.v4.media.session.a0 a0Var;
-        Object obj;
-        long j10;
-        float f10;
-        boolean z11;
-        int i10;
+    public final void a(Object obj, Object obj2) {
         String str;
-        switch (this.f1517a) {
+        TLRPC.TL_textWithEntities tL_textWithEntities;
+        int i7 = this.f1500a;
+        Object obj3 = this.f1505g;
+        Object obj4 = this.f1504f;
+        Object obj5 = this.f1503e;
+        Object obj6 = this.d;
+        long j3 = this.f1501b;
+        switch (i7) {
             case 0:
-                c2 c2Var = (c2) this.f1519c;
-                int i11 = this.f1518b;
-                if (!c2Var.f1153j && i11 == c2Var.C) {
-                    float min = Math.min(0.6f, DictationLid.i(i7));
-                    d1 n10 = DictationLid.n(min, fArr);
-                    if (n10 == null || ((!n10.f1177c && (!"other".equals(n10.f1175a) || n10.f1176b < min)) || (!"other".equals(n10.f1175a) && DictationAsr.R(n10.f1175a, c2Var.f1167y, false) != null))) {
-                        z10 = false;
-                    } else {
-                        Log.d("Dictation", "tinyasr stop: tinylid " + i7 + " ms speech in " + j3 + " ms: " + n10 + " → Google?");
-                        c2Var.L = true;
-                        if (c2Var.h(n10.f1175a)) {
-                            z zVar = c2Var.f1164u;
-                            if (zVar != null) {
-                                j10 = zVar.c() / 32;
-                            } else {
-                                j10 = 0;
-                            }
-                            c2Var.f1146f.postDelayed(new o1(c2Var, 5), j10 + 10000);
-                            return;
-                        }
-                        z10 = false;
-                        c2Var.L = false;
-                    }
-                    if (n10 != null && n10.f1177c) {
-                        a0Var = DictationAsr.R(n10.f1175a, c2Var.f1167y, z10);
-                        if (a0Var != null) {
-                            DictationLid.l(n10.f1175a);
-                            c2Var.r(n10.f1175a);
-                        }
-                    } else if (n10 != null) {
-                        a0Var = DictationAsr.Q(DictationLid.d, fArr, c2Var.f1167y, false);
-                        if (a0Var != null) {
-                            c2Var.r(a0Var.i());
-                        }
-                    } else {
-                        a0Var = null;
-                    }
-                    StringBuilder sb2 = new StringBuilder("tinyasr stop: tinylid ");
-                    sb2.append(i7);
-                    sb2.append(" ms speech in ");
-                    sb2.append(j3);
-                    sb2.append(" ms: ");
-                    sb2.append(n10);
-                    sb2.append(" → ");
-                    if (a0Var != null) {
-                        obj = a0Var;
-                    } else {
-                        obj = "-";
-                    }
-                    sb2.append(obj);
-                    Log.d("Dictation", sb2.toString());
-                    if (a0Var != null) {
-                        t tVar = (t) a0Var.f1705b;
-                        android.support.v4.media.session.a0 a0Var2 = c2Var.f1167y;
-                        if (tVar != ((t) a0Var2.f1705b) || !((String) a0Var.f1706c).equals((String) a0Var2.f1706c)) {
-                            c2Var.o(a0Var);
-                            return;
-                        }
-                    }
-                    c2Var.g();
-                    return;
-                }
-                return;
-            case 1:
-                int i12 = this.f1518b;
-                c2 c2Var2 = ((x1) this.f1519c).f1612b;
-                c2Var2.W = false;
-                int i13 = c2Var2.Y;
-                if (i12 == i13) {
-                    c2Var2.f1140b0 = i7;
-                }
-                if (fArr != null) {
-                    int i14 = c2Var2.f1154k;
-                    if (!c2Var2.f1153j && !c2Var2.f1151i && i12 == i13 && c2Var2.f1163t != i14) {
-                        String[] strArr = DictationLid.d;
-                        int i15 = 0;
-                        for (int i16 = 1; i16 < fArr.length; i16++) {
-                            if (fArr[i16] > fArr[i15]) {
-                                i15 = i16;
-                            }
-                        }
-                        StringBuilder sb3 = new StringBuilder();
-                        ArrayList arrayList = c2Var2.f1160q;
-                        int size = arrayList.size();
-                        float f11 = 0.0f;
-                        int i17 = i15;
-                        int i18 = 0;
-                        float f12 = 0.0f;
-                        float f13 = 0.0f;
-                        String str2 = null;
-                        while (i18 < size) {
-                            Object obj2 = arrayList.get(i18);
-                            int i19 = i18 + 1;
-                            int i20 = size;
-                            String str3 = (String) obj2;
-                            ArrayList arrayList2 = arrayList;
-                            float f14 = 0.0f;
-                            for (int i21 = 0; i21 < strArr.length; i21++) {
-                                if (u0.d(strArr[i21], str3)) {
-                                    f14 += fArr[i21];
-                                }
-                            }
-                            f12 += f14;
-                            if (f14 > f13) {
-                                str2 = str3;
-                                f13 = f14;
-                            }
-                            sb3.append(' ');
-                            sb3.append(str3);
-                            sb3.append('=');
-                            sb3.append(String.format(Locale.US, "%.2f", Float.valueOf(f14)));
-                            i18 = i19;
-                            size = i20;
-                            str2 = str2;
-                            arrayList = arrayList2;
-                        }
-                        if (f12 > 0.0f) {
-                            f10 = f13 / f12;
-                        } else {
-                            f10 = 0.0f;
-                        }
-                        StringBuilder n11 = i5.c.n("session ", i14, " tinylid ", i7, " ms speech in ");
-                        n11.append(j3);
-                        n11.append(" ms: top ");
-                        n11.append(strArr[i17]);
-                        Locale locale = Locale.US;
-                        n11.append(String.format(locale, " %.2f", Float.valueOf(fArr[i17])));
-                        n11.append(" |");
-                        n11.append((Object) sb3);
-                        n11.append(" → ");
-                        n11.append(str2);
-                        n11.append(String.format(locale, " %.2f", Float.valueOf(f10)));
-                        n11.append(" current=");
-                        p5.c.t(n11, c2Var2.f1161r, "Dictation");
-                        if (str2 != null && !"nospeech".equals(strArr[i17]) && !"other".equals(strArr[i17]) && f12 >= 0.3f) {
-                            for (int i22 = 0; i22 < strArr.length; i22++) {
-                                if (u0.d(strArr[i22], str2)) {
-                                    f11 += fArr[i22];
-                                }
-                            }
-                            if (!u0.d(str2, c2Var2.f1161r) && f10 >= 0.8f && f11 >= 0.6f) {
-                                z11 = true;
-                            } else {
-                                z11 = false;
-                            }
-                            if (z11 && u0.d(str2, c2Var2.f1143d0)) {
-                                i10 = c2Var2.f1138a0 + 1;
-                            } else if (z11) {
-                                i10 = 1;
-                            } else {
-                                i10 = 0;
-                            }
-                            c2Var2.f1138a0 = i10;
-                            if (z11) {
-                                str = str2;
-                            } else {
-                                str = null;
-                            }
-                            c2Var2.f1143d0 = str;
-                            if (i10 >= 2) {
-                                int i23 = c2Var2.f1140b0;
-                                if (i23 < 5000) {
-                                    c2Var2.f1162s++;
-                                    if (c2Var2.J != null) {
-                                        Log.d("Dictation", "live transcript: no switch to " + str2 + " (tinylid)");
-                                        return;
-                                    }
-                                    c2Var2.v(str2, "tinylid");
-                                    c2Var2.r(str2);
-                                    int i24 = c2Var2.f1165w;
-                                    c2Var2.f1166x = i24;
-                                    c2Var2.X = i24;
-                                    c2Var2.Y++;
-                                    c2Var2.f1140b0 = 0;
-                                    c2Var2.f1142c0 = false;
-                                    c2Var2.f1138a0 = 0;
-                                    c2Var2.f1143d0 = null;
-                                    c2Var2.f1163t = i14;
-                                    i2 i2Var = c2Var2.f1148g;
-                                    if (i2Var.h(i14)) {
-                                        StringBuilder m10 = i5.c.m(i14, "session ", " discarded: ");
-                                        m10.append(i2.c(i2.i(i2Var.f1240b, i2Var.f1241c)));
-                                        i2Var.j(m10.toString());
-                                        i2Var.f1240b = "";
-                                        i2Var.f1241c = "";
-                                        i2Var.d = false;
-                                        i2Var.f1243f = false;
-                                    }
-                                    c2Var2.d();
-                                    c2Var2.f1146f.post(new m1(c2Var2, i14, 1));
-                                    return;
-                                } else if (!c2Var2.f1142c0) {
-                                    c2Var2.f1142c0 = true;
-                                    p5.c.t(i5.c.m(i23, "language locked: ", " ms of speech in "), c2Var2.f1161r, "Dictation");
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            }
+                e2 e2Var = (e2) obj6;
+                String str2 = (String) obj5;
+                String str3 = (String) obj4;
+                String str4 = (String) obj3;
+                TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI = (TLRPC.TL_composedMessageWithAI) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                e2Var.S = false;
+                e2Var.U = -1;
+                if (!e2Var.f1178j) {
+                    if (tL_composedMessageWithAI != null && (tL_textWithEntities = tL_composedMessageWithAI.result_text) != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
+                        Log.d("Dictation", "clean done in " + (SystemClock.elapsedRealtime() - j3) + " ms: " + k2.c(tL_composedMessageWithAI.result_text.text));
+                        String n10 = e2Var.f1173g.n();
+                        int i10 = this.f1502c;
+                        if (n10.startsWith(str2, i10)) {
+                            ArrayList arrayList = e2Var.Q;
+                            StringBuilder m10 = com.google.android.gms.internal.vision.e2.m(str3);
+                            m10.append(tL_composedMessageWithAI.result_text.text.trim());
+                            m10.append(str4);
+                            arrayList.add(new b2(i10, str2, m10.toString()));
+                            e2Var.R = str2.length() + i10;
+                            e2Var.e();
                             return;
                         }
                         return;
                     }
+                    StringBuilder sb2 = new StringBuilder("clean failed: ");
+                    if (tL_error != null) {
+                        str = tL_error.text;
+                    } else {
+                        str = null;
+                    }
+                    p5.c.t(sb2, str, "Dictation");
                     return;
                 }
                 return;
             default:
-                final o2 o2Var = (o2) this.f1519c;
-                final int i25 = this.f1518b;
-                o2Var.f1414t.f1421b.add(new Runnable() {
-                    @Override
-                    public final void run() {
-                        android.support.v4.media.session.a0 R;
-                        String nativeSessionPush;
-                        o2 o2Var2 = o2.this;
-                        int i26 = i25;
-                        float[] fArr2 = fArr;
-                        int i27 = i7;
-                        long j11 = j3;
-                        ByteArrayOutputStream byteArrayOutputStream = o2Var2.f1407m;
-                        o2Var2.f1411q = false;
-                        if (i26 == o2Var2.f1408n && o2Var2.d != null && fArr2 != null) {
-                            int i28 = 0;
-                            while (true) {
-                                int[] iArr = DictationLid.f43037j;
-                                if (i28 < iArr.length) {
-                                    if (iArr[i28] > i27) {
-                                        break;
-                                    }
-                                    i28++;
-                                } else {
-                                    i28 = -1;
-                                    break;
-                                }
-                            }
-                            o2Var2.f1409o = i28;
-                            if (i28 < 0) {
-                                o2Var2.f1406l.reset();
-                                byteArrayOutputStream.reset();
-                            }
-                            d1 n12 = DictationLid.n(DictationLid.i(i27), fArr2);
-                            android.support.v4.media.session.a0 a0Var3 = (android.support.v4.media.session.a0) o2Var2.d.d;
-                            StringBuilder sb4 = new StringBuilder("live captions ");
-                            int i29 = o2Var2.f1397a;
-                            i5.c.z(sb4, i29, ": tinylid ", i27, " ms speech in ");
-                            sb4.append(j11);
-                            sb4.append(" ms: ");
-                            sb4.append(n12);
-                            sb4.append(" (");
-                            sb4.append(a0Var3);
-                            sb4.append(")");
-                            Log.d("Dictation", sb4.toString());
-                            if (n12 != null) {
-                                String str4 = n12.f1175a;
-                                if (n12.f1177c && (R = DictationAsr.R(str4, a0Var3, false)) != null) {
-                                    t tVar2 = (t) R.f1705b;
-                                    if (tVar2 == ((t) a0Var3.f1705b) && ((String) R.f1706c).equals((String) a0Var3.f1706c)) {
-                                        o2Var2.f1412r = true;
-                                        o2Var2.f1405k = str4;
-                                    } else if (!o2Var2.f1412r || n12.f1176b >= 0.8f) {
-                                        if (tVar2 != null && tVar2.d != 0) {
-                                            x c10 = x.c(R, o2Var2);
-                                            if (c10 != null) {
-                                                o2Var2.f1412r = true;
-                                                o2Var2.f1405k = str4;
-                                                StringBuilder m11 = i5.c.m(i29, "live captions ", ": replaying ");
-                                                m11.append(byteArrayOutputStream.size() / 32);
-                                                m11.append(" ms in ");
-                                                m11.append(R);
-                                                Log.d("Dictation", m11.toString());
-                                                x xVar = o2Var2.d;
-                                                long j12 = xVar.f1602c;
-                                                if (j12 != 0) {
-                                                    DictationAsr.nativeSessionFree(j12);
-                                                    xVar.f1602c = 0L;
-                                                    DictationAsr.M((t) xVar.f1603e);
-                                                }
-                                                o2Var2.d = c10;
-                                                o2Var2.h = 0;
-                                                o2Var2.f1402g = 0;
-                                                int i30 = o2Var2.f1413s;
-                                                byte[] byteArray = byteArrayOutputStream.toByteArray();
-                                                x xVar2 = o2Var2.d;
-                                                int length = byteArray.length;
-                                                long j13 = xVar2.f1602c;
-                                                if (j13 != 0) {
-                                                    nativeSessionPush = DictationAsr.nativeSessionPush(j13, byteArray, 0, length);
-                                                    xVar2.b(nativeSessionPush);
-                                                }
-                                                if (o2Var2.f1413s == i30 && !o2Var2.f1404j.isEmpty()) {
-                                                    o2Var2.f1404j = "";
-                                                    org.telegram.messenger.g0.g3(new l2((Object) o2Var2, o2Var2.f1401f, (Serializable) "", false, 0));
-                                                    return;
-                                                }
-                                                return;
-                                            }
-                                            return;
-                                        }
-                                        org.telegram.messenger.g0.g3(new a3.f(R, 8));
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-                return;
-        }
-    }
-
-    @Override
-    public void accept(Object obj) {
-        p4.o oVar;
-        p4.o oVar2;
-        p4.v vVar = (p4.v) this.f1519c;
-        int i7 = this.f1518b;
-        try {
-            try {
-                oVar2 = (p4.o) ((m9.y) obj).get();
-                la.k(oVar2, "LibraryResult must not be null");
-            } catch (InterruptedException e10) {
-                e = e10;
-                h2.a.m("MediaSessionStub", "Library operation failed", e);
-                String str = p4.o.d;
-                p4.m1 m1Var = new p4.m1("no error message provided", -1, Bundle.EMPTY);
-                oVar = new p4.o(m1Var.f55345a, SystemClock.elapsedRealtime(), m1Var);
-                oVar2 = oVar;
-                p4.u uVar = vVar.d;
-                uVar.getClass();
-                uVar.i(i7, oVar2);
-            } catch (CancellationException e11) {
-                h2.a.m("MediaSessionStub", "Library operation cancelled", e11);
-                String str2 = p4.o.d;
-                p4.m1 m1Var2 = new p4.m1("no error message provided", 1, Bundle.EMPTY);
-                oVar = new p4.o(m1Var2.f55345a, SystemClock.elapsedRealtime(), m1Var2);
-                oVar2 = oVar;
-                p4.u uVar2 = vVar.d;
-                uVar2.getClass();
-                uVar2.i(i7, oVar2);
-            } catch (ExecutionException e12) {
-                e = e12;
-                h2.a.m("MediaSessionStub", "Library operation failed", e);
-                String str3 = p4.o.d;
-                p4.m1 m1Var3 = new p4.m1("no error message provided", -1, Bundle.EMPTY);
-                oVar = new p4.o(m1Var3.f55345a, SystemClock.elapsedRealtime(), m1Var3);
-                oVar2 = oVar;
-                p4.u uVar22 = vVar.d;
-                uVar22.getClass();
-                uVar22.i(i7, oVar2);
-            }
-            p4.u uVar222 = vVar.d;
-            uVar222.getClass();
-            uVar222.i(i7, oVar2);
-        } catch (RemoteException e13) {
-            h2.a.m("MediaSessionStub", "Failed to send result to browser " + vVar, e13);
-        }
-    }
-
-    @Override
-    public void b(TLRPC.MessageMedia messageMedia, int i7, boolean z10, int i10, long j3) {
-        String str = LaunchActivity.C1;
-        for (Map.Entry entry : ((HashMap) this.f1519c).entrySet()) {
-            fj fjVar = (fj) entry.getValue();
-            TLRPC.MessageMedia messageMedia2 = messageMedia;
-            zy.C(this.f1518b).r0(xy.d(messageMedia2, fj.B0(fjVar.f23965k), fjVar, null, null, null, true, 0));
-            messageMedia = messageMedia2;
-        }
-    }
-
-    @Override
-    public boolean b1(View view) {
-        switch (this.f1517a) {
-            case 12:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public boolean c(int i7, View view) {
-        vi0 vi0Var = (vi0) this.f1519c;
-        if (this.f1518b == 5) {
-            vi0Var.getClass();
-            return false;
-        }
-        ui0 ui0Var = vi0Var.f40657h0;
-        if (ui0Var == null || !(view instanceof ti0)) {
-            return false;
-        }
-        ui0Var.g(vi0Var, ((ti0) view).f40012e, true, false);
-        return true;
-    }
-
-    @Override
-    public void d(boolean z10) {
-        bn bnVar = ((ti) this.f1519c).f52288b;
-        int i7 = this.f1518b;
-        if (i7 == 15 && v3.T(bnVar.f45978e)) {
-            TLRPC.Chat chat = bnVar.f45978e;
-            if (!chat.megagroup || v3.t0(chat)) {
-                bnVar.getMessagesController().X(2, bnVar.f46076l6, z10);
-                return;
-            }
-        }
-        if (i7 != 15) {
-            ks notificationCenter = bnVar.getNotificationCenter();
-            int i10 = ks.f25190t;
-            notificationCenter.n(bnVar, i10);
-            bnVar.getNotificationCenter().k(i10, new Object[0]);
-            bnVar.finishFragment();
-            bnVar.getNotificationCenter().k(ks.K2, Long.valueOf(bnVar.f46076l6), bnVar.f45992f, bnVar.f45978e, Boolean.valueOf(z10));
-            return;
-        }
-        bnVar.Ta(bnVar.f46164s4, z10);
-    }
-
-    @Override
-    public void f(float f10, float f11, int i7, View view) {
-        int i10 = this.f1517a;
-        int i11 = this.f1518b;
-        Object obj = this.f1519c;
-        switch (i10) {
-            case 12:
-                ContactsActivity.c0((ContactsActivity) obj, i11, view, i7);
-                return;
-            default:
-                vg0 vg0Var = (vg0) obj;
-                sg0 sg0Var = vg0Var.U1;
-                HashSet hashSet = vg0Var.Z1;
-                if (view instanceof ah.r) {
-                    TLRPC.User user = ((ah.r) view).getUser();
-                    long j3 = user.f28552id;
-                    if (hashSet.contains(Long.valueOf(j3))) {
-                        hashSet.remove(Long.valueOf(j3));
-                    } else {
-                        hashSet.add(Long.valueOf(j3));
-                        vg0Var.f52775e2.put(Long.valueOf(j3), user);
-                    }
-                    if (hashSet.size() == i11 + 1) {
-                        hashSet.remove(Long.valueOf(j3));
-                        String G = gd.G(vg0Var.f52782l2, "BotMultiContactsSelectorLimit", new Object[0]);
-                        org.telegram.ui.ActionBar.n2 n2Var = vg0Var.f30193c;
-                        new lc(n2Var, vg0Var.J0).Q(2131623982, 36, G).k(true);
-                        try {
-                            n2Var.performHapticFeedback(3, 2);
-                            return;
-                        } catch (Exception unused) {
-                            return;
-                        }
-                    }
-                    sg0Var.b(true, hashSet, new pg0(vg0Var, 2), null);
-                    vg0Var.h1(true, false);
-                    if (!TextUtils.isEmpty(vg0Var.f52776f2)) {
-                        vg0Var.f52776f2 = null;
-                        sg0Var.setText("");
-                        org.telegram.messenger.g0.r(vg0Var.f52786p2);
-                        vg0Var.g1(true, true);
+                Context context = (Context) obj6;
+                h6 h6Var = (h6) obj5;
+                lc lcVar = (lc) obj4;
+                TLRPC.TL_messageActionStarGiftOnchainOffer tL_messageActionStarGiftOnchainOffer = (TLRPC.TL_messageActionStarGiftOnchainOffer) obj3;
+                TL_stars.TL_payments_starGiftOnchainOfferTx tL_payments_starGiftOnchainOfferTx = (TL_stars.TL_payments_starGiftOnchainOfferTx) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                int i11 = this.f1502c;
+                if (tL_payments_starGiftOnchainOfferTx != null && tL_payments_starGiftOnchainOfferTx.message != null) {
+                    org.telegram.ui.Wallet.p0 q10 = i4.q(context, h6Var, lcVar, i11, tL_payments_starGiftOnchainOfferTx);
+                    if (q10 == null) {
+                        i4.g(j3);
                         return;
                     }
+                    g4 g4Var = new g4(context, i11, tL_messageActionStarGiftOnchainOffer, tL_payments_starGiftOnchainOfferTx, q10, h6Var, lcVar);
+                    int i12 = s3.f4062x2;
+                    boolean[] zArr = new boolean[1];
+                    aa.r rVar = new aa.r(zArr, r4, g4Var, 9);
+                    org.telegram.messenger.g0.h3(rVar, 5000L);
+                    Runnable[] runnableArr = {org.telegram.ui.Wallet.u0.D(i11).l(q10, new bi.h0(zArr, rVar, g4Var, 1))};
                     return;
                 }
+                i4.g(j3);
+                y4.r(context, i11, h6Var, lcVar, tL_error2, null);
                 return;
         }
     }
 
-    @Override
-    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        int i10 = this.f1517a;
-        int i11 = this.f1518b;
-        Object obj = this.f1519c;
-        switch (i10) {
-            case 13:
-                ArrayList arrayList = ((LaunchActivity) obj).f43075e0;
-                if (!arrayList.isEmpty()) {
-                    mp.u1(i11).F3("spambot", (org.telegram.ui.ActionBar.h2) i5.c.h(1, arrayList), 1, null);
-                    return;
-                }
-                return;
-            case 14:
-            case 15:
-            case 17:
-            default:
-                ProfileActivity profileActivity = (ProfileActivity) obj;
-                RectF rectF = ProfileActivity.Z6;
-                TLRPC.UserFull d2 = profileActivity.getMessagesController().d2(profileActivity.f43540e1);
-                if (d2 != null) {
-                    d2.flags2 &= -4194305;
-                    d2.note = null;
-                    profileActivity.getMessagesStorage().j2(d2, true);
-                }
-                TLRPC.TL_updateContactNote tL_updateContactNote = new TLRPC.TL_updateContactNote();
-                tL_updateContactNote.f28544id = profileActivity.getMessagesController().q1(profileActivity.f43540e1);
-                tL_updateContactNote.note = new TLRPC.TL_textWithEntities();
-                profileActivity.getConnectionsManager().sendRequest(tL_updateContactNote, null);
-                profileActivity.N5();
-                profileActivity.d.s(i11);
-                return;
-            case 16:
-                ee0 ee0Var = ((de0) obj).f46878h0;
-                if (j10.f24770t0 != i11) {
-                    ((LaunchActivity) ee0Var.getParentActivity()).O0(i11);
-                }
-                ee0Var.finishFragment();
-                return;
-            case 18:
-                hk0 hk0Var = ((org.telegram.ui.qj0) obj).f51237a;
-                hk0Var.D1(hk0Var.Z[i11]);
-                return;
-            case 19:
-                PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) obj;
-                privacyControlActivity.getClass();
-                privacyControlActivity.presentFragment(new PrivacyControlActivity(i11, false), true);
-                return;
-        }
-    }
-
-    @Override
-    public String i(int i7) {
-        Calendar calendar = (Calendar) this.f1519c;
-        int i10 = this.f1518b;
-        calendar.clear();
-        calendar.set(1, i10);
-        calendar.set(2, 0);
-        calendar.add(2, i7 - 120);
-        if (calendar.get(1) == i10) {
-            gd E0 = gd.E0();
-            if (E0.f24235r == null) {
-                synchronized (E0) {
-                    try {
-                        if (E0.f24235r == null) {
-                            Locale locale = E0.f24241y;
-                            if (locale == null) {
-                                locale = Locale.getDefault();
-                            }
-                            E0.f24235r = gd.k(locale, E0.O0(2131742508, "formatterMonthOnly", null), "MMMM");
-                        }
-                    } finally {
-                    }
-                }
-            }
-            return E0.f24235r.format(calendar.getTimeInMillis());
-        }
-        return gd.E0().v0().format(calendar.getTimeInMillis());
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        switch (this.f1517a) {
-            case 3:
-                ((e2.a1) obj).L(((l2.g1) this.f1519c).f19369a, this.f1518b);
-                return;
-            case 4:
-                e2.a1 a1Var = (e2.a1) obj;
-                a1Var.v(this.f1518b, (e2.l0) this.f1519c);
-                return;
-            default:
-                m2.b bVar = (m2.b) obj;
-                bVar.getClass();
-                bVar.C((m2.a) this.f1519c, this.f1518b);
-                return;
-        }
-    }
-
-    @Override
-    public void m0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        int i7;
-        w7 w7Var = (w7) this.f1519c;
-        if (this.f1518b == w7Var.f41574b) {
-            g8 g8Var = w7Var.f41576e;
-            Bitmap n10 = imageReceiver.n();
-            if ((n10 != null && imageReceiver.J()) || imageReceiver.I()) {
-                i7 = org.telegram.messenger.g0.L(64.0f);
-            } else {
-                i7 = 0;
-            }
-            x7 x7Var = g8Var.D1;
-            ValueAnimator valueAnimator = g8Var.N2;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                g8Var.N2 = null;
-            }
-            if (x7Var.getCustomPaddingRight() != i7) {
-                ValueAnimator ofInt = ValueAnimator.ofInt(x7Var.getCustomPaddingRight(), i7);
-                g8Var.N2 = ofInt;
-                if (i7 == 0) {
-                    ofInt.setStartDelay(200L);
-                    g8Var.N2.setDuration(100L);
-                } else {
-                    ofInt.setDuration(200L);
-                }
-                g8Var.N2.setInterpolator(new DecelerateInterpolator());
-                g8Var.N2.addUpdateListener(new org.telegram.ui.Components.w(g8Var, 3));
-                g8Var.N2.start();
-            }
-            if (g8Var.f35388c2.getTag() != null) {
-                g8Var.d2.setImageBitmap(n10);
-            }
-        }
-    }
-
-    @Override
-    public int run() {
-        v4.c0 c0Var = ((z90) this.f1519c).f54457c;
-        int L = org.telegram.messenger.g0.L(60.0f);
-        int i7 = this.f1518b;
-        c0Var.h1(i7, L);
-        return i7;
-    }
-
-    @Override
-    public void s0(View view, float f10, float f11) {
-        int i7 = this.f1517a;
-    }
-
-    public s1(Object obj, int i7, int i10) {
-        this.f1517a = i10;
-        this.f1519c = obj;
-        this.f1518b = i7;
-    }
-
-    public s1(m2.a aVar, int i7, e2.b1 b1Var, e2.b1 b1Var2) {
-        this.f1517a = 5;
-        this.f1519c = aVar;
-        this.f1518b = i7;
-    }
-
-    public s1(ti tiVar, int i7, boolean z10) {
-        this.f1517a = 6;
-        this.f1519c = tiVar;
-        this.f1518b = i7;
-    }
-
-    @Override
-    public void V(ImageReceiver imageReceiver) {
-    }
-
-    @Override
-    public void G0(int i7, Drawable drawable) {
-    }
-
-    private final void e(View view, float f10, float f11) {
-    }
-
-    private final void g(View view, float f10, float f11) {
+    public s1(e2 e2Var, long j3, String str, int i7, String str2, String str3) {
+        this.d = e2Var;
+        this.f1501b = j3;
+        this.f1503e = str;
+        this.f1502c = i7;
+        this.f1504f = str2;
+        this.f1505g = str3;
     }
 }

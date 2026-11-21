@@ -5,12 +5,12 @@ public final class e extends h {
     public static final e d;
 
     static {
-        int i7 = k.f13515c;
+        int i7 = k.f13544c;
         int i10 = k.d;
-        long j3 = k.f13516e;
-        String str = k.f13513a;
+        long j3 = k.f13545e;
+        String str = k.f13542a;
         ?? xVar = new x();
-        xVar.f13509c = new c(i7, j3, str, i10);
+        xVar.f13538c = new c(i7, j3, str, i10);
         d = xVar;
     }
 

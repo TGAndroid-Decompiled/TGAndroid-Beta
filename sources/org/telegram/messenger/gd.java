@@ -24,15 +24,15 @@ import java.util.Locale;
 import org.telegram.messenger.time.FastDateFormat;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i41;
+import org.telegram.ui.Components.l41;
 public final class gd {
-    public static boolean f24213a0 = false;
-    public static int f24214b0 = 1;
-    public static boolean f24215c0 = false;
-    public static volatile gd f24216d0;
-    public static final char[] f24217e0 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    public static final char[][] f24218f0 = {new char[]{1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641}, new char[]{1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785}, new char[]{2406, 2407, 2408, 2409, 2410, 2411, 2412, 2413, 2414, 2415}, new char[]{2790, 2791, 2792, 2793, 2794, 2795, 2796, 2797, 2798, 2799}, new char[]{2662, 2663, 2664, 2665, 2666, 2667, 2668, 2669, 2670, 2671}, new char[]{2534, 2535, 2536, 2537, 2538, 2539, 2540, 2541, 2542, 2543}, new char[]{3302, 3303, 3304, 3305, 3306, 3307, 3308, 3309, 3310, 3311}, new char[]{2918, 2919, 2920, 2921, 2922, 2923, 2924, 2925, 2926, 2927}, new char[]{3430, 3431, 3432, 3433, 3434, 3435, 3436, 3437, 3438, 3439}, new char[]{3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055}, new char[]{3174, 3175, 3176, 3177, 3178, 3179, 3180, 3181, 3182, 3183}, new char[]{4160, 4161, 4162, 4163, 4164, 4165, 4166, 4167, 4168, 4169}, new char[]{3872, 3873, 3874, 3875, 3876, 3877, 3878, 3879, 3880, 3881}, new char[]{6160, 6161, 6162, 6163, 6164, 6165, 6166, 6167, 6168, 6169}, new char[]{6112, 6113, 6114, 6115, 6116, 6117, 6118, 6119, 6120, 6121}, new char[]{3664, 3665, 3666, 3667, 3668, 3669, 3670, 3671, 3672, 3673}, new char[]{3792, 3793, 3794, 3795, 3796, 3797, 3798, 3799, 3800, 3801}, new char[]{43472, 43473, 43474, 43475, 43476, 43477, 43478, 43479, 43480, 43481}};
-    public static Boolean f24219g0;
+    public static boolean f24241a0 = false;
+    public static int f24242b0 = 1;
+    public static boolean f24243c0 = false;
+    public static volatile gd f24244d0;
+    public static final char[] f24245e0 = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    public static final char[][] f24246f0 = {new char[]{1632, 1633, 1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641}, new char[]{1776, 1777, 1778, 1779, 1780, 1781, 1782, 1783, 1784, 1785}, new char[]{2406, 2407, 2408, 2409, 2410, 2411, 2412, 2413, 2414, 2415}, new char[]{2790, 2791, 2792, 2793, 2794, 2795, 2796, 2797, 2798, 2799}, new char[]{2662, 2663, 2664, 2665, 2666, 2667, 2668, 2669, 2670, 2671}, new char[]{2534, 2535, 2536, 2537, 2538, 2539, 2540, 2541, 2542, 2543}, new char[]{3302, 3303, 3304, 3305, 3306, 3307, 3308, 3309, 3310, 3311}, new char[]{2918, 2919, 2920, 2921, 2922, 2923, 2924, 2925, 2926, 2927}, new char[]{3430, 3431, 3432, 3433, 3434, 3435, 3436, 3437, 3438, 3439}, new char[]{3046, 3047, 3048, 3049, 3050, 3051, 3052, 3053, 3054, 3055}, new char[]{3174, 3175, 3176, 3177, 3178, 3179, 3180, 3181, 3182, 3183}, new char[]{4160, 4161, 4162, 4163, 4164, 4165, 4166, 4167, 4168, 4169}, new char[]{3872, 3873, 3874, 3875, 3876, 3877, 3878, 3879, 3880, 3881}, new char[]{6160, 6161, 6162, 6163, 6164, 6165, 6166, 6167, 6168, 6169}, new char[]{6112, 6113, 6114, 6115, 6116, 6117, 6118, 6119, 6120, 6121}, new char[]{3664, 3665, 3666, 3667, 3668, 3669, 3670, 3671, 3672, 3673}, new char[]{3792, 3793, 3794, 3795, 3796, 3797, 3798, 3799, 3800, 3801}, new char[]{43472, 43473, 43474, 43475, 43476, 43477, 43478, 43479, 43480, 43481}};
+    public static Boolean f24247g0;
     public dd A;
     public cd B;
     public String C;
@@ -58,32 +58,32 @@ public final class gd {
     public volatile boolean X;
     public vi.b Y;
     public int Z;
-    public volatile FastDateFormat f24220a;
-    public volatile FastDateFormat f24221b;
-    public volatile FastDateFormat f24222c;
+    public volatile FastDateFormat f24248a;
+    public volatile FastDateFormat f24249b;
+    public volatile FastDateFormat f24250c;
     public volatile FastDateFormat d;
-    public volatile FastDateFormat f24223e;
-    public volatile FastDateFormat f24224f;
-    public volatile FastDateFormat f24225g;
+    public volatile FastDateFormat f24251e;
+    public volatile FastDateFormat f24252f;
+    public volatile FastDateFormat f24253g;
     public volatile FastDateFormat h;
-    public volatile FastDateFormat f24226i;
-    public volatile FastDateFormat f24227j;
-    public volatile FastDateFormat f24228k;
-    public volatile FastDateFormat f24229l;
-    public volatile FastDateFormat f24230m;
-    public volatile FastDateFormat f24231n;
-    public volatile FastDateFormat f24232o;
-    public volatile FastDateFormat f24233p;
-    public volatile FastDateFormat f24234q;
-    public volatile FastDateFormat f24235r;
-    public volatile FastDateFormat f24236s;
-    public volatile FastDateFormat f24237t;
-    public volatile FastDateFormat f24238u;
+    public volatile FastDateFormat f24254i;
+    public volatile FastDateFormat f24255j;
+    public volatile FastDateFormat f24256k;
+    public volatile FastDateFormat f24257l;
+    public volatile FastDateFormat f24258m;
+    public volatile FastDateFormat f24259n;
+    public volatile FastDateFormat f24260o;
+    public volatile FastDateFormat f24261p;
+    public volatile FastDateFormat f24262q;
+    public volatile FastDateFormat f24263r;
+    public volatile FastDateFormat f24264s;
+    public volatile FastDateFormat f24265t;
+    public volatile FastDateFormat f24266u;
     public volatile FastDateFormat v;
-    public Locale f24241y;
-    public Locale f24242z;
-    public final FastDateFormat[] f24239w = new FastDateFormat[18];
-    public final HashMap f24240x = new HashMap();
+    public Locale f24269y;
+    public Locale f24270z;
+    public final FastDateFormat[] f24267w = new FastDateFormat[18];
+    public final HashMap f24268x = new HashMap();
     public boolean D = false;
 
     public gd() {
@@ -99,7 +99,7 @@ public final class gd {
         this.Q = false;
         this.S = new HashMap();
         this.T = new HashMap();
-        vi.b bVar = vi.b.f59579c;
+        vi.b bVar = vi.b.f59617c;
         this.W = bVar;
         this.Y = bVar;
         b(new String[]{"bem", "brx", "da", "de", "el", "en", "eo", "es", "et", "fi", "fo", "gl", "he", "iw", "it", "nb", "nl", "nn", "no", "sv", "af", "bg", "bn", "ca", "eu", "fur", "fy", "gu", "ha", "is", "ku", "lb", "ml", "mr", "nah", "ne", "om", "or", "pa", "pap", "ps", "so", "sq", "sw", "ta", "te", "tk", "ur", "zu", "mn", "gsw", "chr", "rm", "pt", "an", "ast"}, new dd(11));
@@ -123,97 +123,97 @@ public final class gd {
         b(new String[]{"ak", "am", "bh", "fil", "tl", "guw", "hi", "ln", "mg", "nso", "ti", "wa"}, new dd(19));
         b(new String[]{"az", "bm", "fa", "ig", "hu", "ja", "kde", "kea", "ko", "my", "ses", "sg", "to", "tr", "vi", "wo", "yo", "zh", "bo", "dz", "id", "jv", "jw", "ka", "km", "kn", "ms", "th", "in"}, new dd(10));
         ?? obj = new Object();
-        obj.f23328a = "English";
-        obj.f23329b = "English";
-        obj.f23332f = "en";
-        obj.f23330c = "en";
+        obj.f23356a = "English";
+        obj.f23357b = "English";
+        obj.f23360f = "en";
+        obj.f23358c = "en";
         cd cdVar = null;
         obj.d = null;
-        obj.f23335j = true;
+        obj.f23363j = true;
         arrayList.add(obj);
-        hashMap.put(obj.f23330c, obj);
+        hashMap.put(obj.f23358c, obj);
         ?? obj2 = new Object();
-        obj2.f23328a = "Italiano";
-        obj2.f23329b = "Italian";
-        obj2.f23332f = "it";
-        obj2.f23330c = "it";
+        obj2.f23356a = "Italiano";
+        obj2.f23357b = "Italian";
+        obj2.f23360f = "it";
+        obj2.f23358c = "it";
         obj2.d = null;
-        obj2.f23335j = true;
+        obj2.f23363j = true;
         arrayList.add(obj2);
-        hashMap.put(obj2.f23330c, obj2);
+        hashMap.put(obj2.f23358c, obj2);
         ?? obj3 = new Object();
-        obj3.f23328a = "Español";
-        obj3.f23329b = "Spanish";
-        obj3.f23332f = "es";
-        obj3.f23330c = "es";
-        obj3.f23335j = true;
+        obj3.f23356a = "Español";
+        obj3.f23357b = "Spanish";
+        obj3.f23360f = "es";
+        obj3.f23358c = "es";
+        obj3.f23363j = true;
         arrayList.add(obj3);
-        hashMap.put(obj3.f23330c, obj3);
+        hashMap.put(obj3.f23358c, obj3);
         ?? obj4 = new Object();
-        obj4.f23328a = "Deutsch";
-        obj4.f23329b = "German";
-        obj4.f23332f = "de";
-        obj4.f23330c = "de";
+        obj4.f23356a = "Deutsch";
+        obj4.f23357b = "German";
+        obj4.f23360f = "de";
+        obj4.f23358c = "de";
         obj4.d = null;
-        obj4.f23335j = true;
+        obj4.f23363j = true;
         arrayList.add(obj4);
-        hashMap.put(obj4.f23330c, obj4);
+        hashMap.put(obj4.f23358c, obj4);
         ?? obj5 = new Object();
-        obj5.f23328a = "Nederlands";
-        obj5.f23329b = "Dutch";
-        obj5.f23332f = "nl";
-        obj5.f23330c = "nl";
+        obj5.f23356a = "Nederlands";
+        obj5.f23357b = "Dutch";
+        obj5.f23360f = "nl";
+        obj5.f23358c = "nl";
         obj5.d = null;
-        obj5.f23335j = true;
+        obj5.f23363j = true;
         arrayList.add(obj5);
-        hashMap.put(obj5.f23330c, obj5);
+        hashMap.put(obj5.f23358c, obj5);
         ?? obj6 = new Object();
-        obj6.f23328a = "العربية";
-        obj6.f23329b = "Arabic";
-        obj6.f23332f = "ar";
-        obj6.f23330c = "ar";
+        obj6.f23356a = "العربية";
+        obj6.f23357b = "Arabic";
+        obj6.f23360f = "ar";
+        obj6.f23358c = "ar";
         obj6.d = null;
-        obj6.f23335j = true;
-        obj6.f23333g = true;
+        obj6.f23363j = true;
+        obj6.f23361g = true;
         arrayList.add(obj6);
-        hashMap.put(obj6.f23330c, obj6);
+        hashMap.put(obj6.f23358c, obj6);
         ?? obj7 = new Object();
-        obj7.f23328a = "Português (Brasil)";
-        obj7.f23329b = "Portuguese (Brazil)";
-        obj7.f23332f = "pt_br";
-        obj7.f23330c = "pt_br";
+        obj7.f23356a = "Português (Brasil)";
+        obj7.f23357b = "Portuguese (Brazil)";
+        obj7.f23360f = "pt_br";
+        obj7.f23358c = "pt_br";
         obj7.d = null;
-        obj7.f23335j = true;
+        obj7.f23363j = true;
         arrayList.add(obj7);
-        hashMap.put(obj7.f23330c, obj7);
+        hashMap.put(obj7.f23358c, obj7);
         ?? obj8 = new Object();
-        obj8.f23328a = "한국어";
-        obj8.f23329b = "Korean";
-        obj8.f23332f = "ko";
-        obj8.f23330c = "ko";
+        obj8.f23356a = "한국어";
+        obj8.f23357b = "Korean";
+        obj8.f23360f = "ko";
+        obj8.f23358c = "ko";
         obj8.d = null;
-        obj8.f23335j = true;
+        obj8.f23363j = true;
         arrayList.add(obj8);
-        hashMap.put(obj8.f23330c, obj8);
+        hashMap.put(obj8.f23358c, obj8);
         ?? obj9 = new Object();
-        obj9.f23328a = "Українська";
-        obj9.f23329b = "Ukrainian";
-        obj9.f23332f = "uk";
-        obj9.f23330c = "uk";
+        obj9.f23356a = "Українська";
+        obj9.f23357b = "Ukrainian";
+        obj9.f23360f = "uk";
+        obj9.f23358c = "uk";
         obj9.d = null;
-        obj9.f23335j = true;
+        obj9.f23363j = true;
         arrayList.add(obj9);
-        hashMap.put(obj9.f23330c, obj9);
+        hashMap.put(obj9.f23358c, obj9);
         ?? obj10 = new Object();
-        obj10.f23328a = "Русский";
-        obj10.f23329b = "Russian";
-        obj10.f23332f = "ru";
-        obj10.f23330c = "ru";
+        obj10.f23356a = "Русский";
+        obj10.f23357b = "Russian";
+        obj10.f23360f = "ru";
+        obj10.f23358c = "ru";
         obj10.d = null;
-        obj10.f23335j = true;
+        obj10.f23363j = true;
         arrayList.add(obj10);
-        hashMap.put(obj10.f23330c, obj10);
-        SharedPreferences sharedPreferences = t0.f26913b.getSharedPreferences("langconfig", 0);
+        hashMap.put(obj10.f23358c, obj10);
+        SharedPreferences sharedPreferences = t0.f26941b.getSharedPreferences("langconfig", 0);
         String string = sharedPreferences.getString("locales", null);
         if (!TextUtils.isEmpty(string)) {
             for (String str : string.split("&")) {
@@ -227,7 +227,7 @@ public final class gd {
         if (!TextUtils.isEmpty(string2)) {
             for (String str2 : string2.split("&")) {
                 cd a11 = cd.a(str2);
-                a11.f23330c = a11.f23330c.replace("-", "_");
+                a11.f23358c = a11.f23358c.replace("-", "_");
                 if (!this.M.containsKey(a11.b())) {
                     this.L.add(a11);
                     this.M.put(a11.b(), a11);
@@ -239,29 +239,29 @@ public final class gd {
             for (String str3 : string3.split("&")) {
                 cd a12 = cd.a(str3);
                 if (a12 != null) {
-                    a12.f23330c = a12.f23330c.replace("-", "_");
+                    a12.f23358c = a12.f23358c.replace("-", "_");
                     this.K.add(a12);
                 }
             }
         }
         if (this.L.isEmpty()) {
             g0.g3(new Runnable(this) {
-                public final gd f26378b;
+                public final gd f26406b;
 
                 {
-                    this.f26378b = this;
+                    this.f26406b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f26378b.V0(j10.f24770t0, true);
+                            this.f26406b.W0(j10.f24798t0, true);
                             return;
                         default:
-                            gd gdVar = this.f26378b;
+                            gd gdVar = this.f26406b;
                             gdVar.getClass();
-                            gdVar.F = gd.Q0();
+                            gdVar.F = gd.R0();
                             return;
                     }
                 }
@@ -278,8 +278,8 @@ public final class gd {
             if (G0 != null) {
                 G0.d = cdVar3.d;
                 G0.h = cdVar3.h;
-                G0.f23334i = cdVar3.f23334i;
-                G0.f23336k = cdVar3.f23336k;
+                G0.f23362i = cdVar3.f23362i;
+                G0.f23364k = cdVar3.f23364k;
                 this.L.set(i10, G0);
             } else {
                 this.J.add(cdVar3);
@@ -292,57 +292,57 @@ public final class gd {
             if (G02 != null) {
                 G02.d = cdVar4.d;
                 G02.h = cdVar4.h;
-                G02.f23334i = cdVar4.f23334i;
-                G02.f23336k = cdVar4.f23336k;
+                G02.f23362i = cdVar4.f23362i;
+                G02.f23364k = cdVar4.f23364k;
                 this.K.set(i11, G02);
             } else {
                 this.N.put(cdVar4.b(), cdVar4);
             }
         }
-        this.f24242z = Locale.getDefault();
-        f24215c0 = DateFormat.is24HourFormat(t0.f26913b);
+        this.f24270z = Locale.getDefault();
+        f24243c0 = DateFormat.is24HourFormat(t0.f26941b);
         try {
             String string4 = mp.g1().getString("language", null);
             if (string4 != null && (cdVar = G0(string4)) != null) {
                 z10 = true;
             }
-            if (cdVar == null && this.f24242z.getLanguage() != null) {
-                cdVar = G0(this.f24242z.getLanguage());
+            if (cdVar == null && this.f24270z.getLanguage() != null) {
+                cdVar = G0(this.f24270z.getLanguage());
             }
-            if (cdVar == null && (cdVar = G0(I0(this.f24242z))) == null) {
+            if (cdVar == null && (cdVar = G0(I0(this.f24270z))) == null) {
                 cdVar = G0("en");
             }
-            d(cdVar, z10, true, j10.f24770t0);
+            d(cdVar, z10, true, j10.f24798t0);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
         try {
             IntentFilter intentFilter = new IntentFilter("android.intent.action.TIMEZONE_CHANGED");
             if (Build.VERSION.SDK_INT >= 33) {
-                t0.f26913b.registerReceiver(new androidx.mediarouter.app.f(this, 7), intentFilter, 4);
+                t0.f26941b.registerReceiver(new androidx.mediarouter.app.f(this, 7), intentFilter, 4);
             } else {
-                t0.f26913b.registerReceiver(new androidx.mediarouter.app.f(this, 7), intentFilter);
+                t0.f26941b.registerReceiver(new androidx.mediarouter.app.f(this, 7), intentFilter);
             }
         } catch (Exception e11) {
             a8.g(e11, true);
         }
         g0.g3(new Runnable(this) {
-            public final gd f26378b;
+            public final gd f26406b;
 
             {
-                this.f26378b = this;
+                this.f26406b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f26378b.V0(j10.f24770t0, true);
+                        this.f26406b.W0(j10.f24798t0, true);
                         return;
                     default:
-                        gd gdVar = this.f26378b;
+                        gd gdVar = this.f26406b;
                         gdVar.getClass();
-                        gdVar.F = gd.Q0();
+                        gdVar.F = gd.R0();
                         return;
                 }
             }
@@ -405,7 +405,7 @@ public final class gd {
             return str;
         }
         if (!isEmpty2 && !isEmpty3) {
-            str3 = a0(null, null, 2131742525, str2, str4);
+            str3 = a0(null, null, 2131742519, str2, str4);
         } else {
             if (isEmpty2) {
                 str2 = str4;
@@ -413,7 +413,7 @@ public final class gd {
             str3 = str2;
         }
         if (!isEmpty) {
-            return a0(null, null, 2131746139, str, str3);
+            return a0(null, null, 2131746138, str, str3);
         }
         return str3;
     }
@@ -423,11 +423,11 @@ public final class gd {
         long j10 = j3 * 1000;
         try {
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                a02 = a0(null, null, 2131742525, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                a02 = a0(null, null, 2131742519, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             } else {
-                a02 = a0(null, null, 2131742525, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                a02 = a0(null, null, 2131742519, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131752324, a02);
+            return a0(null, null, 2131752323, a02);
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -470,21 +470,21 @@ public final class gd {
             int i11 = calendar.get(6);
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
-                int currentTime = ((int) (ConnectionsManager.getInstance(j10.f24770t0).getCurrentTime() - (j10 / 1000))) / 60;
+                int currentTime = ((int) (ConnectionsManager.getInstance(j10.f24798t0).getCurrentTime() - (j10 / 1000))) / 60;
                 if (currentTime < 1) {
-                    return M0(2131748553, null);
+                    return N0(2131748552, null);
                 }
                 if (currentTime < 60) {
                     return G(currentTime, "UpdatedMinutes", new Object[0]);
                 }
-                return a0(null, null, 2131748554, a0("TodayAtFormatted", null, 2131743876, E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131748553, a0("TodayAtFormatted", null, 2131743870, E0().p0().format(new Date(j10))));
             } else if (i11 + 1 == i7 && i10 == i12) {
-                return a0(null, null, 2131748554, a0("YesterdayAtFormatted", null, 2131742585, E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131748553, a0("YesterdayAtFormatted", null, 2131742579, E0().p0().format(new Date(j10))));
             } else {
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                    return a0(null, null, 2131748554, a0(null, null, 2131742525, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10))));
+                    return a0(null, null, 2131748553, a0(null, null, 2131742519, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10))));
                 }
-                return a0(null, null, 2131748554, a0(null, null, 2131742525, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131748553, a0(null, null, 2131742519, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10))));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -505,14 +505,14 @@ public final class gd {
 
     public static gd E0() {
         gd gdVar;
-        gd gdVar2 = f24216d0;
+        gd gdVar2 = f24244d0;
         if (gdVar2 == null) {
             synchronized (gd.class) {
                 try {
-                    gdVar = f24216d0;
+                    gdVar = f24244d0;
                     if (gdVar == null) {
                         gdVar = new gd();
-                        f24216d0 = gdVar;
+                        f24244d0 = gdVar;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -526,7 +526,7 @@ public final class gd {
     public static CharSequence F(String str, int i7, CharSequence... charSequenceArr) {
         if (str.length() != 0 && E0().A != null) {
             E0();
-            String E = a8.p0.E(str, "_", f1(E0().A.a(i7)));
+            String E = a8.p0.E(str, "_", g1(E0().A.a(i7)));
             Object[] objArr = new Object[charSequenceArr.length + 1];
             objArr[0] = Integer.valueOf(i7);
             System.arraycopy(charSequenceArr, 0, objArr, 1, charSequenceArr.length);
@@ -556,7 +556,7 @@ public final class gd {
     public static String G(int i7, String str, Object... objArr) {
         if (str.length() != 0 && E0().A != null) {
             E0();
-            String E = a8.p0.E(str, "_", f1(E0().A.a(i7)));
+            String E = a8.p0.E(str, "_", g1(E0().A.a(i7)));
             Object[] objArr2 = new Object[objArr.length + 1];
             objArr2[0] = Integer.valueOf(i7);
             System.arraycopy(objArr, 0, objArr2, 1, objArr.length);
@@ -605,7 +605,7 @@ public final class gd {
         if (cdVar != null) {
             return cdVar.c();
         }
-        Locale locale = E0().f24241y;
+        Locale locale = E0().f24269y;
         if (locale == null) {
             return "en";
         }
@@ -633,12 +633,12 @@ public final class gd {
         try {
             if (str.length() != 0 && E0().A != null) {
                 E0();
-                String str2 = str + "_" + f1(E0().A.a(i7));
+                String str2 = str + "_" + g1(E0().A.a(i7));
                 StringBuilder sb3 = new StringBuilder(String.format("%d", Integer.valueOf(i7)));
                 for (int length = sb3.length() - 3; length > 0; length -= 3) {
                     sb3.insert(length, c10);
                 }
-                boolean z10 = s2.f26721a;
+                boolean z10 = s2.f26749a;
                 String b10 = E0().Y.b(str2);
                 if (b10 == null) {
                     b10 = E0().Y.b(str + "_other");
@@ -667,8 +667,8 @@ public final class gd {
                     }
                     objArr2[i10] = sb2;
                 }
-                if (E0().f24241y != null) {
-                    return String.format(E0().f24241y, replace, objArr2);
+                if (E0().f24269y != null) {
+                    return String.format(E0().f24269y, replace, objArr2);
                 }
                 return String.format(replace, objArr2);
             }
@@ -682,7 +682,7 @@ public final class gd {
     public static String K0(int i7, String str) {
         if (str.length() != 0 && E0().A != null) {
             E0();
-            return E0().O0(0, a8.p0.E(str, "_", f1(E0().A.a(i7))), str.concat("_other"));
+            return E0().P0(0, a8.p0.E(str, "_", g1(E0().A.a(i7))), str.concat("_other"));
         }
         return "LOC_ERR:".concat(str);
     }
@@ -697,23 +697,29 @@ public final class gd {
             int i11 = calendar.get(6);
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
-                return a0(null, null, 2131747009, E0().p0().format(new Date(j10)));
-            }
-            if (i11 + 1 == i7 && i10 == i12) {
                 return a0(null, null, 2131747008, E0().p0().format(new Date(j10)));
             }
-            if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                return a0(null, null, 2131747010, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            if (i11 + 1 == i7 && i10 == i12) {
+                return a0(null, null, 2131747007, E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131747010, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
+                return a0(null, null, 2131747009, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            }
+            return a0(null, null, 2131747009, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
         }
     }
 
-    public static String L0(int i7) {
-        return M0(i7, null);
+    public static String L0(String str) {
+        String b10 = E0().Y.b(str);
+        if (b10 == null) {
+            gd E0 = E0();
+            E0.i();
+            return E0.W.b(str);
+        }
+        return b10;
     }
 
     public static String M(int i7, boolean z10) {
@@ -725,15 +731,15 @@ public final class gd {
             G = G(i7 / 86400, "Days", new Object[0]);
         }
         if (z10) {
-            i10 = 2131746967;
+            i10 = 2131746966;
         } else {
-            i10 = 2131746979;
+            i10 = 2131746978;
         }
         return a0(null, null, i10, G);
     }
 
-    public static String M0(int i7, String str) {
-        return E0().O0(i7, str, null);
+    public static String M0(int i7) {
+        return N0(i7, null);
     }
 
     public static String N(long j3) {
@@ -746,50 +752,47 @@ public final class gd {
             int i7 = (j14 > 1L ? 1 : (j14 == 1L ? 0 : -1));
             if (i7 >= 0) {
                 if (i7 == 0) {
-                    return M0(2131742598, null);
+                    return N0(2131742592, null);
                 }
                 return H(',', "YearsAgo", (int) j14);
             }
             int i10 = (j13 > 1L ? 1 : (j13 == 1L ? 0 : -1));
             if (i10 >= 0) {
                 if (i10 == 0) {
-                    return M0(2131748153, null);
+                    return N0(2131748152, null);
                 }
                 return H(',', "MonthsAgo", (int) j13);
             }
             int i11 = (j12 > 1L ? 1 : (j12 == 1L ? 0 : -1));
             if (i11 >= 0) {
                 if (i11 == 0) {
-                    return M0(2131751657, null);
+                    return N0(2131751656, null);
                 }
                 return H(',', "DaysAgo", (int) j12);
             }
             int i12 = (j11 > 1L ? 1 : (j11 == 1L ? 0 : -1));
             if (i12 >= 0) {
                 if (i12 == 0) {
-                    return M0(2131749097, null);
+                    return N0(2131749096, null);
                 }
                 return H(',', "HoursAgo", (int) j11);
             }
             int i13 = (j10 > 1L ? 1 : (j10 == 1L ? 0 : -1));
             if (i13 >= 0) {
                 if (i13 == 0) {
-                    return M0(2131748234, null);
+                    return N0(2131748233, null);
                 }
                 return H(',', "MinutesAgo", (int) j10);
             }
-            return M0(2131748795, null);
+            return N0(2131748794, null);
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
         }
     }
 
-    public static String N0(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return p5.c.k("LOC_ERR:", str);
-        }
-        return M0(0, str);
+    public static String N0(int i7, String str) {
+        return E0().P0(i7, str, null);
     }
 
     public static String O(long j3) {
@@ -802,19 +805,26 @@ public final class gd {
             int i11 = calendar.get(6);
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
-                return a0(null, null, 2131743875, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131743869, E0().p0().format(new Date(j10)));
             }
             if (i11 + 1 == i7 && i10 == i12) {
-                return a0(null, null, 2131742585, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742579, E0().p0().format(new Date(j10)));
             }
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                return a0(null, null, 2131742525, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742519, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131742525, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            return a0(null, null, 2131742519, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
         }
+    }
+
+    public static String O0(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return p5.c.k("LOC_ERR:", str);
+        }
+        return N0(0, str);
     }
 
     public static String P(long j3) {
@@ -829,7 +839,7 @@ public final class gd {
             int i12 = calendar.get(1);
             long j11 = timeInMillis - j10;
             if (j11 < 60000) {
-                return M0(2131745162, null);
+                return N0(2131745161, null);
             }
             if (j11 < 3600000) {
                 return G((int) (j11 / 60000), "ShortMinutesAgo", new Object[0]);
@@ -838,14 +848,14 @@ public final class gd {
                 if (j11 < 43200000) {
                     return G((int) (j11 / 3600000), "ShortHoursAgo", new Object[0]);
                 }
-                return M0(2131745160, null);
+                return N0(2131745159, null);
             } else if (i11 + 1 == i7 && i10 == i12) {
-                return M0(2131745159, null);
+                return N0(2131745158, null);
             } else {
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
                     return E0().q0().format(new Date(j10));
                 }
-                return a0(null, null, 2131742525, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742519, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -864,30 +874,6 @@ public final class gd {
             a8.g(e10, true);
             return "LOC_ERR";
         }
-    }
-
-    public static String Q0() {
-        Locale locale = E0().f24242z;
-        if (locale == null) {
-            return "en";
-        }
-        String language = locale.getLanguage();
-        String country = locale.getCountry();
-        String variant = locale.getVariant();
-        if (language.length() == 0 && country.length() == 0) {
-            return "en";
-        }
-        StringBuilder sb2 = new StringBuilder(11);
-        sb2.append(language);
-        if (country.length() > 0 || variant.length() > 0) {
-            sb2.append('-');
-        }
-        sb2.append(country);
-        if (variant.length() > 0) {
-            sb2.append('_');
-        }
-        sb2.append(variant);
-        return sb2.toString();
     }
 
     public static String R(int i7) {
@@ -928,6 +914,30 @@ public final class gd {
         }
         sb2.append(str3);
         sb2.append(i12);
+        return sb2.toString();
+    }
+
+    public static String R0() {
+        Locale locale = E0().f24270z;
+        if (locale == null) {
+            return "en";
+        }
+        String language = locale.getLanguage();
+        String country = locale.getCountry();
+        String variant = locale.getVariant();
+        if (language.length() == 0 && country.length() == 0) {
+            return "en";
+        }
+        StringBuilder sb2 = new StringBuilder(11);
+        sb2.append(language);
+        if (country.length() > 0 || variant.length() > 0) {
+            sb2.append('-');
+        }
+        sb2.append(country);
+        if (variant.length() > 0) {
+            sb2.append('_');
+        }
+        sb2.append(variant);
         return sb2.toString();
     }
 
@@ -983,41 +993,25 @@ public final class gd {
         }
     }
 
-    public static boolean T0(File file) {
+    public static CharSequence U(int i7, Object... objArr) {
+        return V(null, null, i7, objArr);
+    }
+
+    public static boolean U0(File file) {
         if (file != null && new File(new File(t0.h(), "malformed_locales"), file.getName()).exists()) {
             return true;
         }
         return false;
     }
 
-    public static CharSequence U(int i7, Object... objArr) {
-        return V(null, null, i7, objArr);
-    }
-
-    public static boolean U0(int i7) {
-        if (i7 != 9 && i7 != 10 && i7 != 13) {
-            if (i7 < 32 || i7 > 55295) {
-                if (i7 < 57344 || i7 > 65533) {
-                    if (i7 < 65536 || i7 > 1114111) {
-                        return false;
-                    }
-                    return true;
-                }
-                return true;
-            }
-            return true;
-        }
-        return true;
-    }
-
     public static CharSequence V(String str, String str2, int i7, Object... objArr) {
         String str3;
         try {
-            String P0 = E0().P0(i7, str, str2);
-            if (P0 == null) {
+            String Q0 = E0().Q0(i7, str, str2);
+            if (Q0 == null) {
                 return "LOC_ERR: " + str;
             }
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(P0);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(Q0);
             int i10 = 0;
             while (i10 < objArr.length) {
                 String str4 = "s";
@@ -1059,6 +1053,22 @@ public final class gd {
             a8.g(e10, true);
             return "LOC_ERR: " + str;
         }
+    }
+
+    public static boolean V0(int i7) {
+        if (i7 != 9 && i7 != 10 && i7 != 13) {
+            if (i7 < 32 || i7 > 55295) {
+                if (i7 < 57344 || i7 > 65533) {
+                    if (i7 < 65536 || i7 > 1114111) {
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
+            }
+            return true;
+        }
+        return true;
     }
 
     public static String W(int i7, long j3, boolean z10) {
@@ -1103,21 +1113,21 @@ public final class gd {
             int i12 = calendar.get(1);
             long j11 = timeInMillis - j10;
             if (j11 < 60000) {
-                return M0(2131745803, null);
+                return N0(2131745802, null);
             }
             if (j11 < 3600000) {
                 int i13 = (int) (j11 / 60000);
                 return G(i13, "MinutesAgo", Integer.valueOf(i13));
             } else if (i11 == i7 && i10 == i12) {
-                return a0(null, null, 2131743875, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131743869, E0().p0().format(new Date(j10)));
             } else {
                 if (i11 + 1 == i7 && i10 == i12) {
-                    return a0(null, null, 2131742585, E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131742579, E0().p0().format(new Date(j10)));
                 }
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                    return a0(null, null, 2131742525, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131742519, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
                 }
-                return a0(null, null, 2131742525, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742519, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -1125,16 +1135,16 @@ public final class gd {
         }
     }
 
-    public static void X0(String str) {
-        if (s2.f26721a) {
+    public static String Y(int i7, String str, Object... objArr) {
+        return a0(str, null, i7, objArr);
+    }
+
+    public static void Y0(String str) {
+        if (s2.f26749a) {
             a8.b("set as patched " + str + " langpack");
         }
         SharedPreferences.Editor edit = mp.g1().edit();
         edit.putBoolean("lngpack_patched_" + str, true).apply();
-    }
-
-    public static String Y(int i7, String str, Object... objArr) {
-        return a0(str, null, i7, objArr);
     }
 
     public static String Z(int i7, Object... objArr) {
@@ -1147,19 +1157,19 @@ public final class gd {
 
     public static String a0(String str, String str2, int i7, Object... objArr) {
         try {
-            String P0 = E0().P0(i7, str, str2);
-            if (P0 == null) {
+            String Q0 = E0().Q0(i7, str, str2);
+            if (Q0 == null) {
                 return "LOC_ERR: " + str;
-            } else if (E0().f24241y != null) {
-                return String.format(E0().f24241y, P0, objArr);
+            } else if (E0().f24269y != null) {
+                return String.format(E0().f24269y, Q0, objArr);
             } else {
-                return String.format(P0, objArr);
+                return String.format(Q0, objArr);
             }
         } catch (Exception e10) {
             a8.g(e10, true);
             if (i7 != 0) {
                 try {
-                    return String.format(t0.f26913b.getString(i7), objArr);
+                    return String.format(t0.f26941b.getString(i7), objArr);
                 } catch (Exception unused) {
                     return p5.c.k("LOC_ERR: ", str);
                 }
@@ -1170,8 +1180,8 @@ public final class gd {
 
     public static String b0(String str, Object... objArr) {
         try {
-            if (E0().f24241y != null) {
-                return String.format(E0().f24241y, str, objArr);
+            if (E0().f24269y != null) {
+                return String.format(E0().f24269y, str, objArr);
             }
             return String.format(str, objArr);
         } catch (Exception e10) {
@@ -1237,11 +1247,11 @@ public final class gd {
                 userStatus3.expires = i10;
             }
         }
-        if (user != null && (userStatus2 = user.status) != null && userStatus2.expires <= 0 && mp.u1(i7).f25594a0.containsKey(Long.valueOf(user.f28552id))) {
+        if (user != null && (userStatus2 = user.status) != null && userStatus2.expires <= 0 && mp.u1(i7).f25622a0.containsKey(Long.valueOf(user.f28580id))) {
             if (zArr != null) {
                 zArr[0] = true;
             }
-            return M0(2131747633, "Online");
+            return N0(2131747632, "Online");
         } else if (user != null && (userStatus = user.status) != null && userStatus.expires != 0 && !o10.y(user) && !(user instanceof TLRPC.TL_userEmpty)) {
             int currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
             int i13 = user.status.expires;
@@ -1249,23 +1259,23 @@ public final class gd {
                 if (zArr != null) {
                     zArr[0] = true;
                 }
-                return M0(2131747633, "Online");
+                return N0(2131747632, "Online");
             } else if (i13 == -1) {
-                return M0(2131748986, "Invisible");
+                return N0(2131748985, "Invisible");
             } else {
                 if (i13 != -100 && i13 != -1000) {
                     if (i13 != -101 && i13 != -1001) {
                         if (i13 != -102 && i13 != -1002) {
                             return w(i13, zArr2);
                         }
-                        return M0(2131742605, "WithinAMonth");
+                        return N0(2131742599, "WithinAMonth");
                     }
-                    return M0(2131742604, "WithinAWeek");
+                    return N0(2131742598, "WithinAWeek");
                 }
-                return M0(2131748819, "Lately");
+                return N0(2131748818, "Lately");
             }
         } else {
-            return M0(2131754951, "ALongTimeAgo");
+            return N0(2131754951, "ALongTimeAgo");
         }
     }
 
@@ -1277,7 +1287,7 @@ public final class gd {
             calendar.setTimeInMillis(j10);
             int i10 = calendar.get(1);
             int i11 = calendar.get(2);
-            String[] strArr = {M0(2131748894, null), M0(2131750818, null), M0(2131748491, null), M0(2131754171, null), M0(2131748470, null), M0(2131748872, null), M0(2131748874, null), M0(2131753893, null), M0(2131745370, null), M0(2131747637, null), M0(2131747642, null), M0(2131751594, null)};
+            String[] strArr = {N0(2131748893, null), N0(2131750817, null), N0(2131748490, null), N0(2131754170, null), N0(2131748469, null), N0(2131748871, null), N0(2131748873, null), N0(2131753892, null), N0(2131745369, null), N0(2131747636, null), N0(2131747641, null), N0(2131751593, null)};
             if (i7 == i10 && !z10) {
                 return strArr[i11];
             }
@@ -1288,7 +1298,23 @@ public final class gd {
         }
     }
 
-    public static String e1(long j3) {
+    public static String f0(long j3) {
+        long j10 = 1000 * j3;
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.get(1);
+            calendar.setTimeInMillis(j10);
+            int i7 = calendar.get(1);
+            int i10 = calendar.get(2);
+            int i11 = calendar.get(5);
+            return new String[]{N0(2131748893, null), N0(2131750817, null), N0(2131748490, null), N0(2131754170, null), N0(2131748469, null), N0(2131748871, null), N0(2131748873, null), N0(2131753892, null), N0(2131745369, null), N0(2131747636, null), N0(2131747641, null), N0(2131751593, null)}[i10] + " " + i11 + ", " + i7;
+        } catch (Exception e10) {
+            a8.g(e10, true);
+            return "LOC_ERR";
+        }
+    }
+
+    public static String f1(long j3) {
         long j10 = j3 * 1000;
         try {
             if (Math.abs(System.currentTimeMillis() - j10) >= 31536000000L) {
@@ -1311,23 +1337,17 @@ public final class gd {
         }
     }
 
-    public static String f0(long j3) {
-        long j10 = 1000 * j3;
-        try {
-            Calendar calendar = Calendar.getInstance();
-            calendar.get(1);
-            calendar.setTimeInMillis(j10);
-            int i7 = calendar.get(1);
-            int i10 = calendar.get(2);
-            int i11 = calendar.get(5);
-            return new String[]{M0(2131748894, null), M0(2131750818, null), M0(2131748491, null), M0(2131754171, null), M0(2131748470, null), M0(2131748872, null), M0(2131748874, null), M0(2131753893, null), M0(2131745370, null), M0(2131747637, null), M0(2131747642, null), M0(2131751594, null)}[i10] + " " + i11 + ", " + i7;
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return "LOC_ERR";
+    public static Spannable g(String str) {
+        if (str instanceof Spannable) {
+            ((Spannable) str).setSpan(new l41(g0.o()), 0, str.length(), 33);
+            return (Spannable) str;
         }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        spannableStringBuilder.setSpan(new l41(g0.o()), 0, str.length(), 33);
+        return spannableStringBuilder;
     }
 
-    public static String f1(int i7) {
+    public static String g1(int i7) {
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 4) {
@@ -1344,16 +1364,6 @@ public final class gd {
             return "one";
         }
         return "zero";
-    }
-
-    public static Spannable g(String str) {
-        if (str instanceof Spannable) {
-            ((Spannable) str).setSpan(new i41(g0.o()), 0, str.length(), 33);
-            return (Spannable) str;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        spannableStringBuilder.setSpan(new i41(g0.o()), 0, str.length(), 33);
-        return spannableStringBuilder;
     }
 
     public static int h(HashMap hashMap) {
@@ -1387,10 +1397,10 @@ public final class gd {
 
     public static String i0(int i7, String str) {
         if (str != null && str.equalsIgnoreCase("ft")) {
-            return M0(i7, null);
+            return N0(i7, null);
         }
         try {
-            return new Locale("", str).getDisplayCountry(E0().f24241y);
+            return new Locale("", str).getDisplayCountry(E0().f24269y);
         } catch (Exception e10) {
             a8.g(e10, true);
             return null;
@@ -1399,10 +1409,10 @@ public final class gd {
 
     public static String j0() {
         cd cdVar = E0().B;
-        if (cdVar != null && !TextUtils.isEmpty(cdVar.f23328a)) {
-            return cdVar.f23328a;
+        if (cdVar != null && !TextUtils.isEmpty(cdVar.f23356a)) {
+            return cdVar.f23356a;
         }
-        return M0(2131748857, "LanguageName");
+        return N0(2131748856, "LanguageName");
     }
 
     public static FastDateFormat k(Locale locale, String str, String str2) {
@@ -1417,12 +1427,12 @@ public final class gd {
     }
 
     public static void l() {
-        if (f24219g0 == null) {
-            int i7 = bz.f23196s1;
+        if (f24247g0 == null) {
+            int i7 = bz.f23224s1;
             boolean z10 = false;
             if (i7 == 0) {
                 try {
-                    TelephonyManager telephonyManager = (TelephonyManager) t0.f26913b.getSystemService("phone");
+                    TelephonyManager telephonyManager = (TelephonyManager) t0.f26941b.getSystemService("phone");
                     if (telephonyManager != null) {
                         String upperCase = telephonyManager.getSimCountryIso().toUpperCase();
                         if (!"US".equals(upperCase)) {
@@ -1430,18 +1440,18 @@ public final class gd {
                                 if (!"MM".equals(upperCase)) {
                                     if ("LR".equals(upperCase)) {
                                     }
-                                    f24219g0 = Boolean.valueOf(z10);
+                                    f24247g0 = Boolean.valueOf(z10);
                                     return;
                                 }
                             }
                         }
                         z10 = true;
-                        f24219g0 = Boolean.valueOf(z10);
+                        f24247g0 = Boolean.valueOf(z10);
                         return;
                     }
                     return;
                 } catch (Exception e10) {
-                    f24219g0 = Boolean.FALSE;
+                    f24247g0 = Boolean.FALSE;
                     a8.g(e10, true);
                     return;
                 }
@@ -1449,16 +1459,16 @@ public final class gd {
             if (i7 == 2) {
                 z10 = true;
             }
-            f24219g0 = Boolean.valueOf(z10);
+            f24247g0 = Boolean.valueOf(z10);
         }
     }
 
     public static int l0(cd cdVar, TLRPC.TL_langPackDifference tL_langPackDifference) {
         String lowerCase = tL_langPackDifference.lang_code.replace('-', '_').toLowerCase();
-        if (lowerCase.equals(cdVar.f23330c)) {
+        if (lowerCase.equals(cdVar.f23358c)) {
             return 0;
         }
-        if (lowerCase.equals(cdVar.f23331e)) {
+        if (lowerCase.equals(cdVar.f23359e)) {
             return 1;
         }
         return -1;
@@ -1478,11 +1488,11 @@ public final class gd {
                 while (i10 < 18) {
                     int i11 = 0;
                     while (true) {
-                        char[] cArr = f24218f0[i10];
+                        char[] cArr = f24246f0[i10];
                         if (i11 >= cArr.length) {
                             break;
                         } else if (charAt == cArr[i11]) {
-                            sb2.setCharAt(i7, f24217e0[i11]);
+                            sb2.setCharAt(i7, f24245e0[i11]);
                             i10 = 18;
                             break;
                         } else {
@@ -1524,11 +1534,11 @@ public final class gd {
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
                 if (z10) {
-                    return M0(2131745160, null);
+                    return N0(2131745159, null);
                 }
                 return E0().p0().format(new Date(j10));
             } else if (i11 + 1 == i7 && i10 == i12) {
-                return M0(2131742587, "Yesterday");
+                return N0(2131742581, "Yesterday");
             } else {
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
                     return E0().q0().format(new Date(j10));
@@ -1552,16 +1562,16 @@ public final class gd {
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12) {
                 if (z10) {
-                    return a0(null, null, 2131743876, E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131743870, E0().p0().format(new Date(j10)));
                 }
-                return a0(null, null, 2131743875, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131743869, E0().p0().format(new Date(j10)));
             } else if (i11 + 1 == i7 && i10 == i12) {
-                return a0(null, null, 2131742585, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742579, E0().p0().format(new Date(j10)));
             } else {
                 if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                    return a0(null, null, 2131742525, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131742519, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10)));
                 }
-                return a0(null, null, 2131742525, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742519, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -1582,24 +1592,24 @@ public final class gd {
                 return E0().p0().format(new Date(j10));
             }
             if (i11 + 1 == i7 && i10 == i12) {
-                return a0(null, null, 2131742585, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742579, E0().p0().format(new Date(j10)));
             }
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
                 gd E0 = E0();
-                if (E0.f24230m == null) {
+                if (E0.f24258m == null) {
                     synchronized (E0) {
-                        if (E0.f24230m == null) {
-                            Locale locale = E0.f24241y;
+                        if (E0.f24258m == null) {
+                            Locale locale = E0.f24269y;
                             if (locale == null) {
                                 locale = Locale.getDefault();
                             }
-                            E0.f24230m = k(locale, E0.O0(2131742527, "chatDateShort", null), "d MMM");
+                            E0.f24258m = k(locale, E0.P0(2131742521, "chatDateShort", null), "d MMM");
                         }
                     }
                 }
-                return a0(null, null, 2131742525, E0.f24230m.format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742519, E0.f24258m.format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131742525, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            return a0(null, null, 2131742519, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -1656,21 +1666,21 @@ public final class gd {
             int i13 = calendar.get(1);
             int i14 = calendar.get(11);
             if (i12 == i7 && i10 == i13) {
-                return a0(null, null, 2131748825, a0("TodayAtFormatted", null, 2131743876, E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131748824, a0("TodayAtFormatted", null, 2131743870, E0().p0().format(new Date(j10))));
             }
             if (i12 + 1 == i7 && i10 == i13) {
                 if (zArr != null) {
                     zArr[0] = true;
-                    if (i11 <= 6 && i14 > 18 && f24215c0) {
-                        return a0(null, null, 2131748825, E0().p0().format(new Date(j10)));
+                    if (i11 <= 6 && i14 > 18 && f24243c0) {
+                        return a0(null, null, 2131748824, E0().p0().format(new Date(j10)));
                     }
-                    return a0(null, null, 2131742585, E0().p0().format(new Date(j10)));
+                    return a0(null, null, 2131742579, E0().p0().format(new Date(j10)));
                 }
-                return a0(null, null, 2131748825, a0("YesterdayAtFormatted", null, 2131742585, E0().p0().format(new Date(j10))));
+                return a0(null, null, 2131748824, a0("YesterdayAtFormatted", null, 2131742579, E0().p0().format(new Date(j10))));
             } else if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                return a0("LastSeenDateFormatted", null, 2131748828, a0("formatDateAtTime", null, 2131742525, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10))));
+                return a0("LastSeenDateFormatted", null, 2131748827, a0("formatDateAtTime", null, 2131742519, E0().q0().format(new Date(j10)), E0().p0().format(new Date(j10))));
             } else {
-                return a0("LastSeenDateFormatted", null, 2131748828, a0("formatDateAtTime", null, 2131742525, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10))));
+                return a0("LastSeenDateFormatted", null, 2131748827, a0("formatDateAtTime", null, 2131742519, E0().C0().format(new Date(j10)), E0().p0().format(new Date(j10))));
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -1688,15 +1698,15 @@ public final class gd {
             int i11 = calendar.get(6);
             int i12 = calendar.get(1);
             if (i11 == i7 && i10 == i12 && z10) {
-                return a0(null, null, 2131743875, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131743869, E0().p0().format(new Date(j10)));
             }
             if (i11 + 1 == i7 && i10 == i12 && z10) {
-                return a0(null, null, 2131742585, E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742579, E0().p0().format(new Date(j10)));
             }
             if (Math.abs(System.currentTimeMillis() - j10) < 31536000000L) {
-                return a0(null, null, 2131742525, E0().g0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+                return a0(null, null, 2131742519, E0().g0().format(new Date(j10)), E0().p0().format(new Date(j10)));
             }
-            return a0(null, null, 2131742525, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
+            return a0(null, null, 2131742519, E0().h0().format(new Date(j10)), E0().p0().format(new Date(j10)));
         } catch (Exception e10) {
             a8.g(e10, true);
             return "LOC_ERR";
@@ -1707,16 +1717,16 @@ public final class gd {
         String format;
         String format2;
         l();
-        if ((bool != null && bool.booleanValue()) || (bool == null && f24219g0.booleanValue())) {
+        if ((bool != null && bool.booleanValue()) || (bool == null && f24247g0.booleanValue())) {
             float f11 = f10 * 3.28084f;
             if (f11 < 1000.0f) {
                 if (i7 != 0) {
                     if (i7 != 1) {
-                        return a0("FootsShort", null, 2131750585, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
+                        return a0("FootsShort", null, 2131750584, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
                     }
-                    return a0("FootsFromYou", null, 2131750586, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
+                    return a0("FootsFromYou", null, 2131750585, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
                 }
-                return a0("FootsAway", null, 2131750587, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
+                return a0("FootsAway", null, 2131750586, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f11))));
             }
             if (f11 % 5280.0f == 0.0f) {
                 format2 = String.format("%d", Integer.valueOf((int) (f11 / 5280.0f)));
@@ -1725,19 +1735,19 @@ public final class gd {
             }
             if (i7 != 0) {
                 if (i7 != 1) {
-                    return a0("MilesShort", null, 2131748235, format2);
+                    return a0("MilesShort", null, 2131748234, format2);
                 }
-                return a0("MilesFromYou", null, 2131748236, format2);
+                return a0("MilesFromYou", null, 2131748235, format2);
             }
-            return a0("MilesAway", null, 2131748237, format2);
+            return a0("MilesAway", null, 2131748236, format2);
         } else if (f10 < 1000.0f) {
             if (i7 != 0) {
                 if (i7 != 1) {
-                    return a0("MetersShort", null, 2131748250, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
+                    return a0("MetersShort", null, 2131748249, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
                 }
-                return a0("MetersFromYou2", null, 2131748251, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
+                return a0("MetersFromYou2", null, 2131748250, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
             }
-            return a0("MetersAway2", null, 2131748252, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
+            return a0("MetersAway2", null, 2131748251, String.format("%d", Integer.valueOf((int) Math.max(1.0f, f10))));
         } else {
             if (f10 % 1000.0f == 0.0f) {
                 format = String.format("%d", Integer.valueOf((int) (f10 / 1000.0f)));
@@ -1746,11 +1756,11 @@ public final class gd {
             }
             if (i7 != 0) {
                 if (i7 != 1) {
-                    return a0("KMetersShort", null, 2131748869, format);
+                    return a0("KMetersShort", null, 2131748868, format);
                 }
-                return a0("KMetersFromYou2", null, 2131748870, format);
+                return a0("KMetersFromYou2", null, 2131748869, format);
             }
-            return a0("KMetersAway2", null, 2131748871, format);
+            return a0("KMetersAway2", null, 2131748870, format);
         }
     }
 
@@ -1785,11 +1795,11 @@ public final class gd {
             synchronized (this) {
                 try {
                     if (this.d == null) {
-                        Locale locale = this.f24241y;
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.d = k(locale, O0(2131742503, "formatterWeek", null), "EEE");
+                        this.d = k(locale, P0(2131742497, "formatterWeek", null), "EEE");
                     }
                 } finally {
                 }
@@ -1799,39 +1809,39 @@ public final class gd {
     }
 
     public final FastDateFormat B0() {
-        if (this.f24223e == null) {
+        if (this.f24251e == null) {
             synchronized (this) {
                 try {
-                    if (this.f24223e == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24251e == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24223e = k(locale, O0(2131742502, "formatterWeekLong", null), "EEEE");
+                        this.f24251e = k(locale, P0(2131742496, "formatterWeekLong", null), "EEEE");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24223e;
+        return this.f24251e;
     }
 
     public final FastDateFormat C0() {
-        if (this.f24225g == null) {
+        if (this.f24253g == null) {
             synchronized (this) {
                 try {
-                    if (this.f24225g == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24253g == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24225g = k(locale, O0(2131742501, "formatterYear", null), "dd.MM.yy");
+                        this.f24253g = k(locale, P0(2131742495, "formatterYear", null), "dd.MM.yy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24225g;
+        return this.f24253g;
     }
 
     public final FastDateFormat D0() {
@@ -1839,11 +1849,11 @@ public final class gd {
             synchronized (this) {
                 try {
                     if (this.h == null) {
-                        Locale locale = this.f24241y;
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.h = k(locale, O0(2131742500, "formatterYearMax", null), "dd.MM.yyyy");
+                        this.h = k(locale, P0(2131742494, "formatterYearMax", null), "dd.MM.yyyy");
                     }
                 } finally {
                 }
@@ -1863,17 +1873,17 @@ public final class gd {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gd.H0(java.io.File, boolean, boolean, boolean):java.util.HashMap");
     }
 
-    public final String O0(int i7, String str, String str2) {
-        String P0 = P0(i7, str, str2);
-        if (P0 == null) {
+    public final String P0(int i7, String str, String str2) {
+        String Q0 = Q0(i7, str, str2);
+        if (Q0 == null) {
             return p5.c.k("LOC_ERR:", str);
         }
-        return P0;
+        return Q0;
     }
 
-    public final String P0(int i7, String str, String str2) {
-        Context context = t0.f26913b;
-        boolean z10 = s2.f26721a;
+    public final String Q0(int i7, String str, String str2) {
+        Context context = t0.f26941b;
+        boolean z10 = s2.f26749a;
         String c10 = this.Y.c(i7, context, str);
         if (c10 != null) {
             return c10;
@@ -1890,11 +1900,11 @@ public final class gd {
         return this.W.b(str2);
     }
 
-    public final String R0(String str) {
-        return S0(str, true, false);
+    public final String S0(String str) {
+        return T0(str, true, false);
     }
 
-    public final String S0(String str, boolean z10, boolean z11) {
+    public final String T0(String str, boolean z10, boolean z11) {
         Object obj;
         Object obj2;
         Object obj3;
@@ -2506,7 +2516,7 @@ public final class gd {
         return sb2.toString();
     }
 
-    public final void V0(int i7, boolean z10) {
+    public final void W0(int i7, boolean z10) {
         if (this.I) {
             return;
         }
@@ -2514,49 +2524,49 @@ public final class gd {
         ConnectionsManager.getInstance(i7).sendRequest(new TLRPC.TL_langpack_getLanguages(), new zc(this, z10, i7), 8);
     }
 
-    public final void W0(Configuration configuration) {
+    public final void X0(Configuration configuration) {
         if (this.D) {
             return;
         }
-        f24215c0 = DateFormat.is24HourFormat(t0.f26913b);
+        f24243c0 = DateFormat.is24HourFormat(t0.f26941b);
         Locale locale = configuration.locale;
-        this.f24242z = locale;
+        this.f24270z = locale;
         if (this.C != null) {
             cd cdVar = this.B;
             this.B = null;
-            d(cdVar, false, false, j10.f24770t0);
+            d(cdVar, false, false, j10.f24798t0);
         } else if (locale != null) {
             String displayName = locale.getDisplayName();
-            String displayName2 = this.f24241y.getDisplayName();
+            String displayName2 = this.f24269y.getDisplayName();
             if (displayName != null && displayName2 != null && !displayName.equals(displayName2)) {
-                Y0();
+                Z0();
             }
-            this.f24241y = locale;
+            this.f24269y = locale;
             cd cdVar2 = this.B;
-            if (cdVar2 != null && !TextUtils.isEmpty(cdVar2.f23332f)) {
-                this.A = (dd) this.f24240x.get(this.B.f23332f);
+            if (cdVar2 != null && !TextUtils.isEmpty(cdVar2.f23360f)) {
+                this.A = (dd) this.f24268x.get(this.B.f23360f);
             }
             if (this.A == null) {
-                dd ddVar = (dd) this.f24240x.get(this.f24241y.getLanguage());
+                dd ddVar = (dd) this.f24268x.get(this.f24269y.getLanguage());
                 this.A = ddVar;
                 if (ddVar == null) {
-                    this.A = (dd) this.f24240x.get("en");
+                    this.A = (dd) this.f24268x.get("en");
                 }
             }
         }
-        String Q0 = Q0();
+        String R0 = R0();
         String str = this.F;
-        if (str != null && !Q0.equals(str)) {
-            this.F = Q0;
-            ConnectionsManager.setSystemLangCode(Q0);
+        if (str != null && !R0.equals(str)) {
+            this.F = R0;
+            ConnectionsManager.setSystemLangCode(R0);
         }
         i();
     }
 
-    public final void Y0() {
+    public final void Z0() {
         cd cdVar;
         boolean z10;
-        Locale locale = this.f24241y;
+        Locale locale = this.f24269y;
         if (locale == null) {
             locale = Locale.getDefault();
         }
@@ -2567,39 +2577,39 @@ public final class gd {
         String lowerCase = language.toLowerCase();
         int i7 = 0;
         int i10 = 2;
-        if ((lowerCase.length() != 2 || (!lowerCase.equals("ar") && !lowerCase.equals("fa") && !lowerCase.equals("he") && !lowerCase.equals("iw"))) && !lowerCase.startsWith("ar_") && !lowerCase.startsWith("fa_") && !lowerCase.startsWith("he_") && !lowerCase.startsWith("iw_") && ((cdVar = this.B) == null || !cdVar.f23333g)) {
+        if ((lowerCase.length() != 2 || (!lowerCase.equals("ar") && !lowerCase.equals("fa") && !lowerCase.equals("he") && !lowerCase.equals("iw"))) && !lowerCase.startsWith("ar_") && !lowerCase.startsWith("fa_") && !lowerCase.startsWith("he_") && !lowerCase.startsWith("iw_") && ((cdVar = this.B) == null || !cdVar.f23361g)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        f24213a0 = z10;
+        f24241a0 = z10;
         if (!lowerCase.equals("ko")) {
             i10 = 1;
         }
-        f24214b0 = i10;
-        this.f24237t = null;
-        this.f24236s = null;
-        this.f24238u = null;
+        f24242b0 = i10;
+        this.f24265t = null;
+        this.f24264s = null;
+        this.f24266u = null;
         this.v = null;
-        this.f24234q = null;
-        this.f24235r = null;
-        this.f24224f = null;
-        this.f24225g = null;
+        this.f24262q = null;
+        this.f24263r = null;
+        this.f24252f = null;
+        this.f24253g = null;
         this.h = null;
-        this.f24229l = null;
-        this.f24231n = null;
+        this.f24257l = null;
+        this.f24259n = null;
         this.d = null;
-        this.f24223e = null;
-        this.f24232o = null;
-        this.f24233p = null;
-        this.f24220a = null;
-        this.f24221b = null;
-        this.f24222c = null;
-        this.f24226i = null;
-        this.f24227j = null;
-        this.f24228k = null;
+        this.f24251e = null;
+        this.f24260o = null;
+        this.f24261p = null;
+        this.f24248a = null;
+        this.f24249b = null;
+        this.f24250c = null;
+        this.f24254i = null;
+        this.f24255j = null;
+        this.f24256k = null;
         while (true) {
-            FastDateFormat[] fastDateFormatArr = this.f24239w;
+            FastDateFormat[] fastDateFormatArr = this.f24267w;
             if (i7 < fastDateFormatArr.length) {
                 fastDateFormatArr[i7] = null;
                 i7++;
@@ -2609,7 +2619,7 @@ public final class gd {
         }
     }
 
-    public final void Z0(int i7, String str, boolean z10, uc ucVar) {
+    public final void a1(int i7, String str, boolean z10, uc ucVar) {
         if (str != null) {
             str = str.replace("-", "_");
         }
@@ -2617,7 +2627,7 @@ public final class gd {
         if (str2 != null) {
             cd cdVar = this.B;
             if (cdVar != null) {
-                if (!str2.equals(cdVar.f23330c) && !str2.equals(this.B.f23331e)) {
+                if (!str2.equals(cdVar.f23358c) && !str2.equals(this.B.f23359e)) {
                     return;
                 }
             } else {
@@ -2627,8 +2637,14 @@ public final class gd {
         f(this.B, str2, z10, i7, ucVar);
     }
 
-    public final void a1() {
-        SharedPreferences.Editor edit = t0.f26913b.getSharedPreferences("langconfig", 0).edit();
+    public final void b(String[] strArr, dd ddVar) {
+        for (String str : strArr) {
+            this.f24268x.put(str, ddVar);
+        }
+    }
+
+    public final void b1() {
+        SharedPreferences.Editor edit = t0.f26941b.getSharedPreferences("langconfig", 0).edit();
         StringBuilder sb2 = new StringBuilder();
         for (int i7 = 0; i7 < this.O.size(); i7++) {
             String f10 = ((cd) this.O.get(i7)).f();
@@ -2665,13 +2681,11 @@ public final class gd {
         edit.commit();
     }
 
-    public final void b(String[] strArr, dd ddVar) {
-        for (String str : strArr) {
-            this.f24240x.put(str, ddVar);
-        }
+    public final int c(org.telegram.messenger.cd r23, boolean r24, boolean r25, boolean r26, boolean r27, int r28, di.p6 r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gd.c(org.telegram.messenger.cd, boolean, boolean, boolean, boolean, int, di.p6):int");
     }
 
-    public final void b1(final cd cdVar, final TLRPC.TL_langPackDifference tL_langPackDifference, final int i7, final boolean z10, final Runnable runnable) {
+    public final void c1(final cd cdVar, final TLRPC.TL_langPackDifference tL_langPackDifference, final int i7, final boolean z10, final Runnable runnable) {
         boolean z11;
         int i10;
         int i11;
@@ -2683,7 +2697,7 @@ public final class gd {
         if (tL_langPackDifference != null && !tL_langPackDifference.strings.isEmpty() && cdVar != null && !cdVar.h()) {
             final int l02 = l0(cdVar, tL_langPackDifference);
             if (l02 == -1) {
-                a8.b("saveRemoteLocaleStrings: unknown language " + tL_langPackDifference.lang_code + " (locale short=" + cdVar.f23330c + ", base=" + cdVar.f23331e + ")");
+                a8.b("saveRemoteLocaleStrings: unknown language " + tL_langPackDifference.lang_code + " (locale short=" + cdVar.f23358c + ", base=" + cdVar.f23359e + ")");
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -2691,15 +2705,15 @@ public final class gd {
                 return;
             }
             if (l02 == 0) {
-                str = cdVar.f23330c;
+                str = cdVar.f23358c;
             } else {
-                str = cdVar.f23331e;
+                str = cdVar.f23359e;
             }
             final String str2 = str;
             if (l02 == 0) {
                 i12 = cdVar.h;
             } else {
-                i12 = cdVar.f23334i;
+                i12 = cdVar.f23362i;
             }
             final int i13 = i12;
             if (l02 == 0) {
@@ -2752,82 +2766,40 @@ public final class gd {
             if (l03 == 0) {
                 i10 = cdVar.h;
             } else {
-                i10 = cdVar.f23334i;
+                i10 = cdVar.f23362i;
             }
             if (l03 != -1 && tL_langPackDifference.from_version <= i10 && i10 < (i11 = tL_langPackDifference.version)) {
                 if (l03 == 0) {
                     cdVar.h = i11;
                 } else {
-                    cdVar.f23334i = i11;
+                    cdVar.f23362i = i11;
                 }
-                a1();
+                b1();
             }
         }
-        Y0();
+        Z0();
         ks.e().k(ks.A4, new Object[0]);
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public final int c(org.telegram.messenger.cd r23, boolean r24, boolean r25, boolean r26, boolean r27, int r28, di.p6 r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gd.c(org.telegram.messenger.cd, boolean, boolean, boolean, boolean, int, di.p6):int");
-    }
-
-    public final boolean c1(String str) {
-        int i7;
-        int i10 = mp.u1(j10.f24770t0).C7;
-        if (i10 > 0) {
-            SharedPreferences g12 = mp.g1();
-            if (!g12.getBoolean("lngpack_patched_" + str, false) && (i7 = this.Z) < i10) {
-                a8.d("reinstalling " + str + " langpack because of patch (" + i7 + " keys, must be at least " + i10 + ")");
-                X0(str);
-                return true;
-            }
-        }
-        return false;
-    }
-
     public final void d(cd cdVar, boolean z10, boolean z11, int i7) {
         c(cdVar, z10, z11, false, false, i7, null);
     }
 
-    public final bd d1(String str, boolean z10, int i7, yf yfVar) {
-        boolean z11;
-        String str2;
-        HashMap hashMap = this.T;
-        bd bdVar = (bd) hashMap.get(str);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (bdVar != null && elapsedRealtime - bdVar.f23055b >= 300000) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (bdVar != null && !z11 && (bdVar.f23054a || !z10)) {
-            StringBuilder u10 = a8.p0.u("applyRemoteLanguage ", str, " is already loading");
-            if (bdVar.f23054a) {
-                str2 = " the whole langpack";
-            } else {
-                str2 = "";
+    public final boolean d1(String str) {
+        int i7;
+        int i10 = mp.u1(j10.f24798t0).C7;
+        if (i10 > 0) {
+            SharedPreferences g12 = mp.g1();
+            if (!g12.getBoolean("lngpack_patched_" + str, false) && (i7 = this.Z) < i10) {
+                a8.d("reinstalling " + str + " langpack because of patch (" + i7 + " keys, must be at least " + i10 + ")");
+                Y0(str);
+                return true;
             }
-            u10.append(str2);
-            u10.append(", wait for it");
-            a8.b(u10.toString());
-            bdVar.f23057e.add(yfVar);
-            return null;
         }
-        ?? obj = new Object();
-        ArrayList arrayList = new ArrayList();
-        obj.f23057e = arrayList;
-        obj.f23054a = z10;
-        obj.f23055b = elapsedRealtime;
-        obj.d = i7;
-        if (z11) {
-            arrayList.addAll(bdVar.f23057e);
-            bdVar.f23057e.clear();
-        }
-        hashMap.put(str, obj);
-        return obj;
+        return false;
     }
 
     public final boolean e(File file, int i7) {
@@ -2843,16 +2815,16 @@ public final class gd {
                     cd cdVar = G0;
                     if (G0 == null) {
                         ?? obj = new Object();
-                        obj.f23328a = str;
-                        obj.f23329b = str2;
+                        obj.f23356a = str;
+                        obj.f23357b = str2;
                         String lowerCase = str3.toLowerCase();
-                        obj.f23330c = lowerCase;
-                        obj.f23332f = lowerCase;
+                        obj.f23358c = lowerCase;
+                        obj.f23360f = lowerCase;
                         obj.d = file2.getAbsolutePath();
                         this.J.add(obj);
                         this.N.put(obj.b(), obj);
                         this.O.add(obj);
-                        a1();
+                        b1();
                         cdVar = obj;
                     }
                     cd cdVar2 = cdVar;
@@ -2871,44 +2843,82 @@ public final class gd {
         }
     }
 
+    public final bd e1(String str, boolean z10, int i7, yf yfVar) {
+        boolean z11;
+        String str2;
+        HashMap hashMap = this.T;
+        bd bdVar = (bd) hashMap.get(str);
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (bdVar != null && elapsedRealtime - bdVar.f23083b >= 300000) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (bdVar != null && !z11 && (bdVar.f23082a || !z10)) {
+            StringBuilder u10 = a8.p0.u("applyRemoteLanguage ", str, " is already loading");
+            if (bdVar.f23082a) {
+                str2 = " the whole langpack";
+            } else {
+                str2 = "";
+            }
+            u10.append(str2);
+            u10.append(", wait for it");
+            a8.b(u10.toString());
+            bdVar.f23085e.add(yfVar);
+            return null;
+        }
+        ?? obj = new Object();
+        ArrayList arrayList = new ArrayList();
+        obj.f23085e = arrayList;
+        obj.f23082a = z10;
+        obj.f23083b = elapsedRealtime;
+        obj.d = i7;
+        if (z11) {
+            arrayList.addAll(bdVar.f23085e);
+            bdVar.f23085e.clear();
+        }
+        hashMap.put(str, obj);
+        return obj;
+    }
+
     public final int f(final org.telegram.messenger.cd r19, java.lang.String r20, boolean r21, final int r22, java.lang.Runnable r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.gd.f(org.telegram.messenger.cd, java.lang.String, boolean, int, java.lang.Runnable):int");
     }
 
     public final FastDateFormat g0() {
-        if (this.f24229l == null) {
+        if (this.f24257l == null) {
             synchronized (this) {
                 try {
-                    if (this.f24229l == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24257l == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24229l = k(locale, O0(2131742528, "chatDate", null), "d MMMM");
+                        this.f24257l = k(locale, P0(2131742522, "chatDate", null), "d MMMM");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24229l;
+        return this.f24257l;
     }
 
     public final FastDateFormat h0() {
-        if (this.f24231n == null) {
+        if (this.f24259n == null) {
             synchronized (this) {
                 try {
-                    if (this.f24231n == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24259n == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24231n = k(locale, O0(2131742526, "chatFullDate", null), "d MMMM yyyy");
+                        this.f24259n = k(locale, P0(2131742520, "chatFullDate", null), "d MMMM yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24231n;
+        return this.f24259n;
     }
 
     public final void i() {
@@ -2917,8 +2927,8 @@ public final class gd {
 
     public final void j(int i7) {
         cd cdVar = this.B;
-        if (cdVar != null && !this.P && c1(cdVar.f23330c)) {
-            if (s2.f26721a) {
+        if (cdVar != null && !this.P && d1(cdVar.f23358c)) {
+            if (s2.f26749a) {
                 a8.b("reload locale because locale file is not enough");
             }
             g0.g3(new tc(this, i7, 2));
@@ -2926,85 +2936,85 @@ public final class gd {
     }
 
     public final Locale k0() {
-        return this.f24241y;
+        return this.f24269y;
     }
 
     public final FastDateFormat m0() {
-        String O0;
+        String P0;
         String str;
-        if (this.f24227j == null) {
+        if (this.f24255j == null) {
             synchronized (this) {
                 try {
-                    if (this.f24227j == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24255j == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        if (f24215c0) {
-                            O0 = O0(2131742521, "formatterBannedUntil24H", null);
+                        if (f24243c0) {
+                            P0 = P0(2131742515, "formatterBannedUntil24H", null);
                         } else {
-                            O0 = O0(2131742522, "formatterBannedUntil12H", null);
+                            P0 = P0(2131742516, "formatterBannedUntil12H", null);
                         }
-                        if (f24215c0) {
+                        if (f24243c0) {
                             str = "MMM dd yyyy, HH:mm";
                         } else {
                             str = "MMM dd yyyy, h:mm a";
                         }
-                        this.f24227j = k(locale, O0, str);
+                        this.f24255j = k(locale, P0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24227j;
+        return this.f24255j;
     }
 
     public final FastDateFormat n0() {
-        String O0;
+        String P0;
         String str;
-        if (this.f24228k == null) {
+        if (this.f24256k == null) {
             synchronized (this) {
                 try {
-                    if (this.f24228k == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24256k == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        if (f24215c0) {
-                            O0 = O0(2131742519, "formatterBannedUntilThisYear24H", null);
+                        if (f24243c0) {
+                            P0 = P0(2131742513, "formatterBannedUntilThisYear24H", null);
                         } else {
-                            O0 = O0(2131742520, "formatterBannedUntilThisYear12H", null);
+                            P0 = P0(2131742514, "formatterBannedUntilThisYear12H", null);
                         }
-                        if (f24215c0) {
+                        if (f24243c0) {
                             str = "MMM dd, HH:mm";
                         } else {
                             str = "MMM dd, h:mm a";
                         }
-                        this.f24228k = k(locale, O0, str);
+                        this.f24256k = k(locale, P0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24228k;
+        return this.f24256k;
     }
 
     public final FastDateFormat o0() {
-        if (this.f24237t == null) {
+        if (this.f24265t == null) {
             synchronized (this) {
                 try {
-                    if (this.f24237t == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24265t == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24237t = k(locale, O0(2131742518, "formatterBoostExpired", null), "MMM dd, yyyy");
+                        this.f24265t = k(locale, P0(2131742512, "formatterBoostExpired", null), "MMM dd, yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24237t;
+        return this.f24265t;
     }
 
     public final String p(long j3, String str) {
@@ -3012,13 +3022,13 @@ public final class gd {
     }
 
     public final FastDateFormat p0() {
-        String O0;
+        String P0;
         String str;
-        if (this.f24220a == null) {
+        if (this.f24248a == null) {
             synchronized (this) {
                 try {
-                    if (this.f24220a == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24248a == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -3030,23 +3040,23 @@ public final class gd {
                         if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
                             locale = Locale.US;
                         }
-                        if (f24215c0) {
-                            O0 = O0(2131742516, "formatterDay24H", null);
+                        if (f24243c0) {
+                            P0 = P0(2131742510, "formatterDay24H", null);
                         } else {
-                            O0 = O0(2131742517, "formatterDay12H", null);
+                            P0 = P0(2131742511, "formatterDay12H", null);
                         }
-                        if (f24215c0) {
+                        if (f24243c0) {
                             str = "HH:mm";
                         } else {
                             str = "h:mm a";
                         }
-                        this.f24220a = k(locale, O0, str);
+                        this.f24248a = k(locale, P0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24220a;
+        return this.f24248a;
     }
 
     public final String q(long j3, boolean z10, boolean z11, boolean z12, String str) {
@@ -3312,9 +3322,9 @@ public final class gd {
         }
         String str4 = "";
         if (currency != null) {
-            Locale locale = this.f24241y;
+            Locale locale = this.f24269y;
             if (locale == null) {
-                locale = this.f24242z;
+                locale = this.f24270z;
             }
             NumberFormat currencyInstance = NumberFormat.getCurrencyInstance(locale);
             currencyInstance.setCurrency(currency);
@@ -3344,31 +3354,31 @@ public final class gd {
     }
 
     public final FastDateFormat q0() {
-        if (this.f24224f == null) {
+        if (this.f24252f == null) {
             synchronized (this) {
                 try {
-                    if (this.f24224f == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24252f == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24224f = k(locale, O0(2131742510, "formatterMonth", null), "dd MMM");
+                        this.f24252f = k(locale, P0(2131742504, "formatterMonth", null), "dd MMM");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24224f;
+        return this.f24252f;
     }
 
     public final FastDateFormat r0() {
-        String O0;
+        String P0;
         String str;
-        if (this.f24221b == null) {
+        if (this.f24249b == null) {
             synchronized (this) {
                 try {
-                    if (this.f24221b == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24249b == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
@@ -3380,59 +3390,59 @@ public final class gd {
                         if (!lowerCase.toLowerCase().equals("ar") && !lowerCase.toLowerCase().equals("ko")) {
                             locale = Locale.US;
                         }
-                        if (f24215c0) {
-                            O0 = O0(2131742514, "formatterDayWithSeconds24H", null);
+                        if (f24243c0) {
+                            P0 = P0(2131742508, "formatterDayWithSeconds24H", null);
                         } else {
-                            O0 = O0(2131742515, "formatterDayWithSeconds12H", null);
+                            P0 = P0(2131742509, "formatterDayWithSeconds12H", null);
                         }
-                        if (f24215c0) {
+                        if (f24243c0) {
                             str = "HH:mm:ss";
                         } else {
                             str = "h:mm:ss a";
                         }
-                        this.f24221b = k(locale, O0, str);
+                        this.f24249b = k(locale, P0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24221b;
+        return this.f24249b;
     }
 
     public final FastDateFormat s0() {
-        if (this.f24236s == null) {
+        if (this.f24264s == null) {
             synchronized (this) {
                 try {
-                    if (this.f24236s == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24264s == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24236s = k(locale, O0(2131742513, "formatterGiveawayCard", null), "dd MMM yyyy");
+                        this.f24264s = k(locale, P0(2131742507, "formatterGiveawayCard", null), "dd MMM yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24236s;
+        return this.f24264s;
     }
 
     public final FastDateFormat t0() {
-        if (this.f24238u == null) {
+        if (this.f24266u == null) {
             synchronized (this) {
                 try {
-                    if (this.f24238u == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24266u == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24238u = k(locale, O0(2131742512, "formatterGiveawayMonthDay", null), "MMMM dd");
+                        this.f24266u = k(locale, P0(2131742506, "formatterGiveawayMonthDay", null), "MMMM dd");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24238u;
+        return this.f24266u;
     }
 
     public final FastDateFormat u0() {
@@ -3440,11 +3450,11 @@ public final class gd {
             synchronized (this) {
                 try {
                     if (this.v == null) {
-                        Locale locale = this.f24241y;
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.v = k(locale, O0(2131742511, "formatterGiveawayMonthDayYear", null), "MMMM dd, yyyy");
+                        this.v = k(locale, P0(2131742505, "formatterGiveawayMonthDayYear", null), "MMMM dd, yyyy");
                     }
                 } finally {
                 }
@@ -3454,104 +3464,104 @@ public final class gd {
     }
 
     public final FastDateFormat v0() {
-        if (this.f24234q == null) {
+        if (this.f24262q == null) {
             synchronized (this) {
                 try {
-                    if (this.f24234q == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24262q == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24234q = k(locale, O0(2131742507, "formatterMonthYear", null), "MMM yyyy");
+                        this.f24262q = k(locale, P0(2131742501, "formatterMonthYear", null), "MMM yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24234q;
+        return this.f24262q;
     }
 
     public final FastDateFormat w0() {
-        if (this.f24232o == null) {
+        if (this.f24260o == null) {
             synchronized (this) {
                 try {
-                    if (this.f24232o == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24260o == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24232o = k(locale, O0(2131742524, "formatDateSchedule", null), "MMM d");
+                        this.f24260o = k(locale, P0(2131742518, "formatDateSchedule", null), "MMM d");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24232o;
+        return this.f24260o;
     }
 
     public final FastDateFormat x0(int i7) {
         if (i7 >= 0) {
-            FastDateFormat[] fastDateFormatArr = this.f24239w;
+            FastDateFormat[] fastDateFormatArr = this.f24267w;
             if (i7 < fastDateFormatArr.length) {
                 if (fastDateFormatArr[i7] == null) {
-                    Locale locale = this.f24241y;
+                    Locale locale = this.f24269y;
                     if (locale == null) {
                         locale = Locale.getDefault();
                     }
                     switch (i7) {
                         case 0:
-                            fastDateFormatArr[i7] = k(locale, O0(2131745392, "SendTodayAt", null), "'Send today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131745391, "SendTodayAt", null), "'Send today at' HH:mm");
                             break;
                         case 1:
-                            fastDateFormatArr[i7] = k(locale, O0(2131745434, "SendDayAt", null), "'Send on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131745433, "SendDayAt", null), "'Send on' MMM d 'at' HH:mm");
                             break;
                         case 2:
-                            fastDateFormatArr[i7] = k(locale, O0(2131745433, "SendDayYearAt", null), "'Send on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131745432, "SendDayYearAt", null), "'Send on' MMM d yyyy 'at' HH:mm");
                             break;
                         case 3:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746128, "RemindTodayAt", null), "'Remind today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131746127, "RemindTodayAt", null), "'Remind today at' HH:mm");
                             break;
                         case 4:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746130, "RemindDayAt", null), "'Remind on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131746129, "RemindDayAt", null), "'Remind on' MMM d 'at' HH:mm");
                             break;
                         case 5:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746129, "RemindDayYearAt", null), "'Remind on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131746128, "RemindDayYearAt", null), "'Remind on' MMM d yyyy 'at' HH:mm");
                             break;
                         case 6:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744670, "StartTodayAt", null), "'Start today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744664, "StartTodayAt", null), "'Start today at' HH:mm");
                             break;
                         case 7:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744679, "StartDayAt", null), "'Start on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744673, "StartDayAt", null), "'Start on' MMM d 'at' HH:mm");
                             break;
                         case 8:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744678, "StartDayYearAt", null), "'Start on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744672, "StartDayYearAt", null), "'Start on' MMM d yyyy 'at' HH:mm");
                             break;
                         case 9:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744673, "StartShortTodayAt", null), "'Today,' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744667, "StartShortTodayAt", null), "'Today,' HH:mm");
                             break;
                         case 10:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744675, "StartShortDayAt", null), "MMM d',' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744669, "StartShortDayAt", null), "MMM d',' HH:mm");
                             break;
                         case 11:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744674, "StartShortDayYearAt", null), "MMM d yyyy, HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744668, "StartShortDayYearAt", null), "MMM d yyyy, HH:mm");
                             break;
                         case 12:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744662, "StartsTodayAt", null), "'Starts today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744656, "StartsTodayAt", null), "'Starts today at' HH:mm");
                             break;
                         case 13:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744664, "StartsDayAt", null), "'Starts on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744658, "StartsDayAt", null), "'Starts on' MMM d 'at' HH:mm");
                             break;
                         case 14:
-                            fastDateFormatArr[i7] = k(locale, O0(2131744663, "StartsDayYearAt", null), "'Starts on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131744657, "StartsDayYearAt", null), "'Starts on' MMM d yyyy 'at' HH:mm");
                             break;
                         case 15:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746382, "PublishTodayAt", null), "'Publish today at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131746381, "PublishTodayAt", null), "'Publish today at' HH:mm");
                             break;
                         case 16:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746384, "PublishDayAt", null), "'Publish on' MMM d 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131746383, "PublishDayAt", null), "'Publish on' MMM d 'at' HH:mm");
                             break;
                         case 17:
-                            fastDateFormatArr[i7] = k(locale, O0(2131746383, "PublishDayYearAt", null), "'Publish on' MMM d yyyy 'at' HH:mm");
+                            fastDateFormatArr[i7] = k(locale, P0(2131746382, "PublishDayYearAt", null), "'Publish on' MMM d yyyy 'at' HH:mm");
                             break;
                     }
                 }
@@ -3562,50 +3572,50 @@ public final class gd {
     }
 
     public final FastDateFormat y0() {
-        if (this.f24233p == null) {
+        if (this.f24261p == null) {
             synchronized (this) {
                 try {
-                    if (this.f24233p == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24261p == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        this.f24233p = k(locale, O0(2131742523, "formatDateScheduleYear", null), "MMM d yyyy");
+                        this.f24261p = k(locale, P0(2131742517, "formatDateScheduleYear", null), "MMM d yyyy");
                     }
                 } finally {
                 }
             }
         }
-        return this.f24233p;
+        return this.f24261p;
     }
 
     public final FastDateFormat z0() {
-        String O0;
+        String P0;
         String str;
-        if (this.f24226i == null) {
+        if (this.f24254i == null) {
             synchronized (this) {
                 try {
-                    if (this.f24226i == null) {
-                        Locale locale = this.f24241y;
+                    if (this.f24254i == null) {
+                        Locale locale = this.f24269y;
                         if (locale == null) {
                             locale = Locale.getDefault();
                         }
-                        if (f24215c0) {
-                            O0 = O0(2131742504, "formatterStats24H", null);
+                        if (f24243c0) {
+                            P0 = P0(2131742498, "formatterStats24H", null);
                         } else {
-                            O0 = O0(2131742505, "formatterStats12H", null);
+                            P0 = P0(2131742499, "formatterStats12H", null);
                         }
-                        if (f24215c0) {
+                        if (f24243c0) {
                             str = "MMM dd yyyy, HH:mm";
                         } else {
                             str = "MMM dd yyyy, h:mm a";
                         }
-                        this.f24226i = k(locale, O0, str);
+                        this.f24254i = k(locale, P0, str);
                     }
                 } finally {
                 }
             }
         }
-        return this.f24226i;
+        return this.f24254i;
     }
 }

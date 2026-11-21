@@ -1,15 +1,35 @@
 package org.telegram.ui.Components;
-public final class zk0 implements Runnable {
-    public final int f42897a;
-    public final el0 f42898b;
 
-    public zk0(el0 el0Var, int i7) {
-        this.f42897a = i7;
-        this.f42898b = el0Var;
+import android.view.View;
+public final class zk0 implements View.OnClickListener {
+    public final int f42930a;
+    public final gl0 f42931b;
+
+    public zk0(gl0 gl0Var, int i7) {
+        this.f42930a = i7;
+        this.f42931b = gl0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zk0.run():void");
+    public final void onClick(View view) {
+        int i7 = this.f42930a;
+        gl0 gl0Var = this.f42931b;
+        switch (i7) {
+            case 0:
+                gl0Var.f35595f.a(((Integer) view.getTag(2131296463)).intValue());
+                return;
+            case 1:
+                gl0Var.f35595f.a(((Integer) view.getTag(2131296463)).intValue());
+                return;
+            case 2:
+                gl0Var.f35595f.a(((Integer) view.getTag(2131296463)).intValue());
+                return;
+            case 3:
+                gl0Var.f35595f.a(((Integer) view.getTag(2131296463)).intValue());
+                return;
+            default:
+                gl0Var.f35595f.a(((Integer) view.getTag(2131296463)).intValue());
+                return;
+        }
     }
 }

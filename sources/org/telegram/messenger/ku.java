@@ -17,49 +17,49 @@ public final class ku extends zt {
     public final TL_iv.pageBlockMath X;
     public final Bitmap Y;
     public final int Z;
-    public final int f25256a0;
-    public final int f25257b0;
-    public final int f25258c0;
-    public final int f25259d0;
-    public int f25260e0;
-    public float f25261f0;
-    public int f25262g0;
-    public boolean f25263h0;
-    public int f25264i0;
-    public final Paint f25265j0;
-    public int f25266k0;
-    public int f25267l0;
+    public final int f25284a0;
+    public final int f25285b0;
+    public final int f25286c0;
+    public final int f25287d0;
+    public int f25288e0;
+    public float f25289f0;
+    public int f25290g0;
+    public boolean f25291h0;
+    public int f25292i0;
+    public final Paint f25293j0;
+    public int f25294k0;
+    public int f25295l0;
     public VelocityTracker m0;
-    public OverScroller f25268n0;
-    public final j6.o f25269o0;
+    public OverScroller f25296n0;
+    public final j6.o f25297o0;
 
     public ku(ev evVar, Rect rect, int i7, TL_iv.pageBlockMath pageblockmath) {
         super(evVar, rect, i7);
         oi.p pVar;
-        this.f25265j0 = new Paint(3);
-        this.f25269o0 = new j6.o(this, 13);
+        this.f25293j0 = new Paint(3);
+        this.f25297o0 = new j6.o(this, 13);
         this.X = pageblockmath;
-        int i10 = this.f28351c;
-        this.f25257b0 = i10;
+        int i10 = this.f28379c;
+        this.f25285b0 = i10;
         if (pageblockmath != null && !TextUtils.isEmpty(pageblockmath.source)) {
             pVar = oi.p.a(pageblockmath.source, g0.L(evVar.M + 4), false);
         } else {
             pVar = null;
         }
         if (pVar != null) {
-            this.Y = pVar.f22226a;
-            this.Z = pVar.f22227b;
-            this.f25256a0 = pVar.f22228c;
+            this.Y = pVar.f22300a;
+            this.Z = pVar.f22301b;
+            this.f25284a0 = pVar.f22302c;
         }
         int D = f3.D(0.0f, 2, this.Z);
-        this.f25258c0 = D;
-        this.f25259d0 = Math.max(0, D - i10);
+        this.f25286c0 = D;
+        this.f25287d0 = Math.max(0, D - i10);
     }
 
     @Override
     public final int I() {
-        Rect rect = this.f28350b;
-        return f3.D(8.0f, 2, rect.top + this.f25256a0) + rect.bottom;
+        Rect rect = this.f28378b;
+        return f3.D(8.0f, 2, rect.top + this.f25284a0) + rect.bottom;
     }
 
     @Override
@@ -69,14 +69,14 @@ public final class ku extends zt {
 
     @Override
     public final int K() {
-        Rect rect = this.f28350b;
-        return Math.min(this.f25257b0, this.f25258c0) + rect.left + rect.right;
+        Rect rect = this.f28378b;
+        return Math.min(this.f25285b0, this.f25286c0) + rect.left + rect.right;
     }
 
     @Override
     public final boolean Q() {
-        if (!this.f25263h0) {
-            OverScroller overScroller = this.f25268n0;
+        if (!this.f25291h0) {
+            OverScroller overScroller = this.f25296n0;
             if (overScroller == null || overScroller.isFinished()) {
                 return false;
             }
@@ -96,24 +96,24 @@ public final class ku extends zt {
         if (bitmap == null) {
             return;
         }
-        ev evVar = this.f28349a;
+        ev evVar = this.f28377a;
         if (evVar.E()) {
-            i7 = org.telegram.ui.ActionBar.n6.Wc;
+            i7 = org.telegram.ui.ActionBar.m6.Wc;
         } else {
-            i7 = org.telegram.ui.ActionBar.n6.Vc;
+            i7 = org.telegram.ui.ActionBar.m6.Vc;
         }
-        int w02 = org.telegram.ui.ActionBar.n6.w0(i7, evVar.D);
-        Paint paint = this.f25265j0;
+        int w02 = org.telegram.ui.ActionBar.m6.w0(i7, evVar.D);
+        Paint paint = this.f25293j0;
         paint.setColor(w02);
-        int D = f3.D(8.0f, 2, this.f25256a0);
-        int i12 = this.f25259d0;
-        Rect rect = this.f28350b;
+        int D = f3.D(8.0f, 2, this.f25284a0);
+        int i12 = this.f25287d0;
+        Rect rect = this.f28378b;
         if (i12 > 0) {
             f10 = 0.0f;
             canvas2 = canvas;
             canvas2.saveLayerAlpha(-evVar.S, 0.0f, ((evVar.C + evVar.T) - rect.left) - rect.right, D, 255, 31);
             canvas2.save();
-            canvas2.translate(g0.L(0.0f) - this.f25260e0, g0.L(8.0f));
+            canvas2.translate(g0.L(0.0f) - this.f25288e0, g0.L(8.0f));
         } else {
             f10 = 0.0f;
             canvas2 = canvas;
@@ -127,9 +127,9 @@ public final class ku extends zt {
             RectF rectF = g0.P;
             float f12 = D;
             rectF.set(-i10, f11, g0.L(12.0f) + (-evVar.S), f12);
-            evVar.f23789z.n(canvas2, rectF, 0, 1.0f);
+            evVar.f23817z.n(canvas2, rectF, 0, 1.0f);
             rectF.set(i11 - g0.L(12.0f), f11, ((evVar.C + evVar.T) - rect.left) - rect.right, f12);
-            evVar.f23789z.n(canvas2, rectF, 2, 1.0f);
+            evVar.f23817z.n(canvas2, rectF, 2, 1.0f);
         }
         canvas2.restore();
     }
@@ -139,26 +139,26 @@ public final class ku extends zt {
         VelocityTracker velocityTracker;
         View view;
         int i7 = 0;
-        int i10 = this.f25259d0;
+        int i10 = this.f25287d0;
         if (i10 > 0) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 0) {
-                if (this.f25264i0 == 0 && (view = this.W) != null) {
+                if (this.f25292i0 == 0 && (view = this.W) != null) {
                     ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                    this.f25264i0 = viewConfiguration.getScaledTouchSlop();
-                    this.f25266k0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                    this.f25267l0 = viewConfiguration.getScaledMaximumFlingVelocity();
+                    this.f25292i0 = viewConfiguration.getScaledTouchSlop();
+                    this.f25294k0 = viewConfiguration.getScaledMinimumFlingVelocity();
+                    this.f25295l0 = viewConfiguration.getScaledMaximumFlingVelocity();
                 }
-                if (this.f25268n0 == null && this.W != null) {
-                    this.f25268n0 = new OverScroller(this.W.getContext());
+                if (this.f25296n0 == null && this.W != null) {
+                    this.f25296n0 = new OverScroller(this.W.getContext());
                 }
-                OverScroller overScroller = this.f25268n0;
+                OverScroller overScroller = this.f25296n0;
                 if (overScroller != null && !overScroller.isFinished()) {
-                    this.f25268n0.forceFinished(true);
+                    this.f25296n0.forceFinished(true);
                 }
-                this.f25261f0 = motionEvent.getX();
-                this.f25262g0 = this.f25260e0;
-                this.f25263h0 = false;
+                this.f25289f0 = motionEvent.getX();
+                this.f25290g0 = this.f25288e0;
+                this.f25291h0 = false;
                 VelocityTracker velocityTracker2 = this.m0;
                 if (velocityTracker2 == null) {
                     this.m0 = VelocityTracker.obtain();
@@ -172,21 +172,21 @@ public final class ku extends zt {
                 if (velocityTracker3 != null) {
                     velocityTracker3.addMovement(motionEvent);
                 }
-                float x10 = motionEvent.getX() - this.f25261f0;
-                if (!this.f25263h0 && Math.abs(x10) > this.f25264i0) {
-                    this.f25263h0 = true;
+                float x10 = motionEvent.getX() - this.f25289f0;
+                if (!this.f25291h0 && Math.abs(x10) > this.f25292i0) {
+                    this.f25291h0 = true;
                     a0(true);
                 }
-                if (this.f25263h0) {
-                    int i11 = (int) (this.f25262g0 - x10);
+                if (this.f25291h0) {
+                    int i11 = (int) (this.f25290g0 - x10);
                     if (i11 >= 0) {
                         i7 = i11;
                     }
                     if (i7 <= i10) {
                         i10 = i7;
                     }
-                    if (i10 != this.f25260e0) {
-                        this.f25260e0 = i10;
+                    if (i10 != this.f25288e0) {
+                        this.f25288e0 = i10;
                         View view2 = this.W;
                         if (view2 != null) {
                             view2.invalidate();
@@ -196,17 +196,17 @@ public final class ku extends zt {
                     return true;
                 }
             } else if (actionMasked == 1 || actionMasked == 3) {
-                boolean z10 = this.f25263h0;
-                this.f25263h0 = false;
+                boolean z10 = this.f25291h0;
+                this.f25291h0 = false;
                 if (z10) {
                     a0(false);
-                    if (actionMasked == 1 && (velocityTracker = this.m0) != null && this.f25268n0 != null && this.W != null) {
+                    if (actionMasked == 1 && (velocityTracker = this.m0) != null && this.f25296n0 != null && this.W != null) {
                         velocityTracker.addMovement(motionEvent);
-                        this.m0.computeCurrentVelocity(1000, this.f25267l0);
+                        this.m0.computeCurrentVelocity(1000, this.f25295l0);
                         float f10 = -this.m0.getXVelocity();
-                        if (Math.abs(f10) > this.f25266k0) {
-                            this.f25268n0.fling(this.f25260e0, 0, (int) f10, 0, 0, this.f25259d0, 0, 0);
-                            this.W.postOnAnimation(this.f25269o0);
+                        if (Math.abs(f10) > this.f25294k0) {
+                            this.f25296n0.fling(this.f25288e0, 0, (int) f10, 0, 0, this.f25287d0, 0, 0);
+                            this.W.postOnAnimation(this.f25297o0);
                         }
                     }
                 }

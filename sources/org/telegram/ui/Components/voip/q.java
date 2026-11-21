@@ -8,48 +8,48 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import c8.ma;
-import org.telegram.ui.Components.hn0;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.fm0;
+import org.telegram.ui.Components.nr;
 public final class q extends FrameLayout {
-    public final p f41130a;
-    public final TransitionSet f41131b;
-    public boolean f41132c;
+    public final p f41265a;
+    public final TransitionSet f41266b;
+    public boolean f41267c;
 
     public q(Activity activity) {
         super(activity);
-        this.f41132c = false;
+        this.f41267c = false;
         setWillNotDraw(false);
         p pVar = new p(activity);
-        this.f41130a = pVar;
+        this.f41265a = pVar;
         addView(pVar, ma.e(52, 52, 5));
         TransitionSet transitionSet = new TransitionSet();
-        this.f41131b = transitionSet;
+        this.f41266b = transitionSet;
         transitionSet.setOrdering(0);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.i(1));
         transitionSet.setDuration(500L);
-        transitionSet.setInterpolator((TimeInterpolator) lr.f37208f);
+        transitionSet.setInterpolator((TimeInterpolator) nr.f37956f);
     }
 
     public final void a(View.OnClickListener onClickListener, boolean z10) {
-        if (this.f41132c) {
+        if (this.f41267c) {
             return;
         }
-        this.f41132c = true;
+        this.f41267c = true;
         if (z10) {
-            TransitionManager.beginDelayedTransition(this, this.f41131b);
+            TransitionManager.beginDelayedTransition(this, this.f41266b);
         }
-        p pVar = this.f41130a;
-        pVar.f41122w = 255;
-        pVar.f41119n = -1;
-        pVar.f41121s = 0;
-        pVar.f41120r = org.telegram.messenger.g0.L(8.0f);
+        p pVar = this.f41265a;
+        pVar.f41257w = 255;
+        pVar.f41254n = -1;
+        pVar.f41256s = 0;
+        pVar.f41255r = org.telegram.messenger.g0.L(8.0f);
         ViewGroup.LayoutParams layoutParams = pVar.getLayoutParams();
         layoutParams.width = -1;
         pVar.setLayoutParams(layoutParams);
-        org.telegram.messenger.g0.h3(new hn0(24, this, onClickListener), 500L);
+        org.telegram.messenger.g0.h3(new fm0(26, this, onClickListener), 500L);
     }
 
     public p getEndCloseView() {
-        return this.f41130a;
+        return this.f41265a;
     }
 }

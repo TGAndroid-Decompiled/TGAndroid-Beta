@@ -8,31 +8,31 @@ import android.view.Window;
 import android.view.WindowManager;
 import java.util.WeakHashMap;
 public final class cb extends Dialog {
-    public final bb f33958a;
-    public final WindowManager.LayoutParams f33959b;
+    public final bb f34145a;
+    public final WindowManager.LayoutParams f34146b;
 
     public cb(Context context, bi.t tVar) {
         super(context);
         org.telegram.messenger.g0.S(getWindow());
         bb bbVar = new bb(this, context);
-        this.f33958a = bbVar;
+        this.f34145a = bbVar;
         setContentView(bbVar, new ViewGroup.LayoutParams(-1, -1));
-        b0 b0Var = new b0(this, 14);
-        WeakHashMap weakHashMap = r0.i0.f56244a;
-        r0.a0.i(bbVar, b0Var);
+        c0 c0Var = new c0(this, 14);
+        WeakHashMap weakHashMap = r0.i0.f56285a;
+        r0.a0.i(bbVar, c0Var);
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 30) {
             bbVar.setSystemUiVisibility(1792);
         } else {
             bbVar.setSystemUiVisibility(1280);
         }
-        bbVar.setTag(2131296351, new bi.e1(tVar, 7));
+        bbVar.setTag(2131296353, new bi.i1(tVar, 7));
         try {
             Window window = getWindow();
             window.setWindowAnimations(2131755178);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f33959b = attributes;
+            this.f34146b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -44,7 +44,7 @@ public final class cb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29337a7, false)) <= 0.721f) {
+            if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29321a7, false)) <= 0.721f) {
                 z10 = false;
             }
             org.telegram.messenger.g0.m3(this, z10);
@@ -53,7 +53,7 @@ public final class cb extends Dialog {
     }
 
     public static bb a(Context context) {
-        return new cb(context, null).f33958a;
+        return new cb(context, null).f34145a;
     }
 
     @Override

@@ -1,47 +1,37 @@
 package bi;
 
-import org.telegram.messenger.x10;
-public final class d2 implements Runnable {
-    public final int f3512a;
-    public final j3 f3513b;
-    public final x10 f3514c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.o41;
+public final class d2 extends n41 {
+    public static final int f3498b = 0;
 
-    public d2(j3 j3Var, x10 x10Var, int i7) {
-        this.f3512a = i7;
-        this.f3513b = j3Var;
-        this.f3514c = x10Var;
+    static {
+        n41.h(new n41());
     }
 
     @Override
-    public final void run() {
-        switch (this.f3512a) {
-            case 0:
-                j3 j3Var = this.f3513b;
-                x10 x10Var = this.f3514c;
-                if (x10Var != null) {
-                    j3Var.getClass();
-                    x10Var.a(Boolean.FALSE);
-                }
-                j3Var.dismiss();
-                return;
-            case 1:
-                j3 j3Var2 = this.f3513b;
-                x10 x10Var2 = this.f3514c;
-                if (x10Var2 != null) {
-                    j3Var2.getClass();
-                    x10Var2.a(Boolean.FALSE);
-                }
-                j3Var2.dismiss();
-                return;
-            default:
-                j3 j3Var3 = this.f3513b;
-                x10 x10Var3 = this.f3514c;
-                if (x10Var3 != null) {
-                    j3Var3.getClass();
-                    x10Var3.a(Boolean.FALSE);
-                }
-                j3Var3.dismiss();
-                return;
+    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
+        ah.r rVar = (ah.r) view;
+        rVar.setUser((TLRPC.User) o41Var.H);
+        CharSequence charSequence = o41Var.f38099n;
+        if (charSequence != null) {
+            rVar.setSubtitle(charSequence);
+            rVar.setSubtitleColorKey(org.telegram.ui.ActionBar.m6.f29636r5);
         }
+        rVar.setOptions(o41Var.E);
+        rVar.setDivider(z10);
+    }
+
+    @Override
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        ah.r rVar = new ah.r(context, false, false, h6Var, false);
+        rVar.setCellBackgroundVisible(false);
+        return rVar;
     }
 }

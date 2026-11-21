@@ -1,165 +1,52 @@
 package hi;
 
-import android.animation.ValueAnimator;
-import android.view.MotionEvent;
-import org.telegram.ui.Components.c81;
-import org.telegram.ui.Components.m10;
-public final class qa extends m10 {
-    public final sa f15294a;
+import android.view.ScaleGestureDetector;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.f81;
+public final class qa extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    public final ra f15313a;
 
-    public qa(sa saVar) {
-        this.f15294a = saVar;
+    public qa(ra raVar) {
+        this.f15313a = raVar;
     }
 
     @Override
-    public final boolean a() {
-        w9 w9Var;
-        ta taVar = this.f15294a.f15398o0;
-        if (taVar.f15442g0 == 0 && (w9Var = taVar.C0) != null && !taVar.T1 && w9Var.isInited() && !taVar.Q1 && !taVar.P0.f14592y0) {
-            o6 o6Var = taVar.E0;
-            if ((o6Var == null || (!o6Var.f15180y.f37434i && !o6Var.M)) && !taVar.I() && taVar.f15472q2 == null) {
-                return true;
-            }
+    public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+        v9 v9Var;
+        ra raVar = this.f15313a;
+        sa saVar = raVar.f15350o0;
+        if (!raVar.f15347k0 || (v9Var = saVar.C0) == null || saVar.f15403g0 != 0 || v9Var.f14469s || saVar.B0.getFilledProgress() >= 1.0f) {
             return false;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        ta taVar = this.f15294a.f15398o0;
-        w9 w9Var = taVar.C0;
-        if (w9Var != null && !taVar.T1 && !taVar.Q1 && w9Var.isInited() && taVar.f15442g0 == 0 && taVar.P1 != -1) {
-            taVar.C0.switchCamera();
-            taVar.P0.d(180.0f);
-            ta.Z(taVar.C0.isFrontface());
-            if (taVar.p0()) {
-                taVar.f15477s.c(null);
-                return true;
-            }
-            taVar.f15477s.d();
-            return true;
+        float scaleFactor = saVar.U1 + ((scaleGestureDetector.getScaleFactor() - 1.0f) * 0.75f);
+        saVar.U1 = scaleFactor;
+        saVar.U1 = Utilities.i(scaleFactor, 1.0f, 0.0f);
+        saVar.C0.setZoom(saVar.U1);
+        f81 f81Var = saVar.W0;
+        if (f81Var != null) {
+            f81Var.b(false, saVar.U1);
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        w9 w9Var = this.f15294a.f15398o0.C0;
-        if (w9Var != null) {
-            w9Var.O = null;
-            w9Var.L = -1L;
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        sa saVar = this.f15294a;
-        saVar.m0 = 0.0f;
-        saVar.f15397n0 = 0.0f;
-        return false;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        o6 o6Var;
-        w9 w9Var;
-        c81 c81Var;
-        ga gaVar;
-        boolean z10;
-        boolean z11;
-        sa saVar = this.f15294a;
-        ta taVar = saVar.f15398o0;
-        ValueAnimator valueAnimator = taVar.F;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((o6Var = taVar.E0) != null && (o6Var.f15180y.f37434i || o6Var.M)) || taVar.P0.f14592y0 || (((w9Var = taVar.C0) != null && w9Var.f14365s) || saVar.f15395k0 || (((c81Var = taVar.W0) != null && (c81Var.G || c81Var.H)) || taVar.H())))) {
-            return false;
-        }
-        boolean z12 = true;
-        saVar.f15393i0 = true;
-        if (taVar.X) {
-            if (Math.abs(taVar.f15473r.f14965a) >= org.telegram.messenger.g0.L(1.0f)) {
-                if ((f11 > 0.0f && Math.abs(f11) > 2000.0f && Math.abs(f11) > Math.abs(f10)) || taVar.L > 0.4f) {
-                    taVar.p(true);
-                } else {
-                    ta.b(taVar);
-                }
-            } else if (taVar.N0 != null && !taVar.M0 && taVar.P1 != -1) {
-                if (Math.abs(f11) > 200.0f && (!taVar.N0.d.canScrollVertically(-1) || !taVar.L0)) {
-                    if (!taVar.R1 && f11 < 0.0f) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    taVar.e(z11);
-                } else {
-                    if (!taVar.R1 && taVar.N0.getTranslationY() < taVar.N0.getPadding()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    taVar.e(z10);
-                }
-            }
-            taVar.M0 = false;
-            taVar.X = false;
-            taVar.Y = false;
-            if (z12 && (gaVar = taVar.B0) != null) {
-                gaVar.b();
-            }
-            return z12;
-        }
-        z12 = false;
-        taVar.M0 = false;
-        taVar.X = false;
-        taVar.Y = false;
-        if (z12) {
-            gaVar.b();
-        }
-        return z12;
-    }
-
-    @Override
-    public final boolean onScroll(android.view.MotionEvent r7, android.view.MotionEvent r8, float r9, float r10) {
-        throw new UnsupportedOperationException("Method not decompiled: hi.qa.onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float):boolean");
-    }
-
-    @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        w9 w9Var = this.f15294a.f15398o0.C0;
-        if (w9Var != null) {
-            c1 c1Var = w9Var.O;
-            if (c1Var != null) {
-                c1Var.run();
-                w9Var.O = null;
-                return true;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        ta taVar = this.f15294a.f15398o0;
-        taVar.X = false;
-        taVar.Y = false;
-        if (!a() && onSingleTapConfirmed(motionEvent)) {
-            return true;
-        }
-        if (!taVar.I() || motionEvent.getY() >= taVar.N0.g()) {
-            return false;
-        }
-        taVar.e(false);
+        saVar.i0(true);
         return true;
     }
 
     @Override
-    public final void onLongPress(MotionEvent motionEvent) {
+    public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+        ra raVar = this.f15313a;
+        sa saVar = raVar.f15350o0;
+        if (saVar.C0 != null && saVar.f15403g0 == 0 && !saVar.L0) {
+            raVar.f15347k0 = true;
+            return super.onScaleBegin(scaleGestureDetector);
+        }
+        return false;
     }
 
     @Override
-    public final void onShowPress(MotionEvent motionEvent) {
+    public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+        ra raVar = this.f15313a;
+        raVar.f15347k0 = false;
+        raVar.f15350o0.e(false);
+        sa.b(raVar.f15350o0);
+        super.onScaleEnd(scaleGestureDetector);
     }
 }

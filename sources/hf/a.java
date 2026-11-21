@@ -5,7 +5,7 @@ import kf.g;
 import kf.p;
 import kf.s;
 public final class a implements nf.a {
-    public final char f14159a;
+    public final char f14188a;
 
     public a(int i7) {
         this('*');
@@ -21,44 +21,44 @@ public final class a implements nf.a {
     @Override
     public final void a(s sVar, s sVar2, int i7) {
         g gVar;
-        String.valueOf(this.f14159a);
+        String.valueOf(this.f14188a);
         if (i7 == 1) {
             gVar = new g(0);
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f18235f; pVar != null && pVar != sVar2; pVar = (p) pVar.f18235f) {
+        for (p pVar = (p) sVar.f18266f; pVar != null && pVar != sVar2; pVar = (p) pVar.f18266f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f18235f;
-        gVar.f18235f = pVar2;
+        p pVar2 = (p) sVar.f18266f;
+        gVar.f18266f = pVar2;
         if (pVar2 != null) {
-            pVar2.f18234e = gVar;
+            pVar2.f18265e = gVar;
         }
-        gVar.f18234e = sVar;
-        sVar.f18235f = gVar;
-        p pVar3 = (p) sVar.f18232b;
-        gVar.f18232b = pVar3;
-        if (((p) gVar.f18235f) == null) {
+        gVar.f18265e = sVar;
+        sVar.f18266f = gVar;
+        p pVar3 = (p) sVar.f18263b;
+        gVar.f18263b = pVar3;
+        if (((p) gVar.f18266f) == null) {
             pVar3.d = gVar;
         }
     }
 
     @Override
     public final char b() {
-        return this.f14159a;
+        return this.f14188a;
     }
 
     @Override
     public final int c(e eVar, e eVar2) {
-        if (eVar.d || eVar2.f13538c) {
+        if (eVar.d || eVar2.f13567c) {
             int i7 = eVar2.h;
             if (i7 % 3 != 0 && (eVar.h + i7) % 3 == 0) {
                 return 0;
             }
         }
-        if (eVar.f13541g >= 2 && eVar2.f13541g >= 2) {
+        if (eVar.f13570g >= 2 && eVar2.f13570g >= 2) {
             return 2;
         }
         return 1;
@@ -71,10 +71,10 @@ public final class a implements nf.a {
 
     @Override
     public final char e() {
-        return this.f14159a;
+        return this.f14188a;
     }
 
     public a(char c10) {
-        this.f14159a = c10;
+        this.f14188a = c10;
     }
 }

@@ -24,33 +24,33 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.ks;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.s4;
-import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.r4;
+import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.c0;
 import org.telegram.ui.Cells.y;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.mq;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.oq;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.dd0;
+import org.telegram.ui.cd0;
 import org.telegram.ui.y61;
 public final class i extends FrameLayout implements fs {
-    public ck0 E;
+    public ek0 E;
     public ArrayList F;
     public int G;
-    public y61 f55616a;
-    public mq f55617b;
-    public r1.g f55618c;
+    public y61 f55657a;
+    public oq f55658b;
+    public r1.g f55659c;
     public r1.g d;
-    public SharedPreferences f55619e;
-    public boolean f55620f;
+    public SharedPreferences f55660e;
+    public boolean f55661f;
     public boolean h;
-    public boolean f55621n;
-    public d f55622r;
-    public boolean f55623s;
-    public int f55624w;
-    public LinearLayout f55625x;
-    public TextView f55626y;
+    public boolean f55662n;
+    public d f55663r;
+    public boolean f55664s;
+    public int f55665w;
+    public LinearLayout f55666x;
+    public TextView f55667y;
 
     public static float a(DisplayMetrics displayMetrics, float f10) {
         return l9.a(f10, g0.L(16.0f), displayMetrics.widthPixels - g0.L(72.0f));
@@ -65,46 +65,46 @@ public final class i extends FrameLayout implements fs {
         String str;
         ArrayList arrayList = new ArrayList();
         arrayList.add(new a("Theme"));
-        arrayList.add(new a("Draw action bar shadow", new dd0(20)));
+        arrayList.add(new a("Draw action bar shadow", new cd0(20)));
         arrayList.add(new a("Show blur settings", new d(this, 0)));
-        arrayList.add(new a(gd.M0(2131751636, null)));
+        arrayList.add(new a(gd.N0(2131751635, null)));
         if (bz.J0) {
-            i7 = 2131751627;
+            i7 = 2131751626;
         } else {
-            i7 = 2131751619;
+            i7 = 2131751618;
         }
-        arrayList.add(new a(gd.M0(i7, null), new d(this, 1)));
-        if (n6.I.q()) {
+        arrayList.add(new a(gd.N0(i7, null), new d(this, 1)));
+        if (m6.I.q()) {
             str = "Switch to day theme";
         } else {
             str = "Switch to dark theme";
         }
-        arrayList.add(new a(str, new dd0(21)));
-        arrayList.add(new a(gd.M0(2131751602, null), new d(this, 2)));
+        arrayList.add(new a(str, new cd0(21)));
+        arrayList.add(new a(gd.N0(2131751601, null), new d(this, 2)));
         return arrayList;
     }
 
     public final void c(final boolean z10) {
         float f10;
-        y61 y61Var = this.f55616a;
+        y61 y61Var = this.f55657a;
         ArrayList arrayList = this.F;
-        if (this.f55623s == z10) {
+        if (this.f55664s == z10) {
             return;
         }
-        this.f55623s = z10;
+        this.f55664s = z10;
         if (z10) {
-            this.f55625x.setVisibility(0);
+            this.f55666x.setVisibility(0);
             arrayList.clear();
             if (getContext() instanceof LaunchActivity) {
-                s4 M = ((LaunchActivity) getContext()).M();
+                r4 M = ((LaunchActivity) getContext()).M();
                 if (M instanceof b) {
                     arrayList.addAll(((b) M).F());
                 }
-                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f43098r0;
+                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f43139r0;
                 if (actionBarLayout != null) {
                     arrayList.addAll(actionBarLayout.F());
                 }
-                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f43096q0;
+                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f43137q0;
                 if (actionBarLayout2 != null) {
                     arrayList.addAll(actionBarLayout2.F());
                 }
@@ -114,7 +114,7 @@ public final class i extends FrameLayout implements fs {
         }
         final Window window = ((Activity) getContext()).getWindow();
         if (z10) {
-            this.f55624w = window.getStatusBarColor();
+            this.f55665w = window.getStatusBarColor();
         }
         final float translationX = y61Var.getTranslationX();
         final float translationY = y61Var.getTranslationY();
@@ -129,20 +129,20 @@ public final class i extends FrameLayout implements fs {
         if (z10) {
             f11 = 1000.0f;
         }
-        p10.f56331i = f11;
-        gVar.f56323m = p10;
+        p10.f56372i = f11;
+        gVar.f56364m = p10;
         gVar.b(new r1.d() {
             @Override
             public final void a(r1.g gVar2, float f12, float f13) {
                 float f14 = f12 / 1000.0f;
                 i iVar = i.this;
-                LinearLayout linearLayout = iVar.f55625x;
+                LinearLayout linearLayout = iVar.f55666x;
                 linearLayout.setAlpha(f14);
                 float f15 = translationX;
                 linearLayout.setTranslationX(g0.T1(f15 - g0.L(8.0f), 0.0f, f14));
                 float f16 = translationY;
                 linearLayout.setTranslationY(g0.T1(f16 - g0.L(8.0f), 0.0f, f14));
-                y61 y61Var2 = iVar.f55616a;
+                y61 y61Var2 = iVar.f55657a;
                 linearLayout.setPivotX(y61Var2.getTranslationX() + g0.L(28.0f));
                 linearLayout.setPivotY(y61Var2.getTranslationY() + g0.L(28.0f));
                 if (linearLayout.getWidth() != 0) {
@@ -154,7 +154,7 @@ public final class i extends FrameLayout implements fs {
                 y61Var2.setTranslationX(g0.T1(f15, (iVar.getWidth() / 2.0f) - g0.L(28.0f), f14));
                 y61Var2.setTranslationY(g0.T1(f16, (iVar.getHeight() / 2.0f) - g0.L(28.0f), f14));
                 y61Var2.setAlpha(1.0f - f14);
-                window.setStatusBarColor(i0.a.f(f14, iVar.f55624w, 2046820352));
+                window.setStatusBarColor(i0.a.f(f14, iVar.f55665w, 2046820352));
                 iVar.invalidate();
             }
         });
@@ -162,11 +162,11 @@ public final class i extends FrameLayout implements fs {
             @Override
             public final void a(r1.g gVar2, boolean z11, float f12, float f13) {
                 i iVar = i.this;
-                y61 y61Var2 = iVar.f55616a;
+                y61 y61Var2 = iVar.f55657a;
                 y61Var2.setTranslationX(translationX);
                 y61Var2.setTranslationY(translationY);
                 if (!z10) {
-                    iVar.f55625x.setVisibility(8);
+                    iVar.f55666x.setVisibility(8);
                 }
             }
         });
@@ -174,26 +174,26 @@ public final class i extends FrameLayout implements fs {
     }
 
     public final void d() {
-        y j02 = n6.j0(g0.L(56.0f), n6.x0(null, n6.P9, false), n6.x0(null, n6.Q9, false));
+        y j02 = m6.j0(g0.L(56.0f), m6.x0(null, m6.P9, false), m6.x0(null, m6.Q9, false));
         Drawable mutate = getResources().getDrawable(2131231197).mutate();
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
-        mq mqVar = new mq(mutate, j02, 0, 0);
+        oq oqVar = new oq(mutate, j02, 0, 0);
         int L = g0.L(56.0f);
         int L2 = g0.L(56.0f);
-        mqVar.f37610e = L;
-        mqVar.f37611f = L2;
-        this.f55617b = mqVar;
+        oqVar.f38339e = L;
+        oqVar.f38340f = L2;
+        this.f55658b = oqVar;
         Drawable drawable = getResources().getDrawable(2131232568);
-        u6.x(this, drawable, n6.f29467h5, null, mode);
-        this.f55625x.setBackground(drawable);
-        u6.U(this.f55626y, n6.f29502j5, null);
+        t6.x(this, drawable, m6.f29451h5, null, mode);
+        this.f55666x.setBackground(drawable);
+        t6.U(this.f55667y, m6.f29486j5, null);
         invalidate();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == ks.f25175q4) {
+        if (i7 == ks.f25203q4) {
             d();
             this.E.getAdapter().f();
         }
@@ -201,7 +201,7 @@ public final class i extends FrameLayout implements fs {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        LinearLayout linearLayout = this.f55625x;
+        LinearLayout linearLayout = this.f55666x;
         if (view == linearLayout) {
             canvas.drawColor(Color.argb((int) (linearLayout.getAlpha() * 122.0f), 0, 0, 0));
         }
@@ -213,11 +213,11 @@ public final class i extends FrameLayout implements fs {
         float a10;
         float b10;
         super.onAttachedToWindow();
-        SharedPreferences sharedPreferences = this.f55619e;
+        SharedPreferences sharedPreferences = this.f55660e;
         float f10 = sharedPreferences.getFloat("x", -1.0f);
         float f11 = sharedPreferences.getFloat("y", -1.0f);
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        y61 y61Var = this.f55616a;
+        y61 y61Var = this.f55657a;
         if (f10 != -1.0f && f10 < displayMetrics.widthPixels / 2.0f) {
             a10 = a(displayMetrics, -2.1474836E9f);
         } else {
@@ -230,29 +230,29 @@ public final class i extends FrameLayout implements fs {
             b10 = b(displayMetrics, f11);
         }
         y61Var.setTranslationY(b10);
-        r1.g gVar = new r1.g(y61Var, r1.g.f56306o, y61Var.getTranslationX());
+        r1.g gVar = new r1.g(y61Var, r1.g.f56347o, y61Var.getTranslationX());
         r1.h hVar = new r1.h(y61Var.getTranslationX());
         hVar.b(650.0f);
         hVar.a(0.75f);
-        gVar.f56323m = hVar;
-        this.f55618c = gVar;
-        r1.g gVar2 = new r1.g(y61Var, r1.g.f56307p, y61Var.getTranslationY());
+        gVar.f56364m = hVar;
+        this.f55659c = gVar;
+        r1.g gVar2 = new r1.g(y61Var, r1.g.f56348p, y61Var.getTranslationY());
         r1.h hVar2 = new r1.h(y61Var.getTranslationY());
         hVar2.b(650.0f);
         hVar2.a(0.75f);
-        gVar2.f56323m = hVar2;
+        gVar2.f56364m = hVar2;
         this.d = gVar2;
-        ks.e().c(this, ks.f25175q4);
+        ks.e().c(this, ks.f25203q4);
     }
 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         float f10;
         super.onConfigurationChanged(configuration);
-        this.f55618c.d();
+        this.f55659c.d();
         this.d.d();
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        y61 y61Var = this.f55616a;
+        y61 y61Var = this.f55657a;
         if (y61Var.getTranslationX() >= displayMetrics.widthPixels / 2.0f) {
             f10 = 2.1474836E9f;
         } else {
@@ -260,33 +260,33 @@ public final class i extends FrameLayout implements fs {
         }
         y61Var.setTranslationX(a(displayMetrics, f10));
         y61Var.setTranslationY(b(displayMetrics, y61Var.getTranslationY()));
-        this.f55618c.f56323m.f56331i = y61Var.getTranslationX();
-        this.d.f56323m.f56331i = y61Var.getTranslationY();
+        this.f55659c.f56364m.f56372i = y61Var.getTranslationX();
+        this.d.f56364m.f56372i = y61Var.getTranslationY();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f55618c.d();
+        this.f55659c.d();
         this.d.d();
-        ks.e().n(this, ks.f25175q4);
+        ks.e().n(this, ks.f25203q4);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
-        y61 y61Var = this.f55616a;
+        y61 y61Var = this.f55657a;
         canvas.translate(y61Var.getTranslationX(), y61Var.getTranslationY());
         canvas.scale(y61Var.getScaleX(), y61Var.getScaleY(), y61Var.getPivotX(), y61Var.getPivotY());
-        this.f55617b.setAlpha((int) (y61Var.getAlpha() * 255.0f));
-        this.f55617b.setBounds(y61Var.getLeft(), y61Var.getTop(), y61Var.getRight(), y61Var.getBottom());
-        this.f55617b.draw(canvas);
+        this.f55658b.setAlpha((int) (y61Var.getAlpha() * 255.0f));
+        this.f55658b.setBounds(y61Var.getLeft(), y61Var.getTop(), y61Var.getRight(), y61Var.getBottom());
+        this.f55658b.draw(canvas);
         canvas.restore();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f55623s;
+        return this.f55664s;
     }
 }

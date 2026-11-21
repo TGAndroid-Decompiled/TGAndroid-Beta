@@ -1,104 +1,48 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public abstract class o10 extends org.telegram.ui.ActionBar.x2 {
-    public static final int f37932m1 = 0;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+public final class o10 {
+    public static final int f38035w = ViewConfiguration.getTapTimeout();
+    public final int f38036a;
+    public final int f38037b;
+    public final int f38038c;
+    public final int d;
+    public final p10 f38040f;
+    public final p10 f38041g;
+    public boolean h;
+    public boolean f38042i;
+    public boolean f38043j;
+    public boolean f38044k;
+    public boolean f38045l;
+    public MotionEvent f38046m;
+    public MotionEvent f38047n;
+    public boolean f38048o;
+    public float f38049p;
+    public float f38050q;
+    public float f38051r;
+    public float f38052s;
+    public boolean f38053t;
+    public VelocityTracker v;
+    public long f38054u = ViewConfiguration.getLongPressTimeout();
+    public final android.support.v4.media.session.q f38039e = new android.support.v4.media.session.q(this, 6);
 
-    public o10(Context context, org.telegram.ui.ActionBar.h2 h2Var) {
-        super(context, true);
-        int i7;
-        this.f30228w0 = false;
-        this.f30226v0 = false;
-        LinearLayout g10 = org.telegram.messenger.f3.g(context, 1);
-        this.O = g10;
-        ?? imageView = new ImageView(context);
-        imageView.setAutoRepeat(true);
-        imageView.f(2131624323, 120, 120, null);
-        imageView.d();
-        g10.addView((View) imageView, c8.ma.t(160, 160, 49, 17, 30, 17, 0));
-        TextView textView = new TextView(context);
-        org.telegram.messenger.n10.p(textView, 1, 24.0f);
-        org.telegram.messenger.n10.r(textView, org.telegram.ui.ActionBar.n6.f29502j5, null, null, 2131749379);
-        g10.addView(textView, c8.ma.t(-2, -2, 49, 17, 18, 17, 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        g10.addView(linearLayout, c8.ma.t(-2, -2, 1, 0, 12, 0, 0));
-        int i10 = 0;
-        while (true) {
-            if (i10 < 3) {
-                LinearLayout g11 = org.telegram.messenger.f3.g(context, 0);
-                if (org.telegram.messenger.gd.f24213a0) {
-                    i7 = 5;
-                } else {
-                    i7 = 3;
-                }
-                linearLayout.addView(g11, c8.ma.t(-2, -2, i7, 0, 8, 0, 0));
-                ImageView imageView2 = new ImageView(context);
-                int i11 = org.telegram.ui.ActionBar.n6.f29652r5;
-                org.telegram.ui.ActionBar.u6.s(imageView2, i11, null, PorterDuff.Mode.MULTIPLY);
-                imageView2.setImageResource(2131231624);
-                TextView textView2 = new TextView(context);
-                textView2.setTextSize(1, 15.0f);
-                org.telegram.ui.ActionBar.u6.U(textView2, i11, null);
-                textView2.setGravity((org.telegram.messenger.gd.f24213a0 ? 5 : 3) | 16);
-                textView2.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
-                if (i10 != 0) {
-                    if (i10 != 1) {
-                        if (i10 == 2) {
-                            textView2.setText(org.telegram.messenger.gd.M0(2131749381, null));
-                        }
-                    } else {
-                        textView2.setText(org.telegram.messenger.gd.M0(2131749382, null));
-                    }
-                } else {
-                    textView2.setText(org.telegram.messenger.gd.M0(2131749383, null));
-                }
-                if (org.telegram.messenger.gd.f24213a0) {
-                    g11.addView(textView2, c8.ma.o(-2, -2));
-                    g11.addView(imageView2, c8.ma.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
-                } else {
-                    g11.addView(imageView2, c8.ma.k(0.0f, 8.0f, 8.0f, 0.0f, -2, -2));
-                    g11.addView(textView2, c8.ma.o(-2, -2));
-                }
-                i10++;
-            } else {
-                ?? frameLayout = new FrameLayout(context);
-                View view = new View(context);
-                frameLayout.f37690a = view;
-                view.setBackground(org.telegram.ui.ActionBar.b6.f(org.telegram.ui.ActionBar.n6.Fi, 4.0f));
-                frameLayout.addView(view, c8.ma.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
-                TextView textView3 = new TextView(context);
-                frameLayout.f37691b = textView3;
-                textView3.setLines(1);
-                textView3.setSingleLine(true);
-                textView3.setGravity(1);
-                textView3.setEllipsize(TextUtils.TruncateAt.END);
-                textView3.setGravity(17);
-                org.telegram.messenger.f3.l(textView3, org.telegram.ui.ActionBar.n6.Ji, null, 1, 14.0f);
-                frameLayout.addView(textView3, c8.ma.e(-2, -2, 17));
-                frameLayout.setBackground(null);
-                frameLayout.setText(org.telegram.messenger.gd.M0(2131749380, null));
-                view.setOnClickListener(new qt(this, context, h2Var, 1));
-                g10.addView((View) frameLayout, c8.ma.t(-1, 50, 51, 0, 29, 0, 0));
-                TextView textView4 = new TextView(context);
-                textView4.setTextSize(1, 14.0f);
-                org.telegram.messenger.n10.r(textView4, org.telegram.ui.ActionBar.n6.f29575n5, null, null, 2131749385);
-                textView4.setGravity(17);
-                g10.addView(textView4, c8.ma.t(-2, 48, 49, 17, 0, 17, 16));
-                textView4.setOnClickListener(new n0(this, 21));
-                return;
-            }
+    public o10(Context context, p10 p10Var) {
+        this.f38040f = p10Var;
+        this.f38041g = p10Var;
+        if (context != null) {
+            this.f38053t = true;
+            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+            int scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
+            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            this.f38038c = viewConfiguration.getScaledMinimumFlingVelocity();
+            this.d = viewConfiguration.getScaledMaximumFlingVelocity();
+            this.f38036a = scaledTouchSlop * scaledTouchSlop;
+            this.f38037b = scaledDoubleTapSlop * scaledDoubleTapSlop;
+            return;
         }
+        throw new IllegalArgumentException("Context must not be null");
     }
-
-    public abstract void J0();
-
-    public abstract void K0();
 }

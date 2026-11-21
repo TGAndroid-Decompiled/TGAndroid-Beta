@@ -1,17 +1,17 @@
 package di;
 public final class dc {
-    public float f8670a;
-    public float f8671b;
-    public float f8672c;
+    public float f8704a;
+    public float f8705b;
+    public float f8706c;
     public float d;
-    public float f8673e;
-    public long f8674f;
-    public long f8675g;
+    public float f8707e;
+    public long f8708f;
+    public long f8709g;
     public float h;
-    public float f8676i;
-    public final ec f8677j;
+    public float f8710i;
+    public final ec f8711j;
 
     public dc(ec ecVar) {
-        this.f8677j = ecVar;
+        this.f8711j = ecVar;
     }
 }

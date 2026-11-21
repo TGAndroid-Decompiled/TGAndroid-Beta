@@ -1,59 +1,62 @@
 package hi;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class ba extends View {
-    public final boolean f14275a;
-    public final Canvas f14276b;
-    public final float f14277c;
-    public final float d;
-    public final float f14278e;
-    public final Paint f14279f;
-    public final Bitmap h;
-    public final Paint f14280n;
-    public final float f14281r;
-    public final float f14282s;
-    public final ta f14283w;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.fs;
+import org.telegram.ui.lm0;
+import org.telegram.ui.qc;
+import org.telegram.ui.x71;
+public final class ba implements ValueAnimator.AnimatorUpdateListener {
+    public final int f14300a;
+    public boolean f14301b = false;
+    public final fs f14302c;
 
-    public ba(ta taVar, Context context, boolean z10, Canvas canvas, float f10, float f11, float f12, Paint paint, Bitmap bitmap, Paint paint2, float f13, float f14) {
-        super(context);
-        this.f14283w = taVar;
-        this.f14275a = z10;
-        this.f14276b = canvas;
-        this.f14277c = f10;
-        this.d = f11;
-        this.f14278e = f12;
-        this.f14279f = paint;
-        this.h = bitmap;
-        this.f14280n = paint2;
-        this.f14281r = f13;
-        this.f14282s = f14;
+    public ba(fs fsVar, int i7) {
+        this.f14300a = i7;
+        this.f14302c = fsVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        boolean z10 = this.f14275a;
-        Paint paint = this.f14280n;
-        float f10 = this.f14278e;
-        float f11 = this.d;
-        float f12 = this.f14277c;
-        ta taVar = this.f14283w;
-        if (z10) {
-            float f13 = taVar.E2;
-            if (f13 > 0.0f) {
-                this.f14276b.drawCircle(f12, f11, f10 * f13, this.f14279f);
-            }
-            canvas.drawBitmap(this.h, 0.0f, 0.0f, paint);
-        } else {
-            canvas.drawCircle(f12, f11, (1.0f - taVar.E2) * f10, paint);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f14300a) {
+            case 0:
+                sa saVar = (sa) this.f14302c;
+                saVar.E2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                aa aaVar = saVar.D2;
+                if (aaVar != null) {
+                    aaVar.invalidate();
+                }
+                if (!this.f14301b && saVar.E2 > 0.5f) {
+                    this.f14301b = true;
+                    return;
+                }
+                return;
+            case 1:
+                qc qcVar = (qc) this.f14302c;
+                qcVar.f51224o0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qcVar.f51223n0.invalidate();
+                if (!this.f14301b && qcVar.f51224o0 > 0.5f) {
+                    this.f14301b = true;
+                    return;
+                }
+                return;
+            case 2:
+                lm0 lm0Var = (lm0) this.f14302c;
+                lm0Var.Z = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                lm0Var.Y.invalidate();
+                if (!this.f14301b && lm0Var.Z > 0.5f) {
+                    this.f14301b = true;
+                    return;
+                }
+                return;
+            default:
+                x71 x71Var = (x71) this.f14302c;
+                x71Var.f53747k2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x71Var.f53744j2.invalidate();
+                if (!this.f14301b && x71Var.f53747k2 > 0.5f) {
+                    this.f14301b = true;
+                    return;
+                }
+                return;
         }
-        canvas.save();
-        canvas.translate(this.f14281r, this.f14282s);
-        taVar.f15452j1.draw(canvas);
-        canvas.restore();
     }
 }

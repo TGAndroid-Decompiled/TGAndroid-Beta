@@ -6,25 +6,25 @@ import android.view.ViewGroup;
 import org.telegram.messenger.g0;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.bk0;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.dk0;
 import v4.f1;
 import yg.c0;
 import yg.d0;
 import yg.r;
 import yg.t;
-public abstract class e extends bk0 {
-    public final i6 f60485c;
+public abstract class e extends dk0 {
+    public final h6 f60526c;
     public boolean d;
-    public h2 f60486e;
-    public TLRPC.TL_payments_checkedGiftCode f60487f;
+    public g2 f60527e;
+    public TLRPC.TL_payments_checkedGiftCode f60528f;
     public String h;
-    public n2 f60488n;
+    public m2 f60529n;
 
-    public e(i6 i6Var) {
-        this.f60485c = i6Var;
+    public e(h6 h6Var) {
+        this.f60526c = h6Var;
     }
 
     @Override
@@ -71,28 +71,28 @@ public abstract class e extends bk0 {
     public final f1 x(ViewGroup viewGroup, int i7) {
         View tVar;
         Context context = viewGroup.getContext();
-        i6 i6Var = this.f60485c;
+        h6 h6Var = this.f60526c;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
                     if (i7 != 4) {
                         if (i7 != 5) {
-                            tVar = new r(context, i6Var);
+                            tVar = new r(context, h6Var);
                         } else {
                             tVar = new View(context);
                         }
                     } else {
-                        tVar = new yg.a(context, i6Var);
+                        tVar = new yg.a(context, h6Var);
                         tVar.setPadding(0, 0, 0, g0.L(14.0f));
                     }
                 } else {
-                    tVar = new d0(context, i6Var);
+                    tVar = new d0(context, h6Var);
                 }
             } else {
-                tVar = new c0(context, i6Var);
+                tVar = new c0(context, h6Var);
             }
         } else {
-            tVar = new t(context, i6Var);
+            tVar = new t(context, h6Var);
         }
         return i5.c.q(tVar, tVar, -1, -2);
     }

@@ -7,19 +7,19 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 public final class r4 extends FrameLayout {
-    public final int f15322a;
-    public final v9 f15323b;
+    public final int f15328a;
+    public final u9 f15329b;
 
-    public r4(v9 v9Var, Context context, int i7) {
+    public r4(u9 u9Var, Context context, int i7) {
         super(context);
-        this.f15322a = i7;
+        this.f15328a = i7;
         switch (i7) {
             case 1:
-                this.f15323b = v9Var;
+                this.f15329b = u9Var;
                 super(context);
                 return;
             default:
-                this.f15323b = v9Var;
+                this.f15329b = u9Var;
                 setWillNotDraw(false);
                 return;
         }
@@ -27,9 +27,9 @@ public final class r4 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f15322a) {
+        switch (this.f15328a) {
             case 1:
-                if (this.f15323b.W1) {
+                if (this.f15329b.W1) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -40,25 +40,25 @@ public final class r4 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f15322a) {
+        switch (this.f15328a) {
             case 0:
                 super.onDraw(canvas);
-                v9 v9Var = this.f15323b;
-                Paint paint = v9Var.f14895b1;
-                tg.e1 e1Var = v9Var.V0;
-                paint.setAlpha((int) ((1.0f - v9Var.f14899d1) * e1Var.getAlpha() * 20.0f));
+                u9 u9Var = this.f15329b;
+                Paint paint = u9Var.f14870b1;
+                tg.f1 f1Var = u9Var.V0;
+                paint.setAlpha((int) ((1.0f - u9Var.f14874d1) * f1Var.getAlpha() * 20.0f));
                 RectF rectF = org.telegram.messenger.g0.P;
-                e1Var.b(rectF);
-                h5 h5Var = v9Var.D0;
-                int top = h5Var.getTop();
-                float translationY = e1Var.getTranslationY() + h5Var.getTranslationY() + e1Var.getTop() + top;
+                f1Var.b(rectF);
+                g5 g5Var = u9Var.D0;
+                int top = g5Var.getTop();
+                float translationY = f1Var.getTranslationY() + g5Var.getTranslationY() + f1Var.getTop() + top;
                 float f10 = rectF.left;
-                tg.j1 j1Var = v9Var.W0;
-                rectF.set(org.telegram.messenger.g0.T1(f10, j1Var.getLeft(), v9Var.f14899d1), org.telegram.messenger.g0.T1(rectF.top + translationY, j1Var.getTop() - j1Var.getTranslationY(), v9Var.f14899d1), org.telegram.messenger.g0.T1(rectF.right, j1Var.getRight(), v9Var.f14899d1), org.telegram.messenger.g0.T1(translationY + rectF.bottom, j1Var.getBottom() - j1Var.getTranslationY(), v9Var.f14899d1));
-                float L = org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(v9Var.f14899d1, 32, 16));
-                Paint paint2 = v9Var.f14897c1;
+                tg.k1 k1Var = u9Var.W0;
+                rectF.set(org.telegram.messenger.g0.T1(f10, k1Var.getLeft(), u9Var.f14874d1), org.telegram.messenger.g0.T1(rectF.top + translationY, k1Var.getTop() - k1Var.getTranslationY(), u9Var.f14874d1), org.telegram.messenger.g0.T1(rectF.right, k1Var.getRight(), u9Var.f14874d1), org.telegram.messenger.g0.T1(translationY + rectF.bottom, k1Var.getBottom() - k1Var.getTranslationY(), u9Var.f14874d1));
+                float L = org.telegram.messenger.g0.L(org.telegram.messenger.g0.W1(u9Var.f14874d1, 32, 16));
+                Paint paint2 = u9Var.f14872c1;
                 int alpha = paint2.getAlpha();
-                paint2.setAlpha((int) (alpha * v9Var.f14899d1));
+                paint2.setAlpha((int) (alpha * u9Var.f14874d1));
                 canvas.drawRoundRect(rectF, L, L, paint2);
                 paint2.setAlpha(alpha);
                 canvas.drawRoundRect(rectF, L, L, paint);
@@ -71,12 +71,12 @@ public final class r4 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f15322a) {
+        switch (this.f15328a) {
             case 0:
                 if (motionEvent.getActionMasked() == 0) {
-                    v9 v9Var = this.f15323b;
-                    if (v9Var.f14900e1) {
-                        v9Var.M0(false);
+                    u9 u9Var = this.f15329b;
+                    if (u9Var.f14875e1) {
+                        u9Var.M0(false);
                         return true;
                     }
                 }

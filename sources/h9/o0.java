@@ -3,17 +3,17 @@ package h9;
 import j$.util.Objects;
 import java.util.Iterator;
 public final class o0 extends h2 {
-    public int f14030a;
-    public Object f14031b;
-    public final Iterator f14032c;
+    public int f14059a;
+    public Object f14060b;
+    public final Iterator f14061c;
 
     public o0(h2 h2Var) {
-        this.f14032c = h2Var;
+        this.f14061c = h2Var;
     }
 
     @Override
     public final boolean hasNext() {
-        if (this.f14030a <= 0 && !this.f14032c.hasNext()) {
+        if (this.f14059a <= 0 && !this.f14061c.hasNext()) {
             return false;
         }
         return true;
@@ -21,13 +21,13 @@ public final class o0 extends h2 {
 
     @Override
     public final Object next() {
-        if (this.f14030a <= 0) {
-            p1 p1Var = (p1) this.f14032c.next();
-            this.f14031b = p1Var.f14039a;
-            this.f14030a = p1Var.a();
+        if (this.f14059a <= 0) {
+            p1 p1Var = (p1) this.f14061c.next();
+            this.f14060b = p1Var.f14068a;
+            this.f14059a = p1Var.a();
         }
-        this.f14030a--;
-        Object obj = this.f14031b;
+        this.f14059a--;
+        Object obj = this.f14060b;
         Objects.requireNonNull(obj);
         return obj;
     }

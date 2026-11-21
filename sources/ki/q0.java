@@ -1,26 +1,123 @@
 package ki;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import org.telegram.messenger.x10;
-public final class q0 implements LocationListener {
-    public final LocationManager f18841a;
-    public final LocationListener[] f18842b;
-    public final x10 f18843c;
-    public final s0 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.b9;
+import org.telegram.ui.Components.rh0;
+import org.telegram.ui.Components.w6;
+public final class q0 extends Drawable implements w6 {
+    public final Paint f18863a;
+    public final Paint f18864b;
+    public final Paint f18865c;
+    public final ImageReceiver d;
+    public final ImageReceiver f18866e;
+    public final Drawable f18867f;
+    public int h;
 
-    public q0(s0 s0Var, LocationManager locationManager, LocationListener[] locationListenerArr, x10 x10Var) {
-        this.d = s0Var;
-        this.f18841a = locationManager;
-        this.f18842b = locationListenerArr;
-        this.f18843c = x10Var;
+    public q0(Context context, TLRPC.User user, TLRPC.User user2) {
+        Paint paint = new Paint(1);
+        this.f18863a = paint;
+        this.f18864b = new Paint(1);
+        Paint paint2 = new Paint(1);
+        this.f18865c = paint2;
+        ImageReceiver imageReceiver = new ImageReceiver(null);
+        this.d = imageReceiver;
+        ImageReceiver imageReceiver2 = new ImageReceiver(null);
+        this.f18866e = imageReceiver2;
+        new RectF();
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-1);
+        Drawable mutate = context.getResources().getDrawable(2131231129).mutate();
+        this.f18867f = mutate;
+        int x02 = m6.x0(null, m6.L5, false);
+        this.h = x02;
+        mutate.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+        b9 b9Var = new b9((h6) null);
+        b9Var.r(user);
+        imageReceiver.i0(user, b9Var, null);
+        imageReceiver.J0(org.telegram.messenger.g0.L(25.0f));
+        b9 b9Var2 = new b9((h6) null);
+        b9Var2.r(user2);
+        imageReceiver2.i0(user2, b9Var2, null);
+        imageReceiver2.J0(org.telegram.messenger.g0.L(25.0f));
     }
 
     @Override
-    public final void onLocationChanged(Location location) {
-        this.f18841a.removeUpdates(this.f18842b[0]);
-        this.d.getClass();
-        this.f18843c.a(s0.h(location));
+    public final void a(rh0 rh0Var) {
+        this.f18866e.H0(rh0Var);
+        this.d.H0(rh0Var);
+    }
+
+    @Override
+    public final void b(ImageReceiver imageReceiver) {
+        this.d.R();
+        this.f18866e.R();
+    }
+
+    @Override
+    public final void c(ImageReceiver imageReceiver) {
+        this.d.P();
+        this.f18866e.P();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int i7 = m6.L5;
+        int x02 = m6.x0(null, i7, false);
+        Paint paint = this.f18864b;
+        paint.setColor(x02);
+        float L = org.telegram.messenger.g0.L(136.0f) / 2.0f;
+        ImageReceiver imageReceiver = this.d;
+        imageReceiver.y0(bounds.centerX() - L, bounds.centerY() - org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f));
+        imageReceiver.h(canvas, null);
+        float centerX = (bounds.centerX() - L) + org.telegram.messenger.g0.L(41.0f);
+        float L2 = org.telegram.messenger.g0.L(16.0f) + bounds.centerY();
+        canvas.drawCircle(centerX, L2, org.telegram.messenger.g0.L(14.0f), paint);
+        canvas.drawCircle(centerX, L2, org.telegram.messenger.g0.L(12.0f), this.f18865c);
+        int x03 = m6.x0(null, i7, false);
+        int i10 = this.h;
+        Drawable drawable = this.f18867f;
+        if (x03 != i10) {
+            this.h = x03;
+            drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
+        }
+        drawable.setBounds((int) (centerX - org.telegram.messenger.g0.L(9.0f)), (int) (L2 - org.telegram.messenger.g0.L(9.0f)), (int) (centerX + org.telegram.messenger.g0.L(9.0f)), (int) (L2 + org.telegram.messenger.g0.L(9.0f)));
+        drawable.draw(canvas);
+        int centerX2 = bounds.centerX();
+        Paint paint2 = this.f18863a;
+        canvas.drawLine(bounds.centerX() - org.telegram.messenger.g0.L(3.33f), bounds.centerY() - org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(3.33f) + centerX2, bounds.centerY(), paint2);
+        canvas.drawLine(bounds.centerX() - org.telegram.messenger.g0.L(3.33f), org.telegram.messenger.g0.L(7.0f) + bounds.centerY(), org.telegram.messenger.g0.L(3.33f) + bounds.centerX(), bounds.centerY(), paint2);
+        ImageReceiver imageReceiver2 = this.f18866e;
+        imageReceiver2.y0((bounds.centerX() + L) - org.telegram.messenger.g0.L(50.0f), bounds.centerY() - org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f));
+        imageReceiver2.h(canvas, null);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -2,16 +2,16 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class h7 {
-    public int f24392a;
-    public long f24393b;
-    public int f24394c;
+    public int f24420a;
+    public long f24421b;
+    public int f24422c;
     public int d;
-    public long f24395e;
-    public TLRPC.TL_upload_file f24396f;
-    public TLRPC.TL_upload_webFile f24397g;
+    public long f24423e;
+    public TLRPC.TL_upload_file f24424f;
+    public TLRPC.TL_upload_webFile f24425g;
     public TLRPC.TL_upload_cdnFile h;
-    public boolean f24398i;
-    public boolean f24399j;
-    public boolean f24400k;
-    public Runnable f24401l;
+    public boolean f24426i;
+    public boolean f24427j;
+    public boolean f24428k;
+    public Runnable f24429l;
 }

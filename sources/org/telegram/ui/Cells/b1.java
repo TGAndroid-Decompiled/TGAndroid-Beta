@@ -11,23 +11,23 @@ import org.telegram.messenger.ev;
 import org.telegram.messenger.fj;
 import org.telegram.messenger.zt;
 public final class b1 extends AccessibilityNodeProvider {
-    public final r1 f30421a;
-    public final Path f30422b = new Path();
-    public final RectF f30423c = new RectF();
+    public final r1 f30449a;
+    public final Path f30450b = new Path();
+    public final RectF f30451c = new RectF();
     public final Rect d = new Rect();
 
     public b1(r1 r1Var) {
-        this.f30421a = r1Var;
+        this.f30449a = r1Var;
     }
 
     public final ClickableSpan a(int i7, boolean z10) {
         if (i7 == 5000) {
             return null;
         }
-        r1 r1Var = this.f30421a;
+        r1 r1Var = this.f30449a;
         if (z10) {
             int i10 = i7 - 3000;
-            CharSequence charSequence = r1Var.Q5.f24023z;
+            CharSequence charSequence = r1Var.Q5.f24051z;
             if (!(charSequence instanceof Spannable) || i10 < 0) {
                 return null;
             }
@@ -54,16 +54,16 @@ public final class b1 extends AccessibilityNodeProvider {
     public final zt b(int[] iArr, int i7) {
         ev evVar;
         int i10;
-        fj fjVar = this.f30421a.Q5;
-        if (fjVar != null && (evVar = fjVar.f24022y2) != null) {
-            ArrayList arrayList = evVar.f23772g;
+        fj fjVar = this.f30449a.Q5;
+        if (fjVar != null && (evVar = fjVar.f24050y2) != null) {
+            ArrayList arrayList = evVar.f23800g;
             int i11 = i7 - 6000;
             if (i11 >= 0) {
                 int i12 = 0;
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     zt ztVar = (zt) arrayList.get(i13);
                     if (ztVar.S()) {
-                        if (ztVar.f28355r == null) {
+                        if (ztVar.f28383r == null) {
                             i10 = 0;
                         } else {
                             i10 = 1;

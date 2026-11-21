@@ -12,20 +12,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.j30;
-import org.telegram.ui.Components.kg;
-import org.telegram.ui.Components.z40;
+import org.telegram.ui.Components.c50;
+import org.telegram.ui.Components.m30;
+import org.telegram.ui.Components.ng;
 import org.telegram.ui.rm;
-public final class j2 implements kg {
-    public final z3 f12143a;
+public final class j2 implements ng {
+    public final z3 f12175a;
 
     public j2(z3 z3Var) {
-        this.f12143a = z3Var;
+        this.f12175a = z3Var;
     }
 
     @Override
     public final void B2() {
-        this.f12143a.N0();
+        this.f12175a.N0();
     }
 
     @Override
@@ -36,9 +36,9 @@ public final class j2 implements kg {
     @Override
     public final void H(CharSequence charSequence, boolean z10, int i7, int i10, long j3) {
         boolean z11;
-        z3 z3Var = this.f12143a;
-        if (z3Var.f12862q2) {
-            org.telegram.messenger.g0.h3(new bi.y3(this, j3, 4), 200L);
+        z3 z3Var = this.f12175a;
+        if (z3Var.f12903q2) {
+            org.telegram.messenger.g0.h3(new bi.c4(this, j3, 4), 200L);
             return;
         }
         if (j3 <= 0) {
@@ -53,11 +53,11 @@ public final class j2 implements kg {
     public final TLRPC.TL_channels_sendAsPeers J() {
         c1 c1Var;
         boolean z10;
-        z3 z3Var = this.f12143a;
-        if (z3Var.f12893y1.f12724f) {
-            f9 f9Var = z3Var.f12872t0;
+        z3 z3Var = this.f12175a;
+        if (z3Var.f12934y1.f12766f) {
+            f9 f9Var = z3Var.f12913t0;
             if (f9Var != null && (c1Var = f9Var.B0) != null) {
-                TLRPC.GroupCall groupCall = c1Var.f11798w;
+                TLRPC.GroupCall groupCall = c1Var.f11841w;
                 if (groupCall == null) {
                     z10 = false;
                 } else {
@@ -67,50 +67,50 @@ public final class j2 implements kg {
                     return null;
                 }
             }
-            return z3Var.f12895y3;
+            return z3Var.f12936y3;
         }
         return null;
     }
 
     @Override
     public final void Q(float f10, int i7) {
-        z40 z40Var = this.f12143a.f12874t2;
-        if (z40Var != null) {
-            z40Var.b(f10, i7);
+        c50 c50Var = this.f12175a.f12915t2;
+        if (c50Var != null) {
+            c50Var.b(f10, i7);
         }
     }
 
     @Override
     public final int b1() {
-        return this.f12143a.getHeight();
+        return this.f12175a.getHeight();
     }
 
     @Override
     public final TL_stories.StoryItem c1() {
-        return this.f12143a.f12893y1.f12720a;
+        return this.f12175a.f12934y1.f12762a;
     }
 
     @Override
     public final boolean e1(long j3) {
-        z3 z3Var = this.f12143a;
-        x3 x3Var = z3Var.f12893y1;
-        TL_stories.StoryItem storyItem = x3Var.f12720a;
+        z3 z3Var = this.f12175a;
+        x3 x3Var = z3Var.f12934y1;
+        TL_stories.StoryItem storyItem = x3Var.f12762a;
         if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
             TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
-            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) x3Var.f12720a.media).call;
-            savedefaultsendas.send_as = mp.u1(z3Var.f12847m2).l1(j3);
-            ConnectionsManager.getInstance(z3Var.f12847m2).sendRequest(savedefaultsendas, null);
-            c1 c1Var = z3Var.f12872t0.B0;
+            savedefaultsendas.call = ((TLRPC.TL_messageMediaVideoStream) x3Var.f12762a.media).call;
+            savedefaultsendas.send_as = mp.u1(z3Var.f12888m2).l1(j3);
+            ConnectionsManager.getInstance(z3Var.f12888m2).sendRequest(savedefaultsendas, null);
+            c1 c1Var = z3Var.f12913t0.B0;
             if (c1Var != null) {
-                TLRPC.Peer B1 = mp.u1(z3Var.f12847m2).B1(j3);
-                TLRPC.GroupCall groupCall = c1Var.f11798w;
+                TLRPC.Peer B1 = mp.u1(z3Var.f12888m2).B1(j3);
+                TLRPC.GroupCall groupCall = c1Var.f11841w;
                 if (groupCall != null) {
                     groupCall.flags = TLObject.setFlag(groupCall.flags, 2097152, true);
-                    c1Var.f11798w.default_send_as = B1;
+                    c1Var.f11841w.default_send_as = B1;
                 }
             }
             z3Var.p0(true);
-            z3Var.L1.t2(true);
+            z3Var.L1.w2(true);
             z3Var.L1.P(true);
             z3Var.d1(false);
         }
@@ -119,8 +119,8 @@ public final class j2 implements kg {
 
     @Override
     public final boolean g1() {
-        z40 z40Var = this.f12143a.f12874t2;
-        if (z40Var != null && !z40Var.f42782j0) {
+        c50 c50Var = this.f12175a.f12915t2;
+        if (c50Var != null && !c50Var.f34041j0) {
             return true;
         }
         return false;
@@ -128,19 +128,19 @@ public final class j2 implements kg {
 
     @Override
     public final void j1(CharSequence charSequence, boolean z10, boolean z11) {
-        z3 z3Var = this.f12143a;
+        z3 z3Var = this.f12175a;
         if (z3Var.N2 == null) {
-            k2 k2Var = new k2(z3Var, z3Var.getContext(), z3Var.l1, z3Var.f12872t0.f11966f, z3Var.f12843l0);
+            k2 k2Var = new k2(z3Var, z3Var.getContext(), z3Var.l1, z3Var.f12913t0.f12007f, z3Var.f12884l0);
             z3Var.N2 = k2Var;
             k2Var.p(new m2(z3Var));
             z3Var.addView(z3Var.N2, ma.e(-1, -1, 83));
         }
         if (z3Var.N2.getAdapter() != null) {
             z3Var.N2.setDialogId(z3Var.l1);
-            if (z3Var.f12893y1.f12724f) {
+            if (z3Var.f12934y1.f12766f) {
                 jg.h1 adapter = z3Var.N2.getAdapter();
-                if (adapter.f17513k0 == 0 && adapter.f17526v0 == 0 && adapter.f17525u0 == 0 && adapter.F0 == 0) {
-                    adapter.f17530x0 = null;
+                if (adapter.f17538k0 == 0 && adapter.f17551v0 == 0 && adapter.f17550u0 == 0 && adapter.F0 == 0) {
+                    adapter.f17555x0 = null;
                     adapter.G = null;
                     ArrayList arrayList = adapter.B0;
                     if (arrayList != null) {
@@ -152,7 +152,7 @@ public final class j2 implements kg {
                     }
                     adapter.U = null;
                     adapter.V = null;
-                    ArrayList arrayList3 = adapter.f17531y;
+                    ArrayList arrayList3 = adapter.f17556y;
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
@@ -176,8 +176,8 @@ public final class j2 implements kg {
                 }
             } else {
                 jg.h1 adapter2 = z3Var.N2.getAdapter();
-                mp.u1(z3Var.f12847m2).c2(Long.valueOf(z3Var.l1));
-                TLRPC.Chat O0 = mp.u1(z3Var.f12847m2).O0(Long.valueOf(-z3Var.l1));
+                mp.u1(z3Var.f12888m2).c2(Long.valueOf(z3Var.l1));
+                TLRPC.Chat O0 = mp.u1(z3Var.f12888m2).O0(Long.valueOf(-z3Var.l1));
                 adapter2.getClass();
                 adapter2.m0 = O0;
                 z3Var.N2.getAdapter().U(charSequence, z3Var.L1.getCursorPosition(), null, false, false);
@@ -193,9 +193,9 @@ public final class j2 implements kg {
 
     @Override
     public final void l1() {
-        z40 z40Var = this.f12143a.f12874t2;
-        if (z40Var != null) {
-            z40Var.k();
+        c50 c50Var = this.f12175a.f12915t2;
+        if (c50Var != null) {
+            c50Var.k();
         }
     }
 
@@ -207,8 +207,8 @@ public final class j2 implements kg {
     @Override
     public final boolean m1() {
         TLRPC.User c22;
-        z3 z3Var = this.f12143a;
-        if (z3Var.l1 < 0 || (c22 = mp.u1(z3Var.f12847m2).c2(Long.valueOf(z3Var.l1))) == null || o10.C(c22) || c22.bot) {
+        z3 z3Var = this.f12175a;
+        if (z3Var.l1 < 0 || (c22 = mp.u1(z3Var.f12888m2).c2(Long.valueOf(z3Var.l1))) == null || o10.C(c22) || c22.bot) {
             return false;
         }
         return true;
@@ -218,34 +218,34 @@ public final class j2 implements kg {
     public final void m2() {
         String str;
         int i7;
-        z3 z3Var = this.f12143a;
-        if (z3Var.f12853o1) {
+        z3 z3Var = this.f12175a;
+        if (z3Var.f12894o1) {
             z3.f0(z3Var);
             return;
         }
         if (z3Var.G2 == null) {
-            j30 j30Var = new j30(9, z3Var.getContext(), z3Var.f12843l0, false);
-            z3Var.G2 = j30Var;
-            j30Var.setVisibility(8);
+            m30 m30Var = new m30(9, z3Var.getContext(), z3Var.f12884l0, false);
+            z3Var.G2 = m30Var;
+            m30Var.setVisibility(8);
             z3Var.addView(z3Var.G2, ma.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
         }
         if (z3Var.l1 >= 0) {
-            str = o10.k(mp.u1(z3Var.f12847m2).c2(Long.valueOf(z3Var.l1)), true);
+            str = o10.k(mp.u1(z3Var.f12888m2).c2(Long.valueOf(z3Var.l1)), true);
         } else {
-            TLRPC.Chat O0 = mp.u1(z3Var.f12847m2).O0(Long.valueOf(-z3Var.l1));
+            TLRPC.Chat O0 = mp.u1(z3Var.f12888m2).O0(Long.valueOf(-z3Var.l1));
             if (O0 != null) {
                 str = O0.title;
             } else {
                 str = "";
             }
         }
-        j30 j30Var2 = z3Var.G2;
-        if (z3Var.L1.f32567d1) {
-            i7 = 2131743357;
+        m30 m30Var2 = z3Var.G2;
+        if (z3Var.L1.f32595d1) {
+            i7 = 2131743351;
         } else {
-            i7 = 2131743283;
+            i7 = 2131743277;
         }
-        j30Var2.setText(org.telegram.messenger.g0.W2(gd.a0(null, null, i7, str)));
+        m30Var2.setText(org.telegram.messenger.g0.W2(gd.a0(null, null, i7, str)));
         z3Var.G2.c(z3Var.L1.getAudioVideoButtonContainer());
     }
 
@@ -256,46 +256,46 @@ public final class j2 implements kg {
 
     @Override
     public final void n1() {
-        this.f12143a.M0();
+        this.f12175a.M0();
     }
 
     @Override
     public final void o2(int i7, int i10, int i11, long j3, long j10, boolean z10) {
-        z3 z3Var = this.f12143a;
+        z3 z3Var = this.f12175a;
         boolean z11 = false;
-        if (z3Var.f12874t2 == null && CameraView.isCameraAllowed()) {
-            z3Var.f12874t2 = new z40(z3Var.getContext(), new v2(z3Var), z3Var.f12843l0, false);
-            z3Var.addView(z3Var.f12874t2, Math.min(z3Var.indexOfChild(z3Var.L1.getRecordCircle()), z3Var.indexOfChild(z3Var.L1.C2)), ma.e(-1, -1, 51));
+        if (z3Var.f12915t2 == null && CameraView.isCameraAllowed()) {
+            z3Var.f12915t2 = new c50(z3Var.getContext(), new v2(z3Var), z3Var.f12884l0, false);
+            z3Var.addView(z3Var.f12915t2, Math.min(z3Var.indexOfChild(z3Var.L1.getRecordCircle()), z3Var.indexOfChild(z3Var.L1.E2)), ma.e(-1, -1, 51));
         }
-        z40 z40Var = z3Var.f12874t2;
-        if (z40Var != null) {
+        c50 c50Var = z3Var.f12915t2;
+        if (c50Var != null) {
             if (i7 == 0) {
-                z40Var.j(false);
+                c50Var.j(false);
             } else if (i7 != 1 && i7 != 3 && i7 != 4) {
                 if (i7 == 2 || i7 == 5) {
                     if (i7 == 2) {
                         z11 = true;
                     }
-                    z40Var.a(z11);
+                    c50Var.a(z11);
                 }
             } else {
-                z40Var.h(i7, i10, i11, j3, j10, z10);
+                c50Var.h(i7, i10, i11, j3, j10, z10);
             }
         }
     }
 
     @Override
     public final void q1() {
-        this.f12143a.requestLayout();
+        this.f12175a.requestLayout();
     }
 
     @Override
     public final TLRPC.Peer t() {
         c1 c1Var;
         boolean z10;
-        f9 f9Var = this.f12143a.f12872t0;
+        f9 f9Var = this.f12175a.f12913t0;
         if (f9Var != null && (c1Var = f9Var.B0) != null) {
-            TLRPC.GroupCall groupCall = c1Var.f11798w;
+            TLRPC.GroupCall groupCall = c1Var.f11841w;
             if (groupCall == null) {
                 z10 = false;
             } else {

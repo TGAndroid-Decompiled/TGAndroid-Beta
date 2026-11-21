@@ -4,32 +4,32 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 public final class oa implements eh.a {
-    public final int f50502a;
-    public final Object f50503b;
+    public final int f50527a;
+    public final Object f50528b;
 
     public oa(Object obj, int i7) {
-        this.f50502a = i7;
-        this.f50503b = obj;
+        this.f50527a = i7;
+        this.f50528b = obj;
     }
 
     @Override
     public final void c(dh.a aVar, RectF rectF) {
-        switch (this.f50502a) {
+        switch (this.f50527a) {
             case 0:
             case 1:
             case 2:
             case 3:
             case 4:
             default:
-                aVar.f8369a = true;
+                aVar.f8398a = true;
                 return;
         }
     }
 
     @Override
     public final void d(Canvas canvas, RectF rectF) {
-        int i7 = this.f50502a;
-        Object obj = this.f50503b;
+        int i7 = this.f50527a;
+        Object obj = this.f50528b;
         switch (i7) {
             case 0:
                 ((jb) obj).X(canvas, rectF);
@@ -39,8 +39,8 @@ public final class oa implements eh.a {
                 return;
             case 2:
                 PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;
-                org.telegram.ui.Components.ck0 ck0Var = premiumPreviewFragment.f43420a;
-                ih.d.a(ck0Var, canvas, rectF, ck0Var, premiumPreviewFragment.f43428e0);
+                org.telegram.ui.Components.ek0 ek0Var = premiumPreviewFragment.f43461a;
+                ih.d.a(ek0Var, canvas, rectF, ek0Var, premiumPreviewFragment.f43469e0);
                 return;
             case 3:
                 View view = (View) obj;
@@ -51,21 +51,21 @@ public final class oa implements eh.a {
                 canvas.restore();
                 return;
             case 4:
-                zw0 zw0Var = ((ProfileActivity) obj).f43533d1;
+                zw0 zw0Var = ((ProfileActivity) obj).f43574d1;
                 zw0Var.P = true;
                 zw0Var.draw(canvas);
                 zw0Var.P = false;
                 return;
             default:
-                org.telegram.ui.Components.ck0 ck0Var2 = (org.telegram.ui.Components.ck0) obj;
-                org.telegram.ui.Components.v9 v9Var = ck0Var2.S2;
+                org.telegram.ui.Components.ek0 ek0Var2 = (org.telegram.ui.Components.ek0) obj;
+                org.telegram.ui.Components.v9 v9Var = ek0Var2.S2;
                 if (v9Var != null) {
                     v9Var.d(canvas, rectF);
                     return;
                 }
-                org.telegram.ui.Components.mj0 mj0Var = ck0Var2.H2;
-                if (mj0Var != null) {
-                    mj0Var.d(canvas, rectF);
+                org.telegram.ui.Components.oj0 oj0Var = ek0Var2.H2;
+                if (oj0Var != null) {
+                    oj0Var.d(canvas, rectF);
                     return;
                 }
                 return;

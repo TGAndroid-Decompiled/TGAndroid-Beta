@@ -6,12 +6,12 @@ import c8.w9;
 import com.google.android.gms.internal.vision.e2;
 import w7.s;
 public abstract class f {
-    public static final g f56115a = new Object();
+    public static final g f56156a = new Object();
 
     public static final me.d a(me.d dVar, s module) {
         kotlin.jvm.internal.j.e(dVar, "<this>");
         kotlin.jvm.internal.j.e(module, "module");
-        if (kotlin.jvm.internal.j.a(dVar.e(), me.e.f20969b)) {
+        if (kotlin.jvm.internal.j.a(dVar.e(), me.e.f20997b)) {
             v9.a(dVar);
             return dVar;
         } else if (dVar.isInline()) {
@@ -23,7 +23,7 @@ public abstract class f {
 
     public static final byte b(char c10) {
         if (c10 < '~') {
-            return c.f56112b[c10];
+            return c.f56153b[c10];
         }
         return (byte) 0;
     }
@@ -73,8 +73,8 @@ public abstract class f {
     public static final void e(me.d dVar, pe.b json) {
         kotlin.jvm.internal.j.e(dVar, "<this>");
         kotlin.jvm.internal.j.e(json, "json");
-        if (kotlin.jvm.internal.j.a(dVar.e(), me.f.f20971b)) {
-            json.f55572a.getClass();
+        if (kotlin.jvm.internal.j.a(dVar.e(), me.f.f20999b)) {
+            json.f55613a.getClass();
         }
     }
 
@@ -82,20 +82,20 @@ public abstract class f {
         kotlin.jvm.internal.j.e(desc, "desc");
         w9 e10 = desc.e();
         if (e10 instanceof me.a) {
-            return j.f56127f;
+            return j.f56168f;
         }
-        if (kotlin.jvm.internal.j.a(e10, me.f.f20972c)) {
+        if (kotlin.jvm.internal.j.a(e10, me.f.f21000c)) {
             return j.d;
         }
         if (kotlin.jvm.internal.j.a(e10, me.f.d)) {
-            me.d a10 = a(desc.i(0), bVar.f55573b);
+            me.d a10 = a(desc.i(0), bVar.f55614b);
             w9 e11 = a10.e();
-            if (!(e11 instanceof me.c) && !kotlin.jvm.internal.j.a(e11, me.e.f20970c)) {
-                bVar.f55572a.getClass();
+            if (!(e11 instanceof me.c) && !kotlin.jvm.internal.j.a(e11, me.e.f20998c)) {
+                bVar.f55613a.getClass();
                 throw new d("Value of type '" + a10.a() + "' can't be used in JSON as a key in the map. It should have either primitive or enum kind, but its kind is '" + a10.e() + "'.\nUse 'allowStructuredMapKeys = true' in 'Json {}' builder to convert such maps to [key1, value1, key2, value2,...] arrays.");
             }
-            return j.f56126e;
+            return j.f56167e;
         }
-        return j.f56125c;
+        return j.f56166c;
     }
 }

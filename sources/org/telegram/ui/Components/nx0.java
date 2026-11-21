@@ -1,36 +1,25 @@
 package org.telegram.ui.Components;
-public class nx0 {
-    public int f37870a;
-    public int f37871b;
-    public int f37872c;
 
-    public nx0() {
-        c();
+import android.util.Pair;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+public final class nx0 extends ArrayList {
+    public final Class f38000a;
+    public final Class f38001b;
+
+    public nx0(Class cls, Class cls2) {
+        this.f38000a = cls;
+        this.f38001b = cls2;
     }
 
-    public int a(wx0 wx0Var, px0 px0Var, ix0 ix0Var, int i7, boolean z10) {
-        return this.f37870a - ix0Var.a(px0Var, i7);
-    }
-
-    public void b(int i7, int i10) {
-        this.f37870a = Math.max(this.f37870a, i7);
-        this.f37871b = Math.max(this.f37871b, i10);
-    }
-
-    public void c() {
-        this.f37870a = Integer.MIN_VALUE;
-        this.f37871b = Integer.MIN_VALUE;
-        this.f37872c = 2;
-    }
-
-    public int d(boolean z10) {
-        if (!z10) {
-            int i7 = this.f37872c;
-            ix0 ix0Var = wx0.T;
-            if ((i7 & 2) != 0) {
-                return 100000;
-            }
+    public final h6.m f() {
+        int size = size();
+        Object[] objArr = (Object[]) Array.newInstance(this.f38000a, size);
+        Object[] objArr2 = (Object[]) Array.newInstance(this.f38001b, size);
+        for (int i7 = 0; i7 < size; i7++) {
+            objArr[i7] = ((Pair) get(i7)).first;
+            objArr2[i7] = ((Pair) get(i7)).second;
         }
-        return this.f37870a + this.f37871b;
+        return new h6.m(objArr, objArr2);
     }
 }

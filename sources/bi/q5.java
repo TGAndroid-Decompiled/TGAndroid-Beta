@@ -1,64 +1,168 @@
 package bi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.mt;
-public final class q5 extends mt {
-    public final org.telegram.ui.Components.f5 f3979e2;
-    public int f3980f2;
-    public final org.telegram.ui.Components.m6 f3981g2;
-    public final p6 f3982h2;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.fq0;
+import org.telegram.ui.Components.gq0;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.iq0;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.jq0;
+import org.telegram.ui.Components.jt0;
+import org.telegram.ui.Components.nq;
+import org.telegram.ui.ProfileActivity;
+public final class q5 extends j71 {
+    public final int W;
+    public Object f4029a0;
+    public final FrameLayout f4030b0;
 
-    public q5(p6 p6Var, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i6Var);
-        this.f3982h2 = p6Var;
-        this.f3979e2 = new org.telegram.ui.Components.f5(this);
-        org.telegram.ui.Components.m6 m6Var = new org.telegram.ui.Components.m6(false, true, true);
-        this.f3981g2 = m6Var;
-        m6Var.n(0.2f, 160L, lr.h);
-        m6Var.w(org.telegram.messenger.g0.L(15.33f));
-        m6Var.setCallback(this);
-        m6Var.f37377b = 5;
+    public q5(FrameLayout frameLayout, Context context, Object obj, int i7) {
+        super(context, null);
+        this.W = i7;
+        this.f4030b0 = frameLayout;
+        this.f4029a0 = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i7;
-        super.dispatchDraw(canvas);
-        if (this.f3980f2 < 0) {
-            i7 = org.telegram.ui.ActionBar.n6.f29615p7;
-        } else {
-            i7 = org.telegram.ui.ActionBar.n6.P5;
-        }
-        int a10 = this.f3979e2.a(org.telegram.ui.ActionBar.n6.w0(i7, this.f3982h2.f3945f), false);
-        org.telegram.ui.Components.m6 m6Var = this.f3981g2;
-        m6Var.u(a10);
-        m6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        m6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        super.onTextChanged(charSequence, i7, i10, i11);
-        org.telegram.ui.Components.m6 m6Var = this.f3981g2;
-        if (m6Var != null) {
-            this.f3980f2 = 12 - charSequence.length();
-            m6Var.a();
-            String str = "";
-            if (this.f3980f2 <= 4) {
-                str = "" + this.f3980f2;
-            }
-            m6Var.t(str, true, true);
+    public void a() {
+        switch (this.W) {
+            case 0:
+                gq0 gq0Var = (gq0) this.f4030b0;
+                i71 i71Var = gq0Var.f4119n;
+                if (gq0Var.b() && i71Var != null) {
+                    if (gq0Var.K == null) {
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(i5.c.k(2131750081, null, new StringBuilder("+ ")));
+                        nq nqVar = new nq(2131232562, 0);
+                        nqVar.H = 0.8f;
+                        spannableStringBuilder.setSpan(nqVar, 0, 1, 33);
+                        gq0Var.K = spannableStringBuilder;
+                    }
+                    i71Var.a(-1, gq0Var.K);
+                    return;
+                }
+                return;
+            default:
+                return;
         }
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f3981g2 && !super.verifyDrawable(drawable)) {
-            return false;
+    public boolean b(MotionEvent motionEvent) {
+        boolean g10;
+        switch (this.W) {
+            case 0:
+                g10 = ((gq0) this.f4030b0).g();
+                break;
+            case 1:
+                g10 = ((fq0) this.f4030b0).H.F1;
+                break;
+            default:
+                return super.b(motionEvent);
         }
-        return true;
+        return !g10;
+    }
+
+    @Override
+    public final void s(boolean z10) {
+        switch (this.W) {
+            case 0:
+                gq0 gq0Var = (gq0) this.f4030b0;
+                gq0Var.l();
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f4029a0;
+                if (g2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) g2Var).W();
+                    View fragmentView = g2Var.getFragmentView();
+                    if (fragmentView != null) {
+                        fragmentView.invalidate();
+                    }
+                }
+                gq0Var.p();
+                return;
+            case 1:
+                fq0 fq0Var = (fq0) this.f4030b0;
+                String currentLang = fq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f4029a0, currentLang)) {
+                    this.f4029a0 = currentLang;
+                    fq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                ((iq0) this.f4029a0).d.V0(((jq0) this.f4030b0).f50344b.getAnimatingIndicatorProgress());
+                return;
+        }
+    }
+
+    @Override
+    public void u(int i7) {
+        switch (this.W) {
+            case 1:
+                fq0 fq0Var = (fq0) this.f4030b0;
+                String currentLang = fq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f4029a0, currentLang)) {
+                    this.f4029a0 = currentLang;
+                    fq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void v(int i7, boolean z10) {
+        switch (this.W) {
+            case 2:
+                int i10 = ((jq0) this.f4030b0).f50344b.f36205c0.get(i7, -1);
+                jt0 jt0Var = ((iq0) this.f4029a0).d;
+                if (i10 <= 0) {
+                    jt0.t(jt0Var, 8, z10);
+                    return;
+                } else {
+                    jt0.t(jt0Var, jt0Var.x1(i10).f36314a, z10);
+                    return;
+                }
+            default:
+                super.v(i7, z10);
+                return;
+        }
+    }
+
+    @Override
+    public final void w(int i7) {
+        switch (this.W) {
+            case 0:
+                ((gq0) this.f4030b0).l();
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.f4029a0;
+                if (g2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) g2Var).W();
+                    return;
+                }
+                return;
+            case 1:
+                fq0 fq0Var = (fq0) this.f4030b0;
+                String currentLang = fq0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.f4029a0, currentLang)) {
+                    this.f4029a0 = currentLang;
+                    fq0Var.H.Y0();
+                    return;
+                }
+                return;
+            default:
+                ((jq0) this.f4030b0).f50344b.f36205c0.get(i7, -1);
+                ((iq0) this.f4029a0).d.V0(1.0f);
+                return;
+        }
+    }
+
+    public q5(fq0 fq0Var, Context context) {
+        super(context, null);
+        this.W = 1;
+        this.f4030b0 = fq0Var;
     }
 }

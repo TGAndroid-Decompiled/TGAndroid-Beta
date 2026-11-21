@@ -11,49 +11,49 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.ImageReceiver;
-public final class ex extends View implements org.telegram.messenger.fs, org.telegram.ui.ActionBar.c6 {
+public final class ex extends View implements org.telegram.messenger.fs, org.telegram.ui.ActionBar.b6 {
     public boolean E;
     public int F;
-    public final Paint f47325a;
-    public final Paint f47326b;
-    public final int f47327c;
+    public final Paint f47394a;
+    public final Paint f47395b;
+    public final int f47396c;
     public final ArrayList d;
-    public float f47328e;
-    public float f47329f;
+    public float f47397e;
+    public float f47398f;
     public float h;
-    public final ImageReceiver f47330n;
-    public final ImageReceiver f47331r;
-    public final org.telegram.ui.Components.mh0 f47332s;
-    public final org.telegram.ui.Components.mh0 f47333w;
-    public boolean f47334x;
-    public int f47335y;
+    public final ImageReceiver f47399n;
+    public final ImageReceiver f47400r;
+    public final org.telegram.ui.Components.oh0 f47401s;
+    public final org.telegram.ui.Components.oh0 f47402w;
+    public boolean f47403x;
+    public int f47404y;
 
     public ex(Context context, int i7) {
         super(context);
-        this.f47325a = new Paint(1);
-        this.f47326b = new Paint(1);
+        this.f47394a = new Paint(1);
+        this.f47395b = new Paint(1);
         this.d = new ArrayList();
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f47330n = imageReceiver;
+        this.f47399n = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.f47331r = imageReceiver2;
-        this.f47327c = i7;
-        imageReceiver.f22674y = true;
-        imageReceiver2.f22674y = true;
-        org.telegram.ui.Components.mh0 mh0Var = new org.telegram.ui.Components.mh0(2131624005, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
-        this.f47332s = mh0Var;
-        org.telegram.ui.Components.mh0 mh0Var2 = new org.telegram.ui.Components.mh0(2131624004, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
-        this.f47333w = mh0Var2;
-        imageReceiver.w0(mh0Var);
-        imageReceiver2.w0(mh0Var2);
+        this.f47400r = imageReceiver2;
+        this.f47396c = i7;
+        imageReceiver.f22702y = true;
+        imageReceiver2.f22702y = true;
+        org.telegram.ui.Components.oh0 oh0Var = new org.telegram.ui.Components.oh0(2131624005, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
+        this.f47401s = oh0Var;
+        org.telegram.ui.Components.oh0 oh0Var2 = new org.telegram.ui.Components.oh0(2131624004, org.telegram.messenger.g0.L(28.0f), org.telegram.messenger.g0.L(28.0f), true, null);
+        this.f47402w = oh0Var2;
+        imageReceiver.w0(oh0Var);
+        imageReceiver2.w0(oh0Var2);
         imageReceiver.W(1);
-        mh0Var.K(1);
-        mh0Var.start();
+        oh0Var.K(1);
+        oh0Var.start();
     }
 
     public final void a() {
         ArrayList arrayList;
-        int i7 = this.f47327c;
+        int i7 = this.f47396c;
         ArrayList arrayList2 = org.telegram.messenger.a6.q(i7).H;
         HashMap hashMap = new HashMap();
         int i10 = 0;
@@ -62,7 +62,7 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
             if (i10 >= arrayList.size()) {
                 break;
             }
-            hashMap.put(((dx) arrayList.get(i10)).f46990c, (dx) arrayList.get(i10));
+            hashMap.put(((dx) arrayList.get(i10)).f47056c, (dx) arrayList.get(i10));
             org.telegram.messenger.a6.q(i7).v((org.telegram.messenger.y5) arrayList.get(i10));
             i10++;
         }
@@ -80,19 +80,19 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
         }
         if (arrayList.size() == 0 && !this.E) {
             if (org.telegram.messenger.a6.q(i7).J.size() > 0) {
-                this.f47328e = 1.0f;
-                this.f47329f = 1.0f;
-                this.f47334x = true;
+                this.f47397e = 1.0f;
+                this.f47398f = 1.0f;
+                this.f47403x = true;
                 return;
             }
-            this.f47328e = 0.0f;
-            this.f47329f = 0.0f;
-            this.f47334x = false;
+            this.f47397e = 0.0f;
+            this.f47398f = 0.0f;
+            this.f47403x = false;
         }
     }
 
     public final void b() {
-        org.telegram.messenger.tr.a0(this.f47327c);
+        org.telegram.messenger.tr.a0(this.f47396c);
         int i7 = 0;
         long j3 = 0;
         long j10 = 0;
@@ -101,28 +101,28 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
             if (i7 >= arrayList.size()) {
                 break;
             }
-            j3 += ((dx) arrayList.get(i7)).f46988a;
-            j10 += ((dx) arrayList.get(i7)).f46989b;
+            j3 += ((dx) arrayList.get(i7)).f47054a;
+            j10 += ((dx) arrayList.get(i7)).f47055b;
             i7++;
         }
         if (j3 == 0) {
-            this.f47328e = 1.0f;
+            this.f47397e = 1.0f;
         } else {
-            this.f47328e = ((float) j10) / ((float) j3);
+            this.f47397e = ((float) j10) / ((float) j3);
         }
-        float f10 = this.f47328e;
+        float f10 = this.f47397e;
         if (f10 > 1.0f) {
-            this.f47328e = 1.0f;
+            this.f47397e = 1.0f;
         } else if (f10 < 0.0f) {
-            this.f47328e = 0.0f;
+            this.f47397e = 0.0f;
         }
-        this.h = ((this.f47328e - this.f47329f) * 16.0f) / 150.0f;
+        this.h = ((this.f47397e - this.f47398f) * 16.0f) / 150.0f;
         invalidate();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.ks.f25109e5) {
+        if (i7 == org.telegram.messenger.ks.f25137e5) {
             a();
             b();
         }
@@ -132,9 +132,9 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         a();
-        org.telegram.messenger.ks.f(this.f47327c).c(this, org.telegram.messenger.ks.f25109e5);
-        this.f47330n.P();
-        this.f47331r.P();
+        org.telegram.messenger.ks.f(this.f47396c).c(this, org.telegram.messenger.ks.f25137e5);
+        this.f47399n.P();
+        this.f47400r.P();
     }
 
     @Override
@@ -144,15 +144,15 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
         while (true) {
             ArrayList arrayList = this.d;
             int size = arrayList.size();
-            int i10 = this.f47327c;
+            int i10 = this.f47396c;
             if (i7 < size) {
                 org.telegram.messenger.a6.q(i10).v((org.telegram.messenger.y5) arrayList.get(i7));
                 i7++;
             } else {
                 arrayList.clear();
-                org.telegram.messenger.ks.f(i10).n(this, org.telegram.messenger.ks.f25109e5);
-                this.f47330n.R();
-                this.f47331r.R();
+                org.telegram.messenger.ks.f(i10).n(this, org.telegram.messenger.ks.f25137e5);
+                this.f47399n.R();
+                this.f47400r.R();
                 return;
             }
         }
@@ -162,33 +162,33 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (getAlpha() != 0.0f) {
-            int i7 = this.f47335y;
-            int i10 = org.telegram.ui.ActionBar.n6.f29731v8;
-            int x02 = org.telegram.ui.ActionBar.n6.x0(null, i10, false);
-            ImageReceiver imageReceiver = this.f47331r;
-            ImageReceiver imageReceiver2 = this.f47330n;
-            Paint paint = this.f47325a;
-            Paint paint2 = this.f47326b;
+            int i7 = this.f47404y;
+            int i10 = org.telegram.ui.ActionBar.m6.f29715v8;
+            int x02 = org.telegram.ui.ActionBar.m6.x0(null, i10, false);
+            ImageReceiver imageReceiver = this.f47400r;
+            ImageReceiver imageReceiver2 = this.f47399n;
+            Paint paint = this.f47394a;
+            Paint paint2 = this.f47395b;
             if (i7 != x02) {
-                this.f47335y = org.telegram.ui.ActionBar.n6.x0(null, i10, false);
-                paint.setColor(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
-                paint2.setColor(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
-                int x03 = org.telegram.ui.ActionBar.n6.x0(null, i10, false);
+                this.f47404y = org.telegram.ui.ActionBar.m6.x0(null, i10, false);
+                paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
+                paint2.setColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
+                int x03 = org.telegram.ui.ActionBar.m6.x0(null, i10, false);
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                imageReceiver2.f22653p1 = new PorterDuffColorFilter(x03, mode);
-                imageReceiver.f22653p1 = new PorterDuffColorFilter(org.telegram.ui.ActionBar.n6.x0(null, i10, false), mode);
+                imageReceiver2.f22681p1 = new PorterDuffColorFilter(x03, mode);
+                imageReceiver.f22681p1 = new PorterDuffColorFilter(org.telegram.ui.ActionBar.m6.x0(null, i10, false), mode);
                 paint2.setAlpha(100);
             }
-            float f10 = this.f47329f;
-            float f11 = this.f47328e;
+            float f10 = this.f47398f;
+            float f11 = this.f47397e;
             if (f10 != f11) {
                 float f12 = this.h;
                 float f13 = f10 + f12;
-                this.f47329f = f13;
+                this.f47398f = f13;
                 if (f12 > 0.0f && f13 > f11) {
-                    this.f47329f = f11;
+                    this.f47398f = f11;
                 } else if (f12 < 0.0f && f13 < f11) {
-                    this.f47329f = f11;
+                    this.f47398f = f11;
                 } else {
                     invalidate();
                 }
@@ -202,23 +202,23 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
             float f15 = measuredHeight + L2;
             rectF.set(L3, f14, getMeasuredWidth() - L3, f15);
             canvas.drawRoundRect(rectF, L2, L2, paint2);
-            rectF.set(L3, f14, ((getMeasuredWidth() - (2.0f * L3)) * this.f47329f) + L3, f15);
+            rectF.set(L3, f14, ((getMeasuredWidth() - (2.0f * L3)) * this.f47398f) + L3, f15);
             canvas.drawRoundRect(rectF, L2, L2, paint);
             canvas.save();
             canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), f14);
-            if (this.f47328e != 1.0f) {
-                this.f47334x = false;
+            if (this.f47397e != 1.0f) {
+                this.f47403x = false;
             }
-            if (this.f47334x) {
+            if (this.f47403x) {
                 imageReceiver.h(canvas, null);
             } else {
                 imageReceiver2.h(canvas, null);
             }
-            if (this.f47328e == 1.0f && !this.f47334x && this.f47332s.f37482b0 == 0) {
-                org.telegram.ui.Components.mh0 mh0Var = this.f47333w;
-                mh0Var.N(0, false, false);
-                mh0Var.start();
-                this.f47334x = true;
+            if (this.f47397e == 1.0f && !this.f47403x && this.f47401s.f38213b0 == 0) {
+                org.telegram.ui.Components.oh0 oh0Var = this.f47402w;
+                oh0Var.N(0, false, false);
+                oh0Var.start();
+                this.f47403x = true;
             }
             canvas.restore();
             if (getAlpha() != 0.0f) {
@@ -233,8 +233,8 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
         int L = org.telegram.messenger.g0.L(15.0f);
         float f10 = L;
-        this.f47330n.y0(f10, f10, getMeasuredWidth() - i11, getMeasuredHeight() - i11);
-        this.f47331r.y0(f10, f10, getMeasuredWidth() - i11, getMeasuredHeight() - (L * 2));
+        this.f47399n.y0(f10, f10, getMeasuredWidth() - i11, getMeasuredHeight() - i11);
+        this.f47400r.y0(f10, f10, getMeasuredWidth() - i11, getMeasuredHeight() - (L * 2));
     }
 
     @Override
@@ -255,14 +255,14 @@ public final class ex extends View implements org.telegram.messenger.fs, org.tel
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.mh0 mh0Var;
-        org.telegram.ui.Components.mh0 mh0Var2 = this.f47332s;
-        if (mh0Var2 != null && (mh0Var = this.f47333w) != null) {
-            int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29731v8, false);
-            if (x02 != this.F || mh0Var2.getColorFilter() == null) {
+        org.telegram.ui.Components.oh0 oh0Var;
+        org.telegram.ui.Components.oh0 oh0Var2 = this.f47401s;
+        if (oh0Var2 != null && (oh0Var = this.f47402w) != null) {
+            int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29715v8, false);
+            if (x02 != this.F || oh0Var2.getColorFilter() == null) {
                 this.F = x02;
-                mh0Var2.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
-                mh0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC));
+                oh0Var2.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+                oh0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC));
                 invalidate();
             }
         }

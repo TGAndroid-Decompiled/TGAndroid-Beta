@@ -13,41 +13,41 @@ import android.view.MotionEvent;
 import java.util.HashSet;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.gd;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.Components.hn;
-import org.telegram.ui.Components.mt;
-public abstract class e0 extends mt implements c6 {
-    public final i6 f5342e2;
-    public final hn f5343f2;
-    public Runnable f5344g2;
-    public int f5345h2;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.Components.jn;
+import org.telegram.ui.Components.ot;
+public abstract class e0 extends ot implements b6 {
+    public final h6 f5371e2;
+    public final jn f5372f2;
+    public Runnable f5373g2;
+    public int f5374h2;
 
-    public e0(int i7, Context context, i6 i6Var) {
-        super(context, i6Var);
-        this.f5342e2 = i6Var;
-        this.f5343f2 = new hn(getContext(), new GestureDetector.SimpleOnGestureListener());
+    public e0(int i7, Context context, h6 h6Var) {
+        super(context, h6Var);
+        this.f5371e2 = h6Var;
+        this.f5372f2 = new jn(getContext(), new GestureDetector.SimpleOnGestureListener());
         setBackground(null);
         setIncludeFontPadding(true);
         int i10 = Build.VERSION.SDK_INT;
         setShowSoftInputOnFocus(false);
         setSingleLine(false);
         setMaxLines(50);
-        this.f5345h2 = i7;
+        this.f5374h2 = i7;
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(i7)});
         setTextSize(1, 22.0f);
         setGravity(80);
         setPadding(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(12.0f));
-        u6.U(this, n6.Le, i6Var);
-        u6.G(this, n6.Yc, i6Var);
-        u6.C(this, n6.f29550lg, i6Var);
-        int i11 = n6.Me;
-        u6.l(this, 34, i11, i6Var);
-        u6.D(this, i11, i6Var);
-        u6.l(this, 30, n6.Ne, i6Var);
-        u6.l(this, 36, n6.f29567mg, i6Var);
+        t6.U(this, m6.Le, h6Var);
+        t6.G(this, m6.Yc, h6Var);
+        t6.C(this, m6.f29534lg, h6Var);
+        int i11 = m6.Me;
+        t6.l(this, 34, i11, h6Var);
+        t6.D(this, i11, h6Var);
+        t6.l(this, 30, m6.Ne, h6Var);
+        t6.l(this, 36, m6.f29551mg, h6Var);
         if (i10 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -62,8 +62,8 @@ public abstract class e0 extends mt implements c6 {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         if (((b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)).length == 0) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
-            b bVar = new b(this.f5342e2);
-            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5293f, 255);
+            b bVar = new b(this.f5371e2);
+            ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5322f, 255);
             ofInt.addUpdateListener(new a(bVar, this, 0));
             ofInt.setDuration(200L);
             ofInt.start();
@@ -76,23 +76,23 @@ public abstract class e0 extends mt implements c6 {
         b[] bVarArr;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         for (b bVar : (b[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), b.class)) {
-            c1.c cVar = new c1.c(5, this, bVar);
+            c1.a aVar = new c1.a(7, this, bVar);
             if (z10) {
                 setCursorVisible(false);
-                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5293f, 0);
+                ValueAnimator ofInt = ValueAnimator.ofInt(bVar.f5322f, 0);
                 ofInt.addUpdateListener(new a(bVar, this, 1));
-                ofInt.addListener(new ai.j0(cVar, 2));
+                ofInt.addListener(new ai.k0(aVar, 2));
                 ofInt.setDuration(200L);
                 ofInt.start();
             } else {
-                cVar.run();
+                aVar.run();
             }
         }
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.f5343f2.f35933b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.f5372f2.f36572b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -121,7 +121,7 @@ public abstract class e0 extends mt implements c6 {
     @Override
     public final void o(ActionMode actionMode, Menu menu) {
         menu.clear();
-        menu.add(2131296494, 2131296494, 0, gd.M0(2131751587, null));
+        menu.add(2131296496, 2131296496, 0, gd.N0(2131751586, null));
     }
 
     @Override
@@ -133,23 +133,23 @@ public abstract class e0 extends mt implements c6 {
     }
 
     public void setMaxLength(int i7) {
-        if (this.f5345h2 != i7) {
-            this.f5345h2 = i7;
+        if (this.f5374h2 != i7) {
+            this.f5374h2 = i7;
             setFilters(new InputFilter[]{new InputFilter.LengthFilter(i7)});
         }
     }
 
     public void setOnFocused(Runnable runnable) {
-        this.f5344g2 = runnable;
+        this.f5373g2 = runnable;
     }
 
     @Override
     public final void updateColors() {
-        i6 i6Var = this.f5342e2;
+        h6 h6Var = this.f5371e2;
         try {
-            setHintColor(n6.w0(n6.Me, i6Var));
-            setCursorColor(n6.w0(n6.Ne, i6Var));
-            setHandlesColor(n6.w0(n6.f29567mg, i6Var));
+            setHintColor(m6.w0(m6.Me, h6Var));
+            setCursorColor(m6.w0(m6.Ne, h6Var));
+            setHandlesColor(m6.w0(m6.f29551mg, h6Var));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

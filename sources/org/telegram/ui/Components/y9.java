@@ -12,28 +12,28 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
-public final class y9 extends FrameLayout implements org.telegram.messenger.fs, org.telegram.ui.ActionBar.c6 {
+public final class y9 extends FrameLayout implements org.telegram.messenger.fs, org.telegram.ui.ActionBar.b6 {
     public boolean E;
     public int F;
     public int G;
-    public TextView f42411a;
-    public TextView f42412b;
-    public bi.a3 f42413c;
-    public bi.a3 d;
-    public qh0 f42414e;
-    public ScrollView f42415f;
+    public TextView f42367a;
+    public TextView f42368b;
+    public bi.e3 f42369c;
+    public bi.e3 d;
+    public sh0 f42370e;
+    public ScrollView f42371f;
     public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate f42416n;
-    public String f42417r;
-    public int f42418s;
-    public int f42419w;
-    public GradientDrawable f42420x;
-    public GradientDrawable f42421y;
+    public TLRPC.TL_help_appUpdate f42372n;
+    public String f42373r;
+    public int f42374s;
+    public int f42375w;
+    public GradientDrawable f42376x;
+    public GradientDrawable f42377y;
 
     public final void a(boolean z10) {
-        bi.a3 a3Var = this.d;
-        TextView textView = this.f42412b;
-        bi.a3 a3Var2 = this.f42413c;
+        bi.e3 e3Var = this.d;
+        TextView textView = this.f42368b;
+        bi.e3 e3Var2 = this.f42369c;
         AnimatorSet animatorSet = this.h;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -43,13 +43,13 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
         Property property2 = View.SCALE_Y;
         Property property3 = View.SCALE_X;
         if (z10) {
-            a3Var2.setVisibility(0);
-            a3Var.setEnabled(false);
-            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(a3Var2, property3, 1.0f), ObjectAnimator.ofFloat(a3Var2, property2, 1.0f), ObjectAnimator.ofFloat(a3Var2, property, 1.0f));
+            e3Var2.setVisibility(0);
+            e3Var.setEnabled(false);
+            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(e3Var2, property3, 1.0f), ObjectAnimator.ofFloat(e3Var2, property2, 1.0f), ObjectAnimator.ofFloat(e3Var2, property, 1.0f));
         } else {
             textView.setVisibility(0);
-            a3Var.setEnabled(true);
-            this.h.playTogether(ObjectAnimator.ofFloat(a3Var2, property3, 0.1f), ObjectAnimator.ofFloat(a3Var2, property2, 0.1f), ObjectAnimator.ofFloat(a3Var2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
+            e3Var.setEnabled(true);
+            this.h.playTogether(ObjectAnimator.ofFloat(e3Var2, property3, 0.1f), ObjectAnimator.ofFloat(e3Var2, property2, 0.1f), ObjectAnimator.ofFloat(e3Var2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
         }
         this.h.addListener(new org.telegram.ui.on(1, this, z10));
         this.h.setDuration(150L);
@@ -60,22 +60,22 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == org.telegram.messenger.ks.Y1) {
             String str = (String) objArr[0];
-            String str2 = this.f42417r;
+            String str2 = this.f42373r;
             if (str2 != null && str2.equals(str)) {
                 a(false);
-                org.telegram.messenger.t0.f26912a.v((Activity) getContext(), this.f42416n.document);
+                org.telegram.messenger.t0.f26940a.v((Activity) getContext(), this.f42372n.document);
             }
         } else if (i7 == org.telegram.messenger.ks.Z1) {
             String str3 = (String) objArr[0];
-            String str4 = this.f42417r;
+            String str4 = this.f42373r;
             if (str4 != null && str4.equals(str3)) {
                 a(false);
             }
         } else if (i7 == org.telegram.messenger.ks.X1) {
             String str5 = (String) objArr[0];
-            String str6 = this.f42417r;
+            String str6 = this.f42373r;
             if (str6 != null && str6.equals(str5)) {
-                this.f42414e.e(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
+                this.f42370e.e(true, Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())));
             }
         }
     }
@@ -83,11 +83,11 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.f42420x;
-        ScrollView scrollView = this.f42415f;
+        GradientDrawable gradientDrawable = this.f42376x;
+        ScrollView scrollView = this.f42371f;
         gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), org.telegram.messenger.g0.L(16.0f) + scrollView.getTop());
         gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.f42421y;
+        GradientDrawable gradientDrawable2 = this.f42377y;
         gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - org.telegram.messenger.g0.L(18.0f), scrollView.getRight(), scrollView.getBottom());
         gradientDrawable2.draw(canvas);
     }
@@ -96,9 +96,9 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
     public void setVisibility(int i7) {
         super.setVisibility(i7);
         if (i7 == 8) {
-            org.telegram.messenger.ks.f(this.f42418s).n(this, org.telegram.messenger.ks.Y1);
-            org.telegram.messenger.ks.f(this.f42418s).n(this, org.telegram.messenger.ks.Z1);
-            org.telegram.messenger.ks.f(this.f42418s).n(this, org.telegram.messenger.ks.X1);
+            org.telegram.messenger.ks.f(this.f42374s).n(this, org.telegram.messenger.ks.Y1);
+            org.telegram.messenger.ks.f(this.f42374s).n(this, org.telegram.messenger.ks.Z1);
+            org.telegram.messenger.ks.f(this.f42374s).n(this, org.telegram.messenger.ks.X1);
         }
     }
 
@@ -108,15 +108,15 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
         boolean z11;
         int x02;
         ScrollView scrollView;
-        GradientDrawable gradientDrawable = this.f42421y;
-        GradientDrawable gradientDrawable2 = this.f42420x;
+        GradientDrawable gradientDrawable = this.f42377y;
+        GradientDrawable gradientDrawable2 = this.f42376x;
         try {
-            int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29394d6, false);
+            int x03 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29378d6, false);
             if (this.E) {
                 if (x03 != this.F) {
                 }
-                x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29674s8, false);
-                scrollView = this.f42415f;
+                x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29658s8, false);
+                scrollView = this.f42371f;
                 if (scrollView != null && (!this.E || x02 != this.G)) {
                     this.G = x02;
                     org.telegram.messenger.g0.x3(scrollView, x02);
@@ -141,8 +141,8 @@ public final class y9 extends FrameLayout implements org.telegram.messenger.fs, 
             if (z11) {
                 gradientDrawable.setColors(new int[]{x03, 0});
             }
-            x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29674s8, false);
-            scrollView = this.f42415f;
+            x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29658s8, false);
+            scrollView = this.f42371f;
             if (scrollView != null) {
                 this.G = x02;
                 org.telegram.messenger.g0.x3(scrollView, x02);

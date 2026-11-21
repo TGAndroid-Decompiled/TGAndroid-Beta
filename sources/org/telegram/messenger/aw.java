@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public final class aw {
-    public long f22973a;
-    public long f22974b;
-    public Integer f22975c;
+    public long f23001a;
+    public long f23002b;
+    public Integer f23003c;
     public int d;
-    public int f22976e;
+    public int f23004e;
 }

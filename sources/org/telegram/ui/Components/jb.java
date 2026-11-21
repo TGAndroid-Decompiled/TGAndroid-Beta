@@ -1,23 +1,23 @@
 package org.telegram.ui.Components;
 public final class jb implements r1.d {
-    public final int f36395a;
-    public final lb f36396b;
-    public final q0.a f36397c;
+    public final int f36458a;
+    public final lb f36459b;
+    public final q0.a f36460c;
 
     public jb(q0.a aVar, lb lbVar, int i7) {
-        this.f36395a = i7;
-        this.f36397c = aVar;
-        this.f36396b = lbVar;
+        this.f36458a = i7;
+        this.f36460c = aVar;
+        this.f36459b = lbVar;
     }
 
     @Override
     public final void a(r1.g gVar, float f10, float f11) {
-        switch (this.f36395a) {
+        switch (this.f36458a) {
             case 0:
-                ((xa) this.f36397c).accept(Float.valueOf(this.f36396b.getTranslationY()));
+                ((xa) this.f36460c).accept(Float.valueOf(this.f36459b.getTranslationY()));
                 return;
             default:
-                ((pl) this.f36397c).accept(Float.valueOf(this.f36396b.getTranslationY()));
+                ((rl) this.f36460c).accept(Float.valueOf(this.f36459b.getTranslationY()));
                 return;
         }
     }

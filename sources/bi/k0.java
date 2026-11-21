@@ -9,8 +9,8 @@ public final class k0 extends di.z5 {
     public final float[] I0;
     public final m0 J0;
 
-    public k0(m0 m0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, b0 b0Var, o oVar, o oVar2, o oVar3, o oVar4, o oVar5, o oVar6) {
-        super(context, i6Var, b0Var, oVar, null, oVar2, oVar3, oVar4, oVar5, oVar6);
+    public k0(m0 m0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, b0 b0Var, o oVar, o oVar2, o oVar3, o oVar4, o oVar5, o oVar6) {
+        super(context, h6Var, b0Var, oVar, null, oVar2, oVar3, oVar4, oVar5, oVar6);
         this.J0 = m0Var;
         this.H0 = new Path();
         this.I0 = new float[8];
@@ -38,7 +38,7 @@ public final class k0 extends di.z5 {
     public final void k(int i7) {
         m0 m0Var = this.J0;
         TextView textView = m0Var.X1;
-        if (textView != null && org.telegram.ui.ActionBar.n6.H1(textView.getBackground(), i7, false)) {
+        if (textView != null && org.telegram.ui.ActionBar.m6.H1(textView.getBackground(), i7, false)) {
             m0Var.X1.invalidate();
         }
     }

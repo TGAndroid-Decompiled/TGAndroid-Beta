@@ -1,34 +1,36 @@
 package org.telegram.ui.Components;
-public final class n21 implements Runnable {
-    public final int f37701a;
-    public final org.telegram.messenger.q10 f37702b;
-    public final String f37703c;
 
-    public n21(String str, int i7, org.telegram.messenger.q10 q10Var) {
-        this.f37701a = i7;
-        this.f37702b = q10Var;
-        this.f37703c = str;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class n21 extends ek0 {
+    public final b31 f37749f3;
+
+    public n21(b31 b31Var, Context context) {
+        super(context, null);
+        this.f37749f3 = b31Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37701a) {
-            case 0:
-                org.telegram.messenger.q10 q10Var = this.f37702b;
-                if (q10Var != null) {
-                    q10Var.a(this.f37703c, Boolean.FALSE);
-                    return;
-                }
-                return;
-            case 1:
-                this.f37702b.a(null, this.f37703c);
-                return;
-            case 2:
-                this.f37702b.a(null, this.f37703c);
-                return;
-            default:
-                this.f37702b.a(null, this.f37703c);
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            float y10 = motionEvent.getY();
+            b31 b31Var = this.f37749f3;
+            if (y10 < b31Var.M0(true) - getTop()) {
+                b31Var.dismiss();
+                return true;
+            }
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onRequestFocusInDescendants(int i7, Rect rect) {
+        return true;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
     }
 }

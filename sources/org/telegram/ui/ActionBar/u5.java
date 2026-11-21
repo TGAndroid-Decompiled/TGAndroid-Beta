@@ -1,24 +1,39 @@
 package org.telegram.ui.ActionBar;
 
 import android.graphics.Point;
+import android.view.View;
 import c8.ia;
-import org.telegram.messenger.ks;
 public final class u5 extends ia {
+    public final boolean f30101a;
+    public final View f30102b;
+
+    public u5(View view, boolean z10) {
+        this.f30101a = z10;
+        this.f30102b = view;
+    }
+
     @Override
     public final void b(int i7, int i10) {
         boolean z10;
-        Point point = org.telegram.messenger.g0.f24118q;
-        boolean z11 = true;
-        if (point.x <= point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
+        boolean z11 = this.f30101a;
+        View view = this.f30102b;
+        if (!z11) {
+            Point point = org.telegram.messenger.g0.f24146q;
+            boolean z12 = false;
+            if (point.x <= point.y) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (i7 <= i10) {
+                z12 = true;
+            }
+            if (z10 == z12) {
+                view.invalidate();
+                return;
+            }
+            return;
         }
-        if (i7 > i10) {
-            z11 = false;
-        }
-        if (z10 == z11) {
-            ks.e().k(ks.C4, new Object[0]);
-        }
+        view.invalidate();
     }
 }

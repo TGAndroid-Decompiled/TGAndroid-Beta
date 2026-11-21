@@ -1,39 +1,60 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class bw extends v4.t {
-    public final ry Q;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class bw extends FrameLayout {
+    public final boolean f33938a;
+    public final ty f33939b;
 
-    public bw(ry ryVar) {
-        super(5);
-        this.Q = ryVar;
+    public bw(ty tyVar, Context context, boolean z10) {
+        super(context);
+        this.f33939b = tyVar;
+        this.f33938a = z10;
     }
 
     @Override
-    public final int o0(int i7, v4.x0 x0Var, v4.c1 c1Var) {
-        int o02 = super.o0(i7, x0Var, c1Var);
-        ry ryVar = this.Q;
-        if (o02 != 0 && ryVar.E0.getScrollState() == 1) {
-            ryVar.Y1 = false;
-            ryVar.Z();
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        ty tyVar = this.f33939b;
+        hw hwVar = tyVar.C0;
+        dw dwVar = tyVar.E0;
+        gw gwVar = tyVar.H0;
+        if (!this.f33938a && (view == dwVar || view == gwVar)) {
+            canvas.save();
+            float y10 = hwVar.getY() + hwVar.getMeasuredHeight() + 1.0f;
+            if (view == dwVar) {
+                y10 = Math.max(y10, gwVar.getY() + gwVar.getMeasuredHeight() + 1.0f);
+            }
+            canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * tyVar.f40086a.f57696e), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
         }
-        if (ryVar.U0 == null) {
-            jg.d1 d1Var = new jg.d1(ryVar, ryVar.f39345d1, ryVar.f39397u1.a(), ryVar.f39397u1.f(), 1);
-            ryVar.U0 = d1Var;
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ty tyVar = this.f33939b;
+        tyVar.L0 = true;
+        tyVar.Z();
+        jg.d1 d1Var = tyVar.U0;
+        if (d1Var != null) {
             d1Var.a();
         }
-        ryVar.U0.b();
-        return o02;
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
-        try {
-            pi.l lVar = new pi.l(recyclerView.getContext(), 2);
-            lVar.f59067a = i7;
-            w0(lVar);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ty tyVar = this.f33939b;
+        tyVar.L0 = false;
+        tyVar.Z();
+        jg.d1 d1Var = tyVar.U0;
+        if (d1Var != null) {
+            d1Var.a();
         }
     }
 }

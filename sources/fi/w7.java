@@ -24,8 +24,8 @@ import org.telegram.messenger.gd;
 import org.telegram.messenger.j10;
 import org.telegram.messenger.ri;
 import org.telegram.ui.Cells.s9;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.wu0;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.zu0;
 public final class w7 extends View implements s9 {
     public final boolean E;
     public int F;
@@ -34,33 +34,33 @@ public final class w7 extends View implements s9 {
     public boolean I;
     public ValueAnimator J;
     public final x7 K;
-    public final PorterDuffColorFilter f12700a;
-    public boolean f12701b;
-    public final TextPaint f12702c;
+    public final PorterDuffColorFilter f12742a;
+    public boolean f12743b;
+    public final TextPaint f12744c;
     public final TextPaint d;
-    public final Paint f12703e;
-    public final Paint f12704f;
+    public final Paint f12745e;
+    public final Paint f12746f;
     public float h;
-    public float f12705n;
-    public final v7[] f12706r;
-    public int f12707s;
-    public StaticLayout f12708w;
-    public float f12709x;
-    public boolean f12710y;
+    public float f12747n;
+    public final v7[] f12748r;
+    public int f12749s;
+    public StaticLayout f12750w;
+    public float f12751x;
+    public boolean f12752y;
 
     public w7(x7 x7Var, Context context) {
         super(context);
         this.K = x7Var;
         TextPaint textPaint = new TextPaint(1);
-        this.f12702c = textPaint;
+        this.f12744c = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.d = textPaint2;
         Paint paint = new Paint();
-        this.f12703e = paint;
+        this.f12745e = paint;
         Paint paint2 = new Paint(1);
-        this.f12704f = paint2;
-        this.f12706r = r7;
-        this.f12707s = 0;
+        this.f12746f = paint2;
+        this.f12748r = r7;
+        this.f12749s = 0;
         new Path();
         this.E = true;
         this.I = false;
@@ -76,17 +76,17 @@ public final class w7 extends View implements s9 {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(16.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f12700a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f12742a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static StaticLayout a(w7 w7Var, TextPaint textPaint, CharSequence charSequence, int i7) {
         Layout.Alignment alignment;
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i7).setBreakStrategy(0).setHyphenationFrequency(0);
-            if (gd.f24213a0) {
-                alignment = wu0.a();
+            if (gd.f24241a0) {
+                alignment = zu0.a();
             } else {
-                Layout.Alignment[] alignmentArr = wu0.f41798a;
+                Layout.Alignment[] alignmentArr = zu0.f42990a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -103,23 +103,23 @@ public final class w7 extends View implements s9 {
         if (charSequence == null) {
             charSequence = "";
         }
-        v7[] v7VarArr = this.f12706r;
-        CharSequence charSequence2 = v7VarArr[0].f12660n;
+        v7[] v7VarArr = this.f12748r;
+        CharSequence charSequence2 = v7VarArr[0].f12702n;
         Pattern pattern = ri.U1;
         if (charSequence2 == null || !TextUtils.equals(charSequence2, charSequence)) {
             z12 = false;
         } else {
-            z12 = ri.M(ri.d0(j10.f24770t0).Y(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true, true), ri.d0(j10.f24770t0).Y(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true, true));
+            z12 = ri.M(ri.d0(j10.f24798t0).Y(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true, true), ri.d0(j10.f24798t0).Y(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true, true));
         }
         if (z12) {
             v7 v7Var = v7VarArr[0];
-            if (v7Var.f12661o == s7Var && v7Var.f12662p == s7Var2) {
-                v7Var.f12663q = z10;
+            if (v7Var.f12703o == s7Var && v7Var.f12704p == s7Var2) {
+                v7Var.f12705q = z10;
                 invalidate();
                 return;
             }
         }
-        this.f12710y = false;
+        this.f12752y = false;
         ValueAnimator valueAnimator = this.J;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -131,15 +131,15 @@ public final class w7 extends View implements s9 {
             }
             v7 v7Var2 = v7VarArr[1];
             v7 v7Var3 = v7VarArr[0];
-            v7Var2.g(v7Var3.f12660n, v7Var3.f12661o, v7Var3.f12662p);
+            v7Var2.g(v7Var3.f12702n, v7Var3.f12703o, v7Var3.f12704p);
             v7 v7Var4 = v7VarArr[1];
             v7 v7Var5 = v7VarArr[0];
-            v7Var4.f12663q = v7Var5.f12663q;
-            v7Var4.f12664r.e(true, v7Var5.f12664r.f33892c);
+            v7Var4.f12705q = v7Var5.f12705q;
+            v7Var4.f12706r.e(true, v7Var5.f12706r.f34391c);
             v7VarArr[0].g(charSequence, s7Var, s7Var2);
             v7 v7Var6 = v7VarArr[0];
-            v7Var6.f12663q = z10;
-            v7Var6.f12664r.e(true, 0.0f);
+            v7Var6.f12705q = z10;
+            v7Var6.f12706r.e(true, 0.0f);
             this.H = 1.0f;
             ValueAnimator valueAnimator2 = this.J;
             if (valueAnimator2 != null) {
@@ -149,14 +149,14 @@ public final class w7 extends View implements s9 {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.H, 0.0f);
             this.J = ofFloat;
             ofFloat.addUpdateListener(new ah.g(this, 24));
-            this.J.addListener(new ai.j0(this, 17));
+            this.J.addListener(new ai.k0(this, 17));
             this.J.setDuration(180L);
-            this.J.setInterpolator(lr.f37209g);
+            this.J.setInterpolator(nr.f37957g);
             this.J.start();
             return;
         }
         v7VarArr[0].g(charSequence, s7Var, s7Var2);
-        v7VarArr[0].f12663q = z10;
+        v7VarArr[0].f12705q = z10;
         invalidate();
         this.H = 0.0f;
     }
@@ -168,38 +168,38 @@ public final class w7 extends View implements s9 {
 
     public float getAnimatedHeight() {
         int i7 = this.G * 2;
-        v7[] v7VarArr = this.f12706r;
+        v7[] v7VarArr = this.f12748r;
         int i10 = 0;
-        int i11 = v7VarArr[0].f12658l;
+        int i11 = v7VarArr[0].f12700l;
         v7 v7Var = v7VarArr[1];
         if (v7Var != null) {
-            i10 = v7Var.f12658l;
+            i10 = v7Var.f12700l;
         }
         return org.telegram.messenger.g0.W1(this.H, i11, i10) + i7;
     }
 
     public Paint getPaint() {
-        return this.f12702c;
+        return this.f12744c;
     }
 
     @Override
     public Layout getStaticTextLayout() {
-        return this.f12706r[0].f12652e;
+        return this.f12748r[0].f12694e;
     }
 
     @Override
     public CharSequence getText() {
-        return this.f12706r[0].f12660n;
+        return this.f12748r[0].f12702n;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = 0;
-        v7 v7Var = this.f12706r[0];
+        v7 v7Var = this.f12748r[0];
         w7 w7Var = v7Var.v;
-        org.telegram.ui.Components.x5.release(w7Var, v7Var.d);
-        org.telegram.ui.Components.x5.release(w7Var, v7Var.f12653f);
+        org.telegram.ui.Components.y5.release(w7Var, v7Var.d);
+        org.telegram.ui.Components.y5.release(w7Var, v7Var.f12695f);
         if (v7Var.h == null) {
             return;
         }
@@ -208,7 +208,7 @@ public final class w7 extends View implements s9 {
             if (i7 < t7VarArr.length) {
                 t7 t7Var = t7VarArr[i7];
                 if (t7Var != null) {
-                    org.telegram.ui.Components.x5.release(w7Var, t7Var.f12588a);
+                    org.telegram.ui.Components.y5.release(w7Var, t7Var.f12627a);
                 }
                 i7++;
             } else {
@@ -220,35 +220,35 @@ public final class w7 extends View implements s9 {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        if (this.f12708w != null) {
+        if (this.f12750w != null) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
             canvas2 = canvas;
         } else {
             canvas2 = canvas;
             canvas2.save();
         }
-        v7[] v7VarArr = this.f12706r;
+        v7[] v7VarArr = this.f12748r;
         v7VarArr[0].b(canvas2, 1.0f - this.H);
         v7 v7Var = v7VarArr[1];
         if (v7Var != null) {
             v7Var.b(canvas2, this.H);
         }
-        if (this.f12708w != null) {
+        if (this.f12750w != null) {
             float scrollY = this.h + this.K.getScrollY();
-            int i7 = (int) ((1.0f - Utilities.i(this.f12709x / 0.5f, 1.0f, 0.0f)) * 255.0f);
-            Paint paint = this.f12704f;
+            int i7 = (int) ((1.0f - Utilities.i(this.f12751x / 0.5f, 1.0f, 0.0f)) * 255.0f);
+            Paint paint = this.f12746f;
             paint.setAlpha(i7);
-            Paint paint2 = this.f12703e;
+            Paint paint2 = this.f12745e;
             paint2.setAlpha(i7);
             this.d.setAlpha(i7);
             canvas2.save();
-            canvas2.translate(this.f12705n - org.telegram.messenger.g0.L(32.0f), scrollY);
-            canvas2.drawRect(0.0f, 0.0f, org.telegram.messenger.g0.L(32.0f), this.f12708w.getHeight() + this.G, paint);
+            canvas2.translate(this.f12747n - org.telegram.messenger.g0.L(32.0f), scrollY);
+            canvas2.drawRect(0.0f, 0.0f, org.telegram.messenger.g0.L(32.0f), this.f12750w.getHeight() + this.G, paint);
             canvas2.restore();
-            canvas2.drawRect(this.f12705n - org.telegram.messenger.g0.L(16.0f), scrollY, getMeasuredWidth(), this.f12708w.getHeight() + scrollY + this.G, paint2);
+            canvas2.drawRect(this.f12747n - org.telegram.messenger.g0.L(16.0f), scrollY, getMeasuredWidth(), this.f12750w.getHeight() + scrollY + this.G, paint2);
             canvas2.save();
-            canvas2.translate(this.f12705n, scrollY);
-            this.f12708w.draw(canvas2);
+            canvas2.translate(this.f12747n, scrollY);
+            this.f12750w.draw(canvas2);
             canvas2.restore();
         }
         canvas2.restore();
@@ -259,11 +259,11 @@ public final class w7 extends View implements s9 {
         int i11 = (i10 + i7) << 16;
         this.F = org.telegram.messenger.g0.L(16.0f);
         this.G = org.telegram.messenger.g0.L(8.0f);
-        int i12 = this.f12707s;
-        v7[] v7VarArr = this.f12706r;
+        int i12 = this.f12749s;
+        v7[] v7VarArr = this.f12748r;
         int i13 = 0;
         if (i12 != i11) {
-            this.f12707s = i11;
+            this.f12749s = i11;
             int max = Math.max(0, View.MeasureSpec.getSize(i7) - (this.F * 2));
             v7VarArr[0].e(max);
             v7 v7Var = v7VarArr[1];
@@ -272,10 +272,10 @@ public final class w7 extends View implements s9 {
             }
         }
         int i14 = this.G * 2;
-        int i15 = v7VarArr[0].f12658l;
+        int i15 = v7VarArr[0].f12700l;
         v7 v7Var2 = v7VarArr[1];
         if (v7Var2 != null) {
-            i13 = v7Var2.f12658l;
+            i13 = v7Var2.f12700l;
         }
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.W1(this.H, i15, i13) + i14, 1073741824));
     }
@@ -314,9 +314,9 @@ public final class w7 extends View implements s9 {
         s7 s7Var2;
         s7 s7Var3;
         s7 s7Var4;
-        v7[] v7VarArr = this.f12706r;
+        v7[] v7VarArr = this.f12748r;
         v7 v7Var2 = v7VarArr[0];
-        if ((v7Var2 != null && (v7Var2.f12665s == drawable || (((s7Var3 = v7Var2.f12661o) != null && s7Var3.f12538j == drawable) || ((s7Var4 = v7Var2.f12662p) != null && s7Var4.f12538j == drawable)))) || ((v7Var = v7VarArr[1]) != null && (v7Var.f12665s == drawable || (((s7Var = v7Var.f12661o) != null && s7Var.f12538j == drawable) || ((s7Var2 = v7Var.f12662p) != null && s7Var2.f12538j == drawable))))) {
+        if ((v7Var2 != null && (v7Var2.f12707s == drawable || (((s7Var3 = v7Var2.f12703o) != null && s7Var3.f12579j == drawable) || ((s7Var4 = v7Var2.f12704p) != null && s7Var4.f12579j == drawable)))) || ((v7Var = v7VarArr[1]) != null && (v7Var.f12707s == drawable || (((s7Var = v7Var.f12703o) != null && s7Var.f12579j == drawable) || ((s7Var2 = v7Var.f12704p) != null && s7Var2.f12579j == drawable))))) {
             return true;
         }
         return super.verifyDrawable(drawable);

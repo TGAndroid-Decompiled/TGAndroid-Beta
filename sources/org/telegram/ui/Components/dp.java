@@ -1,28 +1,27 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class dp implements org.telegram.ui.w71 {
-    public final int f34473a;
-    public final ep f34474b;
+import android.graphics.Bitmap;
+public final class dp extends org.telegram.ui.x71 {
+    public final int f34548m2;
 
-    public dp(ep epVar, int i7) {
-        this.f34473a = i7;
-        this.f34474b = epVar;
+    public dp(Object obj, Bitmap bitmap, boolean z10, int i7) {
+        super(obj, bitmap, z10);
+        this.f34548m2 = i7;
     }
 
     @Override
-    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f34473a) {
+    public final boolean Z0() {
+        switch (this.f34548m2) {
             case 0:
-                lp lpVar = this.f34474b.f34780a;
-                lpVar.S1.L();
-                lpVar.dismiss();
-                return;
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
             default:
-                lp lpVar2 = this.f34474b.f34780a;
-                lpVar2.S1.L();
-                lpVar2.dismiss();
-                return;
+                return true;
         }
     }
 }

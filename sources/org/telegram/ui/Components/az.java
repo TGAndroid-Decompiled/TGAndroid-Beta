@@ -1,56 +1,75 @@
 package org.telegram.ui.Components;
-public final class az implements Runnable {
-    public final int f33492a;
-    public final boolean f33493b;
-    public final boolean f33494c;
-    public final boolean d;
-    public final Object f33495e;
 
-    public az(Object obj, boolean z10, boolean z11, boolean z12, int i7) {
-        this.f33492a = i7;
-        this.f33495e = obj;
-        this.f33493b = z10;
-        this.f33494c = z11;
-        this.d = z12;
+import android.graphics.Point;
+public final class az implements Runnable {
+    public final int f33664a;
+    public final ez f33665b;
+    public final int f33666c;
+    public final int d;
+
+    public az(ez ezVar, int i7, int i10, int i11) {
+        this.f33664a = i11;
+        this.f33665b = ezVar;
+        this.f33666c = i7;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        org.telegram.utils.twidget.d1 d1Var;
-        a81 a81Var;
-        switch (this.f33492a) {
+        int i7;
+        switch (this.f33664a) {
             case 0:
-                cz czVar = (cz) this.f33495e;
-                boolean z10 = this.f33493b;
-                boolean z11 = this.f33494c;
-                boolean z12 = this.d;
-                if (z10) {
-                    fz fzVar = czVar.K;
-                    fzVar.f35189a = true;
-                    fzVar.f35192b = true;
-                }
-                if (z11) {
-                    czVar.f34218y = true;
-                }
-                long currentTimeMillis = System.currentTimeMillis();
-                if (z12 || Math.abs(czVar.f34206b0 - currentTimeMillis) > 30) {
-                    czVar.f34206b0 = currentTimeMillis;
-                    czVar.f34211e0.run();
+                ez ezVar = this.f33665b;
+                int i10 = this.f33666c;
+                int i11 = this.d;
+                if (ezVar.X != i10 || ezVar.Y != i11) {
+                    ezVar.X = i10;
+                    ezVar.Y = i11;
+                    int o4 = org.telegram.messenger.bz.o();
+                    int i12 = 1920;
+                    if (o4 != 1) {
+                        if (o4 != 2) {
+                            i12 = 720;
+                        } else {
+                            Point point = org.telegram.messenger.g0.f24146q;
+                            i12 = Math.min(1920, Math.max(point.x, point.y));
+                        }
+                    }
+                    if (org.telegram.messenger.bz.o() == 0 && ((i7 = ezVar.X) > 1280 || ezVar.Y > 1280)) {
+                        ezVar.X = i7 / 2;
+                        ezVar.Y /= 2;
+                    }
+                    int i13 = ezVar.X;
+                    if (i13 > i12 || ezVar.Y > i12) {
+                        int i14 = ezVar.Y;
+                        if (i13 > i14) {
+                            ezVar.Y = (int) (i14 / (i12 / i13));
+                            ezVar.X = i12;
+                        } else {
+                            ezVar.X = (int) (i13 / (i12 / i14));
+                            ezVar.Y = i12;
+                        }
+                    }
+                    ezVar.f35021a0 = false;
+                    ezVar.f();
+                    ezVar.f35028e0.run();
                     return;
                 }
                 return;
             case 1:
-                ((org.telegram.ui.ee0) this.f33495e).O1(this.f33493b, this.f33494c, this.d);
+                ez ezVar2 = this.f33665b;
+                int i15 = this.f33666c;
+                int i16 = this.d;
+                ezVar2.f35030n = i15;
+                ezVar2.f35031r = i16;
                 return;
             default:
-                org.telegram.utils.twidget.p1 p1Var = (org.telegram.utils.twidget.p1) this.f33495e;
-                boolean z13 = this.f33493b;
-                boolean z14 = this.f33494c;
-                boolean z15 = this.d;
-                if (!p1Var.A && (d1Var = p1Var.R) != null && (a81Var = d1Var.h) != null && a81Var.f33285w && !a81Var.f33286x) {
-                    a81Var.l(z13, z14, z15);
-                    return;
-                }
+                ez ezVar3 = this.f33665b;
+                int i17 = this.f33666c;
+                int i18 = this.d;
+                ha haVar = ezVar3.J;
+                haVar.f35855l = i17;
+                haVar.f35856m = i18;
                 return;
         }
     }

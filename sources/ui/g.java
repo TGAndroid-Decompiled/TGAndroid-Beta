@@ -2,11 +2,11 @@ package ui;
 
 import android.graphics.Canvas;
 public final class g implements a {
-    public a f59013a;
+    public a f59051a;
 
     @Override
     public final void o(float f10, float f11, float f12, float f13, Canvas canvas) {
-        a aVar = this.f59013a;
+        a aVar = this.f59051a;
         if (aVar != null) {
             aVar.o(f10, f11, f12, f13, canvas);
         }

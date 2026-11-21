@@ -1,58 +1,104 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class sk0 extends FrameLayout {
-    public final Paint f39763a;
-    public final e40 f39764b;
-    public final RectF f39765c;
-    public final float d;
-    public float f39766e;
+public final class sk0 extends bv0 {
+    public float d;
+    public final Paint f39620f;
+    public boolean f39616a = false;
+    public long f39617b = 0;
+    public boolean f39618c = false;
+    public int f39619e = 1;
 
-    public sk0(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f39763a = paint;
-        e40 e40Var = new e40(this, 1);
-        this.f39764b = e40Var;
-        this.f39765c = new RectF();
-        this.d = (org.telegram.messenger.g0.L(3.0f) * 0.5f) + org.telegram.messenger.g0.L(5.0f);
-        a(paint, 0.2f);
-        a(e40Var, 1.0f);
-        setWillNotDraw(false);
-    }
-
-    public static void a(Paint paint, float f10) {
-        paint.setColor(-1);
-        paint.setAlpha(Math.round(f10 * 255.0f));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
+    public sk0(boolean z10) {
+        if (z10) {
+            this.f39620f = new Paint(1);
+        }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        float f10 = this.d;
-        RectF rectF = this.f39765c;
-        rectF.set(f10, f10, getWidth() - f10, getHeight() - f10);
-        canvas.drawOval(rectF, this.f39763a);
-        canvas.drawArc(rectF, -90.0f, this.f39766e * 360.0f, false, this.f39764b);
-    }
-
-    public Paint getPaint() {
-        return this.f39764b;
-    }
-
-    public void setProgress(float f10) {
-        float max = Math.max(0.0f, Math.min(1.0f, f10));
-        if (this.f39766e == max) {
-            return;
+    public final void b(int i7) {
+        Paint paint = this.f39620f;
+        if (paint != null) {
+            paint.setColor(i7);
         }
-        this.f39766e = max;
-        invalidate();
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        this.f39616a = z10;
+    }
+
+    @Override
+    public final void d() {
+        this.f39617b = System.currentTimeMillis();
+        this.f39618c = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f10;
+        Paint paint = this.f39620f;
+        if (paint == null) {
+            paint = org.telegram.ui.ActionBar.m6.f29356c2;
+        }
+        paint.setAlpha(((int) (this.d * 200.0f)) + 55);
+        float L = org.telegram.messenger.g0.L(6.0f);
+        if (this.f39616a) {
+            f10 = 8.0f;
+        } else {
+            f10 = 9.0f;
+        }
+        canvas.drawCircle(L, org.telegram.messenger.g0.L(f10), org.telegram.messenger.g0.L(4.0f), paint);
+        if (this.f39618c) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j3 = currentTimeMillis - this.f39617b;
+            this.f39617b = currentTimeMillis;
+            if (j3 > 50) {
+                j3 = 50;
+            }
+            float f11 = this.d;
+            int i7 = this.f39619e;
+            float f12 = (((float) (i7 * j3)) / 400.0f) + f11;
+            this.d = f12;
+            if (i7 > 0 && f12 >= 1.0f) {
+                this.f39619e = -1;
+                this.d = 1.0f;
+            } else if (i7 < 0 && f12 <= 0.0f) {
+                this.f39619e = 1;
+                this.d = 0.0f;
+            }
+            a();
+        }
+    }
+
+    @Override
+    public final void e() {
+        this.f39618c = false;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(10.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(12.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

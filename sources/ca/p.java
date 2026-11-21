@@ -3,14 +3,14 @@ package ca;
 import org.json.JSONObject;
 import org.telegram.ui.Cells.c5;
 public abstract class p {
-    public static final c5 f5140a;
+    public static final c5 f5169a;
 
     static {
         pa.d dVar = new pa.d();
-        a aVar = a.f5101a;
+        a aVar = a.f5130a;
         dVar.b(p.class, aVar);
         dVar.b(b.class, aVar);
-        f5140a = new c5(dVar);
+        f5169a = new c5(dVar);
     }
 
     public static b a(String str) {

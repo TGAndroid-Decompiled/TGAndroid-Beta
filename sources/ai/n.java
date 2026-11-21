@@ -1,114 +1,251 @@
 package ai;
 
+import a8.xa;
 import android.graphics.Bitmap;
-import java.io.File;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.yx;
-import org.telegram.ui.ml0;
-import org.telegram.ui.ow;
+import android.os.Looper;
+import bi.i4;
+import di.pb;
+import di.y8;
+import fi.n5;
+import fi.p6;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Map;
+import org.telegram.messenger.AppStartReceiver;
+import org.telegram.messenger.PushListenerController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.gd;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.nt;
+import org.telegram.ui.Components.gc;
+import org.telegram.ui.Components.lc;
+import org.telegram.ui.Dictation.DictationAsr;
+import org.telegram.ui.Dictation.DictationLid;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.Wallet.j9;
+import org.telegram.ui.Wallet.n6;
+import org.telegram.ui.qb1;
 public final class n implements Runnable {
-    public final int f1350a;
-    public final boolean f1351b;
-    public final Object f1352c;
-    public final Object d;
-    public final Object f1353e;
-    public final Object f1354f;
+    public final int f1329a;
 
-    public n(h2.c cVar, String str, Bitmap bitmap, boolean z10, Bitmap bitmap2) {
-        this.f1350a = 8;
-        this.d = cVar;
-        this.f1352c = str;
-        this.f1353e = bitmap;
-        this.f1351b = z10;
-        this.f1354f = bitmap2;
+    public n(int i7) {
+        this.f1329a = i7;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.n.run():void");
+        lc Y;
+        org.telegram.ui.ActionBar.g2 c02;
+        int i7 = 0;
+        switch (this.f1329a) {
+            case 0:
+                t[] tVarArr = DictationAsr.f43064a;
+                ArrayList arrayList = new ArrayList(DictationAsr.f43069g);
+                int size = arrayList.size();
+                while (i7 < size) {
+                    Object obj = arrayList.get(i7);
+                    i7++;
+                    ((Runnable) obj).run();
+                }
+                return;
+            case 1:
+                DictationAsr.Y(true);
+                return;
+            case 2:
+                DictationLid.b();
+                return;
+            case 3:
+                xa xaVar = bg.i.B;
+                if (xaVar != null) {
+                    ArrayList arrayList2 = null;
+                    for (int i10 = 0; i10 < bg.i.f3259y; i10++) {
+                        if (((Bitmap[]) xaVar.d)[i10] != null) {
+                            if (arrayList2 == null) {
+                                arrayList2 = new ArrayList();
+                            }
+                            arrayList2.add(((Bitmap[]) xaVar.d)[i10]);
+                        }
+                        ((Bitmap[]) xaVar.d)[i10] = null;
+                        ((bg.e0[]) xaVar.f714c)[i10] = null;
+                    }
+                    if (!arrayList2.isEmpty()) {
+                        Utilities.f22807e.c(new bg.e(0, arrayList2));
+                    }
+                    bg.i.B = null;
+                    return;
+                }
+                return;
+            case 4:
+                org.telegram.ui.ActionBar.g2 Q = LaunchActivity.Q();
+                if (Q != 0) {
+                    ?? obj2 = new Object();
+                    obj2.f28902a = true;
+                    Q.showAsSheet(new PremiumPreviewFragment(0, "gifts"), obj2);
+                    return;
+                }
+                return;
+            case 5:
+                gc t6 = i4.h().t(gd.N0(2131749560, null), null);
+                t6.f35518t = true;
+                t6.j();
+                return;
+            case 6:
+                ks.e().k(99, 512);
+                return;
+            case 7:
+                lc.Y().N(gd.N0(2131745665, null), gd.N0(2131751093, null)).j();
+                return;
+            case 8:
+                org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
+                if (T != null) {
+                    n6 n6Var = new n6();
+                    j9 j9Var = n6Var.f44672j0;
+                    if (j9Var != null) {
+                        j9Var.b(false);
+                    }
+                    if (!n6Var.f44669g0) {
+                        n6Var.I0 = true;
+                    } else {
+                        n6Var.I0 = false;
+                        n6Var.f44668f0 = 1;
+                        hi.i1 i1Var = n6Var.f44683s0;
+                        if (i1Var != null) {
+                            i1Var.setPosition(1);
+                        }
+                    }
+                    T.presentFragment(n6Var);
+                    return;
+                }
+                return;
+            case 9:
+                org.telegram.ui.ActionBar.g2 T2 = LaunchActivity.T();
+                if ((T2 instanceof qb1) && (c02 = ((qb1) T2).c0()) != null) {
+                    T2 = c02;
+                }
+                if (T2 != null) {
+                    Y = lc.b0(T2);
+                } else {
+                    Y = lc.Y();
+                }
+                gc Q2 = Y.Q(2131624052, 36, gd.N0(2131750199, null));
+                Q2.f35518t = true;
+                Q2.j();
+                return;
+            case 10:
+                org.telegram.messenger.q2.APP_ERROR.a();
+                return;
+            case 11:
+                org.telegram.ui.ActionBar.g2 T3 = LaunchActivity.T();
+                if (T3 != null) {
+                    T3.presentFragment(new pb());
+                    return;
+                }
+                return;
+            case 12:
+                y8[][] y8VarArr = y8.S;
+                return;
+            case 13:
+                return;
+            case 14:
+                int i11 = n5.f12340r1;
+                return;
+            case 15:
+                Comparator comparator = p6.X;
+                return;
+            case 16:
+                int i12 = hi.g0.f14661y0;
+                return;
+            case 17:
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null) {
+                    myLooper.quit();
+                    return;
+                }
+                return;
+            case 18:
+                return;
+            case 19:
+                mp.g1().edit().putInt("storydualhint", mp.g1().getInt("storydualhint", 0) + 1).apply();
+                return;
+            case 20:
+                return;
+            case 21:
+                kg.v1[] v1VarArr = kg.v1.f18540g;
+                return;
+            case 22:
+                HashSet hashSet = ki.s2.f18924b1;
+                return;
+            case 23:
+                int i13 = mi.h.I;
+                return;
+            case 24:
+                int i14 = AppStartReceiver.f22635a;
+                bz.t();
+                if (bz.f23222s.length() > 0) {
+                    bz.f23236x = true;
+                    bz.y();
+                }
+                org.telegram.messenger.t0.x();
+                return;
+            case 25:
+                Utilities.f22807e.c(new n(28));
+                return;
+            case 26:
+                boolean z10 = a8.f22866j;
+                StringBuilder sb2 = new StringBuilder();
+                for (Map.Entry<Thread, StackTraceElement[]> entry : Thread.getAllStackTraces().entrySet()) {
+                    StackTraceElement[] value = entry.getValue();
+                    sb2.append("Thread: ");
+                    sb2.append(entry.getKey().getName());
+                    sb2.append("\n");
+                    for (StackTraceElement stackTraceElement : value) {
+                        sb2.append("\tat ");
+                        sb2.append(stackTraceElement);
+                        sb2.append("\n");
+                    }
+                    sb2.append("\n\n");
+                }
+                a8.d("ANR thread dump\n" + sb2.toString());
+                a8.j();
+                a8.c(false);
+                return;
+            case 27:
+                org.telegram.messenger.t0.x();
+                return;
+            case 28:
+                org.telegram.utils.twidget.p1.d(org.telegram.messenger.t0.f26941b);
+                return;
+            default:
+                if (((nt) org.telegram.messenger.t0.l()).hasServices()) {
+                    ((nt) org.telegram.messenger.t0.l()).onRequestPushToken();
+                    return;
+                }
+                if (org.telegram.messenger.s2.f26749a) {
+                    ((nt) org.telegram.messenger.t0.l()).getClass();
+                    a8.b("No valid Google Play Services APK found.");
+                }
+                bz.h = "__NO_GOOGLE_PLAY_SERVICES__";
+                ((nt) org.telegram.messenger.t0.l()).getClass();
+                PushListenerController.sendRegistrationToServer(2, null);
+                return;
+        }
     }
 
-    public n(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i7) {
-        this.f1350a = i7;
-        this.d = obj;
-        this.f1353e = obj2;
-        this.f1352c = obj3;
-        this.f1354f = obj4;
-        this.f1351b = z10;
+    public n(Object obj, int i7) {
+        this.f1329a = i7;
     }
 
-    public n(Object obj, Object obj2, boolean z10, Object obj3, Object obj4, int i7) {
-        this.f1350a = i7;
-        this.d = obj;
-        this.f1353e = obj2;
-        this.f1351b = z10;
-        this.f1352c = obj3;
-        this.f1354f = obj4;
+    private final void a() {
     }
 
-    public n(Object obj, TLObject tLObject, boolean z10, TLObject tLObject2, String str, int i7) {
-        this.f1350a = i7;
-        this.d = obj;
-        this.f1353e = tLObject;
-        this.f1351b = z10;
-        this.f1354f = tLObject2;
-        this.f1352c = str;
+    private final void b() {
     }
 
-    public n(Object obj, boolean z10, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f1350a = i7;
-        this.d = obj;
-        this.f1351b = z10;
-        this.f1353e = obj2;
-        this.f1352c = obj3;
-        this.f1354f = obj4;
-    }
-
-    public n(CameraController cameraController, CameraController.ICameraView iCameraView, File file, boolean z10, Runnable runnable) {
-        this.f1350a = 5;
-        this.d = cameraController;
-        this.f1353e = iCameraView;
-        this.f1352c = file;
-        this.f1351b = z10;
-        this.f1354f = runnable;
-    }
-
-    public n(TLRPC.payments_GiveawayInfo payments_giveawayinfo, boolean z10, String str, long j3, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, org.telegram.ui.ActionBar.h2 h2Var) {
-        this.f1350a = 16;
-        this.d = payments_giveawayinfo;
-        this.f1351b = z10;
-        this.f1352c = str;
-        this.f1353e = tL_messageMediaGiveaway;
-        this.f1354f = h2Var;
-    }
-
-    public n(yx yxVar, String str, boolean z10, String str2, TLObject tLObject) {
-        this.f1350a = 10;
-        this.d = yxVar;
-        this.f1352c = str;
-        this.f1351b = z10;
-        this.f1353e = str2;
-        this.f1354f = tLObject;
-    }
-
-    public n(ow owVar, TLRPC.TL_error tL_error, TLObject tLObject, String str, boolean z10) {
-        this.f1350a = 12;
-        this.d = owVar;
-        this.f1353e = tL_error;
-        this.f1354f = tLObject;
-        this.f1352c = str;
-        this.f1351b = z10;
-    }
-
-    public n(ml0 ml0Var, boolean z10, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
-        this.f1350a = 13;
-        this.d = ml0Var;
-        this.f1351b = z10;
-        this.f1352c = str;
-        this.f1353e = str2;
-        this.f1354f = updatepasswordsettings;
+    private final void c() {
     }
 }

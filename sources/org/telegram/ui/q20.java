@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class q20 extends org.telegram.ui.Components.sb0 {
+public final class q20 extends org.telegram.ui.Components.tb0 {
     public q20(LaunchActivity launchActivity) {
         super(launchActivity, null);
     }

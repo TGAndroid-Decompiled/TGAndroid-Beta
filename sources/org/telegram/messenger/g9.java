@@ -5,7 +5,7 @@ import android.os.Build;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 public abstract class g9 {
-    public static db.a f24184a;
+    public static db.a f24212a;
 
     public static org.telegram.messenger.d1 a(android.content.Context r8, db.c r9) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.g9.a(android.content.Context, db.c):org.telegram.messenger.d1");

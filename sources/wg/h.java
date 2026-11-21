@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import bi.a4;
+import bi.e4;
 import java.util.Date;
 import org.telegram.messenger.f3;
 import org.telegram.messenger.fj;
@@ -20,35 +20,35 @@ import org.telegram.messenger.n5;
 import org.telegram.messenger.o10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.q6;
-import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.ActionBar.u6;
-import org.telegram.ui.ActionBar.x2;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.l2;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.t1;
+import org.telegram.ui.ActionBar.t6;
+import org.telegram.ui.ActionBar.w2;
 import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.xt;
+import org.telegram.ui.Components.zt;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.yn;
-import tg.z1;
+import tg.o1;
 public abstract class h {
-    public static void a(u1 u1Var, boolean z10) {
-        xh.l lVar = u1Var.f30038f;
+    public static void a(t1 t1Var, boolean z10) {
+        xh.l lVar = t1Var.f30021f;
         if (lVar != null) {
             lVar.setTextSize(1, 20);
         }
-        xt xtVar = u1Var.f30051n;
-        if (xtVar != null) {
-            xtVar.setTextSize(1, 14);
+        zt ztVar = t1Var.f30034n;
+        if (ztVar != null) {
+            ztVar.setTextSize(1, 14);
         }
-        xt xtVar2 = u1Var.f30051n;
-        if (xtVar2 != null) {
-            xtVar2.setLineSpacing(org.telegram.messenger.g0.L(2.5f), 1.0f);
+        zt ztVar2 = t1Var.f30034n;
+        if (ztVar2 != null) {
+            ztVar2.setLineSpacing(org.telegram.messenger.g0.L(2.5f), 1.0f);
         }
         if (!z10) {
-            ((ViewGroup.MarginLayoutParams) u1Var.f30061u0.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(-14.0f);
+            ((ViewGroup.MarginLayoutParams) t1Var.f30044u0.getLayoutParams()).topMargin = org.telegram.messenger.g0.L(-14.0f);
         }
     }
 
@@ -58,7 +58,7 @@ public abstract class h {
         }
         String Y0 = fjVar.Y0();
         if (Y0 == null) {
-            TLRPC.Chat O0 = mp.u1(j10.f24770t0).O0(Long.valueOf(-fj.B1(fjVar.f23965k.peer_id)));
+            TLRPC.Chat O0 = mp.u1(j10.f24798t0).O0(Long.valueOf(-fj.B1(fjVar.f23993k.peer_id)));
             if (O0 == null) {
                 return "";
             }
@@ -67,15 +67,15 @@ public abstract class h {
         return Y0;
     }
 
-    public static void c(TLRPC.TL_error tL_error, FrameLayout frameLayout, i6 i6Var, Runnable runnable) {
+    public static void c(TLRPC.TL_error tL_error, FrameLayout frameLayout, h6 h6Var, Runnable runnable) {
         String str;
         if (tL_error != null && (str = tL_error.text) != null) {
             if (str.contains("PREMIUM_SUB_ACTIVE_UNTIL_")) {
                 String format = gd.E0().o0().format(new Date(Long.parseLong(tL_error.text.replace("PREMIUM_SUB_ACTIVE_UNTIL_", "")) * 1000));
-                SpannableStringBuilder R2 = org.telegram.messenger.g0.R2(gd.M0(2131749505, "GiftPremiumActivateErrorText"), n6.xj, 0, runnable, null);
-                lc lcVar = new lc(frameLayout, i6Var);
-                String M0 = gd.M0(2131749504, null);
-                lcVar.I(2131623982, M0, org.telegram.messenger.g0.K2(R2, org.telegram.messenger.g0.W2("**" + format + "**"), "%1$s")).j();
+                SpannableStringBuilder R2 = org.telegram.messenger.g0.R2(gd.N0(2131749504, "GiftPremiumActivateErrorText"), m6.xj, 0, runnable, null);
+                lc lcVar = new lc(frameLayout, h6Var);
+                String N0 = gd.N0(2131749503, null);
+                lcVar.I(2131623982, N0, org.telegram.messenger.g0.K2(R2, org.telegram.messenger.g0.W2("**" + format + "**"), "%1$s")).j();
                 try {
                     frameLayout.performHapticFeedback(3, 2);
                     return;
@@ -87,7 +87,7 @@ public abstract class h {
         }
     }
 
-    public static void d(boolean z10, String str, TLRPC.TL_payments_giveawayInfo tL_payments_giveawayInfo, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, i6 i6Var) {
+    public static void d(boolean z10, String str, TLRPC.TL_payments_giveawayInfo tL_payments_giveawayInfo, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, h6 h6Var) {
         boolean z11;
         boolean z12;
         int i7;
@@ -111,10 +111,10 @@ public abstract class h {
         } else {
             z12 = false;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
-        String M0 = gd.M0(2131753492, "BoostingGiveAwayAbout");
-        u1 u1Var = alertDialog$Builder.f28744a;
-        u1Var.S = M0;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, h6Var);
+        String N0 = gd.N0(2131753491, "BoostingGiveAwayAbout");
+        t1 t1Var = alertDialog$Builder.f28774a;
+        t1Var.S = N0;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z12) {
             if (z10) {
@@ -191,46 +191,46 @@ public abstract class h {
             if (z11) {
                 spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.W2(gd.G(tL_messageMediaGiveaway.channels.size() - 1, "BoostingGiveawayParticipantMultiPlural", str)));
             } else {
-                f3.p("BoostingGiveawayParticipant", null, 2131753399, new Object[]{str}, spannableStringBuilder);
+                f3.p("BoostingGiveawayParticipant", null, 2131753398, new Object[]{str}, spannableStringBuilder);
             }
         } else {
             String str8 = tL_payments_giveawayInfo.disallowed_country;
             if (str8 != null && !str8.isEmpty()) {
-                spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.W2(gd.M0(2131753400, "BoostingGiveawayNotEligibleCountry")));
+                spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.W2(gd.N0(2131753399, "BoostingGiveawayNotEligibleCountry")));
             } else if (tL_payments_giveawayInfo.admin_disallowed_chat_id != 0) {
-                TLRPC.Chat O0 = mp.u1(j10.f24770t0).O0(Long.valueOf(tL_payments_giveawayInfo.admin_disallowed_chat_id));
+                TLRPC.Chat O0 = mp.u1(j10.f24798t0).O0(Long.valueOf(tL_payments_giveawayInfo.admin_disallowed_chat_id));
                 if (O0 != null) {
                     str4 = O0.title;
                 } else {
                     str4 = "";
                 }
                 if (z10) {
-                    i10 = 2131753402;
-                } else {
                     i10 = 2131753401;
+                } else {
+                    i10 = 2131753400;
                 }
                 f3.p(null, null, i10, new Object[]{str4}, spannableStringBuilder);
             } else if (tL_payments_giveawayInfo.joined_too_early_date != 0) {
-                f3.p("BoostingGiveawayNotEligible", null, 2131753403, new Object[]{gd.E0().u0().format(new Date(tL_payments_giveawayInfo.joined_too_early_date * 1000))}, spannableStringBuilder);
+                f3.p("BoostingGiveawayNotEligible", null, 2131753402, new Object[]{gd.E0().u0().format(new Date(tL_payments_giveawayInfo.joined_too_early_date * 1000))}, spannableStringBuilder);
             } else if (z11) {
                 spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.W2(gd.G(tL_messageMediaGiveaway.channels.size() - 1, "BoostingGiveawayTakePartMultiPlural", str, str2)));
             } else {
-                f3.p("BoostingGiveawayTakePart", null, 2131753364, new Object[]{str, str2}, spannableStringBuilder);
+                f3.p("BoostingGiveawayTakePart", null, 2131753363, new Object[]{str, str2}, spannableStringBuilder);
             }
         }
-        u1Var.U = spannableStringBuilder;
-        alertDialog$Builder.k(gd.M0(2131747638, "OK"), new ug.x(17));
+        t1Var.U = spannableStringBuilder;
+        alertDialog$Builder.k(gd.N0(2131747637, "OK"), new ug.x(17));
         a(alertDialog$Builder.p(), false);
     }
 
-    public static void e(boolean z10, String str, TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, i6 i6Var) {
+    public static void e(boolean z10, String str, TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, h6 h6Var) {
         boolean z11;
         boolean z12;
         String str2;
         int i7;
         int i10;
         String str3;
-        String M0;
+        String N0;
         String str4;
         if (tL_messageMediaGiveaway.until_date == 0) {
             tL_messageMediaGiveaway.until_date = tL_payments_giveawayInfoResults.finish_date;
@@ -250,10 +250,10 @@ public abstract class h {
         } else {
             z12 = false;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, i6Var);
-        String M02 = gd.M0(2131753476, "BoostingGiveawayEnd");
-        u1 u1Var = alertDialog$Builder.f28744a;
-        u1Var.S = M02;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, h6Var);
+        String N02 = gd.N0(2131753475, "BoostingGiveawayEnd");
+        t1 t1Var = alertDialog$Builder.f28774a;
+        t1Var.S = N02;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z12) {
             if (z10) {
@@ -332,64 +332,64 @@ public abstract class h {
             spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.W2(gd.G(i12, "BoostingGiveawayUsedLinksPlural", new Object[0])));
         }
         if (tL_payments_giveawayInfoResults.refunded) {
-            String M03 = gd.M0(2131753481, "BoostingGiveawayCanceledByPayment");
+            String N03 = gd.N0(2131753480, "BoostingGiveawayCanceledByPayment");
             TextView textView = new TextView(context);
             textView.setTextSize(i7, 14.0f);
             textView.setTypeface(org.telegram.messenger.g0.o());
             textView.setGravity(17);
-            textView.setText(M03);
-            int i13 = n6.f29615p7;
-            u6.U(textView, i13, i6Var);
-            ShapeDrawable e02 = n6.e0(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), n6.r1(0.1f, n6.w0(i13, i6Var)));
-            q6 K = u6.K(0.1f, i13);
+            textView.setText(N03);
+            int i13 = m6.f29599p7;
+            t6.U(textView, i13, h6Var);
+            ShapeDrawable e02 = m6.e0(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), m6.r1(0.1f, m6.w0(i13, h6Var)));
+            p6 K = t6.K(0.1f, i13);
             textView.setBackground(e02);
-            u6.j(textView, e02, K, null, i6Var);
+            t6.j(textView, e02, K, null, h6Var);
             textView.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
-            u1Var.f30030c = textView;
-            u1Var.U = spannableStringBuilder;
-            alertDialog$Builder.k(gd.M0(2131752030, "Close"), new ug.x(17));
+            t1Var.f30013c = textView;
+            t1Var.U = spannableStringBuilder;
+            alertDialog$Builder.k(gd.N0(2131752029, "Close"), new ug.x(17));
             a(alertDialog$Builder.p(), true);
             return;
         }
-        u1Var.U = spannableStringBuilder;
+        t1Var.U = spannableStringBuilder;
         if (tL_payments_giveawayInfoResults.winner) {
-            M0 = gd.M0(2131753355, null);
+            N0 = gd.N0(2131753354, null);
             if ((tL_payments_giveawayInfoResults.flags & 16) == 0) {
-                alertDialog$Builder.k(gd.M0(2131753357, "BoostingGiveawayViewPrize"), new z1(tL_payments_giveawayInfoResults, 10));
+                alertDialog$Builder.k(gd.N0(2131753356, "BoostingGiveawayViewPrize"), new o1(tL_payments_giveawayInfoResults, 11));
             }
-            alertDialog$Builder.h(gd.M0(2131752030, "Close"), new ug.x(17));
+            alertDialog$Builder.h(gd.N0(2131752029, "Close"), new ug.x(17));
         } else {
-            M0 = gd.M0(2131753356, "BoostingGiveawayYouNotWon");
-            alertDialog$Builder.k(gd.M0(2131752030, "Close"), new ug.x(17));
+            N0 = gd.N0(2131753355, "BoostingGiveawayYouNotWon");
+            alertDialog$Builder.k(gd.N0(2131752029, "Close"), new ug.x(17));
         }
-        xt xtVar = new xt(context);
-        ks.i(xtVar);
-        u6.U(xtVar, n6.f29502j5, i6Var);
-        xtVar.setTextSize(1, 14.0f);
-        xtVar.setGravity(17);
-        xtVar.setText(M0);
+        zt ztVar = new zt(context);
+        ks.i(ztVar);
+        t6.U(ztVar, m6.f29486j5, h6Var);
+        ztVar.setTextSize(1, 14.0f);
+        ztVar.setGravity(17);
+        ztVar.setText(N0);
         int L = org.telegram.messenger.g0.L(8.0f);
         int L2 = org.telegram.messenger.g0.L(8.0f);
-        int i14 = n6.f29626pi;
-        ShapeDrawable e03 = n6.e0(L, L2, n6.w0(i14, i6Var));
-        q6 M = u6.M(i14);
-        xtVar.setBackground(e03);
-        u6.j(xtVar, e03, M, null, i6Var);
-        xtVar.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(9.0f));
-        u1Var.d = xtVar;
+        int i14 = m6.f29610pi;
+        ShapeDrawable e03 = m6.e0(L, L2, m6.w0(i14, h6Var));
+        p6 M = t6.M(i14);
+        ztVar.setBackground(e03);
+        t6.j(ztVar, e03, M, null, h6Var);
+        ztVar.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(9.0f));
+        t1Var.d = ztVar;
         a(alertDialog$Builder.p(), false);
     }
 
-    public static void f(h2 h2Var, TLRPC.Chat chat, boolean z10) {
-        if (h2Var == null) {
+    public static void f(g2 g2Var, TLRPC.Chat chat, boolean z10) {
+        if (g2Var == null) {
             return;
         }
-        org.telegram.messenger.g0.h3(new yn(lc.b0(h2Var), z10, chat, h2Var.getResourceProvider(), 17), 300L);
+        org.telegram.messenger.g0.h3(new yn(lc.b0(g2Var), z10, chat, g2Var.getResourceProvider(), 17), 300L);
     }
 
     public static void g(int i7) {
         String str;
-        h2 Q = LaunchActivity.Q();
+        g2 Q = LaunchActivity.Q();
         if (Q == null) {
             return;
         }
@@ -406,39 +406,39 @@ public abstract class h {
             }
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, Q.getContext(), Q.getResourceProvider());
-        String M0 = gd.M0(2131752554, null);
-        u1 u1Var = alertDialog$Builder.f28744a;
-        u1Var.S = M0;
-        u1Var.U = org.telegram.messenger.g0.W2(gd.a0("CantBoostTooOftenDescription", null, 2131752553, str));
-        alertDialog$Builder.k(gd.M0(2131747638, null), new ug.x(21));
+        String N0 = gd.N0(2131752553, null);
+        t1 t1Var = alertDialog$Builder.f28774a;
+        t1Var.S = N0;
+        t1Var.U = org.telegram.messenger.g0.W2(gd.a0("CantBoostTooOftenDescription", null, 2131752552, str));
+        alertDialog$Builder.k(gd.N0(2131747637, null), new ug.x(21));
         alertDialog$Builder.p();
     }
 
     public static void h(long j3) {
         SpannableStringBuilder W2;
-        if (j3 == j10.i(j10.f24770t0).f24789n) {
-            W2 = org.telegram.messenger.g0.W2(gd.M0(2131753496, null));
+        if (j3 == j10.i(j10.f24798t0).f24817n) {
+            W2 = org.telegram.messenger.g0.W2(gd.N0(2131753495, null));
         } else if (n5.z(j3)) {
-            W2 = org.telegram.messenger.g0.W2(gd.a0("BoostingGiftLinkForwardedTo", null, 2131753497, mp.u1(j10.f24770t0).O0(Long.valueOf(-j3)).title));
+            W2 = org.telegram.messenger.g0.W2(gd.a0("BoostingGiftLinkForwardedTo", null, 2131753496, mp.u1(j10.f24798t0).O0(Long.valueOf(-j3)).title));
         } else {
-            W2 = org.telegram.messenger.g0.W2(gd.a0("BoostingGiftLinkForwardedTo", null, 2131753497, o10.k(mp.u1(j10.f24770t0).c2(Long.valueOf(j3)), true)));
+            W2 = org.telegram.messenger.g0.W2(gd.a0("BoostingGiftLinkForwardedTo", null, 2131753496, o10.k(mp.u1(j10.f24798t0).c2(Long.valueOf(j3)), true)));
         }
-        org.telegram.messenger.g0.h3(new a4(W2, 1), 450L);
+        org.telegram.messenger.g0.h3(new e4(W2, 1), 450L);
     }
 
-    public static void i(long j3, x2 x2Var) {
-        TLRPC.Chat O0 = mp.u1(j10.f24770t0).O0(Long.valueOf(-j3));
-        h2 Q = LaunchActivity.Q();
+    public static void i(long j3, w2 w2Var) {
+        TLRPC.Chat O0 = mp.u1(j10.f24798t0).O0(Long.valueOf(-j3));
+        g2 Q = LaunchActivity.Q();
         if (Q == null) {
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, Q.getContext(), Q.getResourceProvider());
-        String M0 = gd.M0(2131753336, null);
-        u1 u1Var = alertDialog$Builder.f28744a;
-        u1Var.S = M0;
-        u1Var.U = org.telegram.messenger.g0.W2(gd.G((int) mp.u1(j10.f24770t0).f25755s0, "BoostingGetMoreBoostByGiftingCount", O0.title));
-        alertDialog$Builder.h(gd.M0(2131749508, "GiftPremium"), new m2(x2Var));
-        alertDialog$Builder.k(gd.M0(2131752030, "Close"), new ug.x(17));
+        String N0 = gd.N0(2131753335, null);
+        t1 t1Var = alertDialog$Builder.f28774a;
+        t1Var.S = N0;
+        t1Var.U = org.telegram.messenger.g0.W2(gd.G((int) mp.u1(j10.f24798t0).f25783s0, "BoostingGetMoreBoostByGiftingCount", O0.title));
+        alertDialog$Builder.h(gd.N0(2131749507, "GiftPremium"), new l2(w2Var));
+        alertDialog$Builder.k(gd.N0(2131752029, "Close"), new ug.x(17));
         alertDialog$Builder.p();
     }
 

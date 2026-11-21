@@ -1,10 +1,10 @@
 package y7;
 public final class d extends a8.v {
-    public final transient Object[] f60783e;
+    public final transient Object[] f60824e;
 
     public d(Object[] objArr) {
         super(5);
-        this.f60783e = objArr;
+        this.f60824e = objArr;
     }
 
     @Override

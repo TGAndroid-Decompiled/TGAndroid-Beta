@@ -1,19 +1,34 @@
 package org.telegram.ui.Components;
+public final class q21 implements Runnable {
+    public final int f38769a;
+    public final org.telegram.messenger.q10 f38770b;
+    public final String f38771c;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class q21 extends y21 {
-    public final org.telegram.ui.vf U1;
-
-    public q21(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i7, TL_iv.RichMessage richMessage, org.telegram.ui.vf vfVar) {
-        super(activity, str, str2, null, inputPeer, i7, false, richMessage);
-        this.U1 = vfVar;
+    public q21(String str, int i7, org.telegram.messenger.q10 q10Var) {
+        this.f38769a = i7;
+        this.f38770b = q10Var;
+        this.f38771c = str;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.U1.run();
+    public final void run() {
+        switch (this.f38769a) {
+            case 0:
+                org.telegram.messenger.q10 q10Var = this.f38770b;
+                if (q10Var != null) {
+                    q10Var.a(this.f38771c, Boolean.FALSE);
+                    return;
+                }
+                return;
+            case 1:
+                this.f38770b.a(null, this.f38771c);
+                return;
+            case 2:
+                this.f38770b.a(null, this.f38771c);
+                return;
+            default:
+                this.f38770b.a(null, this.f38771c);
+                return;
+        }
     }
 }

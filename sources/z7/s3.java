@@ -1,6 +1,6 @@
 package z7;
 public final class s3 implements na.d {
-    public static final s3 f61716a = new Object();
+    public static final s3 f61757a = new Object();
 
     static {
         p5.c.u(yi.i.a(d.class, new a(1)));

@@ -1,22 +1,39 @@
 package org.telegram.ui.Components;
-public final class cx0 implements ob0, qb0 {
-    public final ex0 f34193a;
 
-    @Override
-    public String i(int i7) {
-        return this.f34193a.f34829n[i7];
+import android.text.StaticLayout;
+import java.util.ArrayList;
+public final class cx0 {
+    public final org.telegram.ui.ActionBar.h6 f34324a;
+    public StaticLayout f34325b;
+    public final ArrayList f34326c = new ArrayList(2);
+    public int d;
+    public int f34327e;
+    public int f34328f;
+    public int f34329g;
+    public int h;
+
+    public cx0(org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f34324a = h6Var;
     }
 
-    @Override
-    public void n(sb0 sb0Var, int i7) {
-        ex0 ex0Var = this.f34193a;
-        ex0Var.b();
-        org.telegram.messenger.bz.f23193r1 = i7;
-        org.telegram.messenger.t0.f26913b.getSharedPreferences("mainconfig", 0).edit().putInt("ChatSwipeAction", org.telegram.messenger.bz.f23193r1).apply();
-        ex0Var.invalidate();
-        try {
-            sb0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    public static void c(StringBuilder sb2, int i7, boolean z10) {
+        if (sb2.length() > 0) {
+            if (z10) {
+                sb2.append(' ');
+                sb2.append(org.telegram.messenger.gd.N0(2131744104, null));
+                sb2.append(' ');
+            } else {
+                sb2.append(", ");
+            }
         }
+        sb2.append(org.telegram.messenger.gd.N0(i7, null));
+    }
+
+    public final int a() {
+        return this.f34329g;
+    }
+
+    public final void b(org.telegram.messenger.fj r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.cx0.b(org.telegram.messenger.fj):void");
     }
 }

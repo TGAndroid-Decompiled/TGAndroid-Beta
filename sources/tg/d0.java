@@ -1,34 +1,29 @@
 package tg;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.ViewGroup;
+import android.graphics.Paint;
+import org.telegram.ui.Cells.c5;
 import org.telegram.ui.vp0;
-public final class d0 extends y0 {
-    public final Path f57777o3;
-    public final vp0 f57778p3;
+public final class d0 extends d {
+    public final Paint h;
+    public long f57808n;
+    public float f57809r;
+    public float f57810s;
+    public final vp0 f57811w;
 
-    public d0(vp0 vp0Var, Context context) {
-        super(context);
-        this.f57778p3 = vp0Var;
-        this.f57777o3 = new Path();
+    public d0(vp0 vp0Var, Context context, c5 c5Var) {
+        super(context, c5Var);
+        this.f57811w = vp0Var;
+        Paint paint = new Paint();
+        this.h = paint;
+        setWillNotDraw(false);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-1);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        ViewGroup barView;
-        vp0 vp0Var = this.f57778p3;
-        barView = vp0Var.getBarView();
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(org.telegram.messenger.g0.W1(vp0Var.f57884x1, barView.getLeft() - getLeft(), 0), org.telegram.messenger.g0.W1(vp0Var.f57884x1, barView.getTop() - getTop(), 0), org.telegram.messenger.g0.W1(vp0Var.f57884x1, barView.getRight() - getLeft(), getWidth()), org.telegram.messenger.g0.W1(vp0Var.f57884x1, barView.getBottom() - getTop(), getHeight()));
-        Path path = this.f57777o3;
-        path.rewind();
-        path.addRoundRect(rectF, org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f), Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        super.draw(canvas);
-        canvas.restore();
+    public final void onDraw(android.graphics.Canvas r14) {
+        throw new UnsupportedOperationException("Method not decompiled: tg.d0.onDraw(android.graphics.Canvas):void");
     }
 }

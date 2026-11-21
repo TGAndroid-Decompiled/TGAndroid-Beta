@@ -1,162 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.util.SparseBooleanArray;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ir0 implements ViewTreeObserver.OnPreDrawListener {
-    public final ck0 f36177a;
-    public final SparseBooleanArray f36178b;
-    public final View f36179c;
-    public final int d;
-    public final gt0 f36180e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ir0 extends AnimatorListenerAdapter {
+    public final int f36310a;
+    public final jt0 f36311b;
 
-    public ir0(gt0 gt0Var, ck0 ck0Var, SparseBooleanArray sparseBooleanArray, wz wzVar, int i7) {
-        this.f36180e = gt0Var;
-        this.f36177a = ck0Var;
-        this.f36178b = sparseBooleanArray;
-        this.f36179c = wzVar;
-        this.d = i7;
+    public ir0(jt0 jt0Var, int i7) {
+        this.f36310a = i7;
+        this.f36311b = jt0Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        View childAt;
-        gt0 gt0Var = this.f36180e;
-        gt0Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        final ck0 ck0Var = this.f36177a;
-        v4.i0 adapter = ck0Var.getAdapter();
-        if (adapter != gt0Var.K && adapter != gt0Var.N && adapter != gt0Var.P && adapter != gt0Var.O) {
-            int childCount = ck0Var.getChildCount();
-            AnimatorSet animatorSet = new AnimatorSet();
-            for (int i7 = 0; i7 < childCount; i7++) {
-                View childAt2 = ck0Var.getChildAt(i7);
-                View view = this.f36179c;
-                if (childAt2 != view && RecyclerView.R(childAt2) >= this.d - 1) {
-                    childAt2.setAlpha(0.0f);
-                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, View.ALPHA, 0.0f, 1.0f);
-                    ofFloat.setStartDelay((int) ((Math.min(ck0Var.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / ck0Var.getMeasuredHeight()) * 100.0f));
-                    ofFloat.setDuration(200L);
-                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            switch (r1) {
-                                case 0:
-                                    ck0 ck0Var2 = ck0Var;
-                                    if (ck0Var2.b1()) {
-                                        ck0Var2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                case 1:
-                                    ck0 ck0Var3 = ck0Var;
-                                    if (ck0Var3.b1()) {
-                                        ck0Var3.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    ck0 ck0Var4 = ck0Var;
-                                    if (ck0Var4.b1()) {
-                                        ck0Var4.invalidate();
-                                        return;
-                                    }
-                                    return;
-                            }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36310a) {
+            case 0:
+                this.f36311b.O0 = null;
+                return;
+            default:
+                jt0 jt0Var = this.f36311b;
+                org.telegram.ui.ActionBar.q0 q0Var = jt0Var.f36664q0;
+                ds0[] ds0VarArr = jt0Var.f36656n0;
+                jt0Var.f36643i1 = null;
+                int i7 = 4;
+                if (jt0Var.l1) {
+                    ds0VarArr[1].setVisibility(8);
+                    if (q0Var != null && !jt0Var.I()) {
+                        if (jt0Var.I0()) {
+                            i7 = 8;
                         }
-                    });
-                    animatorSet.playTogether(ofFloat);
-                }
-                if (view != null && view.getParent() == null) {
-                    ck0Var.addView(view);
-                    v4.p0 layoutManager = ck0Var.getLayoutManager();
-                    if (layoutManager != null) {
-                        layoutManager.M(view);
-                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f);
-                        ofFloat2.addListener(new q60(this, layoutManager));
-                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                switch (r1) {
-                                    case 0:
-                                        ck0 ck0Var2 = ck0Var;
-                                        if (ck0Var2.b1()) {
-                                            ck0Var2.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                    case 1:
-                                        ck0 ck0Var3 = ck0Var;
-                                        if (ck0Var3.b1()) {
-                                            ck0Var3.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                    default:
-                                        ck0 ck0Var4 = ck0Var;
-                                        if (ck0Var4.b1()) {
-                                            ck0Var4.invalidate();
-                                            return;
-                                        }
-                                        return;
-                                }
-                            }
-                        });
-                        ofFloat2.start();
+                        jt0Var.setSearchItemVisibility(i7);
+                        jt0Var.f36668r0 = 0.0f;
+                    } else {
+                        jt0Var.f36668r0 = jt0Var.l0(0.0f);
+                        jt0Var.M1(0.0f);
                     }
-                }
-            }
-            animatorSet.start();
-            return true;
-        }
-        SparseBooleanArray sparseBooleanArray = this.f36178b;
-        if (sparseBooleanArray != null) {
-            int childCount2 = ck0Var.getChildCount();
-            for (int i10 = 0; i10 < childCount2; i10++) {
-                int o4 = gt0.o(ck0Var.getChildAt(i10));
-                if (o4 != 0 && sparseBooleanArray.get(o4, false)) {
-                    gt0Var.S1.put(o4, Float.valueOf(0.0f));
-                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ofFloat3.addUpdateListener(new hi.a4(this, o4, ck0Var));
-                    ofFloat3.addListener(new ki.f2(this, o4, 13));
-                    ofFloat3.setStartDelay((int) ((Math.min(ck0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / ck0Var.getMeasuredHeight()) * 100.0f));
-                    ofFloat3.setDuration(250L);
-                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            switch (r1) {
-                                case 0:
-                                    ck0 ck0Var2 = ck0Var;
-                                    if (ck0Var2.b1()) {
-                                        ck0Var2.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                case 1:
-                                    ck0 ck0Var3 = ck0Var;
-                                    if (ck0Var3.b1()) {
-                                        ck0Var3.invalidate();
-                                        return;
-                                    }
-                                    return;
-                                default:
-                                    ck0 ck0Var4 = ck0Var;
-                                    if (ck0Var4.b1()) {
-                                        ck0Var4.invalidate();
-                                        return;
-                                    }
-                                    return;
-                            }
+                    jt0Var.I1(false);
+                    jt0Var.A0 = 0;
+                } else {
+                    ds0 ds0Var = ds0VarArr[0];
+                    ds0VarArr[0] = ds0VarArr[1];
+                    ds0VarArr[1] = ds0Var;
+                    ds0Var.setVisibility(8);
+                    if (q0Var != null && jt0Var.A0 == 2) {
+                        if (jt0Var.I0()) {
+                            i7 = 8;
                         }
-                    });
-                    ofFloat3.start();
+                        jt0Var.setSearchItemVisibility(i7);
+                    }
+                    jt0Var.A0 = 0;
+                    jt0Var.l1(1.0f, ds0VarArr[0].F);
+                    jt0Var.Y0();
+                    jt0Var.u1();
                 }
-                ck0Var.invalidate();
-            }
+                jt0Var.f36646j1 = false;
+                jt0Var.B1 = false;
+                jt0Var.A1 = false;
+                jt0Var.setHeaderEnabled(true);
+                jt0Var.L0.setEnabled(true);
+                return;
         }
-        return true;
     }
 }

@@ -10,46 +10,46 @@ import org.telegram.tgnet.TLObject;
 public final class d20 extends TLObject {
     public static final int C = 0;
     public MediaCodecPlayer B;
-    public int f23465a;
-    public boolean f23466b;
-    public boolean f23467c;
+    public int f23493a;
+    public boolean f23494b;
+    public boolean f23495c;
     public String d;
-    public float f23468e = 1.0f;
-    public long f23469f = 0;
-    public boolean f23470i = true;
-    public float f23471j;
-    public float f23472k;
-    public int f23473l;
-    public int f23474m;
-    public long f23475o;
-    public hi.t f23476r;
-    public FloatBuffer f23477s;
-    public FloatBuffer f23478t;
-    public org.telegram.ui.Components.b6 f23479u;
+    public float f23496e = 1.0f;
+    public long f23497f = 0;
+    public boolean f23498i = true;
+    public float f23499j;
+    public float f23500k;
+    public int f23501l;
+    public int f23502m;
+    public long f23503o;
+    public hi.u f23504r;
+    public FloatBuffer f23505s;
+    public FloatBuffer f23506t;
+    public org.telegram.ui.Components.c6 f23507u;
     public float v;
-    public SurfaceTexture f23480z;
+    public SurfaceTexture f23508z;
 
-    public static ArrayList a(hi.d7 d7Var) {
-        if (d7Var != null && d7Var.T != null) {
+    public static ArrayList a(hi.c7 c7Var) {
+        if (c7Var != null && c7Var.T != null) {
             ArrayList arrayList = new ArrayList();
-            for (int i7 = 0; i7 < d7Var.T.size(); i7++) {
-                hi.d7 d7Var2 = (hi.d7) d7Var.T.get(i7);
+            for (int i7 = 0; i7 < c7Var.T.size(); i7++) {
+                hi.c7 c7Var2 = (hi.c7) c7Var.T.get(i7);
                 ?? tLObject = new TLObject();
-                tLObject.f23468e = 1.0f;
-                tLObject.f23469f = 0L;
-                tLObject.f23470i = true;
-                tLObject.f23466b = d7Var2.K;
-                tLObject.f23467c = d7Var2.Y;
-                tLObject.d = d7Var2.L.getAbsolutePath();
-                tLObject.f23468e = d7Var2.P;
-                tLObject.f23470i = d7Var2.U;
-                tLObject.f23469f = d7Var2.X;
-                tLObject.f23471j = d7Var2.V;
-                tLObject.f23472k = d7Var2.W;
-                tLObject.f23473l = d7Var2.f14409k0;
-                tLObject.f23474m = d7Var2.f14411l0;
-                tLObject.f23475o = d7Var2.f14403h0;
-                tLObject.f23476r = (hi.t) d7Var.S.f15509e.get(i7);
+                tLObject.f23496e = 1.0f;
+                tLObject.f23497f = 0L;
+                tLObject.f23498i = true;
+                tLObject.f23494b = c7Var2.K;
+                tLObject.f23495c = c7Var2.Y;
+                tLObject.d = c7Var2.L.getAbsolutePath();
+                tLObject.f23496e = c7Var2.P;
+                tLObject.f23498i = c7Var2.U;
+                tLObject.f23497f = c7Var2.X;
+                tLObject.f23499j = c7Var2.V;
+                tLObject.f23500k = c7Var2.W;
+                tLObject.f23501l = c7Var2.f14359k0;
+                tLObject.f23502m = c7Var2.f14361l0;
+                tLObject.f23503o = c7Var2.f14353h0;
+                tLObject.f23504r = (hi.u) c7Var.S.f15588e.get(i7);
                 arrayList.add(tLObject);
             }
             return arrayList;
@@ -62,32 +62,32 @@ public final class d20 extends TLObject {
         boolean z11;
         boolean z12;
         int readInt32 = inputSerializedData.readInt32(z10);
-        this.f23465a = readInt32;
+        this.f23493a = readInt32;
         boolean z13 = false;
         if ((readInt32 & 1) != 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f23466b = z11;
+        this.f23494b = z11;
         if ((readInt32 & 2) != 0) {
             z12 = true;
         } else {
             z12 = false;
         }
-        this.f23470i = z12;
+        this.f23498i = z12;
         if ((readInt32 & 4) != 0) {
             z13 = true;
         }
-        this.f23467c = z13;
+        this.f23495c = z13;
         this.d = inputSerializedData.readString(z10);
-        this.f23468e = inputSerializedData.readFloat(z10);
-        this.f23469f = inputSerializedData.readInt64(z10);
-        this.f23471j = inputSerializedData.readFloat(z10);
-        this.f23472k = inputSerializedData.readFloat(z10);
-        this.f23473l = inputSerializedData.readInt32(z10);
-        this.f23474m = inputSerializedData.readInt32(z10);
-        this.f23475o = inputSerializedData.readInt64(z10);
+        this.f23496e = inputSerializedData.readFloat(z10);
+        this.f23497f = inputSerializedData.readInt64(z10);
+        this.f23499j = inputSerializedData.readFloat(z10);
+        this.f23500k = inputSerializedData.readFloat(z10);
+        this.f23501l = inputSerializedData.readInt32(z10);
+        this.f23502m = inputSerializedData.readInt32(z10);
+        this.f23503o = inputSerializedData.readInt64(z10);
     }
 
     @Override
@@ -95,32 +95,32 @@ public final class d20 extends TLObject {
         int i7;
         int i10;
         int i11;
-        if (this.f23466b) {
-            i7 = this.f23465a | 1;
+        if (this.f23494b) {
+            i7 = this.f23493a | 1;
         } else {
-            i7 = this.f23465a & (-2);
+            i7 = this.f23493a & (-2);
         }
-        this.f23465a = i7;
-        if (this.f23470i) {
+        this.f23493a = i7;
+        if (this.f23498i) {
             i10 = i7 | 2;
         } else {
             i10 = i7 & (-3);
         }
-        this.f23465a = i10;
-        if (this.f23467c) {
+        this.f23493a = i10;
+        if (this.f23495c) {
             i11 = i10 | 4;
         } else {
             i11 = i10 & (-5);
         }
-        this.f23465a = i11;
+        this.f23493a = i11;
         outputSerializedData.writeInt32(i11);
         outputSerializedData.writeString(this.d);
-        outputSerializedData.writeFloat(this.f23468e);
-        outputSerializedData.writeInt64(this.f23469f);
-        outputSerializedData.writeFloat(this.f23471j);
-        outputSerializedData.writeFloat(this.f23472k);
-        outputSerializedData.writeInt32(this.f23473l);
-        outputSerializedData.writeInt32(this.f23474m);
-        outputSerializedData.writeInt64(this.f23475o);
+        outputSerializedData.writeFloat(this.f23496e);
+        outputSerializedData.writeInt64(this.f23497f);
+        outputSerializedData.writeFloat(this.f23499j);
+        outputSerializedData.writeFloat(this.f23500k);
+        outputSerializedData.writeInt32(this.f23501l);
+        outputSerializedData.writeInt32(this.f23502m);
+        outputSerializedData.writeInt64(this.f23503o);
     }
 }

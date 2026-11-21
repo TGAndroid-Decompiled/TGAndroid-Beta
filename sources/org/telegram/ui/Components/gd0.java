@@ -1,15 +1,17 @@
 package org.telegram.ui.Components;
-public final class gd0 extends org.telegram.ui.ActionBar.j {
-    public final ld0 f35477a;
 
-    public gd0(ld0 ld0Var) {
-        this.f35477a = ld0Var;
+import android.app.Activity;
+public final class gd0 extends org.telegram.ui.ActionBar.k {
+    public final md0 G1;
+
+    public gd0(md0 md0Var, Activity activity) {
+        super(activity, null);
+        this.G1 = md0Var;
     }
 
     @Override
-    public final void b(int i7) {
-        if (i7 == -1) {
-            this.f35477a.dismiss();
-        }
+    public final void setAlpha(float f10) {
+        super.setAlpha(f10);
+        this.G1.f30173b.invalidate();
     }
 }

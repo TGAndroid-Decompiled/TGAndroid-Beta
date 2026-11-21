@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.content.Context;
 import android.graphics.RectF;
 public final class ew0 extends org.telegram.ui.Cells.y8 {
-    public final lw0 f47324r;
+    public final lw0 f47393r;
 
-    public ew0(lw0 lw0Var, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10, boolean z11) {
-        super(18, context, i6Var, z10, z11);
-        this.f47324r = lw0Var;
+    public ew0(lw0 lw0Var, Context context, org.telegram.ui.ActionBar.h6 h6Var, boolean z10, boolean z11) {
+        super(18, context, h6Var, z10, z11);
+        this.f47393r = lw0Var;
     }
 
     @Override
     public final int a(int i7) {
-        ProfileActivity profileActivity = this.f47324r.f49663e;
+        ProfileActivity profileActivity = this.f47393r.f49714e;
         RectF rectF = ProfileActivity.Z6;
         profileActivity.getClass();
         return i7;

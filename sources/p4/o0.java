@@ -1,60 +1,37 @@
 package p4;
-public final class o0 implements Runnable {
-    public final int f55377a;
-    public final Object f55378b;
-    public final Object f55379c;
 
-    public o0(int i7, Object obj, Object obj2) {
-        this.f55377a = i7;
-        this.f55378b = obj;
-        this.f55379c = obj2;
+import java.util.List;
+public final class o0 implements a1, b1, h2.j {
+    public final e1 f55418a;
+    public final int f55419b;
+    public final int f55420c;
+
+    public o0(e1 e1Var, int i7, int i10) {
+        this.f55418a = e1Var;
+        this.f55419b = i7;
+        this.f55420c = i10;
     }
 
-    private final void a() {
-        u2.c cVar = (u2.c) this.f55378b;
-        o0 o0Var = (o0) this.f55379c;
-        cVar.f58302c.j();
-        u2.f fVar = cVar.f58301b;
-        synchronized (fVar.f58315a) {
-            fVar.b();
-            o0Var.run();
-        }
+    @Override
+    public void a(i1 i1Var, v vVar, List list) {
+        e1 e1Var = this.f55418a;
+        i1Var.s0(list, e1Var.m1(vVar, i1Var, this.f55419b), e1Var.m1(vVar, i1Var, this.f55420c));
     }
 
-    private final void b() {
-        ua.a aVar;
-        u9.o oVar = (u9.o) this.f55378b;
-        ua.b bVar = (ua.b) this.f55379c;
-        if (oVar.f58560b == u9.o.d) {
-            synchronized (oVar) {
-                aVar = oVar.f58559a;
-                oVar.f58559a = null;
-                oVar.f58560b = bVar;
-            }
-            aVar.b(bVar);
-            return;
-        }
-        throw new IllegalStateException("provide() can be called only once.");
-    }
-
-    private final void c() {
-        u9.n nVar = (u9.n) this.f55378b;
-        ua.b bVar = (ua.b) this.f55379c;
-        synchronized (nVar) {
-            try {
-                if (nVar.f58557b == null) {
-                    nVar.f58556a.add(bVar);
-                } else {
-                    nVar.f58557b.add(bVar.get());
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    @Override
+    public void accept(Object obj) {
+        i1 i1Var = (i1) obj;
+        e1 e1Var = this.f55418a;
+        ((e0) e1Var.f55251a.get()).getClass();
+        d1 d1Var = e1Var.f55256i;
+        if (d1Var != null) {
+            d1Var.setFixedSize(this.f55419b, this.f55420c);
         }
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: p4.o0.run():void");
+    public void c(i1 i1Var, v vVar) {
+        e1 e1Var = this.f55418a;
+        i1Var.R(e1Var.m1(vVar, i1Var, this.f55419b), e1Var.m1(vVar, i1Var, this.f55420c));
     }
 }

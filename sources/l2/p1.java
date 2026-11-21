@@ -2,20 +2,20 @@ package l2;
 
 import a8.la;
 public final class p1 {
-    public static final p1 f19524c;
+    public static final p1 f19552c;
     public static final p1 d;
-    public static final p1 f19525e;
-    public static final p1 f19526f;
-    public final long f19527a;
-    public final long f19528b;
+    public static final p1 f19553e;
+    public static final p1 f19554f;
+    public final long f19555a;
+    public final long f19556b;
 
     static {
         p1 p1Var = new p1(0L, 0L);
-        f19524c = p1Var;
+        f19552c = p1Var;
         d = new p1(Long.MAX_VALUE, Long.MAX_VALUE);
-        f19525e = new p1(Long.MAX_VALUE, 0L);
+        f19553e = new p1(Long.MAX_VALUE, 0L);
         new p1(0L, Long.MAX_VALUE);
-        f19526f = p1Var;
+        f19554f = p1Var;
     }
 
     public p1(long j3, long j10) {
@@ -27,8 +27,8 @@ public final class p1 {
         }
         la.f(z10);
         la.f(j10 >= 0);
-        this.f19527a = j3;
-        this.f19528b = j10;
+        this.f19555a = j3;
+        this.f19556b = j10;
     }
 
     public final long a(long r17, long r19, long r21) {
@@ -41,7 +41,7 @@ public final class p1 {
         }
         if (obj != null && p1.class == obj.getClass()) {
             p1 p1Var = (p1) obj;
-            if (this.f19527a == p1Var.f19527a && this.f19528b == p1Var.f19528b) {
+            if (this.f19555a == p1Var.f19555a && this.f19556b == p1Var.f19556b) {
                 return true;
             }
         }
@@ -49,6 +49,6 @@ public final class p1 {
     }
 
     public final int hashCode() {
-        return (((int) this.f19527a) * 31) + ((int) this.f19528b);
+        return (((int) this.f19555a) * 31) + ((int) this.f19556b);
     }
 }

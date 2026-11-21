@@ -1,22 +1,25 @@
 package org.telegram.ui.Components;
-public final class dt implements org.telegram.messenger.p10 {
-    public final int f34500a;
-    public final Object f34501b;
 
-    public dt(Object obj, int i7) {
-        this.f34500a = i7;
-        this.f34501b = obj;
-    }
+import android.os.Build;
+import android.widget.EdgeEffect;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class dt extends v4.m0 {
+    public final ct[] f34572a = new ct[4];
+    public final ArrayList f34573b = new ArrayList();
 
     @Override
-    public final Object run() {
-        switch (this.f34500a) {
-            case 0:
-                return Boolean.valueOf(((EditTextBoldCursor) this.f34501b).w());
-            case 1:
-                return ((t30) this.f34501b).getCloseIntoObject();
-            default:
-                return Boolean.valueOf(((mt) this.f34501b).w());
+    public final EdgeEffect a(RecyclerView recyclerView, int i7) {
+        ct ctVar = new ct(recyclerView, i7, new at(this, 0));
+        this.f34572a[i7] = ctVar;
+        return ctVar;
+    }
+
+    public final float b(int i7) {
+        ct ctVar = this.f34572a[i7];
+        if (Build.VERSION.SDK_INT >= 31 && ctVar != null && !ctVar.isFinished()) {
+            return ctVar.getDistance();
         }
+        return 0.0f;
     }
 }

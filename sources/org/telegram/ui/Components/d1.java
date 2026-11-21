@@ -1,47 +1,30 @@
 package org.telegram.ui.Components;
-public final class d1 implements org.telegram.ui.ActionBar.r1 {
-    public final int f34237a;
-    public final Runnable f34238b;
 
-    public d1(int i7, Runnable runnable) {
-        this.f34237a = i7;
-        this.f34238b = runnable;
+import android.content.DialogInterface;
+public final class d1 implements DialogInterface.OnShowListener {
+    public final int f34348a;
+    public final b5 f34349b;
+
+    public d1(int i7, b5 b5Var) {
+        this.f34348a = i7;
+        this.f34349b = b5Var;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f34237a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f34348a) {
             case 0:
-                Runnable runnable = this.f34238b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                b5 b5Var = this.f34349b;
+                b5Var.requestFocus();
+                org.telegram.messenger.g0.I3(b5Var);
                 return;
             case 1:
-                Runnable runnable2 = this.f34238b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-            case 2:
-                this.f34238b.run();
-                return;
-            case 3:
-                this.f34238b.run();
-                return;
-            case 4:
-                this.f34238b.run();
-                u1Var.dismiss();
+                b5 b5Var2 = this.f34349b;
+                b5Var2.requestFocus();
+                org.telegram.messenger.g0.I3(b5Var2);
                 return;
             default:
-                u1Var.dismiss();
-                Runnable runnable3 = this.f34238b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
-                }
+                org.telegram.messenger.g0.g3(new og(this.f34349b, 2));
                 return;
         }
     }

@@ -13,38 +13,38 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.uv;
 public final class v implements Runnable {
-    public final int f58926a;
-    public final l0 f58927b;
+    public final int f58963a;
+    public final k0 f58964b;
 
-    public v(l0 l0Var, int i7) {
-        this.f58926a = i7;
-        this.f58927b = l0Var;
+    public v(k0 k0Var, int i7) {
+        this.f58963a = i7;
+        this.f58964b = k0Var;
     }
 
     @Override
     public final void run() {
         String G;
-        int i7 = this.f58926a;
-        l0 l0Var = this.f58927b;
+        int i7 = this.f58963a;
+        k0 k0Var = this.f58964b;
         switch (i7) {
             case 0:
                 if (LaunchActivity.Q() != null) {
                     ?? obj = new Object();
-                    obj.f28921a = true;
-                    l0Var.G2.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
+                    obj.f28902a = true;
+                    k0Var.G2.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 1:
-                l0Var.f58747t2.g(l0Var.X1, false);
-                l0Var.u1();
+                k0Var.f58782t2.g(k0Var.X1, false);
+                k0Var.u1();
                 return;
             case 2:
-                HashSet hashSet = l0Var.f58748u2;
+                HashSet hashSet = k0Var.f58783u2;
                 lc Y = lc.Y();
                 if (Y != null) {
                     if (hashSet.size() == 1) {
-                        G = gd.a0(null, null, 2131748951, i5.p((TLRPC.User) hashSet.iterator().next()));
+                        G = gd.a0(null, null, 2131748950, i5.p((TLRPC.User) hashSet.iterator().next()));
                     } else {
                         G = gd.G(hashSet.size(), "InviteLinkSent", Integer.valueOf(hashSet.size()));
                     }
@@ -53,20 +53,20 @@ public final class v implements Runnable {
                 }
                 return;
             case 3:
-                hi.d dVar = l0Var.O2;
-                TLRPC.ChatFull P0 = mp.u1(l0Var.f30187a).P0(-l0Var.W1);
-                dVar.c(Math.max(P0.boosts_unrestrict - P0.boosts_applied, 0), false);
+                hi.e eVar = k0Var.O2;
+                TLRPC.ChatFull P0 = mp.u1(k0Var.f30170a).P0(-k0Var.W1);
+                eVar.c(Math.max(P0.boosts_unrestrict - P0.boosts_applied, 0), false);
                 return;
             default:
-                if (v3.N(l0Var.o1())) {
-                    if (l0Var.A2.getParent() != null) {
-                        ((ViewGroup) l0Var.A2.getParent()).removeView(l0Var.A2);
+                if (v3.N(k0Var.o1())) {
+                    if (k0Var.A2.getParent() != null) {
+                        ((ViewGroup) k0Var.A2.getParent()).removeView(k0Var.A2);
                     }
-                    uv uvVar = l0Var.H2;
+                    uv uvVar = k0Var.H2;
                     if (uvVar != null && uvVar.getParent() != null) {
-                        ((ViewGroup) l0Var.H2.getParent()).removeView(l0Var.H2);
+                        ((ViewGroup) k0Var.H2.getParent()).removeView(k0Var.H2);
                     }
-                    l0Var.f39534o1.setPadding(0, 0, 0, 0);
+                    k0Var.f39539o1.setPadding(0, 0, 0, 0);
                     return;
                 }
                 return;

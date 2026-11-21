@@ -30,7 +30,7 @@ public abstract class v0 {
         }
         boolean z10 = true;
         int i10 = ((int) ((j3 ^ j10) >> 63)) | 1;
-        switch (j9.e.f17338a[roundingMode.ordinal()]) {
+        switch (j9.e.f17363a[roundingMode.ordinal()]) {
             case 1:
                 if (i7 != 0) {
                     z10 = false;

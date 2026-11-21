@@ -5,14 +5,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class w40 implements Runnable {
-    public final int f52922a;
-    public final x40 f52923b;
-    public final String f52924c;
+    public final int f52968a;
+    public final x40 f52969b;
+    public final String f52970c;
 
     public w40(x40 x40Var, String str, int i7) {
-        this.f52922a = i7;
-        this.f52923b = x40Var;
-        this.f52924c = str;
+        this.f52968a = i7;
+        this.f52969b = x40Var;
+        this.f52970c = str;
     }
 
     @Override
@@ -25,17 +25,17 @@ public final class w40 implements Runnable {
         boolean z11;
         char c10;
         Object obj;
-        switch (this.f52922a) {
+        switch (this.f52968a) {
             case 0:
-                x40 x40Var = this.f52923b;
-                String str2 = this.f52924c;
+                x40 x40Var = this.f52969b;
+                String str2 = this.f52970c;
                 x40Var.getClass();
                 org.telegram.messenger.g0.g3(new w40(x40Var, str2, 1));
                 return;
             case 1:
-                x40 x40Var2 = this.f52923b;
-                String str3 = this.f52924c;
-                jg.z1 z1Var = x40Var2.f53557f;
+                x40 x40Var2 = this.f52969b;
+                String str3 = this.f52970c;
+                jg.z1 z1Var = x40Var2.f53598f;
                 z40 z40Var = x40Var2.J;
                 if (!z40Var.P && !z40Var.Q) {
                     z10 = false;
@@ -43,15 +43,15 @@ public final class w40 implements Runnable {
                     z10 = true;
                 }
                 z1Var.g(str3, true, z10, true, false, 0L, false, 0, 0);
-                org.telegram.messenger.q5 q5Var = Utilities.f22781g;
+                org.telegram.messenger.q5 q5Var = Utilities.f22809g;
                 w40 w40Var = new w40(x40Var2, str3, 2);
                 x40Var2.h = w40Var;
                 q5Var.c(w40Var);
                 return;
             default:
-                x40 x40Var3 = this.f52923b;
-                String str4 = this.f52924c;
-                ArrayList arrayList2 = x40Var3.f53559r;
+                x40 x40Var3 = this.f52969b;
+                String str4 = this.f52970c;
+                ArrayList arrayList2 = x40Var3.f53600r;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     org.telegram.messenger.g0.g3(new up(x40Var3, new ArrayList(), new ArrayList(), 10));
@@ -59,9 +59,9 @@ public final class w40 implements Runnable {
                 }
                 boolean z12 = true;
                 ?? r62 = 0;
-                String S0 = org.telegram.messenger.gd.E0().S0(lowerCase, true, false);
-                S0 = (lowerCase.equals(S0) || S0.isEmpty()) ? null : null;
-                if (S0 != null) {
+                String T0 = org.telegram.messenger.gd.E0().T0(lowerCase, true, false);
+                T0 = (lowerCase.equals(T0) || T0.isEmpty()) ? null : null;
+                if (T0 != null) {
                     i7 = 1;
                 } else {
                     i7 = 0;
@@ -69,8 +69,8 @@ public final class w40 implements Runnable {
                 int i10 = i7 + 1;
                 String[] strArr = new String[i10];
                 strArr[0] = lowerCase;
-                if (S0 != null) {
-                    strArr[1] = S0;
+                if (T0 != null) {
+                    strArr[1] = T0;
                 }
                 ArrayList arrayList3 = new ArrayList();
                 ArrayList arrayList4 = new ArrayList();
@@ -95,14 +95,14 @@ public final class w40 implements Runnable {
                         arrayList2 = arrayList;
                         r62 = 0;
                     }
-                    String S02 = org.telegram.messenger.gd.E0().S0(str, z12, r62);
-                    if (str.equals(S02)) {
-                        S02 = null;
+                    String T02 = org.telegram.messenger.gd.E0().T0(str, z12, r62);
+                    if (str.equals(T02)) {
+                        T02 = null;
                     }
                     char c11 = r62;
                     for (int i12 = r62; i12 < i10; i12++) {
                         String str5 = strArr[i12];
-                        if (!str.startsWith(str5) && !i5.c.B(" ", str5, str) && (S02 == null || (!S02.startsWith(str5) && !i5.c.B(" ", str5, S02)))) {
+                        if (!str.startsWith(str5) && !i5.c.B(" ", str5, str) && (T02 == null || (!T02.startsWith(str5) && !i5.c.B(" ", str5, T02)))) {
                             if (K != null && K.startsWith(str5)) {
                                 c11 = 2;
                             }

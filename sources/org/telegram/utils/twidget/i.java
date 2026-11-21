@@ -41,47 +41,47 @@ public final class i {
     public boolean V;
     public volatile long W;
     public long X;
-    public final Paint f54762a = new Paint(3);
-    public final Paint f54763b = new Paint(1);
-    public final Paint f54764c = new Paint();
+    public final Paint f54803a = new Paint(3);
+    public final Paint f54804b = new Paint(1);
+    public final Paint f54805c = new Paint();
     public final Paint d;
-    public final Path f54765e;
-    public final Path f54766f;
-    public final Matrix f54767g;
+    public final Path f54806e;
+    public final Path f54807f;
+    public final Matrix f54808g;
     public final Matrix h;
-    public final float[] f54768i;
-    public final float[] f54769j;
-    public final float[] f54770k;
-    public final RectF f54771l;
-    public final Rect f54772m;
-    public final int f54773n;
-    public Bitmap f54774o;
-    public Bitmap f54775p;
-    public Canvas f54776q;
-    public int f54777r;
-    public int f54778s;
-    public int[] f54779t;
-    public int f54780u;
+    public final float[] f54809i;
+    public final float[] f54810j;
+    public final float[] f54811k;
+    public final RectF f54812l;
+    public final Rect f54813m;
+    public final int f54814n;
+    public Bitmap f54815o;
+    public Bitmap f54816p;
+    public Canvas f54817q;
+    public int f54818r;
+    public int f54819s;
+    public int[] f54820t;
+    public int f54821u;
     public int v;
-    public int f54781w;
-    public int f54782x;
-    public int f54783y;
-    public int f54784z;
+    public int f54822w;
+    public int f54823x;
+    public int f54824y;
+    public int f54825z;
 
     public i(int i7) {
         Paint paint = new Paint();
         this.d = paint;
-        this.f54765e = new Path();
-        this.f54766f = new Path();
-        this.f54767g = new Matrix();
+        this.f54806e = new Path();
+        this.f54807f = new Path();
+        this.f54808g = new Matrix();
         this.h = new Matrix();
-        this.f54768i = new float[9];
-        this.f54769j = new float[6];
-        this.f54770k = new float[8];
-        this.f54771l = new RectF();
-        this.f54772m = new Rect();
-        this.f54778s = -1;
-        this.f54773n = i7;
+        this.f54809i = new float[9];
+        this.f54810j = new float[6];
+        this.f54811k = new float[8];
+        this.f54812l = new RectF();
+        this.f54813m = new Rect();
+        this.f54819s = -1;
+        this.f54814n = i7;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
@@ -91,11 +91,11 @@ public final class i {
 
     public final void a(Paint paint) {
         int[] iArr;
-        if (this.f54782x != 0 && (iArr = this.E) != null) {
+        if (this.f54823x != 0 && (iArr = this.E) != null) {
             float[] fArr = this.F;
             paint.setColor(-16777216);
-            int i7 = this.f54782x;
-            float[] fArr2 = this.f54769j;
+            int i7 = this.f54823x;
+            float[] fArr2 = this.f54810j;
             if (i7 == 1) {
                 paint.setShader(new LinearGradient(fArr2[0], fArr2[1], fArr2[2], fArr2[3], iArr, fArr, Shader.TileMode.CLAMP));
                 return;
@@ -122,7 +122,7 @@ public final class i {
             }
         }
         paint.setShader(null);
-        paint.setColor(this.f54783y);
+        paint.setColor(this.f54824y);
     }
 
     public final void c(android.graphics.Canvas r24, org.telegram.utils.twidget.h r25) {
@@ -176,34 +176,34 @@ public final class i {
     }
 
     public final void e(int i7) {
-        if (i7 >= 0 && i7 <= this.f54779t.length - this.f54780u) {
+        if (i7 >= 0 && i7 <= this.f54820t.length - this.f54821u) {
             return;
         }
         throw new IllegalArgumentException("Canvas batch: count");
     }
 
     public final float f() {
-        int[] iArr = this.f54779t;
-        int i7 = this.f54780u;
-        this.f54780u = i7 + 1;
+        int[] iArr = this.f54820t;
+        int i7 = this.f54821u;
+        this.f54821u = i7 + 1;
         return Float.intBitsToFloat(iArr[i7]);
     }
 
     public final void g(Path path, boolean z10) {
         int i7;
         path.rewind();
-        int[] iArr = this.f54779t;
-        int i10 = this.f54780u;
+        int[] iArr = this.f54820t;
+        int i10 = this.f54821u;
         int i11 = i10 + 1;
-        this.f54780u = i11;
+        this.f54821u = i11;
         int i12 = iArr[i10];
-        this.f54780u = i10 + 2;
+        this.f54821u = i10 + 2;
         int i13 = iArr[i11];
         e(i12);
         if (i13 >= 0) {
-            int[] iArr2 = this.f54779t;
+            int[] iArr2 = this.f54820t;
             int length = iArr2.length;
-            int i14 = this.f54780u;
+            int i14 = this.f54821u;
             if (i13 <= (length - i14) - i12) {
                 int i15 = i14 + i12;
                 int i16 = i15 + i13;
@@ -248,7 +248,7 @@ public final class i {
                         throw new IllegalArgumentException("Canvas batch: path");
                     }
                 }
-                this.f54780u = i12 + i13 + this.f54780u;
+                this.f54821u = i12 + i13 + this.f54821u;
                 if (z10) {
                     path.setFillType(Path.FillType.WINDING);
                     return;
@@ -265,13 +265,13 @@ public final class i {
 
     public final synchronized void i() {
         try {
-            Bitmap bitmap = this.f54774o;
+            Bitmap bitmap = this.f54815o;
             if (bitmap != null) {
                 bitmap.recycle();
             }
-            this.f54774o = null;
-            this.f54776q = null;
-            this.f54775p = null;
+            this.f54815o = null;
+            this.f54817q = null;
+            this.f54816p = null;
         } catch (Throwable th2) {
             throw th2;
         }
@@ -279,18 +279,18 @@ public final class i {
 
     public final synchronized Bitmap j() {
         try {
-            Bitmap bitmap = this.f54774o;
+            Bitmap bitmap = this.f54815o;
             if (bitmap == null) {
                 return null;
             }
-            if (this.f54778s == this.f54777r) {
-                if (this.f54775p == null) {
+            if (this.f54819s == this.f54818r) {
+                if (this.f54816p == null) {
                 }
-                return this.f54775p;
+                return this.f54816p;
             }
-            this.f54775p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
-            this.f54778s = this.f54777r;
-            return this.f54775p;
+            this.f54816p = bitmap.copy(Bitmap.Config.ARGB_8888, false);
+            this.f54819s = this.f54818r;
+            return this.f54816p;
         } catch (Throwable th2) {
             throw th2;
         }

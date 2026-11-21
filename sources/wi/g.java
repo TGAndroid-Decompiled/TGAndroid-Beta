@@ -6,17 +6,17 @@ import android.view.WindowManager;
 import fi.u2;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gd;
-import org.telegram.ui.Components.m10;
-import org.telegram.ui.Components.x51;
-public final class g extends m10 {
-    public float f59943a;
-    public float f59944b;
-    public final int f59945c;
+import org.telegram.ui.Components.a61;
+import org.telegram.ui.Components.p10;
+public final class g extends p10 {
+    public float f59984a;
+    public float f59985b;
+    public final int f59986c;
     public final h d;
 
     public g(h hVar, int i7) {
         this.d = hVar;
-        this.f59945c = i7;
+        this.f59986c = i7;
     }
 
     @Override
@@ -33,10 +33,10 @@ public final class g extends m10 {
         boolean z10;
         int i7;
         h hVar = this.d;
-        x51 x51Var = hVar.F;
-        l lVar = hVar.f59947b;
+        a61 a61Var = hVar.F;
+        l lVar = hVar.f59988b;
         if (hVar.b() && hVar.c()) {
-            if (motionEvent.getX() >= hVar.f59966x * 0.5f) {
+            if (motionEvent.getX() >= hVar.f60007x * 0.5f) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -58,27 +58,27 @@ public final class g extends m10 {
                 return true;
             }
             if (l10 != j3) {
-                x51Var.e(true);
-                x51Var.d(!z10);
-                long j10 = x51Var.f41920o + 10000;
-                x51Var.f41920o = j10;
-                x51Var.f41921p = gd.G((int) (j10 / 1000), "Seconds", new Object[0]);
+                a61Var.e(true);
+                a61Var.d(!z10);
+                long j10 = a61Var.f33346o + 10000;
+                a61Var.f33346o = j10;
+                a61Var.f33347p = gd.G((int) (j10 / 1000), "Seconds", new Object[0]);
                 lVar.c(j3);
-                x51Var.g(0L);
+                a61Var.g(0L);
                 hVar.I = ((float) j3) / ((float) duration);
-                u2 u2Var = hVar.f59958o;
+                u2 u2Var = hVar.f59999o;
                 if (u2Var != null) {
                     u2Var.invalidate();
                 }
-                d dVar = hVar.f59956m;
+                d dVar = hVar.f59997m;
                 if (dVar != null) {
                     dVar.invalidate();
                 }
-                if (!hVar.f59964u) {
-                    hVar.f59964u = true;
+                if (!hVar.f60005u) {
+                    hVar.f60005u = true;
                     hVar.o(true);
-                    if (!hVar.f59965w) {
-                        hVar.f59965w = true;
+                    if (!hVar.f60006w) {
+                        hVar.f60006w = true;
                         g0.h3(hVar.P, 2500L);
                     }
                 }
@@ -91,37 +91,37 @@ public final class g extends m10 {
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
         h hVar = this.d;
-        if (hVar.f59964u) {
-            for (int i7 = 1; i7 < hVar.f59952i.getChildCount(); i7++) {
-                View childAt = hVar.f59952i.getChildAt(i7);
+        if (hVar.f60005u) {
+            for (int i7 = 1; i7 < hVar.f59993i.getChildCount(); i7++) {
+                View childAt = hVar.f59993i.getChildAt(i7);
                 if (childAt.dispatchTouchEvent(motionEvent)) {
-                    hVar.f59963t = childAt;
+                    hVar.f60004t = childAt;
                     return true;
                 }
             }
         }
-        this.f59943a = hVar.B;
-        this.f59944b = hVar.C;
+        this.f59984a = hVar.B;
+        this.f59985b = hVar.C;
         return true;
     }
 
     @Override
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
         h hVar = this.d;
-        if (hVar.f59961r && !hVar.f59962s) {
+        if (hVar.f60002r && !hVar.f60003s) {
             r1.g gVar = hVar.D;
-            gVar.f56313a = f10;
+            gVar.f56354a = f10;
             float f12 = hVar.B;
-            gVar.f56314b = f12;
-            gVar.f56315c = true;
-            gVar.f56323m.f56331i = h.n((f10 / 7.0f) + f12, hVar.f59966x);
+            gVar.f56355b = f12;
+            gVar.f56356c = true;
+            gVar.f56364m.f56372i = h.n((f10 / 7.0f) + f12, hVar.f60007x);
             hVar.D.h();
             r1.g gVar2 = hVar.E;
-            gVar2.f56313a = f11;
+            gVar2.f56354a = f11;
             float f13 = hVar.C;
-            gVar2.f56314b = f13;
-            gVar2.f56315c = true;
-            gVar2.f56323m.f56331i = h.e((f11 / 10.0f) + f13, hVar.f59967y);
+            gVar2.f56355b = f13;
+            gVar2.f56356c = true;
+            gVar2.f56364m.f56372i = h.e((f11 / 10.0f) + f13, hVar.f60008y);
             hVar.E.h();
             return true;
         }
@@ -131,26 +131,26 @@ public final class g extends m10 {
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
         h hVar = this.d;
-        WindowManager.LayoutParams layoutParams = hVar.f59949e;
-        if (!hVar.f59961r && hVar.v == null && !hVar.f59962s) {
+        WindowManager.LayoutParams layoutParams = hVar.f59990e;
+        if (!hVar.f60002r && hVar.v == null && !hVar.f60003s) {
             float abs = Math.abs(f10);
-            float f12 = this.f59945c;
+            float f12 = this.f59986c;
             if (abs >= f12 || Math.abs(f11) >= f12) {
-                hVar.f59961r = true;
+                hVar.f60002r = true;
                 hVar.D.d();
                 hVar.E.d();
                 hVar.L = false;
-                hVar.f59947b.H();
+                hVar.f59988b.H();
                 g0.r(hVar.N);
             }
         }
-        if (hVar.f59961r && motionEvent != null) {
-            float rawX = (motionEvent2.getRawX() + this.f59943a) - motionEvent.getRawX();
-            float rawY = (motionEvent2.getRawY() + this.f59944b) - motionEvent.getRawY();
+        if (hVar.f60002r && motionEvent != null) {
+            float rawX = (motionEvent2.getRawX() + this.f59984a) - motionEvent.getRawX();
+            float rawY = (motionEvent2.getRawY() + this.f59985b) - motionEvent.getRawY();
             hVar.C = rawY;
             r1.g gVar = hVar.D;
-            if (gVar.f56317f) {
-                gVar.f56323m.f56331i = rawX;
+            if (gVar.f56358f) {
+                gVar.f56364m.f56372i = rawX;
             } else {
                 hVar.B = rawX;
                 layoutParams.x = (int) rawX;
@@ -166,16 +166,16 @@ public final class g extends m10 {
         h hVar = this.d;
         e eVar = hVar.P;
         if (hVar.v == null) {
-            if (hVar.f59965w) {
+            if (hVar.f60006w) {
                 g0.r(eVar);
-                hVar.f59965w = false;
+                hVar.f60006w = false;
             }
-            boolean z10 = !hVar.f59964u;
-            hVar.f59964u = z10;
+            boolean z10 = !hVar.f60005u;
+            hVar.f60005u = z10;
             hVar.o(z10);
-            if (hVar.f59964u) {
+            if (hVar.f60005u) {
                 g0.h3(eVar, 2500L);
-                hVar.f59965w = true;
+                hVar.f60006w = true;
             }
         }
         return true;

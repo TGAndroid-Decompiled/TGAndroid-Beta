@@ -2,7 +2,7 @@ package ch;
 
 import java.util.Comparator;
 public final class m0 implements Comparator {
-    public long f5424a;
+    public long f5453a;
 
     @Override
     public final int compare(Object obj, Object obj2) {
@@ -12,9 +12,9 @@ public final class m0 implements Comparator {
         int i12;
         n0 n0Var = (n0) obj;
         n0 n0Var2 = (n0) obj2;
-        if (this.f5424a >= 0) {
-            boolean z10 = n0Var.f5442l;
-            if (z10 != n0Var2.f5442l) {
+        if (this.f5453a >= 0) {
+            boolean z10 = n0Var.f5471l;
+            if (z10 != n0Var2.f5471l) {
                 if (z10) {
                     return -1;
                 }
@@ -26,27 +26,27 @@ public final class m0 implements Comparator {
                     return -1;
                 }
                 return 1;
-            } else if (z11 && (i11 = n0Var.f5440j) != (i12 = n0Var2.f5440j)) {
+            } else if (z11 && (i11 = n0Var.f5469j) != (i12 = n0Var2.f5469j)) {
                 return i11 - i12;
             } else {
-                i7 = n0Var.f5427a.lastDrawnPosition;
-                i10 = n0Var2.f5427a.lastDrawnPosition;
+                i7 = n0Var.f5456a.lastDrawnPosition;
+                i10 = n0Var2.f5456a.lastDrawnPosition;
             }
         } else {
-            boolean z12 = n0Var.f5442l;
-            if (z12 != n0Var2.f5442l) {
+            boolean z12 = n0Var.f5471l;
+            if (z12 != n0Var2.f5471l) {
                 if (z12) {
                     return -1;
                 }
                 return 1;
             }
-            int i13 = n0Var.f5439i;
-            int i14 = n0Var2.f5439i;
+            int i13 = n0Var.f5468i;
+            int i14 = n0Var2.f5468i;
             if (i13 != i14) {
                 return i14 - i13;
             }
-            i7 = n0Var.f5427a.lastDrawnPosition;
-            i10 = n0Var2.f5427a.lastDrawnPosition;
+            i7 = n0Var.f5456a.lastDrawnPosition;
+            i10 = n0Var2.f5456a.lastDrawnPosition;
         }
         return i7 - i10;
     }

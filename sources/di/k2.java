@@ -1,37 +1,84 @@
 package di;
 
+import java.util.ArrayList;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.voip.GroupCallMessage;
+import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.messenger.x10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class k2 implements Runnable {
-    public final int f9138a = 0;
-    public final long f9139b;
-    public final long f9140c;
-    public final x10 d;
-    public final Object f9141e;
-    public final Object f9142f;
-    public final Object h;
+import org.telegram.tgnet.tl.TL_stars;
+public final class k2 implements RequestDelegate {
+    public final int f9161a = 0;
+    public final long f9162b;
+    public final long f9163c;
+    public final Object d;
+    public final Object f9164e;
+    public final Object f9165f;
 
-    public k2(f6 f6Var, x10 x10Var, TLRPC.TL_error tL_error, TLObject tLObject, long j3, long j10) {
-        this.f9141e = f6Var;
-        this.d = x10Var;
-        this.f9142f = tL_error;
-        this.h = tLObject;
-        this.f9139b = j3;
-        this.f9140c = j10;
+    public k2(f6 f6Var, TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer, long j3, long j10, x10 x10Var) {
+        this.d = f6Var;
+        this.f9164e = tL_inputInvoiceStarGiftTransfer;
+        this.f9162b = j3;
+        this.f9163c = j10;
+        this.f9165f = x10Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: di.k2.run():void");
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f9161a) {
+            case 0:
+                final f6 f6Var = (f6) this.d;
+                final TLRPC.TL_inputInvoiceStarGiftTransfer tL_inputInvoiceStarGiftTransfer = (TLRPC.TL_inputInvoiceStarGiftTransfer) this.f9164e;
+                final x10 x10Var = (x10) this.f9165f;
+                final long j3 = this.f9162b;
+                final long j10 = this.f9163c;
+                org.telegram.messenger.g0.g3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        TLObject tLObject2 = tLObject;
+                        boolean z10 = tLObject2 instanceof TLRPC.PaymentForm;
+                        f6 f6Var2 = f6.this;
+                        x10 x10Var2 = x10Var;
+                        if (z10) {
+                            TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject2;
+                            int i7 = 0;
+                            mp.u1(f6Var2.f30170a).f4(paymentForm.users, false);
+                            TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
+                            tL_payments_sendStarsForm.form_id = paymentForm.form_id;
+                            tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftTransfer;
+                            ArrayList<TLRPC.TL_labeledPrice> arrayList = paymentForm.invoice.prices;
+                            int size = arrayList.size();
+                            long j11 = 0;
+                            while (i7 < size) {
+                                TLRPC.TL_labeledPrice tL_labeledPrice = arrayList.get(i7);
+                                i7++;
+                                j11 += tL_labeledPrice.amount;
+                            }
+                            ConnectionsManager.getInstance(f6Var2.f30170a).sendRequest(tL_payments_sendStarsForm, new h2(f6Var2, j3, j10, x10Var2, j11));
+                            return;
+                        }
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        x10Var2.a(tL_error2);
+                        org.telegram.ui.Components.gc Z = f6Var2.k().Z(tL_error2);
+                        Z.f35518t = true;
+                        Z.j();
+                    }
+                });
+                return;
+            default:
+                ((GroupCallMessagesController) this.d).lambda$sendCallMessage$6((org.telegram.messenger.voip.f) this.f9164e, (GroupCallMessage) this.f9165f, this.f9162b, this.f9163c, tLObject, tL_error);
+                return;
+        }
     }
 
-    public k2(org.telegram.ui.Wallet.z0 z0Var, String str, org.telegram.ui.Wallet.r0 r0Var, long j3, long j10, x10 x10Var) {
-        this.f9141e = z0Var;
-        this.f9142f = str;
-        this.h = r0Var;
-        this.f9139b = j3;
-        this.f9140c = j10;
-        this.d = x10Var;
+    public k2(GroupCallMessagesController groupCallMessagesController, org.telegram.messenger.voip.f fVar, GroupCallMessage groupCallMessage, long j3, long j10) {
+        this.d = groupCallMessagesController;
+        this.f9164e = fVar;
+        this.f9165f = groupCallMessage;
+        this.f9162b = j3;
+        this.f9163c = j10;
     }
 }

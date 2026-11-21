@@ -17,33 +17,33 @@ import java.util.WeakHashMap;
 import m.v0;
 import m.w0;
 public class j0 {
-    public int f13769a;
-    public int f13770b;
-    public Object f13771c;
+    public int f13798a;
+    public int f13799b;
+    public Object f13800c;
     public Object d;
 
     public j0(int[] iArr) {
-        SecureRandom secureRandom = rc.k.f56517a;
+        SecureRandom secureRandom = rc.k.f56558a;
         int i7 = Integer.MAX_VALUE;
         for (int i10 : iArr) {
             if (i10 < i7) {
                 i7 = i10;
             }
         }
-        this.f13769a = Math.max(i7, 1);
+        this.f13798a = Math.max(i7, 1);
         int i11 = Integer.MIN_VALUE;
         for (int i12 : iArr) {
             if (i11 < i12) {
                 i11 = i12;
             }
         }
-        this.f13770b = i11;
+        this.f13799b = i11;
         int i13 = i11 + 1;
         int[] iArr2 = new int[i13];
         for (int i14 : iArr) {
             iArr2[i14] = iArr2[i14] + 1;
         }
-        int i15 = this.f13770b + 1;
+        int i15 = this.f13799b + 1;
         int[] iArr3 = new int[i15];
         for (int i16 = 0; i16 < i15; i16++) {
             iArr3[i16] = -1;
@@ -59,7 +59,7 @@ public class j0 {
             iArr3[i19] = i17;
         }
         Object[] objArr = {iArr4, Integer.valueOf(i17)};
-        this.f13771c = iArr3;
+        this.f13800c = iArr3;
         int[] iArr5 = (int[]) objArr[0];
         int[] iArr6 = new int[((Integer) objArr[1]).intValue() + 1];
         for (int i20 = 0; i20 < iArr.length; i20++) {
@@ -74,20 +74,20 @@ public class j0 {
     }
 
     public synchronized void a(Object obj, long j3) {
-        int i7 = this.f13770b;
+        int i7 = this.f13799b;
         if (i7 > 0) {
-            if (j3 <= ((long[]) this.f13771c)[((this.f13769a + i7) - 1) % ((Object[]) this.d).length]) {
+            if (j3 <= ((long[]) this.f13800c)[((this.f13798a + i7) - 1) % ((Object[]) this.d).length]) {
                 c();
             }
         }
         d();
-        int i10 = this.f13769a;
-        int i11 = this.f13770b;
+        int i10 = this.f13798a;
+        int i11 = this.f13799b;
         Object[] objArr = (Object[]) this.d;
         int length = (i10 + i11) % objArr.length;
-        ((long[]) this.f13771c)[length] = j3;
+        ((long[]) this.f13800c)[length] = j3;
         objArr[length] = obj;
-        this.f13770b = i11 + 1;
+        this.f13799b = i11 + 1;
     }
 
     public void b() {
@@ -95,38 +95,38 @@ public class j0 {
     }
 
     public synchronized void c() {
-        this.f13769a = 0;
-        this.f13770b = 0;
+        this.f13798a = 0;
+        this.f13799b = 0;
         Arrays.fill((Object[]) this.d, (Object) null);
     }
 
     public void d() {
         int length = ((Object[]) this.d).length;
-        if (this.f13770b < length) {
+        if (this.f13799b < length) {
             return;
         }
         int i7 = length * 2;
         long[] jArr = new long[i7];
         Object[] objArr = new Object[i7];
-        int i10 = this.f13769a;
+        int i10 = this.f13798a;
         int i11 = length - i10;
-        System.arraycopy((long[]) this.f13771c, i10, jArr, 0, i11);
-        System.arraycopy((Object[]) this.d, this.f13769a, objArr, 0, i11);
-        int i12 = this.f13769a;
+        System.arraycopy((long[]) this.f13800c, i10, jArr, 0, i11);
+        System.arraycopy((Object[]) this.d, this.f13798a, objArr, 0, i11);
+        int i12 = this.f13798a;
         if (i12 > 0) {
-            System.arraycopy((long[]) this.f13771c, 0, jArr, i11, i12);
-            System.arraycopy((Object[]) this.d, 0, objArr, i11, this.f13769a);
+            System.arraycopy((long[]) this.f13800c, 0, jArr, i11, i12);
+            System.arraycopy((Object[]) this.d, 0, objArr, i11, this.f13798a);
         }
-        this.f13771c = jArr;
+        this.f13800c = jArr;
         this.d = objArr;
-        this.f13769a = 0;
+        this.f13798a = 0;
     }
 
     public Object f(String str) {
         if (str != null) {
             synchronized (this) {
                 try {
-                    Object obj = ((LinkedHashMap) this.f13771c).get(str);
+                    Object obj = ((LinkedHashMap) this.f13800c).get(str);
                     if (obj != null) {
                         return obj;
                     }
@@ -140,7 +140,7 @@ public class j0 {
     }
 
     public void g(String str) {
-        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f13771c;
+        LinkedHashMap linkedHashMap = (LinkedHashMap) this.f13800c;
         Object remove = linkedHashMap.remove(str);
         if (remove != null) {
             linkedHashMap.put(str, remove);
@@ -150,8 +150,8 @@ public class j0 {
     public void h(Typeface typeface) {
         int i7;
         boolean z10;
-        if (Build.VERSION.SDK_INT >= 28 && (i7 = this.f13769a) != -1) {
-            if ((this.f13770b & 2) != 0) {
+        if (Build.VERSION.SDK_INT >= 28 && (i7 = this.f13798a) != -1) {
+            if ((this.f13799b & 2) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -159,16 +159,16 @@ public class j0 {
             typeface = v0.a(typeface, i7, z10);
         }
         w0 w0Var = (w0) this.d;
-        WeakReference weakReference = (WeakReference) this.f13771c;
-        if (w0Var.f20236m) {
-            w0Var.f20235l = typeface;
+        WeakReference weakReference = (WeakReference) this.f13800c;
+        if (w0Var.f20264m) {
+            w0Var.f20263l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = r0.i0.f56244a;
+                WeakHashMap weakHashMap = r0.i0.f56285a;
                 if (textView.isAttachedToWindow()) {
-                    textView.post(new androidx.activity.g(textView, typeface, w0Var.f20233j, 4));
+                    textView.post(new androidx.activity.g(textView, typeface, w0Var.f20261j, 4));
                 } else {
-                    textView.setTypeface(typeface, w0Var.f20233j);
+                    textView.setTypeface(typeface, w0Var.f20261j);
                 }
             }
         }
@@ -176,7 +176,7 @@ public class j0 {
 
     public synchronized Object i() {
         Object k10;
-        if (this.f13770b == 0) {
+        if (this.f13799b == 0) {
             k10 = null;
         } else {
             k10 = k();
@@ -187,7 +187,7 @@ public class j0 {
     public synchronized Object j(long j3) {
         Object obj;
         obj = null;
-        while (this.f13770b > 0 && j3 - ((long[]) this.f13771c)[this.f13769a] >= 0) {
+        while (this.f13799b > 0 && j3 - ((long[]) this.f13800c)[this.f13798a] >= 0) {
             obj = k();
         }
         return obj;
@@ -195,18 +195,18 @@ public class j0 {
 
     public Object k() {
         boolean z10;
-        if (this.f13770b > 0) {
+        if (this.f13799b > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         la.p(z10);
         Object[] objArr = (Object[]) this.d;
-        int i7 = this.f13769a;
+        int i7 = this.f13798a;
         Object obj = objArr[i7];
         objArr[i7] = null;
-        this.f13769a = (i7 + 1) % objArr.length;
-        this.f13770b--;
+        this.f13798a = (i7 + 1) % objArr.length;
+        this.f13799b--;
         return obj;
     }
 
@@ -215,10 +215,10 @@ public class j0 {
         if (str != null && obj != null) {
             synchronized (this) {
                 try {
-                    this.f13769a += o(obj, str);
-                    put = ((LinkedHashMap) this.f13771c).put(str, obj);
+                    this.f13798a += o(obj, str);
+                    put = ((LinkedHashMap) this.f13800c).put(str, obj);
                     if (put != null) {
-                        this.f13769a -= o(put, str);
+                        this.f13798a -= o(put, str);
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -238,18 +238,18 @@ public class j0 {
             if (put != null) {
                 e(str, put, obj);
             }
-            r(this.f13770b, str);
+            r(this.f13799b, str);
             return put;
         }
         throw new NullPointerException("key == null || value == null");
     }
 
     public int m(b3.j jVar, int[] iArr) {
-        int i7 = this.f13769a;
+        int i7 = this.f13798a;
         while (true) {
             int i10 = 1;
-            if (i7 <= this.f13770b) {
-                int i11 = ((int[]) this.f13771c)[i7];
+            if (i7 <= this.f13799b) {
+                int i11 = ((int[]) this.f13800c)[i7];
                 if (i11 >= 0) {
                     int i12 = iArr[0];
                     int i13 = i7 - 1;
@@ -280,9 +280,9 @@ public class j0 {
         if (str != null) {
             synchronized (this) {
                 try {
-                    remove = ((LinkedHashMap) this.f13771c).remove(str);
+                    remove = ((LinkedHashMap) this.f13800c).remove(str);
                     if (remove != null) {
-                        this.f13769a -= o(remove, str);
+                        this.f13798a -= o(remove, str);
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -313,7 +313,7 @@ public class j0 {
     }
 
     public synchronized int p() {
-        return this.f13770b;
+        return this.f13799b;
     }
 
     public int q(Object obj) {
@@ -324,13 +324,13 @@ public class j0 {
         ArrayList arrayList;
         synchronized (this) {
             try {
-                Iterator it = ((LinkedHashMap) this.f13771c).entrySet().iterator();
-                while (it.hasNext() && this.f13769a > i7 && !((LinkedHashMap) this.f13771c).isEmpty()) {
+                Iterator it = ((LinkedHashMap) this.f13800c).entrySet().iterator();
+                while (it.hasNext() && this.f13798a > i7 && !((LinkedHashMap) this.f13800c).isEmpty()) {
                     Map.Entry entry = (Map.Entry) it.next();
                     String str2 = (String) entry.getKey();
                     if (str == null || !str.equals(str2)) {
                         Object value = entry.getValue();
-                        this.f13769a -= o(value, str2);
+                        this.f13798a -= o(value, str2);
                         it.remove();
                         String[] split = str2.split("@");
                         if (split.length > 1 && (arrayList = (ArrayList) ((LinkedHashMap) this.d).get(split[0])) != null) {
@@ -350,13 +350,13 @@ public class j0 {
     public j0(int i7, int i10) {
         switch (i10) {
             case 5:
-                this.f13771c = new z3.r[i7];
-                this.f13770b = 0;
+                this.f13800c = new z3.r[i7];
+                this.f13799b = 0;
                 return;
             default:
                 if (i7 > 0) {
-                    this.f13770b = i7;
-                    this.f13771c = new LinkedHashMap(0, 0.75f, true);
+                    this.f13799b = i7;
+                    this.f13800c = new LinkedHashMap(0, 0.75f, true);
                     this.d = new LinkedHashMap();
                     return;
                 }
@@ -365,7 +365,7 @@ public class j0 {
     }
 
     public j0() {
-        this.f13771c = new long[10];
+        this.f13800c = new long[10];
         this.d = new Object[10];
     }
 

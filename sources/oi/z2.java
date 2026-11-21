@@ -1,8 +1,8 @@
 package oi;
-public final class z2 implements b5 {
-    public final s3 f22548a;
+public final class z2 {
+    public final t3 f22588a;
 
-    public z2(s3 s3Var) {
-        this.f22548a = s3Var;
+    public z2(t3 t3Var) {
+        this.f22588a = t3Var;
     }
 }

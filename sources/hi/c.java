@@ -1,29 +1,17 @@
 package hi;
+public final class c implements Runnable {
+    public final int f14312a;
+    public final Object f14313b;
+    public final Object f14314c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class c extends AnimatorListenerAdapter {
-    public final int f14296a;
-    public final d f14297b;
-
-    public c(d dVar, int i7) {
-        this.f14296a = i7;
-        this.f14297b = dVar;
+    public c(int i7, Object obj, Object obj2) {
+        this.f14312a = i7;
+        this.f14313b = obj;
+        this.f14314c = obj2;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f14296a) {
-            case 0:
-                d dVar = this.f14297b;
-                dVar.N = false;
-                dVar.f14338e.t(null, false, true);
-                return;
-            default:
-                d dVar2 = this.f14297b;
-                dVar2.U = 1.0f;
-                dVar2.invalidate();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: hi.c.run():void");
     }
 }

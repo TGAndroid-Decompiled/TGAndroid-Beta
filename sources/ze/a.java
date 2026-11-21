@@ -3,16 +3,16 @@ package ze;
 import ab.c0;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
-import ug.n0;
+import ug.m0;
 public final class a {
-    public static final Hashtable f61911b;
-    public static final Object[] f61912c;
+    public static final Hashtable f61952b;
+    public static final Object[] f61953c;
     public static Class d;
-    public final ClassLoader f61913a;
+    public final ClassLoader f61954a;
 
     static {
         Hashtable hashtable = new Hashtable();
-        f61911b = hashtable;
+        f61952b = hashtable;
         hashtable.put("void", Void.TYPE);
         hashtable.put("boolean", Boolean.TYPE);
         hashtable.put("byte", Byte.TYPE);
@@ -22,18 +22,18 @@ public final class a {
         hashtable.put("long", Long.TYPE);
         hashtable.put("float", Float.TYPE);
         hashtable.put("double", Double.TYPE);
-        f61912c = new Object[0];
+        f61953c = new Object[0];
     }
 
     public a(Class cls, String str) {
-        this.f61913a = cls.getClassLoader();
+        this.f61954a = cls.getClassLoader();
     }
 
     public static Class a(ClassLoader classLoader, String str) {
         if (str.equals("*")) {
             return null;
         }
-        Class cls = (Class) f61911b.get(str);
+        Class cls = (Class) f61952b.get(str);
         if (cls != null) {
             return cls;
         }
@@ -57,16 +57,16 @@ public final class a {
     }
 
     public static c0 b(b bVar, Object obj, Object obj2) {
-        return new c0(bVar, obj, obj2, f61912c, false, 16);
+        return new c0(bVar, obj, obj2, f61953c, false, 16);
     }
 
     public static c0 c(b bVar, Object obj, Object obj2, Object obj3) {
         return new c0(bVar, obj, obj2, new Object[]{obj3}, false, 16);
     }
 
-    public final n0 d(String str, String str2, String str3, String str4, String str5) {
+    public final m0 d(String str, String str2, String str3, String str4, String str5) {
         int parseInt = Integer.parseInt("1", 16);
-        ClassLoader classLoader = this.f61913a;
+        ClassLoader classLoader = this.f61954a;
         Class a10 = a(classLoader, str2);
         StringTokenizer stringTokenizer = new StringTokenizer(str3, ":");
         int countTokens = stringTokenizer.countTokens();
@@ -87,18 +87,18 @@ public final class a {
             clsArr2[i11] = a(classLoader, stringTokenizer3.nextToken());
         }
         Class a11 = a(classLoader, str5);
-        n0 n0Var = new n0(2);
-        n0Var.f58780b = parseInt;
-        n0Var.f58781c = str;
-        n0Var.f58782e = a10;
-        n0Var.f58784g = clsArr;
-        n0Var.h = a11;
-        return n0Var;
+        m0 m0Var = new m0(2);
+        m0Var.f58813b = parseInt;
+        m0Var.f58814c = str;
+        m0Var.f58815e = a10;
+        m0Var.f58817g = clsArr;
+        m0Var.h = a11;
+        return m0Var;
     }
 
-    public final b e(n0 n0Var) {
+    public final b e(m0 m0Var) {
         b bVar = new b();
-        bVar.f61915b = n0Var;
+        bVar.f61956b = m0Var;
         return bVar;
     }
 }

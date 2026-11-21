@@ -1,14 +1,11 @@
 package hi;
 
 import android.app.Activity;
-import android.graphics.Path;
-public final class m9 extends x3 {
-    public final Path O;
-    public final ta P;
+public final class m9 extends n7 {
+    public final sa E;
 
-    public m9(ta taVar, Activity activity, fi.b bVar, org.telegram.ui.Components.ca caVar) {
-        super(activity, bVar, caVar);
-        this.P = taVar;
-        this.O = new Path();
+    public m9(sa saVar, Activity activity) {
+        super(activity);
+        this.E = saVar;
     }
 }

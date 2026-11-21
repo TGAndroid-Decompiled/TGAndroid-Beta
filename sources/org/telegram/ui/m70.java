@@ -1,17 +1,17 @@
 package org.telegram.ui;
 public final class m70 implements org.telegram.messenger.x10 {
-    public final int f49732a;
-    public final Runnable f49733b;
+    public final int f49776a;
+    public final Runnable f49777b;
 
-    public m70(bi.n8 n8Var, int i7) {
-        this.f49732a = i7;
-        this.f49733b = n8Var;
+    public m70(bi.r8 r8Var, int i7) {
+        this.f49776a = i7;
+        this.f49777b = r8Var;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f49732a;
-        Runnable runnable = this.f49733b;
+        int i7 = this.f49776a;
+        Runnable runnable = this.f49777b;
         String str = (String) obj;
         switch (i7) {
             case 0:

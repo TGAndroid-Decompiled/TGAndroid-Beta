@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.graphics.RectF;
 import android.view.ViewTreeObserver;
 public final class gk implements ViewTreeObserver.OnPreDrawListener {
-    public final int f48050a;
-    public final Object f48051b;
+    public final int f48127a;
+    public final Object f48128b;
 
     public gk(Object obj, int i7) {
-        this.f48050a = i7;
-        this.f48051b = obj;
+        this.f48127a = i7;
+        this.f48128b = obj;
     }
 
     @Override
     public final boolean onPreDraw() {
         org.telegram.ui.ActionBar.k kVar;
-        int i7 = this.f48050a;
-        Object obj = this.f48051b;
+        int i7 = this.f48127a;
+        Object obj = this.f48128b;
         switch (i7) {
             case 0:
-                kVar = ((org.telegram.ui.ActionBar.h2) ((hk) obj).d).actionBar;
+                kVar = ((org.telegram.ui.ActionBar.g2) ((hk) obj).d).actionBar;
                 kVar.invalidate();
                 return true;
             case 1:

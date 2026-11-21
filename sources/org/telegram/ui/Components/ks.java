@@ -1,64 +1,84 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class ks extends z41 {
+public class ks extends c51 {
     public final int Q;
     public final int R;
-    public final ArrayList S;
-    public final ArrayList T;
+    public final boolean S;
+    public final js T;
     public final ArrayList U;
     public final ArrayList V;
-    public boolean W;
+    public final ArrayList W;
     public boolean X;
-    public final ArrayList Y;
-    public boolean Z;
-    public boolean f36867a0;
-    public boolean f36868b0;
-    public int f36869c0;
-    public int f36870d0;
-    public String f36871e0;
-    public final mo f36872f0;
+    public boolean Y;
+    public final SpannableStringBuilder Z;
+    public int f36962a0;
+    public int f36963b0;
+    public boolean f36964c0;
+    public boolean f36965d0;
+    public boolean f36966e0;
+    public int f36967f0;
+    public int f36968g0;
+    public String f36969h0;
+    public final gs f36970i0;
+    public boolean f36971j0;
+    public final z2 f36972k0;
 
-    public ks(ck0 ck0Var, Context context, int i7, int i10) {
-        super(ck0Var, context, i7, 0, false, null, null);
-        this.S = new ArrayList();
-        this.T = new ArrayList();
+    public ks(ek0 ek0Var, Context context, int i7, int i10, boolean z10, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(ek0Var, context, i7, 0, true, null, h6Var);
         this.U = new ArrayList();
         this.V = new ArrayList();
-        this.Y = new ArrayList();
-        mm0 mm0Var = (mm0) this;
-        this.f36872f0 = new mo(mm0Var, 8);
-        this.f42811w = new d(mm0Var, 10);
+        this.W = new ArrayList();
+        this.f36970i0 = new gs(this, 0);
+        this.f36971j0 = true;
+        this.f36972k0 = new z2(this, 5);
+        this.f34070w = new d(this, 9);
         this.Q = i7;
         this.R = i10;
+        this.S = z10;
+        this.T = new js(i7, new gs(this, 1));
+        this.Z = org.telegram.messenger.g0.H2(org.telegram.messenger.g0.T2(org.telegram.messenger.gd.N0(2131754174, null), new di.a(this, h6Var, context)), true);
         O(false);
+        org.telegram.messenger.ri.d0(i7).P0(true);
     }
 
-    public final void W(boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ks.W(boolean):void");
-    }
-
-    public final void X() {
-        ArrayList arrayList = new ArrayList();
-        int i7 = this.Q;
-        ArrayList arrayList2 = org.telegram.messenger.mp.u1(i7).f25809y;
-        int size = arrayList2.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList2.get(i10);
-            i10++;
-            TLRPC.Chat O0 = org.telegram.messenger.mp.u1(i7).O0(Long.valueOf(-((TLRPC.Dialog) obj).f28407id));
-            if (O0 != null && org.telegram.messenger.v3.V(O0) && org.telegram.messenger.v3.t0(O0) && !org.telegram.messenger.v3.r0(O0)) {
-                arrayList.add(O0);
-                if (arrayList.size() >= 100) {
-                    break;
+    public final void W() {
+        boolean isEmpty = TextUtils.isEmpty(this.f36969h0);
+        ek0 ek0Var = this.d;
+        if (!isEmpty) {
+            if (this.f36966e0 && !this.f36964c0 && ek0Var != null) {
+                int i7 = 0;
+                while (true) {
+                    if (i7 >= ek0Var.getChildCount()) {
+                        break;
+                    } else if (ek0Var.getChildAt(i7) instanceof yz) {
+                        if (this.f36966e0 && !this.f36964c0 && !TextUtils.isEmpty(this.f36969h0)) {
+                            X(true);
+                        }
+                    } else {
+                        i7++;
+                    }
                 }
             }
+        } else {
+            if (!this.f36971j0) {
+                if (ek0Var != null) {
+                    for (int i10 = 0; i10 < ek0Var.getChildCount(); i10++) {
+                        if (!(ek0Var.getChildAt(i10) instanceof yz)) {
+                        }
+                    }
+                }
+            }
+            this.T.a();
+            break;
         }
-        ArrayList arrayList3 = this.Y;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList);
+        this.f36971j0 = false;
+    }
+
+    public final void X(boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ks.X(boolean):void");
     }
 }

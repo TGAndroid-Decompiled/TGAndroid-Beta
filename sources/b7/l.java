@@ -4,18 +4,18 @@ import android.content.Context;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.fj;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.i61;
 import org.telegram.ui.PhotoViewer;
 public final class l implements c, g6.h {
-    public int f2961a;
+    public int f2973a;
 
     public l() {
-        this.f2961a = 3;
+        this.f2973a = 3;
     }
 
     @Override
     public int C(Context context, String str) {
-        return this.f2961a;
+        return this.f2973a;
     }
 
     @Override
@@ -45,11 +45,11 @@ public final class l implements c, g6.h {
         g6.c cVar = (g6.c) fVar;
         if (cVar != null) {
             q6.m.e("Must be called from the main thread.");
-            h6.h hVar = cVar.f13214j;
+            h6.h hVar = cVar.f13243j;
             if (hVar == 0) {
                 return;
             }
-            AtomicInteger atomicInteger = d1.f.f7615b;
+            AtomicInteger atomicInteger = d1.f.f7644b;
             if (atomicInteger != null) {
                 atomicInteger.set(0);
             }
@@ -60,14 +60,14 @@ public final class l implements c, g6.h {
             } else {
                 h6.h.x(new h6.i(hVar, 3));
             }
-            int i7 = this.f2961a;
+            int i7 = this.f2973a;
             long j3 = -1;
             if (i7 == 0) {
-                f61 f61Var = PhotoViewer.p1().G2;
-                if (f61Var != null) {
-                    j3 = f61Var.S();
+                i61 i61Var = PhotoViewer.p1().G2;
+                if (i61Var != null) {
+                    j3 = i61Var.S();
                 }
-            } else if (i7 == 1 && (fjVar = (B = MediaController.B()).f22740v0) != null) {
+            } else if (i7 == 1 && (fjVar = (B = MediaController.B()).f22768v0) != null) {
                 j3 = B.D(fjVar);
             }
             if (j3 >= 0) {
@@ -107,6 +107,6 @@ public final class l implements c, g6.h {
     }
 
     public l(int i7) {
-        this.f2961a = i7;
+        this.f2973a = i7;
     }
 }

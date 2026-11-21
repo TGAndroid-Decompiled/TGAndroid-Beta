@@ -9,42 +9,42 @@ import java.util.Arrays;
 import java.util.List;
 public final class d {
     public static final String h;
-    public static final String f55166i;
-    public static final String f55167j;
-    public static final String f55168k;
-    public static final String f55169l;
-    public static final String f55170m;
-    public static final String f55171n;
-    public final k1 f55172a;
-    public final int f55173b;
-    public final int f55174c;
+    public static final String f55210i;
+    public static final String f55211j;
+    public static final String f55212k;
+    public static final String f55213l;
+    public static final String f55214m;
+    public static final String f55215n;
+    public final k1 f55216a;
+    public final int f55217b;
+    public final int f55218c;
     public final Bundle d;
-    public final l9.a f55175e;
-    public final boolean f55176f;
-    public final Object f55177g;
+    public final l9.a f55219e;
+    public final boolean f55220f;
+    public final Object f55221g;
 
     static {
-        String str = h2.l0.f13783a;
+        String str = h2.l0.f13812a;
         h = Integer.toString(0, 36);
-        f55166i = Integer.toString(1, 36);
-        f55167j = Integer.toString(2, 36);
+        f55210i = Integer.toString(1, 36);
+        f55211j = Integer.toString(2, 36);
         Integer.toString(3, 36);
-        f55168k = Integer.toString(4, 36);
-        f55169l = Integer.toString(5, 36);
+        f55212k = Integer.toString(4, 36);
+        f55213l = Integer.toString(5, 36);
         Integer.toString(6, 36);
         Integer.toString(7, 36);
-        f55170m = Integer.toString(8, 36);
-        f55171n = Integer.toString(9, 36);
+        f55214m = Integer.toString(8, 36);
+        f55215n = Integer.toString(9, 36);
     }
 
     public d(k1 k1Var, int i7, int i10, Bundle bundle, boolean z10, l9.a aVar, Object obj) {
-        this.f55172a = k1Var;
-        this.f55173b = i7;
-        this.f55174c = i10;
+        this.f55216a = k1Var;
+        this.f55217b = i7;
+        this.f55218c = i10;
         this.d = new Bundle(bundle);
-        this.f55176f = z10;
-        this.f55175e = aVar;
-        this.f55177g = obj;
+        this.f55220f = z10;
+        this.f55219e = aVar;
+        this.f55221g = obj;
     }
 
     public static Object a(int i7, Object obj) {
@@ -89,7 +89,7 @@ public final class d {
 
     public static boolean c(int i7, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            if (((d) list.get(i10)).f55175e.b(0) == i7) {
+            if (((d) list.get(i10)).f55219e.b(0) == i7) {
                 return true;
             }
         }
@@ -98,8 +98,8 @@ public final class d {
 
     public static d d(k1 k1Var) {
         int i7;
-        String str = k1Var.f55321b;
-        Bundle bundle = k1Var.f55322c;
+        String str = k1Var.f55364b;
+        Bundle bundle = k1Var.f55365c;
         boolean z10 = true;
         int i10 = 0;
         if (str.startsWith("androidx.media3.session.PLAYER_COMMAND_")) {
@@ -110,8 +110,8 @@ public final class d {
                 z10 = false;
             }
             la.e("sessionCommand is already set. Only one of sessionCommand and playerCommand should be set.", z10);
-            cVar.f55160a = parseInt;
-            cVar.f55165g = a(i(parseInt), h7);
+            cVar.f55201a = parseInt;
+            cVar.f55206g = a(i(parseInt), h7);
             return cVar.a();
         }
         int parseInt2 = Integer.parseInt(str.substring(40));
@@ -123,34 +123,34 @@ public final class d {
         Object h10 = h(i7, bundle);
         c cVar2 = new c();
         k1 k1Var2 = new k1(parseInt2);
-        if (cVar2.f55160a != -1) {
+        if (cVar2.f55201a != -1) {
             z10 = false;
         }
         la.e("playerCommands is already set. Only one of sessionCommand and playerCommand should be set.", z10);
         cVar2.d = k1Var2;
-        if (k1Var2.f55320a == 40010) {
+        if (k1Var2.f55363a == 40010) {
             i10 = 5;
         }
-        cVar2.f55165g = a(i10, h10);
+        cVar2.f55206g = a(i10, h10);
         return cVar2.a();
     }
 
     public static t1 g(List list) {
         int b10;
         if (list.isEmpty()) {
-            h9.g0 g0Var = h9.i0.f14003b;
-            return t1.f14071e;
+            h9.g0 g0Var = h9.i0.f14032b;
+            return t1.f14100e;
         }
         int i7 = -1;
         int i10 = -1;
         for (int i11 = 0; i11 < list.size(); i11++) {
             d dVar = (d) list.get(i11);
-            boolean z10 = dVar.f55176f;
-            l9.a aVar = dVar.f55175e;
+            boolean z10 = dVar.f55220f;
+            l9.a aVar = dVar.f55219e;
             if (z10 && dVar.b()) {
                 int i12 = 0;
                 while (true) {
-                    if (i12 < aVar.f19702b && (b10 = aVar.b(i12)) != 6) {
+                    if (i12 < aVar.f19730b && (b10 = aVar.b(i12)) != 6) {
                         if (i7 == -1 && b10 == 2) {
                             i7 = i11;
                             break;
@@ -173,7 +173,7 @@ public final class d {
         }
         for (int i13 = 0; i13 < list.size(); i13++) {
             d dVar2 = (d) list.get(i13);
-            if (dVar2.f55176f && dVar2.b() && i13 != i7 && i13 != i10 && dVar2.f55175e.a(6)) {
+            if (dVar2.f55220f && dVar2.b() && i13 != i7 && i13 != i10 && dVar2.f55219e.a(6)) {
                 p10.c(dVar2.e(6));
             }
         }
@@ -256,10 +256,10 @@ public final class d {
     }
 
     public final boolean b() {
-        Object obj = this.f55177g;
-        k1 k1Var = this.f55172a;
+        Object obj = this.f55221g;
+        k1 k1Var = this.f55216a;
         if (k1Var != null) {
-            int i7 = k1Var.f55320a;
+            int i7 = k1Var.f55363a;
             if (i7 == 0) {
                 return true;
             }
@@ -268,7 +268,7 @@ public final class d {
             }
             return false;
         }
-        int i10 = this.f55173b;
+        int i10 = this.f55217b;
         if (i10 != 19) {
             if (i10 != 24) {
                 if (i10 != 29 && i10 != 31) {
@@ -305,32 +305,32 @@ public final class d {
 
     public final d e(int i7) {
         String str;
-        k1 k1Var = this.f55172a;
-        if (k1Var != null && k1Var.f55320a == 0) {
+        k1 k1Var = this.f55216a;
+        if (k1Var != null && k1Var.f55363a == 0) {
             l9.a aVar = new l9.a(new int[]{i7});
-            if (this.f55175e.equals(aVar)) {
+            if (this.f55219e.equals(aVar)) {
                 return this;
             }
-            return new d(this.f55172a, this.f55173b, this.f55174c, new Bundle(this.d), this.f55176f, aVar, this.f55177g);
+            return new d(this.f55216a, this.f55217b, this.f55218c, new Bundle(this.d), this.f55220f, aVar, this.f55221g);
         }
         Bundle bundle = Bundle.EMPTY;
-        if (this.f55177g != null) {
+        if (this.f55221g != null) {
             bundle = new Bundle();
             l("androidx.media3.session.CUSTOM_COMMAND_PARAMETER", 9, bundle);
         }
         if (k1Var != null) {
-            str = "androidx.media3.session.SESSION_COMMAND_" + k1Var.f55320a;
+            str = "androidx.media3.session.SESSION_COMMAND_" + k1Var.f55363a;
         } else {
-            str = "androidx.media3.session.PLAYER_COMMAND_" + this.f55173b;
+            str = "androidx.media3.session.PLAYER_COMMAND_" + this.f55217b;
         }
-        return new d(new k1(str, bundle), -1, this.f55174c, this.d, this.f55176f, new l9.a(new int[]{i7}), null);
+        return new d(new k1(str, bundle), -1, this.f55218c, this.d, this.f55220f, new l9.a(new int[]{i7}), null);
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof d) {
                 d dVar = (d) obj;
-                if (Objects.equals(this.f55172a, dVar.f55172a) && this.f55173b == dVar.f55173b && this.f55174c == dVar.f55174c && TextUtils.equals("", "") && this.f55176f == dVar.f55176f && this.f55175e.equals(dVar.f55175e) && Objects.equals(this.f55177g, dVar.f55177g)) {
+                if (Objects.equals(this.f55216a, dVar.f55216a) && this.f55217b == dVar.f55217b && this.f55218c == dVar.f55218c && TextUtils.equals("", "") && this.f55220f == dVar.f55220f && this.f55219e.equals(dVar.f55219e) && Objects.equals(this.f55221g, dVar.f55221g)) {
                     return true;
                 }
                 return false;
@@ -341,9 +341,9 @@ public final class d {
     }
 
     public final void f(e2.c1 c1Var) {
-        if (this.f55176f) {
-            Object obj = this.f55177g;
-            int i7 = this.f55173b;
+        if (this.f55220f) {
+            Object obj = this.f55221g;
+            int i7 = this.f55217b;
             if (i7 != 19) {
                 if (i7 != 24) {
                     if (i7 != 29) {
@@ -439,54 +439,54 @@ public final class d {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f55172a, Integer.valueOf(this.f55173b), 0, Integer.valueOf(this.f55174c), "", Boolean.valueOf(this.f55176f), null, this.f55175e, this.f55177g);
+        return Objects.hash(this.f55216a, Integer.valueOf(this.f55217b), 0, Integer.valueOf(this.f55218c), "", Boolean.valueOf(this.f55220f), null, this.f55219e, this.f55221g);
     }
 
     public final Bundle k(int i7) {
         Bundle bundle = new Bundle();
-        k1 k1Var = this.f55172a;
+        k1 k1Var = this.f55216a;
         if (k1Var != null) {
             bundle.putBundle(h, k1Var.a());
         }
-        int i10 = this.f55173b;
+        int i10 = this.f55217b;
         if (i10 != -1) {
-            bundle.putInt(f55166i, i10);
+            bundle.putInt(f55210i, i10);
         }
-        int i11 = this.f55174c;
+        int i11 = this.f55218c;
         if (i11 != 0) {
-            bundle.putInt(f55167j, i11);
+            bundle.putInt(f55211j, i11);
         }
         Bundle bundle2 = this.d;
         if (!bundle2.isEmpty()) {
-            bundle.putBundle(f55168k, bundle2);
+            bundle.putBundle(f55212k, bundle2);
         }
-        boolean z10 = this.f55176f;
+        boolean z10 = this.f55220f;
         if (!z10) {
-            bundle.putBoolean(f55169l, z10);
+            bundle.putBoolean(f55213l, z10);
         }
-        l9.a aVar = this.f55175e;
-        if (aVar.f19702b != 1 || aVar.b(0) != 6) {
-            bundle.putIntArray(f55170m, Arrays.copyOfRange(aVar.f19701a, 0, aVar.f19702b));
+        l9.a aVar = this.f55219e;
+        if (aVar.f19730b != 1 || aVar.b(0) != 6) {
+            bundle.putIntArray(f55214m, Arrays.copyOfRange(aVar.f19729a, 0, aVar.f19730b));
         }
-        if (this.f55177g != null) {
-            l(f55171n, i7, bundle);
+        if (this.f55221g != null) {
+            l(f55215n, i7, bundle);
         }
         return bundle;
     }
 
     public final void l(String str, int i7, Bundle bundle) {
         int i10;
-        k1 k1Var = this.f55172a;
+        k1 k1Var = this.f55216a;
         if (k1Var != null) {
-            if (k1Var.f55320a == 40010) {
+            if (k1Var.f55363a == 40010) {
                 i10 = 5;
             } else {
                 i10 = 0;
             }
         } else {
-            i10 = i(this.f55173b);
+            i10 = i(this.f55217b);
         }
-        Object obj = this.f55177g;
+        Object obj = this.f55221g;
         switch (i10) {
             case 1:
                 bundle.putLong(str, ((Long) obj).longValue());

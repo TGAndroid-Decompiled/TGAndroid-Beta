@@ -1,210 +1,165 @@
 package tg;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
-import c8.ma;
-import org.telegram.messenger.f3;
-import org.telegram.messenger.n10;
-import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.vt0;
-import org.telegram.ui.Components.yi0;
-public final class r1 extends j {
-    public final Path A0;
-    public boolean B0;
-    public boolean C0;
-    public final c6 D0;
-    public final int f58107r0;
-    public boolean f58108s0;
-    public final c6 f58109t0;
-    public final vt0 f58110u0;
-    public final TextureView f58111v0;
-    public final Bitmap f58112w0;
-    public final Rect f58113x0;
-    public final Rect f58114y0;
-    public float f58115z0;
+import android.graphics.RectF;
+public final class r1 extends i {
+    public final int f58151n;
+    public RectF f58152r;
 
-    public r1(Context context, PointF pointF, vt0 vt0Var, String str) {
-        super(context, pointF);
-        this.f58107r0 = -1;
-        this.f58108s0 = false;
-        Rect rect = new Rect();
-        this.f58113x0 = rect;
-        this.f58114y0 = new Rect();
-        this.f58115z0 = 1.0f;
-        this.A0 = new Path();
-        this.B0 = true;
-        this.C0 = true;
-        lr lrVar = lr.h;
-        this.D0 = new c6(this, 0L, 350L, lrVar);
-        new Paint(1).setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        setRotation(0.0f);
-        setScale(1.0f);
-        this.f58110u0 = vt0Var;
-        Bitmap decodeFile = BitmapFactory.decodeFile(str);
-        this.f58112w0 = decodeFile;
-        if (decodeFile != null) {
-            this.f58115z0 = decodeFile.getWidth() / decodeFile.getHeight();
-            rect.set(0, 0, decodeFile.getWidth(), decodeFile.getHeight());
-        }
-        TextureView textureView = new TextureView(context);
-        this.f58111v0 = textureView;
-        addView(textureView, ma.c(-1.0f, -1));
-        this.f58109t0 = new c6(this, 0L, 500L, lrVar);
-        k();
-        setWillNotDraw(false);
+    public r1(j jVar, Context context, int i7) {
+        super(jVar, context);
+        this.f58151n = i7;
     }
 
     @Override
-    public final i a() {
-        return new p1(this, getContext());
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        Rect rect;
-        Bitmap bitmap;
-        Path path;
-        boolean drawChild;
-        if (!this.B0) {
-            return false;
-        }
-        if (view == this.f58111v0) {
-            canvas.save();
-            float d = this.f58109t0.d(this.f58108s0);
-            canvas.scale(1.0f - (d * 2.0f), 1.0f, getMeasuredWidth() / 2.0f, 0.0f);
-            canvas.skew(0.0f, f3.A(1.0f, d, 4.0f * d, 0.25f));
-            float d2 = this.D0.d(this.C0);
-            float width = (view.getWidth() / 2.0f) + view.getX();
-            float height = (view.getHeight() / 2.0f) + view.getY();
-            float min = Math.min(view.getWidth() / 2.0f, view.getHeight() / 2.0f);
-            int i7 = (d2 > 1.0f ? 1 : (d2 == 1.0f ? 0 : -1));
-            Rect rect2 = this.f58113x0;
-            Rect rect3 = this.f58114y0;
-            Bitmap bitmap2 = this.f58112w0;
-            Path path2 = this.A0;
-            if (i7 < 0) {
-                rect = rect3;
-                bitmap = bitmap2;
-                canvas.saveLayerAlpha(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight(), 128, 31);
-                path2.rewind();
-                path = path2;
-                path.addCircle(width, height, min, Path.Direction.CW);
-                canvas.clipPath(path);
-                if (bitmap != null) {
-                    rect.set(0, 0, view.getWidth(), view.getHeight());
-                    canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
+    public final int a(float f10, float f11) {
+        float measuredWidth;
+        float measuredWidth2;
+        float measuredWidth3;
+        switch (this.f58151n) {
+            case 0:
+                float L = org.telegram.messenger.g0.L(19.5f);
+                float L2 = org.telegram.messenger.g0.L(1.0f) + L;
+                float f12 = L2 * 2.0f;
+                float A = com.google.android.gms.internal.vision.e2.A(getMeasuredHeight(), f12, 2.0f, L2);
+                if (f10 > L2 - L && f11 > A - L && f10 < L2 + L && f11 < A + L) {
+                    return 1;
                 }
-                super.drawChild(canvas, view, j3);
-                canvas.restore();
-            } else {
-                rect = rect3;
-                bitmap = bitmap2;
-                path = path2;
-            }
-            canvas.save();
-            path.rewind();
-            path.addCircle(width, height, min * d2, Path.Direction.CW);
-            canvas.clipPath(path);
-            if (bitmap != null) {
-                rect.set(0, 0, view.getWidth(), view.getHeight());
-                canvas.drawBitmap(bitmap, rect2, rect, (Paint) null);
-            }
-            if ((getParent() instanceof d) && ((d) getParent()).f57772a) {
-                drawChild = true;
-            } else {
-                drawChild = super.drawChild(canvas, view, j3);
-            }
-            canvas.restore();
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    public int getAnchor() {
-        return this.f58107r0;
-    }
-
-    public vt0 getBaseSize() {
-        return this.f58110u0;
-    }
-
-    @Override
-    public yi0 getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Object();
-        }
-        float scaleX = viewGroup.getScaleX();
-        float scale = getScale();
-        float L = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale * getMeasuredWidth());
-        float scale2 = getScale();
-        float L2 = (org.telegram.messenger.g0.L(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float y10 = n10.y(L, 2.0f, getPositionX(), scaleX);
-        return new yi0(y10, n10.y(L2, 2.0f, getPositionY(), scaleX), ((L * scaleX) + y10) - y10, L2 * scaleX);
-    }
-
-    @Override
-    public final void k() {
-        vt0 vt0Var = this.f58110u0;
-        setX(getPositionX() - (vt0Var.f41433a / 2.0f));
-        setY(getPositionY() - (vt0Var.f41434b / 2.0f));
-        m();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        TextureView textureView = this.f58111v0;
-        if (textureView != null) {
-            int measuredHeight = ((i12 - i10) - textureView.getMeasuredHeight()) / 2;
-            int measuredWidth = ((i11 - i7) - textureView.getMeasuredWidth()) / 2;
-            textureView.layout(measuredWidth, measuredHeight, textureView.getMeasuredWidth() + measuredWidth, textureView.getMeasuredHeight() + measuredHeight);
+                if (f10 > ((getMeasuredWidth() - f12) + L2) - L && f11 > A - L && f10 < (getMeasuredWidth() - f12) + L2 + L && f11 < A + L) {
+                    return 2;
+                }
+                if (Math.pow(f11 - measuredWidth, 2.0d) + Math.pow(f10 - measuredWidth, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
+            case 1:
+                float L3 = org.telegram.messenger.g0.L(19.5f);
+                float L4 = org.telegram.messenger.g0.L(1.0f) + L3;
+                float f13 = L4 * 2.0f;
+                float A2 = com.google.android.gms.internal.vision.e2.A(getMeasuredHeight(), f13, 2.0f, L4);
+                if (f10 > L4 - L3 && f11 > A2 - L3 && f10 < L4 + L3 && f11 < A2 + L3) {
+                    return 1;
+                }
+                if (f10 > ((getMeasuredWidth() - f13) + L4) - L3 && f11 > A2 - L3 && f10 < (getMeasuredWidth() - f13) + L4 + L3 && f11 < A2 + L3) {
+                    return 2;
+                }
+                if (Math.pow(f11 - measuredWidth2, 2.0d) + Math.pow(f10 - measuredWidth2, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
+            default:
+                float L5 = org.telegram.messenger.g0.L(19.5f);
+                float L6 = org.telegram.messenger.g0.L(1.0f) + L5;
+                float f14 = L6 * 2.0f;
+                float A3 = com.google.android.gms.internal.vision.e2.A(getMeasuredHeight(), f14, 2.0f, L6);
+                if (f10 > L6 - L5 && f11 > A3 - L5 && f10 < L6 + L5 && f11 < A3 + L5) {
+                    return 1;
+                }
+                if (f10 > ((getMeasuredWidth() - f14) + L6) - L5 && f11 > A3 - L5 && f10 < (getMeasuredWidth() - f14) + L6 + L5 && f11 < A3 + L5) {
+                    return 2;
+                }
+                if (Math.pow(f11 - measuredWidth3, 2.0d) + Math.pow(f10 - measuredWidth3, 2.0d) < Math.pow(getMeasuredWidth() / 2.0f, 2.0d)) {
+                    return 3;
+                }
+                return 0;
         }
     }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        int i11;
-        int i12;
-        vt0 vt0Var = this.f58110u0;
-        int i13 = (int) vt0Var.f41433a;
-        int i14 = (int) vt0Var.f41434b;
-        TextureView textureView = this.f58111v0;
-        if (textureView != null) {
-            float f10 = this.f58115z0;
-            if (f10 >= 1.0f) {
-                i11 = (int) (f10 * i14);
-            } else {
-                i11 = i13;
-            }
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-            float f11 = this.f58115z0;
-            if (f11 >= 1.0f) {
-                i12 = i14;
-            } else {
-                i12 = (int) (i13 / f11);
-            }
-            textureView.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
+    public final void onDraw(Canvas canvas) {
+        switch (this.f58151n) {
+            case 0:
+                RectF rectF = this.f58152r;
+                super.onDraw(canvas);
+                int saveCount = canvas.getSaveCount();
+                float showAlpha = getShowAlpha();
+                if (showAlpha > 0.0f) {
+                    if (showAlpha < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+                    }
+                    float N = org.telegram.messenger.g0.N(5.66f);
+                    float L = org.telegram.messenger.g0.L(1.0f) + N + org.telegram.messenger.g0.L(15.0f);
+                    float measuredWidth = (getMeasuredWidth() / 2) - L;
+                    float f10 = (2.0f * measuredWidth) + L;
+                    rectF.set(L, L, f10, f10);
+                    Paint paint = this.f57945a;
+                    canvas.drawArc(rectF, 0.0f, 180.0f, false, paint);
+                    canvas.drawArc(rectF, 180.0f, 180.0f, false, paint);
+                    float f11 = measuredWidth + L;
+                    Paint paint2 = this.f57947c;
+                    canvas.drawCircle(L, f11, N, paint2);
+                    Paint paint3 = this.f57946b;
+                    canvas.drawCircle(L, f11, N - org.telegram.messenger.g0.L(1.0f), paint3);
+                    canvas.drawCircle(f10, f11, N, paint2);
+                    canvas.drawCircle(f10, f11, N - org.telegram.messenger.g0.L(1.0f), paint3);
+                    canvas.restoreToCount(saveCount);
+                    return;
+                }
+                return;
+            case 1:
+                RectF rectF2 = this.f58152r;
+                super.onDraw(canvas);
+                int saveCount2 = canvas.getSaveCount();
+                float showAlpha2 = getShowAlpha();
+                if (showAlpha2 > 0.0f) {
+                    if (showAlpha2 < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha2 * 255.0f), 31);
+                    }
+                    float N2 = org.telegram.messenger.g0.N(5.66f);
+                    float L2 = org.telegram.messenger.g0.L(1.0f) + N2 + org.telegram.messenger.g0.L(15.0f);
+                    float measuredWidth2 = (getMeasuredWidth() / 2.0f) - L2;
+                    float f12 = (2.0f * measuredWidth2) + L2;
+                    rectF2.set(L2, L2, f12, f12);
+                    Paint paint4 = this.f57945a;
+                    canvas.drawArc(rectF2, 0.0f, 180.0f, false, paint4);
+                    canvas.drawArc(rectF2, 180.0f, 180.0f, false, paint4);
+                    float f13 = measuredWidth2 + L2;
+                    Paint paint5 = this.f57947c;
+                    canvas.drawCircle(L2, f13, N2, paint5);
+                    Paint paint6 = this.f57946b;
+                    canvas.drawCircle(L2, f13, N2 - org.telegram.messenger.g0.L(1.0f), paint6);
+                    canvas.drawCircle(f12, f13, N2, paint5);
+                    canvas.drawCircle(f12, f13, N2 - org.telegram.messenger.g0.L(1.0f), paint6);
+                    canvas.restoreToCount(saveCount2);
+                    return;
+                }
+                return;
+            default:
+                RectF rectF3 = this.f58152r;
+                super.onDraw(canvas);
+                int saveCount3 = canvas.getSaveCount();
+                float showAlpha3 = getShowAlpha();
+                if (showAlpha3 > 0.0f) {
+                    if (showAlpha3 < 1.0f) {
+                        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha3 * 255.0f), 31);
+                    }
+                    float N3 = org.telegram.messenger.g0.N(5.66f);
+                    float L3 = org.telegram.messenger.g0.L(1.0f) + N3 + org.telegram.messenger.g0.L(15.0f);
+                    float measuredWidth3 = (getMeasuredWidth() / 2) - L3;
+                    float f14 = (2.0f * measuredWidth3) + L3;
+                    rectF3.set(L3, L3, f14, f14);
+                    Paint paint7 = this.f57945a;
+                    canvas.drawArc(rectF3, 0.0f, 180.0f, false, paint7);
+                    canvas.drawArc(rectF3, 180.0f, 180.0f, false, paint7);
+                    float f15 = measuredWidth3 + L3;
+                    Paint paint8 = this.f57947c;
+                    canvas.drawCircle(L3, f15, N3, paint8);
+                    Paint paint9 = this.f57946b;
+                    canvas.drawCircle(L3, f15, N3 - org.telegram.messenger.g0.L(1.0f), paint9);
+                    canvas.drawCircle(f14, f15, N3, paint8);
+                    canvas.drawCircle(f14, f15, N3 - org.telegram.messenger.g0.L(1.0f), paint9);
+                    canvas.restoreToCount(saveCount3);
+                    return;
+                }
+                return;
         }
-        setMeasuredDimension(i13, i14);
     }
 
-    public void setDraw(boolean z10) {
-        if (this.B0 != z10) {
-            this.B0 = z10;
-            invalidate();
-        }
+    public r1(t1 t1Var, Context context) {
+        super(t1Var, context);
+        this.f58151n = 1;
+        this.f58152r = new RectF();
     }
 }

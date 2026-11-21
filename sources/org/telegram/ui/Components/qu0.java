@@ -1,32 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class qu0 extends sa {
-    public is T1;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+public final class qu0 extends CharacterStyle {
+    public final Paint f38999a;
+    public final Path f39000b;
 
-    public qu0(Context context) {
-        super(context, null, true, false, null);
-        O();
-        this.f39545z1 = true;
-        this.f39544y1 = true;
-        Z0();
-        ck0 ck0Var = this.f39534o1;
-        int i7 = this.f30225u0;
-        ck0Var.setPadding(i7, 0, i7, 0);
-        this.f39534o1.j(new oa(this, 20));
-        this.f39534o1.setOnItemClickListener(new n(this, 14));
+    public qu0() {
+        Paint paint = new Paint(1);
+        this.f38999a = paint;
+        this.f39000b = new Path();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+    }
+
+    public static void a(Canvas canvas, Layout layout) {
+        CharSequence text;
+        int lineStart;
+        int lineEnd;
+        Layout layout2 = layout;
+        if (layout2 != null && (text = layout2.getText()) != null && (text instanceof Spanned)) {
+            Spanned spanned = (Spanned) text;
+            qu0[] qu0VarArr = (qu0[]) spanned.getSpans(0, spanned.length(), qu0.class);
+            if (qu0VarArr != null && qu0VarArr.length != 0) {
+                int i7 = 0;
+                while (i7 < qu0VarArr.length) {
+                    qu0 qu0Var = qu0VarArr[i7];
+                    int spanStart = spanned.getSpanStart(qu0Var);
+                    int spanEnd = spanned.getSpanEnd(qu0Var);
+                    int lineForOffset = layout2.getLineForOffset(spanStart);
+                    int lineForOffset2 = layout2.getLineForOffset(spanEnd);
+                    int i10 = lineForOffset;
+                    while (i10 <= lineForOffset2) {
+                        float lineBottom = layout2.getLineBottom(i10) - org.telegram.messenger.g0.L(1.0f);
+                        if (i10 == lineForOffset) {
+                            lineStart = spanStart;
+                        } else {
+                            lineStart = layout2.getLineStart(i10);
+                        }
+                        float primaryHorizontal = layout2.getPrimaryHorizontal(lineStart);
+                        if (i10 == lineForOffset2) {
+                            lineEnd = spanEnd;
+                        } else {
+                            lineEnd = layout2.getLineEnd(i10) - 1;
+                        }
+                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(lineEnd);
+                        qu0Var.getClass();
+                        float L = org.telegram.messenger.g0.L(1.33f);
+                        float L2 = org.telegram.messenger.g0.L(10.0f);
+                        float L3 = org.telegram.messenger.g0.L(2.0f);
+                        Paint paint = qu0Var.f38999a;
+                        Spanned spanned2 = spanned;
+                        qu0[] qu0VarArr2 = qu0VarArr;
+                        int i11 = i7;
+                        paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Fi, false));
+                        paint.setStrokeWidth(L);
+                        Path path = qu0Var.f39000b;
+                        path.rewind();
+                        path.moveTo(primaryHorizontal, lineBottom);
+                        float f10 = primaryHorizontal;
+                        while (f10 < primaryHorizontal2) {
+                            float f11 = f10;
+                            float f12 = L2;
+                            path.quadTo((L2 / 4.0f) + f10, lineBottom - L3, (L2 / 2.0f) + f11, lineBottom);
+                            float f13 = f11 + f12;
+                            path.quadTo(((f12 * 3.0f) / 4.0f) + f11, lineBottom + L3, f13, lineBottom);
+                            f10 = f13;
+                            L2 = f12;
+                        }
+                        if (f10 > primaryHorizontal2) {
+                            canvas.save();
+                            float f14 = L / 2.0f;
+                            canvas.clipRect(primaryHorizontal - f14, (lineBottom - L3) - f14, primaryHorizontal2 + f14, lineBottom + L3 + f14);
+                            canvas.drawPath(path, paint);
+                            canvas.restore();
+                        } else {
+                            canvas.drawPath(path, paint);
+                        }
+                        i10++;
+                        layout2 = layout;
+                        spanned = spanned2;
+                        qu0VarArr = qu0VarArr2;
+                        i7 = i11;
+                    }
+                    i7++;
+                    layout2 = layout;
+                }
+            }
+        }
     }
 
     @Override
-    public final bk0 M0(ck0 ck0Var) {
-        is isVar = new is(ck0Var, getContext(), this.f30187a, 0, true, this.J0);
-        this.T1 = isVar;
-        isVar.f42809r = false;
-        return isVar;
-    }
-
-    @Override
-    public final CharSequence P0() {
-        return org.telegram.messenger.gd.M0(2131745626, null);
+    public final void updateDrawState(TextPaint textPaint) {
     }
 }

@@ -5,24 +5,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-public class x5 extends org.telegram.ui.ActionBar.h2 {
-    public v5 f53587a;
-    public org.telegram.ui.Components.ck0 f53588b;
-    public final ArrayList f53589c;
+public class x5 extends org.telegram.ui.ActionBar.g2 {
+    public v5 f53628a;
+    public org.telegram.ui.Components.ek0 f53629b;
+    public final ArrayList f53630c;
     public ArrayList d;
-    public int f53590e;
+    public int f53631e;
 
     public x5(Bundle bundle) {
         super(bundle);
-        this.f53589c = new ArrayList();
+        this.f53630c = new ArrayList();
         this.d = new ArrayList();
     }
 
     public final void Z() {
         ArrayList arrayList;
         boolean z10 = this.isPaused;
-        ArrayList arrayList2 = this.f53589c;
-        if (!z10 && this.f53587a != null) {
+        ArrayList arrayList2 = this.f53630c;
+        if (!z10 && this.f53628a != null) {
             arrayList = new ArrayList();
             arrayList.addAll(arrayList2);
         } else {
@@ -45,7 +45,7 @@ public class x5 extends org.telegram.ui.ActionBar.h2 {
             arrayList2.add(new w5(4, null));
         }
         arrayList2.add(new w5(3, null));
-        v5 v5Var = this.f53587a;
+        v5 v5Var = this.f53628a;
         if (v5Var != null) {
             if (arrayList != null) {
                 v5Var.E(arrayList, arrayList2);
@@ -60,31 +60,31 @@ public class x5 extends org.telegram.ui.ActionBar.h2 {
         setHasOwnBackground(true);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        this.simpleActionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.y1(false));
-        this.simpleActionBar.setActionBarMenuOnItemClick(new bi.r1(this, 28));
-        this.simpleActionBar.setTitle(org.telegram.messenger.gd.M0(2131747719, null));
-        org.telegram.ui.Components.ck0 ck0Var = new org.telegram.ui.Components.ck0(context, null);
-        this.f53588b = ck0Var;
-        ck0Var.r1();
-        this.f53588b.setSectionsDrawBackground(true);
+        this.simpleActionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.x1(false));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new bi.v1(this, 28));
+        this.simpleActionBar.setTitle(org.telegram.messenger.gd.N0(2131747718, null));
+        org.telegram.ui.Components.ek0 ek0Var = new org.telegram.ui.Components.ek0(context, null);
+        this.f53629b = ek0Var;
+        ek0Var.r1();
+        this.f53629b.setSectionsDrawBackground(true);
         v4.k kVar = new v4.k();
         kVar.C = false;
-        kVar.f59152m = false;
-        this.f53588b.setItemAnimator(kVar);
-        this.f53588b.setLayoutManager(new v4.c0());
-        org.telegram.ui.Components.ck0 ck0Var2 = this.f53588b;
+        kVar.f59190m = false;
+        this.f53629b.setItemAnimator(kVar);
+        this.f53629b.setLayoutManager(new v4.c0());
+        org.telegram.ui.Components.ek0 ek0Var2 = this.f53629b;
         v5 v5Var = new v5(this);
-        this.f53587a = v5Var;
-        ck0Var2.setAdapter(v5Var);
-        this.f53588b.setOnItemClickListener(new w0(this, 7));
-        frameLayout.addView(this.f53588b);
+        this.f53628a = v5Var;
+        ek0Var2.setAdapter(v5Var);
+        this.f53629b.setOnItemClickListener(new w0(this, 7));
+        frameLayout.addView(this.f53629b);
         Z();
         return this.fragmentView;
     }
 
     @Override
-    public final org.telegram.ui.Components.ck0 getListViewForSimpleGlass() {
-        return this.f53588b;
+    public final org.telegram.ui.Components.ek0 getListViewForSimpleGlass() {
+        return this.f53629b;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class x5 extends org.telegram.ui.ActionBar.h2 {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f53590e = getArguments().getInt("type");
+        this.f53631e = getArguments().getInt("type");
         Z();
         return super.onFragmentCreate();
     }

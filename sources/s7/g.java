@@ -6,11 +6,11 @@ import c8.bc;
 import java.util.ArrayList;
 import q4.x;
 public final class g extends r6.a {
-    public final String f57085a;
-    public final k f57086b;
-    public final int f57087c;
+    public final String f57126a;
+    public final k f57127b;
+    public final int f57128c;
     public final byte[] d;
-    public static final int f57084e = Integer.parseInt("-1");
+    public static final int f57125e = Integer.parseInt("-1");
     public static final Parcelable.Creator<g> CREATOR = new x(18);
 
     static {
@@ -25,10 +25,10 @@ public final class g extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        bc.l(parcel, 1, this.f57085a);
-        bc.k(parcel, 3, this.f57086b, i7);
+        bc.l(parcel, 1, this.f57126a);
+        bc.k(parcel, 3, this.f57127b, i7);
         bc.q(parcel, 4, 4);
-        parcel.writeInt(this.f57087c);
+        parcel.writeInt(this.f57128c);
         bc.c(parcel, 5, this.d);
         bc.s(parcel, r10);
     }

@@ -1,36 +1,24 @@
 package bi;
 
-import android.os.Bundle;
-import org.telegram.messenger.gd;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.v10;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.gc;
-import org.telegram.ui.Components.lc;
-import org.telegram.ui.Components.uz;
-import org.telegram.ui.bn;
-public final class e7 extends bn {
-    public boolean f3549vd;
-    public final TL_stars.TL_starGiftUnique f3550wd;
-    public final long f3551xd;
+import org.telegram.ui.Components.o41;
+public final class e7 implements di.m4, v10 {
+    public final k8 f3593a;
 
-    public e7(Bundle bundle, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
-        super(bundle);
-        this.f3550wd = tL_starGiftUnique;
-        this.f3551xd = j3;
-        this.f3549vd = false;
+    @Override
+    public void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z10) {
+        k8.c0(this.f3593a, tL_starGiftUnique, j3, z10);
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.f3549vd) {
-            this.f3549vd = true;
-            gc O = lc.b0(this).O(this.f3550wd.getDocument(), gd.M0(2131752874, null), gd.a0(null, null, 2131752875, org.telegram.messenger.n5.s(this.currentAccount, this.f3551xd)));
-            O.f35469r = false;
-            O.j();
-            uz uzVar = this.J9;
-            if (uzVar != null) {
-                uzVar.c(true);
-            }
-        }
+    public void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        k8.e0(this.f3593a, (o41) obj);
     }
 }

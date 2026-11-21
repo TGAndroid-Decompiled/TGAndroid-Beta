@@ -2,6 +2,6 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_iv;
 public final class u3 extends TL_iv.PageBlock {
-    public TL_iv.PageBlock f52417a;
-    public TL_iv.PageBlock f52418b;
+    public TL_iv.PageBlock f52429a;
+    public TL_iv.PageBlock f52430b;
 }

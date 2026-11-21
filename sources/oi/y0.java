@@ -1,76 +1,36 @@
 package oi;
+public final class y0 implements Runnable {
+    public final int f22533a;
+    public final f1 f22534b;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class y0 implements ActionMode.Callback {
-    public final int f22495a;
+    public y0(f1 f1Var, int i7) {
+        this.f22533a = i7;
+        this.f22534b = f1Var;
+    }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        switch (this.f22495a) {
+    public final void run() {
+        switch (this.f22533a) {
             case 0:
-                return false;
+                f1 f1Var = this.f22534b;
+                i4 i4Var = f1Var.L2;
+                if (i4Var != null && f1Var.f22098f2 != null) {
+                    f1Var.M2 = true;
+                    i4Var.b().f23447a.m(false);
+                    try {
+                        f1Var.performHapticFeedback(0);
+                    } catch (Exception unused) {
+                    }
+                    ((s2) f1Var.f22098f2).a(f1Var, f1Var.L2, true);
+                    return;
+                }
+                return;
             case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
+                this.f22534b.K();
+                return;
             default:
-                return false;
+                this.f22534b.P();
+                return;
         }
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f22495a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        int i7 = this.f22495a;
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f22495a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            case 2:
-                return false;
-            case 3:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    private final void a(ActionMode actionMode) {
-    }
-
-    private final void b(ActionMode actionMode) {
-    }
-
-    private final void c(ActionMode actionMode) {
-    }
-
-    private final void d(ActionMode actionMode) {
-    }
-
-    private final void e(ActionMode actionMode) {
     }
 }

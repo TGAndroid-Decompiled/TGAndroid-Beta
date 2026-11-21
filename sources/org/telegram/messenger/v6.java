@@ -5,57 +5,57 @@ import android.text.TextWatcher;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class v6 implements TextWatcher {
-    public boolean f27325a;
-    public final int f27326b;
-    public final t6 f27327c;
+    public boolean f27353a;
+    public final int f27354b;
+    public final t6 f27355c;
     public final TextView[] d;
-    public final TLRPC.TL_factCheck f27328e;
+    public final TLRPC.TL_factCheck f27356e;
 
     public v6(int i7, t6 t6Var, TextView[] textViewArr, TLRPC.TL_factCheck tL_factCheck) {
-        this.f27326b = i7;
-        this.f27327c = t6Var;
+        this.f27354b = i7;
+        this.f27355c = t6Var;
         this.d = textViewArr;
-        this.f27328e = tL_factCheck;
+        this.f27356e = tL_factCheck;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int i7;
         int i10;
-        if (!this.f27325a) {
+        if (!this.f27353a) {
             int length = editable.length();
             boolean z10 = true;
-            int i11 = this.f27326b;
+            int i11 = this.f27354b;
             if (length > i11) {
-                this.f27325a = true;
+                this.f27353a = true;
                 editable.delete(i11, editable.length());
-                t6 t6Var = this.f27327c;
+                t6 t6Var = this.f27355c;
                 g0.D3(t6Var);
                 try {
                     t6Var.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                this.f27325a = false;
+                this.f27353a = false;
             }
             TextView[] textViewArr = this.d;
             if (textViewArr[0] != null) {
-                if (editable.length() <= 0 && this.f27328e != null) {
+                if (editable.length() <= 0 && this.f27356e != null) {
                     z10 = false;
                 }
                 TextView textView = textViewArr[0];
                 if (z10) {
-                    i7 = 2131751343;
+                    i7 = 2131751342;
                 } else {
-                    i7 = 2131746126;
+                    i7 = 2131746125;
                 }
-                textView.setText(gd.M0(i7, null));
+                textView.setText(gd.N0(i7, null));
                 TextView textView2 = textViewArr[0];
                 if (z10) {
-                    i10 = org.telegram.ui.ActionBar.n6.H5;
+                    i10 = org.telegram.ui.ActionBar.m6.H5;
                 } else {
-                    i10 = org.telegram.ui.ActionBar.n6.f29635q7;
+                    i10 = org.telegram.ui.ActionBar.m6.f29619q7;
                 }
-                textView2.setTextColor(org.telegram.ui.ActionBar.n6.x0(null, i10, false));
+                textView2.setTextColor(org.telegram.ui.ActionBar.m6.x0(null, i10, false));
             }
         }
     }

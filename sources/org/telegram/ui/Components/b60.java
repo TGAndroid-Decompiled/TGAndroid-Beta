@@ -1,169 +1,85 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class b60 extends bk0 {
-    public final j60 f33569c;
+public final class b60 extends p51 {
+    public float f33780f;
+    public float h;
+    public final Paint f33781n;
+    public float f33782r;
+    public h6.m f33783s;
+    public final l60 f33784w;
 
-    public b60(j60 j60Var) {
-        this.f33569c = j60Var;
+    public b60(l60 l60Var, Context context) {
+        super(l60Var, context);
+        this.f33784w = l60Var;
+        this.f33781n = new Paint();
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        int i7 = f1Var.f59127f;
-        if (i7 == 3 || i7 == 1) {
-            return true;
+    public final void dispatchDraw(Canvas canvas) {
+        l60 l60Var = this.f33784w;
+        l60Var.Q1.setTranslationY(org.telegram.messenger.g0.L(64.0f) + org.telegram.messenger.g0.L(6.0f) + (l60Var.f39082y1 - l60Var.f30207t0));
+        float f10 = l60Var.f37122j2 + l60Var.f37128p2;
+        nv0 nv0Var = l60Var.f39078u1;
+        if (nv0Var.getVisibility() != 0) {
+            this.f33780f = f10;
+            this.h = f10;
+        } else if (this.h != f10) {
+            this.h = f10;
+            this.f33782r = (f10 - this.f33780f) * 0.10666667f;
         }
-        return false;
-    }
-
-    public final TLObject E(int i7) {
-        j60 j60Var = this.f33569c;
-        if (j60Var.f36358h2 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) j60Var.f36359i2.get(i7 - j60Var.T1);
-            if (org.telegram.messenger.n5.E(dialog.f28407id)) {
-                return org.telegram.messenger.mp.u1(j60Var.f30187a).c2(Long.valueOf(dialog.f28407id));
-            }
-            return org.telegram.messenger.mp.u1(j60Var.f30187a).O0(Long.valueOf(-dialog.f28407id));
-        }
-        return (TLObject) j60Var.Z1.get(i7 - j60Var.T1);
-    }
-
-    @Override
-    public final int b() {
-        return this.f33569c.X1;
-    }
-
-    @Override
-    public final int d(int i7) {
-        j60 j60Var = this.f33569c;
-        if (i7 == j60Var.S1) {
-            return 1;
-        }
-        j60Var.getClass();
-        if (i7 == 0) {
-            return 2;
-        }
-        if (i7 >= j60Var.T1 && i7 < j60Var.U1) {
-            return 3;
-        }
-        if (i7 == j60Var.W1) {
-            return 4;
-        }
-        if (i7 == j60Var.V1) {
-            return 5;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(v4.f1 f1Var, int i7) {
-        long j3;
-        boolean z10;
-        long j10;
-        boolean z11;
-        int i10 = f1Var.f59127f;
-        View view = f1Var.f59123a;
-        if (i10 != 2) {
-            if (i10 == 3) {
-                org.telegram.ui.Cells.i4 i4Var = (org.telegram.ui.Cells.i4) view;
-                TLObject E = E(i7);
-                Object object = i4Var.getObject();
-                if (object instanceof TLRPC.User) {
-                    j3 = ((TLRPC.User) object).f28552id;
-                } else if (object instanceof TLRPC.Chat) {
-                    j3 = -((TLRPC.Chat) object).f28403id;
-                } else {
-                    j3 = 0;
-                }
-                j60 j60Var = this.f33569c;
-                boolean z12 = false;
-                if (i7 != j60Var.U1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                i4Var.e(E, null, null, z10);
-                if (E instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) E).f28552id;
-                } else if (E instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) E).f28403id;
-                } else {
-                    j10 = 0;
-                }
-                if (j10 != 0) {
-                    a0.h hVar = j60Var.O1;
-                    if (hVar != null && hVar.h(j10) >= 0) {
-                        i4Var.c(true, false);
-                        i4Var.setCheckBoxEnabled(false);
-                        return;
-                    }
-                    if (j60Var.f36352a2.h(j10) >= 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    if (j3 == j10) {
-                        z12 = true;
-                    }
-                    i4Var.c(z11, z12);
-                    i4Var.setCheckBoxEnabled(true);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        view.requestLayout();
-    }
-
-    @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        org.telegram.ui.Cells.y4 y4Var;
-        boolean z10;
-        Context context = viewGroup.getContext();
-        if (i7 != 2) {
-            j60 j60Var = this.f33569c;
-            if (i7 != 3) {
-                if (i7 != 4) {
-                    if (i7 != 5) {
-                        org.telegram.ui.Cells.y4 y4Var2 = new org.telegram.ui.Cells.y4(context);
-                        y4Var2.b(2131232205, 7, org.telegram.messenger.gd.M0(2131743153, null), true);
-                        int i10 = org.telegram.ui.ActionBar.n6.f29575n5;
-                        y4Var2.a(i10, i10);
-                        y4Var = y4Var2;
-                    } else {
-                        a60 a60Var = new a60(context, null, 0, null, 0);
-                        a60Var.setLayoutParams(new v4.q0(-1, -1));
-                        a60Var.f36896e.setVisibility(8);
-                        org.telegram.ui.zr zrVar = j60Var.f36358h2;
-                        xh.l lVar = a60Var.d;
-                        if (zrVar != null) {
-                            lVar.setText(org.telegram.messenger.gd.M0(2131750715, null));
-                        } else {
-                            lVar.setText(org.telegram.messenger.gd.M0(2131748031, null));
-                        }
-                        a60Var.setAnimateLayoutChange(true);
-                        y4Var = a60Var;
-                    }
-                } else {
-                    y4Var = new View(context);
-                }
+        float f11 = this.f33780f;
+        float f12 = this.h;
+        if (f11 != f12) {
+            float f13 = this.f33782r;
+            float f14 = f11 + f13;
+            this.f33780f = f14;
+            if (f13 > 0.0f && f14 > f12) {
+                this.f33780f = f12;
+            } else if (f13 < 0.0f && f14 < f12) {
+                this.f33780f = f12;
             } else {
-                if (j60Var.f36358h2 != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                y4Var = new org.telegram.ui.Cells.i4(context, 1, 0, z10);
+                invalidate();
             }
-        } else {
-            y4Var = new bi.i3(20, context, this);
         }
-        return new v4.f1(y4Var);
+        nv0Var.setTranslationY(l60Var.f39082y1 + this.f33780f);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        l60 l60Var = this.f33784w;
+        if (view == l60Var.Q1) {
+            canvas.save();
+            canvas.clipRect(0.0f, view.getY() - org.telegram.messenger.g0.L(4.0f), getMeasuredWidth(), view.getY() + l60Var.f37118f2 + 1.0f);
+            canvas.drawColor(i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29378d6, false), (int) (l60Var.f37116c2 * 255.0f)));
+            int o4 = i0.a.o(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29379d7, false), (int) (l60Var.f37116c2 * 255.0f));
+            Paint paint = this.f33781n;
+            paint.setColor(o4);
+            canvas.drawRect(0.0f, view.getY() + l60Var.f37118f2, getMeasuredWidth(), view.getY() + l60Var.f37118f2 + 1.0f, paint);
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        h6.m mVar = this.f33783s;
+        if (mVar != null) {
+            ((u51) mVar.f13965b).f40274b = true;
+        }
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        if (view == this.f33784w.f37127o2 && this.f33783s == null) {
+            this.f33783s = new h6.m(view);
+        }
     }
 }

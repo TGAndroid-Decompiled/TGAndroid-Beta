@@ -2,12 +2,12 @@ package qi;
 
 import android.text.SpannableStringBuilder;
 public final class e extends d {
-    public SpannableStringBuilder f56176b;
+    public SpannableStringBuilder f56217b;
 
     @Override
     public final int getSpanEnd(Object obj) {
         SpannableStringBuilder spannableStringBuilder;
-        if (!this.f56175a && (spannableStringBuilder = this.f56176b) != null) {
+        if (!this.f56216a && (spannableStringBuilder = this.f56217b) != null) {
             return spannableStringBuilder.getSpanEnd(obj);
         }
         return super.getSpanEnd(obj);
@@ -16,7 +16,7 @@ public final class e extends d {
     @Override
     public final int getSpanFlags(Object obj) {
         SpannableStringBuilder spannableStringBuilder;
-        if (!this.f56175a && (spannableStringBuilder = this.f56176b) != null) {
+        if (!this.f56216a && (spannableStringBuilder = this.f56217b) != null) {
             return spannableStringBuilder.getSpanFlags(obj);
         }
         return super.getSpanFlags(obj);
@@ -25,7 +25,7 @@ public final class e extends d {
     @Override
     public final int getSpanStart(Object obj) {
         SpannableStringBuilder spannableStringBuilder;
-        if (!this.f56175a && (spannableStringBuilder = this.f56176b) != null) {
+        if (!this.f56216a && (spannableStringBuilder = this.f56217b) != null) {
             return spannableStringBuilder.getSpanStart(obj);
         }
         return super.getSpanStart(obj);
@@ -34,7 +34,7 @@ public final class e extends d {
     @Override
     public final Object[] getSpans(int i7, int i10, Class cls) {
         SpannableStringBuilder spannableStringBuilder;
-        if (!this.f56175a && (spannableStringBuilder = this.f56176b) != null) {
+        if (!this.f56216a && (spannableStringBuilder = this.f56217b) != null) {
             return spannableStringBuilder.getSpans(i7, i10, cls);
         }
         return super.getSpans(i7, i10, cls);
@@ -43,7 +43,7 @@ public final class e extends d {
     @Override
     public final int nextSpanTransition(int i7, int i10, Class cls) {
         SpannableStringBuilder spannableStringBuilder;
-        if (!this.f56175a && (spannableStringBuilder = this.f56176b) != null) {
+        if (!this.f56216a && (spannableStringBuilder = this.f56217b) != null) {
             return spannableStringBuilder.nextSpanTransition(i7, i10, cls);
         }
         return super.nextSpanTransition(i7, i10, cls);

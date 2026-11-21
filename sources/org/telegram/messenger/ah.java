@@ -8,40 +8,40 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class ah implements Runnable {
-    public final int f22876a = 1;
-    public final boolean f22877b;
-    public final Object f22878c;
+    public final int f22904a = 1;
+    public final boolean f22905b;
+    public final Object f22906c;
     public final c1 d;
-    public final Object f22879e;
-    public final Object f22880f;
+    public final Object f22907e;
+    public final Object f22908f;
     public final Object h;
-    public final Object f22881n;
-    public final Object f22882r;
+    public final Object f22909n;
+    public final Object f22910r;
 
     public ah(i5 i5Var, HashMap hashMap, HashMap hashMap2, boolean z10, HashMap hashMap3, ArrayList arrayList, HashMap hashMap4, boolean[] zArr) {
         this.d = i5Var;
-        this.f22879e = hashMap;
-        this.f22880f = hashMap2;
-        this.f22877b = z10;
+        this.f22907e = hashMap;
+        this.f22908f = hashMap2;
+        this.f22905b = z10;
         this.h = hashMap3;
-        this.f22878c = arrayList;
-        this.f22881n = hashMap4;
-        this.f22882r = zArr;
+        this.f22906c = arrayList;
+        this.f22909n = hashMap4;
+        this.f22910r = zArr;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f22876a) {
+        switch (this.f22904a) {
             case 0:
                 ri riVar = (ri) this.d;
-                boolean z11 = this.f22877b;
-                ArrayList arrayList = (ArrayList) this.f22880f;
+                boolean z11 = this.f22905b;
+                ArrayList arrayList = (ArrayList) this.f22908f;
                 ArrayList arrayList2 = (ArrayList) this.h;
-                a0.h hVar = (a0.h) this.f22881n;
-                a0.h hVar2 = (a0.h) this.f22882r;
-                riVar.getMessagesController().f4((ArrayList) this.f22878c, z11);
-                riVar.getMessagesController().Z3((ArrayList) this.f22879e, z11);
+                a0.h hVar = (a0.h) this.f22909n;
+                a0.h hVar2 = (a0.h) this.f22910r;
+                riVar.getMessagesController().f4((ArrayList) this.f22906c, z11);
+                riVar.getMessagesController().Z3((ArrayList) this.f22907e, z11);
                 int size = arrayList.size();
                 int i7 = 0;
                 for (int i10 = 0; i10 < size; i10++) {
@@ -61,37 +61,37 @@ public final class ah implements Runnable {
                 return;
             case 1:
                 i5 i5Var = (i5) this.d;
-                boolean z12 = this.f22877b;
+                boolean z12 = this.f22905b;
                 HashMap hashMap = (HashMap) this.h;
-                ArrayList arrayList3 = (ArrayList) this.f22878c;
-                HashMap hashMap2 = (HashMap) this.f22881n;
-                boolean[] zArr = (boolean[]) this.f22882r;
-                i5Var.f24558a0 = (HashMap) this.f22879e;
-                i5Var.Z = (HashMap) this.f22880f;
-                i5Var.f24564e = false;
-                i5Var.f24576r = true;
+                ArrayList arrayList3 = (ArrayList) this.f22906c;
+                HashMap hashMap2 = (HashMap) this.f22909n;
+                boolean[] zArr = (boolean[]) this.f22910r;
+                i5Var.f24586a0 = (HashMap) this.f22907e;
+                i5Var.Z = (HashMap) this.f22908f;
+                i5Var.f24592e = false;
+                i5Var.f24604r = true;
                 if (z12) {
                     i5Var.h = true;
                 }
-                if (!i5Var.f24579x.isEmpty() && i5Var.h) {
-                    i5Var.c(i5Var.f24579x, null, null, null);
-                    i5Var.f24579x.clear();
+                if (!i5Var.f24607x.isEmpty() && i5Var.h) {
+                    i5Var.c(i5Var.f24607x, null, null, null);
+                    i5Var.f24607x.clear();
                 }
                 g0.g3(new w4(i5Var, hashMap, arrayList3, hashMap2, 3));
                 if (zArr[0]) {
-                    Utilities.f22779e.d(new m4(i5Var, 7), 300000L);
+                    Utilities.f22807e.d(new m4(i5Var, 7), 300000L);
                     return;
                 }
                 return;
             default:
                 zy zyVar = (zy) this.d;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f22878c;
-                TLObject tLObject = (TLObject) this.f22879e;
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f22880f;
-                boolean z13 = this.f22877b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f22906c;
+                TLObject tLObject = (TLObject) this.f22907e;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f22908f;
+                boolean z13 = this.f22905b;
                 fj fjVar = (fj) this.h;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) this.f22881n;
-                org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.f22882r;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) this.f22909n;
+                org.telegram.ui.bn bnVar = (org.telegram.ui.bn) this.f22910r;
                 if (tL_error == null) {
                     TL_account.Password password = (TL_account.Password) tLObject;
                     twoStepVerificationActivity.J = password;
@@ -105,23 +105,23 @@ public final class ah implements Runnable {
 
     public ah(ri riVar, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, a0.h hVar, a0.h hVar2) {
         this.d = riVar;
-        this.f22878c = arrayList;
-        this.f22877b = z10;
-        this.f22879e = arrayList2;
-        this.f22880f = arrayList3;
+        this.f22906c = arrayList;
+        this.f22905b = z10;
+        this.f22907e = arrayList2;
+        this.f22908f = arrayList3;
         this.h = arrayList4;
-        this.f22881n = hVar;
-        this.f22882r = hVar2;
+        this.f22909n = hVar;
+        this.f22910r = hVar2;
     }
 
     public ah(zy zyVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, fj fjVar, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.ui.bn bnVar) {
         this.d = zyVar;
-        this.f22878c = tL_error;
-        this.f22879e = tLObject;
-        this.f22880f = twoStepVerificationActivity;
-        this.f22877b = z10;
+        this.f22906c = tL_error;
+        this.f22907e = tLObject;
+        this.f22908f = twoStepVerificationActivity;
+        this.f22905b = z10;
         this.h = fjVar;
-        this.f22881n = keyboardButtonProto;
-        this.f22882r = bnVar;
+        this.f22909n = keyboardButtonProto;
+        this.f22910r = bnVar;
     }
 }

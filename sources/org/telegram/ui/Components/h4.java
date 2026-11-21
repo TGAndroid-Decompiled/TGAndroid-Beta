@@ -1,12 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-public final class h4 extends a5 {
+public final class h4 extends tb0 {
     @Override
-    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        editorInfo.imeOptions &= -1073741825;
-        return onCreateInputConnection;
+    public final CharSequence d(int i7) {
+        return org.telegram.messenger.gd.G(i7, "Minutes", new Object[0]);
     }
 }

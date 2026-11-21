@@ -3,34 +3,34 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class l8 implements View.OnClickListener {
-    public final int f49473a;
-    public final i9 f49474b;
+    public final int f49513a;
+    public final j9 f49514b;
 
-    public l8(i9 i9Var, int i7) {
-        this.f49473a = i7;
-        this.f49474b = i9Var;
+    public l8(j9 j9Var, int i7) {
+        this.f49513a = i7;
+        this.f49514b = j9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f49473a) {
+        switch (this.f49513a) {
             case 0:
                 Long l10 = (Long) view.getTag();
-                i9 i9Var = this.f49474b;
-                org.telegram.messenger.t3 i12 = i9Var.getMessagesController().i1(l10.longValue(), false, null);
-                TLRPC.Chat O0 = i9Var.getMessagesController().O0(l10);
-                i9Var.M = O0;
+                j9 j9Var = this.f49514b;
+                org.telegram.messenger.t3 i12 = j9Var.getMessagesController().i1(l10.longValue(), false, null);
+                TLRPC.Chat O0 = j9Var.getMessagesController().O0(l10);
+                j9Var.M = O0;
                 if (i12 != null) {
-                    org.telegram.ui.Components.voip.b2.l(O0, null, false, null, i9Var.getParentActivity(), i9Var, i9Var.getAccountInstance());
+                    org.telegram.ui.Components.voip.b2.l(O0, null, false, null, j9Var.getParentActivity(), j9Var, j9Var.getAccountInstance());
                     return;
                 }
-                i9Var.N = l10;
-                i9Var.getMessagesController().b3(0, l10.longValue(), true);
+                j9Var.N = l10;
+                j9Var.getMessagesController().b3(0, l10.longValue(), true);
                 return;
             default:
-                i9 i9Var2 = this.f49474b;
-                i9Var2.getClass();
-                i9.l0(i9Var2);
+                j9 j9Var2 = this.f49514b;
+                j9Var2.getClass();
+                j9.l0(j9Var2);
                 return;
         }
     }

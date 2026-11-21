@@ -1,50 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-public abstract class b51 extends org.telegram.ui.ActionBar.h2 {
-    public bi.c6 f33530a;
-    public kg.o1 f33531b;
-    public int f33532c;
-    public int d;
+import android.graphics.Canvas;
+import android.graphics.drawable.ColorDrawable;
+public final class b51 extends ColorDrawable {
+    public final int f33776a;
+    public final org.telegram.ui.ActionBar.h6 f33777b;
 
-    public b51() {
-        super(null);
-        this.f33532c = -1;
+    public b51(int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(org.telegram.ui.ActionBar.m6.w0(i7, h6Var));
+        this.f33776a = i7;
+        this.f33777b = h6Var;
     }
 
-    public abstract void Z(ArrayList arrayList, z41 z41Var);
-
-    public abstract CharSequence a0();
-
-    public abstract void b0(l41 l41Var, View view);
-
-    public abstract boolean c0(l41 l41Var, View view);
-
     @Override
-    public View createView(Context context) {
-        org.telegram.ui.x7 x7Var = new org.telegram.ui.x7(this, 21);
-        org.telegram.ui.ActionBar.a5 a5Var = this.simpleActionBar;
-        if (a5Var != null) {
-            a5Var.setBackButtonDrawable(new org.telegram.ui.ActionBar.y1(false));
-            this.simpleActionBar.setTitle(a0());
-            this.simpleActionBar.setActionBarMenuOnItemClick(x7Var);
-        } else {
-            this.actionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.y1(false));
-            this.actionBar.setAllowOverlayTitle(true);
-            this.actionBar.setTitle(a0());
-            this.actionBar.setActionBarMenuOnItemClick(x7Var);
+    public final void draw(Canvas canvas) {
+        int w02 = org.telegram.ui.ActionBar.m6.w0(this.f33776a, this.f33777b);
+        if (getColor() != w02) {
+            setColor(w02);
         }
-        this.f33531b = new kg.o1(context, null, 1);
-        if (!useSimpleActionBar()) {
-            org.telegram.ui.ActionBar.u6.h(org.telegram.ui.ActionBar.n6.f29337a7, this.f33531b, null);
-        }
-        bi.c6 c6Var = new bi.c6(this, this, new d(this, 23), new a51(this), new a51(this));
-        this.f33530a = c6Var;
-        this.f33531b.addView(c6Var, c8.ma.c(-1.0f, -1));
-        kg.o1 o1Var = this.f33531b;
-        this.fragmentView = o1Var;
-        return o1Var;
+        super.draw(canvas);
     }
 }

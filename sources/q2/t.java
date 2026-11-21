@@ -18,31 +18,26 @@ import org.telegram.ui.Cells.c5;
 import p4.r0;
 public final class t implements q {
     public static final r0 d = new r0(23);
-    public final UUID f55773a;
-    public final MediaDrm f55774b;
-    public int f55775c;
+    public final UUID f55814a;
+    public final MediaDrm f55815b;
+    public int f55816c;
 
     public t(UUID uuid) {
         UUID uuid2;
         uuid.getClass();
-        la.e("Use C.CLEARKEY_UUID instead", !e2.l.f10491c.equals(uuid));
-        this.f55773a = uuid;
+        la.e("Use C.CLEARKEY_UUID instead", !e2.l.f10520c.equals(uuid));
+        this.f55814a = uuid;
         MediaDrm mediaDrm = new MediaDrm((Build.VERSION.SDK_INT >= 27 || !uuid.equals(e2.l.d)) ? uuid : uuid2);
-        this.f55774b = mediaDrm;
-        this.f55775c = 1;
-        if (e2.l.f10492e.equals(uuid) && "ASUS_Z00AD".equals(Build.MODEL)) {
+        this.f55815b = mediaDrm;
+        this.f55816c = 1;
+        if (e2.l.f10521e.equals(uuid) && "ASUS_Z00AD".equals(Build.MODEL)) {
             mediaDrm.setPropertyString("securityLevel", "L3");
         }
     }
 
     @Override
-    public final void A(byte[] bArr) {
-        this.f55774b.closeSession(bArr);
-    }
-
-    @Override
-    public final byte[] C(byte[] bArr, byte[] bArr2) {
-        if (e2.l.d.equals(this.f55773a) && Build.VERSION.SDK_INT < 27) {
+    public final byte[] A(byte[] bArr, byte[] bArr2) {
+        if (e2.l.d.equals(this.f55814a) && Build.VERSION.SDK_INT < 27) {
             try {
                 JSONObject jSONObject = new JSONObject(l0.r(bArr2));
                 StringBuilder sb2 = new StringBuilder("{\"keys\":[");
@@ -66,19 +61,19 @@ public final class t implements q {
                 h2.a.d("ClearKeyUtil", "Failed to adjust response data: ".concat(l0.r(bArr2)), e10);
             }
         }
-        return this.f55774b.provideKeyResponse(bArr, bArr2);
+        return this.f55815b.provideKeyResponse(bArr, bArr2);
     }
 
     @Override
-    public final void D(byte[] bArr) {
-        this.f55774b.provideProvisionResponse(bArr);
+    public final void C(byte[] bArr) {
+        this.f55815b.provideProvisionResponse(bArr);
     }
 
     @Override
-    public final void G(byte[] bArr, m2.i iVar) {
+    public final void F(byte[] bArr, m2.i iVar) {
         if (Build.VERSION.SDK_INT >= 31) {
             try {
-                o0.h(this.f55774b, bArr, iVar);
+                o0.h(this.f55815b, bArr, iVar);
             } catch (UnsupportedOperationException unused) {
                 h2.a.l("FrameworkMediaDrm", "setLogSessionId failed.");
             }
@@ -86,12 +81,12 @@ public final class t implements q {
     }
 
     @Override
-    public final q2.o H(byte[] r17, java.util.List r18, int r19, java.util.HashMap r20) {
-        throw new UnsupportedOperationException("Method not decompiled: q2.t.H(byte[], java.util.List, int, java.util.HashMap):q2.o");
+    public final q2.o G(byte[] r17, java.util.List r18, int r19, java.util.HashMap r20) {
+        throw new UnsupportedOperationException("Method not decompiled: q2.t.G(byte[], java.util.List, int, java.util.HashMap):q2.o");
     }
 
     @Override
-    public final int J() {
+    public final int H() {
         return 2;
     }
 
@@ -101,10 +96,10 @@ public final class t implements q {
         UUID uuid;
         boolean equals;
         int i7 = Build.VERSION.SDK_INT;
-        UUID uuid2 = this.f55773a;
+        UUID uuid2 = this.f55814a;
         if (i7 >= 31) {
-            boolean equals2 = uuid2.equals(e2.l.f10492e);
-            MediaDrm mediaDrm = this.f55774b;
+            boolean equals2 = uuid2.equals(e2.l.f10521e);
+            MediaDrm mediaDrm = this.f55815b;
             if (equals2) {
                 String propertyString = mediaDrm.getPropertyString("version");
                 if (!propertyString.startsWith("v5.") && !propertyString.startsWith("14.") && !propertyString.startsWith("15.") && !propertyString.startsWith("16.0")) {
@@ -123,7 +118,7 @@ public final class t implements q {
         try {
             try {
                 if (i7 < 27 && Objects.equals(uuid2, e2.l.d)) {
-                    uuid = e2.l.f10491c;
+                    uuid = e2.l.f10520c;
                 } else {
                     uuid = uuid2;
                 }
@@ -156,13 +151,13 @@ public final class t implements q {
 
     @Override
     public final void a(final c5 c5Var) {
-        this.f55774b.setOnEventListener(new MediaDrm.OnEventListener() {
+        this.f55815b.setOnEventListener(new MediaDrm.OnEventListener() {
             @Override
             public final void onEvent(MediaDrm mediaDrm, byte[] bArr, int i7, int i10, byte[] bArr2) {
                 t tVar = t.this;
                 c5 c5Var2 = c5Var;
                 tVar.getClass();
-                android.support.v4.media.session.q qVar = ((e) c5Var2.f30477a).N;
+                android.support.v4.media.session.q qVar = ((e) c5Var2.f30505a).N;
                 qVar.getClass();
                 qVar.obtainMessage(i7, bArr).sendToTarget();
             }
@@ -171,41 +166,46 @@ public final class t implements q {
 
     @Override
     public final Map d(byte[] bArr) {
-        return this.f55774b.queryKeyStatus(bArr);
+        return this.f55815b.queryKeyStatus(bArr);
     }
 
     @Override
     public final p n() {
-        MediaDrm.ProvisionRequest provisionRequest = this.f55774b.getProvisionRequest();
+        MediaDrm.ProvisionRequest provisionRequest = this.f55815b.getProvisionRequest();
         return new p(provisionRequest.getDefaultUrl(), provisionRequest.getData());
     }
 
     @Override
     public final k2.b r(byte[] bArr) {
         int i7 = Build.VERSION.SDK_INT;
-        UUID uuid = this.f55773a;
+        UUID uuid = this.f55814a;
         if (i7 < 27 && Objects.equals(uuid, e2.l.d)) {
-            uuid = e2.l.f10491c;
+            uuid = e2.l.f10520c;
         }
         return new r(uuid, bArr);
     }
 
     @Override
     public final synchronized void release() {
-        int i7 = this.f55775c - 1;
-        this.f55775c = i7;
+        int i7 = this.f55816c - 1;
+        this.f55816c = i7;
         if (i7 == 0) {
-            this.f55774b.release();
+            this.f55815b.release();
         }
     }
 
     @Override
     public final byte[] t() {
-        return this.f55774b.openSession();
+        return this.f55815b.openSession();
     }
 
     @Override
-    public final void x(byte[] bArr, byte[] bArr2) {
-        this.f55774b.restoreKeys(bArr, bArr2);
+    public final void u(byte[] bArr, byte[] bArr2) {
+        this.f55815b.restoreKeys(bArr, bArr2);
+    }
+
+    @Override
+    public final void x(byte[] bArr) {
+        this.f55815b.closeSession(bArr);
     }
 }

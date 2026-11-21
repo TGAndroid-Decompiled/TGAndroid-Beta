@@ -2,13 +2,13 @@ package g7;
 
 import f5.k;
 public final class c {
-    public static final c f13236b;
-    public final k f13237a = new k();
+    public static final c f13265b;
+    public final k f13266a = new k();
 
     static {
         c cVar = new c();
         synchronized (c.class) {
-            f13236b = cVar;
+            f13265b = cVar;
         }
     }
 }

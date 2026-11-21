@@ -1,264 +1,201 @@
 package ai;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
+import android.content.SharedPreferences;
 import android.os.SystemClock;
-import android.text.Layout;
-import android.widget.EditText;
+import android.util.Base64;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.ui.Components.gf;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.pt;
-import org.telegram.ui.Components.vu0;
-public final class l1 {
-    public static final lr J = new lr(0.42d, 0.0d, 0.22d, 1.0d);
-    public final int[] A;
-    public final float B;
-    public boolean C;
-    public boolean D;
-    public float E;
-    public float F;
-    public int[] G;
-    public Runnable H;
-    public boolean I;
-    public final EditText f1309b;
-    public boolean d;
-    public long f1311e;
-    public float f1312f;
-    public float f1313g;
-    public Bitmap h;
-    public int f1316k;
-    public int f1317l;
-    public int f1318m;
-    public int f1319n;
-    public final Paint f1321p;
-    public final Paint f1322q;
-    public final LinearGradient f1323r;
-    public final LinearGradient f1324s;
-    public final LinearGradient f1325t;
-    public final Matrix f1326u;
-    public int v;
-    public int f1327w;
-    public int f1328x;
-    public float f1329y;
-    public float f1330z;
-    public long f1308a = 900;
-    public final vu0 f1310c = new vu0(2600);
-    public float[] f1314i = new float[0];
-    public float[] f1315j = new float[0];
-    public final Paint f1320o = new Paint(2);
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.a6;
+import org.telegram.messenger.j10;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.z5;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Dictation.DictationAsr;
+public abstract class l1 {
+    public static ArrayList f1276a;
+    public static long f1277b;
+    public static CountDownLatch f1278c;
+    public static long d;
 
-    public l1(gf gfVar) {
-        Paint paint = new Paint();
-        this.f1321p = paint;
-        Paint paint2 = new Paint();
-        this.f1322q = paint2;
-        this.f1326u = new Matrix();
-        this.A = new int[2];
-        this.F = 0.06f;
-        this.f1309b = gfVar;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f1323r = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, 0, -16777216, tileMode);
-        this.f1324s = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, -16777216, 0, tileMode);
-        this.f1325t = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, 16777215, -1, tileMode);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-        this.B = org.telegram.messenger.g0.L(22.0f);
-    }
-
-    public final void a(long r6) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.l1.a(long):void");
-    }
-
-    public final boolean b(float f10, float f11, int i7, boolean z10) {
-        float f12;
-        c();
-        EditText editText = this.f1309b;
-        Layout layout = editText.getLayout();
-        if (layout != null && layout.getWidth() > 0 && layout.getHeight() > 0) {
+    public static synchronized ArrayList a() {
+        synchronized (l1.class) {
             try {
-                this.h = Bitmap.createBitmap(layout.getWidth() + org.telegram.messenger.g0.L(4.0f), layout.getHeight(), Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(this.h);
-                editText.getPaint().setColor(editText.getCurrentTextColor());
-                layout.draw(canvas);
-                this.f1327w = editText.getScrollY();
-                this.f1328x = Math.max(1, (editText.getHeight() - editText.getTotalPaddingTop()) - editText.getTotalPaddingBottom());
-                this.f1316k = f(1200, this.h, true);
-                int[] iArr = this.A;
-                editText.getLocationInWindow(iArr);
-                float totalPaddingTop = (editText.getTotalPaddingTop() + iArr[1]) - this.f1327w;
-                if (editText instanceof pt) {
-                    f12 = ((pt) editText).getOffsetY();
-                } else {
-                    f12 = 0.0f;
+                if (f1276a == null) {
+                    String string = mp.g1().getString("speech_models", null);
+                    if (string == null) {
+                        return null;
+                    }
+                    SerializedData serializedData = new SerializedData(Base64.decode(string, 0));
+                    int readInt32 = serializedData.readInt32(true);
+                    ArrayList arrayList = new ArrayList(readInt32);
+                    for (int i7 = 0; i7 < readInt32; i7++) {
+                        arrayList.add(TLRPC.TL_transcriptionModel.TLdeserialize(serializedData, serializedData.readInt32(true), true));
+                    }
+                    serializedData.cleanup();
+                    f1276a = arrayList;
                 }
-                this.f1329y = f12 + totalPaddingTop;
-                this.f1312f = f10;
-                this.f1313g = f11;
-                int i10 = this.v;
-                Paint paint = this.f1322q;
-                if (i10 != i7 || paint.getColorFilter() == null) {
-                    this.v = i7;
-                    paint.setColorFilter(new PorterDuffColorFilter(this.v, PorterDuff.Mode.SRC_IN));
+                return f1276a;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public static boolean b() {
+        z5 n10;
+        a6 q10 = a6.q(j10.l());
+        int e10 = org.telegram.messenger.t0.e();
+        if (e10 == 1) {
+            n10 = q10.p();
+        } else if (e10 == 2) {
+            n10 = q10.o();
+        } else {
+            n10 = q10.n();
+        }
+        if (n10 != null && n10.f28296g) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int c(org.telegram.tgnet.TLRPC.TL_transcriptionModel r23, java.io.File r24, boolean r25, ai.k1 r26) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.l1.c(org.telegram.tgnet.TLRPC$TL_transcriptionModel, java.io.File, boolean, ai.k1):int");
+    }
+
+    public static boolean d() {
+        long j3;
+        ArrayList a10 = a();
+        long currentTimeMillis = System.currentTimeMillis() - mp.g1().getLong("speech_models_checked", 0L);
+        if (a10 != null) {
+            if (a10.isEmpty()) {
+                j3 = 3600000;
+            } else {
+                j3 = 86400000;
+            }
+            if (currentTimeMillis <= j3) {
+                if (!a10.isEmpty() || f1277b != 0) {
+                    if ((org.telegram.messenger.s2.f26751c + "/" + DictationAsr.e0()).equals(mp.g1().getString("speech_models_build", null))) {
+                        return false;
+                    }
+                    return true;
                 }
-                vu0 vu0Var = this.f1310c;
-                vu0Var.a();
-                vu0Var.e(z10);
-                vu0Var.f41438a = s0.k(z10);
-                vu0Var.Q = org.telegram.messenger.g0.L(10.0f);
                 return true;
-            } catch (Throwable unused) {
-                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public static synchronized CountDownLatch e() {
+        synchronized (l1.class) {
+            CountDownLatch countDownLatch = f1278c;
+            if (countDownLatch != null) {
+                return countDownLatch;
+            }
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long j3 = f1277b;
+            if (j3 != 0 && elapsedRealtime - j3 < 60000) {
+                return null;
+            }
+            int l10 = j10.l();
+            if (!j10.r(l10)) {
+                return null;
+            }
+            f1277b = elapsedRealtime;
+            CountDownLatch countDownLatch2 = new CountDownLatch(1);
+            f1278c = countDownLatch2;
+            TLRPC.TL_messages_getTranscriptionModels tL_messages_getTranscriptionModels = new TLRPC.TL_messages_getTranscriptionModels();
+            tL_messages_getTranscriptionModels.version = DictationAsr.e0();
+            ConnectionsManager.getInstance(l10).sendRequest(tL_messages_getTranscriptionModels, new g1(countDownLatch2, 0));
+            return countDownLatch2;
+        }
+    }
+
+    public static TLRPC.TL_transcriptionModel f(ArrayList arrayList, String... strArr) {
+        if (arrayList == null) {
+            return null;
+        }
+        String[] strArr2 = (String[]) strArr.clone();
+        Arrays.sort(strArr2);
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            TLRPC.TL_transcriptionModel tL_transcriptionModel = (TLRPC.TL_transcriptionModel) obj;
+            String[] strArr3 = (String[]) tL_transcriptionModel.languages.toArray(new String[0]);
+            Arrays.sort(strArr3);
+            if (Arrays.equals(strArr2, strArr3)) {
+                return tL_transcriptionModel;
+            }
+        }
+        return null;
+    }
+
+    public static void g(File file) {
+        SharedPreferences.Editor edit = mp.g1().edit();
+        edit.remove("speech_doc_" + file.getName()).apply();
+    }
+
+    public static boolean h() {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j3 = d;
+        if (j3 == 0 || elapsedRealtime - j3 > 60000) {
+            d = elapsedRealtime;
+            if (d()) {
+                e();
+            }
+        }
+        ArrayList a10 = a();
+        if (a10 != null) {
+            int size = a10.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = a10.get(i7);
+                i7++;
+                TLRPC.TL_transcriptionModel tL_transcriptionModel = (TLRPC.TL_transcriptionModel) obj;
+                if (!tL_transcriptionModel.languages.isEmpty() && !tL_transcriptionModel.languages.contains("tinylid") && !tL_transcriptionModel.languages.contains("silero-vad")) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
-    public final void c() {
-        this.d = false;
-        this.f1311e = 0L;
-        Bitmap bitmap = this.h;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.h = null;
-        }
-        this.f1310c.a();
-    }
-
-    public final float d(float f10) {
-        float interpolation = J.getInterpolation(Math.max(0.0f, Math.min(1.0f, (f10 * 1000.0f) / (((float) this.f1308a) - (this.F * 1000.0f)))));
-        float f11 = this.f1312f;
-        return com.google.android.gms.internal.vision.e2.z(this.f1313g, f11, interpolation, f11);
-    }
-
-    public final void e(LinearGradient linearGradient, float f10, float f11) {
-        float sqrt = (float) Math.sqrt(1.809999942779541d);
-        float f12 = 1.0f / sqrt;
-        float f13 = 0.9f / sqrt;
-        float f14 = f10 / sqrt;
-        float f15 = f11 / sqrt;
-        Matrix matrix = this.f1326u;
-        matrix.reset();
-        matrix.setScale(Math.max(0.01f, f15 - f14), 1.0f);
-        matrix.postRotate((float) Math.toDegrees(Math.atan2(f13, f12)));
-        matrix.postTranslate(f12 * f14, f14 * f13);
-        linearGradient.setLocalMatrix(matrix);
-    }
-
-    public final int f(int i7, Bitmap bitmap, boolean z10) {
-        float f10;
-        float[] fArr;
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        int[] iArr = this.G;
-        if (iArr == null || iArr.length < width * height) {
-            this.G = new int[width * height];
-        }
-        int[] iArr2 = this.G;
-        bitmap.getPixels(iArr2, 0, width, 0, 0, width, height);
-        int max = Math.max(1, Math.round(org.telegram.messenger.g0.f24117p * 0.8f));
-        int i10 = 0;
-        for (int i11 = 0; i11 < height; i11 += max) {
-            for (int i12 = 0; i12 < width; i12 += max) {
-                if ((iArr2[(i11 * width) + i12] >>> 24) > 90) {
-                    i10++;
-                }
+    public static boolean i(TLRPC.TL_transcriptionModel tL_transcriptionModel, File file) {
+        if (tL_transcriptionModel != null && file.exists()) {
+            SharedPreferences g12 = mp.g1();
+            if (g12.getLong("speech_doc_" + file.getName(), 0L) != tL_transcriptionModel.document.f28437id) {
+                return true;
             }
+            return false;
         }
-        if (i10 > i7) {
-            f10 = i7 / i10;
-        } else {
-            f10 = 1.0f;
-        }
-        if (z10) {
-            fArr = this.f1314i;
-        } else {
-            fArr = this.f1315j;
-        }
-        int i13 = i7 + 32;
-        if (fArr.length < Math.min(i10, i13) * 3) {
-            fArr = new float[Math.min(i10, i13) * 3];
-        }
-        int i14 = 0;
-        for (int i15 = 0; i15 < height; i15 += max) {
-            for (int i16 = 0; i16 < width; i16 += max) {
-                if ((iArr2[(i15 * width) + i16] >>> 24) > 90) {
-                    if (z10) {
-                        int i17 = this.f1327w;
-                        if (i15 >= i17 - max) {
-                            if (i15 > i17 + this.f1328x + max) {
-                            }
-                        }
-                    }
-                    vu0 vu0Var = this.f1310c;
-                    if (vu0Var.d() <= f10) {
-                        int i18 = i14 + 1;
-                        if (i18 * 3 <= fArr.length) {
-                            float f11 = max;
-                            float d = ((vu0Var.d() - 0.5f) * f11) + i16;
-                            float d2 = ((vu0Var.d() - 0.5f) * f11) + i15;
-                            int i19 = i14 * 3;
-                            fArr[i19] = d;
-                            fArr[i19 + 1] = d2;
-                            fArr[i19 + 2] = (d2 * 0.9f) + d;
-                            i14 = i18;
-                        }
-                    }
-                }
-            }
-        }
-        Integer[] numArr = new Integer[i14];
-        for (int i20 = 0; i20 < i14; i20++) {
-            numArr[i20] = Integer.valueOf(i20);
-        }
-        Arrays.sort(numArr, new l(1, fArr));
-        float[] copyOf = Arrays.copyOf(fArr, i14 * 3);
-        for (int i21 = 0; i21 < i14; i21++) {
-            int i22 = i21 * 3;
-            int intValue = numArr[i21].intValue() * 3;
-            fArr[i22] = copyOf[intValue];
-            fArr[i22 + 1] = copyOf[intValue + 1];
-            fArr[i22 + 2] = copyOf[intValue + 2];
-        }
-        if (z10) {
-            this.f1314i = fArr;
-            return i14;
-        }
-        this.f1315j = fArr;
-        return i14;
+        return false;
     }
 
-    public final float g() {
-        if (!this.d) {
-            return -1.0f;
+    public static void j() {
+        CountDownLatch e10 = e();
+        if (e10 != null) {
+            new Thread(new h1(e10, 0), "DictationModels").start();
         }
-        if (this.f1311e == 0) {
-            return 0.0f;
-        }
-        return J.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f1311e)) / ((float) this.f1308a)));
     }
 
-    public final long h(float f10) {
-        if (this.f1313g <= this.f1312f) {
-            return 0L;
+    public static void k(ArrayList arrayList) {
+        SerializedData serializedData = new SerializedData();
+        serializedData.writeInt32(arrayList.size());
+        int size = arrayList.size();
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ((TLRPC.TL_transcriptionModel) obj).serializeToStream(serializedData);
         }
-        float f11 = ((float) this.f1308a) / 1000.0f;
-        float f12 = 0.0f;
-        for (int i7 = 0; i7 < 24; i7++) {
-            float f13 = (f12 + f11) / 2.0f;
-            if (d(f13) < f10) {
-                f12 = f13;
-            } else {
-                f11 = f13;
-            }
-        }
-        return f11 * 1000.0f;
+        SharedPreferences.Editor putLong = mp.g1().edit().putString("speech_models", Base64.encodeToString(serializedData.toByteArray(), 2)).putLong("speech_models_checked", System.currentTimeMillis());
+        putLong.putString("speech_models_build", org.telegram.messenger.s2.f26751c + "/" + DictationAsr.e0()).apply();
+        serializedData.cleanup();
     }
 }

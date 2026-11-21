@@ -3,43 +3,43 @@ package org.telegram.messenger;
 import java.util.HashMap;
 import org.telegram.tgnet.TLObject;
 public final class hw implements Runnable {
-    public final int f24505a;
-    public final zy f24506b;
-    public final TLObject f24507c;
+    public final int f24533a;
+    public final zy f24534b;
+    public final TLObject f24535c;
     public final fj d;
-    public final String f24508e;
-    public final ly f24509f;
+    public final String f24536e;
+    public final ly f24537f;
     public final boolean h;
-    public final ly f24510n;
-    public final Object f24511r;
-    public final HashMap f24512s;
-    public final boolean f24513w;
+    public final ly f24538n;
+    public final Object f24539r;
+    public final HashMap f24540s;
+    public final boolean f24541w;
 
     public hw(zy zyVar, TLObject tLObject, fj fjVar, String str, ly lyVar, boolean z10, ly lyVar2, Object obj, HashMap hashMap, boolean z11, int i7) {
-        this.f24505a = i7;
-        this.f24506b = zyVar;
-        this.f24507c = tLObject;
+        this.f24533a = i7;
+        this.f24534b = zyVar;
+        this.f24535c = tLObject;
         this.d = fjVar;
-        this.f24508e = str;
-        this.f24509f = lyVar;
+        this.f24536e = str;
+        this.f24537f = lyVar;
         this.h = z10;
-        this.f24510n = lyVar2;
-        this.f24511r = obj;
-        this.f24512s = hashMap;
-        this.f24513w = z11;
+        this.f24538n = lyVar2;
+        this.f24539r = obj;
+        this.f24540s = hashMap;
+        this.f24541w = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f24505a) {
+        switch (this.f24533a) {
             case 0:
-                this.f24506b.O(this.f24507c, this.d, this.f24508e, this.f24509f, this.h, this.f24510n, this.f24511r, this.f24512s, this.f24513w);
+                this.f24534b.O(this.f24535c, this.d, this.f24536e, this.f24537f, this.h, this.f24538n, this.f24539r, this.f24540s, this.f24541w);
                 return;
             case 1:
-                this.f24506b.O(this.f24507c, this.d, this.f24508e, this.f24509f, this.h, this.f24510n, this.f24511r, this.f24512s, this.f24513w);
+                this.f24534b.O(this.f24535c, this.d, this.f24536e, this.f24537f, this.h, this.f24538n, this.f24539r, this.f24540s, this.f24541w);
                 return;
             default:
-                this.f24506b.O(this.f24507c, this.d, this.f24508e, this.f24509f, this.h, this.f24510n, this.f24511r, this.f24512s, this.f24513w);
+                this.f24534b.O(this.f24535c, this.d, this.f24536e, this.f24537f, this.h, this.f24538n, this.f24539r, this.f24540s, this.f24541w);
                 return;
         }
     }

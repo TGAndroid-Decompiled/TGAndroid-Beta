@@ -3,15 +3,15 @@ package sg;
 import java.util.Arrays;
 import java.util.Vector;
 public final class j0 {
-    public double f57248a;
-    public Vector f57249b;
-    public int f57250c;
+    public double f57289a;
+    public Vector f57290b;
+    public int f57291c;
     public float d;
-    public h f57251e;
+    public h f57292e;
 
     public j0(m0[] m0VarArr) {
         Vector vector = new Vector();
-        this.f57249b = vector;
+        this.f57290b = vector;
         vector.addAll(Arrays.asList(m0VarArr));
     }
 }

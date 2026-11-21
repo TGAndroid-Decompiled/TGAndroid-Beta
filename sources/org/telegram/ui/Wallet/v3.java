@@ -6,11 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.View;
 public final class v3 extends View {
-    public final w3 f45160a;
+    public final w3 f45201a;
 
     public v3(w3 w3Var, Context context) {
         super(context);
-        this.f45160a = w3Var;
+        this.f45201a = w3Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class v3 extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        w3 w3Var = this.f45160a;
+        w3 w3Var = this.f45201a;
         Bitmap bitmap = w3Var.H;
         if (bitmap != null && !bitmap.isRecycled()) {
             w3Var.E.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawBitmap(w3Var.H, (Rect) null, w3Var.E, w3Var.f45210y);
+            canvas.drawBitmap(w3Var.H, (Rect) null, w3Var.E, w3Var.f45251y);
         }
     }
 }

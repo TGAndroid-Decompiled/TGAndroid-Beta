@@ -1,148 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import java.util.Arrays;
-public final class pn extends org.telegram.ui.Cells.b6 {
-    public final org.telegram.ui.l4 G;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
+public final class pn implements TextWatcher {
+    public final on f38641a;
+    public final int f38642b;
+    public final org.telegram.ui.l4 f38643c;
 
-    public pn(org.telegram.ui.l4 l4Var, Context context, int i7, kn knVar, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i7, knVar, i6Var);
-        this.G = l4Var;
-        ((rn) l4Var.f49432e).f39242s.getChildCount();
+    public pn(org.telegram.ui.l4 l4Var, on onVar, int i7) {
+        this.f38643c = l4Var;
+        this.f38641a = onVar;
+        this.f38642b = i7;
     }
 
     @Override
-    public final boolean f() {
-        v4.f1 T;
-        rn rnVar = (rn) this.G.f49432e;
-        org.telegram.ui.f61 f61Var = rnVar.f39242s;
-        View F = f61Var.F(this);
-        if (F == null) {
-            T = null;
+    public final void afterTextChanged(Editable editable) {
+        int i7;
+        tn tnVar = (tn) this.f38643c.f49470e;
+        on onVar = this.f38641a;
+        if (onVar.getTag() != null) {
+            return;
+        }
+        int i10 = this.f38642b;
+        if (i10 == 11) {
+            i7 = tnVar.f39982o0;
         } else {
-            T = f61Var.T(F);
+            i7 = tnVar.f39981n0;
         }
-        if (T != null) {
-            int b10 = T.b();
-            int i7 = rnVar.N;
-            if (i7 == rnVar.K && b10 == (rnVar.f39245u0 + i7) - 1) {
-                return false;
+        v4.f1 K = tnVar.f39991s.K(i7);
+        if (K != null && tnVar.f40000y != null) {
+            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                editable.removeSpan(imageSpan);
             }
+            org.telegram.messenger.j6.l(editable, onVar.getEditField().getPaint().getFontMetricsInt(), false);
+            tnVar.f40000y.setDirection(1);
+            tnVar.f40000y.setDelegate(onVar);
+            tnVar.f40000y.setTranslationY(K.f59161a.getY());
+            tnVar.f40000y.e();
         }
-        return true;
-    }
-
-    @Override
-    public final boolean g(org.telegram.ui.Cells.b6 b6Var) {
-        v4.f1 T;
-        int b10;
-        rn rnVar = (rn) this.G.f49432e;
-        org.telegram.ui.f61 f61Var = rnVar.f39242s;
-        View F = f61Var.F(b6Var);
-        if (F == null) {
-            T = null;
+        if (i10 == 11) {
+            tnVar.P = editable;
         } else {
-            T = f61Var.T(F);
+            tnVar.O = editable;
         }
-        if (T != null && (b10 = T.b()) != -1) {
-            return rnVar.M[b10 - rnVar.f39245u0];
+        if (K != null) {
+            tn.Q(tnVar, K.f59161a, i7);
         }
-        return false;
+        tnVar.Y();
     }
 
     @Override
-    public final void h(bi.u uVar, ActionMode actionMode) {
-        rn rnVar = (rn) this.G.f49432e;
-        if (rnVar.f39231n && uVar.isFocused() && uVar.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                org.telegram.ui.bn.C8(menu, ((org.telegram.ui.bn) rnVar.f36766b.f39659a2).h, false, true, true, true);
-            }
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 
     @Override
-    public final void i(org.telegram.ui.Cells.b6 b6Var, boolean z10) {
-        v4.f1 T;
-        int b10;
-        rn rnVar = (rn) this.G.f49432e;
-        if (z10 && rnVar.f39213d0 && !rnVar.f39211c0) {
-            Arrays.fill(rnVar.M, false);
-            for (int i7 = rnVar.f39245u0; i7 < rnVar.f39245u0 + rnVar.N; i7++) {
-                v4.f1 K = rnVar.f39242s.K(i7);
-                if (K != null) {
-                    View view = K.f59123a;
-                    if (view instanceof org.telegram.ui.Cells.b6) {
-                        ((org.telegram.ui.Cells.b6) view).f30448r.a(false, true);
-                    }
-                }
-            }
-        }
-        super.i(b6Var, z10);
-        org.telegram.ui.f61 f61Var = rnVar.f39242s;
-        View F = f61Var.F(b6Var);
-        if (F == null) {
-            T = null;
-        } else {
-            T = f61Var.T(F);
-        }
-        if (T != null && (b10 = T.b()) != -1) {
-            rnVar.M[b10 - rnVar.f39245u0] = z10;
-        }
-        rnVar.Y();
-    }
-
-    @Override
-    public final void j(boolean z10) {
-        rn.R((rn) this.G.f49432e, this, z10);
-    }
-
-    @Override
-    public final void k(org.telegram.ui.Cells.b6 b6Var) {
-        rn.S((rn) this.G.f49432e, b6Var);
-    }
-
-    @Override
-    public final void l(bi.u uVar) {
-        ((rn) this.G.f49432e).f36766b.i1(uVar, true);
-    }
-
-    @Override
-    public final boolean m(ArrayList arrayList) {
-        rn rnVar = (rn) this.G.f49432e;
-        if (!arrayList.isEmpty()) {
-            rnVar.f39242s.getClass();
-            int R = RecyclerView.R(this) - rnVar.f39245u0;
-            if (R >= 0) {
-                bi.u uVar = this.d;
-                uVar.getText().replace(uVar.getSelectionStart(), uVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-                int i7 = R + 1;
-                while (!arrayList.isEmpty() && i7 < rnVar.K) {
-                    for (int length = rnVar.L.length - 1; length > i7; length--) {
-                        CharSequence[] charSequenceArr = rnVar.L;
-                        charSequenceArr[length] = charSequenceArr[length - 1];
-                    }
-                    rnVar.L[i7] = (CharSequence) arrayList.remove(0);
-                    rnVar.N++;
-                    i7++;
-                }
-                rnVar.n0();
-                rnVar.f39229l0 = (rnVar.f39245u0 + i7) - 1;
-                rnVar.f39242s.setItemAnimator(rnVar.f39247w);
-                rnVar.f39239r.f();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean p() {
-        return ((rn) this.G.f49432e).f39213d0;
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

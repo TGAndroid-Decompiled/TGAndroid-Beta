@@ -1,22 +1,15 @@
 package org.telegram.ui.Components;
-public final class mq0 extends v4.t {
-    public final gt0 Q;
+public final class mq0 extends g.p {
+    public final kq0 f37619c;
+    public final jt0 d;
 
-    public mq0(gt0 gt0Var) {
-        super(3);
-        this.Q = gt0Var;
+    public mq0(jt0 jt0Var, kq0 kq0Var) {
+        this.d = jt0Var;
+        this.f37619c = kq0Var;
     }
 
     @Override
-    public final int o0(int i7, v4.x0 x0Var, v4.c1 c1Var) {
-        if (this.Q.f35622r1) {
-            i7 = 0;
-        }
-        return super.o0(i7, x0Var, c1Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
+    public final int i(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mq0.i(int):int");
     }
 }

@@ -1,47 +1,67 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.tgnet.TLRPC;
-public final class sl implements Comparator {
-    public final int f39767a;
-    public final Object f39768b;
+import android.os.Build;
+public final class sl implements Runnable {
+    public final int f39621a;
+    public final ChatAttachAlertPhotoLayout f39622b;
 
-    public sl(Object obj, int i7) {
-        this.f39767a = i7;
-        this.f39768b = obj;
+    public sl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
+        this.f39621a = i7;
+        this.f39622b = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int indexOf;
-        int indexOf2;
-        int i7 = this.f39767a;
-        Object obj3 = this.f39768b;
+    public final void run() {
+        int i7 = this.f39621a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f39622b;
         switch (i7) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj3;
-                org.telegram.messenger.ue ueVar = (org.telegram.messenger.ue) obj;
-                org.telegram.messenger.ue ueVar2 = (org.telegram.messenger.ue) obj2;
-                boolean z10 = ChatAttachAlertPhotoLayout.f32762r1;
-                int i10 = ueVar.f27155a;
-                if (i10 != 0 || ueVar2.f27155a == 0) {
-                    if ((i10 != 0 && ueVar2.f27155a == 0) || (indexOf = arrayList.indexOf(ueVar)) > (indexOf2 = arrayList.indexOf(ueVar2))) {
-                        return 1;
-                    }
-                    if (indexOf >= indexOf2) {
-                        return 0;
+                boolean z10 = ChatAttachAlertPhotoLayout.f32795r1;
+                chatAttachAlertPhotoLayout.f37521b.f30176c.removeView(chatAttachAlertPhotoLayout.Q);
+                chatAttachAlertPhotoLayout.Q = null;
+                return;
+            case 1:
+                boolean z11 = ChatAttachAlertPhotoLayout.f32795r1;
+                chatAttachAlertPhotoLayout.w0(false);
+                chatAttachAlertPhotoLayout.f32826o0 = null;
+                return;
+            case 2:
+                boolean z12 = ChatAttachAlertPhotoLayout.f32795r1;
+                chatAttachAlertPhotoLayout.w0(false);
+                chatAttachAlertPhotoLayout.f32826o0 = null;
+                return;
+            case 3:
+                chatAttachAlertPhotoLayout.f32841x.setVisibility(8);
+                return;
+            case 4:
+                chatAttachAlertPhotoLayout.H.f();
+                return;
+            case 5:
+                boolean z13 = ChatAttachAlertPhotoLayout.f32795r1;
+                ui uiVar = chatAttachAlertPhotoLayout.f37521b;
+                if (f0.d.b(uiVar.f40375a2.getParentActivity(), "android.permission.CAMERA") != 0) {
+                    try {
+                        uiVar.f40375a2.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
+                        return;
+                    } catch (Exception unused) {
+                        return;
                     }
                 }
-                return -1;
+                chatAttachAlertPhotoLayout.l0();
+                return;
             default:
-                ry ryVar = ((fw) obj3).H0;
-                int indexOf3 = ryVar.f39348e1.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int indexOf4 = ryVar.f39348e1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
-                if (indexOf3 < 0 || indexOf4 < 0) {
-                    return 0;
+                boolean z14 = ChatAttachAlertPhotoLayout.f32795r1;
+                ui uiVar2 = chatAttachAlertPhotoLayout.f37521b;
+                try {
+                    if (Build.VERSION.SDK_INT >= 33) {
+                        uiVar2.f40375a2.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
+                    } else {
+                        uiVar2.f40375a2.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                    }
+                    return;
+                } catch (Exception unused2) {
+                    return;
                 }
-                return indexOf3 - indexOf4;
         }
     }
 }

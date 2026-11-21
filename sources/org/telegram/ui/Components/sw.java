@@ -1,22 +1,12 @@
 package org.telegram.ui.Components;
-
-import androidx.recyclerview.widget.RecyclerView;
-public final class sw extends v4.t {
-    public final ry Q;
-
-    public sw(ry ryVar) {
-        super(8);
-        this.Q = ryVar;
-    }
-
+public final class sw extends org.telegram.ui.bn {
     @Override
-    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
-        try {
-            hi.l1 l1Var = new hi.l1(2, recyclerView.getContext(), this);
-            l1Var.f59067a = i7;
-            w0(l1Var);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
+        org.telegram.ui.rj rjVar;
+        super.onTransitionAnimationEnd(z10, z11);
+        if (z10 && (rjVar = this.f45946a0) != null) {
+            rjVar.W1();
+            this.f45946a0.postDelayed(new oo(this, 14), 100L);
         }
     }
 }

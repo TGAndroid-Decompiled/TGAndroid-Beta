@@ -1,16 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class a71 extends v4.d0 {
-    public final jg.i0 f33258r;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class a71 extends AnimatorListenerAdapter {
+    public boolean f33393a;
+    public final View f33394b;
+    public final float f33395c;
+    public final j71 d;
 
-    public a71(jg.i0 i0Var, Context context) {
-        super(context);
-        this.f33258r = i0Var;
+    public a71(j71 j71Var, View view, float f10) {
+        this.d = j71Var;
+        this.f33394b = view;
+        this.f33395c = f10;
     }
 
     @Override
-    public final void g(android.view.View r6, v4.a1 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a71.g(android.view.View, v4.a1):void");
+    public final void onAnimationCancel(Animator animator) {
+        super.onAnimationCancel(animator);
+        this.f33393a = true;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        if (!this.f33393a) {
+            this.d.B(this.f33394b, this.f33395c);
+        }
     }
 }

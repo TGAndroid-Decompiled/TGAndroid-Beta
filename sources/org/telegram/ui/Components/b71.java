@@ -1,13 +1,30 @@
 package org.telegram.ui.Components;
-public final class b71 extends v4.k {
-    public final f71 F;
 
-    public b71(f71 f71Var) {
-        this.F = f71Var;
+import android.view.View;
+import java.util.ArrayList;
+public abstract class b71 {
+    public abstract void b(View view, int i7, int i10);
+
+    public boolean c(int i7) {
+        return false;
     }
 
-    @Override
-    public final void P(v4.f1 f1Var) {
-        this.F.invalidate();
+    public abstract View d(int i7);
+
+    public abstract int e();
+
+    public CharSequence g(int i7) {
+        return "";
+    }
+
+    public int h(int i7) {
+        return 0;
+    }
+
+    public void a(ArrayList arrayList) {
+    }
+
+    public int f(int i7) {
+        return i7;
     }
 }

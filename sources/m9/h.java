@@ -2,6 +2,6 @@ package m9;
 public abstract class h extends o implements g {
     @Override
     public final boolean isCancelled() {
-        return this.f20947a instanceof a;
+        return this.f20975a instanceof a;
     }
 }

@@ -3,14 +3,14 @@ package jg;
 import java.util.Comparator;
 import org.telegram.messenger.mp;
 public final class d implements Comparator {
-    public final int f17428a;
-    public final mp f17429b;
-    public final int f17430c;
+    public final int f17453a;
+    public final mp f17454b;
+    public final int f17455c;
 
     public d(mp mpVar, int i7, int i10) {
-        this.f17428a = i10;
-        this.f17429b = mpVar;
-        this.f17430c = i7;
+        this.f17453a = i10;
+        this.f17454b = mpVar;
+        this.f17455c = i7;
     }
 
     @Override

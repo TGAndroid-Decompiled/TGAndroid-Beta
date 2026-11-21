@@ -7,52 +7,52 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class vn implements RequestDelegate {
-    public final int f27456a;
-    public final int f27457b;
-    public final Object f27458c;
+    public final int f27484a;
+    public final int f27485b;
+    public final Object f27486c;
     public final Object d;
 
     public vn(Object obj, int i7, Object obj2, int i10) {
-        this.f27456a = i10;
-        this.f27458c = obj;
-        this.f27457b = i7;
+        this.f27484a = i10;
+        this.f27486c = obj;
+        this.f27485b = i7;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27456a) {
+        switch (this.f27484a) {
             case 0:
-                mp mpVar = (mp) this.f27458c;
+                mp mpVar = (mp) this.f27486c;
                 String str = (String) this.d;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    boolean z10 = s2.f26721a;
-                    int i7 = this.f27457b;
+                    boolean z10 = s2.f26749a;
+                    int i7 = this.f27485b;
                     if (z10) {
                         a8.b("account " + mpVar.currentAccount + " registered for push, push type: " + i7);
                     }
                     mpVar.getUserConfig().d = true;
-                    bz.f23162g = str;
-                    bz.f23159f = i7;
+                    bz.f23190g = str;
+                    bz.f23187f = i7;
                     mpVar.getUserConfig().v(false);
                 }
                 g0.g3(new qn(mpVar, 9));
                 return;
             case 1:
-                i7 i7Var = (i7) this.f27458c;
+                i7 i7Var = (i7) this.f27486c;
                 h7 h7Var = (h7) this.d;
-                i7Var.f24643z0 = false;
+                i7Var.f24671z0 = false;
                 boolean z11 = tLObject instanceof Vector;
-                int i10 = this.f27457b;
+                int i10 = this.f27485b;
                 if (z11) {
                     Vector vector = (Vector) tLObject;
                     if (!vector.objects.isEmpty()) {
-                        if (i7Var.f24626q0 == null) {
-                            i7Var.f24626q0 = new HashMap();
+                        if (i7Var.f24654q0 == null) {
+                            i7Var.f24654q0 = new HashMap();
                         }
                         for (int i11 = 0; i11 < vector.objects.size(); i11++) {
                             TLRPC.TL_fileHash tL_fileHash = (TLRPC.TL_fileHash) vector.objects.get(i11);
-                            i7Var.f24626q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
+                            i7Var.f24654q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
                         }
                     }
                     i7Var.s(i10);
@@ -62,7 +62,7 @@ public final class vn implements RequestDelegate {
                         i7Var.j(0, false);
                         return;
                     }
-                    i7Var.f24634u0 = false;
+                    i7Var.f24662u0 = false;
                     i7Var.e(h7Var, false, false);
                     i7Var.s(i10);
                     return;
@@ -70,13 +70,13 @@ public final class vn implements RequestDelegate {
                     return;
                 }
             case 2:
-                g0.g3(new l7((ri) this.f27458c, (TLRPC.StickerSet) this.d, this.f27457b, 9));
+                g0.g3(new l7((ri) this.f27486c, (TLRPC.StickerSet) this.d, this.f27485b, 9));
                 return;
             case 3:
-                ri riVar = (ri) this.f27458c;
+                ri riVar = (ri) this.f27486c;
                 x10 x10Var = (x10) this.d;
                 boolean z12 = tLObject instanceof TLRPC.TL_messages_stickerSet;
-                int i12 = this.f27457b;
+                int i12 = this.f27485b;
                 if (z12) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add((TLRPC.TL_messages_stickerSet) tLObject);
@@ -86,15 +86,15 @@ public final class vn implements RequestDelegate {
                 riVar.C1(i12, null, false, (int) (System.currentTimeMillis() / 1000), 0L, new fg(x10Var, 4));
                 return;
             default:
-                g0.g3(new dg((mp) this.f27458c, tLObject, this.f27457b, (oo) this.d));
+                g0.g3(new dg((mp) this.f27486c, tLObject, this.f27485b, (oo) this.d));
                 return;
         }
     }
 
     public vn(ri riVar, TLRPC.StickerSet stickerSet, int i7) {
-        this.f27456a = 2;
-        this.f27458c = riVar;
+        this.f27484a = 2;
+        this.f27486c = riVar;
         this.d = stickerSet;
-        this.f27457b = i7;
+        this.f27485b = i7;
     }
 }

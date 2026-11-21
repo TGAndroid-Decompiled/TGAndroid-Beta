@@ -5,16 +5,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class m1 extends FrameLayout {
-    public int f41041a;
-    public int f41042b;
-    public int f41043c;
+    public int f41176a;
+    public int f41177b;
+    public int f41178c;
     public int d;
-    public boolean f41044e;
+    public boolean f41179e;
 
     public m1(Context context) {
         super(context);
         this.d = 68;
-        this.f41044e = true;
+        this.f41179e = true;
     }
 
     @Override
@@ -28,20 +28,20 @@ public final class m1 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int i13;
-        if (this.f41044e) {
-            int childCount = (int) (((getChildCount() - this.f41041a) / 2.0f) * ((this.f41043c * 2) + this.f41042b));
+        if (this.f41179e) {
+            int childCount = (int) (((getChildCount() - this.f41176a) / 2.0f) * ((this.f41178c * 2) + this.f41177b));
             for (int i14 = 0; i14 < getChildCount(); i14++) {
                 View childAt = getChildAt(i14);
                 if (childAt.getVisibility() != 8) {
-                    int i15 = this.f41043c;
+                    int i15 = this.f41178c;
                     childAt.layout(childCount + i15, 0, childAt.getMeasuredWidth() + i15 + childCount, childAt.getMeasuredHeight());
-                    childCount = childAt.getMeasuredWidth() + (this.f41043c * 2) + childCount;
+                    childCount = childAt.getMeasuredWidth() + (this.f41178c * 2) + childCount;
                 }
             }
             return;
         }
-        if (this.f41041a > 0) {
-            i13 = (getMeasuredWidth() - this.f41042b) / (this.f41041a - 1);
+        if (this.f41176a > 0) {
+            i13 = (getMeasuredWidth() - this.f41177b) / (this.f41176a - 1);
         } else {
             i13 = 0;
         }
@@ -59,18 +59,18 @@ public final class m1 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
-        this.f41041a = 0;
+        this.f41176a = 0;
         for (int i11 = 0; i11 < getChildCount(); i11++) {
             if (getChildAt(i11).getVisibility() != 8) {
-                this.f41041a++;
+                this.f41176a++;
             }
         }
-        this.f41042b = org.telegram.messenger.g0.L(this.d);
-        this.f41043c = ((size / getChildCount()) - this.f41042b) / 2;
+        this.f41177b = org.telegram.messenger.g0.L(this.d);
+        this.f41178c = ((size / getChildCount()) - this.f41177b) / 2;
         int i12 = 0;
         for (int i13 = 0; i13 < getChildCount(); i13++) {
             if (getChildAt(i13).getVisibility() != 8) {
-                getChildAt(i13).measure(View.MeasureSpec.makeMeasureSpec(this.f41042b, 1073741824), i10);
+                getChildAt(i13).measure(View.MeasureSpec.makeMeasureSpec(this.f41177b, 1073741824), i10);
                 if (getChildAt(i13).getMeasuredHeight() > i12) {
                     i12 = getChildAt(i13).getMeasuredHeight();
                 }
@@ -84,6 +84,6 @@ public final class m1 extends FrameLayout {
     }
 
     public void setUseStartPadding(boolean z10) {
-        this.f41044e = z10;
+        this.f41179e = z10;
     }
 }

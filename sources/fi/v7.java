@@ -11,85 +11,85 @@ import java.util.ArrayList;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.gd;
-import org.telegram.ui.Components.l80;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.mk0;
-import org.telegram.ui.Components.o80;
+import org.telegram.ui.Components.n80;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.ok0;
+import org.telegram.ui.Components.q80;
 public final class v7 {
-    public l80 f12649a;
-    public org.telegram.ui.Components.x5 f12650b;
-    public final n2.o0 f12651c;
-    public org.telegram.ui.Components.t5 d;
-    public StaticLayout f12652e;
-    public org.telegram.ui.Components.t5 f12653f;
-    public StaticLayout f12654g;
+    public n80 f12691a;
+    public org.telegram.ui.Components.y5 f12692b;
+    public final n2.o0 f12693c;
+    public org.telegram.ui.Components.u5 d;
+    public StaticLayout f12694e;
+    public org.telegram.ui.Components.u5 f12695f;
+    public StaticLayout f12696g;
     public t7[] h;
-    public final ArrayList f12655i;
-    public final Stack f12656j;
-    public final gf.c f12657k;
-    public int f12658l;
-    public int f12659m;
-    public CharSequence f12660n;
-    public s7 f12661o;
-    public s7 f12662p;
-    public boolean f12663q;
-    public final org.telegram.ui.Components.c6 f12664r;
-    public final o80 f12665s;
-    public final Path f12666t;
-    public final AtomicReference f12667u;
+    public final ArrayList f12697i;
+    public final Stack f12698j;
+    public final gf.c f12699k;
+    public int f12700l;
+    public int f12701m;
+    public CharSequence f12702n;
+    public s7 f12703o;
+    public s7 f12704p;
+    public boolean f12705q;
+    public final org.telegram.ui.Components.d6 f12706r;
+    public final q80 f12707s;
+    public final Path f12708t;
+    public final AtomicReference f12709u;
     public final w7 v;
 
     public v7(w7 w7Var) {
         this.v = w7Var;
-        this.f12651c = new n2.o0(w7Var);
+        this.f12693c = new n2.o0(w7Var);
         ArrayList arrayList = new ArrayList();
-        this.f12655i = arrayList;
-        this.f12656j = new Stack();
-        this.f12660n = "";
-        this.f12664r = new org.telegram.ui.Components.c6(w7Var.K, 0L, 400L, lr.h);
+        this.f12697i = arrayList;
+        this.f12698j = new Stack();
+        this.f12702n = "";
+        this.f12706r = new org.telegram.ui.Components.d6(w7Var.K, 0L, 400L, nr.h);
         Path path = new Path();
-        this.f12666t = path;
-        this.f12667u = new AtomicReference();
-        this.f12657k = new gf.c(w7Var, arrayList, new di.c7(this, 10));
-        o80 o80Var = new o80();
-        this.f12665s = o80Var;
-        o80Var.f38033y = path;
-        o80Var.k(4.0f);
-        o80Var.g(org.telegram.ui.ActionBar.n6.r1(0.3f, -1), org.telegram.ui.ActionBar.n6.r1(0.1f, -1), org.telegram.ui.ActionBar.n6.r1(0.2f, -1), org.telegram.ui.ActionBar.n6.r1(0.7f, -1));
-        o80Var.setCallback(w7Var);
+        this.f12708t = path;
+        this.f12709u = new AtomicReference();
+        this.f12699k = new gf.c(w7Var, arrayList, new di.v6(this, 11));
+        q80 q80Var = new q80();
+        this.f12707s = q80Var;
+        q80Var.f38840y = path;
+        q80Var.k(4.0f);
+        q80Var.g(org.telegram.ui.ActionBar.m6.r1(0.3f, -1), org.telegram.ui.ActionBar.m6.r1(0.1f, -1), org.telegram.ui.ActionBar.m6.r1(0.2f, -1), org.telegram.ui.ActionBar.m6.r1(0.7f, -1));
+        q80Var.setCallback(w7Var);
     }
 
     public final int a(int i7) {
         int i10;
-        s7 s7Var = this.f12661o;
+        s7 s7Var = this.f12703o;
         int i11 = 0;
         if (s7Var != null) {
             i10 = org.telegram.messenger.g0.L(8.0f) + s7Var.b();
         } else {
             i10 = 0;
         }
-        s7 s7Var2 = this.f12662p;
+        s7 s7Var2 = this.f12704p;
         if (s7Var2 != null) {
             i11 = org.telegram.messenger.g0.L(8.0f) + s7Var2.b();
         }
         int i12 = i10 + i11;
-        StaticLayout staticLayout = this.f12652e;
+        StaticLayout staticLayout = this.f12694e;
         w7 w7Var = this.v;
         if (staticLayout == null) {
-            return i7 - ((w7Var.G * 2) + this.f12658l);
+            return i7 - ((w7Var.G * 2) + this.f12700l);
         }
         int lineCount = staticLayout.getLineCount();
-        if (!w7Var.f12701b) {
-            return i7 - ((w7Var.G * 2) + this.f12658l);
+        if (!w7Var.f12743b) {
+            return i7 - ((w7Var.G * 2) + this.f12700l);
         }
-        return (i7 - ((Math.min(3, lineCount) + 1) * w7Var.f12702c.getFontMetricsInt(null))) - i12;
+        return (i7 - ((Math.min(3, lineCount) + 1) * w7Var.f12744c.getFontMetricsInt(null))) - i12;
     }
 
     public final void b(Canvas canvas, float f10) {
         Canvas canvas2;
         w7 w7Var = this.v;
         x7 x7Var = w7Var.K;
-        float d = this.f12664r.d(this.f12663q);
+        float d = this.f12706r.d(this.f12705q);
         if (f10 > 0.0f) {
             float T1 = org.telegram.messenger.g0.T1(f10, 0.7f * f10, d);
             if (T1 >= 1.0f) {
@@ -101,12 +101,12 @@ public final class v7 {
                 c(canvas2, d);
                 canvas2.restore();
             }
-            if (d <= 0.0f && !this.f12663q) {
+            if (d <= 0.0f && !this.f12705q) {
                 return;
             }
-            o80 o80Var = this.f12665s;
-            o80Var.setAlpha((int) (d * 255.0f * T1));
-            o80Var.draw(canvas2);
+            q80 q80Var = this.f12707s;
+            q80Var.setAlpha((int) (d * 255.0f * T1));
+            q80Var.draw(canvas2);
             w7Var.invalidate();
         }
     }
@@ -118,16 +118,16 @@ public final class v7 {
         ArrayList arrayList2;
         int i10;
         w7 w7Var = this.v;
-        PorterDuffColorFilter porterDuffColorFilter = w7Var.f12700a;
+        PorterDuffColorFilter porterDuffColorFilter = w7Var.f12742a;
         x7 x7Var = w7Var.K;
-        if (this.f12661o != null) {
+        if (this.f12703o != null) {
             canvas.save();
             canvas.translate(w7Var.F, w7Var.G);
-            s7 s7Var = this.f12661o;
+            s7 s7Var = this.f12703o;
             int width = w7Var.getWidth();
             int i11 = w7Var.F;
             s7Var.a(canvas, (width - i11) - i11);
-            int b10 = this.f12661o.b();
+            int b10 = this.f12703o.b();
             canvas.restore();
             i7 = org.telegram.messenger.g0.L(8.0f) + b10;
         } else {
@@ -135,7 +135,7 @@ public final class v7 {
         }
         canvas.save();
         canvas.translate(w7Var.F, w7Var.G + i7);
-        if (this.f12651c.h(canvas)) {
+        if (this.f12693c.h(canvas)) {
             w7Var.invalidate();
         }
         canvas.restore();
@@ -145,26 +145,26 @@ public final class v7 {
         } else {
             z10 = false;
         }
-        this.f12666t.rewind();
-        ArrayList arrayList3 = this.f12655i;
-        if (arrayList3.isEmpty() && this.f12654g != null) {
-            if (x7Var.f12735a0.x()) {
+        this.f12708t.rewind();
+        ArrayList arrayList3 = this.f12697i;
+        if (arrayList3.isEmpty() && this.f12696g != null) {
+            if (x7Var.f12775a0.x()) {
                 canvas.save();
                 canvas.translate(w7Var.F, w7Var.G + i7);
-                x7Var.f12735a0.W(canvas);
+                x7Var.f12775a0.W(canvas);
                 canvas.restore();
             }
-            if (this.f12654g != null) {
+            if (this.f12696g != null) {
                 canvas.save();
                 canvas.translate(w7Var.F, w7Var.G + i7);
-                d(this.f12654g, canvas, arrayList3);
-                org.telegram.ui.Components.t5 update = org.telegram.ui.Components.x5.update(0, w7Var, this.f12653f, this.f12654g);
-                this.f12653f = update;
-                org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, this.f12654g, update, 0.0f, arrayList3, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
+                d(this.f12696g, canvas, arrayList3);
+                org.telegram.ui.Components.u5 update = org.telegram.ui.Components.y5.update(0, w7Var, this.f12695f, this.f12696g);
+                this.f12695f = update;
+                org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, this.f12696g, update, 0.0f, arrayList3, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
                 arrayList = arrayList3;
                 canvas.restore();
                 if (z10) {
-                    f(this.f12654g, w7Var.F, w7Var.G + i7);
+                    f(this.f12696g, w7Var.F, w7Var.G + i7);
                 }
             } else {
                 arrayList = arrayList3;
@@ -179,37 +179,37 @@ public final class v7 {
                     t7 t7Var = t7VarArr[i12];
                     if (t7Var != null) {
                         canvas.save();
-                        float f12 = t7Var.f12590c;
-                        float f13 = t7Var.f12591e;
+                        float f12 = t7Var.f12629c;
+                        float f13 = t7Var.f12630e;
                         if (f12 == f13) {
-                            if (w7Var.f12709x != f11) {
-                                canvas.translate(w7Var.F + f13, w7Var.G + i7 + t7Var.f12592f);
-                                canvas.saveLayerAlpha(0.0f, 0.0f, t7Var.f12589b.getWidth(), t7Var.f12589b.getHeight(), (int) (w7Var.f12709x * 255.0f), 31);
-                                d(t7Var.f12589b, canvas, arrayList);
+                            if (w7Var.f12751x != f11) {
+                                canvas.translate(w7Var.F + f13, w7Var.G + i7 + t7Var.f12631f);
+                                canvas.saveLayerAlpha(0.0f, 0.0f, t7Var.f12628b.getWidth(), t7Var.f12628b.getHeight(), (int) (w7Var.f12751x * 255.0f), 31);
+                                d(t7Var.f12628b, canvas, arrayList);
                                 if (z10) {
-                                    f(t7Var.f12589b, w7Var.F + t7Var.f12591e, w7Var.G + i7 + t7Var.f12592f);
+                                    f(t7Var.f12628b, w7Var.F + t7Var.f12630e, w7Var.G + i7 + t7Var.f12631f);
                                 }
-                                t7Var.f12589b.draw(canvas);
-                                org.telegram.ui.Components.t5 update2 = org.telegram.ui.Components.x5.update(0, w7Var, t7Var.f12588a, t7Var.f12589b);
-                                t7Var.f12588a = update2;
+                                t7Var.f12628b.draw(canvas);
+                                org.telegram.ui.Components.u5 update2 = org.telegram.ui.Components.y5.update(0, w7Var, t7Var.f12627a, t7Var.f12628b);
+                                t7Var.f12627a = update2;
                                 arrayList2 = arrayList;
                                 i10 = i12;
-                                org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, t7Var.f12589b, update2, 0.0f, arrayList2, 0.0f, 0.0f, 0.0f, w7Var.f12709x, porterDuffColorFilter);
+                                org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, t7Var.f12628b, update2, 0.0f, arrayList2, 0.0f, 0.0f, 0.0f, w7Var.f12751x, porterDuffColorFilter);
                                 canvas.restore();
                             }
                         } else {
                             arrayList2 = arrayList;
                             i10 = i12;
-                            float T1 = org.telegram.messenger.g0.T1(f12, f13, w7Var.f12709x);
-                            float T12 = org.telegram.messenger.g0.T1(t7Var.d, t7Var.f12592f, lr.f37209g.getInterpolation(w7Var.f12709x));
+                            float T1 = org.telegram.messenger.g0.T1(f12, f13, w7Var.f12751x);
+                            float T12 = org.telegram.messenger.g0.T1(t7Var.d, t7Var.f12631f, nr.f37957g.getInterpolation(w7Var.f12751x));
                             canvas.translate(w7Var.F + T1, w7Var.G + i7 + T12);
                             if (z10) {
-                                f(t7Var.f12589b, w7Var.F + T1, w7Var.G + i7 + T12);
+                                f(t7Var.f12628b, w7Var.F + T1, w7Var.G + i7 + T12);
                             }
-                            t7Var.f12589b.draw(canvas);
-                            org.telegram.ui.Components.t5 update3 = org.telegram.ui.Components.x5.update(0, w7Var, t7Var.f12588a, t7Var.f12589b);
-                            t7Var.f12588a = update3;
-                            org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, t7Var.f12589b, update3, 0.0f, arrayList2, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
+                            t7Var.f12628b.draw(canvas);
+                            org.telegram.ui.Components.u5 update3 = org.telegram.ui.Components.y5.update(0, w7Var, t7Var.f12627a, t7Var.f12628b);
+                            t7Var.f12627a = update3;
+                            org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, t7Var.f12628b, update3, 0.0f, arrayList2, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
                         }
                         canvas.restore();
                         i12 = i10 + 1;
@@ -223,25 +223,25 @@ public final class v7 {
                     f11 = 0.0f;
                 }
             }
-        } else if (this.f12652e != null) {
+        } else if (this.f12694e != null) {
             canvas.save();
             canvas.translate(w7Var.F, w7Var.G + i7);
-            if (x7Var.f12735a0.x()) {
-                x7Var.f12735a0.W(canvas);
+            if (x7Var.f12775a0.x()) {
+                x7Var.f12775a0.W(canvas);
             }
-            d(this.f12652e, canvas, arrayList3);
-            org.telegram.ui.Components.t5 update4 = org.telegram.ui.Components.x5.update(0, w7Var, this.d, this.f12652e);
+            d(this.f12694e, canvas, arrayList3);
+            org.telegram.ui.Components.u5 update4 = org.telegram.ui.Components.y5.update(0, w7Var, this.d, this.f12694e);
             this.d = update4;
-            org.telegram.ui.Components.x5.drawAnimatedEmojis(canvas, this.f12652e, update4, 0.0f, arrayList3, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
+            org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, this.f12694e, update4, 0.0f, arrayList3, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
             canvas.restore();
             if (z10) {
-                f(this.f12652e, w7Var.F, w7Var.G + i7);
+                f(this.f12694e, w7Var.F, w7Var.G + i7);
             }
         }
-        if (this.f12662p != null) {
+        if (this.f12704p != null) {
             canvas.save();
-            canvas.translate(w7Var.F, (org.telegram.messenger.g0.W1(w7Var.f12709x, this.f12659m, this.f12658l) + w7Var.G) - this.f12662p.b());
-            s7 s7Var2 = this.f12662p;
+            canvas.translate(w7Var.F, (org.telegram.messenger.g0.W1(w7Var.f12751x, this.f12701m, this.f12700l) + w7Var.G) - this.f12704p.b());
+            s7 s7Var2 = this.f12704p;
             int width2 = w7Var.getWidth();
             int i13 = w7Var.F;
             s7Var2.a(canvas, (width2 - i13) - i13);
@@ -251,7 +251,7 @@ public final class v7 {
 
     public final void d(StaticLayout staticLayout, Canvas canvas, ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
-            xh.f.g(this.v, false, -1, 0, this.f12667u, 0, staticLayout, arrayList, canvas, false);
+            xh.f.g(this.v, false, -1, 0, this.f12709u, 0, staticLayout, arrayList, canvas, false);
         } else {
             staticLayout.draw(canvas);
         }
@@ -266,90 +266,90 @@ public final class v7 {
         w7 w7Var = this.v;
         x7 x7Var = w7Var.K;
         TextPaint textPaint = w7Var.d;
-        v7[] v7VarArr = w7Var.f12706r;
-        TextPaint textPaint2 = w7Var.f12702c;
-        boolean isEmpty = TextUtils.isEmpty(this.f12660n);
-        Stack stack = this.f12656j;
-        ArrayList arrayList = this.f12655i;
+        v7[] v7VarArr = w7Var.f12748r;
+        TextPaint textPaint2 = w7Var.f12744c;
+        boolean isEmpty = TextUtils.isEmpty(this.f12702n);
+        Stack stack = this.f12698j;
+        ArrayList arrayList = this.f12697i;
         if (isEmpty) {
-            this.f12652e = null;
-            this.f12658l = 0;
-            s7 s7Var = this.f12661o;
+            this.f12694e = null;
+            this.f12700l = 0;
+            s7 s7Var = this.f12703o;
             if (s7Var != null) {
-                this.f12658l = org.telegram.messenger.g0.L(4.0f) + s7Var.b();
+                this.f12700l = org.telegram.messenger.g0.L(4.0f) + s7Var.b();
             }
-            s7 s7Var2 = this.f12662p;
+            s7 s7Var2 = this.f12704p;
             if (s7Var2 != null) {
-                this.f12658l = org.telegram.messenger.f3.C(4.0f, s7Var2.b(), this.f12658l);
+                this.f12700l = org.telegram.messenger.f3.C(4.0f, s7Var2.b(), this.f12700l);
             }
-            this.f12659m = this.f12658l;
+            this.f12701m = this.f12700l;
             if (this == v7VarArr[0]) {
-                w7Var.f12708w = null;
+                w7Var.f12750w = null;
             }
-            this.f12654g = null;
+            this.f12696g = null;
             stack.addAll(arrayList);
             arrayList.clear();
             return;
         }
-        StaticLayout a10 = w7.a(w7Var, textPaint2, this.f12660n, i7);
-        this.f12652e = a10;
-        this.f12658l = a10.getHeight();
-        s7 s7Var3 = this.f12661o;
+        StaticLayout a10 = w7.a(w7Var, textPaint2, this.f12702n, i7);
+        this.f12694e = a10;
+        this.f12700l = a10.getHeight();
+        s7 s7Var3 = this.f12703o;
         if (s7Var3 != null) {
             i10 = org.telegram.messenger.g0.L(8.0f) + s7Var3.b();
         } else {
             i10 = 0;
         }
-        s7 s7Var4 = this.f12662p;
+        s7 s7Var4 = this.f12704p;
         if (s7Var4 != null) {
-            this.f12658l = org.telegram.messenger.f3.C(8.0f, s7Var4.b(), this.f12658l);
+            this.f12700l = org.telegram.messenger.f3.C(8.0f, s7Var4.b(), this.f12700l);
         }
-        this.f12658l += i10;
+        this.f12700l += i10;
         float measureText = textPaint2.measureText(" ");
-        if (this.f12652e.getLineCount() > 3) {
+        if (this.f12694e.getLineCount() > 3) {
             z10 = true;
         } else {
             z10 = false;
         }
-        w7Var.f12701b = z10;
+        w7Var.f12743b = z10;
         if (z10) {
             i11 = 3;
-            if (this.f12652e.getLineCount() == 4) {
-                if (TextUtils.getTrimmedLength(this.f12660n.subSequence(this.f12652e.getLineStart(2), this.f12652e.getLineEnd(2))) == 0) {
-                    w7Var.f12701b = false;
+            if (this.f12694e.getLineCount() == 4) {
+                if (TextUtils.getTrimmedLength(this.f12702n.subSequence(this.f12694e.getLineStart(2), this.f12694e.getLineEnd(2))) == 0) {
+                    w7Var.f12743b = false;
                 }
             }
         } else {
             i11 = 3;
         }
-        if (w7Var.f12701b) {
-            float topPadding = this.f12652e.getTopPadding() + this.f12652e.getLineTop(2);
+        if (w7Var.f12743b) {
+            float topPadding = this.f12694e.getTopPadding() + this.f12694e.getLineTop(2);
             if (this == v7VarArr[0]) {
-                String M0 = gd.M0(2131745144, null);
-                w7Var.f12708w = w7.a(w7Var, textPaint, M0, i7);
+                String N0 = gd.N0(2131745143, null);
+                w7Var.f12750w = w7.a(w7Var, textPaint, N0, i7);
                 w7Var.h = ((w7Var.G + i10) + topPadding) - org.telegram.messenger.g0.N(0.3f);
-                w7Var.f12705n = (w7Var.F + i7) - textPaint.measureText(M0);
+                w7Var.f12747n = (w7Var.F + i7) - textPaint.measureText(N0);
             }
-            int topPadding2 = this.f12652e.getTopPadding() + this.f12652e.getLineBottom(2);
-            s7 s7Var5 = this.f12661o;
+            int topPadding2 = this.f12694e.getTopPadding() + this.f12694e.getLineBottom(2);
+            s7 s7Var5 = this.f12703o;
             if (s7Var5 != null) {
                 i12 = org.telegram.messenger.g0.L(8.0f) + s7Var5.b();
             } else {
                 i12 = 0;
             }
             int i14 = topPadding2 + i12;
-            s7 s7Var6 = this.f12662p;
+            s7 s7Var6 = this.f12704p;
             if (s7Var6 != null) {
                 i13 = org.telegram.messenger.g0.L(8.0f) + s7Var6.b();
             } else {
                 i13 = 0;
             }
-            this.f12659m = i14 + i13;
-            this.f12654g = w7.a(w7Var, textPaint2, this.f12660n.subSequence(0, this.f12652e.getLineEnd(2)), i7);
+            this.f12701m = i14 + i13;
+            this.f12696g = w7.a(w7Var, textPaint2, this.f12702n.subSequence(0, this.f12694e.getLineEnd(2)), i7);
             stack.addAll(arrayList);
             arrayList.clear();
-            xh.f.c(x7Var, this.f12652e, stack, arrayList);
-            float lineRight = this.f12652e.getLineRight(2) + measureText;
+            xh.f.c(x7Var, this.f12694e, stack, arrayList);
+            float lineRight = this.f12694e.getLineRight(2) + measureText;
             if (this.h != null) {
                 int i15 = 0;
                 while (true) {
@@ -359,52 +359,52 @@ public final class v7 {
                     }
                     t7 t7Var = t7VarArr[i15];
                     if (t7Var != null) {
-                        org.telegram.ui.Components.x5.release(x7Var, t7Var.f12588a);
+                        org.telegram.ui.Components.y5.release(x7Var, t7Var.f12627a);
                     }
                     i15++;
                 }
             }
-            this.h = new t7[this.f12652e.getLineCount() - 3];
+            this.h = new t7[this.f12694e.getLineCount() - 3];
             if (arrayList.isEmpty()) {
-                for (int i16 = i11; i16 < this.f12652e.getLineCount(); i16++) {
-                    int lineStart = this.f12652e.getLineStart(i16);
-                    int lineEnd = this.f12652e.getLineEnd(i16);
-                    CharSequence subSequence = this.f12660n.subSequence(Math.min(lineStart, lineEnd), Math.max(lineStart, lineEnd));
+                for (int i16 = i11; i16 < this.f12694e.getLineCount(); i16++) {
+                    int lineStart = this.f12694e.getLineStart(i16);
+                    int lineEnd = this.f12694e.getLineEnd(i16);
+                    CharSequence subSequence = this.f12702n.subSequence(Math.min(lineStart, lineEnd), Math.max(lineStart, lineEnd));
                     if (TextUtils.isEmpty(subSequence)) {
                         this.h[i16 - 3] = null;
                     } else {
                         StaticLayout a11 = w7.a(w7Var, textPaint2, subSequence, i7);
                         ?? obj = new Object();
                         this.h[i16 - 3] = obj;
-                        obj.f12589b = a11;
-                        obj.f12591e = this.f12652e.getLineLeft(i16);
-                        obj.f12592f = this.f12652e.getTopPadding() + this.f12652e.getLineTop(i16);
-                        if (lineRight < w7Var.f12705n - org.telegram.messenger.g0.L(16.0f)) {
+                        obj.f12628b = a11;
+                        obj.f12630e = this.f12694e.getLineLeft(i16);
+                        obj.f12631f = this.f12694e.getTopPadding() + this.f12694e.getLineTop(i16);
+                        if (lineRight < w7Var.f12747n - org.telegram.messenger.g0.L(16.0f)) {
                             obj.d = topPadding;
-                            obj.f12590c = lineRight;
+                            obj.f12629c = lineRight;
                             lineRight = Math.abs(a11.getLineRight(0) - a11.getLineLeft(0)) + measureText + lineRight;
                         } else {
-                            obj.d = obj.f12592f;
-                            obj.f12590c = obj.f12591e;
+                            obj.d = obj.f12631f;
+                            obj.f12629c = obj.f12630e;
                         }
                     }
                 }
             }
         } else {
             if (this == v7VarArr[0]) {
-                w7Var.f12708w = null;
+                w7Var.f12750w = null;
             }
-            this.f12654g = null;
-            this.f12659m = this.f12658l;
+            this.f12696g = null;
+            this.f12701m = this.f12700l;
             stack.addAll(arrayList);
             arrayList.clear();
-            xh.f.c(w7Var, this.f12652e, stack, arrayList);
+            xh.f.c(w7Var, this.f12694e, stack, arrayList);
         }
         int i17 = w7Var.F;
         int i18 = w7Var.G;
-        gf.c cVar = this.f12657k;
-        cVar.f13527a = i17;
-        cVar.f13529c = i18;
+        gf.c cVar = this.f12699k;
+        cVar.f13556a = i17;
+        cVar.f13558c = i18;
     }
 
     public final void f(Layout layout, float f10, float f11) {
@@ -425,39 +425,39 @@ public final class v7 {
             } else {
                 f12 = lineBottom;
             }
-            this.f12666t.addRect(f10 + f14, f11 + f13, f10 + lineRight, f11 + f12, Path.Direction.CW);
+            this.f12708t.addRect(f10 + f14, f11 + f13, f10 + lineRight, f11 + f12, Path.Direction.CW);
             i7++;
             f13 = f12;
         }
     }
 
     public final void g(CharSequence charSequence, s7 s7Var, s7 s7Var2) {
-        this.f12660n = charSequence;
-        this.f12661o = s7Var;
-        this.f12662p = s7Var2;
+        this.f12702n = charSequence;
+        this.f12703o = s7Var;
+        this.f12704p = s7Var2;
         w7 w7Var = this.v;
         if (s7Var != null) {
             u7 u7Var = new u7(this, 0);
-            s7Var.f12546r = w7Var;
-            s7Var.f12547s = u7Var;
-            new mk0(w7Var);
-            s7Var.f12538j.setCallback(w7Var);
-            s7Var.h.f33890a = w7Var;
-            s7Var.f12537i.f37428a = w7Var;
+            s7Var.f12587r = w7Var;
+            s7Var.f12588s = u7Var;
+            new ok0(w7Var);
+            s7Var.f12579j.setCallback(w7Var);
+            s7Var.h.f34389a = w7Var;
+            s7Var.f12578i.f37473a = w7Var;
             s7Var.c();
         }
-        s7 s7Var3 = this.f12662p;
+        s7 s7Var3 = this.f12704p;
         if (s7Var3 != null) {
             u7 u7Var2 = new u7(this, 1);
-            s7Var3.f12546r = w7Var;
-            s7Var3.f12547s = u7Var2;
-            new mk0(w7Var);
-            s7Var3.f12538j.setCallback(w7Var);
-            s7Var3.h.f33890a = w7Var;
-            s7Var3.f12537i.f37428a = w7Var;
+            s7Var3.f12587r = w7Var;
+            s7Var3.f12588s = u7Var2;
+            new ok0(w7Var);
+            s7Var3.f12579j.setCallback(w7Var);
+            s7Var3.h.f34389a = w7Var;
+            s7Var3.f12578i.f37473a = w7Var;
             s7Var3.c();
         }
-        w7Var.f12707s = 0;
+        w7Var.f12749s = 0;
         w7Var.requestLayout();
     }
 }

@@ -1,39 +1,77 @@
 package ki;
 
-import org.telegram.messenger.fs;
-import org.telegram.messenger.ks;
 import org.telegram.tgnet.TLRPC;
-public final class a1 implements fs {
-    public final long f18568a;
-    public final fs[] f18569b;
-    public final int f18570c;
-    public final y0 d;
-
-    public a1(long j3, fs[] fsVarArr, int i7, y0 y0Var) {
-        this.f18568a = j3;
-        this.f18569b = fsVarArr;
-        this.f18570c = i7;
-        this.d = y0Var;
+public final class a1 implements org.telegram.ui.Cells.s0 {
+    @Override
+    public final org.telegram.ui.ActionBar.g2 G() {
+        return null;
     }
 
     @Override
-    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        a0.h hVar;
-        int i11 = ks.f25211w0;
-        if (i7 == i11 && (hVar = (a0.h) objArr[0]) != null) {
-            long j3 = this.f18568a;
-            if (hVar.d(j3)) {
-                TLRPC.WebPage webPage = (TLRPC.WebPage) hVar.f(j3);
-                fs[] fsVarArr = this.f18569b;
-                if (fsVarArr[0] != null) {
-                    ks.f(this.f18570c).n(fsVarArr[0], i11);
-                    fsVarArr[0] = null;
-                }
-                if (!(webPage instanceof TLRPC.TL_webPage)) {
-                    webPage = null;
-                }
-                this.d.a(webPage);
-            }
-        }
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final long d() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean h() {
+        return true;
+    }
+
+    @Override
+    public final boolean s0(org.telegram.ui.Cells.v0 v0Var, float f10, float f11) {
+        return false;
+    }
+
+    @Override
+    public final void D(org.telegram.ui.Cells.v0 v0Var) {
+    }
+
+    @Override
+    public final void M(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    }
+
+    @Override
+    public final void V(long j3) {
+    }
+
+    @Override
+    public final void a0(org.telegram.ui.Cells.v0 v0Var) {
+    }
+
+    @Override
+    public final void t(org.telegram.ui.Cells.v0 v0Var) {
+    }
+
+    @Override
+    public final void x(org.telegram.ui.Cells.v0 v0Var) {
+    }
+
+    @Override
+    public final void g0(org.telegram.ui.Cells.v0 v0Var, String str) {
+    }
+
+    @Override
+    public final void n(org.telegram.ui.Cells.v0 v0Var, int i7) {
+    }
+
+    @Override
+    public final void Q(org.telegram.ui.Cells.v0 v0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+    }
+
+    @Override
+    public final void b0(org.telegram.ui.Cells.v0 v0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+    }
+
+    @Override
+    public final void u(org.telegram.ui.Cells.v0 v0Var, int i7, int i10) {
+    }
+
+    @Override
+    public final void x0(org.telegram.ui.Cells.v0 v0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11) {
     }
 }

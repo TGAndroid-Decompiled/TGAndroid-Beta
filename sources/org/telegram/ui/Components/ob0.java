@@ -1,4 +1,17 @@
 package org.telegram.ui.Components;
-public interface ob0 {
-    String i(int i7);
+public final class ob0 implements Runnable {
+    public boolean f38166a;
+    public final tb0 f38167b;
+
+    public ob0(tb0 tb0Var) {
+        this.f38167b = tb0Var;
+    }
+
+    @Override
+    public final void run() {
+        boolean z10 = this.f38166a;
+        tb0 tb0Var = this.f38167b;
+        tb0Var.a(z10);
+        tb0Var.postDelayed(this, tb0Var.N);
+    }
 }

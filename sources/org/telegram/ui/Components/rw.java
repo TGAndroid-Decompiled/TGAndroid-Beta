@@ -1,34 +1,26 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class rw extends FrameLayout {
-    public final ry f39318a;
+public final class rw extends v4.d0 {
+    public final int f39346r;
 
-    public rw(ry ryVar, Context context) {
+    public rw(Context context, int i7) {
         super(context);
-        this.f39318a = ryVar;
+        this.f39346r = i7;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        ry ryVar = this.f39318a;
-        ww wwVar = ryVar.J;
-        sv svVar = ryVar.W;
-        ex exVar = ryVar.Q;
-        if (view != exVar && view != svVar) {
-            return super.drawChild(canvas, view, j3);
-        }
-        canvas.save();
-        float y10 = wwVar.getY() + wwVar.getMeasuredHeight() + 1.0f;
-        if (view == exVar && svVar != null) {
-            y10 = Math.max(y10, svVar.getY() + svVar.getMeasuredHeight() + 1.0f);
-        }
-        canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * ryVar.f39336b.f57657e), getMeasuredWidth(), getMeasuredHeight());
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild;
+    public final int i(int i7, int i10, int i11, int i12, int i13) {
+        return super.i(i7, i10, i11, i12, i13) + this.f39346r;
+    }
+
+    @Override
+    public final int m(int i7) {
+        return super.m(i7) * 16;
+    }
+
+    @Override
+    public final int p() {
+        return -1;
     }
 }

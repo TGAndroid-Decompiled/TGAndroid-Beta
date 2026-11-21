@@ -1,35 +1,26 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-public final class aj extends k41 {
-    static {
-        k41.h(new k41());
-    }
+import android.widget.FrameLayout;
+public final class aj extends FragmentContextView {
+    public final FrameLayout Y0;
+    public final ej Z0;
 
-    public static l41 i(CharSequence charSequence, String str) {
-        l41 K = l41.K(aj.class);
-        K.f37018m = str;
-        K.f37019n = charSequence;
-        return K;
-    }
-
-    @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        bj bjVar = (bj) view;
-        CharSequence charSequence = l41Var.f37018m;
-        CharSequence charSequence2 = l41Var.f37019n;
-        bjVar.f33700b.setText(charSequence);
-        bjVar.f33701c.setText(charSequence2);
+    public aj(ej ejVar, Context context, org.telegram.ui.ActionBar.g2 g2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.h6 h6Var, FrameLayout frameLayout2) {
+        super(context, g2Var, frameLayout, false, h6Var);
+        this.Z0 = ejVar;
+        this.Y0 = frameLayout2;
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        return new bj(context, i6Var);
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
+    public final void setVisibility(int i7) {
+        boolean z10;
+        es esVar = this.Z0.f34835y;
+        if (i7 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        esVar.j(this.Y0, z10, true);
     }
 }

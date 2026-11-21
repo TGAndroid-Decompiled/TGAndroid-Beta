@@ -1,28 +1,28 @@
 package org.telegram.utils.twidget;
 public final class q0 implements p0, y {
-    public final int f54910a;
-    public final Object f54911b;
-    public final int f54912c;
+    public final int f54951a;
+    public final Object f54952b;
+    public final int f54953c;
 
     public q0(Object obj, int i7, int i10) {
-        this.f54910a = i10;
-        this.f54911b = obj;
-        this.f54912c = i7;
+        this.f54951a = i10;
+        this.f54952b = obj;
+        this.f54953c = i7;
     }
 
     @Override
     public void a(byte[] bArr) {
-        ((WidgetEngineBackend) this.f54911b).lambda$signal$3(this.f54912c, bArr);
+        ((WidgetEngineBackend) this.f54952b).lambda$signal$3(this.f54953c, bArr);
     }
 
     @Override
     public Object run() {
-        switch (this.f54910a) {
+        switch (this.f54951a) {
             case 0:
-                ((x0) this.f54911b).f54979b.deleteFont(this.f54912c);
+                ((x0) this.f54952b).f55020b.deleteFont(this.f54953c);
                 return null;
             default:
-                ((x0) this.f54911b).f54979b.canvasRelease(this.f54912c);
+                ((x0) this.f54952b).f55020b.canvasRelease(this.f54953c);
                 return null;
         }
     }

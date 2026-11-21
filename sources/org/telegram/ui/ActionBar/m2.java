@@ -1,28 +1,50 @@
 package org.telegram.ui.ActionBar;
 
+import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.Canvas;
 import android.view.View;
-public final class m2 implements ri.n, r0.m, r1 {
-    public final x2 f29214a;
+import org.telegram.messenger.a8;
+public final class m2 extends t2 {
+    public final w2 I;
 
-    public m2(x2 x2Var) {
-        this.f29214a = x2Var;
+    public m2(w2 w2Var, Context context) {
+        super(w2Var, context);
+        this.I = w2Var;
     }
 
     @Override
-    public r0.l1 P0(View view, r0.l1 l1Var) {
-        return this.f29214a.b0(l1Var);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.I.Z(canvas);
     }
 
     @Override
-    public int e() {
-        x2 x2Var = this.f29214a;
-        x2Var.getClass();
-        return n6.w0(n6.f29467h5, x2Var.J0);
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        try {
+            return super.drawChild(canvas, view, j3);
+        } catch (Exception e10) {
+            a8.g(e10, true);
+            return true;
+        }
     }
 
     @Override
-    public void h(u1 u1Var, int i7) {
-        this.f29214a.dismiss();
-        bi.a2.l1(false, null);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        setTag(2131296353, new bi.t(7));
+    }
+
+    @Override
+    public final void onConfigurationChanged(Configuration configuration) {
+        w2 w2Var = this.I;
+        w2Var.h = null;
+        w2Var.f30176c.requestApplyInsets();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        setTag(2131296353, null);
     }
 }

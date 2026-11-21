@@ -1,38 +1,57 @@
 package ki;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.z41;
-public final class i extends k41 {
-    static {
-        k41.h(new k41());
+import android.graphics.PorterDuff;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import c8.ma;
+import org.telegram.messenger.n10;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+public final class i extends FrameLayout {
+    public final ImageView f18731a;
+    public final TextView f18732b;
+    public final TextView f18733c;
+
+    public i(Context context, h6 h6Var, boolean z10) {
+        super(context);
+        float f10;
+        ImageView imageView = new ImageView(context);
+        this.f18731a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        int i7 = m6.G6;
+        t6.s(imageView, i7, h6Var, PorterDuff.Mode.SRC_IN);
+        addView(imageView, ma.d(24, 24.0f, 51, 20.0f, 11.46f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        if (z10) {
+            f10 = 2.0f;
+        } else {
+            f10 = 9.8f;
+        }
+        addView(linearLayout, ma.d(-1, -2.0f, 23, 64.0f, f10, 24.0f, z10 ? 4.0f : 9.8f));
+        TextView textView = new TextView(context);
+        this.f18732b = textView;
+        t6.U(textView, i7, h6Var);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setTextSize(1, 14.0f);
+        TextView f11 = n10.f(linearLayout, textView, ma.t(-1, -2, 55, 0, 0, 0, 1), context);
+        this.f18733c = f11;
+        t6.U(f11, m6.f29789z6, h6Var);
+        f11.setTextSize(1, 14.0f);
+        linearLayout.addView(f11, ma.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
-    public static l41 i(int i7, String str, String str2) {
-        l41 K = l41.K(i.class);
-        K.f37016k = i7;
-        K.f37018m = str;
-        K.f37019n = str2;
-        return K;
+    public final void a(int i7, CharSequence charSequence, CharSequence charSequence2) {
+        this.f18731a.setImageResource(i7);
+        this.f18732b.setText(charSequence);
+        this.f18733c.setText(charSequence2);
     }
 
-    @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        ((j) view).a(l41Var.f37016k, l41Var.f37018m, l41Var.f37019n);
-    }
-
-    @Override
-    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
-        return new j(context, i6Var, false);
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
+    public void setText(CharSequence charSequence) {
+        this.f18733c.setText(charSequence);
     }
 }

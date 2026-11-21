@@ -10,30 +10,30 @@ import h2.l0;
 import h2.x;
 import java.io.EOFException;
 public final class o implements i0 {
-    public final i0 f4399a;
-    public final k f4400b;
-    public m f4404g;
+    public final i0 f4428a;
+    public final k f4429b;
+    public m f4433g;
     public u h;
-    public boolean f4405i;
+    public boolean f4434i;
     public int d = 0;
-    public int f4402e = 0;
-    public byte[] f4403f = l0.f13784b;
-    public final x f4401c = new x();
+    public int f4431e = 0;
+    public byte[] f4432f = l0.f13813b;
+    public final x f4430c = new x();
 
     public o(i0 i0Var, k kVar) {
-        this.f4399a = i0Var;
-        this.f4400b = kVar;
+        this.f4428a = i0Var;
+        this.f4429b = kVar;
     }
 
     @Override
     public final void a(x xVar, int i7, int i10) {
-        if (this.f4404g == null) {
-            this.f4399a.a(xVar, i7, i10);
+        if (this.f4433g == null) {
+            this.f4428a.a(xVar, i7, i10);
             return;
         }
         h(i7);
-        xVar.k(this.f4402e, i7, this.f4403f);
-        this.f4402e += i7;
+        xVar.k(this.f4431e, i7, this.f4432f);
+        this.f4431e += i7;
     }
 
     @Override
@@ -53,18 +53,18 @@ public final class o implements i0 {
 
     @Override
     public final int f(e2.n nVar, int i7, boolean z10) {
-        if (this.f4404g == null) {
-            return this.f4399a.f(nVar, i7, z10);
+        if (this.f4433g == null) {
+            return this.f4428a.f(nVar, i7, z10);
         }
         h(i7);
-        int read = nVar.read(this.f4403f, this.f4402e, i7);
+        int read = nVar.read(this.f4432f, this.f4431e, i7);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        this.f4402e += read;
+        this.f4431e += read;
         return read;
     }
 
@@ -72,8 +72,8 @@ public final class o implements i0 {
     public final void g(u uVar) {
         boolean z10;
         m mVar;
-        uVar.f10766s.getClass();
-        String str = uVar.f10766s;
+        uVar.f10795s.getClass();
+        String str = uVar.f10795s;
         if (s0.h(str) == 3) {
             z10 = true;
         } else {
@@ -81,7 +81,7 @@ public final class o implements i0 {
         }
         la.f(z10);
         boolean equals = uVar.equals(this.h);
-        k kVar = this.f4400b;
+        k kVar = this.f4429b;
         if (!equals) {
             this.h = uVar;
             if (kVar.H(uVar)) {
@@ -89,32 +89,32 @@ public final class o implements i0 {
             } else {
                 mVar = null;
             }
-            this.f4404g = mVar;
+            this.f4433g = mVar;
         }
-        m mVar2 = this.f4404g;
-        i0 i0Var = this.f4399a;
+        m mVar2 = this.f4433g;
+        i0 i0Var = this.f4428a;
         if (mVar2 == null) {
             i0Var.g(uVar);
             return;
         }
         t a10 = uVar.a();
-        a10.f10714r = s0.n("application/x-media3-cues");
-        a10.f10706j = str;
-        a10.f10718w = Long.MAX_VALUE;
+        a10.f10743r = s0.n("application/x-media3-cues");
+        a10.f10735j = str;
+        a10.f10747w = Long.MAX_VALUE;
         a10.P = kVar.O(uVar);
         p5.c.r(a10, i0Var);
     }
 
     public final void h(int i7) {
         byte[] bArr;
-        int length = this.f4403f.length;
-        int i10 = this.f4402e;
+        int length = this.f4432f.length;
+        int i10 = this.f4431e;
         if (length - i10 >= i7) {
             return;
         }
         int i11 = i10 - this.d;
         int max = Math.max(i11 * 2, i7 + i11);
-        byte[] bArr2 = this.f4403f;
+        byte[] bArr2 = this.f4432f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -122,8 +122,8 @@ public final class o implements i0 {
         }
         System.arraycopy(bArr2, this.d, bArr, 0, i11);
         this.d = 0;
-        this.f4402e = i11;
-        this.f4403f = bArr;
+        this.f4431e = i11;
+        this.f4432f = bArr;
     }
 
     @Override

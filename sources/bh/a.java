@@ -9,19 +9,19 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import org.telegram.messenger.g0;
 public final class a extends Drawable {
-    public final TextPaint f3360a;
-    public final TextPaint f3361b;
-    public final RectF f3362c;
+    public final TextPaint f3372a;
+    public final TextPaint f3373b;
+    public final RectF f3374c;
     public final Drawable d;
-    public float f3363e;
-    public String f3364f;
+    public float f3375e;
+    public String f3376f;
 
     public a(Context context) {
         TextPaint textPaint = new TextPaint(1);
-        this.f3360a = textPaint;
+        this.f3372a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f3361b = textPaint2;
-        this.f3362c = new RectF();
+        this.f3373b = textPaint2;
+        this.f3374c = new RectF();
         textPaint.setColor(-1);
         textPaint.setTypeface(g0.o());
         textPaint.setTextSize(g0.L(12.0f));
@@ -32,18 +32,18 @@ public final class a extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f3362c;
+        RectF rectF = this.f3374c;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        canvas.drawRoundRect(rectF, g0.L(12.0f), g0.L(12.0f), this.f3361b);
+        canvas.drawRoundRect(rectF, g0.L(12.0f), g0.L(12.0f), this.f3373b);
         int L = g0.L(2.0f) + bounds.left;
         int L2 = g0.L(1.0f) + bounds.top;
         int L3 = g0.L(2.0f) + bounds.left;
         Drawable drawable = this.d;
         drawable.setBounds(L, L2, drawable.getIntrinsicWidth() + L3, drawable.getIntrinsicHeight() + g0.L(1.0f) + getBounds().top);
         drawable.draw(canvas);
-        String str = this.f3364f;
+        String str = this.f3376f;
         if (str != null) {
-            canvas.drawText(str, g0.L(16.5f) + bounds.left, g0.L(13.0f) + bounds.top, this.f3360a);
+            canvas.drawText(str, g0.L(16.5f) + bounds.left, g0.L(13.0f) + bounds.top, this.f3372a);
         }
     }
 
@@ -54,7 +54,7 @@ public final class a extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (g0.L(23.0f) + this.f3363e);
+        return (int) (g0.L(23.0f) + this.f3375e);
     }
 
     @Override

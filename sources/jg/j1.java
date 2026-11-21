@@ -3,26 +3,26 @@ package jg;
 import android.content.Context;
 import android.view.View;
 import fi.b6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.z41;
-public final class j1 extends k41 {
-    public static final int f17545b = 0;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.o41;
+public final class j1 extends n41 {
+    public static final int f17570b = 0;
 
     static {
-        k41.h(new k41());
+        n41.h(new n41());
     }
 
     @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        ((k1) view).a((b6) l41Var.H);
+    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
+        ((k1) view).a((b6) o41Var.H);
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
-        return new k1(context, i6Var);
+    public final View d(Context context, ek0 ek0Var, int i7, h6 h6Var) {
+        return new k1(context, h6Var);
     }
 }

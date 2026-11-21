@@ -3,34 +3,34 @@ package gi;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.s00;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.z41;
-public final class n extends k41 {
-    public static final int f13660b = 0;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.o41;
+public final class n extends n41 {
+    public static final int f13689b = 0;
 
     static {
-        k41.h(new k41());
+        n41.h(new n41());
     }
 
     @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
+    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
         o oVar = (o) view;
-        s00 s00Var = (s00) l41Var.H;
-        oVar.f13661a.setText(s00Var.f26717b);
-        oVar.f13662b.setText(s00Var.f26718c);
-        if (oVar.f13663c != z10) {
+        s00 s00Var = (s00) o41Var.H;
+        oVar.f13690a.setText(s00Var.f26745b);
+        oVar.f13691b.setText(s00Var.f26746c);
+        if (oVar.f13692c != z10) {
             oVar.invalidate();
         }
-        oVar.f13663c = z10;
+        oVar.f13692c = z10;
         oVar.setWillNotDraw(!z10);
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
+    public final View d(Context context, ek0 ek0Var, int i7, h6 h6Var) {
         return new o(context);
     }
 }

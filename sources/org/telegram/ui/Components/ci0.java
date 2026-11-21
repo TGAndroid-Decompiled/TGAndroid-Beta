@@ -1,4 +1,57 @@
 package org.telegram.ui.Components;
-public interface ci0 {
-    void b(ei0 ei0Var, int i7);
+
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class ci0 extends LinearLayout {
+    public boolean f34211a;
+
+    public ci0(Context context) {
+        super(context);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int i11;
+        yh0 yh0Var = null;
+        if (!this.f34211a) {
+            i11 = 0;
+            for (int i12 = 0; i12 < getChildCount(); i12++) {
+                if (getChildAt(i12) instanceof gi0) {
+                    yh0Var = ((gi0) getChildAt(i12)).f35564e;
+                    if (yh0Var.getAdapter().b() == yh0Var.getChildCount()) {
+                        int childCount = yh0Var.getChildCount();
+                        for (int i13 = 0; i13 < childCount; i13++) {
+                            yh0Var.getChildAt(i13).measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(1000.0f), 0), i10);
+                            if (yh0Var.getChildAt(i13).getMeasuredWidth() > i11) {
+                                i11 = yh0Var.getChildAt(i13).getMeasuredWidth();
+                            }
+                        }
+                        i11 += org.telegram.messenger.g0.L(16.0f);
+                    }
+                }
+            }
+        } else {
+            i11 = 0;
+        }
+        int size = View.MeasureSpec.getSize(i7);
+        if (size < org.telegram.messenger.g0.L(240.0f)) {
+            size = org.telegram.messenger.g0.L(240.0f);
+        }
+        if (size > org.telegram.messenger.g0.L(280.0f)) {
+            size = org.telegram.messenger.g0.L(280.0f);
+        }
+        if (size < 0) {
+            size = 0;
+        }
+        if (i11 == 0 || i11 >= size) {
+            i11 = size;
+        }
+        if (yh0Var != null) {
+            for (int i14 = 0; i14 < yh0Var.getChildCount(); i14++) {
+                yh0Var.getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(i11, 1073741824), i10);
+            }
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(i11, 1073741824), i10);
+    }
 }

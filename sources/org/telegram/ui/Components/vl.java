@@ -1,55 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-import java.io.File;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraSessionWrapper;
-public final class vl implements kt0 {
-    public File f40699a;
-    public boolean f40700b;
-    public final org.telegram.ui.ActionBar.i6 f40701c;
-    public final FrameLayout d;
-    public final ChatAttachAlertPhotoLayout f40702e;
+import java.util.HashMap;
+import org.telegram.ui.PhotoViewer;
+public final class vl implements org.telegram.messenger.x10 {
+    public final int f40865a = 1;
+    public final boolean f40866b;
+    public final boolean f40867c;
+    public final int d;
+    public final fm f40868e;
 
-    public vl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f40702e = chatAttachAlertPhotoLayout;
-        this.f40701c = i6Var;
-        this.d = n2Var;
+    public vl(am amVar, boolean z10, boolean z11, int i7) {
+        this.f40868e = amVar;
+        this.f40866b = z10;
+        this.f40867c = z11;
+        this.d = i7;
     }
 
-    public final void a() {
-        em emVar;
-        boolean z10;
-        boolean z11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f40702e;
-        si siVar = chatAttachAlertPhotoLayout.f36766b;
-        ShutterButton shutterButton = chatAttachAlertPhotoLayout.f32789l0;
-        if (!chatAttachAlertPhotoLayout.f32803t0 && (emVar = chatAttachAlertPhotoLayout.Q) != null && emVar.getCameraSession() != null) {
-            if (shutterButton.getState() == lt0.f37223b) {
-                chatAttachAlertPhotoLayout.o0();
-                CameraController.getInstance().stopVideoRecording(chatAttachAlertPhotoLayout.Q.getCameraSession(), false);
-                shutterButton.a(lt0.f37222a);
-            } else if (!chatAttachAlertPhotoLayout.f32811y0) {
-                org.telegram.messenger.f3.o(null, 2131749367, new lc(chatAttachAlertPhotoLayout.Q, this.f40701c), null);
-            } else {
-                org.telegram.ui.ActionBar.h2 h2Var = siVar.f39659a2;
-                if ((h2Var instanceof org.telegram.ui.bn) && ((org.telegram.ui.bn) h2Var).z()) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+    @Override
+    public final void a(Object obj) {
+        int i7;
+        switch (this.f40865a) {
+            case 0:
+                Long l10 = (Long) obj;
+                ui uiVar = ((cm) this.f40868e).f34223b.f37521b;
+                if (uiVar != null) {
+                    uiVar.G3 = true;
                 }
-                File q02 = org.telegram.messenger.g0.q0(null, z10);
-                boolean isSameTakePictureOrientation = chatAttachAlertPhotoLayout.Q.getCameraSession().isSameTakePictureOrientation();
-                CameraSessionWrapper cameraSession = chatAttachAlertPhotoLayout.Q.getCameraSession();
-                if (!(siVar.f39659a2 instanceof org.telegram.ui.bn) && siVar.O2 != 2) {
-                    z11 = false;
+                uiVar.X3.y1(7, true, this.f40866b, this.d, 0, 0L, uiVar.g1(), this.f40867c, l10.longValue());
+                HashMap hashMap = ChatAttachAlertPhotoLayout.f32797t1;
+                hashMap.clear();
+                ChatAttachAlertPhotoLayout.f32796s1.clear();
+                ChatAttachAlertPhotoLayout.f32798u1.clear();
+                hashMap.clear();
+                PhotoViewer.p1();
+                PhotoViewer.p1().z0(PhotoViewer.p1().Q, false);
+                PhotoViewer.p1().f43389v2 = true;
+                return;
+            default:
+                Long l11 = (Long) obj;
+                PhotoViewer.p1();
+                PhotoViewer.p1().P = false;
+                PhotoViewer.p1().f43389v2 = false;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((am) this.f40868e).f33537c;
+                ui uiVar2 = chatAttachAlertPhotoLayout.f37521b;
+                uiVar2.f40438t4 = true;
+                uiVar2.G3 = true;
+                chatAttachAlertPhotoLayout.d0(false);
+                si siVar = uiVar2.X3;
+                boolean z10 = this.f40866b;
+                if (z10) {
+                    i7 = 4;
                 } else {
-                    z11 = true;
+                    i7 = 8;
                 }
-                cameraSession.setFlipFront(z11);
-                chatAttachAlertPhotoLayout.f32803t0 = CameraController.getInstance().takePicture(q02, false, chatAttachAlertPhotoLayout.Q.getCameraSessionObject(), new hi.lb(this, q02, isSameTakePictureOrientation, 1));
-                chatAttachAlertPhotoLayout.Q.startTakePictureAnimation(true);
-            }
+                siVar.y1(i7, true, this.f40867c, this.d, 0, 0L, uiVar2.g1(), z10, l11.longValue());
+                ChatAttachAlertPhotoLayout.f32796s1.clear();
+                ChatAttachAlertPhotoLayout.f32798u1.clear();
+                ChatAttachAlertPhotoLayout.f32797t1.clear();
+                chatAttachAlertPhotoLayout.H.f();
+                chatAttachAlertPhotoLayout.f32839w.f();
+                uiVar2.a(true);
+                PhotoViewer.p1();
+                PhotoViewer.p1().z0(PhotoViewer.p1().Q, false);
+                PhotoViewer.p1().f43389v2 = true;
+                return;
         }
+    }
+
+    public vl(cm cmVar, boolean z10, int i7, boolean z11) {
+        this.f40868e = cmVar;
+        this.f40866b = z10;
+        this.d = i7;
+        this.f40867c = z11;
     }
 }

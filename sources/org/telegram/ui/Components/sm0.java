@@ -1,25 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.LinearLayout;
-public class sm0 extends LinearLayout {
-    public sm0(Context context) {
-        super(context);
-        setWillNotDraw(false);
+import androidx.recyclerview.widget.RecyclerView;
+public final class sm0 extends v4.u0 {
+    public final int f39637a;
+    public final di.i4 f39638b;
+
+    public sm0(di.i4 i4Var, int i7) {
+        this.f39637a = i7;
+        this.f39638b = i4Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        if (getParent() instanceof tm0) {
-            ((tm0) getParent()).invalidate();
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        switch (this.f39637a) {
+            case 0:
+                ((org.telegram.ui.kw) this.f39638b.f9035c).P();
+                return;
+            default:
+                ((org.telegram.ui.kw) this.f39638b.f9035c).P();
+                return;
         }
     }
 }

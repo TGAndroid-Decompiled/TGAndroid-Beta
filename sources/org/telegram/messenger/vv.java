@@ -3,25 +3,25 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class vv implements Runnable {
-    public final int f27601a;
-    public final xv f27602b;
-    public final ArrayList f27603c;
+    public final int f27629a;
+    public final xv f27630b;
+    public final ArrayList f27631c;
 
     public vv(xv xvVar, ArrayList arrayList, int i7) {
-        this.f27601a = i7;
-        this.f27602b = xvVar;
-        this.f27603c = arrayList;
+        this.f27629a = i7;
+        this.f27630b = xvVar;
+        this.f27631c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f27601a) {
+        switch (this.f27629a) {
             case 0:
-                xv xvVar = this.f27602b;
+                xv xvVar = this.f27630b;
                 xvVar.getClass();
                 int i7 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f27603c;
+                    ArrayList arrayList = this.f27631c;
                     if (i7 < arrayList.size()) {
                         fj fjVar = new fj(xvVar.currentAccount, (TLRPC.Message) arrayList.get(i7), false, true);
                         fjVar.C0 = true;
@@ -32,11 +32,11 @@ public final class vv implements Runnable {
                     }
                 }
             default:
-                xv xvVar2 = this.f27602b;
+                xv xvVar2 = this.f27630b;
                 xvVar2.getClass();
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f27603c;
+                    ArrayList arrayList2 = this.f27631c;
                     if (i10 < arrayList2.size()) {
                         fj fjVar2 = (fj) xvVar2.getMessagesController().T.f(((Long) arrayList2.get(i10)).longValue());
                         if (fjVar2 != null) {

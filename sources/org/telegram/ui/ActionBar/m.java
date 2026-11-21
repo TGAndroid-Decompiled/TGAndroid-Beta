@@ -6,30 +6,30 @@ import android.text.TextUtils;
 import android.widget.FrameLayout;
 import c8.ma;
 import java.util.Iterator;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.nr;
 public abstract class m extends FrameLayout implements te.i {
-    public final i6 f29209a;
-    public final ab.q f29210b;
-    public final te.j f29211c;
+    public final h6 f29251a;
+    public final ab.q f29252b;
+    public final te.j f29253c;
 
-    public m(Context context, i6 i6Var, ab.q qVar) {
+    public m(Context context, h6 h6Var, ab.q qVar) {
         super(context);
-        this.f29211c = new te.j(this, lr.h, 350L);
-        this.f29209a = i6Var;
-        this.f29210b = qVar;
+        this.f29253c = new te.j(this, nr.h, 350L);
+        this.f29251a = h6Var;
+        this.f29252b = qVar;
     }
 
     public final void b(CharSequence charSequence, boolean z10) {
         boolean z11;
         SpannableString spannableString;
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        te.j jVar = this.f29211c;
+        te.j jVar = this.f29253c;
         if (isEmpty) {
-            jVar.f57682a.m(null, true);
+            jVar.f57721a.m(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
-        ab.q qVar = this.f29210b;
+        ab.q qVar = this.f29252b;
         if (indexOf >= 0) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
             qVar.F(valueOf, indexOf);
@@ -40,10 +40,10 @@ public abstract class m extends FrameLayout implements te.i {
             spannableString = charSequence;
         }
         l lVar = new l(this, getContext());
-        int i7 = n6.Xl;
-        i6 i6Var = this.f29209a;
-        u6.U(lVar, i7, i6Var);
-        u6.G(lVar, i7, i6Var);
+        int i7 = m6.Xl;
+        h6 h6Var = this.f29251a;
+        t6.U(lVar, i7, h6Var);
+        t6.G(lVar, i7, h6Var);
         lVar.setTextSize(1, 14.0f);
         lVar.setAlpha(0.0f);
         lVar.setText(spannableString);
@@ -55,23 +55,23 @@ public abstract class m extends FrameLayout implements te.i {
     }
 
     public final void c() {
-        Iterator it = this.f29211c.iterator();
+        Iterator it = this.f29253c.iterator();
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
-            int i7 = n6.Xl;
-            i6 i6Var = this.f29209a;
-            ((l) eVar.f57666a).setTextColor(n6.w0(i7, i6Var));
-            ((l) eVar.f57666a).setLinkTextColor(n6.w0(i7, i6Var));
+            int i7 = m6.Xl;
+            h6 h6Var = this.f29251a;
+            ((l) eVar.f57705a).setTextColor(m6.w0(i7, h6Var));
+            ((l) eVar.f57705a).setLinkTextColor(m6.w0(i7, h6Var));
         }
     }
 
     public void f(te.j jVar) {
         float f10;
-        Iterator it = this.f29211c.iterator();
+        Iterator it = this.f29253c.iterator();
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
             float c10 = eVar.c();
-            Object obj = eVar.f57666a;
+            Object obj = eVar.f57705a;
             float T1 = org.telegram.messenger.g0.T1(0.85f, 1.0f, c10);
             l lVar = (l) obj;
             lVar.setAlpha(c10);
@@ -87,7 +87,7 @@ public abstract class m extends FrameLayout implements te.i {
     }
 
     public float getTotalVisibility() {
-        return this.f29211c.f57682a.d.f57673c.f57683a;
+        return this.f29253c.f57721a.d.f57712c.f57722a;
     }
 
     @Override

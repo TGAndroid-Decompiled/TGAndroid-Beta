@@ -1,6 +1,6 @@
 package z7;
 public final class w3 implements na.d {
-    public static final w3 f61746a = new Object();
+    public static final w3 f61787a = new Object();
 
     static {
         p5.c.u(yi.i.a(d.class, new a(1)));

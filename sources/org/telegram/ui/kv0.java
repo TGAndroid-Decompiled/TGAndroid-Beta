@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.tgnet.TLRPC;
-public final class kv0 extends org.telegram.ui.Components.yo0 {
+public final class kv0 extends org.telegram.ui.Components.ap0 {
     public final ProfileActivity V2;
 
     public kv0(ProfileActivity profileActivity, Activity activity, String str, String str2) {
@@ -15,6 +15,6 @@ public final class kv0 extends org.telegram.ui.Components.yo0 {
         if (!z10) {
             return;
         }
-        org.telegram.messenger.g0.h3(new tr0(this, hVar, i7, 16), 250L);
+        org.telegram.messenger.g0.h3(new tr0(this, hVar, i7, 18), 250L);
     }
 }

@@ -5,48 +5,48 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.gd;
-import org.telegram.ui.Components.vy0;
+import org.telegram.ui.Components.xy0;
 public final class j0 extends ReplacementSpan {
-    public final int f12133a;
-    public final Object f12134b;
-    public final Paint f12135c;
-    public final vy0 d;
+    public final int f12165a;
+    public final Object f12166b;
+    public final Paint f12167c;
+    public final xy0 d;
 
-    public j0(org.telegram.ui.ActionBar.i6 i6Var) {
-        this.f12133a = 2;
-        this.f12134b = i6Var;
-        this.d = new vy0(gd.M0(2131745002, null), 12.0f, org.telegram.messenger.g0.o());
-        this.f12135c = new Paint(1);
+    public j0(org.telegram.ui.ActionBar.h6 h6Var) {
+        this.f12165a = 2;
+        this.f12166b = h6Var;
+        this.d = new xy0(gd.N0(2131744996, null), 12.0f, org.telegram.messenger.g0.o());
+        this.f12167c = new Paint(1);
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        switch (this.f12133a) {
+        switch (this.f12165a) {
             case 0:
                 float L = ((i11 + i13) / 2.0f) + org.telegram.messenger.g0.L(0.0f);
-                RectF rectF = (RectF) this.f12134b;
+                RectF rectF = (RectF) this.f12166b;
                 rectF.set(f10, L - org.telegram.messenger.g0.L(6.0f), this.d.k() + f10 + org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(6.0f) + L);
-                Paint paint2 = this.f12135c;
+                Paint paint2 = this.f12167c;
                 paint2.setColor(-572850);
                 canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
                 this.d.c(org.telegram.messenger.g0.L(4.0f) + f10, L, 1.0f, -1, canvas);
                 return;
             case 1:
                 float L2 = ((i11 + i13) / 2.0f) + org.telegram.messenger.g0.L(1.33f);
-                RectF rectF2 = (RectF) this.f12134b;
+                RectF rectF2 = (RectF) this.f12166b;
                 rectF2.set(f10, L2 - org.telegram.messenger.g0.L(7.0f), this.d.k() + f10 + org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(7.0f) + L2);
-                Paint paint3 = this.f12135c;
+                Paint paint3 = this.f12167c;
                 paint3.setColor(-572850);
                 canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, paint3);
                 this.d.c(org.telegram.messenger.g0.L(6.0f) + f10, L2, 1.0f, -1, canvas);
                 return;
             default:
                 float L3 = ((i11 + i13) / 2.0f) + org.telegram.messenger.g0.L(1.0f);
-                int w02 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.Fi, (org.telegram.ui.ActionBar.i6) this.f12134b);
-                Paint paint4 = this.f12135c;
+                int w02 = org.telegram.ui.ActionBar.m6.w0(org.telegram.ui.ActionBar.m6.Fi, (org.telegram.ui.ActionBar.h6) this.f12166b);
+                Paint paint4 = this.f12167c;
                 paint4.setColor(w02);
                 RectF rectF3 = org.telegram.messenger.g0.P;
-                rectF3.set(f10, L3 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f) + f10 + this.d.f41482c, org.telegram.messenger.g0.L(9.0f) + L3);
+                rectF3.set(f10, L3 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f) + f10 + this.d.f42254c, org.telegram.messenger.g0.L(9.0f) + L3);
                 canvas.drawRoundRect(rectF3, org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), paint4);
                 this.d.c(f10 + org.telegram.messenger.g0.L(8.0f), L3, 1.0f, -1, canvas);
                 return;
@@ -58,7 +58,7 @@ public final class j0 extends ReplacementSpan {
         float k10;
         int L;
         float f10;
-        switch (this.f12133a) {
+        switch (this.f12165a) {
             case 0:
                 k10 = this.d.k();
                 L = org.telegram.messenger.g0.L(8.0f);
@@ -71,24 +71,24 @@ public final class j0 extends ReplacementSpan {
                 break;
             default:
                 k10 = org.telegram.messenger.g0.L(16.0f);
-                f10 = this.d.f41482c;
+                f10 = this.d.f42254c;
                 break;
         }
         return (int) (k10 + f10);
     }
 
     public j0(int i7) {
-        this.f12133a = i7;
+        this.f12165a = i7;
         switch (i7) {
             case 1:
-                this.f12134b = new RectF();
-                this.f12135c = new Paint(1);
-                this.d = new vy0(gd.M0(2131748633, null), 9.0f, org.telegram.messenger.g0.o());
+                this.f12166b = new RectF();
+                this.f12167c = new Paint(1);
+                this.d = new xy0(gd.N0(2131748632, null), 9.0f, org.telegram.messenger.g0.o());
                 return;
             default:
-                this.f12134b = new RectF();
-                this.f12135c = new Paint(1);
-                this.d = new vy0(gd.M0(2131748633, null), 8.0f, org.telegram.messenger.g0.o());
+                this.f12166b = new RectF();
+                this.f12167c = new Paint(1);
+                this.d = new xy0(gd.N0(2131748632, null), 8.0f, org.telegram.messenger.g0.o());
                 return;
         }
     }

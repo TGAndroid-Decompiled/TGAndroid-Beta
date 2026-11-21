@@ -2,11 +2,11 @@ package ki;
 
 import android.graphics.Point;
 import android.view.View;
-public final class q2 extends org.telegram.ui.ActionBar.k {
+public final class q2 extends n3 {
     @Override
     public final void onMeasure(int i7, int i10) {
         if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
-            Point point = org.telegram.messenger.g0.f24118q;
+            Point point = org.telegram.messenger.g0.f24146q;
             i7 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
         }
         super.onMeasure(i7, i10);

@@ -8,38 +8,38 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 public final class o0 extends l {
-    public static final e2.l0 f60178s;
-    public final a[] f60179k;
-    public final ArrayList f60180l;
-    public final e2.l1[] f60181m;
-    public final ArrayList f60182n;
-    public final nb.a f60183o;
-    public int f60184p;
-    public long[][] f60185q;
-    public androidx.datastore.preferences.protobuf.l f60186r;
+    public static final e2.l0 f60219s;
+    public final a[] f60220k;
+    public final ArrayList f60221l;
+    public final e2.l1[] f60222m;
+    public final ArrayList f60223n;
+    public final nb.a f60224o;
+    public int f60225p;
+    public long[][] f60226q;
+    public androidx.datastore.preferences.protobuf.l f60227r;
 
     static {
         e2.z zVar = new e2.z();
-        h9.g0 g0Var = h9.i0.f14003b;
-        h9.t1 t1Var = h9.t1.f14071e;
+        h9.g0 g0Var = h9.i0.f14032b;
+        h9.t1 t1Var = h9.t1.f14100e;
         List list = Collections.EMPTY_LIST;
-        h9.t1 t1Var2 = h9.t1.f14071e;
+        h9.t1 t1Var2 = h9.t1.f14100e;
         e2.e0 e0Var = new e2.e0();
-        f60178s = new e2.l0("MergingMediaSource", new e2.a0(zVar), null, new e2.f0(e0Var), e2.o0.L, e2.h0.d);
+        f60219s = new e2.l0("MergingMediaSource", new e2.a0(zVar), null, new e2.f0(e0Var), e2.o0.L, e2.h0.d);
     }
 
     public o0(a... aVarArr) {
         nb.a aVar = new nb.a(28);
-        this.f60179k = aVarArr;
-        this.f60183o = aVar;
-        this.f60182n = new ArrayList(Arrays.asList(aVarArr));
-        this.f60184p = -1;
-        this.f60180l = new ArrayList(aVarArr.length);
+        this.f60220k = aVarArr;
+        this.f60224o = aVar;
+        this.f60223n = new ArrayList(Arrays.asList(aVarArr));
+        this.f60225p = -1;
+        this.f60221l = new ArrayList(aVarArr.length);
         for (int i7 = 0; i7 < aVarArr.length; i7++) {
-            this.f60180l.add(new ArrayList());
+            this.f60221l.add(new ArrayList());
         }
-        this.f60181m = new e2.l1[aVarArr.length];
-        this.f60185q = new long[0];
+        this.f60222m = new e2.l1[aVarArr.length];
+        this.f60226q = new long[0];
         new HashMap();
         h9.o.g(8, "expectedKeys");
         h9.o.g(2, "expectedValuesPerKey");
@@ -48,7 +48,7 @@ public final class o0 extends l {
 
     @Override
     public final boolean a(e2.l0 l0Var) {
-        a[] aVarArr = this.f60179k;
+        a[] aVarArr = this.f60220k;
         if (aVarArr.length <= 0 || !aVarArr[0].a(l0Var)) {
             return false;
         }
@@ -57,31 +57,31 @@ public final class o0 extends l {
 
     @Override
     public final e0 c(g0 g0Var, h6.m mVar, long j3) {
-        a[] aVarArr = this.f60179k;
+        a[] aVarArr = this.f60220k;
         int length = aVarArr.length;
         e0[] e0VarArr = new e0[length];
-        e2.l1[] l1VarArr = this.f60181m;
-        int b10 = l1VarArr[0].b(g0Var.f60088a);
+        e2.l1[] l1VarArr = this.f60222m;
+        int b10 = l1VarArr[0].b(g0Var.f60129a);
         for (int i7 = 0; i7 < length; i7++) {
             g0 a10 = g0Var.a(l1VarArr[i7].l(b10));
-            e0VarArr[i7] = aVarArr[i7].c(a10, mVar, j3 - this.f60185q[b10][i7]);
-            ((List) this.f60180l.get(i7)).add(new n0(a10, e0VarArr[i7]));
+            e0VarArr[i7] = aVarArr[i7].c(a10, mVar, j3 - this.f60226q[b10][i7]);
+            ((List) this.f60221l.get(i7)).add(new n0(a10, e0VarArr[i7]));
         }
-        return new m0(this.f60183o, this.f60185q[b10], e0VarArr);
+        return new m0(this.f60224o, this.f60226q[b10], e0VarArr);
     }
 
     @Override
     public final e2.l0 i() {
-        a[] aVarArr = this.f60179k;
+        a[] aVarArr = this.f60220k;
         if (aVarArr.length > 0) {
             return aVarArr[0].i();
         }
-        return f60178s;
+        return f60219s;
     }
 
     @Override
     public final void k() {
-        androidx.datastore.preferences.protobuf.l lVar = this.f60186r;
+        androidx.datastore.preferences.protobuf.l lVar = this.f60227r;
         if (lVar == null) {
             super.k();
             return;
@@ -91,11 +91,11 @@ public final class o0 extends l {
 
     @Override
     public final void m(j2.c0 c0Var) {
-        this.f60136j = c0Var;
-        this.f60135i = h2.l0.q(null);
+        this.f60177j = c0Var;
+        this.f60176i = h2.l0.q(null);
         int i7 = 0;
         while (true) {
-            a[] aVarArr = this.f60179k;
+            a[] aVarArr = this.f60220k;
             if (i7 < aVarArr.length) {
                 y(Integer.valueOf(i7), aVarArr[i7]);
                 i7++;
@@ -112,13 +112,13 @@ public final class o0 extends l {
         m0 m0Var = (m0) e0Var;
         int i7 = 0;
         while (true) {
-            a[] aVarArr = this.f60179k;
+            a[] aVarArr = this.f60220k;
             if (i7 < aVarArr.length) {
-                List list = (List) this.f60180l.get(i7);
-                e0[] e0VarArr = m0Var.f60144a;
-                boolean[] zArr = m0Var.f60145b;
+                List list = (List) this.f60221l.get(i7);
+                e0[] e0VarArr = m0Var.f60185a;
+                boolean[] zArr = m0Var.f60186b;
                 if (zArr[i7]) {
-                    e0Var2 = ((p1) e0VarArr[i7]).f60197a;
+                    e0Var2 = ((p1) e0VarArr[i7]).f60238a;
                 } else {
                     e0Var2 = e0VarArr[i7];
                 }
@@ -126,7 +126,7 @@ public final class o0 extends l {
                 while (true) {
                     if (i10 >= list.size()) {
                         break;
-                    } else if (((n0) list.get(i10)).f60166b.equals(e0Var2)) {
+                    } else if (((n0) list.get(i10)).f60207b.equals(e0Var2)) {
                         list.remove(i10);
                         break;
                     } else {
@@ -134,9 +134,9 @@ public final class o0 extends l {
                     }
                 }
                 a aVar = aVarArr[i7];
-                e0[] e0VarArr2 = m0Var.f60144a;
+                e0[] e0VarArr2 = m0Var.f60185a;
                 if (zArr[i7]) {
-                    e0Var3 = ((p1) e0VarArr2[i7]).f60197a;
+                    e0Var3 = ((p1) e0VarArr2[i7]).f60238a;
                 } else {
                     e0Var3 = e0VarArr2[i7];
                 }
@@ -151,27 +151,27 @@ public final class o0 extends l {
     @Override
     public final void q() {
         super.q();
-        Arrays.fill(this.f60181m, (Object) null);
-        this.f60184p = -1;
-        this.f60186r = null;
-        ArrayList arrayList = this.f60182n;
+        Arrays.fill(this.f60222m, (Object) null);
+        this.f60225p = -1;
+        this.f60227r = null;
+        ArrayList arrayList = this.f60223n;
         arrayList.clear();
-        Collections.addAll(arrayList, this.f60179k);
+        Collections.addAll(arrayList, this.f60220k);
     }
 
     @Override
     public final void t(e2.l0 l0Var) {
-        this.f60179k[0].t(l0Var);
+        this.f60220k[0].t(l0Var);
     }
 
     @Override
     public final g0 u(Object obj, g0 g0Var) {
         int intValue = ((Integer) obj).intValue();
-        ArrayList arrayList = this.f60180l;
+        ArrayList arrayList = this.f60221l;
         List list = (List) arrayList.get(intValue);
         for (int i7 = 0; i7 < list.size(); i7++) {
-            if (((n0) list.get(i7)).f60165a.equals(g0Var)) {
-                return ((n0) ((List) arrayList.get(0)).get(i7)).f60165a;
+            if (((n0) list.get(i7)).f60206a.equals(g0Var)) {
+                return ((n0) ((List) arrayList.get(0)).get(i7)).f60206a;
             }
         }
         return null;
@@ -180,19 +180,19 @@ public final class o0 extends l {
     @Override
     public final void x(Object obj, a aVar, e2.l1 l1Var) {
         Integer num = (Integer) obj;
-        if (this.f60186r == null) {
-            if (this.f60184p == -1) {
-                this.f60184p = l1Var.h();
-            } else if (l1Var.h() != this.f60184p) {
-                this.f60186r = new IOException();
+        if (this.f60227r == null) {
+            if (this.f60225p == -1) {
+                this.f60225p = l1Var.h();
+            } else if (l1Var.h() != this.f60225p) {
+                this.f60227r = new IOException();
                 return;
             }
-            int length = this.f60185q.length;
-            e2.l1[] l1VarArr = this.f60181m;
+            int length = this.f60226q.length;
+            e2.l1[] l1VarArr = this.f60222m;
             if (length == 0) {
-                this.f60185q = (long[][]) Array.newInstance(Long.TYPE, this.f60184p, l1VarArr.length);
+                this.f60226q = (long[][]) Array.newInstance(Long.TYPE, this.f60225p, l1VarArr.length);
             }
-            ArrayList arrayList = this.f60182n;
+            ArrayList arrayList = this.f60223n;
             arrayList.remove(aVar);
             l1VarArr[num.intValue()] = l1Var;
             if (arrayList.isEmpty()) {

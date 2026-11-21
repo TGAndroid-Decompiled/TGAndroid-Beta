@@ -1,32 +1,133 @@
 package oi;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
 import android.view.View;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.z41;
-public final class q0 extends k41 {
-    public static final int f22252b = 0;
+import android.widget.FrameLayout;
+import c8.ma;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.gd;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Cells.i9;
+import org.telegram.ui.Cells.j9;
+import org.telegram.ui.Components.AnimatedArrowDrawable;
+public final class q0 extends FrameLayout implements org.telegram.ui.ActionBar.b6, i9 {
+    public final h6 f22319a;
+    public final bi.m3 f22320b;
+    public final AnimatedArrowDrawable f22321c;
+    public final f1 d;
+    public final Paint f22322e;
+    public a f22323f;
+    public c3 h;
+    public boolean f22324n;
 
-    static {
-        k41.h(new k41());
+    public q0(Context context, h6 h6Var) {
+        super(context);
+        this.f22322e = new Paint();
+        this.f22319a = h6Var;
+        setClipToPadding(false);
+        setWillNotDraw(false);
+        AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(m6.w0(m6.ul, h6Var));
+        this.f22321c = animatedArrowDrawable;
+        animatedArrowDrawable.setCallback(new a5.b(this, 5));
+        bi.m3 m3Var = new bi.m3(9, context, this);
+        this.f22320b = m3Var;
+        m3Var.setOnClickListener(new hi.o4(this, 18));
+        addView(m3Var, ma.e(53, -1, 51));
+        f1 f1Var = new f1(context, h6Var);
+        this.d = f1Var;
+        f1Var.setAllowNewlines(false);
+        f1Var.setTextSize(1, bz.W0);
+        f1Var.setHint(gd.N0(2131754015, null));
+        f1Var.setPadding(0, org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(12.66f));
+        f1Var.setListener(new n0(this));
+        f1Var.setDelegate(new kg.x1(this, 20));
+        addView(f1Var, ma.d(-1, -2.0f, 51, 53.0f, 0.0f, 16.0f, 0.0f));
+        updateColors();
     }
 
     @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        ((r0) view).f22272c = (a) l41Var.H;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(m6.ul));
+        hashSet.add(Integer.valueOf(m6.wl));
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, i6 i6Var) {
-        return new r0(context, i6Var);
+    public final void dispatchDraw(Canvas canvas) {
+        j9 j9Var;
+        c3 c3Var = this.h;
+        if (c3Var != null) {
+            j9Var = c3Var.f22042a.getTextSelectionHelper();
+        } else {
+            j9Var = null;
+        }
+        if (j9Var != null) {
+            f1 f1Var = this.d;
+            if (f1Var.getLayout() != null) {
+                canvas.save();
+                canvas.translate(f1Var.getPaddingLeft() + f1Var.getLeft(), f1Var.getPaddingTop() + f1Var.getTop());
+                j9Var.Z(canvas, this, 0);
+                canvas.restore();
+            }
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    public f1 getEditText() {
+        return this.d;
+    }
+
+    public a getRow() {
+        return this.f22323f;
     }
 
     @Override
-    public final boolean f() {
-        return false;
+    public final void k(ArrayList arrayList) {
+        f1 f1Var = this.d;
+        Layout layout = f1Var.getLayout();
+        if (layout == null) {
+            return;
+        }
+        arrayList.add(new o0(this, layout, f1Var.getPaddingLeft() + f1Var.getLeft(), f1Var.getPaddingTop() + f1Var.getTop()));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        a aVar = this.f22323f;
+        if (aVar != null) {
+            TL_iv.PageBlock pageBlock = aVar.f21932b;
+            if ((pageBlock instanceof TL_iv.pageBlockDetails) && ((TL_iv.pageBlockDetails) pageBlock).open) {
+                return;
+            }
+        }
+        int measuredHeight = getMeasuredHeight();
+        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f22322e);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+    }
+
+    public void setLocked(boolean z10) {
+        this.d.setLocked(z10);
+    }
+
+    @Override
+    public final void updateColors() {
+        this.d.updateColors();
+        int i7 = m6.ul;
+        h6 h6Var = this.f22319a;
+        int w02 = m6.w0(i7, h6Var);
+        AnimatedArrowDrawable animatedArrowDrawable = this.f22321c;
+        animatedArrowDrawable.f32555a.setColor(w02);
+        animatedArrowDrawable.invalidateSelf();
+        this.f22322e.setColor(m6.w0(m6.wl, h6Var));
     }
 }

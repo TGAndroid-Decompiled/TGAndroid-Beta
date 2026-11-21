@@ -1,72 +1,63 @@
 package kg;
 
-import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class n0 implements Runnable {
-    public final int f18394a;
-    public final t0 f18395b;
+import org.telegram.ui.bb1;
+public final class n0 implements RequestDelegate {
+    public final int f18423a = 0;
+    public final boolean f18424b;
+    public final Object f18425c;
+    public final Object d;
+    public final Object f18426e;
+    public final TLObject f18427f;
 
-    public n0(t0 t0Var, int i7) {
-        this.f18394a = i7;
-        this.f18395b = t0Var;
+    public n0(s0 s0Var, int[] iArr, ArrayList arrayList, boolean z10, TLRPC.User user) {
+        this.f18425c = s0Var;
+        this.d = iArr;
+        this.f18426e = arrayList;
+        this.f18424b = z10;
+        this.f18427f = user;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18394a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18423a) {
             case 0:
-                t0 t0Var = this.f18395b;
-                TL_account.TL_businessBotRights tL_businessBotRights = t0Var.K;
-                tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
-                t0Var.f18476c.f34607g3.O(true);
-                t0Var.d0(true);
+                org.telegram.messenger.g0.g3(new q0((s0) this.f18425c, tL_error, tLObject, (int[]) this.d, (ArrayList) this.f18426e, this.f18424b, (TLRPC.User) this.f18427f));
                 return;
             case 1:
-                t0 t0Var2 = this.f18395b;
-                TL_account.TL_businessBotRights tL_businessBotRights2 = t0Var2.K;
-                tL_businessBotRights2.transfer_stars = true;
-                tL_businessBotRights2.transfer_and_upgrade_gifts = true;
-                tL_businessBotRights2.change_gift_settings = true;
-                tL_businessBotRights2.sell_gifts = true;
-                tL_businessBotRights2.view_gifts = true;
-                t0Var2.f18476c.f34607g3.O(true);
-                t0Var2.d0(true);
-                return;
-            case 2:
-                t0 t0Var3 = this.f18395b;
-                TL_account.TL_businessBotRights tL_businessBotRights3 = t0Var3.K;
-                tL_businessBotRights3.edit_username = true;
-                tL_businessBotRights3.edit_profile_photo = true;
-                tL_businessBotRights3.edit_bio = true;
-                tL_businessBotRights3.edit_name = true;
-                t0Var3.f18476c.f34607g3.O(true);
-                t0Var3.d0(true);
-                return;
-            case 3:
-                t0 t0Var4 = this.f18395b;
-                t0Var4.f18476c.f34607g3.O(true);
-                t0Var4.d0(true);
+                org.telegram.messenger.g0.g3(new q0((bb1) this.f18425c, tL_error, this.f18424b, tLObject, (byte[]) this.d, (String) this.f18426e, (TL_account.passwordInputSettings) this.f18427f));
                 return;
             default:
-                t0 t0Var5 = this.f18395b;
-                String obj = t0Var5.f18478f.getText().toString();
-                String str = t0Var5.E;
-                if (str == null || !TextUtils.equals(str, obj)) {
-                    t0Var5.f18484y = false;
-                    if (TextUtils.isEmpty(obj)) {
-                        t0Var5.E = null;
-                        t0Var5.d.b();
-                        t0Var5.f18476c.f34607g3.O(true);
-                        return;
-                    }
-                    jg.z1 z1Var = t0Var5.d;
-                    t0Var5.E = obj;
-                    int i7 = t0Var5.F;
-                    t0Var5.F = i7 + 1;
-                    z1Var.h(obj, true, false, true, false, false, 0L, false, 0, i7, 0L, null);
-                    return;
+                zh.l lVar = (zh.l) this.f18425c;
+                TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) this.d;
+                TLRPC.User user = (TLRPC.User) this.f18427f;
+                TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f18426e;
+                if (tL_error == null) {
+                    mp.u1(lVar.f62058k).V3((TLRPC.TL_updates) tLObject, false);
                 }
+                org.telegram.messenger.g0.g3(new q0(lVar, tL_error, tLObject, tL_chatInviteImporter, this.f18424b, user, tL_messages_hideChatJoinRequest));
                 return;
         }
+    }
+
+    public n0(bb1 bb1Var, boolean z10, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f18425c = bb1Var;
+        this.f18424b = z10;
+        this.d = bArr;
+        this.f18426e = str;
+        this.f18427f = passwordinputsettings;
+    }
+
+    public n0(zh.l lVar, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z10, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
+        this.f18425c = lVar;
+        this.d = tL_chatInviteImporter;
+        this.f18424b = z10;
+        this.f18427f = user;
+        this.f18426e = tL_messages_hideChatJoinRequest;
     }
 }

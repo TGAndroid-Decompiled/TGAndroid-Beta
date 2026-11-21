@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.bj;
 import org.telegram.messenger.j6;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.h41;
-import org.telegram.ui.Components.rx;
-public final class n implements rx {
-    public final o f22179a;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.tx;
+public final class n implements tx {
+    public final o f22248a;
 
     public n(o oVar) {
-        this.f22179a = oVar;
+        this.f22248a = oVar;
     }
 
     @Override
@@ -48,10 +48,10 @@ public final class n implements rx {
 
     @Override
     public final void i(int i7) {
-        e1 focusedEditTextOrNull;
+        f1 focusedEditTextOrNull;
         boolean z10 = false;
-        o oVar = this.f22179a;
-        if (i7 != 0 && (focusedEditTextOrNull = oVar.f22207r.getFocusedEditTextOrNull()) != null) {
+        o oVar = this.f22248a;
+        if (i7 != 0 && (focusedEditTextOrNull = oVar.f22267r.getFocusedEditTextOrNull()) != null) {
             oVar.G = focusedEditTextOrNull;
             oVar.H = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
@@ -69,7 +69,7 @@ public final class n implements rx {
 
     @Override
     public final boolean k() {
-        e1 R = o.R(this.f22179a);
+        f1 R = o.R(this.f22248a);
         if (R == null || R.length() == 0) {
             return false;
         }
@@ -79,8 +79,8 @@ public final class n implements rx {
 
     @Override
     public final void l(String str) {
-        o oVar = this.f22179a;
-        e1 R = o.R(oVar);
+        o oVar = this.f22248a;
+        f1 R = o.R(oVar);
         if (R != null) {
             int S = o.S(oVar, R);
             try {
@@ -103,9 +103,9 @@ public final class n implements rx {
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.x5 x5Var;
-        o oVar = this.f22179a;
-        e1 R = o.R(oVar);
+        org.telegram.ui.Components.y5 y5Var;
+        o oVar = this.f22248a;
+        f1 R = o.R(oVar);
         if (R != null) {
             int S = o.S(oVar, R);
             try {
@@ -114,12 +114,12 @@ public final class n implements rx {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    x5Var = new org.telegram.ui.Components.x5(document, R.getPaint().getFontMetricsInt());
+                    y5Var = new org.telegram.ui.Components.y5(document, R.getPaint().getFontMetricsInt());
                 } else {
-                    x5Var = new org.telegram.ui.Components.x5(j3, R.getPaint().getFontMetricsInt());
+                    y5Var = new org.telegram.ui.Components.y5(j3, R.getPaint().getFontMetricsInt());
                 }
-                x5Var.cacheType = org.telegram.ui.Components.o5.f();
-                spannableString.setSpan(x5Var, 0, spannableString.length(), 33);
+                y5Var.cacheType = org.telegram.ui.Components.p5.f();
+                spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
                 R.setText(R.getText().insert(S, spannableString));
                 int length = S + spannableString.length();
                 R.setSelection(length, length);
@@ -133,7 +133,7 @@ public final class n implements rx {
 
     @Override
     public final boolean z() {
-        return this.f22179a.E;
+        return this.f22248a.E;
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class n implements rx {
     }
 
     @Override
-    public final void o(h41 h41Var) {
+    public final void o(k41 k41Var) {
     }
 
     @Override

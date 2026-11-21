@@ -14,26 +14,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.d61;
 import org.telegram.ui.mw;
 public final class t implements Runnable {
-    public final int f17659a;
-    public final Object f17660b;
-    public final int f17661c;
+    public final int f17684a;
+    public final Object f17685b;
+    public final int f17686c;
     public final int d;
-    public final Object f17662e;
-    public final Object f17663f;
+    public final Object f17687e;
+    public final Object f17688f;
     public final TLObject h;
-    public final ArrayList f17664n;
-    public final TLObject f17665r;
+    public final ArrayList f17689n;
+    public final TLObject f17690r;
 
     public t(h0 h0Var, int i7, int i10, TLRPC.TL_error tL_error, String str, TLObject tLObject, TLMethod tLMethod, ArrayList arrayList, int i11) {
-        this.f17659a = i11;
-        this.f17660b = h0Var;
-        this.f17661c = i7;
+        this.f17684a = i11;
+        this.f17685b = h0Var;
+        this.f17686c = i7;
         this.d = i10;
-        this.f17662e = tL_error;
-        this.f17663f = str;
+        this.f17687e = tL_error;
+        this.f17688f = str;
         this.h = tLObject;
-        this.f17665r = tLMethod;
-        this.f17664n = arrayList;
+        this.f17690r = tLMethod;
+        this.f17689n = arrayList;
     }
 
     @Override
@@ -46,15 +46,15 @@ public final class t implements Runnable {
         boolean z13;
         ConcurrentHashMap concurrentHashMap;
         boolean z14;
-        int i11 = this.f17659a;
-        ArrayList arrayList = this.f17664n;
+        int i11 = this.f17684a;
+        ArrayList arrayList = this.f17689n;
         int i12 = this.d;
-        TLObject tLObject = this.f17665r;
-        Object obj = this.f17663f;
-        Object obj2 = this.f17662e;
-        int i13 = this.f17661c;
+        TLObject tLObject = this.f17690r;
+        Object obj = this.f17688f;
+        Object obj2 = this.f17687e;
+        int i13 = this.f17686c;
         TLObject tLObject2 = this.h;
-        Object obj3 = this.f17660b;
+        Object obj3 = this.f17685b;
         boolean z15 = true;
         int i14 = 0;
         switch (i11) {
@@ -63,13 +63,13 @@ public final class t implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 String str = (String) obj;
                 TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) tLObject;
-                z zVar = h0Var.f17479k0;
+                z zVar = h0Var.f17504k0;
                 ArrayList arrayList2 = h0Var.I;
-                int i15 = h0Var.f17490t0;
-                if (i13 == h0Var.U && (i12 <= 0 || i12 == h0Var.f17472e0)) {
+                int i15 = h0Var.f17515t0;
+                if (i13 == h0Var.U && (i12 <= 0 || i12 == h0Var.f17497e0)) {
                     h0Var.E0--;
                     if (tL_error == null) {
-                        h0Var.f17469c0 = str;
+                        h0Var.f17494c0 = str;
                         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject2;
                         tr.a0(i15).m1(messages_messages.users, messages_messages.chats, true, true);
                         mp.u1(i15).f4(messages_messages.users, false);
@@ -77,11 +77,11 @@ public final class t implements Runnable {
                         if (tL_messages_search.add_offset == 0) {
                             arrayList2.clear();
                         }
-                        h0Var.f17470d0 = messages_messages.next_rate;
+                        h0Var.f17495d0 = messages_messages.next_rate;
                         for (int i16 = 0; i16 < messages_messages.messages.size(); i16++) {
                             TLRPC.Message message = messages_messages.messages.get(i16);
                             int i17 = mp.u1(i15).U.get(fj.B0(message));
-                            if (i17 == 0 || message.f28424id > i17) {
+                            if (i17 == 0 || message.f28452id > i17) {
                                 arrayList2.add((fj) arrayList.get(i16));
                             }
                         }
@@ -93,15 +93,15 @@ public final class t implements Runnable {
                         }
                         h0Var.Y = z10;
                         if (i12 > 0) {
-                            h0Var.f17476h0 = i12;
-                            if (h0Var.f17475g0 != i12) {
-                                h0Var.f17488s.clear();
+                            h0Var.f17501h0 = i12;
+                            if (h0Var.f17500g0 != i12) {
+                                h0Var.f17513s.clear();
                             }
-                            if (h0Var.f17474f0 != i12) {
+                            if (h0Var.f17499f0 != i12) {
                                 zVar.b();
                             }
                         }
-                        zVar.f(h0Var.f17488s, h0Var.f17494w0);
+                        zVar.f(h0Var.f17513s, h0Var.f17519w0);
                         mw mwVar = h0Var.V;
                         if (mwVar != null) {
                             if (h0Var.E0 > 0) {
@@ -122,14 +122,14 @@ public final class t implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 String str2 = (String) obj;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) tLObject;
-                z zVar2 = h0Var2.f17479k0;
+                z zVar2 = h0Var2.f17504k0;
                 ArrayList arrayList3 = h0Var2.J;
                 ArrayList arrayList4 = h0Var2.I;
-                int i18 = h0Var2.f17490t0;
-                if (i13 == h0Var2.Q && (i12 <= 0 || i12 == h0Var2.f17472e0)) {
+                int i18 = h0Var2.f17515t0;
+                if (i13 == h0Var2.Q && (i12 <= 0 || i12 == h0Var2.f17497e0)) {
                     h0Var2.E0--;
                     if (tL_error2 == null) {
-                        h0Var2.f17469c0 = str2;
+                        h0Var2.f17494c0 = str2;
                         TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject2;
                         tr.a0(i18).m1(messages_messages2.users, messages_messages2.chats, true, true);
                         mp.u1(i18).f4(messages_messages2.users, false);
@@ -137,17 +137,17 @@ public final class t implements Runnable {
                         if (tL_messages_searchGlobal.offset_id == 0) {
                             arrayList3.clear();
                         }
-                        h0Var2.f17470d0 = messages_messages2.next_rate;
+                        h0Var2.f17495d0 = messages_messages2.next_rate;
                         int i19 = 0;
                         while (i19 < messages_messages2.messages.size()) {
                             TLRPC.Message message2 = messages_messages2.messages.get(i19);
                             int i20 = mp.u1(i18).U.get(fj.B0(message2));
-                            if (i20 == 0 || message2.f28424id > i20) {
+                            if (i20 == 0 || message2.f28452id > i20) {
                                 fj fjVar = (fj) arrayList.get(i19);
                                 if (!arrayList4.isEmpty()) {
                                     for (int i21 = i14; i21 < arrayList4.size(); i21++) {
                                         fj fjVar2 = (fj) arrayList4.get(i21);
-                                        if (fjVar2 == null || fjVar == null || fjVar.e1() != fjVar2.e1() || fj.B0(fjVar.f23965k) != fj.B0(fjVar2.f23965k)) {
+                                        if (fjVar2 == null || fjVar == null || fjVar.e1() != fjVar2.e1() || fj.B0(fjVar.f23993k) != fj.B0(fjVar2.f23993k)) {
                                         }
                                     }
                                 }
@@ -160,7 +160,7 @@ public final class t implements Runnable {
                                 }
                                 Integer num = (Integer) concurrentHashMap.get(Long.valueOf(B0));
                                 if (num != null) {
-                                    if (num.intValue() < message2.f28424id) {
+                                    if (num.intValue() < message2.f28452id) {
                                         z14 = true;
                                     } else {
                                         z14 = false;
@@ -180,15 +180,15 @@ public final class t implements Runnable {
                         }
                         h0Var2.X = z12;
                         if (i12 > 0) {
-                            h0Var2.f17476h0 = i12;
-                            if (h0Var2.f17475g0 != i12) {
-                                h0Var2.f17488s.clear();
+                            h0Var2.f17501h0 = i12;
+                            if (h0Var2.f17500g0 != i12) {
+                                h0Var2.f17513s.clear();
                             }
-                            if (h0Var2.f17474f0 != i12) {
+                            if (h0Var2.f17499f0 != i12) {
                                 zVar2.b();
                             }
                         }
-                        zVar2.f(h0Var2.f17488s, h0Var2.f17494w0);
+                        zVar2.f(h0Var2.f17513s, h0Var2.f17519w0);
                         mw mwVar2 = h0Var2.V;
                         if (mwVar2 != null) {
                             if (h0Var2.E0 > 0) {
@@ -209,8 +209,8 @@ public final class t implements Runnable {
                         d61 d61Var = h0Var2.F0;
                         if (d61Var != null) {
                             Object[] objArr = new Object[i10];
-                            objArr[0] = h0Var2.f17466a0;
-                            ((TextView) d61Var.f46829b).setText(gd.a0(null, null, 2131745555, objArr));
+                            objArr[0] = h0Var2.f17491a0;
+                            ((TextView) d61Var.f46885b).setText(gd.a0(null, null, 2131745554, objArr));
                         }
                         h0Var2.f();
                         h0Var2.P = i7;
@@ -226,9 +226,9 @@ public final class t implements Runnable {
                 TLRPC.TL_messages_allStickers tL_messages_allStickers = (TLRPC.TL_messages_allStickers) tLObject;
                 riVar.getClass();
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                ArrayList arrayList5 = this.f17664n;
+                ArrayList arrayList5 = this.f17689n;
                 arrayList5.set(i13, tL_messages_stickerSet);
-                hVar.k(tL_messages_stickerSet, ((TLRPC.StickerSet) obj).f28430id);
+                hVar.k(tL_messages_stickerSet, ((TLRPC.StickerSet) obj).f28458id);
                 if (hVar.m() == tL_messages_allStickers.sets.size()) {
                     while (i14 < arrayList5.size()) {
                         if (arrayList5.get(i14) == null) {
@@ -245,14 +245,14 @@ public final class t implements Runnable {
     }
 
     public t(ri riVar, TLObject tLObject, ArrayList arrayList, int i7, a0.h hVar, TLRPC.StickerSet stickerSet, TLRPC.TL_messages_allStickers tL_messages_allStickers, int i10) {
-        this.f17659a = 2;
-        this.f17660b = riVar;
+        this.f17684a = 2;
+        this.f17685b = riVar;
         this.h = tLObject;
-        this.f17664n = arrayList;
-        this.f17661c = i7;
-        this.f17662e = hVar;
-        this.f17663f = stickerSet;
-        this.f17665r = tL_messages_allStickers;
+        this.f17689n = arrayList;
+        this.f17686c = i7;
+        this.f17687e = hVar;
+        this.f17688f = stickerSet;
+        this.f17690r = tL_messages_allStickers;
         this.d = i10;
     }
 }

@@ -7,7 +7,7 @@ import org.telegram.tgnet.tl.TL_account;
 public abstract class o10 {
     public static boolean A(TLRPC.User user) {
         if (user != null) {
-            long j3 = user.f28552id;
+            long j3 = user.f28580id;
             if (j3 == 708513 || j3 == 1271266957) {
                 return true;
             }
@@ -61,12 +61,12 @@ public abstract class o10 {
     }
 
     public static boolean b(long j3) {
-        return c(mp.u1(j10.f24770t0).d2(j3));
+        return c(mp.u1(j10.f24798t0).d2(j3));
     }
 
     public static boolean c(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if ((userFull != null && userFull.f28553id == j10.i(j10.f24770t0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
+        if ((userFull != null && userFull.f28581id == j10.i(j10.f24798t0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
             return false;
         }
         return true;
@@ -98,22 +98,22 @@ public abstract class o10 {
         if (o4 != null) {
             String lowerCase = o4.toLowerCase(Locale.ROOT);
             if (lowerCase.endsWith("agent")) {
-                return gd.M0(2131752933, null);
+                return gd.N0(2131752932, null);
             }
             if (lowerCase.endsWith("game")) {
-                return gd.M0(2131752931, null);
+                return gd.N0(2131752930, null);
             }
             if (lowerCase.endsWith("app")) {
-                return gd.M0(2131752932, null);
+                return gd.N0(2131752931, null);
             }
             if (lowerCase.endsWith("ai")) {
-                return gd.M0(2131752934, null);
+                return gd.N0(2131752933, null);
             }
             if (lowerCase.endsWith("gay")) {
-                return gd.M0(2131752930, null);
+                return gd.N0(2131752929, null);
             }
         }
-        return gd.M0(2131753154, null);
+        return gd.N0(2131753153, null);
     }
 
     public static int f(TLRPC.User user) {
@@ -124,7 +124,7 @@ public abstract class o10 {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f28552id % 7);
+        return (int) (user.f28580id % 7);
     }
 
     public static long g(TLRPC.User user) {
@@ -181,7 +181,7 @@ public abstract class o10 {
             if (!TextUtils.isEmpty(str)) {
                 return str;
             }
-            return gd.M0(2131749136, null);
+            return gd.N0(2131749135, null);
         }
         return "DELETED";
     }
@@ -193,7 +193,7 @@ public abstract class o10 {
                 str = user.last_name;
             }
             if (str == null) {
-                return gd.M0(2131749136, null);
+                return gd.N0(2131749135, null);
             }
             int indexOf = str.indexOf(" ", 2);
             if (indexOf >= 0) {
@@ -201,7 +201,7 @@ public abstract class o10 {
             }
             return str;
         }
-        return gd.M0(2131749136, null);
+        return gd.N0(2131749135, null);
     }
 
     public static int m(TLRPC.User user) {
@@ -268,7 +268,7 @@ public abstract class o10 {
             }
             return F2;
         }
-        return gd.M0(2131749136, null);
+        return gd.N0(2131749135, null);
     }
 
     public static boolean r(TLRPC.UserFull userFull) {
@@ -297,7 +297,7 @@ public abstract class o10 {
     }
 
     public static boolean t(TLRPC.User user) {
-        if (user != null && user.f28552id == 2666000) {
+        if (user != null && user.f28580id == 2666000) {
             return true;
         }
         return false;

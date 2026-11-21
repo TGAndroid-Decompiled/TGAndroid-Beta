@@ -2,13 +2,13 @@ package jg;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.a8;
 public final class b2 extends a8 {
     public final int P;
 
-    public b2(int i7, Context context, i6 i6Var, boolean z10) {
-        super(context, i6Var, z10);
+    public b2(int i7, Context context, h6 h6Var, boolean z10) {
+        super(context, h6Var, z10);
         this.P = i7;
     }
 

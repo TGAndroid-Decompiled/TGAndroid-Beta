@@ -2,29 +2,85 @@ package bi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.z41;
-public final class j7 extends k41 {
-    static {
-        k41.h(new k41());
-    }
+import org.telegram.messenger.q10;
+import org.telegram.messenger.v10;
+import org.telegram.messenger.w10;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.o41;
+public final class j7 extends h51 {
+    public final int f3752n3;
 
-    public static l41 i(String str) {
-        l41 K = l41.K(j7.class);
-        K.f37018m = str;
-        return K;
+    public j7(Context context, int i7, int i10, boolean z10, q10 q10Var, v10 v10Var, w10 w10Var, org.telegram.ui.ActionBar.h6 h6Var, int i11) {
+        super(context, i7, i10, z10, q10Var, v10Var, w10Var, h6Var);
+        this.f3752n3 = i11;
     }
 
     @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        ((k7) view).set(l41Var.f37018m);
+    public Integer V0(int i7) {
+        switch (this.f3752n3) {
+            case 0:
+                return 0;
+            case 7:
+                o41 G = this.f35796g3.G(i7);
+                if (G != null && G.d == 2) {
+                    return 0;
+                }
+                return super.V0(i7);
+            default:
+                return super.V0(i7);
+        }
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        return new k7(context, i6Var);
+    public void onMeasure(int i7, int i10) {
+        switch (this.f3752n3) {
+            case 1:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 2:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 3:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 4:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 5:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 6:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f24146q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
+    }
+
+    @Override
+    public boolean u1(View view) {
+        switch (this.f3752n3) {
+            case 8:
+                if (view instanceof org.telegram.ui.Wallet.f4) {
+                    org.telegram.ui.Wallet.f4 f4Var = (org.telegram.ui.Wallet.f4) view;
+                    if (f4Var.G > 0.0f || f4Var.J.d()) {
+                        return false;
+                    }
+                }
+                return true;
+            default:
+                return super.u1(view);
+        }
+    }
+
+    public j7(Context context, int i7, int i10, boolean z10, q10 q10Var, v10 v10Var, w10 w10Var, org.telegram.ui.ActionBar.h6 h6Var, int i11, int i12) {
+        super(context, i7, i10, z10, q10Var, v10Var, w10Var, h6Var, i11, i12);
+        this.f3752n3 = 8;
+    }
+
+    public j7(org.telegram.ui.ActionBar.g2 g2Var, q10 q10Var, v10 v10Var, w10 w10Var, int i7) {
+        super(g2Var, q10Var, v10Var, w10Var);
+        this.f3752n3 = i7;
     }
 }

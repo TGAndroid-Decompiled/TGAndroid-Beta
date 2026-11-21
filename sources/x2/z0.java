@@ -2,10 +2,10 @@ package x2;
 
 import android.hardware.camera2.CameraCharacteristics;
 public final class z0 implements h2.j, g9.k, ua.a, t3.g {
-    public final int f60299a;
+    public final int f60340a;
 
     public z0(int i7) {
-        this.f60299a = i7;
+        this.f60340a = i7;
     }
 
     public static CameraCharacteristics.Key a() {
@@ -14,22 +14,22 @@ public final class z0 implements h2.j, g9.k, ua.a, t3.g {
 
     @Override
     public void accept(Object obj) {
-        ((a1) obj).f60032b.release();
+        ((a1) obj).f60073b.release();
     }
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f60299a) {
+        switch (this.f60340a) {
             case 1:
-                return Integer.valueOf(((e2.m1) obj).f10526c);
+                return Integer.valueOf(((e2.m1) obj).f10555c);
             case 2:
             case 3:
             default:
                 return (z3.q) obj;
             case 4:
-                return Long.valueOf(((c4.a) obj).f4373b);
+                return Long.valueOf(((c4.a) obj).f4402b);
             case 5:
-                return Long.valueOf(((c4.a) obj).f4374c);
+                return Long.valueOf(((c4.a) obj).f4403c);
         }
     }
 

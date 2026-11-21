@@ -5,17 +5,17 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public abstract class l implements j1 {
-    public transient Collection f14013a;
-    public transient Set f14014b;
-    public transient Collection f14015c;
+    public transient Collection f14042a;
+    public transient Set f14043b;
+    public transient Collection f14044c;
     public transient Map d;
 
     @Override
     public Collection a() {
-        Collection collection = this.f14013a;
+        Collection collection = this.f14042a;
         if (collection == null) {
             Collection e10 = e();
-            this.f14013a = e10;
+            this.f14042a = e10;
             return e10;
         }
         return collection;
@@ -65,10 +65,10 @@ public abstract class l implements j1 {
 
     @Override
     public Set keySet() {
-        Set set = this.f14014b;
+        Set set = this.f14043b;
         if (set == null) {
             Set f10 = f();
-            this.f14014b = f10;
+            this.f14043b = f10;
             return f10;
         }
         return set;

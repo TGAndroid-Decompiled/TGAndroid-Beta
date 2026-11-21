@@ -5,8 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.n10;
-import org.telegram.ui.Components.lg;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.og;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.en;
 public final class s2 extends ImageReceiver {
@@ -21,7 +21,7 @@ public final class s2 extends ImageReceiver {
 
     @Override
     public void L0(int[] iArr) {
-        sh.f fVar;
+        sh.e eVar;
         switch (this.K1) {
             case 2:
                 super.L0(iArr);
@@ -32,9 +32,9 @@ public final class s2 extends ImageReceiver {
                 int L = org.telegram.messenger.g0.L(6.0f);
                 iArr2[3] = L;
                 iArr2[2] = L;
-                org.telegram.ui.Cells.x1 x1Var = r1Var.f31633x2;
-                if (x1Var != null && (fVar = x1Var.f32294m) != null) {
-                    fVar.f57437b.L0(iArr2);
+                org.telegram.ui.Cells.x1 x1Var = r1Var.f31661x2;
+                if (x1Var != null && (eVar = x1Var.f32322m) != null) {
+                    eVar.f57476b.L0(iArr2);
                     return;
                 }
                 return;
@@ -50,14 +50,14 @@ public final class s2 extends ImageReceiver {
         Object obj = this.L1;
         switch (i7) {
             case 3:
-                View view = ((en) obj).f47260b;
+                View view = ((en) obj).f47329b;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             case 4:
-                ((org.telegram.ui.Components.o5) obj).j();
+                ((org.telegram.ui.Components.p5) obj).j();
                 super.invalidate();
                 return;
             case 5:
@@ -66,7 +66,7 @@ public final class s2 extends ImageReceiver {
                 return;
             case 6:
                 super.invalidate();
-                org.telegram.ui.Wallet.r8 r8Var = ((org.telegram.ui.Wallet.q8) obj).f44832d0;
+                org.telegram.ui.Wallet.r8 r8Var = ((org.telegram.ui.Wallet.q8) obj).f44872d0;
                 int i10 = org.telegram.ui.Wallet.r8.J1;
                 r8Var.f0();
                 return;
@@ -89,7 +89,7 @@ public final class s2 extends ImageReceiver {
                 return x02;
             case 1:
                 if (drawable != null && i7 != 1) {
-                    n10.o(((kg.d1) ((t3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), lr.f37212k, 250L);
+                    n10.o(((kg.c1) ((t3) obj).I).h.animate().alpha(1.0f).translationY(0.0f), nr.f37960k, 250L);
                 }
                 return super.x0(drawable, str, i7, z10, i10);
             case 2:
@@ -98,12 +98,12 @@ public final class s2 extends ImageReceiver {
             default:
                 return super.x0(drawable, str, i7, z10, i10);
             case 4:
-                org.telegram.ui.Components.o5 o5Var = (org.telegram.ui.Components.o5) obj;
-                o5Var.j();
+                org.telegram.ui.Components.p5 p5Var = (org.telegram.ui.Components.p5) obj;
+                p5Var.j();
                 boolean x03 = super.x0(drawable, str, i7, z10, i10);
-                if (o5Var.f37978m && J()) {
-                    o5Var.f37978m = false;
-                    org.telegram.messenger.g0.g3(new lg(o5Var, 4));
+                if (p5Var.f38503m && J()) {
+                    p5Var.f38503m = false;
+                    org.telegram.messenger.g0.g3(new og(p5Var, 4));
                 }
                 return x03;
             case 5:
@@ -113,7 +113,7 @@ public final class s2 extends ImageReceiver {
             case 7:
                 boolean x05 = super.x0(drawable, str, i7, z10, i10);
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
-                duration.addUpdateListener(new hi.k3(this, 22));
+                duration.addUpdateListener(new hi.j3(this, 22));
                 duration.start();
                 return x05;
         }

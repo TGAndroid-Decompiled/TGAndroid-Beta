@@ -1,308 +1,86 @@
 package ai;
 
-import a8.sa;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Shader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.SystemClock;
-import android.text.Editable;
-import android.text.style.CharacterStyle;
-import android.view.inputmethod.BaseInputConnection;
-import android.widget.EditText;
-import android.widget.TextView;
-public final class h2 {
-    public final TextView f1222a;
-    public int f1223b;
-    public int f1224c;
-    public int d;
-    public int f1225e;
-    public boolean f1227g;
-    public a0 h;
-    public d2 f1228i;
-    public g2 f1229j;
-    public LinearGradient f1230k;
-    public float f1232m;
-    public float f1226f = 0.5f;
-    public final Matrix f1231l = new Matrix();
-    public final sa f1233n = new sa(this, 3);
+import android.text.Spanned;
+import android.text.style.ReplacementSpan;
+public final class h2 extends ReplacementSpan {
+    public final long f1219a;
+    public final int f1220b;
+    public int f1221c;
 
-    public h2(TextView textView) {
-        this.f1222a = textView;
+    public h2(long j3, int i7) {
+        this.f1219a = j3;
+        this.f1220b = i7;
     }
 
-    public static float b(float f10) {
-        if (f10 < 0.5f) {
-            return com.google.android.gms.internal.vision.e2.D(f10, 4.0f, f10, f10);
-        }
-        return 1.0f - (((float) Math.pow((f10 * (-2.0f)) + 2.0f, 3.0d)) / 2.0f);
-    }
-
-    public final void a() {
-        Editable editableText = this.f1222a.getEditableText();
-        if (editableText == null) {
-            return;
-        }
-        for (e2 e2Var : (e2[]) editableText.getSpans(0, editableText.length(), e2.class)) {
-            editableText.removeSpan(e2Var);
-        }
-        for (f2 f2Var : (f2[]) editableText.getSpans(0, editableText.length(), f2.class)) {
-            editableText.removeSpan(f2Var);
-        }
-        for (d2 d2Var : (d2[]) editableText.getSpans(0, editableText.length(), d2.class)) {
-            editableText.removeSpan(d2Var);
-        }
-        this.f1228i = null;
-    }
-
-    public final void c(int i7, int i10, boolean z10) {
-        int i11;
-        int i12;
-        float f10;
-        this.f1223b = i7;
-        this.f1224c = i10;
-        if (z10) {
-            i11 = -10777345;
-        } else {
-            i11 = -15374904;
-        }
-        this.d = s0.e(i11);
-        if (z10) {
-            i12 = -6128385;
-        } else {
-            i12 = -15823740;
-        }
-        this.f1225e = s0.e(i12);
-        if (z10) {
-            f10 = 0.6f;
-        } else {
-            f10 = 0.75f;
-        }
-        this.f1226f = f10;
-        this.f1230k = null;
-    }
-
-    public final void d(Editable editable, int i7) {
-        d2[] d2VarArr;
-        int length = editable.length();
-        int max = Math.max(0, Math.min(i7, length));
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        int i14;
+        float f11;
+        float f12;
+        h2 h2Var = this;
+        CharSequence charSequence2 = charSequence;
         long uptimeMillis = SystemClock.uptimeMillis();
-        d2 d2Var = this.f1228i;
-        if (d2Var != null) {
-            int spanStart = editable.getSpanStart(d2Var);
-            if (spanStart >= 0 && spanStart < max) {
-                ?? characterStyle = new CharacterStyle();
-                characterStyle.f1178a = uptimeMillis;
-                editable.setSpan(characterStyle, spanStart, max, 33);
+        int color = paint.getColor();
+        float f13 = i12;
+        float textSize = f13 - (paint.getTextSize() * 0.35f);
+        paint.setColor(h2Var.f1220b);
+        int i15 = i7;
+        while (i15 < i10) {
+            int charCount = Character.charCount(Character.codePointAt(charSequence2, i15)) + i15;
+            while (charCount < i10 && Character.getType(charSequence2.charAt(charCount)) == 6) {
+                charCount++;
             }
-            editable.removeSpan(this.f1228i);
-            this.f1228i = null;
-        }
-        for (d2 d2Var2 : (d2[]) editable.getSpans(0, length, d2.class)) {
-            int spanStart2 = editable.getSpanStart(d2Var2);
-            int spanEnd = editable.getSpanEnd(d2Var2);
-            editable.removeSpan(d2Var2);
-            if (spanEnd > spanStart2) {
-                editable.setSpan(d2Var2, spanStart2, spanEnd, 33);
-            }
-        }
-        if (max < length) {
-            ?? characterStyle2 = new CharacterStyle();
-            this.f1228i = characterStyle2;
-            editable.setSpan(characterStyle2, max, length, 33);
-        }
-        g();
-    }
-
-    public final void e(int i7, int i10, String str) {
-        String[] split;
-        boolean z10;
-        int i11;
-        boolean z11;
-        long j3;
-        long j10;
-        int i12;
-        TextView textView = this.f1222a;
-        Editable editableText = textView.getEditableText();
-        if (editableText == null) {
-            return;
-        }
-        boolean z12 = false;
-        int max = Math.max(0, Math.min(i7, editableText.length()));
-        String charSequence = editableText.subSequence(max, editableText.length()).toString();
-        if (charSequence.equals(str)) {
-            if (i10 < 0) {
-                i12 = editableText.length();
-            } else {
-                i12 = max + i10;
-            }
-            d(editableText, i12);
-            return;
-        }
-        int min = Math.min(charSequence.length(), str.length());
-        int i13 = 0;
-        while (i13 < min && charSequence.charAt(i13) == str.charAt(i13)) {
-            i13++;
-        }
-        String substring = str.substring(i13);
-        int i14 = 0;
-        for (String str2 : charSequence.substring(i13).trim().split("\\s+")) {
-            int length = str2.length();
-            int i15 = 0;
-            while (true) {
-                if (i15 >= length) {
-                    break;
-                } else if (Character.isLetterOrDigit(str2.charAt(i15))) {
-                    i14++;
-                    break;
+            float f14 = f13;
+            float C = a8.p0.C((float) ((uptimeMillis - h2Var.f1219a) - ((i15 - i7) * 22)), 320.0f, 1.0f, 0.0f);
+            if (C > 0.0f) {
+                float measureText = paint.measureText(charSequence2, i7, i15) + f10;
+                float measureText2 = paint.measureText(charSequence2, i15, charCount);
+                float f15 = C - 1.0f;
+                float f16 = (((1.4f * f15 * f15) + (2.4f * f15 * f15 * f15) + 1.0f) * 0.39999998f) + 0.6f;
+                float min = 1.0f - Math.min(1.0f, C * 1.6f);
+                float alpha = (1.0f - ((min * min) * min)) * Color.alpha(i14);
+                if (!(charSequence2 instanceof Spanned)) {
+                    f11 = alpha;
+                    f12 = 1.0f;
                 } else {
-                    i15++;
-                }
-            }
-        }
-        BaseInputConnection.removeComposingSpans(editableText);
-        int i16 = i13 + max;
-        if (i16 == editableText.length()) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (z10) {
-            editableText.append((CharSequence) substring);
-        } else {
-            editableText.replace(i16, editableText.length(), substring);
-        }
-        int length2 = substring.length() + i16;
-        if (z10) {
-            i14 = 0;
-        }
-        long uptimeMillis = SystemClock.uptimeMillis();
-        int i17 = 0;
-        int i18 = 0;
-        while (i16 < length2) {
-            while (i16 < length2 && Character.isWhitespace(editableText.charAt(i16))) {
-                i16++;
-            }
-            if (i16 >= length2) {
-                break;
-            }
-            int i19 = i16;
-            while (i19 < length2 && !Character.isWhitespace(editableText.charAt(i19))) {
-                i19++;
-            }
-            if (i17 < i14) {
-                z11 = true;
-            } else {
-                z11 = z12;
-            }
-            int i20 = i16;
-            while (true) {
-                if (i20 >= i19) {
-                    break;
-                } else if (Character.isLetterOrDigit(editableText.charAt(i20))) {
-                    i17++;
-                    break;
-                } else {
-                    i20++;
-                }
-            }
-            int i21 = i17;
-            if (z11) {
-                j3 = 0;
-            } else {
-                j3 = (i18 * 22) + uptimeMillis;
-            }
-            int i22 = i16;
-            while (true) {
-                if (i22 > 0) {
-                    j10 = 0;
-                    if (Character.isWhitespace(editableText.charAt(i22 - 1))) {
-                        break;
+                    f11 = alpha;
+                    f2[] f2VarArr = (f2[]) ((Spanned) charSequence2).getSpans(i15, i15 + 1, f2.class);
+                    int length = f2VarArr.length;
+                    int i16 = 0;
+                    float f17 = 1.0f;
+                    while (i16 < length) {
+                        f2[] f2VarArr2 = f2VarArr;
+                        f17 *= f2VarArr2[i16].a(uptimeMillis);
+                        i16++;
+                        f2VarArr = f2VarArr2;
                     }
-                    i22--;
-                } else {
-                    j10 = 0;
-                    break;
+                    f12 = f17;
                 }
+                paint.setAlpha((int) (f11 * f12));
+                canvas.save();
+                canvas.scale(f16, f16, (measureText2 / 2.0f) + measureText, textSize);
+                f13 = f14;
+                canvas.drawText(charSequence2, i15, charCount, measureText, f13, paint);
+                canvas.restore();
+            } else {
+                f13 = f14;
             }
-            int i23 = length2;
-            int i24 = i19;
-            while (i24 < editableText.length() && !Character.isWhitespace(editableText.charAt(i24))) {
-                i24++;
-            }
-            Object[] objArr = (e2[]) editableText.getSpans(i22, i24, e2.class);
-            int i25 = max;
-            int length3 = objArr.length;
-            int i26 = 0;
-            while (i26 < length3) {
-                int i27 = i26;
-                Object obj = objArr[i27];
-                int i28 = length3;
-                if (editableText.getSpanStart(obj) < i24 && editableText.getSpanEnd(obj) > i22) {
-                    editableText.removeSpan(obj);
-                }
-                i26 = i27 + 1;
-                length3 = i28;
-            }
-            if (j3 > j10) {
-                f2 f2Var = new f2(j3, this.f1223b);
-                f2Var.f1198c = i19 - i16;
-                editableText.setSpan(f2Var, i16, i19, 33);
-            }
-            int i29 = i16;
-            editableText.setSpan(new e2(Math.max(uptimeMillis, j3), this.f1223b, this.f1224c), i22, i24, 33);
-            if (!z11) {
-                i18 += i19 - i29;
-            }
-            i17 = i21;
-            i16 = i19;
-            length2 = i23;
-            max = i25;
-            z12 = false;
+            h2Var = this;
+            charSequence2 = charSequence;
+            i15 = charCount;
         }
-        int i30 = max;
-        if (i10 < 0) {
-            i11 = editableText.length();
-        } else {
-            i11 = i30 + i10;
-        }
-        d(editableText, i11);
-        if (textView instanceof EditText) {
-            ((EditText) textView).setSelection(editableText.length());
-        }
-        g();
+        paint.setColor(color);
     }
 
-    public final void f(boolean z10) {
-        Editable editableText = this.f1222a.getEditableText();
-        if (editableText != null) {
-            if (z10) {
-                if (this.f1230k == null) {
-                    float L = org.telegram.messenger.g0.L(150.0f);
-                    int f10 = i0.a.f(this.f1226f, this.f1224c, this.d);
-                    int f11 = i0.a.f(this.f1226f, this.f1224c, this.f1225e);
-                    this.f1230k = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{this.f1224c, f10, i0.a.f(0.5f, f10, f11), f11, this.f1224c}, new float[]{0.0f, 0.3f, 0.5f, 0.7f, 1.0f}, Shader.TileMode.MIRROR);
-                }
-                if (this.f1229j == null) {
-                    this.f1229j = new g2(this, 0);
-                }
-                this.f1232m = 1.0f;
-                editableText.setSpan(this.f1229j, 0, editableText.length(), 18);
-                g();
-                return;
-            }
-            g2 g2Var = this.f1229j;
-            if (g2Var != null) {
-                this.f1232m = 0.0f;
-                editableText.removeSpan(g2Var);
-            }
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        if (fontMetricsInt != null) {
+            paint.getFontMetricsInt(fontMetricsInt);
         }
-    }
-
-    public final void g() {
-        if (this.f1227g) {
-            return;
-        }
-        this.f1227g = true;
-        this.f1222a.postOnAnimation(this.f1233n);
+        return Math.round(paint.measureText(charSequence, i7, i10));
     }
 }

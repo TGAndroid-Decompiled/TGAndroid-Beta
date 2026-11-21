@@ -8,7 +8,7 @@ public class NotificationCallbackReceiver extends BroadcastReceiver {
     public final void onReceive(Context context, Intent intent) {
         if (intent != null) {
             t0.w();
-            int intExtra = intent.getIntExtra("currentAccount", j10.f24770t0);
+            int intExtra = intent.getIntExtra("currentAccount", j10.f24798t0);
             if (!j10.r(intExtra)) {
                 return;
             }

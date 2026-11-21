@@ -1,78 +1,26 @@
 package bi;
+public final class q2 implements Runnable {
+    public final int f4019a;
+    public final long f4020b;
+    public final Object f4021c;
+    public final Object d;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.ui.Components.k80;
-public final class q2 extends k80 {
-    public final int M;
-
-    public q2(int i7, Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i6Var);
-        this.M = i7;
+    public q2(Object obj, long j3, Object obj2, int i7) {
+        this.f4019a = i7;
+        this.f4021c = obj;
+        this.f4020b = j3;
+        this.d = obj2;
     }
 
     @Override
-    public int a() {
-        switch (this.M) {
-            case 7:
-                return 3;
-            default:
-                return super.a();
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: bi.q2.run():void");
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.M) {
-            case 0:
-                if (getAlpha() < 0.95f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 1:
-                if (getAlpha() < 0.95f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 6:
-                if (getAlpha() < 0.9f) {
-                    return false;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i7, int i10) {
-        switch (this.M) {
-            case 2:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
-                return;
-            default:
-                super.onMeasure(i7, i10);
-                return;
-        }
-    }
-
-    @Override
-    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.M) {
-            case 3:
-                super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 4:
-                super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            case 5:
-                super.setText(org.telegram.messenger.j6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
-                return;
-            default:
-                super.setText(charSequence, bufferType);
-                return;
-        }
+    public q2(Object obj, Object obj2, long j3, int i7) {
+        this.f4019a = i7;
+        this.f4021c = obj;
+        this.d = obj2;
+        this.f4020b = j3;
     }
 }

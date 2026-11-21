@@ -3,30 +3,30 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.SQLite.SQLitePreparedStatement;
 public final class sp implements Runnable {
-    public final int f26837a;
-    public final tr f26838b;
-    public final ArrayList f26839c;
+    public final int f26865a;
+    public final tr f26866b;
+    public final ArrayList f26867c;
     public final ArrayList d;
 
     public sp(tr trVar, ArrayList arrayList, ArrayList arrayList2, int i7) {
-        this.f26837a = i7;
-        this.f26838b = trVar;
-        this.f26839c = arrayList;
+        this.f26865a = i7;
+        this.f26866b = trVar;
+        this.f26867c = arrayList;
         this.d = arrayList2;
     }
 
     @Override
     public final void run() {
-        switch (this.f26837a) {
+        switch (this.f26865a) {
             case 0:
-                ArrayList arrayList = this.f26839c;
+                ArrayList arrayList = this.f26867c;
                 ArrayList arrayList2 = this.d;
-                tr trVar = this.f26838b;
+                tr trVar = this.f26866b;
                 trVar.getClass();
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLitePreparedStatement = trVar.f27054b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
+                        sQLitePreparedStatement = trVar.f27082b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
                         int size = arrayList.size();
                         for (int i7 = 0; i7 < size; i7++) {
                             sQLitePreparedStatement.requery();
@@ -51,9 +51,9 @@ public final class sp implements Runnable {
                     throw th2;
                 }
             default:
-                tr trVar2 = this.f26838b;
+                tr trVar2 = this.f26866b;
                 trVar2.getClass();
-                ArrayList arrayList3 = this.f26839c;
+                ArrayList arrayList3 = this.f26867c;
                 if (!arrayList3.isEmpty()) {
                     trVar2.getMessagesController().f4(arrayList3, true);
                 }

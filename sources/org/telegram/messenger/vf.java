@@ -3,36 +3,36 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import java.util.ArrayList;
 public final class vf implements Runnable {
-    public final int f27359a = 0;
-    public final ri f27360b;
-    public final boolean f27361c;
+    public final int f27387a = 0;
+    public final ri f27388b;
+    public final boolean f27389c;
     public final ArrayList d;
-    public final int f27362e;
+    public final int f27390e;
 
     public vf(ri riVar, boolean z10, int i7, ArrayList arrayList) {
-        this.f27360b = riVar;
-        this.f27361c = z10;
-        this.f27362e = i7;
+        this.f27388b = riVar;
+        this.f27389c = z10;
+        this.f27390e = i7;
         this.d = arrayList;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f27359a;
-        int i10 = this.f27362e;
+        int i7 = this.f27387a;
+        int i10 = this.f27390e;
         ArrayList arrayList = this.d;
-        boolean z10 = this.f27361c;
-        ri riVar = this.f27360b;
+        boolean z10 = this.f27389c;
+        ri riVar = this.f27388b;
         switch (i7) {
             case 0:
                 SharedPreferences.Editor edit = mp.u1(riVar.currentAccount).i7.edit();
                 if (z10) {
-                    riVar.f26621k0 = false;
-                    riVar.f26623l0 = true;
+                    riVar.f26649k0 = false;
+                    riVar.f26651l0 = true;
                     edit.putLong("lastGifLoadTime", System.currentTimeMillis()).apply();
                 } else {
-                    riVar.f26615h0[i10] = false;
-                    riVar.f26617i0[i10] = true;
+                    riVar.f26643h0[i10] = false;
+                    riVar.f26645i0[i10] = true;
                     if (i10 == 0) {
                         edit.putLong("lastStickersLoadTime", System.currentTimeMillis()).apply();
                     } else if (i10 == 1) {
@@ -49,9 +49,9 @@ public final class vf implements Runnable {
                 }
                 if (arrayList != null) {
                     if (z10) {
-                        riVar.f26619j0 = arrayList;
+                        riVar.f26647j0 = arrayList;
                     } else {
-                        riVar.f26613g0[i10] = arrayList;
+                        riVar.f26641g0[i10] = arrayList;
                     }
                     if (i10 == 3) {
                         riVar.q1();
@@ -62,13 +62,13 @@ public final class vf implements Runnable {
                 return;
             default:
                 if (z10) {
-                    riVar.f26619j0 = arrayList;
-                    riVar.f26621k0 = false;
-                    riVar.f26623l0 = true;
+                    riVar.f26647j0 = arrayList;
+                    riVar.f26649k0 = false;
+                    riVar.f26651l0 = true;
                 } else {
-                    riVar.f26613g0[i10] = arrayList;
-                    riVar.f26615h0[i10] = false;
-                    riVar.f26617i0[i10] = true;
+                    riVar.f26641g0[i10] = arrayList;
+                    riVar.f26643h0[i10] = false;
+                    riVar.f26645i0[i10] = true;
                 }
                 if (i10 == 3) {
                     riVar.q1();
@@ -80,9 +80,9 @@ public final class vf implements Runnable {
     }
 
     public vf(ri riVar, boolean z10, ArrayList arrayList, int i7) {
-        this.f27360b = riVar;
-        this.f27361c = z10;
+        this.f27388b = riVar;
+        this.f27389c = z10;
         this.d = arrayList;
-        this.f27362e = i7;
+        this.f27390e = i7;
     }
 }

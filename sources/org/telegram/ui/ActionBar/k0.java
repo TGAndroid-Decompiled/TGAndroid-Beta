@@ -1,72 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.transition.Transition;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.c10;
-public final class k0 implements Transition.TransitionListener {
-    public final int f29115a;
-    public final FrameLayout f29116b;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.nr;
+public final class k0 implements ViewTreeObserver.OnPreDrawListener {
+    public final float f29176a;
+    public final q0 f29177b;
 
-    public k0(int i7, FrameLayout frameLayout) {
-        this.f29115a = i7;
-        this.f29116b = frameLayout;
+    public k0(q0 q0Var, float f10) {
+        this.f29177b = q0Var;
+        this.f29176a = f10;
     }
 
     @Override
-    public final void onTransitionCancel(Transition transition) {
-        switch (this.f29115a) {
-            case 0:
-                ((r0) this.f29116b).f29928j0.e();
-                return;
-            default:
-                ((c10) this.f29116b).F.e();
-                return;
+    public final boolean onPreDraw() {
+        q0 q0Var = this.f29177b;
+        q0Var.f29904e.getViewTreeObserver().removeOnPreDrawListener(this);
+        float x10 = q0Var.f29904e.getX();
+        float f10 = this.f29176a;
+        if (x10 != f10) {
+            ah.i iVar = q0Var.f29904e;
+            iVar.setTranslationX(f10 - iVar.getX());
         }
-    }
-
-    @Override
-    public final void onTransitionEnd(Transition transition) {
-        switch (this.f29115a) {
-            case 0:
-                ((r0) this.f29116b).f29928j0.e();
-                return;
-            default:
-                ((c10) this.f29116b).F.e();
-                return;
-        }
-    }
-
-    @Override
-    public final void onTransitionPause(Transition transition) {
-        int i7 = this.f29115a;
-    }
-
-    @Override
-    public final void onTransitionResume(Transition transition) {
-        int i7 = this.f29115a;
-    }
-
-    @Override
-    public final void onTransitionStart(Transition transition) {
-        switch (this.f29115a) {
-            case 0:
-                ((r0) this.f29116b).f29928j0.d();
-                return;
-            default:
-                ((c10) this.f29116b).F.d();
-                return;
-        }
-    }
-
-    private final void a(Transition transition) {
-    }
-
-    private final void b(Transition transition) {
-    }
-
-    private final void c(Transition transition) {
-    }
-
-    private final void d(Transition transition) {
+        q0Var.f29904e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(nr.f37956f).start();
+        return true;
     }
 }

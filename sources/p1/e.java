@@ -25,7 +25,7 @@ public final class e extends z {
     public static void l(e eVar, Set set) {
         int i7;
         b0 b0Var = eVar.strings_;
-        if (!((androidx.datastore.preferences.protobuf.b) b0Var).f2096a) {
+        if (!((androidx.datastore.preferences.protobuf.b) b0Var).f2108a) {
             int size = b0Var.size();
             if (size == 0) {
                 i7 = 10;
@@ -35,7 +35,7 @@ public final class e extends z {
             eVar.strings_ = ((z0) b0Var).j(i7);
         }
         b0 b0Var2 = eVar.strings_;
-        Charset charset = c0.f2099a;
+        Charset charset = c0.f2111a;
         if (b0Var2 instanceof ArrayList) {
             ((ArrayList) b0Var2).ensureCapacity(set.size() + b0Var2.size());
         }

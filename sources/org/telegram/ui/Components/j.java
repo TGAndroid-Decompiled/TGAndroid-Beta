@@ -1,37 +1,69 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_aicompose;
-public final class j implements org.telegram.messenger.x10 {
-    public final int f36273a;
-    public final m0 f36274b;
-    public final l0 f36275c;
+import java.util.ArrayList;
+public final class j implements Runnable {
+    public final int f36343a;
+    public final EditTextBoldCursor f36344b;
 
-    public j(m0 m0Var, l0 l0Var, int i7) {
-        this.f36273a = i7;
-        this.f36274b = m0Var;
-        this.f36275c = l0Var;
+    public j(EditTextBoldCursor editTextBoldCursor, int i7) {
+        this.f36343a = i7;
+        this.f36344b = editTextBoldCursor;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f36273a) {
+    public final void run() {
+        switch (this.f36343a) {
             case 0:
-                Integer num = (Integer) obj;
-                m0 m0Var = this.f36274b;
-                if (m0Var.f37296q2 != null) {
-                    this.f36275c.c(0, true);
-                    m0Var.y1(null);
+                org.telegram.messenger.g0.v1(this.f36344b);
+                return;
+            case 1:
+                EditTextBoldCursor editTextBoldCursor = this.f36344b;
+                int i7 = 0;
+                editTextBoldCursor.f39338y = false;
+                editTextBoldCursor.d = false;
+                editTextBoldCursor.h();
+                ArrayList arrayList = editTextBoldCursor.f39328a;
+                if (!arrayList.isEmpty()) {
+                    ((xh.f) arrayList.get(0)).f60602q = new j(editTextBoldCursor, 2);
+                    float sqrt = (float) Math.sqrt(Math.pow(editTextBoldCursor.getHeight(), 2.0d) + Math.pow(editTextBoldCursor.getWidth(), 2.0d));
+                    int size = arrayList.size();
+                    while (i7 < size) {
+                        Object obj = arrayList.get(i7);
+                        i7++;
+                        ((xh.f) obj).j(editTextBoldCursor.f39336w, editTextBoldCursor.f39337x, sqrt, true);
+                    }
                     return;
                 }
                 return;
+            case 2:
+                EditTextBoldCursor editTextBoldCursor2 = this.f36344b;
+                editTextBoldCursor2.post(new j(editTextBoldCursor2, 3));
+                return;
+            case 3:
+                this.f36344b.j(false, true);
+                return;
+            case 4:
+                org.telegram.messenger.g0.I3(this.f36344b);
+                return;
+            case 5:
+                org.telegram.messenger.g0.I3(this.f36344b);
+                return;
+            case 6:
+                org.telegram.messenger.g0.I3(this.f36344b);
+                return;
+            case 7:
+                org.telegram.messenger.g0.I3(this.f36344b);
+                return;
+            case 8:
+                EditTextBoldCursor editTextBoldCursor3 = this.f36344b;
+                editTextBoldCursor3.requestFocus();
+                org.telegram.messenger.g0.I3(editTextBoldCursor3);
+                return;
             default:
-                TL_aicompose.AiComposeTone aiComposeTone = (TL_aicompose.AiComposeTone) obj;
-                m0 m0Var2 = this.f36274b;
-                if (m0Var2.f37296q2 != aiComposeTone) {
-                    this.f36275c.d(aiComposeTone, true);
-                    m0Var2.y1(aiComposeTone);
-                    return;
-                }
+                EditTextBoldCursor editTextBoldCursor4 = this.f36344b;
+                editTextBoldCursor4.requestFocus();
+                editTextBoldCursor4.setSelection(0, editTextBoldCursor4.length());
+                org.telegram.messenger.g0.I3(editTextBoldCursor4);
                 return;
         }
     }

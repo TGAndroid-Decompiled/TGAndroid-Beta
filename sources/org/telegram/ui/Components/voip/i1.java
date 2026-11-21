@@ -10,31 +10,31 @@ import org.telegram.messenger.n10;
 import org.telegram.messenger.t3;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.gk;
+import org.telegram.ui.Components.ik;
 import org.webrtc.RendererCommon;
 public final class i1 extends FrameLayout {
-    public final n2 f40919a;
-    public boolean f40920b;
-    public boolean f40921c;
+    public final n2 f41054a;
+    public boolean f41055b;
+    public boolean f41056c;
     public final long d;
-    public final gk f40922e;
-    public final j1 f40923f;
+    public final ik f41057e;
+    public final j1 f41058f;
 
     public i1(j1 j1Var, Context context) {
         super(context);
-        this.f40923f = j1Var;
-        this.f40921c = true;
+        this.f41058f = j1Var;
+        this.f41056c = true;
         this.d = SystemClock.elapsedRealtime();
-        this.f40922e = new gk(this, 24);
+        this.f41057e = new ik(this, 24);
         setBackgroundColor(-16777216);
         h hVar = new h(context);
         addView(hVar, ma.c(-1.0f, -1));
         n2 n2Var = new n2(context, false, false, false, false);
-        this.f40919a = n2Var;
+        this.f41054a = n2Var;
         RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FILL;
         m2 m2Var = n2Var.d;
         m2Var.setScalingType(scalingType);
-        n2Var.f41077b0 = 0;
+        n2Var.f41212b0 = 0;
         m2Var.setRotateTextureWithScreen(true);
         m2Var.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
         View view = n2Var.h;
@@ -52,12 +52,12 @@ public final class i1 extends FrameLayout {
 
     public final void a() {
         float f10;
-        boolean a10 = this.f40923f.f40951b.a(this.d);
-        if (this.f40921c == a10) {
+        boolean a10 = this.f41058f.f41086b.a(this.d);
+        if (this.f41056c == a10) {
             return;
         }
-        this.f40921c = a10;
-        n2 n2Var = this.f40919a;
+        this.f41056c = a10;
+        n2 n2Var = this.f41054a;
         n2Var.animate().cancel();
         ViewPropertyAnimator animate = n2Var.animate();
         if (a10) {

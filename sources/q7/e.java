@@ -1,14 +1,14 @@
 package q7;
 public final class e extends d {
-    public final f7.x f55989a;
+    public final f7.x f56030a;
 
     public e(f7.x xVar) {
-        this.f55989a = xVar;
+        this.f56030a = xVar;
     }
 
     @Override
     public final Object a() {
-        return this.f55989a;
+        return this.f56030a;
     }
 
     @Override
@@ -18,16 +18,16 @@ public final class e extends d {
 
     public final boolean equals(Object obj) {
         if (obj instanceof e) {
-            return this.f55989a.equals(((e) obj).f55989a);
+            return this.f56030a.equals(((e) obj).f56030a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f55989a.hashCode() + 1502476572;
+        return this.f56030a.hashCode() + 1502476572;
     }
 
     public final String toString() {
-        return a8.p0.p("Optional.of(", this.f55989a.toString(), ")");
+        return a8.p0.p("Optional.of(", this.f56030a.toString(), ")");
     }
 }

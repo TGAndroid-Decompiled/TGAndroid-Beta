@@ -6,20 +6,20 @@ import m.i3;
 import m.v2;
 import v4.z0;
 public final class j implements Parcelable.ClassLoaderCreator {
-    public final int f4424a;
+    public final int f4453a;
 
     public j(int i7) {
-        this.f4424a = i7;
+        this.f4453a = i7;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel, ClassLoader classLoader) {
-        switch (this.f4424a) {
+        switch (this.f4453a) {
             case 0:
                 return new k(parcel, classLoader);
             case 1:
                 if (parcel.readParcelable(classLoader) == null) {
-                    return j1.b.f17140b;
+                    return j1.b.f17165b;
                 }
                 throw new IllegalStateException("superState must be null");
             case 2:
@@ -33,7 +33,7 @@ public final class j implements Parcelable.ClassLoaderCreator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f4424a) {
+        switch (this.f4453a) {
             case 0:
                 return new k[i7];
             case 1:
@@ -49,12 +49,12 @@ public final class j implements Parcelable.ClassLoaderCreator {
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f4424a) {
+        switch (this.f4453a) {
             case 0:
                 return new k(parcel, null);
             case 1:
                 if (parcel.readParcelable(null) == null) {
-                    return j1.b.f17140b;
+                    return j1.b.f17165b;
                 }
                 throw new IllegalStateException("superState must be null");
             case 2:

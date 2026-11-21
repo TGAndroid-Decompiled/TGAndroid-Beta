@@ -6,15 +6,15 @@ import c8.bc;
 import java.util.Arrays;
 public final class x extends r6.a {
     public static final Parcelable.Creator<x> CREATOR = new db.k(16);
-    public final a0 f11590a;
-    public final o f11591b;
+    public final a0 f11619a;
+    public final o f11620b;
 
     public x(String str, int i7) {
         q6.m.h(str);
         try {
-            this.f11590a = a0.a(str);
+            this.f11619a = a0.a(str);
             try {
-                this.f11591b = o.a(i7);
+                this.f11620b = o.a(i7);
             } catch (n e10) {
                 throw new IllegalArgumentException(e10);
             }
@@ -28,26 +28,26 @@ public final class x extends r6.a {
             return false;
         }
         x xVar = (x) obj;
-        if (!this.f11590a.equals(xVar.f11590a) || !this.f11591b.equals(xVar.f11591b)) {
+        if (!this.f11619a.equals(xVar.f11619a) || !this.f11620b.equals(xVar.f11620b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11590a, this.f11591b});
+        return Arrays.hashCode(new Object[]{this.f11619a, this.f11620b});
     }
 
     public final String toString() {
-        return p5.c.l("PublicKeyCredentialParameters{\n type=", String.valueOf(this.f11590a), ", \n algorithm=", String.valueOf(this.f11591b), "\n }");
+        return p5.c.l("PublicKeyCredentialParameters{\n type=", String.valueOf(this.f11619a), ", \n algorithm=", String.valueOf(this.f11620b), "\n }");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        this.f11590a.getClass();
+        this.f11619a.getClass();
         bc.l(parcel, 2, "public-key");
-        bc.i(parcel, 3, Integer.valueOf(this.f11591b.f11539a.a()));
+        bc.i(parcel, 3, Integer.valueOf(this.f11620b.f11568a.a()));
         bc.s(parcel, r10);
     }
 }

@@ -1,31 +1,35 @@
 package org.telegram.ui.Components;
+public final class la0 implements Runnable {
+    public final int f37147a;
+    public final ma0 f37148b;
 
-import android.view.View;
-public final class la0 implements oj0 {
-    public final oa0 f37089a;
-
-    public la0(oa0 oa0Var) {
-        this.f37089a = oa0Var;
+    public la0(ma0 ma0Var, int i7) {
+        this.f37147a = i7;
+        this.f37148b = ma0Var;
     }
 
     @Override
-    public final void c(int i7, View view) {
-        oa0 oa0Var = this.f37089a;
-        if (oa0Var.f38039a == 1 && oa0Var.f38049r.f24456f.size() > 1) {
-            int e12 = ((org.telegram.messenger.fj) oa0Var.f38049r.f24456f.get(i7)).e1();
-            boolean z10 = oa0Var.f38049r.f24457g.get(e12, false);
-            boolean z11 = !z10;
-            if (oa0Var.f38049r.f24457g.size() != 1 || !z10) {
-                if (z10) {
-                    oa0Var.f38049r.f24457g.delete(e12);
-                } else {
-                    oa0Var.f38049r.f24457g.put(e12, z11);
+    public final void run() {
+        switch (this.f37147a) {
+            case 0:
+                ma0 ma0Var = this.f37148b;
+                if (ma0Var.W != -1) {
+                    org.telegram.messenger.ks.f(ma0Var.Y.f38864d0.f41752x).j(ma0Var.W);
+                    ma0Var.W = -1;
+                    return;
                 }
-                if (view instanceof org.telegram.ui.Cells.r1) {
-                    ((org.telegram.ui.Cells.r1) view).n3(z11, z11, true);
+                return;
+            case 1:
+                this.f37148b.Y.i();
+                return;
+            default:
+                ma0 ma0Var2 = this.f37148b;
+                if (ma0Var2.W != -1) {
+                    org.telegram.messenger.ks.f(ma0Var2.Y.f38864d0.f41752x).j(ma0Var2.W);
+                    ma0Var2.W = -1;
+                    return;
                 }
-                oa0Var.l(true);
-            }
+                return;
         }
     }
 }

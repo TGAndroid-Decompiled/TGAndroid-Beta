@@ -1,48 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class a11 extends bk0 {
-    public final ArrayList f33221c = new ArrayList();
-    public String d;
-    public final f11 f33222e;
+import android.widget.EditText;
+import androidx.recyclerview.widget.RecyclerView;
+public final class a11 extends v4.u0 {
+    public final int f33267a;
+    public final long f33268b;
+    public final h11 f33269c;
 
-    public a11(f11 f11Var) {
-        this.f33222e = f11Var;
+    public a11(h11 h11Var, int i7, long j3) {
+        this.f33269c = h11Var;
+        this.f33267a = i7;
+        this.f33268b = j3;
     }
 
     @Override
-    public final boolean D(v4.f1 f1Var) {
-        return true;
-    }
-
-    public final void E(ArrayList arrayList, boolean z10) {
-        ck0 ck0Var = this.f33222e.f34895r;
-        if (!z10) {
-            f();
-            return;
-        }
-        boolean canScrollVertically = ck0Var.canScrollVertically(-1);
-        v4.o.c(new jg.g(this, arrayList, 3), true).c(this);
-        if (!canScrollVertically) {
-            ck0Var.v0(0);
+    public final void a(RecyclerView recyclerView, int i7) {
+        EditText editText = this.f33269c.f35750w;
+        if (i7 == 1 && editText.hasFocus()) {
+            org.telegram.messenger.g0.v1(editText);
+            editText.clearFocus();
         }
     }
 
     @Override
-    public final int b() {
-        return this.f33221c.size();
-    }
-
-    @Override
-    public final void t(v4.f1 r35, int r36) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a11.t(v4.f1, int):void");
-    }
-
-    @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        e11 e11Var = new e11(this.f33222e, viewGroup.getContext());
-        e11Var.setLayoutParams(new v4.q0(-1, -2));
-        return new v4.f1(e11Var);
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        h11 h11Var = this.f33269c;
+        h11Var.o();
+        v4.c0 c0Var = (v4.c0) recyclerView.getLayoutManager();
+        if (c0Var != null && c0Var.N0() >= h11Var.f35749s.f33982c.size() - 3) {
+            if (h11Var.j()) {
+                h11Var.k();
+                return;
+            }
+            boolean z10 = h11Var.d;
+            int i11 = this.f33267a;
+            if (z10) {
+                org.telegram.messenger.mp.u1(i11).I1().g(false);
+                return;
+            }
+            org.telegram.messenger.e00 e00Var = org.telegram.messenger.mp.u1(i11).f25797t7;
+            long j3 = -this.f33268b;
+            if (!e00Var.e(j3)) {
+                e00Var.o(j3);
+            }
+        }
     }
 }

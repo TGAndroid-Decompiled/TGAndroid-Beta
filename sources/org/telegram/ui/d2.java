@@ -9,27 +9,27 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.tgnet.tl.TL_iv;
 public final class d2 extends View {
-    public final p50 f46804a;
-    public final e4 f46805b;
-    public final e2 f46806c;
+    public final p50 f46858a;
+    public final e4 f46859b;
+    public final e2 f46860c;
 
     public d2(e2 e2Var, Context context, p50 p50Var, e4 e4Var) {
         super(context);
-        this.f46806c = e2Var;
-        this.f46804a = p50Var;
-        this.f46805b = e4Var;
+        this.f46860c = e2Var;
+        this.f46858a = p50Var;
+        this.f46859b = e4Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        e2 e2Var = this.f46806c;
-        if (e2Var.f47032c != null) {
+        e2 e2Var = this.f46860c;
+        if (e2Var.f47106c != null) {
             canvas.save();
-            g4.t(this.f46804a, canvas, e2Var, 0);
-            e2Var.f47032c.d(canvas, this);
+            g4.t(this.f46858a, canvas, e2Var, 0);
+            e2Var.f47106c.d(canvas, this);
             canvas.restore();
-            e2Var.f47032c.f54332s = (int) getX();
-            e2Var.f47032c.f54333w = (int) getY();
+            e2Var.f47106c.f54374s = (int) getX();
+            e2Var.f47106c.f54375w = (int) getY();
         }
     }
 
@@ -38,44 +38,44 @@ public final class d2 extends View {
         int i11;
         StaticLayout staticLayout;
         StaticLayout staticLayout2;
-        e2 e2Var = this.f46806c;
-        TL_iv.pageBlockPreformatted pageblockpreformatted = e2Var.f47034f;
+        e2 e2Var = this.f46860c;
+        TL_iv.pageBlockPreformatted pageblockpreformatted = e2Var.f47108f;
         int i12 = 1;
         if (pageblockpreformatted != null) {
             CharSequence charSequence = e2Var.h;
-            e4 e4Var = this.f46805b;
-            p50 p50Var = this.f46804a;
+            e4 e4Var = this.f46859b;
+            p50 p50Var = this.f46858a;
             if (charSequence == null) {
                 TL_iv.RichText richText = pageblockpreformatted.text;
                 int L = org.telegram.messenger.g0.L(5000.0f);
-                HashSet hashSet = g4.f47855d1;
+                HashSet hashSet = g4.f47925d1;
                 CharSequence A = g4.A(p50Var, e4Var.F, this, richText, richText, pageblockpreformatted, L);
                 e2Var.h = A;
-                TL_iv.pageBlockPreformatted pageblockpreformatted2 = e2Var.f47034f;
+                TL_iv.pageBlockPreformatted pageblockpreformatted2 = e2Var.f47108f;
                 if (pageblockpreformatted2.diff) {
                     e2Var.h = e2.b(e2Var, A, pageblockpreformatted2.language);
                 } else if (!TextUtils.isEmpty(pageblockpreformatted2.language)) {
-                    e2Var.h = qi.j.b(e2Var.h, e2Var.f47034f.language);
+                    e2Var.h = qi.j.b(e2Var.h, e2Var.f47108f.language);
                 }
             }
-            z2 o4 = g4.o(p50Var, this, e2Var.h, null, org.telegram.messenger.g0.L(5000.0f), 0, e2Var.f47034f, e4Var);
-            e2Var.f47032c = o4;
+            z2 o4 = g4.o(p50Var, this, e2Var.h, null, org.telegram.messenger.g0.L(5000.0f), 0, e2Var.f47108f, e4Var);
+            e2Var.f47106c = o4;
             if (o4 != null) {
                 i11 = o4.d.getHeight();
-                int lineCount = e2Var.f47032c.d.getLineCount();
+                int lineCount = e2Var.f47106c.d.getLineCount();
                 int i13 = 1;
                 for (int i14 = 0; i14 < lineCount; i14++) {
-                    i13 = Math.max((int) Math.ceil(e2Var.f47032c.d.getLineWidth(i14)), i13);
+                    i13 = Math.max((int) Math.ceil(e2Var.f47106c.d.getLineWidth(i14)), i13);
                 }
-                if (e2Var.f47034f.diff && (staticLayout2 = e2Var.f47032c.d) != null) {
-                    i13 = Math.max((int) Math.ceil(staticLayout2.getPaint().measureText("m") * e2Var.f47034f.diffColumns), i13);
+                if (e2Var.f47108f.diff && (staticLayout2 = e2Var.f47106c.d) != null) {
+                    i13 = Math.max((int) Math.ceil(staticLayout2.getPaint().measureText("m") * e2Var.f47108f.diffColumns), i13);
                 }
-                e2Var.f47036r = 0;
-                if (e2Var.f47034f.continuesNext && (staticLayout = e2Var.f47032c.d) != null && staticLayout.getLineCount() > 1) {
-                    StaticLayout staticLayout3 = e2Var.f47032c.d;
+                e2Var.f47110r = 0;
+                if (e2Var.f47108f.continuesNext && (staticLayout = e2Var.f47106c.d) != null && staticLayout.getLineCount() > 1) {
+                    StaticLayout staticLayout3 = e2Var.f47106c.d;
                     int lineCount2 = staticLayout3.getLineCount() - 1;
                     int max = Math.max(0, (staticLayout3.getLineBottom(0) - staticLayout3.getLineTop(0)) - (staticLayout3.getLineBottom(lineCount2) - staticLayout3.getLineTop(lineCount2)));
-                    e2Var.f47036r = max;
+                    e2Var.f47110r = max;
                     i11 += max;
                 }
                 i12 = i13;
@@ -90,8 +90,8 @@ public final class d2 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        e2 e2Var = this.f46806c;
-        if (!g4.j(this.f46804a, this.f46805b, motionEvent, e2Var, e2Var.f47032c, 0, 0) && !super.onTouchEvent(motionEvent)) {
+        e2 e2Var = this.f46860c;
+        if (!g4.j(this.f46858a, this.f46859b, motionEvent, e2Var, e2Var.f47106c, 0, 0) && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

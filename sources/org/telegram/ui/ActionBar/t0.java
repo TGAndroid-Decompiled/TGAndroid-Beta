@@ -1,153 +1,160 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ValueAnimator;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import org.telegram.ui.Cells.u7;
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.gf;
-import org.telegram.ui.Components.if0;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.s9;
-import org.telegram.ui.Wallet.x6;
-import org.telegram.ui.rf;
-public final class t0 extends AnimatorListenerAdapter {
-    public final int f29988a;
-    public final float f29989b;
-    public final Object f29990c;
+import android.view.ViewGroup;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.gd;
+import org.telegram.ui.Components.an0;
+import org.telegram.ui.Components.bn0;
+import org.telegram.ui.Components.en0;
+import org.telegram.ui.Components.pu0;
+import org.telegram.ui.Components.ym0;
+import org.telegram.ui.Components.zz;
+public final class t0 extends zz {
+    public final int f30004e;
+    public final ViewGroup f30005f;
 
-    public t0(Object obj, float f10, int i7) {
-        this.f29988a = i7;
-        this.f29990c = obj;
-        this.f29989b = f10;
+    public t0(ViewGroup viewGroup, int i7) {
+        super(false);
+        this.f30004e = i7;
+        this.f30005f = viewGroup;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f29988a;
-        float f10 = this.f29989b;
-        Object obj = this.f29990c;
+    public CharSequence d() {
+        int i7 = this.f30004e;
+        ViewGroup viewGroup = this.f30005f;
         switch (i7) {
             case 0:
-                w0 w0Var = (w0) obj;
-                w0Var.U = null;
-                w0Var.f30123a = f10;
-                w0Var.invalidate();
+                return pu0.a(((u0) viewGroup).getSpeed()) + "x  " + gd.N0(2131754758, null);
+            case 1:
+            default:
+                return super.d();
+            case 2:
+                an0 an0Var = ((bn0) viewGroup).f33891y;
+                if (an0Var == null) {
+                    return null;
+                }
+                return an0Var.getContentDescription();
+        }
+    }
+
+    @Override
+    public float h() {
+        switch (this.f30004e) {
+            case 0:
+                return 0.2f;
+            case 1:
+            default:
+                return super.h();
+            case 2:
+                int r02 = ((bn0) this.f30005f).f33891y.r0();
+                if (r02 > 0) {
+                    return 1.0f / r02;
+                }
+                return 0.05f;
+        }
+    }
+
+    @Override
+    public float i() {
+        switch (this.f30004e) {
+            case 0:
+                return 3.0f;
+            default:
+                return super.i();
+        }
+    }
+
+    @Override
+    public float j() {
+        switch (this.f30004e) {
+            case 0:
+                return 0.2f;
+            default:
+                return super.j();
+        }
+    }
+
+    @Override
+    public final float k() {
+        float f10;
+        int i7;
+        int i10;
+        switch (this.f30004e) {
+            case 0:
+                return ((u0) this.f30005f).getSpeed();
+            case 1:
+                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f30005f;
+                org.telegram.ui.Cells.j1 j1Var = r1Var.D4;
+                if (r1Var.Q5.I3()) {
+                    f10 = j1Var.f42465b;
+                    i7 = j1Var.f42468f;
+                    i10 = ym0.E;
+                } else if (fj.R4(r1Var.Q5.f23993k)) {
+                    if (r1Var.C4) {
+                        en0 en0Var = r1Var.E4;
+                        return en0Var.f34918a / en0Var.f34923g;
+                    }
+                    f10 = j1Var.f42465b;
+                    i7 = j1Var.f42468f;
+                    i10 = ym0.E;
+                } else if (r1Var.Q5.h4()) {
+                    return r1Var.Q5.f23953b0;
+                } else {
+                    return 0.0f;
+                }
+                return f10 / (i7 - i10);
+            default:
+                return ((bn0) this.f30005f).getProgress();
+        }
+    }
+
+    @Override
+    public final void l(float f10) {
+        switch (this.f30004e) {
+            case 0:
+                ((u0) this.f30005f).e(true, f10);
                 return;
             case 1:
-                m3 m3Var = (m3) obj;
-                m3Var.f29221i = f10;
-                n3 n3Var = m3Var.f29216b;
-                if (n3Var != null) {
-                    n3Var.invalidate();
-                    return;
-                }
-                return;
-            case 2:
-                org.telegram.ui.Cells.n6 n6Var = (org.telegram.ui.Cells.n6) obj;
-                n6Var.G = f10;
-                n6Var.invalidate();
-                return;
-            case 3:
-                ColorMatrix colorMatrix = new ColorMatrix();
-                u7 u7Var = (u7) obj;
-                u7Var.f32037w = f10;
-                colorMatrix.setSaturation(f10);
-                if (n6.I.q()) {
-                    org.telegram.messenger.g0.h(colorMatrix, (1.0f - u7Var.f32037w) * (-0.3f));
-                }
-                u7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                return;
-            case 4:
-                s9 s9Var = (s9) obj;
-                s9Var.f39527g = f10;
-                s9Var.invalidateSelf();
-                return;
-            case 5:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
-                chatActivityEnterView.B6 = null;
-                chatActivityEnterView.C6 = false;
-                if (!chatActivityEnterView.M2) {
-                    gf gfVar = chatActivityEnterView.F0;
-                    if (gfVar != null) {
-                        gfVar.setText("");
-                        chatActivityEnterView.F0.setAlpha(1.0f);
+                org.telegram.ui.Cells.r1 r1Var = (org.telegram.ui.Cells.r1) this.f30005f;
+                en0 en0Var = r1Var.E4;
+                org.telegram.ui.Cells.j1 j1Var = r1Var.D4;
+                if (r1Var.Q5.I3()) {
+                    j1Var.h(f10);
+                } else if (fj.R4(r1Var.Q5.f23993k)) {
+                    if (r1Var.C4) {
+                        en0Var.g(false, f10);
+                    } else {
+                        j1Var.h(f10);
                     }
-                    ai.n0 n0Var = chatActivityEnterView.f32614j1;
-                    if (n0Var != null) {
-                        n0Var.j();
+                } else if (r1Var.Q5.h4()) {
+                    if (r1Var.C4) {
+                        if (en0Var != null) {
+                            en0Var.g(false, f10);
+                        }
+                    } else if (j1Var != null) {
+                        j1Var.h(f10);
                     }
-                    chatActivityEnterView.R0.invalidate();
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ofFloat.addUpdateListener(new rf(this, f10, 3));
-                    ofFloat.setDuration(200L);
-                    ofFloat.setInterpolator(lr.f37209g);
-                    ofFloat.start();
-                    return;
-                }
-                return;
-            case 6:
-                if0 if0Var = (if0) obj;
-                if0Var.I.e();
-                if0Var.f36113b = f10;
-                if (f10 <= 0.0f) {
-                    if0Var.H = -1;
-                }
-                if0Var.c(true);
-                if0Var.f36116f = false;
-                if (if0Var.Q != null && Math.abs(f10 - 1.0f) < 0.01f) {
-                    if0Var.Q.run();
-                    return;
-                }
-                return;
-            case 7:
-                org.telegram.ui.Wallet.w3 w3Var = (org.telegram.ui.Wallet.w3) obj;
-                x6 x6Var = w3Var.f45206r;
-                x6Var.getClass();
-                x6Var.setLayerType(0, null);
-                if (f10 == 0.0f) {
-                    w3Var.b();
-                    return;
-                } else if (!w3Var.S) {
-                    ValueAnimator valueAnimator = w3Var.Q;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    ValueAnimator ofFloat2 = ValueAnimator.ofFloat(w3Var.R, 1.0f);
-                    w3Var.Q = ofFloat2;
-                    ofFloat2.setDuration(320L);
-                    w3Var.Q.setInterpolator(lr.f37209g);
-                    w3Var.Q.addUpdateListener(new org.telegram.ui.Wallet.p3(w3Var, 0));
-                    w3Var.Q.start();
-                    return;
+                    r1Var.Q5.f23953b0 = f10;
                 } else {
                     return;
                 }
+                r1Var.a(f10);
+                r1Var.invalidate();
+                return;
             default:
-                org.telegram.ui.Wallet.n6 n6Var2 = (org.telegram.ui.Wallet.n6) obj;
-                if (n6Var2.f44636n0 == animator) {
-                    n6Var2.f44636n0 = null;
-                    n6Var2.R0(f10);
-                    n6Var2.f44643s0.j(false);
-                    return;
-                }
+                bn0 bn0Var = (bn0) this.f30005f;
+                bn0Var.f33890x = true;
+                bn0Var.setProgress(f10);
+                bn0Var.f(true, f10);
+                bn0Var.f33890x = false;
                 return;
         }
     }
 
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f29988a) {
-            case 6:
-                if0 if0Var = (if0) this.f29990c;
-                if0Var.f36116f = true;
-                if0Var.f36114c = this.f29989b;
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public t0(bn0 bn0Var, boolean z10) {
+        super(z10);
+        this.f30004e = 2;
+        this.f30005f = bn0Var;
     }
 }

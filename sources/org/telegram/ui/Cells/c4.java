@@ -25,22 +25,22 @@ public final class c4 extends RadialProgressView {
         switch (this.O) {
             case 0:
                 g4 g4Var = (g4) this.Q;
-                org.telegram.ui.Components.q9 q9Var = g4Var.f30652b;
+                org.telegram.ui.Components.q9 q9Var = g4Var.f30680b;
                 if (q9Var.getImageReceiver().L() && q9Var.getAlpha() > 0.0f) {
-                    int alpha = (int) (q9Var.getAlpha() * q9Var.getImageReceiver().f22641i1 * 85.0f);
+                    int alpha = (int) (q9Var.getAlpha() * q9Var.getImageReceiver().f22669i1 * 85.0f);
                     Paint paint = this.P;
                     paint.setAlpha(alpha);
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
                 }
-                g4Var.f30667y.setProgressColor(i0.a.o(-1, (int) (q9Var.getAlpha() * q9Var.getImageReceiver().f22641i1 * 255.0f)));
+                g4Var.f30695y.setProgressColor(i0.a.o(-1, (int) (q9Var.getAlpha() * q9Var.getImageReceiver().f22669i1 * 255.0f)));
                 super.onDraw(canvas);
                 return;
             case 1:
                 ProfileActivity profileActivity = (ProfileActivity) this.Q;
-                zu0 zu0Var = profileActivity.f43547f0;
+                zu0 zu0Var = profileActivity.f43588f0;
                 if (zu0Var != null && zu0Var.getImageReceiver().L()) {
                     Paint paint2 = this.P;
-                    paint2.setAlpha((int) (profileActivity.f43547f0.getImageReceiver().f22641i1 * 85.0f));
+                    paint2.setAlpha((int) (profileActivity.f43588f0.getImageReceiver().f22669i1 * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint2);
                 }
                 super.onDraw(canvas);
@@ -50,7 +50,7 @@ public final class c4 extends RadialProgressView {
                 org.telegram.ui.Components.q9 q9Var2 = o31Var.H;
                 if (q9Var2 != null && q9Var2.getImageReceiver().L()) {
                     Paint paint3 = this.P;
-                    paint3.setAlpha((int) (o31Var.H.getImageReceiver().f22641i1 * 85.0f));
+                    paint3.setAlpha((int) (o31Var.H.getImageReceiver().f22669i1 * 85.0f));
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint3);
                 }
                 super.onDraw(canvas);

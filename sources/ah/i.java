@@ -10,22 +10,22 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.TextView;
-import hi.e2;
-import hi.n8;
+import hi.d2;
+import hi.m8;
 import jg.o0;
 import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.a5;
-import org.telegram.ui.ActionBar.n0;
-import org.telegram.ui.ActionBar.r0;
+import org.telegram.ui.ActionBar.m0;
+import org.telegram.ui.ActionBar.q0;
+import org.telegram.ui.ActionBar.z4;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.c10;
+import org.telegram.ui.Components.d10;
+import org.telegram.ui.Components.e10;
 import org.telegram.ui.Components.ke;
-import org.telegram.ui.Components.m20;
+import org.telegram.ui.Components.p20;
 import org.telegram.ui.Components.re;
-import org.telegram.ui.Components.rl0;
-import org.telegram.ui.Components.vb0;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.wb0;
 import org.telegram.ui.UsersSelectActivity;
 import org.telegram.ui.co;
 import org.telegram.ui.ec0;
@@ -46,7 +46,7 @@ public final class i extends EditTextBoldCursor {
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         switch (this.M1) {
             case 8:
-                ((rl0) this.N1).getClass();
+                ((tl0) this.N1).getClass();
                 return super.dispatchTouchEvent(motionEvent);
             default:
                 return super.dispatchTouchEvent(motionEvent);
@@ -84,19 +84,19 @@ public final class i extends EditTextBoldCursor {
             case 1:
                 super.onFocusChanged(z10, i7, rect);
                 if (!z10) {
-                    g0.v1(((e2) this.N1).f14525e);
+                    g0.v1(((d2) this.N1).f14476e);
                     return;
                 }
                 return;
             case 7:
                 super.onFocusChanged(z10, i7, rect);
-                vb0 vb0Var = (vb0) this.N1;
+                wb0 wb0Var = (wb0) this.N1;
                 if (!z10 && !isFocused()) {
                     f10 = 0.0f;
                 } else {
                     f10 = 1.0f;
                 }
-                vb0Var.b(f10, f10, true);
+                wb0Var.b(f10, f10, true);
                 return;
             default:
                 super.onFocusChanged(z10, i7, rect);
@@ -130,25 +130,25 @@ public final class i extends EditTextBoldCursor {
         TextView textView;
         switch (this.M1) {
             case 3:
-                r0 r0Var = (r0) this.N1;
-                if (i7 == 67 && r0Var.f29921e.length() == 0 && ((r0Var.h.getVisibility() == 0 && r0Var.h.length() > 0) || r0Var.s())) {
-                    if (r0Var.s()) {
-                        o0 o0Var = (o0) i5.c.h(1, r0Var.f29926h0);
-                        n0 n0Var = r0Var.I;
-                        if (n0Var != null) {
-                            n0Var.j(o0Var);
+                q0 q0Var = (q0) this.N1;
+                if (i7 == 67 && q0Var.f29904e.length() == 0 && ((q0Var.h.getVisibility() == 0 && q0Var.h.length() > 0) || q0Var.s())) {
+                    if (q0Var.s()) {
+                        o0 o0Var = (o0) i5.c.h(1, q0Var.f29909h0);
+                        m0 m0Var = q0Var.I;
+                        if (m0Var != null) {
+                            m0Var.j(o0Var);
                         }
-                        r0Var.J(o0Var);
+                        q0Var.J(o0Var);
                         return true;
                     }
-                    r0Var.f29938s.callOnClick();
+                    q0Var.f29921s.callOnClick();
                     return true;
                 }
                 return super.onKeyDown(i7, keyEvent);
             case 4:
-                a5 a5Var = (a5) this.N1;
-                if (i7 == 67 && length() == 0 && (textView = a5Var.f28788x) != null && textView.getVisibility() == 0) {
-                    a5Var.n();
+                z4 z4Var = (z4) this.N1;
+                if (i7 == 67 && length() == 0 && (textView = z4Var.f30349x) != null && textView.getVisibility() == 0) {
+                    z4Var.n();
                     return true;
                 }
                 return super.onKeyDown(i7, keyEvent);
@@ -156,17 +156,17 @@ public final class i extends EditTextBoldCursor {
             default:
                 return super.onKeyDown(i7, keyEvent);
             case 6:
-                c10 c10Var = (c10) this.N1;
-                if (i7 == 67 && c10Var.f33845r.length() == 0 && c10Var.d()) {
-                    if (!c10Var.d()) {
+                e10 e10Var = (e10) this.N1;
+                if (i7 == 67 && e10Var.f34647r.length() == 0 && e10Var.d()) {
+                    if (!e10Var.d()) {
                         return true;
                     }
-                    o0 o0Var2 = (o0) i5.c.h(1, c10Var.G);
-                    b10 b10Var = c10Var.I;
-                    if (b10Var != null) {
-                        ((hv) b10Var).e(o0Var2);
+                    o0 o0Var2 = (o0) i5.c.h(1, e10Var.G);
+                    d10 d10Var = e10Var.I;
+                    if (d10Var != null) {
+                        ((hv) d10Var).e(o0Var2);
                     }
-                    c10Var.f(o0Var2);
+                    e10Var.f(o0Var2);
                     return true;
                 }
                 return super.onKeyDown(i7, keyEvent);
@@ -197,13 +197,13 @@ public final class i extends EditTextBoldCursor {
         switch (this.M1) {
             case 12:
                 super.onTextChanged(charSequence, i7, i10, i11);
-                ke keVar = ((yh.a) this.N1).f61287b;
+                ke keVar = ((yh.a) this.N1).f61328b;
                 if (keVar != null) {
-                    ChatActivityEnterView chatActivityEnterView = keVar.f36742b;
-                    int i12 = ChatActivityEnterView.f32538n7;
+                    ChatActivityEnterView chatActivityEnterView = keVar.f36893b;
+                    int i12 = ChatActivityEnterView.f32566s7;
                     re reVar = chatActivityEnterView.K0;
                     if (reVar != null) {
-                        if (chatActivityEnterView.I1 && chatActivityEnterView.S1) {
+                        if (chatActivityEnterView.K1 && chatActivityEnterView.U1) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -239,9 +239,9 @@ public final class i extends EditTextBoldCursor {
         switch (this.M1) {
             case 0:
                 o oVar = (o) this.N1;
-                m20 m20Var = oVar.f1097f;
-                if (m20Var != null) {
-                    m20Var.a();
+                p20 p20Var = oVar.f1097f;
+                if (p20Var != null) {
+                    p20Var.a();
                     oVar.f1097f = null;
                 }
                 if (motionEvent.getAction() == 0 && !g0.I3(this)) {
@@ -251,7 +251,7 @@ public final class i extends EditTextBoldCursor {
                 }
                 return super.onTouchEvent(motionEvent);
             case 1:
-                i iVar = ((e2) this.N1).f14525e;
+                i iVar = ((d2) this.N1).f14476e;
                 if (!iVar.isEnabled()) {
                     return super.onTouchEvent(motionEvent);
                 }
@@ -261,14 +261,14 @@ public final class i extends EditTextBoldCursor {
                 }
                 return super.onTouchEvent(motionEvent);
             case 2:
-                n8 n8Var = (n8) this.N1;
-                m20 m20Var2 = n8Var.f15109f;
-                if (m20Var2 != null) {
-                    m20Var2.a();
-                    n8Var.f15109f = null;
+                m8 m8Var = (m8) this.N1;
+                p20 p20Var2 = m8Var.f15031f;
+                if (p20Var2 != null) {
+                    p20Var2.a();
+                    m8Var.f15031f = null;
                 }
                 if (motionEvent.getAction() == 0 && !g0.I3(this)) {
-                    n8Var.fullScroll(130);
+                    m8Var.fullScroll(130);
                     clearFocus();
                     requestFocus();
                 }
@@ -292,14 +292,14 @@ public final class i extends EditTextBoldCursor {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
-                    ((rl0) this.N1).getClass();
+                    ((tl0) this.N1).getClass();
                 }
                 return super.onTouchEvent(motionEvent);
             case 10:
                 UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.N1;
-                m20 m20Var3 = usersSelectActivity.R;
-                if (m20Var3 != null) {
-                    m20Var3.a();
+                p20 p20Var3 = usersSelectActivity.R;
+                if (p20Var3 != null) {
+                    p20Var3.a();
                     usersSelectActivity.R = null;
                 }
                 if (motionEvent.getAction() == 0 && !g0.I3(this)) {

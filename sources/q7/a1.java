@@ -2,10 +2,10 @@ package q7;
 
 import java.util.Arrays;
 public final class a1 extends c1 {
-    public final String f55985a;
+    public final String f56026a;
 
     public a1(String str) {
-        this.f55985a = str;
+        this.f56026a = str;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class a1 extends c1 {
         if (c10 != zza) {
             return c10 - c1Var.zza();
         }
-        String str = ((a1) c1Var).f55985a;
+        String str = ((a1) c1Var).f56026a;
         int length = str.length();
-        String str2 = this.f55985a;
+        String str2 = this.f56026a;
         if (str2.length() != length) {
             return str2.length() - str.length();
         }
@@ -32,15 +32,15 @@ public final class a1 extends c1 {
         if (obj == null || a1.class != obj.getClass()) {
             return false;
         }
-        return this.f55985a.equals(((a1) obj).f55985a);
+        return this.f56026a.equals(((a1) obj).f56026a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) 96)), this.f55985a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) 96)), this.f56026a});
     }
 
     public final String toString() {
-        return a8.p0.s(new StringBuilder("\""), this.f55985a, "\"");
+        return a8.p0.s(new StringBuilder("\""), this.f56026a, "\"");
     }
 
     @Override

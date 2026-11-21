@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class gp {
-    public final int f24289a;
-    public final long f24290b;
-    public final ArrayList f24291c = new ArrayList();
+    public final int f24317a;
+    public final long f24318b;
+    public final ArrayList f24319c = new ArrayList();
     public int d;
-    public boolean f24292e;
-    public boolean f24293f;
+    public boolean f24320e;
+    public boolean f24321f;
 
     public gp(int i7, long j3) {
-        this.f24289a = i7;
-        this.f24290b = j3;
+        this.f24317a = i7;
+        this.f24318b = j3;
     }
 
     public final TLRPC.Document a() {
         fj fjVar;
-        ArrayList arrayList = this.f24291c;
+        ArrayList arrayList = this.f24319c;
         if (arrayList.isEmpty() || (fjVar = (fj) arrayList.get(0)) == null) {
             return null;
         }
@@ -26,12 +26,12 @@ public final class gp {
     }
 
     public final void b() {
-        if (!this.f24293f && !this.f24292e) {
-            this.f24293f = true;
+        if (!this.f24321f && !this.f24320e) {
+            this.f24321f = true;
             TLRPC.TL_getSavedMusic tL_getSavedMusic = new TLRPC.TL_getSavedMusic();
-            int i7 = this.f24289a;
-            tL_getSavedMusic.f28457id = mp.u1(i7).q1(this.f24290b);
-            tL_getSavedMusic.offset = this.f24291c.size();
+            int i7 = this.f24317a;
+            tL_getSavedMusic.f28485id = mp.u1(i7).q1(this.f24318b);
+            tL_getSavedMusic.offset = this.f24319c.size();
             tL_getSavedMusic.limit = 30;
             ConnectionsManager.getInstance(i7).sendRequest(tL_getSavedMusic, new s1(this, 6));
         }
@@ -41,7 +41,7 @@ public final class gp {
         fj fjVar;
         TLRPC.Document F0;
         TLRPC.Document a10 = a();
-        ArrayList arrayList = this.f24291c;
+        ArrayList arrayList = this.f24319c;
         fj fjVar2 = (fj) arrayList.get(i7);
         arrayList.set(i7, (fj) arrayList.get(i10));
         arrayList.set(i10, fjVar2);
@@ -64,8 +64,8 @@ public final class gp {
             return;
         }
         TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-        tL_account_saveMusic.f28431id = tL_inputDocument;
-        tL_inputDocument.f28415id = F02.f28409id;
+        tL_account_saveMusic.f28459id = tL_inputDocument;
+        tL_inputDocument.f28443id = F02.f28437id;
         tL_inputDocument.access_hash = F02.access_hash;
         byte[] bArr = F02.file_reference;
         tL_inputDocument.file_reference = bArr;
@@ -76,7 +76,7 @@ public final class gp {
             tL_account_saveMusic.flags |= 2;
             TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
             tL_account_saveMusic.after_id = tL_inputDocument2;
-            tL_inputDocument2.f28415id = F0.f28409id;
+            tL_inputDocument2.f28443id = F0.f28437id;
             tL_inputDocument2.access_hash = F0.access_hash;
             byte[] bArr2 = F0.file_reference;
             tL_inputDocument2.file_reference = bArr2;
@@ -85,15 +85,15 @@ public final class gp {
             }
         }
         tL_account_saveMusic.unsave = false;
-        ConnectionsManager.getInstance(this.f24289a).sendRequest(tL_account_saveMusic, null);
+        ConnectionsManager.getInstance(this.f24317a).sendRequest(tL_account_saveMusic, null);
     }
 
     public final fj d(TLRPC.Document document) {
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        tL_message.f28424id = bz.p();
-        int i7 = this.f24289a;
+        tL_message.f28452id = bz.p();
+        int i7 = this.f24317a;
         mp u12 = mp.u1(i7);
-        long j3 = this.f24290b;
+        long j3 = this.f24318b;
         tL_message.peer_id = u12.B1(j3);
         tL_message.from_id = mp.u1(i7).B1(j3);
         TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
@@ -106,9 +106,9 @@ public final class gp {
 
     public final void e() {
         TLRPC.Document a10 = a();
-        int i7 = this.f24289a;
+        int i7 = this.f24317a;
         mp u12 = mp.u1(i7);
-        long j3 = this.f24290b;
+        long j3 = this.f24318b;
         TLRPC.UserFull d2 = u12.d2(j3);
         if (d2 == null) {
             return;

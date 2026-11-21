@@ -26,10 +26,10 @@ public final class k extends l {
             WidgetSandboxNative.conformance(false);
             WidgetSandboxNative.attackScan(false);
             WidgetSandboxNative.limits(null);
-            ExecutorService executorService = i1.f54788a;
+            ExecutorService executorService = i1.f54829a;
             synchronized (i1.class) {
                 try {
-                    file = i1.f54789b;
+                    file = i1.f54830b;
                     if (file == null) {
                         AssetManager assets = context.getApplicationContext().getAssets();
                         InputStream open = assets.open("WidgetSandbox/manifest.txt");
@@ -120,7 +120,7 @@ public final class k extends l {
                             fileOutputStream2.write(1);
                             fileOutputStream2.close();
                         }
-                        i1.f54789b = file2;
+                        i1.f54830b = file2;
                         file = file2;
                     }
                 } catch (Throwable th4) {

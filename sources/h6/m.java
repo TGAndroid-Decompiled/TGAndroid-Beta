@@ -33,7 +33,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import bi.r2;
+import bi.v2;
 import c8.z;
 import com.google.android.gms.common.api.internal.g1;
 import com.google.android.gms.location.LocationRequest;
@@ -43,20 +43,19 @@ import e2.s0;
 import e2.t;
 import e2.u;
 import f3.i0;
-import fi.a6;
 import fi.l2;
+import fi.l4;
 import gb.h1;
 import h2.j0;
 import h2.k0;
 import h2.l0;
 import h2.x;
+import hi.b7;
 import hi.c7;
-import hi.d7;
-import hi.r1;
-import hi.s8;
-import hi.t5;
+import hi.r8;
+import hi.s5;
+import hi.u5;
 import hi.v5;
-import hi.w5;
 import j$.util.DesugarCollections;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -100,33 +99,32 @@ import org.telegram.messenger.w9;
 import org.telegram.messenger.x9;
 import org.telegram.messenger.y9;
 import org.telegram.messenger.z9;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.v0;
-import org.telegram.ui.ActionBar.z0;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.u0;
+import org.telegram.ui.ActionBar.y0;
 import org.telegram.ui.Cells.c5;
-import org.telegram.ui.Components.b5;
-import org.telegram.ui.Components.cz;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.f61;
-import org.telegram.ui.Components.ix0;
-import org.telegram.ui.Components.kk;
-import org.telegram.ui.Components.r51;
-import org.telegram.ui.Components.si;
-import org.telegram.ui.Components.ui0;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.wx0;
-import org.telegram.ui.Components.yy;
+import org.telegram.ui.Components.az;
+import org.telegram.ui.Components.ez;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.i61;
+import org.telegram.ui.Components.kx0;
+import org.telegram.ui.Components.mk;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.ui;
+import org.telegram.ui.Components.wi0;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.yx0;
 import org.telegram.ui.bn;
 import org.telegram.ui.bn0;
 import org.xmlpull.v1.XmlPullParserException;
-public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocationServiceProvider, ap, ui0, bn0 {
-    public final int f13935a;
-    public Object f13936b;
-    public Object f13937c;
+public final class m implements g61, ib.b, c4.d, a0, OnCompleteListener, q5.b, ILocationServiceProvider, ap, wi0, bn0 {
+    public final int f13964a;
+    public Object f13965b;
+    public Object f13966c;
     public Object d;
 
     public m(int i7, boolean z10) {
-        this.f13935a = i7;
+        this.f13964a = i7;
     }
 
     public static m D(Context context, AttributeSet attributeSet, int[] iArr, int i7) {
@@ -153,7 +151,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                     if (readLine.indexOf(58) >= 0) {
                         if (readLine.startsWith("BEGIN:VCARD")) {
                             mVar = new m(21, false);
-                            mVar.f13937c = new ArrayList();
+                            mVar.f13966c = new ArrayList();
                             mVar.d = new ArrayList();
                         } else if (readLine.startsWith("END:VCARD") && mVar != null) {
                             z10 = true;
@@ -201,11 +199,11 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                                 }
                             }
                             i7 = i11;
-                            mVar.f13936b = strArr[1];
-                            if (str3 != null && str3.equalsIgnoreCase("QUOTED-PRINTABLE") && (H = g0.H(g0.h1((String) mVar.f13936b))) != null && H.length != 0) {
-                                mVar.f13936b = new String(H, str4);
+                            mVar.f13965b = strArr[1];
+                            if (str3 != null && str3.equalsIgnoreCase("QUOTED-PRINTABLE") && (H = g0.H(g0.h1((String) mVar.f13965b))) != null && H.length != 0) {
+                                mVar.f13965b = new String(H, str4);
                             }
-                            mVar.f13936b = ((String) mVar.f13936b).replace(';', ' ');
+                            mVar.f13965b = ((String) mVar.f13965b).replace(';', ' ');
                         } else {
                             i7 = i11;
                             if (strArr[i7].startsWith("TEL")) {
@@ -215,7 +213,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                             } else if (strArr[i7].startsWith("EMAIL")) {
                                 String str5 = strArr[1];
                                 if (str5.length() > 0) {
-                                    ((ArrayList) mVar.f13937c).add(str5);
+                                    ((ArrayList) mVar.f13966c).add(str5);
                                 }
                             }
                         }
@@ -245,17 +243,17 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                 }
                 sb3.append(str6);
             }
-            for (int i15 = i13; i15 < ((ArrayList) mVar.f13937c).size(); i15++) {
+            for (int i15 = i13; i15 < ((ArrayList) mVar.f13966c).size(); i15++) {
                 if (sb3.length() > 0) {
                     sb3.append('\n');
                 }
-                sb3.append(pf.b.c().b((String) ((ArrayList) mVar.f13937c).get(i15)));
+                sb3.append(pf.b.c().b((String) ((ArrayList) mVar.f13966c).get(i15)));
             }
-            if (!TextUtils.isEmpty((String) mVar.f13936b)) {
+            if (!TextUtils.isEmpty((String) mVar.f13965b)) {
                 if (sb3.length() > 0) {
                     sb3.append('\n');
                 }
-                sb3.append((String) mVar.f13936b);
+                sb3.append((String) mVar.f13965b);
             }
             return sb3;
         } catch (Throwable unused2) {
@@ -270,7 +268,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     public static Object[] l(Object[] objArr, int[] iArr) {
         int length = objArr.length;
         Class<?> componentType = objArr.getClass().getComponentType();
-        ix0 ix0Var = wx0.T;
+        kx0 kx0Var = yx0.T;
         int i7 = -1;
         for (int i10 : iArr) {
             i7 = Math.max(i7, i10);
@@ -283,7 +281,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     }
 
     public Paint B(float f10, int i7) {
-        Paint[] paintArr = (Paint[]) this.f13936b;
+        Paint[] paintArr = (Paint[]) this.f13965b;
         if (paintArr[i7] == null) {
             Paint paint = new Paint(1);
             paintArr[i7] = paint;
@@ -296,7 +294,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     }
 
     public int C(gc.e eVar) {
-        ArrayList arrayList = (ArrayList) this.f13936b;
+        ArrayList arrayList = (ArrayList) this.f13965b;
         int size = arrayList.size();
         int i7 = 0;
         int i10 = 0;
@@ -305,7 +303,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             i10++;
             ic.e eVar2 = (ic.e) obj;
             int i11 = eVar2.d;
-            gc.d dVar = eVar2.f16218a;
+            gc.d dVar = eVar2.f16243a;
             int a10 = dVar.a(eVar);
             int i12 = a10 + 4;
             int ordinal = dVar.ordinal();
@@ -354,13 +352,13 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     }
 
     public void G() {
-        ((TypedArray) this.f13937c).recycle();
+        ((TypedArray) this.f13966c).recycle();
     }
 
     public void H(b3.a aVar) {
-        m2.i iVar = (m2.i) ((HashMap) this.f13936b).remove(aVar);
+        m2.i iVar = (m2.i) ((HashMap) this.f13965b).remove(aVar);
         iVar.getClass();
-        l2.g gVar = (l2.g) ((l2.h) this.d).f19401p.get(iVar);
+        l2.g gVar = (l2.g) ((l2.h) this.d).f19429p.get(iVar);
         if (gVar != null) {
             synchronized (gVar) {
                 gVar.d--;
@@ -370,61 +368,61 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     public void I(String str) {
         if (str != null) {
-            this.f13936b = str;
+            this.f13965b = str;
             return;
         }
         throw new NullPointerException("Null backendName");
     }
 
     public synchronized void J() {
-        ((l2.h) this.d).f19390c.e();
+        ((l2.h) this.d).f19418c.e();
     }
 
     public void K(boolean z10, float f10) {
-        z0[] z0VarArr = (z0[]) this.d;
-        for (int i7 = 0; i7 < z0VarArr.length; i7++) {
+        y0[] y0VarArr = (y0[]) this.d;
+        for (int i7 = 0; i7 < y0VarArr.length; i7++) {
             if (z10 && ((i7 == 0 && Math.abs(f10 - 0.2f) < 0.01f) || ((i7 == 1 && Math.abs(f10 - 0.5f) < 0.1f) || ((i7 == 2 && Math.abs(f10 - 1.0f) < 0.1f) || ((i7 == 3 && Math.abs(f10 - 1.5f) < 0.1f) || (i7 == 4 && Math.abs(f10 - 2.0f) < 0.1f)))))) {
-                z0VarArr[i7].d(-9718023, -9718023);
+                y0VarArr[i7].d(-9718023, -9718023);
             } else {
-                z0VarArr[i7].d(-328966, -328966);
+                y0VarArr[i7].d(-328966, -328966);
             }
         }
-        ((v0) this.f13937c).e(true, f10);
+        ((u0) this.f13966c).e(true, f10);
     }
 
     @Override
     public void a() {
-        ((vf.b) this.f13936b).b();
-        ((h2) this.f13937c).presentFragment(new bn((Bundle) this.d));
+        ((vf.b) this.f13965b).b();
+        ((g2) this.f13966c).presentFragment(new bn((Bundle) this.d));
     }
 
     @Override
     public void b(k0 k0Var, f3.q qVar, f0 f0Var) {
-        this.f13937c = k0Var;
+        this.f13966c = k0Var;
         f0Var.b();
         f0Var.c();
-        i0 d2 = qVar.d2(f0Var.f20613c, 5);
+        i0 d2 = qVar.d2(f0Var.f20641c, 5);
         this.d = d2;
-        d2.g((u) this.f13936b);
+        d2.g((u) this.f13965b);
     }
 
     @Override
     public void b0() {
-        ((kk) this.d).R.A();
+        ((mk) this.d).R.A();
     }
 
     @Override
     public void c(x xVar) {
         long d;
         long j3;
-        ((k0) this.f13937c).getClass();
-        String str = l0.f13783a;
-        k0 k0Var = (k0) this.f13937c;
+        ((k0) this.f13966c).getClass();
+        String str = l0.f13812a;
+        k0 k0Var = (k0) this.f13966c;
         synchronized (k0Var) {
             try {
-                long j10 = k0Var.f13777c;
+                long j10 = k0Var.f13806c;
                 if (j10 != -9223372036854775807L) {
-                    d = j10 + k0Var.f13776b;
+                    d = j10 + k0Var.f13805b;
                 } else {
                     d = k0Var.d();
                 }
@@ -432,14 +430,14 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             } finally {
             }
         }
-        long e10 = ((k0) this.f13937c).e();
+        long e10 = ((k0) this.f13966c).e();
         if (j3 != -9223372036854775807L && e10 != -9223372036854775807L) {
-            u uVar = (u) this.f13936b;
-            if (e10 != uVar.f10770x) {
+            u uVar = (u) this.f13965b;
+            if (e10 != uVar.f10799x) {
                 t a10 = uVar.a();
-                a10.f10718w = e10;
+                a10.f10747w = e10;
                 u uVar2 = new u(a10);
-                this.f13936b = uVar2;
+                this.f13965b = uVar2;
                 ((i0) this.d).g(uVar2);
             }
             int a11 = xVar.a();
@@ -451,19 +449,19 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     @Override
     public void checkLocationSettings(qa qaVar, q0.a aVar) {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(((z9) qaVar).f28274a);
-        u7.c cVar = (u7.c) this.f13937c;
+        arrayList.add(((z9) qaVar).f28302a);
+        u7.c cVar = (u7.c) this.f13966c;
         j8.c cVar2 = new j8.c(arrayList, false, false);
         cVar.getClass();
         com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-        b10.f6354c = new c5(cVar2);
-        b10.f6352a = 2426;
+        b10.f6383c = new c5(cVar2);
+        b10.f6381a = 2426;
         cVar.e(0, b10.a()).addOnCompleteListener(new w9(aVar, 1));
     }
 
     @Override
     public boolean checkServices() {
-        return nt.f25966b.hasServices();
+        return nt.f25994b.hasServices();
     }
 
     @Override
@@ -483,8 +481,8 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     @Override
     public void f(boolean z10) {
-        ((vf.b) this.f13936b).b();
-        ((h2) this.f13937c).presentFragment(new bn((Bundle) this.d));
+        ((vf.b) this.f13965b).b();
+        ((g2) this.f13966c).presentFragment(new bn((Bundle) this.d));
     }
 
     @Override
@@ -494,21 +492,21 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     @Override
     public Object mo24get() {
-        switch (this.f13935a) {
+        switch (this.f13964a) {
             case 4:
-                return new jb.p((id.h) ((ib.c) this.f13936b).mo24get(), (h1) ((ib.c) this.f13937c).mo24get(), (m1.g) ((ib.c) this.d).mo24get());
+                return new jb.p((id.h) ((ib.c) this.f13965b).mo24get(), (h1) ((ib.c) this.f13966c).mo24get(), (m1.g) ((ib.c) this.d).mo24get());
             default:
-                return new o5.s(new qb.a(28), new pb.b(28), (t5.b) ((r7) this.f13936b).mo24get(), (ia.c) ((ga.d) this.f13937c).mo24get(), (c0) ((xi.e) this.d).mo24get());
+                return new o5.s(new qb.a(28), new pb.b(28), (t5.b) ((r7) this.f13965b).mo24get(), (ia.c) ((ga.d) this.f13966c).mo24get(), (c0) ((xi.e) this.d).mo24get());
         }
     }
 
     @Override
     public void getLastLocation(q0.a aVar) {
-        u7.c cVar = (u7.c) this.f13936b;
+        u7.c cVar = (u7.c) this.f13965b;
         cVar.getClass();
         com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-        b10.f6354c = u7.a.f58436c;
-        b10.f6352a = 2414;
+        b10.f6383c = u7.a.f58477c;
+        b10.f6381a = 2414;
         cVar.e(0, b10.a()).addOnCompleteListener(new w9(aVar, 0));
     }
 
@@ -532,17 +530,17 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     @Override
     public void init(Context context) {
-        com.google.android.gms.common.api.e eVar = j8.b.f17319a;
-        com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f6207c;
-        com.google.android.gms.common.api.e eVar2 = u7.c.f58438l;
-        com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f6197j;
-        this.f13936b = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
-        this.f13937c = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
+        com.google.android.gms.common.api.e eVar = j8.b.f17344a;
+        com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f6236c;
+        com.google.android.gms.common.api.e eVar2 = u7.c.f58479l;
+        com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f6226j;
+        this.f13965b = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
+        this.f13966c = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
     }
 
     public o5.i j() {
         String str;
-        if (((String) this.f13936b) == null) {
+        if (((String) this.f13965b) == null) {
             str = " backendName";
         } else {
             str = "";
@@ -551,35 +549,35 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             str = str.concat(" priority");
         }
         if (str.isEmpty()) {
-            return new o5.i((String) this.f13936b, (byte[]) this.f13937c, (l5.d) this.d);
+            return new o5.i((String) this.f13965b, (byte[]) this.f13966c, (l5.d) this.d);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public void k(Canvas canvas, RectF rectF, float f10) {
-        Paint[] paintArr = (Paint[]) this.f13936b;
+        Paint[] paintArr = (Paint[]) this.f13965b;
         if (paintArr[0] == null) {
             Paint paint = new Paint(1);
             paintArr[0] = paint;
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
-        paintArr[0].setShader((LinearGradient) this.f13937c);
+        paintArr[0].setShader((LinearGradient) this.f13966c);
         paintArr[0].setAlpha((int) (f10 * 255.0f));
         canvas.drawRect(rectF, paintArr[0]);
     }
 
     @Override
     public List m(long j3) {
-        List list = (List) this.f13936b;
+        List list = (List) this.f13965b;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         for (int i7 = 0; i7 < list.size(); i7++) {
-            long[] jArr = (long[]) this.f13937c;
+            long[] jArr = (long[]) this.f13966c;
             int i10 = i7 * 2;
             if (jArr[i10] <= j3 && j3 < jArr[i10 + 1]) {
                 l4.c cVar = (l4.c) list.get(i7);
-                g2.b bVar = cVar.f19643a;
-                if (bVar.f13105e == -3.4028235E38f) {
+                g2.b bVar = cVar.f19671a;
+                if (bVar.f13134e == -3.4028235E38f) {
                     arrayList2.add(cVar);
                 } else {
                     arrayList.add(bVar);
@@ -588,26 +586,26 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         }
         Collections.sort(arrayList2, new w(6));
         for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-            g2.b bVar2 = ((l4.c) arrayList2.get(i11)).f19643a;
-            arrayList.add(new g2.b(bVar2.f13102a, bVar2.f13103b, bVar2.f13104c, bVar2.d, (-1) - i11, 1, bVar2.f13107g, bVar2.h, bVar2.f13108i, bVar2.f13113n, bVar2.f13114o, bVar2.f13109j, bVar2.f13110k, bVar2.f13111l, bVar2.f13112m, bVar2.f13115p, bVar2.f13116q, bVar2.f13117r));
+            g2.b bVar2 = ((l4.c) arrayList2.get(i11)).f19671a;
+            arrayList.add(new g2.b(bVar2.f13131a, bVar2.f13132b, bVar2.f13133c, bVar2.d, (-1) - i11, 1, bVar2.f13136g, bVar2.h, bVar2.f13137i, bVar2.f13142n, bVar2.f13143o, bVar2.f13138j, bVar2.f13139k, bVar2.f13140l, bVar2.f13141m, bVar2.f13144p, bVar2.f13145q, bVar2.f13146r));
         }
         return arrayList;
     }
 
     public void n(Canvas canvas, RectF rectF, int i7, float f10) {
-        Paint[] paintArr = (Paint[]) this.f13936b;
+        Paint[] paintArr = (Paint[]) this.f13965b;
         Matrix matrix = (Matrix) this.d;
         if (f10 <= 0.0f) {
             return;
         }
-        if (((LinearGradient) this.f13937c) == null) {
-            this.f13937c = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        if (((LinearGradient) this.f13966c) == null) {
+            this.f13966c = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         }
         if (paintArr[i7] == null) {
             paintArr[i7] = new Paint(1);
             paintArr[i7].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
-        paintArr[i7].setShader((LinearGradient) this.f13937c);
+        paintArr[i7].setShader((LinearGradient) this.f13966c);
         matrix.reset();
         if (i7 == 0) {
             matrix.postScale(1.0f, rectF.width() / 16.0f);
@@ -625,7 +623,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             matrix.postScale(1.0f, -1.0f);
             matrix.postTranslate(rectF.left, rectF.bottom);
         }
-        ((LinearGradient) this.f13937c).setLocalMatrix(matrix);
+        ((LinearGradient) this.f13966c).setLocalMatrix(matrix);
         paintArr[i7].setAlpha((int) (255.0f * f10));
         canvas.drawRect(rectF, paintArr[i7]);
     }
@@ -637,9 +635,9 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     @Override
     public void onComplete(Task task) {
-        String str = (String) this.f13937c;
+        String str = (String) this.f13966c;
         ScheduledFuture scheduledFuture = (ScheduledFuture) this.d;
-        a0.l lVar = ((m6.c) this.f13936b).f20848a;
+        a0.l lVar = ((m6.c) this.f13965b).f20876a;
         synchronized (lVar) {
             lVar.remove(str);
         }
@@ -650,7 +648,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     public qa onCreateLocationRequest() {
         LocationRequest locationRequest = new LocationRequest(102, 3600000L, 600000L, 0L, Long.MAX_VALUE, Long.MAX_VALUE, Integer.MAX_VALUE, 0.0f, true, 3600000L, 0, 0, null, false, new WorkSource(), null);
         ?? obj = new Object();
-        obj.f28274a = locationRequest;
+        obj.f28302a = locationRequest;
         return obj;
     }
 
@@ -658,23 +656,23 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     public ra onCreateLocationServicesAPI(Context context, na naVar, final oa oaVar) {
         List list;
         boolean z10;
-        Context context2 = t0.f26913b;
+        Context context2 = t0.f26941b;
         HashSet hashSet = new HashSet();
         HashSet hashSet2 = new HashSet();
         ?? lVar = new a0.l(0);
         ?? lVar2 = new a0.l(0);
         Object obj = n6.d.d;
-        a9.e eVar = q8.b.f56069a;
+        a9.e eVar = q8.b.f56110a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         Looper mainLooper = context2.getMainLooper();
         String packageName = context2.getPackageName();
         String name = context2.getClass().getName();
-        com.google.android.gms.common.api.e eVar2 = j8.b.f17319a;
+        com.google.android.gms.common.api.e eVar2 = j8.b.f17344a;
         q6.m.i(eVar2, "Api must not be null");
         com.google.android.gms.common.api.e eVar3 = null;
         lVar2.put(eVar2, null);
-        a9.e eVar4 = eVar2.f6198a;
+        a9.e eVar4 = eVar2.f6227a;
         q6.m.i(eVar4, "Base client builder must not be null");
         switch (eVar4.f758a) {
             case 22:
@@ -702,13 +700,13 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         });
         boolean z11 = true;
         q6.m.a("must call addApi() to add at least one API", !lVar2.isEmpty());
-        q8.a aVar = q8.a.f56068a;
-        com.google.android.gms.common.api.e eVar5 = q8.b.f56070b;
+        q8.a aVar = q8.a.f56109a;
+        com.google.android.gms.common.api.e eVar5 = q8.b.f56111b;
         if (lVar2.containsKey(eVar5)) {
             aVar = (q8.a) lVar2.get(eVar5);
         }
         o3 o3Var = new o3(hashSet, lVar, packageName, name, aVar);
-        Map map = (Map) o3Var.f20160c;
+        Map map = (Map) o3Var.f20188c;
         a0.l lVar3 = new a0.l(0);
         a0.l lVar4 = new a0.l(0);
         ArrayList arrayList3 = new ArrayList();
@@ -729,7 +727,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                 Looper looper = mainLooper;
                 g1 g1Var = new g1(eVar6, z10);
                 arrayList3.add(g1Var);
-                a9.e eVar7 = eVar6.f6198a;
+                a9.e eVar7 = eVar6.f6227a;
                 q6.m.h(eVar7);
                 ArrayList arrayList4 = arrayList3;
                 Map map2 = map;
@@ -737,7 +735,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                 a0.l lVar7 = lVar5;
                 a0.l lVar8 = lVar3;
                 com.google.android.gms.common.api.c a10 = eVar7.a(context2, looper, o3Var2, obj2, g1Var, g1Var);
-                lVar6.put(eVar6.f6199b, a10);
+                lVar6.put(eVar6.f6228b, a10);
                 q6.d dVar = (q6.d) a10;
                 dVar.getClass();
                 if (dVar instanceof d6.e) {
@@ -746,8 +744,8 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                         o3Var = o3Var2;
                         eVar3 = eVar6;
                     } else {
-                        String str = eVar6.f6200c;
-                        String str2 = eVar3.f6200c;
+                        String str = eVar6.f6229c;
+                        String str2 = eVar3.f6229c;
                         throw new IllegalStateException(p5.c.m(str, " cannot be used with ", str2, new StringBuilder(String.valueOf(str).length() + 21 + String.valueOf(str2).length())));
                     }
                 } else {
@@ -768,28 +766,28 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                 Looper looper2 = mainLooper;
                 if (eVar3 != null) {
                     boolean equals = hashSet.equals(hashSet2);
-                    String str3 = eVar3.f6200c;
+                    String str3 = eVar3.f6229c;
                     if (!equals) {
                         throw new IllegalStateException(p0.p("Must not set scopes in GoogleApiClient.Builder when using ", str3, ". Set account in GoogleSignInOptions.Builder instead."));
                     }
                 }
                 com.google.android.gms.common.api.internal.f0 f0Var = new com.google.android.gms.common.api.internal.f0(context2, new ReentrantLock(), looper2, o3Var3, fVar, arrayList, arrayList2, fVar2, com.google.android.gms.common.api.internal.f0.h(fVar2.values(), true), arrayList5);
-                Set set = com.google.android.gms.common.api.m.f6394a;
+                Set set = com.google.android.gms.common.api.m.f6423a;
                 synchronized (set) {
                     set.add(f0Var);
                 }
                 ?? obj3 = new Object();
-                obj3.f6250a = f0Var;
+                obj3.f6279a = f0Var;
                 return obj3;
             }
         }
     }
 
     @Override
-    public void onError(f61 f61Var, Exception exc) {
-        s8 s8Var = ((w5) this.d).O;
-        if (s8Var != null) {
-            s8Var.run();
+    public void onError(i61 i61Var, Exception exc) {
+        r8 r8Var = ((v5) this.d).O;
+        if (r8Var != null) {
+            r8Var.run();
         }
     }
 
@@ -799,16 +797,16 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     @Override
     public void onStateChanged(boolean z10, int i7) {
-        w5 w5Var = (w5) this.d;
-        t5 t5Var = w5Var.L;
-        f61 f61Var = w5Var.f15650e;
-        if (f61Var == null) {
+        v5 v5Var = (v5) this.d;
+        s5 s5Var = v5Var.L;
+        i61 i61Var = v5Var.f15623e;
+        if (i61Var == null) {
             return;
         }
-        if (f61Var.d0()) {
-            g0.g3(t5Var);
+        if (i61Var.d0()) {
+            g0.g3(s5Var);
         } else {
-            g0.r(t5Var);
+            g0.r(s5Var);
         }
     }
 
@@ -819,40 +817,40 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        ((w5) this.d).i();
+        ((v5) this.d).i();
     }
 
     @Override
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
-        w5 w5Var = (w5) this.d;
-        d7 d7Var = (d7) this.f13936b;
-        if (d7Var != null) {
-            c7 V = w5Var.f15650e.V(d7Var.f14395d1);
-            d7Var.f14395d1 = V;
-            v51 v51Var = w5Var.f15660n;
-            if (v51Var != null) {
-                v51Var.setHDRInfo(V);
+        v5 v5Var = (v5) this.d;
+        c7 c7Var = (c7) this.f13965b;
+        if (c7Var != null) {
+            b7 V = v5Var.f15623e.V(c7Var.f14345d1);
+            c7Var.f14345d1 = V;
+            y51 y51Var = v5Var.f15633n;
+            if (y51Var != null) {
+                y51Var.setHDRInfo(V);
             }
         }
         int i12 = (int) (i7 * f10);
-        w5Var.f15652f = i12;
+        v5Var.f15625f = i12;
         int i13 = (int) (i10 * f10);
-        w5Var.h = i13;
-        if (d7Var != null && (d7Var.f14409k0 != i12 || d7Var.f14411l0 != i13)) {
-            d7Var.f14409k0 = i12;
-            d7Var.f14411l0 = i13;
-            d7Var.A();
+        v5Var.h = i13;
+        if (c7Var != null && (c7Var.f14359k0 != i12 || c7Var.f14361l0 != i13)) {
+            c7Var.f14359k0 = i12;
+            c7Var.f14361l0 = i13;
+            c7Var.A();
         }
-        w5Var.b();
-        v51 v51Var2 = w5Var.f15660n;
-        if (v51Var2 != null) {
-            int i14 = w5Var.f15652f;
-            int i15 = w5Var.h;
-            v51Var2.d = i14;
-            v51Var2.f40503e = i15;
-            cz czVar = v51Var2.f40501b;
-            if (czVar != null) {
-                czVar.postRunnable(new yy(czVar, i14, i15, 0));
+        v5Var.b();
+        y51 y51Var2 = v5Var.f15633n;
+        if (y51Var2 != null) {
+            int i14 = v5Var.f15625f;
+            int i15 = v5Var.h;
+            y51Var2.d = i14;
+            y51Var2.f42332e = i15;
+            ez ezVar = y51Var2.f42330b;
+            if (ezVar != null) {
+                ezVar.postRunnable(new az(ezVar, i14, i15, 0));
             }
         }
     }
@@ -868,9 +866,9 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     }
 
     public Object r(Bitmap bitmap) {
-        ih.a aVar = (ih.a) this.f13936b;
+        ih.a aVar = (ih.a) this.f13965b;
         if (aVar.a(bitmap)) {
-            this.d = ((ih.b) this.f13937c).b(bitmap);
+            this.d = ((ih.b) this.f13966c).b(bitmap);
             aVar.b(bitmap);
         }
         return this.d;
@@ -880,11 +878,11 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     public synchronized void removeLocationUpdates(pa paVar) {
         x9 x9Var = (x9) ((HashMap) this.d).remove(paVar);
         if (x9Var != null) {
-            u7.c cVar = (u7.c) this.f13936b;
+            u7.c cVar = (u7.c) this.f13965b;
             cVar.getClass();
             String simpleName = x9.class.getSimpleName();
             q6.m.g(simpleName, "Listener type must not be empty");
-            cVar.c(new com.google.android.gms.common.api.internal.m(x9Var, simpleName), 2418).continueWith(u7.b.f58437a, u7.a.f58435b);
+            cVar.c(new com.google.android.gms.common.api.internal.m(x9Var, simpleName), 2418).continueWith(u7.b.f58478a, u7.a.f58476b);
         }
     }
 
@@ -892,22 +890,22 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     public synchronized void requestLocationUpdates(qa qaVar, pa paVar) {
         x9 x9Var = (x9) ((HashMap) this.d).remove(paVar);
         if (x9Var != null) {
-            u7.c cVar = (u7.c) this.f13936b;
+            u7.c cVar = (u7.c) this.f13965b;
             cVar.getClass();
             String simpleName = x9.class.getSimpleName();
             q6.m.g(simpleName, "Listener type must not be empty");
-            cVar.c(new com.google.android.gms.common.api.internal.m(x9Var, simpleName), 2418).continueWith(u7.b.f58437a, u7.a.f58435b);
+            cVar.c(new com.google.android.gms.common.api.internal.m(x9Var, simpleName), 2418).continueWith(u7.b.f58478a, u7.a.f58476b);
         }
         x9 x9Var2 = new x9(paVar);
         ((HashMap) this.d).put(paVar, x9Var2);
-        ((u7.c) this.f13936b).f(((z9) qaVar).f28274a, x9Var2, Looper.getMainLooper());
+        ((u7.c) this.f13965b).f(((z9) qaVar).f28302a, x9Var2, Looper.getMainLooper());
     }
 
     public ColorStateList s(int i7) {
         int resourceId;
         ColorStateList a10;
-        TypedArray typedArray = (TypedArray) this.f13937c;
-        if (typedArray.hasValue(i7) && (resourceId = typedArray.getResourceId(i7, 0)) != 0 && (a10 = z.a((Context) this.f13936b, resourceId)) != null) {
+        TypedArray typedArray = (TypedArray) this.f13966c;
+        if (typedArray.hasValue(i7) && (resourceId = typedArray.getResourceId(i7, 0)) != 0 && (a10 = z.a((Context) this.f13965b, resourceId)) != null) {
             return a10;
         }
         return typedArray.getColorStateList(i7);
@@ -915,18 +913,18 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     public Drawable t(int i7) {
         int resourceId;
-        TypedArray typedArray = (TypedArray) this.f13937c;
+        TypedArray typedArray = (TypedArray) this.f13966c;
         if (typedArray.hasValue(i7) && (resourceId = typedArray.getResourceId(i7, 0)) != 0) {
-            return z.b((Context) this.f13936b, resourceId);
+            return z.b((Context) this.f13965b, resourceId);
         }
         return typedArray.getDrawable(i7);
     }
 
     public String toString() {
-        switch (this.f13935a) {
+        switch (this.f13964a) {
             case 2:
                 StringBuilder sb2 = new StringBuilder();
-                ArrayList arrayList = (ArrayList) this.f13936b;
+                ArrayList arrayList = (ArrayList) this.f13965b;
                 int size = arrayList.size();
                 ic.e eVar = null;
                 int i7 = 0;
@@ -949,11 +947,11 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     public Drawable v(int i7) {
         int resourceId;
         Drawable f10;
-        if (((TypedArray) this.f13937c).hasValue(i7) && (resourceId = ((TypedArray) this.f13937c).getResourceId(i7, 0)) != 0) {
+        if (((TypedArray) this.f13966c).hasValue(i7) && (resourceId = ((TypedArray) this.f13966c).getResourceId(i7, 0)) != 0) {
             m.q a10 = m.q.a();
-            Context context = (Context) this.f13936b;
+            Context context = (Context) this.f13965b;
             synchronized (a10) {
-                f10 = a10.f20181a.f(resourceId, context, true);
+                f10 = a10.f20209a.f(resourceId, context, true);
             }
             return f10;
         }
@@ -964,12 +962,12 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     public void v0(int i7, boolean z10, boolean z11) {
         String str;
         if (!z10) {
-            kk kkVar = (kk) this.d;
-            HashMap hashMap = (HashMap) this.f13936b;
-            ArrayList arrayList = (ArrayList) this.f13937c;
-            si siVar = kkVar.f36766b;
-            if (!hashMap.isEmpty() && kkVar.R != null && !kkVar.L) {
-                kkVar.L = true;
+            mk mkVar = (mk) this.d;
+            HashMap hashMap = (HashMap) this.f13965b;
+            ArrayList arrayList = (ArrayList) this.f13966c;
+            ui uiVar = mkVar.f37521b;
+            if (!hashMap.isEmpty() && mkVar.R != null && !mkVar.L) {
+                mkVar.L = true;
                 ArrayList arrayList2 = new ArrayList();
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     Object obj = hashMap.get(arrayList.get(i10));
@@ -979,27 +977,27 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                         ef efVar = (ef) obj;
                         String str2 = efVar.h;
                         if (str2 != null) {
-                            obj2.f28211c = str2;
+                            obj2.f28239c = str2;
                         } else {
-                            obj2.f28211c = efVar.I;
+                            obj2.f28239c = efVar.I;
                         }
-                        obj2.f28212e = efVar.f27848c;
-                        obj2.f28213f = efVar.f27851g;
-                        obj2.f28217k = efVar.f27862s;
-                        obj2.f28221o = efVar.f27847b;
-                        CharSequence charSequence = efVar.f27846a;
+                        obj2.f28240e = efVar.f27876c;
+                        obj2.f28241f = efVar.f27879g;
+                        obj2.f28245k = efVar.f27890s;
+                        obj2.f28249o = efVar.f27875b;
+                        CharSequence charSequence = efVar.f27874a;
                         if (charSequence != null) {
                             str = charSequence.toString();
                         } else {
                             str = null;
                         }
                         obj2.d = str;
-                        obj2.f28215i = efVar.f27857n;
-                        obj2.f28216j = efVar.f27861r;
-                        obj2.h = efVar.f27866x;
+                        obj2.f28243i = efVar.f27885n;
+                        obj2.f28244j = efVar.f27889r;
+                        obj2.h = efVar.f27894x;
                     }
                 }
-                b5.X(siVar.H3, siVar.Y0() + arrayList2.size(), siVar.c1(), new l2(i7, 2, kkVar, arrayList2, z11));
+                org.telegram.ui.Components.c5.X(uiVar.H3, uiVar.Y0() + arrayList2.size(), uiVar.c1(), new l2(i7, 2, mkVar, arrayList2, z11));
             }
         }
     }
@@ -1008,14 +1006,14 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         j0 j0Var2;
         XmlPullParserException xmlPullParserException;
         IOException iOException;
-        int resourceId = ((TypedArray) this.f13937c).getResourceId(i7, 0);
+        int resourceId = ((TypedArray) this.f13966c).getResourceId(i7, 0);
         if (resourceId != 0) {
             if (((TypedValue) this.d) == null) {
                 this.d = new TypedValue();
             }
-            Context context = (Context) this.f13936b;
+            Context context = (Context) this.f13965b;
             TypedValue typedValue = (TypedValue) this.d;
-            ThreadLocal threadLocal = h0.j.f13699a;
+            ThreadLocal threadLocal = h0.j.f13728a;
             if (!context.isRestricted()) {
                 Resources resources = context.getResources();
                 resources.getValue(resourceId, typedValue, true);
@@ -1027,10 +1025,10 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                         return null;
                     }
                     int i11 = typedValue.assetCookie;
-                    a0.j jVar = i0.e.f15896b;
+                    a0.j jVar = i0.e.f15921b;
                     Typeface typeface = (Typeface) jVar.a(i0.e.b(resources, resourceId, charSequence2, i11, i10));
                     if (typeface != null) {
-                        new Handler(Looper.getMainLooper()).post(new a6(20, j0Var, typeface));
+                        new Handler(Looper.getMainLooper()).post(new l4(22, j0Var, typeface));
                         return typeface;
                     }
                     try {
@@ -1076,12 +1074,12 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
                         j0Var2 = j0Var;
                         try {
                             int i12 = typedValue.assetCookie;
-                            Typeface e14 = i0.e.f15895a.e(context, resources, resourceId, charSequence2, i10);
+                            Typeface e14 = i0.e.f15920a.e(context, resources, resourceId, charSequence2, i10);
                             if (e14 != null) {
                                 jVar.b(i0.e.b(resources, resourceId, charSequence2, i12, i10), e14);
                             }
                             if (e14 != null) {
-                                new Handler(Looper.getMainLooper()).post(new a6(20, j0Var2, e14));
+                                new Handler(Looper.getMainLooper()).post(new l4(22, j0Var2, e14));
                             } else {
                                 j0Var2.b();
                             }
@@ -1116,7 +1114,7 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
 
     public void y(fa faVar) {
         try {
-            l8.f fVar = (l8.f) this.f13937c;
+            l8.f fVar = (l8.f) this.f13966c;
             k8.c cVar = new k8.c(faVar);
             Parcel p12 = fVar.p1();
             v7.b.c(p12, cVar);
@@ -1127,89 +1125,89 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     }
 
     public m(Object obj, Object obj2, Object obj3, int i7) {
-        this.f13935a = i7;
+        this.f13964a = i7;
         this.d = obj;
-        this.f13936b = obj2;
-        this.f13937c = obj3;
+        this.f13965b = obj2;
+        this.f13966c = obj3;
     }
 
     @Override
     public void onRenderedFirstFrame() {
-        d7 d7Var = (d7) this.f13936b;
-        Runnable[] runnableArr = (Runnable[]) this.f13937c;
-        w5 w5Var = (w5) this.d;
-        v5 v5Var = w5Var.I;
-        if (v5Var != null && v5Var.f15576g) {
-            int i7 = w5Var.f15652f;
-            int i10 = w5Var.h;
-            v5Var.d = true;
-            v5Var.f15574e = i7;
-            v5Var.f15575f = i10;
-            org.telegram.ui.web.b bVar = v5Var.f15573c;
+        c7 c7Var = (c7) this.f13965b;
+        Runnable[] runnableArr = (Runnable[]) this.f13966c;
+        v5 v5Var = (v5) this.d;
+        u5 u5Var = v5Var.I;
+        if (u5Var != null && u5Var.f15543g) {
+            int i7 = v5Var.f15625f;
+            int i10 = v5Var.h;
+            u5Var.d = true;
+            u5Var.f15541e = i7;
+            u5Var.f15542f = i10;
+            org.telegram.ui.web.b bVar = u5Var.f15540c;
             if (bVar != null) {
-                bVar.a(Integer.valueOf(i7), Integer.valueOf(v5Var.f15575f));
+                bVar.a(Integer.valueOf(i7), Integer.valueOf(u5Var.f15542f));
             }
         }
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
-            w5Var.post(runnable);
+            v5Var.post(runnable);
             runnableArr[0] = null;
-            Bitmap bitmap = w5Var.f15643a;
+            Bitmap bitmap = v5Var.f15616a;
             if (bitmap != null) {
                 bitmap.recycle();
-                if (d7Var.M0 == w5Var.f15643a) {
-                    d7Var.M0 = null;
+                if (c7Var.M0 == v5Var.f15616a) {
+                    c7Var.M0 = null;
                 }
-                w5Var.f15643a = null;
-                w5Var.invalidate();
+                v5Var.f15616a = null;
+                v5Var.invalidate();
                 return;
             }
             return;
         }
-        v51 v51Var = w5Var.f15660n;
-        if (v51Var != null) {
-            if (v5Var == null || !v5Var.f15576g) {
-                v51Var.animate().alpha(1.0f).setDuration(180L).withEndAction(new r1(6, this, d7Var)).start();
+        y51 y51Var = v5Var.f15633n;
+        if (y51Var != null) {
+            if (u5Var == null || !u5Var.f15543g) {
+                y51Var.animate().alpha(1.0f).setDuration(180L).withEndAction(new hi.c(8, this, c7Var)).start();
             }
         }
     }
 
     public m(Object obj, Object obj2, Object obj3, boolean z10, int i7) {
-        this.f13935a = i7;
-        this.f13936b = obj;
-        this.f13937c = obj2;
+        this.f13964a = i7;
+        this.f13965b = obj;
+        this.f13966c = obj2;
         this.d = obj3;
     }
 
-    public m(ai.k0 k0Var, l8.f fVar) {
-        this.f13935a = 7;
-        this.f13937c = fVar;
-        q6.m.h(k0Var);
-        this.f13936b = k0Var;
+    public m(ai.l0 l0Var, l8.f fVar) {
+        this.f13964a = 7;
+        this.f13966c = fVar;
+        q6.m.h(l0Var);
+        this.f13965b = l0Var;
     }
 
     public m(h hVar) {
-        this.f13935a = 0;
+        this.f13964a = 0;
         this.d = hVar;
-        this.f13937c = new AtomicLong((j6.a.f17240b.nextLong() & 65535) * 10000);
+        this.f13966c = new AtomicLong((j6.a.f17265b.nextLong() & 65535) * 10000);
     }
 
     public m(ih.b bVar) {
-        this.f13935a = 3;
-        this.f13936b = new ih.a();
-        this.f13937c = bVar;
+        this.f13964a = 3;
+        this.f13965b = new ih.a();
+        this.f13966c = bVar;
     }
 
     public m(Context context) {
-        this.f13935a = 19;
-        this.f13936b = context;
+        this.f13964a = 19;
+        this.f13965b = context;
     }
 
     public m(int i7) {
-        this.f13935a = i7;
+        this.f13964a = i7;
         switch (i7) {
             case 29:
-                this.f13936b = new Paint[4];
+                this.f13965b = new Paint[4];
                 this.d = new Matrix();
                 return;
             default:
@@ -1219,17 +1217,17 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     }
 
     public m(ArrayList arrayList) {
-        this.f13935a = 9;
-        this.f13936b = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
-        this.f13937c = new long[arrayList.size() * 2];
+        this.f13964a = 9;
+        this.f13965b = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
+        this.f13966c = new long[arrayList.size() * 2];
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             l4.c cVar = (l4.c) arrayList.get(i7);
             int i10 = i7 * 2;
-            long[] jArr = (long[]) this.f13937c;
-            jArr[i10] = cVar.f19644b;
-            jArr[i10 + 1] = cVar.f19645c;
+            long[] jArr = (long[]) this.f13966c;
+            jArr[i10] = cVar.f19672b;
+            jArr[i10 + 1] = cVar.f19673c;
         }
-        long[] jArr2 = (long[]) this.f13937c;
+        long[] jArr2 = (long[]) this.f13966c;
         long[] copyOf = Arrays.copyOf(jArr2, jArr2.length);
         this.d = copyOf;
         Arrays.sort(copyOf);
@@ -1244,11 +1242,11 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     }
 
     public m(View view) {
-        this.f13935a = 28;
+        this.f13964a = 28;
         this.d = view;
-        r51 r51Var = new r51(this, view);
-        this.f13936b = r51Var;
-        view.addOnLayoutChangeListener(r51Var);
+        u51 u51Var = new u51(this, view);
+        this.f13965b = u51Var;
+        view.addOnLayoutChangeListener(u51Var);
     }
 
     @Override
@@ -1264,72 +1262,72 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
     }
 
     public m(String str) {
-        this.f13935a = 12;
+        this.f13964a = 12;
         t tVar = new t();
-        tVar.f10713q = s0.n("video/mp2t");
-        tVar.f10714r = s0.n(str);
-        this.f13936b = new u(tVar);
+        tVar.f10742q = s0.n("video/mp2t");
+        tVar.f10743r = s0.n(str);
+        this.f13965b = new u(tVar);
     }
 
     public m(Context context, TypedArray typedArray) {
-        this.f13935a = 11;
-        this.f13936b = context;
-        this.f13937c = typedArray;
+        this.f13964a = 11;
+        this.f13965b = context;
+        this.f13966c = typedArray;
     }
 
     public m(f2.n[] nVarArr) {
-        this.f13935a = 15;
+        this.f13964a = 15;
         w0 w0Var = new w0();
         ?? obj = new Object();
-        obj.f11082c = 1.0f;
+        obj.f11111c = 1.0f;
         obj.d = 1.0f;
-        f2.k kVar = f2.k.f11048e;
-        obj.f11083e = kVar;
-        obj.f11084f = kVar;
-        obj.f11085g = kVar;
+        f2.k kVar = f2.k.f11077e;
+        obj.f11112e = kVar;
+        obj.f11113f = kVar;
+        obj.f11114g = kVar;
         obj.h = kVar;
-        ByteBuffer byteBuffer = f2.n.f11054a;
-        obj.f11088k = byteBuffer;
-        obj.f11089l = byteBuffer;
-        obj.f11081b = -1;
+        ByteBuffer byteBuffer = f2.n.f11083a;
+        obj.f11117k = byteBuffer;
+        obj.f11118l = byteBuffer;
+        obj.f11110b = -1;
         f2.n[] nVarArr2 = new f2.n[nVarArr.length + 2];
-        this.f13936b = nVarArr2;
+        this.f13965b = nVarArr2;
         System.arraycopy(nVarArr, 0, nVarArr2, 0, nVarArr.length);
-        this.f13937c = w0Var;
+        this.f13966c = w0Var;
         this.d = obj;
         nVarArr2[nVarArr.length] = w0Var;
         nVarArr2[nVarArr.length + 1] = obj;
     }
 
     public m(Signature signature) {
-        this.f13935a = 6;
-        this.f13936b = signature;
-        this.f13937c = null;
+        this.f13964a = 6;
+        this.f13965b = signature;
+        this.f13966c = null;
         this.d = null;
     }
 
     public m(Cipher cipher) {
-        this.f13935a = 6;
-        this.f13937c = cipher;
-        this.f13936b = null;
+        this.f13964a = 6;
+        this.f13966c = cipher;
+        this.f13965b = null;
         this.d = null;
     }
 
     public m(Mac mac) {
-        this.f13935a = 6;
+        this.f13964a = 6;
         this.d = mac;
-        this.f13937c = null;
-        this.f13936b = null;
+        this.f13966c = null;
+        this.f13965b = null;
     }
 
     public m(View view, jh.k kVar) {
         ViewTreeObserver viewTreeObserver;
         ViewTreeObserver viewTreeObserver2;
-        this.f13935a = 5;
-        r2 r2Var = new r2(this, 6);
-        this.f13936b = view;
-        this.f13937c = kVar;
-        view.addOnAttachStateChangeListener(r2Var);
+        this.f13964a = 5;
+        v2 v2Var = new v2(this, 6);
+        this.f13965b = view;
+        this.f13966c = kVar;
+        view.addOnAttachStateChangeListener(v2Var);
         if (!view.isAttachedToWindow() || (viewTreeObserver2 = (ViewTreeObserver) this.d) == (viewTreeObserver = view.getViewTreeObserver())) {
             return;
         }
@@ -1349,9 +1347,9 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         gc.d dVar2;
         int i7;
         int i10;
-        this.f13935a = 2;
+        this.f13964a = 2;
         this.d = qVar;
-        this.f13936b = new ArrayList();
+        this.f13965b = new ArrayList();
         ic.d dVar3 = dVar;
         int i11 = 0;
         int i12 = 0;
@@ -1360,21 +1358,21 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             if (dVar3 == null) {
                 break;
             }
-            int i13 = dVar3.f16215c;
+            int i13 = dVar3.f16240c;
             int i14 = i11 + dVar3.d;
-            ic.d dVar4 = dVar3.f16216e;
+            ic.d dVar4 = dVar3.f16241e;
             int i15 = i12;
-            gc.d dVar5 = dVar3.f16213a;
-            boolean z10 = (dVar5 == gc.d.BYTE && dVar4 == null && i13 != 0) || !(dVar4 == null || i13 == dVar4.f16215c);
+            gc.d dVar5 = dVar3.f16238a;
+            boolean z10 = (dVar5 == gc.d.BYTE && dVar4 == null && i13 != 0) || !(dVar4 == null || i13 == dVar4.f16240c);
             i7 = z10 ? 1 : i15;
-            if (dVar4 == null || dVar4.f16213a != dVar5 || z10) {
-                ((ArrayList) this.f13936b).add(0, new ic.e(this, dVar5, dVar3.f16214b, i13, i14));
+            if (dVar4 == null || dVar4.f16238a != dVar5 || z10) {
+                ((ArrayList) this.f13965b).add(0, new ic.e(this, dVar5, dVar3.f16239b, i13, i14));
                 i10 = 0;
             } else {
                 i10 = i14;
             }
             if (z10) {
-                ((ArrayList) this.f13936b).add(0, new ic.e(this, dVar2, dVar3.f16214b, dVar3.f16215c, 0));
+                ((ArrayList) this.f13965b).add(0, new ic.e(this, dVar2, dVar3.f16239b, dVar3.f16240c, 0));
             }
             i12 = i7;
             dVar3 = dVar4;
@@ -1384,13 +1382,13 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         boolean z11 = qVar.f987a;
         gc.b bVar = (gc.b) qVar.d;
         if (z11) {
-            ic.e eVar2 = (ic.e) ((ArrayList) this.f13936b).get(0);
-            if (eVar2 != null && eVar2.f16218a != dVar2 && i16 != 0) {
-                ((ArrayList) this.f13936b).add(0, new ic.e(this, dVar2, 0, 0, 0));
+            ic.e eVar2 = (ic.e) ((ArrayList) this.f13965b).get(0);
+            if (eVar2 != null && eVar2.f16243a != dVar2 && i16 != 0) {
+                ((ArrayList) this.f13965b).add(0, new ic.e(this, dVar2, 0, 0, 0));
             }
-            ((ArrayList) this.f13936b).add(((ic.e) ((ArrayList) this.f13936b).get(0)).f16218a == dVar2 ? 1 : 0, new ic.e(this, gc.d.FNC1_FIRST_POSITION, 0, 0, 0));
+            ((ArrayList) this.f13965b).add(((ic.e) ((ArrayList) this.f13965b).get(0)).f16243a == dVar2 ? 1 : 0, new ic.e(this, gc.d.FNC1_FIRST_POSITION, 0, 0, 0));
         }
-        int i17 = eVar.f13468a;
+        int i17 = eVar.f13497a;
         int i18 = 26;
         int c10 = p1.g.c(i17 <= 9 ? 1 : i17 <= 26 ? 2 : 3);
         if (c10 == 0) {
@@ -1408,18 +1406,18 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
         while (i17 > i7 && ic.b.d(C, gc.e.c(i17 - 1), bVar)) {
             i17--;
         }
-        this.f13937c = gc.e.c(i17);
+        this.f13966c = gc.e.c(i17);
     }
 
     public m(l2.h hVar, m2.i iVar) {
-        this.f13935a = 8;
+        this.f13964a = 8;
         this.d = hVar;
-        this.f13936b = new HashMap();
-        this.f13937c = iVar;
+        this.f13965b = new HashMap();
+        this.f13966c = iVar;
     }
 
     public m(Object[] objArr, Object[] objArr2) {
-        this.f13935a = 27;
+        this.f13964a = 27;
         int length = objArr.length;
         int[] iArr = new int[length];
         HashMap hashMap = new HashMap();
@@ -1432,8 +1430,8 @@ public final class m implements d61, ib.b, c4.d, a0, OnCompleteListener, q5.b, I
             }
             iArr[i7] = num.intValue();
         }
-        this.f13936b = iArr;
-        this.f13937c = l(objArr, iArr);
+        this.f13965b = iArr;
+        this.f13966c = l(objArr, iArr);
         this.d = l(objArr2, iArr);
     }
 

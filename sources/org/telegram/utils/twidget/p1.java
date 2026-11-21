@@ -15,10 +15,10 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.j10;
 import org.telegram.messenger.mp;
-import org.telegram.ui.Components.pp0;
+import org.telegram.ui.Components.rp0;
 import org.telegram.ui.qx0;
 public final class p1 {
-    public static boolean f54880e0;
+    public static boolean f54921e0;
     public volatile boolean A;
     public volatile boolean B;
     public volatile long C;
@@ -45,36 +45,36 @@ public final class p1 {
     public final j1 X;
     public final l1 Y;
     public long Z;
-    public boolean f54882a0;
-    public final j1 f54884b0;
-    public long f54886c0;
-    public final j1 f54887d0;
-    public final Context f54888e;
-    public final String f54889f;
-    public final int f54890g;
+    public boolean f54923a0;
+    public final j1 f54925b0;
+    public long f54927c0;
+    public final j1 f54928d0;
+    public final Context f54929e;
+    public final String f54930f;
+    public final int f54931g;
     public final String h;
-    public final String f54891i;
-    public volatile String f54893k;
-    public final float f54894l;
-    public volatile int f54902t;
-    public volatile boolean f54903u;
+    public final String f54932i;
+    public volatile String f54934k;
+    public final float f54935l;
+    public volatile int f54943t;
+    public volatile boolean f54944u;
     public volatile long v;
-    public volatile float f54905x;
-    public volatile long f54907z;
-    public final Handler f54881a = new Handler(Looper.getMainLooper());
-    public final WidgetSandboxBackend f54883b = new WidgetSandboxBackend(this);
-    public final l f54885c = z0.f54997z;
+    public volatile float f54946x;
+    public volatile long f54948z;
+    public final Handler f54922a = new Handler(Looper.getMainLooper());
+    public final WidgetSandboxBackend f54924b = new WidgetSandboxBackend(this);
+    public final l f54926c = z0.f55038z;
     public volatile e0 d = new e0(null);
-    public volatile String f54892j = "{}";
-    public final long f54895m = System.nanoTime();
-    public final AtomicBoolean f54896n = new AtomicBoolean();
-    public final AtomicBoolean f54897o = new AtomicBoolean();
-    public final AtomicBoolean f54898p = new AtomicBoolean();
-    public final AtomicBoolean f54899q = new AtomicBoolean();
-    public final AtomicBoolean f54900r = new AtomicBoolean();
-    public final Object f54901s = new Object();
-    public final HashMap f54904w = new HashMap();
-    public final AtomicBoolean f54906y = new AtomicBoolean();
+    public volatile String f54933j = "{}";
+    public final long f54936m = System.nanoTime();
+    public final AtomicBoolean f54937n = new AtomicBoolean();
+    public final AtomicBoolean f54938o = new AtomicBoolean();
+    public final AtomicBoolean f54939p = new AtomicBoolean();
+    public final AtomicBoolean f54940q = new AtomicBoolean();
+    public final AtomicBoolean f54941r = new AtomicBoolean();
+    public final Object f54942s = new Object();
+    public final HashMap f54945w = new HashMap();
+    public final AtomicBoolean f54947y = new AtomicBoolean();
 
     public p1(Context context, String str, String str2, int i7, String str3, String str4) {
         new JSONObject();
@@ -89,40 +89,40 @@ public final class p1 {
                 p1 p1Var = p1.this;
                 p1Var.J = false;
                 long j10 = p1Var.v;
-                if (!p1Var.A && j10 != 0 && p1Var.f54897o.compareAndSet(false, true)) {
-                    if (p1Var.L && (p1Var.f54900r.getAndSet(false) | p1Var.f54899q.get())) {
+                if (!p1Var.A && j10 != 0 && p1Var.f54938o.compareAndSet(false, true)) {
+                    if (p1Var.L && (p1Var.f54941r.getAndSet(false) | p1Var.f54940q.get())) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (p1Var.L && p1Var.f54898p.getAndSet(false)) {
+                    if (p1Var.L && p1Var.f54939p.getAndSet(false)) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     if (z11) {
-                        p1Var.f54886c0 = j3;
+                        p1Var.f54927c0 = j3;
                     }
                     p1Var.Z = SystemClock.uptimeMillis();
-                    if (!p1Var.f54882a0) {
-                        p1Var.f54882a0 = true;
-                        p1Var.f54881a.postDelayed(p1Var.f54884b0, 5000L);
+                    if (!p1Var.f54923a0) {
+                        p1Var.f54923a0 = true;
+                        p1Var.f54922a.postDelayed(p1Var.f54925b0, 5000L);
                     }
-                    p1Var.f54885c.l(j10, ((float) (j3 - p1Var.f54895m)) / 1000000.0f, z11, z10, p1Var.f54896n.getAndSet(false));
+                    p1Var.f54926c.l(j10, ((float) (j3 - p1Var.f54936m)) / 1000000.0f, z11, z10, p1Var.f54937n.getAndSet(false));
                 }
             }
         };
-        this.f54884b0 = new j1(this, 3);
-        this.f54887d0 = new j1(this, 4);
+        this.f54925b0 = new j1(this, 3);
+        this.f54928d0 = new j1(this, 4);
         if (i7 >= 1 && i7 <= 4) {
-            this.f54888e = context.getApplicationContext();
-            this.f54889f = str;
+            this.f54929e = context.getApplicationContext();
+            this.f54930f = str;
             this.H = str2;
             str2.contains("\"dark\"");
-            this.f54890g = i7;
+            this.f54931g = i7;
             this.h = str3 == null ? "en-US" : str3;
-            this.f54891i = str4 == null ? "{}" : str4;
-            this.f54894l = context.getResources().getDisplayMetrics().density;
+            this.f54932i = str4 == null ? "{}" : str4;
+            this.f54935l = context.getResources().getDisplayMetrics().density;
             return;
         }
         throw new IllegalArgumentException("CPU multiplier must be 1..4");
@@ -130,7 +130,7 @@ public final class p1 {
 
     public static boolean a() {
         for (int i7 = 0; i7 < 4; i7++) {
-            if (j10.i(i7).p() && ((org.telegram.messenger.h0) mp.u1(i7).A7.f26169u0.f13998b).f24336c) {
+            if (j10.i(i7).p() && ((org.telegram.messenger.h0) mp.u1(i7).A7.f26197u0.f14027b).f24364c) {
                 return true;
             }
         }
@@ -140,32 +140,32 @@ public final class p1 {
     public static void d(Context context) {
         ActivityManager activityManager;
         if (!a() && (activityManager = (ActivityManager) context.getSystemService("activity")) != null && !activityManager.isLowRamDevice()) {
-            org.telegram.messenger.r0 r0Var = org.telegram.messenger.r0.f26515f;
-            if (r0Var == null || r0Var.f26516a > 0) {
+            org.telegram.messenger.r0 r0Var = org.telegram.messenger.r0.f26543f;
+            if (r0Var == null || r0Var.f26544a > 0) {
                 try {
-                    z0 z0Var = z0.f54997z;
-                    synchronized (z0Var.f54998e) {
-                        if (z0Var.f55006n == null) {
-                            z0Var.f55006n = context.getApplicationContext();
+                    z0 z0Var = z0.f55038z;
+                    synchronized (z0Var.f55039e) {
+                        if (z0Var.f55047n == null) {
+                            z0Var.f55047n = context.getApplicationContext();
                         }
-                        z0Var.f55007o = true;
-                        z0Var.f55008p = true;
-                        z0Var.f54999f.removeCallbacks(z0Var.f55016y);
+                        z0Var.f55048o = true;
+                        z0Var.f55049p = true;
+                        z0Var.f55040f.removeCallbacks(z0Var.f55057y);
                         z0Var.y();
                     }
                 } catch (Exception e10) {
                     a8.g(e10, true);
                 }
             }
-            if (!f54880e0 && r0Var != null) {
-                f54880e0 = true;
+            if (!f54921e0 && r0Var != null) {
+                f54921e0 = true;
                 r0Var.d.add(new m1(context));
             }
         }
     }
 
     public final void b(boolean z10) {
-        this.f54881a.post(new pp0(17, this, z10));
+        this.f54922a.post(new rp0(17, this, z10));
     }
 
     public final void c(d0 d0Var, o1[] o1VarArr, double d, int i7, int i10, float f10, float f11, int i11, int i12, int i13, v1 v1Var) {
@@ -180,7 +180,7 @@ public final class p1 {
                 this.D = uptimeMillis;
             }
         }
-        Object obj2 = this.f54901s;
+        Object obj2 = this.f54942s;
         synchronized (obj2) {
             try {
                 try {
@@ -190,16 +190,16 @@ public final class p1 {
                     }
                     n1 n1Var = this.O;
                     if (n1Var != null) {
-                        n1Var.f54857a.b();
+                        n1Var.f54898a.b();
                     }
                     try {
                         this.O = new n1(d0Var, o1VarArr, d, i7, i10, f10, f11, i11, i12, i13, v1Var, z10, this.G);
                         if (!this.Q) {
                             this.Q = true;
-                            this.f54881a.post(this.V);
+                            this.f54922a.post(this.V);
                         }
-                        this.f54902t = i10;
-                        this.f54903u = true;
+                        this.f54943t = i10;
+                        this.f54944u = true;
                     } catch (Throwable th2) {
                         th = th2;
                         obj = obj2;
@@ -216,10 +216,10 @@ public final class p1 {
     }
 
     public final void e() {
-        if (!this.A && this.v != 0 && !this.J && !this.f54897o.get()) {
-            if (!this.f54896n.get()) {
+        if (!this.A && this.v != 0 && !this.J && !this.f54938o.get()) {
+            if (!this.f54937n.get()) {
                 if (this.L) {
-                    if (!this.f54898p.get() && !this.f54899q.get() && !this.f54900r.get()) {
+                    if (!this.f54939p.get() && !this.f54940q.get() && !this.f54941r.get()) {
                         return;
                     }
                 } else {
@@ -232,11 +232,11 @@ public final class p1 {
     }
 
     public final void f(String str) {
-        if (!this.A && str != null && !str.equals(this.f54893k)) {
-            this.f54893k = str;
+        if (!this.A && str != null && !str.equals(this.f54934k)) {
+            this.f54934k = str;
             long j3 = this.v;
             if (j3 != 0) {
-                this.f54885c.j(j3, str.getBytes(StandardCharsets.UTF_8));
+                this.f54926c.j(j3, str.getBytes(StandardCharsets.UTF_8));
             }
         }
     }
@@ -249,7 +249,7 @@ public final class p1 {
             }
             long j3 = this.v;
             if (j3 != 0) {
-                this.f54885c.o(j3, z10);
+                this.f54926c.o(j3, z10);
             }
             if (z10) {
                 e();
@@ -272,28 +272,28 @@ public final class p1 {
                             Trace.endSection();
                             return;
                         }
-                        String str = this.f54893k;
-                        String str2 = this.f54892j;
+                        String str = this.f54934k;
+                        String str2 = this.f54933j;
                         if (str != null) {
                             str2 = new JSONObject(str2).put("contentSafeArea", new JSONObject(str)).toString();
                         }
                         String str3 = str2;
-                        l lVar = this.f54885c;
-                        Context context = this.f54888e;
-                        String str4 = this.f54889f;
+                        l lVar = this.f54926c;
+                        Context context = this.f54929e;
+                        String str4 = this.f54930f;
                         String str5 = this.H;
-                        float f10 = this.f54894l;
-                        j3 = lVar.c(context, str4, str5, i7 / f10, f10, this.f54890g, this.h, this.f54891i, str3, gd.M0(2131742609, null), this.L, this.f54883b);
+                        float f10 = this.f54935l;
+                        j3 = lVar.c(context, str4, str5, i7 / f10, f10, this.f54931g, this.h, this.f54932i, str3, gd.N0(2131742603, null), this.L, this.f54924b);
                         try {
                             SystemClock.uptimeMillis();
-                            this.f54881a.post(new bi.e0(this, j3, i7, this.H, str));
+                            this.f54922a.post(new bi.e0(this, j3, i7, this.H, str));
                             Trace.endSection();
                         } catch (Exception e10) {
                             e = e10;
                             if (j3 != 0) {
-                                i1.f54788a.execute(new qx0(this, j3, 3));
+                                i1.f54829a.execute(new qx0(this, j3, 3));
                             }
-                            this.f54881a.post(new g0(8, this, e));
+                            this.f54922a.post(new g0(8, this, e));
                             throw e;
                         }
                     } catch (Exception e11) {
@@ -317,12 +317,12 @@ public final class p1 {
             e0 e0Var = this.d;
             synchronized (e0Var) {
                 e0Var.d++;
-                e0Var.f54719f = SystemClock.elapsedRealtime();
+                e0Var.f54760f = SystemClock.elapsedRealtime();
             }
         }
         long j3 = this.v;
         if (!this.A && j3 != 0) {
-            this.f54885c.m(j3, i7, f10, f11, i10, z10, z11, i11, i12);
+            this.f54926c.m(j3, i7, f10, f11, i10, z10, z11, i11, i12);
         }
     }
 }

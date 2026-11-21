@@ -2,45 +2,45 @@ package n2;
 
 import j$.util.Objects;
 public final class n {
-    public final int f21179a;
-    public final int f21180b;
-    public final int f21181c;
+    public final int f21207a;
+    public final int f21208b;
+    public final int f21209c;
     public final boolean d;
-    public final boolean f21182e;
-    public final int f21183f;
-    public final e2.e f21184g;
+    public final boolean f21210e;
+    public final int f21211f;
+    public final e2.e f21212g;
     public final int h;
-    public final int f21185i;
-    public final boolean f21186j;
-    public final boolean f21187k;
+    public final int f21213i;
+    public final boolean f21214j;
+    public final boolean f21215k;
 
     public n(m mVar) {
-        this.f21179a = mVar.f21169a;
-        this.f21180b = mVar.f21170b;
-        this.f21181c = mVar.f21171c;
+        this.f21207a = mVar.f21197a;
+        this.f21208b = mVar.f21198b;
+        this.f21209c = mVar.f21199c;
         this.d = mVar.d;
-        this.f21182e = mVar.f21172e;
-        this.f21183f = mVar.f21173f;
-        this.f21184g = mVar.f21174g;
+        this.f21210e = mVar.f21200e;
+        this.f21211f = mVar.f21201f;
+        this.f21212g = mVar.f21202g;
         this.h = mVar.h;
-        this.f21185i = mVar.f21175i;
-        this.f21186j = mVar.f21176j;
-        this.f21187k = mVar.f21177k;
+        this.f21213i = mVar.f21203i;
+        this.f21214j = mVar.f21204j;
+        this.f21215k = mVar.f21205k;
     }
 
     public final m a() {
         ?? obj = new Object();
-        obj.f21169a = this.f21179a;
-        obj.f21170b = this.f21180b;
-        obj.f21171c = this.f21181c;
+        obj.f21197a = this.f21207a;
+        obj.f21198b = this.f21208b;
+        obj.f21199c = this.f21209c;
         obj.d = this.d;
-        obj.f21172e = this.f21182e;
-        obj.f21173f = this.f21183f;
-        obj.f21174g = this.f21184g;
+        obj.f21200e = this.f21210e;
+        obj.f21201f = this.f21211f;
+        obj.f21202g = this.f21212g;
         obj.h = this.h;
-        obj.f21175i = this.f21185i;
-        obj.f21176j = this.f21186j;
-        obj.f21177k = this.f21187k;
+        obj.f21203i = this.f21213i;
+        obj.f21204j = this.f21214j;
+        obj.f21205k = this.f21215k;
         return obj;
     }
 
@@ -48,7 +48,7 @@ public final class n {
         if (this != obj) {
             if (obj != null && n.class == obj.getClass()) {
                 n nVar = (n) obj;
-                if (this.f21179a == nVar.f21179a && this.f21180b == nVar.f21180b && this.f21181c == nVar.f21181c && this.d == nVar.d && this.f21182e == nVar.f21182e && this.f21183f == nVar.f21183f && this.h == nVar.h && this.f21185i == nVar.f21185i && this.f21186j == nVar.f21186j && this.f21187k == nVar.f21187k && this.f21184g.equals(nVar.f21184g)) {
+                if (this.f21207a == nVar.f21207a && this.f21208b == nVar.f21208b && this.f21209c == nVar.f21209c && this.d == nVar.d && this.f21210e == nVar.f21210e && this.f21211f == nVar.f21211f && this.h == nVar.h && this.f21213i == nVar.f21213i && this.f21214j == nVar.f21214j && this.f21215k == nVar.f21215k && this.f21212g.equals(nVar.f21212g)) {
                     return true;
                 }
                 return false;
@@ -59,6 +59,6 @@ public final class n {
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f21179a), Integer.valueOf(this.f21180b), Integer.valueOf(this.f21181c), Boolean.valueOf(this.d), Boolean.valueOf(this.f21182e), Integer.valueOf(this.f21183f), this.f21184g, Integer.valueOf(this.h), Integer.valueOf(this.f21185i), Boolean.valueOf(this.f21187k), Boolean.valueOf(this.f21186j));
+        return Objects.hash(Integer.valueOf(this.f21207a), Integer.valueOf(this.f21208b), Integer.valueOf(this.f21209c), Boolean.valueOf(this.d), Boolean.valueOf(this.f21210e), Integer.valueOf(this.f21211f), this.f21212g, Integer.valueOf(this.h), Integer.valueOf(this.f21213i), Boolean.valueOf(this.f21215k), Boolean.valueOf(this.f21214j));
     }
 }

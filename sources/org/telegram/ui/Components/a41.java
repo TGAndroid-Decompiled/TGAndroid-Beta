@@ -1,43 +1,52 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class a41 extends v4.u0 {
-    public final h41 f33249a;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class a41 extends ek0 {
+    public final h41 f33303f3;
+    public final k41 f33304g3;
 
-    public a41(h41 h41Var) {
-        this.f33249a = h41Var;
+    public a41(k41 k41Var, Context context, h41 h41Var) {
+        super(context, null);
+        this.f33304g3 = k41Var;
+        this.f33303f3 = h41Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        v4.u0 u0Var = this.f33249a.E;
-        if (u0Var != null) {
-            u0Var.a(recyclerView, i7);
+    public final boolean E0(float f10) {
+        if (f10 >= org.telegram.messenger.g0.L(58.0f) + this.f33304g3.F) {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        h41 h41Var = this.f33249a;
-        g41 g41Var = h41Var.f35721s;
-        x31 x31Var = h41Var.f35719n;
-        v4.u0 u0Var = h41Var.E;
-        if (u0Var != null) {
-            u0Var.b(x31Var, i7, i10);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.f33304g3.G = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.f33303f3.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
         }
-        if (i10 > 0 && x31Var.getAdapter() == g41Var && h41Var.K && !g41Var.f35331r && !g41Var.f35332s) {
-            if (h41Var.f35720r.N0() >= ((g41Var.f35334x + 1) - ((g41Var.f35333w + 1) * 10)) - 1) {
-                h41 h41Var2 = g41Var.f35335y;
-                if (h41Var2.K && !g41Var.f35331r && !g41Var.f35332s) {
-                    g41Var.f35331r = true;
-                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
-                    tL_messages_getOldFeaturedStickers.offset = g41Var.f35330n.size();
-                    tL_messages_getOldFeaturedStickers.limit = 40;
-                    ConnectionsManager.getInstance(h41Var2.f35714a).sendRequest(tL_messages_getOldFeaturedStickers, new e2(g41Var, 16));
-                }
-            }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f33304g3.M != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.f33304g3.I) {
+            super.requestLayout();
         }
     }
 }

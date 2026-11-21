@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class ho implements Runnable {
-    public final int f24486a;
-    public final int f24487b;
-    public final w2 f24488c;
+    public final int f24514a;
+    public final int f24515b;
+    public final w2 f24516c;
 
     public ho(int i7, w2 w2Var, int i10) {
-        this.f24486a = i10;
-        this.f24487b = i7;
-        this.f24488c = w2Var;
+        this.f24514a = i10;
+        this.f24515b = i7;
+        this.f24516c = w2Var;
     }
 
     @Override

@@ -1,20 +1,17 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.Bundle;
-public final class or0 extends org.telegram.ui.dn {
-    public final gt0 f38164f;
+import org.telegram.tgnet.TLRPC;
+public final class or0 extends ap0 {
+    public final org.telegram.ui.ActionBar.g2 V2;
 
-    public or0(gt0 gt0Var, Context context, org.telegram.ui.ActionBar.s4 s4Var, Bundle bundle) {
-        super(context, s4Var, bundle);
-        this.f38164f = gt0Var;
+    public or0(Context context, String str, String str2, org.telegram.ui.ActionBar.h6 h6Var, org.telegram.ui.ActionBar.g2 g2Var) {
+        super(context, null, str, false, str2, false, h6Var);
+        this.V2 = g2Var;
     }
 
     @Override
-    public final void b(boolean z10) {
-        org.telegram.ui.ActionBar.r0 r0Var = this.f38164f.f35617q0;
-        if (r0Var != null) {
-            r0Var.setShowSearchProgress(z10);
-        }
+    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        org.telegram.messenger.g0.h3(new org.telegram.ui.b0(this.V2, hVar, i7, 21), 100L);
     }
 }

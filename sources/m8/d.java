@@ -1,15 +1,15 @@
 package m8;
 public final class d {
-    public final int f20895a;
-    public double f20896b;
-    public double f20897c;
+    public final int f20923a;
+    public double f20924b;
+    public double f20925c;
     public double d;
-    public double f20898e;
+    public double f20926e;
 
     public String toString() {
-        switch (this.f20895a) {
+        switch (this.f20923a) {
             case 1:
-                return "RectD{left=" + this.f20896b + ", top=" + this.f20897c + ", right=" + this.d + ", bottom=" + this.f20898e + '}';
+                return "RectD{left=" + this.f20924b + ", top=" + this.f20925c + ", right=" + this.d + ", bottom=" + this.f20926e + '}';
             default:
                 return super.toString();
         }

@@ -1,77 +1,85 @@
 package ai;
 
-import android.app.Activity;
-import android.text.SpannableStringBuilder;
-import android.widget.FrameLayout;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ma;
-import java.util.Arrays;
 import org.telegram.messenger.gd;
-import org.telegram.messenger.n10;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Components.lq;
-import org.telegram.ui.Dictation.DictationAsr;
-public final class t2 implements Runnable {
-    public final int f1548a;
-    public final x2 f1549b;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
+public final class t2 extends LinearLayout {
+    public final int f1521a;
 
-    public t2(x2 x2Var, int i7) {
-        this.f1548a = i7;
-        this.f1549b = x2Var;
+    public t2(Context context, int i7) {
+        super(context);
+        this.f1521a = i7;
     }
 
     @Override
-    public final void run() {
-        int i7 = this.f1548a;
-        x2 x2Var = this.f1549b;
-        switch (i7) {
+    public void onMeasure(int i7, int i10) {
+        switch (this.f1521a) {
             case 0:
-                if (!Arrays.equals(x2Var.h, DictationAsr.C()) && x2Var.getParentActivity() != null && x2Var.f33530a != null) {
-                    x2Var.d0(x2Var.getParentActivity());
-                    x2Var.f33530a.f34607g3.O(true);
-                    return;
-                }
-                x2Var.e0();
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(400.0f), View.MeasureSpec.getSize(i7)), 1073741824), i10);
                 return;
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+                return;
+            case 2:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+                return;
+            case 3:
+            case 6:
+            case 7:
             default:
-                Activity parentActivity = x2Var.getParentActivity();
-                i6 resourceProvider = x2Var.getResourceProvider();
-                r2 r2Var = new r2(parentActivity, 0);
-                r2Var.setOrientation(1);
-                r2Var.addView(new s2(parentActivity, resourceProvider), ma.t(-1, 120, 1, 0, 16, 0, 10));
-                TextView textView = new TextView(parentActivity);
-                textView.setTextSize(1, 20.0f);
-                textView.setTextColor(n6.w0(n6.f29502j5, resourceProvider));
-                textView.setTypeface(org.telegram.messenger.g0.o());
-                textView.setGravity(1);
-                textView.setText(gd.M0(2131745045, null));
-                r2Var.addView(textView, ma.t(-1, -2, 1, 32, 0, 32, 9));
-                TextView textView2 = new TextView(parentActivity);
-                textView2.setTextSize(1, 14.0f);
-                textView2.setTextColor(n6.w0(n6.f29805z6, resourceProvider));
-                textView2.setGravity(1);
-                textView2.setText(gd.M0(2131745046, null));
-                r2Var.addView(textView2, ma.t(-1, -2, 1, 32, 0, 32, 25));
-                r2Var.addView(a8.i1.a(parentActivity, resourceProvider, 2131232025, gd.M0(2131745048, null), gd.M0(2131745047, null)), ma.t(-1, -2, 7, 32, 0, 32, 16));
-                r2Var.addView(a8.i1.a(parentActivity, resourceProvider, 2131231861, gd.M0(2131745050, null), gd.M0(2131745049, null)), ma.t(-1, -2, 7, 32, 0, 32, 16));
-                r2Var.addView(a8.i1.a(parentActivity, resourceProvider, 2131232024, gd.M0(2131745053, null), gd.M0(2131745052, null)), ma.t(-1, -2, 7, 32, 0, 32, 16));
-                hi.d dVar = new hi.d(parentActivity, resourceProvider, true);
-                dVar.setRoundRadius(24);
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("👌  Got it");
-                spannableStringBuilder.setSpan(new lq(2131231180, 0), 0, 2, 33);
-                dVar.i(spannableStringBuilder, false, true);
-                dVar.setOnClickListener(new q2(r4, 0));
-                r2Var.addView(dVar, ma.k(14.0f, 18.0f, 14.0f, 0.0f, -1, 48));
-                FrameLayout frameLayout = new FrameLayout(parentActivity);
-                frameLayout.addView(r2Var, ma.e(-1, -2, 1));
-                org.telegram.ui.ActionBar.x2 j3 = n10.j(parentActivity, false, 1, resourceProvider);
-                j3.O = frameLayout;
-                j3.V0 = 49;
-                j3.show();
-                org.telegram.ui.ActionBar.x2[] x2VarArr = {j3};
-                j3.Q(n6.f29467h5);
+                super.onMeasure(i7, i10);
+                return;
+            case 4:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+                return;
+            case 5:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+                return;
+            case 8:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(220.0f), View.MeasureSpec.getSize(i7)), View.MeasureSpec.getMode(i7)), i10);
+                return;
+            case 9:
+                super.onMeasure(i7, i10);
+                setPivotY(0.0f);
+                setPivotX(0.0f);
+                return;
+            case 10:
+                super.onMeasure(i7, i10);
+                setPivotY(0.0f);
+                setPivotX(getMeasuredWidth());
+                return;
+            case 11:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.g0.L(800.0f)), 1073741824));
                 return;
         }
+    }
+
+    public t2(Context context) {
+        super(context);
+        this.f1521a = 12;
+        setOrientation(1);
+        setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 14.0f);
+        int i7 = m6.G6;
+        t6.U(textView, i7, null);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setText(gd.N0(2131754944, null));
+        addView(textView);
+        TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 14.0f);
+        t6.U(textView2, i7, null);
+        textView2.setText(org.telegram.messenger.g0.W2(gd.N0(2131754946, null)));
+        addView(textView2, ma.q(-1, -2, 0.0f, 0, 0, 0, 0, 0));
+        TextView textView3 = new TextView(context);
+        textView3.setTextSize(1, 14.0f);
+        t6.U(textView3, i7, null);
+        textView3.setText(org.telegram.messenger.g0.W2(gd.N0(2131754945, null)));
+        addView(textView3, ma.q(-1, -2, 0.0f, 0, 0, 24, 0, 0));
     }
 }

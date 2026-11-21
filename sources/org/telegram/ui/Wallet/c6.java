@@ -4,15 +4,15 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class c6 extends FrameLayout {
-    public View f43997a;
-    public float f43998b;
-    public int f43999c;
+    public View f44037a;
+    public float f44038b;
+    public int f44039c;
     public final a6 d;
-    public final n6 f44000e;
+    public final n6 f44040e;
 
     public c6(n6 n6Var, Context context) {
         super(context);
-        this.f44000e = n6Var;
+        this.f44040e = n6Var;
         this.d = new a6(1, this);
     }
 
@@ -31,6 +31,6 @@ public final class c6 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         super.onLayout(z10, i7, i10, i11, i12);
-        this.f44000e.Y0();
+        this.f44040e.Y0();
     }
 }

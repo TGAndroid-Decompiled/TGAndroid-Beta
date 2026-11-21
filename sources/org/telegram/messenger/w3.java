@@ -8,40 +8,40 @@ import java.util.Map;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.mt0;
 public final class w3 implements Runnable {
-    public final int f27635a;
-    public final Object f27636b;
-    public final Object f27637c;
+    public final int f27663a;
+    public final Object f27664b;
+    public final Object f27665c;
 
     public w3(int i7, Object obj, Object obj2) {
-        this.f27635a = i7;
-        this.f27636b = obj;
-        this.f27637c = obj2;
+        this.f27663a = i7;
+        this.f27664b = obj;
+        this.f27665c = obj2;
     }
 
     private final void a() {
-        i5 i5Var = (i5) this.f27636b;
-        for (Map.Entry entry : ((HashMap) this.f27637c).entrySet()) {
+        i5 i5Var = (i5) this.f27664b;
+        for (Map.Entry entry : ((HashMap) this.f27665c).entrySet()) {
             TLRPC.User user = (TLRPC.User) entry.getKey();
             TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) entry.getValue();
             user.contact = true;
-            i5Var.f24567f0.add(tL_contact);
-            i5Var.f24568g0.put(Long.valueOf(user.f28552id), tL_contact);
+            i5Var.f24595f0.add(tL_contact);
+            i5Var.f24596g0.put(Long.valueOf(user.f28580id), tL_contact);
         }
         i5Var.d(true);
         ks notificationCenter = i5Var.getNotificationCenter();
         int i7 = mp.I8;
-        notificationCenter.k(ks.f25177r, 1);
+        notificationCenter.k(ks.f25205r, 1);
         i5Var.getNotificationCenter().k(ks.O, new Object[0]);
     }
 
     private final void b() {
         Account[] accountArr;
-        i5 i5Var = (i5) this.f27636b;
-        mt0 mt0Var = (mt0) this.f27637c;
-        AccountManager accountManager = AccountManager.get(t0.f26913b);
+        i5 i5Var = (i5) this.f27664b;
+        mt0 mt0Var = (mt0) this.f27665c;
+        AccountManager accountManager = AccountManager.get(t0.f26941b);
         try {
             Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
-            i5Var.f24557a = null;
+            i5Var.f24585a = null;
             int i7 = 0;
             while (i7 < accountsByType.length) {
                 Account account = accountsByType[i7];
@@ -54,7 +54,7 @@ public final class w3 implements Runnable {
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append("");
                             accountArr = accountsByType;
-                            sb2.append(f10.f28552id);
+                            sb2.append(f10.f28580id);
                             if (str.equals(sb2.toString())) {
                                 accountManager.removeAccount(account, null, null);
                                 break;
@@ -76,24 +76,24 @@ public final class w3 implements Runnable {
         }
         try {
             Account account2 = new Account("" + i5Var.getUserConfig().e(), "org.telegram.messenger");
-            i5Var.f24557a = account2;
+            i5Var.f24585a = account2;
             accountManager.addAccountExplicitly(account2, "", null);
         } catch (Exception unused2) {
         }
         i5Var.getMessagesStorage().Z0(new HashMap(), false, true);
         i5Var.getMessagesStorage().c1(new ArrayList(), true);
-        i5Var.f24560b0.clear();
-        i5Var.f24567f0.clear();
-        i5Var.f24568g0.clear();
-        i5Var.f24569h0.clear();
-        i5Var.f24571j0.clear();
-        i5Var.f24570i0.clear();
-        i5Var.f24562c0.clear();
-        i5Var.f24563d0.clear();
-        i5Var.f24565e0.clear();
-        i5Var.f24579x.clear();
-        i5Var.f24572k0.clear();
-        i5Var.f24573l0.clear();
+        i5Var.f24588b0.clear();
+        i5Var.f24595f0.clear();
+        i5Var.f24596g0.clear();
+        i5Var.f24597h0.clear();
+        i5Var.f24599j0.clear();
+        i5Var.f24598i0.clear();
+        i5Var.f24590c0.clear();
+        i5Var.f24591d0.clear();
+        i5Var.f24593e0.clear();
+        i5Var.f24607x.clear();
+        i5Var.f24600k0.clear();
+        i5Var.f24601l0.clear();
         i5Var.m0.clear();
         i5Var.getNotificationCenter().k(ks.O, new Object[0]);
         i5Var.A(0L, false);

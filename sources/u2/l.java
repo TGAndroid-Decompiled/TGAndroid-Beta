@@ -8,21 +8,21 @@ import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import org.telegram.ui.Cells.c5;
-import p4.o0;
+import p4.z;
 public interface l {
     void b(int i7, int i10, int i11, long j3);
 
     void c(int i7, k2.d dVar, long j3, int i10);
 
-    void d(int i7);
+    void d(z zVar);
 
-    void e();
+    void e(int i7);
 
-    void f(int i7, long j3);
+    void f();
 
     void flush();
 
-    int g();
+    void g(int i7, long j3);
 
     ByteBuffer getInputBuffer(int i7);
 
@@ -30,7 +30,7 @@ public interface l {
 
     MediaFormat getOutputFormat();
 
-    void h(o0 o0Var);
+    int h();
 
     boolean i(c5 c5Var);
 

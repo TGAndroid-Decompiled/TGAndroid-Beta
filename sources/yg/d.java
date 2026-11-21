@@ -4,13 +4,13 @@ import android.content.Context;
 import c8.ma;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gd;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 public class d extends c {
-    public static final int f61229w = 0;
-    public int f61230s;
+    public static final int f61270w = 0;
+    public int f61271s;
 
-    public d(Context context, i6 i6Var) {
-        super(context, i6Var);
+    public d(Context context, h6 h6Var) {
+        super(context, h6Var);
         this.d.setTypeface(g0.o());
     }
 
@@ -29,13 +29,13 @@ public class d extends c {
         float f12;
         float f13;
         int i12 = 3;
-        if (gd.f24213a0) {
+        if (gd.f24241a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        this.f61213c.setLayoutParams(ma.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
-        boolean z10 = gd.f24213a0;
+        this.f61254c.setLayoutParams(ma.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        boolean z10 = gd.f24241a0;
         if (z10) {
             i10 = 5;
         } else {
@@ -53,7 +53,7 @@ public class d extends c {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(ma.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
-        boolean z11 = gd.f24213a0;
+        boolean z11 = gd.f24241a0;
         if (z11) {
             i11 = 5;
         } else {
@@ -70,14 +70,14 @@ public class d extends c {
         } else {
             f13 = 20.0f;
         }
-        this.f61214e.setLayoutParams(ma.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
-        if (gd.f24213a0) {
+        this.f61255e.setLayoutParams(ma.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
+        if (gd.f24241a0) {
             i12 = 5;
         }
-        this.f61215f.setLayoutParams(ma.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f61256f.setLayoutParams(ma.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f61230s;
+        return this.f61271s;
     }
 }

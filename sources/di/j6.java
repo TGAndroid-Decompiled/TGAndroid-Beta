@@ -7,27 +7,27 @@ import android.graphics.PorterDuff;
 import org.telegram.messenger.ks;
 import org.telegram.messenger.we;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.qd0;
+import org.telegram.ui.Components.rd0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.q30;
 public final class j6 extends AnimatorListenerAdapter {
-    public final int f9079a;
-    public final float f9080b;
-    public final Runnable f9081c;
+    public final int f9102a;
+    public final float f9103b;
+    public final Runnable f9104c;
     public final Object d;
 
     public j6(Object obj, float f10, Runnable runnable, int i7) {
-        this.f9079a = i7;
+        this.f9102a = i7;
         this.d = obj;
-        this.f9080b = f10;
-        this.f9081c = runnable;
+        this.f9103b = f10;
+        this.f9104c = runnable;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i7 = this.f9079a;
-        Runnable runnable = this.f9081c;
-        float f10 = this.f9080b;
+        int i7 = this.f9102a;
+        Runnable runnable = this.f9104c;
+        float f10 = this.f9103b;
         Object obj = this.d;
         switch (i7) {
             case 0:
@@ -41,46 +41,46 @@ public final class j6 extends AnimatorListenerAdapter {
                 return;
             case 1:
                 fi.m1 m1Var = (fi.m1) obj;
-                m1Var.f12257n = f10;
+                m1Var.f12300n = f10;
                 m1Var.invalidate();
-                if (animator == m1Var.f12258r && runnable != null) {
+                if (animator == m1Var.f12301r && runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 2:
-                hi.o2 o2Var = (hi.o2) obj;
-                o2Var.h = f10;
-                o2Var.i();
+                hi.n2 n2Var = (hi.n2) obj;
+                n2Var.h = f10;
+                n2Var.i();
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 3:
-                hi.ta taVar = (hi.ta) obj;
-                taVar.M = null;
-                taVar.J = f10;
-                taVar.j();
-                taVar.f15473r.invalidate();
-                taVar.f15461n.invalidate();
+                hi.sa saVar = (hi.sa) obj;
+                saVar.M = null;
+                saVar.J = f10;
+                saVar.j();
+                saVar.f15434r.invalidate();
+                saVar.f15422n.invalidate();
                 runnable.run();
-                taVar.Q.e();
+                saVar.Q.e();
                 ks.e().k(99, 512);
                 ks.e().o();
-                taVar.n();
-                Runnable runnable2 = taVar.R;
+                saVar.n();
+                Runnable runnable2 = saVar.R;
                 if (runnable2 != null) {
                     runnable2.run();
-                    taVar.R = null;
+                    saVar.R = null;
                 }
-                taVar.f15473r.invalidate();
-                taVar.f15448i0.invalidate();
+                saVar.f15434r.invalidate();
+                saVar.f15409i0.invalidate();
                 return;
             case 4:
                 q30 q30Var = (q30) obj;
                 q30Var.h = f10;
-                q30Var.f50995a.invalidate();
+                q30Var.f51041a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -88,41 +88,41 @@ public final class j6 extends AnimatorListenerAdapter {
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                photoViewer.f43298p6 = null;
-                photoViewer.f43214f6 = 0.0f;
-                photoViewer.f43176b6 = 0.0f;
-                photoViewer.f43223g6 = 0.0f;
+                photoViewer.f43339p6 = null;
+                photoViewer.f43255f6 = 0.0f;
+                photoViewer.f43217b6 = 0.0f;
+                photoViewer.f43264g6 = 0.0f;
                 float p22 = photoViewer.p2(false);
-                photoViewer.f43204e6 = p22;
-                photoViewer.f43166a6 = p22;
-                photoViewer.f43208f0.invalidate();
-                CropAreaView cropAreaView = photoViewer.D1.f38763b.f21893a;
+                photoViewer.f43245e6 = p22;
+                photoViewer.f43207a6 = p22;
+                photoViewer.f43249f0.invalidate();
+                CropAreaView cropAreaView = photoViewer.D1.f39154b.f21918a;
                 float p23 = photoViewer.p2(false);
-                cropAreaView.f32892o0 = 0.0f;
-                cropAreaView.f32893p0 = p23;
-                cropAreaView.f32894q0 = 0.0f;
-                cropAreaView.f32896r0 = 0.0f;
+                cropAreaView.f32925o0 = 0.0f;
+                cropAreaView.f32926p0 = p23;
+                cropAreaView.f32927q0 = 0.0f;
+                cropAreaView.f32929r0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.D1.f38764c.setRotated(false);
+                photoViewer.D1.f39155c.setRotated(false);
                 if (Math.abs(f10) > 0.0f) {
-                    qd0 qd0Var = photoViewer.D1;
-                    og.f fVar = qd0Var.f38764c;
+                    rd0 rd0Var = photoViewer.D1;
+                    og.f fVar = rd0Var.f39155c;
                     if (fVar != null) {
                         fVar.b(0.0f);
                         fVar.setRotated(false);
                     }
-                    if (qd0Var.f38763b.m(f10)) {
-                        org.telegram.ui.ActionBar.u6.s(photoViewer.f43181c1, org.telegram.ui.ActionBar.n6.f29643qg, photoViewer.f43358w2, PorterDuff.Mode.MULTIPLY);
+                    if (rd0Var.f39154b.m(f10)) {
+                        org.telegram.ui.ActionBar.t6.s(photoViewer.f43222c1, org.telegram.ui.ActionBar.m6.f29627qg, photoViewer.f43399w2, PorterDuff.Mode.MULTIPLY);
                     } else {
-                        photoViewer.f43181c1.setColorFilter((ColorFilter) null);
+                        photoViewer.f43222c1.setColorFilter((ColorFilter) null);
                     }
                 }
-                we weVar = photoViewer.X4.f50266c;
+                we weVar = photoViewer.X4.f50273c;
                 if (weVar != null) {
-                    weVar.f27675b = 0.0f;
-                    weVar.f27674a = 0.0f;
-                    weVar.f27678f = 1.0f;
-                    weVar.f27677e = 1.0f;
+                    weVar.f27703b = 0.0f;
+                    weVar.f27702a = 0.0f;
+                    weVar.f27706f = 1.0f;
+                    weVar.f27705e = 1.0f;
                 }
                 if (runnable != null) {
                     runnable.run();

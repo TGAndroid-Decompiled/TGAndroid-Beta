@@ -1,40 +1,28 @@
 package org.telegram.ui.Components;
+public final class ha0 implements Runnable {
+    public final int f35865a;
+    public final qa0 f35866b;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class ha0 extends org.telegram.ui.ActionBar.z0 {
-    public final int W;
-
-    public ha0(int i7, int i10, Context context, org.telegram.ui.ActionBar.i6 i6Var, boolean z10, boolean z11) {
-        super(i7, context, i6Var, z10, z11);
-        this.W = i10;
+    public ha0(qa0 qa0Var, int i7) {
+        this.f35865a = i7;
+        this.f35866b = qa0Var;
     }
 
     @Override
-    public final void l() {
-        switch (this.W) {
+    public final void run() {
+        switch (this.f35865a) {
             case 0:
-                setBackground(null);
+                qa0 qa0Var = this.f35866b;
+                di.b1 b1Var = qa0Var.f38866f;
+                if (qa0Var.f38864d0.d.f24907r) {
+                    b1Var.x0(-b1Var.computeVerticalScrollOffset(), 250, pi.k.V);
+                    return;
+                }
+                b1Var.x0(b1Var.computeVerticalScrollRange() - (b1Var.computeVerticalScrollExtent() + b1Var.computeVerticalScrollOffset()), 250, pi.k.V);
                 return;
             default:
-                setBackground(null);
+                this.f35866b.h(true, false);
                 return;
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.W) {
-            case 0:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-            default:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
         }
     }
 }

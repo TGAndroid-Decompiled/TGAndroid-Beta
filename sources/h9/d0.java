@@ -14,7 +14,7 @@ import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 public abstract class d0 extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] f13985a = new Object[0];
+    public static final Object[] f14014a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -36,11 +36,11 @@ public abstract class d0 extends AbstractCollection implements Serializable, Col
 
     public i0 f() {
         if (isEmpty()) {
-            g0 g0Var = i0.f14003b;
-            return t1.f14071e;
+            g0 g0Var = i0.f14032b;
+            return t1.f14100e;
         }
-        Object[] array = toArray(f13985a);
-        g0 g0Var2 = i0.f14003b;
+        Object[] array = toArray(f14014a);
+        g0 g0Var2 = i0.f14032b;
         return i0.o(array.length, array);
     }
 
@@ -134,7 +134,7 @@ public abstract class d0 extends AbstractCollection implements Serializable, Col
 
     @Override
     public final Object[] toArray() {
-        return toArray(f13985a);
+        return toArray(f14014a);
     }
 
     @Override

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public interface c0 {
-    ki.w0 A();
+    ki.v0 A();
 
     void a();
 

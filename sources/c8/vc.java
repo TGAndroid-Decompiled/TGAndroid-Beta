@@ -19,8 +19,8 @@ public abstract class vc {
             i10++;
             u9.a aVar = (u9.a) obj;
             u9.g gVar = new u9.g(aVar);
-            for (u9.q qVar : aVar.f58529b) {
-                if (aVar.f58531e == 0) {
+            for (u9.q qVar : aVar.f58570b) {
+                if (aVar.f58572e == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -38,10 +38,10 @@ public abstract class vc {
         }
         for (Set<u9.g> set2 : hashMap.values()) {
             for (u9.g gVar2 : set2) {
-                for (u9.i iVar : gVar2.f58542a.f58530c) {
-                    if (iVar.f58549c == 0) {
-                        u9.q qVar2 = iVar.f58547a;
-                        if (iVar.f58548b == 2) {
+                for (u9.i iVar : gVar2.f58583a.f58571c) {
+                    if (iVar.f58590c == 0) {
+                        u9.q qVar2 = iVar.f58588a;
+                        if (iVar.f58589b == 2) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -49,8 +49,8 @@ public abstract class vc {
                         Set<u9.g> set3 = (Set) hashMap.get(new u9.h(qVar2, z10));
                         if (set3 != null) {
                             for (u9.g gVar3 : set3) {
-                                gVar2.f58543b.add(gVar3);
-                                gVar3.f58544c.add(gVar2);
+                                gVar2.f58584b.add(gVar3);
+                                gVar3.f58585c.add(gVar2);
                             }
                         }
                     }
@@ -65,7 +65,7 @@ public abstract class vc {
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
             u9.g gVar4 = (u9.g) it.next();
-            if (gVar4.f58544c.isEmpty()) {
+            if (gVar4.f58585c.isEmpty()) {
                 hashSet2.add(gVar4);
             }
         }
@@ -73,11 +73,11 @@ public abstract class vc {
             u9.g gVar5 = (u9.g) hashSet2.iterator().next();
             hashSet2.remove(gVar5);
             i7++;
-            Iterator it2 = gVar5.f58543b.iterator();
+            Iterator it2 = gVar5.f58584b.iterator();
             while (it2.hasNext()) {
                 u9.g gVar6 = (u9.g) it2.next();
-                gVar6.f58544c.remove(gVar5);
-                if (gVar6.f58544c.isEmpty()) {
+                gVar6.f58585c.remove(gVar5);
+                if (gVar6.f58585c.isEmpty()) {
                     hashSet2.add(gVar6);
                 }
             }
@@ -89,8 +89,8 @@ public abstract class vc {
         Iterator it3 = hashSet.iterator();
         while (it3.hasNext()) {
             u9.g gVar7 = (u9.g) it3.next();
-            if (!gVar7.f58544c.isEmpty() && !gVar7.f58543b.isEmpty()) {
-                arrayList2.add(gVar7.f58542a);
+            if (!gVar7.f58585c.isEmpty() && !gVar7.f58584b.isEmpty()) {
+                arrayList2.add(gVar7.f58583a);
             }
         }
         throw new RuntimeException("Dependency cycle detected: " + Arrays.toString(arrayList2.toArray()));

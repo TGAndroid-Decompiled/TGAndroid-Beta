@@ -6,19 +6,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ga1 implements RequestDelegate {
-    public final int f47948a;
-    public final TwoStepVerificationActivity f47949b;
+    public final int f48021a;
+    public final TwoStepVerificationActivity f48022b;
 
     public ga1(TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
-        this.f47948a = i7;
-        this.f47949b = twoStepVerificationActivity;
+        this.f48021a = i7;
+        this.f48022b = twoStepVerificationActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f47948a) {
+        switch (this.f48021a) {
             case 0:
-                final TwoStepVerificationActivity twoStepVerificationActivity = this.f47949b;
+                final TwoStepVerificationActivity twoStepVerificationActivity = this.f48022b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -31,12 +31,12 @@ public final class ga1 implements RequestDelegate {
                                 twoStepVerificationActivity2.t0();
                                 if (tLObject2 instanceof TL_account.resetPasswordOk) {
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(twoStepVerificationActivity2.getParentActivity());
-                                    alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131747638, null), null);
-                                    String M0 = org.telegram.messenger.gd.M0(2131745898, null);
-                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
-                                    u1Var.S = M0;
-                                    u1Var.U = org.telegram.messenger.gd.M0(2131745872, null);
-                                    twoStepVerificationActivity2.showDialog(u1Var, new q5(twoStepVerificationActivity2, 17));
+                                    alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131747637, null), null);
+                                    String N0 = org.telegram.messenger.gd.N0(2131745897, null);
+                                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+                                    t1Var.S = N0;
+                                    t1Var.U = org.telegram.messenger.gd.N0(2131745871, null);
+                                    twoStepVerificationActivity2.showDialog(t1Var, new q5(twoStepVerificationActivity2, 17));
                                     return;
                                 } else if (tLObject2 instanceof TL_account.resetPasswordRequestedWait) {
                                     twoStepVerificationActivity2.J.pending_reset_date = ((TL_account.resetPasswordRequestedWait) tLObject2).until_date;
@@ -53,7 +53,7 @@ public final class ga1 implements RequestDelegate {
                                     } else {
                                         G = org.telegram.messenger.gd.G(Math.max(1, currentTime), "Seconds", new Object[0]);
                                     }
-                                    twoStepVerificationActivity2.B0(org.telegram.messenger.gd.M0(2131745898, null), org.telegram.messenger.gd.a0("ResetPasswordWait", null, 2131745897, G));
+                                    twoStepVerificationActivity2.B0(org.telegram.messenger.gd.N0(2131745897, null), org.telegram.messenger.gd.a0("ResetPasswordWait", null, 2131745896, G));
                                     return;
                                 } else {
                                     return;
@@ -71,7 +71,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f47949b;
+                final TwoStepVerificationActivity twoStepVerificationActivity2 = this.f48022b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -96,7 +96,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 2:
-                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f47949b;
+                final TwoStepVerificationActivity twoStepVerificationActivity3 = this.f48022b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -109,12 +109,12 @@ public final class ga1 implements RequestDelegate {
                                 twoStepVerificationActivity22.t0();
                                 if (tLObject2 instanceof TL_account.resetPasswordOk) {
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(twoStepVerificationActivity22.getParentActivity());
-                                    alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131747638, null), null);
-                                    String M0 = org.telegram.messenger.gd.M0(2131745898, null);
-                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
-                                    u1Var.S = M0;
-                                    u1Var.U = org.telegram.messenger.gd.M0(2131745872, null);
-                                    twoStepVerificationActivity22.showDialog(u1Var, new q5(twoStepVerificationActivity22, 17));
+                                    alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131747637, null), null);
+                                    String N0 = org.telegram.messenger.gd.N0(2131745897, null);
+                                    org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+                                    t1Var.S = N0;
+                                    t1Var.U = org.telegram.messenger.gd.N0(2131745871, null);
+                                    twoStepVerificationActivity22.showDialog(t1Var, new q5(twoStepVerificationActivity22, 17));
                                     return;
                                 } else if (tLObject2 instanceof TL_account.resetPasswordRequestedWait) {
                                     twoStepVerificationActivity22.J.pending_reset_date = ((TL_account.resetPasswordRequestedWait) tLObject2).until_date;
@@ -131,7 +131,7 @@ public final class ga1 implements RequestDelegate {
                                     } else {
                                         G = org.telegram.messenger.gd.G(Math.max(1, currentTime), "Seconds", new Object[0]);
                                     }
-                                    twoStepVerificationActivity22.B0(org.telegram.messenger.gd.M0(2131745898, null), org.telegram.messenger.gd.a0("ResetPasswordWait", null, 2131745897, G));
+                                    twoStepVerificationActivity22.B0(org.telegram.messenger.gd.N0(2131745897, null), org.telegram.messenger.gd.a0("ResetPasswordWait", null, 2131745896, G));
                                     return;
                                 } else {
                                     return;
@@ -149,7 +149,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f47949b;
+                final TwoStepVerificationActivity twoStepVerificationActivity4 = this.f48022b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -174,7 +174,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 4:
-                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f47949b;
+                final TwoStepVerificationActivity twoStepVerificationActivity5 = this.f48022b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -199,7 +199,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             case 5:
-                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f47949b;
+                final TwoStepVerificationActivity twoStepVerificationActivity6 = this.f48022b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -224,7 +224,7 @@ public final class ga1 implements RequestDelegate {
                 });
                 return;
             default:
-                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f47949b;
+                final TwoStepVerificationActivity twoStepVerificationActivity7 = this.f48022b;
                 org.telegram.messenger.g0.g3(new Runnable() {
                     @Override
                     public final void run() {

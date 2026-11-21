@@ -1,47 +1,47 @@
 package org.telegram.messenger.voip;
 
-import di.ca;
+import di.da;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.is;
+import org.telegram.ui.Components.c51;
 import org.telegram.ui.Components.ks;
-import org.telegram.ui.Components.z41;
+import org.telegram.ui.Components.ms;
 public final class k0 implements RequestDelegate {
-    public final int f27508a;
-    public final int f27509b;
-    public final boolean f27510c;
+    public final int f27536a;
+    public final int f27537b;
+    public final boolean f27538c;
     public final Object d;
-    public final Object f27511e;
+    public final Object f27539e;
 
     public k0(int i7, String str, VoIPService voIPService, boolean z10) {
-        this.f27508a = 0;
+        this.f27536a = 0;
         this.d = voIPService;
-        this.f27509b = i7;
-        this.f27510c = z10;
-        this.f27511e = str;
+        this.f27537b = i7;
+        this.f27538c = z10;
+        this.f27539e = str;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27508a) {
+        switch (this.f27536a) {
             case 0:
-                ((VoIPService) this.d).lambda$startConferenceGroupCall$54(this.f27509b, this.f27510c, (String) this.f27511e, tLObject, tL_error);
+                ((VoIPService) this.d).lambda$startConferenceGroupCall$54(this.f27537b, this.f27538c, (String) this.f27539e, tLObject, tL_error);
                 return;
             case 1:
-                org.telegram.messenger.g0.g3(new ca((is) this.d, this.f27509b, (TLRPC.TL_messages_searchGlobal) this.f27511e, this.f27510c, tLObject, 3));
+                org.telegram.messenger.g0.g3(new da((ks) this.d, this.f27537b, (TLRPC.TL_messages_searchGlobal) this.f27539e, this.f27538c, tLObject, 3));
                 return;
             default:
-                org.telegram.messenger.g0.g3(new ca((ks) this.d, this.f27509b, (TLRPC.TL_messages_searchGlobal) this.f27511e, this.f27510c, tLObject, 4));
+                org.telegram.messenger.g0.g3(new da((ms) this.d, this.f27537b, (TLRPC.TL_messages_searchGlobal) this.f27539e, this.f27538c, tLObject, 4));
                 return;
         }
     }
 
-    public k0(z41 z41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i10) {
-        this.f27508a = i10;
-        this.d = z41Var;
-        this.f27509b = i7;
-        this.f27511e = tL_messages_searchGlobal;
-        this.f27510c = z10;
+    public k0(c51 c51Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i10) {
+        this.f27536a = i10;
+        this.d = c51Var;
+        this.f27537b = i7;
+        this.f27539e = tL_messages_searchGlobal;
+        this.f27538c = z10;
     }
 }

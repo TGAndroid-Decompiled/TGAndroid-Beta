@@ -10,17 +10,17 @@ public class tu extends zt {
     public final dv X;
     public final dv[] Y;
     public final boolean Z;
-    public int f27069a0;
-    public int f27070b0;
-    public int f27071c0;
+    public int f27097a0;
+    public int f27098b0;
+    public int f27099c0;
 
     public tu(ev evVar, Rect rect, int i7, SpannableStringBuilder spannableStringBuilder) {
         super(evVar, rect, i7);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-        this.f27071c0 = -1;
+        this.f27099c0 = -1;
         Layout.Alignment alignment2 = Layout.Alignment.ALIGN_CENTER;
         this.Z = false;
-        dv dvVar = new dv(evVar, spannableStringBuilder, this.f28351c, alignment);
+        dv dvVar = new dv(evVar, spannableStringBuilder, this.f28379c, alignment);
         this.X = dvVar;
         this.Y = r3;
         dv[] dvVarArr = {dvVar};
@@ -28,24 +28,24 @@ public class tu extends zt {
 
     @Override
     public final int H() {
-        return this.f27069a0;
+        return this.f27097a0;
     }
 
     @Override
     public int I() {
-        Rect rect = this.f28350b;
-        return this.X.f23577b.getHeight() + rect.top + this.f27069a0 + this.f27070b0 + rect.bottom;
+        Rect rect = this.f28378b;
+        return this.X.f23605b.getHeight() + rect.top + this.f27097a0 + this.f27098b0 + rect.bottom;
     }
 
     @Override
     public final int J() {
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         return this.X.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         return this.X.r() + rect.left + rect.right;
     }
 
@@ -67,11 +67,11 @@ public class tu extends zt {
     @Override
     public void W(Canvas canvas) {
         canvas.save();
-        canvas.translate(0.0f, this.f27069a0);
+        canvas.translate(0.0f, this.f27097a0);
         int i02 = i0();
         dv dvVar = this.X;
         if (i02 != 0) {
-            dvVar.f23578c = (this.f28350b.left + i02) - dvVar.f23580f;
+            dvVar.f23606c = (this.f28378b.left + i02) - dvVar.f23608f;
             canvas.save();
             canvas.translate(i02, 0.0f);
             dvVar.d(canvas, dvVar.T);
@@ -85,11 +85,11 @@ public class tu extends zt {
     @Override
     public final void X(Canvas canvas, int i7, float f10) {
         canvas.save();
-        canvas.translate(0.0f, this.f27069a0);
+        canvas.translate(0.0f, this.f27097a0);
         int i02 = i0();
         dv dvVar = this.X;
         if (i02 != 0) {
-            dvVar.f23578c = (this.f28350b.left + i02) - dvVar.f23580f;
+            dvVar.f23606c = (this.f28378b.left + i02) - dvVar.f23608f;
             canvas.save();
             canvas.translate(i02, 0.0f);
             dvVar.m(canvas, i7, f10);
@@ -103,35 +103,35 @@ public class tu extends zt {
     @Override
     public boolean Y(MotionEvent motionEvent) {
         int i02 = i0();
-        motionEvent.offsetLocation(-i02, -this.f27069a0);
+        motionEvent.offsetLocation(-i02, -this.f27097a0);
         boolean t6 = this.X.t(motionEvent);
-        motionEvent.offsetLocation(i02, this.f27069a0);
+        motionEvent.offsetLocation(i02, this.f27097a0);
         return t6;
     }
 
     @Override
     public final void Z(int i7, int i10, int i11) {
-        super.Z(i7, i10 + this.f27069a0, i11);
+        super.Z(i7, i10 + this.f27097a0, i11);
         int i02 = i0();
         if (i02 != 0) {
             int i12 = i7 + i02;
             dv dvVar = this.X;
-            dvVar.f23578c = i12 - dvVar.f23580f;
+            dvVar.f23606c = i12 - dvVar.f23608f;
         }
     }
 
     @Override
     public final Layout a() {
-        return this.X.f23577b;
+        return this.X.f23605b;
     }
 
     public final int i0() {
         int L;
         int r10;
         boolean z10 = this.Z;
-        Rect rect = this.f28350b;
+        Rect rect = this.f28378b;
         dv dvVar = this.X;
-        ev evVar = this.f28349a;
+        ev evVar = this.f28377a;
         if (z10) {
             L = (((evVar.C + evVar.T) - evVar.S) - dvVar.r()) / 2;
             r10 = rect.left;
@@ -145,8 +145,8 @@ public class tu extends zt {
     }
 
     public final void j0(int i7, int i10) {
-        this.f27069a0 = i7;
-        this.f27070b0 = i10;
+        this.f27097a0 = i7;
+        this.f27098b0 = i10;
         g0();
     }
 
@@ -159,9 +159,9 @@ public class tu extends zt {
     public final boolean u(CharacterStyle characterStyle, int i7, qt qtVar) {
         dv dvVar = this.X;
         if (dvVar.o(characterStyle, qtVar)) {
-            Rect rect = this.f28350b;
-            qtVar.f26450e = (i0() + rect.left) - dvVar.f23580f;
-            qtVar.f26451f = i7 + rect.top + this.f27069a0;
+            Rect rect = this.f28378b;
+            qtVar.f26478e = (i0() + rect.left) - dvVar.f23608f;
+            qtVar.f26479f = i7 + rect.top + this.f27097a0;
             return true;
         }
         return false;

@@ -11,50 +11,50 @@ import l5.d;
 import o5.r;
 import q4.q;
 public final class b {
-    public final double f14103a;
-    public final double f14104b;
-    public final long f14105c;
+    public final double f14132a;
+    public final double f14133b;
+    public final long f14134c;
     public final long d;
-    public final int f14106e;
-    public final ArrayBlockingQueue f14107f;
-    public final ThreadPoolExecutor f14108g;
+    public final int f14135e;
+    public final ArrayBlockingQueue f14136f;
+    public final ThreadPoolExecutor f14137g;
     public final r h;
-    public final q f14109i;
-    public int f14110j;
-    public long f14111k;
+    public final q f14138i;
+    public int f14139j;
+    public long f14140k;
 
     public b(r rVar, ia.b bVar, q qVar) {
         double d = bVar.d;
-        double d2 = bVar.f16186e;
-        this.f14103a = d;
-        this.f14104b = d2;
-        this.f14105c = bVar.f16187f * 1000;
+        double d2 = bVar.f16211e;
+        this.f14132a = d;
+        this.f14133b = d2;
+        this.f14134c = bVar.f16212f * 1000;
         this.h = rVar;
-        this.f14109i = qVar;
+        this.f14138i = qVar;
         this.d = SystemClock.elapsedRealtime();
         int i7 = (int) d;
-        this.f14106e = i7;
+        this.f14135e = i7;
         ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue(i7);
-        this.f14107f = arrayBlockingQueue;
-        this.f14108g = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, arrayBlockingQueue);
-        this.f14110j = 0;
-        this.f14111k = 0L;
+        this.f14136f = arrayBlockingQueue;
+        this.f14137g = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, arrayBlockingQueue);
+        this.f14139j = 0;
+        this.f14140k = 0L;
     }
 
     public final int a() {
         int max;
-        if (this.f14111k == 0) {
-            this.f14111k = System.currentTimeMillis();
+        if (this.f14140k == 0) {
+            this.f14140k = System.currentTimeMillis();
         }
-        int currentTimeMillis = (int) ((System.currentTimeMillis() - this.f14111k) / this.f14105c);
-        if (this.f14107f.size() == this.f14106e) {
-            max = Math.min(100, this.f14110j + currentTimeMillis);
+        int currentTimeMillis = (int) ((System.currentTimeMillis() - this.f14140k) / this.f14134c);
+        if (this.f14136f.size() == this.f14135e) {
+            max = Math.min(100, this.f14139j + currentTimeMillis);
         } else {
-            max = Math.max(0, this.f14110j - currentTimeMillis);
+            max = Math.max(0, this.f14139j - currentTimeMillis);
         }
-        if (this.f14110j != max) {
-            this.f14110j = max;
-            this.f14111k = System.currentTimeMillis();
+        if (this.f14139j != max) {
+            this.f14139j = max;
+            this.f14140k = System.currentTimeMillis();
         }
         return max;
     }
@@ -70,6 +70,6 @@ public final class b {
         } else {
             z10 = false;
         }
-        this.h.a(new l5.a(null, bVar.f779a, d.f19674c, null), new g(this, taskCompletionSource, z10, bVar, 2));
+        this.h.a(new l5.a(null, bVar.f779a, d.f19702c, null), new g(this, taskCompletionSource, z10, bVar, 2));
     }
 }

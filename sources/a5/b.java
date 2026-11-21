@@ -4,10 +4,10 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import ch.n0;
 import di.q5;
-import oi.p0;
-import org.telegram.ui.Components.cn0;
-import org.telegram.ui.Components.cq;
-import org.telegram.ui.Components.f21;
+import oi.q0;
+import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.fn0;
+import org.telegram.ui.Components.i21;
 public final class b implements Drawable.Callback {
     public final int f209a;
     public Object f210b;
@@ -39,22 +39,22 @@ public final class b implements Drawable.Callback {
             case 4:
                 return;
             case 5:
-                ((p0) this.f210b).f22230b.invalidate();
+                ((q0) this.f210b).f22320b.invalidate();
                 return;
             case 6:
-                ((cq) this.f210b).invalidateSelf();
+                ((eq) this.f210b).invalidateSelf();
                 return;
             case 7:
-                ((cn0) this.f210b).f34118b.run();
+                ((fn0) this.f210b).f35266b.run();
                 return;
             case 8:
-                ((f21) this.f210b).invalidateSelf();
+                ((i21) this.f210b).invalidateSelf();
                 return;
             case 9:
-                ((zg.a) this.f210b).f61928c.invalidate();
+                ((zg.a) this.f210b).f61969c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f61954c.invalidate();
+                ((zg.c) this.f210b).f61995c.invalidate();
                 return;
         }
     }
@@ -87,16 +87,16 @@ public final class b implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((cq) this.f210b).scheduleSelf(runnable, j3);
+                ((eq) this.f210b).scheduleSelf(runnable, j3);
                 return;
             case 7:
             case 8:
                 return;
             case 9:
-                ((zg.a) this.f210b).f61928c.invalidate();
+                ((zg.a) this.f210b).f61969c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f61954c.invalidate();
+                ((zg.c) this.f210b).f61995c.invalidate();
                 return;
         }
     }
@@ -129,16 +129,16 @@ public final class b implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((cq) this.f210b).unscheduleSelf(runnable);
+                ((eq) this.f210b).unscheduleSelf(runnable);
                 return;
             case 7:
             case 8:
                 return;
             case 9:
-                ((zg.a) this.f210b).f61928c.invalidate();
+                ((zg.a) this.f210b).f61969c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f61954c.invalidate();
+                ((zg.c) this.f210b).f61995c.invalidate();
                 return;
         }
     }

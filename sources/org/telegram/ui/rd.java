@@ -3,40 +3,40 @@ package org.telegram.ui;
 import android.content.Context;
 import android.widget.FrameLayout;
 public final class rd extends FrameLayout {
-    public final org.telegram.ui.Components.e51 f51564a;
-    public final org.telegram.ui.ActionBar.i6 f51565b;
-    public final int f51566c;
+    public final org.telegram.ui.Components.h51 f51553a;
+    public final org.telegram.ui.ActionBar.h6 f51554b;
+    public final int f51555c;
     public final int d;
-    public final ai.w0 f51567e;
-    public final td f51568f;
+    public final ai.y0 f51556e;
+    public final td f51557f;
 
-    public rd(td tdVar, Context context, int i7, int i10, int i11, ai.w0 w0Var, org.telegram.ui.ActionBar.i6 i6Var) {
+    public rd(td tdVar, Context context, int i7, int i10, int i11, ai.y0 y0Var, org.telegram.ui.ActionBar.h6 h6Var) {
         super(context);
-        this.f51568f = tdVar;
+        this.f51557f = tdVar;
         this.d = i7;
-        this.f51566c = i10;
-        this.f51565b = i6Var;
-        this.f51567e = w0Var;
-        org.telegram.ui.Components.e51 e51Var = new org.telegram.ui.Components.e51(context, i10, i11, true, new a5(this, 3), new w0(this, 15), null, i6Var);
-        this.f51564a = e51Var;
+        this.f51555c = i10;
+        this.f51554b = h6Var;
+        this.f51556e = y0Var;
+        org.telegram.ui.Components.h51 h51Var = new org.telegram.ui.Components.h51(context, i10, i11, true, new a5(this, 3), new w0(this, 15), null, h6Var);
+        this.f51553a = h51Var;
         setClipChildren(false);
         setClipToPadding(false);
-        e51Var.setClipToPadding(false);
-        e51Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
-        e51Var.f34607g3.f42809r = false;
-        e51Var.setCaptureSectionsDecoratorAllowed(true);
-        e51Var.setOverScrollMode(0);
-        addView(e51Var, c8.ma.c(-1.0f, -1));
-        e51Var.setOnScrollListener(new bi.d6(3, this, w0Var));
-        ri.q qVar = tdVar.f52261x.f53790e1;
+        h51Var.setClipToPadding(false);
+        h51Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
+        h51Var.f35796g3.f34068r = false;
+        h51Var.setCaptureSectionsDecoratorAllowed(true);
+        h51Var.setOverScrollMode(0);
+        addView(h51Var, c8.ma.c(-1.0f, -1));
+        h51Var.setOnScrollListener(new bi.h6(3, this, y0Var));
+        ri.q qVar = tdVar.f52311x.f53833e1;
         if (qVar != null) {
-            qVar.b(e51Var);
+            qVar.b(h51Var);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f51564a.f34607g3.O(false);
+        this.f51553a.f35796g3.O(false);
     }
 }

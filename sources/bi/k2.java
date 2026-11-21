@@ -1,62 +1,168 @@
 package bi;
 
+import android.util.LongSparseArray;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.mp;
+import org.telegram.messenger.tr;
 import org.telegram.messenger.x10;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-public final class k2 implements Runnable {
-    public final int f3776a;
-    public final long f3777b;
-    public final Object f3778c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.PrivacyControlActivity;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.bh;
+import org.telegram.ui.de0;
+import org.telegram.ui.gb;
+import org.telegram.ui.hf0;
+import org.telegram.ui.hk0;
+import org.telegram.ui.lb;
+import org.telegram.ui.np;
+import org.telegram.ui.qj0;
+import org.telegram.ui.qo0;
+import org.telegram.ui.qy0;
+import org.telegram.ui.vo;
+import org.telegram.ui.wn;
+import org.telegram.ui.yj0;
+public final class k2 implements RequestDelegate {
+    public final int f3775a;
+    public final Object f3776b;
+    public final Object f3777c;
     public final Object d;
-    public final Object f3779e;
-    public final Object f3780f;
+    public final Object f3778e;
 
-    public k2(di.e0 e0Var, org.telegram.ui.ActionBar.u1 u1Var, TLObject tLObject, long j3, x10 x10Var) {
-        this.f3776a = 1;
-        this.d = e0Var;
-        this.f3779e = u1Var;
-        this.f3780f = tLObject;
-        this.f3777b = j3;
-        this.f3778c = x10Var;
+    public k2(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
+        this.f3775a = i7;
+        this.f3776b = obj;
+        this.f3777c = obj2;
+        this.d = obj3;
+        this.f3778e = obj4;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.k2.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite;
+        int i7 = this.f3775a;
+        Object obj = this.f3778e;
+        Object obj2 = this.d;
+        Object obj3 = this.f3777c;
+        Object obj4 = this.f3776b;
+        switch (i7) {
+            case 0:
+                org.telegram.messenger.g0.g3(new l2((n3) obj4, (org.telegram.ui.ActionBar.t1) obj3, tLObject, (ai.i1) obj2, (x10) obj, tL_error, 0));
+                return;
+            case 1:
+                org.telegram.messenger.g0.g3(new l2((di.f6) obj4, tLObject, (e2[]) obj3, (Long) obj2, (aa.r) obj, tL_error, 2, false));
+                return;
+            case 2:
+                org.telegram.messenger.g0.g3(new l2((di.f6) obj4, tLObject, (CharSequence) obj3, (TL_stars.TL_starGiftUnique) obj2, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) obj, tL_error, 1, false));
+                return;
+            case 3:
+                org.telegram.messenger.g0.g3(new l2((di.y8) obj4, tLObject, (fj) obj3, (TLRPC.TL_inputInvoiceMessage) obj2, (bh) obj, tL_error, 5, false));
+                return;
+            case 4:
+                org.telegram.messenger.g0.g3(new ai.b((di.y8) obj4, (org.telegram.ui.ActionBar.t1) obj3, tLObject, (TL_stars.InputSavedStarGift) obj2, (x10) obj, 9));
+                return;
+            case 5:
+                di.n8 n8Var = (di.n8) obj4;
+                n8Var.getClass();
+                org.telegram.messenger.g0.g3(new l2(n8Var, tLObject, (TL_stars.TL_starGiftCollection) obj3, (di.p8) obj2, (x10) obj, tL_error, 7, false));
+                return;
+            case 6:
+                org.telegram.messenger.g0.g3(new ai.b((fi.z3) obj4, (Runnable) obj3, tL_error, (TL_stories.StoryItem) obj2, (hi.n8) obj, 12));
+                return;
+            case 7:
+                hi.c7 c7Var = (hi.c7) obj4;
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj3;
+                TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj2;
+                ai.g1 g1Var = (ai.g1) obj;
+                if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && storyItem != null) {
+                    org.telegram.messenger.r8.n(c7Var.f14335a).u(new Object[]{tL_messages_getAttachedStickers, g1Var}, storyItem);
+                    return;
+                } else {
+                    g1Var.run(tLObject, tL_error);
+                    return;
+                }
+            case 8:
+                org.telegram.messenger.g0.g3(new l2((jg.z0) obj4, (String) obj3, tL_error, tLObject, (mp) obj2, (tr) obj));
+                return;
+            case 9:
+                org.telegram.messenger.g0.g3(new ai.b((jg.a2) obj4, (TLRPC.TL_messages_getStickers) obj3, tLObject, (ArrayList) obj2, (LongSparseArray) obj, 17));
+                return;
+            case 10:
+                gb gbVar = (gb) obj4;
+                TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj2;
+                boolean[] zArr = (boolean[]) obj;
+                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) obj3;
+                lb lbVar = gbVar.f48023a.f48714n;
+                if (tL_error == null) {
+                    tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
+                    for (int i10 = 0; i10 < tL_messages_exportedChatInvite.users.size(); i10++) {
+                        TLRPC.User user = tL_messages_exportedChatInvite.users.get(i10);
+                        if (lbVar.A0 == null) {
+                            lbVar.A0 = new HashMap();
+                        }
+                        lbVar.A0.put(Long.valueOf(user.f28580id), user);
+                    }
+                } else {
+                    tL_messages_exportedChatInvite = null;
+                }
+                org.telegram.messenger.g0.g3(new ai.b(gbVar, tL_chatInviteExported, tL_messages_exportedChatInvite, zArr, t1Var));
+                return;
+            case 11:
+                org.telegram.messenger.g0.g3(new org.telegram.messenger.camera.i((vo) obj4, (org.telegram.ui.ActionBar.t1[]) obj3, (TLRPC.Chat) obj2, (org.telegram.ui.ActionBar.g2) obj, 15));
+                return;
+            case 12:
+                org.telegram.messenger.g0.g3(new wn((Object) ((np) obj4), tL_error, (Object) ((TLRPC.InputCheckPasswordSRP) obj3), (Object) ((TwoStepVerificationActivity) obj2), (Object) ((TLRPC.TL_channels_editCreator) obj), 1));
+                return;
+            case 13:
+                qo0 qo0Var = (qo0) obj4;
+                TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers2 = (TLRPC.TL_messages_getAttachedStickers) obj2;
+                org.telegram.ui.u7 u7Var = (org.telegram.ui.u7) obj;
+                if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && obj3 != null) {
+                    org.telegram.messenger.r8.n(qo0Var.f30170a).u(new Object[]{tL_messages_getAttachedStickers2, u7Var}, obj3);
+                    return;
+                } else {
+                    u7Var.run(tLObject, tL_error);
+                    return;
+                }
+            case 14:
+                org.telegram.messenger.g0.g3(new wn((Object) ((de0) obj4), tL_error, (Object) ((String) obj3), (Object) ((String) obj2), (Object) ((String) obj), 17));
+                return;
+            case 15:
+                org.telegram.messenger.g0.g3(new l2((hk0) obj4, tL_error, (String) obj3, (yj0) obj2, tLObject, (TL_account.sendVerifyPhoneCode) obj));
+                return;
+            case 16:
+                org.telegram.messenger.g0.g3(new wn((Object) ((qj0) obj4), tL_error, (Object) ((hf0) obj3), (Object) ((k8.a) obj2), (Object) ((TL_account.verifyEmail) obj), 24));
+                return;
+            case 17:
+                org.telegram.messenger.g0.g3(new wn((Object) ((PrivacyControlActivity) obj4), tL_error, (Object) ((boolean[]) obj3), (Object) ((TLRPC.GlobalPrivacySettings) obj2), (Object) ((TL_account.setGlobalPrivacySettings) obj), 28));
+                return;
+            case 18:
+                qy0 qy0Var = (qy0) obj4;
+                qy0Var.getClass();
+                org.telegram.messenger.g0.g3(new l2(qy0Var, tLObject, (CharSequence) obj3, tL_error, (byte[]) obj2, (String) obj));
+                return;
+            case 19:
+                org.telegram.messenger.g0.g3(new org.telegram.ui.web.x((org.telegram.ui.web.v0) obj4, tLObject, (fi.f7) obj3, (String) obj2, (String) obj));
+                return;
+            default:
+                org.telegram.ui.web.v0 v0Var = (org.telegram.ui.web.v0) obj4;
+                v0Var.getClass();
+                org.telegram.messenger.g0.g3(new l2(v0Var, tLObject, (TLRPC.TL_messages_requestUrlAuth) obj3, (String) obj2, tL_error, (String) obj));
+                return;
+        }
     }
 
-    public k2(Object obj, long j3, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f3776a = i7;
-        this.d = obj;
-        this.f3777b = j3;
-        this.f3779e = obj2;
-        this.f3778c = obj3;
-        this.f3780f = obj4;
-    }
-
-    public k2(Object obj, Object obj2, long j3, Object obj3, Object obj4, int i7) {
-        this.f3776a = i7;
-        this.d = obj;
-        this.f3779e = obj2;
-        this.f3777b = j3;
-        this.f3778c = obj3;
-        this.f3780f = obj4;
-    }
-
-    public k2(Object obj, Object obj2, Object obj3, long j3, Object obj4, int i7) {
-        this.f3776a = i7;
-        this.d = obj;
-        this.f3779e = obj2;
-        this.f3778c = obj3;
-        this.f3777b = j3;
-        this.f3780f = obj4;
-    }
-
-    public k2(Object obj, Object obj2, Object obj3, Object obj4, long j3, int i7) {
-        this.f3776a = i7;
-        this.d = obj;
-        this.f3779e = obj2;
-        this.f3778c = obj3;
-        this.f3780f = obj4;
-        this.f3777b = j3;
+    public k2(gb gbVar, TLRPC.TL_chatInviteExported tL_chatInviteExported, boolean[] zArr, org.telegram.ui.ActionBar.t1 t1Var) {
+        this.f3775a = 10;
+        this.f3776b = gbVar;
+        this.d = tL_chatInviteExported;
+        this.f3778e = zArr;
+        this.f3777c = t1Var;
     }
 }

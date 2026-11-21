@@ -3,23 +3,23 @@ package m;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.ey;
-import org.telegram.ui.Components.my;
-import org.telegram.ui.Components.qx;
+import org.telegram.ui.Components.gy;
+import org.telegram.ui.Components.oy;
+import org.telegram.ui.Components.sx;
 public final class c2 implements View.OnTouchListener {
-    public final int f20025a;
-    public final Object f20026b;
+    public final int f20053a;
+    public final Object f20054b;
 
     public c2(Object obj, int i7) {
-        this.f20025a = i7;
-        this.f20026b = obj;
+        this.f20053a = i7;
+        this.f20054b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f20025a) {
+        switch (this.f20053a) {
             case 0:
-                d2 d2Var = (d2) this.f20026b;
+                d2 d2Var = (d2) this.f20054b;
                 a2 a2Var = d2Var.H;
                 Handler handler = d2Var.L;
                 x xVar = d2Var.P;
@@ -36,27 +36,27 @@ public final class c2 implements View.OnTouchListener {
                     return false;
                 }
             case 1:
-                qx qxVar = (qx) this.f20026b;
+                sx sxVar = (sx) this.f20054b;
                 if (motionEvent.getAction() == 0) {
-                    qxVar.G.f39350f = true;
+                    sxVar.G.f40104f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    qxVar.G.f39350f = false;
+                    sxVar.G.f40104f = false;
                 }
                 return false;
             case 2:
-                ey eyVar = (ey) this.f20026b;
+                gy gyVar = (gy) this.f20054b;
                 if (motionEvent.getAction() == 0) {
-                    eyVar.H.f39350f = true;
+                    gyVar.H.f40104f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    eyVar.H.f39350f = false;
+                    gyVar.H.f40104f = false;
                 }
                 return false;
             default:
-                my myVar = (my) this.f20026b;
+                oy oyVar = (oy) this.f20054b;
                 if (motionEvent.getAction() == 0) {
-                    myVar.R.f39350f = true;
+                    oyVar.R.f40104f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    myVar.R.f39350f = false;
+                    oyVar.R.f40104f = false;
                 }
                 return false;
         }

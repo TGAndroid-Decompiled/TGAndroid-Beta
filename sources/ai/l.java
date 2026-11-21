@@ -3,33 +3,33 @@ package ai;
 import java.util.Comparator;
 import org.telegram.ui.Dictation.DictationAsr;
 public final class l implements Comparator {
-    public final int f1303a;
-    public final float[] f1304b;
+    public final int f1271a;
+    public final float[] f1272b;
 
     public l(int i7, float[] fArr) {
-        this.f1303a = i7;
-        this.f1304b = fArr;
+        this.f1271a = i7;
+        this.f1272b = fArr;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         float f10;
-        switch (this.f1303a) {
+        switch (this.f1271a) {
             case 0:
-                float[] fArr = this.f1304b;
-                t[] tVarArr = DictationAsr.f43023a;
+                float[] fArr = this.f1272b;
+                t[] tVarArr = DictationAsr.f43064a;
                 return Float.compare(fArr[((Integer) obj2).intValue()], fArr[((Integer) obj).intValue()]);
             case 1:
-                float[] fArr2 = this.f1304b;
+                float[] fArr2 = this.f1272b;
                 return Float.compare(fArr2[(((Integer) obj).intValue() * 3) + 2], fArr2[(((Integer) obj2).intValue() * 3) + 2]);
             case 2:
-                float[] fArr3 = this.f1304b;
+                float[] fArr3 = this.f1272b;
                 return Float.compare(fArr3[(((Integer) obj).intValue() * 3) + 2], fArr3[(((Integer) obj2).intValue() * 3) + 2]);
             case 3:
-                float[] fArr4 = this.f1304b;
+                float[] fArr4 = this.f1272b;
                 return Float.compare(fArr4[(((Integer) obj).intValue() * 3) + 2], fArr4[(((Integer) obj2).intValue() * 3) + 2]);
             default:
-                float[] fArr5 = this.f1304b;
+                float[] fArr5 = this.f1272b;
                 Integer num = (Integer) obj2;
                 float f11 = fArr5[((Integer) obj).intValue()];
                 float f12 = 0.0f;

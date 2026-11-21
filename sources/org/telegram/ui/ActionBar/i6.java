@@ -1,28 +1,51 @@
 package org.telegram.ui.ActionBar;
 
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-public interface i6 {
-    boolean d();
+public final class i6 extends Drawable {
+    public float[] f29038b;
+    public Path f29037a = new Path();
+    public boolean f29039c = true;
 
-    void e(float f10, float f11, int i7, int i10);
+    public i6(float f10, float f11) {
+        this.f29038b = r0;
+        float L = org.telegram.messenger.g0.L(f10);
+        float L2 = org.telegram.messenger.g0.L(f11);
+        float[] fArr = {L, L, L, L, L2, L2, L2, L2};
+    }
 
-    ColorFilter f();
+    @Override
+    public final void draw(Canvas canvas) {
+        Path path = this.f29037a;
+        if (this.f29039c) {
+            this.f29039c = false;
+            path.reset();
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(getBounds());
+            path.addRoundRect(rectF, this.f29038b, Path.Direction.CW);
+        }
+        canvas.drawPath(path, m6.f29782z);
+    }
 
-    Paint g(String str);
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
 
-    Drawable getDrawable(String str);
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.f29039c = true;
+    }
 
-    boolean h();
+    @Override
+    public final void setAlpha(int i7) {
+    }
 
-    int i(int i7);
-
-    boolean j();
-
-    int k(int i7);
-
-    void l(int i7, int i10);
-
-    int m(int i7);
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
 }

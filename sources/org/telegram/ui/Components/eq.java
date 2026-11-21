@@ -1,27 +1,114 @@
 package org.telegram.ui.Components;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public abstract class eq implements InputFilter {
-    public final int f34783a;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class eq extends Drawable {
+    public final Drawable f34962a;
+    public Path f34963b;
+    public final RectF f34964c;
+    public final RectF d;
+    public boolean f34965e;
+    public final float[] f34966f;
 
-    public eq(int i7) {
-        this.f34783a = i7;
+    public eq(Drawable drawable) {
+        a5.b bVar = new a5.b(this, 6);
+        this.f34964c = new RectF();
+        this.d = new RectF();
+        this.f34965e = false;
+        this.f34966f = new float[8];
+        Drawable drawable2 = this.f34962a;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f34962a = drawable;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            this.f34962a.setCallback(bVar);
+        }
+    }
+
+    public final void a() {
+        if (!this.f34965e) {
+            return;
+        }
+        Path path = this.f34963b;
+        if (path == null) {
+            this.f34963b = new Path();
+        } else {
+            path.rewind();
+        }
+        Rect bounds = getBounds();
+        RectF rectF = this.f34964c;
+        rectF.set(bounds);
+        float f10 = rectF.left;
+        RectF rectF2 = this.d;
+        rectF.left = f10 + rectF2.left;
+        rectF.top += rectF2.top;
+        rectF.right -= rectF2.right;
+        rectF.bottom -= rectF2.bottom;
+        this.f34963b.addRoundRect(rectF, this.f34966f, Path.Direction.CW);
     }
 
     @Override
-    public CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
-        int codePointCount = this.f34783a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i11, i12));
-        if (codePointCount <= 0) {
-            return "";
+    public final void draw(Canvas canvas) {
+        Drawable drawable = this.f34962a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            if (!this.f34965e) {
+                canvas.save();
+                canvas.clipRect(getBounds());
+                this.f34962a.draw(canvas);
+                canvas.restore();
+                return;
+            }
+            canvas.save();
+            a();
+            canvas.clipPath(this.f34963b);
+            this.f34962a.draw(canvas);
+            canvas.restore();
         }
-        if (codePointCount >= Character.codePointCount(charSequence, i7, i10)) {
-            return null;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        Drawable drawable = this.f34962a;
+        if (drawable != null) {
+            return drawable.getIntrinsicHeight();
         }
-        int i13 = codePointCount + i7;
-        if (Character.isHighSurrogate(charSequence.charAt(i13 - 1)) && i13 - 1 == i7) {
-            return "";
+        return super.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        Drawable drawable = this.f34962a;
+        if (drawable != null) {
+            return drawable.getIntrinsicWidth();
         }
-        return charSequence.subSequence(i7, i13);
+        return super.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        Drawable drawable = this.f34962a;
+        if (drawable != null) {
+            drawable.setAlpha(i7);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = this.f34962a;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
     }
 }

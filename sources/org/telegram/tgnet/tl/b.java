@@ -10,15 +10,15 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stats;
 public final class b implements Vector.TLDeserializer {
-    public final int f28667a;
+    public final int f28695a;
 
     public b(int i7) {
-        this.f28667a = i7;
+        this.f28695a = i7;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z10) {
-        switch (this.f28667a) {
+        switch (this.f28695a) {
             case 0:
                 return TL_keyboard.KeyboardButton.TLdeserialize(inputSerializedData, i7, z10);
             case 1:

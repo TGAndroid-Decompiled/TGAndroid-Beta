@@ -1,56 +1,97 @@
 package ai;
 
-import android.view.KeyEvent;
+import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class e0 implements View.OnKeyListener {
-    public final int f1183a;
-    public final FrameLayout f1184b;
+import di.m7;
+import java.util.ArrayList;
+import org.telegram.messenger.i5;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Dictation.DictationAsr;
+import org.telegram.ui.o6;
+public final class e0 implements View.OnClickListener {
+    public final int f1154a = 0;
+    public final boolean f1155b;
+    public final int f1156c;
+    public final Object d;
+    public final Object f1157e;
+    public final Object f1158f;
+    public final Object h;
+    public final Object f1159n;
 
-    public e0(int i7, FrameLayout frameLayout) {
-        this.f1183a = i7;
-        this.f1184b = frameLayout;
+    public e0(p0 p0Var, t tVar, String str, String[] strArr, int i7, boolean z10, bi.b1 b1Var) {
+        this.d = p0Var;
+        this.f1157e = tVar;
+        this.f1158f = str;
+        this.h = strArr;
+        this.f1156c = i7;
+        this.f1155b = z10;
+        this.f1159n = b1Var;
     }
 
     @Override
-    public final boolean onKey(View view, int i7, KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.h1 h1Var;
-        switch (this.f1183a) {
+    public final void onClick(View view) {
+        boolean z10;
+        switch (this.f1154a) {
             case 0:
-                bi.x0 x0Var = (bi.x0) this.f1184b;
-                if (i7 != 4) {
-                    return false;
+                p0 p0Var = (p0) this.d;
+                String str = (String) this.f1158f;
+                String[] strArr = (String[]) this.h;
+                bi.b1 b1Var = (bi.b1) this.f1159n;
+                p0Var.getClass();
+                ArrayList arrayList = new ArrayList();
+                ArrayList arrayList2 = new ArrayList();
+                String d02 = DictationAsr.d0((t) this.f1157e, str);
+                for (String str2 : strArr) {
+                    Context context = p0Var.h;
+                    String N = p0.N(str2);
+                    if (this.f1155b && str2.equals(d02)) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    arrayList.add(new m0(context, N, null, this.f1156c, z10));
+                    arrayList2.add(new aa.r((Object) p0Var, (Object) str, (Object) str2, 3));
                 }
-                if (keyEvent.getAction() == 1) {
-                    x0Var.c(null);
-                }
-                return true;
-            case 1:
-                bi.x0 x0Var2 = (bi.x0) this.f1184b;
-                if (i7 != 4) {
-                    return false;
-                }
-                if (keyEvent.getAction() == 1) {
-                    x0Var2.c(null);
-                }
-                return true;
-            case 2:
-                bi.x0 x0Var3 = (bi.x0) this.f1184b;
-                if (i7 != 4) {
-                    return false;
-                }
-                if (keyEvent.getAction() == 1) {
-                    x0Var3.c(null);
-                }
-                return true;
+                b1Var.g(arrayList, arrayList2);
+                return;
             default:
-                org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f1184b;
-                r0Var.getClass();
-                if (i7 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && (h1Var = r0Var.d) != null && h1Var.isShowing()) {
-                    r0Var.d.d(true);
-                    return true;
+                hi.e eVar = (hi.e) this.d;
+                o6 o6Var = (o6) this.f1157e;
+                Runnable runnable = (Runnable) this.f1158f;
+                Context context2 = (Context) this.h;
+                h6 h6Var = (h6) this.f1159n;
+                eVar.setLoading(true);
+                boolean z11 = this.f1155b;
+                int i7 = this.f1156c;
+                if (z11) {
+                    TL_account.setPrivacy setprivacy = new TL_account.setPrivacy();
+                    setprivacy.key = new TLRPC.TL_inputPrivacyKeyStatusTimestamp();
+                    setprivacy.rules.add(new TLRPC.TL_inputPrivacyValueAllowAll());
+                    ConnectionsManager.getInstance(i7).sendRequest(setprivacy, new bi.q1(eVar, o6Var, runnable, 19));
+                    return;
                 }
-                return false;
+                TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
+                TLRPC.GlobalPrivacySettings globalPrivacySettings = i5.r(i7).Y;
+                setglobalprivacysettings.settings = globalPrivacySettings;
+                if (globalPrivacySettings == null) {
+                    setglobalprivacysettings.settings = new TLRPC.TL_globalPrivacySettings();
+                }
+                setglobalprivacysettings.settings.hide_read_marks = false;
+                ConnectionsManager.getInstance(i7).sendRequest(setglobalprivacysettings, new m7(context2, h6Var, eVar, o6Var, runnable, 6));
+                return;
         }
+    }
+
+    public e0(hi.e eVar, boolean z10, int i7, o6 o6Var, Runnable runnable, Context context, h6 h6Var) {
+        this.d = eVar;
+        this.f1155b = z10;
+        this.f1156c = i7;
+        this.f1157e = o6Var;
+        this.f1158f = runnable;
+        this.h = context;
+        this.f1159n = h6Var;
     }
 }

@@ -1,75 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
+import android.content.Context;
 import android.graphics.ColorFilter;
-import android.graphics.Rect;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class kr extends Drawable {
-    public final Drawable f36863a;
-    public final Drawable f36864b;
-    public float f36865c;
-    public float d = 255.0f;
+    public final Drawable f36949a;
+    public final RectF f36950b = new RectF();
+    public final Paint f36951c;
+    public final Paint d;
+    public int f36952e;
+    public final int f36953f;
+    public float f36954g;
+    public boolean h;
+    public float f36955i;
+    public float f36956j;
+    public float f36957k;
 
-    public kr(Drawable drawable, Drawable drawable2) {
-        this.f36863a = drawable;
-        this.f36864b = drawable2;
-        if (drawable != null) {
-            drawable.setCallback(new jr(this, 0));
-        }
-        if (drawable2 != null) {
-            drawable2.setCallback(new jr(this, 1));
-        }
+    public kr(Context context, int i7, int i10) {
+        Paint paint = new Paint(1);
+        this.f36951c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.f36949a = context.getDrawable(i7);
+        this.f36953f = i10;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.7f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-16777216);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(org.telegram.messenger.g0.N(2.5f));
     }
 
-    public final void a(float f10) {
-        this.f36865c = f10;
-        invalidateSelf();
+    public final void a(boolean z10, boolean z11) {
+        if (this.h != z10) {
+            this.h = z10;
+            float f10 = 0.0f;
+            if (!z11) {
+                if (z10) {
+                    f10 = 1.0f;
+                }
+                this.f36954g = f10;
+            } else {
+                if (!z10) {
+                    f10 = 1.0f;
+                }
+                this.f36954g = f10;
+            }
+            invalidateSelf();
+        }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i7 = (int) ((1.0f - this.f36865c) * this.d);
-        Drawable drawable = this.f36863a;
-        drawable.setAlpha(i7);
-        int i10 = (int) (this.d * this.f36865c);
-        Drawable drawable2 = this.f36864b;
-        drawable2.setAlpha(i10);
-        if (i7 > 0) {
-            drawable.draw(canvas);
-        }
-        if (i10 > 0) {
-            drawable2.draw(canvas);
-        }
+    public final void draw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kr.draw(android.graphics.Canvas):void");
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f36863a.getIntrinsicHeight();
+        return this.f36949a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f36863a.getIntrinsicWidth();
+        return this.f36949a.getIntrinsicWidth();
     }
 
     @Override
     public final int getOpacity() {
-        return -3;
+        return -2;
     }
 
     @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f36863a.setBounds(rect);
-        this.f36864b.setBounds(rect);
+    public final void setBounds(int i7, int i10, int i11, int i12) {
+        super.setBounds(i7, i10, i11, i12);
+        this.f36949a.setBounds(i7, i10, i11, i12);
     }
 
     @Override
     public final void setAlpha(int i7) {
-        this.d = i7;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f36863a.setColorFilter(colorFilter);
     }
 }

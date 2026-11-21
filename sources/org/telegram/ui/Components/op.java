@@ -1,79 +1,163 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.text.style.ReplacementSpan;
-public final class op extends ReplacementSpan {
-    public final int f38147a;
-    public final Object f38148b;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public class op extends View {
+    public final CheckBoxBase f38327a;
+    public Drawable f38328b;
+    public int f38329c;
 
-    public op(Object obj, int i7) {
-        this.f38147a = i7;
-        this.f38148b = obj;
+    public op(int i7, Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context);
+        this.f38327a = new CheckBoxBase(i7, this, h6Var);
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        this.f38327a.f(-1, z10, z11);
+    }
+
+    public final void b(int i7, int i10, int i11) {
+        this.f38327a.h(i7, i10, i11);
+    }
+
+    public CheckBoxBase getCheckBoxBase() {
+        return this.f38327a;
+    }
+
+    public boolean getDrawUnchecked() {
+        return this.f38327a.f32879z;
+    }
+
+    public float getProgress() {
+        return this.f38327a.getProgress();
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        switch (this.f38147a) {
-            case 0:
-                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-                int i14 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2) + i12;
-                Drawable drawable = (Drawable) this.f38148b;
-                int i15 = (int) f10;
-                drawable.setBounds(i15, i14 - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(24.0f) + i15, org.telegram.messenger.g0.L(12.0f) + i14);
-                drawable.setAlpha(paint.getAlpha());
-                drawable.draw(canvas);
-                return;
-            case 1:
-            case 2:
-            case 3:
-            default:
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f38327a.f32866l = true;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f38147a) {
-            case 0:
-                if (fontMetricsInt != null) {
-                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
-                    int i11 = fontMetricsInt2.ascent;
-                    int i12 = (fontMetricsInt2.descent + i11) / 2;
-                    int D = org.telegram.messenger.n10.D(12.0f, i12, i11);
-                    fontMetricsInt.top = D;
-                    fontMetricsInt.ascent = D;
-                    int b10 = org.telegram.messenger.f3.b(12.0f, i12, fontMetricsInt2.descent);
-                    fontMetricsInt.bottom = b10;
-                    fontMetricsInt.descent = b10;
-                }
-                return org.telegram.messenger.g0.L(32.0f);
-            case 1:
-                return ((y90) this.f38148b).f42432y;
-            case 2:
-                return (int) ((org.telegram.ui.vg0) this.f38148b).f52780j2;
-            case 3:
-                return (int) ((wg.d1) this.f38148b).f59751o2;
-            default:
-                return ((org.telegram.messenger.g6) this.f38148b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f38327a.f32866l = false;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f38328b != null) {
+            int measuredWidth = getMeasuredWidth() >> 1;
+            int measuredHeight = getMeasuredHeight() >> 1;
+            Drawable drawable = this.f38328b;
+            drawable.setBounds(org.telegram.ui.Cells.c0.C(2, measuredWidth, drawable), org.telegram.ui.Cells.c0.A(2, measuredHeight, this.f38328b), org.telegram.ui.Cells.c0.y(2, measuredWidth, this.f38328b), org.telegram.ui.Cells.c0.j(2, measuredHeight, this.f38328b));
+            this.f38328b.draw(canvas);
+            Paint paint = new Paint();
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(org.telegram.messenger.g0.L(1.2f));
+            paint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.U6, false));
+            canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - org.telegram.messenger.g0.L(1.5f), paint);
+            return;
+        }
+        this.f38327a.a(canvas);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Switch");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f38327a.f32871q);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
+        super.onLayout(z10, i7, i10, i11, i12);
+        this.f38327a.e(0, 0, i11 - i7, i12 - i10);
+    }
+
+    public void setCirclePaintProvider(org.telegram.messenger.i9 i9Var) {
+        CheckBoxBase checkBoxBase = this.f38327a;
+        if (checkBoxBase.G == i9Var) {
+            return;
+        }
+        checkBoxBase.G = i9Var;
+        checkBoxBase.b();
+    }
+
+    public void setDrawBackgroundAsArc(int i7) {
+        this.f38327a.d(i7);
+    }
+
+    public void setDrawUnchecked(boolean z10) {
+        this.f38327a.k(z10);
+    }
+
+    public void setDuration(long j3) {
+        this.f38327a.H = j3;
+    }
+
+    @Override
+    public void setEnabled(boolean z10) {
+        CheckBoxBase checkBoxBase = this.f38327a;
+        if (checkBoxBase.f32865k != z10) {
+            checkBoxBase.f32865k = z10;
+            checkBoxBase.b();
+        }
+        super.setEnabled(z10);
+    }
+
+    public void setForbidden(boolean z10) {
+        CheckBoxBase checkBoxBase = this.f38327a;
+        if (checkBoxBase.f32868n == z10) {
+            return;
+        }
+        checkBoxBase.f32868n = z10;
+        checkBoxBase.b();
+    }
+
+    public void setIcon(int i7) {
+        if (i7 != this.f38329c) {
+            this.f38329c = i7;
+            if (i7 == 0) {
+                this.f38328b = null;
+                return;
+            }
+            Drawable mutate = getContext().getDrawable(i7).mutate();
+            this.f38328b = mutate;
+            org.telegram.ui.ActionBar.t6.x(this, mutate, org.telegram.ui.ActionBar.m6.U6, null, PorterDuff.Mode.MULTIPLY);
         }
     }
 
-    public op(mh0 mh0Var) {
-        this.f38147a = 0;
-        this.f38148b = mh0Var;
+    public void setNum(int i7) {
+        String str;
+        CheckBoxBase checkBoxBase = this.f38327a;
+        if (i7 >= 0) {
+            checkBoxBase.getClass();
+            str = "" + (i7 + 1);
+        } else if (checkBoxBase.f32870p != null) {
+            str = checkBoxBase.C;
+        } else {
+            str = null;
+        }
+        String str2 = checkBoxBase.C;
+        if (str2 == null) {
+            if (str == null) {
+                return;
+            }
+        } else if (str2.equals(str)) {
+            return;
+        }
+        checkBoxBase.C = str;
+        checkBoxBase.b();
     }
 
-    private final void a(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void b(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-    }
-
-    private final void d(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+    public void setProgressDelegate(pp ppVar) {
+        this.f38327a.D = ppVar;
     }
 }

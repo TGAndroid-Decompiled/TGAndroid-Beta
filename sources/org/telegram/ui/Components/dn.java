@@ -1,136 +1,27 @@
 package org.telegram.ui.Components;
+public final class dn implements org.telegram.messenger.x10 {
+    public final int f34539a;
+    public final org.telegram.messenger.x10 f34540b;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class dn implements rx {
-    public final org.telegram.messenger.x10 f34468a;
-    public final fi.n2 f34469b;
-
-    public dn(org.telegram.messenger.x10 x10Var, fi.n2 n2Var) {
-        this.f34468a = x10Var;
-        this.f34469b = n2Var;
+    public dn(org.telegram.messenger.x10 x10Var, int i7) {
+        this.f34539a = i7;
+        this.f34540b = x10Var;
     }
 
     @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.bj bjVar, boolean z10, int i7) {
-        this.f34468a.a(new th.h(obj, document));
-        this.f34469b.a(true);
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
-        this.f34468a.a(new th.h(null, document));
-        this.f34469b.a(true);
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void i(int i7) {
-    }
-
-    @Override
-    public final void l(String str) {
-    }
-
-    @Override
-    public final void o(h41 h41Var) {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i7) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void y(long j3) {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i7, int i10) {
+    public final void a(Object obj) {
+        switch (this.f34539a) {
+            case 0:
+                this.f34540b.a(new th.e((String) obj));
+                return;
+            default:
+                int[] iArr = (int[]) obj;
+                boolean z10 = false;
+                if (iArr.length >= 1 && iArr[0] == 0) {
+                    z10 = true;
+                }
+                this.f34540b.a(Boolean.valueOf(z10));
+                return;
+        }
     }
 }

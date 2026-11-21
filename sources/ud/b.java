@@ -4,26 +4,26 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import kotlin.jvm.internal.j;
 public final class b implements Iterator {
-    public final int f58588a = 0;
-    public final int f58589b;
-    public final int f58590c;
+    public final int f58629a = 0;
+    public final int f58630b;
+    public final int f58631c;
     public boolean d;
-    public int f58591e;
+    public int f58632e;
 
     public b(char c10, char c11, int i7) {
         boolean z10 = false;
-        this.f58589b = i7;
-        this.f58590c = c11;
+        this.f58630b = i7;
+        this.f58631c = c11;
         if (i7 <= 0 ? j.f(c10, c11) >= 0 : j.f(c10, c11) <= 0) {
             z10 = true;
         }
         this.d = z10;
-        this.f58591e = z10 ? c10 : c11;
+        this.f58632e = z10 ? c10 : c11;
     }
 
     @Override
     public final boolean hasNext() {
-        switch (this.f58588a) {
+        switch (this.f58629a) {
             case 0:
                 return this.d;
             default:
@@ -33,17 +33,17 @@ public final class b implements Iterator {
 
     @Override
     public final Object next() {
-        switch (this.f58588a) {
+        switch (this.f58629a) {
             case 0:
-                int i7 = this.f58591e;
-                if (i7 == this.f58590c) {
+                int i7 = this.f58632e;
+                if (i7 == this.f58631c) {
                     if (this.d) {
                         this.d = false;
                     } else {
                         throw new NoSuchElementException();
                     }
                 } else {
-                    this.f58591e = this.f58589b + i7;
+                    this.f58632e = this.f58630b + i7;
                 }
                 return Character.valueOf((char) i7);
             default:
@@ -52,21 +52,21 @@ public final class b implements Iterator {
     }
 
     public int nextInt() {
-        int i7 = this.f58591e;
-        if (i7 == this.f58590c) {
+        int i7 = this.f58632e;
+        if (i7 == this.f58631c) {
             if (this.d) {
                 this.d = false;
                 return i7;
             }
             throw new NoSuchElementException();
         }
-        this.f58591e = this.f58589b + i7;
+        this.f58632e = this.f58630b + i7;
         return i7;
     }
 
     @Override
     public final void remove() {
-        switch (this.f58588a) {
+        switch (this.f58629a) {
             case 0:
                 throw new UnsupportedOperationException("Operation is not supported for read-only collection");
             default:
@@ -75,13 +75,13 @@ public final class b implements Iterator {
     }
 
     public b(int i7, int i10, int i11) {
-        this.f58589b = i11;
-        this.f58590c = i10;
+        this.f58630b = i11;
+        this.f58631c = i10;
         boolean z10 = false;
         if (i11 <= 0 ? i7 >= i10 : i7 <= i10) {
             z10 = true;
         }
         this.d = z10;
-        this.f58591e = z10 ? i7 : i10;
+        this.f58632e = z10 ? i7 : i10;
     }
 }

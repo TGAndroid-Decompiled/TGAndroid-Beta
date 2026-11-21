@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class l {
-    public final String f11297a;
-    public final k f11298b;
+    public final String f11326a;
+    public final k f11327b;
 
     public l(JSONObject jSONObject) {
         jSONObject.optString("basePlanId");
         jSONObject.optString("offerId").getClass();
-        this.f11297a = jSONObject.getString("offerIdToken");
-        this.f11298b = new k(jSONObject.getJSONArray("pricingPhases"));
+        this.f11326a = jSONObject.getString("offerIdToken");
+        this.f11327b = new k(jSONObject.getJSONArray("pricingPhases"));
         JSONObject optJSONObject = jSONObject.optJSONObject("installmentPlanDetails");
         if (optJSONObject != null) {
             optJSONObject.getInt("commitmentPaymentsCount");

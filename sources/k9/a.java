@@ -21,7 +21,7 @@ import h9.q;
 import h9.s;
 import h9.t1;
 import h9.y;
-import hi.f9;
+import hi.e9;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.AbstractCollection;
@@ -32,16 +32,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class a {
-    public static final j0 f18186f;
-    public static final g9.a f18187g;
+    public static final j0 f18217f;
+    public static final g9.a f18218g;
     public static final HashMap h;
-    public static final a f18188i;
-    public static final c f18189j;
-    public final String f18190a;
-    public final String f18191b;
-    public final j0 f18192c;
+    public static final a f18219i;
+    public static final c f18220j;
+    public final String f18221a;
+    public final String f18222b;
+    public final j0 f18223c;
     public String d;
-    public int f18193e;
+    public int f18224e;
 
     static {
         j0 j0Var;
@@ -50,7 +50,7 @@ public final class a {
         s b10 = s.b();
         c0 c0Var = (c0) b10.get("charset");
         if (c0Var == null) {
-            g0 g0Var = i0.f14003b;
+            g0 g0Var = i0.f14032b;
             o.g(4, "expectedSize");
             c0Var = new b0(4);
             b10.put("charset", c0Var);
@@ -61,7 +61,7 @@ public final class a {
             j0Var = y.h;
         } else {
             q qVar = (q) entrySet;
-            xa xaVar = new xa(qVar.f14043b.size(), 10);
+            xa xaVar = new xa(qVar.f14072b.size(), 10);
             Iterator it = qVar.iterator();
             int i7 = 0;
             while (it.hasNext()) {
@@ -73,13 +73,13 @@ public final class a {
             }
             j0Var = new j0(xaVar.c(true), i7);
         }
-        f18186f = j0Var;
+        f18217f = j0Var;
         b bVar = b.d;
-        b bVar2 = b.f13242e;
+        b bVar2 = b.f13271e;
         bVar2.getClass();
         g9.c cVar = new g9.c(bVar2);
         bVar.getClass();
-        f18187g = new g9.a(new g9.a(new g9.a(bVar, cVar), new e(' ', 1)), i.b("()<>@,;:\\\"/[]?=").d());
+        f18218g = new g9.a(new g9.a(new g9.a(bVar, cVar), new e(' ', 1)), i.b("()<>@,;:\\\"/[]?=").d());
         i.b("\"\\\r").d().getClass();
         i.b(" \t\r\n");
         h = new HashMap();
@@ -153,7 +153,7 @@ public final class a {
         b("application", "javascript");
         a("application", "jose");
         a("application", "jose+json");
-        f18188i = b("application", "json");
+        f18219i = b("application", "json");
         a("application", "jwt");
         b("application", "manifest+json");
         a("application", "vnd.google-earth.kml+xml");
@@ -199,13 +199,13 @@ public final class a {
         a("font", "ttf");
         a("font", "woff");
         a("font", "woff2");
-        f18189j = new c(new g("; "), 26);
+        f18220j = new c(new g("; "), 26);
     }
 
     public a(String str, String str2, j0 j0Var) {
-        this.f18190a = str;
-        this.f18191b = str2;
-        this.f18192c = j0Var;
+        this.f18221a = str;
+        this.f18222b = str2;
+        this.f18223c = j0Var;
     }
 
     public static void a(String str, String str2) {
@@ -214,21 +214,21 @@ public final class a {
     }
 
     public static a b(String str, String str2) {
-        a aVar = new a(str, str2, f18186f);
+        a aVar = new a(str, str2, f18217f);
         h.put(aVar, aVar);
         StandardCharsets.UTF_8.getClass();
         return aVar;
     }
 
     public final i1 c() {
-        return new i1(this.f18192c.b(), new g1(new f9(11), 0));
+        return new i1(this.f18223c.b(), new g1(new e9(11), 0));
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (this.f18190a.equals(aVar.f18190a) && this.f18191b.equals(aVar.f18191b) && c().equals(aVar.c())) {
+                if (this.f18221a.equals(aVar.f18221a) && this.f18222b.equals(aVar.f18222b) && c().equals(aVar.c())) {
                     return true;
                 }
                 return false;
@@ -239,10 +239,10 @@ public final class a {
     }
 
     public final int hashCode() {
-        int i7 = this.f18193e;
+        int i7 = this.f18224e;
         if (i7 == 0) {
-            int hashCode = Arrays.hashCode(new Object[]{this.f18190a, this.f18191b, c()});
-            this.f18193e = hashCode;
+            int hashCode = Arrays.hashCode(new Object[]{this.f18221a, this.f18222b, c()});
+            this.f18224e = hashCode;
             return hashCode;
         }
         return i7;
@@ -252,14 +252,14 @@ public final class a {
         String str = this.d;
         if (str == null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f18190a);
+            sb2.append(this.f18221a);
             sb2.append('/');
-            sb2.append(this.f18191b);
-            j0 j0Var = this.f18192c;
-            if (j0Var.f14008f != 0) {
+            sb2.append(this.f18222b);
+            j0 j0Var = this.f18223c;
+            if (j0Var.f14037f != 0) {
                 sb2.append("; ");
-                Collection a10 = new m1(j0Var, new g1(new f9(10), 0)).a();
-                c cVar = f18189j;
+                Collection a10 = new m1(j0Var, new g1(new e9(10), 0)).a();
+                c cVar = f18220j;
                 cVar.getClass();
                 try {
                     cVar.e(sb2, a10.iterator());

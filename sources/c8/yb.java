@@ -10,36 +10,36 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 public abstract class yb {
-    public static boolean f5083a = false;
-    public static Method f5084b = null;
-    public static boolean f5085c = false;
+    public static boolean f5112a = false;
+    public static Method f5113b = null;
+    public static boolean f5114c = false;
     public static Field d;
 
     public static boolean a(View view, KeyEvent keyEvent) {
         ArrayList arrayList;
         int size;
         int indexOfKey;
-        WeakHashMap weakHashMap = r0.i0.f56244a;
+        WeakHashMap weakHashMap = r0.i0.f56285a;
         if (Build.VERSION.SDK_INT < 28) {
             ArrayList arrayList2 = r0.h0.d;
-            r0.h0 h0Var = (r0.h0) view.getTag(2131296694);
+            r0.h0 h0Var = (r0.h0) view.getTag(2131296696);
             WeakReference weakReference = null;
             r0.h0 h0Var2 = h0Var;
             if (h0Var == null) {
                 ?? obj = new Object();
-                obj.f56240a = null;
-                obj.f56241b = null;
-                obj.f56242c = null;
-                view.setTag(2131296694, obj);
+                obj.f56281a = null;
+                obj.f56282b = null;
+                obj.f56283c = null;
+                view.setTag(2131296696, obj);
                 h0Var2 = obj;
             }
-            WeakReference weakReference2 = h0Var2.f56242c;
+            WeakReference weakReference2 = h0Var2.f56283c;
             if (weakReference2 == null || weakReference2.get() != keyEvent) {
-                h0Var2.f56242c = new WeakReference(keyEvent);
-                if (h0Var2.f56241b == null) {
-                    h0Var2.f56241b = new SparseArray();
+                h0Var2.f56283c = new WeakReference(keyEvent);
+                if (h0Var2.f56282b == null) {
+                    h0Var2.f56282b = new SparseArray();
                 }
-                SparseArray sparseArray = h0Var2.f56241b;
+                SparseArray sparseArray = h0Var2.f56282b;
                 if (keyEvent.getAction() == 1 && (indexOfKey = sparseArray.indexOfKey(keyEvent.getKeyCode())) >= 0) {
                     weakReference = (WeakReference) sparseArray.valueAt(indexOfKey);
                     sparseArray.removeAt(indexOfKey);
@@ -49,7 +49,7 @@ public abstract class yb {
                 }
                 if (weakReference != null) {
                     View view2 = (View) weakReference.get();
-                    if (view2 == null || !view2.isAttachedToWindow() || (arrayList = (ArrayList) view2.getTag(2131296695)) == null || (size = arrayList.size() - 1) < 0) {
+                    if (view2 == null || !view2.isAttachedToWindow() || (arrayList = (ArrayList) view2.getTag(2131296697)) == null || (size = arrayList.size() - 1) < 0) {
                         return true;
                     }
                     arrayList.get(size).getClass();

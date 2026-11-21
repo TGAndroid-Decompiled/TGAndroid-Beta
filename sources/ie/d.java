@@ -8,11 +8,11 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import zd.b0;
 import zd.m;
 public final class d extends h implements a {
-    public static final AtomicReferenceFieldUpdater f16231g = AtomicReferenceFieldUpdater.newUpdater(d.class, Object.class, "owner$volatile");
-    private volatile Object owner$volatile = e.f16232a;
+    public static final AtomicReferenceFieldUpdater f16256g = AtomicReferenceFieldUpdater.newUpdater(d.class, Object.class, "owner$volatile");
+    private volatile Object owner$volatile = e.f16257a;
 
     public final boolean c() {
-        if (Math.max(h.f16238f.get(this), 0) != 0) {
+        if (Math.max(h.f16263f.get(this), 0) != 0) {
             return false;
         }
         return true;
@@ -20,13 +20,13 @@ public final class d extends h implements a {
 
     public final Object d(kd.c cVar) {
         boolean e10 = e();
-        k kVar = k.f13485a;
+        k kVar = k.f13514a;
         if (!e10) {
             m l10 = b0.l(x0.b(cVar));
             try {
                 a(new c(this, l10));
                 Object r10 = l10.r();
-                jd.a aVar = jd.a.f17381a;
+                jd.a aVar = jd.a.f17406a;
                 if (r10 != aVar) {
                     r10 = kVar;
                 }
@@ -44,7 +44,7 @@ public final class d extends h implements a {
     public final boolean e() {
         int i7;
         while (true) {
-            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = h.f16238f;
+            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = h.f16263f;
             int i10 = atomicIntegerFieldUpdater.get(this);
             if (i10 > 1) {
                 do {
@@ -56,7 +56,7 @@ public final class d extends h implements a {
                 return false;
             } else {
                 if (atomicIntegerFieldUpdater.compareAndSet(this, i10, i10 - 1)) {
-                    f16231g.set(this, null);
+                    f16256g.set(this, null);
                     return true;
                 }
             }
@@ -65,9 +65,9 @@ public final class d extends h implements a {
 
     public final void f(Object obj) {
         while (c()) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f16231g;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f16256g;
             Object obj2 = atomicReferenceFieldUpdater.get(this);
-            t tVar = e.f16232a;
+            t tVar = e.f16257a;
             if (obj2 != tVar) {
                 if (obj2 != obj && obj != null) {
                     throw new IllegalStateException(("This mutex is locked by " + obj2 + ", but " + obj + " is expected").toString());
@@ -85,6 +85,6 @@ public final class d extends h implements a {
     }
 
     public final String toString() {
-        return "Mutex@" + b0.j(this) + "[isLocked=" + c() + ",owner=" + f16231g.get(this) + ']';
+        return "Mutex@" + b0.j(this) + "[isLocked=" + c() + ",owner=" + f16256g.get(this) + ']';
     }
 }

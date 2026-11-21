@@ -8,6 +8,6 @@ public final class s61 extends v4.k {
 
     @Override
     public final void P(v4.f1 f1Var) {
-        this.F.f53731w0.g1();
+        this.F.f53772w0.g1();
     }
 }

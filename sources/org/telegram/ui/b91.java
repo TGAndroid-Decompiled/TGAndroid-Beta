@@ -12,7 +12,7 @@ public final class b91 extends v4.c0 {
 
     @Override
     public final void b0(v4.x0 x0Var, v4.c1 c1Var) {
-        boolean z10 = org.telegram.messenger.s2.f26721a;
+        boolean z10 = org.telegram.messenger.s2.f26749a;
         try {
             super.b0(x0Var, c1Var);
         } catch (IndexOutOfBoundsException e10) {
@@ -43,12 +43,12 @@ public final class b91 extends v4.c0 {
 
     @Override
     public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
-        if (this.J.f54099y > 0 && i7 == 1) {
+        if (this.J.f54144y > 0 && i7 == 1) {
             super.v0(recyclerView, c1Var, i7);
             return;
         }
         pi.l lVar = new pi.l(recyclerView.getContext(), 0);
-        lVar.f59067a = i7;
+        lVar.f59105a = i7;
         w0(lVar);
     }
 }

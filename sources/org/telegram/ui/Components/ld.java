@@ -5,7 +5,7 @@ import android.text.Spanned;
 public final class ld implements InputFilter {
     @Override
     public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
-        int i13 = ChatActivityEnterView.f32538n7;
+        int i13 = ChatActivityEnterView.f32566s7;
         for (int i14 = i7; i14 < i10; i14++) {
             char charAt = charSequence.charAt(i14);
             if (charAt == '\n' || charAt == '\r') {

@@ -2,38 +2,38 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 public final class q3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f50993a;
-    public final t3 f50994b;
+    public final int f51039a;
+    public final t3 f51040b;
 
     public q3(t3 t3Var, int i7) {
-        this.f50993a = i7;
-        this.f50994b = t3Var;
+        this.f51039a = i7;
+        this.f51040b = t3Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f50993a) {
+        switch (this.f51039a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t3 t3Var = this.f50994b;
+                t3 t3Var = this.f51040b;
                 t3Var.J = floatValue;
-                t3Var.f52140c.invalidate();
+                t3Var.f52190c.invalidate();
                 t3Var.u();
                 t3Var.r();
                 return;
             case 1:
-                t3 t3Var2 = this.f50994b;
+                t3 t3Var2 = this.f51040b;
                 t3Var2.getClass();
-                t3Var2.f52147x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t3Var2.f52197x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 t3Var2.A();
                 t3Var2.u();
                 t3Var2.r();
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                t3 t3Var3 = this.f50994b;
-                t3Var3.f52148y = floatValue2;
-                if (!t3Var3.f52143n) {
+                t3 t3Var3 = this.f51040b;
+                t3Var3.f52198y = floatValue2;
+                if (!t3Var3.f52193n) {
                     t3Var3.A();
                 }
                 t3Var3.u();

@@ -6,35 +6,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public abstract class dn extends FrameLayout {
-    public final cn f46944a;
-    public final org.telegram.ui.ActionBar.s4 f46945b;
-    public View f46946c;
+    public final cn f47010a;
+    public final org.telegram.ui.ActionBar.r4 f47011b;
+    public View f47012c;
     public int d;
-    public boolean f46947e;
+    public boolean f47013e;
 
-    public dn(Context context, org.telegram.ui.ActionBar.s4 s4Var, Bundle bundle) {
+    public dn(Context context, org.telegram.ui.ActionBar.r4 r4Var, Bundle bundle) {
         super(context);
-        this.f46947e = true;
-        this.f46945b = s4Var;
+        this.f47013e = true;
+        this.f47011b = r4Var;
         cn cnVar = new cn(this, bundle);
-        this.f46944a = cnVar;
+        this.f47010a = cnVar;
         cnVar.mb = true;
     }
 
     public void a() {
         int i7;
-        cn cnVar = this.f46944a;
+        cn cnVar = this.f47010a;
         if (cnVar.onFragmentCreate()) {
-            this.f46946c = cnVar.fragmentView;
-            cnVar.setParentLayout(this.f46945b);
-            View view = this.f46946c;
+            this.f47012c = cnVar.fragmentView;
+            cnVar.setParentLayout(this.f47011b);
+            View view = this.f47012c;
             if (view == null) {
-                this.f46946c = cnVar.createView(getContext());
+                this.f47012c = cnVar.createView(getContext());
             } else {
                 ViewGroup viewGroup = (ViewGroup) view.getParent();
                 if (viewGroup != null) {
                     cnVar.onRemoveFromParent();
-                    viewGroup.removeView(this.f46946c);
+                    viewGroup.removeView(this.f47012c);
                 }
             }
             bj bjVar = cnVar.A0;
@@ -42,8 +42,8 @@ public abstract class dn extends FrameLayout {
                 bjVar.setPadding(0, i7, 0, 0);
             }
             cnVar.Sa();
-            addView(this.f46946c, c8.ma.c(-1.0f, -1));
-            if (this.f46947e) {
+            addView(this.f47012c, c8.ma.c(-1.0f, -1));
+            if (this.f47013e) {
                 cnVar.onResume();
             }
         }

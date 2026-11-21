@@ -8,18 +8,18 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.wt;
+import org.telegram.ui.Components.yt;
 public final class k extends ImageView {
-    public final int f18362a;
+    public final int f18391a;
 
     public k(Context context, int i7) {
         super(context);
-        this.f18362a = i7;
+        this.f18391a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f18362a) {
+        switch (this.f18391a) {
             case 1:
                 super.dispatchDraw(canvas);
                 return;
@@ -31,7 +31,7 @@ public final class k extends ImageView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f18362a) {
+        switch (this.f18391a) {
             case 4:
                 super.onDraw(canvas);
                 invalidate();
@@ -44,7 +44,7 @@ public final class k extends ImageView {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f18362a) {
+        switch (this.f18391a) {
             case 5:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
@@ -65,7 +65,7 @@ public final class k extends ImageView {
     public void onMeasure(int i7, int i10) {
         float f10;
         float f11;
-        switch (this.f18362a) {
+        switch (this.f18391a) {
             case 0:
                 super.onMeasure(i7, i10);
                 Matrix imageMatrix = getImageMatrix();
@@ -98,8 +98,8 @@ public final class k extends ImageView {
         }
     }
 
-    public k(wt wtVar, Context context) {
+    public k(yt ytVar, Context context) {
         super(context);
-        this.f18362a = 1;
+        this.f18391a = 1;
     }
 }

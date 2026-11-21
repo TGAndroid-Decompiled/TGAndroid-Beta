@@ -17,30 +17,30 @@ import org.telegram.messenger.gd;
 import org.telegram.messenger.mp;
 import org.telegram.messenger.n5;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
+import org.telegram.ui.ActionBar.b6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.Components.b9;
 import org.telegram.ui.Components.q9;
-public final class c extends FrameLayout implements c6 {
-    public final i6 f21012a;
-    public final q9 f21013b;
-    public final TextView f21014c;
+public final class c extends FrameLayout implements b6 {
+    public final h6 f21040a;
+    public final q9 f21041b;
+    public final TextView f21042c;
     public final TextView d;
-    public final ImageView f21015e;
+    public final ImageView f21043e;
 
-    public c(Context context, i6 i6Var) {
+    public c(Context context, h6 h6Var) {
         super(context);
-        this.f21012a = i6Var;
+        this.f21040a = h6Var;
         q9 q9Var = new q9(context);
-        this.f21013b = q9Var;
+        this.f21041b = q9Var;
         q9Var.setRoundRadius(g0.L(9.0f));
         addView(q9Var, ma.d(32, 32.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
         TextView textView = new TextView(context);
-        this.f21014c = textView;
+        this.f21042c = textView;
         textView.setTypeface(g0.o());
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
@@ -55,7 +55,7 @@ public final class c extends FrameLayout implements c6 {
         linearLayout.addView(textView2, ma.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
         addView(linearLayout, ma.d(-1, -2.0f, 19, 67.0f, 0.0f, 48.0f, 1.0f));
         ImageView imageView = new ImageView(context);
-        this.f21015e = imageView;
+        this.f21043e = imageView;
         imageView.setImageResource(2131232191);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, ma.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
@@ -67,7 +67,7 @@ public final class c extends FrameLayout implements c6 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull P0 = mp.u1(i7).P0(chat.f28403id);
+        TLRPC.ChatFull P0 = mp.u1(i7).P0(chat.f28431id);
         setTitle(n5.u(chat));
         if (P0 != null) {
             i10 = P0.linked_peers.size();
@@ -75,19 +75,19 @@ public final class c extends FrameLayout implements c6 {
             i10 = 0;
         }
         setSubtitle(gd.G(i10, "CommunityWithChats", new Object[0]));
-        this.f21013b.f(chat, new b9(chat));
+        this.f21041b.f(chat, new b9(chat));
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(n6.f29805z6));
-        hashSet.add(Integer.valueOf(n6.G6));
+        hashSet.add(Integer.valueOf(m6.f29789z6));
+        hashSet.add(Integer.valueOf(m6.G6));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        Drawable drawable = n6.S0;
-        q9 q9Var = this.f21013b;
+        Drawable drawable = m6.S0;
+        q9 q9Var = this.f21041b;
         t.a(canvas, drawable, (q9Var.getWidth() / 2.0f) + q9Var.getLeft(), (q9Var.getHeight() / 2.0f) + q9Var.getTop(), q9Var.getHeight());
         super.dispatchDraw(canvas);
     }
@@ -102,15 +102,15 @@ public final class c extends FrameLayout implements c6 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f21014c.setText(charSequence);
+        this.f21042c.setText(charSequence);
     }
 
     @Override
     public final void updateColors() {
-        int i7 = n6.f29805z6;
-        i6 i6Var = this.f21012a;
-        this.f21015e.setColorFilter(n6.w0(i7, i6Var));
-        this.f21014c.setTextColor(n6.w0(n6.G6, i6Var));
-        this.d.setTextColor(n6.w0(i7, i6Var));
+        int i7 = m6.f29789z6;
+        h6 h6Var = this.f21040a;
+        this.f21043e.setColorFilter(m6.w0(i7, h6Var));
+        this.f21042c.setTextColor(m6.w0(m6.G6, h6Var));
+        this.d.setTextColor(m6.w0(i7, h6Var));
     }
 }

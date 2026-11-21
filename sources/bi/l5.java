@@ -1,33 +1,36 @@
 package bi;
 
+import org.telegram.messenger.x10;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.vv0;
-public final class l5 implements Runnable {
-    public final int f3816a;
-    public final ProfileActivity f3817b;
+public final class l5 implements x10 {
+    public final int f3849a;
+    public final t6 f3850b;
 
-    public l5(ProfileActivity profileActivity, int i7) {
-        this.f3816a = i7;
-        this.f3817b = profileActivity;
+    public l5(t6 t6Var, int i7) {
+        this.f3849a = i7;
+        this.f3850b = t6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3816a) {
+    public final void a(Object obj) {
+        switch (this.f3849a) {
             case 0:
-                this.f3817b.X4(true);
-                return;
-            case 1:
-                this.f3817b.X4(true);
+                t6 t6Var = this.f3850b;
+                t6Var.f(true);
+                i71 i71Var = t6Var.f4119n;
+                int i7 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
+                i71Var.e(i7, t6Var.f4117e.f(i7) + 1);
+                org.telegram.ui.ActionBar.g2 g2Var = t6Var.f4114a;
+                if (g2Var instanceof ProfileActivity) {
+                    ((ProfileActivity) g2Var).X4(true);
+                }
+                t6Var.o();
                 return;
             default:
-                ProfileActivity profileActivity = this.f3817b;
-                vv0 vv0Var = profileActivity.O;
-                if (vv0Var != null) {
-                    vv0Var.k1(14);
-                    profileActivity.X4(false);
-                    return;
-                }
+                t6 t6Var2 = this.f3850b;
+                t6Var2.f4117e.b((String) obj, new l5(t6Var2, 0));
                 return;
         }
     }

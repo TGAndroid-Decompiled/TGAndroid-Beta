@@ -1,39 +1,26 @@
 package org.telegram.ui.Components;
+public final class vw extends g.p {
+    public final ty f41564c;
 
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-public final class vw extends qy {
-    public final ry d;
-
-    public vw(ry ryVar) {
-        super(ryVar, 1);
-        this.d = ryVar;
+    public vw(ty tyVar) {
+        this.f41564c = tyVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i7) {
-        if (i7 == 0) {
-            this.d.f39354g0 = false;
-        }
-        super.a(recyclerView, i7);
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i7, int i10) {
-        ry ryVar = this.d;
-        sw swVar = ryVar.R;
-        ryVar.V(swVar.I0());
-        super.b(recyclerView, i7, i10);
-        qx qxVar = ryVar.T;
-        if (qxVar != null && ryVar.Q.getAdapter() == qxVar) {
-            qx qxVar2 = qxVar.f38933y.f38591a;
-            if (!qxVar2.G.W.G && !qxVar2.F) {
-                if (swVar.N0() + 20 > qxVar.b()) {
-                    px pxVar = qxVar.f38933y;
-                    Objects.requireNonNull(pxVar);
-                    org.telegram.messenger.g0.g3(new zv(pxVar, 1));
-                }
+    public final int i(int i7) {
+        ty tyVar = this.f41564c;
+        dx dxVar = tyVar.S;
+        uw uwVar = tyVar.R;
+        v4.i0 adapter = tyVar.Q.getAdapter();
+        sx sxVar = tyVar.T;
+        if (adapter == sxVar) {
+            int d = sxVar.d(i7);
+            if (d == 1 || d == 3 || d == 2 || d == 4 || d == 5) {
+                return uwVar.J;
             }
+        } else if ((tyVar.f40101e0 && i7 == 0) || i7 == dxVar.d || i7 == dxVar.f34601c || i7 == dxVar.f34603f || dxVar.f34605r.indexOfKey(i7) >= 0 || dxVar.f34607w.indexOfKey(i7) >= 0) {
+            return uwVar.J;
         }
+        return 1;
     }
 }

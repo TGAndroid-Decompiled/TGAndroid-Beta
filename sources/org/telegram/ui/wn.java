@@ -20,28 +20,28 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ClippingImageView;
 public final class wn implements Runnable {
-    public final int f53409a;
-    public final Object f53410b;
-    public final Object f53411c;
+    public final int f53455a;
+    public final Object f53456b;
+    public final Object f53457c;
     public final Object d;
-    public final Object f53412e;
-    public final Object f53413f;
+    public final Object f53458e;
+    public final Object f53459f;
 
     public wn(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
-        this.f53409a = i7;
-        this.f53411c = obj;
+        this.f53455a = i7;
+        this.f53457c = obj;
         this.d = obj2;
-        this.f53410b = obj3;
-        this.f53412e = obj4;
-        this.f53413f = obj5;
+        this.f53456b = obj3;
+        this.f53458e = obj4;
+        this.f53459f = obj5;
     }
 
     private final void a() {
-        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f53411c;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f53410b;
+        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f53457c;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f53456b;
         boolean[] zArr = (boolean[]) this.d;
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = (TLRPC.GlobalPrivacySettings) this.f53412e;
-        TL_account.setGlobalPrivacySettings setglobalprivacysettings = (TL_account.setGlobalPrivacySettings) this.f53413f;
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = (TLRPC.GlobalPrivacySettings) this.f53458e;
+        TL_account.setGlobalPrivacySettings setglobalprivacysettings = (TL_account.setGlobalPrivacySettings) this.f53459f;
         if (tL_error != null) {
             privacyControlActivity.M0();
             return;
@@ -65,7 +65,7 @@ public final class wn implements Runnable {
         if (zArr[0]) {
             privacyControlActivity.I0();
         }
-        privacyControlActivity.getNotificationCenter().k(org.telegram.messenger.ks.f25139k0, new Object[0]);
+        privacyControlActivity.getNotificationCenter().k(org.telegram.messenger.ks.f25167k0, new Object[0]);
     }
 
     @Override
@@ -89,14 +89,14 @@ public final class wn implements Runnable {
         int i15;
         uq0 uq0Var;
         String str2;
-        org.telegram.ui.ActionBar.i6 i6Var;
-        int i16 = this.f53409a;
+        org.telegram.ui.ActionBar.h6 h6Var;
+        int i16 = this.f53455a;
         int i17 = 0;
-        Object obj = this.f53410b;
-        Object obj2 = this.f53413f;
+        Object obj = this.f53456b;
+        Object obj2 = this.f53459f;
         Object obj3 = this.d;
-        Object obj4 = this.f53412e;
-        Object obj5 = this.f53411c;
+        Object obj4 = this.f53458e;
+        Object obj5 = this.f53457c;
         switch (i16) {
             case 0:
                 jo joVar = (jo) obj5;
@@ -104,33 +104,33 @@ public final class wn implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
                 TLObject tLObject = (TLObject) obj4;
                 TLRPC.TL_channels_checkUsername tL_channels_checkUsername = (TLRPC.TL_channels_checkUsername) obj2;
-                joVar.f49008i0 = 0;
-                String str4 = joVar.f49009j0;
+                joVar.f49041i0 = 0;
+                String str4 = joVar.f49042j0;
                 if (str4 != null && str4.equals(str3)) {
                     if (tL_error == null && (tLObject instanceof TLRPC.TL_boolTrue)) {
-                        joVar.h.setText(org.telegram.messenger.gd.a0("LinkAvailable", null, 2131748732, str3));
-                        joVar.h.setTextColorByKey(org.telegram.ui.ActionBar.n6.f29748w6);
-                        joVar.f49011l0 = true;
+                        joVar.h.setText(org.telegram.messenger.gd.a0("LinkAvailable", null, 2131748731, str3));
+                        joVar.h.setTextColorByKey(org.telegram.ui.ActionBar.m6.f29732w6);
+                        joVar.f49044l0 = true;
                         return;
                     }
                     if (tL_error != null && "USERNAME_INVALID".equals(tL_error.text) && tL_channels_checkUsername.username.length() == 4) {
-                        joVar.h.setText(org.telegram.messenger.gd.M0(2131743417, null));
-                        org.telegram.ui.ActionBar.u6.U(joVar.h.getTextView(), org.telegram.ui.ActionBar.n6.f29615p7, null);
+                        joVar.h.setText(org.telegram.messenger.gd.N0(2131743411, null));
+                        org.telegram.ui.ActionBar.t6.U(joVar.h.getTextView(), org.telegram.ui.ActionBar.m6.f29599p7, null);
                     } else if (tL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tL_error.text)) {
                         if (tL_channels_checkUsername.username.length() == 4) {
-                            joVar.h.setText(org.telegram.messenger.gd.M0(2131743416, null));
+                            joVar.h.setText(org.telegram.messenger.gd.N0(2131743410, null));
                         } else {
-                            joVar.h.setText(org.telegram.messenger.gd.M0(2131743420, null));
+                            joVar.h.setText(org.telegram.messenger.gd.N0(2131743414, null));
                         }
-                        org.telegram.ui.ActionBar.u6.U(joVar.h.getTextView(), org.telegram.ui.ActionBar.n6.F6, null);
+                        org.telegram.ui.ActionBar.t6.U(joVar.h.getTextView(), org.telegram.ui.ActionBar.m6.F6, null);
                     } else if (tL_error != null && "CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tL_error.text)) {
-                        joVar.f49001d0 = false;
+                        joVar.f49034d0 = false;
                         joVar.f0();
                     } else {
-                        joVar.h.setText(org.telegram.messenger.gd.M0(2131748720, null));
-                        joVar.h.setTextColorByKey(org.telegram.ui.ActionBar.n6.f29615p7);
+                        joVar.h.setText(org.telegram.messenger.gd.N0(2131748719, null));
+                        joVar.h.setTextColorByKey(org.telegram.ui.ActionBar.m6.f29599p7);
                     }
-                    joVar.f49011l0 = false;
+                    joVar.f49044l0 = false;
                     return;
                 }
                 return;
@@ -145,61 +145,62 @@ public final class wn implements Runnable {
                 ArrayList arrayList3 = (ArrayList) obj2;
                 jg.z1 z1Var = qqVar.h;
                 rq rqVar = qqVar.E;
-                if (rqVar.f51748o1) {
-                    qqVar.f51269s = false;
+                if (rqVar.f51723o1) {
+                    qqVar.f51323s = false;
                     qqVar.d = arrayList;
-                    qqVar.f51265e = hVar;
-                    qqVar.f51266f = arrayList2;
+                    qqVar.f51319e = hVar;
+                    qqVar.f51320f = arrayList2;
                     z1Var.f(arrayList, null);
-                    if (!org.telegram.messenger.v3.T(rqVar.f51745n)) {
-                        ArrayList arrayList4 = z1Var.f17732g;
+                    if (!org.telegram.messenger.v3.T(rqVar.f51720n)) {
+                        ArrayList arrayList4 = z1Var.f17757g;
                         arrayList4.clear();
                         arrayList4.addAll(arrayList3);
                     }
-                    int i18 = qqVar.f51268r;
+                    int i18 = qqVar.f51322r;
                     qqVar.f();
-                    if (qqVar.f51268r > i18) {
+                    if (qqVar.f51322r > i18) {
                         rqVar.D0(i18);
                     }
-                    if (!z1Var.e() && qqVar.f51268r == 0) {
-                        rqVar.f51719b.e(false, true);
+                    if (!z1Var.e() && qqVar.f51322r == 0) {
+                        rqVar.f51694b.e(false, true);
                         return;
                     }
                     return;
                 }
                 return;
             case 3:
-                org.telegram.ui.Components.pf pfVar = (org.telegram.ui.Components.pf) obj5;
-                ji.n nVar = (ji.n) obj3;
-                ji.h hVar2 = (ji.h) obj4;
-                ji.p pVar = (ji.p) obj2;
-                ChatActivityEnterView chatActivityEnterView = pfVar.f38384a;
-                org.telegram.ui.Components.ne0 a82 = chatActivityEnterView.D3.a8(nVar, (org.telegram.ui.Components.of) obj);
+                org.telegram.ui.Components.rf rfVar = (org.telegram.ui.Components.rf) obj5;
+                ji.p pVar = (ji.p) obj3;
+                ji.g gVar = (ji.g) obj4;
+                ji.r rVar = (ji.r) obj2;
+                ChatActivityEnterView chatActivityEnterView = rfVar.f39168a;
+                org.telegram.ui.Components.pe0 a82 = chatActivityEnterView.F3.a8(pVar, (org.telegram.ui.Components.qf) obj);
                 if (a82 == null) {
-                    org.telegram.messenger.g0.E2(nVar);
+                    org.telegram.messenger.g0.E2(pVar);
                     return;
                 }
-                int C0 = chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.E8);
-                ArrayList G = chatActivityEnterView.w0().G();
-                int size = G.size();
-                while (i17 < size) {
-                    Object obj6 = G.get(i17);
-                    i17++;
-                    ai.g gVar = (ai.g) obj6;
-                    a82.c(new ai.m0(chatActivityEnterView.getContext(), gVar, C0, chatActivityEnterView.R, false), 48, new ci(27, hVar2, gVar));
+                int G0 = chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.E8);
+                ArrayList J = chatActivityEnterView.A0().J();
+                int size = J.size();
+                int i19 = 0;
+                while (i19 < size) {
+                    Object obj6 = J.get(i19);
+                    i19++;
+                    ai.g gVar2 = (ai.g) obj6;
+                    a82.c(new ai.o0(chatActivityEnterView.getContext(), gVar2, G0, chatActivityEnterView.R, false), 48, new eh(29, gVar, gVar2));
                 }
-                a82.I = new ci(28, pfVar, nVar);
-                chatActivityEnterView.f32671r1 = true;
-                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.B2;
+                a82.J = new org.telegram.ui.Components.mf(0, rfVar, pVar);
+                chatActivityEnterView.f32718t1 = true;
+                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.D2;
                 if (recordCircle != null) {
                     recordCircle.invalidate();
                 }
-                Objects.requireNonNull(pVar);
-                a82.J = new org.telegram.ui.Components.y2(pVar, 3);
+                Objects.requireNonNull(rVar);
+                a82.K = new org.telegram.ui.Components.z2(rVar, 2);
                 int[] iArr = new int[2];
                 chatActivityEnterView.getLocationInWindow(iArr);
-                a82.E = iArr[1];
-                a82.G = org.telegram.messenger.g0.L(316);
+                a82.F = iArr[1];
+                a82.H = org.telegram.messenger.g0.L(316);
                 a82.i();
                 return;
             case 4:
@@ -214,37 +215,37 @@ public final class wn implements Runnable {
                 windowManager.removeView((View) obj2);
                 return;
             case 5:
-                org.telegram.ui.Components.iw0 iw0Var = (org.telegram.ui.Components.iw0) obj5;
+                org.telegram.ui.Components.kw0 kw0Var = (org.telegram.ui.Components.kw0) obj5;
                 String str5 = (String) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
                 TLObject tLObject2 = (TLObject) obj4;
                 TextView textView = (TextView) obj2;
-                iw0Var.f36242k2 = 0;
-                String str6 = iw0Var.f36241j2;
+                kw0Var.f37011k2 = 0;
+                String str6 = kw0Var.f37010j2;
                 if (str6 != null && str6.equals(str5)) {
                     if (tL_error2 == null && (tLObject2 instanceof TLRPC.TL_boolTrue)) {
-                        textView.setText(org.telegram.messenger.gd.M0(2131749043, null));
-                        org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29748w6, iw0Var.J0);
-                        iw0Var.f36243l2 = true;
+                        textView.setText(org.telegram.messenger.gd.N0(2131749042, null));
+                        org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29732w6, kw0Var.J0);
+                        kw0Var.f37012l2 = true;
                         return;
                     }
-                    textView.setText(org.telegram.messenger.gd.M0(2131749038, null));
-                    org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29615p7, iw0Var.J0);
-                    iw0Var.f36243l2 = false;
+                    textView.setText(org.telegram.messenger.gd.N0(2131749037, null));
+                    org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29599p7, kw0Var.J0);
+                    kw0Var.f37012l2 = false;
                     return;
                 }
                 return;
             case 6:
-                org.telegram.ui.Components.tw0 tw0Var = (org.telegram.ui.Components.tw0) obj5;
+                org.telegram.ui.Components.vw0 vw0Var = (org.telegram.ui.Components.vw0) obj5;
                 TLObject tLObject3 = (TLObject) obj4;
                 TLRPC.UserFull userFull = (TLRPC.UserFull) obj3;
                 TL_account.TL_birthday tL_birthday = (TL_account.TL_birthday) obj2;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj;
-                org.telegram.ui.ActionBar.h2 T = LaunchActivity.T();
+                org.telegram.ui.ActionBar.g2 T = LaunchActivity.T();
                 if (T != null) {
                     if (tLObject3 instanceof TLRPC.TL_boolTrue) {
-                        org.telegram.ui.Components.gc I = org.telegram.ui.Components.lc.b0(T).I(2131624034, org.telegram.messenger.gd.M0(2131746663, null), org.telegram.messenger.gd.M0(2131746662, null));
-                        I.f35461j = 5000;
+                        org.telegram.ui.Components.gc I = org.telegram.ui.Components.lc.b0(T).I(2131624034, org.telegram.messenger.gd.N0(2131746662, null), org.telegram.messenger.gd.N0(2131746661, null));
+                        I.f35508j = 5000;
                         I.j();
                         return;
                     }
@@ -255,35 +256,35 @@ public final class wn implements Runnable {
                             userFull.flags2 |= 32;
                         }
                         userFull.birthday = tL_birthday;
-                        org.telegram.messenger.tr.a0(tw0Var.f40113a).j2(userFull, false);
+                        org.telegram.messenger.tr.a0(vw0Var.f41565a).j2(userFull, false);
                     }
                     if (tL_error3 != null && (str = tL_error3.text) != null && str.startsWith("FLOOD_WAIT_")) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(tw0Var.f40114b.getContext());
-                        alertDialog$Builder.f28744a.S = org.telegram.messenger.gd.M0(2131746659, null);
-                        alertDialog$Builder.f28744a.U = org.telegram.messenger.gd.M0(2131746660, null);
-                        org.telegram.messenger.f3.m(null, 2131747638, alertDialog$Builder, null);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vw0Var.f41566b.getContext());
+                        alertDialog$Builder.f28774a.S = org.telegram.messenger.gd.N0(2131746658, null);
+                        alertDialog$Builder.f28774a.U = org.telegram.messenger.gd.N0(2131746659, null);
+                        org.telegram.messenger.f3.m(null, 2131747637, alertDialog$Builder, null);
                         return;
                     }
-                    org.telegram.messenger.f3.n(null, 2131743642, org.telegram.ui.Components.lc.b0(T), 2131624012, 36);
+                    org.telegram.messenger.f3.n(null, 2131743636, org.telegram.ui.Components.lc.b0(T), 2131624012, 36);
                     return;
                 }
                 return;
             case 7:
-                org.telegram.ui.Components.z11 z11Var = (org.telegram.ui.Components.z11) obj5;
+                org.telegram.ui.Components.b21 b21Var = (org.telegram.ui.Components.b21) obj5;
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj;
-                org.telegram.ui.Components.y60 y60Var = (org.telegram.ui.Components.y60) obj4;
-                org.telegram.ui.Components.y60 y60Var2 = (org.telegram.ui.Components.y60) obj2;
-                bn bnVar = z11Var.f42747s;
-                if (((org.telegram.messenger.mp) obj3).u2(z11Var.f42737f, tL_forumTopic.f28455id, null)) {
-                    y60Var.v();
-                    org.telegram.messenger.xs.t(z11Var.f42735e).G(z11Var.f42737f, tL_forumTopic.f28455id, false);
+                org.telegram.ui.Components.a70 a70Var = (org.telegram.ui.Components.a70) obj4;
+                org.telegram.ui.Components.a70 a70Var2 = (org.telegram.ui.Components.a70) obj2;
+                bn bnVar = b21Var.f33722s;
+                if (((org.telegram.messenger.mp) obj3).u2(b21Var.f33712f, tL_forumTopic.f28483id, null)) {
+                    a70Var.v();
+                    org.telegram.messenger.xs.t(b21Var.f33710e).G(b21Var.f33712f, tL_forumTopic.f28483id, false);
                     if (org.telegram.ui.Components.lc.a(bnVar)) {
-                        org.telegram.ui.Components.lc.z(bnVar, 4, 0, z11Var.h).j();
+                        org.telegram.ui.Components.lc.z(bnVar, 4, 0, b21Var.h).j();
                         return;
                     }
                     return;
                 }
-                y60Var.L(y60Var2);
+                a70Var.L(a70Var2);
                 return;
             case 8:
                 ns nsVar = (ns) obj5;
@@ -301,16 +302,16 @@ public final class wn implements Runnable {
                         TLRPC.StickerSet stickerSet = stickerSetCovered2.set;
                         if (!stickerSet.emojis && !stickerSet.masks) {
                             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-                            tL_inputStickerSetID.f28423id = stickerSetCovered2.set.f28430id;
-                            TLRPC.TL_messages_stickerSet o02 = org.telegram.messenger.ri.d0(nsVar.f50293r).o0(tL_inputStickerSetID, true);
+                            tL_inputStickerSetID.f28451id = stickerSetCovered2.set.f28458id;
+                            TLRPC.TL_messages_stickerSet o02 = org.telegram.messenger.ri.d0(nsVar.f50300r).o0(tL_inputStickerSetID, true);
                             if (o02 == null || o02.documents.size() < 120) {
                                 arrayList5.add(stickerSetCovered2);
                             }
                         }
                     }
                     if (tL_messages_myStickers.sets.size() == tL_messages_getMyStickers.limit) {
-                        tL_messages_getMyStickers.offset_id = ((TLRPC.StickerSetCovered) i5.c.h(1, tL_messages_myStickers.sets)).set.f28430id;
-                        ConnectionsManager.getInstance(nsVar.f50293r).sendRequest(tL_messages_getMyStickers, new z9(nsVar, arrayList5, tL_messages_getMyStickers, 7));
+                        tL_messages_getMyStickers.offset_id = ((TLRPC.StickerSetCovered) i5.c.h(1, tL_messages_myStickers.sets)).set.f28458id;
+                        ConnectionsManager.getInstance(nsVar.f50300r).sendRequest(tL_messages_getMyStickers, new z9(nsVar, arrayList5, tL_messages_getMyStickers, 7));
                         return;
                     }
                     return;
@@ -325,20 +326,20 @@ public final class wn implements Runnable {
                 TL_phone.exportGroupCallInvite exportgroupcallinvite = (TL_phone.exportGroupCallInvite) obj2;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj;
                 f40Var.getClass();
-                ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
+                ((org.telegram.ui.ActionBar.t1) obj3).dismiss();
                 if (tLObject5 instanceof TL_phone.exportedGroupCallInvite) {
                     Context context = f40Var.getContext();
-                    int i19 = f40Var.f30187a;
+                    int i20 = f40Var.f30170a;
                     TLRPC.InputGroupCall inputGroupCall = exportgroupcallinvite.call;
                     String str7 = ((TL_phone.exportedGroupCallInvite) tLObject5).link;
-                    org.telegram.ui.ActionBar.i6 i6Var2 = f40Var.J0;
+                    org.telegram.ui.ActionBar.h6 h6Var2 = f40Var.J0;
                     org.telegram.messenger.t3 t3Var = f40Var.V2;
-                    if (t3Var != null && (groupCall = t3Var.f26935b) != null && groupCall.creator) {
+                    if (t3Var != null && (groupCall = t3Var.f26963b) != null && groupCall.creator) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    i9.n0(context, i19, inputGroupCall, str7, i6Var2, false, z10);
+                    j9.n0(context, i20, inputGroupCall, str7, h6Var2, false, z10);
                     return;
                 } else if (tL_error4 != null) {
                     new org.telegram.ui.Components.lc(f40Var.F, new fi.h0()).g0(tL_error4, false);
@@ -353,23 +354,23 @@ public final class wn implements Runnable {
                 ArrayList arrayList9 = (ArrayList) obj2;
                 String str8 = (String) obj3;
                 f40Var2.getClass();
-                org.telegram.ui.ActionBar.h2 T2 = LaunchActivity.T();
+                org.telegram.ui.ActionBar.g2 T2 = LaunchActivity.T();
                 if (T2 != null) {
-                    ug.l0 l0Var = new ug.l0(34, f40Var2.f30187a, T2.getContext(), T2, new fi.h0());
-                    l0Var.D1(null, arrayList7, arrayList8, arrayList9, str8);
-                    l0Var.show();
+                    ug.k0 k0Var = new ug.k0(34, f40Var2.f30170a, T2.getContext(), T2, new fi.h0());
+                    k0Var.D1(null, arrayList7, arrayList8, arrayList9, str8);
+                    k0Var.show();
                     return;
                 }
                 return;
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) obj5;
-                o60 o60Var = (o60) obj3;
+                h60 h60Var = (h60) obj3;
                 TLObject tLObject6 = (TLObject) obj4;
                 TLRPC.TL_wallPaper tL_wallPaper2 = (TLRPC.TL_wallPaper) obj2;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj;
                 String str9 = LaunchActivity.C1;
                 try {
-                    o60Var.run();
+                    h60Var.run();
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
@@ -379,7 +380,7 @@ public final class wn implements Runnable {
                         String str10 = tL_wallPaper3.slug;
                         TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper2.settings;
                         rc1 rc1Var = new rc1(str10, wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color, org.telegram.messenger.g0.s1(wallPaperSettings2.rotation, false), wallPaperSettings.intensity / 100.0f, tL_wallPaper2.settings.motion, null);
-                        rc1Var.f51558g = tL_wallPaper3;
+                        rc1Var.f51547g = tL_wallPaper3;
                         tL_wallPaper3 = rc1Var;
                     }
                     x71 x71Var = new x71(tL_wallPaper3, null, true);
@@ -388,25 +389,25 @@ public final class wn implements Runnable {
                     boolean z14 = wallPaperSettings3.motion;
                     x71Var.H1 = z13;
                     x71Var.G1 = z14;
-                    x71Var.f53715p1 = wallPaperSettings3.intensity;
+                    x71Var.f53756p1 = wallPaperSettings3.intensity;
                     launchActivity.t0(x71Var);
                     return;
                 }
                 StringBuilder sb2 = new StringBuilder();
-                org.telegram.ui.Cells.c0.u(null, 2131751094, sb2, "\n");
+                org.telegram.ui.Cells.c0.u(null, 2131751093, sb2, "\n");
                 sb2.append(tL_error5.text);
-                launchActivity.F0(org.telegram.ui.Components.b5.K(launchActivity, null, sb2.toString()));
+                launchActivity.F0(org.telegram.ui.Components.c5.K(launchActivity, null, sb2.toString()));
                 return;
             case 13:
                 LaunchActivity launchActivity2 = (LaunchActivity) obj5;
                 cx cxVar = (cx) obj;
-                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) obj4;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) obj4;
                 TLRPC.User user = (TLRPC.User) obj2;
                 String str11 = (String) obj3;
                 ArrayList arrayList10 = launchActivity2.D0;
                 if (cxVar != null) {
-                    if (h2Var != null) {
-                        h2Var.dismissCurrentDialog();
+                    if (g2Var != null) {
+                        g2Var.dismissCurrentDialog();
                     }
                     while (i17 < arrayList10.size()) {
                         if (((Dialog) arrayList10.get(i17)).isShowing()) {
@@ -417,8 +418,8 @@ public final class wn implements Runnable {
                     arrayList10.clear();
                     launchActivity2.t0(cxVar);
                     return;
-                } else if (h2Var instanceof bn) {
-                    ((bn) h2Var).za(user.f28552id, str11, true);
+                } else if (g2Var instanceof bn) {
+                    ((bn) g2Var).za(user.f28580id, str11, true);
                     return;
                 } else {
                     return;
@@ -429,7 +430,7 @@ public final class wn implements Runnable {
                 TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) obj2;
                 String str12 = (String) obj3;
                 TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj;
-                org.telegram.ui.ActionBar.h2 T3 = LaunchActivity.T();
+                org.telegram.ui.ActionBar.g2 T3 = LaunchActivity.T();
                 if (tLObject7 != null) {
                     if (tLObject7 instanceof TLRPC.TL_urlAuthResultRequest) {
                         gi0.b(false, launchActivity3.P, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject7, null, null, null, false, null);
@@ -438,14 +439,14 @@ public final class wn implements Runnable {
                         gi0.b(false, launchActivity3.P, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject7, null, null, null, false, null);
                         return;
                     } else if (tLObject7 instanceof TLRPC.TL_urlAuthResultDefault) {
-                        org.telegram.ui.Components.b5.n0(T3, str12, false, true);
+                        org.telegram.ui.Components.c5.n0(T3, str12, false, true);
                         return;
                     } else {
                         return;
                     }
                 } else if (tL_error6 != null) {
                     if ("URL_EXPIRED".equalsIgnoreCase(tL_error6.text)) {
-                        gi0.a().I(2131624012, org.telegram.messenger.gd.M0(2131753126, null), org.telegram.messenger.gd.M0(2131753127, null)).j();
+                        gi0.a().I(2131624012, org.telegram.messenger.gd.N0(2131753125, null), org.telegram.messenger.gd.N0(2131753126, null)).j();
                         return;
                     } else {
                         gi0.a().g0(tL_error6, false);
@@ -457,8 +458,8 @@ public final class wn implements Runnable {
             case 15:
                 LaunchActivity launchActivity4 = (LaunchActivity) obj5;
                 TLObject tLObject8 = (TLObject) obj4;
-                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj3;
-                o60 o60Var2 = (o60) obj2;
+                org.telegram.ui.ActionBar.t1 t1Var = (org.telegram.ui.ActionBar.t1) obj3;
+                h60 h60Var2 = (h60) obj2;
                 TLRPC.TL_error tL_error7 = (TLRPC.TL_error) obj;
                 String str13 = LaunchActivity.C1;
                 if (tLObject8 instanceof TLRPC.TL_theme) {
@@ -469,7 +470,7 @@ public final class wn implements Runnable {
                         themeSettings = null;
                     }
                     if (themeSettings != null) {
-                        org.telegram.ui.ActionBar.m6 Q0 = org.telegram.ui.ActionBar.n6.Q0(org.telegram.ui.ActionBar.n6.r0(themeSettings));
+                        org.telegram.ui.ActionBar.l6 Q0 = org.telegram.ui.ActionBar.m6.Q0(org.telegram.ui.ActionBar.m6.r0(themeSettings));
                         if (Q0 != null) {
                             TLRPC.WallPaper wallPaper = themeSettings.wallpaper;
                             if (wallPaper instanceof TLRPC.TL_wallPaper) {
@@ -477,7 +478,7 @@ public final class wn implements Runnable {
                                 org.telegram.messenger.w7.G(launchActivity4.P);
                                 z11 = true;
                                 if (!org.telegram.messenger.w7.J(tL_wallPaper4.document, null, true, true).exists()) {
-                                    launchActivity4.V0 = u1Var;
+                                    launchActivity4.V0 = t1Var;
                                     launchActivity4.U0 = true;
                                     launchActivity4.S0 = Q0;
                                     launchActivity4.T0 = tL_theme;
@@ -492,7 +493,7 @@ public final class wn implements Runnable {
                                 tL_wallPaper = null;
                             }
                             try {
-                                o60Var2.run();
+                                h60Var2.run();
                             } catch (Exception e11) {
                                 org.telegram.messenger.a8.g(e11, z11);
                             }
@@ -506,7 +507,7 @@ public final class wn implements Runnable {
                             launchActivity4.U0 = false;
                             launchActivity4.T0 = tL_theme;
                             launchActivity4.P0 = org.telegram.messenger.w7.r(null, document);
-                            launchActivity4.V0 = u1Var;
+                            launchActivity4.V0 = t1Var;
                             org.telegram.messenger.w7.G(launchActivity4.P).W(launchActivity4.T0.document, tL_theme, 1, 1);
                         }
                         i7 = 1;
@@ -520,17 +521,17 @@ public final class wn implements Runnable {
                 }
                 if (i7 != 0) {
                     try {
-                        o60Var2.run();
+                        h60Var2.run();
                         i10 = 1;
                     } catch (Exception e12) {
                         i10 = 1;
                         org.telegram.messenger.a8.g(e12, true);
                     }
                     if (i7 == i10) {
-                        launchActivity4.F0(org.telegram.ui.Components.b5.K(launchActivity4, org.telegram.messenger.gd.M0(2131743955, null), org.telegram.messenger.gd.M0(2131743938, null)));
+                        launchActivity4.F0(org.telegram.ui.Components.c5.K(launchActivity4, org.telegram.messenger.gd.N0(2131743949, null), org.telegram.messenger.gd.N0(2131743932, null)));
                         return;
                     } else {
-                        launchActivity4.F0(org.telegram.ui.Components.b5.K(launchActivity4, org.telegram.messenger.gd.M0(2131743955, null), org.telegram.messenger.gd.M0(2131743939, null)));
+                        launchActivity4.F0(org.telegram.ui.Components.c5.K(launchActivity4, org.telegram.messenger.gd.N0(2131743949, null), org.telegram.messenger.gd.N0(2131743933, null)));
                         return;
                     }
                 }
@@ -541,27 +542,27 @@ public final class wn implements Runnable {
                 TLObject tLObject9 = (TLObject) obj4;
                 TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = (TLRPC.TL_inputInvoiceSlug) obj2;
                 String str14 = (String) obj3;
-                int i20 = s90Var.f51935b;
-                LaunchActivity launchActivity5 = s90Var.f51934a;
+                int i21 = s90Var.f51975b;
+                LaunchActivity launchActivity5 = s90Var.f51974a;
                 if (tL_error8 != null) {
                     if ("SUBSCRIPTION_ALREADY_ACTIVE".equalsIgnoreCase(tL_error8.text)) {
                         d = s90.d();
-                        i11 = 2131747202;
+                        i11 = 2131747201;
                     } else {
                         d = s90.d();
-                        i11 = 2131747203;
+                        i11 = 2131747202;
                     }
                     org.telegram.messenger.f3.o(null, i11, d, null);
                 } else if (!launchActivity5.isFinishing()) {
                     if (tLObject9 instanceof TLRPC.TL_payments_paymentFormStars) {
-                        bi.n8 n8Var = launchActivity5.Y0;
+                        bi.r8 r8Var = launchActivity5.Y0;
                         launchActivity5.Y0 = null;
-                        di.x8.y(i20, false).W(null, tL_inputInvoiceSlug, (TLRPC.TL_payments_paymentFormStars) tLObject9, new o90(s90Var, 1), new m70(n8Var, 1));
+                        di.y8.y(i21, false).W(null, tL_inputInvoiceSlug, (TLRPC.TL_payments_paymentFormStars) tLObject9, new o90(s90Var, 1), new m70(r8Var, 1));
                         return;
                     }
                     if (tLObject9 instanceof TLRPC.PaymentForm) {
                         TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject9;
-                        org.telegram.messenger.mp.u1(i20).f4(paymentForm.users, false);
+                        org.telegram.messenger.mp.u1(i21).f4(paymentForm.users, false);
                         ml0Var = new ml0(paymentForm, null, str14, LaunchActivity.T());
                     } else if (tLObject9 instanceof TLRPC.PaymentReceipt) {
                         ml0Var = new ml0((TLRPC.PaymentReceipt) tLObject9);
@@ -569,10 +570,10 @@ public final class wn implements Runnable {
                         ml0Var = null;
                     }
                     if (ml0Var != null) {
-                        bi.n8 n8Var2 = launchActivity5.Y0;
-                        if (n8Var2 != null) {
+                        bi.r8 r8Var2 = launchActivity5.Y0;
+                        if (r8Var2 != null) {
                             launchActivity5.Y0 = null;
-                            ml0Var.f49855a1 = new ve(10, n8Var2);
+                            ml0Var.f49896a1 = new ve(10, r8Var2);
                         }
                         s90Var.u(ml0Var, false);
                     }
@@ -580,20 +581,20 @@ public final class wn implements Runnable {
                 s90Var.c();
                 return;
             case 17:
-                ee0.b0((ee0) obj5, (TLRPC.TL_error) obj, (String) obj3, (String) obj4, (String) obj2);
+                de0.b0((de0) obj5, (TLRPC.TL_error) obj, (String) obj3, (String) obj4, (String) obj2);
                 return;
             case 18:
                 TLObject tLObject10 = (TLObject) obj4;
                 Bundle bundle = (Bundle) obj3;
                 TLRPC.TL_error tL_error9 = (TLRPC.TL_error) obj;
                 TLRPC.TL_auth_resendCode tL_auth_resendCode = (TLRPC.TL_auth_resendCode) obj2;
-                ee0 ee0Var = ((pb0) obj5).f50789a0;
+                de0 de0Var = ((pb0) obj5).f50830a0;
                 if (tLObject10 instanceof TLRPC.TL_auth_sentCode) {
-                    ee0Var.y1(bundle, (TLRPC.TL_auth_sentCode) tLObject10, true);
+                    de0Var.y1(bundle, (TLRPC.TL_auth_sentCode) tLObject10, true);
                     return;
                 } else if (tL_error9 != null && tL_error9.text != null) {
-                    i12 = ((org.telegram.ui.ActionBar.h2) ee0Var).currentAccount;
-                    org.telegram.ui.Components.b5.c0(i12, tL_error9, ee0Var, tL_auth_resendCode, new Object[0]);
+                    i12 = ((org.telegram.ui.ActionBar.g2) de0Var).currentAccount;
+                    org.telegram.ui.Components.c5.c0(i12, tL_error9, de0Var, tL_auth_resendCode, new Object[0]);
                     return;
                 } else {
                     return;
@@ -604,14 +605,14 @@ public final class wn implements Runnable {
                 Bundle bundle2 = (Bundle) obj3;
                 TLRPC.TL_error tL_error10 = (TLRPC.TL_error) obj;
                 TL_account.sendVerifyEmailCode sendverifyemailcode = (TL_account.sendVerifyEmailCode) obj2;
-                ee0 ee0Var2 = sc0Var.F;
-                ee0Var2.C1(false, true);
-                sc0Var.f51971r = false;
+                de0 de0Var2 = sc0Var.F;
+                de0Var2.C1(false, true);
+                sc0Var.f52011r = false;
                 if (tLObject11 instanceof TL_account.sentEmailCode) {
                     TL_account.sentEmailCode sentemailcode = (TL_account.sentEmailCode) tLObject11;
                     bundle2.putString("emailPattern", sentemailcode.email_pattern);
                     bundle2.putInt("length", sentemailcode.length);
-                    ee0Var2.M1(13, true, bundle2, false);
+                    de0Var2.M1(13, true, bundle2, false);
                     return;
                 }
                 String str15 = tL_error10.text;
@@ -620,31 +621,31 @@ public final class wn implements Runnable {
                         sc0Var.n();
                         return;
                     } else if (tL_error10.text.contains("EMAIL_NOT_ALLOWED")) {
-                        ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131751189, null));
+                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131751188, null));
                         return;
                     } else if (tL_error10.text.contains("PHONE_PASSWORD_FLOOD")) {
-                        ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131750671, "FloodWait"));
+                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131750670, "FloodWait"));
                         return;
                     } else if (tL_error10.text.contains("PHONE_NUMBER_FLOOD")) {
-                        ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131747093, "PhoneNumberFlood"));
+                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131747092, "PhoneNumberFlood"));
                         return;
                     } else if (!tL_error10.text.contains("PHONE_CODE_EMPTY") && !tL_error10.text.contains("PHONE_CODE_INVALID")) {
                         if (tL_error10.text.contains("PHONE_CODE_EXPIRED")) {
-                            ee0Var2.M1(0, true, null, true);
-                            ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131752010, "CodeExpired"));
+                            de0Var2.M1(0, true, null, true);
+                            de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131752009, "CodeExpired"));
                             return;
                         } else if (tL_error10.text.startsWith("FLOOD_WAIT")) {
-                            ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131750671, "FloodWait"));
+                            de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131750670, "FloodWait"));
                             return;
                         } else if (tL_error10.code != -1000) {
-                            i13 = ((org.telegram.ui.ActionBar.h2) ee0Var2).currentAccount;
-                            org.telegram.ui.Components.b5.c0(i13, tL_error10, ee0Var2, sendverifyemailcode, sc0Var.f51974x);
+                            i13 = ((org.telegram.ui.ActionBar.g2) de0Var2).currentAccount;
+                            org.telegram.ui.Components.c5.c0(i13, tL_error10, de0Var2, sendverifyemailcode, sc0Var.f52014x);
                             return;
                         } else {
                             return;
                         }
                     } else {
-                        ee0Var2.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131748991, "InvalidCode"));
+                        de0Var2.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131748990, "InvalidCode"));
                         return;
                     }
                 }
@@ -654,26 +655,26 @@ public final class wn implements Runnable {
                 Bundle bundle3 = (Bundle) obj3;
                 TLRPC.TL_error tL_error11 = (TLRPC.TL_error) obj;
                 TL_account.verifyEmail verifyemail = (TL_account.verifyEmail) obj2;
-                ee0 ee0Var3 = ((sc0) obj5).F;
-                if ((tLObject12 instanceof TL_account.TL_emailVerified) && ee0Var3.G == 3) {
-                    ee0Var3.finishFragment();
-                    ee0Var3.f47185e0.run();
+                de0 de0Var3 = ((sc0) obj5).F;
+                if ((tLObject12 instanceof TL_account.TL_emailVerified) && de0Var3.G == 3) {
+                    de0Var3.finishFragment();
+                    de0Var3.f46931e0.run();
                     return;
                 } else if (tLObject12 instanceof TL_account.TL_emailVerifiedLogin) {
                     TL_account.TL_emailVerifiedLogin tL_emailVerifiedLogin = (TL_account.TL_emailVerifiedLogin) tLObject12;
                     bundle3.putString("email", tL_emailVerifiedLogin.email);
-                    ee0Var3.y1(bundle3, tL_emailVerifiedLogin.sent_code, true);
+                    de0Var3.y1(bundle3, tL_emailVerifiedLogin.sent_code, true);
                     return;
                 } else if (tL_error11 != null) {
                     if (tL_error11.text.contains("EMAIL_NOT_ALLOWED")) {
-                        ee0Var3.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131751189, null));
+                        de0Var3.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131751188, null));
                         return;
                     } else if (tL_error11.text.contains("EMAIL_TOKEN_INVALID")) {
-                        ee0Var3.D1(org.telegram.messenger.gd.M0(2131745876, null), org.telegram.messenger.gd.M0(2131751186, null));
+                        de0Var3.D1(org.telegram.messenger.gd.N0(2131745875, null), org.telegram.messenger.gd.N0(2131751185, null));
                         return;
                     } else if (tL_error11.code != -1000) {
-                        i14 = ((org.telegram.ui.ActionBar.h2) ee0Var3).currentAccount;
-                        org.telegram.ui.Components.b5.c0(i14, tL_error11, ee0Var3, verifyemail, new Object[0]);
+                        i14 = ((org.telegram.ui.ActionBar.g2) de0Var3).currentAccount;
+                        org.telegram.ui.Components.c5.c0(i14, tL_error11, de0Var3, verifyemail, new Object[0]);
                         return;
                     } else {
                         return;
@@ -682,25 +683,25 @@ public final class wn implements Runnable {
                     return;
                 }
             case 21:
-                final md0 md0Var = (md0) obj5;
+                final ld0 ld0Var = (ld0) obj5;
                 TLObject tLObject13 = (TLObject) obj4;
                 TLRPC.TL_inputInvoicePremiumAuthCode tL_inputInvoicePremiumAuthCode = (TLRPC.TL_inputInvoicePremiumAuthCode) obj3;
                 final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj2;
                 TLRPC.TL_error tL_error12 = (TLRPC.TL_error) obj;
-                ee0 ee0Var4 = md0Var.f49816w;
-                md0Var.f49809b.setLoading(false);
+                de0 de0Var4 = ld0Var.f49597w;
+                ld0Var.f49590b.setLoading(false);
                 if (tLObject13 instanceof TLRPC.PaymentForm) {
                     final TLRPC.PaymentForm paymentForm2 = (TLRPC.PaymentForm) tLObject13;
-                    ee0Var4.getMessagesController().f4(paymentForm2.users, false);
-                    ml0 ml0Var2 = new ml0(tL_inputInvoicePremiumAuthCode, paymentForm2, null, null, 4, null, null, null, null, null, null, false, null, ee0Var4, true);
+                    de0Var4.getMessagesController().f4(paymentForm2.users, false);
+                    ml0 ml0Var2 = new ml0(tL_inputInvoicePremiumAuthCode, paymentForm2, null, null, 4, null, null, null, null, null, null, false, null, de0Var4, true);
                     ml0Var2.W0 = true;
-                    ml0Var2.f49863d1 = new org.telegram.messenger.x10() {
+                    ml0Var2.f49904d1 = new org.telegram.messenger.x10() {
                         @Override
                         public final void a(Object obj7) {
                             switch (r4) {
                                 case 0:
                                     TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) obj7;
-                                    final md0 md0Var2 = md0Var;
+                                    final ld0 ld0Var2 = ld0Var;
                                     final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode2 = tL_inputStorePaymentAuthCode;
                                     final TLRPC.PaymentForm paymentForm3 = paymentForm2;
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -712,14 +713,14 @@ public final class wn implements Runnable {
                                                     String str16 = tL_inputStorePaymentAuthCode3.phone_number;
                                                     String str17 = tL_inputStorePaymentAuthCode3.phone_code_hash;
                                                     long j3 = paymentForm3.form_id;
-                                                    md0 md0Var3 = md0Var2;
-                                                    if (!md0Var3.f49812f) {
-                                                        md0Var3.f49812f = true;
-                                                        md0Var3.h = str16;
-                                                        md0Var3.f49813n = str17;
-                                                        md0Var3.f49814r = j3;
-                                                        md0Var3.f49809b.setLoading(true);
-                                                        md0Var3.o();
+                                                    ld0 ld0Var3 = ld0Var2;
+                                                    if (!ld0Var3.f49593f) {
+                                                        ld0Var3.f49593f = true;
+                                                        ld0Var3.h = str16;
+                                                        ld0Var3.f49594n = str17;
+                                                        ld0Var3.f49595r = j3;
+                                                        ld0Var3.f49590b.setLoading(true);
+                                                        ld0Var3.o();
                                                         return;
                                                     }
                                                     return;
@@ -728,14 +729,14 @@ public final class wn implements Runnable {
                                                     String str18 = tL_inputStorePaymentAuthCode4.phone_number;
                                                     String str19 = tL_inputStorePaymentAuthCode4.phone_code_hash;
                                                     long j10 = paymentForm3.form_id;
-                                                    md0 md0Var4 = md0Var2;
-                                                    if (!md0Var4.f49812f) {
-                                                        md0Var4.f49812f = true;
-                                                        md0Var4.h = str18;
-                                                        md0Var4.f49813n = str19;
-                                                        md0Var4.f49814r = j10;
-                                                        md0Var4.f49809b.setLoading(true);
-                                                        md0Var4.o();
+                                                    ld0 ld0Var4 = ld0Var2;
+                                                    if (!ld0Var4.f49593f) {
+                                                        ld0Var4.f49593f = true;
+                                                        ld0Var4.h = str18;
+                                                        ld0Var4.f49594n = str19;
+                                                        ld0Var4.f49595r = j10;
+                                                        ld0Var4.f49590b.setLoading(true);
+                                                        ld0Var4.o();
                                                         return;
                                                     }
                                                     return;
@@ -745,7 +746,7 @@ public final class wn implements Runnable {
                                     return;
                                 default:
                                     TLRPC.payments_PaymentResult payments_paymentresult = (TLRPC.payments_PaymentResult) obj7;
-                                    final md0 md0Var3 = md0Var;
+                                    final ld0 ld0Var3 = ld0Var;
                                     final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode3 = tL_inputStorePaymentAuthCode;
                                     final TLRPC.PaymentForm paymentForm4 = paymentForm2;
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -757,14 +758,14 @@ public final class wn implements Runnable {
                                                     String str16 = tL_inputStorePaymentAuthCode32.phone_number;
                                                     String str17 = tL_inputStorePaymentAuthCode32.phone_code_hash;
                                                     long j3 = paymentForm4.form_id;
-                                                    md0 md0Var32 = md0Var3;
-                                                    if (!md0Var32.f49812f) {
-                                                        md0Var32.f49812f = true;
-                                                        md0Var32.h = str16;
-                                                        md0Var32.f49813n = str17;
-                                                        md0Var32.f49814r = j3;
-                                                        md0Var32.f49809b.setLoading(true);
-                                                        md0Var32.o();
+                                                    ld0 ld0Var32 = ld0Var3;
+                                                    if (!ld0Var32.f49593f) {
+                                                        ld0Var32.f49593f = true;
+                                                        ld0Var32.h = str16;
+                                                        ld0Var32.f49594n = str17;
+                                                        ld0Var32.f49595r = j3;
+                                                        ld0Var32.f49590b.setLoading(true);
+                                                        ld0Var32.o();
                                                         return;
                                                     }
                                                     return;
@@ -773,14 +774,14 @@ public final class wn implements Runnable {
                                                     String str18 = tL_inputStorePaymentAuthCode4.phone_number;
                                                     String str19 = tL_inputStorePaymentAuthCode4.phone_code_hash;
                                                     long j10 = paymentForm4.form_id;
-                                                    md0 md0Var4 = md0Var3;
-                                                    if (!md0Var4.f49812f) {
-                                                        md0Var4.f49812f = true;
-                                                        md0Var4.h = str18;
-                                                        md0Var4.f49813n = str19;
-                                                        md0Var4.f49814r = j10;
-                                                        md0Var4.f49809b.setLoading(true);
-                                                        md0Var4.o();
+                                                    ld0 ld0Var4 = ld0Var3;
+                                                    if (!ld0Var4.f49593f) {
+                                                        ld0Var4.f49593f = true;
+                                                        ld0Var4.h = str18;
+                                                        ld0Var4.f49594n = str19;
+                                                        ld0Var4.f49595r = j10;
+                                                        ld0Var4.f49590b.setLoading(true);
+                                                        ld0Var4.o();
                                                         return;
                                                     }
                                                     return;
@@ -791,13 +792,13 @@ public final class wn implements Runnable {
                             }
                         }
                     };
-                    ml0Var2.f49866e1 = new org.telegram.messenger.x10() {
+                    ml0Var2.f49907e1 = new org.telegram.messenger.x10() {
                         @Override
                         public final void a(Object obj7) {
                             switch (r4) {
                                 case 0:
                                     TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) obj7;
-                                    final md0 md0Var2 = md0Var;
+                                    final ld0 ld0Var2 = ld0Var;
                                     final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode2 = tL_inputStorePaymentAuthCode;
                                     final TLRPC.PaymentForm paymentForm3 = paymentForm2;
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -809,14 +810,14 @@ public final class wn implements Runnable {
                                                     String str16 = tL_inputStorePaymentAuthCode32.phone_number;
                                                     String str17 = tL_inputStorePaymentAuthCode32.phone_code_hash;
                                                     long j3 = paymentForm3.form_id;
-                                                    md0 md0Var32 = md0Var2;
-                                                    if (!md0Var32.f49812f) {
-                                                        md0Var32.f49812f = true;
-                                                        md0Var32.h = str16;
-                                                        md0Var32.f49813n = str17;
-                                                        md0Var32.f49814r = j3;
-                                                        md0Var32.f49809b.setLoading(true);
-                                                        md0Var32.o();
+                                                    ld0 ld0Var32 = ld0Var2;
+                                                    if (!ld0Var32.f49593f) {
+                                                        ld0Var32.f49593f = true;
+                                                        ld0Var32.h = str16;
+                                                        ld0Var32.f49594n = str17;
+                                                        ld0Var32.f49595r = j3;
+                                                        ld0Var32.f49590b.setLoading(true);
+                                                        ld0Var32.o();
                                                         return;
                                                     }
                                                     return;
@@ -825,14 +826,14 @@ public final class wn implements Runnable {
                                                     String str18 = tL_inputStorePaymentAuthCode4.phone_number;
                                                     String str19 = tL_inputStorePaymentAuthCode4.phone_code_hash;
                                                     long j10 = paymentForm3.form_id;
-                                                    md0 md0Var4 = md0Var2;
-                                                    if (!md0Var4.f49812f) {
-                                                        md0Var4.f49812f = true;
-                                                        md0Var4.h = str18;
-                                                        md0Var4.f49813n = str19;
-                                                        md0Var4.f49814r = j10;
-                                                        md0Var4.f49809b.setLoading(true);
-                                                        md0Var4.o();
+                                                    ld0 ld0Var4 = ld0Var2;
+                                                    if (!ld0Var4.f49593f) {
+                                                        ld0Var4.f49593f = true;
+                                                        ld0Var4.h = str18;
+                                                        ld0Var4.f49594n = str19;
+                                                        ld0Var4.f49595r = j10;
+                                                        ld0Var4.f49590b.setLoading(true);
+                                                        ld0Var4.o();
                                                         return;
                                                     }
                                                     return;
@@ -842,7 +843,7 @@ public final class wn implements Runnable {
                                     return;
                                 default:
                                     TLRPC.payments_PaymentResult payments_paymentresult = (TLRPC.payments_PaymentResult) obj7;
-                                    final md0 md0Var3 = md0Var;
+                                    final ld0 ld0Var3 = ld0Var;
                                     final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode3 = tL_inputStorePaymentAuthCode;
                                     final TLRPC.PaymentForm paymentForm4 = paymentForm2;
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -854,14 +855,14 @@ public final class wn implements Runnable {
                                                     String str16 = tL_inputStorePaymentAuthCode32.phone_number;
                                                     String str17 = tL_inputStorePaymentAuthCode32.phone_code_hash;
                                                     long j3 = paymentForm4.form_id;
-                                                    md0 md0Var32 = md0Var3;
-                                                    if (!md0Var32.f49812f) {
-                                                        md0Var32.f49812f = true;
-                                                        md0Var32.h = str16;
-                                                        md0Var32.f49813n = str17;
-                                                        md0Var32.f49814r = j3;
-                                                        md0Var32.f49809b.setLoading(true);
-                                                        md0Var32.o();
+                                                    ld0 ld0Var32 = ld0Var3;
+                                                    if (!ld0Var32.f49593f) {
+                                                        ld0Var32.f49593f = true;
+                                                        ld0Var32.h = str16;
+                                                        ld0Var32.f49594n = str17;
+                                                        ld0Var32.f49595r = j3;
+                                                        ld0Var32.f49590b.setLoading(true);
+                                                        ld0Var32.o();
                                                         return;
                                                     }
                                                     return;
@@ -870,14 +871,14 @@ public final class wn implements Runnable {
                                                     String str18 = tL_inputStorePaymentAuthCode4.phone_number;
                                                     String str19 = tL_inputStorePaymentAuthCode4.phone_code_hash;
                                                     long j10 = paymentForm4.form_id;
-                                                    md0 md0Var4 = md0Var3;
-                                                    if (!md0Var4.f49812f) {
-                                                        md0Var4.f49812f = true;
-                                                        md0Var4.h = str18;
-                                                        md0Var4.f49813n = str19;
-                                                        md0Var4.f49814r = j10;
-                                                        md0Var4.f49809b.setLoading(true);
-                                                        md0Var4.o();
+                                                    ld0 ld0Var4 = ld0Var3;
+                                                    if (!ld0Var4.f49593f) {
+                                                        ld0Var4.f49593f = true;
+                                                        ld0Var4.h = str18;
+                                                        ld0Var4.f49594n = str19;
+                                                        ld0Var4.f49595r = j10;
+                                                        ld0Var4.f49590b.setLoading(true);
+                                                        ld0Var4.o();
                                                         return;
                                                     }
                                                     return;
@@ -888,20 +889,20 @@ public final class wn implements Runnable {
                             }
                         }
                     };
-                    ml0Var2.f49869f1 = new o00(md0Var, 1);
-                    ee0Var4.presentFragment(ml0Var2);
+                    ml0Var2.f49910f1 = new o00(ld0Var, 1);
+                    de0Var4.presentFragment(ml0Var2);
                     return;
                 } else if (tL_error12 != null) {
                     if ("PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error12.text)) {
-                        org.telegram.messenger.g0.g3(new id0(md0Var, 2));
+                        org.telegram.messenger.g0.g3(new hd0(ld0Var, 2));
                         return;
                     }
                     String str16 = tL_error12.text;
-                    md0Var.f49811e = str16;
-                    new org.telegram.ui.Components.lc(ee0Var4.f47178a0, null).H(2131624012, org.telegram.messenger.gd.a0(null, null, 2131743641, str16));
+                    ld0Var.f49592e = str16;
+                    new org.telegram.ui.Components.lc(de0Var4.f46924a0, null).H(2131624012, org.telegram.messenger.gd.a0(null, null, 2131743635, str16));
                     return;
                 } else {
-                    new org.telegram.ui.Components.lc(ee0Var4.f47178a0, null).H(2131624012, org.telegram.messenger.gd.M0(2131743642, null));
+                    new org.telegram.ui.Components.lc(de0Var4.f46924a0, null).H(2131624012, org.telegram.messenger.gd.N0(2131743636, null));
                     return;
                 }
             case 22:
@@ -912,10 +913,10 @@ public final class wn implements Runnable {
                 TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = (TL_stats.TL_loadAsyncGraph) obj2;
                 og0Var.E = true;
                 if (tL_error13 == null && bVar != null) {
-                    og0Var.f50565w.l(str17, bVar);
-                    o41 o41Var = og0Var.f50563r;
-                    o41Var.f50450e = bVar;
-                    o41Var.f50449c = tL_loadAsyncGraph.f28636x;
+                    og0Var.f50592w.l(str17, bVar);
+                    o41 o41Var = og0Var.f50590r;
+                    o41Var.f50471e = bVar;
+                    o41Var.f50470c = tL_loadAsyncGraph.f28664x;
                     og0Var.m0();
                     return;
                 }
@@ -927,18 +928,18 @@ public final class wn implements Runnable {
                 TLRPC.TL_inputPhoneContact tL_inputPhoneContact = (TLRPC.TL_inputPhoneContact) obj4;
                 TLRPC.TL_error tL_error14 = (TLRPC.TL_error) obj;
                 TLRPC.TL_contacts_importContacts tL_contacts_importContacts = (TLRPC.TL_contacts_importContacts) obj2;
-                org.telegram.ui.ActionBar.h2 h2Var2 = fh0Var.G1;
+                org.telegram.ui.ActionBar.g2 g2Var2 = fh0Var.G1;
                 fh0Var.B1 = false;
                 if (tL_contacts_importedContacts != null) {
                     if (!tL_contacts_importedContacts.users.isEmpty()) {
-                        org.telegram.messenger.mp.u1(fh0Var.f30187a).f4(tL_contacts_importedContacts.users, false);
-                        org.telegram.messenger.mp.u1(fh0Var.f30187a).G3(tL_contacts_importedContacts.users.get(0), null, h2Var2, 1);
+                        org.telegram.messenger.mp.u1(fh0Var.f30170a).f4(tL_contacts_importedContacts.users, false);
+                        org.telegram.messenger.mp.u1(fh0Var.f30170a).G3(tL_contacts_importedContacts.users.get(0), null, g2Var2, 1);
                         fh0Var.dismiss();
                         return;
-                    } else if (h2Var2.getParentActivity() != null) {
+                    } else if (g2Var2.getParentActivity() != null) {
                         org.telegram.messenger.g0.X3(fh0Var.R1, true, 0.5f, true, true);
                         org.telegram.messenger.g0.X3(fh0Var.S1, false, 0.5f, true, true);
-                        org.telegram.ui.Components.b5.u(h2Var2, tL_inputPhoneContact.first_name, tL_inputPhoneContact.last_name, tL_inputPhoneContact.phone);
+                        org.telegram.ui.Components.c5.u(g2Var2, tL_inputPhoneContact.first_name, tL_inputPhoneContact.last_name, tL_inputPhoneContact.phone);
                         return;
                     } else {
                         return;
@@ -946,19 +947,19 @@ public final class wn implements Runnable {
                 }
                 org.telegram.messenger.g0.X3(fh0Var.R1, true, 0.5f, true, true);
                 org.telegram.messenger.g0.X3(fh0Var.S1, false, 0.5f, true, true);
-                org.telegram.ui.Components.b5.c0(fh0Var.f30187a, tL_error14, h2Var2, tL_contacts_importContacts, new Object[0]);
+                org.telegram.ui.Components.c5.c0(fh0Var.f30170a, tL_error14, g2Var2, tL_contacts_importContacts, new Object[0]);
                 return;
             case 24:
                 TLRPC.TL_error tL_error15 = (TLRPC.TL_error) obj;
-                if0 if0Var = (if0) obj3;
+                hf0 hf0Var = (hf0) obj3;
                 k8.a aVar = (k8.a) obj4;
                 TL_account.verifyEmail verifyemail2 = (TL_account.verifyEmail) obj2;
-                hk0 hk0Var = ((qj0) obj5).f51237a;
+                hk0 hk0Var = ((qj0) obj5).f51291a;
                 if (tL_error15 == null) {
-                    ((mj0) hk0Var.C1).c(hk0Var.F, (String) hk0Var.f48413t1.get("email"), null, null, null, null, null, null, null, null, if0Var, aVar);
+                    ((mj0) hk0Var.C1).c(hk0Var.F, (String) hk0Var.f48456t1.get("email"), null, null, null, null, null, null, null, null, hf0Var, aVar);
                     return;
                 }
-                org.telegram.ui.Components.b5.c0(hk0.M0(hk0Var), tL_error15, hk0Var, verifyemail2, new Object[0]);
+                org.telegram.ui.Components.c5.c0(hk0.M0(hk0Var), tL_error15, hk0Var, verifyemail2, new Object[0]);
                 aVar.d(null, null);
                 return;
             case 25:
@@ -972,9 +973,9 @@ public final class wn implements Runnable {
                 if (tL_error16 == null) {
                     hk0Var2.p1(bundle4, (TLRPC.TL_auth_sentCode) tLObject14, true);
                 } else {
-                    org.telegram.ui.ActionBar.u1 c02 = org.telegram.ui.Components.b5.c0(hk0.n0(hk0Var2), tL_error16, hk0Var2, tL_auth_resendCode2, new Object[0]);
+                    org.telegram.ui.ActionBar.t1 c02 = org.telegram.ui.Components.c5.c0(hk0.n0(hk0Var2), tL_error16, hk0Var2, tL_auth_resendCode2, new Object[0]);
                     if (c02 != null && tL_error16.text.contains("PHONE_CODE_EXPIRED")) {
-                        c02.f30052n0 = new zj0(dk0Var, 0);
+                        c02.f30035n0 = new zj0(dk0Var, 0);
                     }
                 }
                 hk0Var2.B1();
@@ -987,44 +988,44 @@ public final class wn implements Runnable {
                 ArrayList arrayList11 = (ArrayList) obj;
                 Integer num = (Integer) obj4;
                 uq0 uq0Var2 = (uq0) obj2;
-                PhotoViewer photoViewer = ((aq0) obj5).f45631r;
-                photoViewer.f43296p4 = null;
-                qq0 qq0Var = photoViewer.f43208f0;
-                if (qq0Var != null && photoViewer.f43226h0 != null) {
+                PhotoViewer photoViewer = ((aq0) obj5).f45667r;
+                photoViewer.f43337p4 = null;
+                qq0 qq0Var = photoViewer.f43249f0;
+                if (qq0Var != null && photoViewer.f43267h0 != null) {
                     qq0Var.setLayerType(0, null);
-                    photoViewer.f43279n4 = 0;
+                    photoViewer.f43320n4 = 0;
                     photoViewer.D1();
                     photoViewer.o4 = 0L;
                     photoViewer.H1 = null;
-                    photoViewer.F1.f21850a = false;
+                    photoViewer.F1.f21875a = false;
                     photoViewer.I1 = null;
-                    photoViewer.G1.f21850a = false;
+                    photoViewer.G1.f21875a = false;
                     photoViewer.B2();
                     photoViewer.x2();
-                    photoViewer.f43208f0.invalidate();
+                    photoViewer.f43249f0.invalidate();
                     for (ClippingImageView clippingImageView : clippingImageViewArr) {
                         clippingImageView.setVisibility(8);
                     }
-                    wq0 wq0Var = photoViewer.f43305q4;
+                    wq0 wq0Var = photoViewer.f43346q4;
                     if (wq0Var != null) {
                         z12 = true;
-                        wq0Var.f53447a.O0(true, true);
+                        wq0Var.f53493a.O0(true, true);
                     } else {
                         z12 = true;
                     }
-                    wq0 wq0Var2 = photoViewer.f43315r4;
-                    if (wq0Var2 != null && !wq0Var2.f53463s) {
-                        wq0Var2.f53447a.O0(false, z12);
+                    wq0 wq0Var2 = photoViewer.f43356r4;
+                    if (wq0Var2 != null && !wq0Var2.f53509s) {
+                        wq0Var2.f53493a.O0(false, z12);
                     }
                     if (arrayList11 != null && (i15 = photoViewer.d2) != 3 && i15 != z12 && ((uq0Var = photoViewer.d) == null || !uq0Var.P())) {
                         photoViewer.Q1();
                     }
-                    org.telegram.ui.Components.f61 f61Var = photoViewer.G2;
-                    if (f61Var != null && f61Var.d0() && photoViewer.f43322s1 && !photoViewer.f43224g7.isEmpty()) {
+                    org.telegram.ui.Components.i61 i61Var = photoViewer.G2;
+                    if (i61Var != null && i61Var.d0() && photoViewer.f43363s1 && !photoViewer.f43265g7.isEmpty()) {
                         PhotoViewer.S(photoViewer, photoViewer.G2.S());
                         PhotoViewer.R(photoViewer, true);
                     }
-                    if (photoViewer.f43333t4) {
+                    if (photoViewer.f43374t4) {
                         PhotoViewer.T(photoViewer, num.intValue());
                     }
                     if (uq0Var2 != null) {
@@ -1043,8 +1044,8 @@ public final class wn implements Runnable {
                 TLRPC.TL_error tL_error17 = (TLRPC.TL_error) obj;
                 PrivacyControlActivity privacyControlActivity = ((kt0) obj5).d;
                 if (((TLObject) obj4) instanceof TLRPC.TL_boolTrue) {
-                    org.telegram.ui.Components.gc Q = org.telegram.ui.Components.lc.b0(privacyControlActivity).Q(2131623990, 36, org.telegram.messenger.gd.M0(2131746663, null));
-                    Q.f35461j = 5000;
+                    org.telegram.ui.Components.gc Q = org.telegram.ui.Components.lc.b0(privacyControlActivity).Q(2131623990, 36, org.telegram.messenger.gd.N0(2131746662, null));
+                    Q.f35508j = 5000;
                     Q.j();
                     return;
                 }
@@ -1060,92 +1061,92 @@ public final class wn implements Runnable {
                 if (tL_error17 != null && (str2 = tL_error17.text) != null && str2.startsWith("FLOOD_WAIT_")) {
                     if (privacyControlActivity.getParentActivity() != null) {
                         Activity parentActivity = privacyControlActivity.getParentActivity();
-                        i6Var = ((org.telegram.ui.ActionBar.h2) privacyControlActivity).resourceProvider;
-                        AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, parentActivity, i6Var);
-                        String M0 = org.telegram.messenger.gd.M0(2131746659, null);
-                        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f28744a;
-                        u1Var2.S = M0;
-                        u1Var2.U = org.telegram.messenger.gd.M0(2131746660, null);
-                        alertDialog$Builder2.k(org.telegram.messenger.gd.M0(2131747638, null), null);
-                        privacyControlActivity.showDialog(u1Var2);
+                        h6Var = ((org.telegram.ui.ActionBar.g2) privacyControlActivity).resourceProvider;
+                        AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, parentActivity, h6Var);
+                        String N0 = org.telegram.messenger.gd.N0(2131746658, null);
+                        org.telegram.ui.ActionBar.t1 t1Var2 = alertDialog$Builder2.f28774a;
+                        t1Var2.S = N0;
+                        t1Var2.U = org.telegram.messenger.gd.N0(2131746659, null);
+                        alertDialog$Builder2.k(org.telegram.messenger.gd.N0(2131747637, null), null);
+                        privacyControlActivity.showDialog(t1Var2);
                         return;
                     }
                     return;
                 }
-                org.telegram.messenger.f3.n(null, 2131743642, org.telegram.ui.Components.lc.b0(privacyControlActivity), 2131624012, 36);
+                org.telegram.messenger.f3.n(null, 2131743636, org.telegram.ui.Components.lc.b0(privacyControlActivity), 2131624012, 36);
                 return;
         }
     }
 
     public wn(Object obj, Object obj2, Object obj3, Object obj4, String str, int i7) {
-        this.f53409a = i7;
-        this.f53411c = obj;
-        this.f53410b = obj2;
-        this.f53412e = obj3;
-        this.f53413f = obj4;
+        this.f53455a = i7;
+        this.f53457c = obj;
+        this.f53456b = obj2;
+        this.f53458e = obj3;
+        this.f53459f = obj4;
         this.d = str;
     }
 
     public wn(Object obj, Object obj2, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error, int i7) {
-        this.f53409a = i7;
-        this.f53411c = obj;
+        this.f53455a = i7;
+        this.f53457c = obj;
         this.d = obj2;
-        this.f53412e = tLObject;
-        this.f53413f = tLObject2;
-        this.f53410b = tL_error;
+        this.f53458e = tLObject;
+        this.f53459f = tLObject2;
+        this.f53456b = tL_error;
     }
 
     public wn(Object obj, TLObject tLObject, Object obj2, Object obj3, TLRPC.TL_error tL_error, int i7) {
-        this.f53409a = i7;
-        this.f53411c = obj;
-        this.f53412e = tLObject;
+        this.f53455a = i7;
+        this.f53457c = obj;
+        this.f53458e = tLObject;
         this.d = obj2;
-        this.f53413f = obj3;
-        this.f53410b = tL_error;
+        this.f53459f = obj3;
+        this.f53456b = tL_error;
     }
 
     public wn(Object obj, TLRPC.TL_error tL_error, Object obj2, Serializable serializable, TLObject tLObject, int i7) {
-        this.f53409a = i7;
-        this.f53411c = obj;
-        this.f53410b = tL_error;
-        this.f53412e = obj2;
+        this.f53455a = i7;
+        this.f53457c = obj;
+        this.f53456b = tL_error;
+        this.f53458e = obj2;
         this.d = serializable;
-        this.f53413f = tLObject;
+        this.f53459f = tLObject;
     }
 
     public wn(Object obj, TLRPC.TL_error tL_error, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f53409a = i7;
-        this.f53411c = obj;
-        this.f53410b = tL_error;
+        this.f53455a = i7;
+        this.f53457c = obj;
+        this.f53456b = tL_error;
         this.d = obj2;
-        this.f53412e = obj3;
-        this.f53413f = obj4;
+        this.f53458e = obj3;
+        this.f53459f = obj4;
     }
 
-    public wn(org.telegram.ui.Components.fu0 fu0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error, TLObject tLObject2, int i7) {
-        this.f53409a = i7;
-        this.f53411c = fu0Var;
-        this.f53412e = tLObject;
+    public wn(org.telegram.ui.Components.iu0 iu0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error, TLObject tLObject2, int i7) {
+        this.f53455a = i7;
+        this.f53457c = iu0Var;
+        this.f53458e = tLObject;
         this.d = bundle;
-        this.f53410b = tL_error;
-        this.f53413f = tLObject2;
+        this.f53456b = tL_error;
+        this.f53459f = tLObject2;
     }
 
     public wn(LaunchActivity launchActivity, TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_error tL_error) {
-        this.f53409a = 14;
-        this.f53411c = launchActivity;
-        this.f53412e = tLObject;
-        this.f53413f = tL_messages_requestUrlAuth;
+        this.f53455a = 14;
+        this.f53457c = launchActivity;
+        this.f53458e = tLObject;
+        this.f53459f = tL_messages_requestUrlAuth;
         this.d = str;
-        this.f53410b = tL_error;
+        this.f53456b = tL_error;
     }
 
     public wn(fh0 fh0Var, TLRPC.TL_contacts_importedContacts tL_contacts_importedContacts, TLRPC.TL_inputPhoneContact tL_inputPhoneContact, TLRPC.TL_error tL_error, TLRPC.TL_contacts_importContacts tL_contacts_importContacts) {
-        this.f53409a = 23;
-        this.f53411c = fh0Var;
+        this.f53455a = 23;
+        this.f53457c = fh0Var;
         this.d = tL_contacts_importedContacts;
-        this.f53412e = tL_inputPhoneContact;
-        this.f53410b = tL_error;
-        this.f53413f = tL_contacts_importContacts;
+        this.f53458e = tL_inputPhoneContact;
+        this.f53456b = tL_error;
+        this.f53459f = tL_contacts_importContacts;
     }
 }

@@ -1,128 +1,189 @@
 package ug;
 
-import android.graphics.Bitmap;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.y10;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.n6;
-public class t1 {
-    public boolean B;
-    public Matrix[] C;
-    public float[][] D;
-    public int[] E;
-    public float[] F;
-    public boolean G;
-    public boolean N;
-    public i6 P;
-    public long R;
-    public long S;
-    public boolean f58898g;
-    public boolean h;
-    public y10 f58902l;
-    public boolean f58903m;
-    public final int f58906p;
-    public boolean f58907q;
-    public int f58915z;
-    public final RectF f58893a = new RectF();
-    public final RectF f58894b = new RectF();
-    public final RectF f58895c = new RectF();
-    public Bitmap[] d = new Bitmap[3];
-    public boolean[] f58896e = new boolean[3];
-    public boolean[] f58897f = new boolean[3];
-    public final Paint f58899i = new Paint();
-    public float f58900j = 0.0f;
-    public float f58901k = 0.0f;
-    public final ArrayList f58904n = new ArrayList();
-    public float f58905o = 1.0f;
-    public int f58908r = 14;
-    public int f58909s = 12;
-    public int f58910t = 10;
-    public float f58911u = 0.85f;
-    public float v = 0.85f;
-    public float f58912w = 0.9f;
-    public long f58913x = 2000;
-    public int f58914y = 1000;
-    public final float A = 1000.0f / org.telegram.messenger.g0.f24119r;
-    public boolean H = false;
-    public boolean I = true;
-    public boolean J = true;
-    public boolean K = false;
-    public boolean L = false;
-    public boolean M = true;
-    public int O = -1;
-    public int Q = n6.Lk;
-    public int T = 0;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.messenger.bz;
+import org.telegram.messenger.pc;
+import org.telegram.ui.ActionBar.b6;
+import tg.z1;
+public class t1 extends View implements b6 {
+    public s1 f58954a;
+    public final s4.s0 f58955b;
+    public int f58956c;
+    public z d;
+    public boolean f58957e;
+    public Paint f58958f;
+    public LinearGradient h;
+    public Matrix f58959n;
 
-    public t1(int i7) {
-        this.f58906p = i7;
-        this.B = i7 < 50;
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: ug.t1.a():void");
-    }
-
-    public int b() {
-        if (this.O == 100) {
-            return i0.a.o(n6.w0(this.Q, this.P), 200);
+    public t1(Context context) {
+        super(context);
+        int i7;
+        if (bz.o() == 2) {
+            i7 = 200;
+        } else if (bz.o() == 1) {
+            i7 = 100;
+        } else {
+            i7 = 50;
         }
-        return n6.w0(this.Q, this.P);
+        this.f58955b = new s4.s0(this, 6);
+        this.f58957e = true;
+        this.f58954a = new s1(i7);
+        a();
+    }
+
+    public void a() {
+        s1 s1Var = this.f58954a;
+        s1Var.O = 100;
+        s1Var.M = true;
+        s1Var.G = true;
+        s1Var.K = true;
+        s1Var.H = true;
+        s1Var.f58942r = 4;
+        s1Var.f58946w = 0.98f;
+        s1Var.v = 0.98f;
+        s1Var.f58945u = 0.98f;
+        s1Var.c();
+    }
+
+    public final void b(float f10) {
+        float f11;
+        if (f10 < 60.0f) {
+            f11 = 5.0f;
+        } else if (f10 < 180.0f) {
+            f11 = 9.0f;
+        } else {
+            f11 = 15.0f;
+        }
+        AnimatorSet animatorSet = new AnimatorSet();
+        z1 z1Var = new z1(this, 4);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, f11);
+        ofFloat.addUpdateListener(z1Var);
+        ofFloat.setDuration(600L);
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f11, 1.0f);
+        ofFloat2.addUpdateListener(z1Var);
+        ofFloat2.setDuration(2000L);
+        animatorSet.playTogether(ofFloat, ofFloat2);
+        animatorSet.start();
     }
 
     public final void c() {
-        a();
-        boolean z10 = this.G;
-        int i7 = this.f58906p;
-        if (z10) {
-            int length = this.d.length;
-            this.C = new Matrix[length];
-            this.D = new float[length];
-            this.E = new int[length];
-            this.F = new float[length];
-            for (int i10 = 0; i10 < length; i10++) {
-                this.C[i10] = new Matrix();
-                this.D[i10] = new float[i7 * 2];
-            }
+        Paint paint = new Paint(1);
+        this.f58958f = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.h = linearGradient;
+        this.f58958f.setShader(linearGradient);
+        this.f58959n = new Matrix();
+    }
+
+    public int getStarsRectWidth() {
+        return org.telegram.messenger.g0.L(140.0f);
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        z zVar = new z(this, 1);
+        this.d = zVar;
+        pc.a(zVar);
+        boolean e10 = pc.e(131072);
+        if (this.f58957e != e10) {
+            this.f58957e = e10;
+            invalidate();
         }
-        ArrayList arrayList = this.f58904n;
-        if (arrayList.isEmpty()) {
-            for (int i11 = 0; i11 < i7; i11++) {
-                arrayList.add(new s1(this));
-            }
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        HashSet hashSet;
+        super.onDetachedFromWindow();
+        z zVar = this.d;
+        if (zVar != null && (hashSet = pc.f26252n) != null) {
+            hashSet.remove(zVar);
         }
     }
 
-    public final void d(Canvas canvas) {
-        e(canvas, 1.0f);
-    }
-
-    public final void e(android.graphics.Canvas r19, float r20) {
-        throw new UnsupportedOperationException("Method not decompiled: ug.t1.e(android.graphics.Canvas, float):void");
-    }
-
-    public final void f() {
-        long currentTimeMillis = System.currentTimeMillis();
-        int i7 = 0;
-        while (true) {
-            ArrayList arrayList = this.f58904n;
-            if (i7 < arrayList.size()) {
-                ((s1) arrayList.get(i7)).b(currentTimeMillis);
-                i7++;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        super.onDraw(canvas);
+        if (this.f58957e) {
+            if (this.f58958f != null) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                canvas2 = canvas;
             } else {
-                return;
+                canvas2 = canvas;
+            }
+            this.f58954a.d(canvas2);
+            if (this.f58958f != null) {
+                canvas2.save();
+                this.f58959n.reset();
+                this.f58959n.postTranslate(0.0f, (getHeight() + 1) - org.telegram.messenger.g0.L(12.0f));
+                this.h.setLocalMatrix(this.f58959n);
+                canvas2.drawRect(0.0f, getHeight() - org.telegram.messenger.g0.L(12.0f), getWidth(), getHeight(), this.f58958f);
+                this.f58959n.reset();
+                this.f58959n.postRotate(180.0f);
+                this.f58959n.postTranslate(0.0f, org.telegram.messenger.g0.L(12.0f));
+                this.h.setLocalMatrix(this.f58959n);
+                canvas2.drawRect(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(12.0f), this.f58958f);
+                canvas2.restore();
+                canvas2.restore();
+            }
+            if (!this.f58954a.f58932g) {
+                invalidate();
             }
         }
     }
 
-    public final void g() {
-        int w02 = n6.w0(this.Q, this.P);
-        if (this.f58915z != w02) {
-            this.f58915z = w02;
-            a();
+    @Override
+    public void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
+        this.f58954a.f58927a.set(0.0f, 0.0f, getStarsRectWidth(), org.telegram.messenger.g0.L(140.0f));
+        this.f58954a.f58927a.offset((getMeasuredWidth() - this.f58954a.f58927a.width()) / 2.0f, (getMeasuredHeight() - this.f58954a.f58927a.height()) / 2.0f);
+        this.f58954a.f58928b.set(-org.telegram.messenger.g0.L(15.0f), -org.telegram.messenger.g0.L(15.0f), org.telegram.messenger.g0.L(15.0f) + getMeasuredWidth(), org.telegram.messenger.g0.L(15.0f) + getMeasuredHeight());
+        if (this.f58956c != measuredHeight) {
+            this.f58956c = measuredHeight;
+            this.f58954a.f();
         }
+    }
+
+    public void setPaused(boolean z10) {
+        s1 s1Var = this.f58954a;
+        if (z10 == s1Var.f58932g) {
+            return;
+        }
+        s1Var.f58932g = z10;
+        if (z10) {
+            s1Var.R = System.currentTimeMillis();
+            return;
+        }
+        for (int i7 = 0; i7 < this.f58954a.f58938n.size(); i7++) {
+            r1 r1Var = (r1) this.f58954a.f58938n.get(i7);
+            r1Var.f58907a = (System.currentTimeMillis() - this.f58954a.R) + r1Var.f58907a;
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void updateColors() {
+        s4.s0 s0Var = this.f58955b;
+        removeCallbacks(s0Var);
+        postDelayed(s0Var, 150L);
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

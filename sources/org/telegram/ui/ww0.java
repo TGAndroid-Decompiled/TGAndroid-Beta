@@ -14,27 +14,27 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-public class ww0 extends org.telegram.ui.Components.bk0 {
+public class ww0 extends org.telegram.ui.Components.dk0 {
     public String E;
     public TLRPC.WebPage F;
     public boolean G;
-    public vw0[] f53493c;
-    public final org.telegram.ui.ActionBar.h2 f53494e;
-    public final int f53495f;
+    public vw0[] f53539c;
+    public final org.telegram.ui.ActionBar.g2 f53540e;
+    public final int f53541f;
     public final Context h;
-    public boolean f53500x;
-    public tr0 f53501y;
+    public boolean f53546x;
+    public tr0 f53547y;
     public final ArrayList d = new ArrayList();
-    public ArrayList f53496n = new ArrayList();
-    public ArrayList f53497r = new ArrayList();
-    public ArrayList f53498s = new ArrayList();
-    public final ArrayList f53499w = new ArrayList();
+    public ArrayList f53542n = new ArrayList();
+    public ArrayList f53543r = new ArrayList();
+    public ArrayList f53544s = new ArrayList();
+    public final ArrayList f53545w = new ArrayList();
 
-    public ww0(Context context, org.telegram.ui.ActionBar.h2 h2Var) {
-        this.f53494e = h2Var;
-        this.f53495f = h2Var.getCurrentAccount();
+    public ww0(Context context, org.telegram.ui.ActionBar.g2 g2Var) {
+        this.f53540e = g2Var;
+        this.f53541f = g2Var.getCurrentAccount();
         this.h = context;
-        this.f53493c = H(h2Var);
+        this.f53539c = H(g2Var);
         J();
     }
 
@@ -48,7 +48,7 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
         return true;
     }
 
-    public static vw0[] H(final org.telegram.ui.ActionBar.h2 h2Var) {
+    public static vw0[] H(final org.telegram.ui.ActionBar.g2 g2Var) {
         vw0 vw0Var;
         vw0 vw0Var2;
         vw0 vw0Var3;
@@ -72,68 +72,68 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
         vw0 vw0Var21;
         vw0 vw0Var22;
         vw0 vw0Var23;
-        final int currentAccount = h2Var.getCurrentAccount();
-        vw0 vw0Var24 = new vw0(500, org.telegram.messenger.gd.L0(2131751253), 0, new tr0(18, h2Var, h2Var.getResourceProvider()));
-        vw0 vw0Var25 = new vw0(501, org.telegram.messenger.gd.L0(2131752526), 0, new Runnable() {
+        final int currentAccount = g2Var.getCurrentAccount();
+        vw0 vw0Var24 = new vw0(500, org.telegram.messenger.gd.M0(2131751252), 0, new tr0(20, g2Var, g2Var.getResourceProvider()));
+        vw0 vw0Var25 = new vw0(501, org.telegram.messenger.gd.M0(2131752525), 0, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -142,99 +142,99 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var25.a("tg://settings/edit/change-number");
-        vw0 vw0Var26 = new vw0(502, org.telegram.messenger.gd.L0(2131754466), 0, new Runnable() {
+        vw0 vw0Var26 = new vw0(502, org.telegram.messenger.gd.M0(2131754465), 0, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -248,115 +248,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var26.a("tg://settings/edit/add-account");
-        vw0 vw0Var27 = new vw0(1, org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var27 = new vw0(1, org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -370,115 +370,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var27.a("tg://settings/notifications");
-        vw0 vw0Var28 = new vw0(2, org.telegram.messenger.gd.L0(2131747685), org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var28 = new vw0(2, org.telegram.messenger.gd.M0(2131747684), org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -492,575 +492,575 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var28.a("tg://settings/notifications/private-chats");
-        vw0 vw0Var29 = new vw0(3, org.telegram.messenger.gd.L0(2131747714), org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var29 = new vw0(3, org.telegram.messenger.gd.M0(2131747713), org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         vw0Var29.a("tg://settings/notifications/groups");
-        vw0 vw0Var30 = new vw0(4, org.telegram.messenger.gd.L0(2131747728), org.telegram.messenger.gd.L0(2131747729), 2131232264, new xf0(7, h2Var));
+        vw0 vw0Var30 = new vw0(4, org.telegram.messenger.gd.M0(2131747727), org.telegram.messenger.gd.M0(2131747728), 2131232264, new wf0(7, g2Var));
         vw0Var30.a("tg://settings/notifications/channels");
-        vw0 vw0Var31 = new vw0(5, org.telegram.messenger.gd.L0(2131743042), "callsSectionRow", org.telegram.messenger.gd.L0(2131747729), 2131232264, new xf0(19, h2Var));
-        vw0 vw0Var32 = new vw0(6, org.telegram.messenger.gd.L0(2131753731), "badgeNumberSection", org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var31 = new vw0(5, org.telegram.messenger.gd.M0(2131743036), "callsSectionRow", org.telegram.messenger.gd.M0(2131747728), 2131232264, new wf0(19, g2Var));
+        vw0 vw0Var32 = new vw0(6, org.telegram.messenger.gd.M0(2131753730), "badgeNumberSection", org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var33 = new vw0(7, org.telegram.messenger.gd.L0(2131749027), "inappSectionRow", org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var33 = new vw0(7, org.telegram.messenger.gd.M0(2131749026), "inappSectionRow", org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var34 = new vw0(8, org.telegram.messenger.gd.L0(2131751779), "contactJoinedRow", org.telegram.messenger.gd.L0(2131747729), 2131232264, new xf0(23, h2Var));
+        vw0 vw0Var34 = new vw0(8, org.telegram.messenger.gd.M0(2131751778), "contactJoinedRow", org.telegram.messenger.gd.M0(2131747728), 2131232264, new wf0(23, g2Var));
         vw0Var34.a("tg://settings/notifications/new-contacts");
-        vw0 vw0Var35 = new vw0(9, org.telegram.messenger.gd.L0(2131747035), "pinnedMessageRow", org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var35 = new vw0(9, org.telegram.messenger.gd.M0(2131747034), "pinnedMessageRow", org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -1068,66 +1068,66 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var35.a("tg://settings/notifications/pinned-messages");
-        vw0 vw0Var36 = new vw0(10, org.telegram.messenger.gd.L0(2131745917), "resetNotificationsRow", org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var36 = new vw0(10, org.telegram.messenger.gd.M0(2131745916), "resetNotificationsRow", org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1136,135 +1136,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var36.a("tg://settings/notifications/reset");
-        vw0 vw0Var37 = new vw0(11, org.telegram.messenger.gd.L0(2131747683), "notificationsServiceRow", org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var37 = new vw0(11, org.telegram.messenger.gd.M0(2131747682), "notificationsServiceRow", org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1273,134 +1273,134 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var38 = new vw0(12, org.telegram.messenger.gd.L0(2131747682), "notificationsServiceConnectionRow", org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var38 = new vw0(12, org.telegram.messenger.gd.M0(2131747681), "notificationsServiceConnectionRow", org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1409,134 +1409,134 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var39 = new vw0(13, org.telegram.messenger.gd.L0(2131746080), "repeatRow", org.telegram.messenger.gd.L0(2131747729), 2131232264, new Runnable() {
+        vw0 vw0Var39 = new vw0(13, org.telegram.messenger.gd.M0(2131746079), "repeatRow", org.telegram.messenger.gd.M0(2131747728), 2131232264, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1545,134 +1545,134 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var40 = new vw0(100, org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var40 = new vw0(100, org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1681,135 +1681,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var40.a("tg://settings/privacy");
-        vw0 vw0Var41 = new vw0(109, org.telegram.messenger.gd.L0(2131743701), org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var41 = new vw0(109, org.telegram.messenger.gd.M0(2131743695), org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1818,174 +1818,174 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var41.a("tg://settings/privacy/2sv");
-        vw0 vw0Var42 = new vw0(124, org.telegram.messenger.gd.L0(2131753848), org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var42 = new vw0(124, org.telegram.messenger.gd.M0(2131753847), org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r2;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 int i10 = currentAccount;
                 switch (i7) {
                     case 0:
-                        if (org.telegram.messenger.j10.i(i10).f24793q0 >= 0) {
-                            h2Var2.presentFragment(new p4());
+                        if (org.telegram.messenger.j10.i(i10).f24821q0 >= 0) {
+                            g2Var2.presentFragment(new p4());
                             return;
                         }
                         return;
                     default:
                         if (!org.telegram.messenger.j10.i(i10).q()) {
-                            org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(h2Var2);
+                            org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(g2Var2);
                             b02.getClass();
                             org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(b02.X(), null);
                             obVar.d(2131624347, new String[0]);
-                            String M0 = org.telegram.messenger.gd.M0(2131746562, null);
-                            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
-                            int indexOf = M0.indexOf(42);
-                            int lastIndexOf = M0.lastIndexOf(42);
+                            String N0 = org.telegram.messenger.gd.N0(2131746561, null);
+                            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(N0);
+                            int indexOf = N0.indexOf(42);
+                            int lastIndexOf = N0.lastIndexOf(42);
                             if (indexOf >= 0) {
-                                spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) M0.substring(indexOf + 1, lastIndexOf));
-                                spannableStringBuilder.setSpan(new hi.ia(b02, 5), indexOf, lastIndexOf - 1, 33);
+                                spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) N0.substring(indexOf + 1, lastIndexOf));
+                                spannableStringBuilder.setSpan(new hi.ha(b02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            obVar.f38055b.setText(spannableStringBuilder);
-                            obVar.f38055b.setSingleLine(false);
-                            obVar.f38055b.setMaxLines(2);
+                            obVar.f38164b.setText(spannableStringBuilder);
+                            obVar.f38164b.setSingleLine(false);
+                            obVar.f38164b.setMaxLines(2);
                             b02.b(obVar, 2750).j();
                             return;
                         }
-                        h2Var2.presentFragment(new PrivacyControlActivity(8, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(8, true));
                         return;
                 }
             }
         });
         vw0Var42.a("tg://settings/privacy/auto-delete");
-        vw0 vw0Var43 = new vw0(108, org.telegram.messenger.gd.L0(2131747464), org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var43 = new vw0(108, org.telegram.messenger.gd.M0(2131747463), org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1994,138 +1994,138 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var43.a("tg://settings/privacy/passcode");
         vw0 vw0Var44 = null;
-        if (org.telegram.messenger.bz.f23179m1) {
+        if (org.telegram.messenger.bz.f23207m1) {
             vw0Var = vw0Var41;
-            vw0Var2 = new vw0(125, org.telegram.messenger.gd.L0(2131751191), "emailLoginRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+            vw0Var2 = new vw0(125, org.telegram.messenger.gd.M0(2131751190), "emailLoginRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
                 @Override
                 public final void run() {
                     int i7 = r1;
                     int i10 = 0;
-                    org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                    org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                     switch (i7) {
                         case 0:
                             z90 z90Var = new z90();
-                            h2Var2.presentFragment(z90Var);
+                            g2Var2.presentFragment(z90Var);
                             z90Var.b0(360928);
                             z90Var.a0(64);
                             return;
                         case 1:
                             z90 z90Var2 = new z90();
-                            h2Var2.presentFragment(z90Var2);
+                            g2Var2.presentFragment(z90Var2);
                             z90Var2.b0(360928);
                             z90Var2.a0(128);
                             return;
                         case 2:
-                            h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                            g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
                             z90 z90Var3 = new z90();
-                            h2Var2.presentFragment(z90Var3);
+                            g2Var2.presentFragment(z90Var3);
                             z90Var3.b0(360928);
                             z90Var3.a0(256);
                             return;
                         case 4:
                             z90 z90Var4 = new z90();
-                            h2Var2.presentFragment(z90Var4);
+                            g2Var2.presentFragment(z90Var4);
                             z90Var4.b0(360928);
                             z90Var4.a0(32768);
                             return;
                         case 5:
                             z90 z90Var5 = new z90();
-                            h2Var2.presentFragment(z90Var5);
+                            g2Var2.presentFragment(z90Var5);
                             z90Var5.a0(512);
                             return;
                         case 6:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
                             z90 z90Var6 = new z90();
-                            h2Var2.presentFragment(z90Var6);
+                            g2Var2.presentFragment(z90Var6);
                             z90Var6.a0(1024);
                             return;
                         case 8:
                             z90 z90Var7 = new z90();
-                            h2Var2.presentFragment(z90Var7);
+                            g2Var2.presentFragment(z90Var7);
                             z90Var7.a0(2048);
                             return;
                         case 9:
                             z90 z90Var8 = new z90();
-                            h2Var2.presentFragment(z90Var8);
+                            g2Var2.presentFragment(z90Var8);
                             while (true) {
-                                ArrayList arrayList = z90Var8.f54462s;
+                                ArrayList arrayList = z90Var8.f54506s;
                                 if (i10 < arrayList.size()) {
-                                    if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                        z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                    if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                        z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -2134,70 +2134,70 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                         case 10:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 11:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 12:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 13:
-                            ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 14:
-                            h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                            g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                             return;
                         case 15:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                             return;
                         case 16:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                             return;
                         case 17:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 19:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 20:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 21:
-                            h2Var2.presentFragment(new TwoStepVerificationActivity());
+                            g2Var2.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            h2Var2.presentFragment(PasscodeActivity.p0());
+                            g2Var2.presentFragment(PasscodeActivity.p0());
                             return;
                         case 23:
-                            ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                            z0Var2.L0();
-                            h2Var2.showDialog(z0Var2);
+                            ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                            y0Var2.L0();
+                            g2Var2.showDialog(y0Var2);
                             return;
                         case 24:
-                            h2Var2.presentFragment(new g(3));
+                            g2Var2.presentFragment(new g(3));
                             return;
                         case 25:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 26:
                             st0 st0Var = new st0();
                             st0Var.getMessagesController().H0(true);
-                            h2Var2.presentFragment(st0Var);
+                            g2Var2.presentFragment(st0Var);
                             return;
                         case 27:
-                            h2Var2.presentFragment(new SessionsActivity(0));
+                            g2Var2.presentFragment(new SessionsActivity(0));
                             return;
                         case 28:
-                            h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                             return;
                         default:
-                            h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                             return;
                     }
                 }
@@ -2207,66 +2207,66 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var = vw0Var41;
             vw0Var2 = null;
         }
-        vw0 vw0Var45 = new vw0(101, org.telegram.messenger.gd.L0(2131753679), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var45 = new vw0(101, org.telegram.messenger.gd.M0(2131753678), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2275,135 +2275,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var45.a("tg://settings/privacy/blocked");
-        vw0 vw0Var46 = new vw0(110, org.telegram.messenger.gd.L0(2131745356), 2131232037, new Runnable() {
+        vw0 vw0Var46 = new vw0(110, org.telegram.messenger.gd.M0(2131745355), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2412,135 +2412,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var46.a("tg://settings/devices");
-        vw0 vw0Var47 = new vw0(105, org.telegram.messenger.gd.L0(2131746597), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var47 = new vw0(105, org.telegram.messenger.gd.M0(2131746596), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2549,135 +2549,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var47.a("tg://settings/privacy/phone-number/");
-        vw0 vw0Var48 = new vw0(102, org.telegram.messenger.gd.L0(2131746622), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var48 = new vw0(102, org.telegram.messenger.gd.M0(2131746621), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2686,99 +2686,99 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var48.a("tg://settings/privacy/last-seen");
-        vw0 vw0Var49 = new vw0(103, org.telegram.messenger.gd.L0(2131746584), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var49 = new vw0(103, org.telegram.messenger.gd.M0(2131746583), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -2792,115 +2792,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var49.a("tg://settings/privacy/profile-photos");
-        vw0 vw0Var50 = new vw0(104, org.telegram.messenger.gd.L0(2131746644), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var50 = new vw0(104, org.telegram.messenger.gd.M0(2131746643), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -2914,115 +2914,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var50.a("tg://settings/privacy/forwards");
-        vw0 vw0Var51 = new vw0(122, org.telegram.messenger.gd.L0(2131746607), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var51 = new vw0(122, org.telegram.messenger.gd.M0(2131746606), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -3036,115 +3036,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var51.a("tg://settings/privacy/calls/p2p");
-        vw0 vw0Var52 = new vw0(106, org.telegram.messenger.gd.L0(2131752585), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var52 = new vw0(106, org.telegram.messenger.gd.M0(2131752584), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -3158,115 +3158,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var52.a("tg://settings/privacy/calls");
-        vw0 vw0Var53 = new vw0(107, org.telegram.messenger.gd.L0(2131746624), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var53 = new vw0(107, org.telegram.messenger.gd.M0(2131746623), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -3280,156 +3280,156 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var53.a("tg://settings/privacy/invites");
-        vw0 vw0Var54 = new vw0(123, org.telegram.messenger.gd.L0(2131746565), org.telegram.messenger.gd.L0(2131746578), 2131232357, new Runnable() {
+        vw0 vw0Var54 = new vw0(123, org.telegram.messenger.gd.M0(2131746564), org.telegram.messenger.gd.M0(2131746577), 2131232357, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r2;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 int i10 = currentAccount;
                 switch (i7) {
                     case 0:
-                        if (org.telegram.messenger.j10.i(i10).f24793q0 >= 0) {
-                            h2Var2.presentFragment(new p4());
+                        if (org.telegram.messenger.j10.i(i10).f24821q0 >= 0) {
+                            g2Var2.presentFragment(new p4());
                             return;
                         }
                         return;
                     default:
                         if (!org.telegram.messenger.j10.i(i10).q()) {
-                            org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(h2Var2);
+                            org.telegram.ui.Components.lc b02 = org.telegram.ui.Components.lc.b0(g2Var2);
                             b02.getClass();
                             org.telegram.ui.Components.ob obVar = new org.telegram.ui.Components.ob(b02.X(), null);
                             obVar.d(2131624347, new String[0]);
-                            String M0 = org.telegram.messenger.gd.M0(2131746562, null);
-                            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
-                            int indexOf = M0.indexOf(42);
-                            int lastIndexOf = M0.lastIndexOf(42);
+                            String N0 = org.telegram.messenger.gd.N0(2131746561, null);
+                            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(N0);
+                            int indexOf = N0.indexOf(42);
+                            int lastIndexOf = N0.lastIndexOf(42);
                             if (indexOf >= 0) {
-                                spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) M0.substring(indexOf + 1, lastIndexOf));
-                                spannableStringBuilder.setSpan(new hi.ia(b02, 5), indexOf, lastIndexOf - 1, 33);
+                                spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) N0.substring(indexOf + 1, lastIndexOf));
+                                spannableStringBuilder.setSpan(new hi.ha(b02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            obVar.f38055b.setText(spannableStringBuilder);
-                            obVar.f38055b.setSingleLine(false);
-                            obVar.f38055b.setMaxLines(2);
+                            obVar.f38164b.setText(spannableStringBuilder);
+                            obVar.f38164b.setSingleLine(false);
+                            obVar.f38164b.setMaxLines(2);
                             b02.b(obVar, 2750).j();
                             return;
                         }
-                        h2Var2.presentFragment(new PrivacyControlActivity(8, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(8, true));
                         return;
                 }
             }
         });
         vw0Var54.a("tg://settings/privacy/voice");
-        if (org.telegram.messenger.mp.u1(currentAccount).f25608b4) {
+        if (org.telegram.messenger.mp.u1(currentAccount).f25636b4) {
             vw0Var3 = vw0Var54;
-            vw0Var4 = new vw0(121, org.telegram.messenger.gd.L0(2131754169), "newChatsRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+            vw0Var4 = new vw0(121, org.telegram.messenger.gd.M0(2131754168), "newChatsRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(4, true));
                             return;
                         case 1:
-                            h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(5, true));
                             return;
                         case 2:
-                            h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(3, true));
                             return;
                         case 3:
-                            h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(2, true));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(1, true));
                             return;
                         case 6:
                             int i7 = 0;
@@ -3443,86 +3443,86 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                             if (i7 >= 0) {
-                                h2Var.presentFragment(new ee0(i7));
+                                g2Var.presentFragment(new de0(i7));
                                 return;
                             }
                             return;
                         case 7:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 8:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 9:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 10:
-                            h2Var.presentFragment(new SessionsActivity(1));
+                            g2Var.presentFragment(new SessionsActivity(1));
                             return;
                         case 11:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 12:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 16:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 17:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var.presentFragment(new SessionsActivity(0));
+                            g2Var.presentFragment(new SessionsActivity(0));
                             return;
                         case 19:
-                            h2Var.presentFragment(new SessionsActivity(0));
+                            g2Var.presentFragment(new SessionsActivity(0));
                             return;
                         case 20:
                             SessionsActivity sessionsActivity = new SessionsActivity(0);
                             sessionsActivity.W = true;
-                            h2Var.presentFragment(sessionsActivity);
+                            g2Var.presentFragment(sessionsActivity);
                             return;
                         case 21:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 22:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 23:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 24:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 25:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 26:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 27:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 28:
-                            h2Var.presentFragment(new pt());
+                            g2Var.presentFragment(new pt());
                             return;
                         default:
-                            h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                            g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                             return;
                     }
                 }
@@ -3532,30 +3532,30 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var3 = vw0Var54;
             vw0Var4 = null;
         }
-        vw0 vw0Var55 = new vw0(112, org.telegram.messenger.gd.L0(2131751585), "deleteAccountRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var55 = new vw0(112, org.telegram.messenger.gd.M0(2131751584), "deleteAccountRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -3569,115 +3569,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var55.a("tg://settings/privacy/self-destruct");
-        vw0 vw0Var56 = new vw0(113, org.telegram.messenger.gd.L0(2131746604), "paymentsClearRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var56 = new vw0(113, org.telegram.messenger.gd.M0(2131746603), "paymentsClearRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -3691,115 +3691,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var56.a("tg://settings/privacy/data-settings/clear-payment-info");
-        vw0 vw0Var57 = new vw0(114, org.telegram.messenger.gd.L0(2131742653), org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var57 = new vw0(114, org.telegram.messenger.gd.M0(2131742647), org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -3813,115 +3813,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var57.a("tg://settings/privacy/active-websites");
-        vw0 vw0Var58 = new vw0(115, org.telegram.messenger.gd.L0(2131744061), "contactsDeleteRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var58 = new vw0(115, org.telegram.messenger.gd.M0(2131744055), "contactsDeleteRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -3935,115 +3935,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var58.a("tg://settings/privacy/data-settings/delete-synced");
-        vw0 vw0Var59 = new vw0(116, org.telegram.messenger.gd.L0(2131744063), "contactsSyncRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var59 = new vw0(116, org.telegram.messenger.gd.M0(2131744057), "contactsSyncRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -4057,115 +4057,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var59.a("tg://settings/privacy/data-settings/sync-contacts");
-        vw0 vw0Var60 = new vw0(117, org.telegram.messenger.gd.L0(2131744177), "contactsSuggestRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var60 = new vw0(117, org.telegram.messenger.gd.M0(2131744171), "contactsSuggestRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -4179,115 +4179,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var60.a("tg://settings/privacy/data-settings/suggest-contacts");
-        vw0 vw0Var61 = new vw0(118, org.telegram.messenger.gd.L0(2131748497), "secretMapRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var61 = new vw0(118, org.telegram.messenger.gd.M0(2131748496), "secretMapRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -4301,115 +4301,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var61.a("tg://settings/privacy/data-settings/map-provider");
-        vw0 vw0Var62 = new vw0(119, org.telegram.messenger.gd.L0(2131745489), "secretWebpageRow", org.telegram.messenger.gd.L0(2131746578), 2131232037, new Runnable() {
+        vw0 vw0Var62 = new vw0(119, org.telegram.messenger.gd.M0(2131745488), "secretWebpageRow", org.telegram.messenger.gd.M0(2131746577), 2131232037, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -4423,115 +4423,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var62.a("tg://settings/privacy/data-settings/link-previews");
-        vw0 vw0Var63 = new vw0(120, org.telegram.messenger.gd.L0(2131751444), 2131232025, new Runnable() {
+        vw0 vw0Var63 = new vw0(120, org.telegram.messenger.gd.M0(2131751443), 2131232025, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -4545,115 +4545,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var63.a("tg://settings/devices");
-        vw0 vw0Var64 = new vw0(121, org.telegram.messenger.gd.L0(2131743973), "terminateAllSessionsRow", org.telegram.messenger.gd.L0(2131751444), 2131232025, new Runnable() {
+        vw0 vw0Var64 = new vw0(121, org.telegram.messenger.gd.M0(2131743967), "terminateAllSessionsRow", org.telegram.messenger.gd.M0(2131751443), 2131232025, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -4667,115 +4667,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var64.a("tg://settings/devices/terminate-sessions");
-        vw0 vw0Var65 = new vw0(122, org.telegram.messenger.gd.L0(2131748725), org.telegram.messenger.gd.L0(2131751444), 2131232025, new Runnable() {
+        vw0 vw0Var65 = new vw0(122, org.telegram.messenger.gd.M0(2131748724), org.telegram.messenger.gd.M0(2131751443), 2131232025, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -4789,115 +4789,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var65.a("tg://settings/devices/link-desktop");
-        vw0 vw0Var66 = new vw0(200, org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var66 = new vw0(200, org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -4911,115 +4911,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var66.a("tg://settings/privacy/data-settings");
-        vw0 vw0Var67 = new vw0(201, org.telegram.messenger.gd.L0(2131751665), "usageSectionRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var67 = new vw0(201, org.telegram.messenger.gd.M0(2131751664), "usageSectionRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -5033,114 +5033,114 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var68 = new vw0(202, org.telegram.messenger.gd.L0(2131744581), org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var68 = new vw0(202, org.telegram.messenger.gd.M0(2131744575), org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -5154,115 +5154,115 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var68.a("tg://settings/data/storage");
-        vw0 vw0Var69 = new vw0(203, org.telegram.messenger.gd.L0(2131748868), "keepMediaRow", org.telegram.messenger.gd.L0(2131751666), org.telegram.messenger.gd.L0(2131744581), 2131232024, new Runnable() {
+        vw0 vw0Var69 = new vw0(203, org.telegram.messenger.gd.M0(2131748867), "keepMediaRow", org.telegram.messenger.gd.M0(2131751665), org.telegram.messenger.gd.M0(2131744575), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -5276,114 +5276,114 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var70 = new vw0(204, org.telegram.messenger.gd.L0(2131752064), "cacheRow", org.telegram.messenger.gd.L0(2131751666), org.telegram.messenger.gd.L0(2131744581), 2131232024, new Runnable() {
+        vw0 vw0Var70 = new vw0(204, org.telegram.messenger.gd.M0(2131752063), "cacheRow", org.telegram.messenger.gd.M0(2131751665), org.telegram.messenger.gd.M0(2131744575), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -5397,114 +5397,114 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var71 = new vw0(205, org.telegram.messenger.gd.L0(2131748582), "databaseRow", org.telegram.messenger.gd.L0(2131751666), org.telegram.messenger.gd.L0(2131744581), 2131232024, new Runnable() {
+        vw0 vw0Var71 = new vw0(205, org.telegram.messenger.gd.M0(2131748581), "databaseRow", org.telegram.messenger.gd.M0(2131751665), org.telegram.messenger.gd.M0(2131744575), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -5518,114 +5518,114 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var72 = new vw0(206, org.telegram.messenger.gd.L0(2131748106), org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var72 = new vw0(206, org.telegram.messenger.gd.M0(2131748105), org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(4, true));
                         return;
                     case 1:
-                        h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(5, true));
                         return;
                     case 2:
-                        h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(3, true));
                         return;
                     case 3:
-                        h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(2, true));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                        g2Var.presentFragment(new PrivacyControlActivity(1, true));
                         return;
                     case 6:
                         int i7 = 0;
@@ -5639,1549 +5639,1549 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                         if (i7 >= 0) {
-                            h2Var.presentFragment(new ee0(i7));
+                            g2Var.presentFragment(new de0(i7));
                             return;
                         }
                         return;
                     case 7:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new SessionsActivity(1));
+                        g2Var.presentFragment(new SessionsActivity(1));
                         return;
                     case 11:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 12:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new PrivacySettingsActivity());
+                        g2Var.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 17:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 19:
-                        h2Var.presentFragment(new SessionsActivity(0));
+                        g2Var.presentFragment(new SessionsActivity(0));
                         return;
                     case 20:
                         SessionsActivity sessionsActivity = new SessionsActivity(0);
                         sessionsActivity.W = true;
-                        h2Var.presentFragment(sessionsActivity);
+                        g2Var.presentFragment(sessionsActivity);
                         return;
                     case 21:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 22:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 23:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 24:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 25:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 26:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 27:
-                        h2Var.presentFragment(new x6());
+                        g2Var.presentFragment(new x6());
                         return;
                     case 28:
-                        h2Var.presentFragment(new pt());
+                        g2Var.presentFragment(new pt());
                         return;
                     default:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                         return;
                 }
             }
         });
         vw0Var72.a("tg://settings/data/usage");
-        vw0 vw0Var73 = new vw0(207, org.telegram.messenger.gd.L0(2131753765), "mediaDownloadSectionRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var73 = new vw0(207, org.telegram.messenger.gd.M0(2131753764), "mediaDownloadSectionRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var74 = new vw0(208, org.telegram.messenger.gd.L0(2131742626), org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var74 = new vw0(208, org.telegram.messenger.gd.M0(2131742620), org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var75 = new vw0(209, org.telegram.messenger.gd.L0(2131742628), org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var75 = new vw0(209, org.telegram.messenger.gd.M0(2131742622), org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var76 = new vw0(210, org.telegram.messenger.gd.L0(2131742627), org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var76 = new vw0(210, org.telegram.messenger.gd.M0(2131742621), org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var77 = new vw0(211, org.telegram.messenger.gd.L0(2131745916), "resetDownloadRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var77 = new vw0(211, org.telegram.messenger.gd.M0(2131745915), "resetDownloadRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         vw0Var77.a("tg://settings/data/auto-download/reset");
-        vw0 vw0Var78 = new vw0(215, org.telegram.messenger.gd.L0(2131744203), "streamSectionRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var78 = new vw0(215, org.telegram.messenger.gd.M0(2131744197), "streamSectionRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var79 = new vw0(216, org.telegram.messenger.gd.L0(2131751133), "enableStreamRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var79 = new vw0(216, org.telegram.messenger.gd.M0(2131751132), "enableStreamRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var80 = new vw0(217, org.telegram.messenger.gd.L0(2131752585), "callsSectionRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var80 = new vw0(217, org.telegram.messenger.gd.M0(2131752584), "callsSectionRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var81 = new vw0(218, org.telegram.messenger.gd.L0(2131742992), "useLessDataForCallsRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var81 = new vw0(218, org.telegram.messenger.gd.M0(2131742986), "useLessDataForCallsRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         vw0Var81.a("tg://settings/data/use-less-data");
-        vw0 vw0Var82 = new vw0(219, org.telegram.messenger.gd.L0(2131743021), "quickRepliesRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var82 = new vw0(219, org.telegram.messenger.gd.M0(2131743015), "quickRepliesRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var83 = new vw0(220, org.telegram.messenger.gd.L0(2131746406), org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var83 = new vw0(220, org.telegram.messenger.gd.M0(2131746405), org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         vw0Var83.a("tg://settings/data/proxy");
-        vw0 vw0Var84 = new vw0(111, org.telegram.messenger.gd.L0(2131746648), "clearDraftsRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var84 = new vw0(111, org.telegram.messenger.gd.M0(2131746647), "clearDraftsRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         vw0Var84.a("tg://settings/privacy/data-settings/delete-cloud-drafts");
-        vw0 vw0Var85 = new vw0(222, org.telegram.messenger.gd.L0(2131745734), "saveToGallerySectionRow", org.telegram.messenger.gd.L0(2131751666), 2131232024, new Runnable() {
+        vw0 vw0Var85 = new vw0(222, org.telegram.messenger.gd.M0(2131745733), "saveToGallerySectionRow", org.telegram.messenger.gd.M0(2131751665), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
-        vw0 vw0Var86 = new vw0(223, org.telegram.messenger.gd.L0(2131745724), "saveToGalleryPeerRow", org.telegram.messenger.gd.L0(2131751666), org.telegram.messenger.gd.L0(2131745734), 2131232024, new Runnable() {
+        vw0 vw0Var86 = new vw0(223, org.telegram.messenger.gd.M0(2131745723), "saveToGalleryPeerRow", org.telegram.messenger.gd.M0(2131751665), org.telegram.messenger.gd.M0(2131745733), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         vw0Var86.a("tg://settings/data/save-to-photos/chats");
-        vw0 vw0Var87 = new vw0(224, org.telegram.messenger.gd.L0(2131745731), "saveToGalleryGroupsRow", org.telegram.messenger.gd.L0(2131751666), org.telegram.messenger.gd.L0(2131745734), 2131232024, new Runnable() {
+        vw0 vw0Var87 = new vw0(224, org.telegram.messenger.gd.M0(2131745730), "saveToGalleryGroupsRow", org.telegram.messenger.gd.M0(2131751665), org.telegram.messenger.gd.M0(2131745733), 2131232024, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 1:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(0));
                         return;
                     case 2:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(1));
                         return;
                     case 3:
-                        h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                        g2Var.presentFragment(new DataAutoDownloadActivity(2));
                         return;
                     case 4:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 5:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 6:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 7:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 8:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 9:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 10:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 11:
-                        h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                        g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                         return;
                     case 12:
-                        h2Var.presentFragment(new ProxyListActivity());
+                        g2Var.presentFragment(new ProxyListActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 14:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 15:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     case 16:
-                        h2Var.presentFragment(new DataSettingsActivity());
+                        g2Var.presentFragment(new DataSettingsActivity());
                         return;
                     default:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         vw0Var87.a("tg://settings/data/save-to-photos/groups");
-        vw0 vw0Var88 = new vw0(225, org.telegram.messenger.gd.L0(2131745733), "saveToGalleryChannelsRow", org.telegram.messenger.gd.L0(2131751666), org.telegram.messenger.gd.L0(2131745734), 2131232024, new xf0(2, h2Var));
+        vw0 vw0Var88 = new vw0(225, org.telegram.messenger.gd.M0(2131745732), "saveToGalleryChannelsRow", org.telegram.messenger.gd.M0(2131751665), org.telegram.messenger.gd.M0(2131745733), 2131232024, new wf0(2, g2Var));
         vw0Var88.a("tg://settings/data/save-to-photos/channels");
-        vw0 vw0Var89 = new vw0(300, org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(3, h2Var));
+        vw0 vw0Var89 = new vw0(300, org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(3, g2Var));
         vw0Var89.a("tg://settings/appearance/themes");
-        vw0 vw0Var90 = new vw0(301, org.telegram.messenger.gd.L0(2131743956), "textSizeHeaderRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(4, h2Var));
+        vw0 vw0Var90 = new vw0(301, org.telegram.messenger.gd.M0(2131743950), "textSizeHeaderRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(4, g2Var));
         vw0Var90.a("tg://settings/appearance/text-size");
-        vw0 vw0Var91 = new vw0(302, org.telegram.messenger.gd.L0(2131752539), org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(5, h2Var));
+        vw0 vw0Var91 = new vw0(302, org.telegram.messenger.gd.M0(2131752538), org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(5, g2Var));
         vw0Var91.a("tg://settings/appearance/wallpapers");
-        vw0 vw0Var92 = new vw0(303, org.telegram.messenger.gd.L0(2131745343), null, org.telegram.messenger.gd.L0(2131752199), org.telegram.messenger.gd.L0(2131752233), 2131232026, new xf0(6, h2Var));
-        vw0 vw0Var93 = new vw0(304, org.telegram.messenger.gd.L0(2131745913), "resetRow", org.telegram.messenger.gd.L0(2131752199), org.telegram.messenger.gd.L0(2131752233), 2131232026, new xf0(8, h2Var));
-        vw0 vw0Var94 = new vw0(306, org.telegram.messenger.gd.L0(2131752000), "themeHeaderRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(9, h2Var));
-        vw0 vw0Var95 = new vw0(319, org.telegram.messenger.gd.L0(2131752867), null, org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(10, h2Var));
-        vw0 vw0Var96 = new vw0(320, org.telegram.messenger.gd.L0(2131751701), "createNewThemeRow", org.telegram.messenger.gd.L0(2131752199), org.telegram.messenger.gd.L0(2131752867), 2131232026, new xf0(11, h2Var));
+        vw0 vw0Var92 = new vw0(303, org.telegram.messenger.gd.M0(2131745342), null, org.telegram.messenger.gd.M0(2131752198), org.telegram.messenger.gd.M0(2131752232), 2131232026, new wf0(6, g2Var));
+        vw0 vw0Var93 = new vw0(304, org.telegram.messenger.gd.M0(2131745912), "resetRow", org.telegram.messenger.gd.M0(2131752198), org.telegram.messenger.gd.M0(2131752232), 2131232026, new wf0(8, g2Var));
+        vw0 vw0Var94 = new vw0(306, org.telegram.messenger.gd.M0(2131751999), "themeHeaderRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(9, g2Var));
+        vw0 vw0Var95 = new vw0(319, org.telegram.messenger.gd.M0(2131752866), null, org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(10, g2Var));
+        vw0 vw0Var96 = new vw0(320, org.telegram.messenger.gd.M0(2131751700), "createNewThemeRow", org.telegram.messenger.gd.M0(2131752198), org.telegram.messenger.gd.M0(2131752866), 2131232026, new wf0(11, g2Var));
         vw0Var96.a("tg://settings/appearance/themes/create");
-        vw0 vw0Var97 = new vw0(321, org.telegram.messenger.gd.L0(2131752829), "bubbleRadiusHeaderRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(13, h2Var));
+        vw0 vw0Var97 = new vw0(321, org.telegram.messenger.gd.M0(2131752828), "bubbleRadiusHeaderRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(13, g2Var));
         vw0Var97.a("tg://settings/appearance/message-corners");
-        vw0 vw0Var98 = new vw0(322, org.telegram.messenger.gd.L0(2131752214), "chatListHeaderRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(14, h2Var));
-        vw0 vw0Var99 = new vw0(323, org.telegram.messenger.gd.L0(2131752211), "swipeGestureHeaderRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(15, h2Var));
-        vw0 vw0Var100 = new vw0(324, org.telegram.messenger.gd.L0(2131754238), "appIconHeaderRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(16, h2Var));
+        vw0 vw0Var98 = new vw0(322, org.telegram.messenger.gd.M0(2131752213), "chatListHeaderRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(14, g2Var));
+        vw0 vw0Var99 = new vw0(323, org.telegram.messenger.gd.M0(2131752210), "swipeGestureHeaderRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(15, g2Var));
+        vw0 vw0Var100 = new vw0(324, org.telegram.messenger.gd.M0(2131754237), "appIconHeaderRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(16, g2Var));
         vw0Var100.a("tg://settings/appearance/app-icon");
-        vw0 vw0Var101 = new vw0(305, org.telegram.messenger.gd.L0(2131753782), org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(17, h2Var));
-        vw0 vw0Var102 = new vw0(328, org.telegram.messenger.gd.L0(2131748057), "nextMediaTapRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(18, h2Var));
+        vw0 vw0Var101 = new vw0(305, org.telegram.messenger.gd.M0(2131753781), org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(17, g2Var));
+        vw0 vw0Var102 = new vw0(328, org.telegram.messenger.gd.M0(2131748056), "nextMediaTapRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(18, g2Var));
         vw0Var102.a("tg://settings/appearance/tap-for-next-media");
-        vw0 vw0Var103 = new vw0(327, org.telegram.messenger.gd.L0(2131746232), "raiseToListenRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(20, h2Var));
+        vw0 vw0Var103 = new vw0(327, org.telegram.messenger.gd.M0(2131746231), "raiseToListenRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(20, g2Var));
         vw0Var103.a("tg://settings/data/raise-to-listen");
-        vw0 vw0Var104 = new vw0(310, org.telegram.messenger.gd.L0(2131746230), "raiseToSpeakRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(21, h2Var));
+        vw0 vw0Var104 = new vw0(310, org.telegram.messenger.gd.M0(2131746229), "raiseToSpeakRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(21, g2Var));
         vw0Var104.a("tg://settings/data/raise-to-speak");
-        vw0 vw0Var105 = new vw0(326, org.telegram.messenger.gd.L0(2131747239), "pauseOnMediaRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(22, h2Var));
+        vw0 vw0Var105 = new vw0(326, org.telegram.messenger.gd.M0(2131747238), "pauseOnMediaRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(22, g2Var));
         vw0Var105.a("tg://settings/data/pause-music");
-        vw0 vw0Var106 = new vw0(325, org.telegram.messenger.gd.L0(2131748247), "bluetoothScoRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(24, h2Var));
-        vw0 vw0Var107 = new vw0(308, org.telegram.messenger.gd.L0(2131751427), "directShareRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(25, h2Var));
-        vw0 vw0Var108 = new vw0(311, org.telegram.messenger.gd.L0(2131745437), "sendByEnterRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(26, h2Var));
-        vw0 vw0Var109 = new vw0(318, org.telegram.messenger.gd.L0(2131751356), "distanceRow", org.telegram.messenger.gd.L0(2131752199), 2131232026, new xf0(27, h2Var));
-        vw0 vw0Var110 = new vw0(600, org.telegram.messenger.gd.L0(2131744622), 2131232040, new xf0(28, h2Var));
+        vw0 vw0Var106 = new vw0(325, org.telegram.messenger.gd.M0(2131748246), "bluetoothScoRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(24, g2Var));
+        vw0 vw0Var107 = new vw0(308, org.telegram.messenger.gd.M0(2131751426), "directShareRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(25, g2Var));
+        vw0 vw0Var108 = new vw0(311, org.telegram.messenger.gd.M0(2131745436), "sendByEnterRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(26, g2Var));
+        vw0 vw0Var109 = new vw0(318, org.telegram.messenger.gd.M0(2131751355), "distanceRow", org.telegram.messenger.gd.M0(2131752198), 2131232026, new wf0(27, g2Var));
+        vw0 vw0Var110 = new vw0(600, org.telegram.messenger.gd.M0(2131744616), 2131232040, new wf0(28, g2Var));
         vw0Var110.a("tg://settings/appearance/stickers-and-emoji");
-        vw0 vw0Var111 = new vw0(601, org.telegram.messenger.gd.L0(2131744167), "suggestRow", org.telegram.messenger.gd.L0(2131744622), 2131232040, new xf0(29, h2Var));
-        vw0 vw0Var112 = new vw0(602, org.telegram.messenger.gd.L0(2131750822), "featuredStickersHeaderRow", org.telegram.messenger.gd.L0(2131744622), 2131232040, new Runnable() {
+        vw0 vw0Var111 = new vw0(601, org.telegram.messenger.gd.M0(2131744161), "suggestRow", org.telegram.messenger.gd.M0(2131744616), 2131232040, new wf0(29, g2Var));
+        vw0 vw0Var112 = new vw0(602, org.telegram.messenger.gd.M0(2131750821), "featuredStickersHeaderRow", org.telegram.messenger.gd.M0(2131744616), 2131232040, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var113 = new vw0(603, org.telegram.messenger.gd.L0(2131748487), null, org.telegram.messenger.gd.L0(2131744622), 2131232040, new Runnable() {
+        vw0 vw0Var113 = new vw0(603, org.telegram.messenger.gd.M0(2131748486), null, org.telegram.messenger.gd.M0(2131744616), 2131232040, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var114 = new vw0(604, org.telegram.messenger.gd.L0(2131754126), null, org.telegram.messenger.gd.L0(2131744622), 2131232040, new Runnable() {
+        vw0 vw0Var114 = new vw0(604, org.telegram.messenger.gd.M0(2131754125), null, org.telegram.messenger.gd.M0(2131744616), 2131232040, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -7189,278 +7189,278 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var114.a("tg://settings/appearance/stickers-and-emoji/archived");
-        vw0 vw0Var115 = new vw0(605, org.telegram.messenger.gd.L0(2131754131), null, org.telegram.messenger.gd.L0(2131744622), 2131232040, new Runnable() {
+        vw0 vw0Var115 = new vw0(605, org.telegram.messenger.gd.M0(2131754130), null, org.telegram.messenger.gd.M0(2131744616), 2131232040, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var116 = new vw0(606, org.telegram.messenger.gd.L0(2131748842), "largeEmojiRow", org.telegram.messenger.gd.L0(2131744622), 2131232040, new Runnable() {
+        vw0 vw0Var116 = new vw0(606, org.telegram.messenger.gd.M0(2131748841), "largeEmojiRow", org.telegram.messenger.gd.M0(2131744616), 2131232040, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -7468,278 +7468,278 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var116.a("tg://settings/appearance/stickers-and-emoji/emoji/large");
-        vw0 vw0Var117 = new vw0(607, org.telegram.messenger.gd.L0(2131748530), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748658), 2131232020, new Runnable() {
+        vw0 vw0Var117 = new vw0(607, org.telegram.messenger.gd.M0(2131748529), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748657), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var118 = new vw0(608, org.telegram.messenger.gd.L0(2131751185), null, org.telegram.messenger.gd.L0(2131744622), 2131231513, new Runnable() {
+        vw0 vw0Var118 = new vw0(608, org.telegram.messenger.gd.M0(2131751184), null, org.telegram.messenger.gd.M0(2131744616), 2131231513, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -7747,139 +7747,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var118.a("tg://settings/appearance/stickers-and-emoji/emoji");
-        vw0 vw0Var119 = new vw0(609, org.telegram.messenger.gd.L0(2131744181), "suggestAnimatedEmojiRow", org.telegram.messenger.gd.L0(2131744622), org.telegram.messenger.gd.L0(2131751185), 2131231513, new Runnable() {
+        vw0 vw0Var119 = new vw0(609, org.telegram.messenger.gd.M0(2131744175), "suggestAnimatedEmojiRow", org.telegram.messenger.gd.M0(2131744616), org.telegram.messenger.gd.M0(2131751184), 2131231513, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -7887,278 +7887,278 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var119.a("tg://settings/appearance/stickers-and-emoji/emoji/suggest");
-        vw0 vw0Var120 = new vw0(610, org.telegram.messenger.gd.L0(2131750824), "featuredStickersHeaderRow", org.telegram.messenger.gd.L0(2131744622), org.telegram.messenger.gd.L0(2131751185), 2131231513, new Runnable() {
+        vw0 vw0Var120 = new vw0(610, org.telegram.messenger.gd.M0(2131750823), "featuredStickersHeaderRow", org.telegram.messenger.gd.M0(2131744616), org.telegram.messenger.gd.M0(2131751184), 2131231513, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var121 = new vw0(611, org.telegram.messenger.gd.L0(2131751339), null, org.telegram.messenger.gd.L0(2131744622), 2131232040, new Runnable() {
+        vw0 vw0Var121 = new vw0(611, org.telegram.messenger.gd.M0(2131751338), null, org.telegram.messenger.gd.M0(2131744616), 2131232040, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -8166,139 +8166,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var121.a("tg://settings/appearance/stickers-and-emoji/emoji/quick-reaction");
-        vw0 vw0Var122 = new vw0(700, org.telegram.messenger.gd.L0(2131750680), null, 2131232028, new Runnable() {
+        vw0 vw0Var122 = new vw0(700, org.telegram.messenger.gd.M0(2131750679), null, 2131232028, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -8306,139 +8306,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var122.a("tg://settings/folders");
-        vw0 vw0Var123 = new vw0(701, org.telegram.messenger.gd.L0(2131751705), "createFilterRow", org.telegram.messenger.gd.L0(2131750680), 2131232028, new Runnable() {
+        vw0 vw0Var123 = new vw0(701, org.telegram.messenger.gd.M0(2131751704), "createFilterRow", org.telegram.messenger.gd.M0(2131750679), 2131232028, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -8451,66 +8451,66 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var6 = vw0Var114;
             vw0Var7 = vw0Var116;
             vw0Var8 = vw0Var118;
-            vw0Var9 = new vw0(800, org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var9 = new vw0(800, org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     int i7 = r1;
                     int i10 = 0;
-                    org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                    org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                     switch (i7) {
                         case 0:
                             z90 z90Var = new z90();
-                            h2Var2.presentFragment(z90Var);
+                            g2Var2.presentFragment(z90Var);
                             z90Var.b0(360928);
                             z90Var.a0(64);
                             return;
                         case 1:
                             z90 z90Var2 = new z90();
-                            h2Var2.presentFragment(z90Var2);
+                            g2Var2.presentFragment(z90Var2);
                             z90Var2.b0(360928);
                             z90Var2.a0(128);
                             return;
                         case 2:
-                            h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                            g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
                             z90 z90Var3 = new z90();
-                            h2Var2.presentFragment(z90Var3);
+                            g2Var2.presentFragment(z90Var3);
                             z90Var3.b0(360928);
                             z90Var3.a0(256);
                             return;
                         case 4:
                             z90 z90Var4 = new z90();
-                            h2Var2.presentFragment(z90Var4);
+                            g2Var2.presentFragment(z90Var4);
                             z90Var4.b0(360928);
                             z90Var4.a0(32768);
                             return;
                         case 5:
                             z90 z90Var5 = new z90();
-                            h2Var2.presentFragment(z90Var5);
+                            g2Var2.presentFragment(z90Var5);
                             z90Var5.a0(512);
                             return;
                         case 6:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
                             z90 z90Var6 = new z90();
-                            h2Var2.presentFragment(z90Var6);
+                            g2Var2.presentFragment(z90Var6);
                             z90Var6.a0(1024);
                             return;
                         case 8:
                             z90 z90Var7 = new z90();
-                            h2Var2.presentFragment(z90Var7);
+                            g2Var2.presentFragment(z90Var7);
                             z90Var7.a0(2048);
                             return;
                         case 9:
                             z90 z90Var8 = new z90();
-                            h2Var2.presentFragment(z90Var8);
+                            g2Var2.presentFragment(z90Var8);
                             while (true) {
-                                ArrayList arrayList = z90Var8.f54462s;
+                                ArrayList arrayList = z90Var8.f54506s;
                                 if (i10 < arrayList.size()) {
-                                    if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                        z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                    if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                        z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8519,70 +8519,70 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                         case 10:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 11:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 12:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 13:
-                            ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 14:
-                            h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                            g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                             return;
                         case 15:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                             return;
                         case 16:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                             return;
                         case 17:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 19:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 20:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 21:
-                            h2Var2.presentFragment(new TwoStepVerificationActivity());
+                            g2Var2.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            h2Var2.presentFragment(PasscodeActivity.p0());
+                            g2Var2.presentFragment(PasscodeActivity.p0());
                             return;
                         case 23:
-                            ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                            z0Var2.L0();
-                            h2Var2.showDialog(z0Var2);
+                            ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                            y0Var2.L0();
+                            g2Var2.showDialog(y0Var2);
                             return;
                         case 24:
-                            h2Var2.presentFragment(new g(3));
+                            g2Var2.presentFragment(new g(3));
                             return;
                         case 25:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 26:
                             st0 st0Var = new st0();
                             st0Var.getMessagesController().H0(true);
-                            h2Var2.presentFragment(st0Var);
+                            g2Var2.presentFragment(st0Var);
                             return;
                         case 27:
-                            h2Var2.presentFragment(new SessionsActivity(0));
+                            g2Var2.presentFragment(new SessionsActivity(0));
                             return;
                         case 28:
-                            h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                             return;
                         default:
-                            h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                             return;
                     }
                 }
@@ -8595,66 +8595,66 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var9 = null;
         }
         if (F(currentAccount, 0)) {
-            vw0Var10 = new vw0(801, org.telegram.messenger.gd.L0(2131746805), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var10 = new vw0(801, org.telegram.messenger.gd.M0(2131746804), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     int i7 = r1;
                     int i10 = 0;
-                    org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                    org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                     switch (i7) {
                         case 0:
                             z90 z90Var = new z90();
-                            h2Var2.presentFragment(z90Var);
+                            g2Var2.presentFragment(z90Var);
                             z90Var.b0(360928);
                             z90Var.a0(64);
                             return;
                         case 1:
                             z90 z90Var2 = new z90();
-                            h2Var2.presentFragment(z90Var2);
+                            g2Var2.presentFragment(z90Var2);
                             z90Var2.b0(360928);
                             z90Var2.a0(128);
                             return;
                         case 2:
-                            h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                            g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
                             z90 z90Var3 = new z90();
-                            h2Var2.presentFragment(z90Var3);
+                            g2Var2.presentFragment(z90Var3);
                             z90Var3.b0(360928);
                             z90Var3.a0(256);
                             return;
                         case 4:
                             z90 z90Var4 = new z90();
-                            h2Var2.presentFragment(z90Var4);
+                            g2Var2.presentFragment(z90Var4);
                             z90Var4.b0(360928);
                             z90Var4.a0(32768);
                             return;
                         case 5:
                             z90 z90Var5 = new z90();
-                            h2Var2.presentFragment(z90Var5);
+                            g2Var2.presentFragment(z90Var5);
                             z90Var5.a0(512);
                             return;
                         case 6:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
                             z90 z90Var6 = new z90();
-                            h2Var2.presentFragment(z90Var6);
+                            g2Var2.presentFragment(z90Var6);
                             z90Var6.a0(1024);
                             return;
                         case 8:
                             z90 z90Var7 = new z90();
-                            h2Var2.presentFragment(z90Var7);
+                            g2Var2.presentFragment(z90Var7);
                             z90Var7.a0(2048);
                             return;
                         case 9:
                             z90 z90Var8 = new z90();
-                            h2Var2.presentFragment(z90Var8);
+                            g2Var2.presentFragment(z90Var8);
                             while (true) {
-                                ArrayList arrayList = z90Var8.f54462s;
+                                ArrayList arrayList = z90Var8.f54506s;
                                 if (i10 < arrayList.size()) {
-                                    if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                        z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                    if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                        z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8663,70 +8663,70 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                         case 10:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 11:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 12:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 13:
-                            ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 14:
-                            h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                            g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                             return;
                         case 15:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                             return;
                         case 16:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                             return;
                         case 17:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 19:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 20:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 21:
-                            h2Var2.presentFragment(new TwoStepVerificationActivity());
+                            g2Var2.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            h2Var2.presentFragment(PasscodeActivity.p0());
+                            g2Var2.presentFragment(PasscodeActivity.p0());
                             return;
                         case 23:
-                            ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                            z0Var2.L0();
-                            h2Var2.showDialog(z0Var2);
+                            ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                            y0Var2.L0();
+                            g2Var2.showDialog(y0Var2);
                             return;
                         case 24:
-                            h2Var2.presentFragment(new g(3));
+                            g2Var2.presentFragment(new g(3));
                             return;
                         case 25:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 26:
                             st0 st0Var = new st0();
                             st0Var.getMessagesController().H0(true);
-                            h2Var2.presentFragment(st0Var);
+                            g2Var2.presentFragment(st0Var);
                             return;
                         case 27:
-                            h2Var2.presentFragment(new SessionsActivity(0));
+                            g2Var2.presentFragment(new SessionsActivity(0));
                             return;
                         case 28:
-                            h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                             return;
                         default:
-                            h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                             return;
                     }
                 }
@@ -8735,66 +8735,66 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var10 = null;
         }
         if (F(currentAccount, 11)) {
-            vw0Var11 = new vw0(802, org.telegram.messenger.gd.L0(2131746814), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var11 = new vw0(802, org.telegram.messenger.gd.M0(2131746813), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     int i7 = r1;
                     int i10 = 0;
-                    org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                    org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                     switch (i7) {
                         case 0:
                             z90 z90Var = new z90();
-                            h2Var2.presentFragment(z90Var);
+                            g2Var2.presentFragment(z90Var);
                             z90Var.b0(360928);
                             z90Var.a0(64);
                             return;
                         case 1:
                             z90 z90Var2 = new z90();
-                            h2Var2.presentFragment(z90Var2);
+                            g2Var2.presentFragment(z90Var2);
                             z90Var2.b0(360928);
                             z90Var2.a0(128);
                             return;
                         case 2:
-                            h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                            g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
                             z90 z90Var3 = new z90();
-                            h2Var2.presentFragment(z90Var3);
+                            g2Var2.presentFragment(z90Var3);
                             z90Var3.b0(360928);
                             z90Var3.a0(256);
                             return;
                         case 4:
                             z90 z90Var4 = new z90();
-                            h2Var2.presentFragment(z90Var4);
+                            g2Var2.presentFragment(z90Var4);
                             z90Var4.b0(360928);
                             z90Var4.a0(32768);
                             return;
                         case 5:
                             z90 z90Var5 = new z90();
-                            h2Var2.presentFragment(z90Var5);
+                            g2Var2.presentFragment(z90Var5);
                             z90Var5.a0(512);
                             return;
                         case 6:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
                             z90 z90Var6 = new z90();
-                            h2Var2.presentFragment(z90Var6);
+                            g2Var2.presentFragment(z90Var6);
                             z90Var6.a0(1024);
                             return;
                         case 8:
                             z90 z90Var7 = new z90();
-                            h2Var2.presentFragment(z90Var7);
+                            g2Var2.presentFragment(z90Var7);
                             z90Var7.a0(2048);
                             return;
                         case 9:
                             z90 z90Var8 = new z90();
-                            h2Var2.presentFragment(z90Var8);
+                            g2Var2.presentFragment(z90Var8);
                             while (true) {
-                                ArrayList arrayList = z90Var8.f54462s;
+                                ArrayList arrayList = z90Var8.f54506s;
                                 if (i10 < arrayList.size()) {
-                                    if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                        z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                    if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                        z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8803,70 +8803,70 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                         case 10:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 11:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 12:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 13:
-                            ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 14:
-                            h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                            g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                             return;
                         case 15:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                             return;
                         case 16:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                             return;
                         case 17:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 19:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 20:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 21:
-                            h2Var2.presentFragment(new TwoStepVerificationActivity());
+                            g2Var2.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            h2Var2.presentFragment(PasscodeActivity.p0());
+                            g2Var2.presentFragment(PasscodeActivity.p0());
                             return;
                         case 23:
-                            ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                            z0Var2.L0();
-                            h2Var2.showDialog(z0Var2);
+                            ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                            y0Var2.L0();
+                            g2Var2.showDialog(y0Var2);
                             return;
                         case 24:
-                            h2Var2.presentFragment(new g(3));
+                            g2Var2.presentFragment(new g(3));
                             return;
                         case 25:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 26:
                             st0 st0Var = new st0();
                             st0Var.getMessagesController().H0(true);
-                            h2Var2.presentFragment(st0Var);
+                            g2Var2.presentFragment(st0Var);
                             return;
                         case 27:
-                            h2Var2.presentFragment(new SessionsActivity(0));
+                            g2Var2.presentFragment(new SessionsActivity(0));
                             return;
                         case 28:
-                            h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                             return;
                         default:
-                            h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                             return;
                     }
                 }
@@ -8875,30 +8875,30 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var11 = null;
         }
         if (F(currentAccount, 1)) {
-            vw0Var12 = new vw0(803, org.telegram.messenger.gd.L0(2131746771), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var12 = new vw0(803, org.telegram.messenger.gd.M0(2131746770), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(4, true));
                             return;
                         case 1:
-                            h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(5, true));
                             return;
                         case 2:
-                            h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(3, true));
                             return;
                         case 3:
-                            h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(2, true));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(1, true));
                             return;
                         case 6:
                             int i7 = 0;
@@ -8912,86 +8912,86 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                             if (i7 >= 0) {
-                                h2Var.presentFragment(new ee0(i7));
+                                g2Var.presentFragment(new de0(i7));
                                 return;
                             }
                             return;
                         case 7:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 8:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 9:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 10:
-                            h2Var.presentFragment(new SessionsActivity(1));
+                            g2Var.presentFragment(new SessionsActivity(1));
                             return;
                         case 11:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 12:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 16:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 17:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var.presentFragment(new SessionsActivity(0));
+                            g2Var.presentFragment(new SessionsActivity(0));
                             return;
                         case 19:
-                            h2Var.presentFragment(new SessionsActivity(0));
+                            g2Var.presentFragment(new SessionsActivity(0));
                             return;
                         case 20:
                             SessionsActivity sessionsActivity = new SessionsActivity(0);
                             sessionsActivity.W = true;
-                            h2Var.presentFragment(sessionsActivity);
+                            g2Var.presentFragment(sessionsActivity);
                             return;
                         case 21:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 22:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 23:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 24:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 25:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 26:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 27:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 28:
-                            h2Var.presentFragment(new pt());
+                            g2Var.presentFragment(new pt());
                             return;
                         default:
-                            h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                            g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                             return;
                     }
                 }
@@ -9000,30 +9000,30 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var12 = null;
         }
         if (F(currentAccount, 2)) {
-            vw0Var13 = new vw0(804, org.telegram.messenger.gd.L0(2131746819), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var13 = new vw0(804, org.telegram.messenger.gd.M0(2131746818), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(4, true));
                             return;
                         case 1:
-                            h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(5, true));
                             return;
                         case 2:
-                            h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(3, true));
                             return;
                         case 3:
-                            h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(2, true));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(1, true));
                             return;
                         case 6:
                             int i7 = 0;
@@ -9037,86 +9037,86 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                             if (i7 >= 0) {
-                                h2Var.presentFragment(new ee0(i7));
+                                g2Var.presentFragment(new de0(i7));
                                 return;
                             }
                             return;
                         case 7:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 8:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 9:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 10:
-                            h2Var.presentFragment(new SessionsActivity(1));
+                            g2Var.presentFragment(new SessionsActivity(1));
                             return;
                         case 11:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 12:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 16:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 17:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var.presentFragment(new SessionsActivity(0));
+                            g2Var.presentFragment(new SessionsActivity(0));
                             return;
                         case 19:
-                            h2Var.presentFragment(new SessionsActivity(0));
+                            g2Var.presentFragment(new SessionsActivity(0));
                             return;
                         case 20:
                             SessionsActivity sessionsActivity = new SessionsActivity(0);
                             sessionsActivity.W = true;
-                            h2Var.presentFragment(sessionsActivity);
+                            g2Var.presentFragment(sessionsActivity);
                             return;
                         case 21:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 22:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 23:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 24:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 25:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 26:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 27:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 28:
-                            h2Var.presentFragment(new pt());
+                            g2Var.presentFragment(new pt());
                             return;
                         default:
-                            h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                            g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                             return;
                     }
                 }
@@ -9125,30 +9125,30 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var13 = null;
         }
         if (F(currentAccount, 8)) {
-            vw0Var14 = new vw0(805, org.telegram.messenger.gd.L0(2131746769), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var14 = new vw0(805, org.telegram.messenger.gd.M0(2131746768), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new PrivacyControlActivity(4, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(4, true));
                             return;
                         case 1:
-                            h2Var.presentFragment(new PrivacyControlActivity(5, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(5, true));
                             return;
                         case 2:
-                            h2Var.presentFragment(new PrivacyControlActivity(3, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(3, true));
                             return;
                         case 3:
-                            h2Var.presentFragment(new PrivacyControlActivity(2, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(2, true));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 1, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 1, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new PrivacyControlActivity(1, true));
+                            g2Var.presentFragment(new PrivacyControlActivity(1, true));
                             return;
                         case 6:
                             int i7 = 0;
@@ -9162,86 +9162,86 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                             if (i7 >= 0) {
-                                h2Var.presentFragment(new ee0(i7));
+                                g2Var.presentFragment(new de0(i7));
                                 return;
                             }
                             return;
                         case 7:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 8:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 9:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 10:
-                            h2Var.presentFragment(new SessionsActivity(1));
+                            g2Var.presentFragment(new SessionsActivity(1));
                             return;
                         case 11:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 12:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 2, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 2, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 16:
-                            h2Var.presentFragment(new PrivacySettingsActivity());
+                            g2Var.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 17:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var.presentFragment(new SessionsActivity(0));
+                            g2Var.presentFragment(new SessionsActivity(0));
                             return;
                         case 19:
-                            h2Var.presentFragment(new SessionsActivity(0));
+                            g2Var.presentFragment(new SessionsActivity(0));
                             return;
                         case 20:
                             SessionsActivity sessionsActivity = new SessionsActivity(0);
                             sessionsActivity.W = true;
-                            h2Var.presentFragment(sessionsActivity);
+                            g2Var.presentFragment(sessionsActivity);
                             return;
                         case 21:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 22:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 23:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 24:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 25:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 8, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 8, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 26:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 27:
-                            h2Var.presentFragment(new x6());
+                            g2Var.presentFragment(new x6());
                             return;
                         case 28:
-                            h2Var.presentFragment(new pt());
+                            g2Var.presentFragment(new pt());
                             return;
                         default:
-                            h2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
+                            g2Var.presentFragment(new NotificationsCustomSettingsActivity(1, new ArrayList(), null, true));
                             return;
                     }
                 }
@@ -9250,69 +9250,69 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var14 = null;
         }
         if (F(currentAccount, 3)) {
-            vw0Var15 = new vw0(806, org.telegram.messenger.gd.L0(2131746799), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var15 = new vw0(806, org.telegram.messenger.gd.M0(2131746798), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 1:
-                            h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                            g2Var.presentFragment(new DataAutoDownloadActivity(0));
                             return;
                         case 2:
-                            h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                            g2Var.presentFragment(new DataAutoDownloadActivity(1));
                             return;
                         case 3:
-                            h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                            g2Var.presentFragment(new DataAutoDownloadActivity(2));
                             return;
                         case 4:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 5:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 6:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 7:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 8:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 9:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 10:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 11:
-                            h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                            g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                             return;
                         case 12:
-                            h2Var.presentFragment(new ProxyListActivity());
+                            g2Var.presentFragment(new ProxyListActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 14:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 15:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 16:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         default:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                     }
                 }
@@ -9321,69 +9321,69 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var15 = null;
         }
         if (F(currentAccount, 4)) {
-            vw0Var16 = new vw0(807, org.telegram.messenger.gd.L0(2131746790), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var16 = new vw0(807, org.telegram.messenger.gd.M0(2131746789), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 1:
-                            h2Var.presentFragment(new DataAutoDownloadActivity(0));
+                            g2Var.presentFragment(new DataAutoDownloadActivity(0));
                             return;
                         case 2:
-                            h2Var.presentFragment(new DataAutoDownloadActivity(1));
+                            g2Var.presentFragment(new DataAutoDownloadActivity(1));
                             return;
                         case 3:
-                            h2Var.presentFragment(new DataAutoDownloadActivity(2));
+                            g2Var.presentFragment(new DataAutoDownloadActivity(2));
                             return;
                         case 4:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 5:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 6:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 3, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 3, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 7:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 8:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 9:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 10:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 11:
-                            h2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
+                            g2Var.presentFragment(new NotificationsCustomSettingsActivity(0, new ArrayList(), null, true));
                             return;
                         case 12:
-                            h2Var.presentFragment(new ProxyListActivity());
+                            g2Var.presentFragment(new ProxyListActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 14:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 15:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         case 16:
-                            h2Var.presentFragment(new DataSettingsActivity());
+                            g2Var.presentFragment(new DataSettingsActivity());
                             return;
                         default:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 4, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 4, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                     }
                 }
@@ -9392,144 +9392,144 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var16 = null;
         }
         if (F(currentAccount, 5)) {
-            vw0Var17 = new vw0(808, org.telegram.messenger.gd.L0(2131746783), org.telegram.messenger.gd.L0(2131743996), 2131232364, new xf0(12, h2Var));
+            vw0Var17 = new vw0(808, org.telegram.messenger.gd.M0(2131746782), org.telegram.messenger.gd.M0(2131743990), 2131232364, new wf0(12, g2Var));
         } else {
             vw0Var17 = null;
         }
         if (F(currentAccount, 9)) {
-            vw0Var18 = new vw0(809, org.telegram.messenger.gd.L0(2131746832), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var18 = new vw0(809, org.telegram.messenger.gd.M0(2131746831), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 1:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 2:
-                            h2Var.presentFragment(new StickersActivity(1, null));
+                            g2Var.presentFragment(new StickersActivity(1, null));
                             return;
                         case 3:
-                            h2Var.presentFragment(new o(0));
+                            g2Var.presentFragment(new o(0));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new o(1));
+                            g2Var.presentFragment(new o(1));
                             return;
                         case 6:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 7:
                             z90 z90Var = new z90();
-                            h2Var.presentFragment(z90Var);
+                            g2Var.presentFragment(z90Var);
                             z90Var.b0(3);
                             z90Var.a0(2);
                             return;
                         case 8:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 9:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 10:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            h2Var.presentFragment(new ey0());
+                            g2Var.presentFragment(new ey0());
                             return;
                         case 12:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 16:
-                            org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                            ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                            z0Var4.L0();
-                            h2Var5.showDialog(z0Var4);
+                            org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                            ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                            y0Var4.L0();
+                            g2Var5.showDialog(y0Var4);
                             return;
                         case 17:
-                            org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                            ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                            z0Var5.L0();
-                            h2Var6.showDialog(z0Var5);
+                            org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                            ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                            y0Var5.L0();
+                            g2Var6.showDialog(y0Var5);
                             return;
                         case 18:
-                            h2Var.presentFragment(new z90());
+                            g2Var.presentFragment(new z90());
                             return;
                         case 19:
                             z90 z90Var2 = new z90();
-                            h2Var.presentFragment(z90Var2);
+                            g2Var.presentFragment(z90Var2);
                             z90Var2.a0(3);
                             return;
                         case 20:
                             z90 z90Var3 = new z90();
-                            h2Var.presentFragment(z90Var3);
+                            g2Var.presentFragment(z90Var3);
                             z90Var3.b0(3);
                             z90Var3.a0(1);
                             return;
                         case 21:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
                             z90 z90Var4 = new z90();
-                            h2Var.presentFragment(z90Var4);
+                            g2Var.presentFragment(z90Var4);
                             z90Var4.b0(3);
                             z90Var4.a0(2);
                             return;
                         case 23:
                             z90 z90Var5 = new z90();
-                            h2Var.presentFragment(z90Var5);
+                            g2Var.presentFragment(z90Var5);
                             z90Var5.a0(28700);
                             return;
                         case 24:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
                             z90 z90Var6 = new z90();
-                            h2Var.presentFragment(z90Var6);
+                            g2Var.presentFragment(z90Var6);
                             z90Var6.b0(28700);
                             z90Var6.a0(16388);
                             return;
                         case 26:
                             z90 z90Var7 = new z90();
-                            h2Var.presentFragment(z90Var7);
+                            g2Var.presentFragment(z90Var7);
                             z90Var7.b0(28700);
                             z90Var7.a0(8200);
                             return;
                         case 27:
                             z90 z90Var8 = new z90();
-                            h2Var.presentFragment(z90Var8);
+                            g2Var.presentFragment(z90Var8);
                             z90Var8.b0(28700);
                             z90Var8.a0(4112);
                             return;
                         case 28:
                             z90 z90Var9 = new z90();
-                            h2Var.presentFragment(z90Var9);
+                            g2Var.presentFragment(z90Var9);
                             z90Var9.a0(360928);
                             return;
                         default:
                             z90 z90Var10 = new z90();
-                            h2Var.presentFragment(z90Var10);
+                            g2Var.presentFragment(z90Var10);
                             z90Var10.b0(360928);
                             z90Var10.a0(32);
                             return;
@@ -9540,139 +9540,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var18 = null;
         }
         if (F(currentAccount, 6)) {
-            vw0Var19 = new vw0(810, org.telegram.messenger.gd.L0(2131746794), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var19 = new vw0(810, org.telegram.messenger.gd.M0(2131746793), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 1:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 2:
-                            h2Var.presentFragment(new StickersActivity(1, null));
+                            g2Var.presentFragment(new StickersActivity(1, null));
                             return;
                         case 3:
-                            h2Var.presentFragment(new o(0));
+                            g2Var.presentFragment(new o(0));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new o(1));
+                            g2Var.presentFragment(new o(1));
                             return;
                         case 6:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 7:
                             z90 z90Var = new z90();
-                            h2Var.presentFragment(z90Var);
+                            g2Var.presentFragment(z90Var);
                             z90Var.b0(3);
                             z90Var.a0(2);
                             return;
                         case 8:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 9:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 10:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            h2Var.presentFragment(new ey0());
+                            g2Var.presentFragment(new ey0());
                             return;
                         case 12:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 16:
-                            org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                            ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                            z0Var4.L0();
-                            h2Var5.showDialog(z0Var4);
+                            org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                            ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                            y0Var4.L0();
+                            g2Var5.showDialog(y0Var4);
                             return;
                         case 17:
-                            org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                            ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                            z0Var5.L0();
-                            h2Var6.showDialog(z0Var5);
+                            org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                            ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                            y0Var5.L0();
+                            g2Var6.showDialog(y0Var5);
                             return;
                         case 18:
-                            h2Var.presentFragment(new z90());
+                            g2Var.presentFragment(new z90());
                             return;
                         case 19:
                             z90 z90Var2 = new z90();
-                            h2Var.presentFragment(z90Var2);
+                            g2Var.presentFragment(z90Var2);
                             z90Var2.a0(3);
                             return;
                         case 20:
                             z90 z90Var3 = new z90();
-                            h2Var.presentFragment(z90Var3);
+                            g2Var.presentFragment(z90Var3);
                             z90Var3.b0(3);
                             z90Var3.a0(1);
                             return;
                         case 21:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
                             z90 z90Var4 = new z90();
-                            h2Var.presentFragment(z90Var4);
+                            g2Var.presentFragment(z90Var4);
                             z90Var4.b0(3);
                             z90Var4.a0(2);
                             return;
                         case 23:
                             z90 z90Var5 = new z90();
-                            h2Var.presentFragment(z90Var5);
+                            g2Var.presentFragment(z90Var5);
                             z90Var5.a0(28700);
                             return;
                         case 24:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
                             z90 z90Var6 = new z90();
-                            h2Var.presentFragment(z90Var6);
+                            g2Var.presentFragment(z90Var6);
                             z90Var6.b0(28700);
                             z90Var6.a0(16388);
                             return;
                         case 26:
                             z90 z90Var7 = new z90();
-                            h2Var.presentFragment(z90Var7);
+                            g2Var.presentFragment(z90Var7);
                             z90Var7.b0(28700);
                             z90Var7.a0(8200);
                             return;
                         case 27:
                             z90 z90Var8 = new z90();
-                            h2Var.presentFragment(z90Var8);
+                            g2Var.presentFragment(z90Var8);
                             z90Var8.b0(28700);
                             z90Var8.a0(4112);
                             return;
                         case 28:
                             z90 z90Var9 = new z90();
-                            h2Var.presentFragment(z90Var9);
+                            g2Var.presentFragment(z90Var9);
                             z90Var9.a0(360928);
                             return;
                         default:
                             z90 z90Var10 = new z90();
-                            h2Var.presentFragment(z90Var10);
+                            g2Var.presentFragment(z90Var10);
                             z90Var10.b0(360928);
                             z90Var10.a0(32);
                             return;
@@ -9683,139 +9683,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var19 = null;
         }
         if (F(currentAccount, 7)) {
-            vw0Var20 = new vw0(811, org.telegram.messenger.gd.L0(2131746829), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var20 = new vw0(811, org.telegram.messenger.gd.M0(2131746828), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 1:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 2:
-                            h2Var.presentFragment(new StickersActivity(1, null));
+                            g2Var.presentFragment(new StickersActivity(1, null));
                             return;
                         case 3:
-                            h2Var.presentFragment(new o(0));
+                            g2Var.presentFragment(new o(0));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new o(1));
+                            g2Var.presentFragment(new o(1));
                             return;
                         case 6:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 7:
                             z90 z90Var = new z90();
-                            h2Var.presentFragment(z90Var);
+                            g2Var.presentFragment(z90Var);
                             z90Var.b0(3);
                             z90Var.a0(2);
                             return;
                         case 8:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 9:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 10:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            h2Var.presentFragment(new ey0());
+                            g2Var.presentFragment(new ey0());
                             return;
                         case 12:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 16:
-                            org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                            ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                            z0Var4.L0();
-                            h2Var5.showDialog(z0Var4);
+                            org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                            ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                            y0Var4.L0();
+                            g2Var5.showDialog(y0Var4);
                             return;
                         case 17:
-                            org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                            ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                            z0Var5.L0();
-                            h2Var6.showDialog(z0Var5);
+                            org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                            ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                            y0Var5.L0();
+                            g2Var6.showDialog(y0Var5);
                             return;
                         case 18:
-                            h2Var.presentFragment(new z90());
+                            g2Var.presentFragment(new z90());
                             return;
                         case 19:
                             z90 z90Var2 = new z90();
-                            h2Var.presentFragment(z90Var2);
+                            g2Var.presentFragment(z90Var2);
                             z90Var2.a0(3);
                             return;
                         case 20:
                             z90 z90Var3 = new z90();
-                            h2Var.presentFragment(z90Var3);
+                            g2Var.presentFragment(z90Var3);
                             z90Var3.b0(3);
                             z90Var3.a0(1);
                             return;
                         case 21:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
                             z90 z90Var4 = new z90();
-                            h2Var.presentFragment(z90Var4);
+                            g2Var.presentFragment(z90Var4);
                             z90Var4.b0(3);
                             z90Var4.a0(2);
                             return;
                         case 23:
                             z90 z90Var5 = new z90();
-                            h2Var.presentFragment(z90Var5);
+                            g2Var.presentFragment(z90Var5);
                             z90Var5.a0(28700);
                             return;
                         case 24:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
                             z90 z90Var6 = new z90();
-                            h2Var.presentFragment(z90Var6);
+                            g2Var.presentFragment(z90Var6);
                             z90Var6.b0(28700);
                             z90Var6.a0(16388);
                             return;
                         case 26:
                             z90 z90Var7 = new z90();
-                            h2Var.presentFragment(z90Var7);
+                            g2Var.presentFragment(z90Var7);
                             z90Var7.b0(28700);
                             z90Var7.a0(8200);
                             return;
                         case 27:
                             z90 z90Var8 = new z90();
-                            h2Var.presentFragment(z90Var8);
+                            g2Var.presentFragment(z90Var8);
                             z90Var8.b0(28700);
                             z90Var8.a0(4112);
                             return;
                         case 28:
                             z90 z90Var9 = new z90();
-                            h2Var.presentFragment(z90Var9);
+                            g2Var.presentFragment(z90Var9);
                             z90Var9.a0(360928);
                             return;
                         default:
                             z90 z90Var10 = new z90();
-                            h2Var.presentFragment(z90Var10);
+                            g2Var.presentFragment(z90Var10);
                             z90Var10.b0(360928);
                             z90Var10.a0(32);
                             return;
@@ -9826,139 +9826,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var20 = null;
         }
         if (F(currentAccount, 10)) {
-            vw0Var21 = new vw0(812, org.telegram.messenger.gd.L0(2131746827), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var21 = new vw0(812, org.telegram.messenger.gd.M0(2131746826), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 1:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 2:
-                            h2Var.presentFragment(new StickersActivity(1, null));
+                            g2Var.presentFragment(new StickersActivity(1, null));
                             return;
                         case 3:
-                            h2Var.presentFragment(new o(0));
+                            g2Var.presentFragment(new o(0));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new o(1));
+                            g2Var.presentFragment(new o(1));
                             return;
                         case 6:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 7:
                             z90 z90Var = new z90();
-                            h2Var.presentFragment(z90Var);
+                            g2Var.presentFragment(z90Var);
                             z90Var.b0(3);
                             z90Var.a0(2);
                             return;
                         case 8:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 9:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 10:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            h2Var.presentFragment(new ey0());
+                            g2Var.presentFragment(new ey0());
                             return;
                         case 12:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 16:
-                            org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                            ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                            z0Var4.L0();
-                            h2Var5.showDialog(z0Var4);
+                            org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                            ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                            y0Var4.L0();
+                            g2Var5.showDialog(y0Var4);
                             return;
                         case 17:
-                            org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                            ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                            z0Var5.L0();
-                            h2Var6.showDialog(z0Var5);
+                            org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                            ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                            y0Var5.L0();
+                            g2Var6.showDialog(y0Var5);
                             return;
                         case 18:
-                            h2Var.presentFragment(new z90());
+                            g2Var.presentFragment(new z90());
                             return;
                         case 19:
                             z90 z90Var2 = new z90();
-                            h2Var.presentFragment(z90Var2);
+                            g2Var.presentFragment(z90Var2);
                             z90Var2.a0(3);
                             return;
                         case 20:
                             z90 z90Var3 = new z90();
-                            h2Var.presentFragment(z90Var3);
+                            g2Var.presentFragment(z90Var3);
                             z90Var3.b0(3);
                             z90Var3.a0(1);
                             return;
                         case 21:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
                             z90 z90Var4 = new z90();
-                            h2Var.presentFragment(z90Var4);
+                            g2Var.presentFragment(z90Var4);
                             z90Var4.b0(3);
                             z90Var4.a0(2);
                             return;
                         case 23:
                             z90 z90Var5 = new z90();
-                            h2Var.presentFragment(z90Var5);
+                            g2Var.presentFragment(z90Var5);
                             z90Var5.a0(28700);
                             return;
                         case 24:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
                             z90 z90Var6 = new z90();
-                            h2Var.presentFragment(z90Var6);
+                            g2Var.presentFragment(z90Var6);
                             z90Var6.b0(28700);
                             z90Var6.a0(16388);
                             return;
                         case 26:
                             z90 z90Var7 = new z90();
-                            h2Var.presentFragment(z90Var7);
+                            g2Var.presentFragment(z90Var7);
                             z90Var7.b0(28700);
                             z90Var7.a0(8200);
                             return;
                         case 27:
                             z90 z90Var8 = new z90();
-                            h2Var.presentFragment(z90Var8);
+                            g2Var.presentFragment(z90Var8);
                             z90Var8.b0(28700);
                             z90Var8.a0(4112);
                             return;
                         case 28:
                             z90 z90Var9 = new z90();
-                            h2Var.presentFragment(z90Var9);
+                            g2Var.presentFragment(z90Var9);
                             z90Var9.a0(360928);
                             return;
                         default:
                             z90 z90Var10 = new z90();
-                            h2Var.presentFragment(z90Var10);
+                            g2Var.presentFragment(z90Var10);
                             z90Var10.b0(360928);
                             z90Var10.a0(32);
                             return;
@@ -9969,139 +9969,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var21 = null;
         }
         if (F(currentAccount, 12)) {
-            vw0Var22 = new vw0(813, org.telegram.messenger.gd.L0(2131746811), org.telegram.messenger.gd.L0(2131743996), 2131232364, new Runnable() {
+            vw0Var22 = new vw0(813, org.telegram.messenger.gd.M0(2131746810), org.telegram.messenger.gd.M0(2131743990), 2131232364, new Runnable() {
                 @Override
                 public final void run() {
                     switch (r1) {
                         case 0:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 1:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 2:
-                            h2Var.presentFragment(new StickersActivity(1, null));
+                            g2Var.presentFragment(new StickersActivity(1, null));
                             return;
                         case 3:
-                            h2Var.presentFragment(new o(0));
+                            g2Var.presentFragment(new o(0));
                             return;
                         case 4:
-                            org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                            ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                            ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 5:
-                            h2Var.presentFragment(new o(1));
+                            g2Var.presentFragment(new o(1));
                             return;
                         case 6:
-                            h2Var.presentFragment(new StickersActivity(0, null));
+                            g2Var.presentFragment(new StickersActivity(0, null));
                             return;
                         case 7:
                             z90 z90Var = new z90();
-                            h2Var.presentFragment(z90Var);
+                            g2Var.presentFragment(z90Var);
                             z90Var.b0(3);
                             z90Var.a0(2);
                             return;
                         case 8:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 9:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 10:
-                            h2Var.presentFragment(new StickersActivity(5, null));
+                            g2Var.presentFragment(new StickersActivity(5, null));
                             return;
                         case 11:
-                            h2Var.presentFragment(new ey0());
+                            g2Var.presentFragment(new ey0());
                             return;
                         case 12:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 13:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 14:
-                            org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                            ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                            z0Var2.L0();
-                            h2Var3.showDialog(z0Var2);
+                            org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                            ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                            y0Var2.L0();
+                            g2Var3.showDialog(y0Var2);
                             return;
                         case 15:
-                            org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                            ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                            z0Var3.L0();
-                            h2Var4.showDialog(z0Var3);
+                            org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                            ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                            y0Var3.L0();
+                            g2Var4.showDialog(y0Var3);
                             return;
                         case 16:
-                            org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                            ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                            z0Var4.L0();
-                            h2Var5.showDialog(z0Var4);
+                            org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                            ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                            y0Var4.L0();
+                            g2Var5.showDialog(y0Var4);
                             return;
                         case 17:
-                            org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                            ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                            z0Var5.L0();
-                            h2Var6.showDialog(z0Var5);
+                            org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                            ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                            y0Var5.L0();
+                            g2Var6.showDialog(y0Var5);
                             return;
                         case 18:
-                            h2Var.presentFragment(new z90());
+                            g2Var.presentFragment(new z90());
                             return;
                         case 19:
                             z90 z90Var2 = new z90();
-                            h2Var.presentFragment(z90Var2);
+                            g2Var.presentFragment(z90Var2);
                             z90Var2.a0(3);
                             return;
                         case 20:
                             z90 z90Var3 = new z90();
-                            h2Var.presentFragment(z90Var3);
+                            g2Var.presentFragment(z90Var3);
                             z90Var3.b0(3);
                             z90Var3.a0(1);
                             return;
                         case 21:
-                            h2Var.presentFragment(new FiltersSetupActivity());
+                            g2Var.presentFragment(new FiltersSetupActivity());
                             return;
                         case 22:
                             z90 z90Var4 = new z90();
-                            h2Var.presentFragment(z90Var4);
+                            g2Var.presentFragment(z90Var4);
                             z90Var4.b0(3);
                             z90Var4.a0(2);
                             return;
                         case 23:
                             z90 z90Var5 = new z90();
-                            h2Var.presentFragment(z90Var5);
+                            g2Var.presentFragment(z90Var5);
                             z90Var5.a0(28700);
                             return;
                         case 24:
-                            h2Var.presentFragment(new NotificationsSettingsActivity());
+                            g2Var.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 25:
                             z90 z90Var6 = new z90();
-                            h2Var.presentFragment(z90Var6);
+                            g2Var.presentFragment(z90Var6);
                             z90Var6.b0(28700);
                             z90Var6.a0(16388);
                             return;
                         case 26:
                             z90 z90Var7 = new z90();
-                            h2Var.presentFragment(z90Var7);
+                            g2Var.presentFragment(z90Var7);
                             z90Var7.b0(28700);
                             z90Var7.a0(8200);
                             return;
                         case 27:
                             z90 z90Var8 = new z90();
-                            h2Var.presentFragment(z90Var8);
+                            g2Var.presentFragment(z90Var8);
                             z90Var8.b0(28700);
                             z90Var8.a0(4112);
                             return;
                         case 28:
                             z90 z90Var9 = new z90();
-                            h2Var.presentFragment(z90Var9);
+                            g2Var.presentFragment(z90Var9);
                             z90Var9.a0(360928);
                             return;
                         default:
                             z90 z90Var10 = new z90();
-                            h2Var.presentFragment(z90Var10);
+                            g2Var.presentFragment(z90Var10);
                             z90Var10.b0(360928);
                             z90Var10.a0(32);
                             return;
@@ -10111,139 +10111,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
         } else {
             vw0Var22 = null;
         }
-        vw0 vw0Var124 = new vw0(900, org.telegram.messenger.gd.L0(2131746873), null, 2131232020, new Runnable() {
+        vw0 vw0Var124 = new vw0(900, org.telegram.messenger.gd.M0(2131746872), null, 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -10251,139 +10251,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var124.a("tg://settings/power-saving");
-        vw0 vw0Var125 = new vw0(901, org.telegram.messenger.gd.L0(2131748658), org.telegram.messenger.gd.L0(2131746873), 2131232020, new Runnable() {
+        vw0 vw0Var125 = new vw0(901, org.telegram.messenger.gd.M0(2131748657), org.telegram.messenger.gd.M0(2131746872), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -10391,417 +10391,417 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var125.a("tg://settings/power-saving/stickers");
-        vw0 vw0Var126 = new vw0(902, org.telegram.messenger.gd.L0(2131748670), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748658), 2131232020, new Runnable() {
+        vw0 vw0Var126 = new vw0(902, org.telegram.messenger.gd.M0(2131748669), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748657), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var127 = new vw0(903, org.telegram.messenger.gd.L0(2131748672), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748658), 2131232020, new Runnable() {
+        vw0 vw0Var127 = new vw0(903, org.telegram.messenger.gd.M0(2131748671), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748657), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var128 = new vw0(904, org.telegram.messenger.gd.L0(2131748663), org.telegram.messenger.gd.L0(2131746873), 2131232020, new Runnable() {
+        vw0 vw0Var128 = new vw0(904, org.telegram.messenger.gd.M0(2131748662), org.telegram.messenger.gd.M0(2131746872), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -10809,556 +10809,556 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var128.a("tg://settings/power-saving/emoji");
-        vw0 vw0Var129 = new vw0(905, org.telegram.messenger.gd.L0(2131748670), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748663), 2131232020, new Runnable() {
+        vw0 vw0Var129 = new vw0(905, org.telegram.messenger.gd.M0(2131748669), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748662), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var130 = new vw0(906, org.telegram.messenger.gd.L0(2131748669), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748663), 2131232020, new Runnable() {
+        vw0 vw0Var130 = new vw0(906, org.telegram.messenger.gd.M0(2131748668), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748662), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var131 = new vw0(907, org.telegram.messenger.gd.L0(2131748672), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748663), 2131232020, new Runnable() {
+        vw0 vw0Var131 = new vw0(907, org.telegram.messenger.gd.M0(2131748671), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748662), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
                 }
             }
         });
-        vw0 vw0Var132 = new vw0(908, org.telegram.messenger.gd.L0(2131748664), org.telegram.messenger.gd.L0(2131746873), 2131232020, new Runnable() {
+        vw0 vw0Var132 = new vw0(908, org.telegram.messenger.gd.M0(2131748663), org.telegram.messenger.gd.M0(2131746872), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -11366,139 +11366,139 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var132.a("tg://settings/power-saving/effects");
-        vw0 vw0Var133 = new vw0(909, org.telegram.messenger.gd.L0(2131748667), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748664), 2131232020, new Runnable() {
+        vw0 vw0Var133 = new vw0(909, org.telegram.messenger.gd.M0(2131748666), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748663), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
                     case 0:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 1:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 2:
-                        h2Var.presentFragment(new StickersActivity(1, null));
+                        g2Var.presentFragment(new StickersActivity(1, null));
                         return;
                     case 3:
-                        h2Var.presentFragment(new o(0));
+                        g2Var.presentFragment(new o(0));
                         return;
                     case 4:
-                        org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
-                        ug.z0 z0Var = new ug.z0(h2Var2, 9, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
+                        ug.y0 y0Var = new ug.y0(g2Var2, 9, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 5:
-                        h2Var.presentFragment(new o(1));
+                        g2Var.presentFragment(new o(1));
                         return;
                     case 6:
-                        h2Var.presentFragment(new StickersActivity(0, null));
+                        g2Var.presentFragment(new StickersActivity(0, null));
                         return;
                     case 7:
                         z90 z90Var = new z90();
-                        h2Var.presentFragment(z90Var);
+                        g2Var.presentFragment(z90Var);
                         z90Var.b0(3);
                         z90Var.a0(2);
                         return;
                     case 8:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 9:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 10:
-                        h2Var.presentFragment(new StickersActivity(5, null));
+                        g2Var.presentFragment(new StickersActivity(5, null));
                         return;
                     case 11:
-                        h2Var.presentFragment(new ey0());
+                        g2Var.presentFragment(new ey0());
                         return;
                     case 12:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 13:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 14:
-                        org.telegram.ui.ActionBar.h2 h2Var3 = h2Var;
-                        ug.z0 z0Var2 = new ug.z0(h2Var3, 6, false);
-                        z0Var2.L0();
-                        h2Var3.showDialog(z0Var2);
+                        org.telegram.ui.ActionBar.g2 g2Var3 = g2Var;
+                        ug.y0 y0Var2 = new ug.y0(g2Var3, 6, false);
+                        y0Var2.L0();
+                        g2Var3.showDialog(y0Var2);
                         return;
                     case 15:
-                        org.telegram.ui.ActionBar.h2 h2Var4 = h2Var;
-                        ug.z0 z0Var3 = new ug.z0(h2Var4, 7, false);
-                        z0Var3.L0();
-                        h2Var4.showDialog(z0Var3);
+                        org.telegram.ui.ActionBar.g2 g2Var4 = g2Var;
+                        ug.y0 y0Var3 = new ug.y0(g2Var4, 7, false);
+                        y0Var3.L0();
+                        g2Var4.showDialog(y0Var3);
                         return;
                     case 16:
-                        org.telegram.ui.ActionBar.h2 h2Var5 = h2Var;
-                        ug.z0 z0Var4 = new ug.z0(h2Var5, 10, false);
-                        z0Var4.L0();
-                        h2Var5.showDialog(z0Var4);
+                        org.telegram.ui.ActionBar.g2 g2Var5 = g2Var;
+                        ug.y0 y0Var4 = new ug.y0(g2Var5, 10, false);
+                        y0Var4.L0();
+                        g2Var5.showDialog(y0Var4);
                         return;
                     case 17:
-                        org.telegram.ui.ActionBar.h2 h2Var6 = h2Var;
-                        ug.z0 z0Var5 = new ug.z0(h2Var6, 12, false);
-                        z0Var5.L0();
-                        h2Var6.showDialog(z0Var5);
+                        org.telegram.ui.ActionBar.g2 g2Var6 = g2Var;
+                        ug.y0 y0Var5 = new ug.y0(g2Var6, 12, false);
+                        y0Var5.L0();
+                        g2Var6.showDialog(y0Var5);
                         return;
                     case 18:
-                        h2Var.presentFragment(new z90());
+                        g2Var.presentFragment(new z90());
                         return;
                     case 19:
                         z90 z90Var2 = new z90();
-                        h2Var.presentFragment(z90Var2);
+                        g2Var.presentFragment(z90Var2);
                         z90Var2.a0(3);
                         return;
                     case 20:
                         z90 z90Var3 = new z90();
-                        h2Var.presentFragment(z90Var3);
+                        g2Var.presentFragment(z90Var3);
                         z90Var3.b0(3);
                         z90Var3.a0(1);
                         return;
                     case 21:
-                        h2Var.presentFragment(new FiltersSetupActivity());
+                        g2Var.presentFragment(new FiltersSetupActivity());
                         return;
                     case 22:
                         z90 z90Var4 = new z90();
-                        h2Var.presentFragment(z90Var4);
+                        g2Var.presentFragment(z90Var4);
                         z90Var4.b0(3);
                         z90Var4.a0(2);
                         return;
                     case 23:
                         z90 z90Var5 = new z90();
-                        h2Var.presentFragment(z90Var5);
+                        g2Var.presentFragment(z90Var5);
                         z90Var5.a0(28700);
                         return;
                     case 24:
-                        h2Var.presentFragment(new NotificationsSettingsActivity());
+                        g2Var.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 25:
                         z90 z90Var6 = new z90();
-                        h2Var.presentFragment(z90Var6);
+                        g2Var.presentFragment(z90Var6);
                         z90Var6.b0(28700);
                         z90Var6.a0(16388);
                         return;
                     case 26:
                         z90 z90Var7 = new z90();
-                        h2Var.presentFragment(z90Var7);
+                        g2Var.presentFragment(z90Var7);
                         z90Var7.b0(28700);
                         z90Var7.a0(8200);
                         return;
                     case 27:
                         z90 z90Var8 = new z90();
-                        h2Var.presentFragment(z90Var8);
+                        g2Var.presentFragment(z90Var8);
                         z90Var8.b0(28700);
                         z90Var8.a0(4112);
                         return;
                     case 28:
                         z90 z90Var9 = new z90();
-                        h2Var.presentFragment(z90Var9);
+                        g2Var.presentFragment(z90Var9);
                         z90Var9.a0(360928);
                         return;
                     default:
                         z90 z90Var10 = new z90();
-                        h2Var.presentFragment(z90Var10);
+                        g2Var.presentFragment(z90Var10);
                         z90Var10.b0(360928);
                         z90Var10.a0(32);
                         return;
@@ -11506,66 +11506,66 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             }
         });
         vw0Var133.a("tg://settings/power-saving/background");
-        vw0 vw0Var134 = new vw0(910, org.telegram.messenger.gd.L0(2131748655), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748664), 2131232020, new Runnable() {
+        vw0 vw0Var134 = new vw0(910, org.telegram.messenger.gd.M0(2131748654), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748663), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11574,134 +11574,134 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var135 = new vw0(911, org.telegram.messenger.gd.L0(2131748659), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748664), 2131232020, new Runnable() {
+        vw0 vw0Var135 = new vw0(911, org.telegram.messenger.gd.M0(2131748658), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748663), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11710,135 +11710,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         if (org.telegram.messenger.bz.o() >= 1) {
-            vw0Var23 = new vw0(326, org.telegram.messenger.gd.L0(2131748666), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748664), 2131232020, new Runnable() {
+            vw0Var23 = new vw0(326, org.telegram.messenger.gd.M0(2131748665), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748663), 2131232020, new Runnable() {
                 @Override
                 public final void run() {
                     int i7 = r1;
                     int i10 = 0;
-                    org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                    org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                     switch (i7) {
                         case 0:
                             z90 z90Var = new z90();
-                            h2Var2.presentFragment(z90Var);
+                            g2Var2.presentFragment(z90Var);
                             z90Var.b0(360928);
                             z90Var.a0(64);
                             return;
                         case 1:
                             z90 z90Var2 = new z90();
-                            h2Var2.presentFragment(z90Var2);
+                            g2Var2.presentFragment(z90Var2);
                             z90Var2.b0(360928);
                             z90Var2.a0(128);
                             return;
                         case 2:
-                            h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                            g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
                             z90 z90Var3 = new z90();
-                            h2Var2.presentFragment(z90Var3);
+                            g2Var2.presentFragment(z90Var3);
                             z90Var3.b0(360928);
                             z90Var3.a0(256);
                             return;
                         case 4:
                             z90 z90Var4 = new z90();
-                            h2Var2.presentFragment(z90Var4);
+                            g2Var2.presentFragment(z90Var4);
                             z90Var4.b0(360928);
                             z90Var4.a0(32768);
                             return;
                         case 5:
                             z90 z90Var5 = new z90();
-                            h2Var2.presentFragment(z90Var5);
+                            g2Var2.presentFragment(z90Var5);
                             z90Var5.a0(512);
                             return;
                         case 6:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
                             z90 z90Var6 = new z90();
-                            h2Var2.presentFragment(z90Var6);
+                            g2Var2.presentFragment(z90Var6);
                             z90Var6.a0(1024);
                             return;
                         case 8:
                             z90 z90Var7 = new z90();
-                            h2Var2.presentFragment(z90Var7);
+                            g2Var2.presentFragment(z90Var7);
                             z90Var7.a0(2048);
                             return;
                         case 9:
                             z90 z90Var8 = new z90();
-                            h2Var2.presentFragment(z90Var8);
+                            g2Var2.presentFragment(z90Var8);
                             while (true) {
-                                ArrayList arrayList = z90Var8.f54462s;
+                                ArrayList arrayList = z90Var8.f54506s;
                                 if (i10 < arrayList.size()) {
-                                    if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                        z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                    if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                        z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -11847,70 +11847,70 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                         case 10:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 11:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 12:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 13:
-                            ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 14:
-                            h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                            g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                             return;
                         case 15:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                             return;
                         case 16:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                             return;
                         case 17:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 19:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 20:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 21:
-                            h2Var2.presentFragment(new TwoStepVerificationActivity());
+                            g2Var2.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            h2Var2.presentFragment(PasscodeActivity.p0());
+                            g2Var2.presentFragment(PasscodeActivity.p0());
                             return;
                         case 23:
-                            ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                            z0Var2.L0();
-                            h2Var2.showDialog(z0Var2);
+                            ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                            y0Var2.L0();
+                            g2Var2.showDialog(y0Var2);
                             return;
                         case 24:
-                            h2Var2.presentFragment(new g(3));
+                            g2Var2.presentFragment(new g(3));
                             return;
                         case 25:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 26:
                             st0 st0Var = new st0();
                             st0Var.getMessagesController().H0(true);
-                            h2Var2.presentFragment(st0Var);
+                            g2Var2.presentFragment(st0Var);
                             return;
                         case 27:
-                            h2Var2.presentFragment(new SessionsActivity(0));
+                            g2Var2.presentFragment(new SessionsActivity(0));
                             return;
                         case 28:
-                            h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                             return;
                         default:
-                            h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                             return;
                     }
                 }
@@ -11918,66 +11918,66 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
         } else {
             vw0Var23 = null;
         }
-        vw0 vw0Var136 = new vw0(912, org.telegram.messenger.gd.L0(2131748660), null, org.telegram.messenger.gd.L0(2131746873), org.telegram.messenger.gd.L0(2131748664), 2131232020, new Runnable() {
+        vw0 vw0Var136 = new vw0(912, org.telegram.messenger.gd.M0(2131748659), null, org.telegram.messenger.gd.M0(2131746872), org.telegram.messenger.gd.M0(2131748663), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11986,134 +11986,134 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
-        vw0 vw0Var137 = new vw0(913, org.telegram.messenger.gd.L0(2131748665), org.telegram.messenger.gd.L0(2131746873), 2131232020, new Runnable() {
+        vw0 vw0Var137 = new vw0(913, org.telegram.messenger.gd.M0(2131748664), org.telegram.messenger.gd.M0(2131746872), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12122,135 +12122,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var137.a("tg://settings/power-saving/call-animations");
-        vw0 vw0Var138 = new vw0(214, org.telegram.messenger.gd.L0(2131748668), org.telegram.messenger.gd.L0(2131746873), 2131232020, new Runnable() {
+        vw0 vw0Var138 = new vw0(214, org.telegram.messenger.gd.M0(2131748667), org.telegram.messenger.gd.M0(2131746872), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12259,135 +12259,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var138.a("tg://settings/power-saving/videos");
-        vw0 vw0Var139 = new vw0(213, org.telegram.messenger.gd.L0(2131748671), org.telegram.messenger.gd.L0(2131746873), 2131232020, new Runnable() {
+        vw0 vw0Var139 = new vw0(213, org.telegram.messenger.gd.M0(2131748670), org.telegram.messenger.gd.M0(2131746872), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12396,135 +12396,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var139.a("tg://settings/power-saving/gifs");
-        vw0 vw0Var140 = new vw0(914, org.telegram.messenger.gd.L0(2131748654), org.telegram.messenger.gd.L0(2131746873), 2131232020, new Runnable() {
+        vw0 vw0Var140 = new vw0(914, org.telegram.messenger.gd.M0(2131748653), org.telegram.messenger.gd.M0(2131746872), 2131232020, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12533,135 +12533,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var140.a("tg://settings/power-saving/transitions");
-        vw0 vw0Var141 = new vw0(400, org.telegram.messenger.gd.L0(2131748862), 2131232031, new Runnable() {
+        vw0 vw0Var141 = new vw0(400, org.telegram.messenger.gd.M0(2131748861), 2131232031, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12670,135 +12670,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var141.a("tg://settings/language");
-        vw0 vw0Var142 = new vw0(405, org.telegram.messenger.gd.L0(2131745132), org.telegram.messenger.gd.L0(2131748862), 2131232031, new Runnable() {
+        vw0 vw0Var142 = new vw0(405, org.telegram.messenger.gd.M0(2131745131), org.telegram.messenger.gd.M0(2131748861), 2131232031, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12807,136 +12807,136 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var142.a("tg://settings/language/show-button");
         if (org.telegram.messenger.mp.u1(currentAccount).V1().s()) {
-            vw0 vw0Var143 = new vw0(406, org.telegram.messenger.gd.L0(2131751347), org.telegram.messenger.gd.L0(2131748862), 2131232031, new Runnable() {
+            vw0 vw0Var143 = new vw0(406, org.telegram.messenger.gd.M0(2131751346), org.telegram.messenger.gd.M0(2131748861), 2131232031, new Runnable() {
                 @Override
                 public final void run() {
                     int i7 = r1;
                     int i10 = 0;
-                    org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                    org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                     switch (i7) {
                         case 0:
                             z90 z90Var = new z90();
-                            h2Var2.presentFragment(z90Var);
+                            g2Var2.presentFragment(z90Var);
                             z90Var.b0(360928);
                             z90Var.a0(64);
                             return;
                         case 1:
                             z90 z90Var2 = new z90();
-                            h2Var2.presentFragment(z90Var2);
+                            g2Var2.presentFragment(z90Var2);
                             z90Var2.b0(360928);
                             z90Var2.a0(128);
                             return;
                         case 2:
-                            h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                            g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                             return;
                         case 3:
                             z90 z90Var3 = new z90();
-                            h2Var2.presentFragment(z90Var3);
+                            g2Var2.presentFragment(z90Var3);
                             z90Var3.b0(360928);
                             z90Var3.a0(256);
                             return;
                         case 4:
                             z90 z90Var4 = new z90();
-                            h2Var2.presentFragment(z90Var4);
+                            g2Var2.presentFragment(z90Var4);
                             z90Var4.b0(360928);
                             z90Var4.a0(32768);
                             return;
                         case 5:
                             z90 z90Var5 = new z90();
-                            h2Var2.presentFragment(z90Var5);
+                            g2Var2.presentFragment(z90Var5);
                             z90Var5.a0(512);
                             return;
                         case 6:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 7:
                             z90 z90Var6 = new z90();
-                            h2Var2.presentFragment(z90Var6);
+                            g2Var2.presentFragment(z90Var6);
                             z90Var6.a0(1024);
                             return;
                         case 8:
                             z90 z90Var7 = new z90();
-                            h2Var2.presentFragment(z90Var7);
+                            g2Var2.presentFragment(z90Var7);
                             z90Var7.a0(2048);
                             return;
                         case 9:
                             z90 z90Var8 = new z90();
-                            h2Var2.presentFragment(z90Var8);
+                            g2Var2.presentFragment(z90Var8);
                             while (true) {
-                                ArrayList arrayList = z90Var8.f54462s;
+                                ArrayList arrayList = z90Var8.f54506s;
                                 if (i10 < arrayList.size()) {
-                                    if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                        z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                    if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                        z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -12945,70 +12945,70 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                                 }
                             }
                         case 10:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 11:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 12:
-                            h2Var2.presentFragment(new LanguageSelectActivity());
+                            g2Var2.presentFragment(new LanguageSelectActivity());
                             return;
                         case 13:
-                            ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                            z0Var.L0();
-                            h2Var2.showDialog(z0Var);
+                            ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                            y0Var.L0();
+                            g2Var2.showDialog(y0Var);
                             return;
                         case 14:
-                            h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                            g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                             return;
                         case 15:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                             return;
                         case 16:
-                            vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                            vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                             return;
                         case 17:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 18:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 19:
-                            h2Var2.presentFragment(new NotificationsSettingsActivity());
+                            g2Var2.presentFragment(new NotificationsSettingsActivity());
                             return;
                         case 20:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 21:
-                            h2Var2.presentFragment(new TwoStepVerificationActivity());
+                            g2Var2.presentFragment(new TwoStepVerificationActivity());
                             return;
                         case 22:
-                            h2Var2.presentFragment(PasscodeActivity.p0());
+                            g2Var2.presentFragment(PasscodeActivity.p0());
                             return;
                         case 23:
-                            ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                            z0Var2.L0();
-                            h2Var2.showDialog(z0Var2);
+                            ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                            y0Var2.L0();
+                            g2Var2.showDialog(y0Var2);
                             return;
                         case 24:
-                            h2Var2.presentFragment(new g(3));
+                            g2Var2.presentFragment(new g(3));
                             return;
                         case 25:
-                            h2Var2.presentFragment(new PrivacySettingsActivity());
+                            g2Var2.presentFragment(new PrivacySettingsActivity());
                             return;
                         case 26:
                             st0 st0Var = new st0();
                             st0Var.getMessagesController().H0(true);
-                            h2Var2.presentFragment(st0Var);
+                            g2Var2.presentFragment(st0Var);
                             return;
                         case 27:
-                            h2Var2.presentFragment(new SessionsActivity(0));
+                            g2Var2.presentFragment(new SessionsActivity(0));
                             return;
                         case 28:
-                            h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                             return;
                         default:
-                            h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                            g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                             return;
                     }
                 }
@@ -13016,66 +13016,66 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             vw0Var143.a("tg://settings/language/do-not-translate");
             vw0Var44 = vw0Var143;
         }
-        vw0 vw0Var144 = new vw0(402, org.telegram.messenger.gd.L0(2131753984), org.telegram.messenger.gd.L0(2131745284), 2131232030, new Runnable() {
+        vw0 vw0Var144 = new vw0(402, org.telegram.messenger.gd.M0(2131753983), org.telegram.messenger.gd.M0(2131745283), 2131232030, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13084,135 +13084,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var144.a("tg://settings/ask-question");
-        vw0 vw0Var145 = new vw0(403, org.telegram.messenger.gd.L0(2131744007), org.telegram.messenger.gd.L0(2131745284), 2131232030, new Runnable() {
+        vw0 vw0Var145 = new vw0(403, org.telegram.messenger.gd.M0(2131744001), org.telegram.messenger.gd.M0(2131745283), 2131232030, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13221,135 +13221,135 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
         });
         vw0Var145.a("tg://settings/faq");
-        vw0 vw0Var146 = new vw0(404, org.telegram.messenger.gd.L0(2131746590), org.telegram.messenger.gd.L0(2131745284), 2131232030, new Runnable() {
+        vw0 vw0Var146 = new vw0(404, org.telegram.messenger.gd.M0(2131746589), org.telegram.messenger.gd.M0(2131745283), 2131232030, new Runnable() {
             @Override
             public final void run() {
                 int i7 = r1;
                 int i10 = 0;
-                org.telegram.ui.ActionBar.h2 h2Var2 = h2Var;
+                org.telegram.ui.ActionBar.g2 g2Var2 = g2Var;
                 switch (i7) {
                     case 0:
                         z90 z90Var = new z90();
-                        h2Var2.presentFragment(z90Var);
+                        g2Var2.presentFragment(z90Var);
                         z90Var.b0(360928);
                         z90Var.a0(64);
                         return;
                     case 1:
                         z90 z90Var2 = new z90();
-                        h2Var2.presentFragment(z90Var2);
+                        g2Var2.presentFragment(z90Var2);
                         z90Var2.b0(360928);
                         z90Var2.a0(128);
                         return;
                     case 2:
-                        h2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                        g2Var2.presentFragment(new PremiumPreviewFragment(0, "settings"));
                         return;
                     case 3:
                         z90 z90Var3 = new z90();
-                        h2Var2.presentFragment(z90Var3);
+                        g2Var2.presentFragment(z90Var3);
                         z90Var3.b0(360928);
                         z90Var3.a0(256);
                         return;
                     case 4:
                         z90 z90Var4 = new z90();
-                        h2Var2.presentFragment(z90Var4);
+                        g2Var2.presentFragment(z90Var4);
                         z90Var4.b0(360928);
                         z90Var4.a0(32768);
                         return;
                     case 5:
                         z90 z90Var5 = new z90();
-                        h2Var2.presentFragment(z90Var5);
+                        g2Var2.presentFragment(z90Var5);
                         z90Var5.a0(512);
                         return;
                     case 6:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 7:
                         z90 z90Var6 = new z90();
-                        h2Var2.presentFragment(z90Var6);
+                        g2Var2.presentFragment(z90Var6);
                         z90Var6.a0(1024);
                         return;
                     case 8:
                         z90 z90Var7 = new z90();
-                        h2Var2.presentFragment(z90Var7);
+                        g2Var2.presentFragment(z90Var7);
                         z90Var7.a0(2048);
                         return;
                     case 9:
                         z90 z90Var8 = new z90();
-                        h2Var2.presentFragment(z90Var8);
+                        g2Var2.presentFragment(z90Var8);
                         while (true) {
-                            ArrayList arrayList = z90Var8.f54462s;
+                            ArrayList arrayList = z90Var8.f54506s;
                             if (i10 < arrayList.size()) {
-                                if (((u90) arrayList.get(i10)).f52467f == 1) {
-                                    z90Var8.f54456b.e1(new ai.s1(z90Var8, i10, 15), 700, true);
+                                if (((u90) arrayList.get(i10)).f52481f == 1) {
+                                    z90Var8.f54500b.e1(new ai.u1(z90Var8, i10, 15), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13358,70 +13358,70 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                             }
                         }
                     case 10:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 11:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 12:
-                        h2Var2.presentFragment(new LanguageSelectActivity());
+                        g2Var2.presentFragment(new LanguageSelectActivity());
                         return;
                     case 13:
-                        ug.z0 z0Var = new ug.z0(h2Var2, 0, false);
-                        z0Var.L0();
-                        h2Var2.showDialog(z0Var);
+                        ug.y0 y0Var = new ug.y0(g2Var2, 0, false);
+                        y0Var.L0();
+                        g2Var2.showDialog(y0Var);
                         return;
                     case 14:
-                        h2Var2.showDialog(org.telegram.ui.Components.b5.R(h2Var2, null));
+                        g2Var2.showDialog(org.telegram.ui.Components.c5.R(g2Var2, null));
                         return;
                     case 15:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131744005, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131743999, null));
                         return;
                     case 16:
-                        vf.c.t(h2Var2.getParentActivity(), org.telegram.messenger.gd.M0(2131746588, null));
+                        vf.c.t(g2Var2.getParentActivity(), org.telegram.messenger.gd.N0(2131746587, null));
                         return;
                     case 17:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 18:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 19:
-                        h2Var2.presentFragment(new NotificationsSettingsActivity());
+                        g2Var2.presentFragment(new NotificationsSettingsActivity());
                         return;
                     case 20:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 21:
-                        h2Var2.presentFragment(new TwoStepVerificationActivity());
+                        g2Var2.presentFragment(new TwoStepVerificationActivity());
                         return;
                     case 22:
-                        h2Var2.presentFragment(PasscodeActivity.p0());
+                        g2Var2.presentFragment(PasscodeActivity.p0());
                         return;
                     case 23:
-                        ug.z0 z0Var2 = new ug.z0(h2Var2, 11, false);
-                        z0Var2.L0();
-                        h2Var2.showDialog(z0Var2);
+                        ug.y0 y0Var2 = new ug.y0(g2Var2, 11, false);
+                        y0Var2.L0();
+                        g2Var2.showDialog(y0Var2);
                         return;
                     case 24:
-                        h2Var2.presentFragment(new g(3));
+                        g2Var2.presentFragment(new g(3));
                         return;
                     case 25:
-                        h2Var2.presentFragment(new PrivacySettingsActivity());
+                        g2Var2.presentFragment(new PrivacySettingsActivity());
                         return;
                     case 26:
                         st0 st0Var = new st0();
                         st0Var.getMessagesController().H0(true);
-                        h2Var2.presentFragment(st0Var);
+                        g2Var2.presentFragment(st0Var);
                         return;
                     case 27:
-                        h2Var2.presentFragment(new SessionsActivity(0));
+                        g2Var2.presentFragment(new SessionsActivity(0));
                         return;
                     case 28:
-                        h2Var2.presentFragment(new PrivacyControlActivity(6, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(6, true));
                         return;
                     default:
-                        h2Var2.presentFragment(new PrivacyControlActivity(0, true));
+                        g2Var2.presentFragment(new PrivacyControlActivity(0, true));
                         return;
                 }
             }
@@ -13432,20 +13432,20 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
 
     @Override
     public final boolean D(v4.f1 f1Var) {
-        if (f1Var.f59127f == 0) {
+        if (f1Var.f59165f == 0) {
             return true;
         }
         return false;
     }
 
     public final void E(Object obj) {
-        ArrayList arrayList = this.f53499w;
+        ArrayList arrayList = this.f53545w;
         int indexOf = arrayList.indexOf(obj);
         if (indexOf >= 0) {
             arrayList.remove(indexOf);
         }
         arrayList.add(0, obj);
-        if (!this.f53500x) {
+        if (!this.f53546x) {
             f();
         }
         if (arrayList.size() > 20) {
@@ -13456,7 +13456,7 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
         for (int i7 = 0; i7 < size; i7++) {
             Object obj2 = arrayList.get(i7);
             if (obj2 instanceof vw0) {
-                ((vw0) obj2).f52867g = i7;
+                ((vw0) obj2).f52908g = i7;
             } else if (obj2 instanceof org.telegram.messenger.yo) {
                 ((org.telegram.messenger.yo) obj2).d = i7;
             }
@@ -13466,16 +13466,16 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
     }
 
     public final void G() {
-        int i7 = this.f53495f;
-        TLRPC.WebPage webPage = org.telegram.messenger.mp.u1(i7).f25765t2;
+        int i7 = this.f53541f;
+        TLRPC.WebPage webPage = org.telegram.messenger.mp.u1(i7).f25793t2;
         this.F = webPage;
         if (webPage != null) {
-            this.d.addAll(org.telegram.messenger.mp.u1(i7).f25757s2);
+            this.d.addAll(org.telegram.messenger.mp.u1(i7).f25785s2);
         }
         if (this.F == null && !this.G) {
             this.G = true;
             TLRPC.TL_messages_getWebPage tL_messages_getWebPage = new TLRPC.TL_messages_getWebPage();
-            tL_messages_getWebPage.url = org.telegram.messenger.gd.M0(2131744005, null);
+            tL_messages_getWebPage.url = org.telegram.messenger.gd.N0(2131743999, null);
             tL_messages_getWebPage.hash = 0;
             ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getWebPage, new l(this, 20));
         }
@@ -13483,20 +13483,20 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
 
     public final void I(String str) {
         this.E = str;
-        if (this.f53501y != null) {
-            Utilities.f22781g.a(this.f53501y);
-            this.f53501y = null;
+        if (this.f53547y != null) {
+            Utilities.f22809g.a(this.f53547y);
+            this.f53547y = null;
         }
         if (TextUtils.isEmpty(str)) {
-            this.f53500x = false;
-            this.f53497r.clear();
-            this.f53498s.clear();
-            this.f53496n.clear();
-            org.telegram.ui.ActionBar.h2 h2Var = this.f53494e;
-            if (h2Var instanceof ProfileActivity) {
+            this.f53546x = false;
+            this.f53543r.clear();
+            this.f53544s.clear();
+            this.f53542n.clear();
+            org.telegram.ui.ActionBar.g2 g2Var = this.f53540e;
+            if (g2Var instanceof ProfileActivity) {
                 try {
-                    ((ProfileActivity) h2Var).P.f36894b.getImageReceiver().P0(false);
-                    ((ProfileActivity) this.f53494e).P.d.setText(org.telegram.messenger.gd.M0(2131745282, null));
+                    ((ProfileActivity) g2Var).P.f37989b.getImageReceiver().P0(false);
+                    ((ProfileActivity) this.f53540e).P.d.setText(org.telegram.messenger.gd.N0(2131745281, null));
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
@@ -13504,9 +13504,9 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             f();
             return;
         }
-        org.telegram.messenger.q5 q5Var = Utilities.f22781g;
-        tr0 tr0Var = new tr0(19, this, str);
-        this.f53501y = tr0Var;
+        org.telegram.messenger.q5 q5Var = Utilities.f22809g;
+        tr0 tr0Var = new tr0(21, this, str);
+        this.f53547y = tr0Var;
         q5Var.d(tr0Var, 300L);
     }
 
@@ -13516,18 +13516,18 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
         HashMap hashMap = new HashMap();
         int i7 = 0;
         while (true) {
-            vw0[] vw0VarArr = this.f53493c;
+            vw0[] vw0VarArr = this.f53539c;
             if (i7 >= vw0VarArr.length) {
                 break;
             }
             vw0 vw0Var2 = vw0VarArr[i7];
             if (vw0Var2 != null) {
-                hashMap.put(Integer.valueOf(vw0Var2.f52866f), this.f53493c[i7]);
+                hashMap.put(Integer.valueOf(vw0Var2.f52907f), this.f53539c[i7]);
             }
             i7++;
         }
         Set<String> stringSet = org.telegram.messenger.mp.g1().getStringSet("settingsSearchRecent2", null);
-        ArrayList arrayList = this.f53499w;
+        ArrayList arrayList = this.f53545w;
         if (stringSet != null) {
             for (String str : stringSet) {
                 try {
@@ -13549,7 +13549,7 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                         yoVar.d = readInt32;
                         arrayList.add(yoVar);
                     } else if (readInt322 == 1 && (vw0Var = (vw0) hashMap.get(Integer.valueOf(serializedData.readInt32(false)))) != null) {
-                        vw0Var.f52867g = readInt32;
+                        vw0Var.f52908g = readInt32;
                         arrayList.add(vw0Var);
                     }
                 } catch (Exception unused) {
@@ -13563,14 +13563,14 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
     public final int b() {
         int size;
         int i7 = 0;
-        if (this.f53500x) {
-            int size2 = this.f53497r.size();
-            if (!this.f53498s.isEmpty()) {
-                i7 = this.f53498s.size() + 1;
+        if (this.f53546x) {
+            int size2 = this.f53543r.size();
+            if (!this.f53544s.isEmpty()) {
+                i7 = this.f53544s.size() + 1;
             }
             return size2 + i7;
         }
-        ArrayList arrayList = this.f53499w;
+        ArrayList arrayList = this.f53545w;
         if (arrayList.isEmpty()) {
             size = 0;
         } else {
@@ -13585,12 +13585,12 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
 
     @Override
     public final int d(int i7) {
-        if (this.f53500x) {
-            if (i7 < this.f53497r.size() || i7 != this.f53497r.size()) {
+        if (this.f53546x) {
+            if (i7 < this.f53543r.size() || i7 != this.f53543r.size()) {
                 return 0;
             }
         } else {
-            ArrayList arrayList = this.f53499w;
+            ArrayList arrayList = this.f53545w;
             if (i7 == 0) {
                 if (!arrayList.isEmpty()) {
                     return 2;
@@ -13605,52 +13605,52 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
     @Override
     public final void t(v4.f1 f1Var, int i7) {
         int i10;
-        int i11 = f1Var.f59127f;
-        View view = f1Var.f59123a;
+        int i11 = f1Var.f59165f;
+        View view = f1Var.f59161a;
         vw0 vw0Var = null;
         boolean z10 = true;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 == 2) {
-                    ((org.telegram.ui.Cells.o4) view).setText(org.telegram.messenger.gd.M0(2131745274, null));
+                    ((org.telegram.ui.Cells.o4) view).setText(org.telegram.messenger.gd.N0(2131745273, null));
                     return;
                 }
                 return;
             }
-            ((org.telegram.ui.Cells.y3) view).setText(org.telegram.messenger.gd.M0(2131745287, null));
+            ((org.telegram.ui.Cells.y3) view).setText(org.telegram.messenger.gd.N0(2131745286, null));
             return;
         }
         org.telegram.ui.Cells.w6 w6Var = (org.telegram.ui.Cells.w6) view;
         boolean z11 = false;
-        if (this.f53500x) {
-            if (i7 < this.f53497r.size()) {
-                vw0 vw0Var2 = (vw0) this.f53497r.get(i7);
+        if (this.f53546x) {
+            if (i7 < this.f53543r.size()) {
+                vw0 vw0Var2 = (vw0) this.f53543r.get(i7);
                 if (i7 > 0) {
-                    vw0Var = (vw0) this.f53497r.get(i7 - 1);
+                    vw0Var = (vw0) this.f53543r.get(i7 - 1);
                 }
-                if (vw0Var != null && vw0Var.f52865e == vw0Var2.f52865e) {
+                if (vw0Var != null && vw0Var.f52906e == vw0Var2.f52906e) {
                     i10 = 0;
                 } else {
-                    i10 = vw0Var2.f52865e;
+                    i10 = vw0Var2.f52906e;
                 }
-                CharSequence charSequence = (CharSequence) this.f53496n.get(i7);
+                CharSequence charSequence = (CharSequence) this.f53542n.get(i7);
                 String[] strArr = vw0Var2.d;
-                if (i7 >= this.f53497r.size() - 1) {
+                if (i7 >= this.f53543r.size() - 1) {
                     z10 = false;
                 }
                 w6Var.b(charSequence, strArr, i10, z10);
                 return;
             }
-            int f10 = i5.c.f(1, i7, this.f53497r);
-            CharSequence charSequence2 = (CharSequence) this.f53496n.get(this.f53497r.size() + f10);
-            String[] strArr2 = ((org.telegram.messenger.yo) this.f53498s.get(f10)).f28170b;
-            if (f10 < this.f53497r.size() - 1) {
+            int f10 = i5.c.f(1, i7, this.f53543r);
+            CharSequence charSequence2 = (CharSequence) this.f53542n.get(this.f53543r.size() + f10);
+            String[] strArr2 = ((org.telegram.messenger.yo) this.f53544s.get(f10)).f28198b;
+            if (f10 < this.f53543r.size() - 1) {
                 z11 = true;
             }
             w6Var.a(charSequence2, strArr2, true, z11);
             return;
         }
-        ArrayList arrayList = this.f53499w;
+        ArrayList arrayList = this.f53545w;
         if (!arrayList.isEmpty()) {
             i7--;
         }
@@ -13658,7 +13658,7 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
             Object obj = arrayList.get(i7);
             if (obj instanceof vw0) {
                 vw0 vw0Var3 = (vw0) obj;
-                String str = vw0Var3.f52862a;
+                String str = vw0Var3.f52903a;
                 String[] strArr3 = vw0Var3.d;
                 if (i7 >= arrayList.size() - 1) {
                     z10 = false;
@@ -13667,8 +13667,8 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
                 return;
             } else if (obj instanceof org.telegram.messenger.yo) {
                 org.telegram.messenger.yo yoVar = (org.telegram.messenger.yo) obj;
-                String str2 = yoVar.f28169a;
-                String[] strArr4 = yoVar.f28170b;
+                String str2 = yoVar.f28197a;
+                String[] strArr4 = yoVar.f28198b;
                 if (i7 < arrayList.size() - 1) {
                     z11 = true;
                 }
@@ -13680,8 +13680,8 @@ public class ww0 extends org.telegram.ui.Components.bk0 {
         }
         int f11 = i5.c.f(1, i7, arrayList);
         org.telegram.messenger.yo yoVar2 = (org.telegram.messenger.yo) this.d.get(f11);
-        String str3 = yoVar2.f28169a;
-        String[] strArr5 = yoVar2.f28170b;
+        String str3 = yoVar2.f28197a;
+        String[] strArr5 = yoVar2.f28198b;
         if (f11 < arrayList.size() - 1) {
             z11 = true;
         }

@@ -18,37 +18,37 @@ import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.ke;
-import org.telegram.ui.Components.c6;
-import org.telegram.ui.Components.eh0;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.m6;
+import org.telegram.ui.Components.d6;
+import org.telegram.ui.Components.gh0;
 import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.n6;
+import org.telegram.ui.Components.nr;
 public final class g {
-    public int f10202a;
-    public boolean f10203b;
-    public boolean f10204c;
+    public int f10231a;
+    public boolean f10232b;
+    public boolean f10233c;
     public final Object d;
-    public final Object f10205e;
-    public final Object f10206f;
-    public final Object f10207g;
+    public final Object f10234e;
+    public final Object f10235f;
+    public final Object f10236g;
     public Object h;
 
     public g(View view) {
         this.h = new Paint(1);
-        this.d = new c6(view, 350L, lr.h);
-        this.f10206f = new eh0(view);
-        this.f10207g = new mc(view);
-        m6 m6Var = new m6(false, false, false);
-        this.f10205e = m6Var;
-        m6Var.w(org.telegram.messenger.g0.L(11.0f));
-        m6Var.r(true, true);
-        m6Var.setCallback(view);
-        m6Var.N = (int) (org.telegram.messenger.g0.f24118q.x * 0.3f);
-        this.f10203b = false;
-        m6Var.t(gd.M0(2131746244, null), false, true);
-        String M0 = gd.M0(2131746243, null);
-        TextPaint textPaint = m6Var.f37375a;
-        this.f10202a = (int) Math.ceil(Math.max(textPaint.measureText(M0), textPaint.measureText(gd.M0(2131746244, null))));
+        this.d = new d6(view, 350L, nr.h);
+        this.f10235f = new gh0(view);
+        this.f10236g = new mc(view);
+        n6 n6Var = new n6(false, false, false);
+        this.f10234e = n6Var;
+        n6Var.w(org.telegram.messenger.g0.L(11.0f));
+        n6Var.r(true, true);
+        n6Var.setCallback(view);
+        n6Var.N = (int) (org.telegram.messenger.g0.f24146q.x * 0.3f);
+        this.f10232b = false;
+        n6Var.t(gd.N0(2131746243, null), false, true);
+        String N0 = gd.N0(2131746242, null);
+        TextPaint textPaint = n6Var.f37789a;
+        this.f10231a = (int) Math.ceil(Math.max(textPaint.measureText(N0), textPaint.measureText(gd.N0(2131746243, null))));
     }
 
     public void a(l0 l0Var) {
@@ -83,11 +83,11 @@ public final class g {
         if (!arrayList2.isEmpty()) {
             l0VarArr2 = (l0[]) arrayList2.toArray(new l0[arrayList2.size()]);
         }
-        return new h((IconCompat) this.d, (CharSequence) this.f10205e, (PendingIntent) this.f10206f, (Bundle) this.f10207g, l0VarArr2, l0VarArr, this.f10203b, this.f10202a, this.f10204c);
+        return new h((IconCompat) this.d, (CharSequence) this.f10234e, (PendingIntent) this.f10235f, (Bundle) this.f10236g, l0VarArr2, l0VarArr, this.f10232b, this.f10231a, this.f10233c);
     }
 
     public boolean c() {
-        yi.j jVar = (yi.j) this.f10205e;
+        yi.j jVar = (yi.j) this.f10234e;
         jVar.getClass();
         yi.j.q();
         ac.e eVar = null;
@@ -96,17 +96,17 @@ public final class g {
         eVar = null;
         eVar = null;
         eVar = null;
-        if (jVar.G == 5 && jVar.f61339z != null && jVar.f61332r == 0 && jVar.f61333s == jVar.j()) {
+        if (jVar.G == 5 && jVar.f61380z != null && jVar.f61373r == 0 && jVar.f61374s == jVar.j()) {
             jVar.p();
-            yi.h hVar = jVar.f61339z;
+            yi.h hVar = jVar.f61380z;
             long j3 = jVar.j();
-            long length = hVar.f61314b.length();
+            long length = hVar.f61355b.length();
             jVar.a(hVar, length);
-            synchronized (jVar.f61326l) {
-                if (hVar.d && !hVar.f61316e) {
-                    hVar.f61316e = true;
-                    jVar.f61325k.execute(new yi.c(jVar, hVar, length, j3, 0));
-                    File file = hVar.f61314b;
+            synchronized (jVar.f61367l) {
+                if (hVar.d && !hVar.f61357e) {
+                    hVar.f61357e = true;
+                    jVar.f61366k.execute(new yi.c(jVar, hVar, length, j3, 0));
+                    File file = hVar.f61355b;
                     byte[] bArr2 = jVar.B;
                     if (bArr2 != null) {
                         bArr = (byte[]) bArr2.clone();
@@ -123,81 +123,81 @@ public final class g {
         if (eVar == null) {
             return false;
         }
-        ((yi.j) this.f10205e).o();
-        this.f10204c = true;
+        ((yi.j) this.f10234e).o();
+        this.f10233c = true;
         return true;
     }
 
     public void d(Canvas canvas, RectF rectF, float f10, float f11, int i7, boolean z10, boolean z11) {
         int i10;
         Paint paint = (Paint) this.h;
-        eh0 eh0Var = (eh0) this.f10206f;
-        m6 m6Var = (m6) this.f10205e;
-        if (z10 != this.f10203b) {
-            this.f10203b = z10;
+        gh0 gh0Var = (gh0) this.f10235f;
+        n6 n6Var = (n6) this.f10234e;
+        if (z10 != this.f10232b) {
+            this.f10232b = z10;
             if (z10) {
-                i10 = 2131746243;
+                i10 = 2131746242;
             } else {
-                i10 = 2131746244;
+                i10 = 2131746243;
             }
-            m6Var.t(gd.M0(i10, null), true, true);
+            n6Var.t(gd.N0(i10, null), true, true);
         }
-        float c10 = m6Var.c();
+        float c10 = n6Var.c();
         float L = org.telegram.messenger.g0.L(17.66f);
         rectF.set(f10 - ((int) (c10 + org.telegram.messenger.g0.L(23.66f))), f11 - L, f10, f11);
-        float a10 = ((mc) this.f10207g).a(0.02f) * ((c6) this.d).d(z11);
+        float a10 = ((mc) this.f10236g).a(0.02f) * ((d6) this.d).d(z11);
         if (a10 > 0.0f) {
             paint.setColor(i0.a.o(i7, 30));
             canvas.save();
             canvas.scale(a10, a10, f10, f11);
             float f12 = L / 2.0f;
             canvas.drawRoundRect(rectF, f12, f12, paint);
-            m6Var.setBounds((int) (rectF.left + org.telegram.messenger.g0.L(6.0f)), (int) rectF.top, (int) (rectF.right - org.telegram.messenger.g0.L(17.66f)), (int) rectF.bottom);
-            m6Var.u(i7);
-            m6Var.draw(canvas);
+            n6Var.setBounds((int) (rectF.left + org.telegram.messenger.g0.L(6.0f)), (int) rectF.top, (int) (rectF.right - org.telegram.messenger.g0.L(17.66f)), (int) rectF.bottom);
+            n6Var.u(i7);
+            n6Var.draw(canvas);
             float L2 = org.telegram.messenger.g0.L(14.0f);
             float f13 = L2 / 2.0f;
-            eh0Var.setBounds((int) ((rectF.right - org.telegram.messenger.g0.L(3.33f)) - L2), (int) ((rectF.centerY() - f13) + org.telegram.messenger.g0.L(0.33f)), (int) (rectF.right - org.telegram.messenger.g0.L(3.33f)), (int) (rectF.centerY() + f13 + org.telegram.messenger.g0.L(0.33f)));
-            Paint paint2 = eh0Var.f34705b;
+            gh0Var.setBounds((int) ((rectF.right - org.telegram.messenger.g0.L(3.33f)) - L2), (int) ((rectF.centerY() - f13) + org.telegram.messenger.g0.L(0.33f)), (int) (rectF.right - org.telegram.messenger.g0.L(3.33f)), (int) (rectF.centerY() + f13 + org.telegram.messenger.g0.L(0.33f)));
+            Paint paint2 = gh0Var.f35556b;
             paint2.setColor(i7);
-            paint2.setAlpha(eh0Var.d);
+            paint2.setAlpha(gh0Var.d);
             boolean z12 = !z10;
-            if (eh0Var.f34707e != z12) {
-                eh0Var.f34707e = z12;
-                eh0Var.f34704a.invalidate();
+            if (gh0Var.f35558e != z12) {
+                gh0Var.f35558e = z12;
+                gh0Var.f35555a.invalidate();
             }
-            eh0Var.draw(canvas);
+            gh0Var.draw(canvas);
             canvas.restore();
         }
     }
 
     public boolean e() {
-        yi.j jVar = (yi.j) this.f10205e;
+        yi.j jVar = (yi.j) this.f10234e;
         jVar.getClass();
         yi.j.q();
-        if (jVar.e().f2961a == 5) {
+        if (jVar.e().f2973a == 5) {
             return true;
         }
         return false;
     }
 
     public void f() {
-        this.f10203b = true;
+        this.f10232b = true;
     }
 
     public void g(boolean z10) {
-        this.f10204c = z10;
-        ((mc) this.f10207g).c(z10);
+        this.f10233c = z10;
+        ((mc) this.f10236g).c(z10);
     }
 
     public boolean h() {
-        yi.j jVar = (yi.j) this.f10205e;
+        yi.j jVar = (yi.j) this.f10234e;
         jVar.getClass();
         yi.j.q();
         if (jVar.G != 1) {
             return false;
         }
-        File file = jVar.f61318b;
+        File file = jVar.f61359b;
         if ((file.isDirectory() || file.mkdirs()) && file.canWrite()) {
             jVar.h.b("start requested");
             jVar.d();
@@ -211,20 +211,20 @@ public final class g {
 
     public g(Context context, File file, ke keVar) {
         this.d = new Handler(Looper.getMainLooper());
-        this.f10206f = new Object();
-        this.f10207g = new HashMap();
+        this.f10235f = new Object();
+        this.f10236g = new HashMap();
         this.h = new HashSet();
-        this.f10202a = 1;
+        this.f10231a = 1;
         y3 y3Var = new y3(context, 3);
-        y3Var.f12772c = file;
-        yi.g gVar = (yi.g) aj.e.f1651c.a();
+        y3Var.f12812c = file;
+        yi.g gVar = (yi.g) aj.e.f1663c.a();
         if (gVar != null) {
             y3Var.d = gVar;
-            y3Var.f12770a = false;
-            y3Var.f12773e = new ji.j(this, keVar, false, 9);
-            y3Var.f12774f = new k8.a(8, this, keVar);
-            y3Var.f12775g = new nb.a(17);
-            this.f10205e = new yi.j(y3Var);
+            y3Var.f12810a = false;
+            y3Var.f12813e = new ji.l(this, keVar, false, 9);
+            y3Var.f12814f = new k8.a(8, this, keVar);
+            y3Var.f12815g = new nb.a(17);
+            this.f10234e = new yi.j(y3Var);
             return;
         }
         throw new IllegalArgumentException("Noise suppression mode is required");
@@ -233,15 +233,15 @@ public final class g {
     public g(int i7, PendingIntent pendingIntent, String str) {
         IconCompat e10 = i7 == 0 ? null : IconCompat.e(null, "", i7);
         Bundle bundle = new Bundle();
-        this.f10203b = true;
-        this.f10204c = true;
+        this.f10232b = true;
+        this.f10233c = true;
         this.d = e10;
-        this.f10205e = q.d(str);
-        this.f10206f = pendingIntent;
-        this.f10207g = bundle;
+        this.f10234e = q.d(str);
+        this.f10235f = pendingIntent;
+        this.f10236g = bundle;
         this.h = null;
-        this.f10203b = true;
-        this.f10202a = 0;
-        this.f10204c = true;
+        this.f10232b = true;
+        this.f10231a = 0;
+        this.f10233c = true;
     }
 }

@@ -10,55 +10,56 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import c8.ma;
+import hi.o4;
 import java.io.File;
 import java.io.FileOutputStream;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.gd;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.ActionBar.t6;
 import org.telegram.ui.Cells.y9;
-import org.telegram.ui.Components.c31;
-import org.telegram.ui.Components.k20;
-import org.telegram.ui.Components.mh0;
-import org.telegram.ui.Components.ph0;
+import org.telegram.ui.Components.n20;
+import org.telegram.ui.Components.oh0;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.rh0;
 import org.telegram.ui.f40;
 import org.telegram.ui.w20;
 import org.telegram.ui.x7;
 import org.webrtc.RendererCommon;
 public abstract class w0 extends FrameLayout implements VoIPService.StateListener {
     public final boolean E;
-    public boolean f41279a;
-    public final c5.l f41280b;
-    public final gi.j f41281c;
+    public boolean f41414a;
+    public final c5.l f41415b;
+    public final gi.j f41416c;
     public final LinearLayout d;
-    public final ph0 f41282e;
-    public final TextView[] f41283f;
+    public final rh0 f41417e;
+    public final TextView[] f41418f;
     public final n2 h;
-    public int f41284n;
-    public int f41285r;
-    public boolean f41286s;
-    public boolean f41287w;
-    public float f41288x;
-    public int f41289y;
+    public int f41419n;
+    public int f41420r;
+    public boolean f41421s;
+    public boolean f41422w;
+    public float f41423x;
+    public int f41424y;
 
     public w0(Context context, boolean z10) {
         super(context);
         int i7;
-        this.f41284n = 1;
-        this.f41285r = 1;
+        this.f41419n = 1;
+        this.f41420r = 1;
         this.E = z10;
         if (z10) {
             i7 = 3;
         } else {
             i7 = 2;
         }
-        this.f41283f = new TextView[i7];
+        this.f41418f = new TextView[i7];
         c5.l lVar = new c5.l(context);
-        this.f41280b = lVar;
+        this.f41415b = lVar;
         org.telegram.messenger.g0.A3(lVar, 2130706432);
-        lVar.setAdapter(new k20(this, 1));
+        lVar.setAdapter(new n20(this, 1));
         lVar.setPageMargin(0);
         lVar.setOffscreenPageLimit(1);
         addView(lVar, ma.c(-1.0f, -1));
@@ -68,60 +69,60 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
         RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FILL;
         m2 m2Var = n2Var.d;
         m2Var.setScalingType(scalingType);
-        n2Var.f41077b0 = 1;
-        n2Var.f41080d0 = true;
+        n2Var.f41212b0 = 1;
+        n2Var.f41215d0 = true;
         m2Var.setAlpha(0.0f);
         m2Var.setRotateTextureWithScreen(true);
         m2Var.setUseCameraRotation(true);
         addView(n2Var, ma.c(-1.0f, -1));
         org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, null);
-        kVar.setBackButtonDrawable(new org.telegram.ui.ActionBar.y1(false));
+        kVar.setBackButtonDrawable(new org.telegram.ui.ActionBar.x1(false));
         kVar.setBackgroundColor(0);
-        u6.l(kVar, 1, n6.Yg, null);
+        t6.l(kVar, 1, m6.Yg, null);
         kVar.setOccupyStatusBar(true);
         kVar.setActionBarMenuOnItemClick(new x7(this, 22));
         addView(kVar);
         gi.j jVar = new gi.j(this, getContext());
-        this.f41281c = jVar;
+        this.f41416c = jVar;
         jVar.setMinWidth(org.telegram.messenger.g0.L(64.0f));
         jVar.setTag(-1);
         jVar.setTextSize(1, 14.0f);
-        int i10 = n6.f29423eh;
-        u6.U(jVar, i10, null);
+        int i10 = m6.f29407eh;
+        t6.U(jVar, i10, null);
         jVar.setGravity(17);
         jVar.setTypeface(org.telegram.messenger.g0.o());
-        jVar.setText(gd.M0(2131743003, null));
+        jVar.setText(gd.N0(2131742997, null));
         int L = org.telegram.messenger.g0.L(6.0f);
-        int o4 = i0.a.o(n6.x0(null, i10, false), 76);
-        jVar.setForeground(n6.k0(L, L, L, L, 0, o4, o4));
+        int o4 = i0.a.o(m6.x0(null, i10, false), 76);
+        jVar.setForeground(m6.k0(L, L, L, L, 0, o4, o4));
         jVar.setPadding(0, org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f));
-        jVar.setOnClickListener(new hi.o0(this, 26));
+        jVar.setOnClickListener(new o4(this, 25));
         addView(jVar, ma.d(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.d = linearLayout;
         addView(linearLayout, ma.e(-2, 64, 80));
         int i11 = 0;
         while (true) {
-            TextView[] textViewArr = this.f41283f;
+            TextView[] textViewArr = this.f41418f;
             if (i11 >= textViewArr.length) {
                 break;
             }
             textViewArr[i11] = new TextView(context);
-            this.f41283f[i11].setTextSize(1, 12.0f);
-            this.f41283f[i11].setTextColor(-1);
-            this.f41283f[i11].setTypeface(org.telegram.messenger.g0.o());
-            this.f41283f[i11].setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
-            this.f41283f[i11].setGravity(16);
-            this.f41283f[i11].setSingleLine(true);
-            this.d.addView(this.f41283f[i11], ma.o(-2, -1));
+            this.f41418f[i11].setTextSize(1, 12.0f);
+            this.f41418f[i11].setTextColor(-1);
+            this.f41418f[i11].setTypeface(org.telegram.messenger.g0.o());
+            this.f41418f[i11].setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
+            this.f41418f[i11].setGravity(16);
+            this.f41418f[i11].setSingleLine(true);
+            this.d.addView(this.f41418f[i11], ma.o(-2, -1));
             if (i11 == 0 && this.E) {
-                this.f41283f[i11].setText(gd.M0(2131743022, null));
+                this.f41418f[i11].setText(gd.N0(2131743016, null));
             } else if (i11 != 0 && (i11 != 1 || !this.E)) {
-                this.f41283f[i11].setText(gd.M0(2131743256, null));
+                this.f41418f[i11].setText(gd.N0(2131743250, null));
             } else {
-                this.f41283f[i11].setText(gd.M0(2131743168, null));
+                this.f41418f[i11].setText(gd.N0(2131743162, null));
             }
-            this.f41283f[i11].setOnClickListener(new ci.q(this, i11, 22));
+            this.f41418f[i11].setOnClickListener(new ci.q(this, i11, 22));
             i11++;
         }
         setAlpha(0.0f);
@@ -134,44 +135,44 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
             this.h.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new Object());
             sharedInstance.setLocalSink(this.h.d, false);
         }
-        this.f41280b.setCurrentItem(this.E ? 1 : 0);
+        this.f41415b.setCurrentItem(this.E ? 1 : 0);
         ?? imageView = new ImageView(context);
-        this.f41282e = imageView;
+        this.f41417e = imageView;
         imageView.setPadding(org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f));
-        imageView.setBackground(n6.L(org.telegram.messenger.g0.L(48.0f), i0.a.o(-16777216, 76)));
-        mh0 mh0Var = new mh0(2131624332, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), true, null);
-        imageView.setAnimation(mh0Var);
+        imageView.setBackground(m6.L(org.telegram.messenger.g0.L(48.0f), i0.a.o(-16777216, 76)));
+        oh0 oh0Var = new oh0(2131624332, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), true, null);
+        imageView.setAnimation(oh0Var);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        this.f41287w = true;
-        mh0Var.M(69);
-        imageView.setOnClickListener(new c31(6, this, mh0Var));
+        this.f41422w = true;
+        oh0Var.M(69);
+        imageView.setOnClickListener(new q31(4, this, oh0Var));
         addView((View) imageView, ma.d(48, 48.0f, 83, 24.0f, 0.0f, 0.0f, 136.0f));
     }
 
     public static void a(w0 w0Var) {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (w0Var.f41284n != w0Var.f41285r && sharedInstance != null) {
+        if (w0Var.f41419n != w0Var.f41420r && sharedInstance != null) {
             boolean isFrontFaceCamera = sharedInstance.isFrontFaceCamera();
-            int i7 = w0Var.f41284n;
+            int i7 = w0Var.f41419n;
             if ((i7 == 1 && !isFrontFaceCamera) || (i7 == 2 && isFrontFaceCamera)) {
                 w0Var.c();
-                w0Var.f41286s = false;
+                w0Var.f41421s = false;
                 VoIPService.getSharedInstance().switchCamera();
                 w0Var.h.setAlpha(0.0f);
             }
-            w0Var.f41285r = w0Var.f41284n;
+            w0Var.f41420r = w0Var.f41419n;
         }
     }
 
     public final void b(boolean z10, boolean z11) {
-        if (this.f41279a) {
+        if (this.f41414a) {
             return;
         }
-        this.f41279a = true;
+        this.f41414a = true;
         c();
         f40 f40Var = ((w20) this).F;
-        boolean z12 = f40Var.f47483u2.f41287w;
-        f40Var.f47483u2 = null;
+        boolean z12 = f40Var.f47551u2.f41422w;
+        f40Var.f47551u2 = null;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (z11) {
             if (sharedInstance != null) {
@@ -183,7 +184,7 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
             f40Var.W1(true, false);
             f40Var.V2.z();
             f40Var.R0(true);
-            f40Var.f47458p1.requestLayout();
+            f40Var.f47526p1.requestLayout();
         } else if (sharedInstance != null) {
             sharedInstance.setVideoState(false, 0);
         }
@@ -193,7 +194,7 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
 
     public final void c() {
         n2 n2Var = this.h;
-        if (this.f41286s) {
+        if (this.f41421s) {
             try {
                 Bitmap bitmap = n2Var.d.getBitmap();
                 if (bitmap != null) {
@@ -206,8 +207,8 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
                         }
                         Utilities.blurBitmap(createScaledBitmap, 7);
                         File h = org.telegram.messenger.t0.h();
-                        createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(h, "cthumb" + this.f41285r + ".jpg")));
-                        View findViewWithTag = this.f41280b.findViewWithTag(Integer.valueOf(this.f41285r - (1 ^ (this.E ? 1 : 0))));
+                        createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(h, "cthumb" + this.f41420r + ".jpg")));
+                        View findViewWithTag = this.f41415b.findViewWithTag(Integer.valueOf(this.f41420r - (1 ^ (this.E ? 1 : 0))));
                         if (findViewWithTag instanceof ImageView) {
                             ((ImageView) findViewWithTag).setImageBitmap(createScaledBitmap);
                         }
@@ -220,8 +221,8 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
 
     public final void d() {
         TextView textView;
-        int i7 = this.f41289y;
-        TextView[] textViewArr = this.f41283f;
+        int i7 = this.f41424y;
+        TextView[] textViewArr = this.f41418f;
         TextView textView2 = textViewArr[i7];
         if (i7 < textViewArr.length - 1) {
             textView = textViewArr[i7 + 1];
@@ -232,19 +233,19 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
         float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
         float measuredWidth2 = (getMeasuredWidth() / 2) - measuredWidth;
         if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * this.f41288x;
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * this.f41423x;
         }
         for (int i10 = 0; i10 < textViewArr.length; i10++) {
-            int i11 = this.f41289y;
+            int i11 = this.f41424y;
             float f10 = 0.9f;
             float f11 = 0.7f;
             if (i10 >= i11 && i10 <= i11 + 1) {
                 if (i10 == i11) {
-                    float f12 = this.f41288x;
+                    float f12 = this.f41423x;
                     f11 = 1.0f - (0.3f * f12);
                     f10 = 1.0f - (f12 * 0.1f);
                 } else {
-                    float f13 = this.f41288x;
+                    float f13 = this.f41423x;
                     f11 = 0.7f + (0.3f * f13);
                     f10 = 0.9f + (f13 * 0.1f);
                 }
@@ -254,23 +255,23 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
             textViewArr[i10].setScaleY(f10);
         }
         this.d.setTranslationX(measuredWidth2);
-        this.f41281c.invalidate();
+        this.f41416c.invalidate();
         boolean z10 = this.E;
         n2 n2Var = this.h;
-        if (z10 && this.f41289y == 0 && this.f41288x <= 0.0f) {
+        if (z10 && this.f41424y == 0 && this.f41423x <= 0.0f) {
             n2Var.setVisibility(4);
             return;
         }
         n2Var.setVisibility(0);
-        if (this.f41289y + (!z10 ? 1 : 0) == this.f41284n) {
-            n2Var.setTranslationX((-this.f41288x) * getMeasuredWidth());
+        if (this.f41424y + (!z10 ? 1 : 0) == this.f41419n) {
+            n2Var.setTranslationX((-this.f41423x) * getMeasuredWidth());
         } else {
-            n2Var.setTranslationX((1.0f - this.f41288x) * getMeasuredWidth());
+            n2Var.setTranslationX((1.0f - this.f41423x) * getMeasuredWidth());
         }
     }
 
     public int getBackgroundColor() {
-        return i0.a.o(n6.x0(null, n6.Xg, false), (int) (getAlpha() * 1.0f * 255.0f));
+        return i0.a.o(m6.x0(null, m6.Xg, false), (int) (getAlpha() * 1.0f * 255.0f));
     }
 
     @Override
@@ -297,8 +298,8 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
 
     @Override
     public final void onCameraFirstFrameAvailable() {
-        if (!this.f41286s) {
-            this.f41286s = true;
+        if (!this.f41421s) {
+            this.f41421s = true;
             this.h.animate().alpha(1.0f).setDuration(250L);
         }
     }
@@ -333,7 +334,7 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
         } else {
             z10 = false;
         }
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f41281c.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f41416c.getLayoutParams();
         if (z10) {
             int L = org.telegram.messenger.g0.L(80.0f);
             marginLayoutParams.leftMargin = L;
@@ -343,9 +344,9 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
             marginLayoutParams.leftMargin = L2;
             marginLayoutParams.rightMargin = L2;
         }
-        ph0 ph0Var = this.f41282e;
-        if (ph0Var != null) {
-            ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) ph0Var.getLayoutParams();
+        rh0 rh0Var = this.f41417e;
+        if (rh0Var != null) {
+            ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) rh0Var.getLayoutParams();
             if (z10) {
                 int L3 = org.telegram.messenger.g0.L(88.0f);
                 marginLayoutParams2.leftMargin = L3;
@@ -391,8 +392,8 @@ public abstract class w0 extends FrameLayout implements VoIPService.StateListene
     }
 
     public void setBottomPadding(int i7) {
-        ((FrameLayout.LayoutParams) this.f41281c.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(64.0f) + i7;
+        ((FrameLayout.LayoutParams) this.f41416c.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(64.0f) + i7;
         ((FrameLayout.LayoutParams) this.d.getLayoutParams()).bottomMargin = i7;
-        ((FrameLayout.LayoutParams) this.f41282e.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(136.0f) + i7;
+        ((FrameLayout.LayoutParams) this.f41417e.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(136.0f) + i7;
     }
 }

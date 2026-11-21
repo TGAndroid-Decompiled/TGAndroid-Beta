@@ -1,77 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.os.PowerManager;
-public final class ws implements SensorEventListener {
-    public int E;
-    public int F;
-    public int G;
-    public long H;
-    public boolean J;
-    public boolean K;
-    public float M;
-    public final SensorManager f41764a;
-    public final AudioManager f41765b;
-    public final Sensor f41766c;
-    public final Sensor d;
-    public final Sensor f41767e;
-    public final Sensor f41768f;
-    public final PowerManager.WakeLock h;
-    public boolean f41769n;
-    public boolean f41770r;
-    public f61 f41771s;
-    public boolean f41772w;
-    public long f41773x;
-    public int f41774y;
-    public long I = 0;
-    public float L = -100.0f;
-    public final float[] N = new float[3];
-    public final float[] O = new float[3];
-    public final float[] P = new float[3];
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+public final class ws implements Runnable {
+    public final int f41893a;
+    public final xs f41894b;
 
-    public ws() {
-        SensorManager sensorManager = (SensorManager) org.telegram.messenger.t0.f26913b.getSystemService("sensor");
-        this.f41764a = sensorManager;
-        this.f41766c = sensorManager.getDefaultSensor(8);
-        Sensor defaultSensor = sensorManager.getDefaultSensor(10);
-        this.f41767e = defaultSensor;
-        Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
-        this.f41768f = defaultSensor2;
-        if (defaultSensor == null || defaultSensor2 == null) {
-            if (org.telegram.messenger.s2.f26721a) {
-                org.telegram.messenger.a8.b("gravity or linear sensor not found");
-            }
-            this.d = sensorManager.getDefaultSensor(1);
-            this.f41767e = null;
-            this.f41768f = null;
-        }
-        this.h = ((PowerManager) org.telegram.messenger.t0.f26913b.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f41765b = (AudioManager) org.telegram.messenger.t0.f26913b.getSystemService("audio");
+    public ws(xs xsVar, int i7) {
+        this.f41893a = i7;
+        this.f41894b = xsVar;
     }
 
-    public final void a() {
+    @Override
+    public final void run() {
         int i7;
-        f61 f61Var = this.f41771s;
-        if (f61Var == null) {
-            return;
+        Bitmap bitmap;
+        switch (this.f41893a) {
+            case 0:
+                xs xsVar = this.f41894b;
+                try {
+                    i7 = xsVar.f42219x + 0;
+                    bitmap = xsVar.f42211b;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    xsVar.F = true;
+                }
+                if (bitmap != null) {
+                    if (bitmap.getWidth() == xsVar.f42220y) {
+                        if (xsVar.f42211b.getHeight() != i7) {
+                        }
+                        xsVar.f42211b.eraseColor(0);
+                        xsVar.f42212c.save();
+                        xsVar.f42212c.translate(0.0f, 0);
+                        xsVar.c(xsVar.f42212c);
+                        xsVar.f42212c.restore();
+                        xsVar.f42211b.prepareToDraw();
+                        org.telegram.messenger.g0.g3(xsVar.I);
+                        return;
+                    }
+                }
+                Bitmap bitmap2 = xsVar.f42211b;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                }
+                xsVar.f42211b = Bitmap.createBitmap(xsVar.f42220y, i7, Bitmap.Config.ARGB_8888);
+                xsVar.f42212c = new Canvas(xsVar.f42211b);
+                xsVar.f42211b.eraseColor(0);
+                xsVar.f42212c.save();
+                xsVar.f42212c.translate(0.0f, 0);
+                xsVar.c(xsVar.f42212c);
+                xsVar.f42212c.restore();
+                xsVar.f42211b.prepareToDraw();
+                org.telegram.messenger.g0.g3(xsVar.I);
+                return;
+            default:
+                xs xsVar2 = this.f41894b;
+                xsVar2.f42214f = false;
+                xsVar2.g();
+                if (!xsVar2.f42210a) {
+                    xsVar2.j();
+                    return;
+                } else if (xsVar2.f42218w == xsVar2.K) {
+                    xsVar2.H = true;
+                    return;
+                } else {
+                    return;
+                }
         }
-        if (this.f41770r) {
-            i7 = 0;
-        } else {
-            i7 = 3;
-        }
-        f61Var.x0(i7);
-    }
-
-    @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ws.onSensorChanged(android.hardware.SensorEvent):void");
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i7) {
     }
 }

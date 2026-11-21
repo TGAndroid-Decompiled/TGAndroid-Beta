@@ -1,8 +1,8 @@
 package c5;
 public final class e {
-    public Object f4412a;
-    public int f4413b;
-    public boolean f4414c;
+    public Object f4441a;
+    public int f4442b;
+    public boolean f4443c;
     public float d;
-    public float f4415e;
+    public float f4444e;
 }

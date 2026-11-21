@@ -1,135 +1,164 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class gk0 implements v4.t0 {
-    public RecyclerView f35514a;
-    public boolean f35516c;
-    public int d;
-    public int f35517e;
-    public int f35518f;
-    public boolean f35519g;
-    public boolean h;
-    public int f35520i;
-    public final fk0 f35522k;
-    public int f35515b = -1;
-    public final int f35521j = org.telegram.messenger.g0.L(80.0f);
-    public final gk f35523l = new gk(this, 15);
+public class gk0 extends j71 {
+    public final tt0 W;
+    public boolean f35581a0;
+    public View f35582b0;
+    public View f35583c0;
 
-    public gk0(fk0 fk0Var) {
-        this.f35522k = fk0Var;
+    public gk0(Context context, org.telegram.ui.ActionBar.h6 h6Var, tt0 tt0Var) {
+        super(context, h6Var);
+        this.W = tt0Var;
+        setClipChildren(false);
+        setClipToPadding(false);
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
-        int i7;
-        int i10;
-        View E = recyclerView.E(motionEvent.getX(), motionEvent.getY());
-        if (E != null) {
-            i7 = RecyclerView.R(E);
-        } else {
-            i7 = -1;
+    public final void B(View view, float f10) {
+        if (view.getTranslationX() == f10) {
+            return;
         }
-        float y10 = motionEvent.getY();
-        int action = motionEvent.getAction();
-        fk0 fk0Var = this.f35522k;
-        gk gkVar = this.f35523l;
-        if (action != 1) {
-            if (action == 2) {
-                if (this.f35521j > -1) {
-                    float f10 = 0;
-                    if (y10 >= f10 && y10 <= this.d) {
-                        this.h = false;
-                        if (!this.f35519g) {
-                            this.f35519g = true;
-                            org.telegram.messenger.g0.r(gkVar);
-                            org.telegram.messenger.g0.g3(gkVar);
-                        }
-                        this.f35520i = ((int) (this.d - (y10 - f10))) / 2;
-                    } else if (y10 >= this.f35517e && y10 <= this.f35518f) {
-                        this.f35519g = false;
-                        if (!this.h) {
-                            this.h = true;
-                            org.telegram.messenger.g0.r(gkVar);
-                            org.telegram.messenger.g0.g3(gkVar);
-                        }
-                        this.f35520i = ((int) ((y10 + this.f35518f) - (this.f35517e + i10))) / 2;
-                    } else if (this.f35519g || this.h) {
-                        org.telegram.messenger.g0.r(gkVar);
-                        this.f35519g = false;
-                        this.h = false;
-                    }
-                }
-                if (i7 != -1 && this.f35515b != i7) {
-                    this.f35515b = i7;
-                    fk0Var.l(E, !fk0Var.m(i7));
-                    return;
-                }
-                return;
+        super.B(view, f10);
+        invalidate();
+    }
+
+    public final void H(View view) {
+        this.f35582b0 = null;
+        this.f35583c0 = null;
+        tt0 tt0Var = this.W;
+        tt0Var.f("PAGE_BOUND", view, 0, 0, true);
+        if (tt0Var.P == null) {
+            return;
+        }
+        if (tt0Var.f40053e0) {
+            tt0Var.i("page_bound");
+        }
+        RecyclerView n10 = tt0Var.P.n(view);
+        tt0Var.b(n10);
+        tt0Var.P.r(n10);
+        tt0Var.p();
+    }
+
+    public final void I(MotionEvent motionEvent) {
+        String str;
+        if (motionEvent != null && motionEvent.getActionMasked() == 0) {
+            float x10 = motionEvent.getX();
+            float y10 = motionEvent.getY();
+            tt0 tt0Var = this.W;
+            boolean j3 = tt0Var.j(x10, y10);
+            this.f35581a0 = j3;
+            if (j3) {
+                str = "PAGER_DOWN_COMMON";
+            } else {
+                str = "PAGER_DOWN_PAGE";
             }
-            return;
+            tt0Var.g(str);
         }
-        this.f35516c = false;
-        this.f35519g = false;
-        this.h = false;
-        org.telegram.messenger.g0.r(gkVar);
-        fk0Var.e(false);
     }
 
     @Override
-    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
-        boolean z10;
-        boolean z11;
-        if (recyclerView.getAdapter() != null && recyclerView.getAdapter().b() != 0) {
-            z10 = false;
-        } else {
-            z10 = true;
+    public final boolean b(MotionEvent motionEvent) {
+        if (!this.f35581a0 && this.W.c()) {
+            return true;
         }
-        if (this.f35516c && !z10) {
-            z11 = true;
-        } else {
-            z11 = false;
+        return false;
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        int save = canvas.save();
+        float x10 = view.getX();
+        tt0 tt0Var = this.W;
+        canvas.clipRect(x10, -tt0Var.getTopBleed(), view.getX() + view.getWidth(), tt0Var.getBottomBleed() + getHeight());
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.restoreToCount(save);
+        return drawChild;
+    }
+
+    @Override
+    public float getAvailableTranslationX() {
+        return Math.max(1, getMeasuredWidth());
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        I(motionEvent);
+        if (!this.f35581a0 && super.onInterceptTouchEvent(motionEvent)) {
+            return true;
         }
-        if (z11) {
-            this.f35514a = recyclerView;
-            int i7 = this.f35521j;
-            if (i7 > -1) {
-                this.d = i7;
-                this.f35517e = recyclerView.getMeasuredHeight() - i7;
-                this.f35518f = recyclerView.getMeasuredHeight();
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        String str;
+        tt0 tt0Var = this.W;
+        if (motionEvent == null) {
+            tt0Var.g("PAGER_CANCEL_NULL");
+            this.f35581a0 = false;
+            return x(null);
+        }
+        I(motionEvent);
+        if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
+            if (motionEvent.getActionMasked() == 1) {
+                str = "PAGER_UP";
+            } else {
+                str = "PAGER_CANCEL";
+            }
+            tt0Var.g(str);
+        }
+        if (this.f35581a0 || !x(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void q() {
+        tt0 tt0Var = this.W;
+        tt0Var.g("PAGER_SCROLL_END");
+        tt0Var.p();
+    }
+
+    @Override
+    public final void r() {
+        this.f35582b0 = null;
+        this.f35583c0 = null;
+    }
+
+    @Override
+    public final void s(boolean z10) {
+        this.W.p();
+    }
+
+    @Override
+    public final void w(int i7) {
+        tt0 tt0Var = this.W;
+        tt0Var.g("PAGER_TAB_END");
+        tt0Var.p();
+    }
+
+    @Override
+    public final boolean x(MotionEvent motionEvent) {
+        boolean z10 = this.I;
+        boolean x10 = super.x(motionEvent);
+        if (z10 && !this.I && motionEvent != null && motionEvent.getActionMasked() == 2) {
+            View[] viewPages = getViewPages();
+            View view = viewPages[0];
+            View view2 = viewPages[1];
+            if (view != null && view2 != null && view.getTranslationX() == 0.0f && view.getMeasuredWidth() > 0 && Math.abs(view2.getTranslationX()) >= view.getMeasuredWidth()) {
+                this.f35582b0 = view;
+                this.f35583c0 = view2;
+                tt0 tt0Var = this.W;
+                tt0Var.g("PAGER_DRAG_ABORTED");
+                tt0Var.p();
             }
         }
-        if (z11 && motionEvent.getAction() == 1) {
-            this.f35516c = false;
-            this.f35519g = false;
-            this.h = false;
-            org.telegram.messenger.g0.r(this.f35523l);
-            this.f35522k.e(false);
-        }
-        return z11;
-    }
-
-    public final void d(int i7, View view, boolean z10) {
-        if (this.f35516c) {
-            return;
-        }
-        this.f35515b = -1;
-        org.telegram.messenger.g0.r(this.f35523l);
-        this.f35519g = false;
-        this.h = false;
-        fk0 fk0Var = this.f35522k;
-        if (!fk0Var.f(i7)) {
-            this.f35516c = false;
-            return;
-        }
-        fk0Var.e(true);
-        fk0Var.l(view, z10);
-        this.f35516c = true;
-        this.f35515b = i7;
-    }
-
-    @Override
-    public final void c(boolean z10) {
+        return x10;
     }
 }

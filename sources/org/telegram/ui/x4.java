@@ -3,26 +3,26 @@ package org.telegram.ui;
 import android.content.Intent;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 public final class x4 implements org.telegram.messenger.fs {
-    public final int f53553a;
-    public final Object f53554b;
+    public final int f53594a;
+    public final Object f53595b;
 
     public x4(Object obj, int i7) {
-        this.f53553a = i7;
-        this.f53554b = obj;
+        this.f53594a = i7;
+        this.f53595b = obj;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        switch (this.f53553a) {
+        switch (this.f53594a) {
             case 0:
-                y4 y4Var = (y4) this.f53554b;
-                if (y4Var.f53990g && i7 == y4Var.f53988e) {
+                y4 y4Var = (y4) this.f53595b;
+                if (y4Var.f54037g && i7 == y4Var.f54035e) {
                     y4Var.b(objArr);
                     return;
                 }
                 return;
             case 1:
-                pb0 pb0Var = (pb0) this.f53554b;
+                pb0 pb0Var = (pb0) this.f53595b;
                 int intValue = ((Integer) objArr[0]).intValue();
                 ((Integer) objArr[1]).getClass();
                 Intent intent = (Intent) objArr[2];
@@ -39,7 +39,7 @@ public final class x4 implements org.telegram.messenger.fs {
                 }
                 return;
             default:
-                sc0 sc0Var = (sc0) this.f53554b;
+                sc0 sc0Var = (sc0) this.f53595b;
                 int intValue2 = ((Integer) objArr[0]).intValue();
                 ((Integer) objArr[1]).getClass();
                 Intent intent2 = (Intent) objArr[2];

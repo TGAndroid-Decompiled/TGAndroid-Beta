@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class gs extends org.telegram.ui.ActionBar.h1 {
-    public final js f48087o;
+public final class gs extends org.telegram.ui.ActionBar.g1 {
+    public final js f48164o;
 
     public gs(js jsVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
         super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f48087o = jsVar;
+        this.f48164o = jsVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        ns nsVar = this.f48087o.f49050a;
-        nsVar.f50286k = null;
+        ns nsVar = this.f48164o.f49083a;
+        nsVar.f50293k = null;
         nsVar.K = false;
         if (nsVar.R) {
             nsVar.m();

@@ -4,31 +4,31 @@ import android.os.Bundle;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class g80 implements Runnable {
-    public final int f47933a;
-    public final long f47934b;
-    public final Object f47935c;
+    public final int f48003a;
+    public final long f48004b;
+    public final Object f48005c;
     public final Object d;
 
     public g80(Object obj, long j3, Object obj2, int i7) {
-        this.f47933a = i7;
-        this.f47935c = obj;
-        this.f47934b = j3;
+        this.f48003a = i7;
+        this.f48005c = obj;
+        this.f48004b = j3;
         this.d = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f47933a) {
+        switch (this.f48003a) {
             case 0:
-                LaunchActivity launchActivity = (LaunchActivity) this.f47935c;
-                long j3 = this.f47934b;
+                LaunchActivity launchActivity = (LaunchActivity) this.f48005c;
+                long j3 = this.f48004b;
                 String str = LaunchActivity.C1;
                 org.telegram.messenger.g0.g3(new up(launchActivity, org.telegram.messenger.tr.a0(launchActivity.P).j0(j3), (y70) this.d, 19));
                 return;
             case 1:
-                qa0 qa0Var = (qa0) this.f47935c;
+                qa0 qa0Var = (qa0) this.f48005c;
                 TLObject tLObject = (TLObject) this.d;
-                long j10 = this.f47934b;
+                long j10 = this.f48004b;
                 if (qa0Var.F != null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                     int i7 = 0;
@@ -42,7 +42,7 @@ public final class g80 implements Runnable {
                     qa0Var.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
                     qa0Var.getMessagesController().f4(messages_messages.users, false);
                     qa0Var.getMessagesController().Z3(messages_messages.chats, false);
-                    qa0Var.getLocationController().f26381c.k(messages_messages.messages, j10);
+                    qa0Var.getLocationController().f26409c.k(messages_messages.messages, j10);
                     qa0Var.getNotificationCenter().k(285, Long.valueOf(j10));
                     qa0Var.p0(messages_messages.messages);
                     qa0Var.getLocationController().j(qa0Var.m0);
@@ -56,9 +56,9 @@ public final class g80 implements Runnable {
                 }
                 return;
             case 2:
-                as0 as0Var = (as0) this.f47935c;
-                long j11 = this.f47934b;
-                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) this.d;
+                as0 as0Var = (as0) this.f48005c;
+                long j11 = this.f48004b;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) this.d;
                 as0Var.getClass();
                 Bundle bundle = new Bundle();
                 if (j11 > 0) {
@@ -66,20 +66,20 @@ public final class g80 implements Runnable {
                 } else {
                     bundle.putLong("chat_id", -j11);
                 }
-                h2Var.presentFragment(new ProfileActivity(bundle, null));
+                g2Var.presentFragment(new ProfileActivity(bundle, null));
                 as0Var.c(false);
                 return;
             case 3:
-                xi.e eVar = (xi.e) this.f47935c;
+                xi.e eVar = (xi.e) this.f48005c;
                 xi.d dVar = (xi.d) this.d;
-                long j12 = this.f47934b;
-                if (((xi.d) eVar.f60622b) == dVar) {
+                long j12 = this.f48004b;
+                if (((xi.d) eVar.f60663b) == dVar) {
                     xi.b bVar = (xi.b) eVar.d;
                     if (bVar != null) {
                         org.telegram.messenger.g0.r(bVar);
                         eVar.d = null;
                     }
-                    synchronized (xi.i.f60630y) {
+                    synchronized (xi.i.f60671y) {
                         try {
                             xi.i iVar = xi.i.A;
                             if (iVar != null) {
@@ -90,18 +90,18 @@ public final class g80 implements Runnable {
                             throw th2;
                         }
                     }
-                    eVar.f60622b = null;
-                    dVar.f60619c.run(j12);
+                    eVar.f60663b = null;
+                    dVar.f60660c.run(j12);
                     eVar.K();
                     return;
                 }
                 return;
             default:
-                long j13 = this.f47934b;
+                long j13 = this.f48004b;
                 Exception exc = (Exception) this.d;
-                yi.j jVar = (yi.j) ((ac.e) this.f47935c).f1022c;
-                if (j13 == jVar.f61329o) {
-                    jVar.f61328n = null;
+                yi.j jVar = (yi.j) ((ac.e) this.f48005c).f1022c;
+                if (j13 == jVar.f61370o) {
+                    jVar.f61369n = null;
                     int i10 = jVar.G;
                     if (i10 != 10 && i10 != 9) {
                         jVar.g(exc);
@@ -117,9 +117,9 @@ public final class g80 implements Runnable {
     }
 
     public g80(Object obj, Object obj2, long j3, int i7) {
-        this.f47933a = i7;
-        this.f47935c = obj;
+        this.f48003a = i7;
+        this.f48005c = obj;
         this.d = obj2;
-        this.f47934b = j3;
+        this.f48004b = j3;
     }
 }

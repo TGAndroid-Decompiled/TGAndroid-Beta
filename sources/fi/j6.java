@@ -2,9 +2,9 @@ package fi;
 
 import org.telegram.tgnet.ConnectionsManager;
 public final class j6 implements f3.f0 {
-    public final int f12156a = 1;
-    public int f12157b;
-    public long f12158c;
+    public final int f12195a = 1;
+    public int f12196b;
+    public long f12197c;
     public int d;
 
     public j6() {
@@ -13,10 +13,10 @@ public final class j6 implements f3.f0 {
     public boolean a(int i7, int i10) {
         int i11 = this.d;
         if (i11 != 1) {
-            if ((i11 == 2 || i11 == 3) && ConnectionsManager.getInstance(i7).getCurrentTime() >= this.f12158c) {
+            if ((i11 == 2 || i11 == 3) && ConnectionsManager.getInstance(i7).getCurrentTime() >= this.f12197c) {
                 return false;
             }
-        } else if (this.f12157b >= i10) {
+        } else if (this.f12196b >= i10) {
             return false;
         }
         return true;
@@ -34,12 +34,12 @@ public final class j6 implements f3.f0 {
     }
 
     public String toString() {
-        switch (this.f12156a) {
+        switch (this.f12195a) {
             case 3:
                 StringBuilder sb2 = new StringBuilder("AtomSizeTooSmall{type=");
-                sb2.append(h2.l0.e0(this.f12157b));
+                sb2.append(h2.l0.e0(this.f12196b));
                 sb2.append(", size=");
-                sb2.append(this.f12158c);
+                sb2.append(this.f12197c);
                 sb2.append(", minHeaderSize=");
                 return a8.p0.n(this.d, "}", sb2);
             default:
@@ -48,20 +48,20 @@ public final class j6 implements f3.f0 {
     }
 
     public j6(int i7, long j3, int i10) {
-        this.f12157b = i7;
-        this.f12158c = j3;
+        this.f12196b = i7;
+        this.f12197c = j3;
         this.d = i10;
     }
 
     public j6(long j3, int i7, int i10) {
-        this.f12158c = j3;
-        this.f12157b = i7;
+        this.f12197c = j3;
+        this.f12196b = i7;
         this.d = i10;
     }
 
     public j6(int i7, int i10, long j3) {
         this.d = i7;
-        this.f12158c = j3;
-        this.f12157b = i10;
+        this.f12197c = j3;
+        this.f12196b = i10;
     }
 }

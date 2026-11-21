@@ -6,44 +6,44 @@ import android.widget.FrameLayout;
 import j$.util.Objects;
 import java.util.WeakHashMap;
 public class gc {
-    public static gc f35453w;
-    public int f35454a;
-    public int f35455b;
-    public va f35456c;
+    public static gc f35500w;
+    public int f35501a;
+    public int f35502b;
+    public va f35503c;
     public r1.g d;
-    public final lb f35457e;
-    public final za f35458f;
-    public final org.telegram.ui.ActionBar.h2 f35459g;
+    public final lb f35504e;
+    public final za f35505f;
+    public final org.telegram.ui.ActionBar.g2 f35506g;
     public final FrameLayout h;
-    public final Runnable f35460i;
-    public int f35461j;
-    public boolean f35462k;
-    public boolean f35463l;
-    public boolean f35464m;
-    public boolean f35465n;
-    public int f35466o;
-    public fb f35467p;
-    public kb f35468q;
-    public boolean f35469r;
-    public boolean f35470s;
-    public boolean f35471t;
-    public boolean f35472u;
+    public final Runnable f35507i;
+    public int f35508j;
+    public boolean f35509k;
+    public boolean f35510l;
+    public boolean f35511m;
+    public boolean f35512n;
+    public int f35513o;
+    public fb f35514p;
+    public kb f35515q;
+    public boolean f35516r;
+    public boolean f35517s;
+    public boolean f35518t;
+    public boolean f35519u;
     public Runnable v;
 
     public gc() {
-        this.f35460i = new ua(this, 0);
-        this.f35465n = true;
-        this.f35469r = true;
-        this.f35472u = true;
-        this.f35457e = null;
-        this.f35458f = null;
-        this.f35459g = null;
+        this.f35507i = new ua(this, 0);
+        this.f35512n = true;
+        this.f35516r = true;
+        this.f35519u = true;
+        this.f35504e = null;
+        this.f35505f = null;
+        this.f35506g = null;
         this.h = null;
     }
 
     public static void a(FrameLayout frameLayout, fb fbVar) {
         if (frameLayout != null) {
-            frameLayout.setTag(2131296351, fbVar);
+            frameLayout.setTag(2131296353, fbVar);
         }
     }
 
@@ -70,7 +70,7 @@ public class gc {
     }
 
     public static void e() {
-        gc gcVar = f35453w;
+        gc gcVar = f35500w;
         if (gcVar != null) {
             gcVar.b();
         }
@@ -83,21 +83,21 @@ public class gc {
         return new gc(null, frameLayout, lbVar, i7);
     }
 
-    public static gc g(org.telegram.ui.ActionBar.h2 h2Var, eb ebVar, int i7) {
-        if (h2Var == null) {
+    public static gc g(org.telegram.ui.ActionBar.g2 g2Var, eb ebVar, int i7) {
+        if (g2Var == null) {
             return new gc();
         }
-        if (h2Var instanceof org.telegram.ui.bn) {
+        if (g2Var instanceof org.telegram.ui.bn) {
             lb.access$000(ebVar, -2, 1);
-        } else if (h2Var instanceof org.telegram.ui.cx) {
+        } else if (g2Var instanceof org.telegram.ui.cx) {
             lb.access$000(ebVar, -1, 0);
         }
-        return new gc(h2Var, h2Var.getBulletinLayoutContainer(), ebVar, i7);
+        return new gc(g2Var, g2Var.getBulletinLayoutContainer(), ebVar, i7);
     }
 
     public static void h(FrameLayout frameLayout) {
         if (frameLayout != null) {
-            frameLayout.setTag(2131296351, null);
+            frameLayout.setTag(2131296353, null);
         }
     }
 
@@ -106,36 +106,36 @@ public class gc {
     }
 
     public final void c(long j3, boolean z10) {
-        lb lbVar = this.f35457e;
-        if (lbVar != null && this.f35463l) {
-            this.f35463l = false;
-            if (f35453w == this) {
-                f35453w = null;
+        lb lbVar = this.f35504e;
+        if (lbVar != null && this.f35510l) {
+            this.f35510l = false;
+            if (f35500w == this) {
+                f35500w = null;
             }
-            WeakHashMap weakHashMap = r0.i0.f56244a;
-            if (lbVar.isLaidOut() || this.f35471t) {
-                lbVar.removeCallbacks(this.f35460i);
+            WeakHashMap weakHashMap = r0.i0.f56285a;
+            if (lbVar.isLaidOut() || this.f35518t) {
+                lbVar.removeCallbacks(this.f35507i);
                 if (z10) {
                     lbVar.transitionRunningExit = true;
-                    lbVar.delegate = this.f35467p;
+                    lbVar.delegate = this.f35514p;
                     lbVar.invalidate();
                     if (j3 >= 0) {
                         ?? obj = new Object();
-                        obj.f11196a = j3;
-                        this.f35468q = obj;
-                    } else if (lbVar != null && this.f35468q == null) {
-                        this.f35468q = lbVar.createTransition();
+                        obj.f11225a = j3;
+                        this.f35515q = obj;
+                    } else if (lbVar != null && this.f35515q == null) {
+                        this.f35515q = lbVar.createTransition();
                     }
-                    kb kbVar = this.f35468q;
+                    kb kbVar = this.f35515q;
                     Objects.requireNonNull(lbVar);
                     kbVar.j(lbVar, new wa(lbVar, 0), new ua(this, 1), new xa(this, 0));
                     return;
                 }
             }
-            fb fbVar = this.f35467p;
+            fb fbVar = this.f35514p;
             if (fbVar != null && !lbVar.top) {
                 fbVar.c(0.0f);
-                this.f35467p.d(this);
+                this.f35514p.d(this);
             }
             lbVar.onExitTransitionStart();
             lbVar.onExitTransitionEnd();
@@ -154,16 +154,16 @@ public class gc {
     public final void i(boolean z10) {
         boolean z11;
         lb lbVar;
-        if (z10 && this.f35465n) {
+        if (z10 && this.f35512n) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f35464m != z11 && (lbVar = this.f35457e) != null) {
-            this.f35464m = z11;
-            Runnable runnable = this.f35460i;
+        if (this.f35511m != z11 && (lbVar = this.f35504e) != null) {
+            this.f35511m = z11;
+            Runnable runnable = this.f35507i;
             if (z11) {
-                int i7 = this.f35461j;
+                int i7 = this.f35508j;
                 if (i7 >= 0) {
                     lbVar.postDelayed(runnable, i7);
                     return;
@@ -181,50 +181,50 @@ public class gc {
 
     public final void k(final boolean z10) {
         FrameLayout frameLayout;
-        if (!this.f35463l && (frameLayout = this.h) != 0) {
-            this.f35463l = true;
-            lb lbVar = this.f35457e;
+        if (!this.f35510l && (frameLayout = this.h) != 0) {
+            this.f35510l = true;
+            lb lbVar = this.f35504e;
             lbVar.setTop(z10);
             CharSequence accessibilityText = lbVar.getAccessibilityText();
             if (accessibilityText != null) {
                 org.telegram.messenger.g0.i2(accessibilityText);
             }
             ViewParent parent = lbVar.getParent();
-            za zaVar = this.f35458f;
+            za zaVar = this.f35505f;
             if (parent == zaVar) {
-                gc gcVar = f35453w;
+                gc gcVar = f35500w;
                 if (gcVar != null) {
                     gcVar.b();
                 }
-                f35453w = this;
+                f35500w = this;
                 lbVar.onAttach(this);
                 ?? r22 = new View.OnLayoutChangeListener() {
                     @Override
                     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
                         int i17;
                         gc gcVar2 = gc.this;
-                        fb fbVar = gcVar2.f35467p;
+                        fb fbVar = gcVar2.f35514p;
                         if ((fbVar == null || fbVar.a()) && !z10) {
-                            fb fbVar2 = gcVar2.f35467p;
+                            fb fbVar2 = gcVar2.f35514p;
                             if (fbVar2 != null) {
-                                i17 = fbVar2.f(gcVar2.f35454a);
+                                i17 = fbVar2.f(gcVar2.f35501a);
                             } else {
                                 i17 = 0;
                             }
-                            int i18 = gcVar2.f35466o;
+                            int i18 = gcVar2.f35513o;
                             if (i18 != i17) {
                                 r1.g gVar = gcVar2.d;
-                                if (gVar != null && gVar.f56317f) {
-                                    gVar.f56323m.f56331i = i17;
+                                if (gVar != null && gVar.f56358f) {
+                                    gVar.f56364m.f56372i = i17;
                                 } else {
                                     r1.g gVar2 = new r1.g(new r1.f(i18));
                                     r1.h hVar = new r1.h();
-                                    hVar.f56331i = i17;
+                                    hVar.f56372i = i17;
                                     hVar.b(900.0f);
                                     hVar.a(1.0f);
-                                    gVar2.f56323m = hVar;
+                                    gVar2.f56364m = hVar;
                                     gcVar2.d = gVar2;
-                                    gVar2.b(new i7(gcVar2, 1));
+                                    gVar2.b(new j7(gcVar2, 1));
                                     gcVar2.d.a(new ya(gcVar2, 0));
                                 }
                                 gcVar2.d.h();
@@ -232,11 +232,11 @@ public class gc {
                         }
                     }
                 };
-                this.f35456c = r22;
+                this.f35503c = r22;
                 frameLayout.addOnLayoutChangeListener(r22);
                 lbVar.addOnLayoutChangeListener(new ab(this, z10));
-                if (!this.f35471t) {
-                    lbVar.addOnAttachStateChangeListener(new bi.r2(this, 12));
+                if (!this.f35518t) {
+                    lbVar.addOnAttachStateChangeListener(new bi.v2(this, 12));
                 }
                 frameLayout.addView(zaVar);
                 return;
@@ -246,21 +246,21 @@ public class gc {
     }
 
     public final void l() {
-        lb lbVar = this.f35457e;
+        lb lbVar = this.f35504e;
         if (lbVar != null) {
             lbVar.updatePosition();
         }
     }
 
-    public gc(org.telegram.ui.ActionBar.h2 h2Var, FrameLayout frameLayout, lb lbVar, int i7) {
-        this.f35460i = new ua(this, 0);
-        this.f35469r = true;
-        this.f35472u = true;
-        this.f35457e = lbVar;
-        this.f35465n = true ^ (lbVar instanceof mb);
-        this.f35458f = new za(this, lbVar, frameLayout);
-        this.f35459g = h2Var;
+    public gc(org.telegram.ui.ActionBar.g2 g2Var, FrameLayout frameLayout, lb lbVar, int i7) {
+        this.f35507i = new ua(this, 0);
+        this.f35516r = true;
+        this.f35519u = true;
+        this.f35504e = lbVar;
+        this.f35512n = true ^ (lbVar instanceof mb);
+        this.f35505f = new za(this, lbVar, frameLayout);
+        this.f35506g = g2Var;
         this.h = frameLayout;
-        this.f35461j = i7;
+        this.f35508j = i7;
     }
 }

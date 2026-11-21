@@ -1,56 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class io0 implements View.OnTouchListener {
-    public final int f36158a;
-    public final Rect f36159b;
-    public final yo0 f36160c;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class io0 implements jg.f0 {
+    public final ap0 f36303a;
 
-    public io0(yo0 yo0Var, int i7) {
-        this.f36158a = i7;
-        switch (i7) {
-            case 1:
-                this.f36160c = yo0Var;
-                this.f36159b = new Rect();
-                return;
-            default:
-                this.f36160c = yo0Var;
-                this.f36159b = new Rect();
-                return;
-        }
+    public io0(ap0 ap0Var) {
+        this.f36303a = ap0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        yo0 yo0Var;
-        org.telegram.ui.ActionBar.h1 h1Var;
-        yo0 yo0Var2;
-        org.telegram.ui.ActionBar.h1 h1Var2;
-        switch (this.f36158a) {
-            case 0:
-                if (motionEvent.getActionMasked() == 0 && (h1Var = (yo0Var = this.f36160c).F2) != null && h1Var.isShowing()) {
-                    Rect rect = this.f36159b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        yo0Var.F2.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                if (motionEvent.getActionMasked() == 0 && (h1Var2 = (yo0Var2 = this.f36160c).F2) != null && h1Var2.isShowing()) {
-                    Rect rect2 = this.f36159b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        yo0Var2.F2.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+    public final void a(a0.h hVar, ArrayList arrayList) {
+        int i7 = 0;
+        while (i7 < arrayList.size()) {
+            TLObject tLObject = ((jg.g0) arrayList.get(i7)).f17485a;
+            if ((tLObject instanceof TLRPC.Chat) && !org.telegram.messenger.v3.B((TLRPC.Chat) tLObject)) {
+                arrayList.remove(i7);
+                i7--;
+            }
+            i7++;
         }
+        ap0 ap0Var = this.f36303a;
+        ap0Var.A2 = arrayList;
+        for (int i10 = 0; i10 < ap0Var.A2.size(); i10++) {
+            jg.g0 g0Var = (jg.g0) ap0Var.A2.get(i10);
+            TLObject tLObject2 = g0Var.f17485a;
+            if (tLObject2 instanceof TLRPC.User) {
+                org.telegram.messenger.mp.u1(ap0Var.f30170a).e4((TLRPC.User) g0Var.f17485a, true, false);
+            } else if (tLObject2 instanceof TLRPC.Chat) {
+                org.telegram.messenger.mp.u1(ap0Var.f30170a).X3((TLRPC.Chat) g0Var.f17485a, true);
+            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
+                org.telegram.messenger.mp.u1(ap0Var.f30170a).b4((TLRPC.EncryptedChat) g0Var.f17485a, true);
+            }
+        }
+        ap0Var.I1.f();
     }
 }

@@ -6,16 +6,16 @@ import c8.bc;
 import f7.t0;
 public final class d extends r6.a {
     public static final Parcelable.Creator<d> CREATOR = new t0(21);
-    public final byte[] f13951a;
+    public final byte[] f13980a;
 
     public d(byte[] bArr) {
-        this.f13951a = bArr;
+        this.f13980a = bArr;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
-        bc.c(parcel, 2, this.f13951a);
+        bc.c(parcel, 2, this.f13980a);
         bc.s(parcel, r10);
     }
 }

@@ -1,47 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class v41 extends FrameLayout {
-    public int f40494a;
-    public boolean f40495b;
+import android.text.TextPaint;
+public final class v41 extends s41 {
+    public final int f40682e;
+    public final fz0 f40683f;
+
+    public v41(String str, int i7, fz0 fz0Var) {
+        super(str, (fz0) null);
+        this.f40682e = i7;
+        this.f40683f = fz0Var;
+    }
 
     @Override
-    public final void onMeasure(int i7, int i10) {
-        View view;
-        int i11 = this.f40494a;
-        if (getParent() instanceof View) {
-            view = (View) getParent();
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        int i7 = this.f40682e;
+        if (i7 == 3) {
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.J6, false));
+        } else if (i7 == 2) {
+            textPaint.setColor(-1);
+        } else if (i7 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Yc, false));
         } else {
-            view = null;
+            textPaint.setColor(org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Xc, false));
         }
-        if (this.f40495b && view != null) {
-            i11 = view.getPaddingBottom() + view.getPaddingTop() + i11;
-        }
-        if (view != null && view.getMeasuredHeight() > 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - i11, 1073741824));
-        } else if (View.MeasureSpec.getMode(i10) != 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10) - i11, 1073741824));
+        fz0 fz0Var = this.f40683f;
+        if (fz0Var != null) {
+            fz0Var.a(textPaint);
         } else {
-            int size = View.MeasureSpec.getSize(i10);
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824);
-            measureChildren(makeMeasureSpec, i10);
-            int i12 = 0;
-            for (int i13 = 0; i13 < getChildCount(); i13++) {
-                i12 = Math.max(i12, getChildAt(i13).getMeasuredHeight());
-            }
-            if (size > 0) {
-                i12 = Math.min(i12, size - i11);
-            }
-            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
+            textPaint.setUnderlineText(false);
         }
-    }
-
-    public void setMinusHeight(int i7) {
-        this.f40494a = i7;
-    }
-
-    public void setMinusPadding(boolean z10) {
-        this.f40495b = z10;
     }
 }

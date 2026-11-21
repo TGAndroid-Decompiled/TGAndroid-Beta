@@ -1,9 +1,9 @@
 package e2;
 public final class z {
-    public long f10808a;
-    public long f10809b = Long.MIN_VALUE;
-    public boolean f10810c;
+    public long f10837a;
+    public long f10838b = Long.MIN_VALUE;
+    public boolean f10839c;
     public boolean d;
-    public boolean f10811e;
-    public boolean f10812f;
+    public boolean f10840e;
+    public boolean f10841f;
 }

@@ -2,22 +2,22 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.SerializedData;
 public final class yo {
-    public final String f28169a;
-    public final String[] f28170b;
-    public final String f28171c;
+    public final String f28197a;
+    public final String[] f28198b;
+    public final String f28199c;
     public int d;
 
     public yo(String str, String[] strArr, String str2) {
-        this.f28169a = str;
-        this.f28170b = strArr;
-        this.f28171c = str2;
+        this.f28197a = str;
+        this.f28198b = strArr;
+        this.f28199c = str2;
     }
 
     public final boolean equals(Object obj) {
         if (!(obj instanceof yo)) {
             return false;
         }
-        return this.f28169a.equals(((yo) obj).f28169a);
+        return this.f28197a.equals(((yo) obj).f28197a);
     }
 
     public final String toString() {
@@ -25,8 +25,8 @@ public final class yo {
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(this.d);
         serializedData.writeInt32(0);
-        serializedData.writeString(this.f28169a);
-        String[] strArr = this.f28170b;
+        serializedData.writeString(this.f28197a);
+        String[] strArr = this.f28198b;
         if (strArr != null) {
             i7 = strArr.length;
         } else {
@@ -38,7 +38,7 @@ public final class yo {
                 serializedData.writeString(str);
             }
         }
-        serializedData.writeString(this.f28171c);
+        serializedData.writeString(this.f28199c);
         return Utilities.f(serializedData.toByteArray());
     }
 }

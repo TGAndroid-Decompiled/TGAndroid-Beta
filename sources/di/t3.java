@@ -12,30 +12,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class t3 implements q10 {
-    public final int f9796a;
-    public final f6 f9797b;
-    public final TL_stars.TL_starGiftUnique f9798c;
+    public final int f9816a;
+    public final f6 f9817b;
+    public final TL_stars.TL_starGiftUnique f9818c;
 
     public t3(f6 f6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i7) {
-        this.f9796a = i7;
-        this.f9797b = f6Var;
-        this.f9798c = tL_starGiftUnique;
+        this.f9816a = i7;
+        this.f9817b = f6Var;
+        this.f9818c = tL_starGiftUnique;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         TL_stars.StarGift starGift;
-        switch (this.f9796a) {
+        switch (this.f9816a) {
             case 0:
                 final cg.a aVar = (cg.a) obj;
                 final Runnable runnable = (Runnable) obj2;
                 TL_stars.StarsAmount q10 = aVar.q();
                 TL_stars.updateStarGiftPrice updatestargiftprice = new TL_stars.updateStarGiftPrice();
-                final f6 f6Var = this.f9797b;
+                final f6 f6Var = this.f9817b;
                 updatestargiftprice.stargift = f6Var.G1();
                 updatestargiftprice.resell_amount = q10;
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(f6Var.f30187a);
-                final TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f9798c;
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(f6Var.f30170a);
+                final TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f9818c;
                 connectionsManager.sendRequest(updatestargiftprice, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -45,7 +45,7 @@ public final class t3 implements q10 {
                                 final f6 f6Var2 = f6Var;
                                 final Runnable runnable2 = runnable;
                                 if (z10) {
-                                    mp.u1(f6Var2.f30187a).V3((TLRPC.Updates) tLObject, false);
+                                    mp.u1(f6Var2.f30170a).V3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique2 = tL_starGiftUnique;
                                     final cg.a aVar2 = aVar;
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -53,8 +53,8 @@ public final class t3 implements q10 {
                                         public final void run() {
                                             boolean z11;
                                             int i7 = r5;
-                                            cg.b bVar = cg.b.f5273a;
-                                            cg.b bVar2 = cg.b.f5274b;
+                                            cg.b bVar = cg.b.f5302a;
+                                            cg.b bVar2 = cg.b.f5303b;
                                             Runnable runnable3 = runnable2;
                                             cg.a aVar3 = aVar2;
                                             TL_stars.TL_starGiftUnique tL_starGiftUnique3 = tL_starGiftUnique2;
@@ -63,7 +63,7 @@ public final class t3 implements q10 {
                                             switch (i7) {
                                                 case 0:
                                                     tL_starGiftUnique3.flags |= 16;
-                                                    if (aVar3.f5271a == bVar2) {
+                                                    if (aVar3.f5300a == bVar2) {
                                                         z11 = true;
                                                     } else {
                                                         z11 = false;
@@ -73,19 +73,19 @@ public final class t3 implements q10 {
                                                     tL_starGiftUnique3.resell_amount = arrayList;
                                                     arrayList.add(aVar3.e(bVar).q());
                                                     tL_starGiftUnique3.resell_amount.add(aVar3.e(bVar2).q());
-                                                    f6Var3.f8770b2.setResellPrice(aVar3);
-                                                    bi.v5 v5Var = f6Var3.j3;
-                                                    if (v5Var != null) {
-                                                        v5Var.run();
+                                                    f6Var3.f8794b2.setResellPrice(aVar3);
+                                                    bi.z5 z5Var = f6Var3.j3;
+                                                    if (z5Var != null) {
+                                                        z5Var.run();
                                                     }
                                                     if (runnable3 != null) {
                                                         runnable3.run();
                                                     }
-                                                    f6Var3.k().Q(2131623990, 36, gd.a0(null, null, 2131750012, f6Var3.E1())).j();
+                                                    f6Var3.k().Q(2131623990, 36, gd.a0(null, null, 2131750011, f6Var3.E1())).j();
                                                     return;
                                                 default:
                                                     tL_starGiftUnique3.flags |= 16;
-                                                    if (aVar3.f5271a == bVar2) {
+                                                    if (aVar3.f5300a == bVar2) {
                                                         z12 = true;
                                                     }
                                                     tL_starGiftUnique3.resale_ton_only = z12;
@@ -93,10 +93,10 @@ public final class t3 implements q10 {
                                                     tL_starGiftUnique3.resell_amount = arrayList2;
                                                     arrayList2.add(aVar3.e(bVar).q());
                                                     tL_starGiftUnique3.resell_amount.add(aVar3.e(bVar2).q());
-                                                    f6Var3.f8770b2.setResellPrice(aVar3);
-                                                    bi.v5 v5Var2 = f6Var3.j3;
-                                                    if (v5Var2 != null) {
-                                                        v5Var2.run();
+                                                    f6Var3.f8794b2.setResellPrice(aVar3);
+                                                    bi.z5 z5Var2 = f6Var3.j3;
+                                                    if (z5Var2 != null) {
+                                                        z5Var2.run();
                                                     }
                                                     if (runnable3 != null) {
                                                         runnable3.run();
@@ -108,7 +108,7 @@ public final class t3 implements q10 {
                                     });
                                     return;
                                 } else if (tL_error != null && tL_error.text.startsWith("STARGIFT_RESELL_TOO_EARLY_")) {
-                                    org.telegram.messenger.g0.g3(new bi.m2(f6Var2, Long.parseLong(tL_error.text.substring(26)), runnable2, 2));
+                                    org.telegram.messenger.g0.g3(new bi.q2(f6Var2, Long.parseLong(tL_error.text.substring(26)), runnable2, 2));
                                     return;
                                 } else if (tL_error != null) {
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -143,7 +143,7 @@ public final class t3 implements q10 {
                                 final f6 f6Var3 = f6Var;
                                 final Runnable runnable3 = runnable;
                                 if (z11) {
-                                    mp.u1(f6Var3.f30187a).V3((TLRPC.Updates) tLObject, false);
+                                    mp.u1(f6Var3.f30170a).V3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique3 = tL_starGiftUnique;
                                     final cg.a aVar3 = aVar;
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -151,8 +151,8 @@ public final class t3 implements q10 {
                                         public final void run() {
                                             boolean z112;
                                             int i7 = r5;
-                                            cg.b bVar = cg.b.f5273a;
-                                            cg.b bVar2 = cg.b.f5274b;
+                                            cg.b bVar = cg.b.f5302a;
+                                            cg.b bVar2 = cg.b.f5303b;
                                             Runnable runnable32 = runnable3;
                                             cg.a aVar32 = aVar3;
                                             TL_stars.TL_starGiftUnique tL_starGiftUnique32 = tL_starGiftUnique3;
@@ -161,7 +161,7 @@ public final class t3 implements q10 {
                                             switch (i7) {
                                                 case 0:
                                                     tL_starGiftUnique32.flags |= 16;
-                                                    if (aVar32.f5271a == bVar2) {
+                                                    if (aVar32.f5300a == bVar2) {
                                                         z112 = true;
                                                     } else {
                                                         z112 = false;
@@ -171,19 +171,19 @@ public final class t3 implements q10 {
                                                     tL_starGiftUnique32.resell_amount = arrayList;
                                                     arrayList.add(aVar32.e(bVar).q());
                                                     tL_starGiftUnique32.resell_amount.add(aVar32.e(bVar2).q());
-                                                    f6Var32.f8770b2.setResellPrice(aVar32);
-                                                    bi.v5 v5Var = f6Var32.j3;
-                                                    if (v5Var != null) {
-                                                        v5Var.run();
+                                                    f6Var32.f8794b2.setResellPrice(aVar32);
+                                                    bi.z5 z5Var = f6Var32.j3;
+                                                    if (z5Var != null) {
+                                                        z5Var.run();
                                                     }
                                                     if (runnable32 != null) {
                                                         runnable32.run();
                                                     }
-                                                    f6Var32.k().Q(2131623990, 36, gd.a0(null, null, 2131750012, f6Var32.E1())).j();
+                                                    f6Var32.k().Q(2131623990, 36, gd.a0(null, null, 2131750011, f6Var32.E1())).j();
                                                     return;
                                                 default:
                                                     tL_starGiftUnique32.flags |= 16;
-                                                    if (aVar32.f5271a == bVar2) {
+                                                    if (aVar32.f5300a == bVar2) {
                                                         z12 = true;
                                                     }
                                                     tL_starGiftUnique32.resale_ton_only = z12;
@@ -191,10 +191,10 @@ public final class t3 implements q10 {
                                                     tL_starGiftUnique32.resell_amount = arrayList2;
                                                     arrayList2.add(aVar32.e(bVar).q());
                                                     tL_starGiftUnique32.resell_amount.add(aVar32.e(bVar2).q());
-                                                    f6Var32.f8770b2.setResellPrice(aVar32);
-                                                    bi.v5 v5Var2 = f6Var32.j3;
-                                                    if (v5Var2 != null) {
-                                                        v5Var2.run();
+                                                    f6Var32.f8794b2.setResellPrice(aVar32);
+                                                    bi.z5 z5Var2 = f6Var32.j3;
+                                                    if (z5Var2 != null) {
+                                                        z5Var2.run();
                                                     }
                                                     if (runnable32 != null) {
                                                         runnable32.run();
@@ -240,18 +240,18 @@ public final class t3 implements q10 {
             case 1:
                 x10 x10Var = (x10) obj;
                 Boolean bool = (Boolean) obj2;
-                f6 f6Var2 = this.f9797b;
-                bi.e8 e8Var = f6Var2.S2;
-                TL_stars.TL_starGiftUnique tL_starGiftUnique2 = this.f9798c;
-                if (e8Var == null) {
-                    bi.e8 e8Var2 = new bi.e8(f6Var2.f30187a, tL_starGiftUnique2.gift_id);
-                    f6Var2.S2 = e8Var2;
-                    e8Var2.a();
+                f6 f6Var2 = this.f9817b;
+                bi.i8 i8Var = f6Var2.S2;
+                TL_stars.TL_starGiftUnique tL_starGiftUnique2 = this.f9818c;
+                if (i8Var == null) {
+                    bi.i8 i8Var2 = new bi.i8(f6Var2.f30170a, tL_starGiftUnique2.gift_id);
+                    f6Var2.S2 = i8Var2;
+                    i8Var2.a();
                 }
                 HashSet hashSet = new HashSet();
                 int i7 = 0;
                 while (true) {
-                    z4[] z4VarArr = f6Var2.f8770b2.N.f8551n;
+                    z4[] z4VarArr = f6Var2.f8794b2.N.f8572n;
                     if (i7 < z4VarArr.length) {
                         TL_stars.StarGift starGift2 = z4VarArr[i7].h;
                         if (starGift2 != null) {
@@ -263,17 +263,17 @@ public final class t3 implements q10 {
                             if (starGift2 == null) {
                                 starGift2 = null;
                             }
-                            hashSet.add(Long.valueOf(starGift2.f28632id));
+                            hashSet.add(Long.valueOf(starGift2.f28660id));
                         }
                         i7++;
                     } else {
-                        bi.f8 f8Var = new bi.f8(f6Var2.getContext(), tL_starGiftUnique2.title, f6Var2.S2);
-                        f8Var.f3585c2.addAll(hashSet);
-                        f8Var.f3586e2.O(true);
-                        f8Var.d2 = bool.booleanValue();
-                        f8Var.f3583a2.set(org.telegram.messenger.g0.W2(gd.G(4 - hashSet.size(), "GiftCraftSelect", new Object[0])));
-                        f8Var.f3584b2 = new c2(x10Var, 0);
-                        f8Var.show();
+                        bi.j8 j8Var = new bi.j8(f6Var2.getContext(), tL_starGiftUnique2.title, f6Var2.S2);
+                        j8Var.f3756c2.addAll(hashSet);
+                        j8Var.f3757e2.O(true);
+                        j8Var.d2 = bool.booleanValue();
+                        j8Var.f3754a2.set(org.telegram.messenger.g0.W2(gd.G(4 - hashSet.size(), "GiftCraftSelect", new Object[0])));
+                        j8Var.f3755b2 = new c2(x10Var, 0);
+                        j8Var.show();
                         return;
                     }
                 }
@@ -282,11 +282,11 @@ public final class t3 implements q10 {
                 final Runnable runnable2 = (Runnable) obj2;
                 TL_stars.StarsAmount q11 = aVar2.q();
                 TL_stars.updateStarGiftPrice updatestargiftprice2 = new TL_stars.updateStarGiftPrice();
-                final f6 f6Var3 = this.f9797b;
+                final f6 f6Var3 = this.f9817b;
                 updatestargiftprice2.stargift = f6Var3.G1();
                 updatestargiftprice2.resell_amount = q11;
-                ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(f6Var3.f30187a);
-                final TL_stars.TL_starGiftUnique tL_starGiftUnique3 = this.f9798c;
+                ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(f6Var3.f30170a);
+                final TL_stars.TL_starGiftUnique tL_starGiftUnique3 = this.f9818c;
                 connectionsManager2.sendRequest(updatestargiftprice2, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -296,7 +296,7 @@ public final class t3 implements q10 {
                                 final f6 f6Var22 = f6Var3;
                                 final Runnable runnable22 = runnable2;
                                 if (z10) {
-                                    mp.u1(f6Var22.f30187a).V3((TLRPC.Updates) tLObject, false);
+                                    mp.u1(f6Var22.f30170a).V3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique22 = tL_starGiftUnique3;
                                     final cg.a aVar22 = aVar2;
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -304,8 +304,8 @@ public final class t3 implements q10 {
                                         public final void run() {
                                             boolean z112;
                                             int i72 = r5;
-                                            cg.b bVar = cg.b.f5273a;
-                                            cg.b bVar2 = cg.b.f5274b;
+                                            cg.b bVar = cg.b.f5302a;
+                                            cg.b bVar2 = cg.b.f5303b;
                                             Runnable runnable32 = runnable22;
                                             cg.a aVar32 = aVar22;
                                             TL_stars.TL_starGiftUnique tL_starGiftUnique32 = tL_starGiftUnique22;
@@ -314,7 +314,7 @@ public final class t3 implements q10 {
                                             switch (i72) {
                                                 case 0:
                                                     tL_starGiftUnique32.flags |= 16;
-                                                    if (aVar32.f5271a == bVar2) {
+                                                    if (aVar32.f5300a == bVar2) {
                                                         z112 = true;
                                                     } else {
                                                         z112 = false;
@@ -324,19 +324,19 @@ public final class t3 implements q10 {
                                                     tL_starGiftUnique32.resell_amount = arrayList;
                                                     arrayList.add(aVar32.e(bVar).q());
                                                     tL_starGiftUnique32.resell_amount.add(aVar32.e(bVar2).q());
-                                                    f6Var32.f8770b2.setResellPrice(aVar32);
-                                                    bi.v5 v5Var = f6Var32.j3;
-                                                    if (v5Var != null) {
-                                                        v5Var.run();
+                                                    f6Var32.f8794b2.setResellPrice(aVar32);
+                                                    bi.z5 z5Var = f6Var32.j3;
+                                                    if (z5Var != null) {
+                                                        z5Var.run();
                                                     }
                                                     if (runnable32 != null) {
                                                         runnable32.run();
                                                     }
-                                                    f6Var32.k().Q(2131623990, 36, gd.a0(null, null, 2131750012, f6Var32.E1())).j();
+                                                    f6Var32.k().Q(2131623990, 36, gd.a0(null, null, 2131750011, f6Var32.E1())).j();
                                                     return;
                                                 default:
                                                     tL_starGiftUnique32.flags |= 16;
-                                                    if (aVar32.f5271a == bVar2) {
+                                                    if (aVar32.f5300a == bVar2) {
                                                         z12 = true;
                                                     }
                                                     tL_starGiftUnique32.resale_ton_only = z12;
@@ -344,10 +344,10 @@ public final class t3 implements q10 {
                                                     tL_starGiftUnique32.resell_amount = arrayList2;
                                                     arrayList2.add(aVar32.e(bVar).q());
                                                     tL_starGiftUnique32.resell_amount.add(aVar32.e(bVar2).q());
-                                                    f6Var32.f8770b2.setResellPrice(aVar32);
-                                                    bi.v5 v5Var2 = f6Var32.j3;
-                                                    if (v5Var2 != null) {
-                                                        v5Var2.run();
+                                                    f6Var32.f8794b2.setResellPrice(aVar32);
+                                                    bi.z5 z5Var2 = f6Var32.j3;
+                                                    if (z5Var2 != null) {
+                                                        z5Var2.run();
                                                     }
                                                     if (runnable32 != null) {
                                                         runnable32.run();
@@ -359,7 +359,7 @@ public final class t3 implements q10 {
                                     });
                                     return;
                                 } else if (tL_error != null && tL_error.text.startsWith("STARGIFT_RESELL_TOO_EARLY_")) {
-                                    org.telegram.messenger.g0.g3(new bi.m2(f6Var22, Long.parseLong(tL_error.text.substring(26)), runnable22, 2));
+                                    org.telegram.messenger.g0.g3(new bi.q2(f6Var22, Long.parseLong(tL_error.text.substring(26)), runnable22, 2));
                                     return;
                                 } else if (tL_error != null) {
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -394,7 +394,7 @@ public final class t3 implements q10 {
                                 final f6 f6Var32 = f6Var3;
                                 final Runnable runnable3 = runnable2;
                                 if (z11) {
-                                    mp.u1(f6Var32.f30187a).V3((TLRPC.Updates) tLObject, false);
+                                    mp.u1(f6Var32.f30170a).V3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique32 = tL_starGiftUnique3;
                                     final cg.a aVar3 = aVar2;
                                     org.telegram.messenger.g0.g3(new Runnable() {
@@ -402,8 +402,8 @@ public final class t3 implements q10 {
                                         public final void run() {
                                             boolean z112;
                                             int i72 = r5;
-                                            cg.b bVar = cg.b.f5273a;
-                                            cg.b bVar2 = cg.b.f5274b;
+                                            cg.b bVar = cg.b.f5302a;
+                                            cg.b bVar2 = cg.b.f5303b;
                                             Runnable runnable32 = runnable3;
                                             cg.a aVar32 = aVar3;
                                             TL_stars.TL_starGiftUnique tL_starGiftUnique322 = tL_starGiftUnique32;
@@ -412,7 +412,7 @@ public final class t3 implements q10 {
                                             switch (i72) {
                                                 case 0:
                                                     tL_starGiftUnique322.flags |= 16;
-                                                    if (aVar32.f5271a == bVar2) {
+                                                    if (aVar32.f5300a == bVar2) {
                                                         z112 = true;
                                                     } else {
                                                         z112 = false;
@@ -422,19 +422,19 @@ public final class t3 implements q10 {
                                                     tL_starGiftUnique322.resell_amount = arrayList;
                                                     arrayList.add(aVar32.e(bVar).q());
                                                     tL_starGiftUnique322.resell_amount.add(aVar32.e(bVar2).q());
-                                                    f6Var322.f8770b2.setResellPrice(aVar32);
-                                                    bi.v5 v5Var = f6Var322.j3;
-                                                    if (v5Var != null) {
-                                                        v5Var.run();
+                                                    f6Var322.f8794b2.setResellPrice(aVar32);
+                                                    bi.z5 z5Var = f6Var322.j3;
+                                                    if (z5Var != null) {
+                                                        z5Var.run();
                                                     }
                                                     if (runnable32 != null) {
                                                         runnable32.run();
                                                     }
-                                                    f6Var322.k().Q(2131623990, 36, gd.a0(null, null, 2131750012, f6Var322.E1())).j();
+                                                    f6Var322.k().Q(2131623990, 36, gd.a0(null, null, 2131750011, f6Var322.E1())).j();
                                                     return;
                                                 default:
                                                     tL_starGiftUnique322.flags |= 16;
-                                                    if (aVar32.f5271a == bVar2) {
+                                                    if (aVar32.f5300a == bVar2) {
                                                         z12 = true;
                                                     }
                                                     tL_starGiftUnique322.resale_ton_only = z12;
@@ -442,10 +442,10 @@ public final class t3 implements q10 {
                                                     tL_starGiftUnique322.resell_amount = arrayList2;
                                                     arrayList2.add(aVar32.e(bVar).q());
                                                     tL_starGiftUnique322.resell_amount.add(aVar32.e(bVar2).q());
-                                                    f6Var322.f8770b2.setResellPrice(aVar32);
-                                                    bi.v5 v5Var2 = f6Var322.j3;
-                                                    if (v5Var2 != null) {
-                                                        v5Var2.run();
+                                                    f6Var322.f8794b2.setResellPrice(aVar32);
+                                                    bi.z5 z5Var2 = f6Var322.j3;
+                                                    if (z5Var2 != null) {
+                                                        z5Var2.run();
                                                     }
                                                     if (runnable32 != null) {
                                                         runnable32.run();

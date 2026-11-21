@@ -9,14 +9,14 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.MotionEvent;
-public class nc extends k80 {
+public class nc extends m80 {
     public final Path M;
     public final RectF N;
     public oc O;
     public oc P;
 
-    public nc(Context context, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, i6Var);
+    public nc(Context context, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, h6Var);
         this.M = new Path();
         this.N = new RectF();
     }

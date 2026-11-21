@@ -1,121 +1,189 @@
 package hi;
 
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.mp;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class z7 extends rg.a {
-    public int f15819c;
-    public Drawable d;
-    public CharSequence f15820e;
-    public CharSequence f15821f;
-    public TLRPC.User f15822g;
-    public TLRPC.Chat h;
-    public int f15823i;
-    public int f15824j;
-    public boolean f15825k;
-    public boolean f15826l;
-    public boolean f15827m;
-    public boolean f15828n;
-    public int f15829o;
-    public int f15830p;
-    public int f15831q;
+public final class z7 implements View.OnClickListener {
+    public final int f15861a;
+    public final k8 f15862b;
 
-    public z7(int i7, boolean z10) {
-        super(i7, z10);
-        this.f15830p = -1;
+    public z7(k8 k8Var, int i7) {
+        this.f15861a = i7;
+        this.f15862b = k8Var;
     }
 
-    public static z7 b(String str, CharSequence charSequence, int i7) {
-        z7 z7Var = new z7(9, false);
-        z7Var.f15820e = str;
-        z7Var.f15821f = charSequence;
-        z7Var.f15831q = i7;
-        return z7Var;
-    }
-
-    public static z7 c() {
-        return new z7(0, false);
-    }
-
-    public static z7 d() {
-        z7 z7Var = new z7(-1, false);
-        z7Var.f15829o = -1;
-        return z7Var;
-    }
-
-    public static z7 e() {
-        return new z7(1, false);
-    }
-
-    public static z7 f() {
-        return new z7(2, false);
-    }
-
-    public static z7 g(CharSequence charSequence) {
-        z7 z7Var = new z7(6, false);
-        z7Var.f15820e = charSequence;
-        return z7Var;
-    }
-
-    public static z7 h(int i7, int i10, boolean z10) {
-        z7 z7Var = new z7(3, false);
-        z7Var.f15823i = i7;
-        z7Var.f15825k = z10;
-        z7Var.f15824j = i10;
-        return z7Var;
-    }
-
-    public static z7 i(TLRPC.User user, boolean z10, boolean z11) {
-        z7 z7Var = new z7(3, true);
-        z7Var.f15822g = user;
-        z7Var.f15825k = z10;
-        z7Var.f15826l = z11;
-        return z7Var;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && z7.class == obj.getClass()) {
-                z7 z7Var = (z7) obj;
-                int i7 = this.f56589a;
-                if (i7 == z7Var.f56589a) {
-                    if (i7 != -1 || (this.f15829o == z7Var.f15829o && this.f15830p == z7Var.f15830p)) {
-                        if (i7 != 3 || (this.f15822g == z7Var.f15822g && this.h == z7Var.h && this.f15823i == z7Var.f15823i && this.f15824j == z7Var.f15824j && this.f15825k == z7Var.f15825k && this.f15827m == z7Var.f15827m && this.f15828n == z7Var.f15828n)) {
-                            if (i7 != 0 || this.f15819c == z7Var.f15819c) {
-                                if (i7 != 2 || TextUtils.equals(this.f15820e, z7Var.f15820e)) {
-                                    if (this.f56589a != 8 || TextUtils.equals(this.f15820e, z7Var.f15820e)) {
-                                        int i10 = this.f56589a;
-                                        if ((i10 != 4 && i10 != 11) || (TextUtils.equals(this.f15820e, z7Var.f15820e) && TextUtils.equals(this.f15821f, z7Var.f15821f))) {
-                                            if (this.f56589a != 6 || (TextUtils.equals(this.f15820e, z7Var.f15820e) && this.f15819c == z7Var.f15819c)) {
-                                                if (this.f56589a != 7 || (this.f15819c == z7Var.f15819c && TextUtils.equals(this.f15820e, z7Var.f15820e) && this.f15825k == z7Var.f15825k)) {
-                                                    if (this.f56589a != 9 || (this.f15831q == z7Var.f15831q && this.d == z7Var.d && TextUtils.equals(this.f15820e, z7Var.f15820e) && TextUtils.equals(this.f15821f, z7Var.f15821f))) {
-                                                        if (this.f56589a != 10 || this.f15831q == z7Var.f15831q) {
-                                                            return true;
-                                                        }
-                                                        return false;
-                                                    }
-                                                    return false;
-                                                }
-                                                return false;
-                                            }
-                                            return false;
-                                        }
-                                        return false;
-                                    }
-                                    return false;
-                                }
-                                return false;
-                            }
-                            return false;
+    @Override
+    public final void onClick(View view) {
+        n8 n8Var;
+        int i7 = this.f15861a;
+        k8 k8Var = this.f15862b;
+        switch (i7) {
+            case 0:
+                HashMap hashMap = k8Var.d;
+                ArrayList arrayList = k8Var.f14929c;
+                p8 p8Var = k8Var.f14927a0;
+                e eVar = k8Var.f14935w;
+                if (!eVar.R) {
+                    int i10 = p8.Y1;
+                    int i11 = p8Var.f30170a;
+                    HashMap hashMap2 = p8Var.f15268p1;
+                    ArrayList arrayList2 = p8Var.f15267o1;
+                    HashMap hashMap3 = p8Var.f15272t1;
+                    ArrayList arrayList3 = p8Var.f15271s1;
+                    mp u12 = mp.u1(i11);
+                    int i12 = k8Var.f14926a;
+                    if (i12 == 5) {
+                        b8 b8Var = p8Var.Q1;
+                        if (b8Var != null) {
+                            b8Var.a(arrayList);
                         }
-                        return false;
+                        p8Var.dismiss();
+                        return;
+                    } else if (i12 == 1) {
+                        TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
+                        tL_editCloseFriends.f28481id.addAll(arrayList);
+                        eVar.setLoading(true);
+                        ConnectionsManager.getInstance(p8Var.f30170a).sendRequest(tL_editCloseFriends, new bi.o1(17, k8Var, u12));
+                        return;
+                    } else if (i12 == 0) {
+                        int i13 = p8Var.I1;
+                        if (i13 == 3) {
+                            n8Var = new n8(p8Var.I1, p8Var.f30170a, new ArrayList(p8.S0(arrayList3, hashMap3)));
+                            ArrayList arrayList4 = n8Var.f15127c;
+                            arrayList4.clear();
+                            arrayList4.addAll(arrayList3);
+                            HashMap hashMap4 = n8Var.d;
+                            hashMap4.clear();
+                            hashMap4.putAll(hashMap3);
+                        } else if (i13 == 2) {
+                            n8Var = new n8(i13, p8Var.f30170a, p8Var.f15270r1);
+                        } else if (i13 == 4) {
+                            n8Var = new n8(p8Var.I1, p8Var.f30170a, new ArrayList(p8.S0(arrayList2, hashMap2)));
+                            ArrayList arrayList5 = n8Var.f15127c;
+                            arrayList5.clear();
+                            arrayList5.addAll(arrayList2);
+                            HashMap hashMap5 = n8Var.d;
+                            hashMap5.clear();
+                            hashMap5.putAll(hashMap2);
+                        } else {
+                            n8Var = new n8(i13, p8Var.f30170a, (ArrayList) null);
+                        }
+                        p8Var.O0(n8Var, new fi.o3(p8Var, 1), false);
+                        return;
+                    } else if (i12 == 2) {
+                        if (p8Var.U1) {
+                            p8Var.N0();
+                            p8Var.O0(new n8(2, p8Var.f30170a, arrayList), new fi.o3(p8Var, 1), false);
+                            return;
+                        }
+                        p8Var.N0();
+                        p8Var.f15266m1.A(0);
+                        return;
+                    } else if (i12 == 3) {
+                        if (p8Var.U1) {
+                            HashSet S0 = p8.S0(arrayList, hashMap);
+                            if (!S0.isEmpty()) {
+                                p8Var.N0();
+                                n8 n8Var2 = new n8(3, p8Var.f30170a, new ArrayList(S0));
+                                ArrayList arrayList6 = n8Var2.f15127c;
+                                arrayList6.clear();
+                                arrayList6.addAll(arrayList);
+                                HashMap hashMap6 = n8Var2.d;
+                                hashMap6.clear();
+                                hashMap6.putAll(hashMap);
+                                p8Var.O0(n8Var2, new a8(k8Var, 0), false);
+                                return;
+                            }
+                            return;
+                        } else if (!p8.S0(arrayList, hashMap).isEmpty()) {
+                            p8Var.I1 = 3;
+                            p8Var.N0();
+                            p8Var.f15266m1.A(0);
+                            return;
+                        } else {
+                            return;
+                        }
+                    } else if (i12 == 6) {
+                        HashSet S02 = p8.S0(arrayList, hashMap);
+                        eVar.setLoading(true);
+                        fi.p6 R1 = mp.u1(p8Var.f30170a).R1();
+                        a8 a8Var = new a8(k8Var, 1);
+                        int i14 = R1.f12422a;
+                        TLRPC.TL_contacts_setBlocked tL_contacts_setBlocked = new TLRPC.TL_contacts_setBlocked();
+                        tL_contacts_setBlocked.my_stories_from = true;
+                        HashSet hashSet = R1.L;
+                        tL_contacts_setBlocked.limit = hashSet.size();
+                        int size = R1.N - hashSet.size();
+                        R1.N = size;
+                        if (size < 0) {
+                            R1.N = 0;
+                        }
+                        hashSet.clear();
+                        Iterator it = S02.iterator();
+                        while (it.hasNext()) {
+                            Long l10 = (Long) it.next();
+                            TLRPC.InputPeer l1 = mp.u1(i14).l1(l10.longValue());
+                            if (!(l1 instanceof TLRPC.TL_inputPeerEmpty)) {
+                                hashSet.add(l10);
+                                tL_contacts_setBlocked.f28478id.add(l1);
+                            }
+                        }
+                        R1.N = hashSet.size() + R1.N;
+                        tL_contacts_setBlocked.limit = Math.max(tL_contacts_setBlocked.limit, hashSet.size());
+                        ConnectionsManager.getInstance(i14).sendRequest(tL_contacts_setBlocked, new ai.g1(a8Var, 6));
+                        return;
+                    } else {
+                        p8Var.I1 = i12;
+                        p8Var.N0();
+                        p8Var.f15266m1.A(0);
+                        return;
                     }
-                    return false;
                 }
-                return false;
-            }
-            return false;
+                return;
+            case 1:
+                p8 p8Var2 = k8Var.f14927a0;
+                if (p8Var2.J1) {
+                    p8Var2.H1 = 5;
+                    p8Var2.f15266m1.A(1);
+                    return;
+                }
+                p8 p8Var3 = new p8(k8Var.getContext(), p8Var2.J0);
+                p8Var3.Q1 = new b8(k8Var, 1);
+                p8Var3.L1 = p8Var2.L1;
+                p8Var3.show();
+                return;
+            default:
+                HashMap hashMap7 = k8Var.d;
+                a0.h hVar = k8Var.f14928b;
+                ArrayList arrayList7 = k8Var.f14929c;
+                int size2 = arrayList7.size();
+                int i15 = 0;
+                while (i15 < size2) {
+                    Object obj = arrayList7.get(i15);
+                    i15++;
+                    hVar.k(Boolean.FALSE, ((Long) obj).longValue());
+                }
+                for (ArrayList arrayList8 : hashMap7.values()) {
+                    int size3 = arrayList8.size();
+                    int i16 = 0;
+                    while (i16 < size3) {
+                        Object obj2 = arrayList8.get(i16);
+                        i16++;
+                        hVar.k(Boolean.FALSE, ((Long) obj2).longValue());
+                    }
+                }
+                arrayList7.clear();
+                hashMap7.clear();
+                k8Var.f14927a0.E1.clear();
+                k8Var.f14937y.d.a();
+                k8Var.g(true);
+                k8Var.f(true);
+                return;
         }
-        return true;
     }
 }

@@ -3,33 +3,33 @@ package org.telegram.ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class j50 implements TextWatcher {
-    public final k50 f48882a;
+    public final k50 f48896a;
 
     public j50(k50 k50Var) {
-        this.f48882a = k50Var;
+        this.f48896a = k50Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String trim = editable.toString().trim();
-        k50 k50Var = this.f48882a;
+        k50 k50Var = this.f48896a;
         n50 n50Var = k50Var.h;
-        if (k50Var.f49157c != 0) {
-            n50Var.getConnectionsManager().cancelRequest(k50Var.f49157c, true);
-            k50Var.f49157c = 0;
+        if (k50Var.f49200c != 0) {
+            n50Var.getConnectionsManager().cancelRequest(k50Var.f49200c, true);
+            k50Var.f49200c = 0;
         }
-        vs vsVar = k50Var.d;
-        if (vsVar != null) {
-            org.telegram.messenger.g0.r(vsVar);
+        ss ssVar = k50Var.d;
+        if (ssVar != null) {
+            org.telegram.messenger.g0.r(ssVar);
         }
-        k50Var.f49158e = null;
+        k50Var.f49201e = null;
         if (trim.isEmpty()) {
             n50.f0(n50Var, null);
             return;
         }
-        vs vsVar2 = new vs(24, this, trim);
-        k50Var.d = vsVar2;
-        org.telegram.messenger.g0.h3(vsVar2, 300L);
+        ss ssVar2 = new ss(26, this, trim);
+        k50Var.d = ssVar2;
+        org.telegram.messenger.g0.h3(ssVar2, 300L);
     }
 
     @Override

@@ -4,19 +4,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ih implements RequestDelegate {
-    public final int f24672a;
-    public final ri f24673b;
+    public final int f24700a;
+    public final ri f24701b;
 
     public ih(ri riVar, int i7) {
-        this.f24672a = i7;
-        this.f24673b = riVar;
+        this.f24700a = i7;
+        this.f24701b = riVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f24672a) {
+        switch (this.f24700a) {
             case 0:
-                ri riVar = this.f24673b;
+                ri riVar = this.f24701b;
                 if (tL_error != null) {
                     g0.g3(new eg(riVar, 11));
                     return;
@@ -25,7 +25,7 @@ public final class ih implements RequestDelegate {
                 g0.g3(new eg(riVar, 12));
                 return;
             case 1:
-                final ri riVar2 = this.f24673b;
+                final ri riVar2 = this.f24701b;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -38,12 +38,12 @@ public final class ih implements RequestDelegate {
                                 ri riVar4 = riVar2;
                                 if (z10) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar4.getUserConfig().f24780e0 = tL_messages_stickerSet.set.short_name;
-                                    riVar4.getUserConfig().f24785i0 = System.currentTimeMillis();
+                                    riVar4.getUserConfig().f24808e0 = tL_messages_stickerSet.set.short_name;
+                                    riVar4.getUserConfig().f24813i0 = System.currentTimeMillis();
                                     riVar4.getUserConfig().v(false);
-                                    riVar4.v1(riVar4.getUserConfig().f24780e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar4.v1(riVar4.getUserConfig().f24808e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
                                     for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
-                                        if (riVar4.currentAccount == j10.f24770t0) {
+                                        if (riVar4.currentAccount == j10.f24798t0) {
                                             riVar4.o1(fc.b(tL_messages_stickerSet.documents.get(i10)), 0);
                                         }
                                     }
@@ -53,8 +53,8 @@ public final class ih implements RequestDelegate {
                                 return;
                             case 1:
                                 if (tLObject2 instanceof TLRPC.TL_boolTrue) {
-                                    riVar3.getMessagesStorage().f27052a.c(new eg(riVar3, 13));
-                                    riVar3.f26613g0[0].clear();
+                                    riVar3.getMessagesStorage().f27080a.c(new eg(riVar3, 13));
+                                    riVar3.f26641g0[0].clear();
                                     ks.f(riVar3.currentAccount).k(86, Boolean.FALSE, 0);
                                     return;
                                 }
@@ -64,10 +64,10 @@ public final class ih implements RequestDelegate {
                                 ri riVar5 = riVar2;
                                 if (z11) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar5.getUserConfig().f24782f0 = tL_messages_stickerSet2.set.short_name;
-                                    riVar5.getUserConfig().f24786j0 = System.currentTimeMillis();
+                                    riVar5.getUserConfig().f24810f0 = tL_messages_stickerSet2.set.short_name;
+                                    riVar5.getUserConfig().f24814j0 = System.currentTimeMillis();
                                     riVar5.getUserConfig().v(false);
-                                    riVar5.v1(riVar5.getUserConfig().f24782f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar5.v1(riVar5.getUserConfig().f24810f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
                                     return;
                                 }
                                 riVar5.getClass();
@@ -76,10 +76,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar6 = riVar2;
-                                    riVar6.getUserConfig().f24777c0 = tL_messages_stickerSet3.set.short_name;
-                                    riVar6.getUserConfig().f24783g0 = System.currentTimeMillis();
+                                    riVar6.getUserConfig().f24805c0 = tL_messages_stickerSet3.set.short_name;
+                                    riVar6.getUserConfig().f24811g0 = System.currentTimeMillis();
                                     riVar6.getUserConfig().v(false);
-                                    riVar6.v1(riVar6.getUserConfig().f24777c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar6.v1(riVar6.getUserConfig().f24805c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar6.getNotificationCenter().k(194, new Object[0]);
                                     return;
                                 }
@@ -101,10 +101,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar7 = riVar2;
-                                    riVar7.getUserConfig().f24778d0 = tL_messages_stickerSet4.set.short_name;
-                                    riVar7.getUserConfig().f24784h0 = System.currentTimeMillis();
+                                    riVar7.getUserConfig().f24806d0 = tL_messages_stickerSet4.set.short_name;
+                                    riVar7.getUserConfig().f24812h0 = System.currentTimeMillis();
                                     riVar7.getUserConfig().v(false);
-                                    riVar7.v1(riVar7.getUserConfig().f24778d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar7.v1(riVar7.getUserConfig().f24806d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar7.getNotificationCenter().k(195, new Object[0]);
                                     return;
                                 }
@@ -114,10 +114,10 @@ public final class ih implements RequestDelegate {
                 });
                 return;
             case 2:
-                g0.g3(new yf(this.f24673b, tL_error, tLObject, 0));
+                g0.g3(new yf(this.f24701b, tL_error, tLObject, 0));
                 return;
             case 3:
-                final ri riVar3 = this.f24673b;
+                final ri riVar3 = this.f24701b;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -130,12 +130,12 @@ public final class ih implements RequestDelegate {
                                 ri riVar4 = riVar3;
                                 if (z10) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar4.getUserConfig().f24780e0 = tL_messages_stickerSet.set.short_name;
-                                    riVar4.getUserConfig().f24785i0 = System.currentTimeMillis();
+                                    riVar4.getUserConfig().f24808e0 = tL_messages_stickerSet.set.short_name;
+                                    riVar4.getUserConfig().f24813i0 = System.currentTimeMillis();
                                     riVar4.getUserConfig().v(false);
-                                    riVar4.v1(riVar4.getUserConfig().f24780e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar4.v1(riVar4.getUserConfig().f24808e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
                                     for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
-                                        if (riVar4.currentAccount == j10.f24770t0) {
+                                        if (riVar4.currentAccount == j10.f24798t0) {
                                             riVar4.o1(fc.b(tL_messages_stickerSet.documents.get(i10)), 0);
                                         }
                                     }
@@ -145,8 +145,8 @@ public final class ih implements RequestDelegate {
                                 return;
                             case 1:
                                 if (tLObject2 instanceof TLRPC.TL_boolTrue) {
-                                    riVar32.getMessagesStorage().f27052a.c(new eg(riVar32, 13));
-                                    riVar32.f26613g0[0].clear();
+                                    riVar32.getMessagesStorage().f27080a.c(new eg(riVar32, 13));
+                                    riVar32.f26641g0[0].clear();
                                     ks.f(riVar32.currentAccount).k(86, Boolean.FALSE, 0);
                                     return;
                                 }
@@ -156,10 +156,10 @@ public final class ih implements RequestDelegate {
                                 ri riVar5 = riVar3;
                                 if (z11) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar5.getUserConfig().f24782f0 = tL_messages_stickerSet2.set.short_name;
-                                    riVar5.getUserConfig().f24786j0 = System.currentTimeMillis();
+                                    riVar5.getUserConfig().f24810f0 = tL_messages_stickerSet2.set.short_name;
+                                    riVar5.getUserConfig().f24814j0 = System.currentTimeMillis();
                                     riVar5.getUserConfig().v(false);
-                                    riVar5.v1(riVar5.getUserConfig().f24782f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar5.v1(riVar5.getUserConfig().f24810f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
                                     return;
                                 }
                                 riVar5.getClass();
@@ -168,10 +168,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar6 = riVar3;
-                                    riVar6.getUserConfig().f24777c0 = tL_messages_stickerSet3.set.short_name;
-                                    riVar6.getUserConfig().f24783g0 = System.currentTimeMillis();
+                                    riVar6.getUserConfig().f24805c0 = tL_messages_stickerSet3.set.short_name;
+                                    riVar6.getUserConfig().f24811g0 = System.currentTimeMillis();
                                     riVar6.getUserConfig().v(false);
-                                    riVar6.v1(riVar6.getUserConfig().f24777c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar6.v1(riVar6.getUserConfig().f24805c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar6.getNotificationCenter().k(194, new Object[0]);
                                     return;
                                 }
@@ -193,10 +193,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar7 = riVar3;
-                                    riVar7.getUserConfig().f24778d0 = tL_messages_stickerSet4.set.short_name;
-                                    riVar7.getUserConfig().f24784h0 = System.currentTimeMillis();
+                                    riVar7.getUserConfig().f24806d0 = tL_messages_stickerSet4.set.short_name;
+                                    riVar7.getUserConfig().f24812h0 = System.currentTimeMillis();
                                     riVar7.getUserConfig().v(false);
-                                    riVar7.v1(riVar7.getUserConfig().f24778d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar7.v1(riVar7.getUserConfig().f24806d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar7.getNotificationCenter().k(195, new Object[0]);
                                     return;
                                 }
@@ -206,7 +206,7 @@ public final class ih implements RequestDelegate {
                 });
                 return;
             case 4:
-                final ri riVar4 = this.f24673b;
+                final ri riVar4 = this.f24701b;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -219,12 +219,12 @@ public final class ih implements RequestDelegate {
                                 ri riVar42 = riVar4;
                                 if (z10) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar42.getUserConfig().f24780e0 = tL_messages_stickerSet.set.short_name;
-                                    riVar42.getUserConfig().f24785i0 = System.currentTimeMillis();
+                                    riVar42.getUserConfig().f24808e0 = tL_messages_stickerSet.set.short_name;
+                                    riVar42.getUserConfig().f24813i0 = System.currentTimeMillis();
                                     riVar42.getUserConfig().v(false);
-                                    riVar42.v1(riVar42.getUserConfig().f24780e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar42.v1(riVar42.getUserConfig().f24808e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
                                     for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
-                                        if (riVar42.currentAccount == j10.f24770t0) {
+                                        if (riVar42.currentAccount == j10.f24798t0) {
                                             riVar42.o1(fc.b(tL_messages_stickerSet.documents.get(i10)), 0);
                                         }
                                     }
@@ -234,8 +234,8 @@ public final class ih implements RequestDelegate {
                                 return;
                             case 1:
                                 if (tLObject2 instanceof TLRPC.TL_boolTrue) {
-                                    riVar32.getMessagesStorage().f27052a.c(new eg(riVar32, 13));
-                                    riVar32.f26613g0[0].clear();
+                                    riVar32.getMessagesStorage().f27080a.c(new eg(riVar32, 13));
+                                    riVar32.f26641g0[0].clear();
                                     ks.f(riVar32.currentAccount).k(86, Boolean.FALSE, 0);
                                     return;
                                 }
@@ -245,10 +245,10 @@ public final class ih implements RequestDelegate {
                                 ri riVar5 = riVar4;
                                 if (z11) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar5.getUserConfig().f24782f0 = tL_messages_stickerSet2.set.short_name;
-                                    riVar5.getUserConfig().f24786j0 = System.currentTimeMillis();
+                                    riVar5.getUserConfig().f24810f0 = tL_messages_stickerSet2.set.short_name;
+                                    riVar5.getUserConfig().f24814j0 = System.currentTimeMillis();
                                     riVar5.getUserConfig().v(false);
-                                    riVar5.v1(riVar5.getUserConfig().f24782f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar5.v1(riVar5.getUserConfig().f24810f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
                                     return;
                                 }
                                 riVar5.getClass();
@@ -257,10 +257,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar6 = riVar4;
-                                    riVar6.getUserConfig().f24777c0 = tL_messages_stickerSet3.set.short_name;
-                                    riVar6.getUserConfig().f24783g0 = System.currentTimeMillis();
+                                    riVar6.getUserConfig().f24805c0 = tL_messages_stickerSet3.set.short_name;
+                                    riVar6.getUserConfig().f24811g0 = System.currentTimeMillis();
                                     riVar6.getUserConfig().v(false);
-                                    riVar6.v1(riVar6.getUserConfig().f24777c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar6.v1(riVar6.getUserConfig().f24805c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar6.getNotificationCenter().k(194, new Object[0]);
                                     return;
                                 }
@@ -282,10 +282,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar7 = riVar4;
-                                    riVar7.getUserConfig().f24778d0 = tL_messages_stickerSet4.set.short_name;
-                                    riVar7.getUserConfig().f24784h0 = System.currentTimeMillis();
+                                    riVar7.getUserConfig().f24806d0 = tL_messages_stickerSet4.set.short_name;
+                                    riVar7.getUserConfig().f24812h0 = System.currentTimeMillis();
                                     riVar7.getUserConfig().v(false);
-                                    riVar7.v1(riVar7.getUserConfig().f24778d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar7.v1(riVar7.getUserConfig().f24806d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar7.getNotificationCenter().k(195, new Object[0]);
                                     return;
                                 }
@@ -295,7 +295,7 @@ public final class ih implements RequestDelegate {
                 });
                 return;
             case 5:
-                final ri riVar5 = this.f24673b;
+                final ri riVar5 = this.f24701b;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -308,12 +308,12 @@ public final class ih implements RequestDelegate {
                                 ri riVar42 = riVar5;
                                 if (z10) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar42.getUserConfig().f24780e0 = tL_messages_stickerSet.set.short_name;
-                                    riVar42.getUserConfig().f24785i0 = System.currentTimeMillis();
+                                    riVar42.getUserConfig().f24808e0 = tL_messages_stickerSet.set.short_name;
+                                    riVar42.getUserConfig().f24813i0 = System.currentTimeMillis();
                                     riVar42.getUserConfig().v(false);
-                                    riVar42.v1(riVar42.getUserConfig().f24780e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar42.v1(riVar42.getUserConfig().f24808e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
                                     for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
-                                        if (riVar42.currentAccount == j10.f24770t0) {
+                                        if (riVar42.currentAccount == j10.f24798t0) {
                                             riVar42.o1(fc.b(tL_messages_stickerSet.documents.get(i10)), 0);
                                         }
                                     }
@@ -323,8 +323,8 @@ public final class ih implements RequestDelegate {
                                 return;
                             case 1:
                                 if (tLObject2 instanceof TLRPC.TL_boolTrue) {
-                                    riVar32.getMessagesStorage().f27052a.c(new eg(riVar32, 13));
-                                    riVar32.f26613g0[0].clear();
+                                    riVar32.getMessagesStorage().f27080a.c(new eg(riVar32, 13));
+                                    riVar32.f26641g0[0].clear();
                                     ks.f(riVar32.currentAccount).k(86, Boolean.FALSE, 0);
                                     return;
                                 }
@@ -334,10 +334,10 @@ public final class ih implements RequestDelegate {
                                 ri riVar52 = riVar5;
                                 if (z11) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar52.getUserConfig().f24782f0 = tL_messages_stickerSet2.set.short_name;
-                                    riVar52.getUserConfig().f24786j0 = System.currentTimeMillis();
+                                    riVar52.getUserConfig().f24810f0 = tL_messages_stickerSet2.set.short_name;
+                                    riVar52.getUserConfig().f24814j0 = System.currentTimeMillis();
                                     riVar52.getUserConfig().v(false);
-                                    riVar52.v1(riVar52.getUserConfig().f24782f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar52.v1(riVar52.getUserConfig().f24810f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
                                     return;
                                 }
                                 riVar52.getClass();
@@ -346,10 +346,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar6 = riVar5;
-                                    riVar6.getUserConfig().f24777c0 = tL_messages_stickerSet3.set.short_name;
-                                    riVar6.getUserConfig().f24783g0 = System.currentTimeMillis();
+                                    riVar6.getUserConfig().f24805c0 = tL_messages_stickerSet3.set.short_name;
+                                    riVar6.getUserConfig().f24811g0 = System.currentTimeMillis();
                                     riVar6.getUserConfig().v(false);
-                                    riVar6.v1(riVar6.getUserConfig().f24777c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar6.v1(riVar6.getUserConfig().f24805c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar6.getNotificationCenter().k(194, new Object[0]);
                                     return;
                                 }
@@ -371,10 +371,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar7 = riVar5;
-                                    riVar7.getUserConfig().f24778d0 = tL_messages_stickerSet4.set.short_name;
-                                    riVar7.getUserConfig().f24784h0 = System.currentTimeMillis();
+                                    riVar7.getUserConfig().f24806d0 = tL_messages_stickerSet4.set.short_name;
+                                    riVar7.getUserConfig().f24812h0 = System.currentTimeMillis();
                                     riVar7.getUserConfig().v(false);
-                                    riVar7.v1(riVar7.getUserConfig().f24778d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar7.v1(riVar7.getUserConfig().f24806d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar7.getNotificationCenter().k(195, new Object[0]);
                                     return;
                                 }
@@ -385,12 +385,12 @@ public final class ih implements RequestDelegate {
                 return;
             case 6:
                 if (tLObject != null) {
-                    g0.g3(new cg(this.f24673b, (TLRPC.TL_messages_stickerSet) tLObject, 0));
+                    g0.g3(new cg(this.f24701b, (TLRPC.TL_messages_stickerSet) tLObject, 0));
                     return;
                 }
                 return;
             case 7:
-                final ri riVar6 = this.f24673b;
+                final ri riVar6 = this.f24701b;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -403,12 +403,12 @@ public final class ih implements RequestDelegate {
                                 ri riVar42 = riVar6;
                                 if (z10) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar42.getUserConfig().f24780e0 = tL_messages_stickerSet.set.short_name;
-                                    riVar42.getUserConfig().f24785i0 = System.currentTimeMillis();
+                                    riVar42.getUserConfig().f24808e0 = tL_messages_stickerSet.set.short_name;
+                                    riVar42.getUserConfig().f24813i0 = System.currentTimeMillis();
                                     riVar42.getUserConfig().v(false);
-                                    riVar42.v1(riVar42.getUserConfig().f24780e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar42.v1(riVar42.getUserConfig().f24808e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
                                     for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
-                                        if (riVar42.currentAccount == j10.f24770t0) {
+                                        if (riVar42.currentAccount == j10.f24798t0) {
                                             riVar42.o1(fc.b(tL_messages_stickerSet.documents.get(i10)), 0);
                                         }
                                     }
@@ -418,8 +418,8 @@ public final class ih implements RequestDelegate {
                                 return;
                             case 1:
                                 if (tLObject2 instanceof TLRPC.TL_boolTrue) {
-                                    riVar32.getMessagesStorage().f27052a.c(new eg(riVar32, 13));
-                                    riVar32.f26613g0[0].clear();
+                                    riVar32.getMessagesStorage().f27080a.c(new eg(riVar32, 13));
+                                    riVar32.f26641g0[0].clear();
                                     ks.f(riVar32.currentAccount).k(86, Boolean.FALSE, 0);
                                     return;
                                 }
@@ -429,10 +429,10 @@ public final class ih implements RequestDelegate {
                                 ri riVar52 = riVar6;
                                 if (z11) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar52.getUserConfig().f24782f0 = tL_messages_stickerSet2.set.short_name;
-                                    riVar52.getUserConfig().f24786j0 = System.currentTimeMillis();
+                                    riVar52.getUserConfig().f24810f0 = tL_messages_stickerSet2.set.short_name;
+                                    riVar52.getUserConfig().f24814j0 = System.currentTimeMillis();
                                     riVar52.getUserConfig().v(false);
-                                    riVar52.v1(riVar52.getUserConfig().f24782f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar52.v1(riVar52.getUserConfig().f24810f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
                                     return;
                                 }
                                 riVar52.getClass();
@@ -441,10 +441,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar62 = riVar6;
-                                    riVar62.getUserConfig().f24777c0 = tL_messages_stickerSet3.set.short_name;
-                                    riVar62.getUserConfig().f24783g0 = System.currentTimeMillis();
+                                    riVar62.getUserConfig().f24805c0 = tL_messages_stickerSet3.set.short_name;
+                                    riVar62.getUserConfig().f24811g0 = System.currentTimeMillis();
                                     riVar62.getUserConfig().v(false);
-                                    riVar62.v1(riVar62.getUserConfig().f24777c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar62.v1(riVar62.getUserConfig().f24805c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar62.getNotificationCenter().k(194, new Object[0]);
                                     return;
                                 }
@@ -466,10 +466,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar7 = riVar6;
-                                    riVar7.getUserConfig().f24778d0 = tL_messages_stickerSet4.set.short_name;
-                                    riVar7.getUserConfig().f24784h0 = System.currentTimeMillis();
+                                    riVar7.getUserConfig().f24806d0 = tL_messages_stickerSet4.set.short_name;
+                                    riVar7.getUserConfig().f24812h0 = System.currentTimeMillis();
                                     riVar7.getUserConfig().v(false);
-                                    riVar7.v1(riVar7.getUserConfig().f24778d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar7.v1(riVar7.getUserConfig().f24806d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar7.getNotificationCenter().k(195, new Object[0]);
                                     return;
                                 }
@@ -479,7 +479,7 @@ public final class ih implements RequestDelegate {
                 });
                 return;
             case 8:
-                final ri riVar7 = this.f24673b;
+                final ri riVar7 = this.f24701b;
                 g0.g3(new Runnable() {
                     @Override
                     public final void run() {
@@ -492,12 +492,12 @@ public final class ih implements RequestDelegate {
                                 ri riVar42 = riVar7;
                                 if (z10) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar42.getUserConfig().f24780e0 = tL_messages_stickerSet.set.short_name;
-                                    riVar42.getUserConfig().f24785i0 = System.currentTimeMillis();
+                                    riVar42.getUserConfig().f24808e0 = tL_messages_stickerSet.set.short_name;
+                                    riVar42.getUserConfig().f24813i0 = System.currentTimeMillis();
                                     riVar42.getUserConfig().v(false);
-                                    riVar42.v1(riVar42.getUserConfig().f24780e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar42.v1(riVar42.getUserConfig().f24808e0, false, tL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
                                     for (int i10 = 0; i10 < tL_messages_stickerSet.documents.size(); i10++) {
-                                        if (riVar42.currentAccount == j10.f24770t0) {
+                                        if (riVar42.currentAccount == j10.f24798t0) {
                                             riVar42.o1(fc.b(tL_messages_stickerSet.documents.get(i10)), 0);
                                         }
                                     }
@@ -507,8 +507,8 @@ public final class ih implements RequestDelegate {
                                 return;
                             case 1:
                                 if (tLObject2 instanceof TLRPC.TL_boolTrue) {
-                                    riVar32.getMessagesStorage().f27052a.c(new eg(riVar32, 13));
-                                    riVar32.f26613g0[0].clear();
+                                    riVar32.getMessagesStorage().f27080a.c(new eg(riVar32, 13));
+                                    riVar32.f26641g0[0].clear();
                                     ks.f(riVar32.currentAccount).k(86, Boolean.FALSE, 0);
                                     return;
                                 }
@@ -518,10 +518,10 @@ public final class ih implements RequestDelegate {
                                 ri riVar52 = riVar7;
                                 if (z11) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                    riVar52.getUserConfig().f24782f0 = tL_messages_stickerSet2.set.short_name;
-                                    riVar52.getUserConfig().f24786j0 = System.currentTimeMillis();
+                                    riVar52.getUserConfig().f24810f0 = tL_messages_stickerSet2.set.short_name;
+                                    riVar52.getUserConfig().f24814j0 = System.currentTimeMillis();
                                     riVar52.getUserConfig().v(false);
-                                    riVar52.v1(riVar52.getUserConfig().f24782f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar52.v1(riVar52.getUserConfig().f24810f0, false, tL_messages_stickerSet2, false, (int) (System.currentTimeMillis() / 1000));
                                     return;
                                 }
                                 riVar52.getClass();
@@ -530,10 +530,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar62 = riVar7;
-                                    riVar62.getUserConfig().f24777c0 = tL_messages_stickerSet3.set.short_name;
-                                    riVar62.getUserConfig().f24783g0 = System.currentTimeMillis();
+                                    riVar62.getUserConfig().f24805c0 = tL_messages_stickerSet3.set.short_name;
+                                    riVar62.getUserConfig().f24811g0 = System.currentTimeMillis();
                                     riVar62.getUserConfig().v(false);
-                                    riVar62.v1(riVar62.getUserConfig().f24777c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar62.v1(riVar62.getUserConfig().f24805c0, false, tL_messages_stickerSet3, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar62.getNotificationCenter().k(194, new Object[0]);
                                     return;
                                 }
@@ -555,10 +555,10 @@ public final class ih implements RequestDelegate {
                                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = (TLRPC.TL_messages_stickerSet) tLObject2;
                                     ri riVar72 = riVar7;
-                                    riVar72.getUserConfig().f24778d0 = tL_messages_stickerSet4.set.short_name;
-                                    riVar72.getUserConfig().f24784h0 = System.currentTimeMillis();
+                                    riVar72.getUserConfig().f24806d0 = tL_messages_stickerSet4.set.short_name;
+                                    riVar72.getUserConfig().f24812h0 = System.currentTimeMillis();
                                     riVar72.getUserConfig().v(false);
-                                    riVar72.v1(riVar72.getUserConfig().f24778d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
+                                    riVar72.v1(riVar72.getUserConfig().f24806d0, false, tL_messages_stickerSet4, false, (int) (System.currentTimeMillis() / 1000));
                                     riVar72.getNotificationCenter().k(195, new Object[0]);
                                     return;
                                 }
@@ -568,7 +568,7 @@ public final class ih implements RequestDelegate {
                 });
                 return;
             default:
-                ri riVar8 = this.f24673b;
+                ri riVar8 = this.f24701b;
                 riVar8.getClass();
                 int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
                 if (tLObject instanceof TLRPC.TL_help_premiumPromo) {

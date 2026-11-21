@@ -17,44 +17,44 @@ public final class jz extends DefaultHandler {
     public boolean I;
     public int J;
     public ArrayList K;
-    public Canvas f24945a;
-    public Bitmap f24946b;
-    public final lz f24947c;
+    public Canvas f24973a;
+    public Bitmap f24974b;
+    public final lz f24975c;
     public final int d;
-    public final int f24948e;
-    public float f24949f;
+    public final int f24976e;
+    public float f24977f;
     public final Paint h;
-    public final RectF f24950n;
-    public final RectF f24951r;
-    public final Integer f24952s;
-    public final float f24953w;
-    public final int f24954x;
-    public boolean f24955y;
+    public final RectF f24978n;
+    public final RectF f24979r;
+    public final Integer f24980s;
+    public final float f24981w;
+    public final int f24982x;
+    public boolean f24983y;
 
     public jz(int i7, int i10, Integer num, boolean z10) {
         this(i7, i10, num, z10, 1.0f, 1);
     }
 
-    public final void a(ji.j r3, java.lang.Integer r4, boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.jz.a(ji.j, java.lang.Integer, boolean):void");
+    public final void a(ji.l r3, java.lang.Integer r4, boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.jz.a(ji.l, java.lang.Integer, boolean):void");
     }
 
-    public final boolean b(ji.j jVar) {
-        if (!"none".equals(jVar.L("display"))) {
-            String L = jVar.L("fill");
+    public final boolean b(ji.l lVar) {
+        if (!"none".equals(lVar.L("display"))) {
+            String L = lVar.L("fill");
             if (L != null && L.startsWith("url(#")) {
                 L.substring(5, L.length() - 1);
                 return false;
             }
-            Integer N = jVar.N("fill");
+            Integer N = lVar.N("fill");
             Paint paint = this.h;
             if (N != null) {
-                a(jVar, N, true);
+                a(lVar, N, true);
                 paint.setStyle(Paint.Style.FILL);
                 return true;
-            } else if (jVar.L("fill") == null && jVar.L("stroke") == null) {
+            } else if (lVar.L("fill") == null && lVar.L("stroke") == null) {
                 paint.setStyle(Paint.Style.FILL);
-                Integer num = this.f24952s;
+                Integer num = this.f24980s;
                 if (num != null) {
                     paint.setColor(num.intValue());
                     return true;
@@ -66,8 +66,8 @@ public final class jz extends DefaultHandler {
         return false;
     }
 
-    public final boolean c(ji.j r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.jz.c(ji.j):boolean");
+    public final boolean c(ji.l r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.jz.c(ji.l):boolean");
     }
 
     @Override
@@ -79,7 +79,7 @@ public final class jz extends DefaultHandler {
     }
 
     public final Bitmap d() {
-        return this.f24946b;
+        return this.f24974b;
     }
 
     public final ArrayList e() {
@@ -153,12 +153,12 @@ public final class jz extends DefaultHandler {
     }
 
     public final void f() {
-        if (this.f24955y) {
-            lz lzVar = this.f24947c;
+        if (this.f24983y) {
+            lz lzVar = this.f24975c;
             if (lzVar != null) {
-                lzVar.f25483a.add(null);
+                lzVar.f25511a.add(null);
             } else {
-                this.f24945a.restore();
+                this.f24973a.restore();
             }
         }
     }
@@ -171,16 +171,16 @@ public final class jz extends DefaultHandler {
         } else {
             z10 = false;
         }
-        this.f24955y = z10;
+        this.f24983y = z10;
         if (z10) {
             Matrix o4 = mz.o(l10);
-            lz lzVar = this.f24947c;
+            lz lzVar = this.f24975c;
             if (lzVar != null) {
-                lzVar.f25483a.add(o4);
+                lzVar.f25511a.add(o4);
                 return;
             }
-            this.f24945a.save();
-            this.f24945a.concat(o4);
+            this.f24973a.save();
+            this.f24973a.concat(o4);
         }
     }
 
@@ -190,22 +190,22 @@ public final class jz extends DefaultHandler {
     }
 
     public jz(int i7, int i10, Integer num, boolean z10, float f10, int i11) {
-        this.f24949f = 1.0f;
+        this.f24977f = 1.0f;
         this.h = new Paint(1);
-        this.f24950n = new RectF();
-        this.f24951r = new RectF();
-        this.f24953w = 1.0f;
-        this.f24955y = false;
+        this.f24978n = new RectF();
+        this.f24979r = new RectF();
+        this.f24981w = 1.0f;
+        this.f24983y = false;
         this.E = new HashMap();
         this.I = false;
         this.J = 0;
-        this.f24953w = f10;
+        this.f24981w = f10;
         this.d = i7;
-        this.f24948e = i10;
-        this.f24952s = num;
-        this.f24954x = i11;
+        this.f24976e = i10;
+        this.f24980s = num;
+        this.f24982x = i11;
         if (z10) {
-            this.f24947c = new lz();
+            this.f24975c = new lz();
         }
     }
 

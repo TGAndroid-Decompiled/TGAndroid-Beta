@@ -1,36 +1,36 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class r40 extends org.telegram.ui.Components.g10 {
-    public final z40 f51451r;
+public final class r40 extends org.telegram.ui.Components.j10 {
+    public final z40 f51440r;
 
     public r40(z40 z40Var, Context context, int i7) {
         super(context, i7);
-        this.f51451r = z40Var;
+        this.f51440r = z40Var;
     }
 
     @Override
-    public final void a(org.telegram.ui.Components.m20 m20Var) {
-        super.a(m20Var);
-        z40.e0(this.f51451r);
+    public final void a(org.telegram.ui.Components.p20 p20Var) {
+        super.a(p20Var);
+        z40.e0(this.f51440r);
     }
 
     @Override
     public final void b() {
         super.b();
-        z40.e0(this.f51451r);
+        z40.e0(this.f51440r);
     }
 
     @Override
-    public final void c(org.telegram.ui.Components.m20 m20Var) {
-        z40 z40Var = this.f51451r;
-        if (m20Var == z40Var.Y) {
+    public final void c(org.telegram.ui.Components.p20 p20Var) {
+        z40 z40Var = this.f51440r;
+        if (p20Var == z40Var.Y) {
             z40Var.Y = null;
         }
-        if (m20Var == z40Var.Z) {
+        if (p20Var == z40Var.Z) {
             z40Var.Z = null;
         }
-        super.c(m20Var);
+        super.c(p20Var);
         z40.e0(z40Var);
     }
 }

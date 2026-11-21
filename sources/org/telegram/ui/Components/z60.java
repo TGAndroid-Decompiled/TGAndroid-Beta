@@ -1,27 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class z60 implements DialogInterface.OnCancelListener {
-    public final int f42818a;
-    public final org.telegram.messenger.c f42819b;
-    public final int f42820c;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public interface z60 {
+    void f(RectF rectF);
 
-    public z60(org.telegram.messenger.c cVar, int i7, int i10) {
-        this.f42818a = i10;
-        this.f42819b = cVar;
-        this.f42820c = i7;
-    }
+    void h(Canvas canvas, float f10);
 
-    @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f42818a) {
-            case 0:
-                ConnectionsManager.getInstance(this.f42819b.f23218a).cancelRequest(this.f42820c, true);
-                return;
-            default:
-                ConnectionsManager.getInstance(this.f42819b.f23218a).cancelRequest(this.f42820c, true);
-                return;
-        }
-    }
+    void setScrimHidden(boolean z10);
 }

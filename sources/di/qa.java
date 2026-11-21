@@ -1,9 +1,9 @@
 package di;
 public final class qa extends vf.b {
-    public final hi.d d;
+    public final hi.e d;
 
-    public qa(hi.d dVar) {
-        this.d = dVar;
+    public qa(hi.e eVar) {
+        this.d = eVar;
     }
 
     @Override

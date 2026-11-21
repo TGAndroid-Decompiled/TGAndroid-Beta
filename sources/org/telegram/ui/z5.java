@@ -4,25 +4,25 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-public final class z5 implements org.telegram.ui.Components.pt0 {
-    public final int f54390a;
-    public final FrameLayout f54391b;
+public final class z5 implements org.telegram.ui.Components.st0 {
+    public final int f54434a;
+    public final FrameLayout f54435b;
 
     public z5(int i7, FrameLayout frameLayout) {
-        this.f54390a = i7;
-        this.f54391b = frameLayout;
+        this.f54434a = i7;
+        this.f54435b = frameLayout;
     }
 
     @Override
     public final void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
-        switch (this.f54390a) {
+        switch (this.f54434a) {
             case 0:
-                org.telegram.ui.Components.ck0 ck0Var = (org.telegram.ui.Components.ck0) recyclerView;
-                ih.d.a(ck0Var, canvas, rectF, ck0Var, this.f54391b);
+                org.telegram.ui.Components.ek0 ek0Var = (org.telegram.ui.Components.ek0) recyclerView;
+                ih.d.a(ek0Var, canvas, rectF, ek0Var, this.f54435b);
                 return;
             default:
-                org.telegram.ui.Components.ck0 ck0Var2 = (org.telegram.ui.Components.ck0) recyclerView;
-                ih.d.a(ck0Var2, canvas, rectF, ck0Var2, this.f54391b);
+                org.telegram.ui.Components.ek0 ek0Var2 = (org.telegram.ui.Components.ek0) recyclerView;
+                ih.d.a(ek0Var2, canvas, rectF, ek0Var2, this.f54435b);
                 return;
         }
     }

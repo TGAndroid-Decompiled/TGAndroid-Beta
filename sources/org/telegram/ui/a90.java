@@ -1,41 +1,41 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-public final class a90 implements org.telegram.ui.Components.z4, org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.du0 {
-    public final int f45505a;
-    public final k90 f45506b;
+public final class a90 implements org.telegram.ui.Components.a5, org.telegram.ui.ActionBar.q1, org.telegram.ui.Components.gu0 {
+    public final int f45544a;
+    public final k90 f45545b;
 
     public a90(k90 k90Var, int i7) {
-        this.f45505a = i7;
-        this.f45506b = k90Var;
+        this.f45544a = i7;
+        this.f45545b = k90Var;
     }
 
     @Override
     public void O(int i7, int i10, boolean z10) {
-        this.f45506b.a0(i7);
+        this.f45545b.a0(i7);
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        k90 k90Var = this.f45506b;
-        k90Var.T.a(k90Var.f49210e);
+    public void h(org.telegram.ui.ActionBar.t1 t1Var, int i7) {
+        k90 k90Var = this.f45545b;
+        k90Var.T.a(k90Var.f49249e);
         k90Var.finishFragment();
     }
 
     @Override
     public void k(int i7) {
-        switch (this.f45505a) {
+        switch (this.f45544a) {
             case 2:
-                k90 k90Var = this.f45506b;
+                k90 k90Var = this.f45545b;
                 ArrayList arrayList = k90Var.P;
                 if (i7 < arrayList.size()) {
-                    k90Var.f49216x.setText(org.telegram.messenger.gd.s(k90Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i7)).intValue(), false));
+                    k90Var.f49255x.setText(org.telegram.messenger.gd.s(k90Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i7)).intValue(), false));
                     return;
                 }
-                k90Var.f49216x.setText("");
+                k90Var.f49255x.setText("");
                 return;
             default:
-                k90 k90Var2 = this.f45506b;
+                k90 k90Var2 = this.f45545b;
                 k90Var2.G.clearFocus();
                 k90Var2.O = true;
                 ArrayList arrayList2 = k90Var2.R;
@@ -51,7 +51,7 @@ public final class a90 implements org.telegram.ui.Components.z4, org.telegram.ui
 
     @Override
     public void o() {
-        int i7 = this.f45505a;
+        int i7 = this.f45544a;
     }
 
     private final void a() {

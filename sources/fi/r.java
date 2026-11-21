@@ -8,34 +8,34 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.s10;
 import org.telegram.messenger.x10;
-import org.telegram.ui.Components.cy0;
-import org.telegram.ui.Components.lq;
+import org.telegram.ui.Components.ey0;
+import org.telegram.ui.Components.nq;
 public final class r implements x10 {
-    public final int f12473a = 1;
-    public final int f12474b;
-    public final Object f12475c;
+    public final int f12504a = 1;
+    public final int f12505b;
+    public final Object f12506c;
     public final View d;
-    public final Object f12476e;
-    public final Object f12477f;
-    public final Object f12478g;
+    public final Object f12507e;
+    public final Object f12508f;
+    public final Object f12509g;
     public final ViewGroup h;
-    public final Object f12479i;
-    public final Object f12480j;
-    public final Object f12481k;
-    public final Object f12482l;
+    public final Object f12510i;
+    public final Object f12511j;
+    public final Object f12512k;
+    public final Object f12513l;
 
-    public r(LinearLayout linearLayout, org.telegram.ui.Wallet.q5 q5Var, org.telegram.ui.ActionBar.i6 i6Var, int i7, TextView textView, org.telegram.ui.Wallet.e3[] e3VarArr, cy0 cy0Var, s10 s10Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
-        this.f12475c = linearLayout;
+    public r(LinearLayout linearLayout, org.telegram.ui.Wallet.q5 q5Var, org.telegram.ui.ActionBar.h6 h6Var, int i7, TextView textView, org.telegram.ui.Wallet.e3[] e3VarArr, ey0 ey0Var, s10 s10Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
+        this.f12506c = linearLayout;
         this.d = q5Var;
-        this.f12476e = i6Var;
-        this.f12474b = i7;
-        this.f12477f = textView;
-        this.f12478g = e3VarArr;
-        this.h = cy0Var;
-        this.f12479i = s10Var;
-        this.f12480j = context;
-        this.f12481k = textViewArr;
-        this.f12482l = spannableStringArr;
+        this.f12507e = h6Var;
+        this.f12505b = i7;
+        this.f12508f = textView;
+        this.f12509g = e3VarArr;
+        this.h = ey0Var;
+        this.f12510i = s10Var;
+        this.f12511j = context;
+        this.f12512k = textViewArr;
+        this.f12513l = spannableStringArr;
     }
 
     @Override
@@ -43,17 +43,17 @@ public final class r implements x10 {
         throw new UnsupportedOperationException("Method not decompiled: fi.r.a(java.lang.Object):void");
     }
 
-    public r(long[] jArr, hi.d dVar, lq[] lqVarArr, r0 r0Var, m0 m0Var, int i7, bi.a3 a3Var, bi.a3 a3Var2, bi.a3 a3Var3, s sVar, boolean[] zArr) {
-        this.f12475c = jArr;
-        this.d = dVar;
-        this.f12476e = lqVarArr;
-        this.f12477f = r0Var;
-        this.f12478g = m0Var;
-        this.f12474b = i7;
-        this.h = a3Var;
-        this.f12479i = a3Var2;
-        this.f12480j = a3Var3;
-        this.f12481k = sVar;
-        this.f12482l = zArr;
+    public r(long[] jArr, hi.e eVar, nq[] nqVarArr, r0 r0Var, m0 m0Var, int i7, bi.e3 e3Var, bi.e3 e3Var2, bi.e3 e3Var3, s sVar, boolean[] zArr) {
+        this.f12506c = jArr;
+        this.d = eVar;
+        this.f12507e = nqVarArr;
+        this.f12508f = r0Var;
+        this.f12509g = m0Var;
+        this.f12505b = i7;
+        this.h = e3Var;
+        this.f12510i = e3Var2;
+        this.f12511j = e3Var3;
+        this.f12512k = sVar;
+        this.f12513l = zArr;
     }
 }

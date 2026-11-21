@@ -12,30 +12,30 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.zip.Inflater;
 public final class b implements m {
-    public static final c4.a f18166e;
-    public final x f18167a = new x();
-    public final x f18168b = new x();
-    public final a f18169c;
+    public static final c4.a f18197e;
+    public final x f18198a = new x();
+    public final x f18199b = new x();
+    public final a f18200c;
     public Inflater d;
 
     static {
-        g0 g0Var = i0.f14003b;
-        f18166e = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14071e);
+        g0 g0Var = i0.f14032b;
+        f18197e = new c4.a(-9223372036854775807L, -9223372036854775807L, t1.f14100e);
     }
 
     public b(List list) {
         String[] split;
         int i7;
         a aVar = new a();
-        this.f18169c = aVar;
+        this.f18200c = aVar;
         String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
-        String str = l0.f13783a;
+        String str = l0.f13812a;
         for (String str2 : trim.split("\\r?\\n", -1)) {
             if (str2.startsWith("palette: ")) {
                 String[] split2 = str2.substring(9).split(",", -1);
-                aVar.f18161f = new int[split2.length];
+                aVar.f18192f = new int[split2.length];
                 for (int i10 = 0; i10 < split2.length; i10++) {
-                    int[] iArr = aVar.f18161f;
+                    int[] iArr = aVar.f18192f;
                     try {
                         i7 = Integer.parseInt(split2[i10].trim(), 16);
                     } catch (RuntimeException e10) {
@@ -50,7 +50,7 @@ public final class b implements m {
                     h2.a.l("VobsubParser", "Ignoring malformed IDX size line: '" + str2 + "'");
                 } else {
                     try {
-                        aVar.f18162g = Integer.parseInt(split3[0]);
+                        aVar.f18193g = Integer.parseInt(split3[0]);
                         aVar.h = Integer.parseInt(split3[1]);
                         aVar.d = true;
                     } catch (RuntimeException e11) {

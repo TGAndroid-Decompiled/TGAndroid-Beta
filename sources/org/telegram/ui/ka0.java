@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.tgnet.tl.TL_stories;
-public final class ka0 extends org.telegram.ui.Components.gt0 {
-    public final qa0 f49223x2;
+public final class ka0 extends org.telegram.ui.Components.jt0 {
+    public final qa0 f49262x2;
 
-    public ka0(qa0 qa0Var, Context context, org.telegram.ui.Components.ys0 ys0Var, qa0 qa0Var2, ja0 ja0Var, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(context, 0L, ys0Var, 0, null, null, null, 8, 0, qa0Var2, ja0Var, 0, i6Var, null);
-        this.f49223x2 = qa0Var;
+    public ka0(qa0 qa0Var, Context context, org.telegram.ui.Components.bt0 bt0Var, qa0 qa0Var2, ja0 ja0Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, 0L, bt0Var, 0, null, null, null, 8, 0, qa0Var2, ja0Var, 0, h6Var, null);
+        this.f49262x2 = qa0Var;
     }
 
     @Override
@@ -27,6 +27,6 @@ public final class ka0 extends org.telegram.ui.Components.gt0 {
 
     @Override
     public final TL_stories.MediaArea getStoriesArea() {
-        return this.f49223x2.T0;
+        return this.f49262x2.T0;
     }
 }

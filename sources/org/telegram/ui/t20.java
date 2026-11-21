@@ -2,38 +2,38 @@ package org.telegram.ui;
 
 import android.widget.LinearLayout;
 public final class t20 extends LinearLayout {
-    public boolean f52133a;
-    public final org.telegram.ui.Components.sb0 f52134b;
-    public final p20 f52135c;
+    public boolean f52183a;
+    public final org.telegram.ui.Components.tb0 f52184b;
+    public final p20 f52185c;
     public final q20 d;
 
-    public t20(LaunchActivity launchActivity, org.telegram.ui.Components.sb0 sb0Var, p20 p20Var, q20 q20Var) {
+    public t20(LaunchActivity launchActivity, org.telegram.ui.Components.tb0 tb0Var, p20 p20Var, q20 q20Var) {
         super(launchActivity);
-        this.f52134b = sb0Var;
-        this.f52135c = p20Var;
+        this.f52184b = tb0Var;
+        this.f52185c = p20Var;
         this.d = q20Var;
-        this.f52133a = false;
+        this.f52183a = false;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        this.f52133a = true;
-        org.telegram.ui.Components.sb0 sb0Var = this.f52134b;
-        sb0Var.setItemCount(5);
-        p20 p20Var = this.f52135c;
+        this.f52183a = true;
+        org.telegram.ui.Components.tb0 tb0Var = this.f52184b;
+        tb0Var.setItemCount(5);
+        p20 p20Var = this.f52185c;
         p20Var.setItemCount(5);
         q20 q20Var = this.d;
         q20Var.setItemCount(5);
-        sb0Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
+        tb0Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
         p20Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
         q20Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
-        this.f52133a = false;
+        this.f52183a = false;
         super.onMeasure(i7, i10);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f52133a) {
+        if (this.f52183a) {
             return;
         }
         super.requestLayout();

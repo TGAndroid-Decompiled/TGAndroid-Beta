@@ -9,92 +9,92 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.PathInterpolator;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.si;
+import org.telegram.ui.Components.ui;
 import org.telegram.ui.bn;
 public final class e7 {
-    public final ViewGroup f44114a;
-    public final View f44115b;
-    public final si f44116c;
+    public final ViewGroup f44154a;
+    public final View f44155b;
+    public final ui f44156c;
     public final m7 d;
-    public final bn f44117e;
-    public final TL_wallet.walletTransaction f44118f;
-    public final Runnable f44119g;
+    public final bn f44157e;
+    public final TL_wallet.walletTransaction f44158f;
+    public final Runnable f44159g;
     public final b7 h;
-    public final m7 f44120i;
-    public final fa f44121j = new fa();
-    public final PathInterpolator f44122k = new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-    public final float f44123l;
-    public final AnimatorSet f44124m;
-    public final RectF f44125n;
-    public final RectF f44126o;
-    public org.telegram.ui.Cells.v0 f44127p;
-    public final c7 f44128q;
-    public float f44129r;
-    public boolean f44130s;
-    public boolean f44131t;
-    public boolean f44132u;
+    public final m7 f44160i;
+    public final fa f44161j = new fa();
+    public final PathInterpolator f44162k = new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+    public final float f44163l;
+    public final AnimatorSet f44164m;
+    public final RectF f44165n;
+    public final RectF f44166o;
+    public org.telegram.ui.Cells.v0 f44167p;
+    public final c7 f44168q;
+    public float f44169r;
+    public boolean f44170s;
+    public boolean f44171t;
+    public boolean f44172u;
     public boolean v;
-    public final long f44133w;
-    public final a7 f44134x;
+    public final long f44173w;
+    public final a7 f44174x;
 
-    public e7(ViewGroup viewGroup, View view, m7 m7Var, bn bnVar, TL_wallet.walletTransaction wallettransaction, Runnable runnable, si siVar) {
+    public e7(ViewGroup viewGroup, View view, m7 m7Var, bn bnVar, TL_wallet.walletTransaction wallettransaction, Runnable runnable, ui uiVar) {
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f44124m = animatorSet;
-        this.f44126o = new RectF();
-        this.f44133w = SystemClock.uptimeMillis();
+        this.f44164m = animatorSet;
+        this.f44166o = new RectF();
+        this.f44173w = SystemClock.uptimeMillis();
         ?? r12 = new Runnable(this) {
-            public final e7 f43933b;
+            public final e7 f43974b;
 
             {
-                this.f43933b = this;
+                this.f43974b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        e7 e7Var = this.f43933b;
+                        e7 e7Var = this.f43974b;
                         m7 m7Var2 = e7Var.d;
-                        float f10 = e7Var.f44123l;
-                        ViewGroup viewGroup2 = e7Var.f44114a;
-                        c7 c7Var = e7Var.f44128q;
-                        AnimatorSet animatorSet2 = e7Var.f44124m;
-                        m7 m7Var3 = e7Var.f44120i;
-                        RectF rectF = e7Var.f44126o;
-                        RectF rectF2 = e7Var.f44125n;
-                        if (!e7Var.v && !e7Var.f44132u) {
+                        float f10 = e7Var.f44163l;
+                        ViewGroup viewGroup2 = e7Var.f44154a;
+                        c7 c7Var = e7Var.f44168q;
+                        AnimatorSet animatorSet2 = e7Var.f44164m;
+                        m7 m7Var3 = e7Var.f44160i;
+                        RectF rectF = e7Var.f44166o;
+                        RectF rectF2 = e7Var.f44165n;
+                        if (!e7Var.v && !e7Var.f44172u) {
                             e7Var.e();
                             e7Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.v0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
+                            org.telegram.ui.Cells.v0 K8 = e7Var.f44157e.K8(e7Var.f44158f);
                             if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44127p;
+                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44167p;
                                 if (v0Var != K8) {
                                     if (v0Var != null) {
                                         v0Var.J0.i(false);
                                     }
-                                    e7Var.f44127p = K8;
+                                    e7Var.f44167p = K8;
                                 }
-                                l4 l4Var = e7Var.f44127p.J0.f44537m;
-                                if (e7Var.f44131t && c7Var.f59547n && l4Var != null && l4Var.f59547n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
+                                l4 l4Var = e7Var.f44167p.J0.f44577m;
+                                if (e7Var.f44171t && c7Var.f59585n && l4Var != null && l4Var.f59585n && l4Var.getWidth() > 0 && !e7Var.f44167p.isLayoutRequested()) {
                                     rectF.set(e7Var.c(l4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
-                                        e7Var.f44132u = true;
-                                        e7Var.f44127p.J0.i(true);
+                                        e7Var.f44172u = true;
+                                        e7Var.f44167p.J0.i(true);
                                         m7Var3.f(m7Var2);
                                         m7Var3.setAlpha(f10);
                                         m7Var2.setAlpha(0.0f);
-                                        e7Var.f44121j.b(rectF2.centerX(), rectF2.centerY());
+                                        e7Var.f44161j.b(rectF2.centerX(), rectF2.centerY());
                                         animatorSet2.start();
                                         return;
                                     }
                                     rectF.setEmpty();
                                 }
                             }
-                            if (SystemClock.uptimeMillis() - e7Var.f44133w <= 700 && !e7Var.f44130s && viewGroup2.isAttachedToWindow()) {
-                                e7Var.h.postOnAnimation(e7Var.f44134x);
+                            if (SystemClock.uptimeMillis() - e7Var.f44173w <= 700 && !e7Var.f44170s && viewGroup2.isAttachedToWindow()) {
+                                e7Var.h.postOnAnimation(e7Var.f44174x);
                                 return;
                             }
-                            e7Var.f44132u = true;
+                            e7Var.f44172u = true;
                             m7Var3.setAlpha(0.0f);
                             c7Var.setAlpha(0.0f);
                             animatorSet2.setDuration(180L);
@@ -103,25 +103,25 @@ public final class e7 {
                         }
                         return;
                     case 1:
-                        this.f43933b.d();
+                        this.f43974b.d();
                         return;
                     default:
-                        this.f43933b.f44131t = true;
+                        this.f43974b.f44171t = true;
                         return;
                 }
             }
         };
-        this.f44134x = r12;
-        this.f44116c = siVar;
-        this.f44114a = viewGroup;
-        this.f44115b = view;
+        this.f44174x = r12;
+        this.f44156c = uiVar;
+        this.f44154a = viewGroup;
+        this.f44155b = view;
         this.d = m7Var;
-        this.f44123l = m7Var.getAlpha();
-        this.f44117e = bnVar;
-        this.f44118f = wallettransaction;
-        this.f44119g = runnable;
+        this.f44163l = m7Var.getAlpha();
+        this.f44157e = bnVar;
+        this.f44158f = wallettransaction;
+        this.f44159g = runnable;
         RectF a10 = ra.a(m7Var, viewGroup);
-        this.f44125n = a10;
+        this.f44165n = a10;
         e();
         b7 b7Var = new b7(this, viewGroup.getContext());
         this.h = b7Var;
@@ -129,64 +129,64 @@ public final class e7 {
         b7Var.setClipToPadding(false);
         b7Var.setClickable(true);
         m7 m7Var2 = new m7(60, viewGroup.getContext(), true);
-        this.f44120i = m7Var2;
+        this.f44160i = m7Var2;
         m7Var2.setContinuousRotation(540.0f);
         m7Var2.f(m7Var);
         m7Var2.setAlpha(0.0f);
         b7Var.addView(m7Var2, c8.ma.e(60, 60, 51));
         c7 c7Var = new c7(this, viewGroup.getContext(), new Runnable(this) {
-            public final e7 f43933b;
+            public final e7 f43974b;
 
             {
-                this.f43933b = this;
+                this.f43974b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        e7 e7Var = this.f43933b;
+                        e7 e7Var = this.f43974b;
                         m7 m7Var22 = e7Var.d;
-                        float f10 = e7Var.f44123l;
-                        ViewGroup viewGroup2 = e7Var.f44114a;
-                        c7 c7Var2 = e7Var.f44128q;
-                        AnimatorSet animatorSet2 = e7Var.f44124m;
-                        m7 m7Var3 = e7Var.f44120i;
-                        RectF rectF = e7Var.f44126o;
-                        RectF rectF2 = e7Var.f44125n;
-                        if (!e7Var.v && !e7Var.f44132u) {
+                        float f10 = e7Var.f44163l;
+                        ViewGroup viewGroup2 = e7Var.f44154a;
+                        c7 c7Var2 = e7Var.f44168q;
+                        AnimatorSet animatorSet2 = e7Var.f44164m;
+                        m7 m7Var3 = e7Var.f44160i;
+                        RectF rectF = e7Var.f44166o;
+                        RectF rectF2 = e7Var.f44165n;
+                        if (!e7Var.v && !e7Var.f44172u) {
                             e7Var.e();
                             e7Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.v0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
+                            org.telegram.ui.Cells.v0 K8 = e7Var.f44157e.K8(e7Var.f44158f);
                             if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44127p;
+                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44167p;
                                 if (v0Var != K8) {
                                     if (v0Var != null) {
                                         v0Var.J0.i(false);
                                     }
-                                    e7Var.f44127p = K8;
+                                    e7Var.f44167p = K8;
                                 }
-                                l4 l4Var = e7Var.f44127p.J0.f44537m;
-                                if (e7Var.f44131t && c7Var2.f59547n && l4Var != null && l4Var.f59547n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
+                                l4 l4Var = e7Var.f44167p.J0.f44577m;
+                                if (e7Var.f44171t && c7Var2.f59585n && l4Var != null && l4Var.f59585n && l4Var.getWidth() > 0 && !e7Var.f44167p.isLayoutRequested()) {
                                     rectF.set(e7Var.c(l4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
-                                        e7Var.f44132u = true;
-                                        e7Var.f44127p.J0.i(true);
+                                        e7Var.f44172u = true;
+                                        e7Var.f44167p.J0.i(true);
                                         m7Var3.f(m7Var22);
                                         m7Var3.setAlpha(f10);
                                         m7Var22.setAlpha(0.0f);
-                                        e7Var.f44121j.b(rectF2.centerX(), rectF2.centerY());
+                                        e7Var.f44161j.b(rectF2.centerX(), rectF2.centerY());
                                         animatorSet2.start();
                                         return;
                                     }
                                     rectF.setEmpty();
                                 }
                             }
-                            if (SystemClock.uptimeMillis() - e7Var.f44133w <= 700 && !e7Var.f44130s && viewGroup2.isAttachedToWindow()) {
-                                e7Var.h.postOnAnimation(e7Var.f44134x);
+                            if (SystemClock.uptimeMillis() - e7Var.f44173w <= 700 && !e7Var.f44170s && viewGroup2.isAttachedToWindow()) {
+                                e7Var.h.postOnAnimation(e7Var.f44174x);
                                 return;
                             }
-                            e7Var.f44132u = true;
+                            e7Var.f44172u = true;
                             m7Var3.setAlpha(0.0f);
                             c7Var2.setAlpha(0.0f);
                             animatorSet2.setDuration(180L);
@@ -195,73 +195,73 @@ public final class e7 {
                         }
                         return;
                     case 1:
-                        this.f43933b.d();
+                        this.f43974b.d();
                         return;
                     default:
-                        this.f43933b.f44131t = true;
+                        this.f43974b.f44171t = true;
                         return;
                 }
             }
         });
-        this.f44128q = c7Var;
+        this.f44168q = c7Var;
         c7Var.setAlpha(0.001f);
         c7Var.setPaused(false);
         b7Var.addView(c7Var, c8.ma.e(60, 60, 51));
         viewGroup.addView(b7Var, new ViewGroup.LayoutParams(-1, -1));
         b(a10.centerX(), a10.centerY(), a10.width());
         m7Var2.l(new Runnable(this) {
-            public final e7 f43933b;
+            public final e7 f43974b;
 
             {
-                this.f43933b = this;
+                this.f43974b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        e7 e7Var = this.f43933b;
+                        e7 e7Var = this.f43974b;
                         m7 m7Var22 = e7Var.d;
-                        float f10 = e7Var.f44123l;
-                        ViewGroup viewGroup2 = e7Var.f44114a;
-                        c7 c7Var2 = e7Var.f44128q;
-                        AnimatorSet animatorSet2 = e7Var.f44124m;
-                        m7 m7Var3 = e7Var.f44120i;
-                        RectF rectF = e7Var.f44126o;
-                        RectF rectF2 = e7Var.f44125n;
-                        if (!e7Var.v && !e7Var.f44132u) {
+                        float f10 = e7Var.f44163l;
+                        ViewGroup viewGroup2 = e7Var.f44154a;
+                        c7 c7Var2 = e7Var.f44168q;
+                        AnimatorSet animatorSet2 = e7Var.f44164m;
+                        m7 m7Var3 = e7Var.f44160i;
+                        RectF rectF = e7Var.f44166o;
+                        RectF rectF2 = e7Var.f44165n;
+                        if (!e7Var.v && !e7Var.f44172u) {
                             e7Var.e();
                             e7Var.b(rectF2.centerX(), rectF2.centerY(), rectF2.width());
-                            org.telegram.ui.Cells.v0 K8 = e7Var.f44117e.K8(e7Var.f44118f);
+                            org.telegram.ui.Cells.v0 K8 = e7Var.f44157e.K8(e7Var.f44158f);
                             if (K8 != null && K8.getWidth() > 0) {
-                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44127p;
+                                org.telegram.ui.Cells.v0 v0Var = e7Var.f44167p;
                                 if (v0Var != K8) {
                                     if (v0Var != null) {
                                         v0Var.J0.i(false);
                                     }
-                                    e7Var.f44127p = K8;
+                                    e7Var.f44167p = K8;
                                 }
-                                l4 l4Var = e7Var.f44127p.J0.f44537m;
-                                if (e7Var.f44131t && c7Var2.f59547n && l4Var != null && l4Var.f59547n && l4Var.getWidth() > 0 && !e7Var.f44127p.isLayoutRequested()) {
+                                l4 l4Var = e7Var.f44167p.J0.f44577m;
+                                if (e7Var.f44171t && c7Var2.f59585n && l4Var != null && l4Var.f59585n && l4Var.getWidth() > 0 && !e7Var.f44167p.isLayoutRequested()) {
                                     rectF.set(e7Var.c(l4Var));
                                     if (rectF.centerY() > 0.0f && rectF.centerY() < viewGroup2.getHeight() && f10 > 0.01f) {
-                                        e7Var.f44132u = true;
-                                        e7Var.f44127p.J0.i(true);
+                                        e7Var.f44172u = true;
+                                        e7Var.f44167p.J0.i(true);
                                         m7Var3.f(m7Var22);
                                         m7Var3.setAlpha(f10);
                                         m7Var22.setAlpha(0.0f);
-                                        e7Var.f44121j.b(rectF2.centerX(), rectF2.centerY());
+                                        e7Var.f44161j.b(rectF2.centerX(), rectF2.centerY());
                                         animatorSet2.start();
                                         return;
                                     }
                                     rectF.setEmpty();
                                 }
                             }
-                            if (SystemClock.uptimeMillis() - e7Var.f44133w <= 700 && !e7Var.f44130s && viewGroup2.isAttachedToWindow()) {
-                                e7Var.h.postOnAnimation(e7Var.f44134x);
+                            if (SystemClock.uptimeMillis() - e7Var.f44173w <= 700 && !e7Var.f44170s && viewGroup2.isAttachedToWindow()) {
+                                e7Var.h.postOnAnimation(e7Var.f44174x);
                                 return;
                             }
-                            e7Var.f44132u = true;
+                            e7Var.f44172u = true;
                             m7Var3.setAlpha(0.0f);
                             c7Var2.setAlpha(0.0f);
                             animatorSet2.setDuration(180L);
@@ -270,10 +270,10 @@ public final class e7 {
                         }
                         return;
                     case 1:
-                        this.f43933b.d();
+                        this.f43974b.d();
                         return;
                     default:
-                        this.f43933b.f44131t = true;
+                        this.f43974b.f44171t = true;
                         return;
                 }
             }
@@ -283,7 +283,7 @@ public final class e7 {
         ofFloat.setInterpolator(new LinearInterpolator());
         ofFloat.addUpdateListener(new z3(this, 3));
         animatorSet.playTogether(ofFloat);
-        animatorSet.addListener(new d7(this, siVar, m7Var));
+        animatorSet.addListener(new d7(this, uiVar, m7Var));
         b7Var.post(r12);
     }
 
@@ -292,49 +292,49 @@ public final class e7 {
             return;
         }
         this.v = true;
-        a7 a7Var = this.f44134x;
+        a7 a7Var = this.f44174x;
         b7 b7Var = this.h;
         b7Var.removeCallbacks(a7Var);
-        m7 m7Var = this.f44120i;
+        m7 m7Var = this.f44160i;
         m7Var.l(null);
-        org.telegram.ui.Cells.v0 v0Var = this.f44127p;
+        org.telegram.ui.Cells.v0 v0Var = this.f44167p;
         if (v0Var != null) {
             v0Var.J0.i(false);
-            if (z10 && this.f44129r >= 1.0f) {
-                RectF rectF = this.f44126o;
-                if (!rectF.isEmpty() && this.f44127p.isAttachedToWindow() && u0.Q(this.f44127p.getMessageObject(), this.f44118f)) {
-                    float centerY = (((rectF.centerY() - (Math.min(this.f44125n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f24117p;
-                    m4 m4Var = this.f44127p.J0;
+            if (z10 && this.f44169r >= 1.0f) {
+                RectF rectF = this.f44166o;
+                if (!rectF.isEmpty() && this.f44167p.isAttachedToWindow() && u0.Q(this.f44167p.getMessageObject(), this.f44158f)) {
+                    float centerY = (((rectF.centerY() - (Math.min(this.f44165n.centerY(), rectF.centerY()) - org.telegram.messenger.g0.L(150.0f))) * 2.0f) / 0.6f) / org.telegram.messenger.g0.f24145p;
+                    m4 m4Var = this.f44167p.J0;
                     m4Var.l();
                     r1.g gVar = new r1.g(new r1.f(0.0f));
-                    m4Var.f44518b0 = gVar;
+                    m4Var.f44558b0 = gVar;
                     r1.h hVar = new r1.h(0.0f);
                     hVar.a(0.65f);
                     hVar.b(200.0f);
-                    gVar.f56323m = hVar;
-                    m4Var.f44518b0.f(0.001f);
-                    m4Var.f44518b0.f56313a = Math.max(20.0f, Math.min(36.0f, centerY * 0.04f));
-                    m4Var.f44518b0.b(new g4(m4Var, 1));
-                    m4Var.f44518b0.h();
+                    gVar.f56364m = hVar;
+                    m4Var.f44558b0.f(0.001f);
+                    m4Var.f44558b0.f56354a = Math.max(20.0f, Math.min(36.0f, centerY * 0.04f));
+                    m4Var.f44558b0.b(new g4(m4Var, 1));
+                    m4Var.f44558b0.h();
                 }
             }
         }
-        c7 c7Var = this.f44128q;
+        c7 c7Var = this.f44168q;
         c7Var.setPaused(true);
         b7Var.removeView(c7Var);
         m7Var.setPaused(true);
         b7Var.removeView(m7Var);
         b7Var.setClickable(false);
-        this.d.setAlpha(this.f44123l);
-        si siVar = this.f44116c;
-        if (siVar == null) {
-            this.f44115b.setTranslationY(0.0f);
+        this.d.setAlpha(this.f44163l);
+        ui uiVar = this.f44156c;
+        if (uiVar == null) {
+            this.f44155b.setTranslationY(0.0f);
         } else {
-            siVar.y1(1.0f);
+            uiVar.y1(1.0f);
         }
-        ViewGroup viewGroup = this.f44114a;
-        if (siVar != null && z10 && this.f44121j.d()) {
-            bn bnVar = this.f44117e;
+        ViewGroup viewGroup = this.f44154a;
+        if (uiVar != null && z10 && this.f44161j.d()) {
+            bn bnVar = this.f44157e;
             if (bnVar.getParentLayout() != null) {
                 ViewGroup view = bnVar.getParentLayout().getView();
                 if (view.isAttachedToWindow()) {
@@ -350,22 +350,22 @@ public final class e7 {
                 }
             }
         }
-        this.f44119g.run();
-        org.telegram.messenger.g0.h3(new c5(5, this, viewGroup), 650L);
+        this.f44159g.run();
+        org.telegram.messenger.g0.h3(new u4(7, this, viewGroup), 650L);
     }
 
     public final void b(float f10, float f11, float f12) {
         float L = org.telegram.messenger.g0.L(60.0f);
         b7 b7Var = this.h;
         float f13 = L / 2.0f;
-        m7 m7Var = this.f44120i;
+        m7 m7Var = this.f44160i;
         m7Var.setTranslationX((f10 - b7Var.getLeft()) - f13);
         m7Var.setTranslationY((f11 - b7Var.getTop()) - f13);
         float f14 = f12 / L;
         m7Var.setScaleX(f14);
         m7Var.setScaleY(f14);
         float translationX = m7Var.getTranslationX();
-        c7 c7Var = this.f44128q;
+        c7 c7Var = this.f44168q;
         c7Var.setTranslationX(translationX);
         c7Var.setTranslationY(m7Var.getTranslationY());
         c7Var.setScaleX(f14);
@@ -373,9 +373,9 @@ public final class e7 {
     }
 
     public final RectF c(l4 l4Var) {
-        si siVar = this.f44116c;
-        ViewGroup viewGroup = this.f44114a;
-        if (siVar == null) {
+        ui uiVar = this.f44156c;
+        ViewGroup viewGroup = this.f44154a;
+        if (uiVar == null) {
             return ra.a(l4Var, viewGroup);
         }
         ViewGroup viewGroup2 = (ViewGroup) l4Var.getRootView();
@@ -389,39 +389,39 @@ public final class e7 {
     }
 
     public final void d() {
-        c7 c7Var = this.f44128q;
+        c7 c7Var = this.f44168q;
         if (c7Var == null) {
             return;
         }
-        m7 m7Var = this.f44120i;
+        m7 m7Var = this.f44160i;
         float flightYaw = m7Var.getFlightYaw();
         float flightPitch = m7Var.getFlightPitch();
-        if (this.f44127p != null) {
-            float max = Math.max(0.0f, Math.min(1.0f, (this.f44129r - 0.55f) / 0.45f));
+        if (this.f44167p != null) {
+            float max = Math.max(0.0f, Math.min(1.0f, (this.f44169r - 0.55f) / 0.45f));
             float C = com.google.android.gms.internal.vision.e2.C(max, 2.0f, 3.0f, max * max);
-            flightYaw += ((float) Math.IEEEremainder(this.f44127p.J0.g() - flightYaw, 6.283185307179586d)) * C;
-            flightPitch += ((this.f44127p.J0.f44533k.F * 0.14f) - flightPitch) * C;
+            flightYaw += ((float) Math.IEEEremainder(this.f44167p.J0.g() - flightYaw, 6.283185307179586d)) * C;
+            flightPitch += ((this.f44167p.J0.f44573k.F * 0.14f) - flightPitch) * C;
         }
-        c7Var.f59548r = flightYaw;
-        c7Var.f59549s = flightPitch;
-        c7Var.f59550w = true;
-        c7Var.f59551x = true;
+        c7Var.f59586r = flightYaw;
+        c7Var.f59587s = flightPitch;
+        c7Var.f59588w = true;
+        c7Var.f59589x = true;
     }
 
     public final void e() {
         m7 m7Var = this.d;
         if (m7Var.isAttachedToWindow()) {
             View rootView = m7Var.getRootView();
-            ViewGroup viewGroup = this.f44114a;
+            ViewGroup viewGroup = this.f44154a;
             if (rootView == viewGroup.getRootView()) {
-                si siVar = this.f44116c;
-                RectF rectF = this.f44125n;
-                if (siVar == null) {
-                    ra.f(m7Var, this.f44115b, viewGroup, rectF);
+                ui uiVar = this.f44156c;
+                RectF rectF = this.f44165n;
+                if (uiVar == null) {
+                    ra.f(m7Var, this.f44155b, viewGroup, rectF);
                     return;
                 }
                 rectF.set(ra.a(m7Var, viewGroup));
-                rectF.offset(0.0f, siVar.f39686j4 - siVar.f39720t2);
+                rectF.offset(0.0f, uiVar.f40402j4 - uiVar.f40436t2);
             }
         }
     }

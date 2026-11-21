@@ -1,39 +1,52 @@
 package hi;
 
-import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.gd;
 public final class o9 implements Runnable {
-    public final int f15197a;
-    public final q9 f15198b;
+    public final int f15234a = 1;
+    public final p9 f15235b;
+    public final Runnable f15236c;
+    public final boolean d;
 
-    public o9(q9 q9Var, int i7) {
-        this.f15197a = i7;
-        this.f15198b = q9Var;
+    public o9(p9 p9Var, Runnable runnable, boolean z10) {
+        this.f15235b = p9Var;
+        this.f15236c = runnable;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f15197a) {
+        int i7;
+        int i10 = this.f15234a;
+        boolean z10 = this.d;
+        Runnable runnable = this.f15236c;
+        p9 p9Var = this.f15235b;
+        switch (i10) {
             case 0:
-                ta taVar = this.f15198b.f15293a;
-                a6 a6Var = taVar.D0;
-                if (a6Var != null) {
-                    a6Var.c(false);
-                }
-                if (taVar.R1 && taVar.S1 && taVar.C0 != null) {
-                    taVar.i0(false);
-                    CameraController.getInstance().stopVideoRecording(taVar.C0.getCameraSessionRecording(), false, false);
-                    return;
-                }
-                return;
-            case 1:
-                this.f15198b.f15293a.J(1, true);
-                return;
-            case 2:
-                this.f15198b.f15293a.J(1, true);
+                p9Var.g(runnable, z10);
                 return;
             default:
-                this.f15198b.f15293a.J(1, true);
+                runnable.run();
+                sa saVar = p9Var.f15279a;
+                i3 i3Var = saVar.U0;
+                if (z10) {
+                    i7 = 2131744419;
+                } else {
+                    i7 = 2131744420;
+                }
+                i3Var.f14784a.t(gd.N0(i7, null), false, true);
+                i3Var.invalidate();
+                saVar.g(true, true);
+                saVar.c0(true);
+                saVar.J0.a(false, true);
+                saVar.K0.b(true, true);
+                saVar.h0(true, true);
                 return;
         }
+    }
+
+    public o9(p9 p9Var, boolean z10, Runnable runnable) {
+        this.f15235b = p9Var;
+        this.d = z10;
+        this.f15236c = runnable;
     }
 }

@@ -1,37 +1,17 @@
 package org.telegram.ui;
+public final class u8 implements Runnable {
+    public final int f52472a;
+    public final Object f52473b;
+    public final Object f52474c;
 
-import android.view.View;
-import java.io.Serializable;
-public final class u8 implements org.telegram.messenger.v10, org.telegram.messenger.w10, r0.m {
-    public final i9 f52460a;
-
-    public u8(i9 i9Var) {
-        this.f52460a = i9Var;
+    public u8(int i7, Object obj, Object obj2) {
+        this.f52472a = i7;
+        this.f52473b = obj;
+        this.f52474c = obj2;
     }
 
     @Override
-    public r0.l1 P0(View view, r0.l1 l1Var) {
-        return this.f52460a.onInsetsInternal(view, l1Var);
-    }
-
-    @Override
-    public Boolean a(org.telegram.ui.Components.l41 l41Var, View view, Integer num, Float f10, Float f11) {
-        boolean z10;
-        Object obj = l41Var.H;
-        if (obj instanceof f9) {
-            this.f52460a.f0(((f9) obj).f47574c, (e9) view);
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        return Boolean.valueOf(z10);
-    }
-
-    @Override
-    public void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        i9.a0(this.f52460a, (org.telegram.ui.Components.l41) obj, (View) obj2);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.u8.run():void");
     }
 }

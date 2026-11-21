@@ -6,7 +6,7 @@ public interface s9 {
 
     void S0(org.telegram.messenger.ur urVar);
 
-    boolean c1(String str, j9 j9Var);
+    boolean c1(String str, k9 k9Var);
 
     void onDismiss();
 }

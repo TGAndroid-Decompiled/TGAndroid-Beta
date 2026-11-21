@@ -6,14 +6,14 @@ import e2.p0;
 import e2.u;
 import java.util.Arrays;
 public final class c implements p0 {
-    public final byte[] f56916a;
-    public final String f56917b;
-    public final String f56918c;
+    public final byte[] f56957a;
+    public final String f56958b;
+    public final String f56959c;
 
     public c(byte[] bArr, String str, String str2) {
-        this.f56916a = bArr;
-        this.f56917b = str;
-        this.f56918c = str2;
+        this.f56957a = bArr;
+        this.f56958b = str;
+        this.f56959c = str2;
     }
 
     @Override
@@ -23,9 +23,9 @@ public final class c implements p0 {
 
     @Override
     public final void b(n0 n0Var) {
-        String str = this.f56917b;
+        String str = this.f56958b;
         if (str != null) {
-            n0Var.f10528a = str;
+            n0Var.f10557a = str;
         }
     }
 
@@ -39,16 +39,16 @@ public final class c implements p0 {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            return Arrays.equals(this.f56916a, ((c) obj).f56916a);
+            return Arrays.equals(this.f56957a, ((c) obj).f56957a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f56916a);
+        return Arrays.hashCode(this.f56957a);
     }
 
     public final String toString() {
-        return a8.p0.n(this.f56916a.length, "\"", e2.n("ICY: title=\"", this.f56917b, "\", url=\"", this.f56918c, "\", rawMetadata.length=\""));
+        return a8.p0.n(this.f56957a.length, "\"", e2.n("ICY: title=\"", this.f56958b, "\", url=\"", this.f56959c, "\", rawMetadata.length=\""));
     }
 }

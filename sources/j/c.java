@@ -1,6 +1,6 @@
 package j;
 public abstract class c {
-    public static final int[] f17127a = {16843036, 16843156, 16843157, 16843158, 16843532, 16843533};
-    public static final int[] f17128b = {16842960, 16843161};
-    public static final int[] f17129c = {16843161, 16843849, 16843850, 16843851};
+    public static final int[] f17152a = {16843036, 16843156, 16843157, 16843158, 16843532, 16843533};
+    public static final int[] f17153b = {16842960, 16843161};
+    public static final int[] f17154c = {16843161, 16843849, 16843850, 16843851};
 }

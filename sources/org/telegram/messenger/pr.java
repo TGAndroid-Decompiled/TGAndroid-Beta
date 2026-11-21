@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 public final class pr {
-    public int f26289a;
-    public int f26290b;
-    public int f26291c;
+    public int f26317a;
+    public int f26318b;
+    public int f26319c;
 }

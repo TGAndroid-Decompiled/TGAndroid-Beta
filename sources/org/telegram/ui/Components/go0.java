@@ -1,39 +1,87 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class go0 implements jg.f0 {
-    public final yo0 f35546a;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+public final class go0 extends yt {
+    public boolean W;
+    public int f35626a0;
+    public int f35627b0;
+    public ValueAnimator f35628c0;
+    public final ap0 f35629d0;
 
-    public go0(yo0 yo0Var) {
-        this.f35546a = yo0Var;
+    public go0(ap0 ap0Var, Context context, no0 no0Var, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(context, no0Var, null, 1, true, h6Var);
+        this.f35629d0 = ap0Var;
     }
 
     @Override
-    public final void a(a0.h hVar, ArrayList arrayList) {
-        int i7 = 0;
-        while (i7 < arrayList.size()) {
-            TLObject tLObject = ((jg.g0) arrayList.get(i7)).f17460a;
-            if ((tLObject instanceof TLRPC.Chat) && !org.telegram.messenger.v3.B((TLRPC.Chat) tLObject)) {
-                arrayList.remove(i7);
-                i7--;
+    public final void c(float f10) {
+        this.f35629d0.a1();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.W) {
+            ot editText = this.f35629d0.f33563o1.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f35627b0 - editText.getScrollY()) + (this.f35626a0 - editText.getMeasuredHeight())));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
+            ofFloat.addUpdateListener(new h60(editText, 19));
+            ValueAnimator valueAnimator = this.f35628c0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
-            i7++;
+            this.f35628c0 = ofFloat;
+            ofFloat.setDuration(200L);
+            ofFloat.setInterpolator(nr.f37956f);
+            ofFloat.start();
+            this.W = false;
         }
-        yo0 yo0Var = this.f35546a;
-        yo0Var.A2 = arrayList;
-        for (int i10 = 0; i10 < yo0Var.A2.size(); i10++) {
-            jg.g0 g0Var = (jg.g0) yo0Var.A2.get(i10);
-            TLObject tLObject2 = g0Var.f17460a;
-            if (tLObject2 instanceof TLRPC.User) {
-                org.telegram.messenger.mp.u1(yo0Var.f30187a).e4((TLRPC.User) g0Var.f17460a, true, false);
-            } else if (tLObject2 instanceof TLRPC.Chat) {
-                org.telegram.messenger.mp.u1(yo0Var.f30187a).X3((TLRPC.Chat) g0Var.f17460a, true);
-            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
-                org.telegram.messenger.mp.u1(yo0Var.f30187a).b4((TLRPC.EncryptedChat) g0Var.f17460a, true);
-            }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void f() {
+        super.f();
+        ty emojiView = getEmojiView();
+        ap0 ap0Var = this.f35629d0;
+        if (emojiView != null) {
+            emojiView.f40161x0 = false;
+            emojiView.f40167y2 = false;
+            emojiView.setShouldDrawBackground(false);
+            emojiView.setBottomInset(ap0Var.C2.d);
         }
-        yo0Var.I1.f();
+        FrameLayout frameLayout = ap0Var.Y1;
+        if (frameLayout != null) {
+            frameLayout.bringToFront();
+        }
+        fo0 fo0Var = ap0Var.n1;
+        if (fo0Var != null) {
+            fo0Var.bringToFront();
+        }
+        fo0 fo0Var2 = ap0Var.f33567q1;
+        if (fo0Var2 != null) {
+            fo0Var2.bringToFront();
+        }
+    }
+
+    @Override
+    public final void q(int i7, int i10) {
+        ap0 ap0Var = this.f35629d0;
+        fo0 fo0Var = ap0Var.n1;
+        if (!TextUtils.isEmpty(getEditText().getText())) {
+            this.W = true;
+            this.f35626a0 = getEditText().getMeasuredHeight();
+            this.f35627b0 = getEditText().getScrollY();
+            invalidate();
+        } else {
+            getEditText().animate().cancel();
+            getEditText().setOffsetY(0.0f);
+            this.W = false;
+        }
+        ap0Var.f33570r2 = fo0Var.getTop() + ap0Var.f33568q2;
+        fo0Var.invalidate();
     }
 }

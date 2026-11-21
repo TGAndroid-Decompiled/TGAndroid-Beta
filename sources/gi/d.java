@@ -1,21 +1,21 @@
 package gi;
 public final class d extends g.p {
-    public final int f13633c;
+    public final int f13662c;
     public final m d;
 
     public d(m mVar, int i7) {
-        this.f13633c = i7;
+        this.f13662c = i7;
         this.d = mVar;
     }
 
     @Override
     public final int i(int i7) {
-        switch (this.f13633c) {
+        switch (this.f13662c) {
             case 0:
-                this.d.f13657w.getClass();
+                this.d.f13686w.getClass();
                 return 1;
             default:
-                this.d.f13657w.getClass();
+                this.d.f13686w.getClass();
                 return 1;
         }
     }

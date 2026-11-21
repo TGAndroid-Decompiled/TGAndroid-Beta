@@ -1,18 +1,29 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.LinearLayout;
-public final class xp extends LinearLayout {
-    public final aq f42156a;
+public abstract class xp extends c5.l {
+    public wp f42193x0;
 
-    public xp(aq aqVar, Context context) {
+    public xp(Context context) {
         super(context);
-        this.f42156a = aqVar;
+        b(new vp((hg0) this));
     }
 
     @Override
-    public final void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        super.onLayout(z10, i7, i10, i11, i12);
-        aq.J0(this.f42156a);
+    @Deprecated
+    public void setAdapter(c5.a aVar) {
+        if (aVar instanceof wp) {
+            setAdapter((wp) aVar);
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public void setAdapter(wp wpVar) {
+        this.f42193x0 = wpVar;
+        super.setAdapter((c5.a) wpVar);
+        if (wpVar != null) {
+            x(wpVar.j(), false);
+        }
     }
 }

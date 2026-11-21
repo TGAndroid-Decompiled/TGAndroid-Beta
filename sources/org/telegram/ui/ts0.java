@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.widget.TextView;
-public final class ts0 extends ug.o1 {
+public final class ts0 extends ug.n1 {
     public final us0 O;
 
     public ts0(us0 us0Var, Context context) {
@@ -14,13 +14,13 @@ public final class ts0 extends ug.o1 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f58810r;
+        TextView textView = this.f58843r;
         if (textView.getVisibility() == 0) {
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             us0 us0Var = this.O;
-            us0Var.d.f52845n.f43439o0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f58809n.h, us0Var.d.f52845n.P);
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), us0Var.d.f52845n.f43439o0.f58607f);
+            us0Var.d.f52886n.f43480o0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f58842n.h, us0Var.d.f52886n.P);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), us0Var.d.f52886n.f43480o0.f58643f);
         }
         super.dispatchDraw(canvas);
     }

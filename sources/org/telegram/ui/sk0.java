@@ -4,15 +4,15 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 public final class sk0 extends LinearLayout {
-    public boolean f52016a;
-    public final int f52017b;
-    public final int[] f52018c;
+    public boolean f52061a;
+    public final int f52062b;
+    public final int[] f52063c;
     public final int[] d;
 
     public sk0(Context context, int i7, int[] iArr, int[] iArr2) {
         super(context);
-        this.f52017b = i7;
-        this.f52018c = iArr;
+        this.f52062b = i7;
+        this.f52063c = iArr;
         this.d = iArr2;
     }
 
@@ -20,11 +20,11 @@ public final class sk0 extends LinearLayout {
     public final void onMeasure(int i7, int i10) {
         View childAt;
         int size = View.MeasureSpec.getSize(i7);
-        this.f52016a = true;
+        this.f52061a = true;
         int L = org.telegram.messenger.g0.L(9.0f);
-        int i11 = this.f52017b;
+        int i11 = this.f52062b;
         int i12 = (i11 - 1) * L;
-        int[] iArr = this.f52018c;
+        int[] iArr = this.f52063c;
         float f10 = 1.0f;
         if ((iArr[0] * i11) + i12 <= size) {
             setWeightSum(1.0f);
@@ -40,7 +40,7 @@ public final class sk0 extends LinearLayout {
             for (int i15 = 0; i15 < childCount2; i15++) {
                 LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i15).getLayoutParams();
                 layoutParams.width = 0;
-                float intValue = ((Integer) childAt.getTag(2131296739)).intValue() / i14;
+                float intValue = ((Integer) childAt.getTag(2131296741)).intValue() / i14;
                 layoutParams.weight = intValue;
                 f10 -= intValue;
             }
@@ -50,7 +50,7 @@ public final class sk0 extends LinearLayout {
                 for (int i16 = 0; i16 < childCount3; i16++) {
                     View childAt2 = getChildAt(i16);
                     LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
-                    if (((Integer) childAt2.getTag(2131296739)).intValue() != iArr[0]) {
+                    if (((Integer) childAt2.getTag(2131296741)).intValue() != iArr[0]) {
                         layoutParams2.weight += f11;
                     }
                 }
@@ -63,13 +63,13 @@ public final class sk0 extends LinearLayout {
                 ((LinearLayout.LayoutParams) getChildAt(i17).getLayoutParams()).weight = 0.0f;
             }
         }
-        this.f52016a = false;
+        this.f52061a = false;
         super.onMeasure(i7, i10);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f52016a) {
+        if (this.f52061a) {
             return;
         }
         super.requestLayout();

@@ -7,19 +7,19 @@ import org.telegram.messenger.q9;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.d6;
+import org.telegram.ui.Components.e6;
 public final class d implements ToIntFunction {
-    public final int f3214a;
+    public final int f3226a;
 
     public d(int i7) {
-        this.f3214a = i7;
+        this.f3226a = i7;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f3214a) {
+        switch (this.f3226a) {
             case 0:
-                return ((h) obj).f3237a;
+                return ((h) obj).f3249a;
             case 1:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 2:
@@ -47,7 +47,7 @@ public final class d implements ToIntFunction {
             case 10:
                 return ((Integer) ((Object[]) obj)[1]).intValue();
             case 11:
-                return ((q9) obj).f26371e.bid_date;
+                return ((q9) obj).f26399e.bid_date;
             case 12:
                 return Integer.parseInt((String) obj);
             case 13:
@@ -55,13 +55,13 @@ public final class d implements ToIntFunction {
             case 14:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 15:
-                return ((TLRPC.Message) obj).f28424id;
+                return ((TLRPC.Message) obj).f28452id;
             case 16:
-                return ((TLRPC.Message) obj).f28424id;
+                return ((TLRPC.Message) obj).f28452id;
             case 17:
-                return ((d6) obj).d;
+                return ((e6) obj).d;
             case 18:
-                return ((d6) obj).f34284e;
+                return ((e6) obj).f34689e;
             case 19:
                 ad.c cVar = (ad.c) obj;
                 return cVar.d - cVar.f1033b;

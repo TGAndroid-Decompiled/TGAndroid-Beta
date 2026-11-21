@@ -2,16 +2,16 @@ package f5;
 
 import android.content.Context;
 public final class e {
-    public boolean f11278a;
-    public Object f11279b;
-    public Object f11280c;
+    public boolean f11307a;
+    public Object f11308b;
+    public Object f11309c;
     public Object d;
-    public Object f11281e = new a0(this, true);
-    public Object f11282f = new a0(this, false);
+    public Object f11310e = new a0(this, true);
+    public Object f11311f = new a0(this, false);
 
     public e(Context context, o oVar, wf.b bVar) {
-        this.f11279b = context;
-        this.f11280c = oVar;
+        this.f11308b = context;
+        this.f11309c = oVar;
         this.d = bVar;
     }
 }

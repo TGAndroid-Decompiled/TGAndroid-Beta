@@ -1,19 +1,29 @@
 package ki;
 
-import org.telegram.ui.Components.au0;
-public final class e1 extends au0 {
-    @Override
-    public final boolean O() {
-        return false;
+import android.os.Bundle;
+import org.telegram.ui.cx;
+public final class e1 extends cx {
+    public final bi.h0 G4;
+    public final g1 H4;
+
+    public e1(g1 g1Var, Bundle bundle, bi.h0 h0Var) {
+        super(bundle);
+        this.H4 = g1Var;
+        this.G4 = h0Var;
     }
 
     @Override
-    public final boolean P() {
-        return false;
+    public final boolean U3() {
+        return true;
     }
 
     @Override
-    public final boolean W() {
-        return false;
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        g1 g1Var = this.H4;
+        if (!g1Var.Y1) {
+            g1Var.Y1 = true;
+            this.G4.a("USER_DECLINED", null);
+        }
     }
 }

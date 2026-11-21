@@ -1,53 +1,24 @@
 package bi;
-public final class k3 implements Runnable {
-    public final int f3781a;
-    public final o3 f3782b;
 
-    public k3(o3 o3Var, int i7) {
-        this.f3781a = i7;
-        this.f3782b = o3Var;
-    }
+import android.graphics.Bitmap;
+import android.graphics.drawable.NinePatchDrawable;
+import java.util.Arrays;
+public final class k3 {
+    public NinePatchDrawable f3780b;
+    public NinePatchDrawable d;
+    public NinePatchDrawable f3783f;
+    public final float[] f3784g;
+    public int h;
+    public int f3785i;
+    public int f3786j;
+    public int f3787k;
+    public final Bitmap[] f3779a = new Bitmap[1];
+    public final Bitmap[] f3781c = new Bitmap[1];
+    public final Bitmap[] f3782e = new Bitmap[1];
 
-    @Override
-    public final void run() {
-        switch (this.f3781a) {
-            case 0:
-                o3 o3Var = this.f3782b;
-                if (o3Var.f3901l2) {
-                    o3Var.f3901l2 = false;
-                    o3Var.d2.setLoading(false);
-                    o3Var.g1();
-                    return;
-                }
-                return;
-            case 1:
-                o3 o3Var2 = this.f3782b;
-                if (!o3Var2.f3899j2) {
-                    o3Var2.f3899j2 = true;
-                    o3Var2.f3898i2 = false;
-                    o3Var2.f3897h2 = false;
-                    o3Var2.dismiss();
-                    Runnable runnable = o3Var2.f3907r2;
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                }
-                if (!o3Var2.f3900k2) {
-                    o3Var2.f3900k2 = true;
-                    ai.a1 a1Var = o3Var2.f3909t2;
-                    if (a1Var != null) {
-                        a1Var.run();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-                this.f3782b.f1();
-                return;
-            default:
-                this.f3782b.dismiss();
-                return;
-        }
+    public k3() {
+        float[] fArr = new float[8];
+        this.f3784g = fArr;
+        Arrays.fill(fArr, org.telegram.messenger.g0.L(11.0f));
     }
 }

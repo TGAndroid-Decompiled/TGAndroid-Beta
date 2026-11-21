@@ -1,56 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class vq0 extends wz {
-    public final iq0 V;
-    public final gt0 W;
+import android.graphics.Point;
+public final class vq0 implements tj0 {
+    public final kq0 f41539a;
+    public final jt0 f41540b;
 
-    public vq0(gt0 gt0Var, Context context, iq0 iq0Var) {
-        super(context, null);
-        this.W = gt0Var;
-        this.V = iq0Var;
+    public vq0(jt0 jt0Var, kq0 kq0Var) {
+        this.f41540b = jt0Var;
+        this.f41539a = kq0Var;
     }
 
     @Override
-    public final int getColumnsCount() {
-        return this.W.f35615p1[gt0.z0(this.V.F) ? 1 : 0];
+    public final boolean mo23f(float r18, float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vq0.mo23f(float, float, int, android.view.View):boolean");
     }
 
     @Override
-    public final int getViewType() {
-        setIsSingleCell(false);
-        int i7 = this.V.F;
-        if (i7 == 0 || i7 == 5) {
-            return 2;
-        }
-        if (i7 == 1) {
-            return 3;
-        }
-        if (i7 != 2 && i7 != 4) {
-            if (i7 == 3) {
-                return 5;
-            }
-            if (i7 != 7) {
-                if (i7 == 6) {
-                    if (this.W.L0.getTabsCount() == 1) {
-                        setIsSingleCell(true);
-                        return 1;
-                    }
-                } else if (gt0.z0(i7)) {
-                    return 27;
-                }
-                return 1;
+    public final void j() {
+        org.telegram.ui.ActionBar.g2 g2Var = this.f41540b.f36689y1;
+        if (g2Var != null) {
+            Point point = org.telegram.messenger.g0.f24146q;
+            if (point.x > point.y) {
+                g2Var.finishPreviewFragment();
             }
         }
-        return 6;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        gt0 gt0Var = this.W;
-        gt0Var.W0.setColor(gt0Var.s0(org.telegram.ui.ActionBar.n6.f29394d6));
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), gt0Var.W0);
-        super.onDraw(canvas);
+    public final void r(float f10) {
+        org.telegram.ui.ActionBar.g2 g2Var = this.f41540b.f36689y1;
+        if (g2Var != null) {
+            Point point = org.telegram.messenger.g0.f24146q;
+            if (point.x > point.y) {
+                g2Var.movePreviewFragment(f10);
+            }
+        }
     }
 }

@@ -6,38 +6,38 @@ public enum h1 extends b2 {
 
     @Override
     public final void d(l lVar, a aVar) {
-        f fVar = lVar.f8332m;
+        f fVar = lVar.f8361m;
         if (aVar.o()) {
-            fVar.f8309c.append(aVar.e());
+            fVar.f8338c.append(aVar.e());
             return;
         }
         char d = aVar.d();
         if (d != 0) {
             if (d != ' ') {
-                w wVar = b2.f8271a;
+                w wVar = b2.f8300a;
                 if (d != '>') {
                     if (d != 65535) {
                         if (d != '\t' && d != '\n' && d != '\f' && d != '\r') {
-                            fVar.f8309c.append(d);
+                            fVar.f8338c.append(d);
                             return;
                         }
                     } else {
                         lVar.l(this);
                         fVar.getClass();
                         lVar.j();
-                        lVar.f8324c = wVar;
+                        lVar.f8353c = wVar;
                         return;
                     }
                 } else {
                     lVar.j();
-                    lVar.f8324c = wVar;
+                    lVar.f8353c = wVar;
                     return;
                 }
             }
-            lVar.f8324c = b2.f8294r0;
+            lVar.f8353c = b2.f8323r0;
             return;
         }
         lVar.m(this);
-        fVar.f8309c.append((char) 65533);
+        fVar.f8338c.append((char) 65533);
     }
 }

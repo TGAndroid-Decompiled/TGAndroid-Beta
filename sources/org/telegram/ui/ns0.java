@@ -4,16 +4,16 @@ import android.app.Activity;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class ns0 extends r11 {
-    public final bi.l6 f50301f2;
-    public final i11[] f50302g2;
-    public final PremiumPreviewFragment f50303h2;
+public final class ns0 extends s11 {
+    public final bi.p6 f50308f2;
+    public final j11[] f50309g2;
+    public final PremiumPreviewFragment f50310h2;
 
-    public ns0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.i6 i6Var, int i10, bi.l6 l6Var, i11[] i11VarArr) {
-        super(premiumPreviewFragment2, activity, true, num, i7, true, i6Var, i10);
-        this.f50303h2 = premiumPreviewFragment;
-        this.f50301f2 = l6Var;
-        this.f50302g2 = i11VarArr;
+    public ns0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.h6 h6Var, int i10, bi.p6 p6Var, j11[] j11VarArr) {
+        super(premiumPreviewFragment2, activity, true, num, i7, true, h6Var, i10);
+        this.f50310h2 = premiumPreviewFragment;
+        this.f50308f2 = p6Var;
+        this.f50309g2 = j11VarArr;
     }
 
     @Override
@@ -23,11 +23,11 @@ public final class ns0 extends r11 {
 
     @Override
     public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        this.f50301f2.a(l10, num);
-        i11 i11Var = this.f50302g2[0];
-        if (i11Var != null) {
-            this.f50303h2.f43448v0 = null;
-            i11Var.dismiss();
+        this.f50308f2.a(l10, num);
+        j11 j11Var = this.f50309g2[0];
+        if (j11Var != null) {
+            this.f50310h2.f43489v0 = null;
+            j11Var.dismiss();
         }
     }
 }

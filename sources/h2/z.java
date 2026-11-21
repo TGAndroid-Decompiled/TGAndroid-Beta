@@ -13,34 +13,34 @@ import e2.x1;
 import e2.y0;
 import e2.z0;
 import java.util.List;
-import org.telegram.ui.Components.f61;
-import org.telegram.ui.Components.y40;
+import org.telegram.ui.Components.b50;
+import org.telegram.ui.Components.i61;
 import zi.u0;
 public final class z implements a1 {
-    public final int f13839a;
-    public final Object f13840b;
+    public final int f13868a;
+    public final Object f13869b;
 
     public z(Object obj, int i7) {
-        this.f13839a = i7;
-        this.f13840b = obj;
+        this.f13868a = i7;
+        this.f13869b = obj;
     }
 
     @Override
     public final void B(List list) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void D(int i7, boolean z10) {
-        switch (this.f13839a) {
+        switch (this.f13868a) {
             case 0:
                 return;
             case 1:
-                f61 f61Var = (f61) this.f13840b;
-                if (!f61Var.I && i7 == 3) {
-                    f61Var.I = true;
-                    if (f61Var.H && f61Var.J) {
-                        f61Var.h0();
+                i61 i61Var = (i61) this.f13869b;
+                if (!i61Var.I && i7 == 3) {
+                    i61Var.I = true;
+                    if (i61Var.H && i61Var.J) {
+                        i61Var.h0();
                         return;
                     }
                     return;
@@ -54,18 +54,18 @@ public final class z implements a1 {
 
     @Override
     public final void E(q1 q1Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void F(z0 z0Var) {
-        switch (this.f13839a) {
+        switch (this.f13868a) {
             case 0:
-                e0 e0Var = (e0) this.f13840b;
-                ((a0) e0Var.f13749g).a();
+                e0 e0Var = (e0) this.f13869b;
+                ((a0) e0Var.f13778g).a();
                 ((b0) e0Var.h).a();
-                ((c0) e0Var.f13750i).a();
-                ((d0) e0Var.f13751j).a();
+                ((c0) e0Var.f13779i).a();
+                ((d0) e0Var.f13780j).a();
                 return;
             case 1:
             case 2:
@@ -76,53 +76,53 @@ public final class z implements a1 {
 
     @Override
     public final void H(w0 w0Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void J(int i7, int i10) {
-        int i11 = this.f13839a;
+        int i11 = this.f13868a;
     }
 
     @Override
     public final void L(l1 l1Var, int i7) {
-        int i10 = this.f13839a;
+        int i10 = this.f13868a;
     }
 
     @Override
     public final void M(q0 q0Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void O(y0 y0Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void P(boolean z10) {
-        switch (this.f13839a) {
+        switch (this.f13868a) {
             case 0:
             case 1:
                 return;
             case 2:
-                yi.j jVar = (yi.j) this.f13840b;
+                yi.j jVar = (yi.j) this.f13869b;
                 yi.d dVar = jVar.E;
-                Handler handler = jVar.f61323i;
-                if (jVar.f61335u != z10) {
-                    jVar.f61335u = z10;
+                Handler handler = jVar.f61364i;
+                if (jVar.f61376u != z10) {
+                    jVar.f61376u = z10;
                     handler.removeCallbacks(dVar);
                     if (z10) {
                         handler.post(dVar);
                     }
-                    jVar.f61321f.getClass();
+                    jVar.f61362f.getClass();
                     jVar.m();
                     return;
                 }
                 return;
             default:
-                u0 u0Var = (u0) this.f13840b;
-                if (u0Var.f62310a0 == 5) {
+                u0 u0Var = (u0) this.f13869b;
+                if (u0Var.f62351a0 == 5) {
                     u0Var.z(z10);
                     return;
                 }
@@ -132,75 +132,75 @@ public final class z implements a1 {
 
     @Override
     public final void a(x1 x1Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void d(int i7) {
-        int i10 = this.f13839a;
+        int i10 = this.f13868a;
     }
 
     @Override
     public final void e(int i7) {
-        int i10 = this.f13839a;
+        int i10 = this.f13868a;
     }
 
     @Override
     public final void f(boolean z10) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void g(int i7) {
-        int i10 = this.f13839a;
+        int i10 = this.f13868a;
     }
 
     @Override
     public final void h(boolean z10) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void i(int i7) {
-        int i10 = this.f13839a;
+        int i10 = this.f13868a;
     }
 
     @Override
     public final void j(boolean z10) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void k(int i7, boolean z10) {
-        int i10 = this.f13839a;
+        int i10 = this.f13868a;
     }
 
     @Override
     public final void l(float f10) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void m(int i7) {
         l2.f0 f0Var;
         l2.f0 f0Var2;
-        switch (this.f13839a) {
+        switch (this.f13868a) {
             case 0:
             case 1:
                 return;
             case 2:
-                yi.j jVar = (yi.j) this.f13840b;
+                yi.j jVar = (yi.j) this.f13869b;
                 if (i7 == 4 && jVar.G == 5 && (f0Var = jVar.A) != null) {
-                    f0Var.Z0(5, jVar.f61332r);
+                    f0Var.Z0(5, jVar.f61373r);
                     jVar.A.b();
                     return;
                 }
                 return;
             default:
-                u0 u0Var = (u0) this.f13840b;
-                zi.o oVar = u0Var.f62321m;
+                u0 u0Var = (u0) this.f13869b;
+                zi.o oVar = u0Var.f62362m;
                 oVar.b("preview playback state=" + i7);
-                if (u0Var.f62310a0 == 5 && i7 == 4 && (f0Var2 = u0Var.W) != null) {
+                if (u0Var.f62351a0 == 5 && i7 == 4 && (f0Var2 = u0Var.W) != null) {
                     f0Var2.Z0(5, u0Var.K);
                     u0Var.W.f();
                     return;
@@ -211,25 +211,25 @@ public final class z implements a1 {
 
     @Override
     public final void n(e2.o0 o0Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void o(e2.e eVar) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f13839a) {
+        switch (this.f13868a) {
             case 0:
             case 1:
             case 2:
                 return;
             default:
-                u0 u0Var = (u0) this.f13840b;
-                if (u0Var.f62310a0 == 5) {
-                    y40.o((y40) u0Var.d.f38076b);
+                u0 u0Var = (u0) this.f13869b;
+                if (u0Var.f62351a0 == 5) {
+                    b50.o((b50) u0Var.d.f38902b);
                     return;
                 }
                 return;
@@ -238,52 +238,52 @@ public final class z implements a1 {
 
     @Override
     public final void p(e2.o0 o0Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void q(v0 v0Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void s(b1 b1Var, b1 b1Var2, int i7) {
-        int i10 = this.f13839a;
+        int i10 = this.f13868a;
     }
 
     @Override
     public final void t(boolean z10) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void u(s1 s1Var) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void v(int i7, e2.l0 l0Var) {
-        int i10 = this.f13839a;
+        int i10 = this.f13868a;
     }
 
     @Override
     public final void x(g2.c cVar) {
-        int i7 = this.f13839a;
+        int i7 = this.f13868a;
     }
 
     @Override
     public final void y(v0 v0Var) {
-        switch (this.f13839a) {
+        switch (this.f13868a) {
             case 0:
             case 1:
                 return;
             case 2:
-                ((yi.j) this.f13840b).g(v0Var);
+                ((yi.j) this.f13869b).g(v0Var);
                 return;
             default:
-                u0 u0Var = (u0) this.f13840b;
-                zi.o oVar = u0Var.f62321m;
-                oVar.b("preview player error: code=" + v0Var.f10780a);
+                u0 u0Var = (u0) this.f13869b;
+                zi.o oVar = u0Var.f62362m;
+                oVar.b("preview player error: code=" + v0Var.f10809a);
                 u0Var.h(v0Var);
                 return;
         }

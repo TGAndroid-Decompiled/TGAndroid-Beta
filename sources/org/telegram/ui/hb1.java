@@ -5,28 +5,28 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-public final class hb1 extends org.telegram.ui.Components.k41 {
-    public static final int f48235b = 0;
+public final class hb1 extends org.telegram.ui.Components.n41 {
+    public static final int f48309b = 0;
 
     static {
-        org.telegram.ui.Components.k41.h(new org.telegram.ui.Components.k41());
+        org.telegram.ui.Components.n41.h(new org.telegram.ui.Components.n41());
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.l41 l41Var, boolean z10, org.telegram.ui.Components.z41 z41Var, org.telegram.ui.Components.e51 e51Var) {
+    public final void b(View view, org.telegram.ui.Components.o41 o41Var, boolean z10, org.telegram.ui.Components.c51 c51Var, org.telegram.ui.Components.h51 h51Var) {
         float f10;
         ib1 ib1Var = (ib1) view;
-        int i7 = l41Var.f37016k;
-        CharSequence charSequence = l41Var.f37018m;
-        CharSequence charSequence2 = l41Var.f37019n;
-        boolean z11 = l41Var.f37023r;
-        boolean z12 = l41Var.f37024s;
-        int i10 = l41Var.A;
-        TextView textView = ib1Var.f48690e;
-        ImageView imageView = ib1Var.f48691f;
+        int i7 = o41Var.f38096k;
+        CharSequence charSequence = o41Var.f38098m;
+        CharSequence charSequence2 = o41Var.f38099n;
+        boolean z11 = o41Var.f38103r;
+        boolean z12 = o41Var.f38104s;
+        int i10 = o41Var.A;
+        TextView textView = ib1Var.f48720e;
+        ImageView imageView = ib1Var.f48721f;
         ib1Var.h = z11;
-        ib1Var.f48692n = z12;
-        ib1Var.f48688b.setImageResource(i7);
+        ib1Var.f48722n = z12;
+        ib1Var.f48718b.setImageResource(i7);
         int i11 = 8;
         if (i10 != 0) {
             imageView.setVisibility(0);
@@ -46,12 +46,12 @@ public final class hb1 extends org.telegram.ui.Components.k41 {
             f10 = 10.0f;
         }
         int L = org.telegram.messenger.g0.L(f10);
-        ib1Var.f48689c.setPadding(0, L, 0, L);
+        ib1Var.f48719c.setPadding(0, L, 0, L);
         ib1Var.updateColors();
     }
 
     @Override
-    public final View d(Context context, org.telegram.ui.Components.ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        return new ib1(context, i6Var);
+    public final View d(Context context, org.telegram.ui.Components.ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        return new ib1(context, h6Var);
     }
 }

@@ -1,7 +1,12 @@
 package org.telegram.ui.Components;
-
-import android.graphics.Bitmap;
 public final class n61 {
-    public Bitmap f37745a;
-    public float f37746b;
+    public final double f37816a;
+    public final int f37817b;
+    public final int f37818c;
+
+    public n61(int i7, int i10, double d) {
+        this.f37816a = d;
+        this.f37817b = i7;
+        this.f37818c = i10;
+    }
 }

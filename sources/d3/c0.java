@@ -4,52 +4,52 @@ import android.content.Context;
 import android.os.Build;
 import android.view.Surface;
 public final class c0 {
-    public final g f7634a;
-    public final Context f7635b;
-    public z f7636c;
+    public final g f7663a;
+    public final Context f7664b;
+    public z f7665c;
     public boolean d;
-    public Surface f7637e;
-    public float f7638f;
-    public float f7639g;
+    public Surface f7666e;
+    public float f7667f;
+    public float f7668g;
     public float h;
-    public float f7640i;
-    public int f7641j;
-    public long f7642k;
-    public long f7643l;
-    public long f7644m;
-    public long f7645n;
-    public long f7646o;
-    public long f7647p;
-    public long f7648q;
-    public long f7649r;
-    public long f7650s;
+    public float f7669i;
+    public int f7670j;
+    public long f7671k;
+    public long f7672l;
+    public long f7673m;
+    public long f7674n;
+    public long f7675o;
+    public long f7676p;
+    public long f7677q;
+    public long f7678r;
+    public long f7679s;
 
     public c0(Context context) {
-        this.f7635b = context;
+        this.f7664b = context;
         ?? obj = new Object();
-        obj.f7684a = new f();
-        obj.f7685b = new f();
+        obj.f7713a = new f();
+        obj.f7714b = new f();
         obj.d = -9223372036854775807L;
-        this.f7634a = obj;
-        this.f7638f = -1.0f;
-        this.f7640i = 1.0f;
-        this.f7641j = 0;
+        this.f7663a = obj;
+        this.f7667f = -1.0f;
+        this.f7669i = 1.0f;
+        this.f7670j = 0;
     }
 
     public final void a() {
         Surface surface;
-        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f7637e) != null && this.f7641j != Integer.MIN_VALUE && this.h != 0.0f && surface.isValid()) {
+        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f7666e) != null && this.f7670j != Integer.MIN_VALUE && this.h != 0.0f && surface.isValid()) {
             this.h = 0.0f;
-            g0.f.v(this.f7637e, 0.0f);
+            g0.f.v(this.f7666e, 0.0f);
         }
     }
 
     public final void b() {
-        this.f7644m = 0L;
-        this.f7648q = -1L;
-        this.f7645n = -1L;
-        this.f7642k = 0L;
-        this.f7643l = 0L;
+        this.f7673m = 0L;
+        this.f7677q = -1L;
+        this.f7674n = -1L;
+        this.f7671k = 0L;
+        this.f7672l = 0L;
     }
 
     public final void c() {
@@ -59,14 +59,14 @@ public final class c0 {
     public final void d(boolean z10) {
         Surface surface;
         float f10;
-        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f7637e) != null && this.f7641j != Integer.MIN_VALUE && surface.isValid()) {
+        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f7666e) != null && this.f7670j != Integer.MIN_VALUE && surface.isValid()) {
             if (this.d) {
-                float f11 = this.f7639g;
+                float f11 = this.f7668g;
                 if (f11 != -1.0f) {
-                    f10 = f11 * this.f7640i;
+                    f10 = f11 * this.f7669i;
                     if (!z10 || this.h != f10) {
                         this.h = f10;
-                        g0.f.v(this.f7637e, f10);
+                        g0.f.v(this.f7666e, f10);
                     }
                     return;
                 }
@@ -75,7 +75,7 @@ public final class c0 {
             if (!z10) {
             }
             this.h = f10;
-            g0.f.v(this.f7637e, f10);
+            g0.f.v(this.f7666e, f10);
         }
     }
 }

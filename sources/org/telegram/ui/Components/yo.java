@@ -1,72 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import java.util.ArrayList;
-public final class yo implements org.telegram.ui.ActionBar.v6 {
-    public boolean f42551a = false;
-    public final lp f42552b;
+import org.telegram.tgnet.tl.TL_stories;
+public final class yo implements org.telegram.messenger.x10 {
+    public final int f42489a;
+    public final np f42490b;
 
-    public yo(lp lpVar) {
-        this.f42552b = lpVar;
+    public yo(np npVar, int i7) {
+        this.f42489a = i7;
+        this.f42490b = npVar;
     }
 
     @Override
-    public final void a(float f10) {
-        ArrayList arrayList;
-        lp lpVar = this.f42552b;
-        jp jpVar = lpVar.f37178r1;
-        if (f10 == 0.0f && !this.f42551a) {
-            if (jpVar != null && (arrayList = jpVar.d) != null) {
-                int size = arrayList.size();
-                int i7 = 0;
-                while (i7 < size) {
-                    Object obj = arrayList.get(i7);
-                    i7++;
-                    ((kp) obj).f36839c = lpVar.H1 ? 1 : 0;
+    public final void a(Object obj) {
+        switch (this.f42489a) {
+            case 0:
+                np npVar = this.f42490b;
+                npVar.Z1 = (TL_stories.TL_premium_boostsStatus) obj;
+                npVar.Y1 = true;
+                npVar.a1(true);
+                npVar.X1 = false;
+                return;
+            default:
+                org.telegram.messenger.g3 g3Var = (org.telegram.messenger.g3) obj;
+                np npVar2 = this.f42490b;
+                if (npVar2.getContext() != null) {
+                    org.telegram.ui.bn bnVar = npVar2.f37930v1;
+                    ug.k0 k0Var = new ug.k0(22, npVar2.f30170a, npVar2.getContext(), bnVar, npVar2.J0);
+                    k0Var.B1(g3Var);
+                    k0Var.A1(npVar2.Z1, true);
+                    k0Var.C1(npVar2.f37930v1.a());
+                    k0Var.M2 = new wo(npVar2, 2);
+                    k0Var.show();
+                    return;
                 }
-            }
-            if (!lpVar.J1) {
-                for (int i10 = 0; i10 < jpVar.b(); i10++) {
-                    ((kp) jpVar.d.get(i10)).getClass();
-                }
-            }
-            this.f42551a = true;
+                return;
         }
-        mh0 mh0Var = lpVar.f37186z1;
-        int i11 = org.telegram.ui.ActionBar.n6.Fi;
-        int w02 = org.telegram.ui.ActionBar.n6.w0(i11, lpVar.J0);
-        lpVar.f37172e2 = w02;
-        mh0Var.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
-        lpVar.E0(org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29337a7, lpVar.J0));
-        if (lpVar.J1) {
-            for (int i12 = 0; i12 < jpVar.b(); i12++) {
-                ((kp) jpVar.d.get(i12)).getClass();
-            }
-        }
-        if (f10 == 1.0f && this.f42551a) {
-            lpVar.J1 = false;
-            this.f42551a = false;
-        }
-        lpVar.Z0();
-        ai.k0 k0Var = lpVar.T1;
-        if (k0Var != null) {
-            int L = org.telegram.messenger.g0.L(0.0f);
-            int w03 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29394d6, lpVar.J0);
-            int o4 = i0.a.o(org.telegram.ui.ActionBar.n6.w0(i11, lpVar.J0), 76);
-            k0Var.setBackground(org.telegram.ui.ActionBar.n6.k0(L, L, L, L, w03, o4, o4));
-        }
-        n6 n6Var = lpVar.U1;
-        if (n6Var != null) {
-            n6Var.setTextColor(org.telegram.ui.ActionBar.n6.w0(i11, lpVar.J0));
-        }
-        int w04 = org.telegram.ui.ActionBar.n6.w0(org.telegram.ui.ActionBar.n6.f29467h5, lpVar.J0);
-        lpVar.f37173f2 = w04;
-        lpVar.v0(w04);
-    }
-
-    @Override
-    public final void b() {
-        this.f42552b.O0();
     }
 }

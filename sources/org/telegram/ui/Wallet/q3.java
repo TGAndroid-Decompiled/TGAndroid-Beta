@@ -1,26 +1,26 @@
 package org.telegram.ui.Wallet;
 public final class q3 implements Runnable {
-    public final int f44817a;
-    public final w3 f44818b;
+    public final int f44857a;
+    public final w3 f44858b;
 
     public q3(w3 w3Var, int i7) {
-        this.f44817a = i7;
-        this.f44818b = w3Var;
+        this.f44857a = i7;
+        this.f44858b = w3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f44817a) {
+        switch (this.f44857a) {
             case 0:
-                w3 w3Var = this.f44818b;
+                w3 w3Var = this.f44858b;
                 if (!w3Var.T && !w3Var.S) {
                     ih.d.c(w3Var.F, w3Var.h);
                     w3Var.G.d();
-                    x6 x6Var = w3Var.f45206r;
+                    x6 x6Var = w3Var.f45247r;
                     q3 q3Var = new q3(w3Var, 1);
                     s6 s6Var = x6Var.E;
                     if (s6Var != null) {
-                        if (s6Var.f44996b != null) {
+                        if (s6Var.f45036b != null) {
                             q3Var.run();
                             return;
                         } else {
@@ -33,7 +33,7 @@ public final class q3 implements Runnable {
                 }
                 return;
             default:
-                w3 w3Var2 = this.f44818b;
+                w3 w3Var2 = this.f44858b;
                 if (!w3Var2.T && !w3Var2.S) {
                     w3Var2.a(1.0f);
                     return;

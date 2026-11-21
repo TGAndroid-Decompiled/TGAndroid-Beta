@@ -1,45 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class z61 implements pj0, qj0 {
-    public final f71 f42821a;
+import android.content.Context;
+public final class z61 extends i71 {
+    public final j71 f42687u0;
 
-    public z61(f71 f71Var) {
-        this.f42821a = f71Var;
+    public z61(j71 j71Var, Context context, boolean z10, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(i7, context, h6Var, z10);
+        this.f42687u0 = j71Var;
     }
 
     @Override
-    public boolean b1(View view) {
-        return false;
-    }
-
-    @Override
-    public boolean c(int i7, View view) {
-        org.telegram.messenger.r10 r10Var = this.f42821a.f34992b;
-        if (r10Var == null) {
-            return false;
+    public final void f(float f10, int i7, int i10) {
+        int i11;
+        boolean z10;
+        super.f(f10, i7, i10);
+        if (f10 <= 0.5f) {
+            i11 = i7;
+        } else {
+            i11 = i10;
         }
-        return ((Boolean) r10Var.g(Integer.valueOf(((d71) view).f34293a.f33908a), view)).booleanValue();
-    }
-
-    @Override
-    public void f(float f10, float f11, int i7, View view) {
-        f71 f71Var = this.f42821a;
-        e71 e71Var = f71Var.E;
-        if (e71Var == null || e71Var.b()) {
-            d71 d71Var = (d71) view;
-            if (i7 == f71Var.G && f71Var.E != null) {
-                return;
-            }
-            org.telegram.messenger.r10 r10Var = f71Var.m0;
-            if (r10Var != null && ((Boolean) r10Var.g(Integer.valueOf(d71Var.f34293a.f33908a), Integer.valueOf(i7))).booleanValue()) {
-                return;
-            }
-            f71Var.e(d71Var.f34293a.f33908a, i7);
+        if (i7 < i10) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
-
-    @Override
-    public void s0(View view, float f10, float f11) {
+        this.f42687u0.v(i11, z10);
     }
 }

@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.v01;
 public final class go implements RequestDelegate {
-    public final int f24286a;
-    public final long f24287b;
-    public final c1 f24288c;
+    public final int f24314a;
+    public final long f24315b;
+    public final c1 f24316c;
     public final Object d;
 
     public go(c1 c1Var, long j3, Object obj, int i7) {
-        this.f24286a = i7;
-        this.f24288c = c1Var;
-        this.f24287b = j3;
+        this.f24314a = i7;
+        this.f24316c = c1Var;
+        this.f24315b = j3;
         this.d = obj;
     }
 
@@ -24,10 +24,10 @@ public final class go implements RequestDelegate {
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         Integer num;
         Integer num2;
-        switch (this.f24286a) {
+        switch (this.f24314a) {
             case 0:
-                mp mpVar = (mp) this.f24288c;
-                long j3 = this.f24287b;
+                mp mpVar = (mp) this.f24316c;
+                long j3 = this.f24315b;
                 ip ipVar = (ip) this.d;
                 mpVar.getClass();
                 Integer num3 = null;
@@ -46,11 +46,11 @@ public final class go implements RequestDelegate {
                         int i7 = 0;
                         for (int i10 = 0; i10 < messages_sponsoredmessages.users.size(); i10++) {
                             TLRPC.User user = messages_sponsoredmessages.users.get(i10);
-                            hVar.k(user, user.f28552id);
+                            hVar.k(user, user.f28580id);
                         }
                         for (int i11 = 0; i11 < messages_sponsoredmessages.chats.size(); i11++) {
                             TLRPC.Chat chat = messages_sponsoredmessages.chats.get(i11);
-                            hVar2.k(chat, chat.f28403id);
+                            hVar2.k(chat, chat.f28431id);
                         }
                         int size = messages_sponsoredmessages.messages.size();
                         int i12 = -10000000;
@@ -65,7 +65,7 @@ public final class go implements RequestDelegate {
                             tL_message.flags |= 256;
                             tL_message.date = mpVar.getConnectionsManager().getCurrentTime();
                             int i13 = i12 - 1;
-                            tL_message.f28424id = i12;
+                            tL_message.f28452id = i12;
                             tL_message.message = tL_sponsoredMessage.message;
                             TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
                             if (messageMedia != null) {
@@ -81,9 +81,9 @@ public final class go implements RequestDelegate {
                             fjVar.W0 = tL_sponsoredMessage.sponsor_info;
                             fjVar.X0 = tL_sponsoredMessage.additional_info;
                             fjVar.Y0 = tL_sponsoredMessage.button_text;
-                            fjVar.f23926b1 = tL_sponsoredMessage.can_report;
+                            fjVar.f23954b1 = tL_sponsoredMessage.can_report;
                             fjVar.Z0 = tL_sponsoredMessage.color;
-                            fjVar.f23921a1 = tL_sponsoredMessage.media;
+                            fjVar.f23949a1 = tL_sponsoredMessage.media;
                             fjVar.L5();
                             fjVar.B2 = new ArrayList();
                             fjVar.r0(true);
@@ -101,8 +101,8 @@ public final class go implements RequestDelegate {
                 g0.g3(new hm(mpVar, num3, j3, ipVar, num, 1));
                 return;
             case 1:
-                ri riVar = (ri) this.f24288c;
-                long j10 = this.f24287b;
+                ri riVar = (ri) this.f24316c;
+                long j10 = this.f24315b;
                 TLRPC.TL_messages_getMessages tL_messages_getMessages = (TLRPC.TL_messages_getMessages) this.d;
                 if (tL_error == null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
@@ -113,17 +113,17 @@ public final class go implements RequestDelegate {
                         riVar.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
                         ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
                         if (!arrayList2.isEmpty()) {
-                            riVar.getMessagesStorage().f27052a.c(new d4(riVar, arrayList2, j10, 14));
+                            riVar.getMessagesStorage().f27080a.c(new d4(riVar, arrayList2, j10, 14));
                             return;
                         }
                         return;
                     }
                 }
-                riVar.getMessagesStorage().c2(j10, tL_messages_getMessages.f28499id, false, -1, 0, false, null);
+                riVar.getMessagesStorage().c2(j10, tL_messages_getMessages.f28527id, false, -1, 0, false, null);
                 return;
             case 2:
-                mp mpVar2 = (mp) this.f24288c;
-                long j11 = this.f24287b;
+                mp mpVar2 = (mp) this.f24316c;
+                long j11 = this.f24315b;
                 TLRPC.Chat chat2 = (TLRPC.Chat) this.d;
                 if (tLObject != null) {
                     TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
@@ -139,11 +139,11 @@ public final class go implements RequestDelegate {
                 if (j11 != 0) {
                     mpVar2.getMessagesStorage().q1(j11);
                 }
-                mpVar2.f25615c1.e(chat2.f28403id);
+                mpVar2.f25643c1.e(chat2.f28431id);
                 return;
             case 3:
-                mp mpVar3 = (mp) this.f24288c;
-                long j12 = this.f24287b;
+                mp mpVar3 = (mp) this.f24316c;
+                long j12 = this.f24315b;
                 TLRPC.TL_messages_getMessagesViews tL_messages_getMessagesViews = (TLRPC.TL_messages_getMessagesViews) this.d;
                 if (tLObject != null) {
                     TLRPC.TL_messages_messageViews tL_messages_messageViews = (TLRPC.TL_messages_messageViews) tLObject;
@@ -153,28 +153,28 @@ public final class go implements RequestDelegate {
                     SparseIntArray sparseIntArray = (SparseIntArray) hVar3.f(j12);
                     SparseIntArray sparseIntArray2 = (SparseIntArray) hVar4.f(j12);
                     SparseArray sparseArray = (SparseArray) hVar5.f(j12);
-                    for (int i14 = 0; i14 < tL_messages_getMessagesViews.f28501id.size() && i14 < tL_messages_messageViews.views.size(); i14++) {
+                    for (int i14 = 0; i14 < tL_messages_getMessagesViews.f28529id.size() && i14 < tL_messages_messageViews.views.size(); i14++) {
                         TLRPC.TL_messageViews tL_messageViews = tL_messages_messageViews.views.get(i14);
                         if ((tL_messageViews.flags & 1) != 0) {
                             if (sparseIntArray == null) {
                                 sparseIntArray = new SparseIntArray();
                                 hVar3.k(sparseIntArray, j12);
                             }
-                            sparseIntArray.put(tL_messages_getMessagesViews.f28501id.get(i14).intValue(), tL_messageViews.views);
+                            sparseIntArray.put(tL_messages_getMessagesViews.f28529id.get(i14).intValue(), tL_messageViews.views);
                         }
                         if ((tL_messageViews.flags & 2) != 0) {
                             if (sparseIntArray2 == null) {
                                 sparseIntArray2 = new SparseIntArray();
                                 hVar4.k(sparseIntArray2, j12);
                             }
-                            sparseIntArray2.put(tL_messages_getMessagesViews.f28501id.get(i14).intValue(), tL_messageViews.forwards);
+                            sparseIntArray2.put(tL_messages_getMessagesViews.f28529id.get(i14).intValue(), tL_messageViews.forwards);
                         }
                         if ((tL_messageViews.flags & 4) != 0) {
                             if (sparseArray == null) {
                                 sparseArray = new SparseArray();
                                 hVar5.k(sparseArray, j12);
                             }
-                            sparseArray.put(tL_messages_getMessagesViews.f28501id.get(i14).intValue(), tL_messageViews.replies);
+                            sparseArray.put(tL_messages_getMessagesViews.f28529id.get(i14).intValue(), tL_messageViews.replies);
                         }
                     }
                     mpVar3.getMessagesStorage().m1(tL_messages_messageViews.users, tL_messages_messageViews.chats, true, true);
@@ -184,8 +184,8 @@ public final class go implements RequestDelegate {
                 }
                 return;
             case 4:
-                mp mpVar4 = (mp) this.f24288c;
-                long j13 = this.f24287b;
+                mp mpVar4 = (mp) this.f24316c;
+                long j13 = this.f24315b;
                 TLRPC.TL_messages_setChatAvailableReactions tL_messages_setChatAvailableReactions = (TLRPC.TL_messages_setChatAvailableReactions) this.d;
                 if (tLObject != null) {
                     mpVar4.V3((TLRPC.Updates) tLObject, false);
@@ -205,12 +205,12 @@ public final class go implements RequestDelegate {
                 }
                 return;
             case 5:
-                g0.g3(new fm((mp) this.f24288c, tLObject, this.f24287b, (Runnable) this.d, 7));
+                g0.g3(new fm((mp) this.f24316c, tLObject, this.f24315b, (Runnable) this.d, 7));
                 return;
             case 6:
-                mp mpVar5 = (mp) this.f24288c;
+                mp mpVar5 = (mp) this.f24316c;
                 TLRPC.TL_channels_inviteToChannel tL_channels_inviteToChannel = (TLRPC.TL_channels_inviteToChannel) this.d;
-                long j14 = this.f24287b;
+                long j14 = this.f24315b;
                 if (tL_error != null) {
                     g0.g3(new yf(mpVar5, tL_error, tL_channels_inviteToChannel, 1));
                     return;
@@ -223,20 +223,20 @@ public final class go implements RequestDelegate {
                     return;
                 }
             case 7:
-                mp mpVar6 = (mp) this.f24288c;
-                ai.g0 g0Var = (ai.g0) this.d;
-                long j15 = this.f24287b;
+                mp mpVar6 = (mp) this.f24316c;
+                ai.h0 h0Var = (ai.h0) this.d;
+                long j15 = this.f24315b;
                 if (tLObject instanceof TLRPC.TL_exportedContactToken) {
-                    mpVar6.f25630d8 = (TLRPC.TL_exportedContactToken) tLObject;
-                    g0.h3(new fi(24, mpVar6, g0Var), Math.max(0L, 0 - (System.currentTimeMillis() - j15)));
+                    mpVar6.f25658d8 = (TLRPC.TL_exportedContactToken) tLObject;
+                    g0.h3(new fi(24, mpVar6, h0Var), Math.max(0L, 0 - (System.currentTimeMillis() - j15)));
                     return;
                 }
-                mpVar6.f25622c8 = false;
+                mpVar6.f25650c8 = false;
                 return;
             case 8:
-                mp mpVar7 = (mp) this.f24288c;
+                mp mpVar7 = (mp) this.f24316c;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.d;
-                long j16 = this.f24287b;
+                long j16 = this.f24315b;
                 TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
                 if (messages_messages2 != null) {
                     int i15 = messages_messages2.count;
@@ -245,7 +245,7 @@ public final class go implements RequestDelegate {
                     }
                     int i16 = i15;
                     tr messagesStorage = mpVar7.getMessagesStorage();
-                    messagesStorage.f27052a.c(new uq(messagesStorage, 0L, -inputPeer.channel_id, i16, 7));
+                    messagesStorage.f27080a.c(new uq(messagesStorage, 0L, -inputPeer.channel_id, i16, 7));
                 }
                 if (j16 != 0) {
                     mpVar7.getMessagesStorage().q1(j16);
@@ -253,21 +253,21 @@ public final class go implements RequestDelegate {
                 }
                 return;
             case 9:
-                mp mpVar8 = (mp) this.f24288c;
+                mp mpVar8 = (mp) this.f24316c;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
-                long j17 = this.f24287b;
+                long j17 = this.f24315b;
                 if (tLObject != null) {
                     TLRPC.messages_Messages messages_messages3 = (TLRPC.messages_Messages) tLObject;
-                    mpVar8.m4(messages_messages3.messages, dialog.f28407id);
+                    mpVar8.m4(messages_messages3.messages, dialog.f28435id);
                     if (!messages_messages3.messages.isEmpty()) {
-                        if (s2.f26721a) {
-                            a8.b("checkLastDialogMessage for " + dialog.f28407id + " has message");
+                        if (s2.f26749a) {
+                            a8.b("checkLastDialogMessage for " + dialog.f28435id + " has message");
                         }
                         TLRPC.TL_messages_dialogs tL_messages_dialogs2 = new TLRPC.TL_messages_dialogs();
                         TLRPC.Message message = messages_messages3.messages.get(0);
                         TLRPC.TL_dialog tL_dialog = new TLRPC.TL_dialog();
                         tL_dialog.flags = dialog.flags;
-                        tL_dialog.top_message = message.f28424id;
+                        tL_dialog.top_message = message.f28452id;
                         tL_dialog.last_message_date = message.date;
                         tL_dialog.notify_settings = dialog.notify_settings;
                         tL_dialog.pts = dialog.pts;
@@ -281,8 +281,8 @@ public final class go implements RequestDelegate {
                         tL_dialog.pinned = dialog.pinned;
                         tL_dialog.pinnedNum = dialog.pinnedNum;
                         tL_dialog.folder_id = dialog.folder_id;
-                        long j18 = dialog.f28407id;
-                        tL_dialog.f28407id = j18;
+                        long j18 = dialog.f28435id;
+                        tL_dialog.f28435id = j18;
                         message.dialog_id = j18;
                         tL_messages_dialogs2.users.addAll(messages_messages3.users);
                         tL_messages_dialogs2.chats.addAll(messages_messages3.chats);
@@ -301,23 +301,23 @@ public final class go implements RequestDelegate {
                 g0.g3(new mn(mpVar8, dialog, 1));
                 return;
             case 10:
-                e00 e00Var = (e00) this.f24288c;
+                e00 e00Var = (e00) this.f24316c;
                 e00Var.getClass();
-                g0.g3(new fm(e00Var, tLObject, this.f24287b, (t01) this.d, 19));
+                g0.g3(new fm(e00Var, tLObject, this.f24315b, (v01) this.d, 19));
                 return;
             case 11:
-                g0.g3(new hm((z00) this.f24288c, (t00) this.d, tLObject, tL_error, this.f24287b, 6));
+                g0.g3(new hm((z00) this.f24316c, (t00) this.d, tLObject, tL_error, this.f24315b, 6));
                 return;
             default:
-                g0.g3(new hm((z00) this.f24288c, (u00) this.d, tLObject, tL_error, this.f24287b, 5));
+                g0.g3(new hm((z00) this.f24316c, (u00) this.d, tLObject, tL_error, this.f24315b, 5));
                 return;
         }
     }
 
     public go(c1 c1Var, Object obj, long j3, int i7) {
-        this.f24286a = i7;
-        this.f24288c = c1Var;
+        this.f24314a = i7;
+        this.f24316c = c1Var;
         this.d = obj;
-        this.f24287b = j3;
+        this.f24315b = j3;
     }
 }

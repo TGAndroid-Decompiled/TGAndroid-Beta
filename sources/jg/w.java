@@ -12,10 +12,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class w implements Comparator {
-    public final int f17703a;
+    public final int f17728a;
 
     public w(int i7) {
-        this.f17703a = i7;
+        this.f17728a = i7;
     }
 
     @Override
@@ -27,10 +27,10 @@ public final class w implements Comparator {
         int compare;
         int i11;
         int i12;
-        switch (this.f17703a) {
+        switch (this.f17728a) {
             case 0:
-                int i13 = ((g0) obj).f17461b;
-                int i14 = ((g0) obj2).f17461b;
+                int i13 = ((g0) obj).f17486b;
+                int i14 = ((g0) obj2).f17486b;
                 if (i13 < i14) {
                     return 1;
                 }
@@ -41,8 +41,8 @@ public final class w implements Comparator {
             case 1:
                 return Double.compare(((TLRPC.TL_topPeer) obj2).rating, ((TLRPC.TL_topPeer) obj).rating);
             case 2:
-                int i15 = ((x1) obj).f17717b;
-                int i16 = ((x1) obj2).f17717b;
+                int i15 = ((x1) obj).f17742b;
+                int i16 = ((x1) obj2).f17742b;
                 if (i15 < i16) {
                     return 1;
                 }
@@ -53,11 +53,11 @@ public final class w implements Comparator {
             case 3:
                 return ((TL_account.TL_businessWeeklyOpen) obj).start_minute - ((TL_account.TL_businessWeeklyOpen) obj2).start_minute;
             case 4:
-                return ((kg.v1) obj).f18508c - ((kg.v1) obj2).f18508c;
+                return ((kg.u1) obj).f18532c - ((kg.u1) obj2).f18532c;
             case 5:
-                return Integer.compare(((l4.d) obj).f19647a.f19650b, ((l4.d) obj2).f19647a.f19650b);
+                return Integer.compare(((l4.d) obj).f19675a.f19678b, ((l4.d) obj2).f19675a.f19678b);
             case 6:
-                return Long.compare(((l4.c) obj).f19644b, ((l4.c) obj2).f19644b);
+                return Long.compare(((l4.c) obj).f19672b, ((l4.c) obj2).f19672b);
             case 7:
                 bitCount = Integer.bitCount(((Integer) obj2).intValue());
                 bitCount2 = Integer.bitCount(((Integer) obj).intValue());
@@ -79,20 +79,20 @@ public final class w implements Comparator {
             case 9:
                 p2.b bVar = (p2.b) obj;
                 p2.b bVar2 = (p2.b) obj2;
-                int compare2 = Integer.compare(bVar.f55083c, bVar2.f55083c);
+                int compare2 = Integer.compare(bVar.f55124c, bVar2.f55124c);
                 if (compare2 == 0) {
-                    return bVar.f55082b.compareTo(bVar2.f55082b);
+                    return bVar.f55123b.compareTo(bVar2.f55123b);
                 }
                 return compare2;
             case 10:
                 org.telegram.messenger.d0 d0Var = (org.telegram.messenger.d0) obj;
                 org.telegram.messenger.d0 d0Var2 = (org.telegram.messenger.d0) obj2;
-                int i18 = d0Var.f23452b;
-                int i19 = d0Var2.f23452b;
+                int i18 = d0Var.f23480b;
+                int i19 = d0Var2.f23480b;
                 if (i18 < i19) {
                     return -1;
                 }
-                if (i18 > i19 || (i7 = d0Var.f23453c) < (i10 = d0Var2.f23453c)) {
+                if (i18 > i19 || (i7 = d0Var.f23481c) < (i10 = d0Var2.f23481c)) {
                     return 1;
                 }
                 if (i7 > i10) {
@@ -100,7 +100,7 @@ public final class w implements Comparator {
                 }
                 return 0;
             case 11:
-                int i20 = (((org.telegram.messenger.y0) obj2).f28064e > ((org.telegram.messenger.y0) obj).f28064e ? 1 : (((org.telegram.messenger.y0) obj2).f28064e == ((org.telegram.messenger.y0) obj).f28064e ? 0 : -1));
+                int i20 = (((org.telegram.messenger.y0) obj2).f28092e > ((org.telegram.messenger.y0) obj).f28092e ? 1 : (((org.telegram.messenger.y0) obj2).f28092e == ((org.telegram.messenger.y0) obj).f28092e ? 0 : -1));
                 if (i20 > 0) {
                     return -1;
                 }
@@ -138,7 +138,7 @@ public final class w implements Comparator {
                 }
                 return 1;
             case 15:
-                int i22 = (((g7) obj).f24179a > ((g7) obj2).f24179a ? 1 : (((g7) obj).f24179a == ((g7) obj2).f24179a ? 0 : -1));
+                int i22 = (((g7) obj).f24207a > ((g7) obj2).f24207a ? 1 : (((g7) obj).f24207a == ((g7) obj2).f24207a ? 0 : -1));
                 if (i22 > 0) {
                     return 1;
                 }
@@ -162,8 +162,8 @@ public final class w implements Comparator {
                 String[] strArr2 = MediaController.W1;
                 int e12 = fjVar.e1();
                 int e13 = fjVar2.e1();
-                long j3 = fjVar.f23965k.grouped_id;
-                long j10 = fjVar2.f23965k.grouped_id;
+                long j3 = fjVar.f23993k.grouped_id;
+                long j10 = fjVar2.f23993k.grouped_id;
                 if (e12 < 0 && e13 < 0) {
                     if (j3 != 0 && j3 == j10) {
                         compare = Integer.compare(e12, e13);
@@ -243,7 +243,7 @@ public final class w implements Comparator {
                 bitCount2 = ((String) obj).length();
                 break;
             case 26:
-                return ((xi) obj).f27880a - ((xi) obj2).f27880a;
+                return ((xi) obj).f27908a - ((xi) obj2).f27908a;
             case 27:
                 return org.telegram.messenger.g0.A(((TLRPC.Updates) obj).pts, ((TLRPC.Updates) obj2).pts);
             case 28:
@@ -253,12 +253,12 @@ public final class w implements Comparator {
             default:
                 fj fjVar3 = (fj) obj;
                 fj fjVar4 = (fj) obj2;
-                if (fjVar3.f23965k.date == fjVar4.f23965k.date && fjVar3.e1() >= 0 && fjVar4.e1() >= 0) {
+                if (fjVar3.f23993k.date == fjVar4.f23993k.date && fjVar3.e1() >= 0 && fjVar4.e1() >= 0) {
                     i11 = fjVar4.e1();
                     i12 = fjVar3.e1();
                 } else {
-                    i11 = fjVar4.f23965k.date;
-                    i12 = fjVar3.f23965k.date;
+                    i11 = fjVar4.f23993k.date;
+                    i12 = fjVar3.f23993k.date;
                 }
                 return i11 - i12;
         }

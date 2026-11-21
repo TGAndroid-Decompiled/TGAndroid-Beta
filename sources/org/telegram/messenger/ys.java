@@ -2,10 +2,10 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 public final class ys {
-    public final int f28178a;
+    public final int f28206a;
 
     public ys(int i7) {
-        this.f28178a = i7;
+        this.f28206a = i7;
     }
 
     public final void a(org.telegram.tgnet.TLRPC.NotificationSound r17, android.content.SharedPreferences.Editor r18, long r19, long r21, int r23) {
@@ -13,7 +13,7 @@ public final class ys {
     }
 
     public final SharedPreferences b() {
-        return mp.u1(this.f28178a).f25658g7;
+        return mp.u1(this.f28206a).f25686g7;
     }
 
     public final int c(int i7, long j3, long j10, String str) {

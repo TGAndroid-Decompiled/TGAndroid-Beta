@@ -3,36 +3,36 @@ package fi;
 import android.widget.FrameLayout;
 import org.telegram.ui.y61;
 public final class q7 implements r1.d {
-    public final int f12469a;
-    public final FrameLayout f12470b;
+    public final int f12500a;
+    public final FrameLayout f12501b;
 
     public q7(int i7, FrameLayout frameLayout) {
-        this.f12469a = i7;
-        this.f12470b = frameLayout;
+        this.f12500a = i7;
+        this.f12501b = frameLayout;
     }
 
     @Override
     public final void a(r1.g gVar, float f10, float f11) {
-        switch (this.f12469a) {
+        switch (this.f12500a) {
             case 0:
-                x7 x7Var = (x7) this.f12470b;
-                x7Var.f12739e0 = f10;
-                x7Var.f12741g0 = f11;
+                x7 x7Var = (x7) this.f12501b;
+                x7Var.f12779e0 = f10;
+                x7Var.f12781g0 = f11;
                 return;
             case 1:
-                hi.l5 l5Var = (hi.l5) this.f12470b;
+                hi.k5 k5Var = (hi.k5) this.f12501b;
                 float f12 = f10 / 1000.0f;
-                l5Var.f14899d1 = f12;
-                tg.j1 j1Var = l5Var.W0;
-                j1Var.setAlpha(f12);
-                j1Var.invalidate();
-                l5Var.E0.invalidate();
-                l5Var.V0.getTypefaceCell().setAlpha(1.0f - l5Var.f14899d1);
+                k5Var.f14874d1 = f12;
+                tg.k1 k1Var = k5Var.W0;
+                k1Var.setAlpha(f12);
+                k1Var.invalidate();
+                k5Var.E0.invalidate();
+                k5Var.V0.getTypefaceCell().setAlpha(1.0f - k5Var.f14874d1);
                 return;
             case 2:
-                pg.i iVar = (pg.i) this.f12470b;
+                pg.i iVar = (pg.i) this.f12501b;
                 float f13 = f10 / 1000.0f;
-                y61 y61Var = iVar.f55616a;
+                y61 y61Var = iVar.f55657a;
                 y61Var.setPivotX(org.telegram.messenger.g0.L(28.0f));
                 y61Var.setPivotY(org.telegram.messenger.g0.L(28.0f));
                 y61Var.setScaleX(f13);
@@ -41,14 +41,14 @@ public final class q7 implements r1.d {
                 iVar.invalidate();
                 return;
             default:
-                tg.g0 g0Var = (tg.g0) this.f12470b;
+                tg.h0 h0Var = (tg.h0) this.f12501b;
                 float f14 = f10 / 1000.0f;
-                g0Var.n1 = f14;
-                tg.j1 j1Var2 = g0Var.f57855f1;
-                j1Var2.setAlpha(f14);
-                j1Var2.invalidate();
-                g0Var.N0.invalidate();
-                g0Var.f57854e1.getTypefaceCell().setAlpha(1.0f - g0Var.n1);
+                h0Var.n1 = f14;
+                tg.k1 k1Var2 = h0Var.f57909f1;
+                k1Var2.setAlpha(f14);
+                k1Var2.invalidate();
+                h0Var.N0.invalidate();
+                h0Var.f57908e1.getTypefaceCell().setAlpha(1.0f - h0Var.n1);
                 return;
         }
     }

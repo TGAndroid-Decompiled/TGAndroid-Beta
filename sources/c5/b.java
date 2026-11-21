@@ -2,12 +2,12 @@ package c5;
 
 import java.util.Comparator;
 public final class b implements Comparator {
-    public static final b f4408b = new b(2);
-    public static final b f4409c = new b(10);
-    public final int f4410a;
+    public static final b f4437b = new b(2);
+    public static final b f4438c = new b(10);
+    public final int f4439a;
 
     public b(int i7) {
-        this.f4410a = i7;
+        this.f4439a = i7;
     }
 
     @Override

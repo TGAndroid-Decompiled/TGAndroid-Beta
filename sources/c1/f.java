@@ -9,7 +9,7 @@ import android.os.Looper;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import com.google.android.gms.common.api.internal.t;
 import com.google.android.gms.common.api.internal.u;
-import hi.u5;
+import hi.t5;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
@@ -20,16 +20,16 @@ import v0.h;
 import v0.m;
 import v0.p;
 public final class f extends b1.d {
-    public final Context f4357e;
-    public g f4358f;
-    public Executor f4359g;
+    public final Context f4386e;
+    public g f4387f;
+    public Executor f4388g;
     public CancellationSignal h;
-    public final e f4360i;
+    public final e f4389i;
 
     public f(Context context) {
         j.e(context, "context");
-        this.f4357e = context;
-        this.f4360i = new e(this, new Handler(Looper.getMainLooper()), 0);
+        this.f4386e = context;
+        this.f4389i = new e(this, new Handler(Looper.getMainLooper()), 0);
     }
 
     public final v0.n e(a6.g r14) {
@@ -37,7 +37,7 @@ public final class f extends b1.d {
     }
 
     public final g f() {
-        g gVar = this.f4358f;
+        g gVar = this.f4387f;
         if (gVar != null) {
             return gVar;
         }
@@ -46,7 +46,7 @@ public final class f extends b1.d {
     }
 
     public final Executor g() {
-        Executor executor = this.f4359g;
+        Executor executor = this.f4388g;
         if (executor != null) {
             return executor;
         }
@@ -60,13 +60,13 @@ public final class f extends b1.d {
         j.e(callback, "callback");
         j.e(executor, "executor");
         this.h = cancellationSignal;
-        this.f4358f = callback;
-        this.f4359g = executor;
+        this.f4387f = callback;
+        this.f4388g = executor;
         CredentialProviderPlayServicesImpl.Companion.getClass();
         if (a1.g.a(cancellationSignal)) {
             return;
         }
-        Context context = this.f4357e;
+        Context context = this.f4386e;
         j.e(context, "context");
         a6.d dVar = new a6.d(false);
         a6.a aVar = new a6.a(false, null, null, true, null, null, false);
@@ -77,14 +77,14 @@ public final class f extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         a6.b bVar2 = bVar;
         boolean z11 = false;
-        for (h hVar : request.f59024a) {
+        for (h hVar : request.f59062a) {
             if ((hVar instanceof p) && !z11) {
                 if (j3 >= 231815000) {
-                    LinkedHashMap linkedHashMap = d1.g.f7618a;
-                    bVar2 = new a6.b(((p) hVar).f59028e, true);
+                    LinkedHashMap linkedHashMap = d1.g.f7647a;
+                    bVar2 = new a6.b(((p) hVar).f59066e, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = d1.g.f7618a;
-                    JSONObject jSONObject = new JSONObject(((p) hVar).f59028e);
+                    LinkedHashMap linkedHashMap2 = d1.g.f7647a;
+                    JSONObject jSONObject = new JSONObject(((p) hVar).f59066e);
                     String optString = jSONObject.optString("rpId", "");
                     j.b(optString);
                     if (optString.length() != 0) {
@@ -97,18 +97,18 @@ public final class f extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z10 = request.f59025b;
+            z10 = request.f59063b;
         } else {
             z10 = false;
         }
         l7.b a10 = a.a.a(context);
         new a6.a(false, null, null, true, null, null, false);
-        a6.e eVar = new a6.e(dVar, aVar, a10.f19695l, false, 0, cVar, bVar2, z10);
+        a6.e eVar = new a6.e(dVar, aVar, a10.f19723l, false, 0, cVar, bVar2, z10);
         t b10 = u.b();
         b10.d = new n6.c[]{new n6.c("auth_api_credentials_begin_sign_in", 8L)};
-        b10.f6354c = new u5(a10, eVar, 11);
-        b10.f6353b = false;
-        b10.f6352a = 1553;
-        a10.e(0, b10.a()).addOnSuccessListener(new a1.c(new ae.d(2, cancellationSignal, this), 15)).addOnFailureListener(new ab.g(7, this, cancellationSignal));
+        b10.f6383c = new t5(a10, eVar, 11);
+        b10.f6382b = false;
+        b10.f6381a = 1553;
+        a10.e(0, b10.a()).addOnSuccessListener(new a1.c(new ae.d(2, cancellationSignal, this), 16)).addOnFailureListener(new ab.g(7, this, cancellationSignal));
     }
 }

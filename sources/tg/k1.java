@@ -1,66 +1,72 @@
 package tg;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import c8.l9;
-public final class k1 extends GestureDetector.SimpleOnGestureListener {
-    public float f57984a;
-    public boolean f57985b;
-    public float f57986c;
-    public final m1 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import org.telegram.messenger.fs;
+import org.telegram.messenger.ks;
+import org.telegram.messenger.n10;
+import org.telegram.ui.Components.ek0;
+public final class k1 extends ek0 implements fs {
+    public final Path f58030f3;
+    public q0.a f58031g3;
 
-    public k1(m1 m1Var) {
-        this.d = m1Var;
+    public k1(Context context) {
+        super(context, null);
+        this.f58030f3 = new Path();
+        setWillNotDraw(false);
+        setLayoutManager(new v4.c0());
+        setAdapter(new v4.i0());
+        setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
+        setClipToPadding(false);
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        float f10;
-        m1 m1Var = this.d;
-        boolean contains = m1Var.f58019e.contains(motionEvent.getX(), motionEvent.getY());
-        if (m1Var.f58020f != contains) {
-            m1Var.f58020f = contains;
-            m1Var.invalidate();
-            if (contains) {
-                l1 l1Var = m1Var.L;
-                if (l1Var != null) {
-                    f10 = l1Var.get();
-                } else {
-                    f10 = m1Var.I.f57220c;
-                }
-                this.f57984a = f10;
-                this.f57985b = false;
-            }
-        }
-        return m1Var.f58020f;
+    public final Integer V0(int i7) {
+        return 285212671;
     }
 
     @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        m1 m1Var = this.d;
-        if (m1Var.f58020f) {
-            if (!this.f57985b) {
-                this.f57986c = motionEvent.getY() - motionEvent2.getY();
-                this.f57985b = true;
-            }
-            float f12 = this.f57984a;
-            float y10 = ((motionEvent.getY() - motionEvent2.getY()) - this.f57986c) / m1Var.f58019e.height();
-            float f13 = m1Var.H;
-            float f14 = m1Var.G;
-            float a10 = l9.a(com.google.android.gms.internal.vision.e2.z(f13, f14, y10, f12), f14, f13);
-            l1 l1Var = m1Var.L;
-            if (l1Var != null) {
-                l1Var.y1(a10);
-            } else {
-                m1Var.I.f57220c = a10;
-            }
-            m1Var.f58025x.e(true, a10);
-            Runnable runnable = m1Var.J;
-            if (runnable != null) {
-                runnable.run();
-            }
-            m1Var.invalidate();
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == ks.F5) {
+            getAdapter().f();
         }
-        return m1Var.f58020f;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        q0.a aVar = this.f58031g3;
+        if (aVar != null) {
+            Path path = this.f58030f3;
+            aVar.accept(path);
+            canvas.save();
+            canvas.clipPath(path);
+        }
+        super.draw(canvas);
+        if (this.f58031g3 != null) {
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        ks.e().c(this, ks.F5);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ks.e().n(this, ks.F5);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, n10.C(16.0f, org.telegram.messenger.g0.L(48.0f) * Math.min(sg.a0.c().size(), 6), 1073741824));
+    }
+
+    public void setMaskProvider(q0.a aVar) {
+        this.f58031g3 = aVar;
+        invalidate();
     }
 }

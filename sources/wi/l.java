@@ -6,7 +6,7 @@ import android.graphics.SurfaceTexture;
 import android.view.View;
 import e2.c1;
 import java.util.ArrayList;
-import org.telegram.ui.Components.cn0;
+import org.telegram.ui.Components.fn0;
 import org.telegram.ui.LaunchActivity;
 public interface l {
     void B(View view);
@@ -33,7 +33,7 @@ public interface l {
 
     void U();
 
-    boolean V(boolean z10, float f10, cn0 cn0Var);
+    boolean V(boolean z10, float f10, fn0 fn0Var);
 
     void X(View view);
 

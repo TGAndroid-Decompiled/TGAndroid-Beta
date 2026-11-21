@@ -4,17 +4,17 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class md implements TextWatcher {
-    public final xd f49807a;
+    public final xd f49851a;
 
     public md(xd xdVar) {
-        this.f49807a = xdVar;
+        this.f49851a = xdVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         long parseLong;
-        xd xdVar = this.f49807a;
-        dd ddVar = xdVar.f53792g1;
+        xd xdVar = this.f49851a;
+        dd ddVar = xdVar.f53835g1;
         di.q qVar = xdVar.P0;
         if (xdVar.M0) {
             return;

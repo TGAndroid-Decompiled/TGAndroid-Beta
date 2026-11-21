@@ -1,117 +1,72 @@
 package ii;
 
-import ai.v1;
-import android.os.SystemClock;
-import android.text.TextUtils;
-import bi.k1;
-import bi.l4;
-import bi.r3;
-import bi.s4;
-import org.telegram.messenger.fj;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.ks;
+import ai.x1;
+import bi.o1;
+import bi.v3;
+import bi.w4;
 import org.telegram.messenger.mp;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.Components.g21;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.q1;
+import org.telegram.ui.ActionBar.t1;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-public final class h implements r1 {
-    public final int f16292a = 0;
-    public final int f16293b;
-    public final long f16294c;
+public final class h implements q1 {
+    public final int f16317a = 0;
+    public final int f16318b;
+    public final long f16319c;
     public final long d;
-    public final Object f16295e;
-    public final Object f16296f;
+    public final Object f16320e;
+    public final Object f16321f;
 
-    public h(long j3, v1 v1Var, int i7, long j10, s4 s4Var) {
-        this.f16294c = j3;
-        this.f16295e = v1Var;
-        this.f16293b = i7;
+    public h(long j3, x1 x1Var, int i7, long j10, w4 w4Var) {
+        this.f16319c = j3;
+        this.f16320e = x1Var;
+        this.f16318b = i7;
         this.d = j10;
-        this.f16296f = s4Var;
-    }
-
-    public void a(String str, int[] iArr, boolean z10) {
-        Integer num = (Integer) this.f16295e;
-        fj fjVar = (fj) this.f16296f;
-        if (z10) {
-            g21.S.remove(num);
-            g21.R.remove(num);
-        }
-        if (str == null) {
-            g21.m(fjVar);
-            return;
-        }
-        TLRPC.Message message = fjVar.f23965k;
-        int i7 = this.f16293b;
-        if (!z10) {
-            if (TextUtils.isEmpty(str)) {
-                return;
-            }
-            message.voiceTranscription = str;
-            message.voiceTranscriptionWords = iArr;
-            message.voiceTranscriptionLocal = true;
-            message.voiceTranscriptionFinal = false;
-            message.voiceTranscriptionOpen = true;
-            g21.o(fjVar);
-            ks.f(i7).k(ks.A1, fjVar, null, null, Boolean.TRUE, Boolean.FALSE);
-            return;
-        }
-        g0.h3(new l4(fjVar, message, str, iArr, i7, this.f16294c), Math.max(0L, 350 - (SystemClock.elapsedRealtime() - this.d)));
+        this.f16321f = w4Var;
     }
 
     @Override
-    public void h(u1 u1Var, int i7) {
-        switch (this.f16292a) {
+    public final void h(t1 t1Var, int i7) {
+        switch (this.f16317a) {
             case 0:
-                v1 v1Var = (v1) this.f16295e;
-                s4 s4Var = (s4) this.f16296f;
-                h2 T = LaunchActivity.T();
+                x1 x1Var = (x1) this.f16320e;
+                w4 w4Var = (w4) this.f16321f;
+                g2 T = LaunchActivity.T();
                 if (T != null) {
                     TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                    j jVar = new j(T, this.f16294c, twoStepVerificationActivity, v1Var, this.f16293b, this.d, s4Var);
-                    twoStepVerificationActivity.f43872a0 = 1;
-                    twoStepVerificationActivity.f43876c0 = jVar;
+                    j jVar = new j(T, this.f16319c, twoStepVerificationActivity, x1Var, this.f16318b, this.d, w4Var);
+                    twoStepVerificationActivity.f43913a0 = 1;
+                    twoStepVerificationActivity.f43917c0 = jVar;
                     twoStepVerificationActivity.x0(new b(T, twoStepVerificationActivity, 1));
                     return;
                 }
                 return;
             default:
-                boolean[] zArr = (boolean[]) this.f16295e;
-                r3 r3Var = (r3) this.f16296f;
+                boolean[] zArr = (boolean[]) this.f16320e;
+                v3 v3Var = (v3) this.f16321f;
                 if (!zArr[0]) {
                     zArr[0] = true;
                     TL_bots.setCustomVerification setcustomverification = new TL_bots.setCustomVerification();
                     setcustomverification.enabled = false;
                     setcustomverification.flags |= 1;
-                    int i10 = this.f16293b;
-                    setcustomverification.bot = mp.u1(i10).q1(this.f16294c);
+                    int i10 = this.f16318b;
+                    setcustomverification.bot = mp.u1(i10).q1(this.f16319c);
                     setcustomverification.peer = mp.u1(i10).l1(this.d);
-                    ConnectionsManager.getInstance(i10).sendRequest(setcustomverification, new k1(24, zArr, r3Var));
+                    ConnectionsManager.getInstance(i10).sendRequest(setcustomverification, new o1(24, zArr, v3Var));
                     return;
                 }
                 return;
         }
     }
 
-    public h(Integer num, fj fjVar, int i7, long j3, long j10) {
-        this.f16295e = num;
-        this.f16296f = fjVar;
-        this.f16293b = i7;
-        this.f16294c = j3;
+    public h(boolean[] zArr, int i7, long j3, long j10, v3 v3Var) {
+        this.f16320e = zArr;
+        this.f16318b = i7;
+        this.f16319c = j3;
         this.d = j10;
-    }
-
-    public h(boolean[] zArr, int i7, long j3, long j10, r3 r3Var) {
-        this.f16295e = zArr;
-        this.f16293b = i7;
-        this.f16294c = j3;
-        this.d = j10;
-        this.f16296f = r3Var;
+        this.f16321f = v3Var;
     }
 }

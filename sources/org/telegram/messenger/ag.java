@@ -6,49 +6,49 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class ag implements RequestDelegate {
-    public final int f22872a;
-    public final c1 f22873b;
-    public final long f22874c;
+    public final int f22900a;
+    public final c1 f22901b;
+    public final long f22902c;
     public final long d;
-    public final Object f22875e;
+    public final Object f22903e;
 
     public ag(c1 c1Var, Object obj, long j3, long j10, int i7) {
-        this.f22872a = i7;
-        this.f22873b = c1Var;
-        this.f22875e = obj;
-        this.f22874c = j3;
+        this.f22900a = i7;
+        this.f22901b = c1Var;
+        this.f22903e = obj;
+        this.f22902c = j3;
         this.d = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         int i7;
-        switch (this.f22872a) {
+        switch (this.f22900a) {
             case 0:
-                ri riVar = (ri) this.f22873b;
-                TLRPC.TL_channels_getMessages tL_channels_getMessages = (TLRPC.TL_channels_getMessages) this.f22875e;
+                ri riVar = (ri) this.f22901b;
+                TLRPC.TL_channels_getMessages tL_channels_getMessages = (TLRPC.TL_channels_getMessages) this.f22903e;
                 long j3 = this.d;
                 if (tL_error == null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                     ri.P1(messages_messages.messages);
                     if (!messages_messages.messages.isEmpty()) {
-                        riVar.getMessagesController().O0(Long.valueOf(this.f22874c));
+                        riVar.getMessagesController().O0(Long.valueOf(this.f22902c));
                         ec.X(messages_messages.messages);
                         riVar.m(messages_messages.messages, messages_messages.users, messages_messages.chats, false, false);
                         riVar.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
                         ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
                         if (!arrayList.isEmpty()) {
-                            riVar.getMessagesStorage().f27052a.c(new d4(riVar, arrayList, j3, 14));
+                            riVar.getMessagesStorage().f27080a.c(new d4(riVar, arrayList, j3, 14));
                             return;
                         }
                         return;
                     }
                 }
-                riVar.getMessagesStorage().c2(j3, tL_channels_getMessages.f28441id, false, -1, 0, false, null);
+                riVar.getMessagesStorage().c2(j3, tL_channels_getMessages.f28469id, false, -1, 0, false, null);
                 return;
             case 1:
-                ri riVar2 = (ri) this.f22873b;
-                int[] iArr = (int[]) this.f22875e;
+                ri riVar2 = (ri) this.f22901b;
+                int[] iArr = (int[]) this.f22903e;
                 riVar2.getClass();
                 for (int i10 = 0; i10 < 9; i10++) {
                     if (iArr[i10] < 0) {
@@ -56,7 +56,7 @@ public final class ag implements RequestDelegate {
                     }
                 }
                 boolean z10 = tLObject instanceof Vector;
-                long j10 = this.f22874c;
+                long j10 = this.f22902c;
                 long j11 = this.d;
                 if (z10) {
                     Vector vector = (Vector) tLObject;
@@ -91,16 +91,16 @@ public final class ag implements RequestDelegate {
                 g0.g3(new gg(riVar2, j10, j11, iArr, 2));
                 return;
             default:
-                g0.g3(new j9((e00) this.f22873b, tLObject, (TLRPC.TL_forumTopic) this.f22875e, this.f22874c, this.d));
+                g0.g3(new j9((e00) this.f22901b, tLObject, (TLRPC.TL_forumTopic) this.f22903e, this.f22902c, this.d));
                 return;
         }
     }
 
     public ag(ri riVar, long j3, long j10, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
-        this.f22872a = 0;
-        this.f22873b = riVar;
-        this.f22874c = j3;
+        this.f22900a = 0;
+        this.f22901b = riVar;
+        this.f22902c = j3;
         this.d = j10;
-        this.f22875e = tL_channels_getMessages;
+        this.f22903e = tL_channels_getMessages;
     }
 }

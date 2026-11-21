@@ -4,10 +4,10 @@ import e2.n0;
 import e2.p0;
 import e2.u;
 public abstract class i implements p0 {
-    public final String f57573a;
+    public final String f57612a;
 
     public i(String str) {
-        this.f57573a = str;
+        this.f57612a = str;
     }
 
     @Override
@@ -21,7 +21,7 @@ public abstract class i implements p0 {
     }
 
     public String toString() {
-        return this.f57573a;
+        return this.f57612a;
     }
 
     @Override

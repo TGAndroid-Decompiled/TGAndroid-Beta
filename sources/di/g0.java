@@ -2,32 +2,32 @@ package di;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.z41;
-public final class g0 extends k41 {
+import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.o41;
+public final class g0 extends n41 {
     static {
-        k41.h(new k41());
+        n41.h(new n41());
     }
 
-    public static l41 i(String str, CharSequence charSequence, int i7) {
-        l41 K = l41.K(g0.class);
-        K.f56590b = false;
+    public static o41 i(String str, CharSequence charSequence, int i7) {
+        o41 K = o41.K(g0.class);
+        K.f56631b = false;
         K.A = i7;
-        K.f37018m = str;
-        K.f37019n = charSequence;
+        K.f38098m = str;
+        K.f38099n = charSequence;
         return K;
     }
 
     @Override
-    public final void b(View view, l41 l41Var, boolean z10, z41 z41Var, e51 e51Var) {
-        ((h0) view).a(l41Var.A, l41Var.f37018m, l41Var.f37019n);
+    public final void b(View view, o41 o41Var, boolean z10, c51 c51Var, h51 h51Var) {
+        ((h0) view).a(o41Var.A, o41Var.f38098m, o41Var.f38099n);
     }
 
     @Override
-    public final View d(Context context, ck0 ck0Var, int i7, org.telegram.ui.ActionBar.i6 i6Var) {
-        return new h0(0, context, i6Var);
+    public final View d(Context context, ek0 ek0Var, int i7, org.telegram.ui.ActionBar.h6 h6Var) {
+        return new h0(0, context, h6Var);
     }
 }

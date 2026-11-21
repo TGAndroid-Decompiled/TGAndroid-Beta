@@ -6,50 +6,50 @@ import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.nr;
 import org.telegram.ui.rf;
 public final class e9 extends FrameLayout {
-    public final ImageView f44138a;
-    public final l4 f44139b;
-    public float f44140c;
+    public final ImageView f44178a;
+    public final l4 f44179b;
+    public float f44180c;
     public float d;
-    public float f44141e;
-    public float f44142f;
+    public float f44181e;
+    public float f44182f;
     public int h;
-    public float f44143n;
-    public float f44144r;
-    public boolean f44145s;
-    public ValueAnimator f44146w;
-    public r1.g f44147x;
+    public float f44183n;
+    public float f44184r;
+    public boolean f44185s;
+    public ValueAnimator f44186w;
+    public r1.g f44187x;
 
     public e9(Context context) {
         super(context);
-        this.f44141e = 1.0f;
+        this.f44181e = 1.0f;
         this.h = -1;
         setClipChildren(false);
         ImageView imageView = new ImageView(context);
-        this.f44138a = imageView;
+        this.f44178a = imageView;
         imageView.setImageResource(2131231958);
         imageView.setScaleX(0.7407407f);
         imageView.setScaleY(0.7407407f);
         addView(imageView, c8.ma.c(-1.0f, -1));
         l4 l4Var = new l4(this, context, new m(this, 11));
-        this.f44139b = l4Var;
+        this.f44179b = l4Var;
         addView(l4Var, c8.ma.c(-1.0f, -1));
     }
 
     public final void a(float f10) {
-        if (this.f44147x == null) {
-            r1.g gVar = new r1.g(new r1.f(this.f44141e));
-            this.f44147x = gVar;
+        if (this.f44187x == null) {
+            r1.g gVar = new r1.g(new r1.f(this.f44181e));
+            this.f44187x = gVar;
             r1.h hVar = new r1.h(f10);
             hVar.a(0.55f);
             hVar.b(280.0f);
-            gVar.f56323m = hVar;
-            this.f44147x.f(0.001f);
-            this.f44147x.b(new y3(this, 1));
+            gVar.f56364m = hVar;
+            this.f44187x.f(0.001f);
+            this.f44187x.b(new y3(this, 1));
         }
-        this.f44147x.c(f10);
+        this.f44187x.c(f10);
     }
 
     public final void b() {
@@ -57,35 +57,35 @@ public final class e9 extends FrameLayout {
         if (getParent() != null) {
             getParent().requestDisallowInterceptTouchEvent(false);
         }
-        this.f44142f = (float) Math.IEEEremainder((this.f44142f + this.f44140c) - c(), 6.283185307179586d);
-        this.f44145s = true;
+        this.f44182f = (float) Math.IEEEremainder((this.f44182f + this.f44180c) - c(), 6.283185307179586d);
+        this.f44185s = true;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f44146w = ofFloat;
+        this.f44186w = ofFloat;
         ofFloat.setDuration(350L);
-        this.f44146w.setInterpolator(lr.h);
-        this.f44146w.addUpdateListener(new rf(this, (float) Math.IEEEremainder(this.d, 6.283185307179586d), 8));
-        this.f44146w.start();
+        this.f44186w.setInterpolator(nr.h);
+        this.f44186w.addUpdateListener(new rf(this, (float) Math.IEEEremainder(this.d, 6.283185307179586d), 8));
+        this.f44186w.start();
         a(1.0f);
     }
 
     public final float c() {
-        return ((float) (((SystemClock.uptimeMillis() / 1000.0d) * 0.5961171984672546d) % 6.283185307179586d)) + this.f44142f;
+        return ((float) (((SystemClock.uptimeMillis() / 1000.0d) * 0.5961171984672546d) % 6.283185307179586d)) + this.f44182f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f44139b.setPaused(false);
+        this.f44179b.setPaused(false);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f44139b.setPaused(true);
-        ValueAnimator valueAnimator = this.f44146w;
+        this.f44179b.setPaused(true);
+        ValueAnimator valueAnimator = this.f44186w;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        r1.g gVar = this.f44147x;
+        r1.g gVar = this.f44187x;
         if (gVar != null) {
             gVar.d();
         }
@@ -94,9 +94,9 @@ public final class e9 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        l4 l4Var = this.f44139b;
+        l4 l4Var = this.f44179b;
         int i7 = 0;
-        if (l4Var.f59547n && l4Var.getVisibility() == 0) {
+        if (l4Var.f59585n && l4Var.getVisibility() == 0) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked != 0) {
                 if (actionMasked != 1) {
@@ -110,8 +110,8 @@ public final class e9 extends FrameLayout {
                                     i7 = 1;
                                 }
                                 this.h = motionEvent.getPointerId(i7);
-                                this.f44143n = motionEvent.getX(i7);
-                                this.f44144r = motionEvent.getY(i7);
+                                this.f44183n = motionEvent.getX(i7);
+                                this.f44184r = motionEvent.getY(i7);
                                 return true;
                             }
                             return true;
@@ -124,11 +124,11 @@ public final class e9 extends FrameLayout {
                                 b();
                                 return true;
                             }
-                            float radians = ((float) Math.toRadians(0.800000011920929d)) / org.telegram.messenger.g0.f24117p;
-                            this.f44140c = com.google.android.gms.internal.vision.e2.z(motionEvent.getX(findPointerIndex), this.f44143n, radians, this.f44140c);
-                            this.d = com.google.android.gms.internal.vision.e2.z(motionEvent.getY(findPointerIndex), this.f44144r, radians, this.d);
-                            this.f44143n = motionEvent.getX(findPointerIndex);
-                            this.f44144r = motionEvent.getY(findPointerIndex);
+                            float radians = ((float) Math.toRadians(0.800000011920929d)) / org.telegram.messenger.g0.f24145p;
+                            this.f44180c = com.google.android.gms.internal.vision.e2.z(motionEvent.getX(findPointerIndex), this.f44183n, radians, this.f44180c);
+                            this.d = com.google.android.gms.internal.vision.e2.z(motionEvent.getY(findPointerIndex), this.f44184r, radians, this.d);
+                            this.f44183n = motionEvent.getX(findPointerIndex);
+                            this.f44184r = motionEvent.getY(findPointerIndex);
                             return true;
                         }
                     }
@@ -138,19 +138,19 @@ public final class e9 extends FrameLayout {
                 }
                 return true;
             }
-            if (!this.f44145s && this.f44141e <= 1.001f) {
-                this.f44140c = c();
+            if (!this.f44185s && this.f44181e <= 1.001f) {
+                this.f44180c = c();
                 this.d = 0.0f;
             }
-            ValueAnimator valueAnimator = this.f44146w;
+            ValueAnimator valueAnimator = this.f44186w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f44146w = null;
+                this.f44186w = null;
             }
-            this.f44145s = false;
+            this.f44185s = false;
             this.h = motionEvent.getPointerId(0);
-            this.f44143n = motionEvent.getX();
-            this.f44144r = motionEvent.getY();
+            this.f44183n = motionEvent.getX();
+            this.f44184r = motionEvent.getY();
             if (getParent() != null) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }

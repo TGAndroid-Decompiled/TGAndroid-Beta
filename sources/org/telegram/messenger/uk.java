@@ -2,11 +2,11 @@ package org.telegram.messenger;
 
 import java.util.function.IntFunction;
 public final class uk implements IntFunction {
-    public final int f27185a;
+    public final int f27213a;
 
     @Override
     public final Object apply(int i7) {
-        switch (this.f27185a) {
+        switch (this.f27213a) {
             case 0:
                 return new int[i7];
             default:

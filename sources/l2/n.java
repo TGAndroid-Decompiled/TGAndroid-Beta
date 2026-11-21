@@ -10,36 +10,36 @@ public final class n {
     public static final boolean D;
     public final String A;
     public final boolean B;
-    public final Context f19452a;
-    public final h2.g0 f19453b;
-    public g9.t f19454c;
+    public final Context f19480a;
+    public final h2.g0 f19481b;
+    public g9.t f19482c;
     public final f2.d d;
-    public g9.t f19455e;
-    public g9.t f19456f;
-    public final f2.d f19457g;
+    public g9.t f19483e;
+    public g9.t f19484f;
+    public final f2.d f19485g;
     public final Looper h;
-    public final int f19458i;
-    public final e2.e f19459j;
-    public final int f19460k;
-    public final boolean f19461l;
-    public final p1 f19462m;
-    public final o1 f19463n;
-    public final long f19464o;
-    public final long f19465p;
-    public final long f19466q;
-    public final f f19467r;
-    public final long f19468s;
-    public final long f19469t;
-    public final int f19470u;
+    public final int f19486i;
+    public final e2.e f19487j;
+    public final int f19488k;
+    public final boolean f19489l;
+    public final p1 f19490m;
+    public final o1 f19491n;
+    public final long f19492o;
+    public final long f19493p;
+    public final long f19494q;
+    public final f f19495r;
+    public final long f19496s;
+    public final long f19497t;
+    public final int f19498u;
     public final int v;
-    public final int f19471w;
-    public final int f19472x;
-    public final boolean f19473y;
-    public boolean f19474z;
+    public final int f19499w;
+    public final int f19500x;
+    public final boolean f19501y;
+    public boolean f19502z;
 
     static {
         int i7;
-        String str = h2.l0.f13783a;
+        String str = h2.l0.f13812a;
         String c10 = ja.c(Build.DEVICE);
         if (!c10.contains("emulator") && !c10.contains("emu64a") && !c10.contains("emu64x") && !c10.contains("generic")) {
             i7 = 10000;
@@ -58,28 +58,28 @@ public final class n {
         d3.p pVar = new d3.p(3);
         f2.d dVar4 = new f2.d(context, 4);
         context.getClass();
-        this.f19452a = context;
-        this.f19454c = dVar;
+        this.f19480a = context;
+        this.f19482c = dVar;
         this.d = dVar2;
-        this.f19455e = dVar3;
-        this.f19456f = pVar;
-        this.f19457g = dVar4;
-        String str = h2.l0.f13783a;
+        this.f19483e = dVar3;
+        this.f19484f = pVar;
+        this.f19485g = dVar4;
+        String str = h2.l0.f13812a;
         Looper myLooper = Looper.myLooper();
         this.h = myLooper == null ? Looper.getMainLooper() : myLooper;
-        this.f19459j = e2.e.f10366i;
-        this.f19460k = 1;
-        this.f19461l = true;
-        this.f19462m = p1.f19526f;
-        this.f19464o = 5000L;
-        this.f19465p = 15000L;
-        this.f19466q = 3000L;
-        this.f19463n = o1.f19518b;
-        this.f19467r = new f(h2.l0.S(20L), h2.l0.S(500L));
-        this.f19453b = h2.g0.f13760a;
-        this.f19468s = 500L;
-        this.f19469t = 2000L;
-        this.f19470u = 600000;
+        this.f19487j = e2.e.f10395i;
+        this.f19488k = 1;
+        this.f19489l = true;
+        this.f19490m = p1.f19554f;
+        this.f19492o = 5000L;
+        this.f19493p = 15000L;
+        this.f19494q = 3000L;
+        this.f19491n = o1.f19546b;
+        this.f19495r = new f(h2.l0.S(20L), h2.l0.S(500L));
+        this.f19481b = h2.g0.f13789a;
+        this.f19496s = 500L;
+        this.f19497t = 2000L;
+        this.f19498u = 600000;
         boolean z10 = D;
         if (z10) {
             i7 = C;
@@ -87,18 +87,18 @@ public final class n {
             i7 = Integer.MAX_VALUE;
         }
         this.v = i7;
-        this.f19471w = z10 ? 60000 : Integer.MAX_VALUE;
-        this.f19472x = 600000;
-        this.f19473y = true;
+        this.f19499w = z10 ? 60000 : Integer.MAX_VALUE;
+        this.f19500x = 600000;
+        this.f19501y = true;
         this.A = "";
-        this.f19458i = -1000;
+        this.f19486i = -1000;
         new w7.s();
         this.B = true;
     }
 
     public final f0 a() {
-        la.p(!this.f19474z);
-        this.f19474z = true;
+        la.p(!this.f19502z);
+        this.f19502z = true;
         return new f0(this);
     }
 }

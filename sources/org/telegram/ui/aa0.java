@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class aa0 implements Runnable {
-    public final int f45513a;
-    public final qa0 f45514b;
+    public final int f45552a;
+    public final qa0 f45553b;
 
     public aa0(qa0 qa0Var, int i7) {
-        this.f45513a = i7;
-        this.f45514b = qa0Var;
+        this.f45552a = i7;
+        this.f45553b = qa0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f45513a) {
+        switch (this.f45552a) {
             case 0:
-                qa0.b0(this.f45514b);
+                qa0.b0(this.f45553b);
                 return;
             case 1:
-                qa0 qa0Var = this.f45514b;
+                qa0 qa0Var = this.f45553b;
                 org.telegram.messenger.sa saVar = qa0Var.G;
                 if (saVar != null) {
                     qa0Var.F.h(saVar);
@@ -24,15 +24,15 @@ public final class aa0 implements Runnable {
                 }
                 return;
             case 2:
-                qa0.a0(this.f45514b);
+                qa0.a0(this.f45553b);
                 return;
             case 3:
-                qa0 qa0Var2 = this.f45514b;
+                qa0 qa0Var2 = this.f45553b;
                 qa0Var2.getLocationController().o(0, qa0Var2.m0, true);
-                qa0Var2.f51139y = false;
+                qa0Var2.f51185y = false;
                 return;
             case 4:
-                qa0 qa0Var3 = this.f45514b;
+                qa0 qa0Var3 = this.f45553b;
                 org.telegram.messenger.da daVar = qa0Var3.F;
                 if (daVar != null) {
                     daVar.n(org.telegram.messenger.g0.L(70.0f), 0, org.telegram.messenger.g0.L(70.0f), qa0Var3.t0());
@@ -52,13 +52,13 @@ public final class aa0 implements Runnable {
                 qa0Var3.O = null;
                 return;
             case 5:
-                this.f45514b.D0();
+                this.f45553b.D0();
                 return;
             case 6:
-                this.f45514b.D0();
+                this.f45553b.D0();
                 return;
             default:
-                org.telegram.messenger.g0.g3(new aa0(this.f45514b, 1));
+                org.telegram.messenger.g0.g3(new aa0(this.f45553b, 1));
                 return;
         }
     }

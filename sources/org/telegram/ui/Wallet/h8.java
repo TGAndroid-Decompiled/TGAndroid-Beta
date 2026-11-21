@@ -4,22 +4,22 @@ import android.graphics.Rect;
 import android.view.View;
 import java.util.ArrayList;
 public final class h8 implements View.OnLayoutChangeListener {
-    public final int f44314a;
-    public final Object f44315b;
+    public final int f44354a;
+    public final Object f44355b;
 
     public h8(Object obj, int i7) {
-        this.f44314a = i7;
-        this.f44315b = obj;
+        this.f44354a = i7;
+        this.f44355b = obj;
     }
 
     @Override
     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        switch (this.f44314a) {
+        switch (this.f44354a) {
             case 0:
-                r8 r8Var = (r8) this.f44315b;
+                r8 r8Var = (r8) this.f44355b;
                 r8Var.getClass();
                 if (i11 - i7 != i15 - i13 || i12 - i10 != i16 - i14) {
-                    for (q8 q8Var : r8Var.f44897f.values()) {
+                    for (q8 q8Var : r8Var.f44937f.values()) {
                         q8Var.K = false;
                     }
                     r8Var.f0();
@@ -27,9 +27,9 @@ public final class h8 implements View.OnLayoutChangeListener {
                 }
                 return;
             default:
-                u8 u8Var = (u8) this.f44315b;
+                u8 u8Var = (u8) this.f44355b;
                 if (i12 - i10 < i16 - i14) {
-                    ArrayList arrayList = u8Var.f45145w;
+                    ArrayList arrayList = u8Var.f45186w;
                     int size = arrayList.size();
                     int i17 = 0;
                     while (i17 < size) {

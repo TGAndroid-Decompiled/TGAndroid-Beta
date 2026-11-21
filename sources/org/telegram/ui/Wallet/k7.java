@@ -4,17 +4,17 @@ import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.view.MotionEvent;
 public final class k7 extends vg.m {
-    public final m7 f44451j0;
+    public final m7 f44491j0;
 
     public k7(m7 m7Var, Context context) {
         super(context, 1, 4);
-        this.f44451j0 = m7Var;
+        this.f44491j0 = m7Var;
     }
 
     @Override
     public final void i() {
-        m7 m7Var = this.f44451j0;
-        if (m7Var.f44575e == this) {
+        m7 m7Var = this.f44491j0;
+        if (m7Var.f44615e == this) {
             m7.c(m7Var);
         }
     }
@@ -31,7 +31,7 @@ public final class k7 extends vg.m {
         int round = Math.round(Math.min(i7, i10) * 3.5f);
         surfaceTexture.setDefaultBufferSize(round, round);
         this.E = round;
-        this.f59480y = round;
+        this.f59518y = round;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class k7 extends vg.m {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f44451j0.f44590y && super.onTouchEvent(motionEvent)) {
+        if (!this.f44491j0.f44630y && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

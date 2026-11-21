@@ -1,17 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class mr0 extends yo0 {
-    public final org.telegram.ui.ActionBar.h2 V2;
+public final class mr0 implements org.telegram.ui.Cells.k7 {
+    public final jt0 f37623a;
 
-    public mr0(Context context, String str, String str2, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.ActionBar.h2 h2Var) {
-        super(context, null, str, false, str2, false, i6Var);
-        this.V2 = h2Var;
+    public mr0(jt0 jt0Var) {
+        this.f37623a = jt0Var;
     }
 
     @Override
-    public final void S0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        org.telegram.messenger.g0.h3(new org.telegram.ui.b0(this.V2, hVar, i7, 21), 100L);
+    public final void a(String str, boolean z10) {
+        jt0 jt0Var = this.f37623a;
+        org.telegram.ui.ActionBar.g2 g2Var = jt0Var.f36689y1;
+        if (z10) {
+            org.telegram.ui.ActionBar.w2 j3 = org.telegram.messenger.n10.j(g2Var.getParentActivity(), false, 1, null);
+            j3.P = str;
+            j3.Q = false;
+            CharSequence[] charSequenceArr = {org.telegram.messenger.gd.N0(2131747623, "Open"), org.telegram.messenger.gd.N0(2131751755, "Copy")};
+            og.j jVar = new og.j(6, this, str);
+            j3.M = charSequenceArr;
+            j3.L = jVar;
+            g2Var.showDialog(j3);
+            return;
+        }
+        jt0Var.d1(str);
+    }
+
+    @Override
+    public final boolean b() {
+        return !this.f37623a.F1;
+    }
+
+    @Override
+    public final void c(TLRPC.WebPage webPage, org.telegram.messenger.fj fjVar) {
+        jt0 jt0Var = this.f37623a;
+        iu.O0(jt0Var.f36689y1, fjVar, jt0Var.f36678u1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 }

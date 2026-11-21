@@ -4,115 +4,115 @@ import android.app.Activity;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import bi.d6;
-import bi.h8;
+import bi.h6;
+import bi.l8;
 import c8.ma;
 import di.b1;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.gd;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.Components.dw;
-import org.telegram.ui.Components.j90;
-import org.telegram.ui.Components.kv0;
-import org.telegram.ui.Components.o51;
-import org.telegram.ui.Components.wz;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.m6;
+import org.telegram.ui.Components.l90;
+import org.telegram.ui.Components.nv0;
+import org.telegram.ui.Components.ou;
+import org.telegram.ui.Components.r51;
+import org.telegram.ui.Components.yz;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bn;
 import v4.u0;
-public final class b extends o51 {
+public final class b extends r51 {
     public final int O1;
-    public final j90 P1;
-    public final wz Q1;
-    public final kv0 R1;
-    public final kv0 S1;
+    public final l90 P1;
+    public final yz Q1;
+    public final nv0 R1;
+    public final nv0 S1;
     public float T1;
     public boolean U1;
     public int V1;
     public final d W1;
 
-    public b(d dVar, h2 h2Var, long j3) {
-        super(h2Var.getCurrentAccount(), h2Var.getParentActivity(), h2Var.getResourceProvider());
+    public b(d dVar, g2 g2Var, long j3) {
+        super(g2Var.getCurrentAccount(), g2Var.getParentActivity(), g2Var.getResourceProvider());
         this.W1 = dVar;
         this.O1 = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i7 = n6.f29337a7;
-        v0(n6.w0(i7, this.J0));
+        int i7 = m6.f29321a7;
+        v0(m6.w0(i7, this.J0));
         this.G1 = i7;
         this.F1 = i7;
         N0(0.0f);
         Q(i7);
         this.B1 = false;
         this.C1 = false;
-        j90 j90Var = new j90(this, h2Var, this.f30193c, j3);
-        this.P1 = j90Var;
-        j90Var.B = false;
-        this.f30219q0 = 75;
-        this.f37992w1.K.setHint(gd.M0(2131745563, null));
-        g gVar = j90Var.f62013f;
-        this.f37986q1 = gVar;
-        this.f37985p1 = gVar;
-        this.f37984o1.setAdapter(gVar);
-        this.f37984o1.r1();
-        b1 b1Var = this.f37984o1;
-        j90Var.f62022p = b1Var;
-        b1Var.setOnItemClickListener(new h8(j90Var, 24));
+        l90 l90Var = new l90(this, g2Var, this.f30176c, j3);
+        this.P1 = l90Var;
+        l90Var.B = false;
+        this.f30202q0 = 75;
+        this.f39080w1.K.setHint(gd.N0(2131745562, null));
+        g gVar = l90Var.f62054f;
+        this.f39074q1 = gVar;
+        this.f39073p1 = gVar;
+        this.f39072o1.setAdapter(gVar);
+        this.f39072o1.r1();
+        b1 b1Var = this.f39072o1;
+        l90Var.f62063p = b1Var;
+        b1Var.setOnItemClickListener(new l8(l90Var, 24));
         u0 onScrollListener = b1Var.getOnScrollListener();
         if (onScrollListener == null) {
-            b1Var.setOnScrollListener(j90Var.D);
+            b1Var.setOnScrollListener(l90Var.D);
         } else {
-            b1Var.setOnScrollListener(new d6(11, j90Var, onScrollListener));
+            b1Var.setOnScrollListener(new h6(11, l90Var, onScrollListener));
         }
-        int indexOfChild = ((ViewGroup) this.f37984o1.getParent()).indexOfChild(this.f37984o1);
-        wz b10 = j90Var.b();
+        int indexOfChild = ((ViewGroup) this.f39072o1.getParent()).indexOfChild(this.f39072o1);
+        yz b10 = l90Var.b();
         this.Q1 = b10;
-        this.f30190b.addView(b10, indexOfChild, ma.c(-1.0f, -1));
-        kv0 a10 = j90Var.a();
+        this.f30173b.addView(b10, indexOfChild, ma.c(-1.0f, -1));
+        nv0 a10 = l90Var.a();
         this.R1 = a10;
-        this.f30190b.addView(a10, indexOfChild, ma.c(-1.0f, -1));
-        kv0 c10 = j90Var.c();
+        this.f30173b.addView(a10, indexOfChild, ma.c(-1.0f, -1));
+        nv0 c10 = l90Var.c();
         this.S1 = c10;
-        this.f30190b.addView(c10, indexOfChild, ma.c(-1.0f, -1));
-        j90Var.e();
+        this.f30173b.addView(c10, indexOfChild, ma.c(-1.0f, -1));
+        l90Var.e();
     }
 
     @Override
     public final void K0(MotionEvent motionEvent, ah.i iVar) {
-        h2 h2Var;
+        g2 g2Var;
         long j3;
         int action = motionEvent.getAction();
-        j90 j90Var = this.P1;
+        l90 l90Var = this.P1;
         if (action == 0) {
-            this.T1 = this.f37994y1;
-            j90Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f37994y1 - this.T1) < this.O1 && !this.U1) {
+            this.T1 = this.f39082y1;
+            l90Var.i(false);
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f39082y1 - this.T1) < this.O1 && !this.U1) {
             Activity W = g0.W(getContext());
             if (W instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) W;
-                h2Var = (h2) launchActivity.M().getFragmentStack().get(launchActivity.M().getFragmentStack().size() - 1);
+                g2Var = (g2) launchActivity.M().getFragmentStack().get(launchActivity.M().getFragmentStack().size() - 1);
             } else {
-                h2Var = null;
+                g2Var = null;
             }
-            if (h2Var instanceof bn) {
-                boolean sa2 = ((bn) h2Var).sa();
+            if (g2Var instanceof bn) {
+                boolean sa2 = ((bn) g2Var).sa();
                 this.U1 = true;
-                dw dwVar = new dw(20, this, iVar);
+                ou ouVar = new ou(22, this, iVar);
                 if (sa2) {
                     j3 = 200;
                 } else {
                     j3 = 0;
                 }
-                g0.h3(dwVar, j3);
+                g0.h3(ouVar, j3);
             } else {
                 this.U1 = true;
                 A0(true);
                 iVar.requestFocus();
-                g0.g3(new org.telegram.ui.Components.i(iVar, 6));
+                g0.g3(new org.telegram.ui.Components.j(iVar, 6));
             }
         }
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
             return;
         }
-        j90Var.i(true);
+        l90Var.i(true);
     }
 
     @Override
@@ -132,15 +132,15 @@ public final class b extends o51 {
     @Override
     public final void R0() {
         int i7;
-        b1 b1Var = this.f37984o1;
+        b1 b1Var = this.f39072o1;
         if (b1Var.getChildCount() <= 0) {
             if (b1Var.getVisibility() == 0) {
                 i7 = b1Var.getPaddingTop() - g0.L(8.0f);
             } else {
                 i7 = 0;
             }
-            if (this.f37994y1 != i7) {
-                this.f37994y1 = i7;
+            if (this.f39082y1 != i7) {
+                this.f39082y1 = i7;
                 O0(i7);
                 return;
             }
@@ -152,16 +152,16 @@ public final class b extends o51 {
     @Override
     public final void dismiss() {
         d dVar = this.W1;
-        b bVar = dVar.f61983i;
-        if (bVar != null && !bVar.P1.f62010b) {
-            dVar.f61983i = null;
+        b bVar = dVar.f62024i;
+        if (bVar != null && !bVar.P1.f62051b) {
+            dVar.f62024i = null;
         }
         super.dismiss();
     }
 
     @Override
     public final void onBackPressed() {
-        k kVar = this.P1.f62025s;
+        k kVar = this.P1.f62066s;
         if (kVar != null) {
             kVar.e(false);
         } else {
@@ -172,7 +172,7 @@ public final class b extends o51 {
     @Override
     public final void s0() {
         super.s0();
-        int w02 = n6.w0(n6.f29337a7, this.J0);
+        int w02 = m6.w0(m6.f29321a7, this.J0);
         if (w02 != this.V1) {
             this.V1 = w02;
             v0(w02);
@@ -181,11 +181,11 @@ public final class b extends o51 {
 
     @Override
     public final void show() {
-        j90 j90Var = this.P1;
-        if (j90Var.f62010b && this.f37994y1 == 0) {
-            this.f37994y1 = g0.L(8.0f);
+        l90 l90Var = this.P1;
+        if (l90Var.f62051b && this.f39082y1 == 0) {
+            this.f39082y1 = g0.L(8.0f);
         }
         super.show();
-        j90Var.f62010b = false;
+        l90Var.f62051b = false;
     }
 }

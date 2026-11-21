@@ -7,52 +7,52 @@ import java.io.File;
 import org.telegram.messenger.a8;
 import p5.c;
 public final class b extends a {
-    public final MediaMetadataRetriever f56587r;
-    public final boolean f56588s;
+    public final MediaMetadataRetriever f56628r;
+    public final boolean f56629s;
 
     public b(File file) {
         long j3;
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        this.f56587r = mediaMetadataRetriever;
+        this.f56628r = mediaMetadataRetriever;
         try {
             mediaMetadataRetriever.setDataSource(file.getAbsolutePath());
-            this.f56572a = "OTHER";
+            this.f56613a = "OTHER";
             try {
                 j3 = Long.parseLong(mediaMetadataRetriever.extractMetadata(9));
             } catch (Exception unused) {
                 j3 = 0;
             }
-            this.f56573b = j3;
-            this.f56574c = c(7);
+            this.f56614b = j3;
+            this.f56615c = c(7);
             this.d = c(2);
-            this.f56575e = c(13);
-            this.f56576f = c(1);
-            this.f56577g = b(8);
+            this.f56616e = c(13);
+            this.f56617f = c(1);
+            this.f56618g = b(8);
             this.h = c(6);
-            this.f56579j = b(0);
+            this.f56620j = b(0);
             b(10);
-            this.f56580k = b(14);
-            this.f56582m = c(4);
-            byte[] embeddedPicture = this.f56587r.getEmbeddedPicture();
+            this.f56621k = b(14);
+            this.f56623m = c(4);
+            byte[] embeddedPicture = this.f56628r.getEmbeddedPicture();
             if (embeddedPicture != null) {
-                this.f56584o = BitmapFactory.decodeByteArray(embeddedPicture, 0, embeddedPicture.length);
+                this.f56625o = BitmapFactory.decodeByteArray(embeddedPicture, 0, embeddedPicture.length);
             }
-            Bitmap bitmap = this.f56584o;
+            Bitmap bitmap = this.f56625o;
             if (bitmap != null) {
-                float max = Math.max(bitmap.getWidth(), this.f56584o.getHeight()) / 120.0f;
+                float max = Math.max(bitmap.getWidth(), this.f56625o.getHeight()) / 120.0f;
                 if (max > 0.0f) {
-                    Bitmap bitmap2 = this.f56584o;
-                    this.f56585p = Bitmap.createScaledBitmap(bitmap2, (int) (bitmap2.getWidth() / max), (int) (this.f56584o.getHeight() / max), true);
+                    Bitmap bitmap2 = this.f56625o;
+                    this.f56626p = Bitmap.createScaledBitmap(bitmap2, (int) (bitmap2.getWidth() / max), (int) (this.f56625o.getHeight() / max), true);
                 } else {
-                    this.f56585p = this.f56584o;
+                    this.f56626p = this.f56625o;
                 }
             }
         } catch (Exception e10) {
-            this.f56588s = true;
+            this.f56629s = true;
             a8.g(e10, true);
         }
         try {
-            MediaMetadataRetriever mediaMetadataRetriever2 = this.f56587r;
+            MediaMetadataRetriever mediaMetadataRetriever2 = this.f56628r;
             if (mediaMetadataRetriever2 != null) {
                 c.q(mediaMetadataRetriever2);
             }
@@ -63,7 +63,7 @@ public final class b extends a {
 
     public final short b(int i7) {
         try {
-            return Short.parseShort(this.f56587r.extractMetadata(i7));
+            return Short.parseShort(this.f56628r.extractMetadata(i7));
         } catch (Exception unused) {
             return (short) 0;
         }
@@ -71,7 +71,7 @@ public final class b extends a {
 
     public final String c(int i7) {
         try {
-            return this.f56587r.extractMetadata(i7);
+            return this.f56628r.extractMetadata(i7);
         } catch (Exception unused) {
             return null;
         }

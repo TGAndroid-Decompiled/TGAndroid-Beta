@@ -5,34 +5,34 @@ import android.graphics.Bitmap;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class p51 implements org.telegram.messenger.x10 {
-    public final int f50717a;
-    public final Object f50718b;
-    public final Object f50719c;
+    public final int f50758a;
+    public final Object f50759b;
+    public final Object f50760c;
 
     public p51(int i7, Object obj, Object obj2) {
-        this.f50717a = i7;
-        this.f50718b = obj;
-        this.f50719c = obj2;
+        this.f50758a = i7;
+        this.f50759b = obj;
+        this.f50760c = obj2;
     }
 
     @Override
     public final void a(Object obj) {
         v4.f1 K;
-        int i7 = this.f50717a;
-        Object obj2 = this.f50719c;
-        Object obj3 = this.f50718b;
+        int i7 = this.f50758a;
+        Object obj2 = this.f50760c;
+        Object obj3 = this.f50759b;
         switch (i7) {
             case 0:
                 ThemeActivity themeActivity = (ThemeActivity) obj3;
                 AtomicReference atomicReference = (AtomicReference) obj2;
                 if (!((Boolean) obj).booleanValue()) {
-                    org.telegram.messenger.bz.f23201u0 = false;
+                    org.telegram.messenger.bz.f23229u0 = false;
                     org.telegram.messenger.bz.y();
                     themeActivity.P0 = true;
                     ((Dialog) atomicReference.get()).dismiss();
-                    org.telegram.ui.Components.ck0 ck0Var = themeActivity.f43832b;
-                    if (ck0Var != null && ck0Var.H && (K = ck0Var.K(themeActivity.N)) != null) {
-                        themeActivity.f43830a.t(K, themeActivity.N);
+                    org.telegram.ui.Components.ek0 ek0Var = themeActivity.f43873b;
+                    if (ek0Var != null && ek0Var.H && (K = ek0Var.K(themeActivity.N)) != null) {
+                        themeActivity.f43871a.t(K, themeActivity.N);
                         return;
                     }
                     return;
@@ -40,12 +40,12 @@ public final class p51 implements org.telegram.messenger.x10 {
                 return;
             case 1:
                 ThemeActivity themeActivity2 = (ThemeActivity) obj3;
-                b31 b31Var = (b31) obj2;
+                mz0 mz0Var = (mz0) obj2;
                 if (((Boolean) obj).booleanValue()) {
-                    b31Var.run();
+                    mz0Var.run();
                     return;
                 } else {
-                    org.telegram.ui.Components.lc.b0(themeActivity2).I(2131624012, org.telegram.messenger.gd.M0(2131754309, null), org.telegram.messenger.gd.M0(2131754310, null)).j();
+                    org.telegram.ui.Components.lc.b0(themeActivity2).I(2131624012, org.telegram.messenger.gd.N0(2131754308, null), org.telegram.messenger.gd.N0(2131754309, null)).j();
                     return;
                 }
             case 2:
@@ -66,7 +66,7 @@ public final class p51 implements org.telegram.messenger.x10 {
                 ((org.telegram.ui.Wallet.v8) obj2).a((String) obj);
                 return;
             case 4:
-                ((org.telegram.ui.Wallet.u0) obj3).f45097q.put((TL_wallet.walletTransaction) obj, (org.telegram.messenger.x10) obj2);
+                ((org.telegram.ui.Wallet.u0) obj3).f45137q.put((TL_wallet.walletTransaction) obj, (org.telegram.messenger.x10) obj2);
                 return;
             case 5:
                 org.telegram.ui.Wallet.o0 o0Var = (org.telegram.ui.Wallet.o0) obj3;
@@ -91,14 +91,14 @@ public final class p51 implements org.telegram.messenger.x10 {
                     return;
                 }
                 org.telegram.ui.Wallet.u0.P("sending disableBackup to server");
-                org.telegram.ui.Wallet.n3.a(u0Var.f45083a, new ci.y(10), null, null, null, new fi.b0(5, u0Var, z8Var), true, true, new m.b3(null, null));
+                org.telegram.ui.Wallet.n3.a(u0Var.f45123a, new ci.y(10), null, null, null, new fi.b0(5, u0Var, z8Var), true, true, new m.b3(null, null));
                 return;
             case 7:
                 org.telegram.messenger.g0.g3(new org.telegram.ui.Wallet.p((Object) ((org.telegram.ui.Wallet.g2) obj3), (Object) ((org.telegram.ui.Wallet.k) obj2), (String) obj, 2));
                 return;
             case 8:
                 ((org.telegram.ui.Wallet.l2) obj3).h = false;
-                ((m60) obj2).a(null, (String) obj);
+                ((n60) obj2).a(null, (String) obj);
                 return;
             case 9:
                 ((org.telegram.ui.Wallet.r0) obj3).close();
@@ -119,7 +119,7 @@ public final class p51 implements org.telegram.messenger.x10 {
                 n6Var.F0.setLoading(false);
                 if ("NO_LOCAL_BACKUP".equalsIgnoreCase(str3)) {
                     org.telegram.ui.Wallet.u8 u8Var = new org.telegram.ui.Wallet.u8();
-                    u8Var.f45144s = u0Var2.E();
+                    u8Var.f45185s = u0Var2.E();
                     n6Var.presentFragment(u8Var);
                     return;
                 } else if (str3 != null) {
@@ -143,15 +143,15 @@ public final class p51 implements org.telegram.messenger.x10 {
                 return;
             case 14:
                 org.telegram.ui.Wallet.d9 d9Var = (org.telegram.ui.Wallet.d9) obj3;
-                org.telegram.ui.ActionBar.h2 h2Var = (org.telegram.ui.ActionBar.h2) obj2;
+                org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) obj2;
                 String str5 = (String) obj;
                 if (str5 != null) {
                     org.telegram.ui.Components.lc.b0(d9Var).f0(str5, false);
                     return;
                 }
                 d9Var.finishFragment();
-                if (h2Var instanceof org.telegram.ui.Wallet.n6) {
-                    org.telegram.messenger.g0.h3(new org.telegram.ui.Wallet.t3(2, h2Var), 300L);
+                if (g2Var instanceof org.telegram.ui.Wallet.n6) {
+                    org.telegram.messenger.g0.h3(new org.telegram.ui.Wallet.t3(2, g2Var), 300L);
                     return;
                 }
                 return;
@@ -159,11 +159,11 @@ public final class p51 implements org.telegram.messenger.x10 {
                 org.telegram.ui.Wallet.na naVar = (org.telegram.ui.Wallet.na) obj3;
                 String str6 = (String) obj;
                 ((org.telegram.messenger.x10) obj2).a(str6);
-                if (str6 == null && !naVar.f44671r) {
+                if (str6 == null && !naVar.f44711r) {
                     if (naVar.getParentLayout() != null) {
-                        for (org.telegram.ui.ActionBar.h2 h2Var2 : naVar.getParentLayout().getFragmentStack()) {
-                            if (h2Var2 instanceof org.telegram.ui.Wallet.n6) {
-                                ((org.telegram.ui.Wallet.n6) h2Var2).T0();
+                        for (org.telegram.ui.ActionBar.g2 g2Var2 : naVar.getParentLayout().getFragmentStack()) {
+                            if (g2Var2 instanceof org.telegram.ui.Wallet.n6) {
+                                ((org.telegram.ui.Wallet.n6) g2Var2).T0();
                             }
                         }
                     }
@@ -179,25 +179,25 @@ public final class p51 implements org.telegram.messenger.x10 {
                 org.telegram.ui.web.w0 w0Var = (org.telegram.ui.web.w0) obj;
                 n1Var.getClass();
                 ((org.telegram.ui.web.x0[]) obj2)[0].finishFragment();
-                org.telegram.messenger.x10 x10Var = n1Var.f53209f;
+                org.telegram.messenger.x10 x10Var = n1Var.f53252f;
                 if (x10Var != null) {
                     n1Var.finishFragment();
                     x10Var.a(w0Var);
                     return;
                 }
-                vf.c.t(n1Var.getParentActivity(), w0Var.f53340c);
+                vf.c.t(n1Var.getParentActivity(), w0Var.f53383c);
                 return;
             default:
                 org.telegram.ui.web.v1 v1Var = (org.telegram.ui.web.v1) obj3;
                 v1Var.getClass();
-                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.sv0(v1Var, (org.telegram.ui.web.u1) obj2, (Bitmap) obj, 14));
+                org.telegram.messenger.g0.g3(new org.telegram.ui.Components.es0(v1Var, (org.telegram.ui.web.u1) obj2, (Bitmap) obj, 15));
                 return;
         }
     }
 
     public p51(org.telegram.ui.Wallet.u0 u0Var, org.telegram.ui.Wallet.o0 o0Var, org.telegram.ui.Wallet.y8 y8Var) {
-        this.f50717a = 5;
-        this.f50718b = o0Var;
-        this.f50719c = y8Var;
+        this.f50758a = 5;
+        this.f50759b = o0Var;
+        this.f50760c = y8Var;
     }
 }

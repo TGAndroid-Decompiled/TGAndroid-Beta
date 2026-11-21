@@ -10,13 +10,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
 public final class de extends FrameLayout {
-    public final int f34382a;
-    public final ChatActivityEnterView f34383b;
+    public final int f34480a;
+    public final ChatActivityEnterView f34481b;
 
     public de(ChatActivityEnterView chatActivityEnterView, Context context, int i7) {
         super(context);
-        this.f34382a = i7;
-        this.f34383b = chatActivityEnterView;
+        this.f34480a = i7;
+        this.f34481b = chatActivityEnterView;
     }
 
     @Override
@@ -27,21 +27,21 @@ public final class de extends FrameLayout {
         fh.g gVar;
         gh.a aVar;
         fh.g gVar2;
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 3:
-                ChatActivityEnterView chatActivityEnterView = this.f34383b;
-                if (chatActivityEnterView.I1) {
-                    float f13 = chatActivityEnterView.N1;
+                ChatActivityEnterView chatActivityEnterView = this.f34481b;
+                if (chatActivityEnterView.K1) {
+                    float f13 = chatActivityEnterView.P1;
                     float f14 = 0.0f;
                     if (f13 > 0.0f) {
-                        Paint paint = chatActivityEnterView.M1;
-                        int[] iArr = chatActivityEnterView.Q1;
-                        int[] iArr2 = chatActivityEnterView.P1;
+                        Paint paint = chatActivityEnterView.O1;
+                        int[] iArr = chatActivityEnterView.S1;
+                        int[] iArr2 = chatActivityEnterView.R1;
                         float f15 = 1.0f;
                         float i7 = Utilities.i(f13 * 1.25f, 1.0f, 0.0f);
                         float i10 = Utilities.i((f13 - 0.18f) * 1.25f, 1.0f, 0.0f);
                         float height = getHeight();
-                        float min = Math.min(height - org.telegram.messenger.g0.L(44.0f), chatActivityEnterView.W0(this));
+                        float min = Math.min(height - org.telegram.messenger.g0.L(44.0f), chatActivityEnterView.a1(this));
                         float width = getWidth() - org.telegram.messenger.g0.L(2.5f);
                         re reVar = chatActivityEnterView.K0;
                         int i11 = 0;
@@ -59,19 +59,19 @@ public final class de extends FrameLayout {
                             f10 = 44.0f;
                         }
                         float f17 = 22.0f;
-                        if (chatActivityEnterView.K1 == null && chatActivityEnterView.J1 != null) {
-                            jh.f z02 = chatActivityEnterView.z0();
-                            if (z02 != null && (gVar2 = z02.f17778n) != null) {
-                                aVar = gVar2.f11671w;
+                        if (chatActivityEnterView.M1 == null && chatActivityEnterView.L1 != null) {
+                            jh.f D0 = chatActivityEnterView.D0();
+                            if (D0 != null && (gVar2 = D0.f17803n) != null) {
+                                aVar = gVar2.f11700w;
                             } else {
                                 aVar = null;
                             }
                             if (aVar != null) {
-                                fh.g c10 = chatActivityEnterView.J1.c(this, aVar, false);
-                                chatActivityEnterView.K1 = c10;
+                                fh.g c10 = chatActivityEnterView.L1.c(this, aVar, false);
+                                chatActivityEnterView.M1 = c10;
                                 c10.r(org.telegram.messenger.g0.L(22.0f));
-                                fh.g c11 = chatActivityEnterView.J1.c(this, aVar, false);
-                                chatActivityEnterView.L1 = c11;
+                                fh.g c11 = chatActivityEnterView.L1.c(this, aVar, false);
+                                chatActivityEnterView.N1 = c11;
                                 c11.r(org.telegram.messenger.g0.L(22.0f));
                             }
                         }
@@ -96,16 +96,16 @@ public final class de extends FrameLayout {
                                 RectF rectF2 = org.telegram.messenger.g0.P;
                                 canvas.scale(T1, T1, rectF2.centerX(), height - (org.telegram.messenger.g0.L(f10) / 2.0f));
                                 if (i11 == 0) {
-                                    gVar = chatActivityEnterView.K1;
+                                    gVar = chatActivityEnterView.M1;
                                 } else {
-                                    gVar = chatActivityEnterView.L1;
+                                    gVar = chatActivityEnterView.N1;
                                 }
                                 if (gVar != null) {
                                     gVar.setBounds((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
                                     gVar.setAlpha((int) (f11 * 255.0f));
                                     gVar.draw(canvas);
                                 } else {
-                                    paint.setColor(org.telegram.ui.ActionBar.n6.r1(f11, chatActivityEnterView.C0(org.telegram.ui.ActionBar.n6.Je)));
+                                    paint.setColor(org.telegram.ui.ActionBar.m6.r1(f11, chatActivityEnterView.G0(org.telegram.ui.ActionBar.m6.Je)));
                                     canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(f12), org.telegram.messenger.g0.L(f12), paint);
                                 }
                                 canvas.restore();
@@ -129,7 +129,7 @@ public final class de extends FrameLayout {
     public boolean dispatchHoverEvent(MotionEvent motionEvent) {
         re reVar;
         float x10;
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 2:
                 if (motionEvent.getAction() != 10) {
                     float x11 = motionEvent.getX();
@@ -138,7 +138,7 @@ public final class de extends FrameLayout {
                         View childAt = getChildAt(i7);
                         if (childAt.getVisibility() == 0 && childAt.getAlpha() > 0.0f) {
                             float x12 = childAt.getX() + childAt.getWidth();
-                            if (childAt == this.f34383b.K0) {
+                            if (childAt == this.f34481b.K0) {
                                 x10 = x12 - reVar.l();
                             } else {
                                 x10 = childAt.getX();
@@ -157,20 +157,20 @@ public final class de extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f34383b;
-                ki.j3 j3Var = chatActivityEnterView.f32628l0;
-                if (j3Var != null && j3Var.getVisibility() == 0) {
-                    return chatActivityEnterView.f32628l0.dispatchTouchEvent(motionEvent);
+                ChatActivityEnterView chatActivityEnterView = this.f34481b;
+                ki.i3 i3Var = chatActivityEnterView.f32656l0;
+                if (i3Var != null && i3Var.getVisibility() == 0) {
+                    return chatActivityEnterView.f32656l0.dispatchTouchEvent(motionEvent);
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 1:
             default:
                 return super.dispatchTouchEvent(motionEvent);
             case 2:
-                ChatActivityEnterView chatActivityEnterView2 = this.f34383b;
-                if (chatActivityEnterView2.K && chatActivityEnterView2.f32641m7 != 2) {
+                ChatActivityEnterView chatActivityEnterView2 = this.f34481b;
+                if (chatActivityEnterView2.K && chatActivityEnterView2.f32709r7 != 2) {
                     return super.dispatchTouchEvent(motionEvent);
                 }
                 return false;
@@ -179,11 +179,11 @@ public final class de extends FrameLayout {
 
     @Override
     public boolean drawChild(final Canvas canvas, final View view, final long j3) {
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f34383b;
+                ChatActivityEnterView chatActivityEnterView = this.f34481b;
                 if (view != null && view == chatActivityEnterView.F0) {
-                    return chatActivityEnterView.s0(canvas, new org.telegram.messenger.p10() {
+                    return chatActivityEnterView.w0(canvas, new org.telegram.messenger.p10() {
                         @Override
                         public final Object run() {
                             Boolean valueOf;
@@ -192,13 +192,13 @@ public final class de extends FrameLayout {
                         }
                     });
                 }
-                if (chatActivityEnterView.X5 && view == chatActivityEnterView.f32584f1) {
+                if (chatActivityEnterView.Z5 && view == chatActivityEnterView.f32612f1) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
             case 2:
-                ChatActivityEnterView chatActivityEnterView2 = this.f34383b;
-                if (view == chatActivityEnterView2.K0 && chatActivityEnterView2.f32606i0) {
+                ChatActivityEnterView chatActivityEnterView2 = this.f34481b;
+                if (view == chatActivityEnterView2.K0 && chatActivityEnterView2.f32634i0) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -209,9 +209,9 @@ public final class de extends FrameLayout {
 
     @Override
     public boolean hasOverlappingRendering() {
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 3:
-                if (!this.f34383b.I1 && super.hasOverlappingRendering()) {
+                if (!this.f34481b.K1 && super.hasOverlappingRendering()) {
                     return true;
                 }
                 return false;
@@ -222,17 +222,17 @@ public final class de extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 1:
                 super.onLayout(z10, i7, i10, i11, i12);
-                ChatActivityEnterView chatActivityEnterView = this.f34383b;
+                ChatActivityEnterView chatActivityEnterView = this.f34481b;
                 if (!chatActivityEnterView.C0.isEmpty()) {
                     for (int i13 = 0; i13 < getChildCount(); i13++) {
                         View childAt = getChildAt(i13);
                         Float f10 = (Float) chatActivityEnterView.C0.get(childAt);
                         if (f10 != null) {
                             childAt.setTranslationX(f10.floatValue() - childAt.getLeft());
-                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(lr.f37208f).start();
+                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(nr.f37956f).start();
                         }
                     }
                     chatActivityEnterView.C0.clear();
@@ -248,26 +248,26 @@ public final class de extends FrameLayout {
     @Override
     public void onMeasure(int i7, int i10) {
         ?? r12;
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 1:
                 super.onMeasure(i7, i10);
                 int max = Math.max(org.telegram.messenger.g0.L(44.0f), getMeasuredHeight());
-                ChatActivityEnterView chatActivityEnterView = this.f34383b;
-                te.c cVar = chatActivityEnterView.f32581e7;
-                float f10 = cVar.f57663f;
+                ChatActivityEnterView chatActivityEnterView = this.f34481b;
+                te.c cVar = chatActivityEnterView.f32626g7;
+                float f10 = cVar.f57702f;
                 if (f10 > 0.0f) {
                     if (cVar.h) {
-                        f10 = cVar.f57664g;
+                        f10 = cVar.f57703g;
                     }
                     float f11 = max;
                     if (f10 != f11) {
-                        cVar.d = chatActivityEnterView.A0();
-                        cVar.f57662e = 0L;
-                        lr lrVar = pi.k.V;
-                        if (chatActivityEnterView.E1 > 0 && SystemClock.uptimeMillis() < chatActivityEnterView.E1 && (r12 = chatActivityEnterView.F1) != 0) {
-                            lrVar = r12;
+                        cVar.d = chatActivityEnterView.E0();
+                        cVar.f57701e = 0L;
+                        nr nrVar = pi.k.V;
+                        if (chatActivityEnterView.G1 > 0 && SystemClock.uptimeMillis() < chatActivityEnterView.G1 && (r12 = chatActivityEnterView.H1) != 0) {
+                            nrVar = r12;
                         }
-                        cVar.f57661c = lrVar;
+                        cVar.f57700c = nrVar;
                     }
                     cVar.a(f11);
                 } else {
@@ -283,7 +283,7 @@ public final class de extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i7, int i10, int i11, int i12) {
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 2:
                 super.onSizeChanged(i7, i10, i11, i12);
                 setPivotX(i7 - org.telegram.messenger.g0.L(22.0f));
@@ -297,10 +297,10 @@ public final class de extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 2:
-                ChatActivityEnterView chatActivityEnterView = this.f34383b;
-                if (chatActivityEnterView.K && chatActivityEnterView.f32641m7 != 2) {
+                ChatActivityEnterView chatActivityEnterView = this.f34481b;
+                if (chatActivityEnterView.K && chatActivityEnterView.f32709r7 != 2) {
                     return super.onTouchEvent(motionEvent);
                 }
                 return false;
@@ -311,10 +311,10 @@ public final class de extends FrameLayout {
 
     @Override
     public void setVisibility(int i7) {
-        switch (this.f34382a) {
+        switch (this.f34480a) {
             case 3:
                 super.setVisibility(i7);
-                this.f34383b.t2(true);
+                this.f34481b.w2(true);
                 return;
             default:
                 super.setVisibility(i7);

@@ -3,12 +3,12 @@ package gi;
 import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import hi.e3;
+import hi.d3;
 import org.telegram.messenger.gd;
-import org.telegram.ui.Components.bm;
-import org.telegram.ui.Components.dj;
-import org.telegram.ui.Components.iw0;
-import org.telegram.ui.Components.ki;
+import org.telegram.ui.Components.dm;
+import org.telegram.ui.Components.fj;
+import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.mi;
 import v4.c1;
 import v4.t;
 import v4.x0;
@@ -26,7 +26,7 @@ public final class g extends t {
     public boolean Y0() {
         switch (this.Q) {
             case 4:
-                if (((iw0) this.R).R1 != null && gd.f24213a0) {
+                if (((kw0) this.R).R1 != null && gd.f24241a0) {
                     return true;
                 }
                 return false;
@@ -40,10 +40,10 @@ public final class g extends t {
         switch (this.Q) {
             case 1:
                 super.b0(x0Var, c1Var);
-                e3 e3Var = (e3) this.R;
-                if (e3Var.V) {
-                    e3Var.V = false;
-                    e3Var.a();
+                d3 d3Var = (d3) this.R;
+                if (d3Var.V) {
+                    d3Var.V = false;
+                    d3Var.a();
                     return;
                 }
                 return;
@@ -57,7 +57,7 @@ public final class g extends t {
     public int o0(int i7, x0 x0Var, c1 c1Var) {
         switch (this.Q) {
             case 0:
-                if (((m) this.R).f13650b) {
+                if (((m) this.R).f13679b) {
                     i7 = 0;
                 }
                 return super.o0(i7, x0Var, c1Var);
@@ -70,14 +70,14 @@ public final class g extends t {
     public void v0(RecyclerView recyclerView, c1 c1Var, int i7) {
         switch (this.Q) {
             case 2:
-                dj djVar = new dj(this, recyclerView.getContext());
-                djVar.f59067a = i7;
-                w0(djVar);
+                fj fjVar = new fj(this, recyclerView.getContext());
+                fjVar.f59105a = i7;
+                w0(fjVar);
                 return;
             case 3:
-                bm bmVar = new bm(this, recyclerView.getContext());
-                bmVar.f59067a = i7;
-                w0(bmVar);
+                dm dmVar = new dm(this, recyclerView.getContext());
+                dmVar.f59105a = i7;
+                w0(dmVar);
                 return;
             default:
                 super.v0(recyclerView, c1Var, i7);
@@ -100,15 +100,15 @@ public final class g extends t {
         }
     }
 
-    public g(ki kiVar, int i7, int i10) {
+    public g(mi miVar, int i7, int i10) {
         super(i7);
         this.Q = i10;
-        this.R = kiVar;
+        this.R = miVar;
     }
 
-    public g(iw0 iw0Var) {
+    public g(kw0 kw0Var) {
         super(5);
         this.Q = 4;
-        this.R = iw0Var;
+        this.R = kw0Var;
     }
 }

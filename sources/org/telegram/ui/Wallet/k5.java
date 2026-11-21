@@ -6,18 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public final class k5 extends FrameLayout {
-    public final int f44447a;
-    public final n6 f44448b;
+    public final int f44487a;
+    public final n6 f44488b;
 
     public k5(n6 n6Var, Context context, int i7) {
         super(context);
-        this.f44447a = i7;
-        this.f44448b = n6Var;
+        this.f44487a = i7;
+        this.f44488b = n6Var;
     }
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f44447a) {
+        switch (this.f44487a) {
             case 0:
                 return;
             default:
@@ -31,13 +31,13 @@ public final class k5 extends FrameLayout {
         int i7;
         int i10;
         int i11;
-        switch (this.f44447a) {
+        switch (this.f44487a) {
             case 0:
-                n6 n6Var = this.f44448b;
-                if (n6Var.f44639q0) {
-                    bi.c6 c6Var = n6Var.f33530a;
-                    if (c6Var != null) {
-                        i11 = c6Var.getPaddingTop();
+                n6 n6Var = this.f44488b;
+                if (n6Var.f44679q0) {
+                    bi.g6 g6Var = n6Var.f34683a;
+                    if (g6Var != null) {
+                        i11 = g6Var.getPaddingTop();
                     } else {
                         i11 = 0;
                     }
@@ -48,9 +48,9 @@ public final class k5 extends FrameLayout {
                 canvas.save();
                 int width = getWidth();
                 int height = getHeight();
-                bi.c6 c6Var2 = n6Var.f33530a;
-                if (c6Var2 != null) {
-                    i10 = c6Var2.getPaddingBottom();
+                bi.g6 g6Var2 = n6Var.f34683a;
+                if (g6Var2 != null) {
+                    i10 = g6Var2.getPaddingBottom();
                 } else {
                     i10 = 0;
                 }
@@ -65,7 +65,7 @@ public final class k5 extends FrameLayout {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f44447a) {
+        switch (this.f44487a) {
             case 0:
                 super.onAttachedToWindow();
                 if (getParent() instanceof ViewGroup) {
@@ -83,22 +83,22 @@ public final class k5 extends FrameLayout {
     public void onLayout(boolean z10, int i7, int i10, int i11, int i12) {
         int i13;
         int i14;
-        switch (this.f44447a) {
+        switch (this.f44487a) {
             case 0:
-                n6 n6Var = this.f44448b;
-                hi.i1 i1Var = n6Var.f44643s0;
-                bi.c6 c6Var = n6Var.f33530a;
-                if (c6Var != null) {
-                    i13 = c6Var.getPaddingTop();
+                n6 n6Var = this.f44488b;
+                hi.i1 i1Var = n6Var.f44683s0;
+                bi.g6 g6Var = n6Var.f34683a;
+                if (g6Var != null) {
+                    i13 = g6Var.getPaddingTop();
                 } else {
                     i13 = 0;
                 }
                 int i15 = -i13;
                 int i16 = i11 - i7;
                 int i17 = i12 - i10;
-                bi.c6 c6Var2 = n6Var.f33530a;
-                if (c6Var2 != null) {
-                    i14 = c6Var2.getPaddingBottom();
+                bi.g6 g6Var2 = n6Var.f34683a;
+                if (g6Var2 != null) {
+                    i14 = g6Var2.getPaddingBottom();
                 } else {
                     i14 = 0;
                 }
@@ -113,31 +113,31 @@ public final class k5 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int i11;
-        switch (this.f44447a) {
+        switch (this.f44487a) {
             case 0:
                 int size = View.MeasureSpec.getSize(i7);
                 int size2 = View.MeasureSpec.getSize(i10);
                 setMeasuredDimension(size, size2);
-                n6 n6Var = this.f44448b;
-                hi.i1 i1Var = n6Var.f44643s0;
+                n6 n6Var = this.f44488b;
+                hi.i1 i1Var = n6Var.f44683s0;
                 int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-                bi.c6 c6Var = n6Var.f33530a;
+                bi.g6 g6Var = n6Var.f34683a;
                 int i12 = 0;
-                if (c6Var != null) {
-                    i11 = c6Var.getPaddingTop();
+                if (g6Var != null) {
+                    i11 = g6Var.getPaddingTop();
                 } else {
                     i11 = 0;
                 }
                 int i13 = i11 + size2;
-                bi.c6 c6Var2 = n6Var.f33530a;
-                if (c6Var2 != null) {
-                    i12 = c6Var2.getPaddingBottom();
+                bi.g6 g6Var2 = n6Var.f34683a;
+                if (g6Var2 != null) {
+                    i12 = g6Var2.getPaddingBottom();
                 }
                 i1Var.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i12 + i13, 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
-                setMeasuredDimension(getMeasuredWidth(), (int) Math.ceil(this.f44448b.T.d(org.telegram.messenger.g0.L(4.0f))));
+                setMeasuredDimension(getMeasuredWidth(), (int) Math.ceil(this.f44488b.T.d(org.telegram.messenger.g0.L(4.0f))));
                 return;
         }
     }

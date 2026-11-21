@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Shader;
-public final class m30 extends org.telegram.ui.ActionBar.n5 {
+public final class m30 extends org.telegram.ui.ActionBar.m5 {
     public LinearGradient N0;
     public int O0;
     public final Matrix P0;
@@ -30,10 +30,10 @@ public final class m30 extends org.telegram.ui.ActionBar.n5 {
             float f10 = textWidth;
             this.U0 = 1.3f * f10;
             float f11 = f10 * 2.0f;
-            int x02 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.Zh, false);
-            int x03 = org.telegram.ui.ActionBar.n6.x0(null, org.telegram.ui.ActionBar.n6.f29368bi, false);
-            int i10 = org.telegram.ui.ActionBar.n6.f29348ai;
-            this.N0 = new LinearGradient(0.0f, getTextHeight(), f11, 0.0f, new int[]{x02, x03, org.telegram.ui.ActionBar.n6.x0(null, i10, false), org.telegram.ui.ActionBar.n6.x0(null, i10, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
+            int x02 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.Zh, false);
+            int x03 = org.telegram.ui.ActionBar.m6.x0(null, org.telegram.ui.ActionBar.m6.f29352bi, false);
+            int i10 = org.telegram.ui.ActionBar.m6.f29332ai;
+            this.N0 = new LinearGradient(0.0f, getTextHeight(), f11, 0.0f, new int[]{x02, x03, org.telegram.ui.ActionBar.m6.x0(null, i10, false), org.telegram.ui.ActionBar.m6.x0(null, i10, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
             getPaint().setShader(this.N0);
             this.O0 = textWidth;
         }

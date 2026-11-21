@@ -1,26 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class yi extends FragmentContextView {
-    public final FrameLayout Y0;
-    public final cj Z0;
+import android.view.View;
+import java.io.Serializable;
+public final class yi implements org.telegram.messenger.v10, org.telegram.messenger.w10 {
+    public final ej f42445a;
 
-    public yi(cj cjVar, Context context, org.telegram.ui.ActionBar.h2 h2Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.i6 i6Var, FrameLayout frameLayout2) {
-        super(context, h2Var, frameLayout, false, i6Var);
-        this.Z0 = cjVar;
-        this.Y0 = frameLayout2;
+    @Override
+    public Boolean a(o41 o41Var, View view, Integer num, Float f10, Float f11) {
+        this.f42445a.R(o41Var, view);
+        return Boolean.TRUE;
     }
 
     @Override
-    public final void setVisibility(int i7) {
-        boolean z10;
-        cs csVar = this.Z0.f34034y;
-        if (i7 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        csVar.j(this.Y0, z10, true);
+    public void l(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        this.f42445a.R((o41) obj, (View) obj2);
     }
 }

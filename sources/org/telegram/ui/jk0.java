@@ -10,23 +10,23 @@ import org.json.JSONObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class jk0 implements View.OnClickListener {
-    public final int f48975a;
-    public final ml0 f48976b;
+    public final int f49008a;
+    public final ml0 f49009b;
 
     public jk0(ml0 ml0Var, int i7) {
-        this.f48975a = i7;
-        this.f48976b = ml0Var;
+        this.f49008a = i7;
+        this.f49009b = ml0Var;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
-        int i7 = this.f48975a;
-        ml0 ml0Var = this.f48976b;
+        int i7 = this.f49008a;
+        ml0 ml0Var = this.f49009b;
         switch (i7) {
             case 0:
-                ml0Var.f49867f[0].requestFocus();
-                org.telegram.messenger.g0.I3(ml0Var.f49867f[0]);
+                ml0Var.f49908f[0].requestFocus();
+                org.telegram.messenger.g0.I3(ml0Var.f49908f[0]);
                 return;
             case 1:
                 if (ml0Var.getParentActivity() != null) {
@@ -35,30 +35,30 @@ public final class jk0 implements View.OnClickListener {
                 }
                 return;
             case 2:
-                ml0 ml0Var2 = new ml0(ml0Var.f49861c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 0, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49894y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49885s0, ml0Var.X0);
-                ml0Var2.f49863d1 = ml0Var.f49863d1;
-                ml0Var2.f49866e1 = ml0Var.f49866e1;
+                ml0 ml0Var2 = new ml0(ml0Var.f49902c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 0, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49935y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49926s0, ml0Var.X0);
+                ml0Var2.f49904d1 = ml0Var.f49904d1;
+                ml0Var2.f49907e1 = ml0Var.f49907e1;
                 ml0Var2.U = new uk0(ml0Var);
                 ml0Var.presentFragment(ml0Var2);
                 return;
             case 3:
-                ml0 ml0Var3 = new ml0(ml0Var.f49861c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 0, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49894y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49885s0, ml0Var.X0);
-                ml0Var3.f49863d1 = ml0Var.f49863d1;
-                ml0Var3.f49866e1 = ml0Var.f49866e1;
+                ml0 ml0Var3 = new ml0(ml0Var.f49902c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 0, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49935y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49926s0, ml0Var.X0);
+                ml0Var3.f49904d1 = ml0Var.f49904d1;
+                ml0Var3.f49907e1 = ml0Var.f49907e1;
                 ml0Var3.U = new vk0(ml0Var);
                 ml0Var.presentFragment(ml0Var3);
                 return;
             case 4:
-                ml0 ml0Var4 = new ml0(ml0Var.f49861c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 0, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49894y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49885s0, ml0Var.X0);
-                ml0Var4.f49863d1 = ml0Var.f49863d1;
-                ml0Var4.f49866e1 = ml0Var.f49866e1;
+                ml0 ml0Var4 = new ml0(ml0Var.f49902c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 0, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49935y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49926s0, ml0Var.X0);
+                ml0Var4.f49904d1 = ml0Var.f49904d1;
+                ml0Var4.f49907e1 = ml0Var.f49907e1;
                 ml0Var4.U = new wk0(ml0Var);
                 ml0Var.presentFragment(ml0Var4);
                 return;
             case 5:
-                ml0 ml0Var5 = new ml0(ml0Var.f49861c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 0, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49894y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49885s0, ml0Var.X0);
-                ml0Var5.f49863d1 = ml0Var.f49863d1;
-                ml0Var5.f49866e1 = ml0Var.f49866e1;
+                ml0 ml0Var5 = new ml0(ml0Var.f49902c1, ml0Var.D0, ml0Var.O0, ml0Var.P0, 0, ml0Var.F0, ml0Var.H0, ml0Var.I0, null, ml0Var.f49935y0, ml0Var.J0, ml0Var.V0, null, ml0Var.f49926s0, ml0Var.X0);
+                ml0Var5.f49904d1 = ml0Var.f49904d1;
+                ml0Var5.f49907e1 = ml0Var.f49907e1;
                 ml0Var5.U = new xk0(ml0Var);
                 ml0Var.presentFragment(ml0Var5);
                 return;
@@ -76,19 +76,19 @@ public final class jk0 implements View.OnClickListener {
                 return;
             case 8:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ml0Var.getParentActivity());
-                String M0 = org.telegram.messenger.gd.M0(2131743703, null);
-                if (ml0Var.f49857b0.has_secure_values) {
-                    M0 = i5.c.k(2131743704, null, p5.c.n(M0, "\n\n"));
+                String N0 = org.telegram.messenger.gd.N0(2131743697, null);
+                if (ml0Var.f49898b0.has_secure_values) {
+                    N0 = i5.c.k(2131743698, null, p5.c.n(N0, "\n\n"));
                 }
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f28744a;
-                u1Var.U = M0;
-                u1Var.S = org.telegram.messenger.gd.M0(2131743702, null);
-                alertDialog$Builder.k(org.telegram.messenger.gd.M0(2131751424, null), new pk0(ml0Var, 3));
-                alertDialog$Builder.h(org.telegram.messenger.gd.M0(2131752578, null), null);
-                ml0Var.showDialog(u1Var);
-                TextView textView = (TextView) u1Var.d(-1);
+                org.telegram.ui.ActionBar.t1 t1Var = alertDialog$Builder.f28774a;
+                t1Var.U = N0;
+                t1Var.S = org.telegram.messenger.gd.N0(2131743696, null);
+                alertDialog$Builder.k(org.telegram.messenger.gd.N0(2131751423, null), new pk0(ml0Var, 3));
+                alertDialog$Builder.h(org.telegram.messenger.gd.N0(2131752577, null), null);
+                ml0Var.showDialog(t1Var);
+                TextView textView = (TextView) t1Var.d(-1);
                 if (textView != null) {
-                    org.telegram.ui.ActionBar.u6.U(textView, org.telegram.ui.ActionBar.n6.f29635q7, ml0Var.Z0);
+                    org.telegram.ui.ActionBar.t6.U(textView, org.telegram.ui.ActionBar.m6.f29619q7, ml0Var.Z0);
                     return;
                 }
                 return;
@@ -151,19 +151,19 @@ public final class jk0 implements View.OnClickListener {
                     jSONObject.put("currencyCode", ml0Var.D0.invoice.currency);
                     jSONObject.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
                     put.put("transactionInfo", jSONObject);
-                    put.put("merchantInfo", new JSONObject().put("merchantName", ml0Var.f49881q0));
+                    put.put("merchantInfo", new JSONObject().put("merchantName", ml0Var.f49922q0));
                     String jSONObject2 = put.toString();
                     ?? obj = new Object();
-                    obj.f61084r = true;
+                    obj.f61125r = true;
                     q6.m.i(jSONObject2, "paymentDataRequestJson cannot be null!");
-                    obj.f61085s = jSONObject2;
-                    b9.k0 k0Var = ml0Var.f49864e;
+                    obj.f61126s = jSONObject2;
+                    b9.k0 k0Var = ml0Var.f49905e;
                     k0Var.getClass();
                     com.google.android.gms.common.api.internal.t b10 = com.google.android.gms.common.api.internal.u.b();
-                    b10.f6354c = new v4.f0(obj);
-                    b10.d = new n6.c[]{y8.p.f61097b};
-                    b10.f6353b = true;
-                    b10.f6352a = 23707;
+                    b10.f6383c = new v4.f0(obj);
+                    b10.d = new n6.c[]{y8.p.f61138b};
+                    b10.f6382b = true;
+                    b10.f6381a = 23707;
                     y8.a.a(k0Var.e(1, b10.a()), ml0Var.getParentActivity());
                     return;
                 } catch (JSONException e10) {
@@ -171,7 +171,7 @@ public final class jk0 implements View.OnClickListener {
                     return;
                 }
             default:
-                ml0Var.f49890w0 = false;
+                ml0Var.f49931w0 = false;
                 ml0Var.z0();
                 return;
         }

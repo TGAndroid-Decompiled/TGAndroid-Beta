@@ -12,8 +12,8 @@ import org.telegram.messenger.v3;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.ActionBar.h2;
-import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.ActionBar.g2;
+import org.telegram.ui.ActionBar.t1;
 import org.telegram.ui.Components.lc;
 public abstract class l0 {
     public static SpannableStringBuilder a(fj fjVar, String str, String str2, boolean z10, boolean z11) {
@@ -25,7 +25,7 @@ public abstract class l0 {
         int i12;
         int i13;
         int i14;
-        TLRPC.Message message = fjVar.f23965k;
+        TLRPC.Message message = fjVar.f23993k;
         TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
         if (n5.o(message.peer_id) == n5.o(message.from_id)) {
             z12 = true;
@@ -40,57 +40,57 @@ public abstract class l0 {
         if (z12) {
             if (z13) {
                 if (z11) {
-                    i14 = 2131751857;
+                    i14 = 2131751856;
                 } else if (z10) {
-                    i14 = 2131751851;
+                    i14 = 2131751850;
                 } else {
-                    i14 = 2131751845;
+                    i14 = 2131751844;
                 }
-                return org.telegram.messenger.g0.W2(gd.M0(i14, null));
+                return org.telegram.messenger.g0.W2(gd.N0(i14, null));
             }
             if (z11) {
-                i13 = 2131751859;
+                i13 = 2131751858;
             } else if (z10) {
-                i13 = 2131751853;
+                i13 = 2131751852;
             } else {
-                i13 = 2131751847;
+                i13 = 2131751846;
             }
             return org.telegram.messenger.g0.W2(gd.a0(null, null, i13, str));
         } else if (fjVar.N3()) {
             if (z13) {
                 if (z11) {
-                    i12 = 2131751855;
+                    i12 = 2131751854;
                 } else if (z10) {
-                    i12 = 2131751849;
+                    i12 = 2131751848;
                 } else {
-                    i12 = 2131751843;
+                    i12 = 2131751842;
                 }
-                return org.telegram.messenger.g0.W2(gd.M0(i12, null));
+                return org.telegram.messenger.g0.W2(gd.N0(i12, null));
             }
             if (z11) {
-                i11 = 2131751856;
+                i11 = 2131751855;
             } else if (z10) {
-                i11 = 2131751850;
+                i11 = 2131751849;
             } else {
-                i11 = 2131751844;
+                i11 = 2131751843;
             }
             return org.telegram.messenger.g0.W2(gd.a0(null, null, i11, str));
         } else if (z13) {
             if (z11) {
-                i10 = 2131751858;
+                i10 = 2131751857;
             } else if (z10) {
-                i10 = 2131751852;
+                i10 = 2131751851;
             } else {
-                i10 = 2131751846;
+                i10 = 2131751845;
             }
             return org.telegram.messenger.g0.W2(gd.a0(null, null, i10, str2));
         } else {
             if (z11) {
-                i7 = 2131751860;
+                i7 = 2131751859;
             } else if (z10) {
-                i7 = 2131751854;
+                i7 = 2131751853;
             } else {
-                i7 = 2131751848;
+                i7 = 2131751847;
             }
             return org.telegram.messenger.g0.W2(gd.a0(null, null, i7, str2, str));
         }
@@ -128,7 +128,7 @@ public abstract class l0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (n5.o(communityPeer2.peer) == j3) {
                     if (user != null) {
-                        dialog = mp.u1(i7).U0(user.f28552id);
+                        dialog = mp.u1(i7).U0(user.f28580id);
                     }
                     return c(O0, dialog, user, communityPeer2);
                 }
@@ -158,30 +158,30 @@ public abstract class l0 {
         return 1;
     }
 
-    public static void d(int r8, long r9, org.telegram.ui.ActionBar.h2 r11) {
-        throw new UnsupportedOperationException("Method not decompiled: li.l0.d(int, long, org.telegram.ui.ActionBar.h2):void");
+    public static void d(int r8, long r9, org.telegram.ui.ActionBar.g2 r11) {
+        throw new UnsupportedOperationException("Method not decompiled: li.l0.d(int, long, org.telegram.ui.ActionBar.g2):void");
     }
 
-    public static void e(u1[] u1VarArr, h2 h2Var, int i7, TLRPC.Chat chat) {
-        if (u1VarArr[0] != null) {
+    public static void e(t1[] t1VarArr, g2 g2Var, int i7, TLRPC.Chat chat) {
+        if (t1VarArr[0] != null) {
             return;
         }
         mp u12 = mp.u1(i7);
-        di.j0 j0Var = new di.j0(u1VarArr, h2Var, i7, chat);
+        di.j0 j0Var = new di.j0(t1VarArr, g2Var, i7, chat);
         TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
         tL_channels_getAdminedPublicChannels.for_community_peer = true;
         int sendRequestTyped = u12.getConnectionsManager().sendRequestTyped(tL_channels_getAdminedPublicChannels, new d3.b(1), new fl(u12, j0Var, 0));
-        ConnectionsManager.getInstance(i7).bindRequestToGuid(sendRequestTyped, h2Var.getClassGuid());
-        u1 u1Var = new u1(3, h2Var.getContext(), null);
-        u1VarArr[0] = u1Var;
-        u1Var.r(500L);
-        u1VarArr[0].setOnCancelListener(new e0(i7, sendRequestTyped, u1VarArr, 0));
+        ConnectionsManager.getInstance(i7).bindRequestToGuid(sendRequestTyped, g2Var.getClassGuid());
+        t1 t1Var = new t1(3, g2Var.getContext(), null);
+        t1VarArr[0] = t1Var;
+        t1Var.r(500L);
+        t1VarArr[0].setOnCancelListener(new e0(i7, sendRequestTyped, t1VarArr, 0));
     }
 
     public static void f(lc lcVar, int i7, boolean z10) {
         int i10;
         int i11;
-        String M0;
+        String N0;
         int i12;
         if (i7 == 2) {
             i10 = 2131624293;
@@ -194,17 +194,17 @@ public abstract class l0 {
             i11 = 36;
         }
         if (i7 == 0) {
-            M0 = gd.M0(2131751932, null);
+            N0 = gd.N0(2131751931, null);
         } else if (i7 == 1) {
             if (z10) {
-                i12 = 2131751931;
-            } else {
                 i12 = 2131751930;
+            } else {
+                i12 = 2131751929;
             }
-            M0 = gd.M0(i12, null);
+            N0 = gd.N0(i12, null);
         } else {
-            M0 = gd.M0(2131751929, null);
+            N0 = gd.N0(2131751928, null);
         }
-        lcVar.G(i10, i11, M0).j();
+        lcVar.G(i10, i11, N0).j();
     }
 }

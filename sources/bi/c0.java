@@ -1,39 +1,39 @@
 package bi;
 
 import android.text.style.ClickableSpan;
-import org.telegram.ui.Components.l80;
+import org.telegram.ui.Components.n80;
 public final class c0 implements Runnable {
-    public final int f3449a;
-    public final hi.m3 f3450b;
+    public final int f3447a;
+    public final hi.l3 f3448b;
 
-    public c0(hi.m3 m3Var, int i7) {
-        this.f3449a = i7;
-        this.f3450b = m3Var;
+    public c0(hi.l3 l3Var, int i7) {
+        this.f3447a = i7;
+        this.f3448b = l3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f3449a) {
+        switch (this.f3447a) {
             case 0:
-                org.telegram.messenger.g0.E2(this.f3450b);
+                org.telegram.messenger.g0.E2(this.f3448b);
                 return;
             case 1:
-                org.telegram.messenger.g0.E2(this.f3450b);
+                org.telegram.messenger.g0.E2(this.f3448b);
                 return;
             case 2:
-                org.telegram.messenger.g0.E2(this.f3450b);
+                org.telegram.messenger.g0.E2(this.f3448b);
                 return;
             case 3:
-                this.f3450b.A();
+                this.f3448b.A();
                 return;
             default:
-                this.f3450b.getClass();
+                this.f3448b.getClass();
                 return;
         }
     }
 
-    public c0(hi.m3 m3Var, l80 l80Var, ClickableSpan clickableSpan) {
-        this.f3449a = 4;
-        this.f3450b = m3Var;
+    public c0(hi.l3 l3Var, n80 n80Var, ClickableSpan clickableSpan) {
+        this.f3447a = 4;
+        this.f3448b = l3Var;
     }
 }

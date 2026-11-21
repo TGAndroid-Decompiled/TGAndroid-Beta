@@ -7,16 +7,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 public final class p implements g9.t {
-    public final int f7742a;
+    public final int f7771a;
 
     public p(int i7) {
-        this.f7742a = i7;
+        this.f7771a = i7;
     }
 
     @Override
     public final Object get() {
         Object a0Var;
-        switch (this.f7742a) {
+        switch (this.f7771a) {
             case 0:
                 try {
                     return Class.forName("androidx.media3.effect.DefaultVideoFrameProcessor$Factory$Builder");
@@ -40,7 +40,7 @@ public final class p implements g9.t {
                 return new l2.h(new b3.e(), 1000, 1000, 1000, 2000, 1000, true, y1.h);
             case 4:
                 byte[] bArr = new byte[12];
-                m2.f.f20498i.nextBytes(bArr);
+                m2.f.f20526i.nextBytes(bArr);
                 return Base64.encodeToString(bArr, 10);
             default:
                 Resources system = Resources.getSystem();

@@ -2,32 +2,32 @@ package org.telegram.utils.recorder.audio;
 
 import android.os.SystemClock;
 import java.nio.ByteBuffer;
-import wg.q;
+import wg.p;
 import yi.h;
 import yi.j;
 public final class c implements Runnable {
-    public final int f54641a;
-    public final Object f54642b;
-    public final Object f54643c;
+    public final int f54682a;
+    public final Object f54683b;
+    public final Object f54684c;
 
     public c(int i7, Object obj, Object obj2) {
-        this.f54641a = i7;
-        this.f54642b = obj;
-        this.f54643c = obj2;
+        this.f54682a = i7;
+        this.f54683b = obj;
+        this.f54684c = obj2;
     }
 
     @Override
     public final void run() {
         byte[] bArr;
-        switch (this.f54641a) {
+        switch (this.f54682a) {
             case 0:
-                d dVar = (d) this.f54642b;
-                ByteBuffer byteBuffer = (ByteBuffer) this.f54643c;
-                int andDecrement = dVar.f54654m.getAndDecrement();
+                d dVar = (d) this.f54683b;
+                ByteBuffer byteBuffer = (ByteBuffer) this.f54684c;
+                int andDecrement = dVar.f54695m.getAndDecrement();
                 try {
-                    if (dVar.v == null && !dVar.f54663w) {
-                        dVar.f54665y = Math.max(dVar.f54665y, andDecrement);
-                        ByteBuffer byteBuffer2 = dVar.f54660s;
+                    if (dVar.v == null && !dVar.f54704w) {
+                        dVar.f54706y = Math.max(dVar.f54706y, andDecrement);
+                        ByteBuffer byteBuffer2 = dVar.f54701s;
                         byteBuffer.position(0);
                         while (byteBuffer.hasRemaining()) {
                             int min = Math.min(byteBuffer.remaining(), byteBuffer2.remaining());
@@ -41,11 +41,11 @@ public final class c implements Runnable {
                             }
                         }
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (elapsedRealtime - dVar.f54664x >= 100) {
-                            long d = dVar.f54661t.d();
-                            dVar.f54664x = elapsedRealtime;
+                        if (elapsedRealtime - dVar.f54705x >= 100) {
+                            long d = dVar.f54702t.d();
+                            dVar.f54705x = elapsedRealtime;
                             if (d >= 0) {
-                                ac.e eVar = dVar.f54649g;
+                                ac.e eVar = dVar.f54690g;
                                 ((j) eVar.f1022c).a((h) eVar.f1021b, d);
                             }
                         }
@@ -53,9 +53,9 @@ public final class c implements Runnable {
                 } catch (Throwable th2) {
                     try {
                         if (dVar.v == null) {
-                            dVar.f54648f.a("encoding failed", th2);
+                            dVar.f54689f.a("encoding failed", th2);
                             dVar.v = d.a(th2);
-                            dVar.f54655n = true;
+                            dVar.f54696n = true;
                         }
                     } finally {
                         dVar.c(byteBuffer);
@@ -63,15 +63,15 @@ public final class c implements Runnable {
                 }
                 return;
             default:
-                j jVar = (j) this.f54642b;
-                h hVar = (h) this.f54643c;
+                j jVar = (j) this.f54683b;
+                h hVar = (h) this.f54684c;
                 try {
-                    bArr = AudioRecorderNative.e(hVar.f61314b.getAbsolutePath());
+                    bArr = AudioRecorderNative.e(hVar.f61355b.getAbsolutePath());
                 } catch (Throwable th3) {
                     jVar.h.a("waveform extraction failed", th3);
                     bArr = null;
                 }
-                jVar.f61323i.post(new q(jVar, hVar, bArr, 4));
+                jVar.f61364i.post(new p(jVar, hVar, bArr, 5));
                 return;
         }
     }

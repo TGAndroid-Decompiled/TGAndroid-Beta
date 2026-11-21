@@ -10,7 +10,7 @@ public abstract class q0 {
         if (bitmap != null) {
             if (!bitmap.isRecycled()) {
                 if (i7 >= 0 && i7 < bitmap.getWidth() && i10 >= 0 && i10 < bitmap.getHeight()) {
-                    return new NinePatchDrawable(org.telegram.messenger.t0.f26913b.getResources(), bitmap, c(i7, i7 + 1, i10, i10 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i7, i10)).array(), rect, null);
+                    return new NinePatchDrawable(org.telegram.messenger.t0.f26941b.getResources(), bitmap, c(i7, i7 + 1, i10, i10 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i7, i10)).array(), rect, null);
                 }
                 StringBuilder n10 = i5.c.n("center pixel is outside bitmap: (", i7, ", ", i10, ") for ");
                 n10.append(bitmap.getWidth());

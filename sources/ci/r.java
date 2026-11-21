@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.d61;
 public final class r extends HorizontalScrollView {
-    public ab.g f5751a;
-    public c0 f5752b;
-    public final d61 f5753c;
+    public ab.g f5780a;
+    public c0 f5781b;
+    public final d61 f5782c;
     public final Paint d;
-    public int f5754e;
-    public float f5755f;
+    public int f5783e;
+    public float f5784f;
     public final h0 h;
 
     public r(h0 h0Var, Context context) {
@@ -23,14 +23,14 @@ public final class r extends HorizontalScrollView {
         this.h = h0Var;
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f5754e = -1;
-        this.f5755f = Float.NaN;
+        this.f5783e = -1;
+        this.f5784f = Float.NaN;
         setHorizontalScrollBarEnabled(false);
         setOverScrollMode(2);
         setFillViewport(true);
         setWillNotDraw(false);
         d61 d61Var = new d61(1, context, this);
-        this.f5753c = d61Var;
+        this.f5782c = d61Var;
         d61Var.setOrientation(0);
         d61Var.setGravity(16);
         d61Var.setPadding(org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f), 0);
@@ -39,12 +39,12 @@ public final class r extends HorizontalScrollView {
     }
 
     public final void a(int i7, boolean z10) {
-        if (i7 != this.f5754e && i7 >= 0) {
-            d61 d61Var = this.f5753c;
+        if (i7 != this.f5783e && i7 >= 0) {
+            d61 d61Var = this.f5782c;
             if (i7 < d61Var.getChildCount()) {
-                this.f5754e = i7;
+                this.f5783e = i7;
                 if (!z10) {
-                    this.f5755f = Float.NaN;
+                    this.f5784f = Float.NaN;
                 }
                 View childAt = d61Var.getChildAt(i7);
                 int left = childAt.getLeft() - org.telegram.messenger.g0.L(30.0f);
@@ -76,23 +76,23 @@ public final class r extends HorizontalScrollView {
 
     public void setSections(ArrayList<o> arrayList) {
         TLRPC.Document document;
-        d61 d61Var = this.f5753c;
+        d61 d61Var = this.f5782c;
         d61Var.removeAllViews();
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             o oVar = arrayList.get(i7);
             Context context = getContext();
-            int i10 = oVar.f5725a;
+            int i10 = oVar.f5754a;
             if (i10 == 2) {
-                document = (TLRPC.Document) oVar.f5727c.get(0);
+                document = (TLRPC.Document) oVar.f5756c.get(0);
             } else {
                 document = null;
             }
             p pVar = new p(this.h, context, i10, document);
             pVar.setOnClickListener(new q(this, i7, 0));
-            pVar.setContentDescription(oVar.f5726b);
+            pVar.setContentDescription(oVar.f5755b);
             d61Var.addView(pVar, new LinearLayout.LayoutParams(org.telegram.messenger.g0.L(34.0f), org.telegram.messenger.g0.L(30.0f)));
         }
-        this.f5754e = -1;
-        this.f5755f = Float.NaN;
+        this.f5783e = -1;
+        this.f5784f = Float.NaN;
     }
 }

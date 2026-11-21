@@ -1,22 +1,22 @@
 package sg;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.Components.hn;
+import org.telegram.ui.Components.jn;
 public final class c0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f57175a;
-    public final i0 f57176b;
+    public final int f57216a;
+    public final i0 f57217b;
 
     public c0(i0 i0Var, int i7) {
-        this.f57175a = i7;
-        this.f57176b = i0Var;
+        this.f57216a = i7;
+        this.f57217b = i0Var;
     }
 
     @Override
     public final void onAnimationUpdate(final ValueAnimator valueAnimator) {
-        switch (this.f57175a) {
+        switch (this.f57216a) {
             case 0:
-                final i0 i0Var = this.f57176b;
-                i0Var.f57225f.f(new Runnable() {
+                final i0 i0Var = this.f57217b;
+                i0Var.f57266f.f(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
@@ -24,9 +24,9 @@ public final class c0 implements ValueAnimator.AnimatorUpdateListener {
                                 i0 i0Var2 = i0Var;
                                 i0Var2.getClass();
                                 i0Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                hn hnVar = i0Var2.f57221a;
-                                if (hnVar != null) {
-                                    hnVar.l();
+                                jn jnVar = i0Var2.f57262a;
+                                if (jnVar != null) {
+                                    jnVar.l();
                                     return;
                                 }
                                 return;
@@ -34,9 +34,9 @@ public final class c0 implements ValueAnimator.AnimatorUpdateListener {
                                 i0 i0Var3 = i0Var;
                                 i0Var3.getClass();
                                 i0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                hn hnVar2 = i0Var3.f57221a;
-                                if (hnVar2 != null) {
-                                    hnVar2.l();
+                                jn jnVar2 = i0Var3.f57262a;
+                                if (jnVar2 != null) {
+                                    jnVar2.l();
                                     return;
                                 }
                                 return;
@@ -45,8 +45,8 @@ public final class c0 implements ValueAnimator.AnimatorUpdateListener {
                 });
                 return;
             default:
-                final i0 i0Var2 = this.f57176b;
-                i0Var2.f57225f.f(new Runnable() {
+                final i0 i0Var2 = this.f57217b;
+                i0Var2.f57266f.f(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
@@ -54,9 +54,9 @@ public final class c0 implements ValueAnimator.AnimatorUpdateListener {
                                 i0 i0Var22 = i0Var2;
                                 i0Var22.getClass();
                                 i0Var22.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                hn hnVar = i0Var22.f57221a;
-                                if (hnVar != null) {
-                                    hnVar.l();
+                                jn jnVar = i0Var22.f57262a;
+                                if (jnVar != null) {
+                                    jnVar.l();
                                     return;
                                 }
                                 return;
@@ -64,9 +64,9 @@ public final class c0 implements ValueAnimator.AnimatorUpdateListener {
                                 i0 i0Var3 = i0Var2;
                                 i0Var3.getClass();
                                 i0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                hn hnVar2 = i0Var3.f57221a;
-                                if (hnVar2 != null) {
-                                    hnVar2.l();
+                                jn jnVar2 = i0Var3.f57262a;
+                                if (jnVar2 != null) {
+                                    jnVar2.l();
                                     return;
                                 }
                                 return;

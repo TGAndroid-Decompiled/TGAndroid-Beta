@@ -1,48 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-public final class xl0 implements TextView.OnEditorActionListener {
-    public final wl0 f42141a;
-    public final int f42142b;
-    public final TLRPC.Reaction f42143c;
-    public final org.telegram.ui.ActionBar.u1[] d;
-    public final View f42144e;
-
-    public xl0(wl0 wl0Var, int i7, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.u1[] u1VarArr, View view) {
-        this.f42141a = wl0Var;
-        this.f42142b = i7;
-        this.f42143c = reaction;
-        this.d = u1VarArr;
-        this.f42144e = view;
+public final class xl0 extends v4.k {
+    @Override
+    public final boolean r(v4.f1 f1Var, e2.r0 r0Var, int i7, int i10, int i11, int i12) {
+        dm0 dm0Var;
+        cm0 cm0Var;
+        View view = f1Var.f59161a;
+        if ((view instanceof dm0) && (cm0Var = (dm0Var = (dm0) view).f34531a) != null) {
+            cm0Var.h = cm0Var.M;
+            cm0Var.f5465f = cm0Var.N;
+            cm0Var.f5467g = cm0Var.O;
+            dm0Var.f34532b.e(true, 0.0f);
+            dm0Var.invalidate();
+        }
+        int translationX = i7 + ((int) view.getTranslationX());
+        int translationY = i10 + ((int) view.getTranslationY());
+        R(f1Var);
+        int i13 = i11 - translationX;
+        int i14 = i12 - translationY;
+        if (i13 == 0 && i14 == 0) {
+            v(f1Var);
+            return false;
+        }
+        if (i13 != 0) {
+            view.setTranslationX(-i13);
+        }
+        if (i14 != 0) {
+            view.setTranslationY(-i14);
+        }
+        this.f59211r.add(new v4.j(f1Var, translationX, translationY, i11, i12));
+        return true;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        if (i7 != 6) {
-            return false;
-        }
-        wl0 wl0Var = this.f42141a;
-        String obj = wl0Var.getText().toString();
-        if (obj.length() > 12) {
-            org.telegram.messenger.g0.D3(wl0Var);
-            return true;
-        }
-        org.telegram.messenger.mp.u1(this.f42142b).t4(ch.p0.d(this.f42143c), obj);
-        org.telegram.ui.ActionBar.u1[] u1VarArr = this.d;
-        org.telegram.ui.ActionBar.u1 u1Var = u1VarArr[0];
-        if (u1Var != null) {
-            u1Var.dismiss();
-        }
-        if (u1VarArr[0] == cm0.I) {
-            cm0.I = null;
-        }
-        View view = this.f42144e;
-        if (view != null) {
-            view.requestFocus();
-        }
+    public final boolean t(v4.f1 f1Var) {
         return true;
     }
 }

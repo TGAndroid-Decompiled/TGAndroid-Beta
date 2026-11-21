@@ -1,43 +1,26 @@
 package oi;
-
-import android.view.View;
 public final class x2 implements Runnable {
-    public final int f22452a;
-    public final s3 f22453b;
-    public final a f22454c;
+    public final int f22523a;
+    public final t3 f22524b;
+    public final v4.n0 f22525c;
 
-    public x2(s3 s3Var, a aVar, int i7) {
-        this.f22452a = i7;
-        this.f22453b = s3Var;
-        this.f22454c = aVar;
+    public x2(t3 t3Var, v4.n0 n0Var, int i7) {
+        this.f22523a = i7;
+        this.f22524b = t3Var;
+        this.f22525c = n0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f22452a) {
+        switch (this.f22523a) {
             case 0:
-                View C1 = this.f22453b.C1(this.f22454c);
-                if (C1 instanceof z5) {
-                    z5 z5Var = (z5) C1;
-                    z5Var.B();
-                    z5Var.getEditText().setSelection(0);
-                    return;
-                }
+                this.f22524b.setItemAnimator(this.f22525c);
                 return;
             case 1:
-                this.f22453b.g3(this.f22454c);
-                return;
-            case 2:
-                this.f22453b.g3(this.f22454c);
-                return;
-            case 3:
-                this.f22453b.h3(this.f22454c);
-                return;
-            case 4:
-                this.f22453b.g3(this.f22454c);
+                this.f22524b.setItemAnimator(this.f22525c);
                 return;
             default:
-                this.f22453b.g3(this.f22454c);
+                this.f22524b.setItemAnimator(this.f22525c);
                 return;
         }
     }

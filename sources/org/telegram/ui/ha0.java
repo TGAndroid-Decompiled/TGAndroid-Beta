@@ -4,15 +4,15 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.tgnet.TLRPC;
 public final class ha0 extends org.telegram.ui.ActionBar.j {
-    public final qa0 f48225a;
+    public final qa0 f48299a;
 
     public ha0(qa0 qa0Var) {
-        this.f48225a = qa0Var;
+        this.f48299a = qa0Var;
     }
 
     @Override
     public final void b(int i7) {
-        qa0 qa0Var = this.f48225a;
+        qa0 qa0Var = this.f48299a;
         if (i7 == -1) {
             qa0Var.finishFragment();
             return;
@@ -20,7 +20,7 @@ public final class ha0 extends org.telegram.ui.ActionBar.j {
         int i10 = 1;
         if (i7 == 1) {
             try {
-                TLRPC.GeoPoint geoPoint = qa0Var.J0.f23965k.media.geo;
+                TLRPC.GeoPoint geoPoint = qa0Var.J0.f23993k.media.geo;
                 double d = geoPoint.lat;
                 double d2 = geoPoint._long;
                 qa0Var.getParentActivity().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d2 + "?q=" + d + "," + d2)));

@@ -1,25 +1,34 @@
 package org.telegram.ui.Components;
+public final class in0 implements r1.c {
+    public final int f36289a;
+    public final qn0 f36290b;
+    public final r1.g f36291c;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-public final class in0 extends LinearLayout {
-    public final int f36151a;
-    public final int f36152b;
-
-    public in0(Context context, int i7, int i10) {
-        super(context);
-        this.f36151a = i7;
-        this.f36152b = i10;
+    public in0(qn0 qn0Var, r1.g gVar, int i7) {
+        this.f36289a = i7;
+        this.f36290b = qn0Var;
+        this.f36291c = gVar;
     }
 
     @Override
-    public final int getSuggestedMinimumWidth() {
-        return org.telegram.messenger.g0.L(260.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), this.f36151a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f36152b), View.MeasureSpec.getMode(i10)));
+    public final void a(r1.g gVar, boolean z10, float f10, float f11) {
+        switch (this.f36289a) {
+            case 0:
+                if (!z10) {
+                    this.f36290b.f38971z.remove(this.f36291c);
+                    gVar.d();
+                    return;
+                }
+                return;
+            default:
+                qn0 qn0Var = this.f36290b;
+                if (!z10) {
+                    qn0Var.f38971z.remove(this.f36291c);
+                    gVar.d();
+                    return;
+                }
+                qn0Var.getClass();
+                return;
+        }
     }
 }

@@ -1,66 +1,187 @@
 package org.telegram.ui.Components;
+public final class mw implements c5.h {
+    public final boolean f37653a;
+    public final ty f37654b;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public final class mw extends e41 {
-    public final ry f37632b;
-
-    public mw(ry ryVar) {
-        this.f37632b = ryVar;
+    public mw(ty tyVar, boolean z10) {
+        this.f37654b = tyVar;
+        this.f37653a = z10;
     }
 
     @Override
-    public final boolean a() {
-        return this.f37632b.f39397u1.b();
-    }
-
-    @Override
-    public final String[] b() {
-        return this.f37632b.X0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f37632b.f39397u1.c();
-    }
-
-    @Override
-    public final boolean d(x31 x31Var, MotionEvent motionEvent) {
-        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-        ry ryVar = this.f37632b;
-        ryVar.getMeasuredHeight();
-        return p10.q(motionEvent, x31Var, ryVar.f39359h2, ryVar.f39335a2);
-    }
-
-    @Override
-    public final boolean e(x31 x31Var, n nVar, MotionEvent motionEvent) {
-        org.telegram.ui.ns p10 = org.telegram.ui.ns.p();
-        ry ryVar = this.f37632b;
-        ryVar.getMeasuredHeight();
-        return p10.r(motionEvent, x31Var, nVar, ryVar.f39359h2, ryVar.f39335a2);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i7) {
-        this.f37632b.f39397u1.m(null, document, null, obj, null, z10, i7);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        ry ryVar = this.f37632b;
-        ryVar.f39397u1.r(stickerSetCovered);
-        if (z10) {
-            ryVar.Y(true);
+    public final void a(int i7) {
+        boolean z10;
+        int i10;
+        ty tyVar = this.f37654b;
+        jw jwVar = tyVar.h;
+        boolean z11 = false;
+        if (jwVar != null) {
+            int currentItem = jwVar.getCurrentItem();
+            if (currentItem == 2) {
+                i10 = 1;
+            } else if (currentItem == 1) {
+                i10 = 2;
+            } else {
+                i10 = 0;
+            }
+            if (tyVar.B1 != i10) {
+                tyVar.B1 = i10;
+                org.telegram.messenger.mp.f1().edit().putInt("selected_page", i10).commit();
+            }
+        }
+        if (i7 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        tyVar.M(z10, true);
+        if (i7 == 2 && (this.f37653a || tyVar.f40157w0)) {
+            z11 = true;
+        }
+        tyVar.R(z11, true);
+        if (tyVar.f40151u1.z()) {
+            if (i7 == 0) {
+                vv vvVar = tyVar.W;
+                if (vvVar != null) {
+                    vvVar.d.requestFocus();
+                }
+            } else if (i7 == 1) {
+                aw awVar = tyVar.f40133p0;
+                if (awVar != null) {
+                    awVar.d.requestFocus();
+                }
+            } else {
+                gw gwVar = tyVar.H0;
+                if (gwVar != null) {
+                    gwVar.d.requestFocus();
+                }
+            }
         }
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f37632b.f39397u1.h(stickerSetCovered);
+    public final void b(float f10, int i7, int i10) {
+        float f11;
+        gy gyVar;
+        gy gyVar2;
+        int i11;
+        int i12;
+        int i13;
+        ty tyVar = this.f37654b;
+        gy gyVar3 = tyVar.H0;
+        gy gyVar4 = tyVar.f40133p0;
+        gy gyVar5 = tyVar.W;
+        iw iwVar = tyVar.D0;
+        dw dwVar = tyVar.E0;
+        bx bxVar = tyVar.f40136q0;
+        yv yvVar = tyVar.f40114i0;
+        gx gxVar = tyVar.Q;
+        int i14 = 2;
+        boolean z10 = true;
+        if (tyVar.f40165y0 == null || tyVar.f40111h0 == null) {
+            f11 = 0.0f;
+        } else {
+            int i15 = 8;
+            if (i7 == 0) {
+                gxVar.setVisibility(0);
+                int i16 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+                f11 = 0.0f;
+                if (i16 == 0) {
+                    i12 = 8;
+                } else {
+                    i12 = 0;
+                }
+                yvVar.setVisibility(i12);
+                if (i16 == 0) {
+                    i13 = 8;
+                } else {
+                    i13 = 0;
+                }
+                bxVar.setVisibility(i13);
+                dwVar.setVisibility(8);
+                if (iwVar != null) {
+                    iwVar.setVisibility(8);
+                }
+            } else {
+                f11 = 0.0f;
+                if (i7 == 1) {
+                    gxVar.setVisibility(8);
+                    yvVar.setVisibility(0);
+                    bxVar.setVisibility(0);
+                    int i17 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+                    if (i17 == 0) {
+                        i11 = 8;
+                    } else {
+                        i11 = 0;
+                    }
+                    dwVar.setVisibility(i11);
+                    if (iwVar != null) {
+                        if (i17 != 0) {
+                            i15 = 0;
+                        }
+                        iwVar.setVisibility(i15);
+                    }
+                } else if (i7 == 2) {
+                    gxVar.setVisibility(8);
+                    yvVar.setVisibility(8);
+                    bxVar.setVisibility(8);
+                    dwVar.setVisibility(0);
+                    if (iwVar != null) {
+                        iwVar.setVisibility(0);
+                    }
+                }
+            }
+        }
+        tyVar.getMeasuredWidth();
+        tyVar.getPaddingLeft();
+        tyVar.getPaddingRight();
+        tx txVar = tyVar.f40151u1;
+        if (txVar != null) {
+            if (i7 == 1) {
+                if (i10 == 0) {
+                    i14 = 0;
+                }
+                txVar.s(i14);
+            } else if (i7 == 2) {
+                txVar.s(3);
+            } else {
+                txVar.s(0);
+            }
+        }
+        tyVar.N(true);
+        int currentItem = tyVar.h.getCurrentItem();
+        if (currentItem == 0) {
+            gyVar = gyVar5;
+        } else if (currentItem == 1) {
+            gyVar = gyVar4;
+        } else {
+            gyVar = gyVar3;
+        }
+        String obj = gyVar.d.getText().toString();
+        for (int i18 = 0; i18 < 3; i18++) {
+            if (i18 == 0) {
+                gyVar2 = gyVar5;
+            } else if (i18 == 1) {
+                gyVar2 = gyVar4;
+            } else {
+                gyVar2 = gyVar3;
+            }
+            if (gyVar2 != null) {
+                iq iqVar = gyVar2.d;
+                if (gyVar2 != gyVar && iqVar != null && !iqVar.getText().toString().equals(obj)) {
+                    iqVar.setText(obj);
+                    iqVar.setSelection(obj.length());
+                }
+            }
+        }
+        if ((i7 != 0 || f10 <= f11) && i7 != 1) {
+            z10 = false;
+        }
+        ty.a(tyVar, z10);
+        tyVar.Z();
     }
 
     @Override
-    public final void i(String[] strArr) {
-        this.f37632b.X0 = strArr;
+    public final void c(int i7) {
     }
 }

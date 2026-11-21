@@ -3,18 +3,18 @@ package m9;
 import c8.s9;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class d extends s9 {
-    public final AtomicReferenceFieldUpdater f20926a;
-    public final AtomicReferenceFieldUpdater f20927b;
-    public final AtomicReferenceFieldUpdater f20928c;
+    public final AtomicReferenceFieldUpdater f20954a;
+    public final AtomicReferenceFieldUpdater f20955b;
+    public final AtomicReferenceFieldUpdater f20956c;
     public final AtomicReferenceFieldUpdater d;
-    public final AtomicReferenceFieldUpdater f20929e;
+    public final AtomicReferenceFieldUpdater f20957e;
 
     public d(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater4, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater5) {
-        this.f20926a = atomicReferenceFieldUpdater;
-        this.f20927b = atomicReferenceFieldUpdater2;
-        this.f20928c = atomicReferenceFieldUpdater3;
+        this.f20954a = atomicReferenceFieldUpdater;
+        this.f20955b = atomicReferenceFieldUpdater2;
+        this.f20956c = atomicReferenceFieldUpdater3;
         this.d = atomicReferenceFieldUpdater4;
-        this.f20929e = atomicReferenceFieldUpdater5;
+        this.f20957e = atomicReferenceFieldUpdater5;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class d extends s9 {
     public final boolean b(o oVar, Object obj, Object obj2) {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         do {
-            atomicReferenceFieldUpdater = this.f20929e;
+            atomicReferenceFieldUpdater = this.f20957e;
             if (atomicReferenceFieldUpdater.compareAndSet(oVar, obj, obj2)) {
                 return true;
             }
@@ -45,7 +45,7 @@ public final class d extends s9 {
     public final boolean c(o oVar, n nVar, n nVar2) {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         do {
-            atomicReferenceFieldUpdater = this.f20928c;
+            atomicReferenceFieldUpdater = this.f20956c;
             if (atomicReferenceFieldUpdater.compareAndSet(oVar, nVar, nVar2)) {
                 return true;
             }
@@ -60,16 +60,16 @@ public final class d extends s9 {
 
     @Override
     public final n e(o oVar) {
-        return (n) this.f20928c.getAndSet(oVar, n.f20942c);
+        return (n) this.f20956c.getAndSet(oVar, n.f20970c);
     }
 
     @Override
     public final void f(n nVar, n nVar2) {
-        this.f20927b.lazySet(nVar, nVar2);
+        this.f20955b.lazySet(nVar, nVar2);
     }
 
     @Override
     public final void g(n nVar, Thread thread) {
-        this.f20926a.lazySet(nVar, thread);
+        this.f20954a.lazySet(nVar, thread);
     }
 }

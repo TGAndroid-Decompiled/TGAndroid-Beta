@@ -1,52 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-public final class kh implements org.telegram.messenger.u10 {
-    public final int f36761a;
-    public final KeyEvent.Callback f36762b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class kh implements eh.a {
+    public final int f36908a;
+    public final Object f36909b;
 
-    public kh(KeyEvent.Callback callback, int i7) {
-        this.f36761a = i7;
-        this.f36762b = callback;
+    public kh(Object obj, int i7) {
+        this.f36908a = i7;
+        this.f36909b = obj;
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f36761a) {
+    public final void c(dh.a aVar, RectF rectF) {
+        switch (this.f36908a) {
             case 0:
-                si siVar = (si) this.f36762b;
-                CharSequence charSequence = (CharSequence) obj;
-                Integer num = (Integer) obj2;
-                Integer num2 = (Integer) obj3;
-                Boolean bool = (Boolean) obj4;
-                vh vhVar = siVar.C2;
-                vhVar.setText(charSequence);
-                vhVar.w(charSequence.length(), charSequence.length());
-                siVar.o1();
+            case 1:
+            default:
+                aVar.f8398a = true;
+                return;
+        }
+    }
+
+    @Override
+    public final void d(Canvas canvas, RectF rectF) {
+        mi miVar;
+        Canvas canvas2;
+        RectF rectF2;
+        float alpha;
+        mi miVar2;
+        switch (this.f36908a) {
+            case 0:
+                ui uiVar = (ui) this.f36909b;
+                int i7 = 0;
+                while (i7 < 2) {
+                    if (i7 == 0) {
+                        miVar = uiVar.f40448w2;
+                    } else {
+                        miVar = uiVar.f40452x2;
+                    }
+                    if (miVar != null && miVar.f37522c != null && miVar.getVisibility() == 0) {
+                        if (i7 == 0 && (miVar2 = uiVar.f40452x2) != null && miVar2.getVisibility() == 0) {
+                            alpha = (1.0f - uiVar.f40452x2.getAlpha()) * miVar.getAlpha();
+                        } else {
+                            alpha = miVar.getAlpha();
+                        }
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                        ih.d.b(miVar.f37522c, canvas2, rectF2, miVar.d, uiVar.f30173b, (int) (alpha * 255.0f));
+                    } else {
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                    }
+                    i7++;
+                    canvas = canvas2;
+                    rectF = rectF2;
+                }
                 return;
             case 1:
-                si siVar2 = (si) this.f36762b;
-                CharSequence charSequence2 = (CharSequence) obj;
-                Integer num3 = (Integer) obj2;
-                Integer num4 = (Integer) obj3;
-                Boolean bool2 = (Boolean) obj4;
-                xh xhVar = siVar2.N2;
-                xhVar.setText(charSequence2);
-                xhVar.w(charSequence2.length(), charSequence2.length());
-                siVar2.o1();
+                ty tyVar = (ty) this.f36909b;
+                gx gxVar = tyVar.Q;
+                ih.d.a(gxVar, canvas, rectF, gxVar, tyVar);
+                yv yvVar = tyVar.f40114i0;
+                ih.d.a(yvVar, canvas, rectF, yvVar, tyVar);
+                dw dwVar = tyVar.E0;
+                ih.d.a(dwVar, canvas, rectF, dwVar, tyVar);
                 return;
             default:
-                yc ycVar = (yc) this.f36762b;
-                Integer num5 = (Integer) obj2;
-                Integer num6 = (Integer) obj3;
-                Boolean bool3 = (Boolean) obj4;
-                hi.g gVar = ycVar.f15048f;
-                gVar.setText((CharSequence) obj);
-                gVar.d();
-                gVar.k(true);
-                hi.e eVar = ycVar.f15045d0;
-                org.telegram.messenger.g0.r(eVar);
-                eVar.run();
+                ap0 ap0Var = (ap0) this.f36909b;
+                co0 co0Var = ap0Var.B1;
+                ih.d.a(co0Var, canvas, rectF, co0Var, ap0Var.f30173b);
                 return;
         }
     }

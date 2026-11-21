@@ -1,129 +1,90 @@
 package kg;
 
-import android.content.Context;
+import android.graphics.Rect;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.j10;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.xj0;
-public final class d0 extends xj0 {
-    public final ArrayList f18272r;
-    public final int f18273s;
-    public final Context f18274w;
-    public final g0 f18275x;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.bk;
+import org.telegram.ui.Components.ek0;
+import org.telegram.ui.Components.il;
+import org.telegram.ui.Components.in;
+import org.telegram.ui.Components.kj;
+import org.telegram.ui.Components.mi;
+import org.telegram.ui.Components.ml;
+import org.telegram.ui.Components.yy;
+public final class d0 extends yy {
+    public final int U;
+    public final mi V;
 
-    public d0(g0 g0Var, Context context) {
-        this.f18275x = g0Var;
-        ArrayList arrayList = new ArrayList();
-        this.f18272r = arrayList;
-        int i7 = j10.f24770t0;
-        this.f18273s = i7;
-        this.f18274w = context;
-        arrayList.addAll(w1.f(i7).e());
+    public d0(mi miVar, int i7, ek0 ek0Var, int i10) {
+        super(i7, 0, ek0Var);
+        this.U = i10;
+        this.V = miVar;
     }
 
     @Override
-    public final String F(int i7) {
-        return null;
-    }
-
-    @Override
-    public final void G(ck0 ck0Var, float f10, int[] iArr) {
-        iArr[0] = 0;
-        iArr[1] = 0;
-    }
-
-    @Override
-    public final int M(int i7) {
-        if (i7 != 0 && i7 != 2) {
-            return this.f18272r.size();
-        }
-        return 1;
-    }
-
-    @Override
-    public final Object O(int i7, int i10) {
-        if (i7 != 0 && i10 >= 0) {
-            ArrayList arrayList = this.f18272r;
-            if (i10 < arrayList.size()) {
-                return arrayList.get(i10);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final int P(int i7, int i10) {
-        if (i7 == 0) {
-            return 1;
-        }
-        if (i7 == 2) {
-            return 2;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int R() {
-        return 3;
-    }
-
-    @Override
-    public final View T(int i7, View view) {
-        return null;
-    }
-
-    @Override
-    public final boolean V(int i7, int i10, v4.f1 f1Var) {
-        if (i7 != 0 && i7 != 2 && i10 < this.f18272r.size()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void W(int i7, int i10, v4.f1 f1Var) {
-        if (f1Var.f59127f == 0) {
-            s1 s1Var = (s1) f1Var.f59123a;
-            Object O = O(i7, i10);
-            boolean z10 = true;
-            if (i7 == 1 && i10 == M(i7) - 1) {
-                z10 = false;
-            }
-            if (O instanceof v1) {
-                v1 v1Var = (v1) O;
-                s1Var.a(v1Var, null, z10);
-                s1Var.d.a(this.f18275x.f18321x.contains(Integer.valueOf(v1Var.f18506a)), false);
-            }
+    public int[] t(View view, Rect rect) {
+        switch (this.U) {
+            case 4:
+                int C = this.f59256n - C();
+                int top = (view.getTop() + rect.top) - view.getScrollY();
+                int min = Math.min(0, top);
+                int max = Math.max(0, (rect.height() + top) - C);
+                if (min == 0) {
+                    min = Math.min(top, max);
+                }
+                return new int[]{0, min};
+            default:
+                return super.t(view, rect);
         }
     }
 
     @Override
-    public final void f() {
-        ArrayList arrayList = this.f18272r;
-        arrayList.clear();
-        arrayList.addAll(w1.f(this.f18273s).e());
-        X(false);
-        this.f18275x.Q();
+    public final void v0(RecyclerView recyclerView, v4.c1 c1Var, int i7) {
+        switch (this.U) {
+            case 0:
+                c0 c0Var = new c0(this, recyclerView.getContext());
+                c0Var.f59105a = i7;
+                w0(c0Var);
+                return;
+            case 1:
+                kj kjVar = new kj(this, recyclerView.getContext());
+                kjVar.f59105a = i7;
+                w0(kjVar);
+                return;
+            case 2:
+                bk bkVar = new bk(this, recyclerView.getContext());
+                bkVar.f59105a = i7;
+                w0(bkVar);
+                return;
+            case 3:
+                il ilVar = new il(this, recyclerView.getContext());
+                ilVar.f59105a = i7;
+                w0(ilVar);
+                return;
+            default:
+                in inVar = new in(this, recyclerView.getContext());
+                inVar.f59105a = i7;
+                w0(inVar);
+                return;
+        }
     }
 
     @Override
-    public final v4.f1 x(ViewGroup viewGroup, int i7) {
-        View s1Var;
-        Context context = this.f18274w;
-        if (i7 != 0) {
-            if (i7 != 1) {
-                s1Var = new View(context);
-                s1Var.setTag(-33024);
-            } else {
-                s1Var = new View(context);
-                s1Var.setLayoutParams(new v4.q0(-1, org.telegram.messenger.g0.L(56.0f)));
-                s1Var.setTag(-33024);
-            }
-        } else {
-            s1Var = new s1(context, this.f18275x.f36765a, false);
+    public void z0(v4.c1 c1Var, int[] iArr) {
+        switch (this.U) {
+            case 3:
+                super.z0(c1Var, iArr);
+                iArr[1] = Math.max(iArr[1], ((ml) this.V).M.getHeight());
+                return;
+            default:
+                super.z0(c1Var, iArr);
+                return;
         }
-        return new v4.f1(s1Var);
+    }
+
+    public d0(ml mlVar, di.b1 b1Var) {
+        super(0, 0, b1Var);
+        this.U = 3;
+        this.V = mlVar;
     }
 }

@@ -5,8 +5,8 @@ import android.widget.TextView;
 public final class ic extends jm0 {
     public final jc H;
 
-    public ic(jc jcVar, Context context, int i7, long j3, org.telegram.ui.ActionBar.i6 i6Var) {
-        super(i7, j3, context, i6Var);
+    public ic(jc jcVar, Context context, int i7, long j3, org.telegram.ui.ActionBar.h6 h6Var) {
+        super(i7, j3, context, h6Var);
         this.H = jcVar;
     }
 
@@ -16,7 +16,7 @@ public final class ic extends jm0 {
         jc jcVar = this.H;
         TextView textView = jcVar.d;
         if (textView != null) {
-            textView.setTextColor(jcVar.f48934b.h.getTextColor());
+            textView.setTextColor(jcVar.f48959b.h.getTextColor());
         }
     }
 }

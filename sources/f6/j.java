@@ -5,17 +5,17 @@ import android.os.Parcelable;
 import c8.bc;
 import java.util.Arrays;
 public final class j extends r6.a {
-    public final long f11402a;
-    public final long f11403b;
-    public final boolean f11404c;
+    public final long f11431a;
+    public final long f11432b;
+    public final boolean f11433c;
     public final boolean d;
-    public static final j6.b f11401e = new j6.b("MediaLiveSeekableRange", null);
+    public static final j6.b f11430e = new j6.b("MediaLiveSeekableRange", null);
     public static final Parcelable.Creator<j> CREATOR = new v(8);
 
     public j(long j3, long j10, boolean z10, boolean z11) {
-        this.f11402a = Math.max(j3, 0L);
-        this.f11403b = Math.max(j10, 0L);
-        this.f11404c = z10;
+        this.f11431a = Math.max(j3, 0L);
+        this.f11432b = Math.max(j10, 0L);
+        this.f11433c = z10;
         this.d = z11;
     }
 
@@ -27,25 +27,25 @@ public final class j extends r6.a {
             return false;
         }
         j jVar = (j) obj;
-        if (this.f11402a == jVar.f11402a && this.f11403b == jVar.f11403b && this.f11404c == jVar.f11404c && this.d == jVar.d) {
+        if (this.f11431a == jVar.f11431a && this.f11432b == jVar.f11432b && this.f11433c == jVar.f11433c && this.d == jVar.d) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f11402a), Long.valueOf(this.f11403b), Boolean.valueOf(this.f11404c), Boolean.valueOf(this.d)});
+        return Arrays.hashCode(new Object[]{Long.valueOf(this.f11431a), Long.valueOf(this.f11432b), Boolean.valueOf(this.f11433c), Boolean.valueOf(this.d)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = bc.r(parcel, 20293);
         bc.q(parcel, 2, 8);
-        parcel.writeLong(this.f11402a);
+        parcel.writeLong(this.f11431a);
         bc.q(parcel, 3, 8);
-        parcel.writeLong(this.f11403b);
+        parcel.writeLong(this.f11432b);
         bc.q(parcel, 4, 4);
-        parcel.writeInt(this.f11404c ? 1 : 0);
+        parcel.writeInt(this.f11433c ? 1 : 0);
         bc.q(parcel, 5, 4);
         parcel.writeInt(this.d ? 1 : 0);
         bc.s(parcel, r10);

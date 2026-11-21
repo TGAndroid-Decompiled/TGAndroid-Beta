@@ -3,17 +3,17 @@ package sg;
 import android.animation.ValueAnimator;
 import android.graphics.RectF;
 import org.telegram.messenger.q2;
-import org.telegram.ui.Components.hn;
-import org.telegram.ui.Components.lr;
+import org.telegram.ui.Components.jn;
+import org.telegram.ui.Components.nr;
 public final class d0 implements Runnable {
-    public final int f57179a;
-    public final i0 f57180b;
-    public final x0 f57181c;
+    public final int f57220a;
+    public final i0 f57221b;
+    public final x0 f57222c;
 
     public d0(i0 i0Var, x0 x0Var, int i7) {
-        this.f57179a = i7;
-        this.f57180b = i0Var;
-        this.f57181c = x0Var;
+        this.f57220a = i7;
+        this.f57221b = i0Var;
+        this.f57222c = x0Var;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class d0 implements Runnable {
         boolean z10;
         boolean z11;
         float f10;
-        int i7 = this.f57179a;
-        x0 x0Var = this.f57181c;
-        i0 i0Var = this.f57180b;
+        int i7 = this.f57220a;
+        x0 x0Var = this.f57222c;
+        i0 i0Var = this.f57221b;
         switch (i7) {
             case 0:
-                i0Var.f57223c = x0Var;
+                i0Var.f57264c = x0Var;
                 if (i0Var.h == null) {
                     i0Var.h = new RectF();
                 }
-                i0Var.f57223c.a(i0Var.h);
-                hn hnVar = i0Var.f57221a;
-                if (hnVar != null) {
-                    hnVar.l();
+                i0Var.f57264c.a(i0Var.h);
+                jn jnVar = i0Var.f57262a;
+                if (jnVar != null) {
+                    jnVar.l();
                     return;
                 }
                 return;
             default:
-                if (x0Var != null && i0Var.f57235q == 0) {
-                    i0Var.f57235q = i1.b(i0Var.f57226g);
+                if (x0Var != null && i0Var.f57276q == 0) {
+                    i0Var.f57276q = i1.b(i0Var.f57267g);
                 }
                 boolean z12 = i0Var.H;
                 if (x0Var != null) {
@@ -69,12 +69,12 @@ public final class d0 implements Runnable {
                     i0Var.K = ofFloat;
                     ofFloat.addUpdateListener(new c0(i0Var, 0));
                     i0Var.K.addListener(new g0(i0Var, 0));
-                    i0Var.K.setInterpolator(lr.h);
+                    i0Var.K.setInterpolator(nr.h);
                     i0Var.K.start();
                     i0Var.d = x0Var;
-                    hn hnVar2 = i0Var.f57221a;
-                    if (hnVar2 != null) {
-                        hnVar2.l();
+                    jn jnVar2 = i0Var.f57262a;
+                    if (jnVar2 != null) {
+                        jnVar2.l();
                     }
                     if (i0Var.H) {
                         q2.SELECTION_CHANGE.a();
@@ -83,9 +83,9 @@ public final class d0 implements Runnable {
                     return;
                 } else if (x0Var != i0Var.d) {
                     i0Var.d = x0Var;
-                    hn hnVar3 = i0Var.f57221a;
-                    if (hnVar3 != null) {
-                        hnVar3.l();
+                    jn jnVar3 = i0Var.f57262a;
+                    if (jnVar3 != null) {
+                        jnVar3.l();
                         return;
                     }
                     return;

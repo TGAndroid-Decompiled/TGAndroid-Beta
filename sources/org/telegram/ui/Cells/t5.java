@@ -8,17 +8,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.ui.Components.RadioButton;
 public final class t5 extends FrameLayout {
-    public final TextView f31831a;
-    public final LinearLayout f31832b;
-    public View.OnClickListener f31833c;
+    public final TextView f31859a;
+    public final LinearLayout f31860b;
+    public View.OnClickListener f31861c;
     public int d;
-    public final int[] f31834e;
+    public final int[] f31862e;
 
     public t5(Context context) {
         super(context);
-        this.f31834e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
+        this.f31862e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
         TextView textView = new TextView(context);
-        this.f31831a = textView;
+        this.f31859a = textView;
         textView.setGravity(5);
         textView.setTextColor(-1);
         textView.setTextSize(1, 12.0f);
@@ -27,35 +27,35 @@ public final class t5 extends FrameLayout {
         textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, c8.ma.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f31832b = linearLayout;
+        this.f31860b = linearLayout;
         linearLayout.setOrientation(0);
-        for (int i7 = 0; i7 < this.f31834e.length; i7++) {
+        for (int i7 = 0; i7 < this.f31862e.length; i7++) {
             RadioButton radioButton = new RadioButton(context);
             radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
             radioButton.setTag(Integer.valueOf(i7));
-            this.f31832b.addView(radioButton, c8.ma.l(1.0f / this.f31834e.length, 0, -1));
+            this.f31860b.addView(radioButton, c8.ma.l(1.0f / this.f31862e.length, 0, -1));
             radioButton.setOnClickListener(new a(this, 8));
         }
-        addView(this.f31832b, c8.ma.d(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
+        addView(this.f31860b, c8.ma.d(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
     }
 
     public final void a(int i7, String str) {
         this.d = i7;
-        this.f31831a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        this.f31859a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
         b(false);
     }
 
     public final void b(boolean z10) {
         boolean z11;
         int i7;
-        LinearLayout linearLayout = this.f31832b;
+        LinearLayout linearLayout = this.f31860b;
         int childCount = linearLayout.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = linearLayout.getChildAt(i10);
             if (childAt instanceof RadioButton) {
                 RadioButton radioButton = (RadioButton) childAt;
                 int intValue = ((Integer) radioButton.getTag()).intValue();
-                int[] iArr = this.f31834e;
+                int[] iArr = this.f31862e;
                 if (this.d == iArr[intValue]) {
                     z11 = true;
                 } else {
@@ -87,6 +87,6 @@ public final class t5 extends FrameLayout {
 
     @Override
     public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f31833c = onClickListener;
+        this.f31861c = onClickListener;
     }
 }

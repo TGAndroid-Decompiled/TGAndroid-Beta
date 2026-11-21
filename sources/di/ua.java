@@ -4,25 +4,25 @@ import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-public final class ua extends ug.u1 {
-    public final int f9884r;
-    public Paint[] f9885s;
-    public final int f9886w;
-    public final int f9887x;
+public final class ua extends ug.t1 {
+    public final int f9914r;
+    public Paint[] f9915s;
+    public final int f9916w;
+    public final int f9917x;
 
     public ua(Context context, int i7, int i10, int i11) {
         super(context);
-        this.f9884r = i11;
+        this.f9914r = i11;
         switch (i11) {
             case 1:
-                this.f9886w = i7;
-                this.f9887x = i10;
+                this.f9916w = i7;
+                this.f9917x = i10;
                 super(context);
                 c();
                 return;
             default:
-                this.f9886w = i7;
-                this.f9887x = i10;
+                this.f9916w = i7;
+                this.f9917x = i10;
                 c();
                 return;
         }
@@ -35,31 +35,31 @@ public final class ua extends ug.u1 {
         float f11;
         int i10;
         int i11;
-        switch (this.f9884r) {
+        switch (this.f9914r) {
             case 0:
-                ug.t1 t1Var = new ug.t1(this.f9886w);
-                this.f58920a = t1Var;
-                t1Var.O = 105;
+                ug.s1 s1Var = new ug.s1(this.f9916w);
+                this.f58954a = s1Var;
+                s1Var.O = 105;
                 int i12 = 0;
-                t1Var.M = false;
-                t1Var.G = false;
-                t1Var.K = true;
-                t1Var.H = true;
-                t1Var.J = false;
-                t1Var.f58903m = true;
-                t1Var.h = true;
-                int i13 = this.f9887x;
+                s1Var.M = false;
+                s1Var.G = false;
+                s1Var.K = true;
+                s1Var.H = true;
+                s1Var.J = false;
+                s1Var.f58937m = true;
+                s1Var.h = true;
+                int i13 = this.f9917x;
                 if (i13 == 1) {
-                    t1Var.f58901k = org.telegram.messenger.g0.L(24.0f);
+                    s1Var.f58935k = org.telegram.messenger.g0.L(24.0f);
                 }
                 if (i13 == 2) {
                     i7 = 40;
                 } else {
                     i7 = 20;
                 }
-                this.f9885s = new Paint[i7];
+                this.f9915s = new Paint[i7];
                 while (true) {
-                    Paint[] paintArr = this.f9885s;
+                    Paint[] paintArr = this.f9915s;
                     if (i12 < paintArr.length) {
                         paintArr[i12] = new Paint(1);
                         if (i13 == 2) {
@@ -76,61 +76,61 @@ public final class ua extends ug.u1 {
                             }
                             f10 = i0.a.f(f11, i10, i11);
                         } else {
-                            f10 = i0.a.f(i12 / (this.f9885s.length - 1), -371690, -14281);
+                            f10 = i0.a.f(i12 / (this.f9915s.length - 1), -371690, -14281);
                         }
-                        this.f9885s[i12].setColorFilter(new PorterDuffColorFilter(f10, PorterDuff.Mode.SRC_IN));
+                        this.f9915s[i12].setColorFilter(new PorterDuffColorFilter(f10, PorterDuff.Mode.SRC_IN));
                         i12++;
                     } else {
-                        ug.t1 t1Var2 = this.f58920a;
-                        t1Var2.f58902l = new ta(this, 0);
-                        t1Var2.f58908r = 17;
-                        t1Var2.f58909s = 18;
-                        t1Var2.f58910t = 19;
+                        ug.s1 s1Var2 = this.f58954a;
+                        s1Var2.f58936l = new ta(this, 0);
+                        s1Var2.f58942r = 17;
+                        s1Var2.f58943s = 18;
+                        s1Var2.f58944t = 19;
                         if (i13 == 2) {
-                            t1Var2.N = true;
-                            t1Var2.f58908r = 9;
-                            t1Var2.f58909s = 11;
-                            t1Var2.f58910t = 13;
-                            t1Var2.f58905o = 1.6f;
-                            t1Var2.f58913x = 1400L;
-                            t1Var2.f58914y = 1600;
-                            t1Var2.L = true;
+                            s1Var2.N = true;
+                            s1Var2.f58942r = 9;
+                            s1Var2.f58943s = 11;
+                            s1Var2.f58944t = 13;
+                            s1Var2.f58939o = 1.6f;
+                            s1Var2.f58947x = 1400L;
+                            s1Var2.f58948y = 1600;
+                            s1Var2.L = true;
                         }
-                        t1Var2.Q = org.telegram.ui.ActionBar.n6.G6;
-                        t1Var2.c();
+                        s1Var2.Q = org.telegram.ui.ActionBar.m6.G6;
+                        s1Var2.c();
                         return;
                     }
                 }
             default:
-                ug.t1 t1Var3 = new ug.t1(this.f9886w);
-                this.f58920a = t1Var3;
-                t1Var3.O = 106;
+                ug.s1 s1Var3 = new ug.s1(this.f9916w);
+                this.f58954a = s1Var3;
+                s1Var3.O = 106;
                 int i14 = 0;
-                t1Var3.M = false;
-                t1Var3.G = false;
-                t1Var3.K = true;
-                t1Var3.H = true;
-                t1Var3.J = false;
-                t1Var3.f58903m = true;
-                t1Var3.h = true;
-                if (this.f9887x == 1) {
-                    t1Var3.f58901k = org.telegram.messenger.g0.L(24.0f);
+                s1Var3.M = false;
+                s1Var3.G = false;
+                s1Var3.K = true;
+                s1Var3.H = true;
+                s1Var3.J = false;
+                s1Var3.f58937m = true;
+                s1Var3.h = true;
+                if (this.f9917x == 1) {
+                    s1Var3.f58935k = org.telegram.messenger.g0.L(24.0f);
                 }
-                this.f9885s = new Paint[20];
+                this.f9915s = new Paint[20];
                 while (true) {
-                    Paint[] paintArr2 = this.f9885s;
+                    Paint[] paintArr2 = this.f9915s;
                     if (i14 < paintArr2.length) {
                         paintArr2[i14] = new Paint(1);
-                        this.f9885s[i14].setColorFilter(new PorterDuffColorFilter(i0.a.f(i14 / (this.f9885s.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
+                        this.f9915s[i14].setColorFilter(new PorterDuffColorFilter(i0.a.f(i14 / (this.f9915s.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
                         i14++;
                     } else {
-                        ug.t1 t1Var4 = this.f58920a;
-                        t1Var4.f58902l = new ta(this, 2);
-                        t1Var4.f58908r = 17;
-                        t1Var4.f58909s = 18;
-                        t1Var4.f58910t = 19;
-                        t1Var4.Q = org.telegram.ui.ActionBar.n6.G6;
-                        t1Var4.c();
+                        ug.s1 s1Var4 = this.f58954a;
+                        s1Var4.f58936l = new ta(this, 2);
+                        s1Var4.f58942r = 17;
+                        s1Var4.f58943s = 18;
+                        s1Var4.f58944t = 19;
+                        s1Var4.Q = org.telegram.ui.ActionBar.m6.G6;
+                        s1Var4.c();
                         return;
                     }
                 }
@@ -139,7 +139,7 @@ public final class ua extends ug.u1 {
 
     @Override
     public final int getStarsRectWidth() {
-        switch (this.f9884r) {
+        switch (this.f9914r) {
             case 0:
                 return getMeasuredWidth();
             default:

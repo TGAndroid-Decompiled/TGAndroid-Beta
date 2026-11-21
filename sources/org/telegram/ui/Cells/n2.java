@@ -46,7 +46,7 @@ public final class n2 extends fi.e7 {
     @Override
     public final void e() {
         u2 u2Var = this.S;
-        q2 q2Var = u2Var.f31911e0;
+        q2 q2Var = u2Var.f31939e0;
         if (q2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class n2 extends fi.e7 {
     @Override
     public final void f(long j3) {
         u2 u2Var = this.S;
-        q2 q2Var = u2Var.f31911e0;
+        q2 q2Var = u2Var.f31939e0;
         if (q2Var == null) {
             return;
         }

@@ -1,16 +1,14 @@
 package ki;
 
-import org.telegram.ui.ActionBar.t4;
-public final class w extends t4 {
-    public final z f19002p;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import di.xb;
+public final class w extends LinearLayout {
+    public TextView f19043a;
+    public xb f19044b;
+    public String f19045c;
 
-    public w(z zVar) {
-        this.f19002p = zVar;
-    }
-
-    @Override
-    public final void invalidateSelf() {
-        super.invalidateSelf();
-        this.f19002p.invalidate();
+    public String getCommand() {
+        return this.f19045c;
     }
 }

@@ -2,12 +2,12 @@ package wi;
 
 import java.util.Arrays;
 public final class j {
-    public float f59977a;
-    public float[] f59978b;
-    public int[] f59979c;
+    public float f60018a;
+    public float[] f60019b;
+    public int[] f60020c;
     public boolean d;
-    public int[] f59980e;
-    public float f59981f;
+    public int[] f60021e;
+    public float f60022f;
 
     public final String toString() {
         String str;
@@ -18,13 +18,13 @@ public final class j {
             str = "rows ";
         }
         sb2.append(str);
-        sb2.append(Arrays.toString(this.f59980e));
+        sb2.append(Arrays.toString(this.f60021e));
         sb2.append(" aspect=");
-        sb2.append(this.f59977a);
+        sb2.append(this.f60018a);
         sb2.append(" cost=");
-        sb2.append(this.f59981f);
+        sb2.append(this.f60022f);
         sb2.append(" order=");
-        sb2.append(Arrays.toString(this.f59979c));
+        sb2.append(Arrays.toString(this.f60020c));
         return sb2.toString();
     }
 }

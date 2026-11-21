@@ -2,7 +2,7 @@ package jg;
 
 import android.hardware.Camera;
 import android.widget.TextView;
-import di.ga;
+import di.a8;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.camera.CameraController;
@@ -15,30 +15,30 @@ import org.telegram.messenger.tr;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.o90;
 import org.telegram.ui.Components.q9;
+import org.telegram.ui.Components.q90;
 import org.telegram.ui.Wallet.g2;
 import org.telegram.ui.Wallet.l2;
 public final class w0 implements Runnable {
-    public final int f17704a = 0;
-    public final boolean f17705b;
-    public final Object f17706c;
+    public final int f17729a = 0;
+    public final boolean f17730b;
+    public final Object f17731c;
     public final Object d;
-    public final Object f17707e;
-    public final Object f17708f;
+    public final Object f17732e;
+    public final Object f17733f;
     public final Object h;
-    public final Object f17709n;
-    public final Object f17710r;
+    public final Object f17734n;
+    public final Object f17735r;
 
     public w0(h1 h1Var, String str, boolean z10, TLObject tLObject, TLRPC.User user, String str2, tr trVar, String str3) {
-        this.f17706c = h1Var;
+        this.f17731c = h1Var;
         this.d = str;
-        this.f17705b = z10;
+        this.f17730b = z10;
         this.h = tLObject;
-        this.f17709n = user;
-        this.f17707e = str2;
-        this.f17710r = trVar;
-        this.f17708f = str3;
+        this.f17734n = user;
+        this.f17732e = str2;
+        this.f17735r = trVar;
+        this.f17733f = str3;
     }
 
     @Override
@@ -53,15 +53,15 @@ public final class w0 implements Runnable {
         String str;
         int i10;
         int i11;
-        int i12 = this.f17704a;
-        boolean z14 = this.f17705b;
-        Object obj = this.f17710r;
-        Object obj2 = this.f17709n;
+        int i12 = this.f17729a;
+        boolean z14 = this.f17730b;
+        Object obj = this.f17735r;
+        Object obj2 = this.f17734n;
         Object obj3 = this.h;
-        Object obj4 = this.f17708f;
-        Object obj5 = this.f17707e;
+        Object obj4 = this.f17733f;
+        Object obj5 = this.f17732e;
         Object obj6 = this.d;
-        Object obj7 = this.f17706c;
+        Object obj7 = this.f17731c;
         boolean z15 = true;
         switch (i12) {
             case 0:
@@ -72,20 +72,20 @@ public final class w0 implements Runnable {
                 String str3 = (String) obj5;
                 tr trVar = (tr) obj;
                 String str4 = (String) obj4;
-                o90 o90Var = h1Var.W;
-                if (str2.equals(h1Var.f17523s0)) {
-                    h1Var.f17526v0 = 0;
+                q90 q90Var = h1Var.W;
+                if (str2.equals(h1Var.f17548s0)) {
+                    h1Var.f17551v0 = 0;
                     if (z14 && tLObject == null) {
                         h1Var.T(false, user, str2, str3);
-                    } else if (o90Var != null) {
-                        o90Var.b(false);
+                    } else if (q90Var != null) {
+                        q90Var.b(false);
                     }
                     if (tLObject instanceof TLRPC.TL_messages_botResults) {
                         TLRPC.TL_messages_botResults tL_messages_botResults = (TLRPC.TL_messages_botResults) tLObject;
                         if (!z14 && tL_messages_botResults.cache_time != 0) {
                             trVar.v1(str4, tL_messages_botResults);
                         }
-                        h1Var.f17524t0 = tL_messages_botResults.next_offset;
+                        h1Var.f17549t0 = tL_messages_botResults.next_offset;
                         if (h1Var.U == null) {
                             h1Var.U = tL_messages_botResults.switch_pm;
                         }
@@ -103,25 +103,25 @@ public final class w0 implements Runnable {
                         if (h1Var.S != null && str3.length() != 0) {
                             h1Var.S.addAll(tL_messages_botResults.results);
                             if (tL_messages_botResults.results.isEmpty()) {
-                                h1Var.f17524t0 = "";
+                                h1Var.f17549t0 = "";
                             }
                             z10 = true;
                         } else {
                             h1Var.S = tL_messages_botResults.results;
-                            h1Var.f17532y0 = tL_messages_botResults.gallery;
+                            h1Var.f17557y0 = tL_messages_botResults.gallery;
                             z10 = false;
                         }
-                        ga gaVar = h1Var.f17519q0;
-                        if (gaVar != null) {
-                            org.telegram.messenger.g0.r(gaVar);
+                        a8 a8Var = h1Var.f17544q0;
+                        if (a8Var != null) {
+                            org.telegram.messenger.g0.r(a8Var);
                             r32 = 0;
-                            h1Var.f17519q0 = null;
+                            h1Var.f17544q0 = null;
                         } else {
                             r32 = 0;
                         }
                         h1Var.J = r32;
                         h1Var.B0 = r32;
-                        h1Var.f17531y = r32;
+                        h1Var.f17556y = r32;
                         h1Var.E = r32;
                         h1Var.K = r32;
                         h1Var.R = r32;
@@ -129,13 +129,13 @@ public final class w0 implements Runnable {
                         h1Var.O = r32;
                         h1Var.L = r32;
                         h1Var.Q = r32;
-                        h1Var.f17518p0 = false;
+                        h1Var.f17543p0 = false;
                         if (h1Var.S.isEmpty() && h1Var.U == null && h1Var.V == null) {
                             z11 = false;
                         } else {
                             z11 = true;
                         }
-                        o90Var.a(z11);
+                        q90Var.a(z11);
                         if (z10) {
                             if (h1Var.U == null && h1Var.V == null) {
                                 i7 = 0;
@@ -153,19 +153,19 @@ public final class w0 implements Runnable {
                 }
                 return;
             case 1:
-                ((CameraController) obj7).lambda$recordVideo$14((Camera) obj6, (CameraSession) obj5, this.f17705b, (File) obj4, (CameraInfo) obj3, (CameraController.VideoTakeCallback) obj2, (Runnable) obj);
+                ((CameraController) obj7).lambda$recordVideo$14((Camera) obj6, (CameraSession) obj5, this.f17730b, (File) obj4, (CameraInfo) obj3, (CameraController.VideoTakeCallback) obj2, (Runnable) obj);
                 return;
             default:
-                hi.d dVar = (hi.d) obj7;
+                hi.e eVar = (hi.e) obj7;
                 org.telegram.ui.Wallet.u0 u0Var = (org.telegram.ui.Wallet.u0) obj6;
-                l2 l2Var = u0Var.f45088g;
+                l2 l2Var = u0Var.f45128g;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj5;
                 g2 g2Var = (g2) obj4;
                 TextView textView = (TextView) obj3;
                 q9 q9Var = (q9) obj2;
                 TextView textView2 = (TextView) obj;
                 if (z14) {
-                    dVar.setEnabled((!u0Var.N() || u0Var.y() == null || u0Var.E() == null || dVar.R) ? false : false);
+                    eVar.setEnabled((!u0Var.N() || u0Var.y() == null || u0Var.E() == null || eVar.R) ? false : false);
                     return;
                 }
                 ArrayList arrayList = l2Var.d;
@@ -178,8 +178,8 @@ public final class w0 implements Runnable {
                         TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) obj8;
                         r15 = 0;
                         ArrayList arrayList2 = arrayList;
-                        if (tonconnectsession2.f28665id == tonconnectsession.f28665id) {
-                            g2Var.f44250e = tonconnectsession2;
+                        if (tonconnectsession2.f28693id == tonconnectsession.f28693id) {
+                            g2Var.f44290e = tonconnectsession2;
                         } else {
                             i14 = i15;
                             arrayList = arrayList2;
@@ -188,24 +188,24 @@ public final class w0 implements Runnable {
                         r15 = 0;
                     }
                 }
-                TL_wallet.tonConnectSession tonconnectsession3 = g2Var.f44250e;
+                TL_wallet.tonConnectSession tonconnectsession3 = g2Var.f44290e;
                 if (tonconnectsession3.manifest != null && tonconnectsession3.manifest_error == null && !tonconnectsession3.closed && !tonconnectsession3.closing) {
                     z12 = true;
                 } else {
                     z12 = r15;
                 }
-                if (z12 && !g2Var.f44251f) {
+                if (z12 && !g2Var.f44291f) {
                     z13 = true;
                 } else {
                     z13 = r15;
                 }
-                dVar.setEnabled(z13);
+                eVar.setEnabled(z13);
                 TL_wallet.tonConnectManifest tonconnectmanifest = tonconnectsession3.manifest;
                 if (tonconnectmanifest != null) {
                     Object[] objArr = new Object[1];
                     objArr[r15] = tonconnectmanifest.name;
                     str = null;
-                    textView.setText(gd.V(null, null, 2131742922, objArr));
+                    textView.setText(gd.V(null, null, 2131742916, objArr));
                     TLRPC.WebDocument webDocument = tonconnectsession3.manifest.icon;
                     if (webDocument != null) {
                         q9Var.p(fc.p(h20.c(webDocument)), "76_76", null, tonconnectsession3.manifest);
@@ -217,48 +217,48 @@ public final class w0 implements Runnable {
                 if (num != null) {
                     Object[] objArr2 = new Object[1];
                     objArr2[r15] = num;
-                    textView2.setText(gd.a0(str, str, 2131742744, objArr2));
+                    textView2.setText(gd.a0(str, str, 2131742738, objArr2));
                     return;
                 } else if (!z12) {
                     if (!tonconnectsession3.closed && !tonconnectsession3.closing) {
-                        i11 = 2131748587;
+                        i11 = 2131748586;
                     } else {
-                        i11 = 2131742734;
+                        i11 = 2131742728;
                     }
-                    textView2.setText(gd.M0(i11, str));
+                    textView2.setText(gd.N0(i11, str));
                     return;
                 } else {
                     l2Var.getClass();
                     if (l2.w(g2Var)) {
-                        i10 = 2131742923;
+                        i10 = 2131742917;
                     } else {
-                        i10 = 2131742925;
+                        i10 = 2131742919;
                     }
-                    textView2.setText(gd.M0(i10, str));
+                    textView2.setText(gd.N0(i10, str));
                     return;
                 }
         }
     }
 
     public w0(CameraController cameraController, Camera camera, CameraSession cameraSession, boolean z10, File file, CameraInfo cameraInfo, CameraController.VideoTakeCallback videoTakeCallback, Runnable runnable) {
-        this.f17706c = cameraController;
+        this.f17731c = cameraController;
         this.d = camera;
-        this.f17707e = cameraSession;
-        this.f17705b = z10;
-        this.f17708f = file;
+        this.f17732e = cameraSession;
+        this.f17730b = z10;
+        this.f17733f = file;
         this.h = cameraInfo;
-        this.f17709n = videoTakeCallback;
-        this.f17710r = runnable;
+        this.f17734n = videoTakeCallback;
+        this.f17735r = runnable;
     }
 
-    public w0(boolean z10, hi.d dVar, org.telegram.ui.Wallet.u0 u0Var, TL_wallet.tonConnectSession tonconnectsession, g2 g2Var, TextView textView, q9 q9Var, TextView textView2) {
-        this.f17705b = z10;
-        this.f17706c = dVar;
+    public w0(boolean z10, hi.e eVar, org.telegram.ui.Wallet.u0 u0Var, TL_wallet.tonConnectSession tonconnectsession, g2 g2Var, TextView textView, q9 q9Var, TextView textView2) {
+        this.f17730b = z10;
+        this.f17731c = eVar;
         this.d = u0Var;
-        this.f17707e = tonconnectsession;
-        this.f17708f = g2Var;
+        this.f17732e = tonconnectsession;
+        this.f17733f = g2Var;
         this.h = textView;
-        this.f17709n = q9Var;
-        this.f17710r = textView2;
+        this.f17734n = q9Var;
+        this.f17735r = textView2;
     }
 }

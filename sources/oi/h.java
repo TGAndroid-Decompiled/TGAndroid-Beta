@@ -3,43 +3,43 @@ package oi;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class h implements ViewTreeObserver.OnGlobalFocusChangeListener {
-    public final int f22075a;
-    public final Object f22076b;
+    public final int f22152a;
+    public final Object f22153b;
 
     public h(Object obj, int i7) {
-        this.f22075a = i7;
-        this.f22076b = obj;
+        this.f22152a = i7;
+        this.f22153b = obj;
     }
 
     @Override
     public final void onGlobalFocusChanged(View view, View view2) {
         boolean z10;
-        switch (this.f22075a) {
+        switch (this.f22152a) {
             case 0:
-                ((o) this.f22076b).e0();
+                ((o) this.f22153b).e0();
                 return;
             case 1:
-                ((z1) this.f22076b).B0();
+                ((b2) this.f22153b).B0();
                 return;
             case 2:
-                s3 s3Var = (s3) this.f22076b;
-                if (view2 != null && s3Var.F(view2) != null) {
+                t3 t3Var = (t3) this.f22153b;
+                if (view2 != null && t3Var.F(view2) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                s3Var.f34609i3 = z10;
-                if (view2 instanceof e1) {
-                    s3Var.T3 = (e1) view2;
+                t3Var.f35798i3 = z10;
+                if (view2 instanceof f1) {
+                    t3Var.T3 = (f1) view2;
                     return;
                 }
                 return;
             default:
-                l5 l5Var = (l5) this.f22076b;
-                l5Var.z();
-                n5 n5Var = l5Var.f22165w;
-                if (n5Var != null) {
-                    n5Var.invalidate();
+                m5 m5Var = (m5) this.f22153b;
+                m5Var.z();
+                o5 o5Var = m5Var.f22245w;
+                if (o5Var != null) {
+                    o5Var.invalidate();
                     return;
                 }
                 return;

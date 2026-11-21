@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import com.google.android.gms.tasks.OnSuccessListener;
 import fi.p6;
 import fi.x6;
-import h9.t1;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.gd;
@@ -13,13 +12,13 @@ import org.telegram.messenger.n5;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.xo;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.r1;
-import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.ActionBar.q1;
+import org.telegram.ui.ActionBar.t1;
 import org.telegram.ui.Cells.x1;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.l70;
-import org.telegram.ui.Components.m6;
-import org.telegram.ui.Components.p70;
+import org.telegram.ui.Components.n6;
+import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.r70;
 import org.telegram.ui.bn;
 import org.telegram.ui.f40;
 import org.telegram.ui.k30;
@@ -28,7 +27,7 @@ import org.telegram.ui.kz;
 import org.telegram.ui.rj;
 import p4.c1;
 import p4.i1;
-public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2.j, xh.j {
+public final class z implements OnSuccessListener, x6, kb1, q1, bg.q, xo, c1, h2.j, xh.j {
     public final int f1006a;
     public final boolean f1007b;
     public final Object f1008c;
@@ -42,7 +41,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
     @Override
     public void a(xh.f fVar, float f10, float f11) {
         xh.l lVar = (xh.l) this.f1008c;
-        if (!lVar.d && !lVar.f60597e && !lVar.f60598f && this.f1007b) {
+        if (!lVar.d && !lVar.f60638e && !lVar.f60639f && this.f1007b) {
             lVar.c(f10, f11);
         }
     }
@@ -57,15 +56,15 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
         fi.q qVar = (fi.q) this.f1008c;
         if (!this.f1007b && z10) {
             boolean z11 = true;
-            if (qVar.f12411b != 1) {
+            if (qVar.f12451b != 1) {
                 z11 = false;
             }
-            p6 p6Var = qVar.f12433s;
+            p6 p6Var = qVar.f12473s;
             if (z11) {
-                if (!p6Var.f12404z) {
+                if (!p6Var.f12444z) {
                     return;
                 }
-            } else if (!p6Var.f12395p) {
+            } else if (!p6Var.f12435p) {
                 return;
             }
             p6Var.T(z11);
@@ -76,12 +75,12 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
     public void c(int i7, ArrayList arrayList) {
         switch (this.f1006a) {
             case 2:
-                kg.a0 a0Var = (kg.a0) this.f1008c;
-                ArrayList arrayList2 = a0Var.f18248k;
-                ArrayList arrayList3 = a0Var.f18247j;
+                kg.b0 b0Var = (kg.b0) this.f1008c;
+                ArrayList arrayList2 = b0Var.f18283k;
+                ArrayList arrayList3 = b0Var.f18282j;
                 int i10 = 0;
                 if (this.f1007b) {
-                    a0Var.f18244f = i7;
+                    b0Var.f18279f = i7;
                     arrayList3.clear();
                     arrayList3.addAll(arrayList);
                     while (i10 < arrayList3.size()) {
@@ -89,7 +88,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
                         i10++;
                     }
                 } else {
-                    a0Var.f18245g = i7;
+                    b0Var.f18280g = i7;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     while (i10 < arrayList2.size()) {
@@ -97,7 +96,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
                         i10++;
                     }
                 }
-                a0Var.f18243e.run();
+                b0Var.f18278e.run();
                 return;
             default:
                 kz kzVar = (kz) this.f1008c;
@@ -140,16 +139,16 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
 
     @Override
     public boolean e(TLRPC.TL_error tL_error) {
-        p70 p70Var = (p70) this.f1008c;
+        r70 r70Var = (r70) this.f1008c;
         if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
-            p70Var.setOnDismissListener(new l70(0, p70Var, this.f1007b));
+            r70Var.setOnDismissListener(new n70(0, r70Var, this.f1007b));
         }
-        p70Var.dismiss();
+        r70Var.dismiss();
         return false;
     }
 
     @Override
-    public void h(u1 u1Var, int i7) {
+    public void h(t1 t1Var, int i7) {
         int i10;
         switch (this.f1006a) {
             case 3:
@@ -157,7 +156,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
                 return;
             case 4:
             default:
-                f40 f40Var = ((k30) this.f1008c).f49146b;
+                f40 f40Var = ((k30) this.f1008c).f49189b;
                 f40Var.V2.A(0, null);
                 UndoView o12 = f40Var.o1();
                 if (this.f1007b) {
@@ -169,7 +168,7 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
                 return;
             case 5:
                 bn bnVar = (bn) this.f1008c;
-                rj rjVar = bnVar.f45923a0;
+                rj rjVar = bnVar.f45946a0;
                 if (rjVar != null) {
                     if (this.f1007b) {
                         bnVar.finishFragment();
@@ -185,49 +184,49 @@ public final class z implements OnSuccessListener, x6, kb1, r1, bg.q, xo, c1, h2
 
     @Override
     public void i(long j3) {
-        m6 m6Var = ((x1) this.f1008c).f32284a.f31659z3;
-        if (m6Var != null) {
-            m6Var.t(gd.M((int) j3, this.f1007b), true, true);
+        n6 n6Var = ((x1) this.f1008c).f32312a.f31687z3;
+        if (n6Var != null) {
+            n6Var.t(gd.M((int) j3, this.f1007b), true, true);
         }
     }
 
     @Override
-    public Object k(p4.d0 d0Var, p4.v vVar, int i7) {
+    public Object k(p4.e0 e0Var, p4.v vVar, int i7) {
         int o02;
         long l10;
         int o03;
         long l11;
         switch (this.f1006a) {
             case 9:
-                t1 u10 = h9.i0.u((e2.l0) this.f1008c);
+                h9.t1 u10 = h9.i0.u((e2.l0) this.f1008c);
                 boolean z10 = this.f1007b;
                 if (z10) {
                     o02 = -1;
                 } else {
-                    o02 = d0Var.f55195t.o0();
+                    o02 = e0Var.f55245t.o0();
                 }
                 int i10 = o02;
                 if (z10) {
                     l10 = -9223372036854775807L;
                 } else {
-                    l10 = d0Var.f55195t.l();
+                    l10 = e0Var.f55245t.l();
                 }
-                return d0Var.q(vVar, u10, i10, l10);
+                return e0Var.q(vVar, u10, i10, l10);
             default:
                 List list = (List) this.f1008c;
                 boolean z11 = this.f1007b;
                 if (z11) {
                     o03 = -1;
                 } else {
-                    o03 = d0Var.f55195t.o0();
+                    o03 = e0Var.f55245t.o0();
                 }
                 int i11 = o03;
                 if (z11) {
                     l11 = -9223372036854775807L;
                 } else {
-                    l11 = d0Var.f55195t.l();
+                    l11 = e0Var.f55245t.l();
                 }
-                return d0Var.q(vVar, list, i11, l11);
+                return e0Var.q(vVar, list, i11, l11);
         }
     }
 

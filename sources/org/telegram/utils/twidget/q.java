@@ -6,37 +6,37 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 public final class q implements y, x {
-    public final int f54908a;
-    public final Object f54909b;
+    public final int f54949a;
+    public final Object f54950b;
 
     public q(Object obj, int i7) {
-        this.f54908a = i7;
-        this.f54909b = obj;
+        this.f54949a = i7;
+        this.f54950b = obj;
     }
 
     @Override
     public void a(byte[] bArr) {
-        WidgetEngineBackend.i((WidgetEngineBackend) this.f54909b, bArr);
+        WidgetEngineBackend.i((WidgetEngineBackend) this.f54950b, bArr);
     }
 
     public InputStream b(String str) {
-        switch (this.f54908a) {
+        switch (this.f54949a) {
             case 2:
-                ZipFile zipFile = (ZipFile) this.f54909b;
-                String str2 = WidgetEngineService.f54671b;
+                ZipFile zipFile = (ZipFile) this.f54950b;
+                String str2 = WidgetEngineService.f54712b;
                 ZipEntry entry = zipFile.getEntry("assets/WidgetSandbox/" + str);
                 if (entry != null) {
                     return zipFile.getInputStream(entry);
                 }
                 throw new FileNotFoundException(str);
             default:
-                String str3 = WidgetEngineService.f54671b;
-                return ((AssetManager) this.f54909b).open("WidgetSandbox/" + str);
+                String str3 = WidgetEngineService.f54712b;
+                return ((AssetManager) this.f54950b).open("WidgetSandbox/" + str);
         }
     }
 
     @Override
     public void mo26run() {
-        WidgetEngineBackend.m((y) this.f54909b);
+        WidgetEngineBackend.m((y) this.f54950b);
     }
 }

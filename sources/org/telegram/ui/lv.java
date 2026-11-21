@@ -28,25 +28,25 @@ public final class lv extends FragmentContextView {
         switch (this.Y0) {
             case 0:
                 cx cxVar = this.Z0;
-                org.telegram.ui.Components.cs csVar = cxVar.L1;
+                org.telegram.ui.Components.es esVar = cxVar.L1;
                 FrameLayout frameLayout = cxVar.I1;
                 if (i7 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                csVar.j(frameLayout, z10, true);
+                esVar.j(frameLayout, z10, true);
                 return;
             default:
                 cx cxVar2 = this.Z0;
-                org.telegram.ui.Components.cs csVar2 = cxVar2.L1;
+                org.telegram.ui.Components.es esVar2 = cxVar2.L1;
                 FrameLayout frameLayout2 = cxVar2.K1;
                 if (i7 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                csVar2.j(frameLayout2, z11, true);
+                esVar2.j(frameLayout2, z11, true);
                 return;
         }
     }
